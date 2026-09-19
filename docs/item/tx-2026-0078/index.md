@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -30,14 +30,15 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-16 · The committee has sat twice more this week, on September 14th and September 15th, and its own meeting archive lists both. What it took up at either sitting is not yet on the record here. The committee has still published no report out of the August hearing on data centers and the transmission lines.
+- 2026-09-19 · The August 19th hearing is still on the committee's own archive and sits below the September 14th and September 15th sittings. The record's reading of that page was written to span the page heading and the first meeting row, so the two newer sittings broke it. The reading now names the August date alone. Nothing about the hearing changed. The committee has still published no report out of it.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The Legislature's own committee page lists the committee, the meeting date and the time.
+### The committee's own permanent meeting archive still lists the August 19th sitting, below the two sittings it has held since.
 
-> House Committee on State Affairs (C450) Clerk: Megan Quijano Phone: (512) 463-0814 Room: EXT E2.108 Date and Time Hearing Notice Minutes Witness List Handouts Comments August 19, 2026 8:00 AM
+> August 19, 2026 8:00 AM
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 

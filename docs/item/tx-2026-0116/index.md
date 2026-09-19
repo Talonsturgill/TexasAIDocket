@@ -11,7 +11,7 @@ The Dallas City Council Public Safety Committee has put an update on the Dallas 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · The city's own record still carries the plate reader item as a briefing rather than an action the committee votes on. Nothing has been added to the item, and the presenters listed against it are unchanged.
 - 2026-09-13 · The committee's own record still files the plate reader update as a briefing rather than as an action it votes on. Its agenda date has now passed with nothing added to the item.
 - 2026-09-16 · The Dallas briefing on the police plate reader program is still set and the committee has not moved it. The program is unchanged in the meantime.
+- 2026-09-19 · The briefing on the police plate reader program is still set and the committee has heard nothing yet.
 
 ## Evidence
 

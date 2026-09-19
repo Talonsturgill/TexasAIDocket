@@ -189,7 +189,8 @@
         "2026-08-25",
         "2026-08-26",
         "2026-09-03",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -252,7 +253,9 @@
       "learned": "2026-09-03",
       "instinct": "Re-run the deck-level similarity gate after every repair round, not only after the build.",
       "evidence": "Deck no. 14, round 4. Three rounds of repairs had put one rect-loop idiom into several frames, and bespoke_check FAILED the deck at 0.5515 against its 0.55 line with slides 6 and 7 at 0.791. Nothing in the run had made the deck more of a template on purpose. Fixing frames one at a time with the same tool is how a deck converges without anybody deciding it should.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-19"
+      ],
       "contradicted": []
     },
     {
@@ -574,7 +577,8 @@
       "confirmed": [
         "2026-09-15",
         "2026-09-16",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -662,7 +666,8 @@
         "2026-08-26",
         "2026-09-04",
         "2026-09-13",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -748,7 +753,8 @@
       "instinct": "Measure every frame's median L star against the value its own dossier declared, in the same pass that renders it, because a declared value arc that nothing measures collapses into one band.",
       "evidence": "Carousel 22 planned a sequence of 22, 46, 34, 30, 26, 18, 72, 26 and 28. It shipped measuring 11.1 to 41.1 with four frames within half a point of each other at the floor, and nothing found out until measure.py was written after the panel had already capped.",
       "confirmed": [
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -937,6 +943,78 @@
       "learned": "2026-09-18",
       "instinct": "When a deck is about a public body, fetch the BODY'S OWN PAGE in discovery, not only the documents it published.",
       "evidence": "Every scoring round of carousel no. 28 asked for something a reader could do. Three answers were written to fill that hole and two of them hard-failed for being unsourced. One fetch of the Hays County Commissioners Court's own landing page would have returned the meeting day, the hour, the address and the members' precincts. The run fetched the minutes archive on that same county domain and never asked for it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "figure-read-against-ground",
+      "learned": "2026-09-19",
+      "instinct": "Ink a drawn figure against what is BEHIND it rather than against the palette, because a bright figure on a bright ground is the deck's scale argument made invisible.",
+      "evidence": "2026-09-19 carousel 29. Four frames placed a 1.7 m figure at true scale and inked it M.G.bright, three of them standing against a cream data hall or lit caliche. The integrity judge reported that no figure was findable on five frames including the cover, whose entire job is to establish the scale the other eight borrow. The figures were all present in the code and all the right size. Inking them dark on frames 1, 4, 8 and 9 fixed it; frame 7's stayed bright because its ground is dark, which is the same rule rather than an exception.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "catalogue-sprite-own-scale",
+      "learned": "2026-09-19",
+      "instinct": "A catalogue sprite is a good object at the size it was drawn for and a silhouette at any other, so build a large subject from the frame's own projection instead of scaling a stamp up to it.",
+      "evidence": "2026-09-19 carousel 29. TXOBJ.sprite('data_center') carried a 130 m hall on frames 1, 6 and 8 at three different distances, and its parapet motif rendered at all three as tall square merlons on a single cream fill. Three judges independently called it a crenellated battlement and one charged it as the weakest frame in the deck. Each of the three frames now builds its own hall from px(X,Z) and py(h,Z), differently, and bespoke_check improved from 0.5616 to 0.3748.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "edge-to-edge-stripe-is-frame",
+      "learned": "2026-09-19",
+      "instinct": "A stripe that reaches both frame edges belongs to the FRAME rather than to an object, so give every drawn surface its own edges inside the picture.",
+      "evidence": "2026-09-19 carousel 29. Frame 3's tailgate was a full-width rectangle with its ribs drawn as full-width rules. A judge read it as horizontal wallpaper stripes with no tailgate, no vehicle and no perspective, and was right: nothing in the drawing said where the gate stopped. Rebuilt as a trapezoid with its own side edges, converging ribs, swages and the bed walls behind it, the same object reads as a tailgate at 432px without a single new element being named.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "an-absence-is-registered-while-the-documents-are-open",
+      "learned": "2026-09-19",
+      "instinct": "Register an absence as a claim with its own id while the documents are still open, because by the art phase it cannot be published at all.",
+      "evidence": "2026-09-19 carousel 29. Both fetched documents establish that no count of unreturned water surveys is published, and the fact checker wrote that into the rejections rather than into a claim. Two scoring rounds later the reader judge's single fix was a line publishing the size of that gap, and it could not be written: an unscoped negative fails absence_check correctly, and there was no absence claim to scope it to. The deck publishes the gap in the state's own voice via c5 and publishes no size for it. The miss is at the claims phase, not at the art phase.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-cite-edit-invalidates-every-derived-artifact",
+      "learned": "2026-09-19",
+      "instinct": "Re-run every builder that reads a cite line the moment a cite line changes.",
+      "evidence": "2026-09-19 carousel 29. Round 1 moved frame 1 onto c4 and frame 5 off c17 and c21 to repair a hard fail. first_comment.txt is BUILT from those ids by sources_block.py and nothing re-ran it, so the published sources block lacked the cover's own id and still carried two the deck no longer printed. sources_block --check exits 1 on exactly that and was not asked. run_state.json went on reporting it as exit 0, which was true of the deck before the repair. It cost a second hard fail and a whole scoring round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "answering-a-drawing-note-with-a-comment",
+      "learned": "2026-09-19",
+      "instinct": "When a judge reports a DRAWING defect, change the drawing rather than the comment beside it.",
+      "evidence": "2026-09-19 carousel 29. Round 1 was told frame 5's casts were 7px slivers against a comment claiming four times the height, and it rewrote the comment to describe the sliver honestly. Round 2 returned the same finding, called the repair out by name, and made frame 5 its one-sentence fix. Round 3 drew the casts. The honest comment was worth writing and it was never what the note was about.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "repair-the-class-not-the-instance",
+      "learned": "2026-09-19",
+      "instinct": "When a judge names a defect in one frame or one dossier, sweep the same class across all nine before re-scoring.",
+      "evidence": "2026-09-19 carousel 29. Round 3 reported slide 8's numerals block declaring a claim that carries no numeral; the run fixed slide 8, and round 4 found slides 1 and 5 doing the same thing. Round 3 reported slides 7 and 8 both claiming an identical rect the drawing does not have; the run fixed slide 7's item and slide 8's rect, and round 4 found slide 8's acceptance still demanding rect identity fifty lines below its own retraction. Round 4's integrity judge wrote it as a one-sentence fix: every finding that round was an unswept sibling of the previous round's.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-repair-can-go-invisible-a-new-way",
+      "learned": "2026-09-19",
+      "instinct": "After repairing a drawing, check the draw ORDER of everything added since, because a later layer can hide a fix as completely as the fault it replaced.",
+      "evidence": "2026-09-19 carousel 29. Round 2 rebuilt frame 5's three casts because a 7px sliver was invisible at every size. Round 3 then added a raking ground apron across the same band and drew it after the elevations, so the hatch covered the wedges and the cast was invisible again for a new reason. Round 4's craft judge found it by reading slide-05.html's draw order against the render rather than by looking at the cast code, which was correct.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "command-substitution-eats-the-exit-code",
+      "learned": "2026-09-19",
+      "instinct": "Never put a command substitution between a command and the read of its exit code, because the substitution replaces it.",
+      "evidence": "2026-09-19 carousel 29. The Phase 16 verification suite ran as a loop printing 'printf ... $(basename $g .py) $?' after each gate. Bash evaluates the substitution first and it CLOBBERS $?, so every exit code printed was basename's rather than the gate's, and basename was erroring on a two-operand call at the same time. The suite reported nine green gates and house_style_check was actually exiting 1 with 33 violations, most of them sentences this run had just written. It was caught only because a later rebuild happened to surface the same gate's stdout. This repo already has read-the-exit-code-of-the-thing-that-writes; that instinct is about WHICH command, and this one is about the shell losing the answer between the command and the read.",
       "confirmed": [],
       "contradicted": []
     }

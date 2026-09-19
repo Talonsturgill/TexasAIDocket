@@ -158,6 +158,18 @@ DATE_KINDS = {
     "filed", "introduced", "passed", "signed", "effective", "ordered", "hearing",
     "comment_opens", "comment_closes", "decided", "statutory_deadline", "expires",
     "withdrawn", "election",
+    # ADDED 2026-09-19, after a code review on PR 331 read two of that day's key dates back off
+    # the rendered page. The Governor's directive gives the water board until October 14th to
+    # report on its enforcement, and ERCOT's market notice gives recipients until October 12th to
+    # answer. Both were stored `statutory_deadline`, which the site prints verbatim in the
+    # timeline and the generated answers, and NEITHER deadline was created by a statute. One
+    # comes from an executive directive and one from a market notice.
+    #
+    # `statutory_deadline` was carrying two meanings, "a clock the legislature set" and "a clock
+    # somebody with authority set", and only the first is what the word says. That is the same
+    # defect `on_ercot` had at VERSION 2 and the same answer: the record has a state the field
+    # could not express, so the field widens rather than the record rounding itself off.
+    "administrative_deadline",
 }
 
 SOURCE_TYPES = {"primary_official", "primary_corporate", "journalism"}

@@ -867,6 +867,36 @@
     "AI surveillance governance"
    ],
    "prose_note": "No frame, and no line of the caption, says the court decided, approved, rejected or tabled anything. The fact checker rejected 'the Court gave opposite answers' by name and the deck honours it in the ARRANGEMENT as well as the strings: the two page frames are drawn at different distances and opposite rotations so they can never read as a before and an after. Three integrity judges checked it explicitly across six rounds and none found a disposition asserted. WHAT THE DECK DOES NOT GIVE A READER IS A NEXT STEP, and the reason is recorded rather than papered over: this run fetched no page stating when the court next meets. One fetch of the body's own landing page would have returned the day, the hour and the address. It fetched the minutes archive on that same domain and never asked for it."
+  },
+  {
+   "date": "2026-09-19",
+   "carousel_no": 29,
+   "docket_item": "tx-2026-0171",
+   "instrument": "one state press release and one grid operator market notice issued the same day, read against the statute each of them names",
+   "topic": "The Office of the Texas Governor directed the Texas Water Development Board to enforce the state water use survey against data centers, naming a criminal offense and a TCEQ permit ineligibility that the Texas Water Code already carried, and ERCOT issued a market notice the same day carrying the board's own water questions to data center developers with a response deadline and a notarized attestation requirement.",
+   "angle": "The law did not change and the enforcement did. Every consequence in the directive is a consequence that was already on the books, so the deck draws no legislature, no new rule and nothing having happened yet, and its argument is the gap between a dormant penalty and a penalty switched on.",
+   "angle_note": "THE DECK CARRIES NO PLACE AND KNEW IT AT SELECTION. `texan_check` read places NONE on the story before a frame was planned, which is what the gate is for, so the run planned to carry the score on art and on the closing frame instead of learning it from a judge in a late round. THE INSTRUMENT IS THE FIFTH ERCOT REQUEST IN THE WINDOW and a round 1 judge said so plainly. `c18` separates this notice from the Batch Zero request by name, in the notice's own words, and that sentence is printed on no frame. `dedupe_check` compares entities and keywords and can't see an INSTRUMENT repeat, which four earlier run records have each written in capitals. This is the fifth.",
+   "entities": [
+    "Texas Water Development Board",
+    "ERCOT",
+    "Office of the Texas Governor",
+    "Texas Commission on Environmental Quality",
+    "Public Utility Commission of Texas"
+   ],
+   "entities_note": "No private party is named because neither document names one. The Governor's office asserts that major water users appear to have committed violations and names no company, no county and no volume.",
+   "keywords": [
+    "water use survey",
+    "Texas Water Code",
+    "TWDB",
+    "ERCOT",
+    "market notice",
+    "M-B091426-01",
+    "interconnection",
+    "TCEQ permits",
+    "notarized attestation",
+    "data center water"
+   ],
+   "prose_note": "Every count above is written in words that are not number words, because `ledger_check` validates spelled number words in the newest topic against this run's own figure keys and this run writes no figures.json."
   }
  ]
 }

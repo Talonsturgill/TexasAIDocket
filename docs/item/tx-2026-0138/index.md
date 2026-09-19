@@ -11,7 +11,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
 - Public access: Public meeting
 - Take part: https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · The Lubbock resolution still states a desire and no ordinance has followed it. The council agenda that carried the petition reads as it did.
 - 2026-09-13 · The council's own agenda for the hearing still carries the moratorium as a public hearing and the resolution as a separate item expressing a desire. No ordinance has followed it.
 - 2026-09-16 · Lubbock's council has still only heard the petition for a moratorium and has adopted nothing binding on data centers. Nothing further has been scheduled.
+- 2026-09-19 · The council has taken no action on the petition, so the moratorium it asks for is still nobody's proposal.
 
 ## Evidence
 

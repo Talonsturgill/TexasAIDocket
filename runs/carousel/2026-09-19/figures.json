@@ -1,0 +1,43 @@
+{
+ "_note": "Every count this run's prose narrates, computed rather than typed. compute.py is executed at build time rather than copied, and the source documents are derived from claims.json. shipped_check's `ledgers` gate reads this file against the topics and captions ledgers, so a number in the ledger prose that is not here is a number somebody typed.",
+ "acting_bodies": {
+  "value": 3,
+  "unit": "bodies",
+  "basis": "measured",
+  "from": [
+   "c13",
+   "c16"
+  ],
+  "how": "the length of the set of distinct parties matched by name in the quotes of c13 and c16, which are the two sentences describing the chain, by compute.py",
+  "members": [
+   "the developer",
+   "the grid operator",
+   "the water board"
+  ]
+ },
+ "source_documents": {
+  "value": 2,
+  "unit": "documents",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c4",
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9",
+   "c10",
+   "c12",
+   "c13",
+   "c15",
+   "c16",
+   "c19"
+  ],
+  "how": "the number of distinct source documents the printed claim ids resolve to, counted by sources_block.py off the built first comment rather than beside it",
+  "members": [
+   "the Office of the Governor's release",
+   "ERCOT Market Notice M-B091426-01"
+  ]
+ }
+}

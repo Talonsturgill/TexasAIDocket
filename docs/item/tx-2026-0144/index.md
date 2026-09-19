@@ -10,7 +10,7 @@ The Department of Energy published a request for information on September 9th, 2
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-14 · The request for information is still taking written responses through October 9th. The reason the notice gives for the demand it is securing against still names data centers and artificial intelligence.
 - 2026-09-15 · The request for information is still open for written responses through October 9th. The notice still names data centers and artificial intelligence among what it says increased the nation's dependence on this equipment.
 - 2026-09-16 · The energy department's grid security comment window is still open and still closes October 9th. The department still gives artificial intelligence as why demand grew.
+- 2026-09-19 · The window is still open and the department's own dates line still gives October 9th. A Texan who wants the grid rules to hear from them can still write.
 
 ## Evidence
 

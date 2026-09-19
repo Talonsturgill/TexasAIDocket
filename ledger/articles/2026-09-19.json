@@ -1,0 +1,147 @@
+{
+  "_spec": {
+    "version": 1,
+    "purpose": "A standalone web edition of the archived visual story.",
+    "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+    "written_by": "daily"
+  },
+  "section": "Land, water and permitting",
+  "dek": {
+    "text": "Texas did not pass a new law to put data center water use on the record. It told the water board to enforce the one already written.",
+    "claims": [
+      "c1",
+      "c4",
+      "c6"
+    ]
+  },
+  "introduction": [
+    {
+      "text": "On {{date:c1}} the Office of the Texas Governor [directed the Texas Water Development Board](c1) to compel major water users including data centers to report their water use. It also told the board to impose legal consequences for past and future failures. The instruction names two penalties. Neither of them is new.",
+      "claims": [
+        "c1",
+        "c4"
+      ]
+    },
+    {
+      "text": "The same day, the state's grid operator [issued a market notice](c11) carrying the water board's own questions to data center developers. The two documents are the enforcement and the collection of the same requirement. What changed on that date is who is being asked and what happens to a company that does not answer.",
+      "claims": [
+        "c11",
+        "c13"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "The penalties were already on the books",
+      "paragraphs": [
+        {
+          "text": "The directive states that a data center failing to complete and return the survey [commits an offense punishable as a crime](c6). A data center that returns it late is [ineligible for TCEQ permits, amendments or renewals](c7) under Chapter {{number:c7}} of the Texas Water Code. Neither consequence is new. The [Code already requires the survey](c4), in its own present tense, and the permit bar sits in that chapter.",
+          "claims": [
+            "c4",
+            "c6",
+            "c7"
+          ]
+        },
+        {
+          "text": "The board was told to [use its enforcement authority against past failures](c4) as well as future ones. It must [refer noncompliant data centers](c8) to the County or District Attorney and notify TCEQ for possible permit disqualification. The Governor's office states that major water users [appear to have already committed civil and criminal violations](c2) by withholding required usage information.",
+          "claims": [
+            "c2",
+            "c4",
+            "c8"
+          ]
+        },
+        {
+          "text": "The stated reason is the state water plan. The [press release says](c5) the board is charged with writing that plan and can't do it while it is denied detailed information on existing and anticipated water consumption. That characterization belongs to the Governor's office, which is describing the board's position rather than quoting the board.",
+          "claims": [
+            "c5"
+          ]
+        },
+        {
+          "text": "The instruction builds on an [{{date:c9}} directive](c9) ordering the Public Utility Commission of Texas and ERCOT to audit every data center advancing through the interconnection process. The board must [report its enforcement progress](c10) to the Office of the Governor by {{date:c10}}, with further updates after that.",
+          "claims": [
+            "c9",
+            "c10"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The grid operator asks on the board's behalf",
+      "paragraphs": [
+        {
+          "text": "ERCOT's notice is [aimed at developers of data centers {{number:c12}} MW and larger](c12), along with transmission and distribution service providers and market participants. The water questions in Section C are asked [under the water board's Executive Administrator's authorization](c13), and ERCOT forwards those answers back to the board.",
+          "claims": [
+            "c12",
+            "c13"
+          ]
+        },
+        {
+          "text": "That routing is the mechanism worth noticing. The board holds the survey requirement and the penalties. The grid operator holds the queue that every large new load has to pass through. Pairing them puts the board's question in front of companies at the moment they need something from the grid.",
+          "claims": [
+            "c13",
+            "c21"
+          ]
+        },
+        {
+          "text": "Responses are due on {{date:c15}}. A complete response has to carry [a notarized attestation from the developer](c16). [Failing to answer any part of it](c17) is reported to the utility commission and the Office of the Governor. The notice also warns that under Texas Water Code {{number:c14}}, a recipient that does not fully answer Section C [may face criminal penalties](c14). That wording is conditional and it is not a statement that charges follow automatically.",
+          "claims": [
+            "c14",
+            "c15",
+            "c16",
+            "c17"
+          ]
+        },
+        {
+          "text": "The letter to the board also told it to [partner with the operator](c21) on water consumption, sources of water supply and water-efficient technologies. The request is [separate from the Batch Zero eligibility request](c18) issued earlier in September, which carries its own response obligation.",
+          "claims": [
+            "c18",
+            "c21"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What the record can't establish yet",
+      "paragraphs": [
+        {
+          "text": "Neither document publishes a count of how many surveys went unreturned, or which companies did not file. The Governor's office asserts that violations appear to have occurred. It does not name a data center, a county or a volume of water.",
+          "claims": [
+            "c2",
+            "c4"
+          ]
+        },
+        {
+          "text": "Neither document announces a completed enforcement action. The directive creates a reporting deadline for the board rather than a docket a member of the public can read. Whether anything has been filed somewhere else is not something these two documents can answer. The first visible test is whether the {{date:c10}} update names anything the board actually did.",
+          "claims": [
+            "c8",
+            "c10"
+          ]
+        },
+        {
+          "text": "The grid operator [expects to publish a report](c19) on what the responses show no later than {{date:c19}}. Until then the water numbers sit with the companies that hold them. Neither the directive nor the market notice says how long the penalty has been on the books. What both of them say is that the state spent this month deciding to use it.",
+          "claims": [
+            "c19"
+          ]
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "tx-2026-0171",
+      "label": "The directive to penalize unreturned water surveys"
+    },
+    {
+      "id": "tx-2026-0172",
+      "label": "The grid operator's data center impacts request"
+    },
+    {
+      "id": "tx-2026-0072",
+      "label": "The August audit of the interconnection queue"
+    },
+    {
+      "id": "tx-2026-0056",
+      "label": "The denied petition for a data center water category"
+    }
+  ]
+}

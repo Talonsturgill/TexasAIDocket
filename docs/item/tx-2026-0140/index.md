@@ -11,7 +11,7 @@ The National Highway Traffic Safety Administration opened Audit Query AQ26002 on
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · Corrected. The claim naming the two officials on the resume called one of them the approver. The resume's own words are Reviewer, and the claim now reads reviewer. The access note advertised filing a vehicle safety complaint. No source here describes that route. The note now says what the link reaches.
 - 2026-09-13 · The audit resume is unchanged. It still names the certification process rather than the driving as its subject, and which standards the company treated as inapplicable is still an open question.
 - 2026-09-16 · The audit of how the Cybercab was certified is still open, and commercial deployment in Austin is still running while it is. Neither has changed.
+- 2026-09-19 · The audit of how the vehicle was certified is still open, and the deployment it began beside is still running.
 
 ## Evidence
 

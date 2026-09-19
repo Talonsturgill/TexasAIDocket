@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-13 · Admitted to the record. A model built at a Texas cancer center scored lower on patients it had not been fitted to. The authors call that limited standalone discrimination and ask for cautious use, and they report no test that the difference is real.
 - 2026-09-16 · The MRI model still scored lower on patients it was not built on, and the authors' own reading of that result is unchanged. Nothing has been retracted.
+- 2026-09-19 · The result stands as published, and the model has not been reported as refitted to the patients it scored lower on.
 
 ## Evidence
 

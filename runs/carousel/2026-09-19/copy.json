@@ -1,0 +1,174 @@
+{
+ "date": "2026-09-19",
+ "carousel_no": 29,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped. An integrity judge read the earlier note as turning copy_sync_check into a tautology, and the reading is fair as far as it goes. What this file is FOR is the strings a reader receives, and reading them off the render is the only way to get those; what it cannot do is see a string a drawing has painted over, which is the defect that judge found on frame 3 and which no DOM-reading gate in this suite can see. That is a gap in the SUITE and it is written up as one, rather than answered by retyping this file from the plan and calling the disagreement a check.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "kicker": "The state and the data centers",
+   "headline": "Texas already had the power to ask.",
+   "claims": [
+    "c4"
+   ],
+   "cite": "c4 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "Texas already had the power to ask.",
+    "The Texas Water Code already requires a complete and accurate water use survey.",
+    "The state and the data centers",
+    "01 / 09",
+    "c4 TEXAS AI DOCKET"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "kicker": "Who the request is aimed at",
+   "headline": "Twenty five megawatts and larger.",
+   "claims": [
+    "c1",
+    "c12",
+    "c13"
+   ],
+   "cite": "c1 c12 c13 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The survey is the board's. The request is the grid operator's, carrying the board's questions.",
+    "Twenty five megawatts and larger.",
+    "Who the request is aimed at",
+    "02 / 09",
+    "c1 c12 c13 TEXAS AI DOCKET"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "kicker": "September 14th",
+   "headline": "It was already a crime.",
+   "claims": [
+    "c1",
+    "c6",
+    "c7"
+   ],
+   "cite": "c1 c6 c7 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "It was already a crime.",
+    "OFFICE OF THE TEXAS GOVERNOR SEPTEMBER 14TH, 2026",
+    "\"A data center that fails to complete and return the survey commits an offense punishable as a crime.\"",
+    "\"A data center that fails to timely complete and return the survey is ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code.\"",
+    "September 14th",
+    "03 / 09",
+    "c1 c6 c7 TEXAS AI DOCKET"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "kicker": "What the audit is a condition on",
+   "headline": "The audit rides on the queue.",
+   "claims": [
+    "c9"
+   ],
+   "cite": "c9 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The audit rides on the queue.",
+    "An August 3rd directive ordered an audit of all data centers that advance through the grid operator's interconnection process.",
+    "What the audit is a condition on",
+    "04 / 09",
+    "c9 TEXAS AI DOCKET"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "kicker": "Who asks whom",
+   "headline": "Three bodies, one answer.",
+   "claims": [
+    "c13",
+    "c16"
+   ],
+   "cite": "c13 c16 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "Three bodies, one answer.",
+    "The Texas Water Development Board's Executive Administrator authorized ERCOT to ask on the board's behalf.",
+    "THE WATER BOARD authorizes the asking",
+    "THE GRID OPERATOR asks on its behalf",
+    "THE DEVELOPER answers, notarized",
+    "Who asks whom",
+    "05 / 09",
+    "c13 c16 TEXAS AI DOCKET"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "kicker": "What the figure is for",
+   "headline": "The plan needs a number.",
+   "claims": [
+    "c5"
+   ],
+   "cite": "c5 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The plan needs a number.",
+    "The release states the board writes the state water plan and can't do that while it is denied detail on existing and anticipated water consumption.",
+    "What the figure is for",
+    "06 / 09",
+    "c5 TEXAS AI DOCKET"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "kicker": "Where the answer is owed",
+   "headline": "The board reports back by October 14th.",
+   "claims": [
+    "c8",
+    "c10"
+   ],
+   "cite": "c8 c10 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The board reports back by October 14th.",
+    "The board must refer noncompliance to the appropriate County or District Attorney.",
+    "Where the answer is owed",
+    "07 / 09",
+    "c8 c10 TEXAS AI DOCKET"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "kicker": "Where the answer comes from",
+   "headline": "The answer is due October 12th.",
+   "claims": [
+    "c15",
+    "c16"
+   ],
+   "cite": "c15 c16 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The answer is due October 12th.",
+    "A complete response carries a notarized attestation from the data center developer.",
+    "Where the answer comes from",
+    "08 / 09",
+    "c15 c16 TEXAS AI DOCKET"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "kicker": "What happens next",
+   "headline": "The grid operator's report is expected in December.",
+   "claims": [
+    "c15",
+    "c19"
+   ],
+   "cite": "c15 c19 TEXAS AI DOCKET",
+   "strings": [
+    "texasaidocket.com",
+    "The grid operator's report is expected in December.",
+    "December 10th",
+    "Answers are due at 5 p.m. Central Prevailing Time on October 12th.",
+    "What happens next",
+    "09 / 09",
+    "c15 c19 TEXAS AI DOCKET"
+   ]
+  }
+ }
+}

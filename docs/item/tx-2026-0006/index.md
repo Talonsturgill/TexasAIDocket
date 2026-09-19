@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · Chapter 552 is still in force in the form it took effect, and enforcement still runs through the Attorney General alone. No other body has acquired a way to bring an action under it.
+- 2026-09-19 · The Act is still in force as the chapter it was codified into, and the Attorney General is still the only person who can bring a case under it.
 
 ## Evidence
 

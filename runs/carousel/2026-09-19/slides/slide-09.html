@@ -1,0 +1,259 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 9 of 9. Archetype FULL_BLEED. THE CLOSE, AND THE DECK'S PROBE FRAME.
+     Built first, per ILLUSTRATION_SYSTEM's order of work, because every judged deck was
+     thinnest where the argument lands.
+
+     THREE COMPOSITIONS WERE THROWN AWAY BEFORE THIS ONE AND THE REASON IS WORTH KEEPING.
+     The first put the horizon at y 800 and gave the type the top sixty percent, so the
+     reservoir was squeezed into what was left. It PASSED machine QA and was not an image.
+     The second looked along a dam crest and produced a white wedge over a field of stripes.
+     The third brought a hand-drawn staff gauge close and it crossed the headline and read as
+     a stick. All three failed the same way: they were LANDSCAPES made of hand-drawn
+     primitives, and a water plane with marks on it is a texture rather than a subject.
+
+     THE CURE IS THE CATALOGUE. `txobjects.js` holds forty four things drawn at true scale with
+     their own parts, their own lit and shaded faces and their own shadows. The reference deck
+     at `examples/editorial-deck/` is built from them and that is why it reads. A frame built
+     from catalogue objects on the scene bench is an image before anybody styles it.
+
+     WHAT THIS FRAME IS. A water tower at true size, 12 by 38 m, standing over a caliche lot at
+     first light with the reservoir behind it. It bleeds the top edge, which is what a 38 m
+     object does when you stand near it. A person and a pickup are in the lot at true scale, so
+     the tower has a size. A stock tank holds the deck's last comal.
+
+     THE MOTIF'S LAST STATE. The whole deck has been about reading water, and the close is the
+     largest vessel of it in the frame with nobody reading anything. Nothing about the physical
+     world changed on September 14th. What changed is who is now required to read the number
+     out loud, and when.
+
+     THE TOWER CARRIES NO TOWN NAME. The catalogue paints a band where a town would put one and
+     this frame leaves it blank, because this story names no county and a lettered tower would
+     put it somewhere the record does not.
+
+     NOTHING IS DRAWN AS HAVING HAPPENED. No stop-work tag, no chained gate, no dry tank.
+     Nothing has been prosecuted and no permit has been denied.
+
+     THE TWO DATES HERE LOST THEIR YEAR IN ROUND 2. A date inside the post's own year is
+     REDUNDANT rather than wrong, a reader works 2026 out from the fact that they are reading it
+     this week, and the caption had been dropping the year while the deck's closing frame printed
+     it twice in its largest type. Two judges read the two surfaces against each other. The site
+     keeps its years, which is what makes this a rule about redundancy rather than against years,
+     and frame 3 keeps the one on its letterhead because that is the document's own dateline
+     rather than the deck speaking.
+     Planned frame median L* 26. THIS SENTENCE AND THE DOSSIER'S DISAGREED UNTIL ROUND 1, at
+     30 here and 26 there, which is one number with two homes and is the defect this repo's own
+     measured-figures gate exists for. The dossier wins, because a target revised after the probe
+     render is a revision to the PLAN and has to be made in the plan. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:126px; width:520px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .date { position:absolute; left:80px; top:432px; width:520px;
+          font-family:"JetBrains Mono", monospace; font-size:44px; font-weight:700;
+          letter-spacing:0.004em; font-variant-numeric:tabular-nums; color:#E6DFCC; z-index:11; }
+  /* 24px is the mobile floor and 23 was a silly way to lose a warn on the closing frame. */
+  .dek  { position:absolute; left:80px; top:498px; width:472px; font-size:24px;
+          line-height:1.38; color:#C6C6B8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The grid operator's report is expected in December.</h1>
+<p class="date" id="date">December 10th</p>
+<p class="dek">Answers are due at 5 p.m. Central Prevailing Time on October 12th.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What happens next", counter: "09 / 09",
+      src: "c15 c19   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 82, maxLines: 4 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260919);
+
+    /* Measured after fitText and after every node is at its final place. */
+    var boxes = TXDECK.lineBoxes(".hook, .date, .dek, .kick, .count, .src, .tx-site", 18);
+
+    var HORIZON = 712;
+
+    M.print(cx, {
+      seed: 19,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 820, eye: 1.65 });
+        var yh = HORIZON;
+
+        /* 1. THE SKY. t = 1.0, the deck's last and brightest, and the glow is a band at the
+         *    horizon so the zenith the type sits on stays night. */
+        M.sky(a, S, 1.00);
+
+        /* 2. THE FAR RIDGE, ashe juniper broken against the glow. */
+        a.fillStyle = M.G.deep;
+        a.beginPath();
+        a.moveTo(0, yh);
+        var R = TX.rng(311);
+        for (var x = 0; x <= W; x += 7) {
+          var h = 8 + TX.fbm2(x * 0.0026, 4.1, 4) * 20 + (R() < 0.09 ? 10 : 0);
+          a.lineTo(x, yh - h);
+        }
+        a.lineTo(W, yh); a.closePath(); a.fill();
+
+        /* 3. THE LOT. Caliche, lit by the low key, falling to the deck's dark at the bottom
+         *    edge where the furniture band sits. This is the ground everything stands on. */
+        S.ground({ near: 0.8, far: 300, fill: M.G.stone });
+        var gg = a.createLinearGradient(0, yh, 0, H);
+        gg.addColorStop(0.00, "rgba(255,255,255,0.10)");
+        gg.addColorStop(0.42, "rgba(0,0,0,0.10)");
+        gg.addColorStop(1.00, "rgba(0,0,0,0.62)");
+        a.fillStyle = gg;
+        a.fillRect(0, yh, W, H - yh);
+        S.gridZ({ dz: 9, from: 8, to: 150, ink: "rgba(0,0,0,0.20)", width: 1.0 });
+
+        /* 4. THE STOCK TANK, at Z 96 on the left, the deck's last water and the only thing on
+         *    this frame that carries the accent. It is water somebody has a number for,
+         *    because a stock tank is gauged. */
+        (function () {
+          var tank = TXOBJ.sprite("stock_tank");
+          S.shadow(tank, { X: -16.5, Z: 48, ink: "#000", alpha: 0.36 });
+          S.sprite(tank, { X: -16.5, Z: 48,
+                           inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal } });
+        })();
+
+        /* 5. THE FENCE, running the lot's far side, so the ground has a measure across it. */
+        TXOBJ.fence(S, [-60, 118], [70, 118],
+                    { step: 7, wires: 4, ink: "rgba(230,223,204,0.55)",
+                      inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal },
+                      shadowAlpha: 0.22 });
+
+        /* 6. MESQUITE on the fence line, so the far ground is a place rather than a plane. */
+        (function () {
+          var seeds = [[-46, 132, 5], [26, 141, 11], [58, 126, 3]];
+          for (var i = 0; i < seeds.length; i++) {
+            var mq = TXOBJ.sprite("mesquite", { seed: seeds[i][2] });
+            S.shadow(mq, { X: seeds[i][0], Z: seeds[i][1], ink: "#000", alpha: 0.30 });
+            S.sprite(mq, { X: seeds[i][0], Z: seeds[i][1],
+                           inks: { ink: M.G.dark, paper: M.G.deep, accent: M.G.dark } });
+          }
+        })();
+
+        /* 7. THE SUBJECT. A 12 by 38 m water tower at Z 34, right of the type, bleeding the
+         *    top edge because that is what a 38 m object does when you stand near it. Its
+         *    legs, its riser, its bracing, its tank shell, its cone and its catwalk are all
+         *    catalogue parts at true scale, each with its own lit and shaded face, and it
+         *    casts onto the lot at four times its height from the deck's own light. */
+        (function () {
+          /* THE LONG CAST, AND ROUND 1 ADDED IT. `S.shadow` lays the sprite's own footprint and
+           * that is the right thing for a pickup. A 38 m tower at an elevation of 14 degrees
+           * throws about 152 m, which runs past the camera rather than landing in the picture,
+           * so the honest drawing of it is a wedge leaving the base and leaving the frame. A
+           * judge counted its absence on the deck's closing frame, under a light law the other
+           * eight frames obey. The tank's own shadow rides on the wedge, because the tank is
+           * the widest thing up there and a cast reports the silhouette that made it. */
+          var bx = 540 + 820 * 8.2 / 34, by = HORIZON + 820 * 1.65 / 34;
+          var g9 = a.createLinearGradient(bx, by, W + 240, 1210);
+          g9.addColorStop(0.00, "rgba(0,0,0,0.52)");
+          g9.addColorStop(0.55, "rgba(0,0,0,0.26)");
+          g9.addColorStop(1.00, "rgba(0,0,0,0.00)");
+          a.fillStyle = g9;
+          a.beginPath();
+          a.moveTo(bx - 30, by + 2);
+          a.lineTo(bx + 34, by + 2);
+          a.lineTo(W + 240, 1126);
+          a.lineTo(W + 240, 1262);
+          a.closePath(); a.fill();
+          /* the tank's disc, riding the wedge about two thirds of the way out */
+          a.fillStyle = "rgba(0,0,0,0.30)";
+          a.beginPath(); a.ellipse(bx + 412, by + 254, 178, 27, -0.19, 0, Math.PI * 2); a.fill();
+
+          var tower = TXOBJ.sprite("water_tower");
+          S.shadow(tower, { X: 8.2, Z: 34, ink: "#000", alpha: 0.42 });
+          S.sprite(tower, { X: 8.2, Z: 34,
+                            inks: { ink: M.G.glare, paper: M.G.dark, accent: M.G.glare },
+                            fade: false });
+        })();
+
+        /* 8. THE PICKUP, at Z 16, so the lot has a second known size between the person and
+         *    the tower. */
+        (function () {
+          var tk = TXOBJ.sprite("pickup");
+          S.shadow(tk, { X: 7.2, Z: 9.0, ink: "#000", alpha: 0.44 });
+          S.sprite(tk, { X: 7.2, Z: 9.0,
+                         inks: { ink: M.G.bright, paper: M.G.deep, accent: M.G.bright },
+                         fade: false });
+        })();
+
+        /* 9. THE PERSON, 1.7 m at Z 11, standing in the lot looking up at the tower. Every
+         *    object above gets its size from this one. */
+        (function () {
+          /* INKED DARK IN ROUND 1, like the figures on 1, 4 and 8. This one stands on the lit
+           * lot rather than against the sky, and a bright figure on lit caliche is a pale slab
+           * the screen closes up. */
+          var fig = TXFIG.figure({ pose: "stand", height: 1.7, hold: "clipboard", hat: "cap" });
+          S.shadow(fig, { X: 1.1, Z: 6.0, ink: "#000", alpha: 0.46 });
+          S.sprite(fig, { X: 1.1, Z: 6.0,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        /* The furniture band only. The zenith is dark by construction, so the top takes none. */
+        M.reserve(c, { top: 0, topSolid: 0, bottom: 150, bottomSolid: 92 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. The print lays its
+         * halftone and its contour across the whole frame and can't consult a mask as it goes,
+         * so the reserve is punched afterwards, which is the mechanism txdeck.js documents for
+         * exactly this. It runs AFTER the furniture band because the band re-composites, and a
+         * punch that anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped,
+         * and that is a defect this project has already paid to find out about once. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+
+        /* THE ACCENT, ITS LAST STATE. Comal on the stock tank's water, which is the only
+         * water on this frame and the only thing here anybody holds a number for. It never
+         * touches sky, concrete or metal. */
+        /* DRAWN WITH THE CHASSIS'S `N.tank` FROM ROUND 2. It was a bare comal ellipse, and two
+         * judges independently reported the same thing: a flat blue lozenge with no gauge, no
+         * vessel and no contact. The deck's accent law turns on the word GAUGED and the drawing
+         * never carried it, so the recurring object registered as a colour rather than as the
+         * one thing on the frame somebody holds a number for. */
+        M.tank(c, { x: 176, y: 748, rx: 112, ry: 13, ink: "rgba(42,122,158,0.78)" });
+      }
+    });
+
+    /* THE LAST LINE THAT TOUCHES THE ART CANVAS. The deck's one grade. */
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

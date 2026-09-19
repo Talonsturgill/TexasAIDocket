@@ -1,0 +1,252 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 2 of 9. Archetype CLOSE_CROP.
+     THIS FRAME WAS REDRAWN. Its first cut was the same hall as frames 1, 6 and 8 at a nearer
+     camera, and `bespoke_check` measured it against frame 8 at 0.9031 with the deck's median at
+     0.5616, which is a FAIL. The report's own words for it are "this deck is one drawing
+     repeated" and it was right. Four frames of one building is a visual system used as an
+     excuse.
+
+     WHAT IT IS NOW. THE PROPERTY LINE, at arm's length. A hot-dip galvanized fence and its line
+     posts fill the frame, cropped by both side edges, with the hall reduced to a lit band far
+     beyond the wire and a gauged stock tank standing just inside it. The subject is the
+     BOUNDARY, which is the honest picture of a threshold measured in megawatts: the thing on the
+     far side is defined by a number, and this is the last place a person can stand without one.
+
+     NO SCENE BENCH HERE. A fence 1.2 m from the lens is drawn in the frame's own coordinates,
+     because a camera that close to a wire mesh is not a landscape projection and pretending it
+     is would turn the mesh into a moire field. That is also what makes this a different DRAWING
+     rather than the same one at another distance.
+
+     THE ACCENT IS HERE FOR A REASON BEYOND THE COUNT. The stock tank inside the fence is water
+     somebody holds a number for, standing a few metres from a building whose water nobody has a
+     number for. That is the deck's whole argument at its smallest scale.
+
+     NO FIGURE, AND IT IS THE ONLY FRAME WITHOUT ONE. The point is that this is as close as a
+     member of the public gets. Planned frame median L* 22. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* A DEK ARRIVED IN ROUND 3 AND IT IS THE DECK'S BIGGEST READER REPAIR. Two judges read the
+   * nine frames and took away that the water SURVEY is the thing due October 12th, because the
+   * deck names two instruments and never says there are two. Frame 2 had no body copy at all,
+   * so the whole distinction rode on a 24px mono kicker in a corner. */
+  .dek  { position:absolute; left:80px; top:136px; width:620px; font-size:24px;
+          line-height:1.40; color:#C6C6B8; z-index:10; }
+  .hook { position:absolute; left:80px; top:1010px; width:800px; font-size:88px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.99;
+          letter-spacing:-0.022em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<p class="dek">The survey is the board's. The request is the grid operator's, carrying the board's questions.</p>
+<h1 class="hook" id="hook">Twenty five megawatts and larger.</h1>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "Who the request is aimed at", counter: "02 / 09",
+      src: "c1 c12 c13   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 88, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260902);
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    var FTOP = 150, FBOT = 946;       /* the fabric's top rail and where it meets the caliche */
+
+    M.print(cx, {
+      seed: 41,
+      draw: function (a) {
+        a.fillStyle = M.G.void;
+        a.fillRect(0, 0, W, H);
+
+        /* a shallow sky band, because almost all of this frame is fence */
+        var sky = a.createLinearGradient(0, 0, 0, 520);
+        sky.addColorStop(0.00, "rgba(255,255,255,0.02)");
+        sky.addColorStop(0.76, "rgba(255,255,255,0.06)");
+        sky.addColorStop(1.00, "rgba(255,255,255,0.22)");
+        a.fillStyle = sky;
+        a.fillRect(0, 0, W, 520);
+
+        /* THE HALL, far beyond the wire. TWO JUDGES REPORTED IT WAS NOT DRAWN AT ALL and it was
+         * drawn the whole time, at the exact y where this frame's sky gradient reaches its own
+         * brightest stop. A lit band laid on a lit field is not a band. It has a dark eaves
+         * shadow ABOVE it now, so the roofline is read against something, and its own louvre
+         * rhythm below, and the sky behind it is held back. `a-laid-out-word-is-not-a-visible-
+         * word` is an instinct in this repo about type and it is the same rule for a building:
+         * assert contrast against the ground a mark actually lands on. */
+        a.fillStyle = "rgba(0,0,0,0.44)";
+        a.fillRect(0, 460, W, 26);
+        a.fillStyle = M.G.bright;
+        a.fillRect(0, 486, W, 32);
+        a.fillStyle = M.G.dark;
+        a.fillRect(0, 516, W, 8);
+        for (var vx = 34; vx < W; vx += 71) {
+          a.fillStyle = "rgba(0,0,0,0.28)";
+          a.fillRect(vx, 492, 9, 22);
+        }
+
+        /* the caliche beyond the wire, then the near ground under the reader */
+        var gnd = a.createLinearGradient(0, 524, 0, H);
+        gnd.addColorStop(0.00, "rgba(255,255,255,0.24)");
+        gnd.addColorStop(0.28, "rgba(255,255,255,0.10)");
+        gnd.addColorStop(0.58, "rgba(0,0,0,0.34)");
+        gnd.addColorStop(1.00, "rgba(0,0,0,0.92)");
+        a.fillStyle = M.G.stone;
+        a.fillRect(0, 524, W, H - 524);
+        a.fillStyle = gnd;
+        a.fillRect(0, 524, W, H - 524);
+
+        /* THE STOCK TANK just inside the wire. A rim and a dish, so it is a vessel rather than a
+         * disc, with its own cast running right. Its water takes the accent in `over`. */
+        a.fillStyle = "rgba(0,0,0,0.46)";
+        a.beginPath(); a.ellipse(812, 706, 162, 28, 0, 0, Math.PI * 2); a.fill();
+        a.fillStyle = M.G.metal;
+        a.beginPath(); a.ellipse(802, 694, 154, 26, 0, 0, Math.PI * 2); a.fill();
+        a.fillStyle = M.G.deep;
+        a.beginPath(); a.ellipse(802, 692, 136, 19, 0, 0, Math.PI * 2); a.fill();
+
+        /* THE FENCE FABRIC. Two crossing families of wire, each strand with a lit upper edge and
+         * a dark lower one, so the mesh has a thickness rather than being a screen. */
+        (function () {
+          var mesh = 48;
+          a.lineCap = "round";
+          for (var d = -H; d < W + H; d += mesh) {
+            a.strokeStyle = "rgba(230,223,204,0.36)"; a.lineWidth = 3.4;
+            a.beginPath(); a.moveTo(d, FTOP); a.lineTo(d + (FBOT - FTOP), FBOT); a.stroke();
+            a.strokeStyle = "rgba(0,0,0,0.44)"; a.lineWidth = 1.6;
+            a.beginPath(); a.moveTo(d + 3, FTOP + 3); a.lineTo(d + 3 + (FBOT - FTOP), FBOT + 3); a.stroke();
+          }
+          for (var e = -H; e < W + H; e += mesh) {
+            a.strokeStyle = "rgba(230,223,204,0.30)"; a.lineWidth = 3.0;
+            a.beginPath(); a.moveTo(e, FBOT); a.lineTo(e + (FBOT - FTOP), FTOP); a.stroke();
+            a.strokeStyle = "rgba(0,0,0,0.38)"; a.lineWidth = 1.5;
+            a.beginPath(); a.moveTo(e + 3, FBOT + 3); a.lineTo(e + 3 + (FBOT - FTOP), FTOP + 3); a.stroke();
+          }
+          /* the top rail and the bottom tension wire, each a lit crown over a dark belly */
+          a.fillStyle = M.G.glare; a.fillRect(0, FTOP - 14, W, 10);
+          a.fillStyle = M.G.dark;  a.fillRect(0, FTOP - 4, W, 7);
+          a.fillStyle = M.G.metal; a.fillRect(0, FBOT - 5, W, 6);
+          a.fillStyle = "rgba(0,0,0,0.48)"; a.fillRect(0, FBOT + 1, W, 5);
+          /* barbed arms above the rail, leaning in over the reader */
+          for (var bx = 110; bx < W + 200; bx += 380) {
+            a.strokeStyle = M.G.bright; a.lineWidth = 7;
+            a.beginPath(); a.moveTo(bx, FTOP - 10); a.lineTo(bx - 58, FTOP - 104); a.stroke();
+            a.strokeStyle = "rgba(0,0,0,0.42)"; a.lineWidth = 2.6;
+            a.beginPath(); a.moveTo(bx + 4, FTOP - 10); a.lineTo(bx - 54, FTOP - 104); a.stroke();
+          }
+        })();
+
+        /* THE NEAR GROUND, WHICH WAS A GRADIENT AND IS NOW A SURFACE. `qa.py` read this frame as
+         * top-loaded, the bottom third at 56 percent of the frame's own craft density, and it was
+         * right for a reason worth naming. The cure it forbids is a bigger quiet zone, and a
+         * gradient under a bottom-set hook IS a quiet zone. What belongs here physically is the
+         * fence's own shadow. The key is upper left, so the mesh rakes toward the lower right and
+         * opens as it nears the lens, which is the one drawing on this frame that can only be
+         * made from where the reader is standing. */
+        (function () {
+          a.save();
+          a.beginPath(); a.rect(0, FBOT, W, H - FBOT); a.clip();
+          /* the cast diamonds, pitch growing with distance from the rail */
+          for (var y = FBOT + 10, step = 26; y < H + 220; y += step, step *= 1.13) {
+            var open = (y - FBOT) * 0.52;          /* how far the shadow has raked right */
+            var pitch = 48 + (y - FBOT) * 0.16;    /* the mesh opening up toward the lens */
+            a.strokeStyle = "rgba(0,0,0,0.30)";
+            a.lineWidth = 1.6 + (y - FBOT) * 0.006;
+            for (var sx = -H; sx < W + H; sx += pitch) {
+              a.beginPath();
+              a.moveTo(sx + open, y);
+              a.lineTo(sx + open + pitch * 0.5, y + step * 0.92);
+              a.stroke();
+              a.beginPath();
+              a.moveTo(sx + open + pitch * 0.5, y);
+              a.lineTo(sx + open, y + step * 0.92);
+              a.stroke();
+            }
+          }
+          /* caliche gravel, each stone a lit crown over its own contact, sized by distance */
+          var GR = TX.rng(2041);
+          for (var g = 0; g < 260; g++) {
+            var gy = FBOT + 14 + Math.pow(GR(), 0.62) * (H - FBOT - 20);
+            var gx = GR() * W;
+            var gr = 1.4 + (gy - FBOT) / (H - FBOT) * 6.2 * (0.45 + GR() * 0.9);
+            a.fillStyle = "rgba(0,0,0,0.42)";
+            a.beginPath(); a.ellipse(gx + gr * 0.5, gy + gr * 0.55, gr * 1.15, gr * 0.5, 0, 0, Math.PI * 2); a.fill();
+            a.fillStyle = "rgba(230,223,204,0.30)";
+            a.beginPath(); a.ellipse(gx, gy, gr, gr * 0.74, 0, 0, Math.PI * 2); a.fill();
+          }
+          a.restore();
+        })();
+
+        /* THE LINE POSTS, the frame's largest shapes. Each a pipe with a lit left face, a mid
+         * body, a dark right return and a two-part contact where it enters the caliche. */
+        (function () {
+          var posts = [128, 556, 984];
+          for (var i = 0; i < posts.length; i++) {
+            var px = posts[i], pw = 38;
+            TXDECK.contact(a, { x: px + pw / 2, y: FBOT + 8, w: pw * 2.6, h: 14,
+                                height: 2.6, ambient: 0.36, contact: 0.64 });
+            a.fillStyle = M.G.glare;
+            a.fillRect(px, FTOP - 34, pw * 0.44, FBOT - FTOP + 38);
+            a.fillStyle = M.G.metal;
+            a.fillRect(px + pw * 0.44, FTOP - 34, pw * 0.32, FBOT - FTOP + 38);
+            a.fillStyle = M.G.dark;
+            a.fillRect(px + pw * 0.76, FTOP - 34, pw * 0.24, FBOT - FTOP + 38);
+            a.fillStyle = M.G.glare;
+            a.beginPath(); a.ellipse(px + pw / 2, FTOP - 34, pw / 2, 9, 0, 0, Math.PI * 2); a.fill();
+          }
+        })();
+      },
+      over: function (c) {
+        /* THE BOTTOM RESERVE SHRANK TO THE FURNITURE BAND. At 430 it was flattening the whole
+         * near ground to make room for a hook the punch below already seats. The near ground is
+         * drawn now, so it keeps its own values and the type is lifted off it locally. */
+        M.reserve(c, { top: 320, topSolid: 168, bottom: 196, bottomSolid: 104 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. It DIMS toward the type with
+         * a wide feather rather than removing the screen from around it, because a hole punched
+         * at full strength is a plate with the sign flipped. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+        /* THE ACCENT. The stock tank's water, a few metres inside a fence, held by the one party
+         * on this frame that has a number for what it holds. */
+        /* DRAWN WITH THE CHASSIS'S `N.tank` FROM ROUND 2. It was a bare comal ellipse, and two
+         * judges independently reported the same thing: a flat blue lozenge with no gauge, no
+         * vessel and no contact. The deck's accent law turns on the word GAUGED and the drawing
+         * never carried it, so the recurring object registered as a colour rather than as the
+         * one thing on the frame somebody holds a number for. */
+        M.tank(c, { x: 802, y: 692, rx: 130, ry: 17, ink: "rgba(42,122,158,0.84)" });
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

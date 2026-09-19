@@ -11,7 +11,7 @@ The National Science Foundation established the NSF National Artificial Intellig
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · The foundation's announcement still stands. The operations center is still led from San Diego with the Texas Advanced Computing Center at UT Austin named as the collaborating institution.
 - 2026-09-13 · The operations center is still led from San Diego with the Austin computing center named alongside it, and the foundation's account of what the pilot handed over is unchanged.
 - 2026-09-16 · The national AI research resource is still in standing operations and still co-run from Austin. The arrangement has not been restructured.
+- 2026-09-19 · The national research resource is still in standing operations with the Austin center in its co-running role.
 
 ## Evidence
 

@@ -3012,3 +3012,380 @@ belong in that file by its own rule. Paste as is.
 > **What to check instead.** When a gate tests for a NOUN SHAPE, ask what role that noun plays in
 > the sentence. The shapes that mark a source and the shapes that mark the missing thing are the
 > same words, and only the grammar around them separates the two.
+
+---
+
+### The rejected array is written every run and read by nothing
+
+`out/<date>/claims.json` carries a `rejected` list. The fact checker writes it as a set of precise
+refusals, and on 2026-09-19 it went further than usual and supplied the PERMITTED WORDING for the
+one that mattered: *"Copy may say the request is aimed at developers 25 MW and larger. It may not
+say every one of them receives it."*
+
+**Two frames departed from it and no gate noticed**, because no gate in `scripts/carousel/` opens
+that array at all. `claims_check` validates the verified claims. `noun_trace`, `label_guard`,
+`quantifier_check` and `absence_check` each read the published strings against the claims that
+WERE accepted. Nothing reads the ones that were refused. The integrity judge found it in round 1
+and hard-failed the deck on it, which is the right outcome and an expensive one: a panel round
+costs three agents, a repair pass and a re-render, and the finding was sitting in a file the run
+wrote itself before a single frame existed.
+
+**The proposal.** Give each entry in `rejected` an optional `forbids` field holding one or more
+patterns, and add a gate that fails the build when any shipped slide string, the caption or the
+first comment matches one. The fact checker already writes the sentence; what it lacks is a
+machine-readable form of it. Keep the field OPTIONAL, because a rejection that cannot be reduced
+to a pattern is still worth writing in prose and must not be pushed into a bad regex to satisfy a
+schema.
+
+**What to be careful about, and it is the reason this is a proposal rather than a patch.** A
+pattern that is too broad refuses the correct sentence as well as the wrong one. "25 MW" appears
+in the permitted wording and in the forbidden one, so the pattern has to carry the VERB, and a
+verb pattern is exactly the kind of check that passes a paraphrase. The honest version of this
+gate reports a MATCH for a human to read rather than claiming to have understood the sentence, and
+its own report line has to say so, or the next run will quote its exit 0 as evidence the copy is
+clean. `exit-zero-is-not-evidence-until-you-read-the-checker` is already an instinct here.
+
+Lane: `scripts/carousel/**` is `upgrade` and `out/<date>/**` is scratch, so the gate itself is one
+lane. Wiring it into `guards.yml` is `human`.
+
+---
+
+### The crawl boundary is re-implemented by every fetcher that needs it
+
+`knowledge/shared/SOURCES_REGISTRY.md` states the boundary and is `human` owned, correctly, since
+an unattended run that can edit its own boundary does not have one. What is not stated anywhere is
+a CHECKER, so every script that fetches carries its own copy of the rule.
+
+On 2026-09-19 a run's own helper carried the boundary as a tuple of HOSTS and fetched one
+`capitol.texas.gov/TLODOCS/` URL, which is a disallowed PATH on an allowed host. Nothing from it
+reached a claim. The guard in that script was fixed the same hour and the script is scratch, so
+the fix dies with the container and the next run writes the guard again from scratch.
+
+**The proposal.** One function in `scripts/shared/`, `crawl_boundary.forbidden(url)`, that parses
+the registry's own disallow list rather than restating it, handles hosts and paths as two kinds,
+normalises case and trailing slashes, and carries a `--self-test` that replays the
+`capitol.texas.gov/TLODOCS/` URL and the lowercase `/tlodocs/` form and watches both go red. Then
+every fetcher, including a run's scratch helpers, calls it instead of writing a tuple.
+
+**The part that needs care.** Parsing the registry means the checker's correctness depends on a
+`human` owned prose file's formatting, and a parse that silently finds zero entries would produce
+a checker that allows everything while exiting 0. The count of parsed entries has to be asserted
+against a floor, and a registry that parses to nothing has to be a HARD FAIL rather than an empty
+allow list. That is the same shape as `noun_trace`'s "a check that cannot run is red, never green".
+
+---
+
+### `sources_block.check()` tests one direction and that is how a stale block passes
+
+`scripts/carousel/sources_block.py` `check()` asks whether every id the DECK prints appears in the
+published block. It does not ask the other question, whether every id the BLOCK lists is one the
+deck prints.
+
+On 2026-09-19 that asymmetry cost a run two separate findings in mirror image. Round 1 repaired a
+hard fail by moving frame 1 onto `c4` and frame 5 off `c17` and `c21`, and nothing re-ran the
+builder, so the block lacked `c4` and `--check` went red: the gate caught the missing-id direction
+exactly as designed, and it took a scoring judge to find it rather than the run. Then round 2's
+repair moved `c14` off frame 8, and the same file went on listing `c14` while `--check` exited 0,
+because a SUPERSET passes. An integrity judge read the block against the nine footers and found it.
+
+**A block listing an id no frame prints is wrong in a way a reader can see.** The first comment is
+where somebody goes to reach the document behind a citation on a slide, and an id that is on no
+slide is a receipt for a purchase nobody made. It is also the only visible evidence that the block
+was not rebuilt after the deck changed, which is the far more important fault underneath it.
+
+**The proposal, and it is small.** Add the reverse comparison to `check()` and fail on a listed id
+the deck does not print. Two cautions. The block legitimately lists ids from a run's own
+`first_comment` prose that no FRAME prints, if a future run writes one, so the comparison is
+against the union of the deck's printed ids plus anything the caption or the comment body cites,
+not against the frames alone. And the failure message has to name the direction, because "the
+block and the deck disagree" sends the next run looking at the wrong file.
+
+Its `--self-test` should replay both directions: a block missing a printed id, and a block
+carrying an id no surface prints.
+
+Lane: `scripts/carousel/**` is `upgrade`.
+
+---
+
+## 2026-09-19, carousel no. 29. Two measurements that say wait, and one that says the door
+
+Three upgrades landed and are in `ledger/carousel/upgrades.json` with the command that proves each
+can go red. What follows is the part a later session needs and a ledger entry can't carry.
+
+### THE MEASUREMENT THAT KILLS THE `rejected` ARRAY PROPOSAL IN THE FORM IT WAS FILED
+
+The entry above, filed by this same run's showrunner, proposed a gate that ranks each rejected
+finding against the deck's published strings and reports the nearest. **It was prototyped and
+measured before anything was written, and the numbers say the naive form is worse than the
+defect.**
+
+In isolation it looks decisive. Scoring by content-word overlap between the rejection's `finding`
+plus `what` and each published string, on this run:
+
+    0.80   round 1's offending dek   "The request goes to developers of data centers 25 MW and larger."
+    0.30   the next nearest shipped string on the repaired deck
+    0.20   the third
+
+Then the same measurement over the published copy of all 29 shipped decks, taking each deck's
+single highest-scoring pair:
+
+| max score | decks |
+|---|---|
+| 0.33 to 0.45 | 9 |
+| 0.50 to 0.62 | 11 |
+| 0.64 to 0.86 | 9 |
+
+**The corpus median is near 0.55 and five decks sit at or above 0.67 with nothing wrong.** A deck
+legitimately talks about the subject its own rejections are about, because a rejection is a refusal
+about THIS story. So 0.80 is inside the background and the score carries no signal at all. A gate
+shipped on it would print one amber line per rejection per run, six to eighteen of them, which is
+the row that is always red and is ignored exactly as fast as one that is always green.
+
+**The honest route is the one the proposal's own second paragraph named and this measurement now
+proves is the only one: the optional `forbids` field.** The fact checker already writes the
+sentence, in a form that is nearly machine readable already ("Copy may say the request is aimed at
+developers 25 MW and larger. It may not say every one of them receives it."). What it lacks is a
+field. That field is written by the fact-checking phase, which is `prompts/daily_routine.md` and
+`human` lane, so the gate is one lane and its input is another. Filed in the ledger as a proposal.
+
+**Reproduce it in seconds before believing this table.** One pass over each run directory's
+`claims.json` `rejected` array against the strings in its `copy.json`, stopworded, trailing-s
+stripped. No artifact outside `runs/carousel/` is needed.
+
+### THE INSTRUMENT REPEAT, REFUSED FOR THE THIRD TIME, AND THE TWO ROUTES THAT ARE NOW CLOSED
+
+`topics.json`'s `angle_note` has asked for this in capitals at decks 17, 19, 23, 26 and now 29.
+This deck is the fifth ERCOT request in the window and a round 1 judge said so plainly.
+
+`dedupe_check` already reads every deck's hosts out of its committed `claims.json` and already
+states the limit that bites here in its own comment: two ERCOT decks can read a board presentation
+and a market notice, which are different instruments at one host. Two mechanical routes were
+measured today and **both are empty**, so the next phase does not need to try them.
+
+- **Exact document.** No two decks inside the window cite a single identical source URL. Zero
+  pairs. A same-document comparison finds nothing at all.
+- **Document titles.** Tokenising every deck's `document` fields across the window, the only words
+  shared by four or more decks are `texas` and `meeting`. `notice` does not reach four. A title
+  comparison would not have named this repeat either.
+
+What is left is classifying a document by KIND, which needs a vocabulary, and a typed vocabulary is
+what this gate's author refused twice already for the beat and for the `instrument` field. It is
+the recognition problem, and it is the same wall the 2026-09-18 phase hit twice on the L* shape
+gate. **Whoever picks it up should start from the fact that both cheap routes are measured and
+dead.**
+
+### FRONTIER SCAN, 2026-09-19. Focus: holding a plan to what the frame actually DREW
+
+Rotated deliberately onto the largest lever the panel named. Round 5's integrity judge, verbatim:
+*"Derive each dossier's named parts from the chassis's own draw calls instead of writing them in
+prose, because three rounds were spent repairing gables that were never drawn while the real
+defect, four frames giving 40 to 55 percent of the canvas to empty graded ground, went untouched
+from round 1 to the cap."*
+
+**The finding worth acting on is not segmentation and it is not a model. It is instrumenting the
+2D context, and it is a solved, dependency-free technique with three independent implementations.**
+
+- `canvas-interceptor` patches `CanvasRenderingContext2D.prototype` and logs every method call and
+  every property write, with its arguments, to a property on the context.
+- `jest-canvas-mock` records a `_drawCall` item per drawing operation and an `_event` per state
+  change, and exposes both for assertions.
+- Canvas forensics work in the anti-bot field records `fillRect` and its arguments together with
+  the caller's source url and line number.
+
+All three are plain JS in the page. Applied here, the render report would carry the list of
+primitives each frame actually drew, at their actual coordinates, **which is the declarative shape
+list `scene_bounds` and `bleed_witness` get for free from SVG and that this project's canvas frames
+have never had.**
+
+**Why this is the route and pixel segmentation is not.** The 2026-09-18 phase tried twice to
+recover "the largest non-background shape" from pixels and both routes ranked the wrong frames,
+because every drawn thing touches something else and the largest connected component measures 70 to
+84 percent of the frame. Its own conclusion was that the tractable version is per-OBJECT and needs
+the objects to exist as data. A draw-call log is exactly that data, and it costs no threshold, no
+vocabulary and no model.
+
+**Refused, for the third time and for the same two reasons.** A vision model reading the frame and
+answering whether a declared part is present. CI installs `pyyaml` and nothing else, which is
+GATE_LESSONS 15, and a verdict that moves when a model moves is not a verdict a project whose whole
+argument is recomputability gets to publish.
+
+**Why it is a proposal.** The injection point is `.claude/skills/carousel-engine/render.py`.
+`ownership.yaml` gives that path to `upgrade` and the host treats every path under `.claude/` as a
+sensitive file and prompts on any edit whatever the permission mode says. Ownership and
+reachability are different questions and the map answers only the first.
+
+**And it has a precondition that is one word.** The 2026-09-18 phase measured that `render.py`
+collects `window.__akLeaders`, a sibling project's prefix, while every Texas frame sets
+`window.__txLeaders`. Re-measured on this run's `render_report.json` and unchanged: `leaders`,
+`rules`, `contacts`, `encodings`, `svg_plates` and `canvas_text` are `[]` on all nine slides. The
+declarative half of every acceptance list this repo writes has still never been machine-checked.
+
+### A LANE NOTE, because the next phase will meet the same fork
+
+`ownership.yaml` gives `scripts/shared/**` to `daily`, not to `upgrade`. The only carve-out to
+`upgrade` under that directory is `guards_local.py`, named one file at a time. A phase told it owns
+`scripts/shared/**` has been told something the map does not say, and the map is the law.
+
+What the map DOES say, in the note above the rule and in the pre-commit hook's own failure message,
+is that a `claude/daily-` branch may stamp `daily` for a defect the run caused or is blocked by, and
+that the run record has to say so. A fetch outside the crawl boundary is exactly that, so
+`crawl_boundary.py` shipped in a commit of its own carrying nothing else, stamped `daily`. **The
+property the lane split exists for survives that**: no commit from this phase both edits the machine
+and holds the daily lane over anything else, and the enforcement unit is the commit.
+
+### PROPOSED GATE_LESSONS ENTRIES, which this lane may not write
+
+`knowledge/shared/GATE_LESSONS.md` is `human`, measured with `ownership_check.py --actor upgrade
+--files` rather than assumed. Both describe gates changed this run and belong in that file by its
+own rule. Paste as is.
+
+> ## A gate that tests containment when the rule is equality
+>
+> `sources_block.check()` asked, for thirteen months, whether every claim id the DECK prints
+> appears in the published block. It never asked the reverse, so a SUPERSET passed. On 2026-09-19
+> one run paid for that twice in mirror image, in consecutive scoring rounds and in the same file.
+> Round 1's repair moved a frame onto `c4` without rebuilding the block, the gate went red exactly
+> as designed, and a scoring judge ran it rather than the run. Round 2's repair moved `c14` off
+> frame 8, the block went on listing `c14`, and the gate exited 0. An integrity judge found that
+> one by reading the block against the nine footers.
+>
+> **A relation has a direction and a gate inherits whichever one somebody happened to write.** The
+> spec here defines the block as the place a reader resolves a printed id, which is equality
+> between two sets, and containment is the half that is easy to code. The half that is easy to code
+> is the half that gets coded.
+>
+> **What to check instead.** For every gate comparing two collections, write down the relation the
+> spec asks for, then read the code and name which direction it implements. Where the answer is
+> equality, both differences are findings, and the message has to name WHICH one, because a missing
+> id means rebuild the block and an extra id means the block is stale and they are different files.
+>
+> **And the exemption is the second half.** Six shipped decks carry an id the block lists and no
+> frame prints, measured before a line of the fix was written, against `copy.json` AND against the
+> claim ids in each deck's own render report. Those comments are posted. Rewriting the files would
+> not reach a reader; it would only make a gate green about a comment that still says what it says.
+> So they are exempt by name, one date at a time, in a SECOND constant rather than folded into the
+> one that already excuses the deck predating the rule, because those runs did not predate the rule,
+> they broke it. The self-test asserts that the newest shipped deck is in neither set, which is what
+> stops a run under scoring pressure adding its own date, and it re-measures each exempt deck's
+> artifacts so an exemption that is no longer needed reports itself as a line to delete.
+
+> ## A boundary parser's silence is not a yes
+>
+> `SOURCES_REGISTRY.md` carries this project's crawl boundary and is `human` owned, because an
+> unattended run that can edit its own boundary does not have one. Nothing READ it, so every
+> fetcher carried its own copy of the rule, and on 2026-09-19 a run's helper carried it as a tuple
+> of HOSTS and fetched a `capitol.texas.gov/TLODOCS/` url, which is a disallowed PATH on an allowed
+> host. A tuple of hosts cannot express that.
+>
+> The obvious repair is a shared checker, and the obvious checker is the dangerous one. A parser
+> over prose is complete only until somebody writes the next row differently, and **a boundary
+> checker that answers "allowed" is making a promise it cannot keep.** The first working draft
+> proved it on itself: the registry writes one robots row as `` `capitol.texas.gov/BillLookup/`,
+> `/Search/`, `/Reports/` ``, and a parser reading only the bare paths took two of the three and
+> left `/BillLookup/` permitted. **A boundary checker wrong about ONE path is more dangerous than
+> no checker, because the next fetcher trusts it.**
+>
+> **What to check instead.** Three answers, never two. FORBIDDEN, NO RULE READ HERE, and
+> UNREADABLE. `rules()` raises rather than returning a short list, because a parse that silently
+> finds zero produces a checker that permits everything and exits 0, which is entry 37 in this
+> file. The floor is a count measured against the shipped registry with the date recorded, and the
+> self-test pins every host and every path BY NAME, so a reformat that drops one goes red instead
+> of quietly widening the boundary. And the module's docstring, the CLI's success line and the
+> listing's footer each say in as many words that no rule found is not permission.
+>
+> **Two readings were inherited rather than invented, and both were already settled in the registry
+> itself.** Matching is case folded, because the registry says taking `/TLODOCS/` against a
+> lowercase url as a mismatch is routing around a disallow on a technicality. A whole-host rule
+> reaches its subdomains, which over-refuses rather than under-refuses, and that is the only
+> direction a boundary may be wrong in. The one place over-refusal costs something is asserted
+> against: the verified substitute the registry names on the same host is proved NOT refused,
+> because a checker that sends a run away from the source the registry just recommended costs the
+> run its story.
+
+> ## The size of the thing you ship is part of whether you shipped it
+>
+> `email_check` exists to prove a run's email is postable before it is drafted. It proved
+> `carousel.pdf` EXISTS and that the email LINKS it, which is two thirds of the question and
+> silently not the third. Carousel no. 29's vector PDF shipped at 61.8 MB against a corpus of 28
+> decks between 6 and 21.6 MB, from a full halftone across all nine frames, and **nothing in the
+> suite measured the file the owner has to upload.** A render decision was free to quadruple it and
+> the first thing that would have reported the problem is the upload failing in front of the one
+> human this routine has.
+>
+> **The threshold came from the platform and it can never creep.** LinkedIn's document-post help
+> page says "The file size cannot exceed 100MB and 300 pages". That is the door the deck goes
+> through, it was published by somebody else for the surface the file actually reaches, and it is
+> cited at the constant with the date it was read. A ceiling measured off our own decks would be a
+> number this project typed, and re-deriving it from a corpus it had already tightened is the
+> ratchet this file's own threshold rule names. MB is read as 10^6 rather than 2^20, which is the
+> reading that refuses more, because guessing the generous reading and being wrong fails at upload
+> time and that is the failure the gate exists to prevent.
+>
+> **And the part that would have spoken this run is the part that never fails.** 61.8 MB is
+> postable and this gate says so. What it adds is the headroom, printed on success as well as on
+> failure, so a run walking towards a cliff is visible before it arrives rather than at it. A
+> pass/fail line alone cannot show a trend, and the self-test pins the honest claim: carousel no.
+> 29 is reported postable AND is over three tenths of the allowance.
+
+### TWO RED GATES REPAIRED AFTER THE THREE LANDED, AND WHY NEITHER IS A FOURTH UPGRADE
+
+CI went red on `shipped_check.py`, which is this lane's file, and both findings were repairs to a
+gate that already existed rather than new capability. Each carries the self-test case that proves
+it can still go red.
+
+**`g_shipped_fresh` compared display copy against raw markup.** It flattened tags and collapsed
+whitespace and left the literal `&nbsp;` standing, so frame 3's letterhead could not match the
+one-space string `copy.json` records. **CI was red on a correct artifact**, which is the most
+expensive shape a gate failure takes: the obvious cure is to put markup into the copy record, and
+that would make the record describe the HTML instead of the page. `html.unescape` goes between the
+two substitutions and the ORDER is the whole of it, which is why the self-test asserts it. Decoding
+before the tag strip would turn an escaped `&lt;section&gt;` in visible copy into a tag and delete
+it. And a decode that quietly widened the comparison would be a loosening, so there is a case with
+the same entity in the same place and a string the frame genuinely does not carry, which still
+fails.
+
+**`crawl_boundary.py` was run by nothing**, reported by `gate_wiring` the moment it existed, which
+is that check doing exactly its job. The three routes it accepts are a workflow, a routine phase
+and `shipped_check`'s registry, and the first two are `human` lane, so the registry is the only one
+this actor can reach. The adapter is not an import for its own sake, which would be the
+mention-is-not-a-reference fault wearing the fix's clothes. It asks whether any claim a shipped
+deck stands on cites a url inside the boundary, which nothing else in the suite could answer:
+`claims_check` proves a claim is fetched and quoted and has no opinion about where from.
+
+**It found three decks, and they are a finding for the maintainer rather than work for this lane.**
+2026-08-16 cites `lrl.texas.gov` on c28, c29 and c31; 2026-08-21 cites it on c3 through c8. Both
+predate the August 25th decision on that host. 2026-09-07 cites `docs.tacc.utexas.edu` on eighteen
+claims, which is a SUBDOMAIN of the host the registry names, and **whether a domain-wide statement
+reaches a subdomain with its own robots.txt is a question for whoever owns `SOURCES_REGISTRY.md`.**
+The checker over-refuses there on purpose, because that is the only direction a boundary may be
+wrong in, and CURRENT scope prints all three as notes so nothing published is retroactively failed
+by a rule written after it.
+
+### STILL RED, NOT THIS PHASE'S, AND MEASURED RATHER THAN ASSERTED
+
+`shipped_check --self-test` fails one assertion: `every registered gate actually runs on the newest
+deck`, missing `ledgers`. `g_ledgers` reads `runs/carousel/<date>/figures.json` and this run wrote
+none, in `runs/` or in `out/`, so `ledger_check` has not run against this deck at all. Verified
+pre-existing by running the same self-test at HEAD with this phase's changes set aside, where it
+fails identically. That artifact is `daily` lane, and an adapter inventing a pass for a missing
+input would be the loosening this phase may never make. **This is the third recorded instance of a
+registered gate going silent because its input was never written**, and the assertion that catches
+it is the only thing in the suite that can tell a gate handed nothing from a gate handed a clean
+deck.
+
+### A MISTAKE THIS PHASE MADE, ON A TREE WITH TWO WRITERS
+
+To check whether a self-test failure predated it, this phase ran `git stash -u` on the shared tree.
+The daily lane rebuilt `docs/` in the seconds the stash was applied, so `git stash pop` aborted on
+404 conflicting generated files. The stash was holding the daily lane's in-flight
+`ledger/docket.json`, `ledger/articles/2026-09-19.json`, two `scripts/site/` files and 1,100
+`docs/` files alongside this phase's own edits. Everything was restored with `git checkout
+stash@{0} -- .`, unstaged with `git reset`, verified file by file, and the stash dropped only
+after.
+
+**The 2026-09-05 phase destroyed an uncommitted daily-lane edit to `ledger/docket.json` the same
+way and could not restore it.** The lesson is narrower than "do not stash". This tree has two
+writers, so **any whole-tree git operation is a whole-tree operation on somebody else's work too**.
+The question "did this predate me" has three answers that touch nothing the other actor is
+holding: `git show HEAD:<path>` into a scratch file, `git stash show` without applying, or a
+separate worktree.

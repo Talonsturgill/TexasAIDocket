@@ -11,7 +11,7 @@ Guadalupe County Sheriff Joshua Ray asked the Commissioners Court for permission
 - Public access: Public meeting
 - Take part: https://www.guadalupetx.gov/page/commcourt.agendas
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · The San Antonio station's account still carries the sheriff's stated reason, which is the cost of replacing vandalized cameras rather than a change of view about the technology. It still records that every Flock camera in Seguin was vandalized and that the county is refusing to pay to replace them. The Seguin newspaper's account still can't be read by an automated reader, so the quotes drawn from it stay unconfirmed, and nothing the station carries differs from them.
 - 2026-09-13 · Guadalupe County's end of the Flock contract still stands. The sheriff's stated reason is still the vandalism of the cameras rather than a change of view about what they do.
 - 2026-09-16 · The county's Flock contract is still terminated and the sheriff's office has not sought a replacement. The termination is still the last action on the record.
+- 2026-09-19 · The county is still out of the license plate reader contract the court voted to end.
 
 ## Evidence
 

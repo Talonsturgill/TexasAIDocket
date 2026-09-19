@@ -11,7 +11,7 @@ A resolution on the Austin City Council's August 27th, 2026 agenda directs staff
 - Public access: Public meeting
 - Take part: https://www.austintexas.gov/council/2026/20260827-reg
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · The land code amendment is still down for the council to take up and no date has been set for it. The staff work behind it has not been withdrawn and nothing has been posted that would move it.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-16 · The Austin resolution to amend the land code for data centers is still awaiting council action. It has not been withdrawn.
+- 2026-09-19 · The resolution to amend the land code for data centers is still before the council.
 
 ## Evidence
 

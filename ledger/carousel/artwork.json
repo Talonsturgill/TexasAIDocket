@@ -1901,6 +1901,68 @@
    },
    "machine_qa": "PASS, 0 fails and 0 warns on all nine.",
    "judge_findings_not_repaired": "FRAMES 3, 5 AND 7 ARE THE NEXT RUN'S FIRST JOB and all three judges named them across three rounds. They are the only frames whose largest shape is a flat fill: frame 3's sedan has no dark side and no contact at either tyre, frame 5's under sheet is a trapezoid belonging to no object, frame 7 is outline cartography at canvas variance 643.8 against the deck's next-flattest 1383.9. They were not redrawn because three earlier art repairs in this run each introduced a defect the next round caught, and a redraw in the final round has no reviewer after it. Both the craft and reader judges were told that reasoning, both said it was right, and both charged the deck for the frames anyway. THE GATE THAT WOULD HAVE CAUGHT THEM does not exist and is the run's leading upgrade candidate: measure per frame the internal L* range of the largest non-background shape and fail a frame whose largest shape has no lit edge and no dark side. craft_floor, layout_check, qa and plan_render_check all exited 0 on these three frames through seven rounds. The value track also strobes on canvas MEAN (37.6 to 91.4 between frames 7 and 8) while holding on the median L* the gates read, and the single cause is that four of nine frames solve their problem with a cream sheet on a dark board."
+  },
+  {
+   "date": "2026-09-19",
+   "carousel_no": 29,
+   "written_from": "machine_qa.json, render_report.json, measurements.json and the gate suite BY EXIT CODE. The value block is measured off the nine shipped PNGs by out/2026-09-19/measure.py at 432px, never planned and never asserted.",
+   "register": "A CALICHE PAD ON THE EDWARDS PLATEAU AT FIRST LIGHT. Ground #18222B, one lagging ink #E6DFCC, printed: every scene is drawn in greys into TXINK's offscreen twin at true scale, the press lays the paper, screens the tone into ink at a halftone of cell 7 and angle 22, and paints what must not be screened on top.",
+   "structural_laws": [
+    "ONE LIGHT, LOW IN THE EAST OFF THE CAMERA'S LEFT SHOULDER AT 14 DEGREES. Every lit face in nine frames is a left face and every cast runs right. Frame 9's tower cast was missing at round 1 and a judge found it by checking the drawing against the law rather than against the other frames.",
+    "COMAL ONLY EVER LANDS ON WATER SOMEBODY HOLDS A NUMBER FOR. A gauged stock tank takes it on frames 1, 2, 6 and 9 and the route takes it on frame 5, because the route is that number moving between the three parties. Frames 3, 4, 7 and 8 carry none at all, which includes every frame whose subject is a building whose water is the whole question.",
+    "NO CATALOGUE SPRITE CARRIES A 130 m BUILDING. `TXOBJ.sprite('data_center')` is drawn for its own scale and renders at 74 m and beyond as square merlons on one cream fill. Three judges called it a crenellated battlement on three separate frames in round 1. Frames 1, 6 and 8 each build their own hall from the frame's own projection instead, and each differently, so the deck's three halls are three drawings rather than one stamp at three sizes.",
+    "A FIGURE IS READ AGAINST WHAT IS BEHIND IT, NEVER AGAINST THE PALETTE. Four figures shipped into round 1 inked bright while standing against bright halls and lit caliche, and the integrity judge could not find a figure on the cover at all. Frames 1, 4, 8 and 9 ink theirs dark. Frame 7's stayed bright because its ground is dark, which is the same rule and not an exception to it."
+   ],
+   "techniques": [
+    "a 130 m data hall built from the frame's own projection at 74 m, with roller doors at 18 m centres, a stair head and three low plant runs, over a graded caliche pad carrying grader ruts and lit gravel",
+    "a hot-dip galvanized property fence at 1.2 m from the lens drawn in frame space rather than on the scene bench, its fabric two crossing families of wire each with a lit crown and a dark belly, and its own mesh shadow raking across the near ground",
+    "a pickup tailgate as a trapezoid with converging ribs, two pressed swages, latch bezels and the bed walls behind it, carrying one cream sheet with a drawn corner curl and the shadow the curl throws back onto the page",
+    "a substation yard at true scale with the transformer tanks as lit cylinders and a dark figure outside the wire",
+    "an orthographic elevation of three institutions on one ground line with the route between them as the frame's one comal, and no scale bar",
+    "a straight cut with a tower and a hall on one long-lens horizon at true relative size, the hall built with expansion joints and uneven low roof plant",
+    "a county courthouse portico at standing eye with six columns casting across the steps and two figures at true scale",
+    "the same camera as the courthouse with a 130 m hall at 48 m, a bay rhythm of pilasters each casting right, eight roof plant units against the sky and a cattle guard across the near approach",
+    "a water tower at 12 by 38 m bleeding the top edge, with a cast that leaves the frame because a 38 m object at 14 degrees throws about 152 m"
+   ],
+   "palette": "ground #18222B, ink #E6DFCC, dek #C6C6B8, furniture #9C9C90, accent comal #2A7A9E. One grey scale declared in the chassis and no frame picks its own.",
+   "value": {
+    "grid": "432x540, the feed thumb",
+    "measured": [
+     12.4,
+     26.7,
+     32.5,
+     16.7,
+     9.3,
+     11.8,
+     18.6,
+     21.3,
+     19.1
+    ],
+    "planned": [
+     16,
+     22,
+     32,
+     26,
+     38,
+     34,
+     44,
+     40,
+     26
+    ],
+    "deck_median_L": 18.6,
+    "deck_median": 18.6,
+    "spread": 23.2,
+    "max_adjacent": 15.8,
+    "screen_ceilings": {
+     "stipple_c5": 26.7,
+     "hatch": 45.5,
+     "halftone_c6": 82.7
+    },
+    "note": "THE PLAN CAME IN SYSTEMATICALLY HIGH AND THE PLAN WAS NOT REWRITTEN. The deck's planned arc asked for frames in the thirties and forties and the render came in darker on every frame, by as much as thirty points on frame 5. `panel_ready` passes because its check is on the deck's median rather than per frame, so nothing stopped it and nothing should have: the frames are right and the targets were optimistic. Editing nine dossiers to match nine renders would be the inversion `measure.py`'s own docstring exists to prevent, so both tracks are written here and the gap is the finding."
+   },
+   "type_skeletons": "Kicker top left, counter top right, hook, dek, source line at the foot and the site line opposite it. Every frame seats its type with TXDECK.punch at feather 66 and strength 0.78, which is a dim toward the type rather than a plate, and a round 1 judge found no haloes at feed size. Frame 3 is the deck's one dark-on-light page and its type is the sheet's own.",
+   "machine_qa": "0 fails and 0 warns across 9 frames, verdict PASS, against 7 warns at round 1. bespoke_check median pairwise 0.3748, craft_floor median 6898 against a floor of 1242, and layout_check --require, dossier_check, plan_render_check, copy_sync_check, coherence_check, deck_chassis, deck_coherence, texan_check, noun_trace, absence_check, scene_bounds, bleed_witness, contact_trace, locator_trace, construction_check, verbatim_check, numeral_trace, label_guard, quantifier_check and aggregate_check all exit 0. panel_ready exit 0.",
+   "artifact_note": "THE VECTOR PDF IS 61.5 MB AGAINST 6 TO 14 MB FOR EVERY DECK BEFORE IT AND THE CAUSE IS MEASURED RATHER THAN GUESSED. A coarser screen cell was worth about 5 MB, a raised screen floor and a higher gamma were worth nothing at all, and cutting the film grain and the dither was worth about 9 MB, which is why the grain runs at 0.012 against the house 0.044. What is left is that this is the first deck to run the full halftone across the whole of all nine frames. It ships disclosed rather than cured, and the diagnosis is in UPGRADE_BACKLOG."
   }
  ]
 }
