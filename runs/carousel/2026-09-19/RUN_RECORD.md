@@ -233,15 +233,15 @@ open, and this run did not.
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 3 declaration(s), 3 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 62.38 MB, vector |
+| assembly       | PASS   | 9 slide(s), 61.77 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 32 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 61 published string(s) read from one list, every universal names its set |
+| quantifiers    | PASS   | 62 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 2 declared fragment(s) over 1 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 36,813 chars planned |
-| caption        | PASS   | 143 words |
-| craft floor    | PASS   | 9 frame(s), median 6898, floor 1242 |
-| plan vs render | WARN   | 9 of 47 acceptance item(s) checkable |
+| dossiers       | PASS   | 39,838 chars planned |
+| caption        | PASS   | 139 words |
+| craft floor    | PASS   | 9 frame(s), median 6841, floor 1231 |
+| plan vs render | WARN   | 9 of 48 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
 | absences       | PASS   | 0 of 0 scoped to a named document |
 | numerals       | PASS   | 3 numeral(s) over 9 frame(s), every one reachable |
