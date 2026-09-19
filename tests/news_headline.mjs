@@ -5,6 +5,7 @@ import path from 'node:path';
 import http from 'node:http';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
+import {waitForPublishedRefresh} from './news_live_wait.mjs';
 const site=path.resolve(process.env.SITE || 'docs');
 const state=JSON.parse(fs.readFileSync('ledger/news/latest.json','utf8'));
 const fixtures=JSON.parse(execFileSync(process.env.PYTHON || 'python3',['-c',String.raw`
@@ -111,6 +112,23 @@ try {
   const fresh=structuredClone(base);
   fresh.checked_at='2026-09-17T20:01:00Z';
   fresh.selected={...fresh.selected,title:'New AI technique makes surgery safer and more precise',url:'https://news.mit.edu/2026/ai-surgery/',publisher:'MIT News'};
+  // Exercise the production verifier against delayed delivery, then a permanently stale feed.
+  {
+    const page=await pageFor(base,390,base);
+    await loaded(page,'/__news_current.html');
+    await page.unroute(feed);
+    let requests=0;
+    await page.route(feed,route=>route.fulfill({json:++requests<2?base:fresh,headers:{'access-control-allow-origin':'*'}}));
+    assert.equal(await waitForPublishedRefresh(page,fresh.checked_at,{timeout:5000,pollInterval:20}),fresh.checked_at);
+    assert.equal(requests,2,'publication check must wait through stale responses');
+    await page.close();checked++;
+  }
+  {
+    const page=await pageFor(base,390,base);
+    await loaded(page,'/__news_current.html');
+    await assert.rejects(waitForPublishedRefresh(page,fresh.checked_at,{timeout:1500,pollInterval:20}),/did not reach the reader/);
+    await page.close();checked++;
+  }
   for(const initial of ['current','empty']) {
     const page=await pageFor(base,390,fresh);
     await loaded(page,`/__news_${initial}.html`);

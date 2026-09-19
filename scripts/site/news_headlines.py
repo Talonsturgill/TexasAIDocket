@@ -513,6 +513,12 @@ def live_problems(body: str, now: dt.datetime, expected_check: str | None = None
         return ['invalid public headline feed: ' + str(error)]
 
 
+def browser_feed_url(timestamp: float) -> str:
+    # Match news_runtime.js exactly. A unique probe URL can bypass a stale CDN entry
+    # and certify a refresh that has not yet reached an ordinary reader.
+    return NEWS_FEED_URL + '?refresh=' + str(int(timestamp // 300))
+
+
 def check_live(wait_seconds: int = 0, expected_check: str | None = None) -> int:
     url = 'https://' + (ROOT / 'docs/CNAME').read_text().strip() + '/'
     deadline = time.monotonic() + wait_seconds
@@ -524,7 +530,7 @@ def check_live(wait_seconds: int = 0, expected_check: str | None = None) -> int:
                 body = response.read(4_000_001)
                 if len(body) > 4_000_000:
                     raise ValueError('homepage exceeded response limit')
-            feed_request = urllib.request.Request(NEWS_FEED_URL + '?refresh=' + str(int(time.time())),
+            feed_request = urllib.request.Request(browser_feed_url(time.time()),
                                                   headers={'User-Agent': UA, 'Cache-Control': 'no-cache'})
             with urllib.request.urlopen(feed_request, timeout=20) as response:
                 feed_body = response.read(500_001)
@@ -698,6 +704,13 @@ def self_test() -> int:
             broken['selected']['url'] = 'https://evil.example/story'
             self.assertTrue(live_problems(page, now, feed_data=broken))
             self.assertTrue(live_problems(page, now))
+
+        def test_publication_probe_uses_reader_cache_bucket(self):
+            start = instant('2026-09-19T13:35:00Z').timestamp()
+            expected = NEWS_FEED_URL + '?refresh=' + str(int(start / 300))
+            self.assertEqual(browser_feed_url(start), expected)
+            self.assertEqual(browser_feed_url(start + 299.999), expected)
+            self.assertNotEqual(browser_feed_url(start + 300), expected)
 
         def test_markup(self):
             r = row('Texas AI lab announces <script> & "new" tools')

@@ -1,6 +1,7 @@
 // End-to-end production check used by every six-hour refresh, after data publication.
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
+import {waitForPublishedRefresh} from './news_live_wait.mjs';
 const browser=await chromium.launch();
 try {
   for(const width of [1440,390]) {
@@ -9,6 +10,7 @@ try {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('https://texasaidocket.com/',{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>document.querySelector('.news-chip')?.dataset.newsLoaded==='true');
+    if(process.env.NEWS_CHECKED_AT) await waitForPublishedRefresh(page,process.env.NEWS_CHECKED_AT);
     const chip=page.locator('.news-chip');
     assert.equal(await chip.isVisible(),true);
     assert.equal(await chip.getAttribute('data-news-status'),'current');
