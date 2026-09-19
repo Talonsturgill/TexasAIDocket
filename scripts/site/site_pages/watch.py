@@ -576,7 +576,7 @@ def services_page(items: list, today: str) -> str:
                   hint="Say what a win would look like.")
 
     body = f"""
-<section class="hero rise">
+<section class="hero rise studio-hero">
   <h1>Texas is where it gets <em>built</em>.</h1>
   <p class="herolede">The data centers. The load. The water. It is all landing here first.
   The businesses that move first will own the decade.</p>
@@ -670,7 +670,7 @@ def services_page(items: list, today: str) -> str:
     return page(title=f"Services · {SITE_NAME}", depth=1, active="services/",
                 desc="AI systems built for Texas businesses by the desk that publishes the "
                      "Texas AI Docket. Three ways in, priced on a call.",
-                body=body, today=today, canonical="services/")
+                body=body, today=today, canonical="services/", extra_css="finishing.css")
 
 
 
@@ -739,7 +739,7 @@ def about_page(today: str) -> str:
         title=f"About {SITE_NAME}", depth=1, active=None,
         desc="How Texas AI Docket tracks artificial intelligence decisions across Texas and "
              "ties every entry to evidence a reader can inspect.",
-        body=body, today=today, canonical="about/", revised=False,
+        body=body, today=today, canonical="about/", revised=False, extra_css="finishing.css",
         extra_ld=[schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""),
                                                    ("About", "about/")])])
 
