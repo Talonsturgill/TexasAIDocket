@@ -309,7 +309,8 @@ def _sources(run: dict, edition: dict) -> tuple[str, str]:
         if url not in sources:
             sources[url] = {
                 "title": claim.get("document") or claim.get("source_title") or claim.get("source_publisher") or urlsplit(url).hostname,
-                "kind": {"primary_corporate": "Company account", "secondary_reported": "Reported account",
+                # The archived first-party category includes universities, not only companies.
+                "kind": {"primary_corporate": "First-party account", "secondary_reported": "Reported account",
                          "data": "Source data"}.get(claim.get("source_type"), "Primary source"),
             }
     rows = []

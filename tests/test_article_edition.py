@@ -46,6 +46,16 @@ class ArticleEditionTest(unittest.TestCase):
         changed["c1"]["text"] = "Meeting on October 2nd, 2027."
         self.assertEqual(_expand("{{date:c1}}", changed), "October 2nd, 2027")
 
+    def test_first_party_label_covers_universities_and_vendors(self):
+        for run in load_runs():
+            if run["date"] not in {"2026-08-29", "2026-09-18"}:
+                continue
+            with self.subTest(date=run["date"]):
+                doc = render(run, "2026-09-18", self.items)
+                sources = re.search(r'<ul class="edition-source-list"[^>]*>(.*?)</ul>', doc, re.S).group(1)
+                self.assertIn("First-party account", sources)
+                self.assertNotIn("Company account", sources)
+
     def test_unsupported_claims_links_and_tokens_fail(self):
         for block in [
             {"text": "Unsupported.", "claims": []},
