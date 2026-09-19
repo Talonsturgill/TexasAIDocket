@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-19T14:04:42Z",
+  "checked_at": "2026-09-19T16:37:02Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "2142cfcb83393b3ba23ea84d3ea2a5309b4821bd258dd1e3c138b4b18c5f672d",
+  "response_sha256": "14659dce690679c9f314d04c73ddcde9b710cd1c1101c5fb821ceaf1c3fcd667",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -323,7 +323,7 @@
     "feed": "https://siliconangle.com/feed/",
     "publisher": "SiliconANGLE",
     "coverage": 1,
-    "score": 0.671954,
+    "score": 0.624446,
     "priority": 1
   },
   "expires_at": "2026-09-26T00:18:46Z",
@@ -338,7 +338,7 @@
         "feed": "https://siliconangle.com/feed/",
         "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.671954,
+        "score": 0.624446,
         "priority": 1
       }
     },
@@ -401,11 +401,15 @@
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -417,7 +421,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "212fe7dbdf8e80d586477f0c063188fd3eb67e3fdc52fbcb1ad219cd6b2141f3"
+      "sha256": "8a00e969b58d56cd730bb9fd27b272b1c532a696111e099883cb078bd3779ebb"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -444,7 +448,9 @@
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "76b1115d151c39346a477f390cc8efb62a4245d2e25d99df93f33dfb046fa719"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -456,43 +462,43 @@
       "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
       "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "etag": "\"6aae8d55-a282\"",
-      "last_modified": "Sat, 19 Sep 2026 13:25:41 GMT",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
-      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
+      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe",
+      "etag": "\"6aaeac29-a282\"",
+      "last_modified": "Sat, 19 Sep 2026 15:37:13 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2",
+      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1789824331\"",
-      "last_modified": "Sat, 19 Sep 2026 13:25:31 GMT"
+      "etag": "\"1789835156\"",
+      "last_modified": "Sat, 19 Sep 2026 16:25:56 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
-      "sha256": "212fe7dbdf8e80d586477f0c063188fd3eb67e3fdc52fbcb1ad219cd6b2141f3"
+      "sha256": "8a00e969b58d56cd730bb9fd27b272b1c532a696111e099883cb078bd3779ebb"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
       "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
@@ -500,7 +506,7 @@
       "etag": "\"81dabd12a0bf6e24c0c24d62637cc857\"",
       "last_modified": "Sat, 19 Sep 2026 05:50:57 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "sha256": "d816288250a60d927b134ad4735825d5db3b619cca34c1719e4194e22e346778"
     },
     "https://www.artificialintelligence-news.com/feed/": {
@@ -511,19 +517,19 @@
       "etag": "W/\"2d025ec46915a3edd48a32a5f27a49f4\"",
       "last_modified": "Sat, 19 Sep 2026 01:45:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "sha256": "4fb5f1d993544563e52c410b3b855b28a20067a43a94b69286e60d379d09a2f3"
     },
     "https://www.techspot.com/backend.xml": {
-      "etag": "W/\"39f304569dbf760fb8e1e63ed415384c\"",
+      "ok_at": "2026-09-19T16:37:00Z",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
-      "sha256": "ef71d5c513307e8064d19041e32670bcd6991d06f26a8630b5b6433bd6ad8109"
+      "sha256": "76b1115d151c39346a477f390cc8efb62a4245d2e25d99df93f33dfb046fa719",
+      "etag": "W/\"9d81a1bd42d5aab08c341b6fb822c654\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Fri, 18 Sep 2026 12:49:49 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T14:04:40Z",
+      "ok_at": "2026-09-19T16:37:00Z",
       "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c"
     }
   }
