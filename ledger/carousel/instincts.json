@@ -189,7 +189,8 @@
         "2026-08-25",
         "2026-08-26",
         "2026-09-03",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -252,7 +253,9 @@
       "learned": "2026-09-03",
       "instinct": "Re-run the deck-level similarity gate after every repair round, not only after the build.",
       "evidence": "Deck no. 14, round 4. Three rounds of repairs had put one rect-loop idiom into several frames, and bespoke_check FAILED the deck at 0.5515 against its 0.55 line with slides 6 and 7 at 0.791. Nothing in the run had made the deck more of a template on purpose. Fixing frames one at a time with the same tool is how a deck converges without anybody deciding it should.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-19"
+      ],
       "contradicted": []
     },
     {
@@ -574,7 +577,8 @@
       "confirmed": [
         "2026-09-15",
         "2026-09-16",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -662,7 +666,8 @@
         "2026-08-26",
         "2026-09-04",
         "2026-09-13",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -748,7 +753,8 @@
       "instinct": "Measure every frame's median L star against the value its own dossier declared, in the same pass that renders it, because a declared value arc that nothing measures collapses into one band.",
       "evidence": "Carousel 22 planned a sequence of 22, 46, 34, 30, 26, 18, 72, 26 and 28. It shipped measuring 11.1 to 41.1 with four frames within half a point of each other at the floor, and nothing found out until measure.py was written after the panel had already capped.",
       "confirmed": [
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-19"
       ],
       "contradicted": []
     },
@@ -937,6 +943,30 @@
       "learned": "2026-09-18",
       "instinct": "When a deck is about a public body, fetch the BODY'S OWN PAGE in discovery, not only the documents it published.",
       "evidence": "Every scoring round of carousel no. 28 asked for something a reader could do. Three answers were written to fill that hole and two of them hard-failed for being unsourced. One fetch of the Hays County Commissioners Court's own landing page would have returned the meeting day, the hour, the address and the members' precincts. The run fetched the minutes archive on that same county domain and never asked for it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "figure-read-against-ground",
+      "learned": "2026-09-19",
+      "instinct": "Ink a drawn figure against what is BEHIND it rather than against the palette, because a bright figure on a bright ground is the deck's scale argument made invisible.",
+      "evidence": "2026-09-19 carousel 29. Four frames placed a 1.7 m figure at true scale and inked it M.G.bright, three of them standing against a cream data hall or lit caliche. The integrity judge reported that no figure was findable on five frames including the cover, whose entire job is to establish the scale the other eight borrow. The figures were all present in the code and all the right size. Inking them dark on frames 1, 4, 8 and 9 fixed it; frame 7's stayed bright because its ground is dark, which is the same rule rather than an exception.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "catalogue-sprite-own-scale",
+      "learned": "2026-09-19",
+      "instinct": "A catalogue sprite is a good object at the size it was drawn for and a silhouette at any other, so build a large subject from the frame's own projection instead of scaling a stamp up to it.",
+      "evidence": "2026-09-19 carousel 29. TXOBJ.sprite('data_center') carried a 130 m hall on frames 1, 6 and 8 at three different distances, and its parapet motif rendered at all three as tall square merlons on a single cream fill. Three judges independently called it a crenellated battlement and one charged it as the weakest frame in the deck. Each of the three frames now builds its own hall from px(X,Z) and py(h,Z), differently, and bespoke_check improved from 0.5616 to 0.3748.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "edge-to-edge-stripe-is-frame",
+      "learned": "2026-09-19",
+      "instinct": "A stripe that reaches both frame edges belongs to the FRAME rather than to an object, so give every drawn surface its own edges inside the picture.",
+      "evidence": "2026-09-19 carousel 29. Frame 3's tailgate was a full-width rectangle with its ribs drawn as full-width rules. A judge read it as horizontal wallpaper stripes with no tailgate, no vehicle and no perspective, and was right: nothing in the drawing said where the gate stopped. Rebuilt as a trapezoid with its own side edges, converging ribs, swages and the bed walls behind it, the same object reads as a tailgate at 432px without a single new element being named.",
       "confirmed": [],
       "contradicted": []
     }
