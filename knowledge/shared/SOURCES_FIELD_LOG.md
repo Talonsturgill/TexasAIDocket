@@ -1455,3 +1455,38 @@ about a document nobody here read.
 **Axon and Govably product pages both fetched clean.** Both are first party claims about the
 vendors' own products rather than findings, and every frame that sets their words carries a label
 naming whose words they are.
+
+## 2026-09-19, a crawl-boundary slip of this run's own making, and four host behaviours
+
+**A HELPER SCRIPT THIS RUN WROTE FETCHED A DISALLOWED PATH, AND THE CAUSE WAS THE GUARD'S SHAPE
+RATHER THAN THE RULE'S WORDING.** `out/2026-09-19/recheck.py` exists because `reverify.py` can't
+read some sources, and it carried its own copy of the crawl boundary as a tuple of HOSTS. Three of
+the boundary's entries are hosts and one is a PATH, `capitol.texas.gov/TLODOCS/`, on a host that is
+otherwise allowed. A host-level guard passes that path by construction, so the script fetched one
+`/TLODOCS/` URL before anybody noticed. Nothing from it reached a claim, the record or a frame.
+
+The guard now checks paths as well as hosts and does both case-insensitively, since the registry
+records the path in two cases. **The lesson is not "read the boundary more carefully".** It is that
+a boundary with two KINDS of entry needs a checker that knows there are two kinds, and a run that
+re-implements the boundary in a scratch script will re-implement whichever kind it happened to look
+at first. A shared checker that every fetcher calls is the durable answer and it is in
+`knowledge/carousel/UPGRADE_BACKLOG.md`, because the fetchers it would have to reach across belong
+to more than one lane.
+
+**`federalregister.gov` returns 429 on `/documents/full_text/text/` and serves the same document
+happily from `/api/v1/documents/<number>.json`.** Two documents were confirmed this way after the
+text endpoint refused both. The API is the endpoint to reach for first on this host, and a 429
+there is a rate limit rather than a policy position.
+
+**`puct.texas.gov`'s RSS feed 302s to a lowercase path.** The redirect resolves and the feed is
+readable, so this is a note rather than a failure. A fetcher that does not follow redirects, or one
+that compares the final URL against the requested one, will read this as a move.
+
+**`texreg.sos.state.tx.us` may have moved.** Requests to the Texas Register resolved toward
+`texas-sos.appianportalsgov.com`, which is a different host from the one the registry lists. It is
+recorded here rather than acted on, because whether that is a permanent migration or a temporary
+front end is not something one run's observation settles, and the registry is the maintainer's.
+
+**`pubmed.ncbi.nlm.nih.gov` article pages hit a cookie wall and `eutils.ncbi.nlm.nih.gov`'s efetch
+endpoint does not.** Same corpus, same publisher, one surface readable and one not. Reach for
+efetch first here.
