@@ -1,6 +1,6 @@
 # Grid operator asks the water board's questions and gives data centers until October 12th
 
-ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Request for Information on the state and community impacts of data centers. Its stated audience is developers of data centers of 25 MW and larger. The body narrows the actual recipients to two defined groups rather than every developer of that size. It is issued jointly with the Public Utility Commission of Texas and the Texas Water Development Board. Section C carries the water questions. The water board's Executive Administrator authorised the grid operator to ask them on the board's behalf, and the grid operator forwards the answers back. A developer does not file its own response. Its transmission or distribution provider files it, with a notarized attestation, through the operator's own web platform. Responses are due at 5 p.m. Central Prevailing Time on October 12th, 2026. Not responding is reported to the commission and to the Office of the Governor, and under Texas Water Code 16.012 an incomplete answer to Section C carries criminal exposure. The notice states in its own words that this is a separate request from the Batch Zero eligibility one issued on September 9th, 2026. A report on what the answers show is expected by December 10th, 2026.
+ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Request for Information on the state and community impacts of data centers. Its stated audience is developers of data centers of 25 MW and larger. The body narrows the actual recipients to two defined groups rather than every developer of that size. It is issued jointly with the Public Utility Commission of Texas and the Texas Water Development Board. Section C carries the water questions. The water board's Executive Administrator authorized the grid operator to ask them on the board's behalf, and the grid operator forwards the answers back. A developer does not file its own response. Its transmission or distribution provider files it, with a notarized attestation, through the operator's own web platform. Responses are due at 5 p.m. Central Prevailing Time on October 12th, 2026. Not responding is reported to the commission and to the Office of the Governor, and under Texas Water Code 16.012 an incomplete answer to Section C carries criminal exposure. The notice states in its own words that this is a separate request from the Batch Zero eligibility one issued on September 9th, 2026. A report on what the answers show is expected by December 10th, 2026.
 
 - Topic: land-water-and-permitting
 - Decided by: Electric Reliability Council of Texas (state-agency)
@@ -14,7 +14,7 @@ ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Reque
 ## Dates
 
 - 2026-09-14 · filed: Market Notice M-B091426-01 issued
-- 2026-10-12 · statutory deadline: Complete responses due at 5 p.m. Central Prevailing Time
+- 2026-10-12 · administrative deadline: Complete responses due at 5 p.m. Central Prevailing Time
 - 2026-12-10 · expires: Date by which the operator expects to publish a report on the responses
 
 ## How this decision moved
@@ -78,6 +78,12 @@ Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-B09
 ### The notice gives the date a reader can expect to learn what the answers showed.
 
 > ERCOT expects to publish this report no later than December 10, 2026.
+
+Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-B091426-01
+
+### The notice names the party that submits the response and the platform it goes through.
+
+> Each TSP or DSP must submit the RFI in RIOO on behalf of the data center developer.
 
 Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-B091426-01
 

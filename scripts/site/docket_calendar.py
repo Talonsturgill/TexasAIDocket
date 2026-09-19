@@ -58,11 +58,18 @@ KIND_LABEL = {
     # here it reaches a reader as the slug `passed`. NOT actionable, for the same reason
     # `expires` is not: a vote already taken is a record of something done.
     "passed": "motion passed",
+    # ADDED 2026-09-19 with the kind itself. A reader needs to see that the clock is real and
+    # that it was not set by the legislature, and "administrative deadline" says both. It is
+    # ACTIONABLE for the same reason `statutory_deadline` is, being a date still ahead of the
+    # party it binds, and it is NOT a door under `DOOR_KINDS`, because a board reporting to the
+    # Governor is not somewhere a Texan turns up and speaks.
+    "administrative_deadline": "administrative deadline",
 }
 
 # The kinds that are a DOOR rather than a record of something already done. A reader scanning a
 # month wants these to stand out, because they are the ones that can still be acted on.
-ACTIONABLE = {"comment_opens", "comment_closes", "hearing", "statutory_deadline", "election"}
+ACTIONABLE = {"comment_opens", "comment_closes", "hearing", "statutory_deadline",
+              "administrative_deadline", "election"}
 
 
 def kind_label(kind: str) -> str:

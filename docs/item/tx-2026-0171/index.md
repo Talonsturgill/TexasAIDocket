@@ -1,4 +1,4 @@
-# Governor directs the water board to prosecute data centers that did not return the state water use survey
+# Governor directs the water board to enforce the state water use survey against data centers that did not return it
 
 The Office of the Governor issued a directive to the Texas Water Development Board on September 14th, 2026. It tells the board to enforce the water use survey requirement against major water users, naming data centers. The directive covers failures already made as well as future ones. The reason the directive gives for needing the numbers is the state water plan. The board writes it and can't do that while it is denied detail on what is consumed now and what will be. That sentence is the Governor's office describing the board's position rather than the board speaking. The Texas Water Code requires a complete and accurate water use survey. A recipient who does not complete and return it commits an offense punishable as a crime. One who returns it late becomes ineligible for TCEQ permits, amendments or renewals under Chapter 11 of that code. The board is told to refer noncompliance to the County or District Attorney and to notify TCEQ for possible permit disqualification. It is also told to partner with the grid operator on the data center audit the Governor ordered on August 3rd, 2026. It must report back on its enforcement by October 14th, 2026.
 
@@ -14,7 +14,7 @@ The Office of the Governor issued a directive to the Texas Water Development Boa
 ## Dates
 
 - 2026-09-14 · ordered: Directive issued to the Texas Water Development Board
-- 2026-10-14 · statutory deadline: Board must report to the Office of the Governor on its enforcement activities
+- 2026-10-14 · administrative deadline: Board must report to the Office of the Governor on its enforcement activities
 
 ## How this decision moved
 

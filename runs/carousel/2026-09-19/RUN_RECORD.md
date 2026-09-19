@@ -333,3 +333,84 @@ re-render that nothing else in a run would, it noticed one, and the honest answe
 it was rather than to make the row green.
 
 
+
+---
+
+## A CODE REVIEW ON THE PULL REQUEST, AND SEVEN OF ITS EIGHT FINDINGS WERE RIGHT
+
+The Codex reviewer read PR 331 at `d217cd0f` and posted eight findings, seven of them marked P1.
+Every one was checked against the primary source or against this repo's own claim record before
+anything was changed, and the record now carries the repairs. What follows is what each was, and
+the two that are worth more than their fix.
+
+**The one that should never have needed a reviewer.** `tx-2026-0167` was `tx-2026-0141` admitted
+a second time, off the same UT San Antonio article reached over `http` rather than `https`. Its
+four claims were already carried by 0141 as c9, c10, c5 and c6, so nothing needed merging and the
+item was removed outright. **The same duplicate, from the same URL pair, was admitted and removed
+on 2026-09-18 as well.** A code review caught it both times and the admission phase caught it
+neither. `dedupe_check` compares entities and keywords, so one article at two schemes reads as
+two decisions and always will until something normalises the URL. That is now the first proposal
+in the backlog rather than a third history note.
+
+**The one that was a false statement in a title.** The item read "Governor directs the water board
+to prosecute data centers that did not return the state water use survey". The board does not
+prosecute. c8's own quote says "referral to the appropriate County or District Attorney", and the
+title propagates into the item heading, the feeds, the metadata and the generated questions, so
+the wrong verb was telling a reader the wrong thing in four places at once. Retitled to what the
+directive actually orders.
+
+The other five record repairs, each verified the same way:
+
+- **`geography.on_ercot` was `false` on a statewide water directive**, which renders as a flat
+  "No. It sits outside the ERCOT interconnection". The question does not apply to a reporting
+  requirement, and `null` is the state the schema added on 2026-09-03 for exactly this, after a
+  review bot found the same defect on PR 252. Where it is neither measured nor modelled, it is
+  not published.
+- **Two deadlines were stored `statutory_deadline` and neither was created by a statute.** October
+  14th comes from the Governor's directive and October 12th from ERCOT's market notice. The site
+  prints the kind verbatim, so both mis-stated the legal authority behind a real clock.
+  `administrative_deadline` is added to `DATE_KINDS` and to the calendar's label map, with the
+  same reasoning `expires` and `passed` carry: the record had a state the field could not
+  express, so the field widens rather than the record rounding itself off.
+- **`tx-2026-0173` asserted far more than its one stored quote could carry.** The university's
+  release was re-fetched and two claims added in its own words. The summary was also wrong in a
+  way nobody had flagged: it named "a Bachelor of Science and a Master of Science" where the
+  release says only "bachelor's and master's degree programs". The history note claimed the old
+  programs are "closed to new entry", which the release does not say, and it now says what the
+  release says instead.
+- **`tx-2026-0172`'s summary said the provider files on the developer's behalf and no claim
+  carried it.** The market notice was re-fetched and it says so outright, "Each TSP or DSP must
+  submit the RFI in RIOO on behalf of the data center developer", so the claim was added rather
+  than the sentence trimmed. A British spelling in the same summary was corrected with it.
+- **The web edition asserted a global absence.** "No enforcement action has been announced" reads
+  as an exhaustive check of TWDB, TCEQ and every county and district attorney, and this run read
+  two documents. It now says that neither document announces a completed action and that whether
+  something was filed elsewhere is not a question these two can answer.
+
+**THE EIGHTH FINDING WAS WRONG, AND CHECKING IT FOUND A REAL DEFECT POINTING THE OTHER WAY.** The
+reviewer read frame 5's three-body chain as contradicting the docket summary, which says the
+developer does not file its own response. It does contradict it. What the reviewer assumed is
+that the summary was the sourced side and the frame was the lapse, and the opposite was true: no
+claim anywhere in this run established the filing mechanism, and the deck's count is exactly what
+its claims support. **The unsupported sentence was in the public record, which is the more
+serious of the two places for it to be.** The fix is therefore in the record, above, and the deck
+is unchanged.
+
+The frame stands on its own terms as well. Its kicker is "Who asks whom", and all three labels are
+individually true and claim-traced: the board authorizes the asking, the operator asks on its
+behalf, and the developer answers under a notarized attestation, which c16 says in as many words.
+The provider transmits that answer and neither asks nor is asked. **That is a scoped count rather
+than a wrong one, and the scope is printed on the frame.** Re-rendering a scored and assembled
+deck to widen a count its own kicker already bounds would have cost a full render, gate and
+assembly cycle to make a true frame differently true.
+
+**What this round is really evidence of.** Seven defects in the public record, in one day's
+admissions, and the local suite was green over all of them. Not one is a thing a gate here looks
+for: a duplicate reachable only by normalising a URL, a verb that overstates a legal power, an
+enum that answers a question that does not apply, a second enum that mis-names an authority, a
+summary that out-runs its claims, a claim that was never recorded for a sentence that needed it,
+and an absence with no scope. `numeral_lint` would pass all seven, because not one of them is a
+number. **The gates here measure whether a number can be traced and whether a file agrees with
+the file beside it. Six of these seven are about whether a SENTENCE is true**, and the only thing
+that has ever caught that class in this project is a reader, human or machine, going through the
+copy a claim at a time.
