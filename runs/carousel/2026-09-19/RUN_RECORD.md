@@ -195,6 +195,32 @@ this run registered no absence claim for it. **The miss is at Phase 6 rather tha
 absence worth publishing is worth registering as a claim with its own id while the documents are
 open, and this run did not.
 
+### Rounds 4 and 5, and what four rounds of judging actually taught this run
+
+**The panel found the same class of fault four times wearing four different frame numbers**, and
+the run repaired the instance each time. Round 3 said slide 8's numerals block declared a claim
+carrying no numeral; round 4 found slides 1 and 5 doing the same thing and the run had fixed only
+slide 8. Round 3 said slides 7 and 8 both claimed an identical rect the drawing does not have;
+round 4 found slide 8's acceptance item still demanding it fifty lines below its own retraction.
+Round 4's integrity judge wrote the lesson in one sentence and it is the most useful thing any
+judge said this run: **repair the CLASS across all nine before re-scoring, not the item that was
+pointed at.** Round 4's repair pass finally did, including three declared focals that named parts
+their drawings do not have.
+
+**A repair can go invisible for a NEW reason and that is not a repair.** Round 2 rebuilt frame 5's
+three casts because a 7 px sliver could not be seen at any size. Round 3 then drew a ground apron
+across the same band, after the elevations, so the hatch went straight over the wedges. Round 4's
+craft judge found it by reading the draw order against the render and it is his one-sentence fix.
+The apron is drawn before the elevations now, which is this repo's own instinct about drawing a
+ground plane before what stands on it, arrived at from the other direction.
+
+**Nine frames named neither institution until the last round.** Every frame said "the board" and
+"the grid operator", which two judges called a real reader kindness and a third measured as the
+deck's largest story defect: a reader finishes nine frames unable to search for either body.
+Frame 5's dek now carries c13's own wording and names the Texas Water Development Board and ERCOT
+in full, and frame 9's headline gives its report an owner so it can't be read as frame 7's
+October 14th report slipping to December.
+
 ---
 
 ## Degraded

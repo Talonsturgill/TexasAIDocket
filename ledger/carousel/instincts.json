@@ -993,6 +993,22 @@
       "evidence": "2026-09-19 carousel 29. Round 1 was told frame 5's casts were 7px slivers against a comment claiming four times the height, and it rewrote the comment to describe the sliver honestly. Round 2 returned the same finding, called the repair out by name, and made frame 5 its one-sentence fix. Round 3 drew the casts. The honest comment was worth writing and it was never what the note was about.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "repair-the-class-not-the-instance",
+      "learned": "2026-09-19",
+      "instinct": "When a judge names a defect in one frame or one dossier, sweep the same class across all nine before re-scoring.",
+      "evidence": "2026-09-19 carousel 29. Round 3 reported slide 8's numerals block declaring a claim that carries no numeral; the run fixed slide 8, and round 4 found slides 1 and 5 doing the same thing. Round 3 reported slides 7 and 8 both claiming an identical rect the drawing does not have; the run fixed slide 7's item and slide 8's rect, and round 4 found slide 8's acceptance still demanding rect identity fifty lines below its own retraction. Round 4's integrity judge wrote it as a one-sentence fix: every finding that round was an unswept sibling of the previous round's.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-repair-can-go-invisible-a-new-way",
+      "learned": "2026-09-19",
+      "instinct": "After repairing a drawing, check the draw ORDER of everything added since, because a later layer can hide a fix as completely as the fault it replaced.",
+      "evidence": "2026-09-19 carousel 29. Round 2 rebuilt frame 5's three casts because a 7px sliver was invisible at every size. Round 3 then added a raking ground apron across the same band and drew it after the elevations, so the hatch covered the wedges and the cast was invisible again for a new reason. Round 4's craft judge found it by reading slide-05.html's draw order against the render rather than by looking at the cast code, which was correct.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
