@@ -68,9 +68,19 @@
       gain: [1.030, 1.010, 0.974],   /* highlights to first light */
       vignette: 0.20,
       bloom: { threshold: 0.78, strength: 0.26, radius: 9 },
-      grain: { amount: 0.042, size: 2, seed: 20260919 },
+      /* GRAIN AT 0.012 RATHER THAN THE HOUSE 0.044, AND THE REASON IS A MEASUREMENT.
+       * This is the first deck to run TXINK.print's full halftone across the whole of all nine
+       * frames, and its vector PDF came out at 68.7 MB against 6 to 14 MB for every deck before
+       * it. Three hypotheses were measured. A coarser screen cell was worth 5 MB, a raised
+       * screen floor and a higher gamma were worth nothing at all, and CUTTING THE FILM GRAIN
+       * AND THE DITHER WAS WORTH 9 MB. Per-pixel noise over a frame that is already maximum
+       * entropy is the one knob that moved, so it is the one that was turned.
+       * It does not get the file inside the 2 to 25 MB target. What remains is the halftone
+       * itself and it is the deck's register, so the size is DISCLOSED rather than cured, and
+       * the diagnosis is in the upgrade backlog for somebody with a render-side fix. */
+      grain: { amount: 0.012, size: 3, seed: 20260919 },
       aberration: 0,
-      dither: true,
+      dither: false,
       sharpen: 0.34
     }
   });
@@ -114,7 +124,7 @@
    * So the stock is halftone, one cell for the deck, and the probe frame in Phase 10.5 prints a
    * white field through THIS configuration and records the ceiling BEFORE the value arc is
    * committed. The arc is written against the press. The press is never chased to the arc. */
-  N.SCREEN = { mode: "halftone", cell: 7, angle: 22, gamma: 1.14, floor: 0.04 };
+  N.SCREEN = { mode: "halftone", cell: 7, angle: 22, gamma: 1.16, floor: 0.04 };
   N.EDGES  = { threshold: 18, width: 1.3, alpha: 0.78, dx: 1.1, dy: -0.6 };
 
   /* THE GREY SCALE THE TWIN IS DRAWN IN, dark to light. A frame reaches for these by name so
