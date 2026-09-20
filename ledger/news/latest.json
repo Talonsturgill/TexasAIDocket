@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-20T18:25:10Z",
+  "checked_at": "2026-09-20T21:41:59Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "5d817593895eaae47bbd1203b3624c196991813f61713dd33844408e5484558f",
+  "response_sha256": "2adf6458e1605e502318a7afafe82a84228af32994f730e8e4a6f9df3e32aa27",
   "articles": [
     {
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
@@ -32,74 +32,20 @@
     }
   ],
   "selected": {
-    "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-    "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-    "first_seen_at": "2026-09-14T21:03:02Z",
-    "publisher": "The Texas Tribune",
+    "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+    "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+    "first_seen_at": "2026-09-16T10:28:58Z",
+    "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.016859,
+    "score": 0.045205,
     "priority": 4
   },
-  "expires_at": "2026-09-21T21:03:02Z",
+  "expires_at": "2026-09-23T10:28:58Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-09-20T13:23:00Z",
-      "selected": {
-        "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-        "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-        "first_seen_at": "2026-09-14T21:03:02Z",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.016859,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.016859,
-          "priority": 4
-        },
-        {
-          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
-          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
-          "first_seen_at": "2026-09-17T18:04:25Z",
-          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.123758,
-          "priority": 3
-        },
-        {
-          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-          "first_seen_at": "2026-09-16T10:28:58Z",
-          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.049697,
-          "priority": 4
-        },
-        {
-          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-          "first_seen_at": "2026-09-15T22:28:12Z",
-          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.035128,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-09-20T19:23:00Z",
       "selected": {
@@ -110,7 +56,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.048333,
+        "score": 0.045205,
         "priority": 4
       },
       "stories": [
@@ -122,7 +68,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.048333,
+          "score": 0.045205,
           "priority": 4
         },
         {
@@ -133,7 +79,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.12036,
+          "score": 0.112571,
           "priority": 3
         },
         {
@@ -144,7 +90,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.034164,
+          "score": 0.031953,
           "priority": 4
         },
         {
@@ -153,7 +99,7 @@
           "first_seen_at": "2026-09-14T21:03:02Z",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.016396,
+          "score": 0.015335,
           "priority": 4
         }
       ]
@@ -273,6 +219,62 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-09-21T13:23:00Z",
+      "selected": {
+        "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+        "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+        "first_seen_at": "2026-09-14T21:03:02Z",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.009749,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.009749,
+          "priority": 4
+        },
+        {
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.071567,
+          "priority": 3
+        },
+        {
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.028739,
+          "priority": 4
+        },
+        {
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.020314,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
@@ -310,6 +312,11 @@
       "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
       "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
       "shown_at": "2026-09-20T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+      "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+      "shown_at": "2026-09-20T19:23:00Z"
     }
   ],
   "feeds": [
@@ -321,7 +328,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "ea4d9f487e49c696ea98ccec500e39f27dcd0059b46e366469e5ab3d62848bf8"
+      "sha256": "d43f540d00b9afd1508feaea28a1e03a06ebe2d40102467c2eb0fa3c62b3dd1d"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
@@ -337,7 +344,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "57e2b3e9fb897360ead8fb8afbb92164367c858663e0e29e6c455d6a80b52362"
+      "sha256": "cad1ab2ad69f8820e04c91ce3ab4f85c8a34ab77e7efd1a671da406701570f4b"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -351,7 +358,9 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "4fc935cf17edb27f4249c1cd74880f5a806be865462fb2d817ce3b93b0eb9a59"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -364,9 +373,7 @@
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "90071cada315662b4d77e24ad426d0e99532b5822860b702e6b6aca8c2976040"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -388,60 +395,60 @@
       "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
       "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ea4d9f487e49c696ea98ccec500e39f27dcd0059b46e366469e5ab3d62848bf8",
-      "etag": "\"6ab02158-a214\"",
-      "last_modified": "Sun, 20 Sep 2026 18:09:28 GMT"
+      "sha256": "d43f540d00b9afd1508feaea28a1e03a06ebe2d40102467c2eb0fa3c62b3dd1d",
+      "etag": "\"6ab050a0-a249\"",
+      "last_modified": "Sun, 20 Sep 2026 21:31:12 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 20 Sep 2026 15:00:28 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "ac24f77feab201af303a67c2b7672ab7f574dcf8a86633d5f247b76f82e7d847",
       "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1789927794\"",
-      "last_modified": "Sun, 20 Sep 2026 18:09:54 GMT"
+      "etag": "\"1789940420\"",
+      "last_modified": "Sun, 20 Sep 2026 21:40:20 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "57e2b3e9fb897360ead8fb8afbb92164367c858663e0e29e6c455d6a80b52362"
+      "sha256": "cad1ab2ad69f8820e04c91ce3ab4f85c8a34ab77e7efd1a671da406701570f4b"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
       "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
     "https://siliconangle.com/feed/": {
-      "etag": "\"35b5695226a3407c7a8c03d41e627b2b\"",
-      "last_modified": "Sun, 20 Sep 2026 02:47:38 GMT",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
-      "sha256": "6c0385a5a523e9d1952346884dd4b5049db531a25cdf759159ecbbff76ce9b70",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "4fc935cf17edb27f4249c1cd74880f5a806be865462fb2d817ce3b93b0eb9a59",
+      "etag": "\"1aefb5dea724aca3fde54974ab4f82a9\"",
+      "last_modified": "Sun, 20 Sep 2026 19:32:57 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"a5a4044f4288c1a98ae10a542936a14b\"",
@@ -456,26 +463,26 @@
       "etag": "W/\"c943758126d6e385ac155595632efd2f\"",
       "last_modified": "Sun, 20 Sep 2026 15:00:13 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "0a90f8bc25e29bbcd88c14ab0e39ee45874714dc05b19b764c9392daf17903f1",
       "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "etag": "W/\"6d167fa28742247ee1de1b4dc4ec8038\"",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "90071cada315662b4d77e24ad426d0e99532b5822860b702e6b6aca8c2976040",
-      "etag": "W/\"6d167fa28742247ee1de1b4dc4ec8038\""
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Sun, 20 Sep 2026 13:02:50 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "e01a52741b40db1978ed8bea6531a179e992df91bcb2b63d4616ad8135004f16",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "5d9c35f9322ed0524bea9f48fa2768de570db5b943cccab5378d4044513c0221"
@@ -484,7 +491,7 @@
       "etag": "W/\"35b08229e946ae6074374880c89e0fb6\"",
       "last_modified": "Fri, 18 Sep 2026 15:37:47 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T18:25:08Z",
+      "ok_at": "2026-09-20T21:41:57Z",
       "sha256": "da10fb0ee9bfe612d3750c588b781580077f13e185c9bbcd246f2d66ee94fa06",
       "parser_version": 2
     }
