@@ -2,7 +2,7 @@
 """Rotating, attributed AI headlines, selected without a language model.
 
 Publisher feeds provide titles and source dates. We rank recent coverage from named newsrooms,
-group sister outlets, and retain the publisher's headline verbatim. Only headline metadata is retained; article pages are never fetched. See knowledge/shared/NEWS_CHIP.md.
+group sister outlets, and retain the publisher's headline verbatim. Only headline metadata and bounded feed excerpts are retained; article pages are never fetched. See knowledge/shared/NEWS_CHIP.md.
 """
 from __future__ import annotations
 
@@ -36,7 +36,6 @@ UTC = dt.timezone.utc
 MAX_AGE = dt.timedelta(days=7)
 TRENDING_AGE = dt.timedelta(hours=72)
 MAX_CHECK_AGE = dt.timedelta(hours=18)
-GLOBAL_GROUPS = frozenset(CONFIG.get('global_groups', []))
 FIRST_PARTY_GROUPS = frozenset(CONFIG.get('first_party_groups', []))
 EDITION_LENGTH = dt.timedelta(hours=6)
 STORIES_PER_EDITION = 5
@@ -44,7 +43,7 @@ STORIES_PER_EDITION = 5
 EDITION_ANCHOR = dt.datetime(1970, 1, 1, 1, 23, tzinfo=UTC)
 UA = 'TexasAIDocket/1.0 (+https://texasaidocket.com)'
 TEXAS = re.compile(r'\b(?:texas|texans|dallas|houston|fort worth|san antonio|el paso|'
-                   r'round rock|abilene|amarillo|lubbock|corpus christi|dfw|txdot|'
+                   r'round rock|abilene|amarillo|lubbock|corpus christi|dfw|txdot|ercot|'
                    r'ut austin|ut dallas|ut arlington|texas a&m|unt|'
                    r'southern methodist university)\b', re.I)
 AUSTIN = re.compile(r'^(?:Austin[’\x27]s|Austin[- ]based|Austin (?:AI|tech|startup|data|city|council|robot|software|chip))\b', re.I)
@@ -119,10 +118,11 @@ def related(a: dict, b: dict) -> bool:
 def topics(article: dict) -> tuple[bool, bool]:
     title = article['title']
     newsroom = source(article['url'])
-    texas = bool(TEXAS.search(title) or AUSTIN.search(title) or
+    text = title + ' ' + article.get('summary', '')
+    texas = bool(TEXAS.search(text) or AUSTIN.search(title) or
                  (newsroom and newsroom[1] == 'dallasinnovates' and DALLAS_INSTITUTIONS.search(title)))
     # Feed names and publisher identity establish provenance, never subject relevance.
-    ai = bool(AI.search(title))
+    ai = bool(AI.search(text))
     return texas, ai
 
 
@@ -132,9 +132,11 @@ def eligible(article: dict, now: dt.datetime) -> bool:
         if not isinstance(title, str) or not 20 <= len(title) <= 220 or len(title.split()) > 32:
             return False
         newsroom = source(article['url'])
+        summary = article.get('summary', '')
+        if not isinstance(summary, str) or len(summary) > 1000 or '<' in summary or '>' in summary:
+            return False
         texas, ai = topics(article)
-        if (not newsroom or not article['url'].startswith('https://') or not ((ai and newsroom[1] in GLOBAL_GROUPS) or
-                                  (texas and TECH.search(title))) or JUNK.search(title)):
+        if (not newsroom or not article['url'].startswith('https://') or not (texas and (ai or TECH.search(title))) or JUNK.search(title)):
             return False
         age = now - instant(article['first_seen_at'])
         if not dt.timedelta(0) <= age < MAX_AGE:
@@ -170,7 +172,7 @@ def rank(articles: list[dict], now: dt.datetime) -> list[dict]:
         age = (now - instant(article['first_seen_at'])).total_seconds() / 3600
         score = round((1 + math.log2(coverage)) * 2 ** (-age / 24), 6)
         texas, ai = topics(article)
-        priority = (0 if texas and ai else 1 if ai else 2) + (3 if age >= 72 else 0)
+        priority = (0 if ai else 1) + (3 if age >= 72 else 0)
         scored.append({**article, 'publisher': source(article['url'])[0],
                        'coverage': coverage, 'score': score, 'priority': priority})
     return sorted(scored, key=lambda a: (a['priority'], source(a['url'])[1] in FIRST_PARTY_GROUPS,
@@ -218,7 +220,7 @@ def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
     for offset in range(4):
         begins = start + offset * EDITION_LENGTH
         at = max(now, begins)
-        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < TRENDING_AGE]
+        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < MAX_AGE]
         # Hold only a real previously published rotation slot, never the legacy stuck winner.
         locked = next((entry['selected']['url'] for entry in old_editions
                        if entry.get('starts_at') == stamp(begins)), None) if offset == 0 else None
@@ -247,6 +249,11 @@ def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
                 def last_shown(row):
                     return max((old['shown_at'] for old in used if old['url'] == row['url'] or related(row, old)), default='')
                 chosen = min(candidates, key=last_shown)
+        if chosen is None and not editions:
+            # A quiet Texas news day can have one eligible story. Keep its original date
+            # instead of importing a global story or treating an honest small pool as failure.
+            remaining = rank(articles, at)
+            chosen = remaining[0] if remaining else None
         if chosen is None:
             break
         editions.append({'starts_at': stamp(begins), 'selected': chosen})
@@ -259,7 +266,7 @@ def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
     scheduled = []
     for position, entry in enumerate(editions):
         at = max(now, instant(entry['starts_at']))
-        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < TRENDING_AGE]
+        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < MAX_AGE]
         if position and any(entry['selected']['url'] == old['url'] or related(entry['selected'], old) for old in scheduled):
             # Filling the current batch takes priority over a speculative future lead.
             # Move that future lead to an unused subject whenever the pool allows it.
@@ -314,6 +321,8 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None, *, r
             seen = dt.datetime.strptime(raw['seendate'], '%Y%m%dT%H%M%SZ').replace(tzinfo=UTC)
             row = {'title': html.unescape(' '.join(raw['title'].split())), 'url': url,
                    'first_seen_at': min(known.get(url, stamp(seen)), stamp(seen))}
+            if isinstance(raw.get('summary'), str):
+                row['summary'] = raw['summary']
             if raw.get('feed') in RSS_FEEDS:
                 row['feed'] = raw['feed']
             if raw.get('language') == 'English' and eligible(row, now):
@@ -356,6 +365,8 @@ def observation_history(data: dict) -> dict:
                 continue
             row = {'title': raw['title'], 'url': url,
                    'first_seen_at': stamp(instant(raw['first_seen_at']))}
+            if isinstance(raw.get('summary'), str):
+                row['summary'] = raw['summary']
             if raw.get('feed') in RSS_FEEDS:
                 row['feed'] = raw['feed']
             rows.append(row)
@@ -385,7 +396,7 @@ def validate(data: dict) -> None:
             at = max(now, begins)
             story = entry['selected']
             if (entry['starts_at'] != stamp(begins) or story not in rank(data['articles'], at) or
-                    at - instant(story['first_seen_at']) >= TRENDING_AGE):
+                    at - instant(story['first_seen_at']) >= MAX_AGE):
                 raise ValueError('rotation contains an invalid or stale headline')
             if any(story['url'] == old['selected']['url'] or related(story, old['selected']) for old in editions[:offset]):
                 raise ValueError('rotation repeats a headline or story')
@@ -395,7 +406,7 @@ def validate(data: dict) -> None:
                     raise ValueError('invalid edition story pool')
                 ranked_at = rank(data['articles'], at)
                 for index, candidate in enumerate(pool):
-                    if candidate not in ranked_at or at - instant(candidate['first_seen_at']) >= TRENDING_AGE:
+                    if candidate not in ranked_at or at - instant(candidate['first_seen_at']) >= MAX_AGE:
                         raise ValueError('carousel contains an invalid or stale headline')
                     if any(candidate['url'] == old['url'] or related(candidate, old) for old in pool[:index]):
                         raise ValueError('carousel repeats a headline or story')
@@ -441,12 +452,11 @@ def markup(today: str, data: dict | None = None) -> str:
         date = f'{observed:%B} {day}{suffix}'
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
-    description = ('AI headlines rotate every five seconds and refresh every six hours. '
+    description = ('Texas AI headlines rotate every five seconds and refresh every six hours. '
                    'The date is the publisher feed date or first observation. Opens the source in a new tab.')
     relevance = {name: pattern.pattern for name, pattern in
                  [('texas', TEXAS), ('austin', AUSTIN), ('local', DALLAS_INSTITUTIONS),
                   ('tech', TECH), ('ai', AI), ('junk', JUNK)]}
-    relevance['global_groups'] = sorted(GLOBAL_GROUPS)
     return (f'<div class="tele news-chip" role="region" aria-roledescription="carousel" '
             f'aria-label="Trending headlines" data-news-status="{status}" '
             f'data-news-feed="{NEWS_FEED_URL}" '
@@ -515,8 +525,8 @@ def health_problems(data: dict, now: dt.datetime) -> list[str]:
     """Operational health is separate from the reproducible snapshot/schema check."""
     problems = []
     selected = edition_story(data, now)
-    if not selected or now - instant(selected['first_seen_at']) >= TRENDING_AGE:
-        problems.append('no fresh AI or Texas tech headline is available')
+    if not selected or now - instant(selected['first_seen_at']) >= MAX_AGE:
+        problems.append('no eligible Texas AI or technology headline is available')
     if not dt.timedelta(minutes=-5) <= now - instant(data['checked_at']) <= MAX_CHECK_AGE:
         problems.append('news collection is overdue or its clock is invalid')
     if sum(feed.get('status') in ('ok', 'not_modified') for feed in data.get('feeds', [])) < 1:
@@ -524,7 +534,10 @@ def health_problems(data: dict, now: dt.datetime) -> list[str]:
     if data.get('rotation_version') == 1:
         editions = data['editions']
         if len(editions) < 2 or instant(editions[-1]['starts_at']) <= now:
-            problems.append('no distinct fresh headline is ready for the next six-hour edition')
+            next_candidates = rank(data['articles'], edition_start(now) + EDITION_LENGTH)
+            if not (selected and next_candidates and all(
+                    row['url'] == selected['url'] or related(row, selected) for row in next_candidates)):
+                problems.append('no eligible headline is ready for the next six-hour edition')
         groups = {source(feed['url'])[1] for feed in data.get('feeds', [])
                   if feed.get('status') in ('ok', 'not_modified') and source(feed.get('url', ''))}
         if len(groups) < 2:
@@ -641,6 +654,55 @@ def self_test() -> int:
                 self.assertFalse(eligible(row(host=host), now))
             self.assertFalse(source('https://user:password@nbcdfw.com/a'))
             self.assertFalse(source('javascript:alert(1)'))
+        def test_texas_scope_covers_live_failures_and_feed_context(self):
+            foreign = [
+                ('Bitdeer AI to lease 65MW data center in Johor, Malaysia', 'datacenterdynamics.com'),
+                ('Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude', 'siliconangle.com'),
+                ('For AI agents, it is the best of times, it is the worst of times', 'siliconangle.com'),
+                ('AI data center builder Crusoe valued at $30.9B in $3.9B round', 'siliconangle.com'),
+                ('AI researchers develop a safer surgery technique', 'news.mit.edu'),
+            ]
+            for title, host in foreign:
+                candidate = row(title, host)
+                self.assertFalse(eligible(candidate, now), title)
+                repaired = snapshot({'articles': []}, now, {'articles': [candidate]}, rotate=True)
+                self.assertEqual(repaired['editions'], [])
+            candidate = row('CoPoint AI acquires a consulting business', 'dallasinnovates.com')
+            self.assertFalse(eligible(candidate, now))
+            candidate['summary'] = 'Two Dallas-based AI consulting firms combined.'
+            self.assertTrue(eligible(candidate, now))
+            for summary in [None, ['Texas'], '<b>Texas</b>', 'Texas ' * 300]:
+                self.assertFalse(eligible({**candidate, 'summary': summary}, now))
+            boilerplate = "<p>Dallas Innovates, Every Day: Here's what's new + next in North Texas.</p>"
+            excerpt = news_feeds.summary_text(boilerplate + '<p>An AI company expands in Malaysia.</p>' +
+                         '<p>The post Story appeared first on Dallas Innovates.</p>')
+            self.assertEqual(excerpt, 'An AI company expands in Malaysia.')
+            self.assertFalse(eligible({**candidate, 'summary': excerpt}, now))
+            self.assertEqual(news_feeds.summary_text(boilerplate + '<p>Dallas-based AI firms combine.</p>'),
+                             'Dallas-based AI firms combine.')
+
+        def test_quiet_texas_pool_keeps_dates_and_rejects_global_padding(self):
+            rows = [row('Texas AI researchers test a surgery technique', hours=80),
+                    row('Dallas launches autonomous transit pilot program', hours=90, path='transit'),
+                    row('AI infrastructure expands in Malaysia', 'datacenterdynamics.com', hours=1)]
+            result = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
+            validate(result)
+            self.assertEqual(len(result['articles']), 2)
+            self.assertEqual([len(e['stories']) for e in result['editions']], [2, 2])
+            self.assertIn('Recent', markup('2026-09-11', result))
+            self.assertEqual(result['selected']['first_seen_at'], rows[0]['first_seen_at'])
+
+        def test_single_texas_story_survives_quiet_refresh(self):
+            first = snapshot({'articles': []}, now, {'articles': [row()]}, rotate=True)
+            later = now + EDITION_LENGTH
+            second = snapshot({'articles': []}, later, first, rotate=True)
+            validate(second)
+            self.assertEqual(second['selected']['url'], first['selected']['url'])
+            self.assertEqual(second['selected']['first_seen_at'], first['selected']['first_seen_at'])
+            self.assertEqual(len(second['editions'][0]['stories']), 1)
+            second['feeds'] = [{'url': RSS_FEEDS[0], 'status': 'ok'}, {'url': RSS_FEEDS[1], 'status': 'ok'}]
+            self.assertEqual(health_problems(second, later), [])
+
         def test_freshness(self):
             self.assertTrue(eligible(row(hours=36), now))
             self.assertFalse(eligible(row(hours=168), now))
@@ -709,14 +771,13 @@ def self_test() -> int:
                     result = load()
                 self.assertEqual(result['selected']['title'], 'Texas AI research laboratory opens')
                 self.assertEqual(sum(f['status'] == 'ok' for f in result['feeds']), len(RSS_FEEDS) - 1)
-                self.assertIn('no distinct fresh headline is ready for the next six-hour edition',
-                              health_problems(result, dt.datetime.now(UTC)))
+                self.assertEqual(health_problems(result, dt.datetime.now(UTC)), [])
 
         def test_empty_refresh_is_not_operational_success(self):
             s = snapshot({'articles': []}, now)
             s['feeds'] = [{'status': 'ok'}, {'status': 'ok'}]
             validate(s)  # An honest empty snapshot is publishable, but needs attention.
-            self.assertIn('no fresh AI or Texas tech headline is available', health_problems(s, now))
+            self.assertIn('no eligible Texas AI or technology headline is available', health_problems(s, now))
             self.assertIn('data-news-status="empty"', markup('2026-09-11', s))
 
         def test_operational_health(self):
@@ -725,20 +786,20 @@ def self_test() -> int:
             self.assertEqual(health_problems(s, now), [])
             self.assertIn('news collection is overdue or its clock is invalid',
                           health_problems(s, now + dt.timedelta(hours=19)))
-            self.assertIn('no fresh AI or Texas tech headline is available',
-                          health_problems(s, now + dt.timedelta(hours=73)))
+            self.assertIn('no eligible Texas AI or technology headline is available',
+                          health_problems(s, now + dt.timedelta(hours=169)))
             s['feeds'][1]['status'] = 'unavailable'
             self.assertEqual(health_problems(s, now), [])
             s['feeds'][0]['status'] = 'unavailable'
             self.assertIn('no news feed is available', health_problems(s, now))
 
-        def test_global_ai_and_quiet_days(self):
+        def test_texas_required_even_on_quiet_days(self):
             global_ai = row('AI researchers develop a safer surgery technique', 'news.mit.edu', path='ai')
-            self.assertTrue(eligible(global_ai, now))
+            self.assertFalse(eligible(global_ai, now))
             self.assertFalse(eligible(row('Cute critters launch on a gaming service', 'blogs.nvidia.com'), now))
             texas_ai = row('Texas researchers develop a safer AI surgery technique', 'dallasinnovates.com')
             self.assertEqual(rank([global_ai, texas_ai], now)[0]['url'], texas_ai['url'])
-            self.assertEqual(rank([global_ai, row(hours=40)], now)[0]['url'], global_ai['url'])
+            self.assertEqual(rank([global_ai, row(hours=40)], now)[0]['url'], row()['url'])
             dated = snapshot({'articles': []}, now, {'articles': [row(hours=100)]})
             self.assertIsNotNone(dated['selected'])
             self.assertIn('Recent', markup('2026-09-11', dated))
@@ -757,7 +818,7 @@ def self_test() -> int:
             for host, feed in [('openai.com', 'https://openai.com/news/rss.xml'),
                                ('blog.google', 'https://blog.google/technology/ai/rss/')]:
                 self.assertFalse(eligible({**row('A community reading program opens today', host), 'feed': feed}, now))
-            self.assertTrue(eligible({**row('New AI technique makes surgery safer and more precise', 'news.mit.edu'),
+            self.assertTrue(eligible({**row('Texas AI technique makes surgery safer and more precise', 'news.mit.edu'),
                                       'feed': 'https://news.mit.edu/rss/topic/artificial-intelligence2'}, now))
 
         def test_live_health(self):
@@ -798,7 +859,7 @@ def self_test() -> int:
                       'ChatGPT faces new privacy rules in schools', 'Anthropic releases smaller coding models',
                       'AI accelerators reduce electricity consumption', 'Teachers evaluate AI tutors for mathematics',
                       'AI-generated video raises election security concerns', 'New AI method deciphers ancient manuscripts']
-            rows = [row(title, 'siliconangle.com', hours=i + 1, path=str(i)) for i, title in enumerate(titles)]
+            rows = [row('Texas ' + title, 'siliconangle.com', hours=i + 1, path=str(i)) for i, title in enumerate(titles)]
             previous = {'articles': rows, 'selected': rows[0], 'checked_at': stamp(now - EDITION_LENGTH)}
             first = snapshot({'articles': []}, now, previous, rotate=True)
             validate(first)
@@ -824,11 +885,11 @@ def self_test() -> int:
 
         def test_rotation_rejects_repeats_stale_and_off_topic_reserves(self):
             rows = [row('Texas deploys AI for hurricane forecasts', 'siliconangle.com', path='weather'),
-                    row('AI improves breast cancer screening accuracy', 'techspot.com', path='medicine')]
+                    row('Texas AI improves breast cancer screening accuracy', 'techspot.com', path='medicine')]
             result = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
             self.assertEqual(len(result['editions']), 2)
             for field, value in [('title', 'A new chapter for MIT Reads'), ('url', 'https://evil.example/news'),
-                                 ('first_seen_at', stamp(now - dt.timedelta(days=4)))]:
+                                 ('first_seen_at', stamp(now - dt.timedelta(days=8)))]:
                 broken = copy.deepcopy(result)
                 broken['editions'][1]['selected'][field] = value
                 with self.assertRaises(ValueError): validate(broken)
@@ -851,7 +912,7 @@ def self_test() -> int:
                       'AI improves semiconductor lithography precision', 'AI identifies invasive forest pests',
                       'AI translates endangered Indigenous languages', 'AI detects bridge corrosion using drones',
                       'AI compresses satellite imagery for transmission', 'AI personalizes physical rehabilitation']
-            rows = [row(title, 'siliconangle.com', hours=i / 2, path=str(i)) for i, title in enumerate(titles)]
+            rows = [row('Texas ' + title, 'siliconangle.com', hours=i / 2, path=str(i)) for i, title in enumerate(titles)]
             rows.append(row('A new chapter for MIT Reads', 'news.mit.edu'))
             first = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
             validate(first)
@@ -866,7 +927,7 @@ def self_test() -> int:
                 if mutation == 'irrelevant': pool[2]['title'] = 'A new chapter for MIT Reads'
                 if mutation == 'unsafe': pool[2]['url'] = 'javascript:alert(1)'
                 if mutation == 'duplicate': pool[2] = copy.deepcopy(pool[1])
-                if mutation == 'stale': pool[2]['first_seen_at'] = stamp(now - dt.timedelta(days=4))
+                if mutation == 'stale': pool[2]['first_seen_at'] = stamp(now - dt.timedelta(days=8))
                 if mutation == 'oversized': pool.append(copy.deepcopy(pool[1]))
                 if mutation == 'empty': pool.clear()
                 with self.assertRaises(ValueError, msg=mutation): validate(broken)
@@ -896,7 +957,7 @@ def self_test() -> int:
         def test_conditional_feed_refresh_and_atom_dates(self):
             from unittest.mock import patch
             url = RSS_FEEDS[0]
-            previous = {'etag': '"v1"', 'last_modified': 'Fri, 11 Sep 2026 18:00:00 GMT', 'ok_at': stamp(now - EDITION_LENGTH)}
+            previous = {'parser_version': 2, 'etag': '"v1"', 'last_modified': 'Fri, 11 Sep 2026 18:00:00 GMT', 'ok_at': stamp(now - EDITION_LENGTH)}
             error = urllib.error.HTTPError(url, 304, 'Not Modified', {}, None)
             with patch.object(news_feeds, 'allowed'), patch.object(news_feeds, 'request', side_effect=error) as request:
                 _, report, state = news_feeds.read(url, previous, now)
@@ -906,9 +967,24 @@ def self_test() -> int:
             body = b'<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>New AI research improves surgery</title><link href="https://news.mit.edu/surgery"/><published>2026-09-11T18:00:00Z</published><updated>2026-09-12T18:00:00Z</updated></entry></feed>'
             self.assertEqual(rss_articles(body)[0]['seendate'], '20260911T180000Z')
 
+        def test_feed_parser_upgrade_fetches_texas_context_once(self):
+            from unittest.mock import patch
+            url = RSS_FEEDS[0]
+            old = {'etag': '"old"', 'ok_at': stamp(now - EDITION_LENGTH)}
+            body = b'<rss><channel><item><title>AI firms combine their consulting teams</title><link>https://dallasinnovates.com/deal/</link><pubDate>Fri, 11 Sep 2026 18:00:00 +0000</pubDate><description>&lt;p&gt;Two Dallas-based companies combine.&lt;/p&gt;</description></item></channel></rss>'
+            with patch.object(news_feeds, 'allowed'), patch.object(news_feeds, 'request', return_value=(body, {'ETag': '"new"'})) as request:
+                rows, report, state = news_feeds.read(url, old, now)
+                self.assertEqual(request.call_args.args[1], {})
+                self.assertEqual(state['parser_version'], 2)
+                self.assertEqual(state['etag'], '"new"')
+                self.assertEqual(rows[0]['summary'], 'Two Dallas-based companies combine.')
+                result = snapshot({'articles': rows}, now)
+                self.assertIsNotNone(result['selected'])
+                validate(result)
+
         def test_company_blog_does_not_displace_independent_reporting(self):
-            company = row('New experts join Google AI research team', 'blog.google', hours=1)
-            report = row('AI researchers test safety of driverless taxis', 'siliconangle.com', hours=12)
+            company = row('Texas experts join Google AI research team', 'blog.google', hours=1)
+            report = row('Texas AI researchers test safety of driverless taxis', 'siliconangle.com', hours=12)
             self.assertEqual(rank([company, report], now)[0]['url'], report['url'])
     return 0 if unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(Cases)).wasSuccessful() else 1
 

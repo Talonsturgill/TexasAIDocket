@@ -49,17 +49,11 @@ const browser=await chromium.launch(fs.existsSync(executable)?{executablePath:ex
 const feed='https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json*';
 let checked=0;
 const activeLink = page => page.locator('.news-slide[aria-hidden="false"] .news-link');
-async function pageFor(state,width=390,payload=null,realTime=false) {
+async function pageFor(state,width=390,payload=null) {
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
-  // Freeze only source-date selection. Cadence and compositor checks use real timers.
-  if(realTime) await page.addInitScript(fixed=>{
-    const OriginalDate=Date;
-    window.Date=class extends OriginalDate {
-      constructor(...args) { super(...(args.length?args:[fixed])); }
-      static now() { return fixed; }
-    };
-  },Date.parse(state.checked_at));
-  else await page.clock.install({time:new Date(state.checked_at)});
+  // Install before the runtime starts timers. Switching clocks after a real-time rotation
+  // leaves native timeouts outside the fake clock's cancellation and pause controls.
+  await page.clock.install({time:new Date(state.checked_at)});
   await page.route(feed,route=>payload ? route.fulfill({json:payload,headers:{'access-control-allow-origin':'*'}}) : route.abort());
   return page;
 }
@@ -90,7 +84,7 @@ try {
       assert.equal(await activeLink(page).getAttribute('href'),state.selected.url);
       assert.equal(await activeLink(page).locator('.news-source').textContent(),state.selected.publisher);
       assert.equal(await activeLink(page).locator('.news-title').textContent(),state.selected.title);
-      assert.equal(await chip.locator('.news-label').textContent(),'Trending');
+      assert.equal(await chip.locator('.news-label').textContent(),Date.parse(state.checked_at)-Date.parse(state.selected.first_seen_at)>=72*3600000?'Recent':'Trending');
       assert.match(await activeLink(page).locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th)$/);
       await activeLink(page).focus();
       assert.equal(await activeLink(page).evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
@@ -124,7 +118,7 @@ try {
   const base=fixtures.current.state;
   const fresh=structuredClone(base);
   fresh.checked_at='2026-09-17T20:01:00Z';
-  fresh.selected={...fresh.selected,title:'New AI technique makes surgery safer and more precise',url:'https://news.mit.edu/2026/ai-surgery/',publisher:'MIT News'};
+  fresh.selected={...fresh.selected,title:'Texas AI technique makes surgery safer and more precise',url:'https://news.mit.edu/2026/ai-surgery/',publisher:'MIT News'};
   // Exercise the production verifier against delayed delivery, then a permanently stale feed.
   {
     const page=await pageFor(base,390,base);
@@ -160,6 +154,8 @@ try {
     {...fresh,selected:{...fresh.selected,url:'https://news.mit.edu.evil.example/story'}},
     {...fresh,selected:{...fresh.selected,publisher:'Fake publisher'}},
     {...fresh,selected:null},
+    {...fresh,selected:{...fresh.selected,title:'Bitdeer AI to lease 65MW data center in Johor, Malaysia',url:'https://www.datacenterdynamics.com/en/news/malaysia/',publisher:'Data Center Dynamics'}},
+    {...fresh,selected:{...fresh.selected,title:'Cybersecurity researchers gain access to OpenAI repository using Claude',url:'https://siliconangle.com/global-ai/',publisher:'SiliconANGLE'}},
     {...fresh,selected:{...fresh.selected,title:'A new chapter for MIT Reads',
       url:'https://news.mit.edu/2026/new-chapter-mit-reads-0918',publisher:'MIT News',
       feed:'https://news.mit.edu/rss/topic/artificial-intelligence2'}},
@@ -172,7 +168,7 @@ try {
     assert.equal(await activeLink(page).locator('.news-title').textContent(),base.selected.title,'invalid or older data must not replace a good headline');
     await page.close();checked++;
   }
-  const offTopic=badStates[badStates.length-2];
+  for(const offTopic of [badStates[6],badStates[7],badStates[badStates.length-2]]) {
   for(const initial of ['current','empty']) {
     const page=await pageFor(base,390,offTopic);
     await page.addInitScript(data=>localStorage.setItem('texas-ai-news-v2',JSON.stringify(data)),offTopic);
@@ -181,6 +177,7 @@ try {
       'an off-topic cached story and live response must not override relevant reporting');
     assert.equal(await activeLink(page).getAttribute('href'),initial==='current'?base.selected.url:'/articles/');
     await page.close();checked++;
+  }
   }
   // An unchanged feed and a complete network outage must still change what readers see
   // at the six-hour boundary. A reload must choose the same edition as an already-open tab.
@@ -203,10 +200,11 @@ try {
       }
       await page.close();checked++;
     }
-    for(const mutation of ['irrelevant','unsafe','repeat','wrong-slot']) {
+    for(const mutation of ['irrelevant','non-Texas','unsafe','repeat','wrong-slot']) {
       const bad=structuredClone(state);
       bad.checked_at=new Date(Date.parse(state.checked_at)+60000).toISOString();
-      if(mutation==='irrelevant') bad.editions[1].selected.title='A new chapter for MIT Reads';
+      if(mutation==='irrelevant') {bad.editions[1].selected.title='A new chapter for MIT Reads';delete bad.editions[1].selected.summary;}
+      if(mutation==='non-Texas') {bad.editions[1].selected.title='AI infrastructure expands in Malaysia';delete bad.editions[1].selected.summary;}
       if(mutation==='unsafe') bad.editions[1].selected.url='javascript:alert(1)';
       if(mutation==='repeat') bad.editions[1].selected=structuredClone(bad.selected);
       if(mutation==='wrong-slot') bad.editions[1].starts_at=bad.editions[0].starts_at;
@@ -218,7 +216,7 @@ try {
   }
   if(state.carousel_version===1) {
     for(const width of [1440,390]) {
-      const page=await pageFor(state,width,state,true);
+      const page=await pageFor(state,width,state);
       await page.emulateMedia({reducedMotion:'no-preference',colorScheme:width===1440?'light':'dark'});
       let requests=0;
       await page.unroute(feed);
@@ -228,7 +226,7 @@ try {
       const stories=state.editions[0].stories;
       assert.equal(await chip.getAttribute('data-news-cadence'),'5000');
       assert.equal(await chip.locator('.news-slide').count(),stories.length);
-      assert.equal(stories.length,5,'release seed must demonstrate all five stories');
+      assert.ok(stories.length>=1 && stories.length<=5,'use only the qualifying Texas stories');
       const height=(await chip.boundingBox()).height;
       let last=await activeLink(page).getAttribute('href'), changedAt=null;
       const seen=new Set([last]);
@@ -246,9 +244,8 @@ try {
         assert.ok(Math.abs((await chip.boundingBox()).height-height)<1,'headline rotation must not move the page');
         assert.equal(await chip.locator('.news-slide:not([inert])').count(),1,'only the active link belongs in keyboard navigation');
       }
-      assert.equal(seen.size,5);
+      assert.equal(seen.size,stories.length);
       assert.equal(requests,1,'headline rotation must make no additional feed or publisher requests');
-      await page.clock.install({time:new Date(state.checked_at)});
       await chip.hover();
       await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='false');
       last=await activeLink(page).getAttribute('href');
@@ -263,6 +260,7 @@ try {
       assert.equal(await activeLink(page).getAttribute('href'),next,'manual browsing stays paused');
       assert.equal(await chip.locator('.news-slides').getAttribute('aria-live'),'polite');
       await chip.locator('.news-prev').click();
+      await page.waitForFunction(url=>document.querySelector('.news-slide[aria-hidden="false"] .news-link').href===url,last,{timeout:2000});
       assert.equal(await activeLink(page).getAttribute('href'),last);
       await activeLink(page).focus();
       await page.mouse.move(0,0);
@@ -329,11 +327,12 @@ try {
       assert.notEqual(await activeLink(page).getAttribute('href'),pressed,'cancelled touch resumes rotation');
       await page.close();checked++;
     }
-    for(const mutation of ['irrelevant','unsafe','duplicate','empty','oversized','missing-version','legacy-version']) {
+    for(const mutation of ['irrelevant','non-Texas','unsafe','duplicate','empty','oversized','missing-version','legacy-version']) {
       const bad=structuredClone(state);
       bad.checked_at=new Date(Date.parse(state.checked_at)+60000).toISOString();
       const stories=bad.editions[0].stories;
-      if(mutation==='irrelevant') stories[2].title='A new chapter for MIT Reads';
+      if(mutation==='irrelevant') {stories[2].title='A new chapter for MIT Reads';delete stories[2].summary;}
+      if(mutation==='non-Texas') {stories[2].title='AI infrastructure expands in Malaysia';delete stories[2].summary;}
       if(mutation==='unsafe') stories[2].url='javascript:alert(1)';
       if(mutation==='duplicate') stories[2]=structuredClone(stories[1]);
       if(mutation==='empty') stories.length=0;

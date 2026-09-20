@@ -2,7 +2,7 @@
 
 The compact homepage strip links to an attributed publisher headline and its original feed date.
 Up to five distinct headlines rotate every five seconds, with a gentle fade. Six-hour editions
-refresh the story pool. No model calls, article scraping or rewritten titles are used.
+refresh the story pool. No model calls, article scraping or rewritten titles are used. Bounded publisher feed excerpts can establish a Texas connection omitted from a headline.
 
 ## Sources and relevance
 
@@ -15,17 +15,20 @@ Every feed is checked against its host's robots policy. Requests have a response
 a timeout and bounded parallelism. Each source gets one attempt in a run. ETag and Last-Modified
 validators reduce repeat transfers. A failed source carries a persisted retry time into the next
 successful snapshot. HTTP 429 respects Retry-After rather than immediately trying again.
-Other publishers keep the collection running. Only headline metadata is retained.
+Other publishers keep the collection running. Only headline metadata and plain-text feed excerpts of at most 1000 characters are retained. Publisher boilerplate and post-attribution footers are removed before classification.
 
-A candidate must state AI relevance or Texas technology relevance in its headline. Publisher
-identity and feed membership never establish relevance. Stocks, sports and promotional headlines
-are excluded. The same relevance and source checks cover browser seed, cache and live responses,
-including all queued future headlines. MIT's unrelated reading-program story is a regression case.
+Every candidate must have both a Texas connection and AI or technology relevance. Texas
+places and institutions must appear in the headline or its publisher-provided feed excerpt.
+A publisher address, feed name or company reputation is not evidence of a Texas story.
+Generic global AI coverage is never a fallback. Stocks, sports and promotional headlines
+are excluded. The same checks cover the seed, browser cache, live responses and every queued
+story. Regression cases include the Malaysia data center, generic OpenAI cybersecurity and MIT's
+reading-program story. Dallas Innovates' site-wide North Texas boilerplate does not count.
 
-Texas AI ranks first, followed by global AI and Texas technology. Independent reporting precedes
-company announcements within a category. Independent coverage and source age rank the remaining
-choices. Sister outlets and identical wire headlines cannot inflate coverage. This is a coverage
-proxy, not audience analytics or a claim to measure the entire internet.
+Texas AI ranks before other Texas technology reporting. Reports under 72 hours rank before
+older reports. Independent reporting precedes company announcements within a category.
+Independent coverage and source age rank the remaining choices. Sister outlets and identical
+wire headlines cannot inflate coverage. This is a coverage proxy rather than audience analytics.
 
 ## Six-hour editions
 
@@ -38,7 +41,9 @@ not another outlet's version of the same story. Previously displayed topics are 
 72 hours when another qualifying story is available. A quiet-day fallback chooses the least
 recently shown eligible topic and still refuses consecutive repeats.
 
-Every queued story must be under 72 hours old at its scheduled start. The browser advances the
+Every queued story must be under seven days old at its scheduled start. Reports older than
+72 hours display Recent with their original date. Quiet days can use fewer than five Texas
+stories and reuse eligible Texas reports. They never import global AI stories to fill slots. The browser advances the
 queue at the edition boundary, on reload and when returning to the tab. A focused or hovered
 carousel waits until the reader moves away or navigates before replacing its links. This works even if
 GitHub starts a scheduled collection late or a feed request fails. The browser checks for a
@@ -46,8 +51,9 @@ new published queue on load and every 15 minutes while visible. Collection times
 replace the original story date or make an old article appear new.
 
 An exhausted queue retains a dated last-good headline labelled Recent. Nothing invents news
-when sources fail. A snapshot without a distinct next edition or two independent working feeds
-fails the publishing health check and does not replace the last published snapshot.
+when sources fail. A snapshot without an eligible next edition or two independent working feeds fails the
+publishing health check. A quiet period with just one eligible Texas story retains that
+story with its original date and pauses automatic rotation until another story qualifies.
 
 ## Five-second reading experience
 

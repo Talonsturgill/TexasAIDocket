@@ -14,9 +14,9 @@ try {
     if(process.env.NEWS_CHECKED_AT) await waitForPublishedRefresh(page,process.env.NEWS_CHECKED_AT);
     const chip=page.locator('.news-chip');
     assert.equal(await chip.isVisible(),true);
-    assert.equal(await chip.getAttribute('data-news-status'),'current');
+    assert.ok(['current','recent'].includes(await chip.getAttribute('data-news-status')));
     assert.equal(await chip.getAttribute('data-news-cadence'),'5000');
-    assert.equal(await chip.locator('.news-label').textContent(),'Trending');
+    assert.ok(['Trending','Recent'].includes(await chip.locator('.news-label').textContent()));
     const checked=Date.parse(await chip.getAttribute('data-checked-at'));
     assert.ok(checked>=Date.now()-18*3600000 && checked<=Date.now()+300000,'collection must be current');
     if(process.env.NEWS_CHECKED_AT) assert.ok(checked>=Date.parse(process.env.NEWS_CHECKED_AT),'this refresh must have reached the reader');
@@ -26,7 +26,8 @@ try {
     const now=Date.now();
     const current=state.editions.filter(e=>Date.parse(e.starts_at)<=now).at(-1);
     const next=state.editions.find(e=>Date.parse(e.starts_at)>now);
-    assert.ok(current && next,'a distinct next edition must be ready');
+    assert.ok(current,'a current edition must be ready');
+    assert.ok(next || current.stories.length===1,'only a single-story quiet period may lack a distinct next edition');
     assert.ok(current.stories.length>=1 && current.stories.length<=5);
     assert.equal(await chip.locator('.news-slide').count(),current.stories.length);
     // Rotation reads cached metadata. Blocking the endpoint proves neither cadence needs it.
@@ -37,6 +38,10 @@ try {
     for(let i=0;i<current.stories.length;i++) {
       const story=current.stories.find(s=>s.url===last);
       assert.ok(story,'visible link must belong to the current edition');
+      const geography=await chip.evaluate(el=>JSON.parse(el.dataset.newsRelevance));
+      const text=story.title+' '+(story.summary || '');
+      assert.ok(new RegExp(geography.texas,'i').test(text) || new RegExp(geography.austin,'i').test(story.title) ||
+        (story.publisher==='Dallas Innovates' && new RegExp(geography.local).test(story.title)), 'every visible story needs Texas evidence');
       assert.equal(await activeLink(page).locator('.news-title').textContent(),story.title);
       assert.equal(await activeLink(page).locator('.news-source').textContent(),story.publisher);
       assert.equal(await activeLink(page).locator('.news-date').getAttribute('datetime'),story.first_seen_at);
@@ -54,6 +59,11 @@ try {
     }
     assert.equal(seen.size,current.stories.length);
     console.log(`news live ${width}px: ${seen.size} attributed headlines rotate every five seconds without layout shift or network requests`);
+    if (!next) {
+      assert.deepEqual(errors,[]);
+      await page.close();
+      continue;
+    }
     await page.clock.install({time:new Date(next.starts_at)});
     await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
     await page.waitForFunction(url=>document.querySelector('.news-slide[aria-hidden="false"] .news-link').href===url,next.selected.url);

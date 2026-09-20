@@ -93,7 +93,7 @@ def self_test() -> int:
     now = news.dt.datetime.now(news.UTC).replace(microsecond=0)
     row = {'title': 'Texas AI researchers open a new laboratory',
            'url': 'https://dallasinnovates.com/test/', 'first_seen_at': news.stamp(now)}
-    second = {'title': 'AI improves breast cancer screening accuracy',
+    second = {'title': 'Texas AI improves breast cancer screening accuracy',
               'url': 'https://news.mit.edu/research/', 'first_seen_at': news.stamp(now)}
     snapshot = news.snapshot({'articles': []}, now, {'articles': [row, second]}, rotate=True)
     snapshot['feeds'] = [{'url': news.RSS_FEEDS[0], 'status': 'ok'}, {'url': news.RSS_FEEDS[1], 'status': 'ok'}]

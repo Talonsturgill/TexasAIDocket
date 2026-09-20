@@ -16,14 +16,17 @@
   var paused = motion.matches, held = false, hovering = false, inView = true;
   var pool = [], index = 0, editionKey = '', shownAt = 0, cycleTimer, swapTimer, animation, revision = 0;
   chip.dataset.newsCadence = String(cadence);
-  function relevant(title, group) {
-    var texas = topic.texas.test(title) || topic.austin.test(title) ||
+  function relevant(title, group, summary) {
+    var text = title + ' ' + summary;
+    var texas = topic.texas.test(text) || topic.austin.test(title) ||
                 (group === 'dallasinnovates' && topic.local.test(title));
     return !topic.junk.test(title) &&
-      ((topic.ai.test(title) && relevance.global_groups.indexOf(group) >= 0) || (texas && topic.tech.test(title)));
+      texas && (topic.ai.test(text) || topic.tech.test(title));
   }
   function validStory(story, checked, now) {
     if (!story) return false;
+    var summary = story.summary === undefined ? '' : story.summary;
+    if (typeof summary !== 'string' || summary.length > 1000 || /[<>]/.test(summary)) return false;
     var seen = Date.parse(story.first_seen_at);
     if (!Number.isFinite(seen) || seen > now || now - seen >= 168 * hour || seen > checked ||
         typeof story.title !== 'string' || story.title.length < 20 || story.title.length > 220 ||
@@ -33,7 +36,7 @@
       if (url.protocol !== 'https:' || url.username || url.password || url.port || /[\s\\]/.test(story.url)) return false;
       return Object.keys(sources).some(function (host) {
         return (url.hostname === host || url.hostname.endsWith('.' + host)) &&
-          story.publisher === sources[host][0] && relevant(story.title, sources[host][1]);
+          story.publisher === sources[host][0] && relevant(story.title, sources[host][1], summary);
       });
     } catch (_) { return false; }
   }
@@ -50,7 +53,7 @@
       if (data.carousel_version !== 1 && entry.stories !== undefined) return false;
       var start = Date.parse(entry.starts_at), story = entry.selected;
       if (start !== slot + i * 6 * hour || !validStory(story, checked, now) ||
-          Math.max(start, checked) - Date.parse(story.first_seen_at) >= 72 * hour ||
+          Math.max(start, checked) - Date.parse(story.first_seen_at) >= 168 * hour ||
           urls.indexOf(story.url) >= 0 || (i === 0 && JSON.stringify(story) !== JSON.stringify(data.selected))) return false;
       if (data.carousel_version === 1) {
         if (!Array.isArray(entry.stories) || !entry.stories.length || entry.stories.length > 5 ||
@@ -58,7 +61,7 @@
         var members = [];
         if (!entry.stories.every(function (candidate) {
           if (!validStory(candidate, checked, now) ||
-              Math.max(start, checked) - Date.parse(candidate.first_seen_at) >= 72 * hour ||
+              Math.max(start, checked) - Date.parse(candidate.first_seen_at) >= 168 * hour ||
               members.indexOf(candidate.url) >= 0) return false;
           members.push(candidate.url);
           return true;

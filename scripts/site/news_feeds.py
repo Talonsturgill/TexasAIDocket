@@ -1,12 +1,14 @@
 """Bounded publisher-feed reads with conditional requests and persistent backoff.
 
-Only titles, links and source dates survive parsing. Article bodies are never fetched.
+Only titles, links, source dates and bounded feed excerpts survive parsing. Article bodies are never fetched.
 """
 from __future__ import annotations
 
 import datetime as dt
 import email.utils
 import hashlib
+import html
+import re
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -58,6 +60,16 @@ def allowed(url):
         raise ValueError('feed disallowed by source robots policy')
 
 
+def summary_text(value):
+    """Keep a bounded feed excerpt, excluding publisher-wide location boilerplate."""
+    value = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', value or '', flags=re.I | re.S)
+    value = html.unescape(re.sub(r'<[^>]*>', ' ', value))
+    value = ' '.join(value.split())
+    value = re.sub(r"^Dallas Innovates, Every Day: Here's what's new \+ next in North Texas\.\s*", '', value)
+    value = re.split(r'\s+The post .+ appeared first on ', value, maxsplit=1)[0]
+    return value[:1000]
+
+
 def articles(body):
     root = ET.fromstring(body)
     atom = '{http://www.w3.org/2005/Atom}'
@@ -72,16 +84,19 @@ def articles(body):
         try:
             if kind == 'rss':
                 title, url = item.findtext('title'), item.findtext('link')
+                summary = summary_text(item.findtext('description'))
                 published = email.utils.parsedate_to_datetime(item.findtext('pubDate'))
             else:
                 title = item.findtext(atom + 'title')
+                summary = summary_text(item.findtext(atom + 'summary'))
                 links = [link for link in item.findall(atom + 'link') if link.get('rel', 'alternate') == 'alternate']
                 url = links[0].get('href') if links else None
                 published = instant(item.findtext(atom + 'published') or item.findtext(atom + 'updated'))
             if not title or not url or published.tzinfo is None:
                 continue
             rows.append({'title': title, 'url': url, 'language': 'English',
-                         'seendate': published.astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')})
+                         'seendate': published.astimezone(UTC).strftime('%Y%m%dT%H%M%SZ'),
+                         **({'summary': summary} if summary else {})})
         except (TypeError, ValueError, AttributeError, OverflowError):
             continue
     return rows
@@ -90,16 +105,16 @@ def articles(body):
 def read(url, previous, now):
     """A source gets one attempt per run. A 429 never triggers an immediate retry."""
     previous = previous if isinstance(previous, dict) else {}
-    state = {key: previous[key] for key in ('etag', 'last_modified', 'retry_at', 'failures', 'ok_at', 'sha256') if key in previous}
+    state = {key: previous[key] for key in ('etag', 'last_modified', 'retry_at', 'failures', 'ok_at', 'sha256', 'parser_version') if key in previous}
     report = {'url': url, 'status': 'unavailable'}
     try:
         if state.get('retry_at') and now < instant(state['retry_at']):
             return [], {**report, 'status': 'backoff', 'retry_at': state['retry_at']}, state
         allowed(url)
         headers = {}
-        if state.get('etag'):
+        if state.get('etag') and state.get('parser_version') == 2:
             headers['If-None-Match'] = state['etag']
-        if state.get('last_modified'):
+        if state.get('last_modified') and state.get('parser_version') == 2:
             headers['If-Modified-Since'] = state['last_modified']
         try:
             body, response_headers = request(url, headers)
@@ -111,7 +126,7 @@ def read(url, previous, now):
             return [], {**report, 'status': 'not_modified'}, state
         rows = articles(body)
         response_headers = {key.lower(): value for key, value in response_headers.items()}
-        state = {'ok_at': stamp(now), 'failures': 0, 'sha256': hashlib.sha256(body).hexdigest()}
+        state = {'ok_at': stamp(now), 'failures': 0, 'parser_version': 2, 'sha256': hashlib.sha256(body).hexdigest()}
         for header, key in [('etag', 'etag'), ('last-modified', 'last_modified')]:
             if response_headers.get(header):
                 state[key] = response_headers[header][:512]

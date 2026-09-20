@@ -12,19 +12,9 @@
     "https://www.artificialintelligence-news.com/feed/",
     "https://www.geekwire.com/tag/artificial-intelligence/feed/",
     "https://www.techspot.com/backend.xml",
-    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml"
-  ],
-  "global_groups": [
-    "mit",
-    "openai",
-    "nvidia",
-    "google",
-    "siliconangle",
-    "techforge",
-    "geekwire",
-    "techspot",
-    "sciencedaily",
-    "dcd"
+    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
+    "https://www.tpr.org/index.rss",
+    "https://www.texasobserver.org/feed/"
   ],
   "sources": {
     "news.mit.edu": ["MIT News", "mit"],
