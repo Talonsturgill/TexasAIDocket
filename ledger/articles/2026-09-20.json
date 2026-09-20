@@ -1,0 +1,163 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Land, water and permitting",
+ "dek": {
+  "text": "A federal award aims predictive digital twins at small and mid-sized water systems. Texas has 4,749 active community water systems and 3,579 of them serve fewer than 3,301 people.",
+  "claims": [
+   "c12",
+   "v1",
+   "v2"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "On {{date:c6}} the National Science Foundation made a standard grant to the [Texas A&M Engineering Experiment Station](c2) for [AI-enabled digital twins of freshwater infrastructure under cascading hazards](c1). The principal investigator is [Sudipta Chowdhury](c3). Work began {{date:c4}} and the award expires {{date:c5}}.",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c10"
+   ]
+  },
+  {
+   "text": "The interesting line is not the money. It is the first of the three directions the abstract lists, which aims the work at [small and mid-sized freshwater infrastructure systems](c12) rather than at the large utilities that already employ engineers to model themselves.",
+   "claims": [
+    "c12"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What a small system has today",
+   "paragraphs": [
+    {
+     "text": "The abstract is specific about the instruments. It says utility practice [often relies on monitoring systems, historical records, and reactive emergency protocols that provide limited ability to anticipate how local anomalies escalate into broader service disruptions](c15). That is a criticism of what an instrument can do rather than of the people operating it.",
+     "claims": [
+      "c15"
+     ]
+    },
+    {
+     "text": "The distinction matters because a record and a warning are different machines. A chart recorder and a bound logbook answer what already happened, completely and in order. Neither is built to say what is about to.",
+     "claims": [
+      "c15"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why a local failure becomes a wide one",
+   "paragraphs": [
+    {
+     "text": "The abstract describes the mechanism in its own words. Disruptions that begin in one component, [such as an intake, pump station, or treatment unit, can propagate through connected infrastructure and service networks](c14). The verb is conditional. Nothing in the record says a Texas system has failed this way.",
+     "claims": [
+      "c14"
+     ]
+    },
+    {
+     "text": "The same sentence names what the infrastructure is made of, listing [intakes, treatment facilities, storage assets, distribution networks, sensing platforms, and utility operations](c13) among the things getting harder to manage.",
+     "claims": [
+      "c13"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "How many systems this points at",
+   "paragraphs": [
+    {
+     "text": "The EPA's Safe Drinking Water Information System returns {{number:v1}} active community water systems in Texas. A second query, the same three filters plus a population predicate, returns {{number:v2}} serving fewer than 3,301 people. A third returns {{number:v3}} serving more than 50,000.",
+     "claims": [
+      "v1",
+      "v2",
+      "v3"
+     ]
+    },
+    {
+     "text": "Those are three separate measurements rather than three tiers of one. The population filters may exclude records where the served population is null, which was not tested, so the three counts are not a partition and this account does not subtract any of them from any other.",
+     "claims": [
+      "v1",
+      "v2",
+      "v3"
+     ]
+    },
+    {
+     "text": "For scale against states that were independently re-queried on the same day, California returns {{number:v4}}, Washington {{number:v5}}, New York {{number:v6}} and Florida {{number:v7}}. Forty four states were not re-queried, so no national ranking is claimed here.",
+     "claims": [
+      "v4",
+      "v5",
+      "v6",
+      "v7"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not establish",
+   "paragraphs": [
+    {
+     "text": "Nothing is deployed. The award is days old and runs to {{date:c5}}, and the abstract states what the project [can support](c16) rather than what it has achieved. A reader should treat every outcome in that sentence as a research aim.",
+     "claims": [
+      "c5",
+      "c16"
+     ]
+    },
+    {
+     "text": "The EPA queries count systems and filter on population served. They carry nothing whatever about condition, compliance or violations, so none of the figures above says anything about whether any Texas water system is in good repair.",
+     "claims": [
+      "v1",
+      "v2",
+      "v3"
+     ]
+    },
+    {
+     "text": "The award title begins with the words Collaborative Research, which in foundation practice means this record is one institution's share of a multi-institution project. The record names no partner institution and no project-wide total, so the figure on it is not the whole project's funding.",
+     "claims": [
+      "c1",
+      "c7",
+      "c8"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What a Texan can read today",
+   "paragraphs": [
+    {
+     "text": "The state's own answer to the question this raises is older than the award. TCEQ says a resident can [learn about the quality of your drinking water by reading your water system's annual drinking water quality report, also called a Consumer Confidence Report](c17).",
+     "claims": [
+      "c17"
+     ]
+    },
+    {
+     "text": "The agency also publishes a viewer that [contains information on sources, contaminants, and violations for all public water systems in Texas](c18), which it describes as a tool [that drinking water operators and the public can use](c19).",
+     "claims": [
+      "c18",
+      "c19"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0176",
+   "label": "The award for AI digital twins of small water systems"
+  },
+  {
+   "id": "tx-2026-0171",
+   "label": "The directive to penalize unreturned water surveys"
+  },
+  {
+   "id": "tx-2026-0172",
+   "label": "The grid operator's water questions to data center developers"
+  }
+ ]
+}

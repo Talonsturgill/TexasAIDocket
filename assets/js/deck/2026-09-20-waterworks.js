@@ -102,10 +102,21 @@
        * That run measured its vector PDF at 68.7 MB against 6 to 14 MB for every deck before
        * it, tested three hypotheses, and found that cutting the film grain and the dither was
        * worth 9 MB while a raised screen floor and a higher gamma were worth nothing. Per pixel
-       * noise over a frame that is already maximum entropy is the one knob that moves. A LINE
-       * screen at cell 5 carries fewer marks per unit area than a halftone at cell 7, so this
-       * deck should come in under that one, and the assemble step reports the actual figure
-       * rather than this comment predicting it. */
+       * noise over a frame that is already maximum entropy is the one knob that moves.
+       *
+       * THIS COMMENT PREDICTED THIS DECK WOULD COME IN UNDER SEPTEMBER 19TH'S AND IT BARELY DID.
+       * The prediction was that a line screen at cell 5 carries fewer marks per unit area than a
+       * halftone at cell 7. The screen then changed to a hatch at cell 6 on the probe frame's
+       * evidence, and the assembled vector PDF measured 61.95 MB against that deck's 68.7 MB.
+       * Nine percent, against a 2 to 25 MB target both decks miss by a factor of three.
+       *
+       * So the screen is NOT the lever and neither deck's choice of one was ever going to be.
+       * The cost is the halftone or hatch itself, which is this deck's register and the thing a
+       * reader is looking at, so the size is DISCLOSED rather than cured and the diagnosis goes
+       * to the upgrade backlog for somebody with a render side fix. The figure above is measured
+       * off this run's own assemble_report.json rather than predicted, because a wrong
+       * measurement in a file is worse than none: the next reader inherits it and stops
+       * looking, which is what nearly happened here. */
       grain: { amount: 0.014, size: 3, seed: 20260920 },
       aberration: 0,
       dither: false,
