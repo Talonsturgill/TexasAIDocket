@@ -234,6 +234,39 @@ defect in somebody else's code. The engineer checked rather than argued, and sai
 identical mistake once in the same session. **A finding handed to an agent is a lead and not a
 fact**, which is the same shape as the judges' screen-under-type diagnosis three phases earlier.
 
+### A SUBAGENT SIGNED THREE COMMITS AS CLAUDE AND THEY WERE ALREADY PUSHED
+
+`CLAUDE.md`'s authorship rule is AUTHORITATIVE and absolute: no `Co-Authored-By: Claude`, no
+`Claude-Session:` trailer, no Anthropic trailer of any kind, in every commit and PR in this repo,
+permanently. The upgrade engineer's three commits carried BOTH forbidden trailers. They were on
+the run branch and pushed before anybody looked.
+
+**The session's own attribution reminder tells an agent to add exactly those two lines, and it
+also says in its own text that a repository's `CLAUDE.md` takes precedence over it.** So the rule
+was never ambiguous. The engineer followed the reminder and did not check the repo's law against
+it, which is the same failure mode as a frame executing its dossier faithfully while the dossier
+is wrong.
+
+It was caught by reading the commit list rather than by a gate. **No gate in this repo checks
+commit messages for Anthropic attribution**, which is why it reached the remote. That is in the
+backlog and it is cheap: `actor_stamp_shape.py` already reads instruction files for a forbidden
+pattern, and this is the same shape one level up.
+
+Fixed by rewriting the three messages with `filter-branch --msg-filter` over `52266c7..HEAD`,
+which is permitted here because the branch is unmerged and `CLAUDE.md` stops only for history
+already published on `main`. **The five trees were compared before and after and are byte
+identical**, so only the messages moved, and the `Actor:` stamps, the authorship and the per
+commit ownership check all survive. Force-with-lease against the exact prior sha, remote ref
+verified at `0f0272c`.
+
+### And the pushes cancelled each other, which this file warned about
+
+Five commits went up in four minutes and `guards.yml` carries a concurrency group, so runs 1317
+through 1321 all came back `cancelled` and only 1322 survived to execute. `CLAUDE.md` says this
+in as many words: rapid pushes are how a branch ends up with no green run at all, batch the work
+and push once when it is finished. Three of those pushes were the engineer's, made while this
+session was working, so the batching has to be planned ACROSS the phase rather than inside it.
+
 ## What did not get fixed, and why
 
 These are next run work rather than late round work. Each was named by a judge, each is a frame
