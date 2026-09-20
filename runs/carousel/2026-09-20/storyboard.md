@@ -123,8 +123,21 @@ four cream sheets on a dark board strobe the canvas mean while the median holds.
 
 **World.** The inside of a small waterworks in the Post Oak Savannah, Brazos County, which is the
 county the awardee sits in, at ten to five on a September afternoon.
-Ground `#2E2016`. Ink `#DCD3B4` seven day recorder stock, a warm green cream.
 Light az 262, el 26. Screen hatch, cell 6, angle 52.
+
+**The palette, every token as `assets/js/deck/2026-09-20-waterworks.js` declares it.** This table
+is here because `plan_render_check.palette_map` reads it and this storyboard did not carry one, so
+the parser read a single token off the accent law's prose and the gate's calibration assertion went
+red across the shipped corpus. A palette a machine cannot read is a palette only this run can check.
+
+| token | hex | what it is |
+|---|---|---|
+| `ground` | `#2E2016` | sandy loam tracked onto swept concrete in shade, present in every frame |
+| `ink` | `#DCD3B4` | seven day recorder stock, a warm green cream, the deck's paper |
+| `dek` | `#B9B096` | the secondary reader line |
+| `rule` | `#9A9280` | the furniture, one pale ink on all nine frames |
+| `accent` | `#9A3B2A` | capitol_granite, a mark a hand in this world has already made |
+| `galv` | `#9EA69B` | hot dip galvanized spangle, the manifold and the saddles |
 
 ```yaml
 slide: 1
@@ -209,14 +222,14 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the operator reads as a person at 1.7 m and the hydropneumatic tank reads as taller than they are, at
-  432 px
-- every object standing on the floor has a visible two part contact shadow whose length is at least 1.8
-  times its own height, because the sun is at 26 degrees
-- every cast in the frame runs east, away from the door, and none runs toward it
-- the only numeral on this frame is 4,749 in the hook, which is v1 and carries no other figure
-- nothing in the room reads as broken, leaking, rusted or disused
-- the hook sits in the dark reserve at upper left with no plate behind it and no fill over 0.55 alpha
+  - the operator reads as a person at 1.7 m and the hydropneumatic tank reads as taller than they are, at
+    432 px
+  - every object standing on the floor has a visible two part contact shadow whose length is at least 1.8
+    times its own height, because the sun is at 26 degrees
+  - every cast in the frame runs east, away from the door, and none runs toward it
+  - the only numeral on this frame is 4,749 in the hook, which is v1 and carries no other figure
+  - nothing in the room reads as broken, leaking, rusted or disused
+  - the hook sits in the dark reserve at upper left with no plate behind it and no fill over 0.55 alpha
 risks:
 - a 4.2 m room at f 900 can flatten into a wall of objects with no depth, and the cure is the declared
   four value planes rather than a fog pass
@@ -286,17 +299,17 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the trace stops exactly at the stylus tip and NOTHING is drawn to the right of it except the printed
-  rules
-- the bare stock ahead of the pen occupies at least a quarter of the chart band's width
-- there is no numbered severity scale, no coloured band, no zone and no needle pivoting from a hub anywhere
-  on this frame
-- the chart is rectangular and the paper's travel is unmistakably left to right, so it can't be read as
-  a dial
-- the trace carries small irregular excursions rather than a smooth curve, because a real pressure trace
-  wobbles
-- the line screen at 52 degrees does not run parallel to either the vertical hour rules or the horizontal
-  range rules
+  - the trace stops exactly at the stylus tip and NOTHING is drawn to the right of it except the printed
+    rules
+  - the bare stock ahead of the pen occupies at least a quarter of the chart band's width
+  - there is no numbered severity scale, no coloured band, no zone and no needle pivoting from a hub anywhere
+    on this frame
+  - the chart is rectangular and the paper's travel is unmistakably left to right, so it can't be read as
+    a dial
+  - the trace carries small irregular excursions rather than a smooth curve, because a real pressure trace
+    wobbles
+  - the line screen at 52 degrees does not run parallel to either the vertical hour rules or the horizontal
+    range rules
 risks:
 - a moire between the line screen and the chart's printed rules, checked at 432 px rather than full size
 - the trace reading as an alarm because granite is a red, answered by the accent law and by there being
@@ -365,11 +378,11 @@ verbatim:
     protocols that provide limited ability to anticipate how local anomalies escalate into broader service
     disruptions.
 acceptance:
-- the c15 sentence is reproduced character for character with no word dropped and no tidying
-- the page's own rules do not pass through or touch any glyph of the type block
-- no accent appears anywhere on this frame
-- the sheet is tilted and cropped by two edges rather than square and whole
-- the retrieval stamp reads 2026-09-20 and the field name identifies the abstract
+  - the c15 sentence is reproduced character for character with no word dropped and no tidying
+  - the page's own rules do not pass through or touch any glyph of the type block
+  - no accent appears anywhere on this frame
+  - the sheet is tilted and cropped by two edges rather than square and whole
+  - the retrieval stamp reads 2026-09-20 and the field name identifies the abstract
 risks:
 - this is the deck's largest adjacent value jump and the lamp deck's lesson is that a document frame needs
   TWO reserve lists, one dimming light toward light on dark type and one that does NOT punch the pool
@@ -438,11 +451,11 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the operator reads as 1.7 m against a tank whose crown is above the frame, at 432 px
-- written entries run down the left of the page and there are RULED BLANK LINES under the last one
-- the accent appears on the written entries and on nothing else in the frame, and never on a blank line
-- the operator's value is at least 8 L* off the tank behind them
-- the pen is in contact with the page at the end of the last written line
+  - the operator reads as 1.7 m against a tank whose crown is above the frame, at 432 px
+  - written entries run down the left of the page and there are RULED BLANK LINES under the last one
+  - the accent appears on the written entries and on nothing else in the frame, and never on a blank line
+  - the operator's value is at least 8 L* off the tank behind them
+  - the pen is in contact with the page at the end of the last written line
 risks:
 - the figure merging into the tank, which is why the 8 L* separation is an acceptance item rather than
   a note
@@ -510,14 +523,14 @@ type:
   labels: ["intake", "pump station", "treatment unit"]
 verbatim: []
 acceptance:
-- THERE IS NO ARROWHEAD ANYWHERE ON THIS FRAME
-- the leaders name intake, pump station and treatment unit in the abstract's own words and every leader
-  stops short of the glyph band
-- the 0.10 m main reads as a pipe and not as a crack, because it carries a contact shadow at each component's
-  foot
-- all three components stand on ONE ground line and the scale bar is computed rather than drawn by eye
-- the centre component is recognisably the same building as frame 1's interior and frame 9's exterior
-- no accent appears anywhere on this frame
+  - THERE IS NO ARROWHEAD ANYWHERE ON THIS FRAME
+  - the leaders name intake, pump station and treatment unit in the abstract's own words and every leader
+    stops short of the glyph band
+  - the 0.10 m main reads as a pipe and not as a crack, because it carries a contact shadow at each component's
+    foot
+  - all three components stand on ONE ground line and the scale bar is computed rather than drawn by eye
+  - the centre component is recognisably the same building as frame 1's interior and frame 9's exterior
+  - no accent appears anywhere on this frame
 risks:
 - an elevation can read as a flat schematic, which the soil section and the contact shadows are there
   to prevent
@@ -591,17 +604,17 @@ type:
   labels: ["PRIMACY_AGENCY_CODE TX", "PWS_ACTIVITY_CODE A", "PWS_TYPE_CODE CWS"]
 verbatim: []
 acceptance:
-- each of the three sheets carries its OWN complete query stanza naming PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE
-  A, PWS_TYPE_CODE CWS and its own population filter
-- there is NO plus sign, NO minus sign, NO percentage, NO pie and NO stacked bar anywhere in the frame
-- the three sheets are at three visibly different widths and none is drawn inside or on top of another
-- sheet width runs AGAINST count, so the smallest count sits on the widest sheet and length cannot be
-  read as quantity
-- the HOOK states only that the three do not ADD, never that none contains another. Two of the three ARE subsets of the first and figures.json says so, so a hook denying containment is a sentence the run's own numbers refute
-- only the 87 block carries unit marks, because 87 is the only one of the three countable at this size,
-  and that row STOPS short of a rule that runs on to the margin
-- there is NO accent anywhere on this frame, because five granite marks measured 0.0002 of it against layout_check's 0.002 floor and an accent a reader cannot find is a frame without one
-- every stanza and every count sits on flat stock rather than on the hatch screen
+  - each of the three sheets carries its OWN complete query stanza naming PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE
+    A, PWS_TYPE_CODE CWS and its own population filter
+  - there is NO plus sign, NO minus sign, NO percentage, NO pie and NO stacked bar anywhere in the frame
+  - the three sheets are at three visibly different widths and none is drawn inside or on top of another
+  - sheet width runs AGAINST count, so the smallest count sits on the widest sheet and length cannot be
+    read as quantity
+  - the HOOK states only that the three do not ADD, never that none contains another. Two of the three ARE subsets of the first and figures.json says so, so a hook denying containment is a sentence the run's own numbers refute
+  - only the 87 block carries unit marks, because 87 is the only one of the three countable at this size,
+    and that row STOPS short of a rule that runs on to the margin
+  - there is NO accent anywhere on this frame, because five granite marks measured 0.0002 of it against layout_check's 0.002 floor and an accent a reader cannot find is a frame without one
+  - every stanza and every count sits on flat stock rather than on the hatch screen
 risks:
 - the mark field greying into a texture at thumb size, in which case the PITCH goes up and the block bleeds
   further, and the count never moves
@@ -669,12 +682,12 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the packs read as many separate filed records rather than as one texture, at 432 px
-- the fallen pack's trace runs the FULL width of its paper and is closed, with no gap and no blank section
-- no pack is torn, water stained, mildewed or disordered, and the box is not overflowing
-- the lean angles vary from pack to pack rather than repeating on a period
-- the accent appears on the rim ink and the fallen trace only, and totals under 8 percent of the frame
-- no count and no duration is stated anywhere on this frame, because neither is in the record
+  - the packs read as many separate filed records rather than as one texture, at 432 px
+  - the fallen pack's trace runs the FULL width of its paper and is closed, with no gap and no blank section
+  - no pack is torn, water stained, mildewed or disordered, and the box is not overflowing
+  - the lean angles vary from pack to pack rather than repeating on a period
+  - the accent appears on the rim ink and the fallen trace only, and totals under 8 percent of the frame
+  - no count and no duration is stated anywhere on this frame, because neither is in the record
 risks:
 - the packs reading as a hatch, which the seeded jitter and the one fallen pack exist to prevent
 ```
@@ -741,12 +754,12 @@ type:
 verbatim:
 - c16: can
 acceptance:
-- NO ACCENT APPEARS ANYWHERE ON THIS FRAME, and that absence is the deck's accent law doing its work
-- the chart on the nail carries its printed rules and NO trace, NO stylus and NO pen arm
-- the block coursing passes behind the glyphs at a consistent 0.194 m and is not interrupted by them
-- the carve is a text-shadow on the glyphs and NOT a second canvas drawing of the headline
-- the word can is set so a reader cannot mistake the sentence for a claim about an achieved result
-- the type is still selectable vector text in the assembled PDF
+  - NO ACCENT APPEARS ANYWHERE ON THIS FRAME, and that absence is the deck's accent law doing its work
+  - the chart on the nail carries its printed rules and NO trace, NO stylus and NO pen arm
+  - the block coursing passes behind the glyphs at a consistent 0.194 m and is not interrupted by them
+  - the carve is a text-shadow on the glyphs and NOT a second canvas drawing of the headline
+  - the word can is set so a reader cannot mistake the sentence for a claim about an achieved result
+  - the type is still selectable vector text in the assembled PDF
 risks:
 - a frame whose argument is a word can come back thin, and the correct answer if it does is to rebuild
   it around the blank chart at full size rather than to tune the carve a fourth time
@@ -822,12 +835,12 @@ type:
 verbatim:
 - c17: annual drinking water quality report
 acceptance:
-- the building reads at 6.0 m wide and 3.0 m to the eaves, which is small, and not as an industrial plant
-- the cast runs EAST, away from the sun on the west wall, and is about twice the building's height
-- the operator reads as a person at 1.7 m against a 3.0 m eave, and their cast runs east at about twice their own height
-- the reader is told what to read and where, in the abstract's absence rather than in its place
-- the accent appears only on the dated stamp and nowhere else
-- the open doorway is the darkest thing in the frame and the type above it sits on the room's shade with no plate behind it
+  - the building reads at 6.0 m wide and 3.0 m to the eaves, which is small, and not as an industrial plant
+  - the cast runs EAST, away from the sun on the west wall, and is about twice the building's height
+  - the operator reads as a person at 1.7 m against a 3.0 m eave, and their cast runs east at about twice their own height
+  - the reader is told what to read and where, in the abstract's absence rather than in its place
+  - the accent appears only on the dated stamp and nowhere else
+  - the open doorway is the darkest thing in the frame and the type above it sits on the room's shade with no plate behind it
 risks:
 - the frame reading as one more interior rather than as the walk out of the room the CAMERA_MOVE device
   was sold on. This is what actually happened and plan_note records it as next run work

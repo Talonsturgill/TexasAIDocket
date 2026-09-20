@@ -314,6 +314,28 @@ already knew about and had already fixed somewhere else: an absence stated as a 
 file left behind its source, and a path that only works from the directory the author was standing
 in. The run fixed each one on the surface it was looking at and did not sweep for the others.
 
+### THE STORYBOARD WAS READABLE ONE WAY AND NOT THE OTHER
+
+`plan_render_check --self-test` went red on CI with two failures, both against this run's own
+storyboard, and both are the same shape: a file this deck wrote in a form only one of two parsers
+can read.
+
+**Acceptance items sat at column zero.** Every shipped storyboard before this one indents them by
+two spaces. Both forms are valid YAML, so the yaml route read six items per frame and the gate
+never complained during the run. Its TEXT FALLBACK, which is what carries this gate on a runner
+with no PyYAML, read ZERO. The gate's own assertion is that the two routes agree across the whole
+shipped corpus, and it is GATE_LESSONS 50 written into a test: the synthetic half proves the logic
+and only the half that reads the real artifact goes red on the day it breaks.
+
+**And the deck declared no palette table.** `palette_map` reads one and this storyboard carried
+its colours only in per frame prose, so the parser found a single token, `capitol_granite`, off the
+accent law's own sentence. The World block now carries the table with every value read off
+`assets/js/deck/2026-09-20-waterworks.js`, and the parser reads seven tokens.
+
+Neither was visible to the run, because a deck's own gates all take the yaml route. **Only the
+self-test sweeps every shipped storyboard through both**, which is why it caught a file written
+today and not one written in August.
+
 ## What did not get fixed, and why
 
 These are next run work rather than late round work. Each was named by a judge, each is a frame
@@ -361,13 +383,13 @@ written in capitals about ERCOT requests. This is the same shape in a different 
 | claims         | PASS   | 26 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 34 warn(s) |
-| aggregates     | PASS   | 5 declaration(s), 5 numeric phrase(s) in the render, all re-derived |
+| aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 58.06 MB, vector |
 | score          | WARN   | 6.968 against 8.0 target; 5 round(s), cap 5; not a ship failure |
 | labels         | PASS   | 44 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 55 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 46,110 chars planned |
+| dossiers       | PASS   | 47,086 chars planned |
 | caption        | PASS   | 145 words |
 | craft floor    | PASS   | 9 frame(s), median 4150, floor 747 |
 | plan vs render | WARN   | 0 of 54 acceptance item(s) checkable |
