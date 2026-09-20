@@ -75,11 +75,11 @@
           "anc": []
         },
         {
-          "text": "Active community water systems on the EPA's record. This is the inside of one of them, and what it runs on is monitoring, historical records and reactive emergency protocols.",
+          "text": "Active community water systems on the EPA's record. The National Science Foundation has funded Texas A&M to research predictive digital twins for small and mid-sized systems.",
           "x": 80,
           "y": 432,
           "w": 700,
-          "h": 102,
+          "h": 136,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -90,19 +90,25 @@
             [
               80,
               432,
-              658,
+              631,
               33
             ],
             [
               80,
               466,
-              650,
+              598,
               33
             ],
             [
               80,
               500,
-              578,
+              610,
+              33
+            ],
+            [
+              80,
+              534,
+              99,
               33
             ]
           ],
@@ -153,10 +159,10 @@
           "anc": []
         },
         {
-          "text": "c12 c15 c20 TEXAS AI DOCKET",
+          "text": "c1 c2 c12 c20 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 434,
+          "w": 466,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -168,7 +174,7 @@
             [
               80,
               1236,
-              434,
+              466,
               31
             ]
           ],
@@ -182,7 +188,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5676,
+      "render_ms": 5644,
       "ok": true,
       "canvases": [
         {
@@ -195,8 +201,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 30.8,
-          "variance": 2611.3
+          "mean": 31.8,
+          "variance": 2806.3
         }
       ],
       "breather": false,
@@ -362,7 +368,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4971,
+      "render_ms": 4839,
       "ok": true,
       "canvases": [
         {
@@ -375,8 +381,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 43.3,
-          "variance": 4176.8
+          "mean": 43.4,
+          "variance": 4183.9
         }
       ],
       "breather": false,
@@ -633,7 +639,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4762,
+      "render_ms": 4793,
       "ok": true,
       "canvases": [
         {
@@ -646,8 +652,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 85.1,
-          "variance": 8471.1
+          "mean": 85,
+          "variance": 8490
         }
       ],
       "breather": false,
@@ -813,7 +819,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4814,
+      "render_ms": 4769,
       "ok": true,
       "canvases": [
         {
@@ -827,7 +833,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 44.3,
-          "variance": 4135.6
+          "variance": 4150.1
         }
       ],
       "breather": false,
@@ -1020,7 +1026,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4863,
+      "render_ms": 4767,
       "ok": true,
       "canvases": [
         {
@@ -1033,8 +1039,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 30.1,
-          "variance": 2537.8
+          "mean": 30,
+          "variance": 2542
         }
       ],
       "breather": false,
@@ -1256,7 +1262,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5168,
+      "render_ms": 4718,
       "ok": true,
       "canvases": [
         {
@@ -1269,8 +1275,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 49.6,
-          "variance": 5115.7
+          "mean": 49.5,
+          "variance": 5125.6
         }
       ],
       "breather": false,
@@ -1436,7 +1442,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5034,
+      "render_ms": 4804,
       "ok": true,
       "canvases": [
         {
@@ -1449,8 +1455,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 53.6,
-          "variance": 4854.5
+          "mean": 54.5,
+          "variance": 4934.3
         }
       ],
       "breather": false,
@@ -1509,11 +1515,11 @@
           "anc": []
         },
         {
-          "text": "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. Nothing is built, and it does not say otherwise.",
+          "text": "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. The record shows nothing built.",
           "x": 78,
           "y": 938,
           "w": 600,
-          "h": 142,
+          "h": 107,
           "font_px": 25,
           "weight": "400",
           "family": "Manrope",
@@ -1536,13 +1542,7 @@
             [
               78,
               1009,
-              594,
-              35
-            ],
-            [
-              78,
-              1045,
-              166,
+              600,
               35
             ]
           ],
@@ -1622,7 +1622,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4880,
+      "render_ms": 5015,
       "ok": true,
       "canvases": [
         {
@@ -1635,8 +1635,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 23.5,
-          "variance": 1491.8
+          "mean": 23.7,
+          "variance": 1515.4
         }
       ],
       "breather": false,
@@ -1814,7 +1814,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4874,
+      "render_ms": 4888,
       "ok": true,
       "canvases": [
         {
@@ -1827,8 +1827,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 39,
-          "variance": 3536.1
+          "mean": 39.1,
+          "variance": 3562.8
         }
       ],
       "breather": false,

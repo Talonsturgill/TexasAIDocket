@@ -413,7 +413,55 @@
   N.quiet = function (c, boxes, alpha) {
     if (!boxes || !boxes.length) return;
     var g = hexToRgb(N.GROUND), A = alpha == null ? 0.44 : Math.min(0.52, alpha);
-    c.save();
+
+    /* ONE UNION MASK, PAINTED ONCE, AND THIS IS THE THIRD SHAPE THIS HELPER HAS HAD.
+     *
+     * ROUND 3 FEATHERED ON TWO SIDES. It built a vertical gradient and filled a rectangle with
+     * it, so the wash faded above and below a line of type and stopped dead at the left and
+     * right. On a ragged right headline that edge tracks the rag, stepping line by line, and a
+     * craft judge measured it at x 310 of 432 on frame 1's thumb.
+     *
+     * ROUND 4 ADDED THE HORIZONTAL RAMP and left a worse defect behind it. The ends faded, the
+     * seam went, and the helper was still drawing ONE LAYER PER LINE BOX onto the same context.
+     * Overlapping tails then composite, and the same judge did the arithmetic on frame 1's three
+     * line hook: boxes at a 90 px pitch with a 78.4 px pad hold full alpha from 32 to 68 percent
+     * of a 268.8 px wash, so box 1's plateau runs y 135.6 to 232.4 and box 2's runs 225.6 to
+     * 322.4. They overlap, and 1 minus 0.56 squared is 0.686, about 0.690 once the third box's
+     * ramp lands. The dek's four boxes reach roughly 0.63.
+     *
+     * DECK_CHASSIS.PY'S CEILING ON A FILL BEHIND DISPLAY TYPE IS 0.55. The judge's estimate was
+     * 0.690 from the hook's three boxes alone. The run then measured it across ALL ELEVEN line
+     * boxes frame 1 actually reserves, furniture included, by replaying the composite against the
+     * render report's own `lines` arrays, and the true peak was 0.783. So this helper was
+     * breaching the chassis constant by more than forty percent on two thirds of the deck, while
+     * its own comment congratulated it for avoiding exactly that arithmetic. The comment guarded
+     * against doubling WITHIN a box and never once looked ACROSS boxes. The gate reads the
+     * constant on the line above, not the composite, so nothing went red. GATE_LESSONS' oldest
+     * shape, in this file, written by the run that was quoting the lesson.
+     *
+     * Replayed against the union mask the same eleven boxes peak at 0.440, which is A exactly.
+     *
+     * THE FIX IS STRUCTURAL RATHER THAN A SMALLER NUMBER. Coverage is accumulated into a single
+     * mask with `lighten`, which takes the per pixel MAXIMUM rather than adding, so two
+     * overlapping boxes cover the same pixel once. The ground is then laid at A through that
+     * mask, in one draw. The peak alpha anywhere on the frame is now A and cannot exceed it,
+     * whatever a frame's type does, which is a property of the construction rather than a value
+     * a future edit has to remember.
+     *
+     * WHAT IS STILL WRONG AND IS NOT FIXED HERE. The wash is unconditional, so where the art is
+     * already darker than the ground it LIFTS instead of dimming. The same judge named it twice
+     * and it wants the art sampled per region, which is a bigger change than a capped search's
+     * last round should make. It is in the backlog with their reasoning. */
+
+    var s = 2;                                     /* the frames all run cx.scale(2, 2) */
+    var W = c.canvas.width, H = c.canvas.height;
+    var mask = document.createElement("canvas");
+    mask.width = W; mask.height = H;
+    var mc = mask.getContext("2d");
+    mc.scale(s, s);
+    mc.globalCompositeOperation = "lighten";       /* coverage is a MAX, never a sum */
+
+    var any = false;
     for (var i = 0; i < boxes.length; i++) {
       /* TXDECK.lineBoxes returns ARRAYS, [left, top, width, height], already padded. Reading
        * them as objects is how the first cut of this helper handed createLinearGradient a NaN
@@ -423,46 +471,49 @@
       if (!isFinite(bx) || !isFinite(by) || !isFinite(bw) || !isFinite(bh)) continue;
       var pad = Math.max(16, bh * 0.70);
       var x0 = bx - pad, y0 = by - pad, w = bw + pad * 2, h = bh + pad * 2;
+      if (w <= 0 || h <= 0) continue;
+      any = true;
 
-      /* IT FEATHERS ON FOUR SIDES, AND FOR THREE ROUNDS IT FEATHERED ON TWO.
-       *
-       * This built a VERTICAL gradient and then filled a RECTANGLE with it, so the wash faded
-       * out at the top and bottom of each line box and stopped dead at the left and right. On a
-       * ragged right headline that hard edge tracks the rag, stepping line by line, and a craft
-       * judge measured it at x 310 of 432 on frame 1's thumb and x 300 on frame 3's. What a
-       * reader sees is a warm rectangle pasted into the upper left, which is precisely the
-       * "plate with the sign flipped" this helper's own comment was written to avoid.
-       *
-       * The vertical ramp stays, because the wash is about dimming the art ABOVE and BELOW a
-       * line of type. A horizontal ramp multiplies it so the two ends go to nothing as well.
-       * Canvas has no two dimensional gradient, so the horizontal pass is drawn as a separate
-       * layer in `destination-out`, which erases the ends of the wash rather than painting more
-       * ground over them. Painting a second ground pass would DOUBLE the alpha in the middle and
-       * blow through deck_chassis.py's 0.55 ceiling on a fill behind display type. */
-      var lay = document.createElement("canvas");
-      var s = 2;                                  /* the frames all run cx.scale(2, 2) */
-      lay.width = Math.max(1, Math.ceil(w * s)); lay.height = Math.max(1, Math.ceil(h * s));
-      var lc = lay.getContext("2d");
-      lc.scale(s, s); lc.translate(-x0, -y0);
+      /* the box's own coverage, feathered on four sides, drawn in white into the mask */
+      var cell = document.createElement("canvas");
+      cell.width = Math.max(1, Math.ceil(w * s)); cell.height = Math.max(1, Math.ceil(h * s));
+      var cc = cell.getContext("2d");
+      cc.scale(s, s); cc.translate(-x0, -y0);
 
-      var grad = lc.createLinearGradient(0, y0, 0, y0 + h);
-      grad.addColorStop(0.00, "rgba(" + g + ",0)");
-      grad.addColorStop(0.32, "rgba(" + g + "," + A + ")");
-      grad.addColorStop(0.68, "rgba(" + g + "," + A + ")");
-      grad.addColorStop(1.00, "rgba(" + g + ",0)");
-      lc.fillStyle = grad; lc.fillRect(x0, y0, w, h);
+      var vert = cc.createLinearGradient(0, y0, 0, y0 + h);
+      vert.addColorStop(0.00, "rgba(255,255,255,0)");
+      vert.addColorStop(0.32, "rgba(255,255,255,1)");
+      vert.addColorStop(0.68, "rgba(255,255,255,1)");
+      vert.addColorStop(1.00, "rgba(255,255,255,0)");
+      cc.fillStyle = vert; cc.fillRect(x0, y0, w, h);
 
-      var ends = lc.createLinearGradient(x0, 0, x0 + w, 0);
-      var f = Math.min(0.30, pad / Math.max(w, 1));   /* the ramp, never past a third of the box */
+      var f = Math.min(0.30, pad / Math.max(w, 1));  /* the ramp, never past a third of the box */
+      var ends = cc.createLinearGradient(x0, 0, x0 + w, 0);
       ends.addColorStop(0.00, "rgba(0,0,0,1)");
       ends.addColorStop(f,    "rgba(0,0,0,0)");
       ends.addColorStop(1 - f, "rgba(0,0,0,0)");
       ends.addColorStop(1.00, "rgba(0,0,0,1)");
-      lc.globalCompositeOperation = "destination-out";
-      lc.fillStyle = ends; lc.fillRect(x0, y0, w, h);
+      cc.globalCompositeOperation = "destination-out";
+      cc.fillStyle = ends; cc.fillRect(x0, y0, w, h);
 
-      c.drawImage(lay, x0, y0, w, h);
+      mc.drawImage(cell, x0, y0, w, h);
     }
+    if (!any) return;
+
+    /* the ground, laid at A through the union coverage, in ONE draw */
+    var lay = document.createElement("canvas");
+    lay.width = W; lay.height = H;
+    var lc = lay.getContext("2d");
+    lc.scale(s, s);
+    lc.fillStyle = "rgba(" + g + "," + A + ")";
+    lc.fillRect(0, 0, W / s, H / s);
+    lc.globalCompositeOperation = "destination-in";
+    lc.setTransform(1, 0, 0, 1, 0, 0);
+    lc.drawImage(mask, 0, 0);
+
+    c.save();
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.drawImage(lay, 0, 0);
     c.restore();
   };
 

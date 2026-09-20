@@ -10,8 +10,8 @@
   "text": "A federal award aims predictive digital twins at small and mid-sized water systems. Texas has 4,749 active community water systems and 3,579 of them serve fewer than 3,301 people.",
   "claims": [
    "c12",
-   "v1",
-   "v2"
+   "c20",
+   "c21"
   ]
  },
  "introduction": [
@@ -28,7 +28,7 @@
    ]
   },
   {
-   "text": "The interesting line is not the money. It is the first of the three directions the abstract lists, which aims the work at [small and mid-sized freshwater infrastructure systems](c12) rather than at the large utilities that already employ engineers to model themselves.",
+   "text": "The interesting line is not the money. It is the first of the three directions the abstract lists. That direction aims the work at [small and mid-sized freshwater infrastructure systems](c12) rather than at the large utilities that already employ engineers to model themselves.",
    "claims": [
     "c12"
    ]
@@ -62,7 +62,7 @@
      ]
     },
     {
-     "text": "The same sentence names what the infrastructure is made of, listing [intakes, treatment facilities, storage assets, distribution networks, sensing platforms, and utility operations](c13) among the things getting harder to manage.",
+     "text": "The same sentence names what the infrastructure is made of. Among the things getting harder to manage it lists [intakes, treatment facilities, storage assets, distribution networks, sensing platforms, and utility operations](c13).",
      "claims": [
       "c13"
      ]
@@ -73,28 +73,28 @@
    "heading": "How many systems this points at",
    "paragraphs": [
     {
-     "text": "The EPA's Safe Drinking Water Information System returns {{number:v1}} active community water systems in Texas. A second query, the same three filters plus a population predicate, returns {{number:v2}} serving fewer than 3,301 people. A third returns {{number:v3}} serving more than 50,000.",
+     "text": "The EPA's Safe Drinking Water Information System returns {{number:c20}} active community water systems in Texas. A second query adds a population predicate to the same three filters. It returns {{number:c21}} serving fewer than 3,301 people. A third returns {{number:c22}} serving more than 50,000.",
      "claims": [
-      "v1",
-      "v2",
-      "v3"
+      "c20",
+      "c21",
+      "c22"
      ]
     },
     {
-     "text": "Those are three separate measurements rather than three tiers of one. The population filters may exclude records where the served population is null, which was not tested, so the three counts are not a partition and this account does not subtract any of them from any other.",
+     "text": "Those are three separate measurements rather than three tiers of one. The population filters may exclude records where the served population is null. That was not tested. The three counts are not a partition and this account does not subtract any of them from any other.",
      "claims": [
-      "v1",
-      "v2",
-      "v3"
+      "c20",
+      "c21",
+      "c22"
      ]
     },
     {
-     "text": "For scale against states that were independently re-queried on the same day, California returns {{number:v4}}, Washington {{number:v5}}, New York {{number:v6}} and Florida {{number:v7}}. Forty four states were not re-queried, so no national ranking is claimed here.",
+     "text": "Four other states were independently re-queried on the same day. California returns {{number:c23}}. Washington returns {{number:c24}}. New York returns {{number:c25}}. Florida returns {{number:c26}}. Forty four states were not re-queried, so no national ranking is claimed here.",
      "claims": [
-      "v4",
-      "v5",
-      "v6",
-      "v7"
+      "c23",
+      "c24",
+      "c25",
+      "c26"
      ]
     }
    ]
@@ -110,11 +110,11 @@
      ]
     },
     {
-     "text": "The EPA queries count systems and filter on population served. They carry nothing whatever about condition, compliance or violations, so none of the figures above says anything about whether any Texas water system is in good repair.",
+     "text": "The EPA queries count systems and filter on population served. They carry nothing whatever about condition, compliance or violations. None of the figures above says anything about whether any Texas water system is in good repair.",
      "claims": [
-      "v1",
-      "v2",
-      "v3"
+      "c20",
+      "c21",
+      "c22"
      ]
     },
     {
@@ -137,7 +137,7 @@
      ]
     },
     {
-     "text": "The agency also publishes a viewer that [contains information on sources, contaminants, and violations for all public water systems in Texas](c18), which it describes as a tool [that drinking water operators and the public can use](c19).",
+     "text": "The agency also publishes a viewer that [contains information on sources, contaminants, and violations for all public water systems in Texas](c18). It describes that viewer as a tool [that drinking water operators and the public can use](c19).",
      "claims": [
       "c18",
       "c19"

@@ -190,7 +190,8 @@
         "2026-08-26",
         "2026-09-03",
         "2026-09-18",
-        "2026-09-19"
+        "2026-09-19",
+        "2026-09-20"
       ],
       "contradicted": []
     },
@@ -578,7 +579,8 @@
         "2026-09-15",
         "2026-09-16",
         "2026-09-18",
-        "2026-09-19"
+        "2026-09-19",
+        "2026-09-20"
       ],
       "contradicted": []
     },
@@ -667,7 +669,8 @@
         "2026-09-04",
         "2026-09-13",
         "2026-09-18",
-        "2026-09-19"
+        "2026-09-19",
+        "2026-09-20"
       ],
       "contradicted": []
     },
@@ -773,7 +776,8 @@
       "evidence": "Carousel 22 reached Phase 16 with 12 sentences over the 30 word backstop, every one of them in the record's own prose rather than in the deck, across three admitted items, two re-verify movement lines and one claim text.",
       "confirmed": [
         "2026-09-15",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-20"
       ],
       "contradicted": []
     },
@@ -1015,6 +1019,38 @@
       "learned": "2026-09-19",
       "instinct": "Never put a command substitution between a command and the read of its exit code, because the substitution replaces it.",
       "evidence": "2026-09-19 carousel 29. The Phase 16 verification suite ran as a loop printing 'printf ... $(basename $g .py) $?' after each gate. Bash evaluates the substitution first and it CLOBBERS $?, so every exit code printed was basename's rather than the gate's, and basename was erroring on a two-operand call at the same time. The suite reported nine green gates and house_style_check was actually exiting 1 with 33 violations, most of them sentences this run had just written. It was caught only because a later rebuild happened to surface the same gate's stdout. This repo already has read-the-exit-code-of-the-thing-that-writes; that instinct is about WHICH command, and this one is about the shell losing the answer between the command and the read.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-repair-that-strengthens-a-claim-is-a-new-claim",
+      "learned": "2026-09-20",
+      "instinct": "Give a repair that makes a claim STRONGER the same scrutiny as a brand new claim, because the pressure to fix a real defect is exactly what smuggles an overreach past you.",
+      "evidence": "2026-09-20, carousel 30. Three judges read frame 6 as a stacked bar chart and the anti partition argument was resting on 13px of smudged type, so round 3 promoted it to the 80px hook. It came out as 'None of these is a share of another', which is FALSE: two of the three counts are strict subsets of the first and this run's own figures.json says so under a key named small_systems_of_all. The run conflated 'the three do not PARTITION' (true) with 'none is CONTAINED in another' (false). Round 3's integrity judge refused the deck on it. The repair was correct in intent and the sentence it produced was a bigger claim than the one it replaced.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-judges-symptom-is-evidence-its-cause-is-a-lead",
+      "learned": "2026-09-20",
+      "instinct": "Treat a judge's reported SYMPTOM as evidence and its stated CAUSE as a lead, because three judges can describe the same defect exactly and all name the wrong layer.",
+      "evidence": "2026-09-20, carousel 30. All three round 2 judges reported the hatch screen 'running through every glyph' on frames 3 and 6. It was not. Both frames already painted their type flat in the print's over pass and frame 3's own comment said so. The SHEET under the type was screened at cell 6, and a 6px stripe under 15px mono fills the counters, so the letterform stops resolving. Fixing the reported cause would have fixed nothing. Their perception was exact and their diagnosis was off by one layer.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-per-element-layer-composites-across-elements",
+      "learned": "2026-09-20",
+      "instinct": "Measure a repeated-draw helper's PEAK over its overlaps, never the alpha constant in its source, because a helper that draws one layer per element composites wherever two elements meet and the gate reads the constant.",
+      "evidence": "2026-09-20, carousel 30. N.quiet painted one feathered wash per measured line box onto the same context. deck_chassis.py caps a fill behind display type at 0.55 and reads the constant, which was 0.44, so it passed every round. A craft judge computed 0.690 for frame 1's three line hook; the run then replayed the composite across all eleven line boxes that frame reserves, using the render report's own lines arrays, and measured 0.783. Forty two percent over a ceiling, on two thirds of the deck, under a comment congratulating itself for avoiding that exact arithmetic within a box while never looking across boxes. The fix is structural: accumulate coverage into one union mask with lighten, which takes the per pixel maximum, and lay the ground through it once, so the peak is the constant by construction.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-self-written-declaration-is-not-a-check",
+      "learned": "2026-09-20",
+      "instinct": "A declaration file written by the same run in the same hour as the sentence it certifies is documentation, not verification, so make it name the exact proposition and check that against the sentence's words.",
+      "evidence": "2026-09-20, carousel 30. quantifiers.json was written to name the set behind frame 6's universal and marked it 'verified'. Its verified field argued that the three counts do not PARTITION a whole, which is true, while the frame asserted that none is a SHARE of another, which is false. Two different propositions, one file, same author, same hour, and the file read as a check on the sentence while defending a different claim. An outside judge caught it in one pass.",
       "confirmed": [],
       "contradicted": []
     }

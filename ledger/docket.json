@@ -20695,7 +20695,7 @@
   },
   {
    "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server",
-   "summary": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server, so it keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
+   "summary": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined four things. Solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas at San Antonio",
@@ -20773,7 +20773,7 @@
   },
   {
    "title": "El Paso orders every city-sited license plate reader taken down and bars its city manager from signing another one",
-   "summary": "The El Paso City Council passed two directions to the city manager on September 15th, 2026. The first orders the removal within 60 days of all Flock Safety fixed automated license plate reader cameras and related hardware on city property, city right of way or otherwise within the city's control, and it reaches that hardware whoever owns it. The second bars the city manager from entering, executing, renewing or extending any contract with Flock Safety or any other provider for fixed networked automated license plate readers or substantially similar technology, unless the council directs otherwise. It also orders the city attorney to draft and return a resolution to the council within 30 days to further effectuate that direction. Both items were sponsored by members of the city council rather than brought by staff, and the council's own agenda records both as amended and passed.",
+   "summary": "The El Paso City Council passed two directions to the city manager on September 15th, 2026. The first orders the removal within 60 days of all Flock Safety fixed automated license plate reader cameras and related hardware. That covers city property, city right of way and anything otherwise within the city's control. It reaches that hardware whoever owns it. The second bars the city manager from entering, executing, renewing or extending any such contract, unless the council directs otherwise. That covers Flock Safety and any other provider of fixed networked automated license plate readers or substantially similar technology. It also orders the city attorney to draft and return a resolution to the council within 30 days to further effectuate that direction. Both items were sponsored by members of the city council rather than brought by staff, and the council's own agenda records both as amended and passed.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "El Paso City Council",
@@ -20797,7 +20797,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The council's agendas, dispositions and meeting video are published on the city's own legislative portal and the meetings are open. The second direction requires the city attorney to return a resolution to the council within 30 days, so the follow up reaches a public agenda rather than staying inside the building.",
+    "how": "The council's agendas, dispositions and meeting video are published on the city's own legislative portal and the meetings are open. The second direction requires the city attorney to return a resolution to the council within 30 days. The follow up reaches a public agenda rather than staying inside the building.",
     "url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
     "closes": null
    },
@@ -20827,7 +20827,7 @@
    "history": [
     {
      "date": "2026-09-20",
-     "note": "Admitted to the record. The council's own agenda carries both directions and records both as passed, so the removal order and the contract bar are on the city's published legislative record rather than in an account of the meeting.",
+     "note": "Admitted to the record. The council's own agenda carries both directions and records both as passed. The removal order and the contract bar are on the city's published legislative record rather than in an account of the meeting.",
      "checked": true
     }
    ]
@@ -20902,7 +20902,7 @@
    "history": [
     {
      "date": "2026-09-20",
-     "note": "Admitted to the record. The district's own meeting recap carries the three priorities and the date the board is expected to adopt them, so the draft is public before the vote rather than after it.",
+     "note": "Admitted to the record. The district's own meeting recap carries the three priorities and the date the board is expected to adopt them. The draft is public before the vote rather than after it.",
      "checked": true
     }
    ]

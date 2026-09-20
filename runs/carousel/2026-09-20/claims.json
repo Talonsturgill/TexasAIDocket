@@ -29,7 +29,7 @@
    "source_title": "NSF Award Search API record for award id 2640086, pi field",
    "source_type": "primary_official",
    "confidence": "high",
-   "quote": "Sudipta Chowdhury chowdhurys@tamu.edu",
+   "quote": "\"piFirstName\":\"Sudipta\",\"piId\":\"270084523\",\"piLastName\":\"Chowdhury\"",
    "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
    "retrieved": "2026-09-20"
   },
@@ -222,6 +222,46 @@
    "retrieved": "2026-09-20",
    "confidence": "high",
    "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, Texas community water systems serving over 50,000"
+  },
+  {
+   "id": "c23",
+   "text": "The EPA Envirofacts SDWIS count of active community water systems in California, on the same three filters used for Texas, is 2,812.",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, active California community water systems",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "quote": "{\n  \"TOTALQUERYRESULTS\": 2812\n}",
+   "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/CA/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+   "retrieved": "2026-09-20"
+  },
+  {
+   "id": "c24",
+   "text": "The EPA Envirofacts SDWIS count of active community water systems in Washington, on the same three filters used for Texas, is 2,311.",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, active Washington community water systems",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "quote": "{\n  \"TOTALQUERYRESULTS\": 2311\n}",
+   "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/WA/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+   "retrieved": "2026-09-20"
+  },
+  {
+   "id": "c25",
+   "text": "The EPA Envirofacts SDWIS count of active community water systems in New York, on the same three filters used for Texas, is 2,250.",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, active New York community water systems",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "quote": "{\n  \"TOTALQUERYRESULTS\": 2250\n}",
+   "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/NY/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+   "retrieved": "2026-09-20"
+  },
+  {
+   "id": "c26",
+   "text": "The EPA Envirofacts SDWIS count of active community water systems in Florida, on the same three filters used for Texas, is 1,593.",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, active Florida community water systems",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "quote": "{\n  \"TOTALQUERYRESULTS\": 1593\n}",
+   "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/FL/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+   "retrieved": "2026-09-20"
   }
  ],
  "computed_values": [
@@ -316,6 +356,8 @@
   "The title begins Collaborative Research, which in NSF practice means this record is one institution's share of a multi-institution project. The deck must not present c7 or c8 as the whole project's funding and must not assert how many institutions are involved.",
   "c16 is aspirational. It says the project CAN support these outcomes. A slide that drops the word can turns a research proposal into a result.",
   "The deck's closing next step is the TCEQ page in c17, which answers the question a reader actually has.",
-  "c20, c21 and c22 were added in round 3. The three EPA counts were traced only in computed_values, and numeral_trace reads a claim's quote, text, document and url and does not reach computed_values, so the three figures frame 6 prints were untraceable to it. aggregate_check refused them as declarations because its detector found no aggregate phrase for them, which is correct: they are not arithmetic, they are fetched facts. A fetched fact is a claim. Each was re-fetched and the response body quoted verbatim on 2026-09-20, the third independent measurement of each."
+  "c20, c21 and c22 were added in round 3. The three EPA counts were traced only in computed_values, and numeral_trace reads a claim's quote, text, document and url and does not reach computed_values, so the three figures frame 6 prints were untraceable to it. aggregate_check refused them as declarations because its detector found no aggregate phrase for them, which is correct: they are not arithmetic, they are fetched facts. A fetched fact is a claim. Each was re-fetched and the response body quoted verbatim on 2026-09-20, the third independent measurement of each.",
+  "c23 through c26 were added in round 5. The web edition's scale paragraph publishes the California, Washington, New York and Florida counts with an explicit note that forty four states were not re-queried and no ranking is claimed. article_check requires every paragraph to name EXISTING CLAIM IDS, and those four figures were traced only in computed_values, which is not a claim. Each was re-fetched and its response body quoted verbatim rather than the paragraph being cut, because the paragraph is the one that states the limit of what the run measured.",
+  "c3's quote was 'Sudipta Chowdhury chowdhurys@tamu.edu', which is the NSF record's own PI field and carries an email address. house_style_check refused it in the published web edition: this site publishes no way to reach anybody, because the contact dialog posts to the mailbox alias instead. The quote is now the contiguous span '\"piFirstName\":\"Sudipta\",\"piId\":\"270084523\",\"piLastName\":\"Chowdhury\"' from the same response body, which names the same person from the same record and carries no address. The FIX IS THE QUOTE RATHER THAN A FILTER ON THE RENDERER, because a renderer that strips addresses would make every future quote silently different from its source."
  ]
 }

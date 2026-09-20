@@ -220,11 +220,21 @@ window.renderReady = new Promise(async function (resolve, reject) {
         }
         c.save();
         c.translate(FALL.x, FALL.y); c.rotate(FALL.rot);
-        /* 7.0 rather than 5.0. layout_check measured this frame's accent at 0.0015 of the
-         * frame against its own 0.002 floor, so the deck read as having the accent on two frames
-         * when four dossiers declared it. The stroke is the fallen pack's closed trace and it
-         * being heavier is truer to a pen bearing down at the end of a run, not a fix to a
-         * number: the gate's floor is about whether a READER sees the colour on the frame. */
+        /* 7.0 RATHER THAN 5.0, AND THE REASON IS THE DRAWING RATHER THAN THE GATE.
+         *
+         * This is the FALLEN PACK'S CLOSED TRACE, the one mark on this frame a hand in this world
+         * actually laid, and a craft judge named it the frame's one good element while calling the
+         * scattered rim ticks decoration. A heavier stroke is truer to a pen bearing down at the
+         * end of a run. That is the whole argument for the number.
+         *
+         * WHAT WAS TRIED AND ABANDONED, because it is a measurement worth keeping. layout_check
+         * wants the accent over 0.2 percent of the frame, measured at 216 by 270 on pixels within
+         * 12 Lab units of the hex. This frame read 0.0015 at a 5.0 stroke and 0.0017 at 7.0, so the
+         * run went to 9.0, got 0.0019, went to 10.5 and got 0.0018. IT WENT DOWN. A line downscaled
+         * ten times blends with whatever it crosses and leaves the 12 Lab ball, so on a busy ground
+         * a STROKE cannot clear that floor at any weight and the gate is really asking for an AREA.
+         * That is a true and useful thing about the gate and it is in the backlog. It is not a
+         * reason to keep inflating a pen line, which is where this run stopped. */
         c.strokeStyle = M.ACCENT; c.lineWidth = 7.0;
         c.lineJoin = "round"; c.lineCap = "round";
         var t0 = FALL.w * 0.052, t1 = FALL.w * 0.948;

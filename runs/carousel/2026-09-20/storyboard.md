@@ -91,9 +91,9 @@ median adjacent jump of **21.0** and four hard cuts per deck.
 **WHAT ACTUALLY PRINTED, measured at 432 px by `measure.py` after round 3's repairs:**
 
     frame      1     2     3     4     5     6     7     8     9
-    measured  9.3   9.8  14.2   9.3   6.3   9.8  10.3   7.2   9.8
+    measured  8.8   9.8  14.2   9.3   6.3   9.8  10.3   7.2   9.8
 
-Adjacent 0.5, 4.4, 4.9, 3.0, 3.5, 0.5, 3.1, 2.6. **Max 4.9, mean 2.81**, against the sibling's
+Adjacent 1.0, 4.4, 4.9, 3.0, 3.5, 0.5, 3.1, 2.6. **Max 4.9, mean 2.88**, against the sibling's
 2.6 and this repo's 21.0. The deck holds together better than the plan asked it to.
 
 Round 2 measured max 6.0 and mean 2.84. The max improved because round 3 put the type of frames 3
@@ -150,7 +150,7 @@ job: 'Establish the room and the size of everything in it, so that the eight fra
   crop hard into objects the reader has already met at full length.
 
   '
-claims: [c12, c15, c20]
+claims: [c1, c2, c12, c20]
 numerals:
 - value_from: v1
 composition:
@@ -171,6 +171,18 @@ composition:
     '
   focal: the lit floor patch and the operator standing in it, an area of about 320 by 260 px at lower
     centre left, reached because it is the only high value region in an otherwise shaded room
+  focal_note: 'THIS FIELD WAS FALSE FOR FOUR ROUNDS AND ROUND 5 MADE IT TRUE RATHER THAN REWRITING IT.
+    Through round 4 the floor printed as one uniform hatch wall to wall and the operator was an edge
+    cropped silhouette at the extreme left margin, so the declared focal did not exist and the deck had
+    no object at a checkable size for its later crops to be measured against. An integrity judge found
+    it by reading this block against the pixels. The run first corrected the FIELD to name what the
+    print actually led a reader to, which is the honest move when a frame cannot be redrawn, and then
+    on the same round worked out that both halves were cheap: the patch was failing because it was
+    laid as a 0.30 alpha tint on the same value plane and then screened, where a screen turns a small
+    value difference into a small dot difference, and the operator was failing because X -1.5 puts them
+    at the frame edge. The patch is now drawn near the top of the ramp with the floor around it pushed
+    down, and the operator stands at X -0.62 and Z 3.4, inside it. Both halves of this field are in the
+    print, so the field is restored to what it always said.'
 art:
   technique: scene bench at true scale with two part wind worked carve contact shadows
   why_this_technique: 'The frame''s whole job is size, and a scene bench is the only instrument here that
@@ -181,7 +193,10 @@ art:
   palette: 'Post Oak Savannah interior, Brazos County. Ground #2E2016 sandy loam tracked onto swept concrete
     in shade, ink #DCD3B4 chart stock, galv #9EA69B hot dip spangle on the manifold and saddles, enamel
     #46524A pump motor machine enamel, door_sun #F6EBC8 late September light through the open door'
-  value_structure: 'Lightest is the door sun patch on the floor at the lower left. Darkest is the joist
+  value_structure: 'Lightest is the door sun patch on the floor at the lower left, which took two
+    attempts to reach the press: at 0.30 alpha over the floor''s own grey it screened into no visible
+    difference, and it is now drawn near the top of the ramp with the surrounding floor pushed down, so
+    the two separate ACROSS the hole in the middle of the scale rather than inside it. Darkest is the joist
     underside and the tank''s upper curve at the top of the frame. The lit floor carries the reader in
     and the dark ceiling holds the type. Frame median L* planned at 8.
 
@@ -190,7 +205,7 @@ art:
     the frame
 type:
   hook: "Aimed at small systems. Texas has 4,749."
-  dek: "Active community water systems on the EPA's record. This is the inside of one of them, and what it runs on is monitoring, historical records and reactive emergency protocols."
+  dek: "Active community water systems on the EPA's record. The National Science Foundation has funded Texas A&M to research predictive digital twins for small and mid-sized systems."
   labels: []
 verbatim: []
 acceptance:
@@ -721,7 +736,7 @@ art:
   motion: along the carved line left to right, then off it onto the blank chart
 type:
   hook: "The word is can."
-  dek: "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. Nothing is built, and it does not say otherwise."
+  dek: "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. The record shows nothing built."
   labels: []
 verbatim:
 - c16: can
@@ -771,8 +786,8 @@ job: 'Walk the reader out of the room and hand them the one thing they can actua
 claims: [c17, c18, c4]
 numerals: []
 composition:
-  structure: 'The horizon sits at 0.42 of the height so the building and the yard own the lower 58 percent
-    and the flat afternoon sky above carries the reserve, which is the reverse of frame 1 where the reader
+  structure: 'The building and the yard own the lower 58 percent and the room''s own shade above them
+    carries the reserve, which is the reverse of frame 1 where the reader
     was inside looking at a ceiling. The building is placed right of centre with its long cast running
     east into the empty left of the yard, so the composition has somewhere for the reader to leave.
 
@@ -786,7 +801,7 @@ composition:
   focal: the open doorway, an area about 170 by 230 px, reached because it is the darkest thing in a lit
     frame and because the reader has just spent eight frames inside it
 art:
-  technique: scene bench at standing eye with atmospheric perspective on the oak at 40 m
+  technique: scene bench at standing eye, the figure and the eave placed in metres so a reader can check one against the other
   why_this_technique: 'The close has to put the room the reader has been in back into a landscape, and
     a scene bench at true scale is what makes a 3.0 m eave read as a small building rather than a shed
     or a plant.
@@ -795,8 +810,8 @@ art:
   palette: 'ground #2E2016 for the yard in shade, ink #DCD3B4 for the lit west wall, door_sun #F6EBC8
     on the wall face, galv #9EA69B for the vent stack and the fence, granite #9A3B2A for the dated stamp
     only'
-  value_structure: 'Lightest is the sunlit west wall. Darkest is the open doorway. The oak is held at
-    least 12 L* off the sky so the haze never deletes it. Frame median L* planned at 7.
+  value_structure: 'Lightest is the sunlit west wall. Darkest is the open doorway, which is the frame''s
+    focal and the darkest thing in a lit frame. Frame median L* planned at 7.
 
     '
   motion: along the cast from the left of the yard to the building, then into the open door
@@ -814,7 +829,9 @@ acceptance:
 - the accent appears only on the dated stamp and nowhere else
 - the open doorway is the darkest thing in the frame and the type above it sits on the room's shade with no plate behind it
 risks:
-- a depth cue taking the oak to within noise of the sky, which is why the 12 L* separation is an acceptance
-  item
+- the frame reading as one more interior rather than as the walk out of the room the CAMERA_MOVE device
+  was sold on. This is what actually happened and plan_note records it as next run work
+- the figure reading as a cut out standing on a line rather than a person on a slab, answered by the
+  contact shadow where their feet meet the caliche and by the cast running east at twice their height
 ```
 

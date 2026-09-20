@@ -1,0 +1,54 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.5,
+      "why": "Frame 2 is genuinely good: the granite trace runs about six days, stops dead at the stylus, and roughly a third of the chart band runs on as bare printed stock to the right edge. It is the only chroma in the frame, there is no band, zone or numbered scale, and the motif is unmissable at thumb size. Frame 6 is well engineered and legible. But the cover is a flat wireframe: one uniform diagonal hatch across most of its area, and its dossier's declared focal ('the lit floor patch and the operator standing in it, about 320 by 260 px at lower centre left') does not exist in the print. The operator is an edge-cropped silhouette at the extreme LEFT margin, and the brightest objects in the frame are the CRT and the louvre vent at upper right, which no field names. Frame 9's exterior payoff does not arrive and its own plan_note says so. Two frames finished, two thin."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "The measured adjacency is the best thing in this deck and it is measured, not asserted: 0.5, 4.4, 4.9, 3.0, 3.5, 0.5, 3.1, 2.6, so max 4.9 and mean 2.81 against this repo's historical 21.0. One ground #2E2016, one hatch at cell 6 angle 52, one ink, one accent law a reader can actually decode by frame 4 because granite only ever sits behind the stop. Held at 7 because the planned arc (8 up to 24 down to 7) printed as a flat 9 to 10 band, so the deck coheres by uniformity rather than by an arc, and because CAMERA_MOVE is one of only two declared continuity devices and its payoff frame concedes in writing that the payoff does not arrive."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "The round 3 hard fail is properly repaired, not papered over. 'Three queries. Three counts. No total.' denies only ADDITION, which is the true proposition, and leaves containment alone, which is the one that would have been false. Every numeral traces, DOM and canvas: 4,749/3,579/87 to c20-c22 with response bodies quoted verbatim, 3301 and 50000 as operands inside quoted stanzas, '5 m' to scale_bar_frame_5 at 0.0235 m/px x 212.8 px, the four frame-3 dates to c4/c5/c6, 'three places' to c14's own list length, 'Every one of these' to 59 counted drawn objects. The spine is strong: an eight-entry rejected array that names the partition error, the fifty-state overreach and the deployment claim by name. Two deductions. The cover sets 'Aimed at small systems.' directly before 'Texas has 4,749.' at 91.5px when the small count is 3,579, with the correcting noun stranded in a 24px dek nobody reads in a feed. And the caption's bare 'Nothing is deployed.' drops the hedge frame 8 gets right."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 6.5,
+      "why": "Names the agency, the awardee, the program, the instrument type, both dates, and closes on an action with the exact document named ('the annual drinking water quality report', c17, plus the TCEQ viewer at c18). But nine frames carry no Texas place at all. Brazos County is the drawn world and reaches no word of published copy, the run's own topics.json entry concedes it ('THE DECK CARRIES NO PLACE AND THREE JUDGES SAID SO ACROSS TWO ROUNDS'), and it went unfixed through a fourth round. The rubric's 9 wants the county and this names none."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "Real turns at 6 and at 8, and 'The word is can.' at 127.5px is the sharpest thing the deck does. The close hands over a task. But frames 2 and 4 are one beat given two frames: both cite c15 alone, both say a record stops where the writing stops, and frame 4 adds a person and nothing else. That is the cuttable pair the rubric's 9 forbids."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "The repaired frame 2 dek is better writing than what it replaced, and 'The word is can.' is the register this product should live in. Restrained, no boosterism, honest about what the record does not say. But Texas is entirely in the chassis prose (Post Oak Savannah, a roll-up door open west at ten to five) and nowhere in published copy. Every shipped sentence would read identically about a water system in Ohio."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "Ground measured at dE76 13.32 from its nearest of the last six decks, accent deliberately not comal because no. 29 spent it, and an interior world the deck rotation has not used. But it is the second consecutive water deck, shares TCEQ as an entity with no. 29, and the cell-6 hatch laid over nearly every surface is the house look rather than this deck's own. Distinct, with more than one familiar move."
+    }
+  ],
+  "weighted_score": 6.76,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild frame 1, because the cover is the only frame most readers see and it is currently failing three ways at once — its dossier's declared focal and lit floor patch are not in the print, its operator is a cropped shape at the extreme left edge instead of a person at 1.7 m the later crops can be checked against, and its headline puts 'small systems' one clause from '4,749' when the small-system count is 3,579 — so redraw it with the operator standing in real light at lower centre left, name Brazos County in the kicker where the deck's only chance at a Texas place still sits unspent, and make the headline's number and its noun the same sentence.",
+  "lens": "integrity",
+  "round": 4,
+  "date": "2026-09-20",
+  "_reissue_note": "This is the REISSUED card. The first pass read runs/carousel/2026-09-20 during the window between the run editing out/ and copying it across, found round 3's strings there, and reported two hard fails. The run answered with the file contents, the render report's own text node and the commit, and this judge verified against the settled tree and voided both. Its own words: 'I graded a directory mid-copy and reported it as the deck.' Both cards are kept, because the surviving finding is that a judge can be handed a run directory whose HTML and render report disagree with nothing in the suite saying so, which produced a false positive here and would produce a false NEGATIVE just as easily."
+}

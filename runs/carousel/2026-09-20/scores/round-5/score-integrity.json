@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.8,
+      "why": "Frame 1 is materially repaired and I can see it at thumb scale on the contact sheet: the sun patch now reads as a separate value plane (slide-01.html draws it at rgba(242,238,222,0.42-0.86) inside a clipped parallelogram with the surrounding floor pushed to rgba(0,0,0,0.34)) and the operator at X -0.62/Z 3.4 is a legible standing figure inside it, not the edge-cropped shape of round 4. Frames 3 and 6 are genuinely well-made documents. Against that: frame 8 is mostly bare block wall with a small chart on a nail, exactly the thinness its own dossier risk predicted ('a frame whose argument is a word can come back thin'), and the stated cure (rebuild around the blank chart at full size) was not taken. Frame 5 is the least-drawn frame, three small objects on a rule over a large hatch band. Frame 7 still reads as a field of vertical strips at 432 px and is rescued only by the one fallen pack. Every frame is graded with a real dark, none is a plate with words on it."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.3,
+      "why": "One ground (#2E2016), one ink, one 26-degree light, every cast east, and measured adjacency of max 4.9 / mean 2.88 off the shipped PNGs against this repo's historical 21.0. Both declared continuity devices do real work: the camera move pays off when frame 5's centre building is recognisably frame 1's interior, and the mark-that-stops is readable by frame 4 without being told. Two deductions. Frame 3 sits 3.9 above the next highest and on the contact sheet it is visibly a different print job, which the storyboard records and declines to close. And frame 9 still declares `layout: SPLIT_HORIZON` while its own `plan_note` says 'THE SKY AND THE LIVE OAK WERE PLANNED AND ARE NOT IN THE PRINT' - the run applied the label-follows-frame correction to frame 6 (GRID to DOCUMENT) and did not apply it here, so the rotation check is reading an archetype the print does not contain."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.4,
+      "why": "Traceable throughout and primary everywhere (all 22 claims are NSF API, EPA Envirofacts or TCEQ). Frame 6's hook 'Three queries. Three counts. No total.' plus its acceptance item forbidding a containment denial is the best integrity move in the deck. Four deductions. (1) Frame 8's dek asserts 'Nothing is built, and it does not say otherwise.' - a bare universal absence about the world whose mirror image the run's own `rejected` list refuses for want of evidence ('Any claim that the award is deployed, piloted or running'); the caption was reworded this round to the correctly scoped 'No deployment is recorded.' and the slide, which is the surface a reader actually sees, kept the stronger form. (2) The cover hook 'Aimed at small systems. Texas has 4,749.' puts a number with no noun beside 'small systems' when the run's own v2 for small systems is 3,579; the dek's first four words fix it on the slide, but caption.txt line 1 is the same sentence with the clarifier below LinkedIn's fold. (3) Frame 1's new dek checks out noun by noun - NSF to c1, Texas A&M to c2, predictive digital twins for small and mid-sized systems to c12, 4,749 to c20 - but it compresses 'Texas A&M Engineering Experiment Station' to 'Texas A&M' and presents what c12 calls the FIRST of three directions as the thing NSF funded, which the caption states correctly as 'The abstract's first stated direction'. (4) figures.json labels `scale_bar_frame_5` `\"basis\": \"measured\"` with `\"from\": []` while its own `how` says 'The NUMBER is chosen', which is the measured/modeled distinction slipping in the file that exists to hold it. Two artifact-honesty defects as well: slide-01.html still comments that the accent 'lives on frames 2, 4, 7 and 9, all above layout_check's 0.2 percent floor' when this round measured frame 7 at 0.0018 and below it; and frame 9's freshly corrected `risks` field ships truncated mid-sentence, ending '...as next run work. The acceptance / item'."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 6.6,
+      "why": "The round-4 defect is genuinely closed - the cover now names funder, awardee and object, so frames 3, 5, 7 and 8 saying 'the award' and 'the abstract' finally have an antecedent a scroller has met. Frame 9 gives a real action with a real source: 'The thing to ask for is the annual drinking water quality report' traces to c17 verbatim. But there is no county, no body, no deadline and no decision a Texan can influence; the stake is the caption's closing question 'Which of those 3,579 ever gets a twin?', which the deck cannot answer and does not pretend to. Brazos County is named in storyboard.md line 124 and reaches no frame."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.6,
+      "why": "The turn is real and it is at 7 into 8: 'Every one of these is finished' into 'The word is can'. The cover now earns a swipe because it has a subject. But frames 2 and 4 make the same argument twice with different props - the trace stops at the pen, the log stops at the last entry - and one of them is cuttable, which the rubric's 9 explicitly rules out. Frame 5 is an interlude between the criticism and the counts. The close does not land as a walk-out because frame 9 is lit like the eight interiors before it, which the dossier's own risk field concedes."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 6.9,
+      "why": "Dry and on register. 'Three queries. Three counts. No total.', 'The word is can.', and the kicker 'One room, at ten to five' are all written rather than generated. House rules hold: no colons or semicolons outside the verbatim NSF title on frame 3, no dashes, no first person, no 'cannot', writer-chosen commas in the caption count one across roughly 115 words, and 'September 15th' correctly carries no year while 'August 31st, 2029' does. The deduction is regional: nothing Texan reaches published copy except the word Texas. The Post Oak Savannah, Brazos County and the caliche yard are all in the storyboard and none of them is on a frame."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.8,
+      "why": "The ground was chosen against the last six decks (storyboard records #2E2016 clearing the nearest by dE 13.32 where all three directors' warm near-blacks collided at 8.37, 4.06 and 2.72), the opening move is an interior establishing shot at true scale rather than a headline, and the rotation returns [] with two DOCUMENTs non-adjacent. Inside the deck, though, a silhouetted figure against a lit floor opens frame 1 and closes frame 9, and the red strip-chart trace carries both 2 and 7, so the familiar moves are internal repeats rather than fresh ones. I could not verify the artwork ledger from this directory and am not scoring against it."
+    }
+  ],
+  "weighted_score": 6.938,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Put the noun back in the cover hook so the deck's most-read numeral cannot be read as the count of the thing named beside it, and swap frame 8's unsupported 'Nothing is built' for the scoped phrasing the caption already carries.",
+  "lens": "integrity",
+  "round": 5,
+  "date": "2026-09-20"
+}

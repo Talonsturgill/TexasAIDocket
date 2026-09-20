@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.1,
+      "why": "Frames 2, 3, 5 and 9 are genuinely good: the strip chart arrested at the stylus with blank stock ahead, the tilted abstract sheet with its field block and RETRIEVED 2026-09-20 stamp, the orthographic elevation with a computed 5 m bar, the sunlit west wall with a figure and a 3.5 m cast. Figures at 1.7 m on 1, 4 and 9 give a checkable size and the grading is real light and real dark, not one mid band. Against that: frame 7 did not resolve for me at thumb or full size into 'an open filing box of fanfold packs' and reads as a thicket of vertical strips, with its declared focal (the fallen pack's closed trace) a small red squiggle competing with a hundred edges; frame 6's 87-mark row prints as a dashed rule rather than 87 countable marks, the exact risk its own dossier names; frame 8's carve reads as a drop shadow and the right third of the block wall has no falloff; and frame 1's headline drops the 'y' descender of 'systems.' into the cap line of '4,749.', putting a smudge on the cover's payload."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.2,
+      "why": "On the contact sheet this is unmistakably one deck: one ground (#2E2016), one ink, one 52-degree screen, one 26-degree light with every cast running the same way. The measured adjacency (max 4.9, mean 2.88 at 432 px) is visible as an absence of strobe, which is rare here. Two things hold it at a 7. Frame 3's sheet reads as a white rectangle on the filmstrip, 3.9 above the next highest, which the storyboard concedes and defends. And of the two named continuity devices, CAMERA_MOVE is self-reported as not delivered: slide 9's plan_note says the exterior payoff 'does not arrive,' so one of two load-bearing devices is failing by its own author's measurement."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.2,
+      "why": "I tried to break it. Every numeral on every frame traces: 4,749 to c20/v1, 3,579 to c21/v2, 87 to c22/v3, 3,301 and 50,000 to the quoted query filters, the 5 m bar to figures.json scale_bar_frame_5 (number chosen, length derived), frame 3's whole metadata block to c2/c3/c4/c5/c6/c10, and frame 9's 2026-09-15 stamp to c4. Frame 3's verbatim abstract matches c15 character for character including its serial commas. figures.json states v1 minus v2 is 'deliberately absent' and no frame performs the subtraction. Two soft spots keep it off a 9: the caption's 'TCEQ sends a resident to their own system's annual drinking water quality report' is the writer's metaphor doing work c17's 'You can learn about the quality of your drinking water by reading...' does not do, and frame 6's 'No total' invites a reader to conclude the EPA has no statewide count while the frame's own first sheet prints one."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 6.6,
+      "why": "The body is named (NSF), the recipient is named (Texas A&M), and frame 5 draws the stake concretely, an intake, a pump station and a treatment unit on one line. But there is no county, no city, no named system on any of nine frames, and no deadline a reader can act before: the deck's only date is an award start, which is nobody's deadline. The next step is real and doable but unaddressed, with the two searchable strings the claims file contains, 'Texas Drinking Water Viewer' and 'Consumer Confidence Report', both dropped from frame 9."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.4,
+      "why": "The cover earns a swipe and frame 8 lands the close hard. But frames 2, 4 and 7 make one point three times ('the record ends at now'), and frame 7 is the DECLARED turn, so the place the deck says understanding changes is the third statement of something a reader already had by frame 2. My understanding actually moved at 6 and again at 8. One frame is plainly cuttable and the run recorded deciding not to cut it."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The lines are good enough that I'd not guess a machine: 'The trace ends where the pen is. It is a record rather than a warning.' 'A record answers what happened and never what is about to.' 'The word is can.' No boosterism, no doom, the conditional honoured everywhere. What it is not is Texan. Nine frames contain no place, no weather, no vernacular, nothing that could not run in Ohio with three nouns swapped, against a criterion whose explicit ask is regional specificity over state-level abstraction."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.8,
+      "why": "The world and palette are genuinely fresh, a waterworks interior on a ground that cleared the last six decks by 13.32. The STRUCTURE is not. Carousel 26 shipped four days ago, 2026-09-16: an NSF award record read closely against a Texas university, a project not yet started, spine 'nothing has happened yet' - and its own ledger entry already flagged that instrument as a repeat of carousel 11 in capitals. This deck is an NSF award record read closely against a Texas university, a project just started, spine 'Nothing is built.' A reader who saw both in one week sees the same deck twice. This run's angle_note does not mention no. 26 at all."
+    }
+  ],
+  "weighted_score": 7.042,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Cut frame 7 and spend the frame on a named small Texas water system and the town it serves, taken from the same EPA WATER_SYSTEM endpoint that already returned 3,579 rows this run, stating only its name, its county and its population served and characterizing nothing, because one fetch of a field the run already touched would end the three-frames-one-point sag and the placelessness three judges have now named across two rounds with the same move.",
+  "lens": "reader",
+  "round": 5,
+  "date": "2026-09-20"
+}

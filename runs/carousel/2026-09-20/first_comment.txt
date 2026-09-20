@@ -1,0 +1,11 @@
+Sources, five official records, all fetched September 20th.
+NSF Award Search API record for award id 2640086, title field, September 20th. c1 c2 c4 c5 c10 c12 c13 c14 c15 c16
+https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
+How is my Drinking Water Quality? Texas Commission on Environmental Quality, September 20th. c17 c18
+https://www.tceq.texas.gov/drinkingwater/my-drinking-water-quality
+EPA Envirofacts SDWIS WATER_SYSTEM count, active Texas community water systems, September 20th. c20
+https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON
+EPA Envirofacts SDWIS WATER_SYSTEM count, Texas community water systems serving under 3,301, September 20th. c21
+https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/%3C/3301/COUNT/JSON
+EPA Envirofacts SDWIS WATER_SYSTEM count, Texas community water systems serving over 50,000, September 20th. c22
+https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/%3E/50000/COUNT/JSON
