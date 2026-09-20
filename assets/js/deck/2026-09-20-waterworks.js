@@ -365,5 +365,51 @@
     return TXDECK.reserveMask(boxes, feather == null ? 28 : feather);
   };
 
+  /* QUIET THE ART BEHIND A LINE OF TYPE, AND IT IS A WASH RATHER THAN A PLATE.
+   *
+   * WHY THIS EXISTS. Nine frames of this deck are drawn worlds with real horizontal geometry in
+   * them: a block course at a true 0.194 m, a chart recorder's spool edge, the cut rim of a
+   * filing box. Every one of those is a full width edge, and wherever one happens to cross a
+   * glyph band the QA harness reads it as a strikethrough, correctly, because at feed width that
+   * is exactly what it looks like. Moving nine pieces of true geometry to dodge the type would
+   * be drawing the world around the furniture, which is backwards.
+   *
+   * SO THE LIGHT DIMS TOWARD THE TYPE. This lays a soft vertical falloff over each measured line
+   * box, in the deck's own ground, capped at 0.44 alpha and feathered over the full height of
+   * the box again above and below it. `deck_chassis.py` fails the build on any fill over 0.55
+   * behind display type, and this is deliberately well under that, because a hole punched at
+   * full strength is a plate with the sign flipped and this project has already paid to learn
+   * that once.
+   *
+   * It runs BEFORE TXDECK.punch, which dims the screen, so the two compose rather than fight. */
+  N.quiet = function (c, boxes, alpha) {
+    if (!boxes || !boxes.length) return;
+    var g = hexToRgb(N.GROUND), A = alpha == null ? 0.44 : Math.min(0.52, alpha);
+    c.save();
+    for (var i = 0; i < boxes.length; i++) {
+      /* TXDECK.lineBoxes returns ARRAYS, [left, top, width, height], already padded. Reading
+       * them as objects is how the first cut of this helper handed createLinearGradient a NaN
+       * and took all nine frames down at once. Same shape of mistake as TXSCENE.project, which
+       * also returns an array, and the probe frame caught that one too. */
+      var bx = boxes[i][0], by = boxes[i][1], bw = boxes[i][2], bh = boxes[i][3];
+      if (!isFinite(bx) || !isFinite(by) || !isFinite(bw) || !isFinite(bh)) continue;
+      var pad = Math.max(16, bh * 0.70);
+      var grad = c.createLinearGradient(0, by - pad, 0, by + bh + pad);
+      grad.addColorStop(0.00, "rgba(" + g + ",0)");
+      grad.addColorStop(0.32, "rgba(" + g + "," + A + ")");
+      grad.addColorStop(0.68, "rgba(" + g + "," + A + ")");
+      grad.addColorStop(1.00, "rgba(" + g + ",0)");
+      c.fillStyle = grad;
+      c.fillRect(bx - pad, by - pad, bw + pad * 2, bh + pad * 2);
+    }
+    c.restore();
+  };
+
+  function hexToRgb(h) {
+    h = h.replace("#", "");
+    return parseInt(h.slice(0, 2), 16) + "," + parseInt(h.slice(2, 4), 16) + "," +
+           parseInt(h.slice(4, 6), 16);
+  }
+
   global.TXWW = N;
 })(typeof window !== "undefined" ? window : globalThis);

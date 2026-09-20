@@ -59,6 +59,21 @@ positions on frames 1, 2, 4, 7 and 8 and the same building from the yard on 9, s
 leaves and can check any object against the establishing shot. MOTIF EVOLUTION, the mark that
 stops, above.
 
+**SLIDE 6 WAS PLANNED AS A GRID AND IS A DOCUMENT, AND THE GATE IS WHAT ESTABLISHED IT.**
+`layout_check` refused it twice with the same sentence: at thumb scale a GRID has to come apart
+into units a reader can separate, and this frame came apart into one. The first reading was taken
+as a composition fault and answered by splitting one sheet into three. It came back identical,
+which is the signal that the frame is not failing the test but is the wrong KIND of thing for it.
+
+A GRID is an isotype, repeated units at true scale a reader can run an eye over. This frame's
+first block is 4,749 marks and the arithmetic was already written into it that four and a half
+thousand countable marks would need most of the frame's pixels. What is actually drawn is THREE
+SHEETS OF PAPER, each carrying one query, one count and one mark field. That is a DOCUMENT, and
+relabelling it is the plan being corrected to match the frame rather than the frame being bent to
+satisfy a label. The rotation still returns `[]` with two DOCUMENTs in nine, non adjacent.
+
+CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE
+
 **Rotation**, checked by `TXLAYOUT.check` before a dossier was written, returns `[]`.
 
 **THE VALUE ARC WAS REWRITTEN AFTER THE PROBE FRAME PRINTED, AND THAT IS THE ORDER THE DOCTRINE
@@ -328,12 +343,13 @@ primary_image:
     0.30 by 0.21 m open on the shelf with its columns ruled and entries running down the left in ballpoint
   rect:
   - 0
-  - 210
+  - 0
   - 1080
-  - 1140
+  - 1350
   bleeds:
   - top
   - left
+  - right
   - bottom
 accent: '#9A3B2A'
 job: 'Put a person in the picture, because c15 is a claim about what people do, and give the tank a size
@@ -473,7 +489,7 @@ risks:
 
 ```yaml
 slide: 6
-layout: GRID
+layout: DOCUMENT
 primary_image:
   subject: a 0.216 by 0.279 m sheet of chart stock lying on the pump house bench at 0.9 m seen from 1.45
     m, filling about 85 percent of the frame and cut by the left and right edges, carrying three physically

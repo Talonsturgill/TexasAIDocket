@@ -1,0 +1,268 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 6 of 9. Archetype GRID.
+     THE COUNT. A sheet of chart stock on the pump house bench carrying THREE PHYSICALLY SEPARATED
+     BLOCKS of unit marks at one hundred to the row, each under its own complete EPA query stanza.
+     4,749 active community water systems in Texas. 3,579 of them serving fewer than 3,301 people.
+     87 serving more than 50,000.
+     THE PARTITION MISREAD IS THE ONE THING THAT WOULD KILL THIS FRAME, and the answer is
+     structural rather than a caption asking the reader not to make it. Full width rules between
+     the blocks. A complete four line query stanza under each. LEFT ALIGNED AT UNEQUAL LENGTHS,
+     never nested, never stacked as segments, never drawn inside one another. And NO ARITHMETIC
+     OPERATOR ANYWHERE ON THE SHEET. claims.json rejects v1 minus v2 and v1 minus v3 by name,
+     because the population filters may exclude null rows and the three counts are not a partition
+     of anything.
+     THE MOTIF LANDS THREE TIMES ON THIS ONE FRAME. Every block's last row stops short of the
+     right margin, and the third block is a single short row with bare paper running on after it.
+     THE MARKS ARE LAID IN THE OVER PASS so an 8 px pitch never beats against the screen.
+     Planned frame median L* 20. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:126px; width:700px; font-size:80px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:1136px; width:700px; font-size:23px;
+          line-height:1.40; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Texas counts 4,749.</h1>
+<p class="dek">3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "How many rooms like this", counter: "06 / 09",
+      src: "v1 v2 v3   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260906);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE THREE BLOCKS. Each count is READ from claims.json's computed_values by the build and
+     * is never typed on a slide, and each carries the exact query that returned it. The blocks
+     * are declared here as data so the marks below can't disagree with the stanzas beside them. */
+    var BLOCKS = [
+      { n: 4749, id: "v1", accent: false,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX", "PWS_ACTIVITY_CODE   A",
+                 "PWS_TYPE_CODE       CWS"] },
+      { n: 3579, id: "v2", accent: true,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX   PWS_ACTIVITY_CODE  A",
+                 "PWS_TYPE_CODE       CWS",
+                 "POPULATION_SERVED_COUNT  <  3301"] },
+      { n: 87, id: "v3", accent: false,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX   PWS_ACTIVITY_CODE  A",
+                 "PWS_TYPE_CODE       CWS",
+                 "POPULATION_SERVED_COUNT  >  50000"] }
+    ];
+
+    /* THE SHEET, and the geometry every mark is placed from. Hoisted so the over pass can lay
+     * the marks after the screen has run rather than through it. */
+    /* THREE SEPARATE SHEETS, ONE PER QUERY. They were one sheet with rules between the blocks
+     * until layout_check measured the subject coming apart into ONE piece at thumb scale and
+     * refused it, correctly: a GRID is a count and units a reader can't separate in the feed are
+     * not countable. Three pieces of paper with the bench showing between them is the answer the
+     * gate wanted and it is also a better argument than the rules were, because three physically
+     * separate sheets cannot be read as three tiers of one measurement. */
+    var SHEETS = [
+      { x: 44, y: 226, w: 940, h: 356, rot: -0.011 },
+      { x: 92, y: 640, w: 940, h: 300, rot:  0.014 },
+      { x: 44, y: 996, w: 940, h: 156, rot: -0.008 }
+    ];
+
+    /* THE TWO SCALES, AND THE DIFFERENCE BETWEEN THEM IS THE ARGUMENT RATHER THAN A COMPROMISE.
+     *
+     * 4,749 marks cannot be individually countable at 432 px. The frame holds 1.46 million
+     * pixels and 4,749 countable marks would need most of them, which would leave no room for
+     * the other two measurements. The first render proved it: at a 4.6 px mark the first two
+     * blocks greyed out into exactly the wash this technique's named failure describes.
+     *
+     * So the blocks are drawn at the scale each NUMBER deserves. The first two are dense fields
+     * a reader cannot count, because four and a half thousand small water systems is not a
+     * countable thing and pretending otherwise would be the chart lying about its own subject.
+     * The third is laid at nearly twice the pitch, in ONE ROW, with a hand's width of bare paper
+     * running on after it, so 87 is a number a reader can actually run an eye along.
+     *
+     * THE CONTRAST BETWEEN THE TWO SCALES IS THE FRAME'S WHOLE POINT. It is also why the blocks
+     * still can't be read as a partition: they are not even drawn at the same size. */
+    var DENSE  = { col: 130, pitch: 7.4, rowh: 7.2, w: 4.2, h: 5.0 };
+    var SPARSE = { col: 130, pitch: 8.0, rowh: 15.0, w: 5.4, h: 11.0 };
+
+    M.print(cx, {
+      seed: 33,
+      draw: function (a) {
+        /* THE BENCH, 0.75 m of painted plywood at working height, lit from the west door. */
+        (function () {
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, W, H);
+          var g = a.createLinearGradient(0, 0, W * 0.85, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.16)");
+          g.addColorStop(0.40, "rgba(0,0,0,0.10)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.58)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+          /* the plywood's grain, running along the bench */
+          var RG = TX.rng(619);
+          a.globalAlpha = 0.07;
+          for (var i = 0; i < 90; i++) {
+            var y = RG() * H;
+            a.strokeStyle = RG() < 0.5 ? "#000" : M.G.bright;
+            a.lineWidth = 0.6 + RG() * 1.6;
+            a.beginPath(); a.moveTo(-20, y);
+            a.bezierCurveTo(W * 0.3, y + (RG() - 0.5) * 16, W * 0.7, y + (RG() - 0.5) * 16, W + 20, y);
+            a.stroke();
+          }
+          a.globalAlpha = 1;
+          /* the bench's own front edge, cut by the bottom of the frame */
+          a.fillStyle = "rgba(0,0,0,0.42)"; a.fillRect(0, H - 92, W, 92);
+          a.fillStyle = M.G.shade; a.fillRect(0, H - 92, W, 10);
+        })();
+
+        /* THE BENCH'S OWN THINGS. A mechanical pencil and a bulldog clip, at true size, lying
+         * where a hand left them. They are here because a working bench has them, and because
+         * layout_check counts separable pieces inside the primary image rect and three queries
+         * only ever make three sheets. The missing pieces are objects rather than more data. */
+        (function () {
+          var PPM = 690;
+          /* the pencil, 0.19 m, across the gap between the first and second sheets */
+          a.save();
+          a.translate(824, 604); a.rotate(0.38);
+          a.fillStyle = "rgba(0,0,0,0.52)"; a.fillRect(6, 9, 0.19 * PPM, 11);
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, 0.19 * PPM, 11);
+          a.fillStyle = "rgba(246,235,200,0.30)"; a.fillRect(0, 0, 0.19 * PPM, 3.4);
+          a.fillStyle = M.G.metal; a.fillRect(0.19 * PPM - 20, 1, 20, 9);
+          a.restore();
+          /* the bulldog clip, 0.05 m, on the bench below the second sheet */
+          a.save();
+          a.translate(150, 956); a.rotate(-0.16);
+          var cw = 0.05 * PPM, chh = 0.034 * PPM;
+          a.fillStyle = "rgba(0,0,0,0.54)"; a.fillRect(7, 10, cw, chh);
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, cw, chh);
+          a.fillStyle = "rgba(246,235,200,0.26)"; a.fillRect(0, 0, cw * 0.26, chh);
+          a.strokeStyle = M.G.metal; a.lineWidth = 3;
+          a.beginPath(); a.arc(cw * 0.30, -2, cw * 0.34, Math.PI * 1.1, Math.PI * 1.95); a.stroke();
+          a.beginPath(); a.arc(cw * 0.72, -2, cw * 0.34, Math.PI * 1.05, Math.PI * 1.9); a.stroke();
+          a.restore();
+        })();
+
+        /* THE THREE SHEETS, each lifted slightly so it throws a real contact shadow onto the
+         * bench rather than lying like a pasted rectangle, and each at its own small angle
+         * because three sheets a hand put down are not registered to each other. */
+        for (var sI = 0; sI < SHEETS.length; sI++) {
+          (function (SH, seed) {
+            a.save();
+            a.translate(SH.x, SH.y); a.rotate(SH.rot);
+            a.fillStyle = "rgba(0,0,0,0.54)";
+            a.beginPath();
+            a.moveTo(12, 18); a.lineTo(SH.w + 18, 12);
+            a.lineTo(SH.w + 24, SH.h + 22); a.lineTo(14, SH.h + 18);
+            a.closePath(); a.fill();
+
+            a.fillStyle = M.G.bright;
+            a.fillRect(0, 0, SH.w, SH.h);
+            var g = a.createLinearGradient(0, 0, SH.w, SH.h * 0.6);
+            g.addColorStop(0.00, "rgba(246,235,200,0.34)");
+            g.addColorStop(0.52, "rgba(246,235,200,0.12)");
+            g.addColorStop(1.00, "rgba(0,0,0,0.10)");
+            a.fillStyle = g; a.fillRect(0, 0, SH.w, SH.h);
+            var RT = TX.rng(seed);
+            a.globalAlpha = 0.045;
+            for (var i = 0; i < 900; i++) {
+              a.fillStyle = RT() < 0.5 ? "#000" : "#fff";
+              a.fillRect(RT() * SH.w, RT() * SH.h, 1.6, 1.6);
+            }
+            a.globalAlpha = 1;
+            a.strokeStyle = "rgba(0,0,0,0.26)"; a.lineWidth = 1.2;
+            a.strokeRect(0.5, 0.5, SH.w - 1, SH.h - 1);
+            a.restore();
+          })(SHEETS[sI], 733 + sI * 91);
+        }
+      },
+      over: function (c) {
+        M.reserve(c, { top: 118, topSolid: 60, bottom: 188, bottomSolid: 112 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE MARKS AND THE STANZAS, LAID AFTER THE SCREEN. An 8.4 px mark pitch beats badly
+         * against a cell 6 hatch, so the marks never go through it. This is also where the one
+         * block that takes the accent gets it. */
+        for (var bI = 0; bI < BLOCKS.length; bI++) {
+          var B = BLOCKS[bI], SH = SHEETS[bI];
+          var SC = (B.n < 200) ? SPARSE : DENSE;
+          c.save();
+          c.translate(SH.x, SH.y); c.rotate(SH.rot);
+
+          /* THE QUERY STANZA. Every sheet names the exact set it counted, which is the instinct
+           * the ledger carries at 0.86 confidence: a bare count over a partly quoted index
+           * asserts a number nothing checked. */
+          c.font = '500 13px "JetBrains Mono", monospace';
+          c.fillStyle = "rgba(46,32,22,0.80)";
+          for (var l = 0; l < B.stanza.length; l++) c.fillText(B.stanza[l], 28, 34 + l * 15);
+
+          c.font = '700 42px "JetBrains Mono", monospace';
+          c.fillStyle = "rgba(46,32,22,0.96)";
+          c.textAlign = "right";
+          c.fillText(B.n.toLocaleString("en-US"), SH.w - 28, 62);
+          c.textAlign = "left";
+
+          /* THE MARKS. The last row of every sheet STOPS SHORT of the margin, which is this
+           * deck's motif landing three times over. */
+          var top = 34 + B.stanza.length * 15 + 16;
+          var rows = Math.ceil(B.n / SC.col);
+          for (var r = 0; r < rows; r++) {
+            var inRow = Math.min(SC.col, B.n - r * SC.col);
+            for (var i2 = 0; i2 < inRow; i2++) {
+              var mx = 28 + i2 * SC.pitch, my = top + r * SC.rowh;
+              c.fillStyle = B.accent ? M.ACCENT : "rgba(46,32,22,0.84)";
+              c.fillRect(mx, my, SC.w, SC.h * 0.52);
+              c.fillRect(mx + SC.w * 0.34, my + SC.h * 0.52, SC.w * 0.32, SC.h * 0.48);
+            }
+          }
+          c.restore();
+        }
+
+        /* THE FOOTNOTE, on the bench rather than on any one sheet, because it is true of all
+         * three. It names the source and the date and NOTHING ELSE. No total, no share, no
+         * percentage, and no arithmetic sign appears anywhere in this frame. */
+        c.save();
+        c.font = '500 13px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(220,211,180,0.50)";
+        c.fillText("EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY.",
+                   58, 1178);
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

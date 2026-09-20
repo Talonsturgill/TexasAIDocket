@@ -89,29 +89,29 @@ window.renderReady = new Promise(async function (resolve, reject) {
         /* THE BOX INTERIOR, cropped by the left, right and bottom edges. Its far wall and the
          * swept slab beyond it are the only things in the frame that are not paper. */
         (function () {
-          a.fillStyle = M.G.stone; a.fillRect(0, 0, W, 300);
-          var g = a.createLinearGradient(0, 0, W * 0.8, 300);
+          a.fillStyle = M.G.stone; a.fillRect(0, 0, W, 372);
+          var g = a.createLinearGradient(0, 0, W * 0.8, 372);
           g.addColorStop(0.00, "rgba(246,235,200,0.22)");
           g.addColorStop(0.55, "rgba(0,0,0,0.26)");
           g.addColorStop(1.00, "rgba(0,0,0,0.62)");
-          a.fillStyle = g; a.fillRect(0, 0, W, 300);
+          a.fillStyle = g; a.fillRect(0, 0, W, 372);
           /* sparse aggregate in the slab, a lit west face and a dark east side, and FEW, because
            * 430 grains printed as a starfield on the first render */
           var RG = TX.rng(451);
           for (var i = 0; i < 90; i++) {
-            var x = RG() * W, y = RG() * 300, r = 1.0 + RG() * 1.8;
+            var x = RG() * W, y = RG() * 372, r = 1.0 + RG() * 1.8;
             a.fillStyle = "rgba(0,0,0,0.20)"; a.fillRect(x + r * 0.7, y, r, r * 0.6);
             a.globalAlpha = 0.10 + RG() * 0.12;
             a.fillStyle = M.G.bright; a.fillRect(x - r, y - r * 0.5, r, r * 0.7);
             a.globalAlpha = 1;
           }
           /* the box's far wall, its cut top edge catching the key, its inside face in shade */
-          a.fillStyle = "rgba(0,0,0,0.50)"; a.fillRect(0, 288, W, 18);
+          a.fillStyle = "rgba(0,0,0,0.50)"; a.fillRect(0, 360, W, 18);
           a.strokeStyle = M.G.metal; a.lineWidth = 3.4; a.globalAlpha = 0.55;
-          a.beginPath(); a.moveTo(-10, 300); a.lineTo(W + 10, 292); a.stroke();
+          a.beginPath(); a.moveTo(-10, 372); a.lineTo(W + 10, 364); a.stroke();
           a.globalAlpha = 1;
-          a.fillStyle = M.G.dark; a.fillRect(0, 300, W, 74);
-          a.fillStyle = M.G.deep; a.fillRect(0, 300, W, H - 300);
+          a.fillStyle = M.G.dark; a.fillRect(0, 372, W, 74);
+          a.fillStyle = M.G.deep; a.fillRect(0, 372, W, H - 372);
         })();
 
         /* THE FILED PACKS, filling the box, standing on edge and leaning at seeded angles. Each
@@ -127,7 +127,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
             var lean = -0.17 + R() * 0.32;
             var packH = m(0.86) + R() * m(0.20);
             var packW = m(0.016) + R() * m(0.010);
-            var baseY = 392 + R() * 30;
+            var baseY = 444 + R() * 30;
             /* the falloff into the box's shade, deepest in the middle where the light can't
              * reach over the near wall */
             var k = 0.42 + 0.58 * Math.pow(Math.abs(t - 0.46) * 2.0, 0.85);
@@ -153,7 +153,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
               a.beginPath(); a.moveTo(0, fy); a.lineTo(packW, fy - 1.4); a.stroke();
             }
             /* THE RIM INK, cut dark here and inked granite in `over` at the same place */
-            var ry = -packH * (0.30 + R() * 0.42), rh = Math.max(1.8, packW * 0.20);
+            var ry = -packH * (0.30 + R() * 0.42), rh = Math.max(4.2, packW * 0.46);
             a.globalAlpha = k * 0.55;
             a.fillStyle = "rgba(0,0,0,0.72)";
             a.fillRect(0, ry, packW, rh);
@@ -203,7 +203,8 @@ window.renderReady = new Promise(async function (resolve, reject) {
       },
       over: function (c) {
         M.reserve(c, { top: 126, topSolid: 66, bottom: 176, bottomSolid: 104 });
-        TXDECK.punch(c, boxes, { feather: 64, strength: 0.74 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
 
         /* THE GRANITE, AFTER THE SCREEN. Every mark here is a trace that was finished, which is
          * exactly what the deck's accent law admits and exactly what this frame is about. */
@@ -219,7 +220,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
         }
         c.save();
         c.translate(FALL.x, FALL.y); c.rotate(FALL.rot);
-        c.strokeStyle = M.ACCENT; c.lineWidth = 2.6;
+        c.strokeStyle = M.ACCENT; c.lineWidth = 5.0;
         c.lineJoin = "round"; c.lineCap = "round";
         var t0 = FALL.w * 0.052, t1 = FALL.w * 0.948;
         var ty = FALL.h * 0.14, th = FALL.h * 0.70;

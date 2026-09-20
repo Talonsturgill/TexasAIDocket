@@ -102,6 +102,21 @@ window.renderReady = new Promise(async function (resolve, reject) {
           a.fillStyle = v; a.fillRect(0, 0, W, H);
         })();
 
+        /* THE COURSING QUIETED IN THE TYPE'S OWN BAND. A 0.194 m course puts a joint through
+         * the carved line wherever the line happens to fall, and the QA harness reads a full
+         * width joint crossing a glyph band as a strikethrough, correctly. The wall is already
+         * falling into shade across this band, so the joints are damped rather than moved, with
+         * a wash well under the 0.55 alpha the chassis allows as atmosphere. The coursing is
+         * still there and still true. It just stops competing with the letterforms. */
+        (function () {
+          var g = a.createLinearGradient(0, 392, 0, 636);
+          g.addColorStop(0.00, "rgba(46,32,22,0.00)");
+          g.addColorStop(0.22, "rgba(46,32,22,0.42)");
+          g.addColorStop(0.78, "rgba(46,32,22,0.42)");
+          g.addColorStop(1.00, "rgba(46,32,22,0.00)");
+          a.fillStyle = g; a.fillRect(0, 392, W, 244);
+        })();
+
         /* THE SKIRTING where the wall meets the slab, so the wall is in a room rather than being
          * a backdrop. The slab takes the key and throws it back up onto the lowest course. */
         (function () {
@@ -181,7 +196,8 @@ window.renderReady = new Promise(async function (resolve, reject) {
         /* Dim the screen toward the type with a wide feather rather than removing it from around
          * the type, because a hole punched at full strength is a plate with the sign flipped and
          * this project has already paid to find that out once. */
-        TXDECK.punch(c, boxes, { feather: 70, strength: 0.72 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
 
         /* NO ACCENT. Deliberately, and it is the strictest line in the deck's own law. Granite
          * marks what has already been made, and nothing on this frame has happened. */

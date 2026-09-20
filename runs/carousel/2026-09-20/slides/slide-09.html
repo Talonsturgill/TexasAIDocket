@@ -277,7 +277,8 @@ window.renderReady = new Promise(async function (resolve, reject) {
          * and a punch anything paints over afterwards is not a punch.
          * It DIMS toward the type with a wide feather rather than removing the screen from
          * around it, because a hole punched at full strength is a plate with the sign flipped. */
-        TXDECK.punch(c, boxes, { feather: 62, strength: 0.76 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
 
         /* THE DATED STAMP, and it is the deck's ONLY granite on this frame.
          * THE ACCENT LAW: granite is a mark that has already been made. An award start is a
@@ -285,7 +286,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
          * project reserves that for a deadline a reader can still act on and there is no such
          * deadline in this story. It is under 0.2 percent of the frame. */
         c.save();
-        c.font = '600 21px "JetBrains Mono", monospace';
+        c.font = '700 30px "JetBrains Mono", monospace';
         c.fillStyle = M.ACCENT;
         c.textAlign = "left";
         c.fillText("AWARD STARTED 2026-09-15", 80, 1156);

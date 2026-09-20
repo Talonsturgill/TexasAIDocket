@@ -1,0 +1,267 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 1 of 9. Archetype FULL_BLEED.
+     THE ESTABLISHING SHOT. Inside a 6.0 x 4.2 x 3.0 m waterworks, from standing eye just inside
+     the open west door, with the late sun laying a long patch across the swept slab. Everything
+     the eight frames after this one crop into is here at full length first.
+     THE READER IS PUT INSIDE THE DOORWAY rather than shown the building, and frame 9 turns that
+     round by putting them back outside it.
+     THE ACCENT IS INTRODUCED AT ITS SMALLEST, a sliver of trace behind the recorder's window,
+     well under one percent of the frame. A reader meets the colour here and learns what it means
+     on frame 2.
+     NOTHING IS DRAWN NEGLECTED. The slab is swept, the pipe is painted, and nothing leaks.
+     Planned frame median L* 8. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:140px; width:800px; font-size:92px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.98;
+          letter-spacing:-0.023em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:432px; width:600px; font-size:25px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The line stops where the pen is.</h1>
+<p class="dek">A small Texas water system keeps its answers in one room, on paper, by hand.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "One room, at ten to five", counter: "01 / 09",
+      src: "c15   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 92, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260901);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE RECORDER'S WINDOW, hoisted so the over pass can put the deck's first sliver of granite
+     * behind its glass after the screen has run. */
+    var REC = { x: 742, y: 596, w: 116, h: 116 };
+
+    M.print(cx, {
+      seed: 9,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: 700, f: 860, eye: 1.65 });
+        var castX = M.castDir()[0];
+        var P = function (X, Y, Z) { return S.project(X, Y, Z); };
+
+        /* THE BACK WALL at 4.2 m, block, and the joists above it. The room's darkest mass is at
+         * the top of the frame, which is where the hook sits. */
+        (function () {
+          a.fillStyle = M.G.deep; a.fillRect(0, 0, W, H);
+          M.blockWall(a, { x: 0, y: 236, w: W, h: 560 }, S.ppm(4.2),
+                      { face: M.G.shade, joint: M.G.dark });
+          /* the joists, running across the ceiling, each with its own dark underside */
+          for (var j = 0; j < 7; j++) {
+            var jy = 40 + j * 30;
+            a.fillStyle = M.G.dark; a.fillRect(0, jy, W, 16);
+            a.fillStyle = "rgba(0,0,0,0.50)"; a.fillRect(0, jy + 16, W, 8);
+          }
+          a.fillStyle = "rgba(0,0,0,0.42)"; a.fillRect(0, 0, W, 250);
+        })();
+
+        /* THE SLAB, and the long patch of west sun lying across it from the open door behind
+         * the reader's left shoulder. This is the only high value region in a shaded room and
+         * it is what carries the eye in. */
+        (function () {
+          S.ground({ near: 0.9, far: 30, fill: M.G.stone });
+          var g = a.createLinearGradient(0, 700, 0, H);
+          g.addColorStop(0.00, "rgba(0,0,0,0.30)");
+          g.addColorStop(0.42, "rgba(0,0,0,0.06)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.46)");
+          a.fillStyle = g; a.fillRect(0, 700, W, H - 700);
+          /* the sun patch, a long parallelogram raking in from the lower left */
+          a.save();
+          a.beginPath();
+          a.moveTo(-40, H); a.lineTo(300, 770); a.lineTo(690, 782); a.lineTo(430, H);
+          a.closePath();
+          a.clip();
+          var sg = a.createLinearGradient(0, 780, 0, H);
+          sg.addColorStop(0.00, "rgba(246,235,200,0.10)");
+          sg.addColorStop(0.55, "rgba(246,235,200,0.30)");
+          sg.addColorStop(1.00, "rgba(246,235,200,0.16)");
+          a.fillStyle = sg; a.fillRect(-40, 760, W, H - 760);
+          a.restore();
+          /* the slab's control joint and its aggregate */
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 3;
+          a.beginPath(); a.moveTo(-20, 1024); a.lineTo(W + 20, 968); a.stroke();
+          var RG = TX.rng(133);
+          for (var i = 0; i < 150; i++) {
+            var x = RG() * W, y = 720 + RG() * (H - 720), r = 1.0 + RG() * 1.8;
+            a.fillStyle = "rgba(0,0,0,0.20)"; a.fillRect(x + r * 0.8, y, r, r * 0.6);
+            a.globalAlpha = 0.10 + RG() * 0.14;
+            a.fillStyle = M.G.bright; a.fillRect(x - r, y - r * 0.5, r, r * 0.7);
+            a.globalAlpha = 1;
+          }
+        })();
+
+        /* THE HYDROPNEUMATIC TANK, 1.2 m by 3.0 m on two 0.5 m saddles, running off the RIGHT
+         * edge. Frame 4 stands a person in front of this same vessel. */
+        (function () {
+          var ppm = S.ppm(3.4), tY = 620, tR = 0.6 * ppm;
+          a.fillStyle = "rgba(0,0,0,0.42)";
+          a.fillRect(560 + 22, tY - tR + 18, W, tR * 2);
+          var g = a.createLinearGradient(0, tY - tR, 0, tY + tR);
+          g.addColorStop(0.00, M.G.metal);
+          g.addColorStop(0.32, M.G.chalk ? M.G.bright : M.G.bright);
+          g.addColorStop(0.74, M.G.shade);
+          g.addColorStop(1.00, M.G.dark);
+          a.fillStyle = g; a.fillRect(560, tY - tR, W - 560 + 40, tR * 2);
+          a.fillStyle = M.G.bright;
+          a.beginPath(); a.ellipse(560, tY, tR * 0.30, tR, 0, 0, Math.PI * 2); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 2;
+          a.beginPath(); a.moveTo(560, tY - tR); a.lineTo(W + 40, tY - tR); a.stroke();
+          a.beginPath(); a.moveTo(560, tY + tR); a.lineTo(W + 40, tY + tR); a.stroke();
+          /* the saddles, and the contact where they meet the slab */
+          for (var s = 0; s < 2; s++) {
+            var sx = 660 + s * 260;
+            a.fillStyle = "rgba(0,0,0,0.48)";
+            a.fillRect(sx + 14, tY + tR + 150, 104, 10);
+            a.fillStyle = M.G.dark; a.fillRect(sx, tY + tR, 88, 156);
+            a.fillStyle = "rgba(246,235,200,0.12)"; a.fillRect(sx, tY + tR, 22, 156);
+          }
+        })();
+
+        /* THE VERTICAL TURBINE PUMP, 0.9 m of head on a 0.6 m well casing plinth, left of
+         * centre, standing IN the sun patch so it has a hard contact shadow running east. */
+        (function () {
+          var ppm = S.ppm(2.8);
+          var bx = 300, by = 940;
+          var castPx = M.cast(0.9) * ppm * castX;
+          a.fillStyle = "rgba(0,0,0,0.50)";
+          a.beginPath();
+          a.moveTo(bx - 42, by); a.lineTo(bx + 42, by);
+          a.lineTo(bx + 42 + castPx * 0.5, by - 26); a.lineTo(bx - 42 + castPx * 0.5, by - 26);
+          a.closePath(); a.fill();
+          /* the concrete plinth */
+          a.fillStyle = M.G.stone; a.fillRect(bx - 46, by - 0.6 * ppm, 92, 0.6 * ppm);
+          a.fillStyle = "rgba(246,235,200,0.24)"; a.fillRect(bx - 46, by - 0.6 * ppm, 26, 0.6 * ppm);
+          /* the motor above it, machine enamel, its west flank lit */
+          var my = by - 0.6 * ppm;
+          a.fillStyle = M.G.dark; a.fillRect(bx - 34, my - 0.9 * ppm, 68, 0.9 * ppm);
+          a.fillStyle = M.G.shade; a.fillRect(bx - 34, my - 0.9 * ppm, 20, 0.9 * ppm);
+          a.fillStyle = M.G.metal;
+          a.beginPath(); a.ellipse(bx, my - 0.9 * ppm, 34, 11, 0, 0, Math.PI * 2); a.fill();
+          /* the cooling fins, a few ticks so it is a motor rather than a drum */
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 1.4;
+          for (var f = 1; f < 8; f++) {
+            var fy = my - 0.9 * ppm + f * (0.9 * ppm / 8);
+            a.beginPath(); a.moveTo(bx - 34, fy); a.lineTo(bx + 34, fy); a.stroke();
+          }
+        })();
+
+        /* THE DISCHARGE MANIFOLD, 0.10 m galvanized at 1.1 m, crossing the WHOLE frame, with a
+         * flanged tee and a valve on it. It is the line that ties the room together. */
+        (function () {
+          var ppm = S.ppm(3.0), my = 800;
+          a.strokeStyle = "rgba(0,0,0,0.40)"; a.lineWidth = Math.max(4, 0.10 * ppm);
+          a.beginPath(); a.moveTo(-20, my + 9); a.lineTo(W + 20, my + 3); a.stroke();
+          a.strokeStyle = M.G.metal; a.lineWidth = Math.max(3.4, 0.10 * ppm);
+          a.beginPath(); a.moveTo(-20, my); a.lineTo(W + 20, my - 6); a.stroke();
+          a.strokeStyle = "rgba(246,235,200,0.36)"; a.lineWidth = 1.6;
+          a.beginPath(); a.moveTo(-20, my - 0.03 * ppm); a.lineTo(W + 20, my - 6 - 0.03 * ppm); a.stroke();
+          /* the riser off the pump into the manifold */
+          a.strokeStyle = M.G.metal; a.lineWidth = Math.max(3, 0.08 * ppm);
+          a.beginPath(); a.moveTo(300, 940 - 0.6 * S.ppm(2.8) - 0.9 * S.ppm(2.8));
+          a.lineTo(300, my + 2); a.stroke();
+          /* a gate valve with its handwheel, on the manifold */
+          a.fillStyle = M.G.shade; a.fillRect(498, my - 24, 40, 36);
+          a.strokeStyle = M.G.metal; a.lineWidth = 3;
+          a.beginPath(); a.arc(518, my - 44, 20, 0, Math.PI * 2); a.stroke();
+          a.beginPath(); a.moveTo(518, my - 24); a.lineTo(518, my - 62); a.stroke();
+        })();
+
+        /* THE RECORDER on the back wall at 1.5 m, and the CLIPBOARD on a nail beside it. These
+         * are the two instruments the deck spends frames 2 and 4 inside. */
+        (function () {
+          a.fillStyle = "rgba(0,0,0,0.46)";
+          a.fillRect(REC.x + 14, REC.y + 16, REC.w, REC.h);
+          a.fillStyle = M.G.dark; a.fillRect(REC.x, REC.y, REC.w, REC.h);
+          a.fillStyle = M.G.shade; a.fillRect(REC.x, REC.y, REC.w * 0.22, REC.h);
+          a.fillStyle = M.G.deep;
+          a.fillRect(REC.x + 14, REC.y + 20, REC.w - 28, REC.h - 48);
+          a.strokeStyle = M.G.metal; a.lineWidth = 2;
+          a.strokeRect(REC.x + 14, REC.y + 20, REC.w - 28, REC.h - 48);
+          a.fillStyle = M.G.metal; a.fillRect(REC.x + 22, REC.y + REC.h - 22, REC.w - 44, 8);
+
+          /* the clipboard, hanging, with a ruled sheet on it */
+          a.save();
+          a.translate(940, 600); a.rotate(0.05);
+          a.fillStyle = "rgba(0,0,0,0.44)"; a.fillRect(10, 12, 86, 118);
+          a.fillStyle = M.G.bright; a.fillRect(0, 0, 86, 118);
+          a.fillStyle = M.G.shade; a.fillRect(0, 0, 86, 16);
+          a.strokeStyle = "rgba(46,32,22,0.26)"; a.lineWidth = 1;
+          for (var r = 0; r < 8; r++) {
+            a.beginPath(); a.moveTo(8, 32 + r * 10); a.lineTo(78, 32 + r * 10); a.stroke();
+          }
+          a.restore();
+        })();
+
+        /* THE OPERATOR at 1.7 m, standing at the manifold IN the sun patch, inked dark. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "stand", height: 1.7, hold: "clipboard" });
+          S.shadow(fig, { X: -1.5, Z: 2.5, ink: "#000", alpha: 0.50 });
+          S.sprite(fig, { X: -1.5, Z: 2.5,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 130, topSolid: 68, bottom: 176, bottomSolid: 104 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE DECK'S FIRST GRANITE, AND ITS SMALLEST. A sliver of trace behind the recorder's
+         * window, so a reader meets the colour here and learns on frame 2 what it means. Well
+         * under one percent of the frame. */
+        c.save();
+        c.beginPath();
+        c.rect(REC.x + 16, REC.y + 22, REC.w - 32, REC.h - 52);
+        c.clip();
+        c.strokeStyle = M.ACCENT; c.lineWidth = 2.2;
+        c.beginPath();
+        for (var px = REC.x + 16; px <= REC.x + REC.w - 16; px += 2) {
+          var u = (px - REC.x - 16) / (REC.w - 32);
+          var py = REC.y + 52 + 14 * Math.sin(u * Math.PI * 4.2) + 5 * Math.sin(u * Math.PI * 11.0);
+          if (px === REC.x + 16) c.moveTo(px, py); else c.lineTo(px, py);
+        }
+        c.stroke();
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -217,13 +217,14 @@ window.renderReady = new Promise(async function (resolve, reject) {
       },
       over: function (c) {
         M.reserve(c, { top: 122, topSolid: 64, bottom: 178, bottomSolid: 106 });
-        TXDECK.punch(c, boxes, { feather: 66, strength: 0.74 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
 
         /* THE TRACE, IN GRANITE, AFTER THE SCREEN. This is the deck's accent and the accent law
          * is that granite marks what has ALREADY been made. It runs from the paper's left margin
          * to the stylus and NOT ONE PIXEL FURTHER, which is the whole argument of the frame. */
         c.save();
-        c.strokeStyle = M.ACCENT; c.lineWidth = 3.2;
+        c.strokeStyle = M.ACCENT; c.lineWidth = 7.0;
         c.lineJoin = "round"; c.lineCap = "round";
         c.beginPath();
         var t0 = -10;
@@ -233,7 +234,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
         }
         c.stroke();
         c.fillStyle = M.ACCENT;
-        c.beginPath(); c.arc(GEO.penX, GEO.tipY, 4.4, 0, Math.PI * 2); c.fill();
+        c.beginPath(); c.arc(GEO.penX, GEO.tipY, 7.0, 0, Math.PI * 2); c.fill();
         c.restore();
       }
     });
