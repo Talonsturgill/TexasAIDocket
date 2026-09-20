@@ -27,7 +27,7 @@
   .hook { position:absolute; left:80px; top:126px; width:700px; font-size:80px;
           font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
           letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
-  .dek  { position:absolute; left:80px; top:1136px; width:700px; font-size:23px;
+  .dek  { position:absolute; left:80px; top:1116px; width:900px; font-size:22px;
           line-height:1.40; color:#B9B096; z-index:10; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
@@ -38,7 +38,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Texas counts 4,749.</h1>
-<p class="dek">3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together.</p>
+<p class="dek">3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -55,7 +55,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
   try {
     await document.fonts.ready;
     TXLAYOUT.mount(document.body, {
-      kicker: "How many rooms like this", counter: "06 / 09",
+      kicker: "What the state's own record returns", counter: "06 / 09",
       src: "c12 c15   TEXAS AI DOCKET", ink: "#9A9280"
     });
     TX.fitText(document.getElementById("hook"), { min: 58, max: 80, maxLines: 2 });
@@ -93,9 +93,9 @@ window.renderReady = new Promise(async function (resolve, reject) {
      * gate wanted and it is also a better argument than the rules were, because three physically
      * separate sheets cannot be read as three tiers of one measurement. */
     var SHEETS = [
-      { x: 44, y: 226, w: 940, h: 356, rot: -0.011 },
-      { x: 92, y: 640, w: 940, h: 300, rot:  0.014 },
-      { x: 44, y: 996, w: 940, h: 156, rot: -0.008 }
+      { x: 44, y: 222, w: 940, h: 344, rot: -0.011 },
+      { x: 92, y: 600, w: 940, h: 290, rot:  0.014 },
+      { x: 44, y: 922, w: 940, h: 150, rot: -0.008 }
     ];
 
     /* THE TWO SCALES, AND THE DIFFERENCE BETWEEN THEM IS THE ARGUMENT RATHER THAN A COMPROMISE.
@@ -247,14 +247,20 @@ window.renderReady = new Promise(async function (resolve, reject) {
           c.restore();
         }
 
-        /* THE FOOTNOTE, on the bench rather than on any one sheet, because it is true of all
-         * three. It names the source and the date and NOTHING ELSE. No total, no share, no
-         * percentage, and no arithmetic sign appears anywhere in this frame. */
+        /* THE FOOTNOTE, ON THE THIRD SHEET rather than on the bench, and the move is a repair.
+         * It sat at (58, 1178) on the bench and printed straight through the dek's second line,
+         * two text runs overprinted on the only frame in the deck carrying a number. A reader
+         * judge caught it and no machine gate did, because the dek is DOM and the footnote is
+         * canvas and nothing in the suite compares the two for overlap. That is a gap in the
+         * SUITE and it is written up as one rather than papered over here.
+         * It is also the right home for it. The note is about the queries, and the queries are
+         * on the paper. */
         c.save();
-        c.font = '500 13px "JetBrains Mono", monospace';
-        c.fillStyle = "rgba(220,211,180,0.50)";
+        c.translate(SHEETS[2].x, SHEETS[2].y); c.rotate(SHEETS[2].rot);
+        c.font = '500 12px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(46,32,22,0.58)";
         c.fillText("EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY.",
-                   58, 1178);
+                   28, 138);
         c.restore();
       }
     });

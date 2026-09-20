@@ -69,12 +69,12 @@
           "anc": []
         },
         {
-          "text": "A small Texas water system keeps its answers in one room, on paper, by hand.",
+          "text": "Monitoring systems, historical records and reactive emergency protocols. Those are the abstract's own words for what is in this room.",
           "x": 80,
           "y": 432,
-          "w": 600,
-          "h": 71,
-          "font_px": 25,
+          "w": 700,
+          "h": 102,
+          "font_px": 24,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(185, 176, 150)",
@@ -84,14 +84,20 @@
             [
               80,
               432,
-              596,
-              35
+              691,
+              33
             ],
             [
               80,
-              468,
-              280,
-              35
+              466,
+              698,
+              33
+            ],
+            [
+              80,
+              500,
+              63,
+              33
             ]
           ],
           "anc": []
@@ -170,7 +176,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5013,
+      "render_ms": 5547,
       "ok": true,
       "canvases": [
         {
@@ -183,8 +189,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 31.5,
-          "variance": 2723
+          "mean": 31.3,
+          "variance": 2634.5
         }
       ],
       "breather": false,
@@ -697,9 +703,9 @@
         {
           "text": "Under the last entry, ruled blank lines. A record answers what happened and never what is about to.",
           "x": 80,
-          "y": 390,
-          "w": 560,
-          "h": 102,
+          "y": 336,
+          "w": 620,
+          "h": 68,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -709,20 +715,14 @@
           "lines": [
             [
               80,
-              390,
-              510,
+              336,
+              607,
               33
             ],
             [
               80,
-              424,
-              537,
-              33
-            ],
-            [
-              80,
-              458,
-              29,
+              370,
+              474,
               33
             ]
           ],
@@ -802,7 +802,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5111,
+      "render_ms": 5568,
       "ok": true,
       "canvases": [
         {
@@ -815,8 +815,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 27.1,
-          "variance": 2073.5
+          "mean": 44.5,
+          "variance": 4110.2
         }
       ],
       "breather": false,
@@ -1031,8 +1031,8 @@
       "overflow_warnings": [
         {
           "kind": "tiny-text",
-          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together.",
-          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together.",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
         }
       ],
       "fonts_missing": [],
@@ -1082,12 +1082,12 @@
           "anc": []
         },
         {
-          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together.",
+          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together.",
           "x": 80,
-          "y": 1136,
-          "w": 700,
-          "h": 97,
-          "font_px": 23,
+          "y": 1116,
+          "w": 900,
+          "h": 62,
+          "font_px": 22,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(185, 176, 150)",
@@ -1096,30 +1096,24 @@
           "lines": [
             [
               80,
-              1136,
-              673,
-              32
+              1116,
+              877,
+              30
             ],
             [
               80,
-              1168,
-              653,
-              32
-            ],
-            [
-              80,
-              1200,
-              215,
-              32
+              1147,
+              524,
+              30
             ]
           ],
           "anc": []
         },
         {
-          "text": "How many rooms like this",
+          "text": "What the state's own record returns",
           "x": 80,
           "y": 80,
-          "w": 397,
+          "w": 580,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -1131,7 +1125,7 @@
             [
               80,
               82,
-              397,
+              580,
               31
             ]
           ],
@@ -1237,7 +1231,7 @@
         {
           "text": "EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY.",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 12px \"JetBrains Mono\", monospace"
         }
       ],
       "svg_plates": [],
@@ -1245,7 +1239,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5144,
+      "render_ms": 5173,
       "ok": true,
       "canvases": [
         {
@@ -1258,8 +1252,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 53.4,
-          "variance": 4731.1
+          "mean": 53.5,
+          "variance": 4828
         }
       ],
       "breather": false,
@@ -1690,12 +1684,12 @@
           "anc": []
         },
         {
-          "text": "The state publishes what every public water system in Texas reports about its own water.",
+          "text": "TCEQ publishes source, contaminant and violation information for every public water system in Texas. The thing to ask for is the annual drinking water quality report.",
           "x": 80,
           "y": 392,
-          "w": 640,
-          "h": 70,
-          "font_px": 25,
+          "w": 700,
+          "h": 101,
+          "font_px": 24,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(185, 176, 150)",
@@ -1705,14 +1699,20 @@
             [
               80,
               392,
-              618,
-              35
+              686,
+              33
             ],
             [
               80,
-              427,
-              392,
-              35
+              426,
+              660,
+              33
+            ],
+            [
+              80,
+              459,
+              438,
+              33
             ]
           ],
           "anc": []
@@ -1797,7 +1797,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4891,
+      "render_ms": 5331,
       "ok": true,
       "canvases": [
         {
@@ -1810,8 +1810,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 39.5,
-          "variance": 3587.1
+          "mean": 39.3,
+          "variance": 3485.3
         }
       ],
       "breather": false,

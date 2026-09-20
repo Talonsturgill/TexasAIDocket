@@ -5,11 +5,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.2185,
-        0.6261,
+        0.2437,
+        0.605,
         0.8732
       ],
-      "band_ratio": 1.4895
+      "band_ratio": 1.4861
     },
     {
       "file": "slide-02.html",
@@ -56,15 +56,13 @@
     {
       "file": "slide-04.html",
       "fails": [],
-      "warns": [
-        "busy art under text (bg edge density 0.03) beneath 'The log is current to this line.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
-      ],
+      "warns": [],
       "bands": [
-        0.4454,
-        0.2122,
-        0.546
+        0.2563,
+        0.8908,
+        0.5735
       ],
-      "band_ratio": 1.3389
+      "band_ratio": 1.0
     },
     {
       "file": "slide-05.html",
@@ -85,6 +83,7 @@
       "file": "slide-06.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 73% / mid 100% / bottom 59% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "canvas raster text 'WATER_SYSTEM' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'PRIMACY_AGENCY_CODE  TX' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'PWS_ACTIVITY_CODE   A' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
@@ -93,15 +92,14 @@
         "canvas raster text 'POPULATION_SERVED_COUNT  <  3301' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'POPULATION_SERVED_COUNT  >  50000' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'EPA ENVIROFACTS SDWIS, QUERIED 2026-09-2' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
-        "tiny-text: '3,579 of them serve fewer than 3,301 people. 87 se' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
-        "busy art under text (bg edge density 0.06) beneath '3,579 of them serve fewer than 3,301 peo' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "tiny-text: '3,579 of them serve fewer than 3,301 people. 87 se' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
       ],
       "bands": [
-        0.7353,
-        0.8971,
-        0.7298
+        0.7332,
+        1.0,
+        0.5882
       ],
-      "band_ratio": 0.9299
+      "band_ratio": 0.7686
     },
     {
       "file": "slide-07.html",
@@ -135,14 +133,14 @@
         "a drawn rule crosses the glyph band of 'Read your own system's report.' (canvas edge .pixels at 80,190.5 776x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
       ],
       "bands": [
-        0.1849,
-        0.5189,
+        0.2122,
+        0.5525,
         0.9246
       ],
-      "band_ratio": 1.6507
+      "band_ratio": 1.5954
     }
   ],
   "fails": 0,
-  "warns": 35,
+  "warns": 34,
   "verdict": "WARN"
 }

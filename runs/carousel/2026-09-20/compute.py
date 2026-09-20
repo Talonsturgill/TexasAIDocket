@@ -73,7 +73,28 @@ ranking = {
     "rows": rank_rows,
 }
 
-# 3. The raw counts, passed through with their provenance so a frame can cite one by name.
+# 3. THE SCALE BAR ON FRAME 5. Its legend is a numeral on a slide and therefore a fresh factual
+#    assertion, so it is computed here rather than typed on the frame. The elevation is drawn at
+#    one declared metres per pixel and the bar's length in pixels follows from the legend, which
+#    is the only direction that keeps the drawing honest: the NUMBER is chosen and the LENGTH is
+#    derived, never the other way round.
+MPP = 0.0235
+scale_bar = {
+    "legend_metres": 5,
+    "metres_per_pixel": MPP,
+    "bar_length_px": round(5 / MPP, 1),
+    "basis": "measured",
+    "from": [],
+    "how": ("out/2026-09-20/compute.py. Frame 5's orthographic elevation declares 0.0235 metres "
+            "per pixel in its own source, and 5 metres at that scale is 212.8 px, which is the "
+            "bar the frame draws. A reader can check any component on that frame against it."),
+    "set_counted": ("nothing. This is a unit of length rather than a count, and it aggregates no "
+                    "claim. It is declared because it is a NUMERAL A READER SEES and this "
+                    "project's law is that no numeral reaches published copy without a "
+                    "computation behind it."),
+}
+
+# 4. The raw counts, passed through with their provenance so a frame can cite one by name.
 raw = {vid: {"value": V[vid]["value"], "basis": "measured", "from": [vid],
              "how": V[vid]["how"], "set_counted": V[vid]["label"]}
        for vid in ("v1", "v2", "v3", "v4", "v5", "v6", "v7")}
@@ -85,6 +106,7 @@ out = {
               "somebody typed. v1 minus v2 and v1 minus v3 are deliberately absent."),
     "small_systems_of_all": subset,
     "texas_rank_of_five": ranking,
+    "scale_bar_frame_5": scale_bar,
     "counts": raw,
 }
 (HERE / "figures.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n",

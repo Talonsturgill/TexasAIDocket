@@ -1,6 +1,6 @@
 {
  "date": "2026-09-20",
- "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly.",
+ "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly. A 'September 15th to August 31st' span was declared and then removed, because aggregate_check was right that a date pair read as a span is a figure the deck computed. The caption now states the two dates as two facts rather than as a distance between them, which is what the record actually carries.",
  "aggregates": [
   {
    "phrase": "three places",
@@ -38,6 +38,17 @@
     "v3"
    ],
    "note": "The phrase exists to tell a reader the three figures are separate measurements rather than tiers of one, which is the partition misread claims.json rejects by name."
+  },
+  {
+   "phrase": "3,579 ever gets",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3579,
+   "computed_by": "read, not computed. TOTALQUERYRESULTS returned by the EPA Envirofacts query in claims.json v2, measured twice, once by this run and once independently by the fact checker.",
+   "from_claims": [
+    "v2"
+   ],
+   "note": "The caption's close reuses the figure it opened against. It is the same measurement and not a second one, and no arithmetic is performed on it."
   }
  ]
 }

@@ -86,7 +86,24 @@ against the press. The press is never chased to the arc.
     median    08  18  24  16  11  20  10  14  07
 
 Adjacent jumps 10, 6, 8, 5, 9, 10, 4, 7. Max 10, mean 7.4, against this repo's measured historical
-median adjacent jump of **21.0** and four hard cuts per deck. The three paper surfaces, frames 2,
+median adjacent jump of **21.0** and four hard cuts per deck.
+
+**WHAT ACTUALLY PRINTED, measured at 432 px by `measure.py` after round 1's repairs:**
+
+    frame      1     2     3     4     5     6     7     8     9
+    measured  8.8  10.3  12.3   9.3   6.3  12.3  10.3   7.7  10.3
+
+Adjacent 1.5, 2.0, 3.0, 3.0, 6.0, 2.0, 2.6, 2.6. **Max 6.0, mean 2.84**, against the sibling's
+2.6 and this repo's 21.0. The deck holds together better than the plan asked it to.
+
+**AND IT PRINTED SYSTEMATICALLY DARKER THAN PLANNED, WHICH IS NOT REWRITTEN HERE.** The three
+paper frames were planned at 18, 24 and 20 and came out at 10.3, 12.3 and 12.3. The hatch at cell
+6 does not reach the twenties over this ground no matter how bright the stock is drawn, which is
+the ceiling ILLUSTRATION_SYSTEM's own screen table predicts and which the probe frame measured
+only for frame 9's exterior. The honest reading is that the probe was one frame and the ceiling
+is a property of the deck, so the next run's probe should print a white field through the chosen
+screen on a PAPER frame as well as a ground one. Same lesson September 19th recorded, arrived at
+from the other side. The three paper surfaces, frames 2,
 3 and 6, are the strobe risk, and the answer is that NONE of them fills its frame: each sheet sits
 in the room's own shade with the dark interior around it, which is September 18th's finding that
 four cream sheets on a dark board strobe the canvas mean while the median holds.
@@ -159,7 +176,7 @@ art:
     the frame
 type:
   hook: "The line stops where the pen is."
-  dek: "A small Texas water system keeps its answers in one room, on paper, by hand."
+  dek: "Monitoring systems, historical records and reactive emergency protocols. Those are the abstract's own words for what is in this room."
   labels: []
 verbatim: []
 acceptance:
@@ -381,8 +398,7 @@ art:
   palette: 'ground #2E2016, ink #DCD3B4, tank_chalk #BFB49A chalked enamel on the pressure tank, enamel
     #46524A, granite #9A3B2A for the written entries only'
   value_structure: 'Lightest is the open page of the logbook. Darkest is the tank crown at the top. The
-    operator sits between them and is separated from the tank by at least 8 L*. Frame median L* planned
-    at 27.
+    operator sits between them and is separated from the tank by at least 8 L*. Frame median L* planned at 16.
 
     '
   motion: up the operator, along the forearm, down the pen to the last written line, then into the ruled
@@ -425,7 +441,10 @@ job: 'State the mechanism exactly as far as the abstract states it and no furthe
 
   '
 claims: [c14, c13]
-numerals: []
+numerals:
+- computed_by: out/2026-09-20/compute.py, scale_bar_frame_5. The elevation declares
+    0.0235 metres per pixel and the legend is 5 m, so the bar is 212.8 px. The NUMBER is chosen
+    and the LENGTH is derived, which is the only direction that keeps a drawn scale honest.
 composition:
   structure: 'All three components stand on one ground line at one scale so their relative sizes are the
     drawing''s argument, and the run between them is horizontal because the claim is about propagation
@@ -452,8 +471,7 @@ art:
     '
   palette: 'ink #DCD3B4 on ground #2E2016, galv #9EA69B for the main, soil hatch in #46524A'
   value_structure: 'Lightest is the scale bar and the leader labels. Darkest is the soil section below
-    the ground line. The three components sit at one value so none is emphasised over another. Frame median
-    L* planned at 21.
+    the ground line. The three components sit at one value so none is emphasised over another. Frame median L* planned at 11.
 
     '
   motion: left to right along the main from the intake through the pump house to the vessels
@@ -540,7 +558,7 @@ art:
   motion: down the sheet block by block, each one ending shorter than the last
 type:
   hook: "Texas counts 4,749."
-  dek: "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together."
+  dek: "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together."
   labels: ["PRIMACY_AGENCY_CODE TX", "PWS_ACTIVITY_CODE A", "PWS_TYPE_CODE CWS"]
 verbatim: []
 acceptance:
@@ -680,8 +698,7 @@ art:
   palette: 'block wall in ink #DCD3B4 knocked back toward ground #2E2016, blank chart in chart stock #DCD3B4,
     no accent anywhere'
   value_structure: 'Lightest is the blank chart on the nail, deliberately, because the frame''s subject
-    is a thing with nothing on it. Darkest is the carved shadow inside each glyph. Frame median L* planned
-    at 26.
+    is a thing with nothing on it. Darkest is the carved shadow inside each glyph. Frame median L* planned at 14.
 
     '
   motion: along the carved line left to right, then off it onto the blank chart
@@ -760,7 +777,7 @@ art:
   motion: along the cast from the left of the yard to the building, then into the open door
 type:
   hook: "Read your own system's report."
-  dek: "The state publishes what every public water system in Texas reports about its own water."
+  dek: "TCEQ publishes source, contaminant and violation information for every public water system in Texas. The thing to ask for is the annual drinking water quality report."
   labels: []
 verbatim:
 - c17: annual drinking water quality report
