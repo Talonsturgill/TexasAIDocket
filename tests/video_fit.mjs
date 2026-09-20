@@ -7,6 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 export async function videoFit(browser, site, check) {
+  await homeVideoFit(browser, site, check);
   const context = await browser.newContext({ reducedMotion: "reduce" });
   try {
     const html = fs.readFileSync(path.join(site, "videos/index.html"), "utf8");
@@ -96,6 +97,75 @@ export async function videoFit(browser, site, check) {
       check(`the old cover crop is detected independently for ${selector}`,
         result.filter((r) => !r.fits && r.cropX > 80).length === 1, JSON.stringify(result));
       await page.locator(selector).evaluate((el) => el.style.removeProperty("object-fit"));
+    }
+  } finally {
+    await context.close();
+  }
+}
+
+// Exercise native fullscreen on the actual generated homepage, including exit/restore.
+async function homeVideoFit(browser, site, check) {
+  const context = await browser.newContext({ reducedMotion: "reduce" });
+  try {
+    await context.route("**/*", async (route) => {
+      const url = new URL(route.request().url());
+      if (url.hostname !== "home-video.test") return route.abort();
+      const file = path.join(site, url.pathname === "/" ? "index.html" : url.pathname);
+      if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return route.abort();
+      const type = file.endsWith(".css") ? "text/css" : file.endsWith(".json")
+        ? "application/json" : file.endsWith(".html") ? "text/html" : "application/octet-stream";
+      return route.fulfill({ contentType: type, body: fs.readFileSync(file) });
+    });
+    const page = await context.newPage();
+    await page.goto("http://home-video.test/");
+    const video = page.locator("#hv");
+    await video.scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => document.querySelector("#hv").hasAttribute("src"));
+    await video.evaluate(async (el) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 720; canvas.height = 1280;
+      const ctx = canvas.getContext("2d");
+      const paint = () => {
+        ctx.fillStyle = "#123456"; ctx.fillRect(0, 0, 720, 1280);
+        ctx.strokeStyle = "#fff"; ctx.lineWidth = 20; ctx.strokeRect(10, 10, 700, 1260);
+      };
+      paint();
+      const stream = canvas.captureStream(5), timer = setInterval(paint, 100);
+      window.__homeVideoFixture = { canvas, stream, timer };
+      el.removeAttribute("src"); el.load(); el.srcObject = stream;
+      await el.play();
+    });
+    const measure = () => video.evaluate((el) => {
+      const b = el.getBoundingClientRect(), s = getComputedStyle(el);
+      return { width: b.width, height: b.height, x: b.x, y: b.y,
+        fit: s.objectFit, position: s.objectPosition, radius: s.borderRadius,
+        nativeWidth: el.videoWidth, nativeHeight: el.videoHeight,
+        screenWidth: innerWidth, screenHeight: innerHeight,
+        fullscreen: document.fullscreenElement === el };
+    });
+    for (const [width, height] of [[1280, 900], [390, 844], [844, 390]]) {
+      await page.setViewportSize({ width, height });
+      await page.waitForFunction(() => document.querySelector("#hv").videoWidth === 720);
+      const before = await measure();
+      check(`homepage film is uncropped at ${width}×${height}`,
+        before.fit === "contain" && Math.abs(before.width / before.height - 9 / 16) < .01,
+        JSON.stringify(before));
+      await video.evaluate((el) => el.requestFullscreen());
+      await page.waitForFunction(() => !!document.fullscreenElement);
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const full = await measure();
+      check(`native fullscreen fits and centres the entire film at ${width}×${height}`,
+        full.fullscreen && full.fit === "contain" && full.position === "50% 50%"
+        && full.nativeWidth === 720 && full.nativeHeight === 1280
+        && Math.abs(full.width - full.screenWidth) < 1
+        && Math.abs(full.height - full.screenHeight) < 1
+        && full.x === 0 && full.y === 0 && full.radius === "0px", JSON.stringify(full));
+      await page.evaluate(() => document.exitFullscreen());
+      await page.waitForFunction(() => !document.fullscreenElement);
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const after = await measure();
+      check(`exiting fullscreen restores the homepage at ${width}×${height}`,
+        Math.abs(after.width - before.width) < 1 && Math.abs(after.height - before.height) < 1);
     }
   } finally {
     await context.close();
