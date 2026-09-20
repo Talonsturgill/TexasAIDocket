@@ -38,7 +38,7 @@ TRENDING_AGE = dt.timedelta(hours=72)
 MAX_CHECK_AGE = dt.timedelta(hours=18)
 FIRST_PARTY_GROUPS = frozenset(CONFIG.get('first_party_groups', []))
 EDITION_LENGTH = dt.timedelta(hours=6)
-STORIES_PER_EDITION = 5
+STORIES_PER_EDITION = 10
 # Matches the existing 01:23, 07:23, 13:23, 19:23 UTC collection schedule.
 EDITION_ANCHOR = dt.datetime(1970, 1, 1, 1, 23, tzinfo=UTC)
 UA = 'TexasAIDocket/1.0 (+https://texasaidocket.com)'
@@ -189,7 +189,7 @@ def edition_story(data: dict, now: dt.datetime) -> dict | None:
 
 
 def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
-    """Schedule distinct six-hour editions, keeping an already published current slot stable."""
+    """Reconsider the best reusable Texas stories each slot; vary leads within that pool."""
     start = edition_start(now)
     history = []
     for entry in previous.get('history', [])[-32:]:
@@ -220,90 +220,36 @@ def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
     for offset in range(4):
         begins = start + offset * EDITION_LENGTH
         at = max(now, begins)
-        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < MAX_AGE]
-        # Hold only a real previously published rotation slot, never the legacy stuck winner.
-        locked = next((entry['selected']['url'] for entry in old_editions
-                       if entry.get('starts_at') == stamp(begins)), None) if offset == 0 else None
-        chosen = next((row for row in candidates if row['url'] == locked), None)
-        if chosen is None:
-            # Distinct topics throughout the reserve queue. A sister outlet is not a rotation.
-            candidates = [row for row in candidates if not any(
-                row['url'] == entry['selected']['url'] or related(row, entry['selected']) for entry in editions)]
-            if used:
-                last = used[-1]
-                candidates = [row for row in candidates if row['url'] != last['url'] and not related(row, last)]
-            unseen = [row for row in candidates if not any(
-                (row['url'] == old['url'] or related(row, old)) and
-                at - instant(old['shown_at']) < TRENDING_AGE for old in used)]
-            if unseen:
-                chosen = unseen[0]
-                if used:
-                    last_group = source(used[-1]['url'])[1]
-                    alternatives = [row for row in unseen if row['priority'] == chosen['priority'] and
-                                    source(row['url'])[1] not in FIRST_PARTY_GROUPS | {last_group} and
-                                    at - instant(row['first_seen_at']) < dt.timedelta(hours=48)]
-                    if alternatives:
-                        chosen = alternatives[0]
-            elif candidates:
-                # Quiet-day fallback chooses the least recently displayed qualifying topic.
-                def last_shown(row):
-                    return max((old['shown_at'] for old in used if old['url'] == row['url'] or related(row, old)), default='')
-                chosen = min(candidates, key=last_shown)
-        if chosen is None and not editions:
-            # A quiet Texas news day can have one eligible story. Keep its original date
-            # instead of importing a global story or treating an honest small pool as failure.
-            remaining = rank(articles, at)
-            chosen = remaining[0] if remaining else None
-        if chosen is None:
+        # Quality and source age choose membership, never how many times a story ran.
+        # The same strong reporting can fill every edition without exhausting the pool.
+        pool = []
+        for row in rank(articles, at):
+            if not any(row['url'] == old['url'] or related(row, old) for old in pool):
+                pool.append(row)
+            if len(pool) == STORIES_PER_EDITION:
+                break
+        if not pool:
             break
-        editions.append({'starts_at': stamp(begins), 'selected': chosen})
-        used.append({'url': chosen['url'], 'title': chosen['title'], 'shown_at': stamp(begins)})
-    # Keep the single-story schedule readable by already-open older homepages. Each
-    # edition now also carries a bounded carousel. Reserve leads stay distinct even
-    # when a quiet news day requires reusing some supporting stories.
-    seen = [story for entry in old_editions if instant(entry['starts_at']) <= now
-            for story in entry.get('stories', [entry['selected']])]
-    scheduled = []
-    for position, entry in enumerate(editions):
-        at = max(now, instant(entry['starts_at']))
-        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < MAX_AGE]
-        if position and any(entry['selected']['url'] == old['url'] or related(entry['selected'], old) for old in scheduled):
-            # Filling the current batch takes priority over a speculative future lead.
-            # Move that future lead to an unused subject whenever the pool allows it.
-            alternatives = [row for row in candidates if not any(
-                row['url'] == old['url'] or related(row, old) for old in scheduled) and not any(
-                row['url'] == other['selected']['url'] or related(row, other['selected'])
-                for other in editions if other is not entry) and not any(
-                (row['url'] == old['url'] or related(row, old)) and
-                at - instant(old['shown_at']) < TRENDING_AGE for old in history)]
-            if alternatives:
-                entry['selected'] = alternatives[0]
-        previous_pool = next((old.get('stories') for old in old_editions
-                              if old['starts_at'] == entry['starts_at']), None)
-        pool = [entry['selected']]
-        if (entry is editions[0] and previous_pool and previous.get('checked_at') and
+        old = next((entry for entry in old_editions if entry['starts_at'] == stamp(begins)), None)
+        # Retain a queued lead only while it still earns a place in the best current pool.
+        chosen = next((row for row in pool if old and row['url'] == old['selected']['url']), None) if offset == 0 else None
+        if chosen is None:
+            # Repeats are welcome. Least-recently led wins only WITHIN the best pool.
+            # Two stories alternate every six hours and can lead again after twelve.
+            def last_shown(row):
+                return max((entry['shown_at'] for entry in used
+                            if row['url'] == entry['url'] or related(row, entry)), default='')
+            chosen = min(pool, key=last_shown)
+        previous_pool = old.get('stories', []) if old else []
+        if (offset == 0 and previous.get('checked_at') and
                 edition_start(instant(previous['checked_at'])) == start and
-                previous_pool[0]['url'] == entry['selected']['url']):
-            # A retry must not reshuffle the five links a reader is already using.
-            by_url = {row['url']: row for row in candidates}
-            pool = [by_url[story['url']] for story in previous_pool if story['url'] in by_url]
-        else:
-            while len(pool) < STORIES_PER_EDITION:
-                available = [row for row in candidates if not any(
-                    row['url'] == story['url'] or related(row, story) for story in pool)]
-                if not available:
-                    break
-                unseen = [row for row in available if not any(
-                    row['url'] == story['url'] or related(row, story) for story in seen)]
-                choices = unseen or available
-                # Alternate newsrooms within the same relevance tier when possible.
-                diverse = [row for row in choices if row['priority'] == choices[0]['priority'] and
-                           source(row['url'])[1] not in FIRST_PARTY_GROUPS | {source(pool[-1]['url'])[1]}]
-                pool.append((diverse or choices)[0])
-                seen.append(pool[-1])
-        entry['stories'] = pool
-        seen.extend(pool)
-        scheduled.extend(pool)
+                {row['url'] for row in previous_pool} == {row['url'] for row in pool}):
+            # Identical input on a retry keeps the links in the same order.
+            by_url = {row['url']: row for row in pool}
+            pool = [by_url[row['url']] for row in previous_pool]
+        pool = [chosen] + [row for row in pool if row['url'] != chosen['url']]
+        editions.append({'starts_at': stamp(begins), 'selected': chosen, 'stories': pool})
+        used.append({'url': chosen['url'], 'title': chosen['title'], 'shown_at': stamp(begins)})
     return {'rotation_version': 1, 'carousel_version': 1, 'editions': editions, 'history': history}
 
 
@@ -398,12 +344,13 @@ def validate(data: dict) -> None:
             if (entry['starts_at'] != stamp(begins) or story not in rank(data['articles'], at) or
                     at - instant(story['first_seen_at']) >= MAX_AGE):
                 raise ValueError('rotation contains an invalid or stale headline')
-            if any(story['url'] == old['selected']['url'] or related(story, old['selected']) for old in editions[:offset]):
-                raise ValueError('rotation repeats a headline or story')
             if data.get('carousel_version') == 1:
                 pool = entry.get('stories')
                 if not isinstance(pool, list) or not 1 <= len(pool) <= STORIES_PER_EDITION or pool[0] != story:
                     raise ValueError('invalid edition story pool')
+                if offset and len(pool) > 1 and (story['url'] == editions[offset - 1]['selected']['url'] or
+                        related(story, editions[offset - 1]['selected'])):
+                    raise ValueError('consecutive leads repeat despite available alternatives')
                 ranked_at = rank(data['articles'], at)
                 for index, candidate in enumerate(pool):
                     if candidate not in ranked_at or at - instant(candidate['first_seen_at']) >= MAX_AGE:
@@ -688,7 +635,7 @@ def self_test() -> int:
             result = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
             validate(result)
             self.assertEqual(len(result['articles']), 2)
-            self.assertEqual([len(e['stories']) for e in result['editions']], [2, 2])
+            self.assertEqual([len(e['stories']) for e in result['editions']], [2, 2, 2, 2])
             self.assertIn('Recent', markup('2026-09-11', result))
             self.assertEqual(result['selected']['first_seen_at'], rows[0]['first_seen_at'])
 
@@ -887,21 +834,27 @@ def self_test() -> int:
             rows = [row('Texas deploys AI for hurricane forecasts', 'siliconangle.com', path='weather'),
                     row('Texas AI improves breast cancer screening accuracy', 'techspot.com', path='medicine')]
             result = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
-            self.assertEqual(len(result['editions']), 2)
+            self.assertEqual(len(result['editions']), 4)
+            self.assertEqual([e['selected']['url'] for e in result['editions']],
+                             [rows[0]['url'], rows[1]['url'], rows[0]['url'], rows[1]['url']])
             for field, value in [('title', 'A new chapter for MIT Reads'), ('url', 'https://evil.example/news'),
                                  ('first_seen_at', stamp(now - dt.timedelta(days=8)))]:
                 broken = copy.deepcopy(result)
                 broken['editions'][1]['selected'][field] = value
                 with self.assertRaises(ValueError): validate(broken)
             broken = copy.deepcopy(result)
-            broken['editions'][1]['selected'] = broken['editions'][0]['selected']
+            entry = broken['editions'][1]
+            repeated = next(s for s in entry['stories'] if s['url'] == broken['selected']['url'])
+            entry['selected'] = repeated
+            entry['stories'] = [repeated] + [s for s in entry['stories'] if s['url'] != repeated['url']]
             with self.assertRaises(ValueError): validate(broken)
             result['feeds'] = [{'url': RSS_FEEDS[0], 'status': 'ok'}, {'url': RSS_FEEDS[1], 'status': 'not_modified'}]
             self.assertEqual(health_problems(result, now), [])
-            self.assertTrue(health_problems(result, now + dt.timedelta(hours=12)))
+            self.assertEqual(health_problems(result, now + dt.timedelta(hours=12)), [])
+            self.assertTrue(health_problems(result, now + dt.timedelta(hours=19)))
 
-        def test_five_story_editions_validate_every_link_and_hold_on_retry(self):
-            # Independent subjects, including a syndicated duplicate and irrelevant feed item.
+        def test_ten_best_stories_repeat_without_exhausting_the_pool(self):
+            # Independent subjects and an irrelevant feed item.
             titles = ['AI diagnoses pancreatic cancer in screening trials', 'ChatGPT faces new school privacy rules',
                       'Anthropic releases smaller coding models', 'Texas deploys AI for hurricane forecasts',
                       'AI accelerators reduce electricity consumption', 'Robots use AI to sort textile waste',
@@ -917,8 +870,11 @@ def self_test() -> int:
             first = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
             validate(first)
             pools = [entry['stories'] for entry in first['editions']]
-            self.assertEqual([len(pool) for pool in pools], [5, 5, 5, 5])
-            self.assertEqual(len({story['url'] for pool in pools for story in pool}), 20)
+            self.assertEqual([len(pool) for pool in pools], [10, 10, 10, 10])
+            self.assertEqual(len({story['url'] for pool in pools for story in pool}), 10)
+            best = {r['url'] for r in rows[:10]}
+            for pool in pools:
+                self.assertEqual({story['url'] for story in pool}, best)
             retry = snapshot({'articles': []}, now + dt.timedelta(minutes=5), first, rotate=True)
             self.assertEqual([s['url'] for s in pools[0]], [s['url'] for s in retry['editions'][0]['stories']])
             for mutation in ('irrelevant', 'unsafe', 'duplicate', 'stale', 'oversized', 'empty'):
@@ -928,9 +884,24 @@ def self_test() -> int:
                 if mutation == 'unsafe': pool[2]['url'] = 'javascript:alert(1)'
                 if mutation == 'duplicate': pool[2] = copy.deepcopy(pool[1])
                 if mutation == 'stale': pool[2]['first_seen_at'] = stamp(now - dt.timedelta(days=8))
-                if mutation == 'oversized': pool.append(copy.deepcopy(pool[1]))
+                if mutation == 'oversized': pool.append(rank(rows, now)[10])
                 if mutation == 'empty': pool.clear()
                 with self.assertRaises(ValueError, msg=mutation): validate(broken)
+            # Recently shown strong reporting beats older unseen reporting in every slot.
+            repeated = snapshot({'articles': []}, now + EDITION_LENGTH, first, rotate=True)
+            self.assertEqual({story['url'] for story in repeated['editions'][0]['stories']}, best)
+            # Falling out of the current ten is not a permanent exclusion. After newer
+            # coverage crosses a freshness tier, still-eligible reporting can return.
+            strong = row('Texas AI satellites monitor coastal erosion', hours=80, path='returning')
+            prior = snapshot({'articles': []}, now, {'articles': rows[:10] + [strong]}, rotate=True)
+            self.assertNotIn(strong['url'], [s['url'] for s in prior['editions'][0]['stories']])
+            # Independent reporting outranks a company post within the same age tier.
+            company = {**rows[0], 'url': 'https://blog.google/company-research'}
+            prior = snapshot({'articles': []}, now, {'articles': [company] + rows[1:10] + [strong]}, rotate=True)
+            self.assertNotIn(strong['url'], [s['url'] for s in prior['editions'][0]['stories']])
+            returning = snapshot({'articles': []}, now + dt.timedelta(hours=72), prior, rotate=True)
+            validate(returning)
+            self.assertIn(strong['url'], [s['url'] for s in returning['editions'][0]['stories']])
             # A fresh collector run can add newly published reporting to the new edition.
             later = edition_start(now) + EDITION_LENGTH + dt.timedelta(minutes=1)
             new = {'title': 'Texas AI satellite network monitors coastal erosion',
@@ -938,6 +909,22 @@ def self_test() -> int:
             second = snapshot({'articles': []}, later, {**first, 'articles': first['articles'] + [new]}, rotate=True)
             validate(second)
             self.assertIn(new['url'], [s['url'] for s in second['editions'][0]['stories']])
+            self.assertEqual(len(second['editions'][0]['stories']), 10)
+            self.assertNotIn(rows[9]['url'], [s['url'] for s in second['editions'][0]['stories']])
+            same_slot = snapshot({'articles': []}, now + dt.timedelta(minutes=5),
+                                 {**first, 'articles': first['articles'] + [{**new, 'first_seen_at': stamp(now)}]}, rotate=True)
+            validate(same_slot)
+            self.assertIn(new['url'], [s['url'] for s in same_slot['editions'][0]['stories']])
+
+        def test_repeated_stories_expire_without_resetting_their_dates(self):
+            original = row(hours=167)
+            first = snapshot({'articles': []}, now, {'articles': [original]}, rotate=True)
+            validate(first)
+            self.assertEqual(len(first['editions']), 1)
+            expired = snapshot({'articles': []}, now + EDITION_LENGTH, first, rotate=True)
+            validate(expired)
+            self.assertIsNone(expired['selected'])
+            self.assertEqual(expired['editions'], [])
 
         def test_rate_limit_is_not_retried_and_retry_after_survives_restart(self):
             from unittest.mock import patch

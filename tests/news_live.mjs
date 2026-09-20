@@ -28,7 +28,7 @@ try {
     const next=state.editions.find(e=>Date.parse(e.starts_at)>now);
     assert.ok(current,'a current edition must be ready');
     assert.ok(next || current.stories.length===1,'only a single-story quiet period may lack a distinct next edition');
-    assert.ok(current.stories.length>=1 && current.stories.length<=5);
+    assert.ok(current.stories.length>=1 && current.stories.length<=10);
     assert.equal(await chip.locator('.news-slide').count(),current.stories.length);
     // Rotation reads cached metadata. Blocking the endpoint proves neither cadence needs it.
     await page.route('https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json*',route=>route.abort());
@@ -69,7 +69,7 @@ try {
     await page.waitForFunction(url=>document.querySelector('.news-slide[aria-hidden="false"] .news-link').href===url,next.selected.url);
     assert.equal(await activeLink(page).locator('.news-title').textContent(),next.selected.title);
     assert.equal(await chip.locator('.news-slide').count(),next.stories.length);
-    assert.notEqual(current.selected.url,next.selected.url);
+    if(next.stories.length>1) assert.notEqual(current.selected.url,next.selected.url);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     assert.deepEqual(errors,[]);
     console.log(`news live ${width}px: next six-hour story pool replaces the current pool while offline`);

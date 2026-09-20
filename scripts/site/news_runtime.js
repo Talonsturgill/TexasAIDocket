@@ -43,7 +43,7 @@
   function valid(data) {
     if (!data || data._spec !== 2 || !data.selected) return false;
     var now = Date.now(), checked = Date.parse(data.checked_at);
-    if (!Number.isFinite(checked) || checked > now + 5 * 60000 || !validStory(data.selected, checked, now)) return false;
+    if (!Number.isFinite(checked) || checked > now + 5 * 60000 || !validStory(data.selected, checked, checked)) return false;
     if (data.rotation_version === undefined) return data.carousel_version === undefined && data.editions === undefined;
     if (data.carousel_version !== undefined && data.carousel_version !== 1) return false;
     if (data.rotation_version !== 1 || !Array.isArray(data.editions) || !data.editions.length || data.editions.length > 4) return false;
@@ -52,15 +52,16 @@
       if (!entry || !entry.selected) return false;
       if (data.carousel_version !== 1 && entry.stories !== undefined) return false;
       var start = Date.parse(entry.starts_at), story = entry.selected;
-      if (start !== slot + i * 6 * hour || !validStory(story, checked, now) ||
+      if (start !== slot + i * 6 * hour || !validStory(story, checked, Math.max(start, checked)) ||
           Math.max(start, checked) - Date.parse(story.first_seen_at) >= 168 * hour ||
-          urls.indexOf(story.url) >= 0 || (i === 0 && JSON.stringify(story) !== JSON.stringify(data.selected))) return false;
+          (i === 0 && JSON.stringify(story) !== JSON.stringify(data.selected))) return false;
       if (data.carousel_version === 1) {
-        if (!Array.isArray(entry.stories) || !entry.stories.length || entry.stories.length > 5 ||
+        if (!Array.isArray(entry.stories) || !entry.stories.length || entry.stories.length > 10 ||
             JSON.stringify(entry.stories[0]) !== JSON.stringify(story)) return false;
+        if (i && entry.stories.length > 1 && urls[i - 1] === story.url) return false;
         var members = [];
         if (!entry.stories.every(function (candidate) {
-          if (!validStory(candidate, checked, now) ||
+          if (!validStory(candidate, checked, Math.max(start, checked)) ||
               Math.max(start, checked) - Date.parse(candidate.first_seen_at) >= 168 * hour ||
               members.indexOf(candidate.url) >= 0) return false;
           members.push(candidate.url);
@@ -166,13 +167,19 @@
     if (!valid(data) || (active && Date.parse(data.checked_at) < Date.parse(active.checked_at))) return false;
     if (active && active.rotation_version === 1 && data.rotation_version !== 1) return false;
     if (active && active.carousel_version === 1 && data.carousel_version !== 1) return false;
+    var scheduled = currentEdition(data);
+    var eligible = (scheduled.stories || [scheduled.selected]).filter(function (story) {
+      return validStory(story, Date.parse(data.checked_at), Date.now());
+    });
+    if (!eligible.length) return false;
+    var edition = {starts_at:scheduled.starts_at, selected:eligible[0], stories:eligible};
     active = data;
     chip.dataset.checkedAt = data.checked_at;
-    var edition = currentEdition(data);
     var nextKey = JSON.stringify([edition.starts_at, (edition.stories || [edition.selected]).map(function (s) {
       return [s.url, s.title, s.publisher, s.first_seen_at];
     })]);
-    if (editionKey !== nextKey && (!pool.length || (!held && !hovering))) {
+    var expired = pool.some(function (story) { return Date.now() - Date.parse(story.first_seen_at) >= 168 * hour; });
+    if (editionKey !== nextKey && (!pool.length || expired || (!held && !hovering))) {
       editionKey = nextKey;
       install(edition);
     } else if (editionKey === nextKey && pool.length) {
@@ -183,7 +190,10 @@
     }
     clearTimeout(editionTimer);
     var next = (data.editions || []).find(function (entry) { return Date.parse(entry.starts_at) > Date.now(); });
-    if (next) editionTimer = setTimeout(fallback, Date.parse(next.starts_at) - Date.now() + 50);
+    // Remove an expiring member at its deadline even between collections or while offline.
+    var expires = Math.min.apply(null, eligible.map(function (story) { return Date.parse(story.first_seen_at) + 168 * hour; }));
+    var wake = next ? Math.min(Date.parse(next.starts_at), expires) : expires;
+    editionTimer = setTimeout(fallback, Math.max(0, wake - Date.now()) + 50);
     return true;
   }
   function fallback() {

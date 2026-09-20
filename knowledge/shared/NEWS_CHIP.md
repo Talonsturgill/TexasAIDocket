@@ -1,7 +1,7 @@
 # Homepage Trending headline
 
 The compact homepage strip links to an attributed publisher headline and its original feed date.
-Up to five distinct headlines rotate every five seconds, with a gentle fade. Six-hour editions
+Up to ten distinct headlines rotate every five seconds, with a gentle fade. Six-hour editions
 refresh the story pool. No model calls, article scraping or rewritten titles are used. Bounded publisher feed excerpts can establish a Texas connection omitted from a headline.
 
 ## Sources and relevance
@@ -33,22 +33,30 @@ wire headlines cannot inflate coverage. This is a coverage proxy rather than aud
 ## Six-hour editions
 
 The edition boundaries match the collector schedule, at 01:23, 07:23, 13:23 and 19:23 UTC.
-Each successful collection prepares up to five stories for the current edition and each of up to
+Each successful collection prepares up to ten stories for the current edition and each of up to
 three reserve editions. The new collection can bring freshly published reporting into the current
 batch. Already-open pages keep the active link stable during reading or interaction.
-The current published story pool stays stable on retries within the same six-hour slot. The next edition uses a different story,
-not another outlet's version of the same story. Previously displayed topics are avoided for
-72 hours when another qualifying story is available. A quiet-day fallback chooses the least
-recently shown eligible topic and still refuses consecutive repeats.
+Membership comes from the best ten distinct eligible stories at each edition boundary, ranked by
+Texas AI relevance, freshness, independent sourcing and coverage. Having appeared before never
+lowers a story's rank. Strong stories can stay across editions or return after being displaced.
+There is no daily quota and no requirement to find ten replacements at every refresh.
+
+Within that pool the least recently used lead goes first. Two eligible stories alternate their
+leads and can lead again after twelve hours. A single qualifying story can remain. This lead
+rotation never pulls a lower-ranked story into the pool just because it has not appeared before.
+Identical input on a retry keeps the current order. New reporting can displace a weaker story
+immediately on collection, including during the same six-hour slot.
 
 Every queued story must be under seven days old at its scheduled start. Reports older than
-72 hours display Recent with their original date. Quiet days can use fewer than five Texas
+72 hours display Recent with their original date. Quiet days can use fewer than ten Texas
 stories and reuse eligible Texas reports. They never import global AI stories to fill slots. The browser advances the
 queue at the edition boundary, on reload and when returning to the tab. A focused or hovered
 carousel waits until the reader moves away or navigates before replacing its links. This works even if
 GitHub starts a scheduled collection late or a feed request fails. The browser checks for a
 new published queue on load and every 15 minutes while visible. Collection timestamps never
-replace the original story date or make an old article appear new.
+replace the original story date or make an old article appear new. The browser removes each
+story at its own seven-day deadline, including offline. One expired member never discards the
+rest of a still-eligible pool.
 
 An exhausted queue retains a dated last-good headline labelled Recent. Nothing invents news
 when sources fail. A snapshot without an eligible next edition or two independent working feeds fails the
