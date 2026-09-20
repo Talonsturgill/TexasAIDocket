@@ -13872,7 +13872,7 @@
           "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "confidence": "high",
       "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
       "history": [
@@ -13942,6 +13942,11 @@
         {
           "date": "2026-09-17",
           "note": "The five year review of the system-wide offer caps has reached its deadline. September 17th is the last day comments are taken, and the commission's own calendar still carries the same closing date the staff memorandum set.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Comments on the five year review of the system-wide offer caps are no longer being taken. The window the staff memorandum set ran out on September 17th, and what the commission does with what was filed has not been published.",
           "checked": true
         }
       ]
@@ -14379,7 +14384,7 @@
         }
       ],
       "id": "tx-2026-0109",
-      "last_verified": "2026-09-19",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-08-29",
@@ -14444,6 +14449,11 @@
         {
           "date": "2026-09-19",
           "note": "The hearing on artificial intelligence and the Texas workforce is still set for its new date, and the cancellation has not been repeated.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The committee's hearing on artificial intelligence and the Texas workforce still stands at the reset date. Nothing on the Senate's own meetings listing has moved it a second time.",
           "checked": true
         }
       ]
@@ -15738,6 +15748,10 @@
         {
           "date": "2026-09-17",
           "note": "The directorate's account of the Progreso pedestrian exit test still reads as the record holds it. The three solutions taken to the bridge, the opt out lane offered to U.S. citizens and the testing done after dark are all still described the same way, and no correction has been posted against it."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "What the directorate published about the Progreso pedestrian exit test is unconfirmed this run. The account would not answer, so who was invited, what was captured and when it happened stand on the last reading rather than on a fresh one."
         }
       ]
     },
@@ -19081,7 +19095,7 @@
         }
       ],
       "id": "tx-2026-0156",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-09-14",
@@ -19090,6 +19104,11 @@
         {
           "date": "2026-09-17",
           "note": "The guide to the verification questionnaire is still posted where the record found it and still sets the same terms. Ten business days to answer, a notarized attestation from each participating party and the transmission provider as the only one able to send the finished response to the grid operator."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The grid operator's user guide for the Verification RFI still carries the same rules for answering it. The notarized attestation, the response window and the transmission service provider's sole authority to submit all read as the record has them.",
+          "checked": true
         }
       ]
     },
@@ -19189,7 +19208,7 @@
         }
       ],
       "id": "tx-2026-0157",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-09-14",
@@ -19198,6 +19217,11 @@
         {
           "date": "2026-09-17",
           "note": "The developer's account of what the Batch Zero list did to its Texas projects is unchanged. Caspian is still described as submitted for base load and conditionally classified as studied load, and the Helios campus in Dickens County still carries the load requests the record lists."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The developer's account of what the Batch Zero list did to its five Texas projects still reads as the record took it. The project that came back in a different class than it was filed in is still described that way.",
+          "checked": true
         }
       ]
     },
@@ -19674,11 +19698,16 @@
         }
       ],
       "id": "tx-2026-0162",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-09-17",
           "note": "Admitted to the record. The health system's own announcement is where the public first learned that a model drafts the sentence a Houston patient reads beside their lab or imaging result. Every figure in it was published by the software vendor and its customer, and a trade publication reading the same announcement two days later named what they leave out."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The health system's account of clinicians sending Houston patients an AI drafted explanation of their own results still stands. Nothing has moved on what the assistant drafts or on the clinician who reviews it before it goes out.",
+          "checked": true
         }
       ]
     },
@@ -19816,11 +19845,16 @@
         }
       ],
       "id": "tx-2026-0163",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-09-17",
           "note": "Admitted to the record. The federal award record carries the dates, the awardee and the abstract that commits the work to occupied buildings rather than to a laboratory. The award clock started this month and nothing is deployed."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The federal award record for the UT Austin center on robots and the people around them still carries the same awardee, the same principal investigator and the same term. Nothing about the award has moved.",
+          "checked": true
         }
       ]
     },
@@ -19894,11 +19928,16 @@
         }
       ],
       "id": "tx-2026-0165",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-20",
       "history": [
         {
           "date": "2026-09-17",
           "note": "Admitted to the record. The university's own announcement carries the gift, the name the college will take and the endowments it funds. What is decided is the money and the name."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The university's announcement of the gift and of the college named for the donors still reads as the record took it. The endowments the gift creates are described as they were.",
+          "checked": true
         }
       ]
     },
