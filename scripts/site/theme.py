@@ -1901,11 +1901,9 @@ def annotated() -> str:
 html {{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; overflow-x:clip; }}
 @media (prefers-reduced-motion:reduce) {{
   html {{ scroll-behavior:auto; }}
-  /* ITERATION COUNT IS THE ONE THAT MATTERS. Shortening the duration of an `infinite`
-     animation does not stop it, it runs it faster forever, so the sky's eight loops kept
-     cycling. `shimmer` animates `background-position` on a full width blurred layer, which is
-     not compositable, so every frame repainted and re-blurred it on every page of the site.
-     A reader who set reduce-motion asked not to pay that. */
+  /* Stop infinite loops as well as shortening their duration. Shortening the duration of an `infinite`
+     animation does not stop it, it runs it faster forever. A reader who set reduced motion
+     asked for a still sky. */
   *,*::before,*::after {{ animation-duration:.01ms!important; animation-iteration-count:1!important;
     transition-duration:.01ms!important; }}
 }}
@@ -2013,19 +2011,24 @@ main, .masthead, footer.site {{ position:relative; z-index:1; }}
    aurora is vertical, cold and northern. This is horizontal, warm and low: air off hot ground,
    banding and sliding sideways just above the skyline. Masked so it fades out before it can
    touch the type. */
-.sky .shimmer {{ position:absolute; inset:auto 0 0; height:calc(70vh + var(--sky-fade));
+/* Move a prepainted gradient instead of changing background-position each frame. The old
+   full-width blur repainted throughout a scroll. The wider layer preserves the same gradient
+   scale and travel; the vertical mask remains unchanged when translated horizontally. */
+.sky .shimmer {{ --shimmer-travel:-58.333333%; position:absolute; inset:auto auto 0 0;
+  width:240%; height:calc(70vh + var(--sky-fade));
   mix-blend-mode:screen;
   background:repeating-linear-gradient(2deg,transparent 0 6%,
     color-mix(in srgb,var(--accent) 9%,transparent) 8% 10.5%,
     color-mix(in srgb,var(--accent) 3%,transparent) 12% 15%,transparent 17% 24%,
     color-mix(in srgb,var(--accent-deep) 7%,transparent) 26% 28.5%,transparent 30% 40%);
-  background-size:240% 100%; filter:blur(18px);
+  background-size:100% 100%; filter:blur(18px);
   -webkit-mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   mask-image:linear-gradient(0deg,#000 6%,rgba(0,0,0,.45) 42%,transparent 74%);
   animation:shimmer 27s ease-in-out infinite alternate; }}
-.sky .shimmer.s2 {{ filter:blur(30px); opacity:.6; background-size:290% 100%;
+.sky .shimmer.s2 {{ --shimmer-travel:-65.517241%; width:290%; filter:blur(30px); opacity:.6;
   animation-duration:38s; animation-direction:alternate-reverse; }}
-@keyframes shimmer {{ from {{ background-position:0% 0; }} to {{ background-position:100% 0; }} }}
+@keyframes shimmer {{ from {{ transform:translateX(0); }}
+  to {{ transform:translateX(var(--shimmer-travel)); }} }}
 
 /* Dusk cloud, drifting.
    THE PERIODS WERE 38 TO 97 SECONDS AND THE TRAVEL WAS ABOUT 6vw, which is a still image with
