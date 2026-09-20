@@ -139,6 +139,22 @@ const p = await ctx.newPage();
 await p.goto(page_url);
 await p.waitForTimeout(1200);
 
+// The sky used to animate background-position on two large blurred gradients. That
+// repainted them on every frame and stalled scrolling. Inspect the browser's effective
+// keyframes, including the cascade, while also requiring both moving layers to survive.
+const shimmerMotion = await p.evaluate(() => [...document.querySelectorAll('.sky .shimmer')].map(el => {
+  const animation = el.getAnimations().find(a => a.animationName === 'shimmer');
+  const frames = animation?.effect.getKeyframes() || [];
+  return {running: animation?.playState === 'running',
+    moving: new Set(frames.map(frame => frame.transform)).size > 1,
+    paintProperties: frames.flatMap(frame => Object.keys(frame).filter(key =>
+      !['offset', 'computedOffset', 'easing', 'composite', 'transform'].includes(key)))};
+}));
+ok('both shimmer layers move without animating paint properties',
+   shimmerMotion.length === 2 && shimmerMotion.every(layer =>
+     layer.running && layer.moving && layer.paintProperties.length === 0),
+   JSON.stringify(shimmerMotion));
+
 // Sample where no content sits: the outer gutters and the strip above the fold's copy. Points
 // are chosen from the layout, not at random, so a failure names a place on the page. Declared
 // here because both the register comparison below and the ground checks after it use them.
