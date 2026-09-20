@@ -1,0 +1,378 @@
+#!/usr/bin/env python3
+"""depth_floor.py — THE FRAME STANDS IN A PLACE.
+
+WHY THIS EXISTS. 2026-09-20, the owner:
+
+    "everything is very flat and 2d, we need to teach the automation and agents through
+     research how to do more 2.5d and expand its artwork capabilities beyond this flat look"
+
+WHAT WAS MEASURED, and it is not a missing capability.
+
+`txscene.js` is a 2.5D scene bench: a ground plane, a horizon, a level pinhole camera, objects
+placed at TRUE SCALE IN METRES, and one declared light casting every shadow onto the plane. It
+was written on 2026-09-11 for this exact complaint, and its own docstring says so:
+
+    "Twenty one decks shipped and the judges' craft finding was the same one every time, in
+     different words: a small primitive floating in a gradient ... Every frame was drawn in
+     screen pixels with no camera, so nothing had a size, nothing stood on anything, nothing
+     cast a shadow onto anything."
+
+Across 27 shipped decks, 241 frames:
+
+    staged frames per deck      median 0, best ever 5
+    distinct depth cues         median 0, best ever 5
+    2026-09-18, -19, -20        ZERO depth cues, all three decks
+    S.fade   (aerial perspective)   never used, 0 of 27 decks
+    S.box / S.slab (form shading)   never used, 0 of 27 decks
+
+`tx3d.js`, a full software 3D renderer with perspective, painter's z-sort, Lambert shading and
+depth fog, is loaded by ONE frame of 241. `three.module.min.js` by none.
+
+So the kit is complete and the frames do not reach for it. The camera is OPTIONAL, and a cue
+nobody is asked for is a cue that does not appear. This is the third defect of that exact shape
+found in one day, after THE ARTWORK CARRIES THE DATA and the round cap's missing floor.
+
+WHAT DEPTH IS MADE OF, from the perception literature rather than from taste. The pictorial
+depth cues are occlusion, relative size, height in the visual field, linear perspective, texture
+gradient, aerial perspective, shading, and cast shadow. Occlusion is the most reliable and gives
+only ordinal depth; relative size and texture gradient give metric depth; aerial perspective is
+measurably more powerful than its reputation. Every one of them already has a call on the bench:
+
+    relative size        S.ppm(Z)          px per metre at depth Z
+    height in field      S.groundY(Z)      where the ground sits at depth Z
+    linear perspective   S.project(X,Y,Z)  world metres to screen
+    texture gradient     S.gridZ / gridX / strip
+    aerial perspective   S.fade(hex, Z)    a hue toward sky with distance
+    cast shadow          S.shadow(sprite)  from the deck's ONE declared light
+    form shading         S.box / S.slab    a lit face and a shadow face on one solid
+    occlusion            draw far first    the bench does not sort, the drawer decides
+
+WHAT THIS GATE ASKS. A frame is STAGED when it builds the bench, places something THROUGH the
+camera, and casts a shadow from the declared light. Enough frames staged, enough distinct cues
+across the deck, and the scene's light agreeing with the chassis's.
+
+THE LIGHT AGREEMENT IS THE HALF THAT IS EASIEST TO MISS. `TXDECK.declare` names one light for
+the deck and `TXSCENE.create` takes its own `light:{az,el}`. Two surfaces holding their own copy
+of one rule, with nothing in between checking they agree, is this repo's oldest defect: it has
+shipped the wrong site URL on three decks, a missing hashtag block and a missing progress
+counter the same way. Here it would put the scene's shadows running one way and the chassis's
+running another, in one frame, under one sun.
+
+WHY IT IS MEASURED IN THE CODE AND NOT IN THE PIXELS. Four pixel statistics were tried against
+59 decks of the reference corpus first: modelling inside lit forms, count of value shelves,
+aerial contrast ratio, mass under blur. NONE of them separated the two corpora. Depth here is a
+property of how the frame was CONSTRUCTED, and the construction is in the source.
+
+    depth_floor.py --date 2026-09-20
+    depth_floor.py --slides-dir out/<date>/slides
+    depth_floor.py --self-test
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[2]
+CONFIG = REPO / "config" / "carousel" / "depth_floor.json"
+
+# Each cue is a CALL a frame makes, so a claim about depth is a thing the renderer did rather
+# than a sentence in a dossier. `S` is the conventional local alias for the bench, and matching
+# only `TXSCENE.` would have missed 20 of the 20 frames that actually project: every one of them
+# aliases it first. That near miss is why both spellings are here.
+BENCH = r"(?:TXSCENE|[A-Za-z_$][\w$]*)"
+CUES = {
+    "LINEAR_PERSPECTIVE": rf"{BENCH}\.project\s*\(",
+    "RELATIVE_SIZE":      rf"{BENCH}\.ppm\s*\(",
+    "HEIGHT_IN_FIELD":    rf"{BENCH}\.groundY\s*\(",
+    "AERIAL":             rf"{BENCH}\.fade\s*\(",
+    "CAST_SHADOW":        rf"{BENCH}\.shadow(?:Vec)?\s*\(",
+    "TEXTURE_GRADIENT":   rf"{BENCH}\.(?:gridZ|gridX|strip)\s*\(",
+    "FORM_SHADING":       rf"{BENCH}\.(?:box|slab)\s*\(",
+    "OCCLUSION":          rf"{BENCH}\.row\s*\(",
+    "PLACED_SPRITE":      rf"{BENCH}\.sprite\s*\(",
+}
+# Placing something THROUGH the camera. A frame that builds the bench and then draws in screen
+# pixels has a camera it did not use, which is 54 frames of this corpus.
+#
+# THE PLACERS INCLUDE THE COMPOUND CALLS, and the first cut of this file did not know that. It
+# asked for `project`, `ppm` or `groundY` by name and reported the reference deck as 0 of 3
+# staged, on frames whose every solid was drawn by `S.box`. `box`, `slab`, `sprite` and `row`
+# all take world X and Z and place through the same camera, and `box` and `slab` cast their own
+# shadow unless told not to. A gate that only recognises the low level call measures the STYLE
+# a frame is written in rather than whether it stands anywhere.
+PLACED = ("LINEAR_PERSPECTIVE", "RELATIVE_SIZE", "HEIGHT_IN_FIELD",
+          "FORM_SHADING", "PLACED_SPRITE", "OCCLUSION")
+CREATE = re.compile(r"TXSCENE\.create\s*\(")
+# `S.box` and `S.slab` paint a cast shadow unless the call passes `shadow: false`.
+SELF_SHADOWING = re.compile(rf"{BENCH}\.(?:box|slab)\s*\(")
+SHADOW_OFF = re.compile(r"shadow\s*:\s*false")
+
+
+def load_config() -> dict:
+    return json.loads(CONFIG.read_text(encoding="utf-8"))
+
+
+def cues_in(src: str) -> set[str]:
+    return {k for k, p in CUES.items() if re.search(p, src)}
+
+
+def scene_light(src: str) -> tuple[float, float] | None:
+    """The az and el the frame hands the bench."""
+    m = re.search(r"TXSCENE\.create\s*\(.*?light\s*:\s*\{([^}]*)\}", src, re.S)
+    if not m:
+        return None
+    az = re.search(r"az\s*:\s*(-?[\d.]+)", m.group(1))
+    el = re.search(r"el\s*:\s*(-?[\d.]+)", m.group(1))
+    if not (az and el):
+        return None
+    return float(az.group(1)), float(el.group(1))
+
+
+def chassis_light(chassis_src: str) -> tuple[float, float] | None:
+    """The az and el the chassis declared for the whole deck."""
+    m = re.search(r"TXDECK\.declare\s*\(.*?light\s*:\s*\{([^}]*)\}", chassis_src, re.S)
+    if not m:
+        return None
+    az = re.search(r"az\s*:\s*(-?[\d.]+)", m.group(1))
+    el = re.search(r"el\s*:\s*(-?[\d.]+)", m.group(1))
+    if not (az and el):
+        return None
+    return float(az.group(1)), float(el.group(1))
+
+
+def frame_report(name: str, src: str) -> dict:
+    hit = cues_in(src)
+    casts = ("CAST_SHADOW" in hit
+             or (bool(SELF_SHADOWING.search(src)) and not SHADOW_OFF.search(src)))
+    bench, placed = bool(CREATE.search(src)), bool(hit & set(PLACED))
+    return {
+        "name": name,
+        "cues": hit | ({"CAST_SHADOW"} if casts else set()),
+        "bench": bench,
+        "placed": placed,
+        "shadow": casts,
+        "staged": bench and placed and casts,
+        "light": scene_light(src),
+    }
+
+
+def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
+    probs: list[str] = []
+    n = len(frames)
+    floor = min(int(cfg["min_staged_frames"]), n)
+    want_cues = min(int(cfg["min_distinct_cues"]), n)
+
+    staged = [f for f in frames if f["staged"]]
+    if len(staged) < floor:
+        near = [f for f in frames if f["bench"] and not f["staged"]]
+        extra = ""
+        if near:
+            miss = ", ".join(
+                f"{f['name']} ({'never places through the camera' if not f['placed'] else 'casts no shadow'})"
+                for f in near[:3])
+            extra = (f" {len(near)} frame(s) build the bench and stop short: {miss}. A camera a "
+                     f"frame does not place through is a camera it did not use")
+        probs.append(
+            f"THE DECK DOES NOT STAND IN A PLACE. {len(staged)} of {n} frames are staged and "
+            f"this deck needs {floor}. A staged frame builds the bench, places something through "
+            f"the camera at true scale, and casts a shadow from the deck's one light.{extra}")
+
+    got = set().union(*[f["cues"] for f in frames]) if frames else set()
+    if len(got) < want_cues:
+        unused = sorted(set(CUES) - got)
+        probs.append(
+            f"THE DECK USES {len(got)} DEPTH CUE(S) AND NEEDS {want_cues}. It has "
+            f"{sorted(got) or '(none)'} and has not reached for {unused}. Depth is several weak "
+            f"cues agreeing, not one strong one repeated")
+
+    # ONE LIGHT, AND THE TWO SURFACES THAT HOLD IT MUST AGREE.
+    if deck_light is not None:
+        for f in frames:
+            if f["light"] is None:
+                continue
+            if abs(f["light"][0] - deck_light[0]) > 1.0 or abs(f["light"][1] - deck_light[1]) > 1.0:
+                probs.append(
+                    f"{f['name']}: the scene light is az {f['light'][0]} el {f['light'][1]} and "
+                    f"the chassis declared az {deck_light[0]} el {deck_light[1]}. One frame, one "
+                    f"sun, two directions. The chassis is the deck's light and the bench is told "
+                    f"it, never given its own")
+    return probs
+
+
+def frames_in(slides_dir: Path) -> list[dict]:
+    out = []
+    for p in sorted(slides_dir.glob("slide-*.html")):
+        out.append(frame_report(p.name, p.read_text(encoding="utf-8", errors="replace")))
+    return out
+
+
+def deck_light_of(slides_dir: Path) -> tuple[float, float] | None:
+    """The chassis's declared light, found through whichever chassis the frames load."""
+    for p in sorted(slides_dir.glob("slide-*.html")):
+        src = p.read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"js/(deck/[\w.-]+\.js)", src)
+        if not m:
+            continue
+        f = REPO / "assets" / "js" / m.group(1)
+        if f.exists():
+            got = chassis_light(f.read_text(encoding="utf-8"))
+            if got:
+                return got
+    return None
+
+
+def run(slides_dir: Path) -> int:
+    frames = frames_in(slides_dir)
+    if not frames:
+        print(f"depth_floor: no frames in {slides_dir}", file=sys.stderr)
+        return 1
+    probs = check(frames, load_config(), deck_light_of(slides_dir))
+    staged = sum(1 for f in frames if f["staged"])
+    got = sorted(set().union(*[f["cues"] for f in frames]))
+    if probs:
+        print(f"depth_floor: FAIL, {len(probs)} problem(s) in {slides_dir}\n", file=sys.stderr)
+        for p in probs:
+            print(f"  - {p}", file=sys.stderr)
+        print("\n  knowledge/carousel/ILLUSTRATION_SYSTEM.md, 'THE FRAME STANDS IN A PLACE', "
+              "is the standard. assets/js/txscene.js is the bench.", file=sys.stderr)
+        return 1
+    print(f"depth_floor: ok, {staged} of {len(frames)} frames staged, cues {got}")
+    return 0
+
+
+def self_test() -> int:
+    fails = []
+
+    def ok(label: str, cond: bool, detail: str = "") -> None:
+        print(f"  {'ok  ' if cond else 'FAIL'}  {label}" + (f"  [{detail}]" if not cond else ""))
+        if not cond:
+            fails.append(label)
+
+    cfg = {"min_staged_frames": 5, "min_distinct_cues": 4}
+
+    def frame(name, src):
+        return frame_report(name, src)
+
+    FLAT = "<script>cx.fillRect(0,0,100,100); cx.fill()</script>"
+    STAGED = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
+              "S.ground({}); S.shadow(bus,{X:2,Z:30}); S.sprite(bus,{X:2,Z:30});"
+              "var p = S.project(0,0,30); S.ppm(30); S.groundY(30);</script>")
+
+    # THE DEFECT: nine frames drawn in screen pixels.
+    flat = [frame(f"slide-{i:02d}.html", FLAT) for i in range(1, 10)]
+    probs = check(flat, cfg)
+    ok("nine flat frames fail", bool(probs), "passed")
+    ok("...and the message names the count and the floor",
+       any("0 of 9 frames are staged" in p and "needs 5" in p for p in probs), str(probs[:1]))
+
+    staged9 = [frame(f"slide-{i:02d}.html", STAGED) for i in range(1, 10)]
+    ok("nine staged frames pass", not check(staged9, cfg), str(check(staged9, cfg)[:1]))
+
+    mixed = staged9[:5] + flat[5:]
+    ok("five staged of nine meets a five frame floor", not check(mixed, cfg))
+    ok("...and four does not", bool(check(staged9[:4] + flat[4:], cfg)))
+
+    # A CAMERA BUILT AND NOT USED. 54 frames of this corpus load the bench and draw in pixels.
+    unused = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
+              "cx.fillRect(0,0,100,100);</script>")
+    probs = check([frame("slide-01.html", unused)] * 9, cfg)
+    ok("a bench built and never placed through fails", bool(probs))
+    ok("...and the message says so rather than reporting a missing bench",
+       any("never places through the camera" in p for p in probs), str(probs[:1]))
+
+    # PLACED BUT UNLIT. A thing at true scale with no shadow does not sit on the ground.
+    noshadow = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
+                "S.project(0,0,30); S.ppm(30);</script>")
+    probs = check([frame("slide-01.html", noshadow)] * 9, cfg)
+    ok("placed with no cast shadow is not staged", bool(probs))
+    ok("...and the message names the shadow",
+       any("casts no shadow" in p for p in probs), str(probs[:1]))
+
+    # THE CUE COUNT. One strong cue repeated is not depth.
+    onecue = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
+              "S.project(0,0,30); S.shadow(b,{});</script>")
+    probs = check([frame(f"slide-{i:02d}.html", onecue) for i in range(1, 10)], cfg)
+    ok("a deck with two cues is refused", bool(probs))
+    ok("...and the message names the cues it has not reached for",
+       any("has not reached for" in p and "AERIAL" in p for p in probs), str(probs[:1]))
+
+    # THE ALIAS. Matching only `TXSCENE.` would miss every frame that actually projects.
+    ok("the local alias `S.` is recognised", "LINEAR_PERSPECTIVE" in cues_in("S.project(0,0,4)"))
+    ok("...and so is the full name", "LINEAR_PERSPECTIVE" in cues_in("TXSCENE.project(0,0,4)"))
+    ok("...and a bare word is not mistaken for a call", not cues_in("the project is late"))
+
+    # ONE LIGHT, TWO SURFACES.
+    agree = check(staged9, cfg, deck_light=(-40.0, 38.0))
+    ok("a scene light matching the chassis passes", not agree, str(agree[:1]))
+    probs = check(staged9, cfg, deck_light=(64.0, 26.0))
+    ok("A SCENE LIGHT DISAGREEING WITH THE CHASSIS FAILS", bool(probs), "it passed")
+    ok("...and the message names both",
+       any("az -40.0 el 38.0" in p and "az 64.0 el 26.0" in p for p in probs), str(probs[:1]))
+    ok("a one degree difference is tolerated, not a ten",
+       not check(staged9, cfg, deck_light=(-40.5, 38.4)))
+
+    ok("the chassis light is read out of a declare block",
+       chassis_light('TXDECK.declare({world:"lamp", light:{az:64, el:26}, ground:"#000"})')
+       == (64.0, 26.0))
+    ok("the scene light is read out of a create block",
+       scene_light("TXSCENE.create(cx, {w:1080, light:{az:-35, el:40}})") == (-35.0, 40.0))
+
+    # THE COMPOUND PLACERS. S.box is placement AND a cast shadow in one call, and a gate that
+    # only knows the low level names measures which style a frame is written in.
+    BOXONLY = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:560, light:{az:64,el:26}});"
+               "S.ground({}); S.gridZ({}); S.box({X:0, Z:10, w:2, h:2, d:2});</script>")
+    r = frame_report("slide-01.html", BOXONLY)
+    ok("a frame whose only placer is S.box is staged", r["staged"], str(r))
+    ok("...and S.box counts as its own cast shadow", r["shadow"])
+    OFF = BOXONLY.replace("d:2}", "d:2, shadow:false}")
+    ok("...unless the call passes shadow:false", not frame_report("s", OFF)["shadow"])
+    ok("a frame placing only with S.sprite is placed",
+       frame_report("s", "S.sprite(b,{X:1,Z:9}); S.shadow(b,{X:1,Z:9});")["placed"])
+
+    # THE FLOOR SCALES DOWN TO A SHORT DECK AND NEVER UP.
+    ok("a three frame deck needs three staged", not check(staged9[:3], cfg))
+    ok("...and two of three is refused", bool(check(staged9[:2] + flat[:1], cfg)))
+
+    try:
+        c = load_config()
+        ok("config carries a floor", isinstance(c.get("min_staged_frames"), int))
+        ok("...and it is derived rather than asserted", bool(c.get("derived_from")))
+    except Exception as exc:                                             # noqa: BLE001
+        ok("config loads", False, str(exc))
+
+    # AND IT REFUSES THE DECKS THAT ACTUALLY SHIPPED.
+    for date in ("2026-09-18", "2026-09-19", "2026-09-20"):
+        sd = REPO / "runs" / "carousel" / date / "slides"
+        if not sd.is_dir():
+            continue
+        got = check(frames_in(sd), load_config(), deck_light_of(sd))
+        ok(f"the shipped {date} deck is refused", bool(got), "it passed")
+
+    print(f"\ndepth_floor self-test: {'FAIL' if fails else 'ok'}, {len(fails)} failure(s)")
+    return 1 if fails else 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--date")
+    ap.add_argument("--slides-dir")
+    ap.add_argument("--out-root", default=None)
+    ap.add_argument("--self-test", action="store_true")
+    a = ap.parse_args()
+    if a.self_test:
+        return self_test()
+    if a.slides_dir:
+        return run(Path(a.slides_dir))
+    if not a.date:
+        ap.error("--date, --slides-dir or --self-test")
+    root = Path(a.out_root) if a.out_root else (REPO / "runs" / "carousel")
+    if not (root / a.date).exists() and (REPO / "out" / a.date).exists():
+        root = REPO / "out"
+    return run(root / a.date / "slides")
+
+
+if __name__ == "__main__":
+    sys.exit(main())

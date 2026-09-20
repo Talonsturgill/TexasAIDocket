@@ -43,6 +43,20 @@ data_in_art:
 # Then DRAW it. The gate looks for the value in the frame's code with the text nodes stripped
 # out, so a figure that reaches the headline and not the canvas does not satisfy this.
 
+# REQUIRED on at least five of nine frames. THE FRAME STANDS IN A PLACE, in
+# knowledge/carousel/ILLUSTRATION_SYSTEM.md, is the law and depth_floor.py is the gate.
+# Name the camera this frame stands in and the cues it builds. A frame drawn in screen pixels
+# is a diagram of a place rather than a place, and 241 frames were drawn that way before this
+# existed, on a bench that had been sitting in assets/js/txscene.js since September 11th.
+depth:
+  eye: 1.4                 # camera height in metres. A standing adult is 1.6, seated 1.2
+  horizon: 640             # screen y of the horizon. Hold it across the deck unless the
+                           # storyboard declares a CAMERA_MOVE
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, AERIAL]
+  subject_at: {X: 2, Z: 30}   # where the primary image stands, in metres
+# The light is NOT named here. It belongs to the chassis, TXSCENE.create is told it, and
+# depth_floor.py fails a frame whose scene light disagrees with the chassis's declaration.
+
 composition:
   structure: >
     How the frame is organised, and why this content wants that organisation rather than
