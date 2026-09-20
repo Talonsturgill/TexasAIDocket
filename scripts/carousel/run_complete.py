@@ -190,7 +190,7 @@ def ratchet_floor(before: str | None = None, root=None) -> float | None:
     root = _P(root) if root else (REPO_ROOT / "runs" / "carousel")
     if not root.exists():
         return None
-    scores, spreads = [], []
+    rows = []
     for d in sorted(root.iterdir()):
         if before and d.name >= before:
             continue
@@ -203,15 +203,36 @@ def ratchet_floor(before: str | None = None, root=None) -> float | None:
             continue
         got = score_of(doc)
         if isinstance(got, (int, float)) and not isinstance(got, bool):
-            scores.append(float(got))
             sp = doc.get("spread")
-            if isinstance(sp, (int, float)) and not isinstance(sp, bool):
-                spreads.append(float(sp))
-    if len(scores) < 3:
+            rows.append((float(got),
+                         float(sp) if isinstance(sp, (int, float))
+                         and not isinstance(sp, bool) else None))
+    if len(rows) < 3:
         return None
-    window = scores[-RATCHET_WINDOW:]
-    tol = statistics.median(spreads[-RATCHET_WINDOW:]) if spreads else 0.0
-    return round(statistics.median(window) - tol, 3)
+
+    # A ROLLING MEDIAN IS NOT A RATCHET, and calling it one was wrong (2026-09-20, review).
+    # Ten decks at 8.0 with a 0.3 spread set the floor at 7.7. Six decks then ship AT 7.7,
+    # legally, they enter the window, and the median falls to 7.7 and the floor to 7.4. The same
+    # step repeats downward for ever, which is the regression this was written to make impossible
+    # doing it one rung at a time. A rolling window follows the corpus wherever it goes, and that
+    # is the opposite of a ratchet whichever direction it happens to be moving today.
+    #
+    # So the floor is the HIGH WATER MARK of that rolling value: the highest level this machine
+    # has ever actually held across a full window. It is still derived and still rises on its
+    # own. It simply cannot fall, which is the whole word.
+    #
+    # It cannot deadlock either, and that is worth stating because a floor that only rises sounds
+    # like one that eventually stops everything. It rises only when the MEDIAN OF TEN SHIPPED
+    # DECKS rose, so every level it holds is a level ten decks already cleared. A machine is never
+    # asked for a score its own recent work has not produced.
+    best = None
+    for i in range(3, len(rows) + 1):
+        window = rows[max(0, i - RATCHET_WINDOW):i]
+        spreads = [sp for _, sp in window if sp is not None]
+        f = statistics.median([sc for sc, _ in window]) - (
+            statistics.median(spreads) if spreads else 0.0)
+        best = f if best is None else max(best, f)
+    return round(best, 3)
 
 
 def rounds_of(doc: dict):
@@ -495,6 +516,17 @@ def self_test() -> int:
         for i in range(5, 12):
             deck(f"2026-01-{i:02d}", 8.0)
         ok("the floor RISES on its own as the craft rises",
+           ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
+
+        # A ROLLING MEDIAN IS NOT A RATCHET. Decks shipping legally AT the floor used to pull it
+        # down one rung at a time, for ever, which is the regression this exists to refuse.
+        for i in range(12, 21):
+            deck(f"2026-01-{i:02d}", 7.7)
+        ok("...and decks shipping AT the floor do not pull it down",
+           ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
+        for i in range(21, 31):
+            deck(f"2026-01-{i:02d}", 6.0)
+        ok("...and a run of bad decks does not lower it either",
            ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
         ok("...and `before` reads only the history that preceded a run",
            ratchet_floor(before="2026-01-04", root=root) == 6.7,

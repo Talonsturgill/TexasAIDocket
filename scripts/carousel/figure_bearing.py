@@ -111,72 +111,82 @@ def load_config() -> dict:
     return json.loads(CONFIG.read_text(encoding="utf-8"))
 
 
-def computed_keys(run_dir: Path) -> set[str]:
-    """Every name a dossier may legitimately point `figure:` at.
+def computed_values(run_dir: Path) -> dict[str, list[float]]:
+    """Every name a dossier may point `figure:` at, WITH THE NUMBER BEHIND IT.
 
-    figures.json is the run's own computed values. claims.json carries `computed_values` for the
-    same reason the numeral gate reads it: a figure may be computed once and named in either
-    place, and a gate that knows only one of them teaches runs to route around it.
+    ONLY NAMES THAT RESOLVE TO A NUMBER (2026-09-20, review). The first cut read `computed_values`
+    as a per-claim dict, which is not this repo's schema: it is a TOP LEVEL LIST of `{id, label,
+    value, ...}` records, `v1` to `v7`, beside a `claims` list of `c1` to `c26` that carry text
+    and no value. So the gate collected the CLAIM ids, accepted `figure: c1`, found no number for
+    it, and `render_problems` returned nothing and skipped the render check IN SILENCE. Six frames
+    declaring `c1` through `c6` would have made this gate green with no data in the art at all,
+    which is the exact hole it exists to close.
+
+    Both halves come from one function now. The first cut had two readers of the same files that
+    could disagree about what existed, and one of them calling a figure real while the other could
+    not price it is what produced the silent skip.
     """
-    keys: set[str] = set()
-    fp = run_dir / "figures.json"
-    if fp.exists():
-        try:
-            doc = json.loads(fp.read_text(encoding="utf-8"))
-            if isinstance(doc, dict):
-                keys |= {k for k in doc if not k.startswith("_")}
-        except json.JSONDecodeError:
-            pass
-    cp = run_dir / "claims.json"
-    if cp.exists():
-        try:
-            doc = json.loads(cp.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            doc = None
-        for claim in _claim_list(doc):
-            cid = claim.get("id") or claim.get("claim_id")
-            if cid:
-                keys.add(str(cid))
-            cv = claim.get("computed_values") or claim.get("computed") or {}
-            if isinstance(cv, dict):
-                keys |= set(cv)
-    return keys
-
-
-def _claim_list(doc) -> list[dict]:
-    if isinstance(doc, dict):
-        for k in ("claims", "items", "records"):
-            if isinstance(doc.get(k), list):
-                return [c for c in doc[k] if isinstance(c, dict)]
-        return [v for v in doc.values() if isinstance(v, dict)]
-    if isinstance(doc, list):
-        return [c for c in doc if isinstance(c, dict)]
-    return []
-
-
-def figure_values(run_dir: Path) -> dict[str, list[float]]:
-    """The numbers behind each name, so the render check can look for them in the drawing."""
     out: dict[str, list[float]] = {}
+
+    def add(name, val):
+        if isinstance(val, bool) or not isinstance(val, (int, float)):
+            return
+        out.setdefault(str(name), []).append(float(val))
+
     fp = run_dir / "figures.json"
     if fp.exists():
         try:
             doc = json.loads(fp.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
+        except (OSError, json.JSONDecodeError):
             doc = {}
         if isinstance(doc, dict):
             for k, v in doc.items():
                 if k.startswith("_"):
                     continue
-                vals = []
                 if isinstance(v, dict):
                     for kk in ("value", "of", "count", "n"):
-                        if isinstance(v.get(kk), (int, float)):
-                            vals.append(float(v[kk]))
-                elif isinstance(v, (int, float)):
-                    vals.append(float(v))
-                if vals:
-                    out[k] = vals
+                        add(k, v.get(kk))
+                else:
+                    add(k, v)
+
+    cp = run_dir / "claims.json"
+    if cp.exists():
+        try:
+            doc = json.loads(cp.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            doc = None
+        for rec in _computed_records(doc):
+            rid = rec.get("id") or rec.get("name") or rec.get("key")
+            if rid is not None:
+                add(rid, rec.get("value"))
     return out
+
+
+def _computed_records(doc) -> list[dict]:
+    """The computed value records. Top level list first, because that is this repo's shape."""
+    out: list[dict] = []
+    if not isinstance(doc, dict):
+        return out
+    cv = doc.get("computed_values") or doc.get("computed")
+    if isinstance(cv, list):
+        out += [r for r in cv if isinstance(r, dict)]
+    elif isinstance(cv, dict):
+        out += [{"id": k, "value": (v.get("value") if isinstance(v, dict) else v)}
+                for k, v in cv.items()]
+    # a per claim dict is still honoured, because another surface here may write one
+    for c in doc.get("claims") or []:
+        if isinstance(c, dict) and isinstance(c.get("computed_values"), dict):
+            out += [{"id": k, "value": (v.get("value") if isinstance(v, dict) else v)}
+                    for k, v in c["computed_values"].items()]
+    return out
+
+
+def computed_keys(run_dir: Path) -> set[str]:
+    return set(computed_values(run_dir))
+
+
+def figure_values(run_dir: Path) -> dict[str, list[float]]:
+    return computed_values(run_dir)
 
 
 def declaration(frame: dict) -> dict | None:
@@ -202,9 +212,10 @@ def frame_problems(n: int, frame: dict, keys: set[str]) -> tuple[bool, list[str]
         probs.append(f"frame {n}: data_in_art names no `figure`. A mapping without a source is "
                      f"a sentence about the art rather than a property of it")
     elif keys and str(fig) not in keys:
-        probs.append(f"frame {n}: data_in_art figure '{fig}' is in neither figures.json nor any "
-                     f"claim's computed values. A figure the build did not compute is a number "
-                     f"somebody typed, which this repo's oldest law forbids")
+        probs.append(f"frame {n}: data_in_art figure '{fig}' resolves to no COMPUTED NUMBER. A "
+                     f"claim id carries text and a computed value carries a number, and only a "
+                     f"number can set a geometry. Available: "
+                     f"{', '.join(sorted(keys)) or '(none)'}")
     if not drives:
         probs.append(f"frame {n}: data_in_art names no `drives`. Say which drawn parameter the "
                      f"value sets, or no reviewer can check the drawing against it")
@@ -245,14 +256,41 @@ def render_problems(n: int, frame: dict, slides_dir: Path,
     body = "\n".join(parts)
     probs = []
     for v in vals:
-        s = f"{int(v)}" if float(v).is_integer() else f"{v}"
-        if re.search(rf"(?<![\d.]){re.escape(s)}(?![\d.])", body):
+        lit = f"{int(v)}" if float(v).is_integer() else f"{v}"
+        if _value_reaches_the_drawing(body, lit):
             return []
     probs.append(f"frame {n}: the declared figure '{fig}' ({', '.join(str(v) for v in vals)}) "
-                 f"does not appear in the frame's code outside its text. It was WRITTEN on the "
-                 f"frame and not DRAWN by it, which is the declaration passing while the art it "
-                 f"describes was never made")
+                 f"never reaches the drawing. It is absent from the code, or it is bound to a "
+                 f"name nothing reads, which is a frame that kept the number and replaced the "
+                 f"art. Use the value: derive a height, a count, a radius or a spacing from it")
     return probs
+
+
+def _value_reaches_the_drawing(body: str, lit: str) -> bool:
+    """Is the literal USED, or merely present?
+
+    A LEXICAL CHECK CANNOT PROVE THE PIXELS and this one does not claim to. What it can refuse is
+    the cheapest false pass, named in review on 2026-09-20: a generated frame keeps `var ACTIVE =
+    4749` at the top, the artwork underneath is replaced by an unrelated room, and the old check
+    reported the figure as drawn because the numeral was somewhere in the file.
+
+    So an occurrence that is ONLY a binding counts only when something reads that binding. Any
+    other occurrence, an argument, an arithmetic expression, a property, is a use. The panel and
+    the pixel critic still judge whether the geometry is any good, which is theirs to judge and
+    was never going to be a regex's.
+    """
+    hit = False
+    for m in re.finditer(rf"(?<![\w.$]){re.escape(lit)}(?![\w.$])", body):
+        hit = True
+        pre = body[max(0, m.start() - 120):m.start()]
+        bind = re.search(r"(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*$", pre)
+        if bind is None:
+            return True                       # used in an expression, a call, an assignment to a
+        name = bind.group(1)                  # property: this is the ordinary case
+        reads = len(re.findall(rf"(?<![\w.$]){re.escape(name)}(?![\w$])", body))
+        if reads >= 2:                        # the binding itself, plus at least one read
+            return True
+    return False and hit
 
 
 def check(dossiers: dict[int, dict], keys: set[str], minimum: int,
@@ -372,7 +410,7 @@ def self_test() -> int:
     typed[3] = {"slide": 3, "data_in_art": {"figure": "about_nine_thousand", "drives": "bar height"}}
     probs = check(typed, keys, 6)
     ok("a figure absent from figures.json fails",
-       any("computed values" in p for p in probs), str(probs[:1]))
+       any("no COMPUTED NUMBER" in p for p in probs), str(probs[:1]))
 
     # THE MAPPING HAS TO NAME GEOMETRY. This is the half a prose rule cannot hold.
     mood = dict(good)
@@ -412,7 +450,7 @@ def self_test() -> int:
             "<script>drawRoom()</script></body></html>", encoding="utf-8")
         probs = check(good, keys, 6, sl, vals)
         ok("a value only WRITTEN on the frame fails the render check",
-           any("WRITTEN on the frame and not DRAWN" in p for p in probs), str(probs[:2]))
+           any("never reaches the drawing" in p for p in probs), str(probs[:2]))
 
         # A frame that draws the value AND writes it is correct and must not be reported.
         (sl / "slide-05.html").write_text(
@@ -449,6 +487,36 @@ def self_test() -> int:
     ok("...so a short deck is HARDER per frame, never a way around the floor",
        bool(check({**{n: {"slide": n} for n in range(0, 5)},
                    0: three[0], 1: three[1], 2: three[2]}, keys, 6)))
+
+    # ONLY NAMES THAT RESOLVE TO A NUMBER. A claim id carries text and cannot set a geometry,
+    # and accepting one made the render check skip in silence.
+    import tempfile as _t2
+    with _t2.TemporaryDirectory() as td:
+        rd = Path(td)
+        (rd / "claims.json").write_text(json.dumps({
+            "claims": [{"id": "c1", "text": "a sentence"}, {"id": "c2", "text": "another"}],
+            "computed_values": [{"id": "v1", "value": 4749}, {"id": "v2", "value": 3579},
+                                {"id": "v3", "value": 87}],
+        }), encoding="utf-8")
+        got = computed_keys(rd)
+        ok("a top level computed_values LIST is read", {"v1", "v2", "v3"} <= got, str(sorted(got)))
+        ok("...and claim ids are NOT offered as figures", not ({"c1", "c2"} & got), str(sorted(got)))
+        ok("...and each carries its number", computed_values(rd).get("v1") == [4749.0],
+           str(computed_values(rd).get("v1")))
+        probs = check({n: {"slide": n, "data_in_art": {"figure": f"c{n}", "drives": "bar height"}}
+                       for n in range(1, 10)}, got, 6)
+        ok("a deck declaring claim ids is refused",
+           any("no COMPUTED NUMBER" in p for p in probs), str(probs[:1]))
+
+    # THE VALUE HAS TO BE USED, not merely present. A frame that keeps `var ACTIVE = 4749` and
+    # replaces the artwork underneath used to pass on lexical presence alone.
+    for label, body, want in (
+        ("used through a binding", "<script>var A = 4749; bar(A / 50)</script>", True),
+        ("used in an expression",  "<script>bar(4749 * 0.4)</script>", True),
+        ("a binding nothing reads", "<script>var A = 4749;</script><script>room()</script>", False),
+        ("absent entirely",        "<script>room()</script>", False),
+    ):
+        ok(f"render check: {label}", _value_reaches_the_drawing(body, "4749") is want)
 
     # THE CONFIG IS REAL AND THE FLOOR IS THE ONE IN IT.
     try:

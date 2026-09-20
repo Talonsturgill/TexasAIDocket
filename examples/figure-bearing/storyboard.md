@@ -64,8 +64,8 @@ acceptance:
 slide: 3
 layout: GRID
 primary_image: >
-  87 marks at one mark each, at frame 1's pitch, against 72 ghosted marks standing for the 3,579
-  at frame 1's scale.
+  Frame 1's field redrawn at frame 1's scale, 95 marks at one mark per 50, with the 87 large
+  systems picked out of it as a lit sliver one and three quarter marks wide.
 claims: [c1, c3]
 numerals:
   - value_from: c3
@@ -73,10 +73,14 @@ data_in_art:
   figure: large_systems
   drives: mark count
 job: >
-  Close by putting the large end and the small end on ONE measuring stick, so the asymmetry is
-  seen rather than asserted.
+  Close by putting the large end and the whole record on ONE measuring stick, so the asymmetry
+  is seen rather than asserted.
 acceptance:
-  - the 87 marks are countable in rows of 19
-  - the ghosted field is present and deliberately uncountable, which is what a number that size
-    honestly looks like
+  - the lit sliver is one full mark and a partial, which is 87/50 of frame 1's mark, measurable
+    off the render
+  - the field behind it is frame 1's field at frame 1's pitch, so the two frames are comparable
+    by eye with no re-scaling asked of the reader
+  - NO SECOND SCALE. An earlier cut drew the 87 at one mark each against the 3,579 at one per
+    50, which made 87 look larger than 3,579 on the page. It was labelled and it was still a
+    lie, and a separate scale is how you tell one without noticing
 ```
