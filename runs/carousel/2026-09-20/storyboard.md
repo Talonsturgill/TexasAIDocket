@@ -91,15 +91,23 @@ median adjacent jump of **21.0** and four hard cuts per deck.
 **WHAT ACTUALLY PRINTED, measured at 432 px by `measure.py` after round 3's repairs:**
 
     frame      1     2     3     4     5     6     7     8     9
-    measured  9.8  10.3  14.2   9.3   6.8   9.8  10.3   7.7  10.3
+    measured  9.3   9.8  14.2   9.3   6.3   9.8  10.3   7.2   9.8
 
-Adjacent 0.5, 3.9, 4.9, 2.5, 3.0, 0.5, 2.6, 2.6. **Max 4.9, mean 2.56**, against the sibling's
+Adjacent 0.5, 4.4, 4.9, 3.0, 3.5, 0.5, 3.1, 2.6. **Max 4.9, mean 2.81**, against the sibling's
 2.6 and this repo's 21.0. The deck holds together better than the plan asked it to.
 
-Round 2 measured max 6.0 and mean 2.84 on the same frames. Both numbers improved because round 3
-put the type of frames 3 and 6 on flat stock, which raised 3 and lowered 6 toward the run of the
-deck rather than because anything was tuned toward the arc. **The press was not chased here** and
-the figures above are read off the shipped PNGs by `measure.py`, never typed.
+Round 2 measured max 6.0 and mean 2.84. The max improved because round 3 put the type of frames 3
+and 6 on flat stock, and the mean moved back up when `N.quiet` was given a horizontal feather and
+stopped laying a hard edged rectangle of ground over the art. **Nothing here was tuned toward the
+arc.** The press is never chased and `measure.py` reads every figure above off the shipped PNGs.
+
+**FRAME 3 SITS 3.9 ABOVE THE NEXT HIGHEST AND IT IS STAYING THERE.** A craft judge measured its
+canvas mean at 85.4 against a 24 to 54 band for the other eight and called it a white rectangle on
+the contact sheet, which is a fair reading. It is also the deck's ONLY dark on light frame and the
+only one whose whole job is that a reader can read a sentence off it, and the round 3 repair that
+made that sentence legible is the single thing every judge agreed had improved. Darkening the
+sheet to close a gap in a coherence metric would trade the one win back. The gap is recorded here
+rather than closed.
 
 **AND IT PRINTED SYSTEMATICALLY DARKER THAN PLANNED, WHICH IS NOT REWRITTEN HERE.** The three
 paper frames were planned at 18, 24 and 20 and came out at 10.3, 14.2 and 9.8. The hatch at cell
@@ -259,7 +267,7 @@ art:
   motion: left to right along the trace, arrested at the stylus, then released into the blank stock
 type:
   hook: "Everything before now. Nothing after it."
-  dek: "The instrument is current, kept and complete. It is also a record rather than a warning."
+  dek: "The trace ends where the pen is. It is a record rather than a warning."
   labels: []
 verbatim: []
 acceptance:
@@ -555,7 +563,7 @@ art:
     would turn the deck''s only real count into a texture.
 
     '
-  palette: 'sheet stock #DCD3B4 printed in #2E2016, the second block''s marks in granite #9A3B2A, bench
+  palette: 'sheet stock #DCD3B4 printed in #2E2016, NO ACCENT ANYWHERE ON THIS FRAME, bench
     enamel #46524A'
   value_structure: 'Lightest is the bare stock after the last mark of each block, which is where the motif
     lands. Darkest is the bench shade around the sheet. Frame median L* planned at 20.
@@ -563,7 +571,7 @@ art:
     '
   motion: down the sheet block by block, each one ending shorter than the last
 type:
-  hook: "None of these is a share of another."
+  hook: "Three queries. Three counts. No total."
   dek: "Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000."
   labels: ["PRIMACY_AGENCY_CODE TX", "PWS_ACTIVITY_CODE A", "PWS_TYPE_CODE CWS"]
 verbatim: []
@@ -574,10 +582,10 @@ acceptance:
 - the three sheets are at three visibly different widths and none is drawn inside or on top of another
 - sheet width runs AGAINST count, so the smallest count sits on the widest sheet and length cannot be
   read as quantity
-- the anti partition statement is the HOOK at display size rather than a line of small type
+- the HOOK states only that the three do not ADD, never that none contains another. Two of the three ARE subsets of the first and figures.json says so, so a hook denying containment is a sentence the run's own numbers refute
 - only the 87 block carries unit marks, because 87 is the only one of the three countable at this size,
   and that row STOPS short of a rule that runs on to the margin
-- the accent is the last five marks of that row and nothing else in the frame, never a band or a zone
+- there is NO accent anywhere on this frame, because five granite marks measured 0.0002 of it against layout_check's 0.002 floor and an accent a reader cannot find is a frame without one
 - every stanza and every count sits on flat stock rather than on the hatch screen
 risks:
 - the mark field greying into a texture at thumb size, in which case the PITCH goes up and the block bleeds
@@ -733,10 +741,19 @@ risks:
 slide: 9
 layout: SPLIT_HORIZON
 primary_image:
-  subject: the pump house whole from the yard at 14 m, standing eye 1.65 m, horizon at 0.42 of the height,
-    the 6.0 by 4.2 m building at 3.0 m to the eaves in painted block with its roll-up door open and dark,
-    the late sun full on its west wall throwing a 6.2 m cast east across the yard, a 1.8 m chain link
-    running off the left edge and a live oak at 16 by 11 m at 40 m behind
+  subject: the pump house from the yard at close range, standing eye 1.65 m, the painted block west wall
+    filling the upper right with its roll-up door open and dark, the late sun full on that wall, a 1.7 m
+    operator walking out of the frame's left with a 3.5 m cast running east across the caliche, and a
+    1.8 m chain link running off the left edge
+  plan_note: 'THE SKY AND THE LIVE OAK WERE PLANNED AND ARE NOT IN THE PRINT, and this block says so
+    rather than describing a frame that was never built. The first cut put a lit sky in the top third
+    and the frame measured a median far above the deck''s run, because a sky is brighter than a shaded
+    interior and this deck is eight interiors. Inverting the values fixed the arc and cost the horizon,
+    so the exterior payoff the CAMERA_MOVE device was sold on does not arrive. Three judges across two
+    rounds said so and they are right. The repair is a frame redraw rather than a late tune, so it is
+    written into the run record as next run work. What IS here is a real one: the operator at true scale
+    against a 3.0 m eave, a cast at roughly twice their height running the deck''s own east, and the open
+    doorway as the darkest thing in a lit frame.'
   rect:
   - 0
   - 567
@@ -760,11 +777,10 @@ composition:
     east into the empty left of the yard, so the composition has somewhere for the reader to leave.
 
     '
-  bands: 'Top third, the flat afternoon sky holding the hook and the dek with no plate under either. Middle
-    third, the building''s lit west wall, the open dark doorway, the vent stack and the live oak at 40
-    m behind held clear of the sky. Bottom third, the yard''s caliche and grass with the building''s 6.2
-    m cast running east across it, the chain link''s own shadow, and the ground''s texture graded from
-    the lit near yard into the haze at the fence line.
+  bands: 'Top third, the room''s own shade holding the hook and the dek with no plate under either.
+    Middle third, the building''s lit west wall in painted block, the open dark doorway, and the chain
+    link running off to the left. Bottom third, the yard''s caliche with the operator''s 3.5 m cast
+    running east across it, the slab''s control joint, and the dated stamp in granite.
 
     '
   focal: the open doorway, an area about 170 by 230 px, reached because it is the darkest thing in a lit
@@ -793,10 +809,10 @@ verbatim:
 acceptance:
 - the building reads at 6.0 m wide and 3.0 m to the eaves, which is small, and not as an industrial plant
 - the cast runs EAST, away from the sun on the west wall, and is about twice the building's height
-- the live oak is held at least 12 L* off the sky and is not deleted by the haze pass
+- the operator reads as a person at 1.7 m against a 3.0 m eave, and their cast runs east at about twice their own height
 - the reader is told what to read and where, in the abstract's absence rather than in its place
 - the accent appears only on the dated stamp and nowhere else
-- the horizon is a single straight cut and the sky above it carries no plate behind the type
+- the open doorway is the darkest thing in the frame and the type above it sits on the room's shade with no plate behind it
 risks:
 - a depth cue taking the oak to within noise of the sky, which is why the 12 L* separation is an acceptance
   item

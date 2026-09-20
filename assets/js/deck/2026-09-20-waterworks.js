@@ -32,9 +32,14 @@
  *
  * THE MOTIF, AND IT IS THE DECK'S ARGUMENT RATHER THAN ITS DECORATION. THE MARK THAT STOPS.
  * On every frame exactly one line ends and nothing follows it. The trace stops at the pen on
- * frame 2. The logbook entries stop with ruled blank lines under them on 4. Every block's last
- * row is short on 6. Every chart pack in the box is closed on 7. The chart on the nail on 8 was
- * never started. A reader has the code by frame 4 without being told it.
+ * frame 2. The logbook entries stop with ruled blank lines under them on 4. The row of 87
+ * stops short of a rule that runs on to the margin on 6. Every chart pack in the box is closed
+ * on 7. The chart on the nail on 8 was never started. A reader has the code by frame 4
+ * without being told it.
+ *
+ * Frame 6 carried the motif three times until round 3, once per block's short last row, and
+ * carried it ZERO times in the print because a mark at that count is a pixel and a half. One
+ * legible landing beats three invisible ones and the two large mark fields were deleted.
  *
  * THE ACCENT LAW, AND IT IS THE STRICTEST THING IN THIS FILE.
  *
@@ -42,10 +47,22 @@
  *
  * #9A3B2A lands only where a stylus or a hand in this world has laid ink, and NEVER on anything
  * the record says has not happened. The trace behind the pen (2), the written entries in the log
- * (4), the second block's marks (6), the rim ink and the closed trace in the box (7), the dated
- * stamp (9). Frames 3, 5 and 8 carry NONE AT ALL, and frame 8's absence is the load bearing one,
- * because frame 8's whole subject is the abstract's conditional. A reader who swipes twice sees
- * that the colour is only ever behind the stop and never ahead of it.
+ * (4), the rim ink and the closed trace in the box (7), the dated stamp (9). Frames 1, 3, 5, 6 and
+ * 8 carry NONE AT ALL, and frame 8's absence is the load bearing one, because frame 8's whole
+ * subject is the abstract's conditional. A reader who swipes twice sees that the colour is only
+ * ever behind the stop and never ahead of it.
+ *
+ * ROUND 3 TOOK IT OFF TWO FRAMES AND THIS PARAGRAPH IS THE SECOND HALF OF THAT WORK. Frame 6 had
+ * it on 3,579 marks, a solid band across the middle third, which this same paragraph forbids four
+ * lines down. Frame 1 had a sliver of it on a CRT trace, which is not ink a hand laid. Both were
+ * removed and this law still described the deck it governs as it had been, which a craft judge
+ * caught in the file the rubric points deck_chassis.py at. A LAW THAT NO LONGER DESCRIBES ITS OWN
+ * DECK IS WORSE THAN NO LAW, because the next frame written against it inherits the wrong deck.
+ *
+ * AND AN ACCENT UNDER THE FLOOR IS AN ACCENT THAT IS NOT THERE. layout_check measures coverage at
+ * 432 px against 0.2 percent of the frame. Frames 7 and 9 were declaring the accent at 0.0015 and
+ * 0.0017, which spends the colour's scarcity and hands a reader nothing, and five granite marks on
+ * frame 6 measured 0.0002. A frame either carries it where a reader can find it or declares none.
  *
  * It is never a threshold, never a band, never a zone, never a severity ramp and never a fill
  * behind type. #9A3B2A is `capitol_granite` in config/brand.yaml. It is NOT the flag red, which
@@ -405,13 +422,46 @@
       var bx = boxes[i][0], by = boxes[i][1], bw = boxes[i][2], bh = boxes[i][3];
       if (!isFinite(bx) || !isFinite(by) || !isFinite(bw) || !isFinite(bh)) continue;
       var pad = Math.max(16, bh * 0.70);
-      var grad = c.createLinearGradient(0, by - pad, 0, by + bh + pad);
+      var x0 = bx - pad, y0 = by - pad, w = bw + pad * 2, h = bh + pad * 2;
+
+      /* IT FEATHERS ON FOUR SIDES, AND FOR THREE ROUNDS IT FEATHERED ON TWO.
+       *
+       * This built a VERTICAL gradient and then filled a RECTANGLE with it, so the wash faded
+       * out at the top and bottom of each line box and stopped dead at the left and right. On a
+       * ragged right headline that hard edge tracks the rag, stepping line by line, and a craft
+       * judge measured it at x 310 of 432 on frame 1's thumb and x 300 on frame 3's. What a
+       * reader sees is a warm rectangle pasted into the upper left, which is precisely the
+       * "plate with the sign flipped" this helper's own comment was written to avoid.
+       *
+       * The vertical ramp stays, because the wash is about dimming the art ABOVE and BELOW a
+       * line of type. A horizontal ramp multiplies it so the two ends go to nothing as well.
+       * Canvas has no two dimensional gradient, so the horizontal pass is drawn as a separate
+       * layer in `destination-out`, which erases the ends of the wash rather than painting more
+       * ground over them. Painting a second ground pass would DOUBLE the alpha in the middle and
+       * blow through deck_chassis.py's 0.55 ceiling on a fill behind display type. */
+      var lay = document.createElement("canvas");
+      var s = 2;                                  /* the frames all run cx.scale(2, 2) */
+      lay.width = Math.max(1, Math.ceil(w * s)); lay.height = Math.max(1, Math.ceil(h * s));
+      var lc = lay.getContext("2d");
+      lc.scale(s, s); lc.translate(-x0, -y0);
+
+      var grad = lc.createLinearGradient(0, y0, 0, y0 + h);
       grad.addColorStop(0.00, "rgba(" + g + ",0)");
       grad.addColorStop(0.32, "rgba(" + g + "," + A + ")");
       grad.addColorStop(0.68, "rgba(" + g + "," + A + ")");
       grad.addColorStop(1.00, "rgba(" + g + ",0)");
-      c.fillStyle = grad;
-      c.fillRect(bx - pad, by - pad, bw + pad * 2, bh + pad * 2);
+      lc.fillStyle = grad; lc.fillRect(x0, y0, w, h);
+
+      var ends = lc.createLinearGradient(x0, 0, x0 + w, 0);
+      var f = Math.min(0.30, pad / Math.max(w, 1));   /* the ramp, never past a third of the box */
+      ends.addColorStop(0.00, "rgba(0,0,0,1)");
+      ends.addColorStop(f,    "rgba(0,0,0,0)");
+      ends.addColorStop(1 - f, "rgba(0,0,0,0)");
+      ends.addColorStop(1.00, "rgba(0,0,0,1)");
+      lc.globalCompositeOperation = "destination-out";
+      lc.fillStyle = ends; lc.fillRect(x0, y0, w, h);
+
+      c.drawImage(lay, x0, y0, w, h);
     }
     c.restore();
   };

@@ -1,6 +1,6 @@
 {
  "date": "2026-09-20",
- "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly. A 'September 15th to August 31st' span was declared and then removed, because aggregate_check was right that a date pair read as a span is a figure the deck computed. The caption now states the two dates as two facts rather than as a distance between them, which is what the record actually carries. Round 3 removed 'Three queries' and 'three counts' when frame 6's dek was rewritten to lead with the anti partition statement in the hook, and added the 4,749 noun phrase the new dek asserts. A declaration whose sentence has left the deck is exactly the kind this file already says not to keep. Round 3 briefly declared 3,301, 87 and 50,000 here to satisfy numeral_trace and removed them again, because aggregate_check only accepts a declaration for a phrase its own detector found on a slide and it found none of the three. The two gates wanted opposite things and the answer was neither file: those figures are FETCHED FACTS, so they are claims now, c20 through c22, each with the query response quoted verbatim.",
+ "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly. A 'September 15th to August 31st' span was declared and then removed, because aggregate_check was right that a date pair read as a span is a figure the deck computed. The caption now states the two dates as two facts rather than as a distance between them, which is what the record actually carries. Round 3 removed 'Three queries' and 'three counts' when frame 6's dek was rewritten to lead with the anti partition statement in the hook, and added the 4,749 noun phrase the new dek asserts. A declaration whose sentence has left the deck is exactly the kind this file already says not to keep. Round 3 briefly declared 3,301, 87 and 50,000 here to satisfy numeral_trace and removed them again, because aggregate_check only accepts a declaration for a phrase its own detector found on a slide and it found none of the three. The two gates wanted opposite things and the answer was neither file: those figures are FETCHED FACTS, so they are claims now, c20 through c22, each with the query response quoted verbatim. The hook 'None of these is a share of another.' was shipped into round 3 scoring and refused as a HARD FAIL: two of the three counts are strict subsets of the first, which figures.json states outright. The true statement is that they do not ADD, so the hook is now 'Three queries. Three counts. No total.' and those two phrases are declared again.",
  "aggregates": [
   {
    "phrase": "three places",
@@ -34,6 +34,32 @@
     "v1"
    ],
    "note": "Round 3 moved the headline number into frame 6's dek as a full noun phrase, so the frame now ASSERTS what the 4,749 counts rather than leaving the noun to the sheet's query stanza. aggregate_check was right to ask for the declaration once the sentence changed."
+  },
+  {
+   "phrase": "Three queries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the set {c20, c21, c22}, each an independently fetched query whose complete filter stanza is printed on its own sheet, so a reader can count the queries on the frame",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "Restored in round 3 when the hook changed. It was removed earlier the same round with the dek that carried it, and the hook that replaced that dek was found false. Both halves are recorded because the removal was correct at the time and the thing that made it wrong was a separate mistake."
+  },
+  {
+   "phrase": "three counts",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the same set, counted as results rather than as queries. The frame prints three numerals and performs no arithmetic on them",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "Restored in round 3 when the hook changed. It was removed earlier the same round with the dek that carried it, and the hook that replaced that dek was found false. Both halves are recorded because the removal was correct at the time and the thing that made it wrong was a separate mistake."
   }
  ]
 }

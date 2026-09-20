@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.5,
+      "why": "Frames 1, 2, 5 and 9 are drawn: true-scale subjects, real contact shadows, running off edges, graded rather than flat-filled. Frame 3's quote is now the legible dark-on-light payoff it was always meant to be, and frame 6 went from smudge to three sheets whose every query line and count reads at 432px. Against that, two of nine frames do not deliver their drawn subject. Frame 4's operator is a flat black cut-out reading as a person standing on a rail, its hand is nowhere near the logbook and the pen is not in contact with the last written line, all of which its own acceptance list demands. Frame 7 reads at feed size as an abstract sawtooth field, its filing box is not legible as a box, and only the one fallen pack's red trace rescues it at full size. Frame 8's blank chart on its nail reads as a luggage tag."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "The strongest criterion. On the contact sheet as a filmstrip: one ground #2E2016, one ink, one 52-degree screen, one late raking light with every cast running east, and no frame that strobes light against its neighbours. The storyboard's measured track (9.8, 10.3, 14.2, 9.3, 6.8, 9.8, 10.3, 7.7, 10.3, max adjacent 4.9, mean 2.56) matches what I see against a repo history of 21.0. Both continuity devices do real work and are checkable: the pump house from inside on 1, recognised from outside at the centre of 5, and whole from the yard on 9, plus the motif now landing on three of five intended frames rather than one. Frame 7 is the one that sits outside, in texture."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "Every numeral traces. 4,749, 3,579 and 87 now have claims (c20, c21, c22) with verbatim response bodies quoted, plus v1 to v3, each re-fetched a third time; frame 5's 5 m scale bar is derived from a declared 0.0235 m per pixel; the dates on frame 8 go to c4 and c5. Frame 3's quote is character-for-character against c15. Frame 6's kicker now says EPA, matching the caption and the source, which was my round 2 catch. The rejected list explicitly forbids subtracting v2 or v3 from v1. Not a 9 because frame 1's hook juxtaposes 'Aimed at small systems' with 'Texas has 4,749' and invites the very partition misread frame 6 exists to prevent, and because the 87 unit marks are a drawn quantity I cannot verify by counting at this resolution."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 6.0,
+      "why": "The 9 description asks for the county, the body and the deadline. This deck names the deadline (frame 8, August 31st, 2029) and neither of the other two in any copy a scroller reads. NSF appears only inside frame 3's document metadata at 11px; Texas A&M Engineering Experiment Station likewise; no county, town or region appears anywhere in nine frames or the caption. The object of the story, a predictive digital twin, is never stated on any frame, so the close's 'which of those 3,579 ever gets a twin' asks about a thing the deck never introduced. The action on frame 9 is real but not executable: it cites c18 in the footer and does not name the Texas Drinking Water Viewer that c18 quotes, and it gives a reader no way to find which of the 4,749 serves their address."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "The cover now earns a swipe on its numeral, which is the round's main gain, and frame 6 carries new readable information instead of a texture. But frames 2, 3, 4 and 7 all cite c15 and all make one point, and frame 7's new dek names its own redundancy out loud ('Which is exactly what the abstract means by limited ability to anticipate') after frame 3 already said it in the source's words. The single place understanding changes is frame 8, the eighth of nine. One cuttable frame and a turn that arrives too late to be a build."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 6.8,
+      "why": "Written rather than generated: 'The log is current to this line', 'Every one of these is finished', 'The word is can' are lines a person chose. House rules hold, including the hard one, with September 15th carrying no year on frame 8 and 2029 keeping its own. No dashes, no colons, no emojis, no first person. Held below 7 for exactly the thing the criterion names: regional specificity over state-level abstraction, and nine frames plus a caption contain no Texas place but the word Texas."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "The ground clears the last six decks by dE76 13.32 at its nearest, per the storyboard's own measurement, against a floor of 10. The structural move, one building entered on frame 1 and re-met from three positions and finally from the yard, is not a shape this run has used recently, and the layout rotation returns empty with two DOCUMENTs non-adjacent. The one familiar move is the opening: a large numeral hook over a full-bleed interior with a three-line dek."
+    }
+  ],
+  "weighted_score": 6.97,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Cut frame 7, which now admits in its own dek that it restates frame 3, and spend it on the sentence this deck never says anywhere a scroller reads, that the National Science Foundation is paying Texas A&M to build a predictive digital twin for systems this size, so the reader meets the actor and the object before the close asks which of the 3,579 ever gets a twin.",
+  "lens": "reader",
+  "round": 3,
+  "date": "2026-09-20"
+}

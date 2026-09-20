@@ -1963,6 +1963,74 @@
    "type_skeletons": "Kicker top left, counter top right, hook, dek, source line at the foot and the site line opposite it. Every frame seats its type with TXDECK.punch at feather 66 and strength 0.78, which is a dim toward the type rather than a plate, and a round 1 judge found no haloes at feed size. Frame 3 is the deck's one dark-on-light page and its type is the sheet's own.",
    "machine_qa": "0 fails and 0 warns across 9 frames, verdict PASS, against 7 warns at round 1. bespoke_check median pairwise 0.3748, craft_floor median 6898 against a floor of 1242, and layout_check --require, dossier_check, plan_render_check, copy_sync_check, coherence_check, deck_chassis, deck_coherence, texan_check, noun_trace, absence_check, scene_bounds, bleed_witness, contact_trace, locator_trace, construction_check, verbatim_check, numeral_trace, label_guard, quantifier_check and aggregate_check all exit 0. panel_ready exit 0.",
    "artifact_note": "THE VECTOR PDF IS 61.5 MB AGAINST 6 TO 14 MB FOR EVERY DECK BEFORE IT AND THE CAUSE IS MEASURED RATHER THAN GUESSED. A coarser screen cell was worth about 5 MB, a raised screen floor and a higher gamma were worth nothing at all, and cutting the film grain and the dither was worth about 9 MB, which is why the grain runs at 0.012 against the house 0.044. What is left is that this is the first deck to run the full halftone across the whole of all nine frames. It ships disclosed rather than cured, and the diagnosis is in UPGRADE_BACKLOG."
+  },
+  {
+   "date": "2026-09-20",
+   "carousel_no": 30,
+   "written_from": "machine_qa.json, render_report.json, measurements.json, layout_check's own accent measurement and the gate suite BY EXIT CODE. The value block is measured off the nine shipped PNGs by out/2026-09-20/measure.py at 432px, never planned and never asserted.",
+   "register": "A PUMP HOUSE INTERIOR IN THE POST OAK SAVANNAH AT TEN TO FIVE. Ground #2E2016 sandy loam on swept concrete in shade, one ink #DCD3B4 chart stock, printed: every scene is drawn in greys into TXINK's offscreen twin at true scale, the press lays the paper, screens the tone into ink at a HATCH of cell 6 and angle 52, and paints what must not be screened on top.",
+   "structural_laws": [
+    "THE SCREEN NEVER SITS UNDER TYPE, AND THE FIRST THREE ROUNDS PROVED IT HALF WAY. Type painted in the over pass is flat and unscreened, which both document frames did from the start. It is the SHEET UNDER IT that carries the screen, and a 6 px stripe under 15 px mono fills the counters, so all three round 2 judges reported a hatch running through glyphs it never touched. N.stock lays flat stock under a type block before the toner goes on, measured off the type it serves. Spanning it across the sheet instead, which the first cut did, prints a filled bar.",
+    "AN ACCENT NOBODY CAN SEE IS A FRAME WITHOUT ONE. layout_check measures the accent at 432 px against a 0.2 percent floor, and frames 7 and 9 were declaring an accent at 0.0015 and 0.0017. A colour spent below the floor costs the deck its scarcity and buys nothing a reader gets. Frames 1 and 6 now declare none and carry none, and 2, 4, 7 and 9 carry it above the floor.",
+    "A UNIT MARK FIELD HAS A COUNT CEILING AND 4,749 IS OVER IT. At about one and a half pixels per mark the field merges into whatever screen the deck is printing through, and what a reader receives is a filled bar. 87 is countable at an 8.4 px pitch. The two large counts print as numerals on their own sheets, and the anti partition argument is carried by three sheets at three widths that run AGAINST the counts.",
+    "A SHEET WHOSE CONTENT OVERRUNS IT HAS NO EDGE, AND A PAGE WITHOUT AN EDGE IS A BAR. Frame 6's mark field needed 990 px on a 940 px sheet for three rounds, so every sheet's own edge sat under its own marks. Three judges read a stacked bar chart and none of them named the geometry, because the symptom and the cause were two layers apart."
+   ],
+   "techniques": [
+    "flat stock laid under dark on light type inside a screened print, feathered on four edges and sized by measureText off the type it serves, so a printed page reads as ink on paper rather than as type over a texture",
+    "three separate sheets at three widths chosen to run AGAINST the quantities they carry, so length cannot be read as amount and the anti partition argument is structural rather than a sentence asking the reader not to misread",
+    "a single row of 87 unit marks stopping two thirds across a rule that runs on to the margin, so the bare stretch after the last mark is visibly paper a mark could have gone on",
+    "a true scale scene bench interior at 6.0 by 4.2 by 3.0 m with a sun patch raking in from an open west door, every object placed in metres and every cast computed from one declared light at az 262 el 26",
+    "an orthographic elevation carrying a scale bar whose length is DERIVED from a declared metres per pixel rather than drawn to look right, at 5 m and 212.8 px from 0.0235 m per pixel"
+   ],
+   "value_block": {
+    "per_frame_median_lstar": [
+     9.8,
+     10.3,
+     14.2,
+     9.3,
+     6.8,
+     9.8,
+     10.3,
+     7.7,
+     10.3
+    ],
+    "planned_median_lstar": [
+     8,
+     18,
+     24,
+     16,
+     11,
+     20,
+     10,
+     14,
+     7
+    ],
+    "max_adjacent_delta": 4.9,
+    "mean_adjacent_delta": 2.56,
+    "note": "Measured at 432 px off the shipped PNGs. It printed systematically DARKER than planned and that is not rewritten in the plan: the three paper frames were planned at 18, 24 and 20 and came out at 10.3, 14.2 and 9.8. Hatch at cell 6 does not reach the twenties over this ground however bright the stock is drawn. The arc is written against the press and the press was never chased to the arc."
+   },
+   "accent": {
+    "hex": "#9A3B2A",
+    "name": "capitol_granite",
+    "frames_above_floor": [
+     2,
+     4,
+     7,
+     9
+    ],
+    "note": "Frames 1 and 6 declare none. The law is that granite marks where a stylus or a hand in this world has laid ink, which is why a trace on a CRT was removed from frame 1."
+   },
+   "ground": {
+    "hex": "#2E2016",
+    "nearest_dE76_in_last_six": 13.32,
+    "note": "Measured against the last six shipped grounds before any frame was drawn. All three directors proposed warm near blacks that collided with September 14th's bed at 8.37, 4.06 and 2.72 against a floor of 10."
+   },
+   "screen": {
+    "mode": "hatch",
+    "cell": 6,
+    "angle": 52,
+    "note": "Chosen on probe frame evidence over line at cell 5 and 9 and stipple at 5, measured by thumb standard deviation. Line went WORSE as it went coarser, which killed that family. Deliberately not September 19th's halftone."
+   }
   }
  ]
 }

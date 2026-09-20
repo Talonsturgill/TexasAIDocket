@@ -200,7 +200,8 @@
    "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
    "source_type": "primary_official",
    "retrieved": "2026-09-20",
-   "confidence": "high"
+   "confidence": "high",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, active Texas community water systems"
   },
   {
    "id": "c21",
@@ -209,7 +210,8 @@
    "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/%3C/3301/COUNT/JSON",
    "source_type": "primary_official",
    "retrieved": "2026-09-20",
-   "confidence": "high"
+   "confidence": "high",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, Texas community water systems serving under 3,301"
   },
   {
    "id": "c22",
@@ -218,7 +220,8 @@
    "url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/%3E/50000/COUNT/JSON",
    "source_type": "primary_official",
    "retrieved": "2026-09-20",
-   "confidence": "high"
+   "confidence": "high",
+   "source_title": "EPA Envirofacts SDWIS WATER_SYSTEM count, Texas community water systems serving over 50,000"
   }
  ],
  "computed_values": [

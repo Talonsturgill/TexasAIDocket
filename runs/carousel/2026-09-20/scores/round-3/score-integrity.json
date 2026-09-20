@@ -1,0 +1,55 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.5,
+      "why": "Real ink and real grading on 2, 3, 6, 7, but several frames do not meet their own dossier's acceptance items. Frame 1's first acceptance item is 'the operator reads as a person at 1.7 m ... at 432 px'; in the contact-sheet thumb the operator is an unreadable dark shape cropped by the extreme left edge, and the declared focal ('the lit floor patch ... about 320 by 260 px') does not exist as a distinguishable light region, the floor reads as one uniform hatch across the bottom 55 percent. Frame 5's '5 m' label collides with the scale bar's right terminal at x~437 and is illegible, so the one device that makes the frame's true-scale claim checkable can't be read (the bar itself measures ~214 css px against the declared 212.8, so the geometry is right and the label is the failure). Frame 9 declares 'a live oak at 16 by 11 m at 40 m behind' with an acceptance item holding it 12 L* off the sky; there is no oak, no horizon light and no sky in the shipped frame. Frame 3's N.stock fix landed on the quote block and NOT on the field table below it, where the hatch still runs through 'title / awardeeName / pi / date' and a rule crosses the 'title' row's glyphs. Frame 8 is a wall, a dim headline at rgb(138,124,104) and a small tag, which is the thinness its own risks note predicted."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "The deck's strongest axis and it is earned rather than asserted. One ground, one ink, one screen at cell 6, one cast direction, adjacent deltas measured off the shipped PNGs at max 4.9 and mean 2.56 against this repo's historical 21.0. Two continuity devices are declared and visibly working: the camera move through one pump house (1, 2, 4, 7, 8 inside, 9 the same building from the yard, 5 the same building as the middle term of the elevation) and the mark that stops (trace arrested at the stylus on 2, entries over ruled blanks on 4, the 87-mark row stopping short of a rule that runs on to the margin on 6, the blank chart on the nail on 8). The accent law holds in the pixels: no granite anywhere on 1, 3, 5, 6, 8, and red only where a hand in this world laid ink on 2, 4, 7, 9. Held off 8 by frame 3 sitting 4.9 L* outside the run, and by frame 9 failing to read as an exterior at all, so the declared walk-out-of-the-room close lands as one more interior."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 4.5,
+      "why": "Every numeral traces, and I tried hard to break that: 4,749/3,579/87 to c20/c21/c22 with the response bodies quoted verbatim and the URL escapes (%3C, %3E) matching the claim text, 3,301 and 50,000 to the filter values printed on the sheets, 2640086 to c1, 09/09/2026 to c6, 09/15/2026 to c4, 08/31/2029 to c5, '5 m' to aggregates.scale_bar_frame_5. c20 through c22 are legitimate claims and not invented ones, though all three are missing the source_title field that c1 through c19 carry. But frame 6's hook, in 79.5px Fraunces, is FALSE: c21's URL is c20's three filters plus a population filter, so c21's result set is necessarily contained in c20's, and figures.json says so in its own words, 'every row v2 counts is a row v1 counts', under a key literally named small_systems_of_all with value 3579 'of' 4749. The frame's own dek 950px below the hook says '3,579 of them'. quantifiers.json marks the universal 'verified' by reasoning about PARTITION (whether the three sum to a whole), which is a different proposition from SHARE, and null POPULATION_SERVED_COUNT rows make c20 a strict superset, strengthening the containment rather than defeating it. Also: the cover pairs 'Aimed at small systems' with 4,749 when the small-systems figure is 3,579, which the run knew, since the caption's own close asks 'Which of those 3,579 ever gets a twin?'; slide 1 drops c15's 'often' and asserts monitoring-and-records of one specific system; slide 2's 'the instrument is current, kept and complete' traces to no claim. Offsetting: the rejected list refuses v1 minus v2 by name, no dollar figure is published given the Collaborative Research note, and c9's misspelling is preserved."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 6.5,
+      "why": "A reader learns who got the award (Texas A&M Engineering Experiment Station, named on frame 3's paper), who runs it (Sudipta Chowdhury), what it is aimed at, that the start date is past and nothing is built, and what to do today. What is missing is place and consequence: Brazos County and the Post Oak Savannah appear only in storyboard.md and on no frame, there is no deadline and no body a reader can address, and frame 9 says 'read your own system's report' without naming TCEQ's Drinking Water Viewer that c18 fetched or where to find it. The stake stays abstract because the deck correctly refuses to say what a small system failing to anticipate costs a household."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "A real turn at 7 into 8: the record is complete, therefore it is the wrong instrument, therefore the word is can. The cover earns a swipe and the close lands on an action. Against it, frames 2 and 4 make the same argument twice (an instrument that records the past, and blank space after the last entry) and one of the two is cuttable, and frame 6 interrupts the room sequence with a document before the room resumes at 7."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "Clean, declarative, no boosterism and no doom, and 'The word is can' and 'Which of those 3,579 ever gets a twin?' are both lines a person wrote. But this is register, not region. Nothing in nine frames or in the caption is Texan beyond the state name and the agency initials, and the rubric asks for regional specificity over state-level abstraction. Swap three nouns and this deck is about Ohio."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "Ground #2E2016 is recorded as clearing the nearest of the last six decks by dE76 13.32 against a floor of 10, the layout rotation returns [] with two DOCUMENTs in nine and non-adjacent, and a nine-frame camera move through one building is not a move this machine has made recently. The familiar one is the dark interior at a fine hatch screen."
+    }
+  ],
+  "weighted_score": 6.37,
+  "hard_fails": [
+    "Frame 6's hook, 'None of these is a share of another.', is a universal the run's own numbers refute, and it is presented as verified. c21's query URL is c20's three filters plus POPULATION_SERVED_COUNT < 3301, so 3,579 is necessarily a subset of 4,749; c22 likewise for 87. figures.json's small_systems_of_all declares value 3579 'of' 4749 and states 'every row v2 counts is a row v1 counts'. The frame's own 24px dek says '3,579 of them serve fewer than 3,301 people', contradicting the 79.5px hook on the same slide. quantifiers.json's 'verified' field defends a different proposition (that the three do not PARTITION, which is true) than the one the hook asserts (that no one of them is CONTAINED in another, which is false). Null POPULATION_SERVED_COUNT rows are excluded from c21 and c22 but counted in c20, which makes the containment stricter, not looser."
+  ],
+  "ship": false,
+  "one_sentence_fix": "Replace frame 6's hook with the sentence already printed correctly on that frame's own 13px footnote, 'Each sheet is its own query', because it defeats the partition misread without asserting a containment relation that the frame's own dek and figures.json both state is true.",
+  "lens": "integrity",
+  "round": 3,
+  "date": "2026-09-20"
+}

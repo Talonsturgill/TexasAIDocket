@@ -2,15 +2,15 @@
  "_note": "Measured at 432 px off the shipped PNGs by out/2026-09-20/measure.py. The planned arc is read out of the storyboard's own lines rather than retyped, so a drift between plan and print is visible without trusting either copy.",
  "grid": "432x540, the feed thumb",
  "per_frame_median_lstar": [
+  9.3,
   9.8,
-  10.3,
   14.2,
   9.3,
-  6.8,
+  6.3,
   9.8,
   10.3,
-  7.7,
-  10.3
+  7.2,
+  9.8
  ],
  "planned_median_lstar": [
   8,
@@ -25,17 +25,17 @@
  ],
  "deck": {
   "median_of_frame_medians": 9.8,
-  "spread_L": 7.4,
+  "spread_L": 7.9,
   "max_adjacent_delta": 4.9,
-  "mean_adjacent_delta": 2.56,
+  "mean_adjacent_delta": 2.81,
   "adjacent_deltas": [
    0.5,
-   3.9,
+   4.4,
    4.9,
-   2.5,
    3.0,
+   3.5,
    0.5,
-   2.6,
+   3.1,
    2.6
   ]
  },

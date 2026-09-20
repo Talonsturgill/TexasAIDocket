@@ -1,0 +1,107 @@
+{
+ "weighted_score": 7.0,
+ "judges": [
+  6.37,
+  7.066,
+  6.97
+ ],
+ "spread": 0.696,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    6.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.3,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.4,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Frame 6's hook, 'None of these is a share of another.', is a universal the run's own numbers refute, and it is presented as verified. c21's query URL is c20's three filters plus POPULATION_SERVED_COUNT < 3301, so 3,579 is necessarily a subset of 4,749; c22 likewise for 87. figures.json's small_systems_of_all declares value 3579 'of' 4749 and states 'every row v2 counts is a row v1 counts'. The frame's own 24px dek says '3,579 of them serve fewer than 3,301 people', contradicting the 79.5px hook on the same slide. quantifiers.json's 'verified' field defends a different proposition (that the three do not PARTITION, which is true) than the one the hook asserts (that no one of them is CONTAINED in another, which is false). Null POPULATION_SERVED_COUNT rows are excluded from c21 and c22 but counted in c20, which makes the containment stricter, not looser."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Frame 6's hook, 'None of these is a share of another.', is a universal the run's own numbers refute, and it is presented as verified. c21's query URL is c20's three filters plus POPULATION_SERVED_COUNT < 3301, so 3,579 is necessarily a subset of 4,749; c22 likewise for 87. figures.json's small_systems_of_all declares value 3579 'of' 4749 and states 'every row v2 counts is a row v1 counts'. The frame's own 24px dek says '3,579 of them serve fewer than 3,301 people', contradicting the 79.5px hook on the same slide. quantifiers.json's 'verified' field defends a different proposition (that the three do not PARTITION, which is true) than the one the hook asserts (that no one of them is CONTAINED in another, which is false). Null POPULATION_SERVED_COUNT rows are excluded from c21 and c22 but counted in c20, which makes the containment stricter, not looser."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.066 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.97 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.066,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.066 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.97,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.97 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 2
+}

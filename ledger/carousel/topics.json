@@ -897,6 +897,35 @@
     "data center water"
    ],
    "prose_note": "Every count above is written in words that are not number words, because `ledger_check` validates spelled number words in the newest topic against this run's own figure keys and this run writes no figures.json."
+  },
+  {
+   "date": "2026-09-20",
+   "carousel_no": 30,
+   "docket_item": "tx-2026-0176",
+   "instrument": "one federal award record read through the funder's own search API, plus three counts read from a federal regulator's public query interface",
+   "topic": "The National Science Foundation made a standard grant to the Texas A&M Engineering Experiment Station for AI enabled predictive digital twins of freshwater infrastructure under cascading hazards, with the abstract's first stated direction aimed at small and mid sized systems, against an EPA Envirofacts count of the active community water systems in Texas and of how many of them are small.",
+   "angle": "The award's own abstract states the criticism, so the deck hands the reader that sentence rather than paraphrasing it, and the criticism is narrow. It is about instruments and not about people. Nothing is deployed, the award's verb is the conditional, and the deck's argument is the distance between a record that is complete and a question a complete record cannot answer.",
+   "angle_note": "THE STRONGEST STORY OF THE DAY WAS REFUSED ON THE GATE AND IT IS WORTH THE LINE. The Flock split, El Paso ordering removal while Carrollton expanded the same night and TxDOT suspending permits above both, returned dedupe_check LIKELY REPEAT at 0.74 against carousel no. 12 of August 30th. The full entry was read rather than its title, as the phase requires, and it is a repeat. runs/carousel/2026-09-20/SELECTION.md carries the reasoning. THE DECK CARRIES NO PLACE AND THREE JUDGES SAID SO ACROSS TWO ROUNDS. Brazos County is the drawn world and reaches no frame, and the deck's own law forbids a county sign in the drawing. Nothing forbade the copy from placing it, and that is a cost this run took rather than a rule it obeyed.",
+   "entities": [
+    "U.S. National Science Foundation",
+    "Texas A&M Engineering Experiment Station",
+    "U.S. Environmental Protection Agency",
+    "Texas Commission on Environmental Quality"
+   ],
+   "entities_note": "The principal investigator is named in the record and on no frame. A person's name on a slide makes a research award about a person, and the abstract's criticism is explicitly about instruments rather than about anybody's practice.",
+   "keywords": [
+    "digital twin",
+    "NSF award",
+    "Texas A&M",
+    "freshwater infrastructure",
+    "cascading hazards",
+    "community water system",
+    "EPA Envirofacts",
+    "SDWIS",
+    "TCEQ",
+    "small water systems"
+   ],
+   "prose_note": "Every count above is written in words that are not number words, because ledger_check validates spelled number words in the newest topic against this run's own figure keys."
   }
  ]
 }
