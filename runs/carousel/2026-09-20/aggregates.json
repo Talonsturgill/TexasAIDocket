@@ -60,6 +60,21 @@
     "c22"
    ],
    "note": "Restored in round 3 when the hook changed. It was removed earlier the same round with the dek that carried it, and the hook that replaced that dek was found false. Both halves are recorded because the removal was correct at the time and the thing that made it wrong was a separate mistake."
+  },
+  {
+   "phrase": "five official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 5,
+   "computed_by": "the number of distinct source documents behind the deck's printed claim ids, counted by scripts/carousel/sources_block.py from claims.json's own url field when it built first_comment.txt. It is the length of that set rather than a figure anybody typed",
+   "from_claims": [
+    "c1",
+    "c17",
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "shipped_check caught this on the published first comment rather than on a slide, which is the right catch: the first comment is published copy and carries the same compute-not-generate law as a frame. The five are the NSF award record, the TCEQ drinking water page and the three EPA Envirofacts queries."
   }
  ]
 }
