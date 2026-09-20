@@ -1,0 +1,242 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 7 of 9. Archetype CLOSE_CROP.
+     THE TURN. An open 0.4 x 0.28 m filing box on swept concrete, seen from above at 55 degrees,
+     full of folded chart packs standing on edge, every one of them closed and filed, with the
+     topmost pack fallen flat showing one complete trace running the full width of its paper.
+     THE ARGUMENT IS THAT THE RECORD IS COMPLETE, AND THAT COMPLETE IS EXACTLY WHAT MAKES IT THE
+     WRONG INSTRUMENT FOR THE QUESTION. Nothing in this frame is neglected. The box is not
+     overflowing, no pack is torn or stained, and the lid is written on in a steady hand.
+     THE MOTIF LANDS AS CLOSURE. Every trace in this box ends where its week ended.
+     NO COUNT AND NO DURATION IS STATED, because neither is in the record.
+     Planned frame median L* 10. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:158px; width:760px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:394px; width:600px; font-size:25px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Every one of these is finished.</h1>
+<p class="dek">Which is exactly what makes a complete record the wrong instrument for the question being asked of it.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the room already holds", counter: "07 / 09",
+      src: "c15   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 82, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260907);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE ACCENT'S GEOMETRY LIVES OUT HERE so `over` can lay it after the screen has run. The
+     * marks are the SAME marks in both passes: `draw` cuts them into the paper as dark, `over`
+     * inks them granite, so the groove and the ink can never disagree. */
+    var PPM7 = 690, RIM = [];
+    var FALL = { x: 74, y: 966, w: 0.92 * PPM7, h: 0.27 * PPM7, rot: 0.038 };
+    FALL.v = function (u) {
+      return 0.50
+           + 0.16 * Math.sin(u * Math.PI * 6.1)
+           + 0.07 * Math.sin(u * Math.PI * 17.3 + 1.1)
+           + 0.03 * Math.sin(u * Math.PI * 41.0 + 2.7);
+    };
+
+    M.print(cx, {
+      seed: 24,
+      draw: function (a) {
+        var castX = M.castDir()[0];
+        var PPM = 690;
+        var m = function (v) { return v * PPM; };
+
+        /* RECOMPOSED. The first cut drew the box small in a wide floor and the packs came back
+         * as a thin fringe along the top of a black rectangle, which is an object in a void
+         * under a headline, the exact reading ILLUSTRATION_SYSTEM.md exists to stop. The subject
+         * is MANY FINISHED RECORDS, so the packs fill the frame and the box is what crops them.
+         * The reader is standing over an open box looking down into it. */
+
+        /* THE BOX INTERIOR, cropped by the left, right and bottom edges. Its far wall and the
+         * swept slab beyond it are the only things in the frame that are not paper. */
+        (function () {
+          a.fillStyle = M.G.stone; a.fillRect(0, 0, W, 300);
+          var g = a.createLinearGradient(0, 0, W * 0.8, 300);
+          g.addColorStop(0.00, "rgba(246,235,200,0.22)");
+          g.addColorStop(0.55, "rgba(0,0,0,0.26)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.62)");
+          a.fillStyle = g; a.fillRect(0, 0, W, 300);
+          /* sparse aggregate in the slab, a lit west face and a dark east side, and FEW, because
+           * 430 grains printed as a starfield on the first render */
+          var RG = TX.rng(451);
+          for (var i = 0; i < 90; i++) {
+            var x = RG() * W, y = RG() * 300, r = 1.0 + RG() * 1.8;
+            a.fillStyle = "rgba(0,0,0,0.20)"; a.fillRect(x + r * 0.7, y, r, r * 0.6);
+            a.globalAlpha = 0.10 + RG() * 0.12;
+            a.fillStyle = M.G.bright; a.fillRect(x - r, y - r * 0.5, r, r * 0.7);
+            a.globalAlpha = 1;
+          }
+          /* the box's far wall, its cut top edge catching the key, its inside face in shade */
+          a.fillStyle = "rgba(0,0,0,0.50)"; a.fillRect(0, 288, W, 18);
+          a.strokeStyle = M.G.metal; a.lineWidth = 3.4; a.globalAlpha = 0.55;
+          a.beginPath(); a.moveTo(-10, 300); a.lineTo(W + 10, 292); a.stroke();
+          a.globalAlpha = 1;
+          a.fillStyle = M.G.dark; a.fillRect(0, 300, W, 74);
+          a.fillStyle = M.G.deep; a.fillRect(0, 300, W, H - 300);
+        })();
+
+        /* THE FILED PACKS, filling the box, standing on edge and leaning at seeded angles. Each
+         * is 0.30 m of fanfold seen on its folded edge, and the near ones crop off the bottom of
+         * the frame so the reader is inside the box rather than looking at it.
+         * Uniform repetition reads as texture, which is this technique's named failure, so the
+         * lean, the height, the width and the rim mark all come from a seeded rng. */
+        (function () {
+          var R = TX.rng(881), n = 58;
+          for (var i = 0; i < n; i++) {
+            var t = i / (n - 1);
+            var x = -30 + t * (W + 60);
+            var lean = -0.17 + R() * 0.32;
+            var packH = m(0.86) + R() * m(0.20);
+            var packW = m(0.016) + R() * m(0.010);
+            var baseY = 392 + R() * 30;
+            /* the falloff into the box's shade, deepest in the middle where the light can't
+             * reach over the near wall */
+            var k = 0.42 + 0.58 * Math.pow(Math.abs(t - 0.46) * 2.0, 0.85);
+            k = Math.min(1, k);
+            a.save();
+            a.translate(x, baseY + packH);
+            a.rotate(lean);
+            /* the pack's own cast on the packs behind it, east */
+            a.fillStyle = "rgba(0,0,0,0.30)";
+            a.fillRect(packW, -packH, packW * 0.55, packH);
+            /* the folded edge, lit on its west face and falling away east */
+            a.globalAlpha = k;
+            a.fillStyle = M.G.bright;
+            a.fillRect(0, -packH, packW, packH);
+            a.globalAlpha = k * 0.8;
+            a.fillStyle = M.G.shade;
+            a.fillRect(packW * 0.64, -packH, packW * 0.36, packH);
+            /* the fanfold's folds down the edge */
+            a.globalAlpha = k * 0.5;
+            a.strokeStyle = "rgba(0,0,0,0.55)"; a.lineWidth = 1;
+            for (var f = 1; f < 9; f++) {
+              var fy = -packH * (f / 9);
+              a.beginPath(); a.moveTo(0, fy); a.lineTo(packW, fy - 1.4); a.stroke();
+            }
+            /* THE RIM INK, cut dark here and inked granite in `over` at the same place */
+            var ry = -packH * (0.30 + R() * 0.42), rh = Math.max(1.8, packW * 0.20);
+            a.globalAlpha = k * 0.55;
+            a.fillStyle = "rgba(0,0,0,0.72)";
+            a.fillRect(0, ry, packW, rh);
+            a.globalAlpha = 1;
+            RIM.push({ x: x, y: baseY + packH, rot: lean, w: packW, ry: ry, rh: rh,
+                       al: Math.min(0.95, k * (0.5 + R() * 0.45)) });
+            a.restore();
+          }
+        })();
+
+        /* THE FALLEN PACK, opened flat across the near packs in the lower third. It is the only
+         * horizontal in a frame of vertical edges, it is the focal, and it carries ONE COMPLETE
+         * CLOSED TRACE running the full width of its paper with no gap in it. */
+        (function () {
+          a.save();
+          a.translate(FALL.x, FALL.y); a.rotate(FALL.rot);
+
+          a.fillStyle = "rgba(0,0,0,0.58)";
+          a.fillRect(14, 18, FALL.w, FALL.h);
+
+          a.fillStyle = M.G.bright;
+          a.fillRect(0, 0, FALL.w, FALL.h);
+          a.fillStyle = "rgba(246,235,200,0.22)";
+          a.fillRect(0, 0, FALL.w * 0.28, FALL.h);
+          a.fillStyle = "rgba(0,0,0,0.16)";
+          a.fillRect(FALL.w * 0.74, 0, FALL.w * 0.26, FALL.h);
+
+          M.chartBand(a, { x: FALL.w * 0.045, y: FALL.h * 0.14,
+                           w: FALL.w * 0.91, h: FALL.h * 0.70 },
+                      { stock: M.G.bright, rule: M.G.mid, hours: 28, ranges: 5 });
+
+          var t0 = FALL.w * 0.052, t1 = FALL.w * 0.948;
+          var ty = FALL.h * 0.14, th = FALL.h * 0.70;
+          a.strokeStyle = "rgba(0,0,0,0.60)"; a.lineWidth = 2.6;
+          a.lineJoin = "round"; a.lineCap = "round";
+          a.beginPath();
+          for (var px = t0; px <= t1; px += 2) {
+            var py = ty + th * (1 - FALL.v((px - t0) / (t1 - t0)));
+            if (px === t0) a.moveTo(px, py); else a.lineTo(px, py);
+          }
+          a.stroke();
+
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 1.4;
+          a.strokeRect(0.5, 0.5, FALL.w - 1, FALL.h - 1);
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 126, topSolid: 66, bottom: 176, bottomSolid: 104 });
+        TXDECK.punch(c, boxes, { feather: 64, strength: 0.74 });
+
+        /* THE GRANITE, AFTER THE SCREEN. Every mark here is a trace that was finished, which is
+         * exactly what the deck's accent law admits and exactly what this frame is about. */
+        var i;
+        for (i = 0; i < RIM.length; i++) {
+          var r = RIM[i];
+          c.save();
+          c.translate(r.x, r.y); c.rotate(r.rot);
+          c.globalAlpha = Math.min(1, r.al);
+          c.fillStyle = M.ACCENT;
+          c.fillRect(0, r.ry, r.w, r.rh);
+          c.restore();
+        }
+        c.save();
+        c.translate(FALL.x, FALL.y); c.rotate(FALL.rot);
+        c.strokeStyle = M.ACCENT; c.lineWidth = 2.6;
+        c.lineJoin = "round"; c.lineCap = "round";
+        var t0 = FALL.w * 0.052, t1 = FALL.w * 0.948;
+        var ty = FALL.h * 0.14, th = FALL.h * 0.70;
+        c.beginPath();
+        for (var px = t0; px <= t1; px += 2) {
+          var py = ty + th * (1 - FALL.v((px - t0) / (t1 - t0)));
+          if (px === t0) c.moveTo(px, py); else c.lineTo(px, py);
+        }
+        c.stroke();
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

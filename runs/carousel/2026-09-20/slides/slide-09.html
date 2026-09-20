@@ -1,0 +1,302 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 9 of 9. Archetype SPLIT_HORIZON.
+     THE WALK OUT. The same 6.0 x 4.2 x 3.0 m block building the reader has spent eight frames
+     inside, now seen whole from the yard at 14 m, with the late west sun full on its face and
+     the open door a black rectangle in it.
+     THE HORIZON IS AT 0.42 OF THE HEIGHT, which is the reverse of frame 1 where the reader was
+     inside looking up at a ceiling. Building and yard own the lower 58 percent and the flat
+     afternoon sky above carries the reserve with no plate under it.
+     THE DOORWAY IS THE DARKEST THING IN A LIT FRAME and it is the focal on purpose, because the
+     reader has just come out of it.
+     THE MOTIF LANDS HERE AS THE DATED STAMP, the deck's one thing that has already happened, and
+     it is the only granite in the frame. Planned frame median L* 30. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:780px; font-size:84px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:392px; width:640px; font-size:25px;
+          line-height:1.40; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Read your own system's report.</h1>
+<p class="dek">The state publishes what every public water system in Texas reports about its own water.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What a reader can do today", counter: "09 / 09",
+      src: "c17 c18   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 84, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260920);
+
+    /* TYPE FIRST, THEN MEASURE, THEN HAND THE GEOMETRY TO THE ART. Nothing below repositions a
+     * measured element, which is what makes this reserve live geometry rather than a guess. */
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE HORIZON, at 0.42 of the height per the dossier. Frame 1 put the reader inside looking
+     * up. This puts them outside looking across, and the number is what makes that true rather
+     * than a description of it. */
+    var HORIZON = Math.round(H * 0.50);
+
+    M.print(cx, {
+      seed: 39,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 900, eye: 1.65 });
+        var castX = M.castDir()[0];          /* +x, east, away from the west sun */
+        var P = function (X, Y, Z) { return S.project(X, Y, Z); };
+
+        /* RECOMPOSED AFTER THE PROBE'S FOURTH ROUND, and the reason is the rule rather than
+         * taste. ILLUSTRATION_SYSTEM.md says that when a frame's QA goes sideways across rounds
+         * you recompose it rather than tune it, because every round closing what the last one
+         * named and naming a new one is the signal to start over. Three rounds went into the
+         * ground of a frame that was 58 percent empty yard seen flat from 14 m, and the yard was
+         * never the fault. The building is now at 7.5 m and owns the frame, the horizon has
+         * dropped so the yard is a band rather than a field, and the reader is standing at the
+         * door they have spent eight frames behind. */
+
+        /* THE SKY. The camera faces EAST, away from the low west sun behind the reader, so the
+         * eastern sky at ten to five is the dark end of the deck's dusk-to-night arc and the
+         * hook has quiet to sit in that the picture actually has. No plate anywhere. */
+        (function () {
+          var g = a.createLinearGradient(0, 0, 0, HORIZON);
+          g.addColorStop(0.00, M.G.void);
+          g.addColorStop(0.58, M.G.deep);
+          g.addColorStop(1.00, M.G.dark);
+          a.fillStyle = g; a.fillRect(0, 0, W, HORIZON);
+        })();
+
+        /* THE TREELINE at 60 m, one value off the sky, so the yard has a far edge and the
+         * building stands against something rather than against nothing. */
+        (function () {
+          a.fillStyle = M.G.deep;
+          a.beginPath(); a.moveTo(0, HORIZON);
+          var R = TX.rng(311);
+          for (var x = 0; x <= W; x += 7) {
+            a.lineTo(x, HORIZON - (5 + TX.fbm2(x * 0.0037, 4.1, 4) * 19 + (R() < 0.06 ? 11 : 0)));
+          }
+          a.lineTo(W, HORIZON); a.closePath(); a.fill();
+        })();
+
+        /* THE LIVE OAK at 34 m, left, held clear of the sky. A depth cue that takes the nearest
+         * object to within noise of the background has not created depth. */
+        (function () {
+          var oak = TXOBJ.sprite("live_oak", { seed: 31 });
+          S.shadow(oak, { X: -13.0, Z: 34, ink: "#000", alpha: 0.28 });
+          S.sprite(oak, { X: -13.0, Z: 34,
+                          inks: { ink: M.G.dark, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+
+        /* THE YARD, now a band rather than a field. Caliche in direct late sun, which is the
+         * brightest large surface in the frame, falling off toward the reader's feet. */
+        S.ground({ near: 0.9, far: 240, fill: M.G.bright });
+        (function () {
+          var g = a.createLinearGradient(0, HORIZON, 0, H);
+          g.addColorStop(0.00, "rgba(255,248,226,0.18)");
+          g.addColorStop(0.38, "rgba(255,248,226,0.04)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.42)");
+          a.fillStyle = g; a.fillRect(0, HORIZON, W, H - HORIZON);
+        })();
+
+        /* THE CHAIN LINK at 22 m, BEHIND the building now, so it reads as the yard's boundary
+         * rather than as a rail across the reader's view.
+         * DRAWN IN METRES RATHER THAN TAKEN FROM THE CATALOGUE, and the probe is why. The
+         * `fence_post` sprite carries a `paper` plate that printed as seven empty cream boxes
+         * standing on the horizon, which is the clip art reading the illustration law exists to
+         * prevent. */
+        (function () {
+          var Zf = 22, Hf = 1.8, pp = S.ppm(Zf);
+          var m0 = P(-20, 0, Zf), m3 = P(-20, Hf, Zf), m1 = P(20, 0, Zf);
+          a.save();
+          a.beginPath(); a.rect(m3[0], m3[1], m1[0] - m3[0], m0[1] - m3[1]); a.clip();
+          a.fillStyle = "rgba(0,0,0,0.10)";
+          a.fillRect(m3[0], m3[1], m1[0] - m3[0], m0[1] - m3[1]);
+          a.strokeStyle = "rgba(0,0,0,0.16)"; a.lineWidth = 1;
+          var h = m0[1] - m3[1];
+          for (var mx = m3[0] - h; mx < m1[0] + h; mx += 0.07 * pp) {
+            a.beginPath(); a.moveTo(mx, m3[1]); a.lineTo(mx + h, m0[1]); a.stroke();
+            a.beginPath(); a.moveTo(mx, m0[1]); a.lineTo(mx + h, m3[1]); a.stroke();
+          }
+          a.restore();
+          for (var i = 0; i < 12; i++) {
+            var X = -18 + i * 3.2, b = P(X, 0, Zf), t = P(X, Hf, Zf);
+            a.strokeStyle = M.G.shade; a.lineWidth = Math.max(1.4, 0.055 * pp);
+            a.beginPath(); a.moveTo(b[0], b[1]); a.lineTo(t[0], t[1]); a.stroke();
+          }
+          var r0 = P(-20, Hf, Zf), r1 = P(20, Hf, Zf);
+          a.strokeStyle = M.G.stone; a.lineWidth = Math.max(1.4, 0.045 * pp);
+          a.beginPath(); a.moveTo(r0[0], r0[1]); a.lineTo(r1[0], r1[1]); a.stroke();
+        })();
+
+        /* THE BUILDING at 7.5 m, 6.0 x 4.2 x 3.0 m, bleeding the right edge. The reader is
+         * standing where they walked out. THE CAST IS COMPUTED at 2.05 times the eave height,
+         * which is the figure the chassis states in words. */
+        (function () {
+          var Xc = 2.0, Z = 7.5, Wb = 6.0, Db = 4.2, Hb = 3.0;
+          var castM = M.cast(Hb), pp = S.ppm(Z);
+
+          /* the cast first, on the yard, running east and slightly away */
+          var k0 = P(Xc - Wb / 2, 0, Z), k1 = P(Xc + Wb / 2, 0, Z);
+          var k2 = P(Xc + Wb / 2 + castM * castX, 0, Z - 1.4);
+          var k3 = P(Xc - Wb / 2 + castM * castX, 0, Z - 1.4);
+          a.fillStyle = "rgba(0,0,0,0.46)";
+          a.beginPath(); a.moveTo(k0[0], k0[1]); a.lineTo(k1[0], k1[1]);
+          a.lineTo(k2[0], k2[1]); a.lineTo(k3[0], k3[1]); a.closePath(); a.fill();
+
+          var bl = P(Xc - Wb / 2, 0, Z), br = P(Xc + Wb / 2, 0, Z);
+          var tl = P(Xc - Wb / 2, Hb, Z), tr = P(Xc + Wb / 2, Hb, Z);
+
+          /* the lit west face, the deck's brightest surface, with its coursing at a true
+           * 0.194 m so the block is the frame's own ruler */
+          a.fillStyle = M.G.bright;
+          a.beginPath(); a.moveTo(bl[0], bl[1]); a.lineTo(br[0], br[1]);
+          a.lineTo(tr[0], tr[1]); a.lineTo(tl[0], tl[1]); a.closePath(); a.fill();
+          M.blockWall(a, { x: tl[0], y: tl[1], w: br[0] - bl[0], h: bl[1] - tl[1] },
+                      pp, { face: M.G.bright, joint: M.G.stone });
+
+          /* the north return at the deck's dark side, so the building has a body */
+          var rb = P(Xc + Wb / 2, 0, Z - Db), rt = P(Xc + Wb / 2, Hb, Z - Db);
+          a.fillStyle = M.G.dark;
+          a.beginPath(); a.moveTo(br[0], br[1]); a.lineTo(rb[0], rb[1]);
+          a.lineTo(rt[0], rt[1]); a.lineTo(tr[0], tr[1]); a.closePath(); a.fill();
+
+          /* the roof, four corners, and the eave shadow it lays on the face */
+          var e1 = P(Xc - Wb / 2 - 0.25, Hb + 0.05, Z), e2 = P(Xc + Wb / 2 + 0.25, Hb + 0.05, Z);
+          var e3 = P(Xc + Wb / 2 + 0.25, Hb + 0.42, Z - Db), e4 = P(Xc - Wb / 2 - 0.25, Hb + 0.42, Z - Db);
+          a.fillStyle = M.G.shade;
+          a.beginPath(); a.moveTo(e1[0], e1[1]); a.lineTo(e2[0], e2[1]);
+          a.lineTo(e3[0], e3[1]); a.lineTo(e4[0], e4[1]); a.closePath(); a.fill();
+          a.strokeStyle = M.G.metal; a.lineWidth = 2.0; a.globalAlpha = 0.85;
+          a.beginPath(); a.moveTo(e1[0], e1[1]); a.lineTo(e2[0], e2[1]); a.stroke();
+          a.globalAlpha = 1;
+          a.fillStyle = "rgba(0,0,0,0.30)";
+          a.fillRect(tl[0], tl[1], br[0] - bl[0], pp * 0.13);
+
+          /* THE OPEN ROLL-UP DOOR, 2.4 m, and it is the darkest thing in a lit frame. The reader
+           * has spent eight frames on the other side of it. */
+          var dW = 2.4, dH = 2.4, dX = Xc - 1.4;
+          var d0 = P(dX - dW / 2, 0, Z), d1 = P(dX + dW / 2, 0, Z);
+          var d2 = P(dX + dW / 2, dH, Z), d3 = P(dX - dW / 2, dH, Z);
+          a.fillStyle = M.G.void;
+          a.beginPath(); a.moveTo(d0[0], d0[1]); a.lineTo(d1[0], d1[1]);
+          a.lineTo(d2[0], d2[1]); a.lineTo(d3[0], d3[1]); a.closePath(); a.fill();
+          /* the rolled door slat above the opening, and the jamb taking the key on its west edge */
+          a.fillStyle = M.G.metal;
+          a.fillRect(d3[0], d3[1] - pp * 0.26, d2[0] - d3[0], pp * 0.24);
+          a.strokeStyle = M.G.glare; a.lineWidth = 2.4; a.globalAlpha = 0.55;
+          a.beginPath(); a.moveTo(d0[0], d0[1]); a.lineTo(d3[0], d3[1]); a.stroke();
+          a.globalAlpha = 1;
+          /* a wedge of the west sun reaching in across the slab inside the door */
+          a.fillStyle = "rgba(246,235,200,0.13)";
+          a.beginPath(); a.moveTo(d0[0], d0[1]); a.lineTo(d1[0], d1[1]);
+          a.lineTo(d1[0] - pp * 0.5, d0[1] - pp * 0.34); a.lineTo(d0[0], d0[1] - pp * 0.30);
+          a.closePath(); a.fill();
+
+          /* the vent stack, 0.10 m, standing off the roof */
+          var v0 = P(Xc + 1.6, Hb + 0.30, Z - 2.0), v1 = P(Xc + 1.6, Hb + 1.15, Z - 2.0);
+          a.strokeStyle = M.G.metal; a.lineWidth = Math.max(2.0, 0.10 * S.ppm(Z - 2.0));
+          a.beginPath(); a.moveTo(v0[0], v0[1]); a.lineTo(v1[0], v1[1]); a.stroke();
+
+          /* THE CONCRETE APRON at the door, which is what the near ground actually is. A slab
+           * with a real edge and a scored joint beats a field of scattered marks, which is what
+           * three rounds of gravel and grass established. */
+          var a0 = P(Xc - Wb / 2 - 0.4, 0, Z), a1 = P(Xc + Wb / 2, 0, Z);
+          var a2 = P(Xc + Wb / 2 + 2.2, 0, Z - 4.6), a3 = P(Xc - Wb / 2 - 2.6, 0, Z - 4.6);
+          a.fillStyle = M.G.stone;
+          a.beginPath(); a.moveTo(a0[0], a0[1]); a.lineTo(a1[0], a1[1]);
+          a.lineTo(a2[0], a2[1]); a.lineTo(a3[0], a3[1]); a.closePath(); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 2.0;
+          a.beginPath(); a.moveTo(a3[0], a3[1]); a.lineTo(a2[0], a2[1]); a.stroke();
+          /* one scored joint down the slab, and the lip it throws */
+          var j0 = P(Xc - 0.6, 0, Z), j1 = P(Xc - 0.6, 0, Z - 4.6);
+          a.strokeStyle = "rgba(0,0,0,0.26)"; a.lineWidth = 2.4;
+          a.beginPath(); a.moveTo(j0[0], j0[1]); a.lineTo(j1[0], j1[1]); a.stroke();
+          a.strokeStyle = "rgba(246,235,200,0.12)"; a.lineWidth = 1.4;
+          a.beginPath(); a.moveTo(j0[0] + 3, j0[1]); a.lineTo(j1[0] + 3, j1[1]); a.stroke();
+        })();
+
+        /* THE PICKUP, cropped by the right edge and near, so the yard has a reason to be walked
+         * out of and the frame has a body in its near ground. */
+        (function () {
+          var tk = TXOBJ.sprite("pickup", { seed: 12 });
+          S.shadow(tk, { X: 8.0, Z: 6.0, ink: "#000", alpha: 0.46 });
+          S.sprite(tk, { X: 8.0, Z: 6.0,
+                         inks: { ink: M.G.dark, paper: M.G.deep, accent: M.G.shade },
+                         fade: false });
+        })();
+
+        /* THE OPERATOR walking out across the apron, at 1.7 m, INKED DARK because they stand on
+         * lit concrete in front of a lit wall. September 19th's own round 2 lesson is that a
+         * figure on a lit ground in front of a lit wall is bright on bright whichever frame it
+         * happens on, and that the cure has to be carried to every frame rather than most. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "walk", height: 1.7, hold: "clipboard" });
+          S.shadow(fig, { X: -1.0, Z: 4.6, ink: "#000", alpha: 0.50 });
+          S.sprite(fig, { X: -1.0, Z: 4.6,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 128, topSolid: 68, bottom: 176, bottomSolid: 104 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, LAST. The print lays its line screen and its
+         * contour across the whole frame and can't consult a mask as it goes, so the reserve is
+         * punched afterwards. It runs AFTER the furniture band because the band re-composites,
+         * and a punch anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped. */
+        TXDECK.punch(c, boxes, { feather: 62, strength: 0.76 });
+
+        /* THE DATED STAMP, and it is the deck's ONLY granite on this frame.
+         * THE ACCENT LAW: granite is a mark that has already been made. An award start is a
+         * thing that has happened, so it takes the colour. It is NOT the flag red, because this
+         * project reserves that for a deadline a reader can still act on and there is no such
+         * deadline in this story. It is under 0.2 percent of the frame. */
+        c.save();
+        c.font = '600 21px "JetBrains Mono", monospace';
+        c.fillStyle = M.ACCENT;
+        c.textAlign = "left";
+        c.fillText("AWARD STARTED 2026-09-15", 80, 1156);
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

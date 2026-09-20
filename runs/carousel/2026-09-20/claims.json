@@ -1,0 +1,290 @@
+{
+  "date": "2026-09-20",
+  "story": "A new NSF award to the Texas A&M Engineering Experiment Station funds research on AI predictive digital twins for SMALL AND MID-SIZED freshwater systems, in the state whose own EPA record returns 4,749 active community water systems and 3,579 of them serving fewer than 3,301 people.",
+  "docket_item": "tx-2026-0176",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "NSF award 2640086 is a collaborative research award on AI-enabled digital twins for resilient freshwater infrastructure and communities under cascading hazards.",
+      "source_title": "NSF Award Search API record for award id 2640086, title field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Collaborative Research: AI-Enabled Digital Twins for Resilient Freshwater Infrastructure and Communities under Cascading Hazards",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c2",
+      "text": "The award recipient named on the NSF record is the Texas A&M Engineering Experiment Station.",
+      "source_title": "NSF Award Search API record for award id 2640086, awardeeName field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Texas A&M Engineering Experiment Station",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c3",
+      "text": "The principal investigator named on the award record is Sudipta Chowdhury.",
+      "source_title": "NSF Award Search API record for award id 2640086, pi field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Sudipta Chowdhury chowdhurys@tamu.edu",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c4",
+      "text": "The award start date on the NSF record is September 15th, 2026, and it sits immediately beside the title in the record.",
+      "source_title": "NSF Award Search API record for award id 2640086, startDate field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "\"publicAccessMandate\":\"1\",\"startDate\":\"09/15/2026\",\"title\":\"Collaborative Research: AI-Enabled Digital Twins",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c5",
+      "text": "The award expiration date on the NSF record is August 31st, 2029.",
+      "source_title": "NSF Award Search API record for award id 2640086, expDate field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "\"estimatedTotalAmt\":\"122169\",\"expDate\":\"08/31/2029\",\"fundAgencyCode\":\"4900\"",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c6",
+      "text": "The award date on the NSF record is September 9th, 2026.",
+      "source_title": "NSF Award Search API record for award id 2640086, date field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "\"cfdaNumber\":\"47.041\",\"date\":\"09/09/2026\",\"dirAbbr\":\"ENG\",\"divAbbr\":\"CMMI\"",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c7",
+      "text": "The funds obligated to this award record are stated by NSF for fiscal year 2026 as the figure quoted.",
+      "source_title": "NSF Award Search API record for award id 2640086, fundsObligated field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "FY 2026 = $122,169.00",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c8",
+      "text": "The estimated total amount field on the NSF record carries the same value as the funds obligated amount field.",
+      "source_title": "NSF Award Search API record for award id 2640086, estimatedTotalAmt field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "\"divAbbr\":\"CMMI\",\"estimatedTotalAmt\":\"122169\",\"expDate\":\"08/31/2029\"",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c9",
+      "text": "The NSF funding program named on the award record is the one quoted, spelled as NSF's own record spells it.",
+      "source_title": "NSF Award Search API record for award id 2640086, fundProgramName field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "ISP-Infrastructre Systms & Ppl",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c10",
+      "text": "The award instrument type recorded by NSF is a standard grant rather than a cooperative agreement.",
+      "source_title": "NSF Award Search API record for award id 2640086, transType field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "\"transType\":\"Standard Grant\",\"ueiNumber\":\"QD1MX6N5YTN4\"",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c11",
+      "text": "The stated objective is research on an AI-enabled approach to predicting and mitigating cascading disruptions in freshwater infrastructure systems.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c12",
+      "text": "The first of the three directions the abstract lists is predictive digital twins aimed specifically at small and mid-sized freshwater infrastructure systems.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "enabling AI-driven predictive digital twins for small and mid-sized freshwater infrastructure systems",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c13",
+      "text": "The abstract attributes rising difficulty to aging assets, deferred maintenance, climate-driven hazards, power outages and water-quality variability.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Freshwater infrastructure, including intakes, treatment facilities, storage assets, distribution networks, sensing platforms, and utility operations, is becoming increasingly difficult to manage due to aging assets, deferred maintenance, climate-driven hazards, power outages, and water-quality variability.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c14",
+      "text": "The abstract describes a failure in one component such as an intake, pump station or treatment unit spreading through connected networks.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Disruptions that begin in one component, such as an intake, pump station, or treatment unit, can propagate through connected infrastructure and service networks, producing operational instability and uneven community impacts.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c15",
+      "text": "The abstract characterises current utility practice as monitoring, historical records and reactive emergency protocols, with limited ability to anticipate escalation.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "Current utility practices often rely on monitoring systems, historical records, and reactive emergency protocols that provide limited ability to anticipate how local anomalies escalate into broader service disruptions.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c16",
+      "text": "The abstract states what the project CAN support if it succeeds, using the conditional rather than claiming an achieved result.",
+      "source_title": "NSF Award Search API record for award id 2640086, abstractText field",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "By enabling earlier warning of system vulnerabilities and cascading disruptions, the project can support more effective operational decisions, reduce service interruption duration, improve public communication, protect households during hazard events, prioritize vulnerable service areas, and strengthen human well-being through safer, more reliable water service.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c17",
+      "text": "TCEQ tells the public the way to learn about their drinking water is to read their own water system's annual report.",
+      "source_title": "How is my Drinking Water Quality? Texas Commission on Environmental Quality",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "You can learn about the quality of your drinking water by reading your water system's annual drinking water quality report, also called a Consumer Confidence Report (CCR).",
+      "url": "https://www.tceq.texas.gov/drinkingwater/my-drinking-water-quality",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c18",
+      "text": "TCEQ publishes a viewer holding source, contaminant and violation information for every public water system in Texas.",
+      "source_title": "How is my Drinking Water Quality? Texas Commission on Environmental Quality",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "quote": "TCEQ's Texas Drinking Water Viewer (DWV) contains information on sources, contaminants, and violations for all public water systems in Texas.",
+      "url": "https://www.tceq.texas.gov/drinkingwater/my-drinking-water-quality",
+      "retrieved": "2026-09-20"
+    },
+    {
+      "id": "c19",
+      "text": "TCEQ describes that viewer as a tool for operators and for the public alike.",
+      "source_title": "Instructions for Texas Drinking Water Viewer, Texas Commission on Environmental Quality",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "quote": "a data viewer that drinking water operators and the public can use to find information about public water systems",
+      "url": "https://www.tceq.texas.gov/drinkingwater/dwv/instructions",
+      "retrieved": "2026-09-20"
+    }
+  ],
+  "computed_values": [
+    {
+      "id": "v1",
+      "label": "Active community water systems in Texas. EPA SDWIS WATER_SYSTEM, PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE A, PWS_TYPE_CODE CWS",
+      "value": 4749,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice, by this run and independently by the fact checker."
+    },
+    {
+      "id": "v2",
+      "label": "Active Texas community water systems with POPULATION_SERVED_COUNT less than 3301",
+      "value": 3579,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/</3301/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    },
+    {
+      "id": "v3",
+      "label": "Active Texas community water systems with POPULATION_SERVED_COUNT greater than 50000",
+      "value": 87,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/TX/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/POPULATION_SERVED_COUNT/>/50000/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    },
+    {
+      "id": "v4",
+      "label": "Active community water systems in California, same three filters",
+      "value": 2812,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/CA/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    },
+    {
+      "id": "v5",
+      "label": "Active community water systems in Washington, same three filters",
+      "value": 2311,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/WA/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    },
+    {
+      "id": "v6",
+      "label": "Active community water systems in New York, same three filters",
+      "value": 2250,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/NY/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    },
+    {
+      "id": "v7",
+      "label": "Active community water systems in Florida, same three filters",
+      "value": 1593,
+      "source_url": "https://data.epa.gov/efservice/WATER_SYSTEM/PRIMACY_AGENCY_CODE/FL/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/COUNT/JSON",
+      "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice."
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "That Texas has more community water systems than any other state.",
+      "reason": "Only six state counts were independently re-fetched. A first place finish is a claim about all fifty states and forty four of them were not re-verified. The deck compares v1 against v4 through v7 by name and says nothing beyond those states."
+    },
+    {
+      "finding": "The phrasing 'serving 3,300 or fewer'.",
+      "reason": "The endpoint filter is POPULATION_SERVED_COUNT less than 3301. The 3,300 form is a human restatement of the operator rather than a number read from the source."
+    },
+    {
+      "finding": "v1 minus v3, or v1 minus v2, as a figure for the mid-sized systems.",
+      "reason": "The population filters may exclude records where POPULATION_SERVED_COUNT is null, which was not tested. v2 and v3 are not a partition of v1 and must never be added or subtracted."
+    },
+    {
+      "finding": "Any claim that the award is deployed, piloted or running in a Texas utility.",
+      "reason": "The start date is September 15th, 2026 and the expiration is August 31st, 2029. The abstract describes intended research and uses the conditional."
+    },
+    {
+      "finding": "Any claim that this project prevents, or would have prevented, a named past Texas outage or boil water notice, February 2021 included.",
+      "reason": "The abstract makes no such claim and no source for it was fetched."
+    },
+    {
+      "finding": "Any adjective sizing the award, large or small.",
+      "reason": "The record states the figure. An adjective is a judgement this run did not measure."
+    },
+    {
+      "finding": "Any claim that Texas water systems are failing or are in poor condition.",
+      "reason": "The EPA queries count systems and filter on population served. They carry nothing about condition, compliance or violations."
+    },
+    {
+      "finding": "The NSF award landing page as a citable source.",
+      "reason": "It redirects to a page that returns an unpopulated template because the record is loaded by JavaScript."
+    }
+  ],
+  "notes": [
+    "All seven candidate quotes were checked character for character against the fetched abstractText and title. All seven passed and no quote was silently repaired.",
+    "The NSF record was fetched twice at two different query URLs so neither answer came from a cache of the other. Every field agreed.",
+    "c9 carries NSF's own spelling, Infrastructre and Systms. Do not correct it on a slide.",
+    "The title begins Collaborative Research, which in NSF practice means this record is one institution's share of a multi-institution project. The deck must not present c7 or c8 as the whole project's funding and must not assert how many institutions are involved.",
+    "c16 is aspirational. It says the project CAN support these outcomes. A slide that drops the word can turns a research proposal into a result.",
+    "The deck's closing next step is the TCEQ page in c17, which answers the question a reader actually has."
+  ]
+}

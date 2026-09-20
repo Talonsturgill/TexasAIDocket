@@ -1,0 +1,197 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 8 of 9. Archetype TYPE_AS_OBJECT, and the deck's only one.
+     THE HONESTY FRAME. The pump house back wall in painted block at a true 0.194 m course, with
+     the abstract's own conditional carved INTO it at 0.42 m cap height, and a blank chart hanging
+     on a nail at the right with its printed rules and no trace on it.
+     THIS FRAME CARRIES NO ACCENT AT ALL AND THE ABSENCE IS LOAD BEARING. The deck's accent law is
+     that granite is a mark that has ALREADY BEEN MADE. Frame 8's whole subject is a verb in the
+     conditional and a chart nobody has started, so there is nothing here for the colour to land
+     on. A reader who has seen granite behind the pen on 2, the entries on 4 and the closed traces
+     on 7 meets a frame with none, and that is the argument.
+     THE CARVE IS A text-shadow PAIR ON THE GLYPHS THEMSELVES and never a second canvas drawing of
+     the headline. The lamp deck's most expensive lesson is that canvas text can't be registered to
+     DOM text in a variable font: the two copies agree at the first letter and drift with every
+     glyph after it. This way the type also stays vector in the PDF.
+     Planned frame median L* 14. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* THE CARVE. Light comes flat in from the WEST, off the camera's left shoulder, so the groove's
+     LEFT wall is in shadow and its RIGHT wall takes the key. A dark offset left and a pale offset
+     right is an incised letter under this deck's own sun, and it is computed from the same
+     azimuth every cast in the deck uses rather than chosen by eye. */
+  .hook { position:absolute; left:74px; top:430px; width:800px; font-size:128px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.92;
+          letter-spacing:-0.028em; color:#8A7C68; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow: -5px 3px 0 rgba(0,0,0,0.92), 5px -3px 0 rgba(246,235,200,0.44); }
+  .dek  { position:absolute; left:78px; top:938px; width:600px; font-size:25px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The word is can.</h1>
+<p class="dek">The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. Nothing is built, and it does not say otherwise.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the record actually says", counter: "08 / 09",
+      src: "c16 c04 c05 c10   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 92, max: 128, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260908);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    M.print(cx, {
+      seed: 18,
+      draw: function (a) {
+        /* THE WALL AT 4.0 m, square on. A scene is still what sets the scale, because a block
+         * course has to be a true 0.194 m rather than a texture at a pitch somebody liked. */
+        var S = M.scene(a, { horizon: 700, f: 900, eye: 1.65 });
+        var ppm = S.ppm(2.2);
+        var castX = M.castDir()[0];
+
+        /* the painted block, filling the frame, with its coursing running behind and through
+         * where the carved line will sit */
+        M.blockWall(a, { x: 0, y: 0, w: W, h: H }, ppm,
+                    { face: M.G.stone, joint: M.G.shade });
+
+        /* THE LIGHT ON THE WALL. The door is off frame to the left, so the wall is brightest at
+         * its west end and falls away east across the coursing. This is the only modelling in
+         * the frame and it is what stops a block wall reading as a pattern swatch. */
+        (function () {
+          var g = a.createLinearGradient(0, 0, W, H * 0.4);
+          g.addColorStop(0.00, "rgba(246,235,200,0.34)");
+          g.addColorStop(0.22, "rgba(246,235,200,0.06)");
+          g.addColorStop(0.52, "rgba(0,0,0,0.40)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.62)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+          /* a slow vertical falloff too, so the wall has a top and a bottom rather than a side */
+          var v = a.createLinearGradient(0, 0, 0, H);
+          v.addColorStop(0.00, "rgba(0,0,0,0.34)");
+          v.addColorStop(0.42, "rgba(0,0,0,0.00)");
+          v.addColorStop(1.00, "rgba(0,0,0,0.40)");
+          a.fillStyle = v; a.fillRect(0, 0, W, H);
+        })();
+
+        /* THE SKIRTING where the wall meets the slab, so the wall is in a room rather than being
+         * a backdrop. The slab takes the key and throws it back up onto the lowest course. */
+        (function () {
+          var sy = H - 148;
+          a.fillStyle = "rgba(0,0,0,0.44)";
+          a.fillRect(0, sy - 10, W, 12);
+          a.fillStyle = M.G.shade;
+          a.fillRect(0, sy, W, H - sy);
+          var g = a.createLinearGradient(0, sy, 0, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.12)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.42)");
+          a.fillStyle = g; a.fillRect(0, sy, W, H - sy);
+        })();
+
+        /* THE BLANK CHART ON A NAIL, and it is the frame's second subject rather than its
+         * background. A strip recorder's spare pack is a fanfold card, 0.25 by 0.18 m, hung
+         * through a punched corner. It carries its printed hour and range rules and NOTHING
+         * ELSE. No trace, no stylus, no pen arm. It has never been in a machine. */
+        (function () {
+          var dia = 0.25 * ppm, tailW = 0.25 * ppm, tailH = 0.62 * ppm;
+          var cxp = 742, cyp = 604;
+
+          /* the nail, and the short cast it throws east down the coursing */
+          a.strokeStyle = "rgba(0,0,0,0.52)"; a.lineWidth = 3.6;
+          a.beginPath(); a.moveTo(cxp + dia * 0.5, cyp - 8);
+          a.lineTo(cxp + dia * 0.5 + 16, cyp - 3); a.stroke();
+
+          /* the whole object's cast on the wall, offset east and down */
+          a.save();
+          a.fillStyle = "rgba(0,0,0,0.46)";
+          a.translate(15, 17);
+          a.beginPath(); a.arc(cxp + dia / 2, cyp + dia / 2, dia / 2, 0, Math.PI * 2); a.fill();
+          a.fillRect(cxp, cyp + dia / 2, tailW, tailH);
+          a.restore();
+
+          /* THE LEADER, hanging. Printed hour and range rules and NOTHING ELSE on it. No trace,
+           * no stylus, no pen arm. This chart has never been in a machine, which is the frame's
+           * whole second sentence. */
+          a.save();
+          a.translate(cxp, cyp + dia * 0.48);
+          a.fillStyle = M.G.bright;
+          a.fillRect(0, 0, tailW, tailH);
+          a.fillStyle = "rgba(246,235,200,0.20)";   /* the lit west edge */
+          a.fillRect(0, 0, tailW * 0.26, tailH);
+          a.fillStyle = "rgba(0,0,0,0.20)";         /* the east edge falling into the room */
+          a.fillRect(tailW * 0.76, 0, tailW * 0.24, tailH);
+          M.chartBand(a, { x: tailW * 0.07, y: tailH * 0.05, w: tailW * 0.86, h: tailH * 0.90 },
+                      { stock: M.G.bright, rule: M.G.mid, hours: 12, ranges: 9 });
+          /* the leader's cut end, curling very slightly off the wall */
+          a.fillStyle = "rgba(0,0,0,0.26)";
+          a.beginPath(); a.moveTo(0, tailH); a.lineTo(tailW, tailH - 5);
+          a.lineTo(tailW, tailH + 7); a.lineTo(0, tailH + 12); a.closePath(); a.fill();
+          a.restore();
+
+          /* THE ROLL, end on, its spiral edge catching the key on the west side */
+          a.save();
+          a.translate(cxp + dia / 2, cyp + dia / 2);
+          a.fillStyle = M.G.metal;
+          a.beginPath(); a.arc(0, 0, dia / 2, 0, Math.PI * 2); a.fill();
+          a.fillStyle = M.G.bright;
+          a.beginPath(); a.arc(0, 0, dia / 2, Math.PI * 0.62, Math.PI * 1.55); a.lineTo(0, 0);
+          a.closePath(); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 1.1;
+          for (var rr = dia / 2; rr > dia * 0.09; rr -= Math.max(2.4, dia * 0.035)) {
+            a.beginPath(); a.arc(0, 0, rr, 0, Math.PI * 2); a.stroke();
+          }
+          a.fillStyle = M.G.deep;                    /* the core the nail passes through */
+          a.beginPath(); a.arc(0, 0, dia * 0.085, 0, Math.PI * 2); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.40)"; a.lineWidth = 1.6;
+          a.beginPath(); a.arc(0, 0, dia / 2, 0, Math.PI * 2); a.stroke();
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 120, topSolid: 62, bottom: 182, bottomSolid: 110 });
+
+        /* Dim the screen toward the type with a wide feather rather than removing it from around
+         * the type, because a hole punched at full strength is a plate with the sign flipped and
+         * this project has already paid to find that out once. */
+        TXDECK.punch(c, boxes, { feather: 70, strength: 0.72 });
+
+        /* NO ACCENT. Deliberately, and it is the strictest line in the deck's own law. Granite
+         * marks what has already been made, and nothing on this frame has happened. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
