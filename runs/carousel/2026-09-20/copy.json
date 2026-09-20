@@ -1,0 +1,133 @@
+{
+ "date": "2026-09-20",
+ "carousel_no": 30,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. What it cannot see is a string a drawing has painted over, which is a gap in the SUITE rather than something to answer by retyping this file from the plan and calling the disagreement a check.",
+ "slides": {
+  "slide-01.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "The line stops where the pen is.",
+    "A small Texas water system keeps its answers in one room, on paper, by hand.",
+    "One room, at ten to five",
+    "01 / 09",
+    "c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c15"
+   ]
+  },
+  "slide-02.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "Everything before now. Nothing after it.",
+    "The instrument is current, kept and complete. It is also a record rather than a warning.",
+    "The instrument the room has",
+    "02 / 09",
+    "c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c15"
+   ]
+  },
+  "slide-03.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "The criticism is narrow and it is specific.",
+    "What the award's own abstract says about the instruments a small utility has today.",
+    "The record's own words",
+    "03 / 09",
+    "c15 c1 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c15",
+    "c1"
+   ]
+  },
+  "slide-04.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "The log is current to this line.",
+    "Under the last entry, ruled blank lines. A record answers what happened and never what is about to.",
+    "The other instrument",
+    "04 / 09",
+    "c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c15"
+   ]
+  },
+  "slide-05.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "One line, and three places on it.",
+    "The abstract's own sequence. A disruption that begins in one component can travel along the rest of it.",
+    "What the abstract describes",
+    "05 / 09",
+    "c14 c13 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c14",
+    "c13"
+   ]
+  },
+  "slide-06.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "Texas counts 4,749.",
+    "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together.",
+    "How many rooms like this",
+    "06 / 09",
+    "c12 c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c12",
+    "c15"
+   ]
+  },
+  "slide-07.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "Every one of these is finished.",
+    "Which is exactly what makes a complete record the wrong instrument for the question being asked of it.",
+    "What the room already holds",
+    "07 / 09",
+    "c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c15"
+   ]
+  },
+  "slide-08.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "The word is can.",
+    "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. Nothing is built, and it does not say otherwise.",
+    "What the record actually says",
+    "08 / 09",
+    "c16 c10 c4 c5 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c16",
+    "c10",
+    "c4",
+    "c5"
+   ]
+  },
+  "slide-09.html": {
+   "text_nodes": [
+    "texasaidocket.com",
+    "Read your own system's report.",
+    "The state publishes what every public water system in Texas reports about its own water.",
+    "What a reader can do today",
+    "09 / 09",
+    "c17 c18 c4 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c17",
+    "c18",
+    "c4"
+   ]
+  }
+ },
+ "_claims_note": "`claims` is the dossier's own declared list for that frame, which plan_render_check holds EQUAL to this one so a plan and a copy record can't drift apart. `claims_printed_on_frame` is what the render's own source line prints under the picture, parsed back off the laid out text, so a reader can check the two agree without opening the repository."
+}

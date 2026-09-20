@@ -1,0 +1,43 @@
+{
+ "date": "2026-09-20",
+ "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly.",
+ "aggregates": [
+  {
+   "phrase": "three places",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the number of distinct components c14's own sentence names as places a disruption can begin, read off that sentence rather than off a tally the deck kept",
+   "from_claims": [
+    "c14"
+   ],
+   "note": "c14 reads 'Disruptions that begin in one component, such as an intake, pump station, or treatment unit'. Three components, named in the source, and the frame draws those three and no others. The count is the source's own list length."
+  },
+  {
+   "phrase": "Three queries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the set {v1, v2, v3} declared in claims.json computed_values and drawn as three separate sheets on this frame",
+   "from_claims": [
+    "v1",
+    "v2",
+    "v3"
+   ],
+   "note": "Each sheet prints its own query stanza, so a reader can count the queries on the frame itself rather than taking the number on trust."
+  },
+  {
+   "phrase": "three counts",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the same set {v1, v2, v3}. One count per query, which is why the two agree",
+   "from_claims": [
+    "v1",
+    "v2",
+    "v3"
+   ],
+   "note": "The phrase exists to tell a reader the three figures are separate measurements rather than tiers of one, which is the partition misread claims.json rejects by name."
+  }
+ ]
+}

@@ -120,8 +120,7 @@ job: 'Establish the room and the size of everything in it, so that the eight fra
   crop hard into objects the reader has already met at full length.
 
   '
-claims:
-- c15
+claims: [c15]
 numerals: []
 composition:
   structure: 'The open door is behind the camera and slightly left, so the late sun lays a long lit patch
@@ -159,8 +158,8 @@ art:
   motion: in along the sun patch from lower left, up the operator, then right along the manifold and off
     the frame
 type:
-  hook: The line stops where the pen is.
-  dek: A small Texas water system keeps its answers in one room, on paper, by hand.
+  hook: "The line stops where the pen is."
+  dek: "A small Texas water system keeps its answers in one room, on paper, by hand."
   labels: []
 verbatim: []
 acceptance:
@@ -200,8 +199,7 @@ job: 'Show the instrument working, kept and complete, and let the reader see for
   ends at the present moment with nothing past it.
 
   '
-claims:
-- c15
+claims: [c15]
 numerals: []
 composition:
   structure: 'The stylus sits at about two thirds across rather than at the centre, so the trace has room
@@ -237,8 +235,8 @@ art:
     '
   motion: left to right along the trace, arrested at the stylus, then released into the blank stock
 type:
-  hook: Everything before now. Nothing after it.
-  dek: The instrument is current, kept and complete. It is also a record rather than a warning.
+  hook: "Everything before now. Nothing after it."
+  dek: "The instrument is current, kept and complete. It is also a record rather than a warning."
   labels: []
 verbatim: []
 acceptance:
@@ -279,9 +277,7 @@ job: 'Hand the reader the record''s own criticism so they can see it is narrow a
   a complaint about the room they have just been standing in.
 
   '
-claims:
-- c15
-- c1
+claims: [c15, c1]
 numerals: []
 composition:
   structure: 'The sheet is laid askew and cropped by two edges rather than centred and whole, because
@@ -315,8 +311,8 @@ art:
     '
   motion: down the sheet from the hairline through the quoted sentence to the retrieval stamp
 type:
-  hook: The criticism is narrow and it is specific.
-  dek: What the award's own abstract says about the instruments a small utility has today.
+  hook: "The criticism is narrow and it is specific."
+  dek: "What the award's own abstract says about the instruments a small utility has today."
   labels: []
 verbatim:
 - c15: Current utility practices often rely on monitoring systems, historical records, and reactive emergency
@@ -356,8 +352,7 @@ job: 'Put a person in the picture, because c15 is a claim about what people do, 
   by standing somebody in front of it.
 
   '
-claims:
-- c15
+claims: [c15]
 numerals: []
 composition:
   structure: 'The operator is placed left of centre and the open logbook right of them, so the reader''s
@@ -393,9 +388,8 @@ art:
   motion: up the operator, along the forearm, down the pen to the last written line, then into the ruled
     blank lines below it
 type:
-  hook: The log is current to this line.
-  dek: Under the last entry, ruled blank lines. A record answers what happened and never what is about
-    to.
+  hook: "The log is current to this line."
+  dek: "Under the last entry, ruled blank lines. A record answers what happened and never what is about to."
   labels: []
 verbatim: []
 acceptance:
@@ -430,9 +424,7 @@ job: 'State the mechanism exactly as far as the abstract states it and no furthe
   recognise the building they have been standing in as the middle term of it.
 
   '
-claims:
-- c14
-- c13
+claims: [c14, c13]
 numerals: []
 composition:
   structure: 'All three components stand on one ground line at one scale so their relative sizes are the
@@ -466,12 +458,9 @@ art:
     '
   motion: left to right along the main from the intake through the pump house to the vessels
 type:
-  hook: One line, and three places on it.
-  dek: The abstract's own sequence. A disruption that begins in one component can travel along the rest.
-  labels:
-  - intake
-  - pump station
-  - treatment unit
+  hook: "One line, and three places on it."
+  dek: "The abstract's own sequence. A disruption that begins in one component can travel along the rest of it."
+  labels: ["intake", "pump station", "treatment unit"]
 verbatim: []
 acceptance:
 - THERE IS NO ARROWHEAD ANYWHERE ON THIS FRAME
@@ -508,9 +497,7 @@ job: 'Show the size of the set the award''s first direction points at, with ever
   query that produced it and nothing on the sheet permitting one block to be read as part of another.
 
   '
-claims:
-- c12
-- c15
+claims: [c12, c15]
 numerals:
 - value_from: v1
 - value_from: v2
@@ -552,13 +539,9 @@ art:
     '
   motion: down the sheet block by block, each one ending shorter than the last
 type:
-  hook: Texas counts 4,749.
-  dek: 3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts,
-    and nothing on this page adds them together.
-  labels:
-  - PRIMACY_AGENCY_CODE TX
-  - PWS_ACTIVITY_CODE A
-  - PWS_TYPE_CODE CWS
+  hook: "Texas counts 4,749."
+  dek: "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing on this page adds them together."
+  labels: ["PRIMACY_AGENCY_CODE TX", "PWS_ACTIVITY_CODE A", "PWS_TYPE_CODE CWS"]
 verbatim: []
 acceptance:
 - each of the three blocks carries its OWN complete query stanza naming PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE
@@ -598,8 +581,7 @@ job: 'Turn the argument by showing the record is complete and well kept, which i
   the wrong instrument for the question the award is asking.
 
   '
-claims:
-- c15
+claims: [c15]
 numerals: []
 composition:
   structure: 'The box is placed low and cropped by three edges so the reader is looking down into it from
@@ -632,9 +614,8 @@ art:
     '
   motion: down into the box along the falloff, arrested by the fallen pack's horizontal trace
 type:
-  hook: Every one of these is finished.
-  dek: Which is exactly what makes a complete record the wrong instrument for the question being asked
-    of it.
+  hook: "Every one of these is finished."
+  dek: "Which is exactly what makes a complete record the wrong instrument for the question being asked of it."
   labels: []
 verbatim: []
 acceptance:
@@ -669,11 +650,7 @@ job: 'Say in the deck''s largest type that the verb is conditional and the instr
   is the one thing this deck must not leave to a reader''s goodwill.
 
   '
-claims:
-- c16
-- c10
-- c4
-- c5
+claims: [c16, c10, c4, c5]
 numerals: []
 composition:
   structure: 'The type is carved INTO the wall rather than placed on it, so it is a thing in the room
@@ -709,9 +686,8 @@ art:
     '
   motion: along the carved line left to right, then off it onto the blank chart
 type:
-  hook: The word is can.
-  dek: The award started September 15th and runs to August 31st, 2029. Nothing is built, and the abstract
-    does not say otherwise.
+  hook: "The word is can."
+  dek: "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. Nothing is built, and it does not say otherwise."
   labels: []
 verbatim:
 - c16: can
@@ -749,13 +725,7 @@ job: 'Walk the reader out of the room and hand them the one thing they can actua
   read their own system''s report.
 
   '
-claims:
-- c17
-- c18
-- c2
-- c3
-- c4
-- c5
+claims: [c17, c18, c4]
 numerals: []
 composition:
   structure: 'The horizon sits at 0.42 of the height so the building and the yard own the lower 58 percent
@@ -789,8 +759,8 @@ art:
     '
   motion: along the cast from the left of the yard to the building, then into the open door
 type:
-  hook: Read your own system's report.
-  dek: The state publishes what every public water system in Texas reports about its own water.
+  hook: "Read your own system's report."
+  dek: "The state publishes what every public water system in Texas reports about its own water."
   labels: []
 verbatim:
 - c17: annual drinking water quality report
