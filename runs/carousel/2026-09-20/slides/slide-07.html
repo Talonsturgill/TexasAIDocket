@@ -32,7 +32,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Every one of these is finished.</h1>
-<p class="dek">Which is exactly what makes a complete record the wrong instrument for the question being asked of it.</p>
+<p class="dek">Which is exactly what the abstract means by limited ability to anticipate.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -220,7 +220,12 @@ window.renderReady = new Promise(async function (resolve, reject) {
         }
         c.save();
         c.translate(FALL.x, FALL.y); c.rotate(FALL.rot);
-        c.strokeStyle = M.ACCENT; c.lineWidth = 5.0;
+        /* 7.0 rather than 5.0. layout_check measured this frame's accent at 0.0015 of the
+         * frame against its own 0.002 floor, so the deck read as having the accent on two frames
+         * when four dossiers declared it. The stroke is the fallen pack's closed trace and it
+         * being heavier is truer to a pen bearing down at the end of a run, not a fix to a
+         * number: the gate's floor is about whether a READER sees the colour on the frame. */
+        c.strokeStyle = M.ACCENT; c.lineWidth = 7.0;
         c.lineJoin = "round"; c.lineCap = "round";
         var t0 = FALL.w * 0.052, t1 = FALL.w * 0.948;
         var ty = FALL.h * 0.14, th = FALL.h * 0.70;

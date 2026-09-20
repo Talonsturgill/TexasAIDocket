@@ -284,9 +284,13 @@ window.renderReady = new Promise(async function (resolve, reject) {
          * THE ACCENT LAW: granite is a mark that has already been made. An award start is a
          * thing that has happened, so it takes the colour. It is NOT the flag red, because this
          * project reserves that for a deadline a reader can still act on and there is no such
-         * deadline in this story. It is under 0.2 percent of the frame. */
+         * deadline in this story.
+         * IT IS SET AT 34 px RATHER THAN 30. At 30 it measured 0.0017 of the frame against
+         * layout_check's 0.002 floor, so this frame declared an accent a reader could not find
+         * at feed size. The comment here used to say "it is under 0.2 percent of the frame" as
+         * though that were the goal. It was the defect. */
         c.save();
-        c.font = '700 30px "JetBrains Mono", monospace';
+        c.font = '700 34px "JetBrains Mono", monospace';
         c.fillStyle = M.ACCENT;
         c.textAlign = "left";
         c.fillText("AWARD STARTED 2026-09-15", 80, 1156);

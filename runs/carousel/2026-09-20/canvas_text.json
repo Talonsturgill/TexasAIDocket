@@ -1,9 +1,8 @@
 {
- "_note": "Every string this deck PAINTS ON THE CANVAS rather than laying out as DOM. It is recorded because an integrity judge found the gap: copy.json is built from laid out text nodes, so canvas painted numerals were invisible to it and therefore to numeral_lint, and one of them, frame 5's scale bar legend, traced to nothing until this run computed it. It is a SEPARATE file because copy_sync_check holds every string in copy.json to having been laid out, which canvas text never is. The gap is in the suite rather than in this deck, and it is written up as one.",
- "by_slide": {
-  "slide-01.html": [],
-  "slide-02.html": [],
-  "slide-03.html": [
+ "date": "2026-09-20",
+ "_note": "Strings this deck PAINTS on the art canvas with fillText. They are kept out of copy.json because copy_sync_check holds every string there to having been laid out by the browser, which a canvas call never is. They are recorded so a reader of the run still sees every word the deck shows, and so a future gate closing the DOM versus canvas overlap gap has the list to work from.",
+ "slides": {
+  "S3": [
    "NSF AWARD SEARCH API   AWARD 2640086   abstractText",
    "Current utility practices often rely on",
    "monitoring systems, historical records, and",
@@ -20,16 +19,16 @@
    "startDate    09/15/2026",
    "expDate      08/31/2029",
    "transType    Standard Grant",
+   "FIELDS   c2 c3 c4 c5 c6 c10",
    "RETRIEVED 2026-09-20"
   ],
-  "slide-04.html": [],
-  "slide-05.html": [
+  "S5": [
    "intake",
    "pump station",
    "treatment unit",
    "5 m"
   ],
-  "slide-06.html": [
+  "S6": [
    "WATER_SYSTEM",
    "PRIMACY_AGENCY_CODE  TX",
    "PWS_ACTIVITY_CODE   A",
@@ -42,9 +41,7 @@
    "87",
    "EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY."
   ],
-  "slide-07.html": [],
-  "slide-08.html": [],
-  "slide-09.html": [
+  "S9": [
    "AWARD STARTED 2026-09-15"
   ]
  }

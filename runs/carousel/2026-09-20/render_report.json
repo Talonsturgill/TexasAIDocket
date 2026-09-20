@@ -41,11 +41,11 @@
           "anc": []
         },
         {
-          "text": "The line stops where the pen is.",
+          "text": "Aimed at small systems. Texas has 4,749.",
           "x": 80,
           "y": 140,
           "w": 800,
-          "h": 179,
+          "h": 269,
           "font_px": 91.5,
           "weight": "700",
           "family": "Fraunces",
@@ -56,20 +56,26 @@
             [
               80,
               128,
-              725,
+              526,
               112
             ],
             [
               80,
               218,
-              347,
+              661,
+              112
+            ],
+            [
+              80,
+              307,
+              234,
               112
             ]
           ],
           "anc": []
         },
         {
-          "text": "Monitoring systems, historical records and reactive emergency protocols. Those are the abstract's own words for what is in this room.",
+          "text": "Active community water systems on the EPA's record. This is the inside of one of them, and what it runs on is monitoring, historical records and reactive emergency protocols.",
           "x": 80,
           "y": 432,
           "w": 700,
@@ -84,19 +90,19 @@
             [
               80,
               432,
-              691,
+              658,
               33
             ],
             [
               80,
               466,
-              698,
+              650,
               33
             ],
             [
               80,
               500,
-              63,
+              578,
               33
             ]
           ],
@@ -147,10 +153,10 @@
           "anc": []
         },
         {
-          "text": "c15 TEXAS AI DOCKET",
+          "text": "c12 c15 c20 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 306,
+          "w": 434,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -162,7 +168,7 @@
             [
               80,
               1236,
-              306,
+              434,
               31
             ]
           ],
@@ -176,7 +182,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5547,
+      "render_ms": 5473,
       "ok": true,
       "canvases": [
         {
@@ -190,7 +196,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 31.3,
-          "variance": 2634.5
+          "variance": 2588.4
         }
       ],
       "breather": false,
@@ -356,7 +362,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4705,
+      "render_ms": 4879,
       "ok": true,
       "canvases": [
         {
@@ -437,8 +443,8 @@
         {
           "text": "What the award's own abstract says about the instruments a small utility has today.",
           "x": 80,
-          "y": 1152,
-          "w": 640,
+          "y": 300,
+          "w": 760,
           "h": 67,
           "font_px": 24,
           "weight": "400",
@@ -449,14 +455,14 @@
           "lines": [
             [
               80,
-              1152,
-              508,
+              300,
+              729,
               33
             ],
             [
               80,
-              1186,
-              400,
+              334,
+              179,
               33
             ]
           ],
@@ -612,6 +618,11 @@
           "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
+          "text": "FIELDS   c2 c3 c4 c5 c6 c10",
+          "fn": "fillText",
+          "font": "500 13px \"JetBrains Mono\", monospace"
+        },
+        {
           "text": "RETRIEVED 2026-09-20",
           "fn": "fillText",
           "font": "500 14px \"JetBrains Mono\", monospace"
@@ -622,7 +633,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5064,
+      "render_ms": 4824,
       "ok": true,
       "canvases": [
         {
@@ -635,8 +646,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 53.8,
-          "variance": 5547.2
+          "mean": 85.4,
+          "variance": 8418
         }
       ],
       "breather": false,
@@ -802,7 +813,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5568,
+      "render_ms": 4727,
       "ok": true,
       "canvases": [
         {
@@ -881,11 +892,11 @@
           "anc": []
         },
         {
-          "text": "The abstract's own sequence. A disruption that begins in one component can travel along the rest of it.",
+          "text": "The abstract's own examples. A disruption that begins in one component can propagate through connected networks.",
           "x": 80,
           "y": 372,
           "w": 620,
-          "h": 68,
+          "h": 102,
           "font_px": 24,
           "weight": "400",
           "family": "Manrope",
@@ -896,13 +907,19 @@
             [
               80,
               372,
-              598,
+              619,
               33
             ],
             [
               80,
               406,
-              524,
+              559,
+              33
+            ],
+            [
+              80,
+              440,
+              109,
               33
             ]
           ],
@@ -1003,7 +1020,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4447,
+      "render_ms": 4870,
       "ok": true,
       "canvases": [
         {
@@ -1016,8 +1033,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 30.4,
-          "variance": 2527.4
+          "mean": 30.5,
+          "variance": 2525.4
         }
       ],
       "breather": false,
@@ -1028,13 +1045,7 @@
       "png": "slide-06.png",
       "console_errors": [],
       "page_errors": [],
-      "overflow_warnings": [
-        {
-          "kind": "tiny-text",
-          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together.",
-          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
-        }
-      ],
+      "overflow_warnings": [],
       "fonts_missing": [],
       "text_nodes": [
         {
@@ -1060,11 +1071,11 @@
           "anc": []
         },
         {
-          "text": "Texas counts 4,749.",
+          "text": "None of these is a share of another.",
           "x": 80,
           "y": 126,
           "w": 700,
-          "h": 80,
+          "h": 159,
           "font_px": 79.5,
           "weight": "700",
           "family": "Fraunces",
@@ -1075,19 +1086,25 @@
             [
               80,
               116,
-              616,
+              521,
+              98
+            ],
+            [
+              80,
+              196,
+              521,
               98
             ]
           ],
           "anc": []
         },
         {
-          "text": "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together.",
+          "text": "Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000.",
           "x": 80,
-          "y": 1116,
-          "w": 900,
-          "h": 62,
-          "font_px": 22,
+          "y": 1102,
+          "w": 920,
+          "h": 67,
+          "font_px": 24,
           "weight": "400",
           "family": "Manrope",
           "color": "rgb(185, 176, 150)",
@@ -1096,24 +1113,24 @@
           "lines": [
             [
               80,
-              1116,
-              877,
-              30
+              1102,
+              872,
+              33
             ],
             [
               80,
-              1147,
-              524,
-              30
+              1136,
+              803,
+              33
             ]
           ],
           "anc": []
         },
         {
-          "text": "What the state's own record returns",
+          "text": "What the EPA's own record returns",
           "x": 80,
           "y": 80,
-          "w": 580,
+          "w": 546,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -1125,7 +1142,7 @@
             [
               80,
               82,
-              580,
+              546,
               31
             ]
           ],
@@ -1154,10 +1171,10 @@
           "anc": []
         },
         {
-          "text": "c12 c15 TEXAS AI DOCKET",
+          "text": "c12 c20 c21 c22 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 370,
+          "w": 498,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -1169,7 +1186,7 @@
             [
               80,
               1236,
-              370,
+              498,
               31
             ]
           ],
@@ -1181,22 +1198,22 @@
         {
           "text": "WATER_SYSTEM",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "PRIMACY_AGENCY_CODE  TX",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "PWS_ACTIVITY_CODE   A",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "PWS_TYPE_CODE       CWS",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "4,749",
@@ -1206,12 +1223,12 @@
         {
           "text": "PRIMACY_AGENCY_CODE  TX   PWS_ACTIVITY_CODE  A",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "POPULATION_SERVED_COUNT  <  3301",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "3,579",
@@ -1221,7 +1238,7 @@
         {
           "text": "POPULATION_SERVED_COUNT  >  50000",
           "fn": "fillText",
-          "font": "500 13px \"JetBrains Mono\", monospace"
+          "font": "500 15px \"JetBrains Mono\", monospace"
         },
         {
           "text": "87",
@@ -1231,7 +1248,7 @@
         {
           "text": "EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY.",
           "fn": "fillText",
-          "font": "500 12px \"JetBrains Mono\", monospace"
+          "font": "500 13px \"JetBrains Mono\", monospace"
         }
       ],
       "svg_plates": [],
@@ -1239,7 +1256,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5173,
+      "render_ms": 5006,
       "ok": true,
       "canvases": [
         {
@@ -1252,8 +1269,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 53.5,
-          "variance": 4828
+          "mean": 49.8,
+          "variance": 5080.9
         }
       ],
       "breather": false,
@@ -1318,7 +1335,7 @@
           "anc": []
         },
         {
-          "text": "Which is exactly what makes a complete record the wrong instrument for the question being asked of it.",
+          "text": "Which is exactly what the abstract means by limited ability to anticipate.",
           "x": 80,
           "y": 394,
           "w": 600,
@@ -1333,13 +1350,13 @@
             [
               80,
               394,
-              586,
+              593,
               35
             ],
             [
               80,
               430,
-              594,
+              226,
               35
             ]
           ],
@@ -1419,7 +1436,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4930,
+      "render_ms": 5046,
       "ok": true,
       "canvases": [
         {
@@ -1432,8 +1449,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 53.6,
-          "variance": 4786.4
+          "mean": 53.8,
+          "variance": 4809.1
         }
       ],
       "breather": false,
@@ -1605,7 +1622,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4810,
+      "render_ms": 4812,
       "ok": true,
       "canvases": [
         {
@@ -1789,7 +1806,7 @@
         {
           "text": "AWARD STARTED 2026-09-15",
           "fn": "fillText",
-          "font": "bold 30px \"JetBrains Mono\", monospace"
+          "font": "bold 34px \"JetBrains Mono\", monospace"
         }
       ],
       "svg_plates": [],
@@ -1797,7 +1814,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5331,
+      "render_ms": 4862,
       "ok": true,
       "canvases": [
         {
@@ -1811,7 +1828,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 39.3,
-          "variance": 3485.3
+          "variance": 3492.4
         }
       ],
       "breather": false,

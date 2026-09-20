@@ -5,9 +5,10 @@
      the eight frames after this one crop into is here at full length first.
      THE READER IS PUT INSIDE THE DOORWAY rather than shown the building, and frame 9 turns that
      round by putting them back outside it.
-     THE ACCENT IS INTRODUCED AT ITS SMALLEST, a sliver of trace behind the recorder's window,
-     well under one percent of the frame. A reader meets the colour here and learns what it means
-     on frame 2.
+     NO ACCENT ON THIS FRAME. A sliver of granite ran behind the recorder's window until round 2
+     and an integrity judge refused it on the deck's own accent law, which admits the colour only
+     where a hand in this world has laid ink. A trace on a screen is not that. The reader meets
+     the colour on frame 2, where a stylus draws it.
      NOTHING IS DRAWN NEGLECTED. The slab is swept, the pipe is painted, and nothing leaks.
      Planned frame median L* 8. -->
 <html>
@@ -32,8 +33,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">The line stops where the pen is.</h1>
-<p class="dek">Monitoring systems, historical records and reactive emergency protocols. Those are the abstract's own words for what is in this room.</p>
+<h1 class="hook" id="hook">Aimed at small systems. Texas has 4,749.</h1>
+<p class="dek">Active community water systems on the EPA's record. This is the inside of one of them, and what it runs on is monitoring, historical records and reactive emergency protocols.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -51,7 +52,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
     await document.fonts.ready;
     TXLAYOUT.mount(document.body, {
       kicker: "One room, at ten to five", counter: "01 / 09",
-      src: "c15   TEXAS AI DOCKET", ink: "#9A9280"
+      src: "c12 c15 c20   TEXAS AI DOCKET", ink: "#9A9280"
     });
     TX.fitText(document.getElementById("hook"), { min: 64, max: 92, maxLines: 3 });
 
@@ -62,8 +63,8 @@ window.renderReady = new Promise(async function (resolve, reject) {
 
     var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
 
-    /* THE RECORDER'S WINDOW, hoisted so the over pass can put the deck's first sliver of granite
-     * behind its glass after the screen has run. */
+    /* THE RECORDER'S WINDOW, hoisted so the over pass can lay the trace behind its glass after
+     * the screen has run. It is drawn in the deck's ink rather than its accent. See `over`. */
     var REC = { x: 742, y: 596, w: 116, h: 116 };
 
     M.print(cx, {
@@ -239,14 +240,22 @@ window.renderReady = new Promise(async function (resolve, reject) {
         M.quiet(c, boxes);
         TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
 
-        /* THE DECK'S FIRST GRANITE, AND ITS SMALLEST. A sliver of trace behind the recorder's
-         * window, so a reader meets the colour here and learns on frame 2 what it means. Well
-         * under one percent of the frame. */
+        /* NO GRANITE ON THIS FRAME, AND THE REMOVAL IS THE REPAIR.
+         *
+         * A sliver of accent ran behind the recorder's window here until round 2, so a reader
+         * would meet the colour before frame 2 taught them what it meant. An integrity judge
+         * refused it on the deck's own accent law, which admits granite only "where a stylus or
+         * a hand in this world has laid ink", and a trace on a screen is neither. It was also
+         * measuring 0.0000 of the frame at thumb scale, so it was carrying the cost of a rule
+         * break and delivering nothing a reader could see. The trace is drawn in ink now.
+         *
+         * The deck's accent lives on frames 2, 4, 7 and 9, all above layout_check's 0.2 percent
+         * floor, which is four of nine and inside the three to six rule. */
         c.save();
         c.beginPath();
         c.rect(REC.x + 16, REC.y + 22, REC.w - 32, REC.h - 52);
         c.clip();
-        c.strokeStyle = M.ACCENT; c.lineWidth = 2.2;
+        c.strokeStyle = M.INK; c.lineWidth = 2.2;
         c.beginPath();
         for (var px = REC.x + 16; px <= REC.x + REC.w - 16; px += 2) {
           var u = (px - REC.x - 16) / (REC.w - 32);

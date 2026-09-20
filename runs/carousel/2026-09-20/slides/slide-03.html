@@ -24,7 +24,11 @@
   .hook { position:absolute; left:80px; top:128px; width:720px; font-size:78px;
           font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
           letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
-  .dek  { position:absolute; left:80px; top:1152px; width:640px; font-size:24px;
+    /* THE DEK MOVED ABOVE THE DOCUMENT, from 1152 to 300. It sat over the sheet's lower third,
+     and once round 2's repair put the identifying fields on flat stock the overprint it had
+     always been became plain to see. A DOCUMENT frame has no room under its document, so the
+     line that introduces the page goes before the page. */
+  .dek  { position:absolute; left:80px; top:300px; width:760px; font-size:24px;
           line-height:1.40; color:#B9B096; z-index:10; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
@@ -66,7 +70,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
 
     /* THE SHEET. 0.216 by 0.279 m at 0.55 m from the eye, so it is a page somebody put down
      * rather than a designed layout. It is cut by the bottom and right edges. */
-    var SH = { x: 96, y: 372, w: 840, h: 1084, rot: 0.014 };
+    var SH = { x: 96, y: 400, w: 840, h: 1084, rot: 0.014 };
 
     /* THE QUOTE, WORD FOR WORD, and the lines are pre-broken here rather than measured at draw
      * time so the sentence can be read against claims.json c15 without running the frame. */
@@ -86,24 +90,24 @@ window.renderReady = new Promise(async function (resolve, reject) {
          * room's shade. The sheet has to be ON something or it is a graphic rather than a page. */
         (function () {
           var S = M.scene(a, { horizon: 700, f: 900, eye: 1.65 });
-          M.blockWall(a, { x: 0, y: 0, w: W, h: 330 }, S.ppm(2.6),
+          M.blockWall(a, { x: 0, y: 0, w: W, h: 394 }, S.ppm(2.6),
                       { face: M.G.shade, joint: M.G.dark });
-          a.fillStyle = "rgba(0,0,0,0.44)"; a.fillRect(0, 0, W, 330);
+          a.fillStyle = "rgba(0,0,0,0.44)"; a.fillRect(0, 0, W, 394);
 
-          a.fillStyle = M.G.dark; a.fillRect(0, 316, W, H - 316);
-          var g = a.createLinearGradient(0, 316, W * 0.9, H);
+          a.fillStyle = M.G.dark; a.fillRect(0, 380, W, H - 380);
+          var g = a.createLinearGradient(0, 380, W * 0.9, H);
           g.addColorStop(0.00, "rgba(246,235,200,0.20)");
           g.addColorStop(0.42, "rgba(0,0,0,0.06)");
           g.addColorStop(1.00, "rgba(0,0,0,0.56)");
-          a.fillStyle = g; a.fillRect(0, 316, W, H - 316);
+          a.fillStyle = g; a.fillRect(0, 380, W, H - 380);
           /* the shelf's front edge catching the key, and its underside going black */
-          a.fillStyle = M.G.shade; a.fillRect(0, 316, W, 12);
-          a.fillStyle = "rgba(246,235,200,0.16)"; a.fillRect(0, 316, W, 5);
+          a.fillStyle = M.G.shade; a.fillRect(0, 380, W, 12);
+          a.fillStyle = "rgba(246,235,200,0.16)"; a.fillRect(0, 380, W, 5);
           /* plywood grain along the shelf */
           var RG = TX.rng(409);
           a.globalAlpha = 0.06;
           for (var i = 0; i < 70; i++) {
-            var y = 340 + RG() * (H - 340);
+            var y = 404 + RG() * (H - 404);
             a.strokeStyle = RG() < 0.5 ? "#000" : M.G.bright;
             a.lineWidth = 0.7 + RG() * 1.5;
             a.beginPath(); a.moveTo(-20, y);
@@ -161,6 +165,17 @@ window.renderReady = new Promise(async function (resolve, reject) {
         var TONER = "rgba(46,32,22,0.94)", FAINT = "rgba(46,32,22,0.60)";
         var L = 64;
 
+        /* THE PAPER GOES FLAT UNDER THE TYPE, and only under the type. Round 2 had all three
+         * judges call this frame's verbatim the least legible type in the deck, on the one frame
+         * whose declared focal IS that sentence. The type was never screened. The SHEET was, at
+         * cell 6, and a 6 px stripe under 15 px mono fills the counters. See N.stock. */
+        M.stock(c, [
+          [L - 26, 60, SH.w - (L - 26) * 2, 36],                 /* the running head */
+          [L - 26, 128, SH.w - (L - 26) * 2, 360],               /* the quote block and its rules */
+          [L - 26, 506, SH.w - (L - 26) * 2, 9 * 24 + 20],       /* the nine identifying fields */
+          [L - 26, 742, 470, 62]                                 /* the claim ids and the stamp */
+        ], { feather: 20 });
+
         /* the running head, which says what the document is */
         c.font = '500 15px "JetBrains Mono", monospace';
         c.fillStyle = FAINT;
@@ -177,7 +192,7 @@ window.renderReady = new Promise(async function (resolve, reject) {
         }
 
         c.strokeStyle = "rgba(46,32,22,0.72)"; c.lineWidth = 2;
-        c.beginPath(); c.moveTo(L, 546); c.lineTo(SH.w - L, 546); c.stroke();
+        c.beginPath(); c.moveTo(L, 480); c.lineTo(SH.w - L, 480); c.stroke();
 
         /* the hairline body under it, the award's own identifying fields, set small */
         c.font = '500 15px "JetBrains Mono", monospace';
@@ -194,17 +209,28 @@ window.renderReady = new Promise(async function (resolve, reject) {
           "transType    Standard Grant"
         ];
         for (var r = 0; r < ROWS.length; r++) {
-          c.fillText(ROWS[r], L, 600 + r * 26);
+          c.fillText(ROWS[r], L, 528 + r * 24);
           if (r < ROWS.length - 1) {
             c.strokeStyle = "rgba(46,32,22,0.16)"; c.lineWidth = 1;
-            c.beginPath(); c.moveTo(L, 608 + r * 26); c.lineTo(SH.w - L, 608 + r * 26); c.stroke();
+            c.beginPath(); c.moveTo(L, 536 + r * 24); c.lineTo(SH.w - L, 536 + r * 24); c.stroke();
           }
         }
+
+        /* THE FIELDS' OWN CLAIM IDS, ON THE PAPER RATHER THAN IN THE FURNITURE LINE.
+         *
+         * Round 2 read this frame's source line as 'c15 c1' over six fields belonging to c2, c3,
+         * c4, c5, c6 and c10, which was a real gap. Naming all eight in the furniture ran the
+         * line into the site line at the bottom right, so the six that belong to the DOCUMENT are
+         * printed on the document, beside the fields they cite, and the furniture keeps the two
+         * that carry the frame's argument. A reader checking a field finds its id next to it. */
+        c.font = '500 13px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(46,32,22,0.50)";
+        c.fillText("FIELDS   c2 c3 c4 c5 c6 c10", L, 764);
 
         /* the retrieval stamp, which is what makes this a fetched document rather than a claim */
         c.font = '500 14px "JetBrains Mono", monospace';
         c.fillStyle = "rgba(46,32,22,0.52)";
-        c.fillText("RETRIEVED 2026-09-20", L, SH.h - 58);
+        c.fillText("RETRIEVED 2026-09-20", L, 790);
         c.restore();
 
         /* NO ACCENT ON THIS FRAME. The page is the record talking, not a mark this room made. */

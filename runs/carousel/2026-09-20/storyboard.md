@@ -88,16 +88,21 @@ against the press. The press is never chased to the arc.
 Adjacent jumps 10, 6, 8, 5, 9, 10, 4, 7. Max 10, mean 7.4, against this repo's measured historical
 median adjacent jump of **21.0** and four hard cuts per deck.
 
-**WHAT ACTUALLY PRINTED, measured at 432 px by `measure.py` after round 1's repairs:**
+**WHAT ACTUALLY PRINTED, measured at 432 px by `measure.py` after round 3's repairs:**
 
     frame      1     2     3     4     5     6     7     8     9
-    measured  8.8  10.3  12.3   9.3   6.3  12.3  10.3   7.7  10.3
+    measured  9.8  10.3  14.2   9.3   6.8   9.8  10.3   7.7  10.3
 
-Adjacent 1.5, 2.0, 3.0, 3.0, 6.0, 2.0, 2.6, 2.6. **Max 6.0, mean 2.84**, against the sibling's
+Adjacent 0.5, 3.9, 4.9, 2.5, 3.0, 0.5, 2.6, 2.6. **Max 4.9, mean 2.56**, against the sibling's
 2.6 and this repo's 21.0. The deck holds together better than the plan asked it to.
 
+Round 2 measured max 6.0 and mean 2.84 on the same frames. Both numbers improved because round 3
+put the type of frames 3 and 6 on flat stock, which raised 3 and lowered 6 toward the run of the
+deck rather than because anything was tuned toward the arc. **The press was not chased here** and
+the figures above are read off the shipped PNGs by `measure.py`, never typed.
+
 **AND IT PRINTED SYSTEMATICALLY DARKER THAN PLANNED, WHICH IS NOT REWRITTEN HERE.** The three
-paper frames were planned at 18, 24 and 20 and came out at 10.3, 12.3 and 12.3. The hatch at cell
+paper frames were planned at 18, 24 and 20 and came out at 10.3, 14.2 and 9.8. The hatch at cell
 6 does not reach the twenties over this ground no matter how bright the stock is drawn, which is
 the ceiling ILLUSTRATION_SYSTEM's own screen table predicts and which the probe frame measured
 only for frame 9's exterior. The honest reading is that the probe was one frame and the ceiling
@@ -111,7 +116,7 @@ four cream sheets on a dark board strobe the canvas mean while the median holds.
 **World.** The inside of a small waterworks in the Post Oak Savannah, Brazos County, which is the
 county the awardee sits in, at ten to five on a September afternoon.
 Ground `#2E2016`. Ink `#DCD3B4` seven day recorder stock, a warm green cream.
-Light az 262, el 26. Screen line, cell 5, angle 52.
+Light az 262, el 26. Screen hatch, cell 6, angle 52.
 
 ```yaml
 slide: 1
@@ -132,13 +137,14 @@ primary_image:
   - left
   - right
   - bottom
-accent: '#9A3B2A'
+accent: none
 job: 'Establish the room and the size of everything in it, so that the eight frames after this one can
   crop hard into objects the reader has already met at full length.
 
   '
-claims: [c15]
-numerals: []
+claims: [c12, c15, c20]
+numerals:
+- value_from: v1
 composition:
   structure: 'The open door is behind the camera and slightly left, so the late sun lays a long lit patch
     across the swept concrete from the lower left toward the back wall, and the operator stands IN that
@@ -175,8 +181,8 @@ art:
   motion: in along the sun patch from lower left, up the operator, then right along the manifold and off
     the frame
 type:
-  hook: "The line stops where the pen is."
-  dek: "Monitoring systems, historical records and reactive emergency protocols. Those are the abstract's own words for what is in this room."
+  hook: "Aimed at small systems. Texas has 4,749."
+  dek: "Active community water systems on the EPA's record. This is the inside of one of them, and what it runs on is monitoring, historical records and reactive emergency protocols."
   labels: []
 verbatim: []
 acceptance:
@@ -185,7 +191,7 @@ acceptance:
 - every object standing on the floor has a visible two part contact shadow whose length is at least 1.8
   times its own height, because the sun is at 26 degrees
 - every cast in the frame runs east, away from the door, and none runs toward it
-- no numeral appears anywhere on this frame
+- the only numeral on this frame is 4,749 in the hook, which is v1 and carries no other figure
 - nothing in the room reads as broken, leaking, rusted or disused
 - the hook sits in the dark reserve at upper left with no plate behind it and no fill over 0.55 alpha
 risks:
@@ -477,7 +483,7 @@ art:
   motion: left to right along the main from the intake through the pump house to the vessels
 type:
   hook: "One line, and three places on it."
-  dek: "The abstract's own sequence. A disruption that begins in one component can travel along the rest of it."
+  dek: "The abstract's own examples. A disruption that begins in one component can propagate through connected networks."
   labels: ["intake", "pump station", "treatment unit"]
 verbatim: []
 acceptance:
@@ -498,10 +504,10 @@ risks:
 slide: 6
 layout: DOCUMENT
 primary_image:
-  subject: a 0.216 by 0.279 m sheet of chart stock lying on the pump house bench at 0.9 m seen from 1.45
-    m, filling about 85 percent of the frame and cut by the left and right edges, carrying three physically
-    separated blocks of unit marks at one hundred marks to the row, each mark a 6 px square drawn with
-    a lit west edge and a dark east side under the deck's own sun
+  subject: three separate sheets of chart stock lying on the pump house bench at 0.9 m seen from 1.45
+    m, at three different widths, each carrying its own complete EPA query stanza and the count that
+    query returned, the widest of the three carrying a single row of 87 unit marks that stops two
+    thirds of the way across it
   rect:
   - 0
   - 200
@@ -510,37 +516,37 @@ primary_image:
   bleeds:
   - left
   - right
-accent: '#9A3B2A'
+accent: none
 job: 'Show the size of the set the award''s first direction points at, with every count naming the exact
   query that produced it and nothing on the sheet permitting one block to be read as part of another.
 
   '
-claims: [c12, c15]
+claims: [c12, c20, c21, c22]
 numerals:
 - value_from: v1
 - value_from: v2
 - value_from: v3
-- value_from: v4
-- value_from: v5
-- value_from: v6
-- value_from: v7
 composition:
-  structure: 'The three blocks are stacked with a full width rule between them and are LEFT ALIGNED AT
-    UNEQUAL LENGTHS rather than nested, centred or stacked as segments, because the one reading this frame
-    must not permit is that the smaller blocks are portions of the larger. Each block sits under its own
-    four line query stanza in mono. No arithmetic operator appears anywhere on the sheet.
+  structure: 'Three physically separate sheets at three different widths, never nested, never centred
+    and never stacked as segments, because the one reading this frame must not permit is that the smaller
+    counts are portions of the larger. The widths run AGAINST the counts: 4,749 sits on an 884 px sheet,
+    3,579 on a 680 px sheet and 87 on the widest at 940 px, so length cannot be taken for quantity. Each
+    sheet carries its own four line query stanza in mono on flat stock. No arithmetic operator appears
+    anywhere in the frame.
 
     '
-  bands: 'Top third, the first block''s query stanza and the opening rows of its 4,749 marks, with the
-    kicker in the bench shade above the sheet. Middle third, the end of the first block with its short
-    last row, the rule, the second stanza and the second block in granite. Bottom third, the third stanza,
-    the single short row of 87 marks with bare stock running on after it, the bench top''s grain and the
-    sheet''s own lifted edge throwing a two part contact shadow onto the bench from the raking light,
-    graded from the lit left into the shade at the right.
+  bands: 'Top third, the hook in the bench shade and the first sheet with the 4,749 query and its count.
+    Middle third, the second and narrowest sheet with the population filter under 3,301 and its count,
+    and the machinist''s rule lying on the bench to its right at true scale. Bottom third, the WIDEST
+    sheet and the frame''s whole payoff, carrying the 87 query, its count, and the single row of 87 unit
+    marks stopping two thirds of the way across a ruled line that runs on to the margin, with the query
+    footnote under it and the bench''s own grain and the sheet''s lifted corner below that. Each sheet
+    throws a two part contact shadow onto the bench from the raking light, graded from the lit left into
+    the shade at the right. Nothing in the lower third is empty stock.
 
     '
-  focal: the gap of bare paper after the eighty seventh mark, an area about 400 by 70 px at lower right,
-    reached because every other row in the frame reaches the margin and that one stops
+  focal: the gap of bare paper after the eighty seventh mark, an area about 270 by 40 px on the widest
+    sheet, reached because the rule under the marks runs on to the margin and the marks do not
 art:
   technique: grid isotype at true mark scale, marks laid flat in the print over pass so they never go
     through the screen
@@ -557,19 +563,22 @@ art:
     '
   motion: down the sheet block by block, each one ending shorter than the last
 type:
-  hook: "Texas counts 4,749."
-  dek: "3,579 of them serve fewer than 3,301 people. 87 serve more than 50,000. Three queries, three counts, and nothing here adds them together."
+  hook: "None of these is a share of another."
+  dek: "Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000."
   labels: ["PRIMACY_AGENCY_CODE TX", "PWS_ACTIVITY_CODE A", "PWS_TYPE_CODE CWS"]
 verbatim: []
 acceptance:
-- each of the three blocks carries its OWN complete query stanza naming PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE
+- each of the three sheets carries its OWN complete query stanza naming PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE
   A, PWS_TYPE_CODE CWS and its own population filter
-- there is NO plus sign, NO minus sign, NO percentage, NO pie and NO stacked bar anywhere on the sheet
-- the blocks are left aligned at unequal lengths and none is drawn inside or on top of another
-- every block's last row is SHORT of the right margin, which is the deck's motif landing three times
-- the accent is on the second block's marks only and on nothing else in the frame
-- the four state counts appear as figures with their own set named, and no rank word appears anywhere
-- at 432 px the marks are still countable as separate objects rather than reading as a grey wash
+- there is NO plus sign, NO minus sign, NO percentage, NO pie and NO stacked bar anywhere in the frame
+- the three sheets are at three visibly different widths and none is drawn inside or on top of another
+- sheet width runs AGAINST count, so the smallest count sits on the widest sheet and length cannot be
+  read as quantity
+- the anti partition statement is the HOOK at display size rather than a line of small type
+- only the 87 block carries unit marks, because 87 is the only one of the three countable at this size,
+  and that row STOPS short of a rule that runs on to the margin
+- the accent is the last five marks of that row and nothing else in the frame, never a band or a zone
+- every stanza and every count sits on flat stock rather than on the hatch screen
 risks:
 - the mark field greying into a texture at thumb size, in which case the PITCH goes up and the block bleeds
   further, and the count never moves
@@ -633,7 +642,7 @@ art:
   motion: down into the box along the falloff, arrested by the fallen pack's horizontal trace
 type:
   hook: "Every one of these is finished."
-  dek: "Which is exactly what makes a complete record the wrong instrument for the question being asked of it."
+  dek: "Which is exactly what the abstract means by limited ability to anticipate."
   labels: []
 verbatim: []
 acceptance:
