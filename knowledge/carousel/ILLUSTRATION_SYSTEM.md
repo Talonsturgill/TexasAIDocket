@@ -234,6 +234,151 @@ frame.
 The chassis comes before any frame. Phase 10.5 builds it and renders ONE probe frame against
 it, because a chassis that is wrong is wrong nine times.
 
+## THE FRAME STANDS IN A PLACE (2026-09-20, owner, and it sits beside THE ARTWORK CARRIES THE DATA)
+
+**A frame is built on the scene bench. Something is placed through the camera, at true scale in
+metres, on a ground plane, casting a shadow from the deck's one declared light. A frame drawn in
+screen pixels is a diagram of a place rather than a place, and a deck of them reads flat.**
+
+The owner: *"everything is very flat and 2d, we need to teach the automation and agents through
+research how to do more 2.5d and expand its artwork capabilities beyond this flat look"*.
+
+### It was never a missing capability, and that is the whole finding
+
+`assets/js/txscene.js` is a 2.5D scene bench. A ground plane, a horizon, a level pinhole camera,
+objects at TRUE SCALE IN METRES, one declared light casting every shadow onto the plane. It was
+written on **September 11th, 2026**, for this exact complaint. Its own docstring:
+
+> Twenty one decks shipped and the judges' craft finding was the same one every time, in
+> different words: a small primitive floating in a gradient with the type stacked above it.
+> "Assembled, not drawn." "An object in a void." The cause was structural rather than a lapse
+> of taste. Every frame was drawn in screen pixels with no camera, so nothing had a size,
+> nothing stood on anything, nothing cast a shadow onto anything, and a bus was a slab because
+> a slab is what you draw when you do not know how tall a bus is.
+
+Measured across 27 shipped decks and 241 frames on the day this law was written:
+
+| | |
+|---|---|
+| staged frames per deck | median **0**, best ever **5** |
+| distinct depth cues per deck | median **0**, best ever **5** |
+| 2026-09-18, -19 and -20 | **zero** depth cues, all three decks |
+| `S.fade`, aerial perspective | **never used**, 0 of 27 decks |
+| `S.box` and `S.slab`, form shading | **never used**, 0 of 27 decks |
+| `tx3d.js`, the software 3D renderer | **1** frame of 241 |
+| `three.module.min.js` | **0** frames |
+
+Fifty four frames LOAD the bench and then draw in screen pixels anyway. **A camera a frame does
+not place through is a camera it did not use.**
+
+So nothing here needed inventing. The kit was complete and optional, and a cue nobody is asked
+for is a cue that does not appear. That is the third defect of this exact shape found in one day.
+
+### The cues, from the perception literature rather than from taste
+
+Pictorial depth, the kind available to a flat printed frame, is carried by eight cues. They are
+not interchangeable and they are not equally strong. **Occlusion is the most reliable and gives
+only ORDINAL depth**, which is to say it tells a reader what is in front, never how far.
+Relative size and texture gradient give METRIC depth, a distance a reader can estimate. Aerial
+perspective is measurably more powerful than its reputation suggests.
+
+**Depth is several weak cues agreeing, not one strong cue repeated.** That is why the gate counts
+distinct cues as well as staged frames.
+
+Every one of them already has a call:
+
+| cue | what it is | the call |
+|---|---|---|
+| **occlusion** | a nearer form hides part of a farther one | draw far first. `S.row`. The bench does NOT z-sort, deliberately, because a slide is a drawing and the drawer decides the order |
+| **relative size** | the same object subtends less at distance | `S.ppm(Z)`, px per metre at depth Z |
+| **height in the field** | on a ground plane, farther is higher | `S.groundY(Z)` |
+| **linear perspective** | parallels converge at the horizon | `S.project(X, Y, Z)` |
+| **texture gradient** | a texture packs denser with distance | `S.gridZ`, `S.gridX`, `S.strip` |
+| **aerial perspective** | distance washes contrast toward the sky | `S.fade(hex, Z)` |
+| **cast shadow** | where the light is blocked, on the plane | `S.shadow(sprite)`, from the ONE declared light |
+| **form shading** | a lit face and a shadow face on one solid | `S.box`, `S.slab` |
+
+### The two nobody has ever reached for, and they are the cheap half
+
+`S.fade` and `S.box` have not been used by a single deck in 27. They are also the two that most
+directly answer the word the owner used.
+
+**Flat is what a shape filled with ONE value looks like.** `S.box` gives a solid a lit face and a
+shadow face off the same declared light, so the form turns in space instead of being a silhouette
+with a colour. One call, and a slab becomes a thing.
+
+**Distance with no atmosphere reads as a sticker on glass.** `S.fade(hex, Z)` walks a hue toward
+the sky value with depth. It is the cue that separates a far row from a near one when both are
+the same object at the same brightness, and it is what makes the ground go somewhere instead of
+stopping.
+
+### What the gate asks
+
+`scripts/carousel/depth_floor.py`, against `config/carousel/depth_floor.json`:
+
+- **at least five frames of nine are STAGED.** Staged means the frame builds the bench, places
+  something through the camera, and casts a shadow from the declared light. All three. September
+  12th and 13th both reached five in a real run, so this is a high water mark rather than a
+  stretch, and every deck since has been under it.
+- **at least four distinct cues across the deck.** One under the high water, deliberately: the
+  fifth cue is where a frame makes a choice, and a quota met by reaching for whatever is cheapest
+  is not the same as a frame that needed it.
+- **the scene's light agrees with the chassis's.** `TXDECK.declare` names one light for the deck
+  and `TXSCENE.create` takes its own. Two surfaces holding their own copy of one rule with
+  nothing in between checking them is this repo's oldest defect, and it has already shipped the
+  wrong site URL on three decks, a missing hashtag block and a missing progress counter. Here it
+  would put the scene's shadows and the chassis's shadows running different ways under one sun.
+
+### Why it is measured in the code and not in the pixels
+
+Four pixel statistics were tried first, against 59 decks of the reference corpus: modelling
+inside lit forms, count of value shelves, aerial contrast ratio, and mass surviving a blur. **None
+of them separated the two corpora.** Depth here is a property of how a frame was CONSTRUCTED, and
+the construction is in the source. A gate that measured the output would have reported clean.
+
+### WHAT STAGING THE REFERENCE COST, and three of the four were the same mistake
+
+`examples/figure-bearing/` was restaged onto the bench in four render passes. Three of the four
+failures were **the same defect wearing different names**, and it is the one hazard worth knowing
+before writing a frame against this bench.
+
+**EVERY OPTION ON THIS BENCH IS OPTIONAL, AND A WRONG NAME IS SILENTLY A DEFAULT.** These are
+plain object literals with `num(g.x, default)` behind them. Nothing throws, nothing warns, and
+the frame renders. Three times in one sitting:
+
+- `Lm.pool` takes `x` and `y`. Given `cx` and `cy` it translated to `undefined`, went NaN, and
+  painted the whole pool at the ORIGIN, which put a warm glow over the kicker on three frames.
+- `S.strip` takes `X, w, near, far, fill`. Given `from`, `to` and `ink` it drew its DEFAULT
+  six metre band from 0.8 to 400 metres, a grey wedge across two thirds of the frame that read
+  as a catastrophic cast shadow.
+- `S.gridX` takes X extents in `from`/`to` and Z extents in `near`/`far`. `S.gridZ` takes Z
+  extents in `from`/`to`. **They are not the same shape.** Given gridZ's arguments, gridX draws
+  every line off frame to the right, in silence.
+
+**The check that catches all three is to look at the render.** Each was invisible in the source,
+silent at run time, and obvious in the image. Read the signature in `txscene.js` before the call,
+and then look at the picture.
+
+**AN OBJECT TALLER THAN THE EYE PROJECTS ABOVE THE HORIZON, and the type lives up there.** Frame
+2's first cut stood a 3.1 m volume at a 1.4 m eye, its top edge landed at y 421, and the machine
+QA reported the dek struck through. The fix was not to move the type. The figure on that frame is
+a RATIO, so the metres were free, and the whole volume became 1.4 m: **its top now sits exactly on
+the horizon**, which is what eye height means and is a better frame than the one that failed.
+
+Before placing anything tall, ask what `horizon - f * (H - eye) / Z` comes to and whether the type
+is already there.
+
+### What this does NOT say
+
+It does not say every frame is a landscape. A DOCUMENT frame showing a page, a TYPE_AS_OBJECT
+frame where the headline is the image, and a GRID frame of pure isotype marks can all be staged:
+put the page on a desk at a depth, stand the letters on the ground, give the marks a plane to
+sit on and a shadow each. **Staging is not a subject, it is a space the subject occupies.** Four
+of nine frames may still be flat, and the gate says which four is the deck's choice.
+
+It does not license a render engine this repo does not have. `tx3d.js` exists for a heightfield
+or a mesh and is the right tool perhaps once a deck. The bench is the ordinary path.
+
 ## THE ARTWORK CARRIES THE DATA (2026-09-20, owner, and it outranks THE PRIMARY IMAGE LAW below)
 
 **A frame's image is built out of the story's own computed numbers. The geometry a reader looks

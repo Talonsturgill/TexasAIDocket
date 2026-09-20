@@ -67,6 +67,7 @@ SHELL = """<!doctype html>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
 <script>
@@ -83,6 +84,13 @@ window.renderReady = new Promise(async function (resolve, reject) {{
     var W = 1080, H = 1350, Lm = TXLAMP;
     var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
     var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE BENCH. One ground plane, one camera, and the CHASSIS's light rather than a second
+    // copy of it. depth_floor.py fails a frame whose scene light disagrees with the deck's.
+    var S = TXSCENE.create(cx, {{
+      w: W, h: H, eye: 1.4, horizon: 560, f: 820,
+      sky: "#1A1630", fogZ: 42, light: {{ az: 64, el: 26 }}
+    }});
 {body}
     TXDECK.finish(cx, {{ mask: mask }});
     resolve(true);
@@ -94,105 +102,109 @@ window.renderReady = new Promise(async function (resolve, reject) {{
 """
 
 # ---------------------------------------------------------------------------------------------
-# FRAME 1. ISOTYPE. The count IS the mark count, which is the oldest way of drawing a number and
-# the one that survives a phone screen. One mark per 50 systems, so 4,749 lands at 95 marks: few
-# enough to count a row of, many enough that the field reads as a quantity rather than a legend.
+# FRAME 1. ISOTYPE, STANDING ON A GROUND PLANE. The count is the mark count and the marks are
+# SOLIDS at true scale, ten to a row, rows receding from 4 to 13 metres. Every depth cue the
+# bench has falls out of that one decision: they get smaller with distance (relative size), sit
+# higher in the frame (height in field), pack denser (texture gradient), wash toward the sky
+# (aerial), turn a lit face to the west door (form shading) and each throws a cast shadow east.
 ONE_MARK_IS = 50
 F1 = """
-    var ACTIVE = @@ACTIVE@@, PER = @@PER@@;                 // figures.json active_systems
-    var marks = Math.round(ACTIVE / PER);      // 95, and the grid is that number
-    var cols = 19, rows = Math.ceil(marks / cols);
-    var mw = 30, mh = 44, gx = 44, gy = 62;
-    var x0 = (W - (cols * gx - (gx - mw))) / 2, y0 = 742;
+    var ACTIVE = @@ACTIVE@@, PER = @@PER@@;      // figures.json active_systems
+    var marks = Math.round(ACTIVE / PER);        // 95, and the field IS that number
+    var cols = 10, pitchX = 0.62, z0 = 4.0, dz = 1.0;
+    var mw = 0.30, mh = 0.42, md = 0.30;
 
-    Lm.pool(cx, { x: 540, y: 968, r: 760, squash: 0.58, rot: -0.14, strength: 0.92, reserve: boxes });
-    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
+    S.ground({ near: 1.2, far: 90, fill: "#171233", fadeToSky: true });
+    S.gridZ({ dz: 1.0, from: z0 - 0.5, to: z0 + 10.5, ink: "rgba(224,149,106,0.10)", width: 1.1 });
 
-    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
-    for (var i = 0; i < marks; i++) {
-      var r = Math.floor(i / cols), c = i % cols;
-      var x = x0 + c * gx, y = y0 + r * gy;
-      // the last row is the remainder and is drawn short, because 4,749 is not 95 fifties
-      var partial = (i === marks - 1) && (ACTIVE % PER !== 0);
-      var h = partial ? mh * ((ACTIVE % PER) / PER) : mh;
-      cx.fillStyle = TXDECK.pick(ramp, 5 - Math.floor(r / 2));
-      cx.fillRect(x, y + (mh - h), mw, h);
-      cx.fillStyle = TXDECK.pick(ramp, 1);
-      cx.fillRect(x, y + mh + 4, mw, 3);       // the contact each mark stands on
-    }
-    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
-"""
-
-
-# ---------------------------------------------------------------------------------------------
-# FRAME 2. COLUMNS IN ONE SCALE. Two heights, one ladder, and the SMALL count is drawn inside the
-# whole rather than beside it, because 3,579 of 4,749 is a share and two free standing bars would
-# draw it as a comparison of strangers.
-F2 = """
-    var ALL = @@ALL@@, SMALL = @@SMALL@@;                  // figures.json active_systems, small_systems
-    var base = 1108, top = 470, span = base - top;
-    var wAll = 300, xAll = 150, xSm = 560;
-
-    Lm.pool(cx, { x: 600, y: 940, r: 720, squash: 0.56, rot: -0.18, strength: 0.90, reserve: boxes });
-    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
-    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
-
-    // the whole, drawn as an outline: it is the denominator and not a second quantity
-    cx.strokeStyle = TXDECK.pick(ramp, 3);
-    cx.lineWidth = 3;
-    cx.strokeRect(xAll, top, wAll, span);
-    cx.fillStyle = TXDECK.pick(ramp, 1);
-    cx.fillRect(xAll, top, wAll, span);
-
-    // the share, at the SAME scale, filled
-    var hSm = span * (SMALL / ALL);
-    cx.fillStyle = TXDECK.pick(ramp, 6);
-    cx.fillRect(xSm, base - hSm, wAll, hSm);
-    cx.strokeStyle = TXDECK.pick(ramp, 3);
-    cx.strokeRect(xSm, top, wAll, span);
-
-    // the rule the two stand on, and the one tick that marks the share on the whole
-    cx.fillStyle = TXDECK.pick(ramp, 2);
-    cx.fillRect(110, base, 840, 4);
-    cx.fillStyle = TXDECK.pick(ramp, 5);
-    cx.fillRect(xAll - 34, base - hSm, 30, 5);
-    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
-"""
-
-
-# ---------------------------------------------------------------------------------------------
-# FRAME 3. ONE ROW AGAINST THE FIELD. 87 marks at the SAME pitch frame 1 used, so the swipe from
-# a full field to a single short row is the argument, drawn. The 3,579 sits behind at low value:
-# present, uncountable, which is what a number that size honestly looks like.
-F3 = """
-    var BIG = @@BIG@@, ALL = @@ALL@@, PER = 50;   // figures.json large_systems, active_systems
-    var cols = 19, mw = 30, mh = 44, gx = 44, gy = 62;
-    var field = Math.round(ALL / PER);            // frame 1's 95, redrawn at frame 1's pitch
-    var lit = BIG / PER;                          // 1.74 marks, and the sliver is the argument
-    var x0 = (W - (cols * gx - (gx - mw))) / 2, y0 = 742;
-    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
-
-    Lm.pool(cx, { x: 540, y: 968, r: 760, squash: 0.58, rot: -0.14, strength: 0.92, reserve: boxes });
-    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
-
-    for (var i = 0; i < field; i++) {
-      var r = Math.floor(i / cols), c = i % cols;
-      var x = x0 + c * gx, y = y0 + r * gy;
-      // the whole record, held back, so the eye goes to what is picked out of it
-      cx.fillStyle = TXDECK.pick(ramp, 2);
-      cx.fillRect(x, y, mw, mh);
-      // the 87, at the SAME scale, which is where the honesty of this frame lives: the large
-      // end is under two marks of ninety five and drawing it any bigger would be a lie a
-      // separate scale lets you tell without noticing
-      if (i < lit) {
-        var frac = Math.min(1, lit - i);
-        cx.fillStyle = TXDECK.pick(ramp, 6);
-        cx.fillRect(x, y, mw * frac, mh);
+    // FAR FIRST. The bench does not z-sort, deliberately, so occlusion is the drawer's order.
+    var rows = Math.ceil(marks / cols);
+    for (var r = rows - 1; r >= 0; r--) {
+      var Z = z0 + r * dz;
+      var inRow = Math.min(cols, marks - r * cols);
+      for (var c = 0; c < inRow; c++) {
+        var X = (c - (cols - 1) / 2) * pitchX;
+        // the last mark is the REMAINDER and is drawn short, because 4,749 is not 95 fifties
+        var last = (r * cols + c) === marks - 1 && (ACTIVE % PER !== 0);
+        var hh = last ? mh * ((ACTIVE % PER) / PER) : mh;
+        S.box({ X: X, Z: Z, w: mw, h: hh, d: md, fill: "#C9BEE4",
+                shadowInk: "#0A0718", shadowAlpha: 0.34 });
       }
-      cx.fillStyle = TXDECK.pick(ramp, 1);
-      cx.fillRect(x, y + mh + 4, mw, 3);
     }
-    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
+"""
+
+
+# ---------------------------------------------------------------------------------------------
+# FRAME 2. A FILL LEVEL IN A VOLUME. The share is a SOLID standing inside the wireframe of the
+# whole, one footprint, one scale, so 3,579 of 4,749 reads as a level rather than as a second
+# quantity standing next to the first.
+F2 = """
+    var ALL = @@ALL@@, SMALL = @@SMALL@@;        // figures.json active_systems, small_systems
+    var Z = 6.0, bw = 2.0, bd = 2.0, hAll = 1.40;   // hAll == eye height, so the whole
+                                                   // volume tops out ON the horizon
+    var hSm = hAll * (SMALL / ALL);              // the level, computed and not chosen
+
+    S.ground({ near: 1.2, far: 90, fill: "#171233", fadeToSky: true });
+    // S.strip takes X, w, near, far, fill. It took from/to/ink once and silently drew its
+    // default 6 m band from 0.8 to 400 m, which is a grey wedge over two thirds of the frame.
+    S.strip({ X: 0, w: 6.0, near: 3, far: 26, fill: "rgba(224,149,106,0.05)" });
+    S.gridZ({ dz: 1.2, from: 3, to: 26, ink: "rgba(224,149,106,0.13)", width: 1.3 });
+    // gridX takes X extents in from/to and Z extents in near/far. gridZ takes Z in
+    // from/to. They are not the same shape and the wrong one draws off frame in silence.
+    S.gridX({ dx: 1.5, from: -7, to: 7, near: 3, far: 26,
+              ink: "rgba(224,149,106,0.09)", width: 1.1 });
+
+    // the solid: the share, lit and shadowed off the deck's one light
+    S.box({ X: 0, Z: Z, w: bw, h: hSm, d: bd, fill: "#CFC3E8",
+            shadowInk: "#0A0718", shadowAlpha: 0.30, shadowBlur: 14 });
+
+    // the whole, as a wireframe standing in the same footprint. Drawn through S.project so the
+    // verticals converge with everything else in the frame rather than being drawn upright.
+    var x0 = -bw / 2, x1 = bw / 2, zA = Z, zB = Z + bd;
+    var P = function (x, y, z) { return S.project(x, y, z); };
+    var top = [P(x0, hAll, zA), P(x1, hAll, zA), P(x1, hAll, zB), P(x0, hAll, zB)];
+    cx.save();
+    cx.strokeStyle = "rgba(224,149,106,0.60)";
+    cx.lineWidth = 2.2;
+    cx.beginPath();
+    top.forEach(function (pt, i) { i ? cx.lineTo(pt[0], pt[1]) : cx.moveTo(pt[0], pt[1]); });
+    cx.closePath(); cx.stroke();
+    [[x0, zA], [x1, zA], [x1, zB], [x0, zB]].forEach(function (c) {
+      var a = P(c[0], 0, c[1]), b = P(c[0], hAll, c[1]);
+      cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke();
+    });
+    cx.restore();
+"""
+
+
+# ---------------------------------------------------------------------------------------------
+# FRAME 3. THE SAME FIELD, ONE SCALE, WITH THE SLIVER LIT. Frame 1's grid at frame 1's pitch and
+# depths, held back, and the 87 picked out of it at 87/50 of a mark. A second scale would let
+# this frame draw 87 as large as 3,579 without anybody noticing, which is the lie it refuses.
+F3 = """
+    var BIG = @@BIG@@, ALL = @@ALL@@, PER = 50;  // figures.json large_systems, active_systems
+    var marks = Math.round(ALL / PER), lit = BIG / PER;
+    var cols = 10, pitchX = 0.62, z0 = 4.0, dz = 1.0;
+    var mw = 0.30, mh = 0.42, md = 0.30;
+
+    S.ground({ near: 1.2, far: 90, fill: "#171233", fadeToSky: true });
+    S.gridZ({ dz: 1.0, from: z0 - 0.5, to: z0 + 10.5, ink: "rgba(224,149,106,0.10)", width: 1.1 });
+
+    var rows = Math.ceil(marks / cols);
+    for (var r = rows - 1; r >= 0; r--) {
+      var Z = z0 + r * dz;
+      var inRow = Math.min(cols, marks - r * cols);
+      var lead = Math.floor((cols - Math.ceil(lit)) / 2);   // the sliver sits mid row, not on the edge
+      for (var c = 0; c < inRow; c++) {
+        var i = r * cols + (c - lead);
+        var X = (c - (cols - 1) / 2) * pitchX;
+        var on = r === 0 && i >= 0 && i < lit;
+        var frac = on ? Math.min(1, lit - i) : 1;
+        S.box({ X: X, Z: Z, w: mw * (on ? frac : 1), h: mh, d: md,
+                fill: on ? "#F0E6FF" : "#332A55",
+                shadowInk: "#0A0718", shadowAlpha: on ? 0.40 : 0.16 });
+      }
+    }
 """
 
 

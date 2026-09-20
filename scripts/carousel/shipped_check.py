@@ -813,6 +813,29 @@ def g_figure_bearing(d: Path):
     return probs
 
 
+DEPTH_SINCE = "2026-09-20"
+
+
+def g_depth_floor(d: Path):
+    """The frames stand on the scene bench rather than in screen pixels.
+
+    Its own since-date, for the reason stated at RESERVE_SINCE and FIGURE_SINCE: this rule is
+    newer than every deck under it and a gate does not judge the work that produced it. The
+    finding is still measured and still printed.
+    """
+    sd = d / "slides"
+    if not sd.is_dir() or not sorted(sd.glob("slide-*.html")):
+        return None
+    m = _by_module("depth_floor", d)
+    probs = m.check(m.frames_in(sd), m.load_config(), m.deck_light_of(sd))
+    if d.name <= DEPTH_SINCE:
+        if probs:
+            return (f"THE FRAME STANDS IN A PLACE was written on {DEPTH_SINCE} out of this deck "
+                    f"and the 26 before it. Run into it anyway it reports: {str(probs[0])[:200]}")
+        return None
+    return probs
+
+
 def g_completion(d: Path):
     """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
 
@@ -1038,6 +1061,7 @@ GATES = [
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
+    ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),

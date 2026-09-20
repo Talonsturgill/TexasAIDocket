@@ -1,0 +1,29 @@
+{
+  "_note": "The floor for THE FRAME STANDS IN A PLACE, read by scripts/carousel/depth_floor.py. Both numbers are the HIGH WATER MARK of what this machine has actually built, never an aspiration, for the reason run_complete.ratchet_floor states at length: a number typed today is a guess about a machine that is supposed to be improving. Raise them when the corpus clears them comfortably. Lowering either is a decision somebody makes out loud, never a fix for a red build.",
+  "min_staged_frames": 5,
+  "min_distinct_cues": 4,
+  "derived_from": {
+    "measured_over": "27 shipped decks, 241 frames, on 2026-09-20",
+    "staged_frames_per_deck": {
+      "median": 0,
+      "best_ever": 5,
+      "best_deck": "2026-09-13"
+    },
+    "distinct_cues_per_deck": {
+      "median": 0,
+      "best_ever": 5,
+      "best_deck": "2026-09-13"
+    },
+    "zero_cue_decks": [
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "never_used_in_any_deck": [
+      "AERIAL (S.fade)",
+      "FORM_SHADING (S.box, S.slab)"
+    ],
+    "why_5_and_4": "2026-09-13 reached 5 staged frames and 5 distinct cues in one real run, so 5 staged is the high water mark rather than a stretch. Cues sit one under that high water at 4, deliberately: the fifth cue is where a frame gets to make a choice, and a quota met by reaching for whatever is cheapest is not the same thing as a frame that needed it.",
+    "rederived_2026_09_20_after_review": "The cue detector was rebound to the bench INSTANCE after review found it matching any identifier, which had been counting 62 `J.sprite(` and 6 `E.sprite(` calls that belong to things that are not the bench. shadowVec stopped counting as a painted shadow and a ground plane became part of staged. Re-measured under all three: staged max is still 5 (2026-09-12 and 2026-09-13) and distinct cues max is still 5, so both floors stand and are still proven reachable by two real runs."
+  }
+}

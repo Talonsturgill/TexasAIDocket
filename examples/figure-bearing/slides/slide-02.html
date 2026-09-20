@@ -34,6 +34,7 @@
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
 <script>
@@ -51,34 +52,48 @@ window.renderReady = new Promise(async function (resolve, reject) {
     var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
     var mask  = TXDECK.reserveMask(boxes, 30);
 
-    var ALL = 4749, SMALL = 3579;                  // figures.json active_systems, small_systems
-    var base = 1108, top = 470, span = base - top;
-    var wAll = 300, xAll = 150, xSm = 560;
+    // THE BENCH. One ground plane, one camera, and the CHASSIS's light rather than a second
+    // copy of it. depth_floor.py fails a frame whose scene light disagrees with the deck's.
+    var S = TXSCENE.create(cx, {
+      w: W, h: H, eye: 1.4, horizon: 560, f: 820,
+      sky: "#1A1630", fogZ: 42, light: { az: 64, el: 26 }
+    });
 
-    Lm.pool(cx, { x: 600, y: 940, r: 720, squash: 0.56, rot: -0.18, strength: 0.90, reserve: boxes });
-    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
-    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
+    var ALL = 4749, SMALL = 3579;        // figures.json active_systems, small_systems
+    var Z = 6.0, bw = 2.0, bd = 2.0, hAll = 1.40;   // hAll == eye height, so the whole
+                                                   // volume tops out ON the horizon
+    var hSm = hAll * (SMALL / ALL);              // the level, computed and not chosen
 
-    // the whole, drawn as an outline: it is the denominator and not a second quantity
-    cx.strokeStyle = TXDECK.pick(ramp, 3);
-    cx.lineWidth = 3;
-    cx.strokeRect(xAll, top, wAll, span);
-    cx.fillStyle = TXDECK.pick(ramp, 1);
-    cx.fillRect(xAll, top, wAll, span);
+    S.ground({ near: 1.2, far: 90, fill: "#171233", fadeToSky: true });
+    // S.strip takes X, w, near, far, fill. It took from/to/ink once and silently drew its
+    // default 6 m band from 0.8 to 400 m, which is a grey wedge over two thirds of the frame.
+    S.strip({ X: 0, w: 6.0, near: 3, far: 26, fill: "rgba(224,149,106,0.05)" });
+    S.gridZ({ dz: 1.2, from: 3, to: 26, ink: "rgba(224,149,106,0.13)", width: 1.3 });
+    // gridX takes X extents in from/to and Z extents in near/far. gridZ takes Z in
+    // from/to. They are not the same shape and the wrong one draws off frame in silence.
+    S.gridX({ dx: 1.5, from: -7, to: 7, near: 3, far: 26,
+              ink: "rgba(224,149,106,0.09)", width: 1.1 });
 
-    // the share, at the SAME scale, filled
-    var hSm = span * (SMALL / ALL);
-    cx.fillStyle = TXDECK.pick(ramp, 6);
-    cx.fillRect(xSm, base - hSm, wAll, hSm);
-    cx.strokeStyle = TXDECK.pick(ramp, 3);
-    cx.strokeRect(xSm, top, wAll, span);
+    // the solid: the share, lit and shadowed off the deck's one light
+    S.box({ X: 0, Z: Z, w: bw, h: hSm, d: bd, fill: "#CFC3E8",
+            shadowInk: "#0A0718", shadowAlpha: 0.30, shadowBlur: 14 });
 
-    // the rule the two stand on, and the one tick that marks the share on the whole
-    cx.fillStyle = TXDECK.pick(ramp, 2);
-    cx.fillRect(110, base, 840, 4);
-    cx.fillStyle = TXDECK.pick(ramp, 5);
-    cx.fillRect(xAll - 34, base - hSm, 30, 5);
-    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
+    // the whole, as a wireframe standing in the same footprint. Drawn through S.project so the
+    // verticals converge with everything else in the frame rather than being drawn upright.
+    var x0 = -bw / 2, x1 = bw / 2, zA = Z, zB = Z + bd;
+    var P = function (x, y, z) { return S.project(x, y, z); };
+    var top = [P(x0, hAll, zA), P(x1, hAll, zA), P(x1, hAll, zB), P(x0, hAll, zB)];
+    cx.save();
+    cx.strokeStyle = "rgba(224,149,106,0.60)";
+    cx.lineWidth = 2.2;
+    cx.beginPath();
+    top.forEach(function (pt, i) { i ? cx.lineTo(pt[0], pt[1]) : cx.moveTo(pt[0], pt[1]); });
+    cx.closePath(); cx.stroke();
+    [[x0, zA], [x1, zA], [x1, zB], [x0, zB]].forEach(function (c) {
+      var a = P(c[0], 0, c[1]), b = P(c[0], hAll, c[1]);
+      cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke();
+    });
+    cx.restore();
 
     TXDECK.finish(cx, { mask: mask });
     resolve(true);

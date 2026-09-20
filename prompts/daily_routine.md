@@ -837,7 +837,14 @@ slide that will be argued for rather than judged.
 ```
 python3 scripts/carousel/dossier_check.py --date <date>
 python3 scripts/carousel/figure_bearing.py --date <date> --plan
+python3 scripts/carousel/depth_floor.py --plan --date <date>
 ```
+
+The third asks for the `depth:` block: the camera each frame stands in, and at least two cues it
+builds, on enough frames to meet the floor. It is CHECKED here and not merely described, because
+the version of this that only described it let a storyboard omit every block and discover that
+after nine frames were implemented. A frame conceived flat is not rescued by lighting it better,
+which is the same argument the paragraph below makes about rounds.
 
 **THE SECOND ONE IS THE ARTWORK'S CONCEPTION GATE AND IT IS RED UNTIL YOU DO THE WORK.** At least
 six of nine frames declare `data_in_art:`, naming a figure from `figures.json` and the drawn
@@ -912,7 +919,17 @@ that is wrong is wrong nine times and finding that out on frame nine costs the r
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render --only 1
 python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
 python3 scripts/carousel/figure_bearing.py --date <date>
+python3 scripts/carousel/depth_floor.py --slides-dir out/<date>/slides
 ```
+
+**THE THIRD ONE IS THE CAMERA, AND IT IS THE ONE THIS ENGINE KEEPS NOT USING.** At least five
+frames of nine stand on the scene bench: `TXSCENE.create`, something placed through the camera
+at true scale in metres, and a cast shadow from the chassis's declared light. `assets/js/txscene.js`
+has done all of this since September 11th and 241 frames were drawn in screen pixels anyway, with
+54 of them LOADING the bench first. A camera a frame does not place through is a camera it did
+not use. Read THE FRAME STANDS IN A PLACE in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, and
+read the signature in `txscene.js` before each call: every option is optional and a wrong name is
+silently a default, which has produced a full frame grey wedge and a glow at the origin.
 
 Without `--plan` the second one adds the half a storyboard cannot prove: that the declared figure
 reached the DRAWING. It reads the frame's code with the text nodes stripped, so a number that

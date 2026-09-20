@@ -35,6 +35,7 @@
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
 <script>
@@ -52,34 +53,36 @@ window.renderReady = new Promise(async function (resolve, reject) {
     var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
     var mask  = TXDECK.reserveMask(boxes, 30);
 
-    var BIG = 87, ALL = 4749, PER = 50;   // figures.json large_systems, active_systems
-    var cols = 19, mw = 30, mh = 44, gx = 44, gy = 62;
-    var field = Math.round(ALL / PER);            // frame 1's 95, redrawn at frame 1's pitch
-    var lit = BIG / PER;                          // 1.74 marks, and the sliver is the argument
-    var x0 = (W - (cols * gx - (gx - mw))) / 2, y0 = 742;
-    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
+    // THE BENCH. One ground plane, one camera, and the CHASSIS's light rather than a second
+    // copy of it. depth_floor.py fails a frame whose scene light disagrees with the deck's.
+    var S = TXSCENE.create(cx, {
+      w: W, h: H, eye: 1.4, horizon: 560, f: 820,
+      sky: "#1A1630", fogZ: 42, light: { az: 64, el: 26 }
+    });
 
-    Lm.pool(cx, { x: 540, y: 968, r: 760, squash: 0.58, rot: -0.14, strength: 0.92, reserve: boxes });
-    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
+    var BIG = 87, ALL = 4749, PER = 50;  // figures.json large_systems, active_systems
+    var marks = Math.round(ALL / PER), lit = BIG / PER;
+    var cols = 10, pitchX = 0.62, z0 = 4.0, dz = 1.0;
+    var mw = 0.30, mh = 0.42, md = 0.30;
 
-    for (var i = 0; i < field; i++) {
-      var r = Math.floor(i / cols), c = i % cols;
-      var x = x0 + c * gx, y = y0 + r * gy;
-      // the whole record, held back, so the eye goes to what is picked out of it
-      cx.fillStyle = TXDECK.pick(ramp, 2);
-      cx.fillRect(x, y, mw, mh);
-      // the 87, at the SAME scale, which is where the honesty of this frame lives: the large
-      // end is under two marks of ninety five and drawing it any bigger would be a lie a
-      // separate scale lets you tell without noticing
-      if (i < lit) {
-        var frac = Math.min(1, lit - i);
-        cx.fillStyle = TXDECK.pick(ramp, 6);
-        cx.fillRect(x, y, mw * frac, mh);
+    S.ground({ near: 1.2, far: 90, fill: "#171233", fadeToSky: true });
+    S.gridZ({ dz: 1.0, from: z0 - 0.5, to: z0 + 10.5, ink: "rgba(224,149,106,0.10)", width: 1.1 });
+
+    var rows = Math.ceil(marks / cols);
+    for (var r = rows - 1; r >= 0; r--) {
+      var Z = z0 + r * dz;
+      var inRow = Math.min(cols, marks - r * cols);
+      var lead = Math.floor((cols - Math.ceil(lit)) / 2);   // the sliver sits mid row, not on the edge
+      for (var c = 0; c < inRow; c++) {
+        var i = r * cols + (c - lead);
+        var X = (c - (cols - 1) / 2) * pitchX;
+        var on = r === 0 && i >= 0 && i < lit;
+        var frac = on ? Math.min(1, lit - i) : 1;
+        S.box({ X: X, Z: Z, w: mw * (on ? frac : 1), h: mh, d: md,
+                fill: on ? "#F0E6FF" : "#332A55",
+                shadowInk: "#0A0718", shadowAlpha: on ? 0.40 : 0.16 });
       }
-      cx.fillStyle = TXDECK.pick(ramp, 1);
-      cx.fillRect(x, y + mh + 4, mw, 3);
     }
-    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
 
     TXDECK.finish(cx, { mask: mask });
     resolve(true);

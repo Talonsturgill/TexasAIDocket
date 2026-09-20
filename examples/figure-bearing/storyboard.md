@@ -31,6 +31,17 @@ numerals:
 data_in_art:
   figure: active_systems
   drives: mark count
+depth:
+  eye: 1.4
+  horizon: 560
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, HEIGHT_IN_FIELD, TEXTURE_GRADIENT, AERIAL,
+         CAST_SHADOW, FORM_SHADING, OCCLUSION]
+  subject_at: {X: 0, Z: 4 to 13}
+  note: >
+    Ten marks to a row, rows at one metre steps from 4 to 13. Every cue falls out of that one
+    decision rather than being added: they shrink with distance, sit higher, pack denser, wash
+    toward the sky, turn a lit face to the light and each throws a cast east. Drawn far row
+    first, so occlusion is the drawer's order.
 job: >
   Hand the reader the size of the whole record as something countable rather than as a numeral
   they skim.
@@ -52,6 +63,16 @@ numerals:
 data_in_art:
   figure: small_systems
   drives: column height
+depth:
+  eye: 1.4
+  horizon: 560
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, TEXTURE_GRADIENT, CAST_SHADOW, FORM_SHADING]
+  subject_at: {X: 0, Z: 6}
+  note: >
+    The whole volume is 1.4 m, which is the camera's own eye height, so its top edge lands ON
+    the horizon. That is not decoration. An object taller than the eye projects ABOVE the
+    horizon and the type lives up there, and the first cut of this frame put a 3.1 m wireframe
+    through the dek. The data here is a RATIO, so the metres were free to choose.
 job: >
   Draw 3,579 of 4,749 as a PART rather than as a second quantity, which is what two free standing
   bars would have said.
@@ -72,6 +93,15 @@ numerals:
 data_in_art:
   figure: large_systems
   drives: mark count
+depth:
+  eye: 1.4
+  horizon: 560
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, HEIGHT_IN_FIELD, TEXTURE_GRADIENT, AERIAL,
+         CAST_SHADOW, FORM_SHADING]
+  subject_at: {X: 0, Z: 4}
+  note: >
+    Frame 1's camera, frame 1's grid, frame 1's pitch. The sliver is lit in the NEAR row and
+    centred in it, so the eye lands on it before it reads the field behind.
 job: >
   Close by putting the large end and the whole record on ONE measuring stick, so the asymmetry
   is seen rather than asserted.
