@@ -79,44 +79,95 @@ REPO = Path(__file__).resolve().parents[2]
 CONFIG = REPO / "config" / "carousel" / "depth_floor.json"
 
 # Each cue is a CALL a frame makes, so a claim about depth is a thing the renderer did rather
-# than a sentence in a dossier. `S` is the conventional local alias for the bench, and matching
-# only `TXSCENE.` would have missed 20 of the 20 frames that actually project: every one of them
-# aliases it first. That near miss is why both spellings are here.
-BENCH = r"(?:TXSCENE|[A-Za-z_$][\w$]*)"
-CUES = {
-    "LINEAR_PERSPECTIVE": rf"{BENCH}\.project\s*\(",
-    "RELATIVE_SIZE":      rf"{BENCH}\.ppm\s*\(",
-    "HEIGHT_IN_FIELD":    rf"{BENCH}\.groundY\s*\(",
-    "AERIAL":             rf"{BENCH}\.fade\s*\(",
-    "CAST_SHADOW":        rf"{BENCH}\.shadow(?:Vec)?\s*\(",
-    "TEXTURE_GRADIENT":   rf"{BENCH}\.(?:gridZ|gridX|strip)\s*\(",
-    "FORM_SHADING":       rf"{BENCH}\.(?:box|slab)\s*\(",
-    "OCCLUSION":          rf"{BENCH}\.row\s*\(",
-    "PLACED_SPRITE":      rf"{BENCH}\.sprite\s*\(",
+# than a sentence in a dossier. `S` is the conventional local alias and matching only `TXSCENE.`
+# would miss every frame that actually projects, because all of them alias it first.
+#
+# CUES ARE BOUND TO THE BENCH INSTANCE, and the first cut of this file was not (2026-09-20,
+# review). It matched any identifier before the dot, so `TXOBJ.sprite('school_bus')`, which
+# BUILDS a sprite and places nothing, counted as placement, and any helper with a method called
+# `project` or `box` counted as a depth cue. Measured on the corpus this was not hypothetical:
+# 62 `J.sprite(` and 6 `E.sprite(` calls belong to things that are not the bench at all, against
+# 29 frames that actually bind `S = TXSCENE.create`. A gate matching on a method name measures
+# the vocabulary a frame happens to use.
+BIND = re.compile(r"(?:(?:var|let|const)\s+)?([A-Za-z_$][\w$]*)\s*=\s*TXSCENE\.create\s*\(")
+
+CUE_METHODS = {
+    "LINEAR_PERSPECTIVE": ("project",),
+    "RELATIVE_SIZE":      ("ppm",),
+    "HEIGHT_IN_FIELD":    ("groundY", "depthAt"),
+    "AERIAL":             ("fade",),
+    # `shadowVec` RETURNS A VECTOR AND PAINTS NOTHING. Counting it here let a frame satisfy the
+    # cast shadow requirement by asking which way the light falls and then not drawing it.
+    "CAST_SHADOW":        ("shadow",),
+    "TEXTURE_GRADIENT":   ("gridZ", "gridX", "strip"),
+    "FORM_SHADING":       ("box", "slab"),
+    "OCCLUSION":          ("row",),
+    "PLACED_SPRITE":      ("sprite",),
 }
 # Placing something THROUGH the camera. A frame that builds the bench and then draws in screen
 # pixels has a camera it did not use, which is 54 frames of this corpus.
-#
-# THE PLACERS INCLUDE THE COMPOUND CALLS, and the first cut of this file did not know that. It
-# asked for `project`, `ppm` or `groundY` by name and reported the reference deck as 0 of 3
-# staged, on frames whose every solid was drawn by `S.box`. `box`, `slab`, `sprite` and `row`
-# all take world X and Z and place through the same camera, and `box` and `slab` cast their own
-# shadow unless told not to. A gate that only recognises the low level call measures the STYLE
-# a frame is written in rather than whether it stands anywhere.
 PLACED = ("LINEAR_PERSPECTIVE", "RELATIVE_SIZE", "HEIGHT_IN_FIELD",
           "FORM_SHADING", "PLACED_SPRITE", "OCCLUSION")
+# `PLACED_SPRITE` is a placement and NOT a depth cue on its own, so it does not count toward the
+# deck's distinct cue total. A sprite pasted at a depth with nothing else is the old flat frame
+# with a coordinate.
+NOT_A_CUE = ("PLACED_SPRITE",)
+# The plane the subject stands on. Without one the solids and their shadows float over the old
+# empty background, which is the defect the bench exists for.
+GROUND_METHODS = ("ground", "gridZ", "gridX", "strip")
 CREATE = re.compile(r"TXSCENE\.create\s*\(")
-# `S.box` and `S.slab` paint a cast shadow unless the call passes `shadow: false`.
-SELF_SHADOWING = re.compile(rf"{BENCH}\.(?:box|slab)\s*\(")
+# The cues a deck's distinct total is counted against.
+CUE_NAMES = frozenset(CUE_METHODS) - frozenset(NOT_A_CUE)
+
+
+def bench_aliases(src: str) -> set[str]:
+    """Every name in this frame that holds a bench instance."""
+    return {m.group(1) for m in BIND.finditer(src)} | {"TXSCENE"}
+
+
+def calls(src: str, aliases: set[str], methods) -> list[str]:
+    """The full argument text of each `<bench>.<method>( ... )` call, parens balanced."""
+    if not aliases:
+        return []
+    pat = re.compile(r"\b(?:" + "|".join(re.escape(a) for a in sorted(aliases)) + r")\.(?:"
+                     + "|".join(methods) + r")\s*\(")
+    out = []
+    for m in pat.finditer(src):
+        i, depth, j = m.end() - 1, 0, m.end() - 1
+        while j < len(src):
+            if src[j] == "(":
+                depth += 1
+            elif src[j] == ")":
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+        out.append(src[i:j + 1])
+    return out
+
+
+def cues_in(src: str, aliases: set[str] | None = None) -> set[str]:
+    a = aliases if aliases is not None else bench_aliases(src)
+    return {k for k, ms in CUE_METHODS.items() if calls(src, a, ms)}
+
+
 SHADOW_OFF = re.compile(r"shadow\s*:\s*false")
+
+
+def paints_a_shadow(src: str, aliases: set[str]) -> bool:
+    """A painted cast shadow: an explicit `shadow()`, or a solid that did not opt out.
+
+    PER CALL, and the first cut searched the whole frame (2026-09-20, review). One decorative
+    box carrying `shadow: false` suppressed implicit shadow recognition for every other solid in
+    that frame, so five otherwise staged frames could fail the daily gate on one opt-out.
+    """
+    if calls(src, aliases, CUE_METHODS["CAST_SHADOW"]):
+        return True
+    return any(not SHADOW_OFF.search(c) for c in calls(src, aliases, ("box", "slab")))
 
 
 def load_config() -> dict:
     return json.loads(CONFIG.read_text(encoding="utf-8"))
-
-
-def cues_in(src: str) -> set[str]:
-    return {k for k, p in CUES.items() if re.search(p, src)}
 
 
 def scene_light(src: str) -> tuple[float, float] | None:
@@ -144,17 +195,20 @@ def chassis_light(chassis_src: str) -> tuple[float, float] | None:
 
 
 def frame_report(name: str, src: str) -> dict:
-    hit = cues_in(src)
-    casts = ("CAST_SHADOW" in hit
-             or (bool(SELF_SHADOWING.search(src)) and not SHADOW_OFF.search(src)))
-    bench, placed = bool(CREATE.search(src)), bool(hit & set(PLACED))
+    al = bench_aliases(src)
+    bench = bool(CREATE.search(src))
+    hit = cues_in(src, al)
+    casts = paints_a_shadow(src, al)
+    grounded = bool(calls(src, al, GROUND_METHODS))
+    placed = bool(hit & set(PLACED))
     return {
         "name": name,
-        "cues": hit | ({"CAST_SHADOW"} if casts else set()),
+        "cues": (hit | ({"CAST_SHADOW"} if casts else set())) - set(NOT_A_CUE),
         "bench": bench,
         "placed": placed,
         "shadow": casts,
-        "staged": bench and placed and casts,
+        "ground": grounded,
+        "staged": bench and placed and casts and grounded,
         "light": scene_light(src),
     }
 
@@ -170,9 +224,13 @@ def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
         near = [f for f in frames if f["bench"] and not f["staged"]]
         extra = ""
         if near:
-            miss = ", ".join(
-                f"{f['name']} ({'never places through the camera' if not f['placed'] else 'casts no shadow'})"
-                for f in near[:3])
+            def why(f):
+                if not f["placed"]:
+                    return "never places through the camera"
+                if not f["ground"]:
+                    return "draws no ground plane, so its solids float"
+                return "casts no shadow"
+            miss = ", ".join(f"{f['name']} ({why(f)})" for f in near[:3])
             extra = (f" {len(near)} frame(s) build the bench and stop short: {miss}. A camera a "
                      f"frame does not place through is a camera it did not use")
         probs.append(
@@ -182,7 +240,7 @@ def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
 
     got = set().union(*[f["cues"] for f in frames]) if frames else set()
     if len(got) < want_cues:
-        unused = sorted(set(CUES) - got)
+        unused = sorted(CUE_NAMES - got)
         probs.append(
             f"THE DECK USES {len(got)} DEPTH CUE(S) AND NEEDS {want_cues}. It has "
             f"{sorted(got) or '(none)'} and has not reached for {unused}. Depth is several weak "
@@ -192,6 +250,17 @@ def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
     if deck_light is not None:
         for f in frames:
             if f["light"] is None:
+                # FAIL CLOSED (2026-09-20, review). `TXSCENE.create(cx, CAM)` and a call with no
+                # `light` key both read as None here, and skipping them let the bench fall back
+                # to its own default light while this check reported success. An unreadable light
+                # on a STAGED frame is the one light invariant going unchecked, which is the
+                # thing this is for. A flat frame is not asked, because it has no scene shadows.
+                if f["staged"]:
+                    probs.append(
+                        f"{f['name']}: the scene light cannot be read from its TXSCENE.create "
+                        f"call, and the chassis declared az {deck_light[0]} el {deck_light[1]}. "
+                        f"The bench falls back to its own default when none is passed, so an "
+                        f"unreadable light is an unchecked one. Pass light: {{az, el}} inline")
                 continue
             if abs(f["light"][0] - deck_light[0]) > 1.0 or abs(f["light"][1] - deck_light[1]) > 1.0:
                 probs.append(
@@ -222,6 +291,75 @@ def deck_light_of(slides_dir: Path) -> tuple[float, float] | None:
             if got:
                 return got
     return None
+
+
+def plan_problems(dossiers: dict[int, dict], cfg: dict) -> list[str]:
+    """The depth block, at the STORYBOARD, before a frame is drawn.
+
+    WHY IT LIVES HERE RATHER THAN IN dossier_check (2026-09-20, review). The routine tells a run
+    that every dossier carries a `depth:` block and then runs the planning gate, and that gate
+    knew nothing about depth, so a storyboard could omit every block and pass conception with the
+    omission found only after nine frames were implemented. That is the sequencing failure this
+    requirement exists to prevent, one layer up.
+
+    It is in THIS file rather than added to `dossier_check` so that one module owns the whole
+    rule: the floor, the cue vocabulary and both halves of the check. Two modules splitting one
+    law is how the scene light and the chassis light came to disagree.
+    """
+    n = len(dossiers)
+    floor = min(int(cfg["min_staged_frames"]), n)
+    want = min(int(cfg["min_distinct_cues"]), n)
+    probs, declared, all_cues = [], 0, set()
+    for k in sorted(dossiers):
+        d = dossiers[k].get("depth")
+        if not isinstance(d, dict):
+            continue
+        cues = d.get("cues") or []
+        if isinstance(cues, str):
+            cues = [c.strip() for c in cues.replace(",", " ").split()]
+        cues = [str(c).upper() for c in cues]
+        bad = [c for c in cues if c not in CUE_NAMES]
+        if bad:
+            probs.append(f"frame {k}: depth.cues names {bad}, which are not cues this bench "
+                         f"builds. The vocabulary is {sorted(CUE_NAMES)}")
+        good = [c for c in cues if c in CUE_NAMES]
+        if len(good) < 2:
+            probs.append(f"frame {k}: depth names {len(good)} cue(s) and a staged frame builds "
+                         f"at least two. Depth is several weak cues agreeing")
+            continue
+        if not isinstance(d.get("eye"), (int, float)) or not isinstance(d.get("horizon"), (int, float)):
+            probs.append(f"frame {k}: depth needs a numeric `eye` and `horizon`. An object "
+                         f"taller than the eye projects ABOVE the horizon, where the type is, "
+                         f"and a frame that has not chosen them finds that out at the render")
+            continue
+        declared += 1
+        all_cues |= set(good)
+    if declared < floor:
+        probs.insert(0, f"THE STORYBOARD PLANS {declared} STAGED FRAME(S) AND NEEDS {floor}. Add "
+                        f"a `depth:` block naming eye, horizon and at least two cues to enough "
+                        f"frames, before any of them is drawn")
+    if declared >= floor and len(all_cues) < want:
+        probs.append(f"the plan reaches for {len(all_cues)} distinct cue(s) and needs {want}. "
+                     f"It has {sorted(all_cues) or '(none)'}")
+    return probs
+
+
+def run_plan(board: Path, cfg: dict) -> int:
+    import dossier_check
+    ds = dossier_check.parse_dossiers(board.read_text(encoding="utf-8"))
+    if not ds:
+        print(f"depth_floor: no dossiers parsed from {board}", file=sys.stderr)
+        return 1
+    probs = plan_problems(ds, cfg)
+    if probs:
+        print(f"depth_floor --plan: FAIL, {len(probs)} problem(s) in {board}\n", file=sys.stderr)
+        for x in probs:
+            print(f"  - {x}", file=sys.stderr)
+        print("\n  knowledge/carousel/ILLUSTRATION_SYSTEM.md, 'THE FRAME STANDS IN A PLACE'.",
+              file=sys.stderr)
+        return 1
+    print(f"depth_floor --plan: ok, {len(ds)} dossier(s) plan their camera")
+    return 0
 
 
 def run(slides_dir: Path) -> int:
@@ -258,7 +396,8 @@ def self_test() -> int:
 
     FLAT = "<script>cx.fillRect(0,0,100,100); cx.fill()</script>"
     STAGED = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
-              "S.ground({}); S.shadow(bus,{X:2,Z:30}); S.sprite(bus,{X:2,Z:30});"
+              "S.ground({}); S.gridZ({}); S.fade('#fff', 30);"
+              "S.shadow(bus,{X:2,Z:30}); S.sprite(bus,{X:2,Z:30});"
               "var p = S.project(0,0,30); S.ppm(30); S.groundY(30);</script>")
 
     # THE DEFECT: nine frames drawn in screen pixels.
@@ -277,7 +416,7 @@ def self_test() -> int:
 
     # A CAMERA BUILT AND NOT USED. 54 frames of this corpus load the bench and draw in pixels.
     unused = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
-              "cx.fillRect(0,0,100,100);</script>")
+              "S.ground({}); cx.fillRect(0,0,100,100);</script>")
     probs = check([frame("slide-01.html", unused)] * 9, cfg)
     ok("a bench built and never placed through fails", bool(probs))
     ok("...and the message says so rather than reporting a missing bench",
@@ -285,7 +424,7 @@ def self_test() -> int:
 
     # PLACED BUT UNLIT. A thing at true scale with no shadow does not sit on the ground.
     noshadow = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
-                "S.project(0,0,30); S.ppm(30);</script>")
+                "S.ground({}); S.project(0,0,30); S.ppm(30);</script>")
     probs = check([frame("slide-01.html", noshadow)] * 9, cfg)
     ok("placed with no cast shadow is not staged", bool(probs))
     ok("...and the message names the shadow",
@@ -293,16 +432,45 @@ def self_test() -> int:
 
     # THE CUE COUNT. One strong cue repeated is not depth.
     onecue = ("<script>var S = TXSCENE.create(cx, {eye:1.4, horizon:640, light:{az:-40,el:38}});"
-              "S.project(0,0,30); S.shadow(b,{});</script>")
+              "S.ground({}); S.project(0,0,30); S.shadow(b,{});</script>")
     probs = check([frame(f"slide-{i:02d}.html", onecue) for i in range(1, 10)], cfg)
     ok("a deck with two cues is refused", bool(probs))
     ok("...and the message names the cues it has not reached for",
        any("has not reached for" in p and "AERIAL" in p for p in probs), str(probs[:1]))
 
     # THE ALIAS. Matching only `TXSCENE.` would miss every frame that actually projects.
-    ok("the local alias `S.` is recognised", "LINEAR_PERSPECTIVE" in cues_in("S.project(0,0,4)"))
+    BOUND = "var S = TXSCENE.create(cx, {}); "
+    ok("a bound alias is recognised", "LINEAR_PERSPECTIVE" in cues_in(BOUND + "S.project(0,0,4)"))
     ok("...and so is the full name", "LINEAR_PERSPECTIVE" in cues_in("TXSCENE.project(0,0,4)"))
     ok("...and a bare word is not mistaken for a call", not cues_in("the project is late"))
+
+    # CUES ARE BOUND TO THE BENCH INSTANCE. 62 `J.sprite(` calls in this corpus belong to
+    # something that is not the bench, and an unbound match counted every one of them.
+    ok("an UNBOUND identifier is not the bench",
+       not cues_in(BOUND + "TXOBJ.sprite('bus'); J.project(1,2,3)"))
+    ok("...so a frame that only BUILDS a sprite has placed nothing",
+       not frame_report("f", BOUND + "S.ground({}); TXOBJ.sprite('bus'); S.shadow(b,{})")["placed"])
+    ok("the alias is found without a declarator too",
+       "TXSCENE" in bench_aliases("S = TXSCENE.create(cx,{})") and
+       "S" in bench_aliases("S = TXSCENE.create(cx,{})"))
+
+    # shadowVec RETURNS A VECTOR AND PAINTS NOTHING.
+    ok("S.shadowVec alone is not a cast shadow",
+       not frame_report("f", BOUND + "S.ground({}); S.project(0,0,9); S.shadowVec()")["shadow"])
+    ok("...and S.shadow is", frame_report("f", BOUND + "S.ground({}); S.shadow(b,{})")["shadow"])
+
+    # THE OPT-OUT IS PER CALL. One decorative unshadowed box used to silence the whole frame.
+    mixed_box = BOUND + "S.ground({}); S.box({X:0,Z:9,shadow:false}); S.box({X:2,Z:9});"
+    ok("one shadow:false beside a default box still casts",
+       frame_report("f", mixed_box)["shadow"], "the opt-out went frame wide")
+    ok("...and a lone shadow:false box does not",
+       not frame_report("f", BOUND + "S.ground({}); S.box({X:0,Z:9,shadow:false})")["shadow"])
+
+    # A STAGED FRAME STANDS ON A RENDERED PLANE.
+    ok("placed and shadowed with NO ground is not staged",
+       not frame_report("f", BOUND + "S.project(0,0,9); S.shadow(b,{})")["staged"])
+    ok("...and gridZ counts as the plane being rendered",
+       frame_report("f", BOUND + "S.gridZ({}); S.project(0,0,9); S.shadow(b,{})")["staged"])
 
     # ONE LIGHT, TWO SURFACES.
     agree = check(staged9, cfg, deck_light=(-40.0, 38.0))
@@ -330,7 +498,47 @@ def self_test() -> int:
     OFF = BOXONLY.replace("d:2}", "d:2, shadow:false}")
     ok("...unless the call passes shadow:false", not frame_report("s", OFF)["shadow"])
     ok("a frame placing only with S.sprite is placed",
-       frame_report("s", "S.sprite(b,{X:1,Z:9}); S.shadow(b,{X:1,Z:9});")["placed"])
+       frame_report("s", "var S = TXSCENE.create(cx,{}); S.ground({});"
+                         "S.sprite(b,{X:1,Z:9}); S.shadow(b,{X:1,Z:9});")["placed"])
+
+    # AN UNREADABLE SCENE LIGHT FAILS CLOSED ON A STAGED FRAME.
+    opaque = ("<script>var S = TXSCENE.create(cx, CAM); S.ground({}); S.project(0,0,9);"
+              "S.shadow(b,{});</script>")
+    probs = check([frame(f"slide-{i:02d}.html", opaque) for i in range(1, 10)], cfg,
+                  deck_light=(64.0, 26.0))
+    ok("a scene light that cannot be read is refused", bool(probs), "it passed")
+    ok("...and the message says the bench falls back to its own default",
+       any("unreadable light is an unchecked one" in p for p in probs), str(probs[:1]))
+    ok("a FLAT frame is not asked for a light it has no shadows from",
+       not any("unreadable" in p for p in check(flat, cfg, deck_light=(64.0, 26.0))))
+
+    # THE PLAN GATE, at the storyboard, before a frame exists.
+    good_plan = {i: {"slide": i, "depth": {"eye": 1.4, "horizon": 560,
+                                           "cues": ["LINEAR_PERSPECTIVE", "CAST_SHADOW",
+                                                    "AERIAL", "RELATIVE_SIZE"]}}
+                 for i in range(1, 10)}
+    ok("a storyboard planning nine cameras passes", not plan_problems(good_plan, cfg))
+    bare = {i: {"slide": i} for i in range(1, 10)}
+    probs = plan_problems(bare, cfg)
+    ok("a storyboard with NO depth blocks is refused", bool(probs))
+    ok("...and it says so before a frame is drawn",
+       any("PLANS 0 STAGED FRAME" in p for p in probs), str(probs[:1]))
+    one_cue = {**good_plan, 1: {"slide": 1, "depth": {"eye": 1.4, "horizon": 560,
+                                                      "cues": ["AERIAL"]}}}
+    ok("a frame naming one cue is refused",
+       any("at least two" in p for p in plan_problems(one_cue, cfg)))
+    bogus = {**good_plan, 2: {"slide": 2, "depth": {"eye": 1.4, "horizon": 560,
+                                                    "cues": ["VIBES", "AERIAL", "CAST_SHADOW"]}}}
+    ok("a cue outside the vocabulary is named",
+       any("VIBES" in p for p in plan_problems(bogus, cfg)))
+    nogeo = {**good_plan, 3: {"slide": 3, "depth": {"cues": ["AERIAL", "CAST_SHADOW"]}}}
+    ok("a depth block with no eye or horizon is refused",
+       any("numeric `eye` and `horizon`" in p for p in plan_problems(nogeo, cfg)))
+    onecue_deck = {i: {"slide": i, "depth": {"eye": 1.4, "horizon": 560,
+                                             "cues": ["AERIAL", "CAST_SHADOW"]}}
+                   for i in range(1, 10)}
+    ok("a plan reaching for two cues across the deck is refused",
+       any("distinct cue" in p for p in plan_problems(onecue_deck, cfg)))
 
     # THE FLOOR SCALES DOWN TO A SHORT DECK AND NEVER UP.
     ok("a three frame deck needs three staged", not check(staged9[:3], cfg))
@@ -360,10 +568,22 @@ def main() -> int:
     ap.add_argument("--date")
     ap.add_argument("--slides-dir")
     ap.add_argument("--out-root", default=None)
+    ap.add_argument("--plan", action="store_true",
+                    help="the storyboard's depth blocks, before a frame is drawn")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+    if a.plan:
+        root = Path(a.out_root) if a.out_root else (REPO / "runs" / "carousel")
+        if a.date and not (root / a.date).exists() and (REPO / "out" / a.date).exists():
+            root = REPO / "out"
+        board = (Path(a.slides_dir).parent / "storyboard.md") if a.slides_dir \
+            else (root / a.date / "storyboard.md")
+        if not board.exists():
+            print(f"depth_floor: no storyboard at {board}", file=sys.stderr)
+            return 1
+        return run_plan(board, load_config())
     if a.slides_dir:
         return run(Path(a.slides_dir))
     if not a.date:

@@ -572,6 +572,12 @@ jobs:
       - name: Depth floor self-test (the frame stands in a place)
         run: python3 scripts/carousel/depth_floor.py --self-test
 
+      - name: The figure bearing reference plans its cameras
+        run: |
+          # The planning half, at the storyboard. A depth block that names no cues, or names one
+          # the bench cannot build, is caught before a frame exists rather than after nine do.
+          python3 scripts/carousel/depth_floor.py --plan --slides-dir examples/figure-bearing/slides
+
       - name: The figure bearing reference stands on the bench
         run: |
           # The same three frames carry both laws, which is the point: the artwork carries the

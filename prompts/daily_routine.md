@@ -837,11 +837,14 @@ slide that will be argued for rather than judged.
 ```
 python3 scripts/carousel/dossier_check.py --date <date>
 python3 scripts/carousel/figure_bearing.py --date <date> --plan
+python3 scripts/carousel/depth_floor.py --plan --date <date>
 ```
 
-Each dossier also carries a `depth:` block naming the camera the frame stands in and the cues it
-builds, per THE FRAME STANDS IN A PLACE. Choosing that here rather than at the render is the same
-argument as the one below: a frame conceived flat is not rescued by lighting it better.
+The third asks for the `depth:` block: the camera each frame stands in, and at least two cues it
+builds, on enough frames to meet the floor. It is CHECKED here and not merely described, because
+the version of this that only described it let a storyboard omit every block and discover that
+after nine frames were implemented. A frame conceived flat is not rescued by lighting it better,
+which is the same argument the paragraph below makes about rounds.
 
 **THE SECOND ONE IS THE ARTWORK'S CONCEPTION GATE AND IT IS RED UNTIL YOU DO THE WORK.** At least
 six of nine frames declare `data_in_art:`, naming a figure from `figures.json` and the drawn
