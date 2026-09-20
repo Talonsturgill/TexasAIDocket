@@ -566,6 +566,39 @@ jobs:
       - name: Deck coherence self-test (a spread is a set, a deck is a sequence)
         run: python3 scripts/carousel/deck_coherence.py --self-test
 
+      - name: Figure bearing self-test (the artwork carries the data)
+        run: python3 scripts/carousel/figure_bearing.py --self-test
+
+      - name: The figure bearing reference still draws its figures
+        run: |
+          # examples/figure-bearing/ is the only worked example of a frame whose geometry IS a
+          # computed value. A self-test proves the checker can go red; this proves a deck can go
+          # green, which is the half that was missing when the chassis gate shipped pointed at
+          # nothing but a fixture.
+          python3 scripts/carousel/figure_bearing.py --date figure-bearing --out-root examples
+
+      - name: The figure bearing reference rebuilds byte for byte from its figures
+        run: |
+          # The frames are GENERATED from figures.json by build.py. If someone edits a slide by
+          # hand, the numbers on the canvas stop tracing to the record and this goes red.
+          python3 examples/figure-bearing/build.py "$RUNNER_TEMP/fb"
+          diff -r "$RUNNER_TEMP/fb" examples/figure-bearing/slides
+
+      - name: The ratchet floor under the round cap is measurable
+        run: |
+          # The cap ends the SEARCH. Until 2026-09-20 it also ended the STANDARD, and twenty
+          # decks shipped under the bar because of it. This asserts the floor still computes
+          # from the shipped corpus rather than silently returning None, which would restore
+          # the old behaviour with every gate green.
+          python3 -c "
+          import sys; sys.path.insert(0, 'scripts/carousel')
+          import run_complete as rc
+          f = rc.ratchet_floor()
+          assert f is not None, 'the ratchet floor did not compute, so the cap is floorless again'
+          assert 0 < f < rc.threshold(), f'floor {f} is not under the bar {rc.threshold()}'
+          print('ratchet floor', f, 'under bar', rc.threshold())
+          "
+
       - name: No surface states the superseded rotation rule
         run: python3 scripts/carousel/layout_check.py --prose
 

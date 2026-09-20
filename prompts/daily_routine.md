@@ -836,10 +836,23 @@ slide that will be argued for rather than judged.
 
 ```
 python3 scripts/carousel/dossier_check.py --date <date>
+python3 scripts/carousel/figure_bearing.py --date <date> --plan
 ```
 
-This is the only gate in the run that fires before anything is drawn, and that is the whole point
-of it. **A pixel critic grades each slide against its own dossier, so a bad plan executed
+**THE SECOND ONE IS THE ARTWORK'S CONCEPTION GATE AND IT IS RED UNTIL YOU DO THE WORK.** At least
+six of nine frames declare `data_in_art:`, naming a figure from `figures.json` and the drawn
+parameter it sets. It is here, before a line of render code exists, because the score history says
+quality is set at conception and cannot be added later: the decks of September 14th, 15th and 16th
+scored 7.118, 7.578 and 7.492 in ONE round each, and the four after them scored 6.80 to 6.97 in
+FIVE and SIX rounds. More rounds produced worse decks. A frame conceived as wallpaper is not
+rescued by five rounds of better lighting.
+
+If the gate is red, the fix is never to soften the declaration. It is to CHANGE WHAT THE FRAME
+DRAWS, which is cheap now and costs a full redraw after Phase 11. Read THE ARTWORK CARRIES THE
+DATA in `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first.
+
+These two are the only gates in the run that fire before anything is drawn, and that is the whole
+point of them. **A pixel critic grades each slide against its own dossier, so a bad plan executed
 faithfully passes every review that comes after this one.** In the sibling product a dead lower
 zone was named by the scorer in six consecutive runs and never fixed, because by the time the only
 reviewer who could see it looked, the budget to rebuild four slides was gone. It reached the
@@ -898,7 +911,12 @@ that is wrong is wrong nine times and finding that out on frame nine costs the r
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render --only 1
 python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
+python3 scripts/carousel/figure_bearing.py --date <date>
 ```
+
+Without `--plan` the second one adds the half a storyboard cannot prove: that the declared figure
+reached the DRAWING. It reads the frame's code with the text nodes stripped, so a number that
+landed in a headline and never on the canvas fails here even though the dossier declared it.
 
 The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
 not edit the workshop.

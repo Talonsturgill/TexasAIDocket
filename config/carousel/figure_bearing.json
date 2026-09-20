@@ -1,0 +1,15 @@
+{
+  "_note": "The floor for THE ARTWORK CARRIES THE DATA, read by scripts/carousel/figure_bearing.py. It is a RATCHET rather than an aspiration: it sits one frame above what the machine has actually been doing, so every deck has to beat the recent norm and no deck can regress to it. Raise it when the corpus clears it comfortably. Lowering it is a decision somebody makes out loud, never a fix for a red build.",
+  "min_figure_bearing_frames": 6,
+  "derived_from": {
+    "measured": "frames carrying any numeral at all, in the four decks shipped after the chassis upgrade merged",
+    "2026-09-17": 3,
+    "2026-09-18": 5,
+    "2026-09-19": 7,
+    "2026-09-20": 3,
+    "median": 4,
+    "why_6": "the median of what shipped is 4 of 9, and the reference standard requires the mapping on EVERY frame (its dossier spec field 8; the decks that carry it carry it 9 times). 6 is the midpoint, reachable in one run and impossible to hit with wallpaper. It is deliberately not 9: a cover and a closing frame can legitimately carry no quantity, and a floor that forbids that would be routed around rather than met."
+  },
+  "min_distinct_figures": 3,
+  "_distinct_note": "The cheapest way to pass min_figure_bearing_frames without doing the work is one figure driving one parameter on six frames, which is a deck that draws the same bar six times. Three distinct figures is the floor because a nine frame deck that engages fewer than three of its own numbers is illustrating one fact and decorating the rest."
+}

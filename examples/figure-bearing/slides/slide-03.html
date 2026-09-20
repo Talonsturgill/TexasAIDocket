@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- FIGURE BEARING REFERENCE, frame 3 of 3. Archetype GRID.
+     data_in_art: large_systems drives mark count.
+     Frame 1's field redrawn at frame 1's scale, with the 87 picked out of it as a
+     1.74 mark sliver. A second scale would have let this frame draw 87 as big as
+     3,579 without anybody noticing, which is the lie this frame refuses. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:130px; width:880px; font-size:96px; }
+  .dek  { left:84px; top:430px; width:700px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">87 of them serve more than 50,000.</h1>
+<p class="dek">Drawn on frame 1's scale, where one mark is 50 systems. The large end is under two marks of 95.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260923);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'What the large end looks like', counter: "03 / 03", src: 'c1 c3   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 96, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    var BIG = 87, ALL = 4749, PER = 50;   // figures.json large_systems, active_systems
+    var cols = 19, mw = 30, mh = 44, gx = 44, gy = 62;
+    var field = Math.round(ALL / PER);            // frame 1's 95, redrawn at frame 1's pitch
+    var lit = BIG / PER;                          // 1.74 marks, and the sliver is the argument
+    var x0 = (W - (cols * gx - (gx - mw))) / 2, y0 = 742;
+    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
+
+    Lm.pool(cx, { x: 540, y: 968, r: 760, squash: 0.58, rot: -0.14, strength: 0.92, reserve: boxes });
+    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
+
+    for (var i = 0; i < field; i++) {
+      var r = Math.floor(i / cols), c = i % cols;
+      var x = x0 + c * gx, y = y0 + r * gy;
+      // the whole record, held back, so the eye goes to what is picked out of it
+      cx.fillStyle = TXDECK.pick(ramp, 2);
+      cx.fillRect(x, y, mw, mh);
+      // the 87, at the SAME scale, which is where the honesty of this frame lives: the large
+      // end is under two marks of ninety five and drawing it any bigger would be a lie a
+      // separate scale lets you tell without noticing
+      if (i < lit) {
+        var frac = Math.min(1, lit - i);
+        cx.fillStyle = TXDECK.pick(ramp, 6);
+        cx.fillRect(x, y, mw * frac, mh);
+      }
+      cx.fillStyle = TXDECK.pick(ramp, 1);
+      cx.fillRect(x, y + mh + 4, mw, 3);
+    }
+    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
+
+    TXDECK.finish(cx, { mask: mask });
+    resolve(true);
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

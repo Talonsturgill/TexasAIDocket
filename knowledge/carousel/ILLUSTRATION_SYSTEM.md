@@ -234,6 +234,145 @@ frame.
 The chassis comes before any frame. Phase 10.5 builds it and renders ONE probe frame against
 it, because a chassis that is wrong is wrong nine times.
 
+## THE ARTWORK CARRIES THE DATA (2026-09-20, owner, and it outranks THE PRIMARY IMAGE LAW below)
+
+**A frame's image is built out of the story's own computed numbers. The geometry a reader looks
+at IS a figure from `figures.json`, set as a bar height, a mark count, a stipple density, an arc
+sweep, a spacing, a radius. A frame whose image encodes nothing is wallpaper with good lighting,
+and this deck does not ship nine of them.**
+
+The owner, on four consecutive shipped decks:
+
+> "it keeps doing that faded look, doesnt seems like its making each run bespoke on its own ...
+> the alaska one juts seems miles ahead as far as the actual coherence of the artwork, like it
+> earns its way on scren, and is relevant to the story, the texas one seems uncoordinated still
+> and random on the art"
+
+### What was measured, so the cure is not mistaken for taste
+
+Four guesses about "faded" were tested against pixels before this rule was written, and **all
+four were wrong.** Ground chroma, tonal range, ink mass and mass-under-blur were measured across
+59 shipped decks of the reference corpus and this repo's own frames:
+
+| | reference | here |
+|---|---|---|
+| median ground chroma (OKLCh C) | 0.0214 | 0.0215 |
+| median tonal range (L\* p98 minus p2) | 0.63 | 0.66 |
+| median ink mass | 0.209 | 0.325 |
+| ink surviving an 8 px blur | 0.98 | 0.92 |
+
+**They are indistinguishable.** "Faded" is not a palette defect, not a contrast defect and not a
+hairline-texture defect, and a fix aimed at any of them would have been the fifth wrong guess.
+The difference is in WHAT THE FRAMES DRAW:
+
+    The reference computes its numbers and DRAWS THEM.
+    This repo computed its numbers and drew a PICTURE NEXT TO THEM.
+
+Counted on the storyboards of the four decks that prompted this, frames carrying **no numeral at
+all**: 6 of 9, 4 of 9, 2 of 9, 6 of 9. The images were a control room, a walkway, a brick wall, a
+garage. Every one drawn well, lit from one declared key, graded, seated on a chassis, and every
+one of them silent about the story it sat beside.
+
+### Why the chassis work did not reach this, which is the part worth understanding
+
+THE DECK IS THE UNIT, above, made nine frames look like ONE deck. It was right and it holds. It
+is a rule about COHERENCE, and coherence is not the same question as whether the art says
+anything: nine identical silent frames are perfectly coherent. The chassis raised the ceiling and
+nothing made a run climb to it.
+
+The score history is the proof, and it is the reason this law lands at CONCEPTION rather than at
+review:
+
+| deck | score | rounds |
+|---|---|---|
+| 2026-09-14 | 7.118 | 1 |
+| 2026-09-15 | 7.578 | 1 |
+| 2026-09-16 | 7.492 | 1 |
+| 2026-09-17 | 6.856 | 5 |
+| 2026-09-18 | 6.800 | 6 |
+| 2026-09-20 | 6.968 | 5 |
+
+**More rounds produced worse decks.** A frame conceived as wallpaper is not rescued by five
+rounds of better lighting, and every round spent tuning one is a round that could not have fixed
+it. **Quality here is set when the frame is conceived and it is not recoverable afterwards.**
+
+### What a frame declares, in its dossier, before it is drawn
+
+```yaml
+data_in_art:
+  figure: small_systems_of_all    # a key in figures.json, or a claim's computed value
+  drives: mark count              # the drawn parameter that figure SETS
+```
+
+`drives` names a parameter a renderer can set. "Column height", "mark count", "stipple density",
+"arc sweep", "ring radius", "row spacing". It never names a mood: "the sense that the system is
+strained" is not a parameter and no reviewer can check a drawing against it.
+
+Then **draw that.** The value reaches the canvas, not only the headline. A figure stated in type
+and nowhere else is the exact defect this law exists for, and the gate looks for the number in the
+frame's code with the text nodes stripped out, so a headline cannot satisfy it.
+
+### The floor, and why it is six rather than nine
+
+`config/carousel/figure_bearing.json` sets it and `scripts/carousel/figure_bearing.py` enforces
+it, at the STORYBOARD, before a frame is drawn and while changing it is cheap. Six of nine.
+
+The median of what shipped is four, the reference standard asks for the mapping on every frame,
+and six is the midpoint: reachable in one run and impossible to reach with wallpaper. It is
+deliberately not nine, because a cover and a closing frame can honestly carry no quantity, and a
+floor that forbids that gets routed around rather than met.
+
+### WHAT THE FIRST FIGURE BEARING FRAMES COST TO BUILD, and every line here was paid for
+
+`examples/figure-bearing/` is three frames, three figures, three ways of drawing a number, and it
+exists because there was no example of this step anywhere in this repo. It took four renders. The
+first one **reproduced the exact defect this law exists to fix**, which was worth more than a
+clean first pass.
+
+**`TXDECK.pick(ramp, i)` TAKES AN INDEX, NOT A FRACTION, and this is the fastest way to draw a
+faded frame by accident.** The ramp is SEVEN steps and `pick` does `Math.round(i)` on it. So
+`pick(ramp, 0.74)`, written by an author who meant "74 percent up the ramp", returns **step 1**,
+the second darkest, and `pick(ramp, 0.18)` returns step 0. Every fill lands on the two darkest
+steps of seven and the whole frame sinks into the ground. The first render of these three frames
+did exactly that and looked precisely like the decks the owner was complaining about. Nothing
+errors, nothing warns, and the geometry is perfectly correct underneath. **Write integer steps,
+0 to 6, and read them as steps.**
+
+**`Lm.pool` takes `x` and `y` and `reserve`. It does not take `cx`, `cy` or `mask`.** Passing the
+wrong keys does not throw. `translate(undefined, undefined)` makes the whole gradient NaN and the
+pool renders at the ORIGIN, which put a warm glow in the top left corner of all three frames,
+over the kicker. Machine QA caught it as *"text struck by a drawn rule"*, which names the symptom
+three hundred pixels from the cause. `Lm.desk` does take `mask`, and a function rather than a
+list, which is why the mistake looked reasonable. `Lm.falloff` is a VERTICAL gradient taking
+`from`, `mid` and `end`, and not a radial with a centre and a radius.
+
+**The check that catches all three is to look at the render.** Each was invisible in the source,
+silent at run time, and obvious in the image.
+
+**A SECOND SCALE IS HOW YOU DRAW A LIE WITHOUT NOTICING.** Frame 3 first drew the 87 large systems
+at one mark each against the 3,579 small ones at one mark per 50. Both were labelled, both counts
+were computed, every numeral traced. On the page **87 looked bigger than 3,579**, and the frame
+argued the opposite of the record it was drawn from. The fix was one scale: frame 1's field, with
+the 87 picked out of it as a 1.74 mark sliver. A frame that needs two scales to make its point is
+usually a frame whose point is not true at one.
+
+### What this does NOT say
+
+It does not say every frame is a chart. A map whose projection is the story's own geography, a
+document drawn at the size the record gives it, a person at true scale beside a thing whose
+dimension is a computed figure, a room whose depth is set by a measured distance: all of these
+carry data and none of them is a chart. THE TEN LAYOUTS all remain available. What changes is
+that the layout has to be chosen for what the frame must ENCODE, and seven of those ten can be
+drawn either way.
+
+It does not relax one line of THE PRIMARY IMAGE LAW below. A subject is still a thing, it still
+owns thirty percent, it still bleeds, it is still lit by one declared key. This law says what
+that subject's dimensions come from.
+
+**And it is a gate rather than a paragraph, deliberately.** The rule it restates has existed in
+the reference repo's doctrine since long before this one, in prose, and this machine never did
+it. GATE_LESSONS' oldest shape is a rule stated somewhere with nothing in between checking it.
+
 ## THE PRIMARY IMAGE LAW
 
 **Every frame carries one drawn subject that owns at least thirty percent of the frame, reads

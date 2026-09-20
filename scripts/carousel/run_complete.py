@@ -139,6 +139,102 @@ def max_rounds() -> int | None:
     return int(m) if isinstance(m, (int, float)) else None
 
 
+RATCHET_WINDOW = 10          # how many shipped decks the floor looks back over
+
+# THE FLOOR DOES NOT REACH BACKWARDS. It was written on 2026-09-20, and pointed at the corpus it
+# came from it failed the already-published 2026-08-30 deck for being under a level nobody had
+# stated when it was drawn. A gate does not judge the work that produced it, which this repo has
+# now said four times (CONSTRUCTION_SINCE, LAYOUT_SINCE, DECK_SINCE, RESERVE_SINCE) and is the
+# right answer here for the same reason. Shipped decks are never rewritten.
+RATCHET_SINCE = "2026-09-20"
+
+
+def ratchet_floor(before: str | None = None, root=None) -> float | None:
+    """THE FLOOR UNDER THE ROUND CAP, and it is a RATCHET rather than an aspiration.
+
+    WHY IT EXISTS. 2026-09-20, the owner, on four consecutive shipped decks: "it looks like it
+    reverted back ... and again reverting back to the low quality non-bespoke generic artwork".
+
+    They were right, and the mechanism was in this file. `max_rounds` ended the SEARCH, which is
+    correct and is what carousel no. 7 needed, and it also ended the STANDARD, which nobody
+    decided. Past the cap a deck shipped at whatever it got. So the last twenty scored decks ran
+    6.56 to 7.58 against a bar of 8.0, every one under it, four of them carrying the scorer's own
+    sentence `This is a HOLD. Keep working the deck`, and every one shipped and merged. The 09-20
+    commit message states it outright: "carousel 30 ships at 6.968 under an 8.0 bar at the cap".
+
+    A FIXED FLOOR WOULD BE THE WRONG SHAPE, and it is worth saying why rather than discovering it.
+    Set one at 8.0 and nothing ships, for weeks, because the machine has never been there. Set one
+    at 6.5 and it licenses the regression it is supposed to stop. Either way a number typed today
+    is a guess about a machine that is supposed to be improving, which is the same mistake as
+    raising the bar to 8.0 and expecting the craft to follow it.
+
+    So the floor is the MEDIAN OF THE LAST `RATCHET_WINDOW` SHIPPED DECKS, less one judge spread.
+    What that buys, exactly:
+
+      - A deck at or above the recent norm ships. The daily product cannot deadlock, and roughly
+        half of any recent window clears its own median by construction.
+      - A deck BELOW the recent norm does not. Reverting is the one thing made impossible, which
+        is the owner's complaint stated as a property.
+      - The floor RISES on its own as the craft rises, with nobody editing a number. It is the
+        only part of this machine that improves without being told to.
+
+    The tolerance is one median judge spread, measured across this repo's own scored decks rather
+    than chosen, because three judges scoring the same deck twice do not return the same number
+    and a floor inside that noise would refuse decks for being unlucky.
+
+    None when there is not enough history to measure, and a gate that cannot measure its floor
+    does not invent one: it falls back to the behaviour before this existed and says so.
+    """
+    import statistics
+    from pathlib import Path as _P
+    root = _P(root) if root else (REPO_ROOT / "runs" / "carousel")
+    if not root.exists():
+        return None
+    rows = []
+    for d in sorted(root.iterdir()):
+        if before and d.name >= before:
+            continue
+        f = d / "score.json"
+        if not f.exists():
+            continue
+        try:
+            doc = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        got = score_of(doc)
+        if isinstance(got, (int, float)) and not isinstance(got, bool):
+            sp = doc.get("spread")
+            rows.append((float(got),
+                         float(sp) if isinstance(sp, (int, float))
+                         and not isinstance(sp, bool) else None))
+    if len(rows) < 3:
+        return None
+
+    # A ROLLING MEDIAN IS NOT A RATCHET, and calling it one was wrong (2026-09-20, review).
+    # Ten decks at 8.0 with a 0.3 spread set the floor at 7.7. Six decks then ship AT 7.7,
+    # legally, they enter the window, and the median falls to 7.7 and the floor to 7.4. The same
+    # step repeats downward for ever, which is the regression this was written to make impossible
+    # doing it one rung at a time. A rolling window follows the corpus wherever it goes, and that
+    # is the opposite of a ratchet whichever direction it happens to be moving today.
+    #
+    # So the floor is the HIGH WATER MARK of that rolling value: the highest level this machine
+    # has ever actually held across a full window. It is still derived and still rises on its
+    # own. It simply cannot fall, which is the whole word.
+    #
+    # It cannot deadlock either, and that is worth stating because a floor that only rises sounds
+    # like one that eventually stops everything. It rises only when the MEDIAN OF TEN SHIPPED
+    # DECKS rose, so every level it holds is a level ten decks already cleared. A machine is never
+    # asked for a score its own recent work has not produced.
+    best = None
+    for i in range(3, len(rows) + 1):
+        window = rows[max(0, i - RATCHET_WINDOW):i]
+        spreads = [sp for _, sp in window if sp is not None]
+        f = statistics.median([sc for sc, _ in window]) - (
+            statistics.median(spreads) if spreads else 0.0)
+        best = f if best is None else max(best, f)
+    return round(best, 3)
+
+
 def rounds_of(doc: dict):
     """How many scoring rounds the run actually did, if it wrote the number down."""
     for k in ("rounds", "round", "scoring_rounds", "panel_rounds"):
@@ -160,7 +256,8 @@ def score_of(doc: dict):
     return None
 
 
-def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
+def check(run_dir: Path, bar: float, cap: int | None = None,
+          runs_root: Path | None = None) -> list[str]:
     """Every reason this run is not finished. Empty means the deck shipped."""
     p = run_dir / "score.json"
     if not p.exists():
@@ -200,7 +297,20 @@ def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
             # SHIPPED UNDER THE BAR, ON THE CAP, AND SAYING SO. This is the one path that is
             # under the threshold and not a failure, and it is only that because the run did the
             # work: `cap` rounds of it. The shortfall is stated rather than rounded away.
-            pass
+            #
+            # AND IT IS NOT A FLOORLESS PATH, since 2026-09-20. `ratchet_floor` is the level this
+            # machine has actually been holding, and a deck under it is a REGRESSION rather than
+            # a deck that fell short of an aspiration. The cap ends the search; it does not end
+            # the standard, and for a month it did.
+            floor = (None if run_dir.name <= RATCHET_SINCE
+                     else ratchet_floor(before=run_dir.name, root=runs_root))
+            if floor is not None and float(got) < floor:
+                bad.append(
+                    f"{run_dir.name}: THE DECK WENT BACKWARDS. {got} against a {bar} bar is "
+                    f"under {floor}, which is what the last {RATCHET_WINDOW} shipped decks have "
+                    f"actually been holding. The {cap} round cap ends the SEARCH and it does not "
+                    f"end the STANDARD. Shipping here is the regression the floor exists to "
+                    f"refuse, so keep working the deck or ship fewer frames that clear it")
         else:
             reached = "" if n is None else f" in {n} round(s)"
             bad.append(f"{run_dir.name}: THE DECK DID NOT SHIP. {got} against a {bar} threshold"
@@ -225,8 +335,11 @@ def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
     # not carry. Trust the scorer's own verdict over its arithmetic. A deck shipped ON THE CAP is
     # the exception, because there `ship: false` is the scorer stating the shortfall the cap
     # already accepted, and reading it as a hold would put the loop straight back.
+    _floor = (None if run_dir.name <= RATCHET_SINCE
+              else ratchet_floor(before=run_dir.name, root=runs_root))
     on_cap = (cap is not None and (rounds_of(d) or 0) >= cap
-              and score_of(d) is not None and float(score_of(d)) < bar)
+              and score_of(d) is not None and float(score_of(d)) < bar
+              and (_floor is None or float(score_of(d)) >= _floor))
     under_bar = score_of(d) is not None and float(score_of(d)) < bar
     if d.get("ship") is False and not bad and not on_cap and not (overridden and under_bar):
         bad.append(f"{run_dir.name}: the scorer set ship: false. A held deck has not shipped even "
@@ -377,6 +490,72 @@ def self_test() -> int:
     ok("...and it is the 8.0 this product is held to", bar == 8.0, str(bar))
     cap = max_rounds()
     ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
+
+    # THE RATCHET, and every case here is one the cap used to wave through.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as td:
+        root = Path(td)
+
+        def deck(name, score, spread=0.3):
+            d = root / name
+            d.mkdir()
+            (d / "score.json").write_text(json.dumps(
+                {"weighted_score": score, "spread": spread}), encoding="utf-8")
+
+        ok("no floor without enough history", ratchet_floor(root=root) is None)
+        for i, sc in enumerate([7.0, 7.0, 7.0], start=1):
+            deck(f"2026-01-0{i}", sc)
+        f = ratchet_floor(root=root)
+        ok("a floor appears once three decks are scored", f is not None, str(f))
+        ok("...and it is the median less one judge spread", f == 6.7, str(f))
+
+        deck("2026-01-04", 9.0)
+        ok("one great deck moves the floor by the median and not the mean",
+           ratchet_floor(root=root) == 6.7, str(ratchet_floor(root=root)))
+
+        for i in range(5, 12):
+            deck(f"2026-01-{i:02d}", 8.0)
+        ok("the floor RISES on its own as the craft rises",
+           ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
+
+        # A ROLLING MEDIAN IS NOT A RATCHET. Decks shipping legally AT the floor used to pull it
+        # down one rung at a time, for ever, which is the regression this exists to refuse.
+        for i in range(12, 21):
+            deck(f"2026-01-{i:02d}", 7.7)
+        ok("...and decks shipping AT the floor do not pull it down",
+           ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
+        for i in range(21, 31):
+            deck(f"2026-01-{i:02d}", 6.0)
+        ok("...and a run of bad decks does not lower it either",
+           ratchet_floor(root=root) == 7.7, str(ratchet_floor(root=root)))
+        ok("...and `before` reads only the history that preceded a run",
+           ratchet_floor(before="2026-01-04", root=root) == 6.7,
+           str(ratchet_floor(before="2026-01-04", root=root)))
+
+    # AND THE SHAPE THAT ACTUALLY SHIPPED FOR A MONTH: at the cap, under the bar, scorer holding.
+    with _tf.TemporaryDirectory() as td:
+        root = Path(td)
+        for i in range(1, 11):
+            d = root / f"2026-02-{i:02d}"
+            d.mkdir()
+            (d / "score.json").write_text(json.dumps(
+                {"weighted_score": 7.0, "spread": 0.3}), encoding="utf-8")
+        run_d = root / "2026-12-20"
+        run_d.mkdir()
+
+        def verdict(score):
+            (run_d / "score.json").write_text(json.dumps(
+                {"weighted_score": score, "spread": 0.3, "rounds": 5, "ship": False,
+                 "threshold": 8.0}), encoding="utf-8")
+            return check(run_d, 8.0, 5, runs_root=root)
+
+        ok("a deck at the recent norm still ships on the cap", not verdict(7.0))
+        probs = verdict(6.2)
+        ok("A DECK THAT WENT BACKWARDS IS REFUSED ON THE CAP", bool(probs), "it shipped")
+        ok("...and the message names the floor and what it is",
+           any("WENT BACKWARDS" in x and "6.7" in x for x in probs), str(probs[:1]))
+        ok("...and `ship: false` under the floor is not waved through either",
+           any("WENT BACKWARDS" in x for x in probs))
 
     print("\nrun_complete self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0
