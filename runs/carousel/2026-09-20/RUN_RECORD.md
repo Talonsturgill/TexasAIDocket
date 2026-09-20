@@ -186,6 +186,54 @@ agreed had improved. Darkening the sheet trades the win back. The judge's better
 crop the sheet to two thirds of the canvas and put the bench shade around it rather than darken it,
 is in the backlog.
 
+## What the retro phase shipped, refused, and corrected me on
+
+Two upgrades, both in the `upgrade` lane and both stamped with `TXDOCKET_ACTOR=upgrade`, in
+commits `fa9c3ed`, `fe374f7` and `de45721`.
+
+**`numeral_trace` now derives the frame number from whatever key the run wrote**, the way
+`copy_sync_check.slide_no` always has, and a rendered frame with NO block raises and exits 2
+rather than reporting in either colour. Its argument for why is better than the one in this run's
+own commit message: under the miss `hay` is empty and `allowed` still answers, so any figure also
+sitting in `aggregates.json` PASSES a frame the gate never read. This run got the false positive.
+The false negative was available on the same bug. Its calibration is byte for byte unchanged at
+2, 0, 1, 0, 1, 4, 5, 0, 0, 2 over ten decks, which is the proof nothing was loosened, and the
+defect was replayed against `git show HEAD:` to confirm it reproduced before the fix and not after.
+
+**`gate_status` read one of the deck's two directory layouts and called the other absent.** Pointed
+at a shipped run it printed `ABSENT, not written yet` on NINE of seventeen rows and exited 0.
+`numeral_trace.run()` had carried the fallback in its own file for weeks and the table had never
+learned it. Verified here rather than taken on trust: the table now reads zero ABSENT rows on this
+run's shipped directory and both self-tests exit 0.
+
+### It refused three things and gave the measurement for each
+
+- **The `deck_chassis` composite blindness**, which is the 0.783 defect this run fixed by hand. It
+  built the source analysis detector and it does not work: four findings on the broken chassis and
+  THE SAME FOUR on the repaired one, none of them the call that was the defect. Source analysis is
+  closed on this question. What replaces it is an art only render pass, which lives under
+  `.claude/` and is unreachable, so it is a proposal.
+- **Teaching `numeral_trace.evidence()` to read `computed_values`**, refused as a loosening: the
+  record's answer for every other figure is to make a claim, and a second route teaches a future
+  run that the shortcut passes. Only the failure TEXT was fixed, because it had been naming
+  `aggregates.json` as the route, which is the advice that sent this run between two gates.
+- **A mirror check between `out/<date>` and `runs/carousel/<date>`**, measured at zero noise and
+  still refused, because the gate table is synced from `out/` into the run record so the row's
+  value would depend on when the sync ran.
+
+### AND IT CORRECTED ME, CORRECTLY
+
+This record said `site_build.py` prints `broke:` and exits 0. **It does not.** The only `broke:`
+in that file is one line above `sys.exit(2)`. The zero was MINE: I read it off a command ending
+in `| tail -3`, so what I measured was tail's exit status and not the build's. The build had
+failed properly and said so.
+
+That is the same family as this repo's oldest lesson, which is that a verdict is a thing you ASK
+for rather than a thing you read out of a stream, and I wrote it into an upgrade brief as a
+defect in somebody else's code. The engineer checked rather than argued, and said it had made the
+identical mistake once in the same session. **A finding handed to an agent is a lead and not a
+fact**, which is the same shape as the judges' screen-under-type diagnosis three phases earlier.
+
 ## What did not get fixed, and why
 
 These are next run work rather than late round work. Each was named by a judge, each is a frame
