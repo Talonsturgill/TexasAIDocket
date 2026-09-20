@@ -1,0 +1,191 @@
+{
+ "date": "2026-09-20",
+ "carousel_no": 30,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. What it cannot see is a string a drawing has painted over, which is a gap in the SUITE rather than something to answer by retyping this file from the plan and calling the disagreement a check.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "One room, at ten to five",
+   "headline": "Aimed at small systems. Texas has 4,749.",
+   "claims": [
+    "c1",
+    "c2",
+    "c12",
+    "c20"
+   ],
+   "cite": "c1 c2 c12 c20 TEXAS AI DOCKET",
+   "body": "Active community water systems on the EPA's record. The National Science Foundation has funded Texas A&M to research predictive digital twins for small and mid-sized systems.",
+   "strings": [
+    "texasaidocket.com",
+    "Aimed at small systems. Texas has 4,749.",
+    "Active community water systems on the EPA's record. The National Science Foundation has funded Texas A&M to research predictive digital twins for small and mid-sized systems.",
+    "One room, at ten to five",
+    "01 / 09",
+    "c1 c2 c12 c20 TEXAS AI DOCKET"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The instrument the room has",
+   "headline": "Everything before now. Nothing after it.",
+   "claims": [
+    "c15"
+   ],
+   "cite": "c15 TEXAS AI DOCKET",
+   "body": "The trace ends where the pen is. It is a record rather than a warning.",
+   "strings": [
+    "texasaidocket.com",
+    "Everything before now. Nothing after it.",
+    "The trace ends where the pen is. It is a record rather than a warning.",
+    "The instrument the room has",
+    "02 / 09",
+    "c15 TEXAS AI DOCKET"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The record's own words",
+   "headline": "The criticism is narrow and it is specific.",
+   "claims": [
+    "c15",
+    "c1"
+   ],
+   "cite": "c15 c1 TEXAS AI DOCKET",
+   "body": "What the award's own abstract says about the instruments a small utility has today.",
+   "strings": [
+    "texasaidocket.com",
+    "The criticism is narrow and it is specific.",
+    "What the award's own abstract says about the instruments a small utility has today.",
+    "The record's own words",
+    "03 / 09",
+    "c15 c1 TEXAS AI DOCKET"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The other instrument",
+   "headline": "The log is current to this line.",
+   "claims": [
+    "c15"
+   ],
+   "cite": "c15 TEXAS AI DOCKET",
+   "body": "Under the last entry, ruled blank lines. A record answers what happened and never what is about to.",
+   "strings": [
+    "texasaidocket.com",
+    "The log is current to this line.",
+    "Under the last entry, ruled blank lines. A record answers what happened and never what is about to.",
+    "The other instrument",
+    "04 / 09",
+    "c15 TEXAS AI DOCKET"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "What the abstract describes",
+   "headline": "One line, and three places on it.",
+   "claims": [
+    "c14",
+    "c13"
+   ],
+   "cite": "c14 c13 TEXAS AI DOCKET",
+   "body": "The abstract's own examples. A disruption that begins in one component can propagate through connected networks.",
+   "strings": [
+    "texasaidocket.com",
+    "One line, and three places on it.",
+    "The abstract's own examples. A disruption that begins in one component can propagate through connected networks.",
+    "What the abstract describes",
+    "05 / 09",
+    "c14 c13 TEXAS AI DOCKET"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "What the EPA's own record returns",
+   "headline": "Three queries. Three counts. No total.",
+   "claims": [
+    "c12",
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "cite": "c12 c20 c21 c22 TEXAS AI DOCKET",
+   "body": "Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000.",
+   "strings": [
+    "texasaidocket.com",
+    "Three queries. Three counts. No total.",
+    "Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000.",
+    "What the EPA's own record returns",
+    "06 / 09",
+    "c12 c20 c21 c22 TEXAS AI DOCKET"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "What the room already holds",
+   "headline": "Every one of these is finished.",
+   "claims": [
+    "c15"
+   ],
+   "cite": "c15 TEXAS AI DOCKET",
+   "body": "Which is exactly what the abstract means by limited ability to anticipate.",
+   "strings": [
+    "texasaidocket.com",
+    "Every one of these is finished.",
+    "Which is exactly what the abstract means by limited ability to anticipate.",
+    "What the room already holds",
+    "07 / 09",
+    "c15 TEXAS AI DOCKET"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What the record actually says",
+   "headline": "The word is can.",
+   "claims": [
+    "c16",
+    "c10",
+    "c4",
+    "c5"
+   ],
+   "cite": "c16 c10 c4 c5 TEXAS AI DOCKET",
+   "body": "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. The record shows nothing built.",
+   "strings": [
+    "texasaidocket.com",
+    "The word is can.",
+    "The award started September 15th and runs to August 31st, 2029. The abstract says what the project can support. The record shows nothing built.",
+    "What the record actually says",
+    "08 / 09",
+    "c16 c10 c4 c5 TEXAS AI DOCKET"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What a reader can do today",
+   "headline": "Read your own system's report.",
+   "claims": [
+    "c17",
+    "c18",
+    "c4"
+   ],
+   "cite": "c17 c18 c4 TEXAS AI DOCKET",
+   "body": "TCEQ publishes source, contaminant and violation information for every public water system in Texas. The thing to ask for is the annual drinking water quality report.",
+   "strings": [
+    "texasaidocket.com",
+    "Read your own system's report.",
+    "TCEQ publishes source, contaminant and violation information for every public water system in Texas. The thing to ask for is the annual drinking water quality report.",
+    "What a reader can do today",
+    "09 / 09",
+    "c17 c18 c4 TEXAS AI DOCKET"
+   ]
+  }
+ }
+}

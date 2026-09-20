@@ -1490,3 +1490,24 @@ front end is not something one run's observation settles, and the registry is th
 **`pubmed.ncbi.nlm.nih.gov` article pages hit a cookie wall and `eutils.ncbi.nlm.nih.gov`'s efetch
 endpoint does not.** Same corpus, same publisher, one surface readable and one not. Reach for
 efetch first here.
+
+**`www.dhs.gov` answers 403 TO `robots.txt` ITSELF, which is not a robots decision.** Every client
+this run had was refused at the edge, including a plain fetch of the exclusion file. That
+distinction is the whole entry: a 403 to `robots.txt` means there is no exclusion file to read and
+therefore no disallow to respect, and it equally means there is no route around it to look for. The
+honest disposition is the one `tx-2026-0120` took, which is to leave the item unstamped with a
+dated note naming exactly what could not be confirmed, rather than to carry yesterday's
+verification forward or to try another user agent.
+
+**`transparency.flocksafety.com` and `cityofcarrollton.com` both answer 403, and Carrollton's
+CivicClerk API answers 404.** Three surfaces on one story, all refusing, on the day that story was
+the strongest candidate of the run. The story was set aside on `dedupe_check` rather than on
+access, so this is recorded for the next run that reaches for a Texas municipal agenda: the
+CivicClerk API path that works for other cities is not a given, and a 404 there is worth one check
+against the council's own published agenda page before concluding the meeting did not happen.
+
+**`data.epa.gov/efservice` is the most cooperative source this project has.** No key, no rate
+limit encountered across seven queries in one run, and `.../COUNT/JSON` returns a two line body
+whose `TOTALQUERYRESULTS` is directly quotable as a verbatim claim. Three counts were fetched three
+separate times across this run and returned identical values each time. When a figure has to be
+both computed and quotable, this endpoint gives you both.

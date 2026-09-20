@@ -1,0 +1,23 @@
+{
+ "lens": "reader",
+ "weighted_score": 7.03,
+ "ship": false,
+ "hard_fails": [
+  "Frame 6 prints two text runs over each other. The mono source line runs across the dek's second line and both are left partially illegible, on the only frame in the deck carrying a number."
+ ],
+ "scores": {
+  "artwork_craft": 5.5,
+  "deck_coherence": 8.0,
+  "claim_integrity": 8.5,
+  "story_and_stakes": 6.0,
+  "sequence_and_momentum": 6.5,
+  "voice": 7.5,
+  "variety": 8.0
+ },
+ "also_found": [
+  "No frame names the National Science Foundation, the awardee or a county, so a reader who never opens the caption learns the shape of the argument without learning who decided anything or where.",
+  "Frame 9 never delivers the door it promises: no TCEQ, no report title, and the red stamp in that corner is the award's start date.",
+  "The motif landed on two frames of five.",
+  "The caption's first line is a better hook than the cover's."
+ ]
+}

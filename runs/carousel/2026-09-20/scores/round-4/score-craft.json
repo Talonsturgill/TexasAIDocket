@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.9,
+      "why": "The N.quiet fix is real in the source and real in the print. Lines 442-464 build the wash on an offscreen layer, multiply a vertical ramp by a horizontal destination-out erase with f = min(0.30, pad/w), and drawImage it once, so nothing doubles. On frames 1, 3 and 6 I can find no vertical seam: frame 1's reserve now falls off into the dark wall around x 1050-1200 as a gradient, frame 3's upper-left wash has no boundary at all, frame 6's is a soft lobe. Contrast behind the display type is not visibly worse; frame 1's 'Aimed at small systems' and frame 6's hook both hold cleanly. THE SIGN ERROR SURVIVED THE FIX. On frames 5, 8, 9 and frame 2's bottom dek the art under the box is darker than #2E2016, so the wash LIFTS, and the four-side feather made that more visible rather than less: frame 5's top third is now a lumpy warm cloud with lobes tracking the headline's rag and a second lobe under the three-line dek, with no source for it in a frame whose sky is near-black. A rectangle read as a deliberate panel. A feathered blob reads as fog or a lens smudge. Frame 8 is the sharp case and it is the deck's pivot: 'The word is can.' is carved block, so the glyphs take the wall's mid brown (palette line 715, 'ink #DCD3B4 knocked back toward ground #2E2016'), and N.quiet then lifts the near-black wall behind them toward that same mid value. The chassis' own N.G comment at line 226 says 'nothing contrasts against a mid tone'. Frame 8 is the dimmest frame in the deck (median L* 7.2) carrying the dimmest display type in the deck, on the one sentence the deck exists to say. Also counted: frame 5's lower 38 percent is one uniform diagonal hatch field carrying nothing but a scale bar half-swallowed by it; frame 6's lower quarter is empty ground against a composition block that says 'Nothing in the lower third is empty stock'; frame 9's red 'AWARD STARTED 2026-09-15' sits unreserved on diagonal hatch and the letterforms get chewed. Against all that, frames 4 and 9 are genuinely good drawings with true scale a reader can check, real contact shadows and a key that agrees with every other frame."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 6.8,
+      "why": "Still one filmstrip, yes, and the answer is not close: one ground, one 26-degree key casting east on every frame, one hatch at cell 6 angle 52, one furniture strip, one site line. The CAMERA_MOVE device pays off for real, frame 5's centre building is recognisably frame 1's room seen from outside and frame 9's is the same again. MOTIF_EVOLUTION lands on 2, 4, 6, 7 and 8, and frame 6's gap after the 87th mark against a rule running on to the margin is legible in the print. What holds it under 7: the printed value track is 9.3, 9.8, 14.2, 9.3, 6.3, 9.8, 10.3, 7.2, 9.8, which is eight of nine crushed between 6.3 and 10.3. The plan was 8, 18, 24, 16, 11, 20, 10, 14, 7, an amplitude of 17. Seven of nine printed darker than planned. The falling mean adjacent delta (2.81) is being read as the deck tightening; it is mostly the deck flattening, and a flat line with noise is not an arc. The visible cost is frame 3: a canvas mean of 85.4 against a 24 to 54 band is a white card in a strip of nine dark ones, and at 2 to 3 to 4 a reader gets a strobe. I think the call to leave it is defensible but I do not think it is right. The frame's job is that one sentence is readable, and that is a job for the SHEET, not the whole canvas. Crop the sheet to the type block and its stamp, let it sit at 55 percent of the frame instead of filling it, and put the bench shade back around it. Legibility is a property of the type block's local contrast, which nothing about a smaller sheet touches. Second departure: frame 8's display type is graded to the wall while the other eight hooks are cream ink, so the deck has two type grades and no line in the chassis declares the second."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.8,
+      "why": "The round-3 hard fail is repaired at the source rather than papered over. figures.json's note states 'v1 minus v2 and v1 minus v3 are deliberately absent', small_systems_of_all's `how` spells out that v2's filter set is a superset of v1's so every v2 row is a v1 row, and frame 6's acceptance list now carries the refutation by name: 'the HOOK states only that the three do not ADD, never that none contains another.' The new hook is true against that. The round-1 '5 m' is no longer untraced: scale_bar_frame_5 computes 0.0235 m/px times 5 m to 212.8 px and declares set_counted as 'nothing. This is a unit of length rather than a count.' Every numeral I can find on a frame maps to v1, v2, v3 or a verbatim source field, and canvas_text.json now records the painted strings that copy.json structurally cannot see. Copy is clean on the house rules I can check from here: no colons outside the verbatim award title, no semicolons, no dashes, no first person, and frame 8's 'September 15th' correctly carries no year in a 2026 post while 'August 31st, 2029' correctly keeps its own. TWO LIMITS ON THIS SCORE. I did not read claims.json, so I am scoring the traceability of the numerals rather than whether each c-id carries what its frame asserts; that is the integrity judge's subject. And one thing to hand them: frame 9 prints 'AWARD STARTED 2026-09-15' in ISO, in the accent, at display weight. I read it as in-bounds because it is set in mono and rhymes with frame 3's 'RETRIEVED 2026-09-20' and frame 6's 'QUERIED 2026-09-20', which makes it the stamp form the house rule allows. It is the one date in the deck where that reading is a judgement rather than obvious, and frame 8's dek already renders the same date as prose."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.2,
+      "why": "The stake is concrete and it is Texan: 3,579 of Texas' 4,749 active community water systems serve under 3,301 people, and what they run on is monitoring, historical records and reactive emergency protocols. Frame 3 names the awardee (Texas A&M Engineering Experiment Station), the PI and the award number off the API's own record. Frame 9 gives a real action a reader can take today, ask TCEQ for the annual drinking water quality report, and it is the right kind of action because it is free and it is about the reader's own system. Held down by two things. Frame 1's hook is 'Aimed at small systems.' and NOTHING on frame 1 says what is aimed. The round-1 repair stripped the invented premise out of the dek and put nothing in its place, so the deck's first sentence is now a participial phrase with no noun and the antecedent does not arrive until frame 3. A cover is the one frame that has to stand alone. And the county the whole world was built for, Brazos, is named in the chassis and in the storyboard and on no frame a reader sees, so the Texas specificity lives in the drawing and not in a word the reader gets."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "The turn is real and it is where it should be. Frame 7 says every record in the box is finished, frame 8 says the word is can, and that is a genuine change in what the reader understands rather than a new fact. The close lands. Against it: frames 2, 4 and 7 make the same move three times (the mark that stops), and while the motif is doing continuity work the argument does not advance between 2 and 4. Frame 5 is the only diagram in a deck of rooms and it interrupts the camera move the storyboard sells as one of its two devices, arriving between two interiors and leaving to a third. And the cover's dangling 'Aimed at' costs the swipe the frame is supposed to earn."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.4,
+      "why": "'The word is can.' is the best line this deck has and it earns the whole frame. The new frame 2 dek, 'The trace ends where the pen is. It is a record rather than a warning', is a clear improvement on 'The instrument is current, kept and complete' — it does the same work in a picture instead of a list, and 'rather than a warning' is the deck's thesis in four words. 'Under the last entry, ruled blank lines' is good. Honest about costs without doom and no boosterism anywhere. What keeps it off 8: the copy would read identically about Ohio. Every regional signal in this deck is in the drawing and none is in a sentence."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.8,
+      "why": "The ground was measured rather than chosen, #2E2016 at dE76 13.32 from its nearest of the last six, after all three treatments proposed a warm near-black that collided with September 14th's bed at 8.37, 4.06 and 2.72. The ink is deliberately greener than the last two decks' near-neutral creams, the screen is a hatch rather than September 19th's halftone, and the accent avoids the comal that yesterday's water story spent. The structural move, nine frames that never leave one room, is not in the last fortnight. Against: this is the second water story in two days, and DOCUMENT runs twice at 3 and 6, declared and non-adjacent."
+    }
+  ],
+  "weighted_score": 7.266,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Give N.quiet a direction: sample the art under each line box and pick the wash colour per box, laying #2E2016 only where the art is LIGHTER than the ground and laying N.G.deep where it is already darker, because the four-side feather removed the seam without touching the sign error, and on frames 5, 8 and 9 the reserve is still lifting a near-black ground toward the mid tone while frame 8 lifts it toward the value of the carved display type itself.",
+  "lens": "craft",
+  "round": 4,
+  "date": "2026-09-20"
+}

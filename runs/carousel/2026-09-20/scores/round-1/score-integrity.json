@@ -1,0 +1,28 @@
+{
+ "lens": "integrity",
+ "weighted_score": 6.12,
+ "ship": false,
+ "hard_fails": [
+  "Frame 5 prints '5 m' on its scale bar and the value traces to no claim, no aggregate and no figure. Its own dossier declared numerals: [].",
+  "Frame 1's dek 'A small Texas water system keeps its answers in one room, on paper, by hand' cites c15, which names monitoring systems, historical records and reactive emergency protocols and says nothing about paper, hand or one room. It is the premise frames 2, 4 and 7 are built on."
+ ],
+ "scores": {
+  "artwork_craft": 5.5,
+  "deck_coherence": 7.5,
+  "claim_integrity": 4.5,
+  "story_and_stakes": 6.0,
+  "sequence_and_momentum": 7.0,
+  "voice": 7.0,
+  "variety": 7.5
+ },
+ "also_found": [
+  "Frame 6's kicker HOW MANY ROOMS LIKE THIS over 'Texas counts 4,749' conflates every active community water system with the small one drawn. The deck's own small figure, 3,579, is on the same frame.",
+  "copy.json cannot see canvas painted strings, which is how the untraced '5 m' got past numeral_lint. Three such strings shipped and two happened to trace."
+ ],
+ "held_up_under_attack": [
+  "The partition. Three separate sheets, three query stanzas, no arithmetic operator anywhere on the frame. Could not be broken.",
+  "The conditional. No frame and no caption line states an achieved result.",
+  "Nothing deployed, nothing about condition, no named real facility.",
+  "The dial. Frame 2 is unmistakably a strip and could not be mistaken for a gauge."
+ ]
+}

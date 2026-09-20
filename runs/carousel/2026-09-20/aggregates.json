@@ -1,0 +1,80 @@
+{
+ "date": "2026-09-20",
+ "_note": "The deck states seven counts and every one of them is READ from an EPA Envirofacts query rather than computed, so each is traced in claims.json computed_values rather than here. This file declares the numbers the deck states by doing arithmetic ON TOP of those. v1 minus v2 and v1 minus v3 are DELIBERATELY ABSENT and out/2026-09-20/compute.py refuses them in code, because the population filters may exclude rows where POPULATION_SERVED_COUNT is null and the three counts are not a partition of anything. Two earlier entries, the 4,749 count and the 3,579 containment, were removed because aggregate_check found no slide asserting them as computed figures. They are READ values and claims.json computed_values is where they are traced. A declaration nothing uses is a declaration waiting to be reused wrongly. A 'September 15th to August 31st' span was declared and then removed, because aggregate_check was right that a date pair read as a span is a figure the deck computed. The caption now states the two dates as two facts rather than as a distance between them, which is what the record actually carries. Round 3 removed 'Three queries' and 'three counts' when frame 6's dek was rewritten to lead with the anti partition statement in the hook, and added the 4,749 noun phrase the new dek asserts. A declaration whose sentence has left the deck is exactly the kind this file already says not to keep. Round 3 briefly declared 3,301, 87 and 50,000 here to satisfy numeral_trace and removed them again, because aggregate_check only accepts a declaration for a phrase its own detector found on a slide and it found none of the three. The two gates wanted opposite things and the answer was neither file: those figures are FETCHED FACTS, so they are claims now, c20 through c22, each with the query response quoted verbatim. The hook 'None of these is a share of another.' was shipped into round 3 scoring and refused as a HARD FAIL: two of the three counts are strict subsets of the first, which figures.json states outright. The true statement is that they do not ADD, so the hook is now 'Three queries. Three counts. No total.' and those two phrases are declared again.",
+ "aggregates": [
+  {
+   "phrase": "three places",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the number of distinct components c14's own sentence names as places a disruption can begin, read off that sentence rather than off a tally the deck kept",
+   "from_claims": [
+    "c14"
+   ],
+   "note": "c14 reads 'Disruptions that begin in one component, such as an intake, pump station, or treatment unit'. Three components, named in the source, and the frame draws those three and no others. The count is the source's own list length."
+  },
+  {
+   "phrase": "3,579 ever gets",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3579,
+   "computed_by": "read, not computed. TOTALQUERYRESULTS returned by the EPA Envirofacts query in claims.json v2, measured twice, once by this run and once independently by the fact checker.",
+   "from_claims": [
+    "v2"
+   ],
+   "note": "The caption's close reuses the figure it opened against. It is the same measurement and not a second one, and no arithmetic is performed on it."
+  },
+  {
+   "phrase": "4,749 active community water systems",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 4749,
+   "computed_by": "TOTALQUERYRESULTS returned by the EPA Envirofacts SDWIS WATER_SYSTEM query filtered on PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE A and PWS_TYPE_CODE CWS, read from the response rather than computed here. Traced as v1 in claims.json computed_values and measured twice, by this run and independently by the fact checker",
+   "from_claims": [
+    "v1"
+   ],
+   "note": "Round 3 moved the headline number into frame 6's dek as a full noun phrase, so the frame now ASSERTS what the 4,749 counts rather than leaving the noun to the sheet's query stanza. aggregate_check was right to ask for the declaration once the sentence changed."
+  },
+  {
+   "phrase": "Three queries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the set {c20, c21, c22}, each an independently fetched query whose complete filter stanza is printed on its own sheet, so a reader can count the queries on the frame",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "Restored in round 3 when the hook changed. It was removed earlier the same round with the dek that carried it, and the hook that replaced that dek was found false. Both halves are recorded because the removal was correct at the time and the thing that made it wrong was a separate mistake."
+  },
+  {
+   "phrase": "three counts",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the same set, counted as results rather than as queries. The frame prints three numerals and performs no arithmetic on them",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "Restored in round 3 when the hook changed. It was removed earlier the same round with the dek that carried it, and the hook that replaced that dek was found false. Both halves are recorded because the removal was correct at the time and the thing that made it wrong was a separate mistake."
+  },
+  {
+   "phrase": "five official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 5,
+   "computed_by": "the number of distinct source documents behind the deck's printed claim ids, counted by scripts/carousel/sources_block.py from claims.json's own url field when it built first_comment.txt. It is the length of that set rather than a figure anybody typed",
+   "from_claims": [
+    "c1",
+    "c17",
+    "c20",
+    "c21",
+    "c22"
+   ],
+   "note": "shipped_check caught this on the published first comment rather than on a slide, which is the right catch: the first comment is published copy and carries the same compute-not-generate law as a frame. The five are the NSF award record, the TCEQ drinking water page and the three EPA Envirofacts queries."
+  }
+ ]
+}

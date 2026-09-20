@@ -80,6 +80,16 @@ figure is in a sixth. 2026-08-28 frame 6 prints 100 MW, which no claim in that r
 The 2026-08-29 deck as it shipped comes back clean, which is the discrimination this gate needs:
 it separates the round 4 frame from the round 5 repair of the same frame.
 
+AND WHAT IT REFUSES TO ANSWER, added 2026-09-20 after the second defect this file has carried.
+
+A frame is judged against the claims its own block in `copy.json` declares. When a rendered frame
+has no such block the gate does not report the frame as clean and does not report every numeral on
+it as untraced. It exits 2 and names the keys it found. `copy_blocks` carries that story; the
+short version is that carousel no. 30 keyed its slides `slide-01.html` where every deck before it
+used `S1`, the lookup missed on all nine frames, and the gate reported four correct citations as
+untraceable. The same miss passes a frame outright whenever `aggregates.json` happens to authorise
+the digits, which is the expensive direction.
+
     numeral_trace.py <run-dir>
     numeral_trace.py --self-test
 
@@ -121,6 +131,53 @@ EVIDENCE_FIELDS = ("quote", "text", "document", "url")
 
 def digits(s) -> str:
     return re.sub(r"[^0-9]", "", str(s))
+
+
+class Unreadable(Exception):
+    """The checker could not find its subject. Never a pass, never a finding, exit 2."""
+
+
+def copy_blocks(copy) -> dict[int, dict]:
+    """Each frame NUMBER mapped to the block the copywriter authored for it.
+
+    THE DEFECT THIS EXISTS FOR. 2026-09-20, carousel no. 30.
+
+    This gate used to look its frames up by the literal string `S<n>`. Every shipped run before
+    that day keyed `copy.json["slides"]` on `S1`..`S9` and it worked. That run's build step wrote
+    `slide-01.html`..`slide-09.html` instead, which is a name for the same thing, and
+    `copy_sync_check` did not care because its `normalize_slides` reads the digits out of
+    whatever key it is handed.
+
+    Here the lookup missed on all nine frames, so every frame was read as citing NOTHING, and the
+    gate reported four numerals as untraceable that had been traced the whole time. The run then
+    spent a round hunting citations that were already correct.
+
+    **The false positives were the lucky half.** The same miss authorises by omission the moment
+    a figure also appears in `aggregates.json`: `hay` is empty, `allowed` still answers, and the
+    gate passes a frame it never read. A gate that cannot find its subject must not report either
+    colour, which is why `check` raises `Unreadable` rather than returning an empty list.
+
+    Accepts the two shapes a run has actually produced, a dict keyed on anything carrying the
+    frame number and the copywriter's list form, and derives the number rather than matching a
+    name. GATE_LESSONS 39: a selector that matches names is blind to the name nobody thought of.
+    """
+    raw = (copy or {}).get("slides")
+    out: dict[int, dict] = {}
+    if isinstance(raw, dict):
+        for k, v in raw.items():
+            m = re.search(r"(\d+)", str(k))
+            if m and isinstance(v, dict):
+                out[int(m.group(1))] = v
+    elif isinstance(raw, list):
+        for i, item in enumerate(raw, start=1):
+            if not isinstance(item, dict):
+                continue
+            try:
+                n = int(item.get("n"))
+            except (TypeError, ValueError):
+                n = i
+            out[n] = item
+    return out
 
 
 def evidence(claims) -> dict[str, str]:
@@ -170,17 +227,35 @@ def tokens_in(text: str) -> list[str]:
 
 
 def check(copy: dict, report: dict, claims: dict, aggregates: dict | None = None):
-    """Returns (problems, stats). Empty problems means every numeral is reachable."""
+    """Returns (problems, stats). Empty problems means every numeral is reachable.
+
+    Raises `Unreadable` when a rendered frame has no authored block to read its citations from.
+    That is the checker failing to find its subject, and it is reported as such rather than as a
+    clean frame or as a frame citing nothing. See `copy_blocks`.
+    """
     ev = evidence(claims)
     allowed = declared_values(aggregates)
-    slides = copy.get("slides") or {}
+    blocks = copy_blocks(copy)
     problems, examined = [], 0
+
+    unmatched = sorted({n for n in (slide_no(r) for r in report.get("slides") or [])
+                        if n is not None and n not in blocks})
+    if unmatched:
+        keys = sorted(str(k) for k in ((copy or {}).get("slides") or {})) \
+            if isinstance((copy or {}).get("slides"), dict) else ["<a list>"]
+        raise Unreadable(
+            f"{len(unmatched)} rendered frame(s) have no block in copy.json: "
+            f"{', '.join('s' + str(n) for n in unmatched)}. copy.json keys its slides on "
+            f"{', '.join(keys[:4])}{' ...' if len(keys) > 4 else ''}, and none of those carries "
+            f"those frame numbers. Nothing was judged. A gate reading a frame it cannot find the "
+            f"copy for reports every numeral on it as untraced, and passes it outright the "
+            f"moment aggregates.json happens to authorise the same digits")
 
     for rec in report.get("slides") or []:
         n = slide_no(rec)
         if n is None:
             continue
-        blk = slides.get(f"S{n}")
+        blk = blocks.get(n)
         cited = [str(c) for c in ((blk or {}).get("claims") or [])]
         hay = " ".join(ev.get(c, "") for c in cited)
         for node in rec.get("text_nodes") or []:
@@ -208,9 +283,13 @@ def check(copy: dict, report: dict, claims: dict, aggregates: dict | None = None
                         f"s{n} prints {tok!r} in \"{shown}\" and NO claim in this run carries "
                         f"that figure in its quote, its text, its document title or its url. "
                         f"The frame cites {', '.join(cited) or 'nothing'}. Fetch the span that "
-                        f"states it and make it a claim, or declare it in aggregates.json where "
-                        f"aggregate_check can re-derive it")
-    return problems, {"examined": examined, "frames": len(report.get("slides") or [])}
+                        f"states it and make it a claim, which is what the record does for every "
+                        f"other figure. Declaring it in aggregates.json clears THIS gate and "
+                        f"only clears aggregate_check when that gate's own detector already "
+                        f"found the phrase on a frame, so a bare figure declared there is "
+                        f"refused there while passing here. Make it a claim")
+    return problems, {"examined": examined, "frames": len(report.get("slides") or []),
+                      "matched": len(blocks)}
 
 
 # --------------------------------------------------------------------------- run
@@ -235,7 +314,14 @@ def run(run_dir: Path) -> int:
     agg_p = run_dir / "aggregates.json"
     aggregates = json.loads(agg_p.read_text(encoding="utf-8")) if agg_p.exists() else None
 
-    problems, stats = check(copy, report, claims, aggregates)
+    try:
+        problems, stats = check(copy, report, claims, aggregates)
+    except Unreadable as exc:
+        # NOT A FINDING AND NOT A PASS. GATE_LESSONS 37: a check that cannot run belongs in the
+        # failure list with a non-zero exit, never folded into a clean total. No receipt is
+        # written either, because a receipt saying zero problems is what `gate_status` reads.
+        print(f"numeral_trace: THE CHECKER COULD NOT FIND ITS SUBJECT. {exc}", file=sys.stderr)
+        return 2
     # THE RECEIPT, the same wiring label_guard and quantifier_check use. `gate_status` reads it,
     # so the run record's table carries the row and a run cannot quietly skip the gate. CI cannot
     # take it, because .github/workflows belongs to the human actor by ownership.yaml.
@@ -325,6 +411,67 @@ def self_test() -> int:
             ok("the shipped 2026-08-29 deck is clean on all nine frames", probs == [], str(probs))
             ok("...and it examined numerals rather than passing by examining none",
                st["examined"] > 0, str(st))
+
+    # ---------------------------------------------- THE 2026-09-20 KEY DRIFT, REPLAYED
+    #
+    # Against that run's OWN COMMITTED ARTIFACTS, rekeyed the way its build step actually wrote
+    # them. Neither half is reconstructed: the frames, the claims and the aggregates are the
+    # files that shipped, and the only thing changed is the key `copy.json` hangs each block on.
+    #
+    # A MISSING FILE IS A FAILURE HERE, NEVER A SKIP, for the same reason as the block above.
+    live = REPO_ROOT / "runs" / "carousel" / "2026-09-20"
+    lc, lr, lj = live / "copy.json", live / "render_report.json", live / "claims.json"
+    if not (lc.exists() and lr.exists() and lj.exists()):
+        ok("the 2026-09-20 artifacts are present to replay the key drift against", False, str(live))
+    else:
+        c30 = json.loads(lc.read_text(encoding="utf-8"))
+        r30 = json.loads(lr.read_text(encoding="utf-8"))
+        j30 = json.loads(lj.read_text(encoding="utf-8"))
+        ag30 = live / "aggregates.json"
+        a30 = json.loads(ag30.read_text(encoding="utf-8")) if ag30.exists() else None
+
+        canon, cst = check(c30, r30, j30, a30)
+        ok("the shipped 2026-09-20 deck, keyed S1..S9, is clean", canon == [], str(canon)[:220])
+        ok("...and it examined numerals rather than passing by examining none", cst["examined"] > 0,
+           str(cst))
+        ok("...and it matched every rendered frame to an authored block",
+           cst["matched"] >= len(r30.get("slides") or []), str(cst))
+
+        # THE DEFECT. The same deck with `slide-NN.html` keys, which is what that run wrote.
+        def _n(key):
+            return int(re.search(r"(\d+)", key).group(1))
+
+        drifted = dict(c30)
+        drifted["slides"] = {"slide-%02d.html" % _n(k): v for k, v in c30["slides"].items()}
+        probs, dst = check(drifted, r30, j30, a30)
+        ok("the same deck keyed slide-NN.html reads IDENTICALLY, rather than as nine frames "
+           "citing nothing", probs == canon and dst["examined"] == cst["examined"],
+           f"{len(probs)} finding(s), examined {dst['examined']} against {cst['examined']}")
+
+        # AND A KEY SPACE THAT CARRIES NO FRAME NUMBER AT ALL MUST NOT READ AS A CLEAN DECK.
+        # This is the half that would have been a false NEGATIVE: every frame reads as citing
+        # nothing, and a figure that also sits in aggregates.json then passes unexamined.
+        names = ["hook", "stakes", "proof", "method", "scale", "counter", "ledger", "door", "sign"]
+        blind = dict(c30)
+        blind["slides"] = {names[_n(k) - 1]: v for k, v in c30["slides"].items()}
+        try:
+            check(blind, r30, j30, a30)
+            ok("a copy.json whose keys name no frame is REFUSED rather than reported on", False,
+               "check() returned instead of raising Unreadable")
+        except Unreadable as exc:
+            ok("a copy.json whose keys name no frame is REFUSED rather than reported on", True)
+            ok("...and the message names how many frames it could not find copy for",
+               "9 rendered frame(s)" in str(exc), str(exc)[:200])
+            ok("...and it names the keys it did find, so the fix is one line",
+               "hook" in str(exc), str(exc)[:200])
+
+        # THE COPYWRITER'S LIST FORM, which copy_sync_check has always accepted and this gate
+        # never saw. Same deck, same answer.
+        as_list = dict(c30)
+        as_list["slides"] = [dict(v, n=_n(k)) for k, v in c30["slides"].items()]
+        probs, lst = check(as_list, r30, j30, a30)
+        ok("the copywriter's list form reads identically to the dict form",
+           probs == canon and lst["examined"] == cst["examined"], str(probs)[:200])
 
     # ---------------------------------------------------------------- THE CARVE-OUTS
     cl = {"claims": [

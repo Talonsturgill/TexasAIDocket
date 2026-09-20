@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 7.0,
+      "why": "An image on every frame and a real grade on most. Frame 1 has a lit floor patch against dark joists and an operator at checkable 1.7 m; frame 9 has a sunlit west wall, a black doorway and a cast at roughly twice the figure's height; frame 2's recorder strip is the best-drawn object in the deck. Against that, three frames have a legibility problem at the size this ships: frame 3's metadata block (title, awardeeName, pi, dates) is rendered at ~11px low-contrast with horizontal rules crossing the 'title' and 'awardeeName' rows, frame 8's headline is knocked back so far into the wall that 'The word is can.' is the deck's least readable hook, and frame 7's standing packs are the hatch-texture failure its own risk list names. Frame 5 leaves a dead dark band from y~690 to y~880 between the dek and the art. Competent and consistent, two frames better than that, three with a size problem."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.8,
+      "why": "Strongest criterion. One ground (#2E2016), one ink, and casts running east on frames 1, 4 and 9 alike. Measured adjacent value jumps are 0.5, 4.4, 4.9, 3.0, 3.5, 0.5, 3.1, 2.6 (max 4.9, mean 2.81) against this repo's historical 21.0, and that holds as a filmstrip rather than as a spread. I caught the motif unprompted by frame 4: the trace stopping at the red dot on 2, the ruled blank lines under the last logbook entry on 4, the blank chart on the nail on 8. Frame 5's centre building is verifiably frame 1's room seen from outside, so CAMERA_MOVE pays off as recognition. Frame 3 sits outside as the only dark-on-light, which the rubric's 7 explicitly permits."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.3,
+      "why": "Every numeral traces. 4,749 / 3,579 / 87 to c20 / c21 / c22 with verbatim TOTALQUERYRESULTS bodies; 3,301 and 50,000 to the POPULATION_SERVED_COUNT filters inside those same claims; September 15th and August 31st, 2029 to c4 and c5; the 5 m scale bar to compute.py. Round 3's false universal is gone and the replacement is defensible: three separate queries were run and no total was computed, which is exactly what the `rejected` entry forbids anyone to compute. Frame 8 preserves 'can' per c16's note. One charge: the entities_note says the principal investigator is deliberately named on no frame, and frame 3 prints 'pi  Sudipta Chowdhury' in its metadata. It traces to c3 so it is not a fabrication, but the deck breaks its own stated law in its own fine print."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 5.5,
+      "why": "The rubric's 9 is 'names the county, the body and the deadline' and this deck names none of the three at a size a reader reads. No county, no city, no named utility. More seriously, the deck uses the definite article six times for a noun it never introduces: 'the award' (3, 8), 'the abstract' (3, 5, 7, 8), 'the project' (8). Frame 1's cover verb is passive with no agent, 'Aimed at small systems', and a scroller never learns what is aimed. That is not one missing fact, it is a referential hole, and the rubric's 5 is 'a topic rather than a story'. The stake itself is concrete and frame 9 gives a real next step, which is what holds this above 5."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.0,
+      "why": "The turn is real but it arrives at frame 2 ('Everything before now. Nothing after it.') and is then restated at frame 4 ('A record answers what happened and never what is about to') and again at frame 7 ('Every one of these is finished'). Three of nine frames make one point. Frame 7's own dek concedes the restatement, and 'nothing cuttable' is the rubric's own 9-line test failing directly. The genuine second turn is frame 8, which is also the least legible frame in the deck. The close lands."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "'The trace ends where the pen is.' and 'Every one of these is finished.' are written sentences, not generated ones, and the round-3 dek swap on frame 2 is a clear improvement over 'current, kept and complete'. Honest about what is not built without doom. But nothing here is Texan except the word Texas on frames 1, 6 and 9, and the rubric penalises state-level abstraction over regional specificity by name. 'Which is exactly what the abstract means by limited ability to anticipate' is a footnote pretending to be a line."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.8,
+      "why": "Palette and structure are distinct and the cover opens on a number rather than on an absence, which is what five consecutive run records asked for. But this is the third NSF-award deck in the 30-day window: no. 11 on August 29th (award 2535195, UT Austin), no. 26 on September 16th (award 2539663, UT Arlington), and this one four days after the last. The ledger's own instrument field for no. 26 reads 'a university release read against the federal award record that funds it' and this run's reads 'one federal award record read through the funder's own search API'. Topic, entities and keywords genuinely differ so dedupe_check is correctly clean, but a reader who follows this account saw a federal grant to a Texas university on Wednesday."
+    }
+  ],
+  "weighted_score": 6.896,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Replace frame 1's dek second clause, which restates frame 3's whole job, with the sentence the deck never says where a scroller reads it, so that it becomes 'Active community water systems on the EPA's record. The National Science Foundation is paying Texas A&M to build a predictive digital twin for systems this size.'",
+  "lens": "reader",
+  "round": 4,
+  "date": "2026-09-20"
+}

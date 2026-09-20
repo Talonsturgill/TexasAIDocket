@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-19",
+    "generated": "2026-09-20",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -42,6 +42,21 @@
         "tx-2026-0086-c2",
         "tx-2026-0086-c3",
         "tx-2026-0086-c4"
+      ]
+    },
+    "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "e218d29067c7ae48744463c0f9a68d6310ffc1d550b615f455efc461d09f3911",
+      "proven": [
+        "tx-2026-0163-c1",
+        "tx-2026-0163-c2",
+        "tx-2026-0163-c3",
+        "tx-2026-0163-c4",
+        "tx-2026-0163-c5",
+        "tx-2026-0163-c7",
+        "tx-2026-0163-c8",
+        "tx-2026-0163-c9"
       ]
     },
     "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode": {
@@ -512,6 +527,15 @@
         "tx-2026-0069-c6"
       ]
     },
+    "https://healthsystemcio.com/2026/09/10/in-basket-ai-wrong-metric/": {
+      "etag": null,
+      "last_modified": "Sun, 20 Sep 2026 01:22:45 GMT",
+      "hash": "0d294efd93eec8b42de12ca4fb6db4b223f2b81833717a41a09603908e3507aa",
+      "proven": [
+        "tx-2026-0162-c10",
+        "tx-2026-0162-c9"
+      ]
+    },
     "https://interchange.puc.texas.gov/Documents/59029_503_1678287.PDF": {
       "etag": "\"33f332b2137dd1:0\"",
       "last_modified": "Fri, 28 Aug 2026 19:11:35 GMT",
@@ -672,7 +696,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending": {
       "etag": null,
       "last_modified": null,
-      "hash": "d52ee1d3e1f89911a3795296cdb7e25f8eabf4c4203927f29c2c9b26182254a8",
+      "hash": "727e636001b5c9c755d4f37c9637b703e52c18d1e0d0b2d7693d059df8fc5052",
       "proven": [
         "tx-2026-0107-c1"
       ]
@@ -680,7 +704,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending": {
       "etag": null,
       "last_modified": null,
-      "hash": "57e9a07daa171cc8e2ea6d0eccfad4f4a1fbd8e49ac6c3a898878e6ac3336b42",
+      "hash": "0f2d2dfb251fd2b52ca012203f1a2d19b8368f550777cc4cf0ec1ce7ee793a41",
       "proven": [
         "tx-2026-0107-c9"
       ]
@@ -791,6 +815,16 @@
         "tx-2026-0131-c2"
       ]
     },
+    "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "3f99ed9833996b47a85cf17587e09c992f4dbf4310e1581176b6736032ffdeaa",
+      "proven": [
+        "tx-2026-0165-c1",
+        "tx-2026-0165-c2",
+        "tx-2026-0165-c3"
+      ]
+    },
     "https://news.utexas.edu/2026/02/19/ut-launches-new-school-of-computing-uniting-computer-and-data-science-statistics-information-disciplines/": {
       "etag": null,
       "last_modified": null,
@@ -837,7 +871,9 @@
         "tx-2026-0104-c12",
         "tx-2026-0104-c13",
         "tx-2026-0104-c14",
-        "tx-2026-0104-c9"
+        "tx-2026-0104-c9",
+        "tx-2026-0163-c10",
+        "tx-2026-0163-c6"
       ]
     },
     "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/": {
@@ -917,7 +953,7 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "bac130ab9b9f96ff3be1e462d64c2eb5b2853cf15623042f54878b6a54a1fb81",
+      "hash": "473e30b0bc56fadb9e49ffe11e69d30fab902d076e374f5a0a2081c2cb7967e8",
       "proven": [
         "tx-2026-0002-c12",
         "tx-2026-0002-c4",
@@ -1000,7 +1036,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Fri, 18 Sep 2026 12:00:00 GMT",
+      "last_modified": "Sat, 19 Sep 2026 12:00:00 GMT",
       "hash": "8dea91edb1817c65c0be830b24e01718b47c6f837cfff4da13eea5b32db64ef7",
       "proven": [
         "tx-2026-0109-c1",
@@ -1633,8 +1669,8 @@
     },
     "https://www.galaxy.com/data-centers": {
       "etag": null,
-      "last_modified": "Thu, 17 Sep 2026 02:01:20 GMT",
-      "hash": "ca12c8c27025d08f5830893eeff534536edcc387e5849b6d1c80c62d297eb692",
+      "last_modified": "Sun, 20 Sep 2026 02:01:20 GMT",
+      "hash": "87a04c11e02a61f8d2dcf3eeb1c9aace150ebc9d9d58d14823052a5e19f41e07",
       "proven": [
         "tx-2026-0157-c7"
       ]
@@ -1885,6 +1921,21 @@
         "tx-2026-0157-c4",
         "tx-2026-0157-c5",
         "tx-2026-0157-c6"
+      ]
+    },
+    "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html": {
+      "etag": null,
+      "last_modified": "Tue, 15 Sep 2026 14:06:50 GMT",
+      "hash": "e5c3b74627b795a74007a4fab34ac8dcb317b6eba896be88022ab9da00f52f52",
+      "proven": [
+        "tx-2026-0162-c1",
+        "tx-2026-0162-c2",
+        "tx-2026-0162-c3",
+        "tx-2026-0162-c4",
+        "tx-2026-0162-c5",
+        "tx-2026-0162-c6",
+        "tx-2026-0162-c7",
+        "tx-2026-0162-c8"
       ]
     },
     "https://www.sanangelo.gov/803/Data-Center-Information": {

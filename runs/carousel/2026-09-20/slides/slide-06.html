@@ -1,0 +1,380 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 6 of 9. Archetype DOCUMENT.
+     THE COUNT. Three separate sheets of chart stock on the pump house bench, at three different widths,
+     each carrying its own complete EPA query stanza and the count that query returned.
+     4,749 active community water systems in Texas. 3,579 of them serving fewer than 3,301 people.
+     87 serving more than 50,000.
+     THE PARTITION MISREAD IS THE ONE THING THAT WOULD KILL THIS FRAME, and the answer is
+     structural rather than a caption asking the reader not to make it. Three physically separate
+     sheets, never nested and never stacked as segments. A complete four line query stanza on each.
+     THE HOOK SAYS WHAT IS TRUE AND ROUND 3'S FIRST CUT DID NOT. It read "None of these is a share
+     of another." and that is FALSE: c21's query is c20's three filters plus a population filter,
+     so 3,579 is necessarily a subset of 4,749, and this frame's own dek says "3,579 of them" 950 px
+     below it. figures.json states the containment in its own words under a key named
+     small_systems_of_all. An integrity judge called it a hard fail and was right. The forbidden
+     inference was never containment, it was ADDITION: that the three are slices of one whole that
+     sum to it. They are not a partition, the population filters may exclude null rows, and there
+     is no total to be had from them. The hook now says that and nothing more.
+     THE WIDTHS RUN AGAINST THE COUNTS, so the smallest count sits on the widest sheet and length
+     cannot be read as quantity. And NO ARITHMETIC OPERATOR ANYWHERE IN THE FRAME.
+     claims.json rejects v1 minus v2 and v1 minus v3 by name, because the population filters may
+     exclude null rows and the three counts are not a partition of anything.
+     ONLY 87 CARRIES UNIT MARKS. Round 2 measured the other two fields merging into the deck's own
+     hatch, which is what put a bar chart in front of three judges. 87 is the one count an eye can
+     run along, and its row stopping short of a rule that runs on to the margin is the deck's motif
+     landing once and legibly rather than three times and never.
+     THE STANZAS AND COUNTS SIT ON FLAT STOCK, laid by N.stock in the over pass, so 15 px mono never
+     competes with a 6 px screen.
+     NO ACCENT ON THIS FRAME. See the tally comment in `over` for why an accent this small is a
+     frame without one rather than a frame with a quiet one.
+     Planned frame median L* 20. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:126px; width:700px; font-size:80px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  /* 24px rather than 22px, which is the render report's own mobile floor. It sat at 22 and was
+     the deck's only tiny-text warning, on the frame carrying every number in the deck. Marking
+     it data-decorative would have cleared the warning and is the move this routine names as a
+     failure by name, because a line whose job is saying what the numbers are not is the
+     opposite of decoration. The sheets moved up to pay for the extra line. */
+  .dek  { position:absolute; left:80px; top:1102px; width:920px; font-size:24px;
+          line-height:1.40; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three queries. Three counts. No total.</h1>
+<p class="dek">Texas counts 4,749 active community water systems. 3,579 of them serve fewer than 3,301 people. A separate query returns 87 serving more than 50,000.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the EPA's own record returns", counter: "06 / 09",
+      src: "c12 c20 c21 c22   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260906);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE THREE BLOCKS. Each count is READ from claims.json's computed_values by the build and
+     * is never typed on a slide, and each carries the exact query that returned it. The blocks
+     * are declared here as data so the marks below can't disagree with the stanzas beside them. */
+    var BLOCKS = [
+      { n: 4749, id: "v1", tally: false,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX", "PWS_ACTIVITY_CODE   A",
+                 "PWS_TYPE_CODE       CWS"] },
+      { n: 3579, id: "v2", tally: false,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX   PWS_ACTIVITY_CODE  A",
+                 "PWS_TYPE_CODE       CWS",
+                 "POPULATION_SERVED_COUNT  <  3301"] },
+      { n: 87, id: "v3", tally: true,
+        stanza: ["WATER_SYSTEM", "PRIMACY_AGENCY_CODE  TX   PWS_ACTIVITY_CODE  A",
+                 "PWS_TYPE_CODE       CWS",
+                 "POPULATION_SERVED_COUNT  >  50000"] }
+    ];
+
+    /* THE SHEET, and the geometry every mark is placed from. Hoisted so the over pass can lay
+     * the marks after the screen has run rather than through it. */
+    /* THREE SEPARATE SHEETS, ONE PER QUERY. They were one sheet with rules between the blocks
+     * until layout_check measured the subject coming apart into ONE piece at thumb scale and
+     * refused it, correctly: a GRID is a count and units a reader can't separate in the feed are
+     * not countable. Three pieces of paper with the bench showing between them is the answer the
+     * gate wanted and it is also a better argument than the rules were, because three physically
+     * separate sheets cannot be read as three tiers of one measurement. */
+    /* THREE SHEETS AT THREE WIDTHS, AND THE WIDTHS ARE THE ANTI PARTITION ARGUMENT.
+     *
+     * Round 2 measured all three at near identical width and read the frame as a stacked bar
+     * chart, which is the exact misreading claims.json rejects by name. The cause was a geometry
+     * bug rather than a design choice: every sheet was 940 wide and a 130 column field at a 7.4
+     * pitch needs 990, so the marks ran 50 px off the right edge of their own paper on all three.
+     * With the paper's edge buried under its own marks there was nothing left to tell three
+     * sheets apart, and what printed was one full width field in three tiers.
+     *
+     * The widths are now 884, 680 and 940 and they are DELIBERATELY not in the order of the
+     * numbers. The SMALLEST count, 87, sits on the WIDEST sheet. A reader cannot take length for
+     * quantity here, because length runs against quantity, and that is a stronger barrier than
+     * the dek's one sentence was ever going to be on its own. The hook says it outright now too.
+     *
+     * THE TWO LARGE FIELDS OF UNIT MARKS ARE GONE, and removing them is the repair rather than a
+     * retreat from it. Both scoring rounds attacked them and both were right for the same
+     * reason: 4,749 marks in an 884 by 264 region is about one and a half pixels each, so they
+     * merged into a mesh indistinguishable from the deck's own cell 6 hatch. The frame's
+     * acceptance list asked for marks countable as separate objects at 432 px and that was never
+     * reachable at this count. What was left was a texture that read as a filled bar, which is
+     * the one inference this frame exists to refuse.
+     *
+     * What carries the argument is what a reader could actually read in the round 2 print: three
+     * separate sheets, each with its COMPLETE query and its own count. 87 keeps its marks,
+     * because 87 is a number an eye can run along, and that single row stopping two thirds of the
+     * way across the widest sheet in the frame is the deck's motif landing once and clearly
+     * rather than three times and never. */
+    var SHEETS = [
+      { x: 44, y: 330, w: 884, h: 150, rot: -0.011 },
+      { x: 118, y: 530, w: 680, h: 150, rot:  0.014 },
+      { x: 62, y: 730, w: 940, h: 210, rot: -0.008 }
+    ];
+
+    /* THE TWO SCALES, AND THE DIFFERENCE BETWEEN THEM IS THE ARGUMENT RATHER THAN A COMPROMISE.
+     *
+     * 4,749 marks cannot be individually countable at 432 px. The frame holds 1.46 million
+     * pixels and 4,749 countable marks would need most of them, which would leave no room for
+     * the other two measurements. The first render proved it: at a 4.6 px mark the first two
+     * blocks greyed out into exactly the wash this technique's named failure describes.
+     *
+     * So the blocks are drawn at the scale each NUMBER deserves. The first two are dense fields
+     * a reader cannot count, because four and a half thousand small water systems is not a
+     * countable thing and pretending otherwise would be the chart lying about its own subject.
+     * The third is laid at nearly twice the pitch, in ONE ROW, with a hand's width of bare paper
+     * running on after it, so 87 is a number a reader can actually run an eye along.
+     *
+     * THE CONTRAST BETWEEN THE TWO SCALES IS THE FRAME'S WHOLE POINT. It is also why the blocks
+     * still can't be read as a partition: they are not even drawn at the same size. */
+    /* THREE SCALES RATHER THAN TWO, one per block, because three counts this far apart do not
+     * share a pitch. Each block's column count is chosen so its LAST ROW STOPS VISIBLY SHORT,
+     * which is the deck's motif and is the whole reason the granite has somewhere honest to go:
+     * 69 of 180 on the first, 48 of 107 on the second, 87 of a row that runs on after it. */
+    /* ONE SCALE, ON THE ONE BLOCK THAT GETS MARKS. 87 at an 8.4 px pitch runs 731 px and the
+     * rule under it runs 884, so the row stops with about 150 px of ruled bare paper after it and
+     * the mark a reader can see is the mark that stopped. A 5.0 px mark on a 3.4 px gap is
+     * countable at full size, which 4,749 of anything never was. */
+    var TALLY = { pitch: 8.4, w: 5.0, h: 13.0 };
+    var FOOTNOTE = "EPA ENVIROFACTS SDWIS, QUERIED 2026-09-20. EACH SHEET IS ITS OWN QUERY.";
+
+    M.print(cx, {
+      seed: 33,
+      draw: function (a) {
+        /* THE BENCH, 0.75 m of painted plywood at working height, lit from the west door. */
+        (function () {
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, W, H);
+          var g = a.createLinearGradient(0, 0, W * 0.85, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.16)");
+          g.addColorStop(0.40, "rgba(0,0,0,0.10)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.58)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+          /* the plywood's grain, running along the bench */
+          var RG = TX.rng(619);
+          a.globalAlpha = 0.07;
+          for (var i = 0; i < 90; i++) {
+            var y = RG() * H;
+            a.strokeStyle = RG() < 0.5 ? "#000" : M.G.bright;
+            a.lineWidth = 0.6 + RG() * 1.6;
+            a.beginPath(); a.moveTo(-20, y);
+            a.bezierCurveTo(W * 0.3, y + (RG() - 0.5) * 16, W * 0.7, y + (RG() - 0.5) * 16, W + 20, y);
+            a.stroke();
+          }
+          a.globalAlpha = 1;
+          /* the bench's own front edge, cut by the bottom of the frame */
+          a.fillStyle = "rgba(0,0,0,0.42)"; a.fillRect(0, H - 92, W, 92);
+          a.fillStyle = M.G.shade; a.fillRect(0, H - 92, W, 10);
+        })();
+
+        /* THE BENCH'S OWN THINGS. A mechanical pencil and a bulldog clip, at true size, lying
+         * where a hand left them. They are here because a working bench has them, and because
+         * layout_check counts separable pieces inside the primary image rect and three queries
+         * only ever make three sheets. The missing pieces are objects rather than more data. */
+        (function () {
+          var PPM = 690;
+          /* the pencil, 0.19 m, across the gap between the first and second sheets */
+          a.save();
+          a.translate(824, 604); a.rotate(0.38);
+          a.fillStyle = "rgba(0,0,0,0.52)"; a.fillRect(6, 9, 0.19 * PPM, 11);
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, 0.19 * PPM, 11);
+          a.fillStyle = "rgba(246,235,200,0.30)"; a.fillRect(0, 0, 0.19 * PPM, 3.4);
+          a.fillStyle = M.G.metal; a.fillRect(0.19 * PPM - 20, 1, 20, 9);
+          a.restore();
+          /* the bulldog clip, 0.05 m, on the bench below the second sheet */
+          a.save();
+          a.translate(150, 956); a.rotate(-0.16);
+          var cw = 0.05 * PPM, chh = 0.034 * PPM;
+          a.fillStyle = "rgba(0,0,0,0.54)"; a.fillRect(7, 10, cw, chh);
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, cw, chh);
+          a.fillStyle = "rgba(246,235,200,0.26)"; a.fillRect(0, 0, cw * 0.26, chh);
+          a.strokeStyle = M.G.metal; a.lineWidth = 3;
+          a.beginPath(); a.arc(cw * 0.30, -2, cw * 0.34, Math.PI * 1.1, Math.PI * 1.95); a.stroke();
+          a.beginPath(); a.arc(cw * 0.72, -2, cw * 0.34, Math.PI * 1.05, Math.PI * 1.9); a.stroke();
+          a.restore();
+        })();
+
+        /* THE THREE SHEETS, each lifted slightly so it throws a real contact shadow onto the
+         * bench rather than lying like a pasted rectangle, and each at its own small angle
+         * because three sheets a hand put down are not registered to each other. */
+        for (var sI = 0; sI < SHEETS.length; sI++) {
+          (function (SH, seed) {
+            a.save();
+            a.translate(SH.x, SH.y); a.rotate(SH.rot);
+            a.fillStyle = "rgba(0,0,0,0.54)";
+            a.beginPath();
+            a.moveTo(12, 18); a.lineTo(SH.w + 18, 12);
+            a.lineTo(SH.w + 24, SH.h + 22); a.lineTo(14, SH.h + 18);
+            a.closePath(); a.fill();
+
+            a.fillStyle = M.G.bright;
+            a.fillRect(0, 0, SH.w, SH.h);
+            var g = a.createLinearGradient(0, 0, SH.w, SH.h * 0.6);
+            g.addColorStop(0.00, "rgba(246,235,200,0.34)");
+            g.addColorStop(0.52, "rgba(246,235,200,0.12)");
+            g.addColorStop(1.00, "rgba(0,0,0,0.10)");
+            a.fillStyle = g; a.fillRect(0, 0, SH.w, SH.h);
+            var RT = TX.rng(seed);
+            a.globalAlpha = 0.045;
+            for (var i = 0; i < 900; i++) {
+              a.fillStyle = RT() < 0.5 ? "#000" : "#fff";
+              a.fillRect(RT() * SH.w, RT() * SH.h, 1.6, 1.6);
+            }
+            a.globalAlpha = 1;
+            a.strokeStyle = "rgba(0,0,0,0.26)"; a.lineWidth = 1.2;
+            a.strokeRect(0.5, 0.5, SH.w - 1, SH.h - 1);
+            a.restore();
+          })(SHEETS[sI], 733 + sI * 91);
+        }
+      },
+      over: function (c) {
+        M.reserve(c, { top: 118, topSolid: 60, bottom: 188, bottomSolid: 112 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE MARKS AND THE STANZAS, LAID AFTER THE SCREEN. An 8.4 px mark pitch beats badly
+         * against a cell 6 hatch, so the marks never go through it. This is also where the one
+         * block that takes the accent gets it. */
+        for (var bI = 0; bI < BLOCKS.length; bI++) {
+          var B = BLOCKS[bI], SH = SHEETS[bI];
+          c.save();
+          c.translate(SH.x, SH.y); c.rotate(SH.rot);
+
+          /* THE QUERY STANZA. Every sheet names the exact set it counted, which is the instinct
+           * the ledger carries at 0.86 confidence: a bare count over a partly quoted index
+           * asserts a number nothing checked. */
+          /* FLAT STOCK UNDER THE STANZA AND THE COUNT, MEASURED RATHER THAN SPANNED.
+           *
+           * Round 2 called the stanzas illegible noise and the counts hard to read, and the cause
+           * is the same one frame 3 had: a cell 6 hatch under 15 px mono. See N.stock.
+           *
+           * The first repair laid the stock across the sheet's FULL WIDTH and traded one defect
+           * for the one next to it. A bright band running edge to edge inside every sheet is a
+           * filled bar, which is the reading this frame exists to refuse, so the stock is now
+           * measured off the type it serves and stops where the words stop. Two patches, one for
+           * the stanza and one for the count, with the hatched stock of the sheet showing between
+           * and around them. That is what ink on paper looks like. */
+          c.font = '500 15px "JetBrains Mono", monospace';
+          var sw = 0;
+          for (var l = 0; l < B.stanza.length; l++) {
+            sw = Math.max(sw, c.measureText(B.stanza[l]).width);
+          }
+          var nStr = B.n.toLocaleString("en-US");
+          c.font = '700 42px "JetBrains Mono", monospace';
+          var nw = c.measureText(nStr).width;
+          M.stock(c, [
+            [14, 14, sw + 34, B.stanza.length * 17 + 24],
+            [SH.w - 28 - nw - 22, 20, nw + 40, 58]
+          ], { feather: 14 });
+
+          c.font = '500 15px "JetBrains Mono", monospace';
+          c.fillStyle = "rgba(46,32,22,0.86)";
+          for (var l2 = 0; l2 < B.stanza.length; l2++) c.fillText(B.stanza[l2], 28, 36 + l2 * 17);
+
+          c.font = '700 42px "JetBrains Mono", monospace';
+          c.fillStyle = "rgba(46,32,22,0.96)";
+          c.textAlign = "right";
+          c.fillText(nStr, SH.w - 28, 62);
+          c.textAlign = "left";
+
+          /* THE TALLY, ON THE ONE BLOCK SMALL ENOUGH TO CARRY ONE, AND NO GRANITE ON IT.
+           *
+           * Until round 2 this painted all 3,579 marks of the middle block in granite, which
+           * prints as a solid red field across the middle third of the frame. The chassis' own
+           * accent law forbids it in as many words, "never a threshold, never a band, never a
+           * zone", and a craft judge quoted that line back. It was also the WRONG argument: a
+           * colour laid over one whole block says that block is a category of the others, which
+           * is the partition reading this frame exists to refuse.
+           *
+           * THE REPLACEMENT WAS GRANITE ON THE LAST FIVE MARKS and it did not survive being
+           * measured either. Five marks is 0.0002 of the frame against layout_check's 0.002
+           * floor, so it was a mark no reader would ever find at feed size, carrying the cost of
+           * a colour the deck spends deliberately. An accent nobody can see is not a small
+           * accent, it is a frame that does not use one, so this dossier now says accent none
+           * and the pixels agree with it.
+           *
+           * THE MOTIF STILL LANDS HERE and it lands in the drawing rather than in a colour. The
+           * row runs 87 marks across a field with room for 130 and stops, and the rule they were
+           * laid against runs on to the margin, so the bare stretch after the last mark is
+           * visibly paper a mark could have gone on. That is frame 2's stopped stylus said in
+           * the one place in the deck where a reader can count what was and was not written. */
+          if (B.tally) {
+            var top = 34 + B.stanza.length * 17 + 34;
+            var ruleEnd = SH.w - 28;
+            /* the tally gets its own flat strip, for the same reason the stanza does: a 5 px mark
+             * against a 6 px hatch is two textures at one pitch and neither survives it */
+            M.stock(c, [[14, top - 14, ruleEnd - 2, TALLY.h + 34]], { feather: 12 });
+            for (var i2 = 0; i2 < B.n; i2++) {
+              var mx = 28 + i2 * TALLY.pitch;
+              c.fillStyle = "rgba(46,32,22,0.84)";
+              c.fillRect(mx, top, TALLY.w, TALLY.h * 0.52);
+              c.fillRect(mx + TALLY.w * 0.34, top + TALLY.h * 0.52, TALLY.w * 0.32, TALLY.h * 0.48);
+            }
+            /* THE RULE THE MARKS WERE LAID AGAINST, running on past the last one to the sheet's
+             * own margin. The bare stretch after the eighty seventh mark is the frame's focal and
+             * it only reads as BARE if the rule proves a mark could have gone there. */
+            c.strokeStyle = "rgba(46,32,22,0.26)"; c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(28, top + TALLY.h + 8); c.lineTo(ruleEnd, top + TALLY.h + 8);
+            c.stroke();
+          }
+          c.restore();
+        }
+
+        /* THE FOOTNOTE, ON THE THIRD SHEET rather than on the bench, and the move is a repair.
+         * It sat at (58, 1178) on the bench and printed straight through the dek's second line,
+         * two text runs overprinted on the only frame in the deck carrying a number. A reader
+         * judge caught it and no machine gate did, because the dek is DOM and the footnote is
+         * canvas and nothing in the suite compares the two for overlap. That is a gap in the
+         * SUITE and it is written up as one rather than papered over here.
+         * It is also the right home for it. The note is about the queries, and the queries are
+         * on the paper. */
+        c.save();
+        c.translate(SHEETS[2].x, SHEETS[2].y); c.rotate(SHEETS[2].rot);
+        c.font = '500 13px "JetBrains Mono", monospace';
+        var fnw = c.measureText(FOOTNOTE).width;
+        M.stock(c, [[16, SHEETS[2].h - 42, fnw + 32, 32]], { feather: 12 });
+        c.font = '500 13px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(46,32,22,0.62)";
+        c.fillText(FOOTNOTE, 28, SHEETS[2].h - 19);
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 2 of 9. Archetype CLOSE_CROP. THE DECK'S ONE IMAGE.
+     A 0.25 m wide strip chart in a wall recorder, paper travelling LEFT TO RIGHT under a fixed
+     stylus, cropped by the left, right and bottom edges. The granite trace runs from the left
+     margin through roughly six days and STOPS DEAD AT THE STYLUS. Ahead of it, for the last
+     third of the band, there is nothing but the printed rules.
+     IT IS A STRIP AND NOT A DISC, AND THAT IS THE ONE PLACE THE SYNTHESIS OVERRULED THE
+     TREATMENT. The director pitched a circular chart and named "reads as a dial at 432 px" as
+     its own largest risk. This project holds that a gauge is a bar and never a dial, because a
+     dial implies a red zone and a red zone is a verdict the data can't carry, and a red trace
+     inside a circle is exactly the picture that rule exists to prevent. A strip makes time a left
+     to right axis that cannot be misread, and it carries the motif better, because a line that
+     stops with blank paper running ahead of it reads the way a reader reads.
+     NO NUMBERED SCALE, NO COLOURED BAND, NO ZONE, NO NEEDLE FROM A HUB. The pen arm is a
+     mechanical linkage with a stylus on the end of it.
+     Planned frame median L* 18. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:130px; width:800px; font-size:86px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:1108px; width:620px; font-size:25px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Everything before now. Nothing after it.</h1>
+<p class="dek">The trace ends where the pen is. It is a record rather than a warning.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "The instrument the room has", counter: "02 / 09",
+      src: "c15   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 86, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260902);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE TRACE'S GEOMETRY LIVES OUT HERE because the trace is the deck's ACCENT, and the
+     * chassis law is that real colour is painted in `over`, after the screen has run. Drawing it
+     * inside `draw` sends it through the twin as a grey and it prints as cream ink, which is
+     * what the first render of this frame did. The shape is computed once and used twice, so
+     * the printed paper and the ink on it can never disagree about where the pen is. */
+    var GEO = { PPM: 4320, by: 470 };
+    GEO.bh = 0.115 * GEO.PPM;
+    GEO.penX = 1080 * 0.66;
+    GEO.v = function (u) {
+      return 0.52
+           + 0.150 * Math.sin(u * Math.PI * 5.6)
+           + 0.075 * Math.sin(u * Math.PI * 14.9 + 0.7)
+           + 0.032 * Math.sin(u * Math.PI * 37.0 + 2.2)
+           + 0.014 * Math.sin(u * Math.PI * 83.0 + 1.3);
+    };
+    GEO.tipY = GEO.by + GEO.bh * (1 - GEO.v(1));
+
+    M.print(cx, {
+      seed: 12,
+      draw: function (a) {
+        /* THE RECORDER AT 0.35 m FROM THE EYE. A 0.25 m chart band is then 1,080 px across and
+         * runs off both edges, which is what makes this a close crop rather than a picture of a
+         * box on a wall. Every dimension below is a real one at that distance. */
+        var PPM = 4320;
+        var m = function (v) { return v * PPM; };
+        var castX = M.castDir()[0];
+
+        /* THE HOUSING, the darkest thing in the frame, with the deck's block wall far behind it
+         * through the gap at the top. The chart sits in a machined recess. */
+        (function () {
+          a.fillStyle = M.G.deep; a.fillRect(0, 0, W, H);
+          var g = a.createLinearGradient(0, 0, 0, H);
+          g.addColorStop(0.00, "rgba(0,0,0,0.58)");
+          g.addColorStop(0.42, "rgba(0,0,0,0.00)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.52)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+        })();
+
+        /* THE CHART BAND. 0.25 m tall in the frame, bleeding left, right and bottom.
+         * Hour rules VERTICAL, which is the time axis, and range rules horizontal. */
+        var by = 470, bh = m(0.115);
+        (function () {
+          /* the recess the paper runs in, its west lip catching the key */
+          a.fillStyle = M.G.dark;
+          a.fillRect(-10, by - 34, W + 20, bh + 82);
+          a.fillStyle = "rgba(0,0,0,0.45)";
+          a.fillRect(-10, by - 34, W + 20, 12);
+
+          M.chartBand(a, { x: -10, y: by, w: W + 20, h: bh },
+                      { stock: M.G.bright, rule: M.G.mid, hours: 22, ranges: 6 });
+
+          /* THE LIGHT ACROSS THE PAPER. The door is west, off frame left, so the stock is
+           * brightest at the left and falls away east. That is also why the BARE stock ahead of
+           * the pen is not the brightest thing in the frame: it is further east than the trace.
+           * The paper is lit, not glowing. */
+          var g = a.createLinearGradient(0, 0, W, 0);
+          g.addColorStop(0.00, "rgba(246,235,200,0.26)");
+          g.addColorStop(0.40, "rgba(246,235,200,0.05)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.24)");
+          a.fillStyle = g; a.fillRect(-10, by, W + 20, bh);
+
+          /* the paper's own tooth */
+          var RT = TX.rng(207);
+          a.globalAlpha = 0.05;
+          for (var i = 0; i < 2600; i++) {
+            a.fillStyle = RT() < 0.5 ? "#000" : "#fff";
+            a.fillRect(RT() * W, by + RT() * bh, 1.5, 1.5);
+          }
+          a.globalAlpha = 1;
+        })();
+
+        /* THE TRACE, AND WHERE IT STOPS. The stylus sits at 0.66 of the band rather than at the
+         * centre, so the history has room to be read and the bare stock ahead of it is a third
+         * of the frame and unmissable. A real pressure trace wobbles, so this one does.
+         * NOTHING IS DRAWN TO THE RIGHT OF THE STYLUS. */
+        var penX = GEO.penX;
+        (function () {
+          var t0 = -10, ty = by, th = bh;
+          a.strokeStyle = "rgba(0,0,0,0.62)"; a.lineWidth = 3.4;
+          a.lineJoin = "round"; a.lineCap = "round";
+          a.beginPath();
+          for (var px = t0; px <= penX; px += 1.5) {
+            var py = ty + th * (1 - GEO.v((px - t0) / (penX - t0)));
+            if (px === t0) a.moveTo(px, py); else a.lineTo(px, py);
+          }
+          a.stroke();
+        })();
+
+        /* THE PEN ARM, entering from the upper right, and its STYLUS resting on the paper. A
+         * mechanical linkage with a machined edge, deliberately NOT a needle pivoting from a hub
+         * against a numbered scale, because that is a gauge and this is a recorder. */
+        (function () {
+          var vv = 0.52
+                 + 0.150 * Math.sin(Math.PI * 5.6)
+                 + 0.075 * Math.sin(Math.PI * 14.9 + 0.7)
+                 + 0.032 * Math.sin(Math.PI * 37.0 + 2.2)
+                 + 0.014 * Math.sin(Math.PI * 83.0 + 1.3);
+          var tipY = by + bh * (1 - vv);
+
+          /* the arm's own cast on the paper, east and short, two part */
+          a.save();
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = m(0.0075);
+          a.lineCap = "round";
+          a.beginPath();
+          a.moveTo(penX + 16 * castX, tipY + 7);
+          a.lineTo(penX + m(0.062) + 16 * castX, by - m(0.030) + 7);
+          a.stroke();
+          a.restore();
+
+          /* the arm, 0.18 m of machined aluminium, cropped by the right edge */
+          a.strokeStyle = M.G.metal; a.lineWidth = m(0.0072);
+          a.lineCap = "round";
+          a.beginPath();
+          a.moveTo(penX, tipY);
+          a.lineTo(penX + m(0.070), by - m(0.036));
+          a.lineTo(W + 30, by - m(0.052));
+          a.stroke();
+          /* the lit west edge of the arm, one pixel of engraving off register */
+          a.strokeStyle = "rgba(246,235,200,0.42)"; a.lineWidth = m(0.0018);
+          a.beginPath();
+          a.moveTo(penX - 2, tipY - 3);
+          a.lineTo(penX + m(0.070) - 2, by - m(0.036) - 3);
+          a.lineTo(W + 30, by - m(0.052) - 3);
+          a.stroke();
+
+          /* the pen carrier block, and the 3 mm stylus touching the paper */
+          a.fillStyle = M.G.shade;
+          a.fillRect(penX + m(0.058), by - m(0.046), m(0.030), m(0.026));
+          a.fillStyle = "rgba(246,235,200,0.30)";
+          a.fillRect(penX + m(0.058), by - m(0.046), m(0.008), m(0.026));
+          a.fillStyle = M.G.void;
+          a.beginPath(); a.arc(penX, tipY, m(0.0018), 0, Math.PI * 2); a.fill();
+          /* the stylus tip itself is inked in `over`, with the trace it is laying */
+        })();
+
+        /* THE TAKE UP SPOOL EDGE below the band, and the drive sprocket holes along the paper's
+         * lower margin, so the paper is TRAVELLING and a reader can see which way. */
+        (function () {
+          var sy = by + bh;
+          a.fillStyle = M.G.dark; a.fillRect(-10, sy + 10, W + 20, m(0.042));
+          a.fillStyle = "rgba(246,235,200,0.10)"; a.fillRect(-10, sy + 10, W + 20, m(0.006));
+          for (var hx = 18; hx < W; hx += m(0.0115)) {
+            a.fillStyle = M.G.deep;
+            a.beginPath(); a.arc(hx, sy - m(0.0092), m(0.0026), 0, Math.PI * 2); a.fill();
+            a.fillStyle = "rgba(246,235,200,0.22)";
+            a.beginPath(); a.arc(hx - 1.5, sy - m(0.0092) - 1.5, m(0.0012), 0, Math.PI * 2); a.fill();
+          }
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 122, topSolid: 64, bottom: 178, bottomSolid: 106 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE TRACE, IN GRANITE, AFTER THE SCREEN. This is the deck's accent and the accent law
+         * is that granite marks what has ALREADY been made. It runs from the paper's left margin
+         * to the stylus and NOT ONE PIXEL FURTHER, which is the whole argument of the frame. */
+        c.save();
+        c.strokeStyle = M.ACCENT; c.lineWidth = 7.0;
+        c.lineJoin = "round"; c.lineCap = "round";
+        c.beginPath();
+        var t0 = -10;
+        for (var px = t0; px <= GEO.penX; px += 1.5) {
+          var py = GEO.by + GEO.bh * (1 - GEO.v((px - t0) / (GEO.penX - t0)));
+          if (px === t0) c.moveTo(px, py); else c.lineTo(px, py);
+        }
+        c.stroke();
+        c.fillStyle = M.ACCENT;
+        c.beginPath(); c.arc(GEO.penX, GEO.tipY, 7.0, 0, Math.PI * 2); c.fill();
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

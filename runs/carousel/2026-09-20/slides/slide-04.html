@@ -1,0 +1,270 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 4 of 9. Archetype FIGURE_SCALE.
+     THE SECOND INSTRUMENT, AND THE HAND THAT WRITES IT. An operator at 1.7 m standing at the
+     shelf, seen from shoulder height, with the 1.2 m by 3.0 m hydropneumatic tank behind them so
+     its crown runs off the top edge and the tank gets a size from the person.
+     A PERSON IS IN THIS FRAME BECAUSE c15 IS A CLAIM ABOUT WHAT PEOPLE DO. The abstract's
+     criticism is of practices, and a practice has somebody carrying it out.
+     THE MOTIF LANDS AS THE RULED BLANK LINES under the last written entry. The log is current to
+     that line and the page below it is empty, which is the same fact the chart on frame 2 states
+     with a pen.
+     THE ACCENT IS ON THE WRITTEN ENTRIES AND NEVER ON A BLANK LINE.
+     Planned frame median L* 16. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:700px; font-size:80px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:336px; width:620px; font-size:24px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The log is current to this line.</h1>
+<p class="dek">Under the last entry, ruled blank lines. A record answers what happened and never what is about to.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "The other instrument", counter: "04 / 09",
+      src: "c15   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260904);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE OPEN LOGBOOK, 0.30 x 0.21 m, hoisted so the over pass can ink the written entries in
+     * granite after the screen has run. Seven written lines, then RULED BLANK ONES. */
+    var LOG = { x: 470, y: 968, w: 500, h: 322, rot: -0.026 };
+    LOG.written = 5; LOG.rules = 16;
+
+    M.print(cx, {
+      seed: 15,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: 520, f: 900, eye: 1.45 });
+        var castX = M.castDir()[0];
+
+        /* RECOMPOSED AFTER ROUND 1. A craft judge called this frame unfinished and was right on
+         * every count: the declared 1.2 by 3.0 m tank was drawn so high and so dark that nothing
+         * distinguished it from the wall, the operator printed as an UNFILLED CONTOUR with the
+         * ground showing through, roughly a third of the canvas carried no drawn content, and the
+         * logbook floated with no shelf under it.
+         *
+         * THE FIGURE WAS HOLLOW BECAUSE OF AN INK CHOICE, NOT A DRAWING ONE. TXFIG fills a body
+         * with the `paper` ink and outlines it with `ink`. This frame passed paper #121014 against
+         * a ground of #2E2016, so the fill and the ground were within a few L* of each other and
+         * the body vanished, leaving the outline. The cure is the deck's own rule: a figure is
+         * read against WHAT IS BEHIND IT. The tank behind is now genuinely lit, and the figure is
+         * filled dark against it. */
+
+        /* THE BACK WALL, block, and the room falling east into its own shade. */
+        (function () {
+          M.blockWall(a, { x: 0, y: 0, w: W, h: 520 }, S.ppm(3.6),
+                      { face: M.G.shade, joint: M.G.dark });
+          var g = a.createLinearGradient(0, 0, W, 520);
+          g.addColorStop(0.00, "rgba(246,235,200,0.14)");
+          g.addColorStop(0.44, "rgba(0,0,0,0.34)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.66)");
+          a.fillStyle = g; a.fillRect(0, 0, W, 520);
+        })();
+
+        /* THE HYDROPNEUMATIC TANK. 1.2 m across and 3.0 m long on two 0.5 m saddles, lying
+         * across the frame with its crown running OFF THE TOP EDGE, and LIT, because it is what
+         * the figure in front of it has to be read against. This is the frame's primary image
+         * and the previous cut did not draw it where a reader could find it. */
+        (function () {
+          var ppm = S.ppm(2.4), tR = 0.6 * ppm, tY = 688;
+          /* the cast it throws east along the wall behind it */
+          a.fillStyle = "rgba(0,0,0,0.46)";
+          a.fillRect(40, tY - tR + 26, W, tR * 2);
+          /* the cylinder: a lit west flank rolling to the deck's dark on its east side */
+          var g = a.createLinearGradient(0, tY - tR, 0, tY + tR);
+          g.addColorStop(0.00, M.G.stone);
+          g.addColorStop(0.22, M.G.glare);
+          g.addColorStop(0.46, M.G.bright);
+          g.addColorStop(0.80, M.G.shade);
+          g.addColorStop(1.00, M.G.dark);
+          a.fillStyle = g;
+          a.fillRect(-60, tY - tR, W + 120, tR * 2);
+          /* the dished head at the west end, so it reads as a vessel rather than a pipe */
+          a.fillStyle = M.G.glare;
+          a.beginPath(); a.ellipse(-60, tY, tR * 0.32, tR, 0, 0, Math.PI * 2); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.30)"; a.lineWidth = 2.4;
+          a.beginPath(); a.ellipse(-60, tY, tR * 0.32, tR, 0, 0, Math.PI * 2); a.stroke();
+          /* the chalked enamel's longitudinal weld seam, and two strap bands carrying it */
+          a.strokeStyle = "rgba(0,0,0,0.26)"; a.lineWidth = 2.2;
+          a.beginPath(); a.moveTo(-60, tY - tR * 0.40); a.lineTo(W + 60, tY - tR * 0.40); a.stroke();
+          for (var b = 0; b < 2; b++) {
+            var bx = 250 + b * 470;
+            a.fillStyle = M.G.metal; a.fillRect(bx, tY - tR, 20, tR * 2);
+            a.fillStyle = "rgba(246,235,200,0.34)"; a.fillRect(bx, tY - tR, 6, tR * 2);
+            a.fillStyle = "rgba(0,0,0,0.22)"; a.fillRect(bx + 15, tY - tR, 5, tR * 2);
+          }
+          a.strokeStyle = "rgba(0,0,0,0.38)"; a.lineWidth = 2.6;
+          a.beginPath(); a.moveTo(-60, tY + tR); a.lineTo(W + 60, tY + tR); a.stroke();
+          /* the saddles, cropped, with a contact where each meets the slab */
+          for (var sI = 0; sI < 2; sI++) {
+            var sx = 214 + sI * 470;
+            a.fillStyle = "rgba(0,0,0,0.52)"; a.fillRect(sx + 16, tY + tR + 140, 108, 12);
+            a.fillStyle = M.G.dark; a.fillRect(sx, tY + tR - 6, 92, 150);
+            a.fillStyle = "rgba(246,235,200,0.16)"; a.fillRect(sx, tY + tR - 6, 24, 150);
+          }
+        })();
+
+        /* THE SHELF, 1.8 m of painted plywood at 0.95 m, with its brackets and its grain, so the
+         * logbook has something to lie on. */
+        (function () {
+          var sy = 940;
+          a.fillStyle = "rgba(0,0,0,0.56)"; a.fillRect(0, sy + 18, W, H - sy);
+          a.fillStyle = M.G.stone; a.fillRect(0, sy, W, 26);
+          a.fillStyle = "rgba(246,235,200,0.30)"; a.fillRect(0, sy, W, 8);
+          a.fillStyle = M.G.dark; a.fillRect(0, sy + 26, W, H - sy - 26);
+          var g = a.createLinearGradient(0, sy + 26, W, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.16)");
+          g.addColorStop(0.52, "rgba(0,0,0,0.22)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.60)");
+          a.fillStyle = g; a.fillRect(0, sy + 26, W, H - sy - 26);
+          var RG = TX.rng(541);
+          a.globalAlpha = 0.10;
+          for (var i = 0; i < 130; i++) {
+            var gy = sy + 30 + RG() * (H - sy - 30);
+            a.strokeStyle = RG() < 0.5 ? "#000" : M.G.bright;
+            a.lineWidth = 0.7 + RG() * 1.9;
+            a.beginPath(); a.moveTo(-20, gy);
+            a.bezierCurveTo(W * 0.32, gy + (RG() - 0.5) * 18,
+                            W * 0.68, gy + (RG() - 0.5) * 18, W + 20, gy);
+            a.stroke();
+          }
+          a.globalAlpha = 1;
+          for (var k = 0; k < 2; k++) {
+            var bxx = 96 + k * 660;
+            a.fillStyle = "rgba(0,0,0,0.52)"; a.fillRect(bxx + 14, sy + 38, 36, 230);
+            a.fillStyle = M.G.dark; a.fillRect(bxx, sy + 26, 36, 242);
+            a.fillStyle = "rgba(246,235,200,0.16)"; a.fillRect(bxx, sy + 26, 10, 242);
+          }
+        })();
+
+        /* THE OPERATOR, 1.7 m, FILLED DARK against the lit tank. Left of centre so the eye
+         * reaches the person before the thing the person is doing, which is the order c15 is
+         * written in. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "stand", height: 1.7 });
+          S.shadow(fig, { X: -0.95, Z: 3.6, ink: "#000", alpha: 0.50 });
+          S.sprite(fig, { X: -0.95, Z: 3.6,
+                          inks: { ink: M.G.void, paper: M.G.dark, accent: M.G.deep },
+                          fade: false });
+        })();
+
+        /* THE OPEN LOGBOOK on the shelf, with its gutter shadow, its ruling and a real contact
+         * shadow under it. */
+        (function () {
+          a.save();
+          a.translate(LOG.x, LOG.y); a.rotate(LOG.rot);
+          a.fillStyle = "rgba(0,0,0,0.60)"; a.fillRect(14, 18, LOG.w, LOG.h);
+          a.fillStyle = M.G.bright; a.fillRect(0, 0, LOG.w, LOG.h);
+          var g = a.createLinearGradient(0, 0, LOG.w, LOG.h * 0.6);
+          g.addColorStop(0.00, "rgba(246,235,200,0.32)");
+          g.addColorStop(0.50, "rgba(246,235,200,0.08)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.24)");
+          a.fillStyle = g; a.fillRect(0, 0, LOG.w, LOG.h);
+          var gg = a.createLinearGradient(LOG.w * 0.44, 0, LOG.w * 0.56, 0);
+          gg.addColorStop(0.00, "rgba(0,0,0,0.00)");
+          gg.addColorStop(0.50, "rgba(0,0,0,0.44)");
+          gg.addColorStop(1.00, "rgba(0,0,0,0.00)");
+          a.fillStyle = gg; a.fillRect(LOG.w * 0.44, 0, LOG.w * 0.12, LOG.h);
+          a.strokeStyle = "rgba(46,32,22,0.30)"; a.lineWidth = 1.2;
+          for (var r = 1; r <= LOG.rules; r++) {
+            var ry = 26 + r * ((LOG.h - 50) / (LOG.rules + 1));
+            a.beginPath(); a.moveTo(18, ry); a.lineTo(LOG.w - 18, ry); a.stroke();
+          }
+          a.strokeStyle = "rgba(46,32,22,0.36)"; a.lineWidth = 1.3;
+          a.beginPath(); a.moveTo(LOG.w * 0.20, 14); a.lineTo(LOG.w * 0.20, LOG.h - 14); a.stroke();
+          a.beginPath(); a.moveTo(LOG.w * 0.74, 14); a.lineTo(LOG.w * 0.74, LOG.h - 14); a.stroke();
+          a.strokeStyle = "rgba(0,0,0,0.32)"; a.lineWidth = 1.4;
+          a.strokeRect(0.5, 0.5, LOG.w - 1, LOG.h - 1);
+          a.restore();
+        })();
+
+        /* THE BALLPOINT, 0.14 m, lying where the hand left it, with its own cast. */
+        (function () {
+          a.save();
+          a.translate(LOG.x + 238, LOG.y + 196); a.rotate(-0.42);
+          a.fillStyle = "rgba(0,0,0,0.50)"; a.fillRect(6, 8, 126, 10);
+          a.fillStyle = M.G.dark; a.fillRect(0, 0, 126, 10);
+          a.fillStyle = "rgba(246,235,200,0.32)"; a.fillRect(0, 0, 126, 3.4);
+          a.fillStyle = M.G.metal; a.fillRect(108, 1, 24, 8);
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 126, topSolid: 66, bottom: 180, bottomSolid: 108 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE WRITTEN ENTRIES, IN GRANITE, AFTER THE SCREEN. Seven lines of a hand's ballpoint,
+         * and then NOTHING. The ruled lines under them stay bare stock, which is where this
+         * frame's motif lands and why the accent law forbids the colour going any further. */
+        c.save();
+        c.translate(LOG.x, LOG.y); c.rotate(LOG.rot);
+        var R = TX.rng(377);
+        var step = (LOG.h - 50) / (LOG.rules + 1);
+        c.strokeStyle = M.ACCENT; c.lineCap = "round";
+        for (var r = 1; r <= LOG.written; r++) {
+          var ry = 26 + r * step - 4;
+          /* the date column, the reading column, the initial column. A log is kept in columns. */
+          var cols = [[24, LOG.w * 0.18], [LOG.w * 0.23, LOG.w * 0.70], [LOG.w * 0.77, LOG.w * 0.92]];
+          for (var k = 0; k < cols.length; k++) {
+            var x0 = cols[k][0], x1 = cols[k][1];
+            c.lineWidth = 3.4 + R() * 1.2;
+            c.beginPath();
+            var x = x0;
+            c.moveTo(x, ry + (R() - 0.5) * 2);
+            while (x < x1) {
+              var seg = 5 + R() * 11;
+              x += seg;
+              c.lineTo(Math.min(x, x1), ry + (R() - 0.5) * 4.6);
+              if (R() < 0.22) { x += 3 + R() * 5; c.moveTo(Math.min(x, x1), ry + (R() - 0.5) * 3); }
+            }
+            c.stroke();
+          }
+        }
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

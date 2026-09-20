@@ -1,0 +1,128 @@
+{
+ "_note": "Every count this deck narrates, computed rather than typed. compute.py is executed at build time rather than copied, and every input is read out of claims.json. A number in the deck's prose that is not in this file is a number somebody typed. v1 minus v2 and v1 minus v3 are deliberately absent.",
+ "small_systems_of_all": {
+  "value": 3579,
+  "of": 4749,
+  "basis": "measured",
+  "from": [
+   "v2",
+   "v1"
+  ],
+  "how": "v2's query is v1's three filters plus POPULATION_SERVED_COUNT less than 3301, so every row v2 counts is a row v1 counts. Read from claims.json computed_values by compute.py. Never a difference, because the filters may exclude null populations and the counts are not a partition.",
+  "set_counted": "active community water systems in Texas, EPA SDWIS WATER_SYSTEM, PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE A, PWS_TYPE_CODE CWS"
+ },
+ "texas_rank_of_five": {
+  "value": 1,
+  "basis": "measured",
+  "from": [
+   "v1",
+   "v4",
+   "v5",
+   "v6",
+   "v7"
+  ],
+  "how": "the position of Texas when the five states this run independently re-verified are sorted by their own EPA count, descending, by compute.py. FIVE states, named on the frame. Not a national ranking, because forty four state counts were never re-fetched and a first place finish is a claim about all fifty.",
+  "set_counted": "Texas, California, Washington, New York and Florida, and no other state",
+  "rows": [
+   {
+    "state": "Texas",
+    "value": 4749,
+    "from": "v1"
+   },
+   {
+    "state": "California",
+    "value": 2812,
+    "from": "v4"
+   },
+   {
+    "state": "Washington",
+    "value": 2311,
+    "from": "v5"
+   },
+   {
+    "state": "New York",
+    "value": 2250,
+    "from": "v6"
+   },
+   {
+    "state": "Florida",
+    "value": 1593,
+    "from": "v7"
+   }
+  ]
+ },
+ "scale_bar_frame_5": {
+  "legend_metres": 5,
+  "metres_per_pixel": 0.0235,
+  "bar_length_px": 212.8,
+  "basis": "measured",
+  "from": [],
+  "how": "out/2026-09-20/compute.py. Frame 5's orthographic elevation declares 0.0235 metres per pixel in its own source, and 5 metres at that scale is 212.8 px, which is the bar the frame draws. A reader can check any component on that frame against it.",
+  "set_counted": "nothing. This is a unit of length rather than a count, and it aggregates no claim. It is declared because it is a NUMERAL A READER SEES and this project's law is that no numeral reaches published copy without a computation behind it."
+ },
+ "counts": {
+  "v1": {
+   "value": 4749,
+   "basis": "measured",
+   "from": [
+    "v1"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice, by this run and independently by the fact checker.",
+   "set_counted": "Active community water systems in Texas. EPA SDWIS WATER_SYSTEM, PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE A, PWS_TYPE_CODE CWS"
+  },
+  "v2": {
+   "value": 3579,
+   "basis": "measured",
+   "from": [
+    "v2"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active Texas community water systems with POPULATION_SERVED_COUNT less than 3301"
+  },
+  "v3": {
+   "value": 87,
+   "basis": "measured",
+   "from": [
+    "v3"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active Texas community water systems with POPULATION_SERVED_COUNT greater than 50000"
+  },
+  "v4": {
+   "value": 2812,
+   "basis": "measured",
+   "from": [
+    "v4"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active community water systems in California, same three filters"
+  },
+  "v5": {
+   "value": 2311,
+   "basis": "measured",
+   "from": [
+    "v5"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active community water systems in Washington, same three filters"
+  },
+  "v6": {
+   "value": 2250,
+   "basis": "measured",
+   "from": [
+    "v6"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active community water systems in New York, same three filters"
+  },
+  "v7": {
+   "value": 1593,
+   "basis": "measured",
+   "from": [
+    "v7"
+   ],
+   "how": "TOTALQUERYRESULTS returned by that query, read not computed. Measured twice.",
+   "set_counted": "Active community water systems in Florida, same three filters"
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.8,
+      "why": "Two frames materially better than round 2 and three still not carrying a subject. Frame 6 is now legible where it was bars: the sheets have edges at 884/680/940 and read as paper. But it is legible, not good. Nothing in it is at true scale, nothing runs off an edge, there is no nameable light, and the only two objects selling it as physical paper (the stylus right of sheet 2, the clip under sheet 3) are each under 40px. At 432px (slide-06-thumb.png) the 87 row does NOT resolve: 8.4px pitch downscales to 3.36px and aliases into one solid light bar from x=38 to x=345, so you cannot count it and the 'row stops, rule runs on' gesture reads only as 'the bar is shorter than the sheet'. The fix is better than 4,749 marks at 1.5px but it still fails its own acceptance item. Frame 3 is the round's real win and its unfinished half: the verbatim quote is crisp cream-on-cream with the hatch fully suppressed, and the metadata stanza 100px below it (title / awardeeName / pi / date / FIELDS / RETRIEVED) still has hatch running through the counters and is mud at 432px, with a light blob overlapping RETRIEVED. N.stock was applied to two of frame 3's three type blocks. Frame 7 is a thicket, confirmed at both sizes: no subject, and the accent is now ~25 scattered 7px ticks, which is decoration, not 'a mark already made'. Frame 5's lower 40 percent is one flat hatched field with nothing in it, which is the doctrine's three-band rule failing. Frames 4 and 8 are genuinely good: the red log entries with blank ruled lines under them on 4 is the deck's argument drawn, and the blank tag on the nail on 8 has the only convincing specular in nine frames."
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "The stock discipline is the best thing here and it is real: one ground #2E2016, one ink #DCD3B4, one hatch at cell 6 angle 52 on all nine, no frame inventing a palette. Any frame is unmistakably from this deck. Two things hold it at 6.5. First, the measured arc (9.8, 10.3, 14.2, 9.3, 6.8, 9.8, 10.3, 7.7, 10.3, max adjacent 4.9) disagrees with the pixels: render_report canvas means are 31.3, 43.7, 85.4, 44.5, 30.5, 49.8, 53.8, 23.8, 39.3, so frame 3 is a 42-point spike up and a 41-point drop back in a deck whose other eight frames sit in a 24 to 54 band. On the contact sheet frame 3 is a white rectangle among eight dark frames. That is the exact pattern the rubric's own comment condemns, and the metric the run is steering by does not see it. Second, the chassis' ACCENT LAW is now stale against its own deck. Lines 43 to 47 of 2026-09-20-waterworks.js still read '#9A3B2A lands only where ... the second block's marks (6) ... Frames 3, 5 and 8 carry NONE AT ALL'. Frame 6 carries no accent at all, by this round's own decision, and the frames with none are 1, 3, 5, 6, 8. The MOTIF block above it is stale the same way: 'Every block's last row is short on 6' describes three mark fields, two of which were deleted. This is the same defect I caught in the storyboard's World block last round, fixed there and left in the chassis, which is the file the rubric points deck_chassis.py at."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "Not my lens and I could not refute it. Every numeral on frame 6 (4,749 / 3,579 / 87 / 3301 / 50000) appears in the dek with c12 c20 c21 c22 in the footer, and the sheet stamp names the query and the date. Frame 3's canvas text is verbatim NSF fields with award 2640086 and RETRIEVED 2026-09-20, and frame 8's 'September 15th' and 'August 31st, 2029' match startDate 09/15/2026 and expDate 08/31/2029 shown on frame 3, which is a rare and good piece of internal cross-checking. Frame 5's '5 m' is a scene scale bar and N.scene draws in metres, so it derives from the scene's own unit system rather than being typed. The single colon in published pixels, in 'Collaborative Research: AI-Enabled Digital Twins', sits inside a verbatim award title and takes the house rule's verbatim carve-out. Held under 8 only because frame 6's sheet widths are ANTI-correlated with the counts (884 for 4,749, 680 for 3,579, 940 for 87), so a fast reader takes a length encoding that is the inverse of the data. Equal widths would have encoded nothing, which is what the headline claims. The staggered left edges stop it short of being a bar chart, which is why this is a craft note and not a fault, but it is a new risk this round introduced."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 7.0,
+      "why": "The argument is clean and unusually disciplined: the instruments a small utility has are complete records rather than warnings, and the award is aimed at that gap. Frame 9 gives a real action a reader can take today, ask TCEQ for the annual drinking water quality report. The awardee, the PI and both dates are on the pixels. What is missing is the rubric's own 9: no county is ever named. The chassis decided Brazos deliberately and then declined to put it in the copy either, so a Texan finishes nine frames knowing the story is about Texas and not about anywhere."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "Reads well in order and the turn at frame 8 is real and declared: the deck spends seven frames on what the record holds and then 'The word is can' changes what the reader thinks the award is. The cover earns the swipe on 4,749. Frame 7 is cuttable. It restates frame 4's point with worse art and it is the deck's brightest and noisiest frame (mean 53.8) sitting immediately before the quietest (23.8), so the loudest thing in the deck is the least legible one, one swipe before the turn."
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.3,
+      "why": "'Everything before now. Nothing after it.' and 'The word is can.' are both better than competent, and 'None of these is a share of another' is an honest sentence most products would not write. No boosterism, no doom, no first person, no dashes, no semicolons. Flat on regional specificity: nothing on any frame is more local than the word Texas."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.4,
+      "why": "The hatch at cell 6 angle 52 and the #2E2016 ground measured at dE76 13.32 from its nearest neighbour in the last six decks are a genuinely different print job, and the big typographic breath at frame 8 is a structure this deck has not leaned on recently. The familiar moves are the furniture, hook top-left with a mono eyebrow and a claim-id footer on all nine, and a document-on-a-sheet frame, which is a move this machine reaches for often."
+    }
+  ],
+  "weighted_score": 7.066,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Give N.quiet a horizontal feather: it calls createLinearGradient(0, by-pad, 0, by+bh+pad) and then fillRect across bx-pad to bx+bw+pad, so the reserve is feathered top and bottom and has HARD left and right edges, and because it lays #2E2016 at 0.44 over art that is darker than the ground it LIFTS rather than dims, which is why frames 1, 3 and 6 each print a warm rectangle in the upper left with a visible vertical boundary (x=310/432 on slide-01-thumb, x=300 on slide-03-thumb) that reads as a pasted panel at feed size.",
+  "lens": "craft",
+  "round": 3,
+  "date": "2026-09-20"
+}

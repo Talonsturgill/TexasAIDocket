@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the number that is wrong",
   "the deadline",
   "the correction",
   "the object",
   "the place",
-  "the quiet decision"
+  "the quiet decision",
+  "the before and after"
  ],
  "entries": [
   {
@@ -502,15 +502,34 @@
    ],
    "critic_note": "Two candidates and the one rewrite was spent. A was assigned Clock and LOST ON THE LEDGER RATHER THAN ON PROSE, because Clock shipped the day before and the exclusion list the room was handed did not contain it. A was a Clock in substance as well as in label, its spine being nothing but a run of dates, so it could not be relabelled out. B won the slot without winning on merit: its first line, 'The water plan needs a number', put c5's sentence in the board's own mouth, which is the one thing the fact checker had named by name, and its close compounded the same invention. The rewrite replaced the hook with a legal fact from c4 and c6, deleted an unsourced 'Nothing was legislated', deleted a self-referential line about what the deck reads, named ERCOT where the draft said 'a grid operator request', and moved the close onto a scheduled date.",
    "move_note": "Named against what the shipped text DOES rather than against either director's assignment, per the 2026-09-07 rule. Paragraph one states the old state of the world and paragraph two the new one, which is the before and after. 'Both consequences were already in the Texas Water Code' is the one sentence that turns the reading everybody has, which is the Pivot. The close names the next scheduled event and its date, rendered as a question because brand.yaml requires the form, and the SUBSTANCE is 'name what happens next and when' rather than the open question that four ledger entries have flagged as overused."
+  },
+  {
+   "date": "2026-09-20",
+   "carousel_no": 30,
+   "opening_move": "the two things",
+   "structure": "Ledger",
+   "closing_move": "Ask the one question the decision leaves open.",
+   "first_line": "Aimed at small systems. Texas has 4,749.",
+   "words": 135,
+   "commas": 2,
+   "commas_per_100w": 1.48,
+   "chars": 889,
+   "hashtags": [
+    "#TexasWater",
+    "#TCEQ",
+    "#TexasAM"
+   ],
+   "critic_note": "Two candidates and the one rewrite was spent. A ran 981 chars against a 900 band and the critic's three repairs brought it to 887. A later reword took it to 901 and it was trimmed to 889. The winning first line, 'Aimed at small systems. Texas has 4,749.', was moved ONTO frame 1 in round 3 because both readers asked for it independently in two rounds, and the round 3 reader then named the cost of the duplication: LinkedIn shows about two lines before see more, so the one free impression now repeats what the cover already shows at display size.",
+   "move_note": "Named against what the shipped text DOES rather than against either director's assignment, per the 2026-09-07 rule, and RENAMED TWICE because the first two names were wrong in different ways. OPENING: 'Aimed at small systems. Texas has 4,749.' sets two facts beside each other and lets the gap do the work, which is 'the two things' and is the shape of its own menu example. An earlier draft invented the freehand name 'the subject and its size, in nine words' and ledger_check refused it, correctly: a menu that takes a new name each run is not a menu and the variety engine has nothing left to exclude. STRUCTURE: it was filed as Ladder and it is not one. A Ladder is fact, consequence, consequence, stop, and this caption does not build consequences, it inventories. Paragraphs one to three are what the record holds, paragraph four ends on 'No deployment is recorded', and the close names the size of what is still open. That is the Ledger, which is also the shape CAPTION_CRAFT.md says to reach for when the record is thin. Ladder was inside its own three run window, used 2026-09-17, so the gate was right to stop it, and the correct response was the accurate name rather than a relabel: Ledger is available because no entry has spent it. CLOSING: the last sentence asks what the award leaves open, naming the exact set it asks about. Four earlier entries have flagged that move as overused and only the LAST run's closing substance is off the menu, so it is legal here, and the next run should spend a different one."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Ladder",
-  "Clock"
+  "Clock",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "name what is still not public, and how big that is"
+  "Name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

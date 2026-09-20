@@ -1,0 +1,246 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 3 of 9. Archetype DOCUMENT, and the deck's only one.
+     THE EVIDENCE. A US Letter sheet of the award record lying askew on the pump house shelf in
+     the room's own raking light, carrying the abstract's sentence about current practice set at
+     true reading size.
+     THE READER READS THE CRITICISM THEMSELVES, which is the point. It is narrow and specific,
+     it is about instruments rather than about people, and a deck that paraphrased it would be
+     asking to be trusted on exactly the sentence it is building an argument out of.
+     NO ACCENT ANYWHERE. Granite marks what a hand in this world has laid down, and this page is
+     the record's words rather than a mark anybody in this room made.
+     THE PAGE'S OWN RULES ARE PLACED CLEAR OF THE TYPE BLOCK, which is how a document is set
+     anyway, and is also the lamp deck's lesson that a page quieting its own rules against its own
+     text punches a hole the QA harness reads as a strike.
+     Planned frame median L* 24. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:128px; width:720px; font-size:78px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+    /* THE DEK MOVED ABOVE THE DOCUMENT, from 1152 to 300. It sat over the sheet's lower third,
+     and once round 2's repair put the identifying fields on flat stock the overprint it had
+     always been became plain to see. A DOCUMENT frame has no room under its document, so the
+     line that introduces the page goes before the page. */
+  .dek  { position:absolute; left:80px; top:300px; width:760px; font-size:24px;
+          line-height:1.40; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The criticism is narrow and it is specific.</h1>
+<p class="dek">What the award's own abstract says about the instruments a small utility has today.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "The record's own words", counter: "03 / 09",
+      src: "c15 c1   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 56, max: 78, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260903);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE SHEET. 0.216 by 0.279 m at 0.55 m from the eye, so it is a page somebody put down
+     * rather than a designed layout. It is cut by the bottom and right edges. */
+    var SH = { x: 96, y: 400, w: 840, h: 1084, rot: 0.014 };
+
+    /* THE QUOTE, WORD FOR WORD, and the lines are pre-broken here rather than measured at draw
+     * time so the sentence can be read against claims.json c15 without running the frame. */
+    var QUOTE = [
+      "Current utility practices often rely on",
+      "monitoring systems, historical records, and",
+      "reactive emergency protocols that provide",
+      "limited ability to anticipate how local",
+      "anomalies escalate into broader service",
+      "disruptions."
+    ];
+
+    M.print(cx, {
+      seed: 21,
+      draw: function (a) {
+        /* THE SHELF, painted plywood at 0.95 m, and the block wall behind it falling into the
+         * room's shade. The sheet has to be ON something or it is a graphic rather than a page. */
+        (function () {
+          var S = M.scene(a, { horizon: 700, f: 900, eye: 1.65 });
+          M.blockWall(a, { x: 0, y: 0, w: W, h: 394 }, S.ppm(2.6),
+                      { face: M.G.shade, joint: M.G.dark });
+          a.fillStyle = "rgba(0,0,0,0.44)"; a.fillRect(0, 0, W, 394);
+
+          a.fillStyle = M.G.dark; a.fillRect(0, 380, W, H - 380);
+          var g = a.createLinearGradient(0, 380, W * 0.9, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.20)");
+          g.addColorStop(0.42, "rgba(0,0,0,0.06)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.56)");
+          a.fillStyle = g; a.fillRect(0, 380, W, H - 380);
+          /* the shelf's front edge catching the key, and its underside going black */
+          a.fillStyle = M.G.shade; a.fillRect(0, 380, W, 12);
+          a.fillStyle = "rgba(246,235,200,0.16)"; a.fillRect(0, 380, W, 5);
+          /* plywood grain along the shelf */
+          var RG = TX.rng(409);
+          a.globalAlpha = 0.06;
+          for (var i = 0; i < 70; i++) {
+            var y = 404 + RG() * (H - 404);
+            a.strokeStyle = RG() < 0.5 ? "#000" : M.G.bright;
+            a.lineWidth = 0.7 + RG() * 1.5;
+            a.beginPath(); a.moveTo(-20, y);
+            a.bezierCurveTo(W * 0.35, y + (RG() - 0.5) * 14, W * 0.7, y + (RG() - 0.5) * 14, W + 20, y);
+            a.stroke();
+          }
+          a.globalAlpha = 1;
+        })();
+
+        /* THE SHEET, lifted at its east corner so it throws a real two part contact shadow onto
+         * the shelf rather than lying like a pasted rectangle. */
+        (function () {
+          a.save();
+          a.translate(SH.x, SH.y); a.rotate(SH.rot);
+
+          a.fillStyle = "rgba(0,0,0,0.30)";
+          a.beginPath();
+          a.moveTo(22, 30); a.lineTo(SH.w + 34, 20);
+          a.lineTo(SH.w + 40, SH.h + 40); a.lineTo(26, SH.h + 34);
+          a.closePath(); a.fill();
+          a.fillStyle = "rgba(0,0,0,0.52)";
+          a.fillRect(9, 12, SH.w, SH.h);
+
+          a.fillStyle = M.G.glare;
+          a.fillRect(0, 0, SH.w, SH.h);
+          var g = a.createLinearGradient(0, 0, SH.w, SH.h * 0.5);
+          g.addColorStop(0.00, "rgba(255,255,255,0.28)");
+          g.addColorStop(0.52, "rgba(246,235,200,0.10)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.10)");
+          a.fillStyle = g; a.fillRect(0, 0, SH.w, SH.h);
+
+          var RT = TX.rng(811);
+          a.globalAlpha = 0.045;
+          for (var i = 0; i < 2000; i++) {
+            a.fillStyle = RT() < 0.5 ? "#000" : "#fff";
+            a.fillRect(RT() * SH.w, RT() * SH.h, 1.6, 1.6);
+          }
+          a.globalAlpha = 1;
+          a.strokeStyle = "rgba(0,0,0,0.24)"; a.lineWidth = 1.2;
+          a.strokeRect(0.5, 0.5, SH.w - 1, SH.h - 1);
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 118, topSolid: 60, bottom: 186, bottomSolid: 110 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE PAGE'S OWN TYPOGRAPHY, laid after the screen so a sentence a reader is meant to
+         * check is not printed through a hatch. This is the deck's only dark on light type.
+         * The rules sit CLEAR of the type block, top and bottom, and never through a glyph. */
+        c.save();
+        c.translate(SH.x, SH.y); c.rotate(SH.rot);
+
+        var TONER = "rgba(46,32,22,0.94)", FAINT = "rgba(46,32,22,0.60)";
+        var L = 64;
+
+        /* THE PAPER GOES FLAT UNDER THE TYPE, and only under the type. Round 2 had all three
+         * judges call this frame's verbatim the least legible type in the deck, on the one frame
+         * whose declared focal IS that sentence. The type was never screened. The SHEET was, at
+         * cell 6, and a 6 px stripe under 15 px mono fills the counters. See N.stock. */
+        M.stock(c, [
+          [L - 26, 60, SH.w - (L - 26) * 2, 36],                 /* the running head */
+          [L - 26, 128, SH.w - (L - 26) * 2, 360],               /* the quote block and its rules */
+          [L - 26, 506, SH.w - (L - 26) * 2, 9 * 24 + 20],       /* the nine identifying fields */
+          [L - 26, 742, 470, 62]                                 /* the claim ids and the stamp */
+        ], { feather: 20 });
+
+        /* the running head, which says what the document is */
+        c.font = '500 15px "JetBrains Mono", monospace';
+        c.fillStyle = FAINT;
+        c.fillText("NSF AWARD SEARCH API   AWARD 2640086   abstractText", L, 86);
+
+        /* a two pixel rule, then the quote, then a two pixel rule. Both clear of the block. */
+        c.strokeStyle = "rgba(46,32,22,0.72)"; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(L, 118); c.lineTo(SH.w - L, 118); c.stroke();
+
+        c.font = '400 33px "Fraunces", serif';
+        c.fillStyle = TONER;
+        for (var i = 0; i < QUOTE.length; i++) {
+          c.fillText(QUOTE[i], L, 190 + i * 50);
+        }
+
+        c.strokeStyle = "rgba(46,32,22,0.72)"; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(L, 480); c.lineTo(SH.w - L, 480); c.stroke();
+
+        /* the hairline body under it, the award's own identifying fields, set small */
+        c.font = '500 15px "JetBrains Mono", monospace';
+        c.fillStyle = FAINT;
+        var ROWS = [
+          "title        Collaborative Research: AI-Enabled Digital Twins for",
+          "             Resilient Freshwater Infrastructure and Communities",
+          "             under Cascading Hazards",
+          "awardeeName  Texas A&M Engineering Experiment Station",
+          "pi           Sudipta Chowdhury",
+          "date         09/09/2026",
+          "startDate    09/15/2026",
+          "expDate      08/31/2029",
+          "transType    Standard Grant"
+        ];
+        for (var r = 0; r < ROWS.length; r++) {
+          c.fillText(ROWS[r], L, 528 + r * 24);
+          if (r < ROWS.length - 1) {
+            c.strokeStyle = "rgba(46,32,22,0.16)"; c.lineWidth = 1;
+            c.beginPath(); c.moveTo(L, 536 + r * 24); c.lineTo(SH.w - L, 536 + r * 24); c.stroke();
+          }
+        }
+
+        /* THE FIELDS' OWN CLAIM IDS, ON THE PAPER RATHER THAN IN THE FURNITURE LINE.
+         *
+         * Round 2 read this frame's source line as 'c15 c1' over six fields belonging to c2, c3,
+         * c4, c5, c6 and c10, which was a real gap. Naming all eight in the furniture ran the
+         * line into the site line at the bottom right, so the six that belong to the DOCUMENT are
+         * printed on the document, beside the fields they cite, and the furniture keeps the two
+         * that carry the frame's argument. A reader checking a field finds its id next to it. */
+        c.font = '500 13px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(46,32,22,0.50)";
+        c.fillText("FIELDS   c2 c3 c4 c5 c6 c10", L, 764);
+
+        /* the retrieval stamp, which is what makes this a fetched document rather than a claim */
+        c.font = '500 14px "JetBrains Mono", monospace';
+        c.fillStyle = "rgba(46,32,22,0.52)";
+        c.fillText("RETRIEVED 2026-09-20", L, 790);
+        c.restore();
+
+        /* NO ACCENT ON THIS FRAME. The page is the record talking, not a mark this room made. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<!-- CAROUSEL 30, frame 5 of 9. Archetype DIAGRAM.
+     THE MECHANISM, STATED EXACTLY AS FAR AS THE ABSTRACT STATES IT AND NO FURTHER. An
+     orthographic elevation of the three components c14 names, on ONE ground line at ONE declared
+     scale, joined by a 0.10 m main.
+     NO ARROWHEAD ANYWHERE ON THIS FRAME. c14's verb is "can propagate". An arrow asserts a
+     direction and an event, and nothing in this record says anything has happened.
+     THE PUMP HOUSE AT THE CENTRE IS THE SAME BUILDING the reader has been inside on frames 1, 2,
+     4, 7 and 8 and sees from the yard on 9. That recognition is the deck's camera move paying
+     off, and it is why the middle term is drawn rather than labelled.
+     AN ELEVATION RATHER THAN A PERSPECTIVE, because a perspective makes the near component
+     bigger and would assert a hierarchy the abstract does not state.
+     Planned frame median L* 11. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#2E2016; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:138px; width:740px; font-size:80px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#DCD3B4; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:372px; width:620px; font-size:24px;
+          line-height:1.42; color:#B9B096; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9A9280;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One line, and three places on it.</h1>
+<p class="dek">The abstract's own examples. A disruption that begins in one component can propagate through connected networks.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-20-waterworks.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the abstract describes", counter: "05 / 09",
+      src: "c14 c13   TEXAS AI DOCKET", ink: "#9A9280"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXWW, W = M.W, H = M.H;
+    TX.reseed(20260905);
+
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* ONE DECLARED SCALE FOR THE WHOLE ELEVATION, and it is printed on the frame as a scale bar
+     * rather than asserted in a caption. 0.0235 m per pixel. */
+    var MPP = 0.0235, GY = 880;
+    var px = function (metres) { return metres / MPP; };
+
+    M.print(cx, {
+      seed: 27,
+      draw: function (a) {
+        /* THE SHEET this elevation is drawn on. A drawing is a document too, and the deck's
+         * stock is what it is drawn on rather than a void. */
+        (function () {
+          a.fillStyle = M.G.deep; a.fillRect(0, 0, W, H);
+          var g = a.createLinearGradient(0, 0, W * 0.8, H);
+          g.addColorStop(0.00, "rgba(246,235,200,0.10)");
+          g.addColorStop(0.50, "rgba(0,0,0,0.10)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.44)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+        })();
+
+        /* THE GROUND LINE, and the section through the soil under it. The bottom third of a
+         * frame is a place, and a section is what gives this one depth rather than a rule. */
+        (function () {
+          a.strokeStyle = M.G.metal; a.lineWidth = 2.6;
+          a.beginPath(); a.moveTo(-10, GY); a.lineTo(W + 10, GY); a.stroke();
+
+          /* the soil, hatched at 45 degrees the way a section is hatched, thinning with depth */
+          a.save();
+          a.beginPath(); a.rect(-10, GY, W + 20, H - GY); a.clip();
+          a.fillStyle = "rgba(0,0,0,0.34)"; a.fillRect(-10, GY, W + 20, H - GY);
+          a.strokeStyle = "rgba(220,211,180,0.20)"; a.lineWidth = 1.1;
+          for (var hx = -400; hx < W + 400; hx += 17) {
+            a.beginPath(); a.moveTo(hx, GY); a.lineTo(hx + (H - GY), H); a.stroke();
+          }
+          /* the buried main, in section, with the trench it sits in */
+          var by = GY + px(1.2);
+          a.strokeStyle = "rgba(0,0,0,0.55)"; a.lineWidth = px(0.34);
+          a.beginPath(); a.moveTo(-10, by); a.lineTo(W + 10, by); a.stroke();
+          a.strokeStyle = M.G.metal; a.lineWidth = Math.max(2.4, px(0.10));
+          a.beginPath(); a.moveTo(-10, by); a.lineTo(W + 10, by); a.stroke();
+          a.strokeStyle = "rgba(246,235,200,0.30)"; a.lineWidth = 1.2;
+          a.beginPath(); a.moveTo(-10, by - px(0.05)); a.lineTo(W + 10, by - px(0.05)); a.stroke();
+          a.restore();
+        })();
+
+        /* helper: a component's outline, one value, with a contact shadow at its foot so it
+         * stands on the ground line instead of floating above it */
+        var stand = function (x, wM, hM, draw) {
+          var w = px(wM), h = px(hM);
+          a.save();
+          a.translate(x, GY);
+          a.fillStyle = "rgba(0,0,0,0.42)";
+          a.fillRect(-w / 2, -3, w + px(hM) * 0.5, 7);
+          draw(w, h);
+          a.restore();
+        };
+
+        /* 1. THE INTAKE, 4.0 m on a 2.5 m bank, at the west end. */
+        stand(150, 3.0, 4.0, function (w, h) {
+          a.fillStyle = "rgba(0,0,0,0.30)";
+          a.beginPath(); a.moveTo(-w * 1.5, 0); a.lineTo(w * 1.4, 0);
+          a.lineTo(w * 1.4, px(2.5)); a.lineTo(-w * 1.5, px(2.5)); a.closePath(); a.fill();
+          a.fillStyle = M.G.stone; a.fillRect(-w / 2, -h, w, h);
+          a.fillStyle = "rgba(246,235,200,0.24)"; a.fillRect(-w / 2, -h, w * 0.30, h);
+          a.fillStyle = M.G.dark; a.fillRect(w * 0.20, -h, w * 0.30, h);
+          /* the trash rack on its upstream face */
+          a.strokeStyle = M.G.metal; a.lineWidth = 2;
+          for (var b = 0; b < 8; b++) {
+            var bxx = -w / 2 + w * 0.10 + b * (w * 0.10);
+            a.beginPath(); a.moveTo(bxx, -h * 0.72); a.lineTo(bxx, -h * 0.18); a.stroke();
+          }
+          a.strokeStyle = M.G.metal; a.lineWidth = 2.2;
+          a.strokeRect(-w / 2, -h, w, h);
+        });
+
+        /* 2. THE PUMP HOUSE, THE SAME 6.0 x 3.0 m BUILDING, at the centre. */
+        stand(540, 6.0, 3.0, function (w, h) {
+          a.fillStyle = M.G.stone; a.fillRect(-w / 2, -h, w, h);
+          a.fillStyle = "rgba(246,235,200,0.26)"; a.fillRect(-w / 2, -h, w * 0.26, h);
+          M.blockWall(a, { x: -w / 2, y: -h, w: w, h: h }, 1 / MPP,
+                      { face: M.G.stone, joint: M.G.shade });
+          /* the low pitched roof */
+          a.fillStyle = M.G.shade;
+          a.beginPath(); a.moveTo(-w / 2 - px(0.25), -h); a.lineTo(w / 2 + px(0.25), -h);
+          a.lineTo(w / 2 + px(0.25), -h - px(0.34)); a.lineTo(-w / 2 - px(0.25), -h - px(0.34));
+          a.closePath(); a.fill();
+          /* the open door, the same 2.4 m one */
+          a.fillStyle = M.G.void;
+          a.fillRect(-w * 0.34, -px(2.4), px(2.4), px(2.4));
+          a.strokeStyle = M.G.metal; a.lineWidth = 2.2;
+          a.strokeRect(-w / 2, -h, w, h);
+        });
+
+        /* 3. THE TREATMENT UNIT, three 3.6 m vessels at 4.5 m, at the east end. */
+        stand(908, 3.6, 4.5, function (w, h) {
+          for (var v = 0; v < 3; v++) {
+            var vx = -w * 0.55 + v * (w * 0.55);
+            var vw = px(1.5);
+            a.fillStyle = M.G.stone;
+            a.fillRect(vx - vw / 2, -h, vw, h);
+            a.fillStyle = "rgba(246,235,200,0.22)";
+            a.fillRect(vx - vw / 2, -h, vw * 0.30, h);
+            a.fillStyle = M.G.dark;
+            a.fillRect(vx + vw * 0.16, -h, vw * 0.34, h);
+            /* the domed head */
+            a.fillStyle = M.G.metal;
+            a.beginPath(); a.ellipse(vx, -h, vw / 2, px(0.42), 0, Math.PI, 0); a.fill();
+            a.strokeStyle = M.G.metal; a.lineWidth = 2;
+            a.strokeRect(vx - vw / 2, -h, vw, h);
+          }
+          /* the catwalk handrail between them */
+          a.strokeStyle = M.G.metal; a.lineWidth = 2;
+          a.beginPath(); a.moveTo(-w * 0.72, -px(2.6)); a.lineTo(w * 0.28, -px(2.6)); a.stroke();
+        });
+
+        /* THE MAIN ABOVE GROUND, joining the three. It is drawn as a pipe with a contact shadow
+         * at each component's foot so it can't read as a crack in the ground. NO ARROWHEAD. */
+        (function () {
+          var ry = GY - px(0.55);
+          a.strokeStyle = "rgba(0,0,0,0.44)"; a.lineWidth = Math.max(3, px(0.14));
+          a.beginPath(); a.moveTo(150, ry + 5); a.lineTo(908, ry + 5); a.stroke();
+          a.strokeStyle = M.G.metal; a.lineWidth = Math.max(2.6, px(0.10));
+          a.beginPath(); a.moveTo(150, ry); a.lineTo(908, ry); a.stroke();
+          a.strokeStyle = "rgba(246,235,200,0.34)"; a.lineWidth = 1.3;
+          a.beginPath(); a.moveTo(150, ry - px(0.045)); a.lineTo(908, ry - px(0.045)); a.stroke();
+          /* the pipe supports, so it is carried rather than floating */
+          for (var sx = 230; sx < 900; sx += 118) {
+            a.strokeStyle = M.G.shade; a.lineWidth = 2.4;
+            a.beginPath(); a.moveTo(sx, ry); a.lineTo(sx, GY); a.stroke();
+          }
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 124, topSolid: 64, bottom: 178, bottomSolid: 106 });
+        M.quiet(c, boxes);
+        TXDECK.punch(c, boxes, { feather: 92, strength: 0.58 });
+
+        /* THE LEADERS AND THEIR LABELS, in the abstract's own words. Each leader is a plain line
+         * that STOPS SHORT of its glyph band, and NONE of them carries an arrowhead. */
+        var LAB = [
+          { x: 150, y: 618, t: "intake" },
+          { x: 540, y: 660, t: "pump station" },
+          { x: 908, y: 600, t: "treatment unit" }
+        ];
+        c.save();
+        c.strokeStyle = "rgba(220,211,180,0.62)"; c.lineWidth = 1.4;
+        c.font = '500 19px "JetBrains Mono", monospace';
+        c.fillStyle = "#DCD3B4";
+        for (var i = 0; i < LAB.length; i++) {
+          var L = LAB[i];
+          c.beginPath(); c.moveTo(L.x, L.y + 26); c.lineTo(L.x, L.y + 92); c.stroke();
+          c.textAlign = "center";
+          c.fillText(L.t, L.x, L.y + 6);
+        }
+        c.textAlign = "left";
+
+        /* THE SCALE BAR, computed from the same metres per pixel the whole elevation is drawn
+         * at, so a reader can check any component against it. */
+        var barM = 5, barPx = barM / 0.0235;
+        var bx = 80, by = 1146;
+        c.strokeStyle = "#DCD3B4"; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(bx, by); c.lineTo(bx + barPx, by); c.stroke();
+        c.beginPath(); c.moveTo(bx, by - 7); c.lineTo(bx, by + 7); c.stroke();
+        c.beginPath(); c.moveTo(bx + barPx, by - 7); c.lineTo(bx + barPx, by + 7); c.stroke();
+        c.beginPath(); c.moveTo(bx + barPx / 2, by - 5); c.lineTo(bx + barPx / 2, by + 5); c.stroke();
+        c.font = '500 16px "JetBrains Mono", monospace';
+        c.fillStyle = "#9A9280";
+        c.fillText("5 m", bx + barPx + 14, by + 6);
+        c.restore();
+
+        /* NO ACCENT ON THIS FRAME. This is the map of the chain rather than a stage of it, and
+         * nothing on it is a mark anybody has laid. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

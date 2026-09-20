@@ -1,0 +1,19 @@
+{
+ "_note": "A quantifier is a claim about a SET, so the set is named and counted here the same way every numeral names its computation. Both of this deck's universals point at objects the FRAME draws rather than at a population in the world, which is the honest case for this technique: a reader can count what the sentence is about without leaving the slide. A 'None of these' entry stood here for frame 6's hook and was removed with the hook. Its `verified` field defended a proposition about PARTITION while the hook asserted one about CONTAINMENT, and an integrity judge caught that the two are not the same claim. That is the hazard this file exists for and it did not catch it, because the entry was written by the same run that wrote the sentence.",
+ "quantifiers": [
+  {
+   "phrase": "Every one of these",
+   "surface": "slide-07.html",
+   "sentence": "Every one of these is finished.",
+   "set": "the chart record packs drawn in the filing box on frame 7, plus the one fallen open in the foreground",
+   "members": [
+    "58 filed packs, each a 0.30 m fanfold seen on its folded edge, drawn from the seeded rng at TX.rng(881)",
+    "1 fallen pack lying open in the foreground, carrying a closed trace that runs the full width of its band"
+   ],
+   "size": 59,
+   "computed_by": "the loop bound n = 58 in slide-07.html's filed-pack pass, plus the single FALL pack declared above it. Counted from the frame's own geometry rather than asserted, because the sentence points at what the frame draws",
+   "verified": "every drawn pack is either closed on its folded edge or, in the fallen one's case, carries a trace that reaches the end of its band and stops. No pack in the frame is drawn mid-run",
+   "about": "the objects on this frame, not a population of records in Texas. The deck never claims a count of real utility logbooks and claims.json carries none"
+  }
+ ]
+}

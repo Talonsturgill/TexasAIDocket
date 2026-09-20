@@ -1,0 +1,24 @@
+{
+ "lens": "craft",
+ "weighted_score": 6.65,
+ "ship": false,
+ "hard_fails": [
+  "Frame 4 ships without its declared primary image. No tank is distinguishable, the operator is an unfilled contour with the ground showing through, and roughly a third of the canvas carries no drawn content."
+ ],
+ "scores": {
+  "artwork_craft": 5.5,
+  "deck_coherence": 6.5,
+  "claim_integrity": 7.5,
+  "story_and_stakes": 6.0,
+  "sequence_and_momentum": 7.0,
+  "voice": 7.5,
+  "variety": 7.5
+ },
+ "also_found": [
+  "The declared light is invisible on five frames. Contact shadows the frames promised are absent on 1, 3, 4, 5 and 7.",
+  "The camera move does not pay off: frames 1 and 4 share no recognisable object and frame 5's pump station does not read as frame 9's.",
+  "The showrunner handed the panel stale medians. The judge recomputed and was right.",
+  "Frame 3's hatch screen runs through the deck's only verbatim at full density.",
+  "Frame 6's marks are indistinguishable from the screen at every resolution."
+ ]
+}
