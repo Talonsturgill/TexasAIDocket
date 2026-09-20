@@ -121,8 +121,44 @@ def magic_ok(p: Path) -> bool:
         return False
 
 
+# TWO LAYOUTS FOR ONE DECK, AND THIS TABLE COULD ONLY READ ONE OF THEM (2026-09-20).
+#
+# A run works in `out/<date>/`, where the renderer writes `render/render_report.json`,
+# `render/machine_qa.json` and `final/assemble_report.json`. What SHIPS is a curated copy under
+# `runs/carousel/<date>/`, and that copy is FLAT: the same three files sit at the top level.
+#
+# Every row here named the `out/` path and nothing else, so pointed at a shipped deck this table
+# printed `render ABSENT, nothing rendered yet` on nine of seventeen rows, about a deck that had
+# published, and exited 0. `numeral_trace.run()` had already met this and carries the fallback in
+# its own file; the table did not.
+#
+# That is the day's other defect wearing this file's clothes. A judge read the shipped directory
+# during a copy and scored an older deck, and the lesson underneath both is the same: **a checker
+# pointed at a real artifact it does not recognise must not answer as though the artifact were
+# missing.** Here the wrong answer is ABSENT, which reads as "that phase has not run yet" and is
+# the most reassuring thing this table can say.
+#
+# The canonical path is FIRST, so an ABSENT row still names the place a run should look.
+RENDER_REPORT = ("render/render_report.json", "render_report.json")
+
+
+def under(d: Path, *rels: str) -> Path:
+    """The first of these relative paths that exists, and the canonical one when none does."""
+    for rel in rels:
+        p = d / rel
+        if p.exists():
+            return p
+    return d / rels[0]
+
+
 def newest_render(d: Path) -> float:
-    """When the deck a row claims to describe was last drawn."""
+    """When the deck a row claims to describe was last drawn.
+
+    ONLY the working layout, deliberately. A shipped directory's file times are COPY times, not
+    render times, so a staleness verdict computed from them would be measuring a `cp`. Zero here
+    turns the staleness rule off, and `rows_for` says so on the `render` row rather than letting
+    a rule switch itself off in silence. GATE_LESSONS 37: a check that cannot run is not a skip.
+    """
     pngs = list((d / "render").glob("slide-*.png"))
     return max((p.stat().st_mtime for p in pngs), default=0.0)
 
@@ -140,7 +176,7 @@ def rows_for(d: Path) -> list[Row]:
     drawn = newest_render(d)
     out: list[Row] = []
 
-    def artifact(name: str, rel: str, read, produced_by: str = ""):
+    def artifact(name: str, rel, read, produced_by: str = ""):
         """One row, read from the artifact a gate WROTE.
 
         `produced_by` names the command that writes it, and an ABSENT row prints it. A run that
@@ -151,26 +187,29 @@ def rows_for(d: Path) -> list[Row]:
         them reachable to port_audit, which fails a script no workflow, prompt or other script
         names, on the grounds that a gate nothing invokes is a gate nothing runs.
         """
-        p = d / rel
+        rels = (rel,) if isinstance(rel, str) else tuple(rel)
+        p = under(d, *rels)
         if not p.exists():
-            out.append(Row(name, ABSENT, f"{rel} not written yet"
+            out.append(Row(name, ABSENT, f"{rels[0]} not written yet"
                                          + (f". Run {produced_by}" if produced_by else "")))
             return
         data = load(p)
         if data is None:
-            out.append(Row(name, FAIL, f"{rel} is unparseable"))
+            out.append(Row(name, FAIL, f"{p.relative_to(d)} is unparseable"))
             return
         if name in RENDER_DEPENDENT and staleness(p, drawn):
-            out.append(Row(name, STALE, f"{rel} predates the newest render, so it describes a "
-                                        f"deck that no longer exists. Re-run it"))
+            out.append(Row(name, STALE,
+                           f"{p.relative_to(d)} predates the newest render, so it describes a "
+                           f"deck that no longer exists. Re-run it"))
             return
         out.append(read(data))
 
     artifact("claims", "claims.json", lambda c: _claims(c))
-    artifact("render", "render/render_report.json", lambda r: _render(r))
-    artifact("qa", "render/machine_qa.json", lambda q: _qa(q))
+    artifact("render", RENDER_REPORT, lambda r: _render(r, d, drawn))
+    artifact("qa", ("render/machine_qa.json", "machine_qa.json"), lambda q: _qa(q))
     artifact("aggregates", "aggregate_report.json", lambda a: _aggr(a))
-    artifact("assembly", "final/assemble_report.json", lambda a: _assembly(a, d))
+    artifact("assembly", ("final/assemble_report.json", "assemble_report.json"),
+             lambda a: _assembly(a, d))
     artifact("score", "score.json", lambda s: _score(s))
 
     # THE LABEL ROW, ADDED 2026-08-26. A gate nothing reports on is a gate nothing runs, which
@@ -221,13 +260,13 @@ def rows_for(d: Path) -> list[Row]:
     # threshold, because a score is a judgment a run can reason about and an exit code is not.
     import sys as _sys
     _sys.path.insert(0, str(Path(__file__).resolve().parent))
-    rr = d / "render" / "render_report.json"
+    rr = under(d, *RENDER_REPORT)
     if not rr.exists():
         out.append(Row("craft floor", ABSENT, "nothing rendered yet"))
     else:
         try:
             import craft_floor
-            qp = d / "render" / "machine_qa.json"
+            qp = under(d, "render/machine_qa.json", "machine_qa.json")
             cf, cw, cm = craft_floor.check(
                 json.loads(rr.read_text(encoding="utf-8")),
                 json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else None)
@@ -356,7 +395,15 @@ def _claims(c) -> Row:
                f"{n} verified claim(s)" if n else "no claims survived verification")
 
 
-def _render(r) -> Row:
+def _render(r, d: Path | None = None, drawn: float = 0.0) -> Row:
+    """The render row, and the one place the STALENESS RULE says whether it is switched on.
+
+    `newest_render` reads `render/slide-*.png`, which only a working directory has, so a shipped
+    directory scores every render-dependent row without any staleness test at all. That is a
+    legitimate limit and it was INVISIBLE: four rows silently stopped being checked for the thing
+    this file's whole "WHAT THIS ONE ADDS" section is about, and every one of them read PASS.
+    GATE_LESSONS 37. A rule with nothing enforcing it has to say so where somebody reads it.
+    """
     slides = r.get("slides") or []
     warns = sum(len(s.get("overflow_warnings") or []) for s in slides)
     miss = sum(len(s.get("fonts_missing") or []) for s in slides)
@@ -368,6 +415,9 @@ def _render(r) -> Row:
         bits.append(f"{miss} missing font(s)")
     if overflow:
         bits.append(f"{overflow} body overflow(s)")
+    if d is not None and not drawn:
+        bits.append("staleness NOT MEASURED here, no render/slide-*.png to date the deck from, "
+                    f"so the {len(RENDER_DEPENDENT)} render-dependent row(s) are unchecked for it")
     bad = miss or overflow
     return Row("render", FAIL if bad else (WARN if warns else PASS), ", ".join(bits))
 
@@ -776,6 +826,57 @@ def self_test() -> int:
 
         ok("a record with no block at all is detectable",
            extract("# Run record\n\nnothing here\n") is None)
+
+        # ------------------------------------------------ THE SHIPPED LAYOUT, 2026-09-20
+        #
+        # Same bytes, flattened the way `runs/carousel/<date>/` holds them. Before this, four
+        # rows read ABSENT about artifacts sitting two directories up from where they were
+        # looked for, and the block exited 0 on a deck that had published. See `under`.
+        (d / "render" / "render_report.json").write_text(
+            json.dumps({"slides": [{"file": "slide-01.html", "n": 1, "text_nodes": []}]}),
+            encoding="utf-8")
+        flat = Path(td) / "shipped"
+        flat.mkdir()
+        for src, dst in (("render/render_report.json", "render_report.json"),
+                         ("render/machine_qa.json", "machine_qa.json"),
+                         ("final/assemble_report.json", "assemble_report.json"),
+                         ("final/deck.pdf", "final/deck.pdf"),
+                         ("claims.json", "claims.json"),
+                         ("storyboard.md", "storyboard.md"),
+                         ("caption.txt", "caption.txt")):
+            (flat / dst).parent.mkdir(parents=True, exist_ok=True)
+            (flat / dst).write_bytes((d / src).read_bytes())
+        deep, shallow = rows_for(d), rows_for(flat)
+        for name in ("render", "qa", "assembly"):
+            ok(f"the {name!r} row reads the SHIPPED layout rather than calling it absent",
+               status_of(shallow, name) not in (ABSENT, None),
+               f"{name} = {status_of(shallow, name)}")
+        ok("...and the two layouts of one deck agree on every row they both carry",
+           [r.status for r in deep if r.name in ("render", "qa", "assembly")]
+           == [r.status for r in shallow if r.name in ("render", "qa", "assembly")],
+           f"{[(r.name, r.status) for r in deep]} against "
+           f"{[(r.name, r.status) for r in shallow]}")
+
+        # AND ABSENT MUST STILL FIRE. A fallback that answers for a file present in NEITHER
+        # layout would be a gate that can no longer go red on the thing it was built for, which
+        # is the trap in every "accept both shapes" fix.
+        (flat / "render_report.json").unlink()
+        ok("an artifact in NEITHER layout is still ABSENT",
+           status_of(rows_for(flat), "render") == ABSENT)
+        ok("...and the ABSENT detail names the canonical path a run should write",
+           any("render/render_report.json" in r.detail
+               for r in rows_for(flat) if r.name == "render"))
+
+        # THE STALENESS RULE SWITCHES ITSELF OFF IN A SHIPPED DIRECTORY, because the file times
+        # there are copy times. That is correct and it was SILENT, which is not.
+        ok("a directory with no render/slide-*.png cannot date the deck", newest_render(flat) == 0)
+        (flat / "render_report.json").write_bytes((d / "render/render_report.json").read_bytes())
+        ok("...and the render row SAYS the staleness rule is unchecked there",
+           any("staleness NOT MEASURED" in r.detail
+               for r in rows_for(flat) if r.name == "render"),
+           str([r.detail for r in rows_for(flat) if r.name == "render"]))
+        ok("...and says nothing of the kind where the rule IS in force",
+           not any("staleness NOT MEASURED" in r.detail for r in deep if r.name == "render"))
 
     # THE FIELD NAME THIS REPO ACTUALLY WRITES. Missing from the lookup, so a real score
     # rendered as "None, below threshold".
