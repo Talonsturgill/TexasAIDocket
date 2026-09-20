@@ -778,6 +778,41 @@ def g_deck_coherence(d: Path):
     return list(got.get("problems") or [])
 
 
+FIGURE_SINCE = "2026-09-20"
+
+
+def g_figure_bearing(d: Path):
+    """The frames draw the story's own computed numbers rather than a scene beside them.
+
+    Its own since-date rather than DECK_SINCE, and for the reason stated at RESERVE_SINCE: this
+    rule is newer than the chassis system and folding it into that date would retroactively fail
+    four decks on a law that did not exist when they were drawn. They are the decks that produced
+    the law. A gate does not judge the work that produced it.
+
+    They ARE still measured and printed, because the difference between a carve-out and a
+    switched-off check is whether the finding is visible.
+    """
+    board = d / "storyboard.md"
+    if not board.exists():
+        return None
+    m = _by_module("figure_bearing", d)
+    import dossier_check as _dc
+    dossiers = _dc.parse_dossiers(board.read_text(encoding="utf-8"))
+    if not dossiers:
+        return None
+    probs = m.check(dossiers, m.computed_keys(d),
+                    int(m.load_config()["min_figure_bearing_frames"]),
+                    (d / "slides") if (d / "slides").is_dir() else None,
+                    m.figure_values(d))
+    if d.name <= FIGURE_SINCE:
+        if probs:
+            return (f"THE ARTWORK CARRIES THE DATA was written on {FIGURE_SINCE} out of this "
+                    f"deck and the three before it, and they were drawn before it existed. Run "
+                    f"into it anyway it reports: {str(probs[0])[:200]}")
+        return None
+    return probs
+
+
 def g_completion(d: Path):
     """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
 
@@ -1002,6 +1037,7 @@ GATES = [
     ("craft floor", g_craft_floor, CURRENT),
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
+    ("figure bearing", g_figure_bearing, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),

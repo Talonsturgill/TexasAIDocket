@@ -27,6 +27,22 @@ numerals:                 # every figure, and where it comes from
   - value_from: c4        # a claim, or
   - computed_by: "scripts/... , peak divided by approved"   # a computation
 
+# REQUIRED on at least six of nine frames. THE ARTWORK CARRIES THE DATA, in
+# knowledge/carousel/ILLUSTRATION_SYSTEM.md, is the law and figure_bearing.py is the gate.
+# `numerals` above says where the TYPE's numbers come from. This says where the IMAGE's
+# dimensions come from, and until 2026-09-20 nothing asked. Four decks shipped with six, four,
+# two and six of nine frames carrying no numeral at all: rooms, walkways and a brick wall, each
+# drawn well and each silent about the story beside it.
+data_in_art:
+  figure: small_systems_of_all   # a key in figures.json, or a claim's computed value
+  drives: mark count             # the DRAWN parameter that figure sets
+# `drives` names something a renderer can set: column height, mark count, stipple density, arc
+# sweep, ring radius, row spacing. Never a mood. "The sense that the system is strained" is not
+# a parameter and no reviewer can check a drawing against it.
+#
+# Then DRAW it. The gate looks for the value in the frame's code with the text nodes stripped
+# out, so a figure that reaches the headline and not the canvas does not satisfy this.
+
 composition:
   structure: >
     How the frame is organised, and why this content wants that organisation rather than
