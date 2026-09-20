@@ -3389,3 +3389,169 @@ writers, so **any whole-tree git operation is a whole-tree operation on somebody
 The question "did this predate me" has three answers that touch nothing the other actor is
 holding: `git show HEAD:<path>` into a scratch file, `git stash show` without applying, or a
 separate worktree.
+
+---
+
+## 2026-09-20, carousel no. 30. One gate blind by construction, one measurement that was wrong, and the frontier finding that reframes both
+
+Two upgrades shipped this phase and both are in `scripts/carousel/`. Everything below is what it
+refused, could not reach, or measured and decided against, with the measurement attached so the
+next phase does not pay for it twice.
+
+### 1. `deck_chassis.py` CANNOT SEE A COMPOSITE, AND THE OBVIOUS DETECTOR WAS BUILT AND FAILED
+
+**The defect.** `N.quiet` in this run's chassis painted one translucent layer PER LINE BOX onto
+the frame context. The standard formula for that is `1 - (1 - a)^n` over `n` overlapping layers,
+which is exactly what the run measured: replaying the composite against `render_report.json`'s own
+`lines` arrays over all eleven boxes frame 1 reserves gave **0.783** against `deck_chassis.py`'s
+`PLATE_ALPHA` ceiling of 0.55, a breach of forty two percent, on two thirds of the deck. Every
+round was green because `PLATE_ALPHA` reads **the alpha CONSTANT in the CSS source**, and this wash
+is canvas, drawn in a loop, in JavaScript.
+
+The helper was repaired in `assets/js/deck/` this run, which is `daily` lane. **The gate is still
+blind**, the repair is deck-local, and tomorrow's chassis starts from nothing.
+
+**A DETECTOR WAS PROTOTYPED THIS PHASE AND IT DOES NOT DISCRIMINATE. Do not rebuild it.** The
+shape tried: find every loop body in the chassis, find paint calls on an identifier declared
+OUTSIDE the loop, require a translucent value in force, and exempt a context whose
+`globalCompositeOperation` is one of the non-accumulating modes. Run over the real files it
+reports **4 findings on the BROKEN chassis and the same 4 on the FIXED one**, none of them the
+`c.drawImage` that was the actual defect, and 1 on `2026-09-16-lamp.js` which is correct art. The
+four hits are translucent hatching strokes in a texture loop, which is how you build texture and
+is not a wash behind type. GATE_LESSONS 36 exactly: **the input does not distinguish the working
+implementation from the broken one.** Narrowing it to "a loop over `TXDECK.lineBoxes` output"
+needs cross-file dataflow from the slide HTML into a chassis parameter, which is brittle in a
+different direction.
+
+**The right instrument is a pixel, and the frontier scan below says how.**
+
+### 2. FRONTIER SCAN, 2026-09-20. Focus: measuring a composite instead of reading a constant
+
+Eight searches, one finding worth acting on, and it subsumes three separate open items.
+
+The accessibility literature settled this question years ago for text over photographs, and the
+rule it arrived at is the one this repo needs: **contrast is measured per pixel, against the
+worst-case ground under any character of the text**, using the WCAG relative luminance
+`L = 0.2126R + 0.7152G + 0.0722B` and the ratio `(L1 + 0.05) / (L2 + 0.05)`. Automated tools are
+said plainly to be unable to answer it from source, and the recommended practice is to sample the
+rendered pixel. That is GATE_LESSONS 1 arriving from outside this repo.
+
+Canvas testing guidance adds the mechanical half: **sample the backing store and assert RGBA
+there, separately from the composite screenshot**, because erasing on a transparent canvas reduces
+alpha rather than painting a colour, so a test written against the presentation background is
+describing something other than the bitmap.
+
+**WHAT THAT MAKES POSSIBLE, AND IT REPLACES THREE ITEMS WITH ONE MEASUREMENT.** If the render
+harness emitted an ART-ONLY pass per frame, the same draw with the type layer hidden, then one
+gate could read, for every line box the render report already records, the worst-case luminance of
+the ground under it and the glyph colour beside it, and answer:
+
+  - whether the wash behind type composites past its own ceiling, which is `PLATE_ALPHA`'s
+    question asked of the pixel rather than of the source, and is immune to being drawn in a loop,
+    in canvas, in a language the CSS parser never sees
+  - whether the wash LIFTS where the art is already darker than the ground, which is the sign
+    error the round 5 craft judge named twice this run and which is still unfixed
+  - whether any frame's type clears a contrast floor an external standard sets, rather than a
+    number this project typed
+
+**The threshold would be external and must stay external.** WCAG 1.4.3 for body copy and 1.4.11
+for non-text. Nothing here is derived from our own corpus, so nothing here can ratchet.
+
+**Out of lane.** The art-only pass belongs to `.claude/skills/carousel-engine/render.py`, which
+`ownership.yaml` gives to `upgrade` and the host makes unreachable to any unattended run. It is a
+maintainer's edit. The GATE side is `scripts/carousel/`, which this lane owns, and it cannot be
+written until the artifact exists: a gate that measured the SHIPPED png would be reading the
+glyphs themselves rather than the ground under them, because the shipped png already has the type
+painted on it.
+
+### 3. THE CRAFT JUDGE'S `N.quiet` SIGN FIX, recorded because it is a design decision and not a gate
+
+Their words, and this lane agrees with them: sample the art under each reserved region, lay
+`#2E2016` only where the art is LIGHTER than the ground, and lay `N.G.deep` where it is darker. The
+current helper is unconditional, so where a frame's art is already darker than the ground the wash
+LIFTS the region it was drawn to dim. It is `assets/js/deck/**`, `daily` lane, and it is a per-run
+chassis, so the durable form of this is a house primitive rather than a repair to one deck's file.
+
+### 4. `layout_check`'S ACCENT FLOOR CANNOT BE CLEARED BY A LINE AT ANY WEIGHT, and that is undocumented
+
+**Measured this run.** The gate counts pixels within 12 Lab units of the accent, at 216x270,
+against 0.2 percent of the frame. Frame 7's accent stroke was inflated 5.0, 7.0, 9.0 and 10.5 and
+the coverage read 0.0015, 0.0017, 0.0019 and then **0.0018**. It went DOWN at the heaviest weight.
+A downscaled line blends with whatever it crosses and leaves the 12 Lab ball, so thickening it
+past a point costs coverage rather than buying it.
+
+**The gate therefore has a bias toward accents that are AREAS, and a frame whose honest accent is a
+pen line can never satisfy it.** That may well be the right bias for this product. What is wrong is
+that it is nowhere written down, so a run meets it at round 4 and pays four render cycles
+rediscovering it. The bounded fix is in this lane: `layout_check` should print the measured
+coverage and the direction alongside the failure, and its docstring should carry the four
+measurements above. Left undone only because three is the ceiling and two shipped.
+
+### 5. NO GATE COMPARES DOM TYPE AGAINST CANVAS-PAINTED TEXT FOR OVERLAP
+
+Round 1 found frame 6 overprinting its own dek. The dek is DOM and the footnote is canvas, and
+nothing in the suite compares the two layers. `render_report.json` records `rules: []` on every
+slide, so the strike detector cannot see a canvas-drawn rule over canvas-drawn text either.
+
+**Not built this phase, and the reason is calibration rather than difficulty.** `canvas_text.json`
+is the artifact such a gate would read and it was written for the first time TODAY, so there is no
+corpus to calibrate a new detector against and no way to prove it does not fire on every shipped
+deck. GATE_LESSONS 16: a fixture written beside a detector agrees with it, and a real artifact is
+the only thing that carries the shapes nobody thought to write down. Revisit once three or four
+decks have shipped one.
+
+### 6. A MEASUREMENT THIS RUN REPORTED THAT IS WRONG, CORRECTED HERE
+
+The run recorded that `scripts/site/site_build.py` "prints `broke:` and exits 0", on the evidence
+of a background rebuild whose `docs/` was 30 minutes stale.
+
+**`site_build.py` cannot do that, and it was checked rather than argued.** The module's only
+`broke:` is in its `__main__` handler, one line above `sys.exit(2)`. The handler above it is
+`except SystemExit: raise`, and a re-raised `SystemExit("...")` prints its message bare and exits
+**1**. There is no path through that file that prints `broke:` and returns zero. Both exit paths
+were read and the `SystemExit` one was executed to confirm the code.
+
+So the zero came from the SHELL, not the script: a pipeline without `pipefail`, or a `$?` read
+after a `&` or a `head`, which is the same mistake this phase made once while checking gate exit
+codes in this very session. **CLAUDE.md already names this: never read a runner's log to decide
+whether it passed, ask for a verdict.** The correction matters more than the original finding,
+because a wrong explanation is worse than none: the next phase would have gone looking for a
+swallowed exception in a `human` lane file that does not contain one.
+
+### 7. `shipped_check`'s ADAPTER LOOP DEMOTES "COULD NOT RUN" TO A NOTE
+
+`check_run` catches every adapter exception and appends `could not run (...)` to `notes`, which
+never reaches the fatal list. That is GATE_LESSONS 37's shape, and it now matters slightly more
+than it did: `numeral_trace.check` raises `Unreadable` as of this phase, so a deck whose copy keys
+cannot be resolved produces a note rather than a failure there. It at least NAMES itself now,
+where before it produced silent false positives. Left alone because changing that loop's severity
+affects every registered gate at once and needs its own measurement over all 30 decks.
+
+### 8. PROPOSED GATE_LESSONS ENTRIES, which this lane may not write
+
+`knowledge/shared/GATE_LESSONS.md` is `human`. These are drafted so a maintainer can paste them.
+
+**A checker pointed at a real artifact it does not recognise answers ABSENT, which is the most
+reassuring thing it can say.** `gate_status.py` named `render/render_report.json`,
+`render/machine_qa.json` and `final/assemble_report.json`. A run works in `out/<date>/`, where
+those paths are right. What SHIPS is a curated FLAT copy under `runs/carousel/<date>/`. Pointed at
+a published deck the table printed `ABSENT, not written yet` on nine of seventeen rows and exited
+0. Nothing was missing. The files were two directories from where the gate looked, and the wrong
+answer wore the colour of "that phase has not run yet". `numeral_trace.run()` had carried the
+fallback in its own file for weeks and the table had never learned it. **What to check: when one
+artifact has two layouts, resolve it in one place and assert the two layouts of the same bytes
+produce the same verdict. And keep an ABSENT case in the self-test for a file present in NEITHER,
+because a fallback that answers for everything is a gate that can no longer go red.**
+
+**A gate that cannot find its subject reports in whichever colour its inputs happen to make.**
+`numeral_trace` looked a frame's citations up by the literal key `S<n>`. Carousel no. 30's build
+step keyed `copy.json` on `slide-01.html`, which is a different name for the same thing, and
+`copy_sync_check` did not care because its normaliser reads the digits out of any key. Here the
+lookup missed on all nine frames, every frame read as citing NOTHING, and four correctly traced
+numerals were reported as untraceable. **The false positives were the lucky half**: the identical
+miss passes a frame outright the moment `aggregates.json` happens to authorise the same digits,
+because `hay` is empty and `allowed` still answers. The colour a broken lookup produces is an
+accident of the data. **What to check: a checker must be able to say "I could not find my
+subject", as a third outcome with its own exit code, and a self-test has to exercise it. Counting
+how many subjects were RESOLVED, and refusing when that count is short, is the cheap version.**
+
