@@ -1,610 +1,278 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-19T21:33:33Z",
+  "checked_at": "2026-09-20T05:27:00Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "5f63f06ef934f8493b325f4499b60e2aa7cc25f7d0bd2cba4425e3f562f54ed7",
+  "response_sha256": "073ebf4a080c64f0758cfb03a26b005277d3955b2f6c94520590a1ea06d9b346",
   "articles": [
-    {
-      "title": "Building AI to accelerate science and improve lives",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
-      "first_seen_at": "2026-09-15T16:00:00Z",
-      "feed": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "title": "New insights from Google’s AI & Economy ATLAS",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
-      "first_seen_at": "2026-09-15T13:00:00Z",
-      "feed": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "title": "AI for everyone in every language",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
-      "first_seen_at": "2026-09-15T16:00:00Z",
-      "feed": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "title": "AI for Societal Impact",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
-      "first_seen_at": "2026-09-15T16:00:00Z",
-      "feed": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "title": "New experts join Google’s AI & Economy team",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
-      "first_seen_at": "2026-09-18T14:00:00Z",
-      "feed": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "title": "Emerald AI, Google and NVIDIA Launch Alliance to Advance Flexible AI Data Centers",
-      "url": "https://blogs.nvidia.com/blog/ai-energy-management-alliance/",
-      "first_seen_at": "2026-09-16T13:00:33Z",
-      "feed": "https://blogs.nvidia.com/feed/"
-    },
-    {
-      "title": "AI Infra Summit: NVIDIA Vera Rubin and DSX Platform Advancements Showcase Energy Efficiencies of Optimizing Tokens Per Watt for AI Factories",
-      "url": "https://blogs.nvidia.com/blog/ai-infra-summit-vera-rubin-dsx-energy-efficiencies-tokens-per-watt-ai-factories/",
-      "first_seen_at": "2026-09-15T16:55:40Z",
-      "feed": "https://blogs.nvidia.com/feed/"
-    },
-    {
-      "title": "Heart of the Matter: How a Major Children’s Hospital Uses Open Source NVIDIA AI for Cardiac Care",
-      "url": "https://blogs.nvidia.com/blog/childrens-hospital-open-source-ai-cardiac-care/",
-      "first_seen_at": "2026-09-15T09:00:42Z",
-      "feed": "https://blogs.nvidia.com/feed/"
-    },
-    {
-      "title": "From Megawatts to Tokens: How NVIDIA Maximizes AI Factory Production",
-      "url": "https://blogs.nvidia.com/blog/from-megawatts-to-tokens-how-nvidia-maximizes-ai-factory-production/",
-      "first_seen_at": "2026-09-15T16:55:59Z",
-      "feed": "https://blogs.nvidia.com/feed/"
-    },
-    {
-      "title": "NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPerf Inference v6.1 Debut",
-      "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/",
-      "first_seen_at": "2026-09-16T15:00:48Z",
-      "feed": "https://blogs.nvidia.com/feed/"
-    },
     {
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
       "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
       "first_seen_at": "2026-09-15T22:28:12Z",
+      "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+      "feed": "https://dallasinnovates.com/feed/"
+    },
+    {
+      "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+      "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+      "first_seen_at": "2026-09-17T18:04:25Z",
+      "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
       "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
       "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
       "first_seen_at": "2026-09-16T10:28:58Z",
+      "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
       "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
       "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
       "first_seen_at": "2026-09-14T21:03:02Z"
-    },
-    {
-      "title": "New AI technique could make minimally invasive surgeries safer and more precise",
-      "url": "https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916",
-      "first_seen_at": "2026-09-16T15:00:00Z",
-      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
-    },
-    {
-      "title": "New method enables AI for safety-critical situations",
-      "url": "https://news.mit.edu/2026/new-method-enables-ai-safety-critical-situations-0914",
-      "first_seen_at": "2026-09-14T04:00:00Z",
-      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
-    },
-    {
-      "title": "How Cooley is accelerating IPO work with ChatGPT",
-      "url": "https://openai.com/index/cooley-gopublic",
-      "first_seen_at": "2026-09-17T12:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "How Fyxer built an AI executive assistant people trust",
-      "url": "https://openai.com/index/fyxer",
-      "first_seen_at": "2026-09-14T12:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Helping older adults use AI in everyday life",
-      "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
-      "first_seen_at": "2026-09-16T16:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "How to connect AI usage to business value",
-      "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
-      "first_seen_at": "2026-09-16T12:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
-      "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
-      "first_seen_at": "2026-09-14T00:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Reimagining advertising with AI",
-      "url": "https://openai.com/index/reimagining-advertising-with-ai",
-      "first_seen_at": "2026-09-16T13:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Open-weight model developer Arcee AI reaches $1B+ valuation with new funding",
-      "url": "https://siliconangle.com/2026/09/16/open-weight-model-developer-arcee-ai-reaches-1b-plus-valuation-with-undisclosed-series-b-funding/",
-      "first_seen_at": "2026-09-17T02:26:20Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "OpenAI unveils new framework for reporting ‘AI misalignment’ as it reveals six more worrying incidents",
-      "url": "https://siliconangle.com/2026/09/16/openai-unveils-new-framework-for-reporting-ai-misalignment-as-it-reveals-six-more-worrying-incidents/",
-      "first_seen_at": "2026-09-17T01:39:26Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "AI data center builder Crusoe valued at $30.9B in $3.9B round",
-      "url": "https://siliconangle.com/2026/09/17/ai-data-center-builder-crusoe-valued-at-30-9b-in-3-9b-round/",
-      "first_seen_at": "2026-09-18T00:45:02Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "AI governance moves closer to the workflow: theCUBE Insights at Amplify",
-      "url": "https://siliconangle.com/2026/09/17/ai-governance-moves-closer-to-the-workflow-thecube-insights-amplify/",
-      "first_seen_at": "2026-09-17T16:15:14Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Anthropic details practical metrics to help monitor the speed of AI development",
-      "url": "https://siliconangle.com/2026/09/17/anthropic-details-practical-metrics-to-help-monitor-the-speed-of-ai-development/",
-      "first_seen_at": "2026-09-17T23:44:57Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Compliance automation startup Comp AI raises $34M to push into security",
-      "url": "https://siliconangle.com/2026/09/17/compliance-automation-startup-comp-ai-raises-34m-to-push-into-security/",
-      "first_seen_at": "2026-09-17T13:00:21Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Trust, not budget: Why AI adoption in finance comes down to governance",
-      "url": "https://siliconangle.com/2026/09/17/erp-systems-become-safe-starting-point-ai-finance-amplify/",
-      "first_seen_at": "2026-09-17T16:03:53Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Exclusive: Arcjet launches runtime security to track and control AI agents in production",
-      "url": "https://siliconangle.com/2026/09/17/exclusive-arcjet-launches-runtime-security-to-track-and-control-ai-agents-in-production/",
-      "first_seen_at": "2026-09-17T13:00:43Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Exclusive: PeakMetrics tracks brand reputations across five top AI platforms",
-      "url": "https://siliconangle.com/2026/09/17/exclusive-peakmetrics-tracks-brand-reputations-across-five-top-ai-platforms/",
-      "first_seen_at": "2026-09-17T13:00:24Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Full speed ahead: Despite calls to slow AI down, its support structure is on the fast track",
-      "url": "https://siliconangle.com/2026/09/17/full-speed-ahead-despite-calls-to-slow-ai-down-its-support-structure-is-on-the-fast-track/",
-      "first_seen_at": "2026-09-18T03:38:59Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Google expands CC into a shared AI agent for up to six family members",
-      "url": "https://siliconangle.com/2026/09/17/google-expands-cc-into-a-shared-ai-agent-for-up-to-six-family-members/",
-      "first_seen_at": "2026-09-17T22:42:08Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "HP ties sustainability data governance to business decisions in the AI era",
-      "url": "https://siliconangle.com/2026/09/17/hp-ties-sustainability-data-governance-to-business-decisions-in-the-ai-era-amplify/",
-      "first_seen_at": "2026-09-17T14:50:34Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Mind raises $72M to stop sensitive data leaking into AI tools",
-      "url": "https://siliconangle.com/2026/09/17/mind-raises-72m-to-stop-sensitive-data-leaking-into-ai-tools/",
-      "first_seen_at": "2026-09-17T22:17:36Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "AI agents erase the paper trail, reshaping audit assurance",
-      "url": "https://siliconangle.com/2026/09/17/netsuite-ai-agents-new-audit-assurance-gap-amplify/",
-      "first_seen_at": "2026-09-17T20:22:32Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Nvidia, Google and Emerald AI launch flexible data center consortium",
-      "url": "https://siliconangle.com/2026/09/17/nvidia-google-and-emerald-ai-launch-flexible-data-center-consortium/",
-      "first_seen_at": "2026-09-17T20:37:36Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "OpenAI launches Astra for Law, a GPT-6 configuration for legal research",
-      "url": "https://siliconangle.com/2026/09/17/openai-launches-astra-for-law-a-gpt-6-configuration-for-legal-research/",
-      "first_seen_at": "2026-09-17T23:17:25Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Anthropic opens AI-powered biology research lab",
-      "url": "https://siliconangle.com/2026/09/18/anthropic-opens-ai-powered-biology-research-lab/",
-      "first_seen_at": "2026-09-18T20:15:41Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude",
-      "url": "https://siliconangle.com/2026/09/18/cybersecurity-researchers-gain-access-to-openais-github-repository-using-claude/",
-      "first_seen_at": "2026-09-18T22:25:06Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Data center builder Nscale files for IPO after multibillion-dollar Anthropic deal",
-      "url": "https://siliconangle.com/2026/09/18/data-center-builder-nscale-files-for-ipo-after-multibillion-dollar-anthropic-deal/",
-      "first_seen_at": "2026-09-19T00:18:46Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "For AI agents, it’s the best of times, it’s the worst of times",
-      "url": "https://siliconangle.com/2026/09/18/for-ai-agents-its-the-best-of-times-its-the-worst-of-times/",
-      "first_seen_at": "2026-09-18T14:00:35Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "PrismML launches Bonsai 2 27B, a high-intelligence AI model so small it fits on consumer hardware",
-      "url": "https://siliconangle.com/2026/09/18/prismml-launches-bonsai-2-27b-a-high-intelligence-ai-model-so-small-it-fits-on-consumer-hardware/",
-      "first_seen_at": "2026-09-18T16:10:08Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "AI governance moves from observability to provable control",
-      "url": "https://siliconangle.com/2026/09/19/ai-governance-provable-control-agentic-ai-thecube-appdevangle/",
-      "first_seen_at": "2026-09-19T20:50:17Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "At AGNTCon Europe, ensuring AI agents don’t kill us all",
-      "url": "https://siliconangle.com/2026/09/19/at-agntcon-europe-ensuring-ai-agents-dont-kill-us-all/",
-      "first_seen_at": "2026-09-19T18:41:24Z",
-      "feed": "https://siliconangle.com/feed/"
-    },
-    {
-      "title": "Bitdeer AI to lease 65MW data center in Johor, Malaysia",
-      "url": "https://www.datacenterdynamics.com/en/news/bitdeer-ai-to-lease-65mw-data-center-in-johor-malaysia/",
-      "first_seen_at": "2026-09-18T10:46:00Z",
-      "feed": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
-      "title": "Enabling the next generation of AI data centers",
-      "url": "https://www.datacenterdynamics.com/en/opinions/enabling-the-next-generation-of-ai-data-centers/",
-      "first_seen_at": "2026-09-18T14:45:00Z",
-      "feed": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
-      "title": "Goldman Sachs plants flag in Bellevue, opening hub for more than 125 AI and cloud engineers",
-      "url": "https://www.geekwire.com/2026/goldman-sachs-plants-flag-in-bellevue-opening-hub-for-125-ai-and-cloud-engineers/",
-      "first_seen_at": "2026-09-15T15:28:58Z",
-      "feed": "https://www.geekwire.com/tag/artificial-intelligence/feed/"
-    },
-    {
-      "title": "Microsoft floats rules for AI models as industry weighs slowdown",
-      "url": "https://www.geekwire.com/2026/microsoft-floats-rules-for-its-own-ai-models-as-industry-debates-a-slowdown/",
-      "first_seen_at": "2026-09-14T14:31:18Z",
-      "feed": "https://www.geekwire.com/tag/artificial-intelligence/feed/"
-    },
-    {
-      "title": "AI uncovers hidden Ozempic side effects across 400,000 Reddit posts",
-      "url": "https://www.sciencedaily.com/releases/2026/09/260912222856.htm",
-      "first_seen_at": "2026-09-13T10:46:19Z",
-      "feed": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml"
-    },
-    {
-      "title": "Microsoft exec says AI training might be the \"largest labor theft in human history\"",
-      "url": "https://www.techspot.com/news/113891-microsoft-exec-ai-training-might-largest-labor-theft.html",
-      "first_seen_at": "2026-09-18T14:51:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
-    },
-    {
-      "title": "Almost 86% of Japanese game developers are using AI in their workflows, up from 51% in 2025",
-      "url": "https://www.techspot.com/news/113892-nearly-86-japanese-game-developers-using-generative-ai.html",
-      "first_seen_at": "2026-09-18T18:40:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
-    },
-    {
-      "title": "Air traffic control assisted by AI could arrive as soon as next week",
-      "url": "https://www.techspot.com/news/113893-air-traffic-control-assisted-ai-could-arrive-soon.html",
-      "first_seen_at": "2026-09-18T12:57:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
-    },
-    {
-      "title": "This startup believes smaller, modular data centers can solve AI's infrastructure bottleneck",
-      "url": "https://www.techspot.com/news/113897-startup-believes-smaller-modular-data-centers-can-solve.html",
-      "first_seen_at": "2026-09-18T16:28:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
-    },
-    {
-      "title": "Most of the world thinks AI is going to kill jobs, a new Pew survey finds",
-      "url": "https://www.techspot.com/news/113898-most-world-expects-ai-shrink-job-market-americans.html",
-      "first_seen_at": "2026-09-18T12:12:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
-    },
-    {
-      "title": "An AI hallucination nearly started a war between the US and China",
-      "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
-      "first_seen_at": "2026-09-19T16:43:00Z",
-      "feed": "https://www.techspot.com/backend.xml"
     }
   ],
   "selected": {
-    "title": "An AI hallucination nearly started a war between the US and China",
-    "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
-    "first_seen_at": "2026-09-19T16:43:00Z",
-    "feed": "https://www.techspot.com/backend.xml",
-    "publisher": "TechSpot",
+    "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+    "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+    "first_seen_at": "2026-09-15T22:28:12Z",
+    "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.869483,
-    "priority": 1
+    "score": 0.051089,
+    "priority": 4
   },
-  "expires_at": "2026-09-26T16:43:00Z",
+  "expires_at": "2026-09-22T22:28:12Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
     {
-      "starts_at": "2026-09-19T19:23:00Z",
-      "selected": {
-        "title": "An AI hallucination nearly started a war between the US and China",
-        "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
-        "first_seen_at": "2026-09-19T16:43:00Z",
-        "feed": "https://www.techspot.com/backend.xml",
-        "publisher": "TechSpot",
-        "coverage": 1,
-        "score": 0.869483,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "An AI hallucination nearly started a war between the US and China",
-          "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
-          "first_seen_at": "2026-09-19T16:43:00Z",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.869483,
-          "priority": 1
-        },
-        {
-          "title": "AI governance moves from observability to provable control",
-          "url": "https://siliconangle.com/2026/09/19/ai-governance-provable-control-agentic-ai-thecube-appdevangle/",
-          "first_seen_at": "2026-09-19T20:50:17Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.979389,
-          "priority": 1
-        },
-        {
-          "title": "Air traffic control assisted by AI could arrive as soon as next week",
-          "url": "https://www.techspot.com/news/113893-air-traffic-control-assisted-ai-could-arrive-soon.html",
-          "first_seen_at": "2026-09-18T12:57:00Z",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.389929,
-          "priority": 1
-        },
-        {
-          "title": "At AGNTCon Europe, ensuring AI agents don’t kill us all",
-          "url": "https://siliconangle.com/2026/09/19/at-agntcon-europe-ensuring-ai-agents-dont-kill-us-all/",
-          "first_seen_at": "2026-09-19T18:41:24Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.920476,
-          "priority": 1
-        },
-        {
-          "title": "Most of the world thinks AI is going to kill jobs, a new Pew survey finds",
-          "url": "https://www.techspot.com/news/113898-most-world-expects-ai-shrink-job-market-americans.html",
-          "first_seen_at": "2026-09-18T12:12:00Z",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.381574,
-          "priority": 1
-        }
-      ]
-    },
-    {
       "starts_at": "2026-09-20T01:23:00Z",
       "selected": {
-        "title": "Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude",
-        "url": "https://siliconangle.com/2026/09/18/cybersecurity-researchers-gain-access-to-openais-github-repository-using-claude/",
-        "first_seen_at": "2026-09-18T22:25:06Z",
-        "feed": "https://siliconangle.com/feed/",
-        "publisher": "SiliconANGLE",
+        "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+        "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+        "first_seen_at": "2026-09-15T22:28:12Z",
+        "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.458966,
-        "priority": 1
+        "score": 0.051089,
+        "priority": 4
       },
       "stories": [
         {
-          "title": "Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude",
-          "url": "https://siliconangle.com/2026/09/18/cybersecurity-researchers-gain-access-to-openais-github-repository-using-claude/",
-          "first_seen_at": "2026-09-18T22:25:06Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.458966,
-          "priority": 1
+          "score": 0.051089,
+          "priority": 4
         },
         {
-          "title": "Bitdeer AI to lease 65MW data center in Johor, Malaysia",
-          "url": "https://www.datacenterdynamics.com/en/news/bitdeer-ai-to-lease-65mw-data-center-in-johor-malaysia/",
-          "first_seen_at": "2026-09-18T10:46:00Z",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.327819,
-          "priority": 1
+          "score": 0.179989,
+          "priority": 0
         },
         {
-          "title": "For AI agents, it’s the best of times, it’s the worst of times",
-          "url": "https://siliconangle.com/2026/09/18/for-ai-agents-its-the-best-of-times-its-the-worst-of-times/",
-          "first_seen_at": "2026-09-18T14:00:35Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.360008,
-          "priority": 1
+          "score": 0.024519,
+          "priority": 4
         },
         {
-          "title": "Full speed ahead: Despite calls to slow AI down, its support structure is on the fast track",
-          "url": "https://siliconangle.com/2026/09/17/full-speed-ahead-despite-calls-to-slow-ai-down-its-support-structure-is-on-the-fast-track/",
-          "first_seen_at": "2026-09-18T03:38:59Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.266911,
-          "priority": 1
-        },
-        {
-          "title": "AI data center builder Crusoe valued at $30.9B in $3.9B round",
-          "url": "https://siliconangle.com/2026/09/17/ai-data-center-builder-crusoe-valued-at-30-9b-in-3-9b-round/",
-          "first_seen_at": "2026-09-18T00:45:02Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.245473,
-          "priority": 1
+          "score": 0.072278,
+          "priority": 4
         }
       ]
     },
     {
       "starts_at": "2026-09-20T07:23:00Z",
       "selected": {
-        "title": "Almost 86% of Japanese game developers are using AI in their workflows, up from 51% in 2025",
-        "url": "https://www.techspot.com/news/113892-nearly-86-japanese-game-developers-using-generative-ai.html",
-        "first_seen_at": "2026-09-18T18:40:00Z",
-        "feed": "https://www.techspot.com/backend.xml",
-        "publisher": "TechSpot",
+        "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+        "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+        "first_seen_at": "2026-09-17T18:04:25Z",
+        "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.346311,
-        "priority": 1
+        "score": 0.170215,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Almost 86% of Japanese game developers are using AI in their workflows, up from 51% in 2025",
-          "url": "https://www.techspot.com/news/113892-nearly-86-japanese-game-developers-using-generative-ai.html",
-          "first_seen_at": "2026-09-18T18:40:00Z",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.346311,
-          "priority": 1
+          "score": 0.170215,
+          "priority": 0
         },
         {
-          "title": "Anthropic details practical metrics to help monitor the speed of AI development",
-          "url": "https://siliconangle.com/2026/09/17/anthropic-details-practical-metrics-to-help-monitor-the-speed-of-ai-development/",
-          "first_seen_at": "2026-09-17T23:44:57Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.200533,
-          "priority": 1
+          "score": 0.023187,
+          "priority": 4
         },
         {
-          "title": "OpenAI launches Astra for Law, a GPT-6 configuration for legal research",
-          "url": "https://siliconangle.com/2026/09/17/openai-launches-astra-for-law-a-gpt-6-configuration-for-legal-research/",
-          "first_seen_at": "2026-09-17T23:17:25Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.197893,
-          "priority": 1
+          "score": 0.068353,
+          "priority": 4
         },
         {
-          "title": "Google expands CC into a shared AI agent for up to six family members",
-          "url": "https://siliconangle.com/2026/09/17/google-expands-cc-into-a-shared-ai-agent-for-up-to-six-family-members/",
-          "first_seen_at": "2026-09-17T22:42:08Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.19456,
-          "priority": 1
-        },
-        {
-          "title": "Mind raises $72M to stop sensitive data leaking into AI tools",
-          "url": "https://siliconangle.com/2026/09/17/mind-raises-72m-to-stop-sensitive-data-leaking-into-ai-tools/",
-          "first_seen_at": "2026-09-17T22:17:36Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.192276,
-          "priority": 1
+          "score": 0.048315,
+          "priority": 4
         }
       ]
     },
     {
       "starts_at": "2026-09-20T13:23:00Z",
       "selected": {
-        "title": "Nvidia, Google and Emerald AI launch flexible data center consortium",
-        "url": "https://siliconangle.com/2026/09/17/nvidia-google-and-emerald-ai-launch-flexible-data-center-consortium/",
-        "first_seen_at": "2026-09-17T20:37:36Z",
-        "feed": "https://siliconangle.com/feed/",
-        "publisher": "SiliconANGLE",
-        "coverage": 2,
-        "score": 0.308172,
-        "priority": 1
+        "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+        "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+        "first_seen_at": "2026-09-14T21:03:02Z",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.019498,
+        "priority": 4
       },
       "stories": [
         {
-          "title": "Nvidia, Google and Emerald AI launch flexible data center consortium",
-          "url": "https://siliconangle.com/2026/09/17/nvidia-google-and-emerald-ai-launch-flexible-data-center-consortium/",
-          "first_seen_at": "2026-09-17T20:37:36Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 2,
-          "score": 0.308172,
-          "priority": 1
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.019498,
+          "priority": 4
         },
         {
-          "title": "AI agents erase the paper trail, reshaping audit assurance",
-          "url": "https://siliconangle.com/2026/09/17/netsuite-ai-agents-new-audit-assurance-gap-amplify/",
-          "first_seen_at": "2026-09-17T20:22:32Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.152972,
-          "priority": 1
+          "score": 0.143133,
+          "priority": 0
         },
         {
-          "title": "AI governance moves closer to the workflow: theCUBE Insights at Amplify",
-          "url": "https://siliconangle.com/2026/09/17/ai-governance-moves-closer-to-the-workflow-thecube-insights-amplify/",
-          "first_seen_at": "2026-09-17T16:15:14Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.135805,
-          "priority": 1
+          "score": 0.057478,
+          "priority": 4
         },
         {
-          "title": "Trust, not budget: Why AI adoption in finance comes down to governance",
-          "url": "https://siliconangle.com/2026/09/17/erp-systems-become-safe-starting-point-ai-finance-amplify/",
-          "first_seen_at": "2026-09-17T16:03:53Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.135065,
-          "priority": 1
+          "score": 0.040628,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-09-20T19:23:00Z",
+      "selected": {
+        "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+        "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+        "first_seen_at": "2026-09-16T10:28:58Z",
+        "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.048333,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.048333,
+          "priority": 4
         },
         {
-          "title": "HP ties sustainability data governance to business decisions in the AI era",
-          "url": "https://siliconangle.com/2026/09/17/hp-ties-sustainability-data-governance-to-business-decisions-in-the-ai-era-amplify/",
-          "first_seen_at": "2026-09-17T14:50:34Z",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.130381,
-          "priority": 1
+          "score": 0.12036,
+          "priority": 3
+        },
+        {
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.016396,
+          "priority": 4
+        },
+        {
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.034164,
+          "priority": 4
         }
       ]
     }
@@ -621,25 +289,39 @@
       "shown_at": "2026-09-19T13:23:00Z"
     },
     {
+      "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+      "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+      "shown_at": "2026-09-19T19:23:00Z"
+    },
+    {
       "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
       "title": "An AI hallucination nearly started a war between the US and China",
       "shown_at": "2026-09-19T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+      "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+      "shown_at": "2026-09-20T01:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
+      "sha256": "ea4d9f487e49c696ea98ccec500e39f27dcd0059b46e366469e5ab3d62848bf8"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -651,11 +333,13 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "5a67e066041b5ac303e4cab3f11630c6eabfd5176f3467aa54c3212d7378b086"
+      "sha256": "2aeabfbff4c07ce737886549fdcad4316001de440c1218cbdbc5e5984e004f53"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -667,13 +351,12 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "d145c7f5cf19b25413078051b1f21f101f0deecde520ba17266c44228dd66e08"
+      "sha256": "6c0385a5a523e9d1952346884dd4b5049db531a25cdf759159ecbbff76ce9b70"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-09-20T09:33:32Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-09-20T09:33:32Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
@@ -689,83 +372,122 @@
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "71890fa74ba4d6ea5c2cd3e3e47a0f7dcb1feb3cc497b0245190ecbbb569a195"
+    },
+    {
+      "url": "https://www.tpr.org/index.rss",
+      "status": "ok",
+      "items": 5,
+      "sha256": "5d9c35f9322ed0524bea9f48fa2768de570db5b943cccab5378d4044513c0221"
+    },
+    {
+      "url": "https://www.texasobserver.org/feed/",
+      "status": "ok",
+      "items": 10,
+      "sha256": "da10fb0ee9bfe612d3750c588b781580077f13e185c9bbcd246f2d66ee94fa06"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
-      "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "ok_at": "2026-09-19T21:33:32Z",
-      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
+      "parser_version": 2,
+      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f",
+      "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
+      "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe",
-      "etag": "\"6aaef262-a282\"",
-      "last_modified": "Sat, 19 Sep 2026 20:36:50 GMT"
+      "parser_version": 2,
+      "sha256": "ea4d9f487e49c696ea98ccec500e39f27dcd0059b46e366469e5ab3d62848bf8",
+      "etag": "\"6aaf63b6-a214\"",
+      "last_modified": "Sun, 20 Sep 2026 04:40:22 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "ok_at": "2026-09-19T21:33:32Z",
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
+      "parser_version": 2,
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2",
+      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
+      "parser_version": 2,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1789852000\"",
-      "last_modified": "Sat, 19 Sep 2026 21:06:40 GMT"
+      "etag": "\"1789881752\"",
+      "last_modified": "Sun, 20 Sep 2026 05:22:32 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "sha256": "5a67e066041b5ac303e4cab3f11630c6eabfd5176f3467aa54c3212d7378b086"
+      "parser_version": 2,
+      "sha256": "2aeabfbff4c07ce737886549fdcad4316001de440c1218cbdbc5e5984e004f53"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
-      "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "ok_at": "2026-09-19T21:33:32Z",
-      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
+      "parser_version": 2,
+      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047",
+      "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
+      "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
+      "parser_version": 2,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "sha256": "d145c7f5cf19b25413078051b1f21f101f0deecde520ba17266c44228dd66e08",
-      "etag": "\"d48390fb1130b9ff8e4ac0a4e5acf0ec\"",
-      "last_modified": "Sat, 19 Sep 2026 20:50:17 GMT"
+      "parser_version": 2,
+      "sha256": "6c0385a5a523e9d1952346884dd4b5049db531a25cdf759159ecbbff76ce9b70",
+      "etag": "\"35b5695226a3407c7a8c03d41e627b2b\"",
+      "last_modified": "Sun, 20 Sep 2026 02:47:38 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "retry_at": "2026-09-20T09:33:32Z",
       "failures": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
+      "parser_version": 2,
       "sha256": "fa4338b77d96e002b60a4b4fcac002f3e99957ae56c422951dc0a3e63a58b93e",
       "etag": "W/\"58fe36af63c3f581e01d974e3b7ff7d8\"",
       "last_modified": "Sat, 19 Sep 2026 17:39:09 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-19T21:33:32Z",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
+      "parser_version": 2,
       "sha256": "fae39fd0957307be0e69aef3a4cdc27d90de229267252cc7826a1be431a1dfd7",
       "etag": "W/\"3939462975cd257671f57fd8b06a4ae1\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Fri, 18 Sep 2026 12:49:49 GMT",
+      "ok_at": "2026-09-20T05:26:58Z",
       "failures": 0,
-      "ok_at": "2026-09-19T21:33:32Z",
-      "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c"
+      "parser_version": 2,
+      "sha256": "71890fa74ba4d6ea5c2cd3e3e47a0f7dcb1feb3cc497b0245190ecbbb569a195",
+      "last_modified": "Sun, 20 Sep 2026 04:48:14 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-09-20T05:26:58Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "5d9c35f9322ed0524bea9f48fa2768de570db5b943cccab5378d4044513c0221"
+    },
+    "https://www.texasobserver.org/feed/": {
+      "ok_at": "2026-09-20T05:26:58Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "da10fb0ee9bfe612d3750c588b781580077f13e185c9bbcd246f2d66ee94fa06",
+      "etag": "W/\"35b08229e946ae6074374880c89e0fb6\"",
+      "last_modified": "Fri, 18 Sep 2026 15:37:47 GMT"
     }
   }
 }
