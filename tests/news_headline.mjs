@@ -18,6 +18,22 @@ article = {'title': 'Texas AI researchers open a new robotics laboratory to test
            'url': 'https://dallasinnovates.com/news-browser-fixture/', 'first_seen_at': '2026-09-17T19:00:00Z'}
 states = {'current': news.snapshot({'articles': []}, now, {'articles': [article]}),
           'empty': news.snapshot({'articles': []}, now)}
+titles = ['AI diagnoses pancreatic cancer in screening trials', 'ChatGPT faces new school privacy rules',
+          'Anthropic releases smaller coding models', 'AI forecasts hurricanes along the coast',
+          'AI accelerators reduce electricity consumption', 'Robots use AI to sort textile waste',
+          'AI video raises election security concerns', 'AI deciphers ancient manuscripts',
+          'AI forecasts volcanic eruptions from seismic signals', 'AI optimizes freight delivery routes',
+          'AI helps astronomers map distant galaxies']
+rows = [{**article, 'title': 'Texas ' + title, 'url': 'https://dallasinnovates.com/fixture-' + str(i)}
+        for i, title in enumerate(titles)]
+for name, count in [('ten', 10), ('two', 2), ('one', 1), ('oversized', 11)]:
+    news.STORIES_PER_EDITION = count
+    states[name] = news.snapshot({'articles': []}, now, {'articles': rows[:count]}, rotate=True)
+news.STORIES_PER_EDITION = 10
+old = {**rows[1], 'first_seen_at': '2026-09-10T21:00:00Z'}
+states['aging'] = news.snapshot({'articles': []}, now,
+    {'articles': [article, old], 'editions': [{'starts_at': news.stamp(news.edition_start(now)),
+                                            'selected': old}]}, rotate=True)
 original = Path(sys.argv[1], 'index.html').read_text()
 out = {}
 for name, state in states.items():
@@ -65,8 +81,8 @@ async function loaded(page,pathname) {
 }
 try {
   const cases=[{pathname:'/',state,width:1440}];
-  for(const [name,fixture] of Object.entries(fixtures)) for(const width of [1440,1024,768,600,480,390,360,320])
-    cases.push({pathname:`/__news_${name}.html`,state:fixture.state,width});
+  for(const name of ['current','empty']) for(const width of [1440,1024,768,600,480,390,360,320])
+    cases.push({pathname:`/__news_${name}.html`,state:fixtures[name].state,width});
   for(const {pathname,state,width} of cases) {
     const page=await pageFor(state,width);
     const errors=[];
@@ -179,20 +195,81 @@ try {
     await page.close();checked++;
   }
   }
+  // An expired lead is removed on its own deadline. An offline reader keeps the
+  // remaining valid story, even though the cached snapshot's original lead has expired.
+  {
+    const sample=fixtures.aging.state,page=await pageFor(sample,390,sample);
+    await loaded(page,'/__news_aging.html');
+    assert.equal(await page.locator('.news-slide').count(),2);
+    await page.unroute(feed);
+    await page.route(feed,route=>route.abort());
+    await page.clock.fastForward(2*3600000);
+    const retained=sample.editions[0].stories[1];
+    assert.equal(await activeLink(page).getAttribute('href'),retained.url);
+    assert.equal(await page.locator('.news-slide').count(),1);
+    await page.reload();
+    await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
+    assert.equal(await activeLink(page).getAttribute('href'),retained.url);
+    await page.clock.fastForward(7*24*3600000);
+    assert.equal(await activeLink(page).getAttribute('href'),'/articles/');
+    await page.close();checked++;
+  }
+  // A full ten-story carousel and quiet one/two-story pools reuse reporting across
+  // refreshes. Neither a cached repeat nor an offline twelve-hour return is invalid.
+  for(const name of ['ten','two','one']) for(const width of [1440,390]) {
+    const sample=fixtures[name].state;
+    const page=await pageFor(sample,width,sample);
+    await loaded(page,`/__news_${name}.html`);
+    const chip=page.locator('.news-chip');
+    const count=sample.editions[0].stories.length;
+    assert.equal(await chip.locator('.news-slide').count(),count);
+    const height=(await chip.boundingBox()).height;
+    for(const story of sample.editions[0].stories) {
+      assert.equal(await activeLink(page).getAttribute('href'),story.url);
+      assert.equal(await activeLink(page).locator('.news-date').getAttribute('datetime'),story.first_seen_at);
+      assert.ok(Math.abs((await chip.boundingBox()).height-height)<1);
+      if(count>1) await chip.locator('.news-next').click();
+    }
+    await page.evaluate(()=>document.activeElement.blur());
+    await page.mouse.move(0,0);
+    await page.unroute(feed);
+    await page.route(feed,route=>route.abort());
+    for(const edition of sample.editions.slice(1)) {
+      await page.clock.fastForward(Date.parse(edition.starts_at)-await page.evaluate(()=>Date.now())+100);
+      assert.equal(await activeLink(page).getAttribute('href'),edition.selected.url);
+      assert.equal(await chip.locator('.news-slide').count(),edition.stories.length);
+    }
+    await page.reload();
+    await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
+    assert.equal(await activeLink(page).getAttribute('href'),sample.editions.at(-1).selected.url);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.close();checked++;
+  }
+  {
+    const sample=fixtures.ten.state,bad=structuredClone(fixtures.oversized.state);
+    bad.checked_at=new Date(Date.parse(sample.checked_at)+60000).toISOString();
+    const page=await pageFor(sample,390,bad);
+    await loaded(page,'/__news_ten.html');
+    assert.equal(await page.locator('.news-chip').getAttribute('data-checked-at'),sample.checked_at,
+      'eleven distinct valid stories must still exceed the pool bound');
+    assert.equal(await page.locator('.news-slide').count(),10);
+    await page.close();checked++;
+  }
   // An unchanged feed and a complete network outage must still change what readers see
   // at the six-hour boundary. A reload must choose the same edition as an already-open tab.
   if(state.rotation_version===1) {
     for(const width of [1440,390]) {
       const page=await pageFor(state,width,state);
       await loaded(page,'/');
-      const initial=await activeLink(page).getAttribute('href');
+      let previous=await activeLink(page).getAttribute('href');
       await page.unroute(feed);
       await page.route(feed,route=>route.abort());
       for(const edition of state.editions.slice(1)) {
         const delta=Date.parse(edition.starts_at)-await page.evaluate(()=>Date.now())+100;
         await page.clock.fastForward(delta);
         assert.equal(await activeLink(page).getAttribute('href'),edition.selected.url);
-        assert.notEqual(edition.selected.url,initial);
+        if(edition.stories.length>1) assert.notEqual(edition.selected.url,previous);
+        previous=edition.selected.url;
         await page.reload();
         await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
         assert.equal(await activeLink(page).getAttribute('href'),edition.selected.url,'reload retains current edition');
@@ -206,7 +283,11 @@ try {
       if(mutation==='irrelevant') {bad.editions[1].selected.title='A new chapter for MIT Reads';delete bad.editions[1].selected.summary;}
       if(mutation==='non-Texas') {bad.editions[1].selected.title='AI infrastructure expands in Malaysia';delete bad.editions[1].selected.summary;}
       if(mutation==='unsafe') bad.editions[1].selected.url='javascript:alert(1)';
-      if(mutation==='repeat') bad.editions[1].selected=structuredClone(bad.selected);
+      if(mutation==='repeat') {
+        const entry=bad.editions[1],repeat=entry.stories.find(s=>s.url===bad.selected.url);
+        entry.selected=repeat;
+        entry.stories=[repeat,...entry.stories.filter(s=>s.url!==repeat.url)];
+      }
       if(mutation==='wrong-slot') bad.editions[1].starts_at=bad.editions[0].starts_at;
       const page=await pageFor(state,390,bad);
       await loaded(page,'/');
@@ -226,7 +307,7 @@ try {
       const stories=state.editions[0].stories;
       assert.equal(await chip.getAttribute('data-news-cadence'),'5000');
       assert.equal(await chip.locator('.news-slide').count(),stories.length);
-      assert.ok(stories.length>=1 && stories.length<=5,'use only the qualifying Texas stories');
+      assert.ok(stories.length>=1 && stories.length<=10,'use only the qualifying Texas stories');
       const height=(await chip.boundingBox()).height;
       let last=await activeLink(page).getAttribute('href'), changedAt=null;
       const seen=new Set([last]);
