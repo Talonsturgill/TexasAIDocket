@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-20T16:54:11Z",
+  "checked_at": "2026-09-20T18:25:10Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "0cb3dbd6d1053619e4d6ef38654a8d2cfdc34e808ca352a5970127cde503ca93",
+  "response_sha256": "5d817593895eaae47bbd1203b3624c196991813f61713dd33844408e5484558f",
   "articles": [
     {
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
@@ -37,7 +37,7 @@
     "first_seen_at": "2026-09-14T21:03:02Z",
     "publisher": "The Texas Tribune",
     "coverage": 1,
-    "score": 0.017613,
+    "score": 0.016859,
     "priority": 4
   },
   "expires_at": "2026-09-21T21:03:02Z",
@@ -52,7 +52,7 @@
         "first_seen_at": "2026-09-14T21:03:02Z",
         "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.017613,
+        "score": 0.016859,
         "priority": 4
       },
       "stories": [
@@ -62,7 +62,7 @@
           "first_seen_at": "2026-09-14T21:03:02Z",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.017613,
+          "score": 0.016859,
           "priority": 4
         },
         {
@@ -73,8 +73,8 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.129298,
-          "priority": 0
+          "score": 0.123758,
+          "priority": 3
         },
         {
           "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
@@ -84,7 +84,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.051922,
+          "score": 0.049697,
           "priority": 4
         },
         {
@@ -95,7 +95,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.036701,
+          "score": 0.035128,
           "priority": 4
         }
       ]
@@ -137,15 +137,6 @@
           "priority": 3
         },
         {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.016396,
-          "priority": 4
-        },
-        {
           "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
           "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
           "first_seen_at": "2026-09-15T22:28:12Z",
@@ -154,6 +145,15 @@
           "publisher": "Dallas Innovates",
           "coverage": 1,
           "score": 0.034164,
+          "priority": 4
+        },
+        {
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.016396,
           "priority": 4
         }
       ]
@@ -195,15 +195,6 @@
           "priority": 3
         },
         {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.013787,
-          "priority": 4
-        },
-        {
           "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
           "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
           "first_seen_at": "2026-09-16T10:28:58Z",
@@ -212,6 +203,15 @@
           "publisher": "Dallas Innovates",
           "coverage": 1,
           "score": 0.040643,
+          "priority": 4
+        },
+        {
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.013787,
           "priority": 4
         }
       ]
@@ -242,15 +242,6 @@
           "priority": 3
         },
         {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.011594,
-          "priority": 4
-        },
-        {
           "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
           "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
           "first_seen_at": "2026-09-16T10:28:58Z",
@@ -270,6 +261,15 @@
           "publisher": "Dallas Innovates",
           "coverage": 1,
           "score": 0.024157,
+          "priority": 4
+        },
+        {
+          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+          "first_seen_at": "2026-09-14T21:03:02Z",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.011594,
           "priority": 4
         }
       ]
@@ -325,9 +325,7 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "ac24f77feab201af303a67c2b7672ab7f574dcf8a86633d5f247b76f82e7d847"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -339,7 +337,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "4743ea52bf7e6257daf35df38adb57c94eb77a589a2f38394f0b27915dc68016"
+      "sha256": "57e2b3e9fb897360ead8fb8afbb92164367c858663e0e29e6c455d6a80b52362"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -357,27 +355,22 @@
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-09-20T22:54:09Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-09-20T22:54:09Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "0a90f8bc25e29bbcd88c14ab0e39ee45874714dc05b19b764c9392daf17903f1"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "54f716e4a63a3205720ab728f3604b00c65ca00ed6e67e2cf3fc999144810f77"
+      "sha256": "90071cada315662b4d77e24ad426d0e99532b5822860b702e6b6aca8c2976040"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "e01a52741b40db1978ed8bea6531a179e992df91bcb2b63d4616ad8135004f16"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
@@ -395,49 +388,49 @@
       "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
       "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "ea4d9f487e49c696ea98ccec500e39f27dcd0059b46e366469e5ab3d62848bf8",
-      "etag": "\"6ab00e4b-a214\"",
-      "last_modified": "Sun, 20 Sep 2026 16:48:11 GMT"
+      "etag": "\"6ab02158-a214\"",
+      "last_modified": "Sun, 20 Sep 2026 18:09:28 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "last_modified": "Sun, 20 Sep 2026 15:00:28 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "ac24f77feab201af303a67c2b7672ab7f574dcf8a86633d5f247b76f82e7d847",
-      "last_modified": "Sun, 20 Sep 2026 15:00:28 GMT"
+      "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1789921476\"",
-      "last_modified": "Sun, 20 Sep 2026 16:24:36 GMT"
+      "etag": "\"1789927794\"",
+      "last_modified": "Sun, 20 Sep 2026 18:09:54 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4743ea52bf7e6257daf35df38adb57c94eb77a589a2f38394f0b27915dc68016"
+      "sha256": "57e2b3e9fb897360ead8fb8afbb92164367c858663e0e29e6c455d6a80b52362"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
       "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
@@ -446,43 +439,43 @@
       "etag": "\"35b5695226a3407c7a8c03d41e627b2b\"",
       "last_modified": "Sun, 20 Sep 2026 02:47:38 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "6c0385a5a523e9d1952346884dd4b5049db531a25cdf759159ecbbff76ce9b70",
       "parser_version": 2
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"a5a4044f4288c1a98ae10a542936a14b\"",
       "last_modified": "Fri, 18 Sep 2026 12:50:29 GMT",
+      "retry_at": "2026-09-20T22:54:09Z",
       "failures": 1,
       "ok_at": "2026-09-20T12:32:00Z",
       "sha256": "620f9c4451c3f723f84443348bb8cc605bf3c4b2e78d37dd25f1aa8c8477957f",
-      "parser_version": 2,
-      "retry_at": "2026-09-20T22:54:09Z"
+      "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-20T16:54:09Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "0a90f8bc25e29bbcd88c14ab0e39ee45874714dc05b19b764c9392daf17903f1",
       "etag": "W/\"c943758126d6e385ac155595632efd2f\"",
-      "last_modified": "Sun, 20 Sep 2026 15:00:13 GMT"
+      "last_modified": "Sun, 20 Sep 2026 15:00:13 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-20T18:25:08Z",
+      "sha256": "0a90f8bc25e29bbcd88c14ab0e39ee45874714dc05b19b764c9392daf17903f1",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "54f716e4a63a3205720ab728f3604b00c65ca00ed6e67e2cf3fc999144810f77",
-      "etag": "W/\"5d5f9dd031d38d6cd2f2b5a3ae0f9735\""
+      "sha256": "90071cada315662b4d77e24ad426d0e99532b5822860b702e6b6aca8c2976040",
+      "etag": "W/\"6d167fa28742247ee1de1b4dc4ec8038\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "last_modified": "Sun, 20 Sep 2026 13:02:50 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "e01a52741b40db1978ed8bea6531a179e992df91bcb2b63d4616ad8135004f16",
-      "last_modified": "Sun, 20 Sep 2026 13:02:50 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "5d9c35f9322ed0524bea9f48fa2768de570db5b943cccab5378d4044513c0221"
@@ -491,7 +484,7 @@
       "etag": "W/\"35b08229e946ae6074374880c89e0fb6\"",
       "last_modified": "Fri, 18 Sep 2026 15:37:47 GMT",
       "failures": 0,
-      "ok_at": "2026-09-20T16:54:09Z",
+      "ok_at": "2026-09-20T18:25:08Z",
       "sha256": "da10fb0ee9bfe612d3750c588b781580077f13e185c9bbcd246f2d66ee94fa06",
       "parser_version": 2
     }
