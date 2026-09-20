@@ -947,9 +947,8 @@ def latest_article(runs: list, items: list) -> str:
       {article_media.image_attrs(r, r["cover"], 0, cover=True)} loading="lazy"
       alt="Cover slide, {e(r["title"])}"></a>
     <div>
-      <p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(
-        _dt.date.fromisoformat(r["date"])))}</span>
-        <span>{r["slides"]} slides</span></p>
+      <p class="meta" data-prose="data"><span class="tag">{e(ordinal(
+        _dt.date.fromisoformat(r["date"])))}</span></p>
 {heading}
       <p>{e(blurb)}</p>
       <div class="ctarow">
@@ -1020,7 +1019,7 @@ def latest_video() -> str:
     el.dataset.src=abs(v.video_mobile||v.video);
     document.getElementById('hvtitle').textContent=v.title||'';
     document.getElementById('hvcap').textContent=v.caption||'';
-    document.getElementById('hvdate').textContent=fmtFeedDate(v.date);
+    document.getElementById('hvdate').textContent=fmtFeedDate(v.date).replace(/, [0-9]{4}$/, '');
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;
