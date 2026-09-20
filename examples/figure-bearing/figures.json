@@ -1,0 +1,19 @@
+{
+  "_note": "Computed, never typed. These are the same EPA SDWIS counts the 2026-09-20 deck narrated, reused here so the reference draws a real record rather than a made up one. The point of this directory is the step from a value to a geometry, and that step is identical whatever the value means.",
+  "active_systems": {
+    "value": 4749,
+    "basis": "measured",
+    "set_counted": "active community water systems in Texas, EPA SDWIS WATER_SYSTEM, PRIMACY_AGENCY_CODE TX, PWS_ACTIVITY_CODE A, PWS_TYPE_CODE CWS"
+  },
+  "small_systems": {
+    "value": 3579,
+    "of": 4749,
+    "basis": "measured",
+    "set_counted": "the same filters plus POPULATION_SERVED_COUNT less than 3301"
+  },
+  "large_systems": {
+    "value": 87,
+    "basis": "measured",
+    "set_counted": "the same filters plus POPULATION_SERVED_COUNT more than 50000"
+  }
+}

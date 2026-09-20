@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- FIGURE BEARING REFERENCE, frame 2 of 3. Archetype OBJECT_AND_CAPTION.
+     data_in_art: small_systems drives column height.
+     The share is drawn INSIDE the whole at one scale. Two free standing bars
+     would draw a comparison of strangers rather than a part of something. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:130px; width:880px; font-size:96px; }
+  .dek  { left:84px; top:430px; width:700px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">3,579 of them serve fewer than 3,301 people.</h1>
+<p class="dek">The filled column is that share, at the same scale as the whole beside it.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260922);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'What most of them are', counter: "02 / 03", src: 'c1 c2   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 96, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    var ALL = 4749, SMALL = 3579;                  // figures.json active_systems, small_systems
+    var base = 1108, top = 470, span = base - top;
+    var wAll = 300, xAll = 150, xSm = 560;
+
+    Lm.pool(cx, { x: 600, y: 940, r: 720, squash: 0.56, rot: -0.18, strength: 0.90, reserve: boxes });
+    Lm.desk(cx, { y: 688, mask: mask, seed: 41, lampX: 540, lampY: 820 });
+    var ramp = TXDECK.ramp();   // 7 steps. pick() takes an INDEX 0..6, not a fraction
+
+    // the whole, drawn as an outline: it is the denominator and not a second quantity
+    cx.strokeStyle = TXDECK.pick(ramp, 3);
+    cx.lineWidth = 3;
+    cx.strokeRect(xAll, top, wAll, span);
+    cx.fillStyle = TXDECK.pick(ramp, 1);
+    cx.fillRect(xAll, top, wAll, span);
+
+    // the share, at the SAME scale, filled
+    var hSm = span * (SMALL / ALL);
+    cx.fillStyle = TXDECK.pick(ramp, 6);
+    cx.fillRect(xSm, base - hSm, wAll, hSm);
+    cx.strokeStyle = TXDECK.pick(ramp, 3);
+    cx.strokeRect(xSm, top, wAll, span);
+
+    // the rule the two stand on, and the one tick that marks the share on the whole
+    cx.fillStyle = TXDECK.pick(ramp, 2);
+    cx.fillRect(110, base, 840, 4);
+    cx.fillStyle = TXDECK.pick(ramp, 5);
+    cx.fillRect(xAll - 34, base - hSm, 30, 5);
+    Lm.falloff(cx, { from: 1196, mid: 0.70, end: 0.94 });
+
+    TXDECK.finish(cx, { mask: mask });
+    resolve(true);
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

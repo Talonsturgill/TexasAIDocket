@@ -82,6 +82,13 @@ RESIDUE_ALLOW = {
     # than a directory glob so the exemption cannot quietly spread.
     "knowledge/shared/GRID_WATCH_DESIGN.md",
     "knowledge/shared/OIL_WATCH_DESIGN.md",
+    # THE ARTWORK CARRIES THE DATA (2026-09-20). Both carry the owner's instruction VERBATIM,
+    # and the sentence names the upstream product because that is what they were comparing it
+    # to. A quote edited to satisfy a lint is no longer evidence of what was asked for, and the
+    # reason a rule exists is the thing that stops the next context talking itself out of it.
+    # The surrounding prose in both files uses this repo's own term. Exact paths, never a glob.
+    "scripts/carousel/figure_bearing.py",
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
     # The application-layer research, and the routine that acts on it. Both name the sibling
     # because the correction they carry only makes sense against it: this product's beats were
     # six-of-eight policy until somebody counted the sibling's and found power and compute was

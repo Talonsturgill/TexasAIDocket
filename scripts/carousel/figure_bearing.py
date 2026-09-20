@@ -10,16 +10,16 @@ WHY THIS EXISTS. 2026-09-20, the owner, on four consecutive shipped decks:
 
 THE MEASUREMENT THAT FOUND IT, because four earlier guesses about this were wrong.
 
-Ground chroma, tonal range, ink mass and mass-under-blur were measured across 59 shipped Alaska
-decks and the Texas decks that keep frame PNGs. THEY ARE INDISTINGUISHABLE. Median ground chroma
+Ground chroma, tonal range, ink mass and mass-under-blur were measured across 59 shipped decks of
+the reference corpus and the Texas decks that keep frame PNGs. THEY ARE INDISTINGUISHABLE. Median ground chroma
 0.0214 against 0.0215. Median tonal range 0.63 against 0.66. "Faded" is not a colour-space defect
 and it is not a contrast defect, and any fix aimed at the palette would have been the fifth wrong
 guess. The difference is not in how the frames are coloured. It is in WHAT THEY DRAW.
 
-    Alaska computes its numbers and DRAWS THEM.
-    Texas computed its numbers and drew a PICTURE NEXT TO THEM.
+    The reference corpus computes its numbers and DRAWS THEM.
+    This repo computed its numbers and drew a PICTURE NEXT TO THEM.
 
-Alaska's DESIGN_DOCTRINE section 6.3 is the rule this repo never had:
+The upstream product's DESIGN_DOCTRINE section 6.3 is the rule this repo never had:
 
     "The field carries the data: parameters of the generative system ARE numbers from the story
      (particle count = megawatts; contour interval = years; stipple density = population). State
@@ -259,6 +259,17 @@ def check(dossiers: dict[int, dict], keys: set[str], minimum: int,
           slides_dir: Path | None = None,
           values: dict[str, list[float]] | None = None,
           distinct: int = 3) -> list[str]:
+    """The floor scales DOWN to a short deck and never up.
+
+    A nine frame deck answers to the configured floor. A five frame deck, which is what the
+    degradation ladder produces, answers to five of five, and the three frame reference in
+    `examples/figure-bearing/` to three of three. That is strictly HARDER per frame than six of
+    nine, so shipping fewer frames is not a way around this. Without it the gate asked a three
+    frame reference for six of three, which is a gate that cannot be satisfied and therefore a
+    gate that gets switched off.
+    """
+    minimum = min(minimum, len(dossiers))
+    distinct = min(distinct, len(dossiers))
     bearing, probs = 0, []
     for n in sorted(dossiers):
         ok, why = frame_problems(n, dossiers[n], keys)
@@ -427,6 +438,17 @@ def self_test() -> int:
        str(check(three, keys, 6)[:1]))
     ok("the distinct rule does not fire on a deck already under the frame floor",
        not any("ENGAGES" in p for p in check({1: same[1]}, keys, 6)))
+
+    # THE FLOOR SCALES TO A SHORT DECK, AND ONLY DOWNWARDS.
+    three = {n: {"slide": n, "data_in_art": {"figure": FIGS[n], "drives": "mark count"}}
+             for n in range(0, 3)}
+    ok("a three frame deck with all three mapped passes", not check(three, keys, 6))
+    two_of_three = dict(three)
+    two_of_three[2] = {"slide": 2}
+    ok("...and two of three does not", bool(check(two_of_three, keys, 6)))
+    ok("...so a short deck is HARDER per frame, never a way around the floor",
+       bool(check({**{n: {"slide": n} for n in range(0, 5)},
+                   0: three[0], 1: three[1], 2: three[2]}, keys, 6)))
 
     # THE CONFIG IS REAL AND THE FLOOR IS THE ONE IN IT.
     try:

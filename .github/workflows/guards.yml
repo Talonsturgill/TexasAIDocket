@@ -569,6 +569,21 @@ jobs:
       - name: Figure bearing self-test (the artwork carries the data)
         run: python3 scripts/carousel/figure_bearing.py --self-test
 
+      - name: The figure bearing reference still draws its figures
+        run: |
+          # examples/figure-bearing/ is the only worked example of a frame whose geometry IS a
+          # computed value. A self-test proves the checker can go red; this proves a deck can go
+          # green, which is the half that was missing when the chassis gate shipped pointed at
+          # nothing but a fixture.
+          python3 scripts/carousel/figure_bearing.py --date figure-bearing --out-root examples
+
+      - name: The figure bearing reference rebuilds byte for byte from its figures
+        run: |
+          # The frames are GENERATED from figures.json by build.py. If someone edits a slide by
+          # hand, the numbers on the canvas stop tracing to the record and this goes red.
+          python3 examples/figure-bearing/build.py "$RUNNER_TEMP/fb"
+          diff -r "$RUNNER_TEMP/fb" examples/figure-bearing/slides
+
       - name: The ratchet floor under the round cap is measurable
         run: |
           # The cap ends the SEARCH. Until 2026-09-20 it also ended the STANDARD, and twenty

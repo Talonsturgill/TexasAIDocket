@@ -322,6 +322,40 @@ and six is the midpoint: reachable in one run and impossible to reach with wallp
 deliberately not nine, because a cover and a closing frame can honestly carry no quantity, and a
 floor that forbids that gets routed around rather than met.
 
+### WHAT THE FIRST FIGURE BEARING FRAMES COST TO BUILD, and every line here was paid for
+
+`examples/figure-bearing/` is three frames, three figures, three ways of drawing a number, and it
+exists because there was no example of this step anywhere in this repo. It took four renders. The
+first one **reproduced the exact defect this law exists to fix**, which was worth more than a
+clean first pass.
+
+**`TXDECK.pick(ramp, i)` TAKES AN INDEX, NOT A FRACTION, and this is the fastest way to draw a
+faded frame by accident.** The ramp is SEVEN steps and `pick` does `Math.round(i)` on it. So
+`pick(ramp, 0.74)`, written by an author who meant "74 percent up the ramp", returns **step 1**,
+the second darkest, and `pick(ramp, 0.18)` returns step 0. Every fill lands on the two darkest
+steps of seven and the whole frame sinks into the ground. The first render of these three frames
+did exactly that and looked precisely like the decks the owner was complaining about. Nothing
+errors, nothing warns, and the geometry is perfectly correct underneath. **Write integer steps,
+0 to 6, and read them as steps.**
+
+**`Lm.pool` takes `x` and `y` and `reserve`. It does not take `cx`, `cy` or `mask`.** Passing the
+wrong keys does not throw. `translate(undefined, undefined)` makes the whole gradient NaN and the
+pool renders at the ORIGIN, which put a warm glow in the top left corner of all three frames,
+over the kicker. Machine QA caught it as *"text struck by a drawn rule"*, which names the symptom
+three hundred pixels from the cause. `Lm.desk` does take `mask`, and a function rather than a
+list, which is why the mistake looked reasonable. `Lm.falloff` is a VERTICAL gradient taking
+`from`, `mid` and `end`, and not a radial with a centre and a radius.
+
+**The check that catches all three is to look at the render.** Each was invisible in the source,
+silent at run time, and obvious in the image.
+
+**A SECOND SCALE IS HOW YOU DRAW A LIE WITHOUT NOTICING.** Frame 3 first drew the 87 large systems
+at one mark each against the 3,579 small ones at one mark per 50. Both were labelled, both counts
+were computed, every numeral traced. On the page **87 looked bigger than 3,579**, and the frame
+argued the opposite of the record it was drawn from. The fix was one scale: frame 1's field, with
+the 87 picked out of it as a 1.74 mark sliver. A frame that needs two scales to make its point is
+usually a frame whose point is not true at one.
+
 ### What this does NOT say
 
 It does not say every frame is a chart. A map whose projection is the story's own geography, a
