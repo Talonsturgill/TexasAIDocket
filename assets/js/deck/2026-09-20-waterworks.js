@@ -1,0 +1,369 @@
+/* waterworks.js — the chassis for carousel No. 30 (2026-09-20).
+ *
+ * WHAT THIS IS. The deck "THE LINE STOPS WHERE THE PEN IS" spends nine frames inside one small
+ * Texas waterworks and its yard, and argues that the instruments a small utility has today are
+ * complete records rather than warnings. Nine frames share one light, one stock and one way of
+ * seating type, and this file is those three things and nothing else. Every frame's COMPOSITION
+ * is written per frame.
+ *
+ * THE WORLD. THE INSIDE OF A SMALL WATERWORKS IN THE POST OAK SAVANNAH, BRAZOS COUNTY, AT TEN
+ * TO FIVE ON A SEPTEMBER AFTERNOON. Brazos County because that is the county the awardee sits
+ * in. A 6.0 by 4.2 by 3.0 m block building with a roll-up door open to the west, swept concrete,
+ * a vertical turbine pump on a well casing, a hydropneumatic tank on two saddles, a galvanized
+ * discharge manifold, a strip chart recorder on the back wall and a bound logbook on a plywood
+ * shelf. Outside it a caliche yard, a chain link fence and one live oak at forty metres. The
+ * room is SWEPT AND IN GOOD REPAIR, and that is an argument rather than set dressing. See THE
+ * CONDITION LAW below.
+ *
+ * THE LIGHT, IN WORDS A FRAME AUTHOR CAN CHECK A DRAWING AGAINST. THE KEY IS LOW IN THE WEST,
+ * COMING FLAT IN THROUGH THE OPEN DOOR OFF THE CAMERA'S LEFT SHOULDER, AT 26 DEGREES ABOVE THE
+ * PLANE. So every lit face in this deck is a WEST face, every east face is the deck's dark side,
+ * and every cast runs EAST, to the right and slightly away, at 2.05 times the object's own
+ * height. A 1.7 m person throws about 3.5 m. A 3.0 m eave throws about 6.2 m. If a drawn object
+ * has a shadow shorter than itself, or no contact where it meets the slab, that frame is wrong
+ * and gets redrawn rather than tuned.
+ *
+ * WHY THE SUN IS LOW, AND IT IS THE ONE PLACE THIS CHASSIS OVERRULED TWO OF THREE DIRECTORS.
+ * Two treatments came back with the sun at 62 and at 66 degrees, both arguing a hot Texas
+ * afternoon, and BOTH NAMED THE SAME CONSEQUENCE AS THEIR OWN WORST RISK: at that elevation
+ * there is no rake, contact shadows collapse to a puddle, and objects float. This machine's
+ * measured failure across twenty one decks is flatness. A late sun through a west door is the
+ * cure, it is equally true to a September afternoon in Texas, and it costs the deck nothing.
+ *
+ * THE MOTIF, AND IT IS THE DECK'S ARGUMENT RATHER THAN ITS DECORATION. THE MARK THAT STOPS.
+ * On every frame exactly one line ends and nothing follows it. The trace stops at the pen on
+ * frame 2. The logbook entries stop with ruled blank lines under them on 4. Every block's last
+ * row is short on 6. Every chart pack in the box is closed on 7. The chart on the nail on 8 was
+ * never started. A reader has the code by frame 4 without being told it.
+ *
+ * THE ACCENT LAW, AND IT IS THE STRICTEST THING IN THIS FILE.
+ *
+ *   GRANITE IS A MARK THAT HAS ALREADY BEEN MADE.
+ *
+ * #9A3B2A lands only where a stylus or a hand in this world has laid ink, and NEVER on anything
+ * the record says has not happened. The trace behind the pen (2), the written entries in the log
+ * (4), the second block's marks (6), the rim ink and the closed trace in the box (7), the dated
+ * stamp (9). Frames 3, 5 and 8 carry NONE AT ALL, and frame 8's absence is the load bearing one,
+ * because frame 8's whole subject is the abstract's conditional. A reader who swipes twice sees
+ * that the colour is only ever behind the stop and never ahead of it.
+ *
+ * It is never a threshold, never a band, never a zone, never a severity ramp and never a fill
+ * behind type. #9A3B2A is `capitol_granite` in config/brand.yaml. It is NOT the flag red, which
+ * this project reserves for a deadline a reader can still act on, and there is no such deadline
+ * in this story. It is not comal, which September 19th spent on a water story yesterday.
+ *
+ * THE CONDITION LAW. NOTHING IN THIS DECK IS DRAWN NEGLECTED. No leak, no rust streak, no
+ * standing water, no cracked slab, no mildewed paper, no gap in a log, no overflowing box. The
+ * claims count systems and filter on population served and carry NOTHING WHATEVER about
+ * condition, and claims.json says so by name in its rejected array. A drawn rust streak would be
+ * this deck publishing a finding nobody measured. The room is swept, the pipe is painted, the
+ * log is current and the packs are filed.
+ *
+ * NO ARROWHEAD ANYWHERE IN NINE FRAMES, because c14's verb is "can propagate" and an arrow
+ * asserts a direction and an event. NO SYSTEM NAME, NO LIVERY, NO PWS ID, NO COUNTY SIGN AND NO
+ * AGENCY SEAL, because no claim describes a specific facility and a plausible one would be a
+ * fabrication a Texan would try to identify. NO DIAL, NO ZONE, NO BAND, NO NUMBERED SEVERITY
+ * SCALE: the recorder is a STRIP and not a disc, deliberately, so that time is a left to right
+ * axis and the instrument cannot be read as a gauge.
+ *
+ * THE GROUND WAS MEASURED RATHER THAN CHOSEN. All three treatments proposed a warm near black
+ * and all three collided with September 14th's red bed #120C0B at dE76 8.37, 4.06 and 2.72
+ * against a floor of 10. #2E2016 clears every deck of the last six, its nearest being 13.32.
+ * A palette that is only checked by eye is a palette that repeats.
+ *
+ * THE FRAMES DRAW IN GREYS. Every scene is drawn into TXINK's offscreen twin in greys and the
+ * print maps tone to ink on the deck's stock. That is why this file hands out a GREY SCALE
+ * rather than a colour ramp: a frame that picks its own colours has left the deck. The one place
+ * real colour is painted is `over`, where the accent and the type reserve go, after the screen
+ * has run.
+ */
+(function (global) {
+  "use strict";
+
+  if (!global.TXDECK) throw new Error("waterworks.js needs txdeck.js loaded first");
+
+  /* ONE DECLARATION, AND IT IS THE ONLY ONE IN THE DECK. Nine frames can't hold nine lights. */
+  TXDECK.declare({
+    world: "waterworks",
+    light: { az: 262, el: 26, keyToFill: 5.2 },
+    ground: "#2E2016",
+    material: "#9EA69B",
+    accent: "#9A3B2A",
+    grade: {
+      exposure: -0.015,
+      saturation: 1.05,
+      contrast: 1.17,
+      filmic: true,
+      lift: [0.020, 0.015, 0.011],   /* shadows to the loam's iron, warm rather than blue */
+      gain: [1.036, 1.014, 0.962],   /* highlights to late September light through a west door */
+      vignette: 0.22,
+      bloom: { threshold: 0.80, strength: 0.22, radius: 8 },
+      /* GRAIN AT 0.014, FOLLOWING SEPTEMBER 19TH'S MEASUREMENT RATHER THAN THE HOUSE 0.044.
+       * That run measured its vector PDF at 68.7 MB against 6 to 14 MB for every deck before
+       * it, tested three hypotheses, and found that cutting the film grain and the dither was
+       * worth 9 MB while a raised screen floor and a higher gamma were worth nothing. Per pixel
+       * noise over a frame that is already maximum entropy is the one knob that moves. A LINE
+       * screen at cell 5 carries fewer marks per unit area than a halftone at cell 7, so this
+       * deck should come in under that one, and the assemble step reports the actual figure
+       * rather than this comment predicting it. */
+      grain: { amount: 0.014, size: 3, seed: 20260920 },
+      aberration: 0,
+      dither: false,
+      sharpen: 0.32
+    }
+  });
+
+  var N = {};
+  N.W = 1080;
+  N.H = 1350;
+
+  /* ------------------------------------------------------------------- stock
+   *
+   * The paper and the ink, once, for all nine frames. A screen is the deck's STOCK and changing
+   * stock between frames is a different print job rather than variety.
+   *
+   * #2E2016 is the iron red sandy loam of the Brazos bottom tracked onto a swept concrete floor,
+   * in shade. Warm and brown where September 19th's #18222B was a cool blue grey limestone and
+   * where September 17th's #051F21 was a dark teal. Measured at dE76 13.32 from its nearest
+   * neighbour in the last six decks.
+   *
+   * #DCD3B4 is seven day recorder stock, a warm green cream. Deliberately NOT the near neutral
+   * #E6DFCC and #E4DCC6 that the last two decks both used as their ink, and deliberately greener
+   * than caliche, because chart paper is a different material from limestone dust.
+   */
+  N.GROUND = "#2E2016";
+  N.INK    = "#DCD3B4";   /* chart stock, the deck's paper */
+  N.ACCENT = "#9A3B2A";   /* capitol_granite, a mark already made. See THE ACCENT LAW */
+  N.DEK    = "#B9B096";
+  N.RULE   = "#9A9280";   /* the furniture, one pale ink on all nine frames */
+  N.TONER  = "#2E2016";   /* type printed ON a drawn page, which is the ground doing paper's job */
+  N.GALV   = "#9EA69B";   /* hot dip galvanized spangle, the manifold and the saddles */
+  N.ENAMEL = "#46524A";   /* pump motor machine enamel, the shelf, the bench */
+  N.CHALK  = "#BFB49A";   /* chalked enamel on the pressure tank */
+  N.DOORSUN= "#F6EBC8";   /* ten to five through the open west door. The deck's only near white */
+
+  /* LINE SCREEN, CELL 5, ANGLE 52, ON ALL NINE, AND BOTH NUMBERS WERE CHOSEN AGAINST A DEFECT.
+   *
+   * A LINE screen is the banknote and instrument register, and this deck is about instruments,
+   * so the stock rhymes with the printed rules on a recorder chart and on a bound logbook. That
+   * is the whole reason it is not the halftone September 19th used.
+   *
+   * THE ANGLE IS 52 AND NOT 72. The treatment proposed 72 degrees to stay clear of a circular
+   * chart's concentric rules. The chart became a STRIP in synthesis, so its rules are now
+   * vertical hour lines and horizontal range lines, and 72 degrees is only 18 degrees off
+   * vertical, which is exactly where a line screen beats against a vertical rule. 52 degrees is
+   * at least 38 degrees from both axes, which is the widest separation available from a ruled
+   * rectangular chart, a logbook's ruling and a block wall's coursing at once.
+   *
+   * A LINE SCREEN'S WHITE FIELD CEILING ON THIS GROUND IS NOT KNOWN AND IS NOT GUESSED HERE.
+   * Phase 10.5 prints a white field through THIS configuration on the probe frame and records
+   * the ceiling BEFORE the value arc is committed. The arc is written against the press. The
+   * press is never chased to the arc, which is September 15th's lesson and carousel no. 25 paid
+   * for it once.
+   */
+  N.SCREEN = { mode: "hatch", cell: 6, angle: 52, gamma: 1.22, floor: 0.06 };
+  N.EDGES  = { threshold: 17, width: 1.25, alpha: 0.76, dx: 1.2, dy: -0.5 };
+
+  /* THE SCREEN ABOVE WAS A LINE AT CELL 5 UNTIL THE PROBE FRAME PRINTED, AND THE PROBE IS THE
+   * ONLY REASON IT IS NOT STILL. The argument for a line screen was good and it is written out
+   * three paragraphs up: this deck is about instruments, and a line screen is the banknote and
+   * recorder register. It was wrong, and it was wrong in a way no amount of reading the source
+   * would have found.
+   *
+   * Four configurations were rendered through THIS frame and measured on the 432 px thumb, which
+   * is where a reader meets a deck:
+   *
+   *     line, cell 5      frame median L* 11.8    thumb sd 77.3
+   *     line, cell 9      frame median L* 10.8    thumb sd 84.1
+   *     stipple, cell 5   frame median L*  5.9    thumb sd 35.8
+   *     hatch, cell 6     frame median L*  9.8    thumb sd 54.1
+   *
+   * A line screen across a large uniform ground is maximally regular, so at cell 5 the yard
+   * printed as a field of hard diagonals and the frame read as a picture behind a screen door
+   * rather than as a print of a place. Going COARSER made it worse, which is the measurement
+   * that killed the whole family: at cell 9 the marks are further apart and individually more
+   * legible, so the regularity is more visible rather than less.
+   *
+   * Stipple is the calmest and its ceiling binds, exactly as ILLUSTRATION_SYSTEM.md's measured
+   * ceilings predict, so a deck that has to reach the twenties and thirties can't print on it.
+   * Hatch sits between, breaks up over a flat yard because its marks cross, and reaches the
+   * forties. It is also not September 19th's halftone, which matters, but that is the third
+   * reason rather than the first.
+   *
+   * THE VALUE ARC IS WRITTEN AGAINST THIS PRESS AND THE PRESS IS NEVER CHASED TO THE ARC. That
+   * is September 15th's lesson and carousel no. 25 paid for it once. */
+
+  /* THE GREY SCALE THE TWIN IS DRAWN IN, dark to light. A frame reaches for these by name so
+   * nine frames can't each invent their own tonal separation. The gap in the middle is
+   * deliberate: September 16th's lesson is that nothing contrasts against a mid tone, so objects
+   * are separated ACROSS the hole rather than inside it. `mid` is terrain only and a subject
+   * drawn at `mid` against the ground is the defect that lesson names. */
+  N.G = {
+    void:   "#000000",   /* the deepest dark. The open doorway seen from outside, a box interior */
+    deep:   "#121014",   /* the room's own shade, the underside of joists */
+    dark:   "#242028",   /* an east face, the deck's dark side */
+    shade:  "#3C3830",   /* the slab in shadow, the shaded half of a sheet */
+    mid:    "#5E5A50",   /* NOT for a subject against the ground. Yard and terrain only */
+    stone:  "#7E7A6E",   /* concrete, block wall in shade, the lit slab */
+    metal:  "#A6A69C",   /* galvanized steel, a lit flank */
+    bright: "#D2CEBE",   /* a lit face taking the key square on, chart stock in the light */
+    glare:  "#F2EEDE"    /* the door sun patch and the bare stock ahead of the pen. Sparingly */
+  };
+
+  /* --------------------------------------------------------------------- ramp
+   *
+   * One ramp, off the deck's material, for the few marks painted in real colour in `over`.
+   * The print path does not use it and most frames never call it.
+   */
+  N.RAMP = TXDECK.ramp(9, { Lmin: 0.05, Lmax: 0.84, ambientHue: 68, drift: 10 });
+  N.pick = function (i) { return TXDECK.pick(N.RAMP, i); };
+
+  /* -------------------------------------------------------------------- scene
+   *
+   * A TXSCENE carrying THIS DECK'S light, so a frame can't set up a camera lit from anywhere
+   * else. Standing eye is 1.65 m and that is the deck's default, because a person standing in
+   * the room is the reader's position in this story.
+   */
+  N.scene = function (a, o) {
+    if (!global.TXSCENE) throw new Error("waterworks.scene needs txscene.js on this frame");
+    o = o || {};
+    var d = TXDECK.deck();
+    return TXSCENE.create(a, {
+      w: N.W, h: N.H,
+      eye:     o.eye     == null ? 1.65 : o.eye,
+      horizon: o.horizon == null ? 783  : o.horizon,
+      f:       o.f       == null ? 900  : o.f,
+      sky:     o.sky     || N.G.deep,
+      fogZ:    o.fogZ    == null ? 1e9 : o.fogZ,
+      light:   { az: d.light.az, el: d.light.el }
+    });
+  };
+
+  /* -------------------------------------------------------------------- print
+   *
+   * THE DECK'S STOCK, HANDED TO A FRAME. A frame passes its own `draw` and its own `over` and
+   * gets the deck's paper, ink, screen and contour. This is house furniture in the sense the
+   * chassis law means: it hands a frame the press, it does not decide what goes through it.
+   *
+   * There is no drawFrame here and there never will be. A shared draw-the-whole-slide is a
+   * template, deck_chassis.py refuses one by name, and the per frame composition is this
+   * machine's whole strength.
+   */
+  N.print = function (cx, o) {
+    if (!global.TXINK) throw new Error("waterworks.print needs txink.js on this frame");
+    o = o || {};
+    TXINK.print(cx, {
+      w: N.W, h: N.H,
+      paper:  o.paper  || N.GROUND,
+      ink:    o.ink    || N.INK,
+      screen: o.screen || N.SCREEN,
+      edges:  o.edges  || N.EDGES,
+      seed:   o.seed   == null ? 30 : o.seed,
+      draw:   o.draw,
+      over:   o.over
+    });
+  };
+
+  /* ------------------------------------------------------------ world primitives
+   *
+   * The few shapes more than one frame needs, handed out as PARTS. Each is drawn in metres on a
+   * scene, never in screen pixels, so frame 1's tank and frame 4's tank are the same object seen
+   * twice rather than two drawings that resemble each other.
+   */
+
+  /* A RULED CHART BAND. The strip recorder's paper on frames 2 and 8, and the same construction
+   * lying folded in the box on 7. `traceTo` is where the pen is, as a fraction of the band's
+   * width, and NOTHING is drawn past it. Pass traceTo 0 for a chart that was never started,
+   * which is frame 8's subject. */
+  N.chartBand = function (a, r, o) {
+    o = o || {};
+    var hours = o.hours == null ? 24 : o.hours;
+    var ranges = o.ranges == null ? 6 : o.ranges;
+    a.save();
+    a.fillStyle = o.stock || N.G.bright;
+    a.fillRect(r.x, r.y, r.w, r.h);
+    a.strokeStyle = o.rule || N.G.mid;
+    a.lineWidth = 1;
+    var i;
+    for (i = 1; i < hours; i++) {                       /* hour rules, vertical, time axis */
+      var x = r.x + r.w * (i / hours);
+      a.globalAlpha = (i % 6 === 0) ? 0.55 : 0.26;
+      a.beginPath(); a.moveTo(x, r.y); a.lineTo(x, r.y + r.h); a.stroke();
+    }
+    for (i = 1; i < ranges; i++) {                      /* range rules, horizontal */
+      var y = r.y + r.h * (i / ranges);
+      a.globalAlpha = 0.22;
+      a.beginPath(); a.moveTo(r.x, y); a.lineTo(r.x + r.w, y); a.stroke();
+    }
+    a.globalAlpha = 1;
+    a.restore();
+    return r;
+  };
+
+  /* PAINTED CONCRETE BLOCK AT A TRUE 0.194 m COURSE. Frame 8's wall, and the back wall behind
+   * frame 1's manifold. `ppm` is pixels per metre at the wall's distance, from the scene, so the
+   * coursing is the frame's own ruler rather than a texture at an invented pitch. */
+  N.blockWall = function (a, r, ppm, o) {
+    o = o || {};
+    var course = 0.194 * ppm, run = 0.397 * ppm;
+    a.save();
+    a.beginPath(); a.rect(r.x, r.y, r.w, r.h); a.clip();
+    a.fillStyle = o.face || N.G.stone;
+    a.fillRect(r.x, r.y, r.w, r.h);
+    a.strokeStyle = o.joint || N.G.shade;
+    a.lineWidth = Math.max(1, course * 0.055);
+    for (var row = 0, y = r.y; y <= r.y + r.h + course; row++, y += course) {
+      a.globalAlpha = 0.7;
+      a.beginPath(); a.moveTo(r.x, y); a.lineTo(r.x + r.w, y); a.stroke();
+      var off = (row % 2) ? run * 0.5 : 0;               /* running bond, a half block offset */
+      for (var x = r.x - run + off; x <= r.x + r.w + run; x += run) {
+        a.globalAlpha = 0.5;
+        a.beginPath(); a.moveTo(x, y); a.lineTo(x, y + course); a.stroke();
+      }
+    }
+    a.globalAlpha = 1;
+    a.restore();
+  };
+
+  /* THE CAST, COMPUTED. Every shadow in nine frames asks this rather than guessing, which is
+   * what makes them agree. At el 26 a cast is 2.05 times the object's height. */
+  N.cast    = function (metres) { return TXDECK.castLen(metres); };
+  N.castDir = function () { return TXDECK.castDir(); };
+
+  /* THE TYPE RESERVE, AND THE DECK HAS TWO KINDS OF IT.
+   *
+   * September 16th's lamp deck paid for this one twice. A frame has light-on-dark type (the
+   * hook, the dek, the furniture) which needs the light DIMMED toward it or the wash eats the
+   * contrast, and it can also have dark-on-light type printed ON a drawn page (frames 3 and 6)
+   * which NEEDS the light and is destroyed by punching the pool away from it. One reserve list
+   * for both is wrong twice, so a frame that carries a drawn page keeps two and reserves BOTH
+   * from drawn edges, because a rule through a glyph is a strike whichever way the values run.
+   *
+   * A HOLE PUNCHED IN A LIGHT LAYER IS A PLATE WITH THE SIGN FLIPPED. Light DIMS toward type. It
+   * is not removed from around it. Soft, partial, and a wide feather.
+   */
+  N.reserve = function (c, o) {
+    o = o || {};
+    TXINK.reserve(c, {
+      ground: N.GROUND,
+      top: o.top == null ? 0 : o.top,
+      topSolid: o.topSolid == null ? 0 : o.topSolid,
+      bottom: o.bottom == null ? 190 : o.bottom,
+      bottomSolid: o.bottomSolid == null ? 120 : o.bottomSolid
+    });
+  };
+
+  /* THE LINE BOXES AND THE MASK, ASKED FOR ONCE. A frame fits its type FIRST, then measures,
+   * then hands the geometry to the art, which is the order that makes a reserve live geometry
+   * rather than a guess. An element repositioned after this was never measured, and
+   * deck_chassis.py refuses that by name. */
+  N.boxes = function (sel, pad) {
+    return TXDECK.lineBoxes(sel || ".hook, .dek, .kick, .count, .src, .tx-site",
+                            pad == null ? 18 : pad);
+  };
+  N.mask = function (boxes, feather) {
+    return TXDECK.reserveMask(boxes, feather == null ? 28 : feather);
+  };
+
+  global.TXWW = N;
+})(typeof window !== "undefined" ? window : globalThis);
