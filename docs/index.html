@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-mDOP4HDoyaOHYXgoVoBB0iS8oali0dN0KqenhPaLshg=' 'sha256-ETGJ+E1Gu7IKjDNhb2b1l83O2Dh6AEvBvuy+78fAFck=' 'sha256-3koWYGum3a2fZKd2UsUlUs3Y1y3A2IISaz7oz0x/Lgw=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-mDOP4HDoyaOHYXgoVoBB0iS8oali0dN0KqenhPaLshg=' 'sha256-ETGJ+E1Gu7IKjDNhb2b1l83O2Dh6AEvBvuy+78fAFck=' 'sha256-3koWYGum3a2fZKd2UsUlUs3Y1y3A2IISaz7oz0x/Lgw=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-GS/I7+b+K9HAu3ORVkTBeKYZK7RGqK9/z5ubefAr+Z4=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -2354,8 +2354,7 @@ function askFuse(lists) {
       src="media/articles/2026-09-20/slide-01-1080-52cf11ef6c2f.webp" srcset="media/articles/2026-09-20/slide-01-320-ee034c30dc0d.webp 320w, media/articles/2026-09-20/slide-01-640-748be8407e78.webp 640w, media/articles/2026-09-20/slide-01-1080-52cf11ef6c2f.webp 1080w" sizes="auto, (max-width: 640px) calc(100vw - 48px), (max-width: 980px) 45vw, 360px" width="1080" height="1350" decoding="async" loading="lazy"
       alt="Cover slide, Aimed at small systems. Texas has 4,749."></a>
     <div>
-      <p class="meta" data-prose="data"><span class="tag">Published September 20th</span>
-        <span>9 slides</span></p>
+      <p class="meta" data-prose="data"><span class="tag">September 20th</span></p>
 <h3>Aimed at small systems. Texas has 4,749.</h3>
       <p>A federal award aims predictive digital twins at small and mid-sized water systems. Texas has 4,749 active community water systems and 3,579 of them serve fewer than 3,301 people.</p>
       <div class="ctarow">
@@ -2420,7 +2419,7 @@ function askFuse(lists) {
     el.dataset.src=abs(v.video_mobile||v.video);
     document.getElementById('hvtitle').textContent=v.title||'';
     document.getElementById('hvcap').textContent=v.caption||'';
-    document.getElementById('hvdate').textContent=fmtFeedDate(v.date);
+    document.getElementById('hvdate').textContent=fmtFeedDate(v.date).replace(/, [0-9]{4}$/, '');
     sec.hidden=false;
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
       if(!en.isIntersecting)return;
