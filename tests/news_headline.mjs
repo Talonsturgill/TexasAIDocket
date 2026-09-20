@@ -82,6 +82,7 @@ try {
     const chip=page.locator('.news-chip');
     assert.equal(await chip.count(),1);
     assert.equal(await chip.isVisible(),true);
+    assert.equal(await chip.evaluate(el=>getComputedStyle(el).opacity),'1','the news strip must be fully painted');
     const size=await chip.evaluate(el=>({inside:el.scrollWidth<=el.clientWidth+1,right:el.getBoundingClientRect().right,
       height:el.getBoundingClientRect().height,overflow:document.documentElement.scrollWidth>innerWidth}));
     assert.ok(size.inside && size.height>=44 && size.right<=width && !size.overflow,JSON.stringify({width,...size}));
@@ -90,14 +91,12 @@ try {
       assert.equal(await activeLink(page).locator('.news-source').textContent(),state.selected.publisher);
       assert.equal(await activeLink(page).locator('.news-title').textContent(),state.selected.title);
       assert.equal(await chip.locator('.news-label').textContent(),'Trending');
-      assert.match(await activeLink(page).locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th), \d{4}$/);
+      assert.match(await activeLink(page).locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th)$/);
       await activeLink(page).focus();
       assert.equal(await activeLink(page).evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
       await activeLink(page).evaluate(el=>el.blur());
-      if(await chip.locator('.news-controls').isVisible()) {
-        await chip.locator('.news-toggle').click();
-        await page.mouse.move(0,0);
-      }
+      await page.clock.runFor(1);
+      await page.mouse.move(0,0);
       const before=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);
       await page.clock.fastForward(37*3600000);
       const retained=(state.editions?.at(-1)?.selected || state.selected).url;
@@ -251,13 +250,14 @@ try {
       assert.equal(requests,1,'headline rotation must make no additional feed or publisher requests');
       await page.clock.install({time:new Date(state.checked_at)});
       await chip.hover();
+      await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='false');
       last=await activeLink(page).getAttribute('href');
       await page.clock.fastForward(16000);
       assert.equal(await activeLink(page).getAttribute('href'),last,'hover freezes the visible story');
       await chip.locator('.news-next').click();
       const next=await activeLink(page).getAttribute('href');
       assert.notEqual(next,last);
-      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines');
+      assert.equal(await chip.getAttribute('data-news-playing'),'false');
       await page.mouse.move(0,0);
       await page.clock.fastForward(16000);
       assert.equal(await activeLink(page).getAttribute('href'),next,'manual browsing stays paused');
@@ -285,14 +285,21 @@ try {
       const first=await activeLink(page).getAttribute('href');
       await page.clock.fastForward(16000);
       assert.equal(await activeLink(page).getAttribute('href'),first,'reduced motion starts paused');
-      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines');
-      await chip.locator('.news-toggle').click();
+      assert.equal(await chip.getAttribute('data-news-playing'),'false');
+      assert.equal(await chip.locator('.news-toggle,.news-count').count(),0);
+      await chip.locator('.news-next').click();
+      assert.notEqual(await activeLink(page).getAttribute('href'),first,'reduced motion supports manual navigation');
+      await chip.locator('.news-prev').click();
       await page.mouse.move(0,0);
+      await page.evaluate(()=>document.activeElement.blur());
+      await page.clock.runFor(1);
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='true');
       await page.clock.runFor(4000);
       assert.equal(await activeLink(page).getAttribute('href'),first,'headlines must not advance before the five-second interval');
       await page.clock.runFor(1100);
       const second=await activeLink(page).getAttribute('href');
-      assert.notEqual(second,first,'explicit play can rotate without animation');
+      assert.notEqual(second,first,'rotation resumes after leaving controls and restoring motion');
       await page.evaluate(()=>{
         Object.defineProperty(document,'hidden',{configurable:true,value:true});
         document.dispatchEvent(new Event('visibilitychange'));
@@ -312,14 +319,14 @@ try {
       assert.equal(await activeLink(page).getAttribute('href'),offscreen,'offscreen headlines do not rotate');
       await chip.scrollIntoViewIfNeeded();
       await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='true');
-      await chip.locator('.news-toggle').click();
-      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines','pointer click really pauses an autoplaying carousel');
-      await chip.locator('.news-toggle').click();
       await page.mouse.move(0,0);
       await activeLink(page).dispatchEvent('pointerdown',{pointerType:'touch'});
       const pressed=await activeLink(page).getAttribute('href');
       await page.clock.fastForward(16000);
       assert.equal(await activeLink(page).getAttribute('href'),pressed,'touch presses freeze the destination');
+      await activeLink(page).dispatchEvent('pointercancel',{pointerType:'touch'});
+      await page.clock.runFor(5100);
+      assert.notEqual(await activeLink(page).getAttribute('href'),pressed,'cancelled touch resumes rotation');
       await page.close();checked++;
     }
     for(const mutation of ['irrelevant','unsafe','duplicate','empty','oversized','missing-version','legacy-version']) {

@@ -438,7 +438,7 @@ def markup(today: str, data: dict | None = None) -> str:
         observed = instant(selected['first_seen_at'])
         day = observed.day
         suffix = 'th' if 10 <= day % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
-        date = f'{observed:%B} {day}{suffix}, {observed.year}'
+        date = f'{observed:%B} {day}{suffix}'
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
     description = ('AI headlines rotate every five seconds and refresh every six hours. '
@@ -457,13 +457,9 @@ def markup(today: str, data: dict | None = None) -> str:
             f'data-first-seen-at="{e(first_seen)}" data-expires-at="{e(data.get("expires_at") or "")}" '
             f'title="{description}"><div class="news-header"><span class="news-label">{label}</span>'
             '<div class="news-controls" hidden>'
-            '<button type="button" class="news-toggle" aria-label="Pause headlines" title="Pause headlines">'
-            '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="currentColor">'
-            '<path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg></button>'
             '<button type="button" class="news-prev" aria-label="Previous headline" title="Previous headline">'
             '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5">'
             '<path d="m10 3-5 5 5 5"/></svg></button>'
-            '<span class="news-count" aria-hidden="true"></span>'
             '<button type="button" class="news-next" aria-label="Next headline" title="Next headline">'
             '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5">'
             '<path d="m6 3 5 5-5 5"/></svg></button></div></div>'
@@ -790,7 +786,7 @@ def self_test() -> int:
             s = snapshot({'articles': []}, now, {'articles':[r]})
             out = markup('2026-09-11', s)
             self.assertIn('&lt;script&gt; &amp; &quot;new&quot;', out)
-            self.assertIn('September 11th, 2026</time>', out)
+            self.assertIn('September 11th</time>', out)
             self.assertIn('<cite class="news-title">', out)
             self.assertIn('rel="noopener noreferrer"', out)
             self.assertIn('Recent', markup('2026-09-15', s))

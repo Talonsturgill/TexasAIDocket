@@ -12,7 +12,6 @@
   var hour = 3600000, active = null, pending = false, lastAttempt = 0, editionTimer;
   var cadence = 5000, fade = 350, slides = chip.querySelector('.news-slides');
   var template = slides.firstElementChild.cloneNode(true), controls = chip.querySelector('.news-controls');
-  var toggle = chip.querySelector('.news-toggle'), count = chip.querySelector('.news-count');
   var motion = matchMedia('(prefers-reduced-motion: reduce)');
   var paused = motion.matches, held = false, hovering = false, inView = true;
   var pool = [], index = 0, editionKey = '', shownAt = 0, cycleTimer, swapTimer, animation, revision = 0;
@@ -88,11 +87,6 @@
   }
   function updateControls() {
     controls.hidden = pool.length < 2;
-    var label = paused ? 'Play headlines' : 'Pause headlines';
-    toggle.setAttribute('aria-label', label);
-    toggle.title = label;
-    toggle.querySelector('path').setAttribute('d', paused ? 'm5 2 9 6-9 6z' : 'M4 3h3v10H4zM9 3h3v10H9z');
-    count.textContent = (index + 1) + ' / ' + pool.length;
     slides.setAttribute('aria-live', paused ? 'polite' : 'off');
     chip.dataset.newsPlaying = String(playing());
   }
@@ -107,7 +101,7 @@
     var observed = new Date(value), day = observed.getUTCDate();
     var suffix = day % 100 >= 10 && day % 100 <= 20 ? 'th' : ({1:'st', 2:'nd', 3:'rd'}[day % 10] || 'th');
     return observed.toLocaleDateString('en-US', {month:'long', timeZone:'UTC'}) +
-      ' ' + day + suffix + ', ' + observed.getUTCFullYear();
+      ' ' + day + suffix;
   }
   function select(next) {
     index = next;
@@ -212,19 +206,14 @@
     stop();
     updateControls();
   }
-  var togglePointerPaused = null;
-  toggle.addEventListener('pointerdown', function () { togglePointerPaused = paused; });
-  toggle.addEventListener('click', function () {
-    var resume = togglePointerPaused === null ? paused : togglePointerPaused;
-    togglePointerPaused = null;
-    if (resume) {
-      paused = false;
-      held = false;
-      fallback();
-      shownAt = performance.now();
-      schedule();
-    } else pause();
-  });
+  function resume() {
+    if (hovering || chip.contains(document.activeElement)) return;
+    paused = motion.matches;
+    held = false;
+    fallback();
+    shownAt = performance.now();
+    schedule();
+  }
   function step(direction) {
     pause();
     // Explicit navigation is also a safe point to install an awaiting six-hour edition.
@@ -248,21 +237,22 @@
   chip.addEventListener('pointerleave', function (event) {
     if (event.pointerType !== 'mouse') return;
     hovering = false;
-    fallback();
-    shownAt = performance.now();
-    schedule();
+    resume();
   });
   // Focus or pressing a story freezes it before its destination can change.
   chip.addEventListener('focusin', pause);
   chip.addEventListener('focusout', function (event) {
-    if (pool.length < 2 && !chip.contains(event.relatedTarget)) {
-      held = false;
-      fallback();
-    }
+    if (!chip.contains(event.relatedTarget)) setTimeout(resume, 0);
   });
   slides.addEventListener('pointerdown', pause);
+  slides.addEventListener('pointerup', function () { setTimeout(resume, 0); });
+  slides.addEventListener('pointercancel', function () { setTimeout(resume, 0); });
   motion.addEventListener('change', function () {
-    if (motion.matches) pause();
+    if (motion.matches) {
+      paused = true;
+      stop();
+      updateControls();
+    } else resume();
   });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (entries) {
     inView = entries[0].isIntersecting;

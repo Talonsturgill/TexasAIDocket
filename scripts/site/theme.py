@@ -410,11 +410,9 @@ def home_css() -> str:
   letter-spacing:.12em; text-transform:uppercase; }
 .home .news-chip .news-controls { display:flex; align-items:center; gap:.1rem; }
 .home .news-chip .news-controls[hidden] { display:none; }
-.home .news-chip .news-controls button { display:grid; place-items:center; width:28px; height:28px;
-  min-width:28px; min-height:28px; padding:0; margin:0; border:0; border-radius:.3rem;
+.home .news-chip .news-controls button { display:grid; place-items:center; width:24px; height:24px;
+  min-width:24px; min-height:24px; padding:0; margin:0; border:0; border-radius:.3rem;
   color:var(--ink-mute); background:transparent; cursor:pointer; box-shadow:none; }
-.home .news-chip .news-count { font:400 .6rem/1 var(--mono); color:var(--ink-mute);
-  min-width:3.5ch; text-align:center; font-variant-numeric:tabular-nums; }
 .home .news-chip .news-slides { display:grid; min-width:0; }
 .home .news-chip .news-slide { grid-area:1/1; min-width:0; }
 .home .news-chip .news-slide[aria-hidden="true"] { visibility:hidden; pointer-events:none; }
@@ -423,7 +421,7 @@ def home_css() -> str:
 .home .news-chip .news-meta { grid-column:1; display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
 .home .news-chip .news-meta::before,.home .news-chip .news-label::before,
 .home .news-chip::after,.home .news-chip .news-title::before { content:none; }
-.home .news-chip .news-title { grid-column:1; font:500 .94rem/1.35 var(--body);
+.home .news-chip .news-title { grid-column:1; font:500 .88rem/1.3 var(--body);
   font-style:normal; overflow-wrap:anywhere; }
 .home .news-chip .news-source,.home .news-chip .news-date { font:400 var(--s-2)/1.3 var(--mono);
   font-style:normal; color:var(--ink-mute); }
@@ -434,7 +432,7 @@ def home_css() -> str:
    Subgrids retain the tallest story's height and fade the source with its headline. */
 @supports (grid-template-columns:subgrid) {
   .home .hero .news-chip { grid-template-columns:auto minmax(0,1fr) auto;
-    grid-template-rows:auto auto; gap:.2rem .5rem; padding:.35rem .8rem .5rem; }
+    grid-template-rows:auto auto; gap:.1rem .5rem; padding:.25rem .7rem .4rem; }
   .home .news-chip .news-header { display:contents; }
   .home .news-chip .news-label,.home .news-chip .news-controls {
     grid-row:1; align-self:center; position:relative; z-index:1; }
@@ -449,13 +447,24 @@ def home_css() -> str:
     min-width:0; gap:.15rem .65rem; }
   .home .news-chip .news-title { grid-column:1/-1; grid-row:2; padding-right:1.8rem; }
   .home .news-chip .news-arrow { grid-column:3; grid-row:2; justify-self:end; }
-  @media (max-width:389px) {
-    .home .hero .news-chip { grid-template-rows:auto auto auto; }
-    .home .news-chip .news-meta { grid-column:1/-1; grid-row:2; }
-    .home .news-chip .news-title,.home .news-chip .news-arrow { grid-row:3; }
+}
+.home .hero .news-chip {
+  opacity:1; transform:none;
+  background-image:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 45%,transparent),transparent);
+  background-size:35% 1px; background-repeat:no-repeat; background-position:50% 0;
+  animation:none; transition:border-color .35s,box-shadow .35s;
+}
+@media (prefers-reduced-motion:no-preference) {
+  .home .hero .news-chip { animation:news-glint 12s ease-in-out infinite; }
+  @keyframes news-glint {
+    0% { background-position:-55% 0; }
+    70%,100% { background-position:155% 0; }
   }
 }
 @media (hover:hover) and (pointer:fine) {
+  .home .hero .news-chip:hover { border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent),
+      0 0 18px color-mix(in srgb,var(--accent) 7%,transparent); }
   .home .news-chip .news-link:hover .news-title { color:var(--accent); }
   .home .news-chip .news-controls button:hover { color:var(--ink-bright); background:var(--raised); }
 }

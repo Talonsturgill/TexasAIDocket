@@ -39,8 +39,8 @@ not another outlet's version of the same story. Previously displayed topics are 
 recently shown eligible topic and still refuses consecutive repeats.
 
 Every queued story must be under 72 hours old at its scheduled start. The browser advances the
-queue at the edition boundary, on reload and when returning to the tab. A paused or hovered
-carousel waits for play or explicit navigation before replacing its links. This works even if
+queue at the edition boundary, on reload and when returning to the tab. A focused or hovered
+carousel waits until the reader moves away or navigates before replacing its links. This works even if
 GitHub starts a scheduled collection late or a feed request fails. The browser checks for a
 new published queue on load and every 15 minutes while visible. Collection timestamps never
 replace the original story date or make an old article appear new.
@@ -54,10 +54,12 @@ fails the publishing health check and does not replace the last published snapsh
 The complete headline, publisher and source date fade together. Each story occupies the same
 grid cell and the tallest story reserves the height. No headline is truncated. The transition
 takes 700 milliseconds, included in the five-second cadence. No request is made per transition.
+A faint accent moves along the upper edge when motion is enabled. Hover adds a soft warm glow.
 
-The compact controls provide pause, previous and next buttons plus a position count. Hovering
-pauses temporarily. Keyboard focus, a press on the story or manual navigation pauses until the
-reader chooses play. Reduced-motion preferences start paused and remove the fade. Background
+The compact controls provide previous and next buttons. The visible date shows month and day.
+The full source timestamp stays in the time element. Hover, keyboard focus and pressing a story
+pause rotation while the reader interacts. Rotation resumes after they move away. Reduced-motion
+preferences use manual navigation without automatic rotation or fades. Background
 tabs and offscreen carousels stop their timers. Automatic changes are not live announcements.
 Only the visible story is accessible to the keyboard and assistive technology.
 
