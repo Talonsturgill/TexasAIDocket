@@ -151,8 +151,13 @@ async function homeVideoFit(browser, site, check) {
         before.fit === "contain" && Math.abs(before.width / before.height - 9 / 16) < .01,
         JSON.stringify(before));
       await video.evaluate((el) => el.requestFullscreen());
-      await page.waitForFunction(() => !!document.fullscreenElement);
-      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      // Reduced motion shortens CSS transitions but does not make them synchronous.
+      // Chromium can expose fullscreen dimensions before the corner transition settles.
+      // Wait for the required style; a missing fullscreen rule still fails this check.
+      await page.waitForFunction(() => {
+        const el = document.fullscreenElement;
+        return el && getComputedStyle(el).borderRadius === "0px";
+      }, undefined, { timeout: 3000 });
       const full = await measure();
       check(`native fullscreen fits and centres the entire film at ${width}×${height}`,
         full.fullscreen && full.fit === "contain" && full.position === "50% 50%"
