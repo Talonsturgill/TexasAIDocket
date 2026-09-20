@@ -1984,15 +1984,15 @@
    ],
    "value_block": {
     "per_frame_median_lstar": [
+     8.8,
      9.8,
-     10.3,
      14.2,
      9.3,
-     6.8,
+     6.3,
      9.8,
-     10.3,
-     7.7,
-     10.3
+     9.8,
+     7.2,
+     9.8
     ],
     "planned_median_lstar": [
      8,
@@ -2006,8 +2006,8 @@
      7
     ],
     "max_adjacent_delta": 4.9,
-    "mean_adjacent_delta": 2.56,
-    "note": "Measured at 432 px off the shipped PNGs. It printed systematically DARKER than planned and that is not rewritten in the plan: the three paper frames were planned at 18, 24 and 20 and came out at 10.3, 14.2 and 9.8. Hatch at cell 6 does not reach the twenties over this ground however bright the stock is drawn. The arc is written against the press and the press was never chased to the arc.",
+    "mean_adjacent_delta": 2.75,
+    "note": "Measured at 432 px off the shipped PNGs. It printed systematically DARKER than planned and that is not rewritten in the plan: the three paper frames were planned at 18, 24 and 20 and came out at 9.8, 14.2 and 9.8. Hatch at cell 6 does not reach the twenties over this ground however bright the stock is drawn. The arc is written against the press and the press was never chased to the arc. RE-DERIVED at ship time from the committed measurements.json. This block first held the round 4 numbers and went stale when frames 1, 7 and 8 were re-rendered after it: it read 9.8, 10.3, 14.2 with a mean of 2.56 while the artifact it claims to be written from read 8.8, 9.8, 14.2 with 2.75. A Codex review caught it on the pull request. This is the instinct `the-plan-is-not-the-product` at 0.89, which this same run confirmed an hour earlier and then broke in the file the variety engine reads: rebuild every artifact DERIVED from a thing you just changed, in the same commit that changes it.",
     "deck_median_L": 9.8,
     "spread_L": 7.9,
     "key_note": "deck_median_L is spelled exactly this way because ledger_check reads that key and nothing else. On 2026-09-14 an entry filed the same measurement as `deck_median` and was silently dropped from the light deck cap while looking measured, and that gate refuses a second spelling on purpose: a list of accepted names is how a count goes quiet on the third one."

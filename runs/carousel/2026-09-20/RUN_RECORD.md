@@ -267,6 +267,53 @@ in as many words: rapid pushes are how a branch ends up with no green run at all
 and push once when it is finished. Three of those pushes were the engineer's, made while this
 session was working, so the batching has to be planned ACROSS the phase rather than inside it.
 
+### A REVIEW BOT FOUND A FABRICATION IN THE PUBLIC RECORD, AND FOUR MORE THINGS
+
+Codex reviewed the pull request and returned five findings. **Every one was real.** Each was
+verified against the file before anything was changed, and all five are fixed.
+
+**The P1 is the worst thing this run did.** `tx-2026-0176`'s TITLE in `ledger/docket.json` read
+*"...AI digital twins of the water systems that fail first in a freeze"*. **No claim in this run
+mentions a freeze**, and none establishes any ranking of which systems fail first. `c13` names
+aging assets, deferred maintenance, climate driven hazards, power outages and water quality
+variability, and a freeze is not on that list. The title asserted both a hazard and an ordering
+that nobody measured, in the one artifact this project describes as the most expensive thing it
+makes. It is now *"...AI digital twins of small and mid-sized water systems"*, which is `c1`,
+`c2` and `c12`.
+
+**It never reached a frame.** The deck, the caption, the first comment and the claims file all
+carry no such sentence, and `grep` over every deck surface returns nothing. It reached the SITE,
+because `docs/` is built from the docket, and it was published on the branch for about an hour.
+
+**`tx-2026-0177` asserted an absence the same way.** Its title said the district *"says the state
+has not supplied"* AI guidance, and its summary said *"A district asking the state for guidance is
+a district saying the guidance does not exist yet."* That is an INFERENCE the run made and stated
+as a fact about the world. The quoted priority asks for *"resources and guidance for the thoughtful
+use of artificial intelligence in education"*, which is equally consistent with guidance that
+exists and is thin. Both corrected to what the source says.
+
+**The web edition still said "Nothing is deployed."** The caption and frame 8 had both been scoped
+to the record earlier in the run and the article had not, so the deck was careful and the longest
+form of the same story was not.
+
+**`artwork.json`'s value block was stale.** It carried the round 4 numbers, 9.8, 10.3, 14.2 and a
+mean of 2.56, while the `measurements.json` it says it was written from carried 8.8, 9.8, 14.2 and
+2.75, because frames 1, 7 and 8 were re-rendered after the ledger was written. **This is the
+instinct `the-plan-is-not-the-product`, which this same run confirmed at 0.89 an hour earlier and
+then broke in the file the variety engine reads.**
+
+**The archived `measure.py` could not read its own frames.** `ROOT` is `parents[2]`, which is
+`out/` for a live run and `runs/` for a shipped one, so the fallback resolved to
+`runs/runs/carousel/<date>/render` and the script raised `FileNotFoundError`. A measurement nobody
+can re-run is an assertion, which is the one thing that file exists so the numbers are not. It now
+resolves four locations and accepts either extension, and **the archived copy was executed to
+confirm it reproduces 8.8, 9.8, 14.2, 9.3, 6.3, 9.8, 9.8, 7.2, 9.8 exactly.**
+
+**The lesson is not that the bot was clever.** Three of the five are the same defect this run
+already knew about and had already fixed somewhere else: an absence stated as a fact, a derived
+file left behind its source, and a path that only works from the directory the author was standing
+in. The run fixed each one on the surface it was looking at and did not sweep for the others.
+
 ## What did not get fixed, and why
 
 These are next run work rather than late round work. Each was named by a judge, each is a frame

@@ -25,13 +25,36 @@ def lstar(img: Image.Image) -> np.ndarray:
     return np.where(lin > 0.008856, 116 * np.cbrt(lin) - 16, 903.3 * lin)
 
 
+def slides() -> list[Path]:
+    """The nine frames, wherever this copy of the script is being run from.
+
+    A LIVE run keeps them in `out/<date>/render/` as png. The SHIPPED copy of this script sits
+    beside them in `runs/carousel/<date>/`, and ship_images may have turned some into webp.
+
+    The archived copy could not read its own frames until a Codex review said so on the pull
+    request. `ROOT` is `parents[2]`, which is `out/` for a live run and `runs/` for a shipped one,
+    so the old fallback resolved to `runs/runs/carousel/<date>/render` and the supposedly
+    reproducible measurement raised FileNotFoundError. A measurement nobody can re-run is an
+    assertion, which is the one thing this file exists so the numbers are not.
+    """
+    for base in (RUN / "render", RUN, ROOT / "runs" / "carousel" / DATE / "render",
+                 ROOT / "runs" / "carousel" / DATE):
+        found = []
+        for i in range(1, 10):
+            hit = next((p for p in (base / f"slide-{i:02d}.png", base / f"slide-{i:02d}.webp")
+                        if p.exists()), None)
+            if hit is None:
+                break
+            found.append(hit)
+        if len(found) == 9:
+            return found
+    raise SystemExit(f"measure.py: no nine-frame set found under {RUN} or {ROOT}")
+
+
 def main() -> int:
-    render = RUN / "render"
-    if not (render / "slide-01.png").exists():
-        render = ROOT / "runs" / "carousel" / DATE / "render"
     med = []
-    for i in range(1, 10):
-        im = Image.open(render / f"slide-{i:02d}.png").resize((432, 540), Image.LANCZOS)
+    for path in slides():
+        im = Image.open(path).resize((432, 540), Image.LANCZOS)
         med.append(round(float(np.median(lstar(im))), 1))
 
     board = (RUN / "storyboard.md")
