@@ -2026,7 +2026,7 @@
      "fetched": "2026-09-17"
     }
    ],
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -2147,6 +2147,10 @@
      "date": "2026-09-18",
      "note": "The feed is still live and still carries the commission's open meetings with the comment deadlines attached to them. The open meeting the record named for today stands on it, in the commissioners hearing room, and the project deadlines listed after it have not moved.",
      "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The feed answered and is still publishing the commission's open meetings with the room named on each one. A workshop has appeared on it since the last check, set for the week after this one and marked open to the public, and the comment deadline the record already carries is still listed."
     }
    ]
   },
@@ -11074,7 +11078,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -11150,6 +11154,11 @@
     {
      "date": "2026-09-18",
      "note": "The award record reads as it did. A proof assistant still has to certify a proposed algorithm for correctness and cost before it counts, which is the condition that makes this grant unusual. The funding term the foundation published is unamended.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The award record still describes the same arrangement. A model proposes the numerical algorithm and a proof decides whether it survives, and the grant stands as the foundation posted it.",
      "checked": true
     }
    ]
@@ -14384,7 +14393,7 @@
     }
    ],
    "id": "tx-2026-0109",
-   "last_verified": "2026-09-20",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-08-29",
@@ -14454,6 +14463,11 @@
     {
      "date": "2026-09-20",
      "note": "The committee's hearing on artificial intelligence and the Texas workforce still stands at the reset date. Nothing on the Senate's own meetings listing has moved it a second time.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The interim charge on AI and the Texas workforce is still live and the committee has posted no replacement date for the hearing it called off. A reader watching for a rescheduled notice has nothing new to watch yet.",
      "checked": true
     }
    ]
@@ -15752,6 +15766,10 @@
     {
      "date": "2026-09-20",
      "note": "What the directorate published about the Progreso pedestrian exit test is unconfirmed this run. The account would not answer, so who was invited, what was captured and when it happened stand on the last reading rather than on a fresh one."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "What the directorate published about the Progreso pedestrian exit test is unconfirmed again this run. Who was invited, which solutions went to the bridge and what was offered to citizens who did not want their face captured all rest on an account that has now gone unread for four days running."
     }
    ]
   },
@@ -18437,7 +18455,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
@@ -18463,6 +18481,11 @@
     {
      "date": "2026-09-18",
      "note": "Reworded after a code review. The title and the opening stated the items as filed as though they were what the council enacted, and the approved-as-revised fact arrived fifth. The vote is confirmed and the amendment text is not published, so every directive is now marked as filed and the revision is the first thing a reader meets. No claim changed and nothing was added.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "Both plate reader items still stand approved as revised. The text of the floor amendments is still unpublished, so what the council changed before it voted stays off the public record.",
      "checked": true
     }
    ],
@@ -18559,7 +18582,7 @@
     "closes": null
    },
    "id": "tx-2026-0148",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "confidence": "high",
    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
    "history": [
@@ -18576,6 +18599,11 @@
     {
      "date": "2026-09-18",
      "note": "The department's announcement is unchanged. The Navasota site is still named among the proving grounds and still described as a synthetic pit inside an existing instrumented facility. It still carries no dollar figure and no mention of artificial intelligence.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The department's list of mining proving ground projects still carries the Navasota site, and the university project attached to it is described the same way. Nothing has been added about when the test pit gets built.",
      "checked": true
     }
    ],
@@ -18633,7 +18661,7 @@
     "closes": null
    },
    "id": "tx-2026-0149",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "confidence": "high",
    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
@@ -18650,6 +18678,11 @@
     {
      "date": "2026-09-18",
      "note": "The award record still stands as obligated to the engineering experiment station, with the same College Station performing site and the same end date. The abstract still names no Texas utility, so which water system's data this work reaches is still unstated.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The award still sits in the division that obligated it and its abstract still describes digital twins of small water systems. Neither the scope nor the recipient has moved.",
      "checked": true
     }
    ],
@@ -19403,7 +19436,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-09-15",
@@ -19412,6 +19445,10 @@
     {
      "date": "2026-09-18",
      "note": "The model quality rule moved and the other two did not. The market rules page for PGRR144 now carries a September 15th board vote recommending approval. It names the Public Utility Commission of Texas as the body that takes it next. The draft rule on how fast a large load may swing its power draw still carries no number and no filing date."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The rule on dynamic model quality is still with the commission rather than in force. The market rules page shows it pending, names the board's recommendation to approve as the last action taken, and names the Public Utility Commission of Texas as the body that takes it next. The presentation the risk list comes from still reads as the record holds it, down to the ramp limit the draft rule will recommend and the modeling work the grid operator is doing with Texas A&M."
     }
    ]
   },
@@ -19477,7 +19514,7 @@
     }
    ],
    "id": "tx-2026-0160",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-09-15",
@@ -19486,6 +19523,11 @@
     {
      "date": "2026-09-18",
      "note": "The account of the meeting still reads as a direction rather than a contract. One unified ambient listening platform is still the stated aim after the two pilots ran, no vendor is named, and no completion date has been added.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The practice is still described as working toward one ambient listening platform rather than as having chosen one. No platform has been named and no adoption date has been set.",
      "checked": true
     }
    ]
@@ -19561,7 +19603,7 @@
     }
    ],
    "id": "tx-2026-0161",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-09-15",
@@ -19570,6 +19612,11 @@
     {
      "date": "2026-09-18",
      "note": "The university's account is unchanged. The tutor is still described as one built to withhold the answer, and the Fort Worth police training work still sits beside it in the same account. No evaluation result has been published for either.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The university's account still describes a tutor built to withhold the answer, and the federal award behind it is unchanged. The design choice that makes it unusual is still the one the account leads with.",
      "checked": true
     }
    ]
@@ -20072,7 +20119,7 @@
     }
    ],
    "id": "tx-2026-0166",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-09-18",
@@ -20081,6 +20128,11 @@
     {
      "date": "2026-09-18",
      "note": "A code review found that the summary published the recruitment status, the sponsor's role and two dates with no claim behind any of them. The registry was re-fetched and four claims were added, quoting the status, the start date, the last update date and the responsible party's title. The reader-facing link pointed at the JSON API and now points at the human study page. This is a recruiting trial and that field is the route a prospective participant would follow.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The registry entry still shows the trial recruiting at the three Texas campuses, under the same sponsor and by the same method of holding a phone against the abdomen.",
      "checked": true
     }
    ]
@@ -20185,6 +20237,10 @@
     {
      "date": "2026-09-18",
      "note": "Admitted on the county's own agenda. The condition is the substance here, because it leaves activation with the elected court rather than with the office that holds the contract. What the court did with the item is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "Whether the court accepted the sheriff's commitment is still unconfirmed, and so is the commitment's own current wording. The agenda entry it was read from sits on a vendor portal whose exclusion file refuses every client, so the record can't go back to it, and the county's own minutes archive would not answer either."
     }
    ],
    "last_verified": "2026-09-18",
@@ -20281,6 +20337,10 @@
     {
      "date": "2026-09-18",
      "note": "Admitted on the county's own agenda. The waiver is what distinguishes this from an ordinary software purchase, because it asks the court to buy without the comparison its own policy requires. Whether the court granted either request is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "Whether the court bought the minutes product, and whether it waived the requirement for three quotes, is still unconfirmed. The agenda entry the request was read from sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer."
     }
    ],
    "last_verified": "2026-09-18",
@@ -20368,6 +20428,10 @@
     {
      "date": "2026-09-18",
      "note": "Admitted on the county's own agenda. This is the standing rule beside the narrower promise the same court posted a week earlier. The policy text itself is not attached to the agenda entry. Whether it was adopted is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "Whether the county adopted a policy on AI in surveillance is still unconfirmed, and the policy text is still not attached to anything public. The agenda entry sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer."
     }
    ],
    "last_verified": "2026-09-18",
@@ -20763,11 +20827,16 @@
     }
    ],
    "id": "tx-2026-0167",
-   "last_verified": "2026-09-18",
+   "last_verified": "2026-09-21",
    "history": [
     {
      "date": "2026-09-18",
      "note": "Admitted on the university's own account. What exists is a prototype, and the accuracy figure the account gives comes from assessment after training rather than from a flood."
+    },
+    {
+     "date": "2026-09-21",
+     "note": "The university's account of the flood node still reads as the record holds it. The model still runs on the device rather than somewhere a network has to reach, which is the whole point of the design.",
+     "checked": true
     }
    ]
   },
