@@ -633,6 +633,61 @@ def rgb(hexv: str) -> tuple:
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
+def in_render(hexv: str, png: Path, floor: float = 0.001) -> bool | None:
+    """Is this colour ON the rendered frame? None when there is no render to read.
+
+    THE THIRD SHAPE OF THE SAME MISTAKE, and the first two are written into `drawn` below. That
+    docstring already says a hex literal is not the only way to draw a colour, having learned it
+    from a deck that wrote its ramps as `tint:'176,200,214'`. THE CHASSIS LAW OF 2026-09-16 broke
+    the assumption again and much harder: a frame now reaches for the deck's colours BY NAME,
+    `M.G.stone` and `M.ACCENT`, and the hex lives once in `assets/js/deck/<date>-<world>.js`. So
+    a grep over the slide's own HTML finds nothing, on a frame that drew the colour perfectly.
+
+    On 2026-09-21 that was 25 false failures out of 28, and the evidence was already inside this
+    suite: `layout_check` measured the accent at 0.0021 of slide 1 IN THE PIXELS while this file
+    reported the same colour "never drawn" on the same frame. Two gates, one frame, opposite
+    answers, and the one reading the render was right.
+
+    RESOLVING THE CHASSIS BY NAME WOULD NOT HAVE FIXED IT. Slide 1 never writes `M.ACCENT` at
+    all: it calls `M.captureRect`, and the helper defaults to the deck's accent. Following the
+    identifier answers a different question than the one the gate is asking. The question is
+    whether the colour is on the frame, which is a question about pixels.
+
+    So the source grep stays as the fast path and this is the fallback. It is STRICTLY STRONGER
+    than what it backs up, because a colour that is merely reachable from the frame still fails
+    unless it was actually put down. That is not theoretical: on the run that prompted this,
+    three dossiers named a brick colour the chassis defines and no frame ever draws, and this
+    measure kept all three failing while clearing the twenty five.
+
+    The floor is a tenth of a percent of the frame, an order below `layout_check`'s own accent
+    floor, because a palette token may legitimately be a hairline where an accent may not.
+    """
+    if not png.exists():
+        return None
+    try:
+        from PIL import Image
+        import numpy as np
+    except Exception:
+        return None
+    thumb = np.asarray(Image.open(png).convert("RGB").resize((216, 270), Image.BOX)).astype(float)
+    want = np.array(rgb(hexv), float)
+    # CIE76 over sRGB to XYZ to Lab under D65, the same distance `layout_check` uses, written
+    # here so this file keeps depending on numpy and Pillow and nothing else.
+    def to_lab(a):
+        s = a / 255.0
+        s = np.where(s <= 0.04045, s / 12.92, ((s + 0.055) / 1.055) ** 2.4)
+        m = np.array([[0.4124, 0.3576, 0.1805],
+                      [0.2126, 0.7152, 0.0722],
+                      [0.0193, 0.1192, 0.9505]])
+        xyz = s @ m.T / np.array([0.95047, 1.0, 1.08883])
+        f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+        return np.stack([116 * f[..., 1] - 16,
+                         500 * (f[..., 0] - f[..., 1]),
+                         200 * (f[..., 1] - f[..., 2])], axis=-1)
+    d = np.sqrt(((to_lab(thumb) - to_lab(want)) ** 2).sum(axis=-1))
+    return bool((d <= 12.0).mean() >= floor)
+
+
 def drawn(hexv: str, html_upper: str) -> bool:
     """Is this colour anywhere in the frame's source, in ANY of the forms a frame writes it?
 
@@ -827,6 +882,7 @@ def check(storyboard: str, slides_dir: Path, report: dict,
         warns.append("plan_render_check: the storyboard defines no `name #HEX` palette, so the "
                      "declared-colour check could not run")
 
+    renders = slides_dir.parent / "render"
     for n, body in sorted(dossiers.items()):
         stats["slides"] += 1
         html_p = slides_dir / f"slide-{n:02d}.html"
@@ -851,6 +907,12 @@ def check(storyboard: str, slides_dir: Path, report: dict,
             if not re.search(rf"\b{re.escape(token)}\b", prose):
                 continue
             if html and not drawn(hexv, html):
+                # THE RENDER GETS THE LAST WORD. See `in_render`: under the chassis law the hex
+                # is not in the slide's own source at all, so a miss here is a question rather
+                # than a verdict. None means there was no render to ask, and then the source
+                # grep stands as it always did.
+                if in_render(hexv, renders / f"slide-{n:02d}.png") is True:
+                    continue
                 fails.append(
                     f"slide {n}: the dossier's palette names {token} ({hexv}, "
                     f"rgb {','.join(str(c) for c in rgb(hexv))}) and the frame does not contain "
@@ -1200,6 +1262,52 @@ acceptance:
         f, w, s = check(SB, dd, REPORT)
         ok("...and the same frame with pecos actually drawn passes", not f, str(f))
         ok("the checkable acceptance items were counted", s["checkable"] >= 1, str(s))
+
+        # THE CHASSIS CASE, 2026-09-21. A frame that names its colours through the deck module
+        # carries no hex at all in its own source, so the grep above finds nothing on a frame
+        # that drew the colour properly. BOTH HALVES ARE ASSERTED HERE, because a fallback that
+        # only ever says yes is not a check: the second case is the 2026-08-19 defect again,
+        # committed in chassis style, and it has to stay caught.
+        try:
+            from PIL import Image as _PIL
+        except Exception:
+            _PIL = None
+        if _PIL is not None:
+            with tempfile.TemporaryDirectory() as d2:
+                root = Path(d2)
+                (root / "slides").mkdir()
+                (root / "render").mkdir()
+                CHASSIS = ("<script src='../js/deck/2026-09-21-x.js'></script>"
+                           "<script>var M=TXD;M.pecos;</script>"
+                           "<div>One office. The same day. Two wordings.</div>")
+                (root / "slides" / "slide-05.html").write_text(CHASSIS, encoding="utf-8")
+
+                # a render that DOES carry pecos, over a hundredth of the frame
+                img = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                img.paste((0x8E, 0x4B, 0x3A), (0, 0, 1080, 300))
+                img.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                img.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("a chassis frame with no hex in its source PASSES when the render carries "
+                   "the colour", not any("pecos" in x for x in f), str(f))
+
+                # the same chassis frame, and this time nobody drew it
+                bare = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                bare.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                bare.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("...and the same chassis frame with pecos nowhere in the render is STILL "
+                   "CAUGHT",
+                   any("pecos" in x and "does not contain" in x for x in f), str(f))
+
+                # and a hairline under the floor is not a colour that was drawn
+                thin = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                thin.paste((0x8E, 0x4B, 0x3A), (0, 0, 20, 20))
+                thin.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                thin.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("...and a smear under a tenth of a percent does not count as drawn",
+                   any("pecos" in x for x in f), str(f))
 
         # A REQUIRED string the render does not print.
         R2 = {"slides": [{"file": "slide-05.html",
