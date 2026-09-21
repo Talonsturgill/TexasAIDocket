@@ -3664,3 +3664,51 @@ to work harder rather than the bar lowered. Three routes worth measuring instead
 own that: gamma 0.5 with `perCell` 20 lays four times the dots of the old configuration, so the
 image got noisier at exactly the moment its tonal range got fixed. The tonal fix was right and
 necessary, and it had a cost nobody priced. Whatever is done here has to hold both.
+
+### 13. THE ACCEPTANCE LISTS NEED A HARNESS, and four scoring rounds proved it rather than argued it
+
+Entry 10 above records that carousel 31's acceptance items scored **0 of 69** on
+`plan_render_check`'s own measure of items a render could contradict, and called it a prompt
+problem. That was right and it was too small. What the same deck then demonstrated is the cost.
+
+**Four scoring rounds produced four DISJOINT sets of declared-but-absent elements.** Not a
+shrinking list. Four different lists, each found by reading the pixels against the plan:
+
+    round 1   frame 1's lit and dark faces, frame 9's dais as a solid, frame 6's boards
+    round 2   frame 9's podium and two of five chairs, frame 4's forearm, frame 6's curl
+    round 3   frame 5's board and clip, frame 5's rake, frame 8's two figure casts
+    round 4   frame 3's eight leaders, frame 2's accent ring, frame 1's and frame 3's casts
+
+Every one of those was written in a dossier, several were written as acceptance items, and
+several were called "load bearing and checkable in the render" by the dossier itself. Nothing
+checked any of them. A craft judge's diagnosis at round 4 is the entry's title: this is a planning
+document systematically more detailed than the drawing, with nothing in between checking they
+agree, which is this repository's oldest failure shape stated in `CLAUDE.md` about four other
+surfaces already.
+
+**THE ANSWER IS NOT ANOTHER ROUND AND IT IS NOT A REDRAW.** Round 4 said so plainly and it is
+worth preserving the reasoning. More rounds produce more disjoint lists at the same cost per
+round. A redraw throws away the chassis, the palette, the motif and the three frames that are
+genuinely good, and then reproduces the defect on new frames, because the mechanism that let it
+happen is untouched either way.
+
+**What to build: a per-frame acceptance harness that reads the PNG.** The shape is already proven
+twice in this suite. `layout_check` measures a declared rect's silhouette against the frame's own
+ground. `plan_render_check` now measures a declared colour's coverage in the render after the
+chassis law made a source grep blind. The same move generalises:
+
+- A dossier declares an element with a MEASURABLE assertion rather than a description. The spec
+  for that already exists at `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` and is ignored.
+- The harness evaluates each one against the rendered PNG and fails the build on a miss.
+- Start with the single item that recurs most and is cheapest to measure: **a declared lit face
+  is measurably lighter than the declared shadow face of the same object.** That one item alone
+  would have caught frame 1's truck in round 1, frame 9's dais in round 1, frame 8's house in
+  round 3 and frame 2's housings in round 4, which is four of the sixteen misses above in one
+  pass.
+- The second cheapest: **a declared cast exists, runs in the deck's own cast direction, and is
+  measurably darker than the ground beside it.** That is three more.
+
+**One measured warning for whoever builds it.** A cast on this deck's ground measured L* 37.8
+against 32.1 and a judge still could not see it at 432 px, so the threshold cannot be "differs
+from the ground". It has to be a separation a reader gets at feed scale, which means measuring at
+432 px and not at 2160, the same lesson `layout_check`'s silhouette measure already encodes.
