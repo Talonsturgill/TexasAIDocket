@@ -516,18 +516,24 @@
 
     /* THE CURLED NEAR CORNER AND ITS SHADOW ON ITSELF. Drawn only when asked for, because a curl
      * on every sheet in the deck would be a mannerism rather than an observation. */
+    /* AND IT CURLS AT A CORNER THE FRAME CAN SEE. `curlAt` defaults to the near left corner,
+     * which is where a sheet lying on boards actually lifts. Frame 6's page was enlarged so its
+     * four sentences could be read at feed scale, and enlarging it put that corner 580 px below
+     * the bottom of the canvas, so the curl the dossier calls load bearing was drawn on every
+     * render and off every frame. The corners a bleeding sheet still shows are its far ones. */
     if (o.curl) {
       var cm = o.curl * r.ppm;
-      var cxn = r.x, cyn = r.y + r.h;
+      var far = o.curlAt === "tl";
+      var cxn = r.x, cyn = far ? r.y : r.y + r.h, sgn = far ? -1 : 1;
       c.beginPath();
-      c.moveTo(cxn, cyn); c.lineTo(cxn + cm * 2.4, cyn); c.lineTo(cxn, cyn - cm * 2.4);
+      c.moveTo(cxn, cyn); c.lineTo(cxn + cm * 2.4, cyn); c.lineTo(cxn, cyn - sgn * cm * 2.4);
       c.closePath();
       c.fillStyle = "rgba(20,16,8,0.34)";
       c.fill();
       c.beginPath();
-      c.moveTo(cxn + cm * 0.45, cyn - cm * 0.45);
-      c.lineTo(cxn + cm * 2.4, cyn - cm * 0.1);
-      c.lineTo(cxn + cm * 0.1, cyn - cm * 2.4);
+      c.moveTo(cxn + cm * 0.45, cyn - sgn * cm * 0.45);
+      c.lineTo(cxn + cm * 2.4, cyn - sgn * cm * 0.1);
+      c.lineTo(cxn + cm * 0.1, cyn - sgn * cm * 2.4);
       c.closePath();
       c.fillStyle = o.stock || N.STOCK;
       c.fill();

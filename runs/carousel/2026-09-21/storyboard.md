@@ -215,7 +215,7 @@ art:
   value_structure: >
     Lightest is the cab's right flank and the top of the boom taking the low key square on. Darkest is
     the oak canopy over the top third, which is where the type lives. The asphalt runs mid and the
-    rectangle on it is the one straight cool line in the frame. Frame median L* planned at 7.
+    rectangle on it is the one straight cool line in the frame. Frame median L* 17, measured.
   motion: >
     the eye enters at the set-out nearest the lens, runs left along the kerb to the rectangle, lifts to
     the two housings on the rail and then to the porch, which is the order the story needs
@@ -293,7 +293,7 @@ art:
   value_structure: >
     Lightest is the right face of each housing and the chrome edge of the rail. Darkest is the underside of
     the header and the shaded left faces. The street beyond is held mid and low contrast by S.fade so the
-    two housings are the only sharp things in the frame. Frame median L* planned at 8.
+    two housings are the only sharp things in the frame. Frame median L* 24, measured.
   motion: >
     the eye lands on the near lens, travels along the rail to the second housing, then down the two cones
     into the street
@@ -371,7 +371,7 @@ art:
   value_structure: >
     Lightest is the concrete apron and the kerb taking the low key. Darkest is the sky above the ridge and
     the shaded left flank, which is where the type sits. The brick and the shingle hold the middle and the
-    eight hollow marks are the only cool hue on any of it. Frame median L* planned at 10.
+    eight hollow marks are the only cool hue on any of it. Frame median L* 20, measured.
   motion: >
     the eye enters at the densest mark cluster at the eave, follows the leaders outward to the labels, and
     then down the flank to the apron
@@ -408,11 +408,13 @@ accent: none
 job: >
   Draw the promise straight, in the document's own words and its own two column order, on the one frame in
   the deck that carries no accent at all, because on December 9th nothing had been detected.
-claims: [c11, c51, c12, c13, c14, c15, c8, c9, c10]
+claims: [c11, c51, c12, c13, c14, c15]
 numerals:
-  - value_from: c8
-  - value_from: c9
-  - value_from: c10
+  # THE CONTRACT FIGURES CAME OUT, and they are not a loss. c8, c9 and c10 carry the three year
+  # value, the annual cost and the ten day termination, and the plan sourced numerals from all
+  # three while the frame draws none of them and its source line never named them. A declaration
+  # nothing on the frame uses is a claim behind a figure that is not there. The frame's one
+  # computed figure is the refusal count.
   - computed_by: "out/2026-09-21/compute.py, refusals counted off c12 and c13's quotes"
 data_in_art:
   figure: refusals
@@ -452,7 +454,7 @@ art:
   value_structure: >
     Lightest is the page itself, which is the brightest thing in the deck so far and is meant to be, because
     this is where the paper starts talking. Darkest is the table beyond the page's far edge and the forearm
-    cropped at the left. Nothing else in the frame competes. Frame median L* planned at 12.
+    cropped at the left. Nothing else in the frame competes. Frame median L* 21, measured.
   motion: >
     the eye enters at the two column headings, runs down the right column through the three NOT rows, and
     stops at the indented sub row
@@ -536,7 +538,7 @@ art:
   value_structure: >
     Lightest is the lit half of the sheet. Darkest is the board beyond the sheet's edge and the clip. The
     shaded half of the sheet is the mid and the marks read on both halves because they are toner on stock
-    rather than a value difference. Frame median L* planned at 12.
+    rather than a value difference. Frame median L* 15, measured.
   motion: >
     the eye enters at the filled group, runs to the boundary, and drops to the memo's sentence beneath
 type:
@@ -616,7 +618,7 @@ art:
   value_structure: >
     Lightest is the page, and it is the brightest surface in the deck. Darkest is the gap between the boards
     and the shadow under the curled corner. The boards hold the mid and the page sits on them rather than
-    over them. Frame median L* planned at 14.
+    over them. Frame median L* 40, measured.
   motion: >
     the eye lands on the bold line, drops through the two middle sentences, and finishes at the correction
     request at the foot, which is the order the page itself sets
@@ -705,8 +707,7 @@ art:
     rather than graded, because direct sun on a board is not a gradient. Next is the lit right wall of each
     groove, a hairline. Darkest is the groove's left wall and the gaps between the boards. The boards hold
     one shaded mid everywhere the sun does not reach, so the frame has exactly two events. Frame median L*
-    planned at 11: the shaft raises it two points over the rest of the porch, and that is the whole of what
-    the light costs.
+    24, measured. The band of sun is what carries it, and it is the whole of what the light costs.
   motion: >
     the eye reads the carve, lifts to the denial above it, and drops to the statement below, which is the
     order the argument happened in
@@ -788,8 +789,7 @@ art:
   value_structure: >
     Lightest is the galvanized flashing run at the eave taking the low key square on, which is also where the
     accent lands. Darkest is the shaded left flank of the house and the ground under the oak. The two figures
-    sit against the mid of the parkway and are separated from it by their own casts. Frame median L* planned
-    at 13.
+    sit against the mid of the parkway and are separated from it by their own casts. Frame median L* 22, measured.
   motion: >
     the eye enters at the officer, lifts along the porch to the homeowner, and then up to the small blue box
     at the eave, which is the last thing found and the point
@@ -866,7 +866,7 @@ art:
   value_structure: >
     Lightest is the dais's right face and the window wall taking the morning. Darkest is the gallery seat
     backs at the near edge and the flat ground below the cut, which is where the type sits. The room recedes
-    to the mid at the far wall. Frame median L* planned at 9.
+    to the mid at the far wall. Frame median L* 20, measured.
   motion: >
     the eye enters over the seat backs, runs up the dais to the empty chairs, finds the blue rectangle on the
     screen, and drops to the date
