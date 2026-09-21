@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-21T14:24:10Z",
+  "checked_at": "2026-09-21T22:40:22Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "523627f929ee89f7eec638bee04ec5d538f61c506e9f289609bffc3571cf7789",
+  "response_sha256": "d8d186fc214adbcd35c59b0c60790db56a949506b63a4da03724280420627f09",
   "articles": [
     {
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
@@ -26,98 +26,35 @@
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
-      "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-      "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-      "first_seen_at": "2026-09-14T21:03:02Z"
-    },
-    {
       "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
       "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
       "first_seen_at": "2026-09-21T10:19:29Z",
       "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
       "feed": "https://www.datacenterdynamics.com/en/rss/"
+    },
+    {
+      "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+      "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+      "first_seen_at": "2026-09-21T15:16:10Z",
+      "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+      "feed": "https://www.datacenterdynamics.com/en/rss/"
     }
   ],
   "selected": {
-    "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-    "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-    "first_seen_at": "2026-09-14T21:03:02Z",
-    "publisher": "The Texas Tribune",
+    "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
+    "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
+    "first_seen_at": "2026-09-21T10:19:29Z",
+    "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
+    "feed": "https://www.datacenterdynamics.com/en/rss/",
+    "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.009466,
-    "priority": 4
+    "score": 0.700034,
+    "priority": 1
   },
-  "expires_at": "2026-09-21T21:03:02Z",
+  "expires_at": "2026-09-28T10:19:29Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-09-21T13:23:00Z",
-      "selected": {
-        "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-        "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-        "first_seen_at": "2026-09-14T21:03:02Z",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.009466,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.009466,
-          "priority": 4
-        },
-        {
-          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-          "first_seen_at": "2026-09-21T10:19:29Z",
-          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.888893,
-          "priority": 1
-        },
-        {
-          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
-          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
-          "first_seen_at": "2026-09-17T18:04:25Z",
-          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.06949,
-          "priority": 3
-        },
-        {
-          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-          "first_seen_at": "2026-09-16T10:28:58Z",
-          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.027905,
-          "priority": 4
-        },
-        {
-          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-          "first_seen_at": "2026-09-15T22:28:12Z",
-          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.019725,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-09-21T19:23:00Z",
       "selected": {
@@ -128,7 +65,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.769801,
+        "score": 0.700034,
         "priority": 1
       },
       "stories": [
@@ -140,7 +77,18 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.769801,
+          "score": 0.700034,
+          "priority": 1
+        },
+        {
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.807496,
           "priority": 1
         },
         {
@@ -151,7 +99,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.06018,
+          "score": 0.054726,
           "priority": 3
         },
         {
@@ -162,7 +110,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.024166,
+          "score": 0.021976,
           "priority": 4
         },
         {
@@ -173,16 +121,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.017082,
-          "priority": 4
-        },
-        {
-          "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
-          "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
-          "first_seen_at": "2026-09-14T21:03:02Z",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.008198,
+          "score": 0.015534,
           "priority": 4
         }
       ]
@@ -190,27 +129,27 @@
     {
       "starts_at": "2026-09-22T01:23:00Z",
       "selected": {
-        "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-        "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-        "first_seen_at": "2026-09-16T10:28:58Z",
-        "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
+        "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+        "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+        "first_seen_at": "2026-09-21T15:16:10Z",
+        "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.020321,
-        "priority": 4
+        "score": 0.746693,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-          "first_seen_at": "2026-09-16T10:28:58Z",
-          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.020321,
-          "priority": 4
+          "score": 0.746693,
+          "priority": 1
         },
         {
           "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
@@ -235,6 +174,17 @@
           "priority": 3
         },
         {
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.020321,
+          "priority": 4
+        },
+        {
           "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
           "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
           "first_seen_at": "2026-09-15T22:28:12Z",
@@ -250,27 +200,38 @@
     {
       "starts_at": "2026-09-22T07:23:00Z",
       "selected": {
-        "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-        "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-        "first_seen_at": "2026-09-15T22:28:12Z",
-        "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+        "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+        "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+        "first_seen_at": "2026-09-16T10:28:58Z",
+        "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.012079,
+        "score": 0.017088,
         "priority": 4
       },
       "stories": [
         {
-          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-          "first_seen_at": "2026-09-15T22:28:12Z",
-          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+          "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+          "first_seen_at": "2026-09-16T10:28:58Z",
+          "summary": "Southern Methodist University researcher Saeed Salehi will lead a $25 million project to develop a novel concept in critical-mineral mining. The U.S. Department of Energy is backing the project with $19.3 million. Researchers believe the project will create the world’s first synthetic mine embedded within an advanced oil-and-gas drilling and sensing test facility.…",
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.012079,
+          "score": 0.017088,
           "priority": 4
+        },
+        {
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.627892,
+          "priority": 1
         },
         {
           "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
@@ -295,6 +256,77 @@
           "priority": 3
         },
         {
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.012079,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-09-22T13:23:00Z",
+      "selected": {
+        "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+        "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+        "first_seen_at": "2026-09-15T22:28:12Z",
+        "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.010157,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+          "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+          "first_seen_at": "2026-09-15T22:28:12Z",
+          "summary": "Texas just became the sixth state to test electric air taxis under a federal pilot program, with the first flights taking off last week at Fort Worth Alliance Airport. The goal? Launch air taxi service in Dallas-Fort Worth and elsewhere in Texas in 2029.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.010157,
+          "priority": 4
+        },
+        {
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.527992,
+          "priority": 1
+        },
+        {
+          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
+          "first_seen_at": "2026-09-21T10:19:29Z",
+          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.457727,
+          "priority": 1
+        },
+        {
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.035783,
+          "priority": 3
+        },
+        {
           "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
           "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
           "first_seen_at": "2026-09-16T10:28:58Z",
@@ -302,7 +334,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.017088,
+          "score": 0.014369,
           "priority": 4
         }
       ]
@@ -363,6 +395,11 @@
       "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
       "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
       "shown_at": "2026-09-21T13:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
+      "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
+      "shown_at": "2026-09-21T19:23:00Z"
     }
   ],
   "feeds": [
@@ -370,7 +407,7 @@
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "3793a76af5cd414781dfb757f1ef0d76971ced3ad7443b92de8f9704b5844390"
+      "sha256": "396fa94b0f1a4c7f5addbef3960ffd2411b27fb9201afb3318f4f4d0621f7ece"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -380,7 +417,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "5c226a2303f77b47006b4b978b21216ede1dc3deef31eb874b3fa5947846c9f8"
+      "sha256": "c1f4bd74e4995bff8d726ba3c4b4131bcc57eea134cd07567d2faf166725ff37"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -391,14 +428,14 @@
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1211,
-      "sha256": "281797c6122d65235dcacaef87e20a31049df99cd8037042431904ffba5a3682"
+      "items": 1215,
+      "sha256": "af0620d4dfe6ae726a5e72f72cdcd5119feda1c1fca66991f3a2c04edc16f206"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "d9b1611862d589a4ef7c66ef42dfe77ee111e2e42cd154847dc148f13ee09f26"
+      "sha256": "ce1aa97a8e83ca69893c1fb59dfda2674b46da2c94766ab0a237046148a8e495"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -410,148 +447,147 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "e45e9dc6b10594e14979e4dd95416d66cb7c5dae6c9616b73674a337dc75e904"
+      "sha256": "4be0b44545517857600392bd5c62a78582b351c6ec824552719d5fe80b1e0582"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-09-21T18:37:45Z"
+      "status": "unavailable",
+      "retry_at": "2026-09-22T22:40:20Z",
+      "reason": "not well-formed (invalid token): line 1, column 119"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "8f37602c0f1c94771c363849439c600baf4a1958920cdbaab795cf89b927859a"
+      "sha256": "6eac9dd51dc74ccfa7fcfef9d3228a423be7cc5a430e259b90535fe2b8e6bcc2"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "68fb7b948136959ce057ee54d2a149c13d18f3761b9a2a8b45b62819ddd6d0e5"
+      "sha256": "fda9a1449101529167bec763478a6449306b7728c5986a351dd90bd04b49b81f"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "aa62691905284a2e382b920a80bc64f21f9d7a59fe9231d1c01442c62fae5b22"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "d9abd38b33db5a240da9fa3810d77b4e2b4ea4a34e9a488bc4f75fa8f5b1edb9"
+      "sha256": "1cb4e7c0e628dcf09b3a5e2729c953af9648dcef533b0f2034dd6f9d14002eb6"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "b1a848cffc887398820ef8933254c7456f320a323c017e0b37898e214a74c9f0"
+      "sha256": "a1f314912352d99cbcc1ea93b79dea9b5824b7bb394e48d9de61e1be545034ef"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3793a76af5cd414781dfb757f1ef0d76971ced3ad7443b92de8f9704b5844390",
-      "etag": "\"9feb959a5e8393ae5cf603e500899d71\"",
-      "last_modified": "Mon, 21 Sep 2026 14:10:15 GMT"
+      "sha256": "396fa94b0f1a4c7f5addbef3960ffd2411b27fb9201afb3318f4f4d0621f7ece",
+      "etag": "\"71f20f8cdc10ed2e63166c1c012d05ec\"",
+      "last_modified": "Mon, 21 Sep 2026 15:41:18 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "5c226a2303f77b47006b4b978b21216ede1dc3deef31eb874b3fa5947846c9f8",
-      "last_modified": "Mon, 21 Sep 2026 11:36:05 GMT"
+      "sha256": "c1f4bd74e4995bff8d726ba3c4b4131bcc57eea134cd07567d2faf166725ff37",
+      "last_modified": "Mon, 21 Sep 2026 16:21:03 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1790000592\"",
-      "last_modified": "Mon, 21 Sep 2026 14:23:12 GMT"
+      "etag": "\"1790030392\"",
+      "last_modified": "Mon, 21 Sep 2026 22:39:52 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "281797c6122d65235dcacaef87e20a31049df99cd8037042431904ffba5a3682"
+      "sha256": "af0620d4dfe6ae726a5e72f72cdcd5119feda1c1fca66991f3a2c04edc16f206"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d9b1611862d589a4ef7c66ef42dfe77ee111e2e42cd154847dc148f13ee09f26",
-      "etag": "\"53d59800f724888be62b831e9a8a2393-gzip\"",
-      "last_modified": "Mon, 21 Sep 2026 10:00:35 GMT"
+      "sha256": "ce1aa97a8e83ca69893c1fb59dfda2674b46da2c94766ab0a237046148a8e495",
+      "etag": "\"96f47044a6a1b5264b6c03ac2f2ef5d1-gzip\"",
+      "last_modified": "Mon, 21 Sep 2026 18:00:07 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e45e9dc6b10594e14979e4dd95416d66cb7c5dae6c9616b73674a337dc75e904",
-      "etag": "\"14f781acceb876f485a09ba06edace9c\"",
-      "last_modified": "Mon, 21 Sep 2026 13:58:07 GMT"
+      "sha256": "4be0b44545517857600392bd5c62a78582b351c6ec824552719d5fe80b1e0582",
+      "etag": "\"9e2787382094f364396adccaee5cbd45\"",
+      "last_modified": "Mon, 21 Sep 2026 22:40:08 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"a5a4044f4288c1a98ae10a542936a14b\"",
       "last_modified": "Fri, 18 Sep 2026 12:50:29 GMT",
-      "retry_at": "2026-09-21T18:37:45Z",
-      "failures": 2,
+      "retry_at": "2026-09-22T22:40:20Z",
+      "failures": 3,
       "ok_at": "2026-09-20T12:32:00Z",
       "sha256": "620f9c4451c3f723f84443348bb8cc605bf3c4b2e78d37dd25f1aa8c8477957f",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8f37602c0f1c94771c363849439c600baf4a1958920cdbaab795cf89b927859a",
-      "etag": "W/\"3f31d2f6d870f07bcbbdab31189930c7\"",
-      "last_modified": "Mon, 21 Sep 2026 07:04:56 GMT"
+      "sha256": "6eac9dd51dc74ccfa7fcfef9d3228a423be7cc5a430e259b90535fe2b8e6bcc2",
+      "etag": "W/\"b2f6bb344d7bcc6f91f20eafb8c25915\"",
+      "last_modified": "Mon, 21 Sep 2026 21:33:16 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "68fb7b948136959ce057ee54d2a149c13d18f3761b9a2a8b45b62819ddd6d0e5",
-      "etag": "W/\"ecab5c13c1a8e5e5a96a7deca6bf3708\""
+      "sha256": "fda9a1449101529167bec763478a6449306b7728c5986a351dd90bd04b49b81f",
+      "etag": "W/\"dcdb950c023f871c90346ca579adb995\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "last_modified": "Mon, 21 Sep 2026 13:42:28 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-09-21T22:40:20Z",
       "sha256": "aa62691905284a2e382b920a80bc64f21f9d7a59fe9231d1c01442c62fae5b22",
-      "last_modified": "Mon, 21 Sep 2026 13:42:28 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d9abd38b33db5a240da9fa3810d77b4e2b4ea4a34e9a488bc4f75fa8f5b1edb9"
+      "sha256": "1cb4e7c0e628dcf09b3a5e2729c953af9648dcef533b0f2034dd6f9d14002eb6"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-09-21T14:24:09Z",
+      "ok_at": "2026-09-21T22:40:20Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b1a848cffc887398820ef8933254c7456f320a323c017e0b37898e214a74c9f0",
-      "etag": "W/\"53f1f4e24782c7cd224dc463d7323413\"",
-      "last_modified": "Mon, 21 Sep 2026 13:48:25 GMT"
+      "sha256": "a1f314912352d99cbcc1ea93b79dea9b5824b7bb394e48d9de61e1be545034ef",
+      "etag": "W/\"4cb7d166ae031b67b76ef6381dc41785\"",
+      "last_modified": "Mon, 21 Sep 2026 16:25:04 GMT"
     }
   }
 }
