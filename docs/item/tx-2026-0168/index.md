@@ -22,6 +22,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-18 · Admitted on the county's own agenda. The condition is the substance here, because it leaves activation with the elected court rather than with the office that holds the contract. What the court did with the item is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today.
+- 2026-09-21 · Whether the court accepted the sheriff's commitment is still unconfirmed, and so is the commitment's own current wording. The agenda entry it was read from sits on a vendor portal whose exclusion file refuses every client, so the record can't go back to it. The county's own minutes archive would not answer either.
 
 ## Evidence
 

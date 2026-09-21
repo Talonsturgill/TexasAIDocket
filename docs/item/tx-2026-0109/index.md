@@ -9,7 +9,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-09-20
+- Last checked: 2026-09-21
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-18 · The reset date is holding. The Legislature's own upcoming meetings listing still carries the committee for later this month in the same Capitol hearing room and still marks it a public hearing. Nothing has been posted that cancels it a second time.
 - 2026-09-19 · The hearing on artificial intelligence and the Texas workforce is still set for its new date, and the cancellation has not been repeated.
 - 2026-09-20 · The committee's hearing on artificial intelligence and the Texas workforce still stands at the reset date. Nothing on the Senate's own meetings listing has moved it a second time.
+- 2026-09-21 · The interim charge on AI and the Texas workforce is still live and the committee has posted no replacement date for the hearing it called off. A reader watching for a rescheduled notice has nothing new to watch yet.
 
 ## Evidence
 

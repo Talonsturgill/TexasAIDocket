@@ -2,12 +2,12 @@
  "lens": "reader",
  "date": "2026-09-21",
  "carousel_no": 31,
- "round": 3,
+ "round": 5,
  "criteria": [
   {
    "name": "artwork_craft",
    "weight": 0.22,
-   "score": 5.8
+   "score": 6.8
   },
   {
    "name": "deck_coherence",
@@ -17,17 +17,17 @@
   {
    "name": "claim_integrity",
    "weight": 0.2,
-   "score": 7.5
+   "score": 7.8
   },
   {
    "name": "story_and_stakes",
    "weight": 0.16,
-   "score": 7.5
+   "score": 7.3
   },
   {
    "name": "sequence_and_momentum",
    "weight": 0.1,
-   "score": 7.0
+   "score": 7.4
   },
   {
    "name": "voice",
@@ -37,10 +37,10 @@
   {
    "name": "variety",
    "weight": 0.1,
-   "score": 7.0
+   "score": 6.5
   }
  ],
- "weighted_score": 6.966,
+ "weighted_score": 7.204,
  "hard_fails": [],
  "ship": false
 }

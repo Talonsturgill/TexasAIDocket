@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-14 · The directorate's account of the pedestrian exit test answered this run and still carries the sentences the record quotes. The work is still described as a demonstration for Customs and Border Protection rather than a deployment, and the account still publishes no accuracy figure and no retention period.
 - 2026-09-17 · The directorate's account of the Progreso pedestrian exit test still reads as the record holds it. The three solutions taken to the bridge, the opt out lane offered to U.S. citizens and the testing done after dark are all still described the same way, and no correction has been posted against it.
 - 2026-09-20 · What the directorate published about the Progreso pedestrian exit test is unconfirmed this run. The account would not answer, so who was invited, what was captured and when it happened stand on the last reading rather than on a fresh one.
+- 2026-09-21 · What the directorate published about the Progreso pedestrian exit test is unconfirmed again this run. Who was invited, which solutions went to the bridge and what was offered to citizens who did not want their face captured all rest on one account. That account has now gone unread for four days running.
 
 ## Evidence
 

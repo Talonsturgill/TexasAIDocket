@@ -9,7 +9,7 @@ The Energy Department's Office of Critical Minerals and Energy Innovation named 
 - Public access: Write to the decider
 - Take part: https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-21
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Admitted on the department's own announcement of the four selected projects.
 - 2026-09-15 · The department's announcement still stands as published and still gives Navasota as the project location for the award it made to Southern Methodist University. Its description of the site as a synthetic pit inside an existing instrumented drilling and sensing facility has not changed.
 - 2026-09-18 · The department's announcement is unchanged. The Navasota site is still named among the proving grounds and still described as a synthetic pit inside an existing instrumented facility. It still carries no dollar figure and no mention of artificial intelligence.
+- 2026-09-21 · The department's list of mining proving ground projects still carries the Navasota site, and the university project attached to it is described the same way. Nothing has been added about when the test pit gets built.
 
 ## Evidence
 

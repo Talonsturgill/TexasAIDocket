@@ -9,7 +9,7 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-21
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-15 · Admitted on the grid operator's own presentation to its board. Three Large Load risks are named with a mitigation each, and the three mitigations sit at three different stages.
 - 2026-09-18 · The model quality rule moved and the other two did not. The market rules page for PGRR144 now carries a September 15th board vote recommending approval. It names the Public Utility Commission of Texas as the body that takes it next. The draft rule on how fast a large load may swing its power draw still carries no number and no filing date.
+- 2026-09-21 · The rule on dynamic model quality is still with the commission rather than in force. The market rules page shows it pending and names the board's recommendation to approve as the last action taken. The Public Utility Commission of Texas is named as the body that takes it next. The presentation the risk list comes from still reads as the record holds it. That goes down to the ramp limit the draft rule will recommend and the modeling work the grid operator is doing with Texas A&M.
 
 ## Evidence
 

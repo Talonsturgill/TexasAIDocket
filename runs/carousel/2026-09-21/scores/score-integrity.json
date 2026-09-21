@@ -2,7 +2,7 @@
  "lens": "integrity",
  "date": "2026-09-21",
  "carousel_no": 31,
- "round": 3,
+ "round": 5,
  "criteria": [
   {
    "name": "artwork_craft",
@@ -12,17 +12,17 @@
   {
    "name": "deck_coherence",
    "weight": 0.12,
-   "score": 7.5
+   "score": 7.0
   },
   {
    "name": "claim_integrity",
    "weight": 0.2,
-   "score": 5.5
+   "score": 8.5
   },
   {
    "name": "story_and_stakes",
    "weight": 0.16,
-   "score": 8.0
+   "score": 7.5
   },
   {
    "name": "sequence_and_momentum",
@@ -40,9 +40,7 @@
    "score": 6.5
   }
  ],
- "weighted_score": 6.64,
- "hard_fails": [
-  "A colon in published prose in the web edition (REPAIRED after this card was written: the colon is gone and scripts/site/article_check.py now lints every edition's prose against caption_check, green on all 30 shipped editions and proved able to go red on the judge's own sentence)"
- ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
  "ship": false
 }

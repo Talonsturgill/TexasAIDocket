@@ -11,7 +11,7 @@ The El Paso City Council took up two items filed by members of the council at it
 - Public access: Write to the decider
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-21
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-15 · Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.
 - 2026-09-18 · The council voted and both items carried. The meeting record now marks each one approved as revised. That moves this from two posted agenda items to a direction the City Manager has been given. What the amendments changed is unconfirmed. The minutes are marked final and their text is not published yet.
 - 2026-09-18 · Reworded after a code review. The title and the opening stated the items as filed as though they were what the council enacted, and the approved-as-revised fact arrived fifth. The vote is confirmed and the amendment text is not published, so every directive is now marked as filed and the revision is the first thing a reader meets. No claim changed and nothing was added.
+- 2026-09-21 · Both plate reader items still stand approved as revised. The text of the floor amendments is still unpublished, so what the council changed before it voted stays off the public record.
 
 ## Evidence
 
