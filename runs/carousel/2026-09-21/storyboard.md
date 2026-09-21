@@ -166,7 +166,7 @@ job: >
   Put the reader at the kerb on a normal morning and establish, at true scale, the size of everything
   the eight frames after this one will crop into. Nothing has been detected yet and the machine's
   rectangle lies empty on the asphalt.
-claims: [c1, c2, c41, c35]
+claims: [c1, c2, c4, c41, c35]
 numerals:
   - value_from: c2
   - computed_by: "out/2026-09-21/compute.py, hardware.resolution parsed out of c4's quote"
@@ -208,8 +208,10 @@ art:
     shipped decks and both answer the word the owner used.
   palette: >
     Oak Cliff on the Blackland Prairie at ten past seven. Ground #222E16 St. Augustine in live oak shade,
-    ink #D9DEC9 chalked fleet panel, asphalt #1B1E1A, brick #6E4736 Oak Cliff bungalow common brick,
-    shingle #3A3129 three tab, accent #4E5FA8 bluebonnet
+    ink #D9DEC9 chalked fleet panel, asphalt #1B1E1A, stone #7C806E the bungalow and the parkway strip,
+    accent #4E5FA8 bluebonnet. The house and its roof are drawn in the chassis grey scale and never in a
+    brick or a shingle colour, because the world on this deck is PRINTED through the twin in greys and the
+    one real colour is reserved for the machine's sight.
   value_structure: >
     Lightest is the cab's right flank and the top of the boom taking the low key square on. Darkest is
     the oak canopy over the top third, which is where the type lives. The asphalt runs mid and the
@@ -297,7 +299,7 @@ art:
     into the street
 type:
   hook: "Two cameras. One truck. No zoom."
-  dek: "The December briefing gave the committee the hardware. Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of license plate numbers and faces."
+  dek: "Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information."
   labels: []
 verbatim:
   - c2: "2 cameras mounted on 1 city vehicle"
@@ -363,9 +365,9 @@ art:
     marks are the image, which is what DIAGRAM means, and putting them on a sound house at true scale is the
     only way to show that the machine's categories are applied to a property rather than found in one.
   palette: >
-    Oak Cliff on the Blackland Prairie. Ground #222E16 St. Augustine, brick #6E4736 common brick, shingle
-    #3A3129 three tab, stone #7C806E the concrete apron and kerb, accent #4E5FA8 on the eight hollow marks
-    and the leaders
+    Oak Cliff on the Blackland Prairie. Ground #222E16 St. Augustine, stone #7C806E the concrete apron and
+    kerb and the house's lit faces, accent #4E5FA8 on the eight hollow marks and the leaders. The house is
+    drawn in the chassis grey scale, for the reason frame 1's palette gives.
   value_structure: >
     Lightest is the concrete apron and the kerb taking the low key. Darkest is the sky above the ridge and
     the shaded left flank, which is where the type sits. The brick and the shingle hold the middle and the
@@ -539,8 +541,8 @@ art:
     the eye enters at the filled group, runs to the boundary, and drops to the memo's sentence beneath
 type:
   hook: "39 of the 57 landed in three districts."
-  dek: "Both explanations, in their own words. Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor."
-  labels: ["Districts 4, 8 and 7"]
+  dek: "Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor."
+  labels: ["DISTRICTS 4, 8, 7"]
 verbatim:
   - c27: "39 of those citations, or 68%, were issued to people in City Council Districts 4, 8 and 7 in Southern Dallas"
   - c38: "There are more code violations in Southern Dallas than in Northern Dallas."
@@ -707,7 +709,7 @@ art:
 type:
   hook: "\"You could call that a warning.\""
   dek: "Jeremy Reed, Assistant Director of Dallas Code Compliance, asked whether a notice that tells an owner to correct violations to avoid enforcement is a warning."
-  labels: ["The memo: a courtesy notice is not a warning or a violation", "Code Compliance: the notices do not require anything of the property owners"]
+  labels: ["The memo says a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
 verbatim:
   - c26: "I think at this point, you're mincing words. I would say you could call that a warning."
   - c19: "A courtesy notice is not a warning or a violation."
@@ -741,7 +743,7 @@ job: >
   Carry the counter-image at full size rather than as a line, because the memo says a citation issues only
   after a person walks up to the property, and show the machine's frame at its smallest, closed on the one
   thing a camera actually reported.
-claims: [c44, c17, c31, c36]
+claims: [c44, c17, c31, c36, c4]
 numerals:
   - computed_by: "out/2026-09-21/compute.py, hardware.resolution parsed out of c4's quote"
 data_in_art:
@@ -776,8 +778,9 @@ art:
     officer at 1.70 m beside a 4.6 m ridge is the only way to say that the human step is a person walking up
     to a house rather than a checkbox, and it is the record's own counter-image drawn rather than asserted.
   palette: >
-    Oak Cliff at ten past seven. Ground #222E16, brick #6E4736, shingle #3A3129, flashing #9AA0A0 galvanized
-    step flashing, stone #7C806E the sidewalk, accent #4E5FA8 on the rectangle and its brackets
+    Oak Cliff at ten past seven. Ground #222E16, stone #7C806E the sidewalk and the wall's lit face, metal
+    #A4A89A the galvanized step flashing that is the repair itself, accent #4E5FA8 on the rectangle and its
+    brackets. The house is drawn in the chassis grey scale, for the reason frame 1's palette gives.
   value_structure: >
     Lightest is the galvanized flashing run at the eave taking the low key square on, which is also where the
     accent lands. Darkest is the shaded left flank of the house and the ground under the oak. The two figures
