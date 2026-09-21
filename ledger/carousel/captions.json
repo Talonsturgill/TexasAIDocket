@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the deadline",
   "the correction",
   "the object",
   "the place",
   "the quiet decision",
-  "the before and after"
+  "the before and after",
+  "the two things"
  ],
  "entries": [
   {
@@ -542,12 +542,12 @@
   }
  ],
  "structures_recent": [
-  "Ladder",
   "Clock",
-  "Pivot"
+  "Pivot",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "Name what happens next and when"
+  "Ask the one question the decision leaves open."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

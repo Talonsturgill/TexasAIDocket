@@ -78,5 +78,32 @@
   18.6
  ],
  "max_adjacent_step_L": 27.9,
- "spread_L": 27.9
+ "spread_L": 27.9,
+ "press": {
+  "_note": "The printed tonal scale, measured from out/2026-09-21/tmp/swatchout/slide-01.png, which renders the nine N.G steps as bands through M.print. Recomputed from the shipped probe rather than typed.",
+  "source": "out/2026-09-21/tmp/swatchout/slide-01.png",
+  "band_L": [
+   9.6,
+   10.5,
+   11.6,
+   13.2,
+   17.4,
+   31.1,
+   47.7,
+   60.0,
+   66.8
+  ],
+  "spread_L": 57.2,
+  "monotonic": true,
+  "adjacent_steps_L": [
+   0.9,
+   1.1,
+   1.6,
+   4.2,
+   13.7,
+   16.6,
+   12.3,
+   6.8
+  ]
+ }
 }

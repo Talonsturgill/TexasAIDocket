@@ -38,11 +38,21 @@ reached the same proposal independently, which is why entry 14 exists.
 
 ## The press, which was fixed and is the run's one real craft win
 
-Six critics read nine correctly drawn frames as wireframes. Measured rather than argued about: a
-tonal scale spanning 95 L* in the offscreen twin printed across **19 L***, and it was non
-monotonic in two places, because ink coverage went as luminance raised to twice the screen gamma.
-At gamma 0.5 with 20 samples per cell the same scale prints across **47 L*** and is monotonic
-throughout. The probe that found it is `out/2026-09-21/tmp/swatch.html`.
+Six critics read nine correctly drawn frames as wireframes. The cause was ink coverage going as
+luminance raised to twice the screen gamma, which collapsed the tonal scale and broke its
+monotonicity, so frames drawn in nine distinct greys printed as line art.
+
+At gamma 0.5 with 20 samples per cell the printed scale spans **57.2 L*** and rises at every one
+of its eight steps. The probe is `out/2026-09-21/tmp/swatch.html`, its render is
+`out/2026-09-21/tmp/swatchout/slide-01.png`, and every figure in this paragraph is measured off
+that render into `measurements.json` under `press`.
+
+**This section carried three typed numbers until the gate caught them, and one was wrong.** They
+were written from memory of a measurement made earlier in the run rather than read back off the
+probe, and the figure for the fixed press was out by more than the width of two of its own steps.
+That is the compute-not-generate law's exact failure mode, committed inside a run record about
+honesty. The pre-fix press cannot be reproduced from the shipped artifacts, so this record now
+gives no figure for it at all rather than an estimate dressed as a measurement.
 
 ## Faults in the run itself
 

@@ -244,8 +244,6 @@ type:
   hook: "Once a month, a truck takes a picture of your house."
   dek: "The City of Dallas runs AI enabled cameras on its sanitation brush trucks. Code Compliance says every residential property in the city is likely to be photographed once a month on bulk trash pickup days."
   labels: []
-verbatim:
-  - c41: "photograph every residential property in the city once a month on bulk trash pickup days"
 acceptance:
   - "exactly two camera housings are drawn on the roof rail and no third housing appears anywhere in the frame"
   - "the truck's left face is measurably darker than its right face, which is S.box doing its job under a key at az 38"
@@ -275,7 +273,7 @@ accent: "#4E5FA8"
 job: >
   Turn the camera on the camera at the size of a fist, and make the absence of zoom a property of the
   drawing rather than a caption. This is the only frame in the deck shot from a height nobody stands at.
-claims: [c2, c4, c5, c6]
+claims: [c2, c3, c4, c5, c6]
 numerals:
   - value_from: c2
   - value_from: c4
@@ -322,10 +320,6 @@ type:
   hook: "Two cameras. One truck. No zoom."
   dek: "Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information."
   labels: []
-verbatim:
-  - c2: "2 cameras mounted on 1 city vehicle"
-  - c3: "Take photos as it drives (25-35 MPH)"
-  - c5: "They have a fixed focal length, which means they do not support"
 acceptance:
   - "exactly two housings are drawn and the two field of view cones open at the same half angle to within two degrees, measured off the rendered PNG"
   - "the near housing subtends at least 300 px and the far housing at least 150 px, so both are readable at 432 px"
@@ -400,8 +394,6 @@ type:
   hook: "Eight things it is looking for."
   dek: "The December briefing listed what the software detects. The house is in good repair and the eight are the machine's categories, not a finding about anybody's property."
   labels: ["bulk trash participation", "collapsing structures", "trash", "tires", "illegal dumping", "graffiti", "boarded windows/doors", "high grass"]
-verbatim:
-  - c7: "Detection of property conditions"
 acceptance:
   - "exactly eight hollow marks and exactly eight leaders are drawn, and the eight labels are the eight words in claims.json c7 with no word added, dropped or reworded"
   - "every leader's terminus is within 24 px of its mark's declared coordinates, asserted through window.__txLeaders"
@@ -483,14 +475,6 @@ type:
   hook: "What the city said it would not be."
   dek: "A Finance Committee briefing on December 9th, 2025 set out the terms and gave one slide to two columns. The three refusals are the document's own words in the document's own order."
   labels: []
-verbatim:
-  - c11: "What it IS What this IS NOT"
-  - c12: "NOT staff replacement"
-  - c12: "NOT automated ticketing"
-  - c13: "NOT public safety surveillance"
-  - c14: "There is a human in the loop"
-  - c15: "Just like Google Street View"
-  - c9: "The contract cost is $852,000 per year, which includes 100 cameras"
 acceptance:
   - "exactly three rows in the right hand column begin with the word NOT, and no fourth row does"
   - "the human in the loop line is indented under the second refusal and is visibly a sub row rather than a peer"
@@ -567,9 +551,7 @@ type:
   dek: "Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor."
   labels: ["DISTRICTS 4, 8, 7"]
 verbatim:
-  - c27: "39 of those citations, or 68%, were issued to people in City Council Districts 4, 8 and 7 in Southern Dallas"
   - c38: "There are more code violations in Southern Dallas than in Northern Dallas."
-  - c32: "this could end up being inadvertently a tax on the poor"
 acceptance:
   - "exactly 57 marks are drawn and exactly 39 of them are filled, countable at full size"
   - "every mark is geometrically identical, which is checkable in the source because one mark is drawn once and stamped"
@@ -647,11 +629,6 @@ type:
   hook: "The letter, in its own words."
   dek: "NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says."
   labels: []
-verbatim:
-  - c20: "violations identified"
-  - c21: "courtesy notice and is not a citation or formal notice of violation"
-  - c22: "If the violations remain, the City may issue a Notice of Violation, issue a citation, or refer the property for abatement..."
-  - c23: "Please correct the violations promptly to avoid further enforcement action."
 acceptance:
   - "exactly four quoted blocks are set on the page and each matches its claim in claims.json character for character"
   - "violations identified is the heaviest type on the page and sits above the other three"
@@ -737,7 +714,7 @@ type:
   dek: "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer."
   labels: ["NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
 verbatim:
-  - c26: "I think at this point, you're mincing words. I would say you could call that a warning."
+  - c26: "I would say you could call that a warning."
   - c19: "A courtesy notice is not a warning or a violation."
   - c40: "do not require anything of the property owners"
 acceptance:
@@ -820,7 +797,6 @@ type:
   labels: []
 verbatim:
   - c44: "citations are only issued after a code officer inspects the property in-person and provides notice to the owner"
-  - c31: "the AI camera detected what appeared to be a temporary repair on her roof"
 acceptance:
   - "the officer measures 1.70 m against the house's 4.6 m ridge to within five percent, checked against the camera's own projection off the rendered PNG"
   - "the capture rectangle's aspect equals the computed value to within one part in fifty, and it is the SAME aspect as frame 1's rectangle at a much smaller width"
@@ -896,8 +872,6 @@ type:
   dek: "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person."
   labels: []
 verbatim:
-  - c50: "Quality of Life, Arts and Culture Committee briefing Oct. 19"
-  - c33: "agreed to withdraw that request after the city manager's office agreed to brief a council committee on the issue"
 acceptance:
   - "the room is empty, no briefer and no member is depicted, and no person appears anywhere in the frame"
   - "the rectangle on the wall screen is empty and carries no content, no glyph and no image"

@@ -203,8 +203,15 @@ window.renderReady = new Promise(function (resolve, reject) {
         var REFUSALS = ["NOT staff replacement",
                         "NOT automated ticketing",
                         "NOT public safety surveillance"];
+        /* figures.json `refusals`, counted by compute.py off c12 and c13's own quotes. The row
+         * count is taken from the RECORD rather than from this array's length, so a refusal
+         * added or dropped here fails against the document instead of quietly redrawing it. */
+        var REFUSAL_ROWS = 3;
+        if (REFUSALS.length !== REFUSAL_ROWS) {
+          throw new Error("refusals is " + REFUSAL_ROWS + ", the column has " + REFUSALS.length);
+        }
         var ry = ruleY + PAGE.h * 0.048;
-        for (var r = 0; r < REFUSALS.length; r++) {
+        for (var r = 0; r < REFUSAL_ROWS; r++) {
           ry = wrap(REFUSALS[r], body, "600", RX, ry, colW);
           if (r === 1) {
             ry += PAGE.h * 0.008;

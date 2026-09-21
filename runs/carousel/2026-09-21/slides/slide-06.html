@@ -169,6 +169,15 @@ window.renderReady = new Promise(function (resolve, reject) {
         var y = PAGE.y + PAGE.h * 0.070;
         c.textBaseline = "top";
 
+        /* figures.json `letter_lines`, counted by compute.py as the four claims that quote the
+         * notice. The glyph-bearing block count is asserted against the record before the page
+         * is laid out, so a quoted block added or dropped fails rather than redrawing the
+         * letter with a different number of its own sentences. */
+        var LETTER_LINES = 4;
+        var GLYPH_BLOCKS = LINES.filter(function (L) { return !!L.text; }).length;
+        if (GLYPH_BLOCKS !== LETTER_LINES) {
+          throw new Error("letter_lines is " + LETTER_LINES + ", the page sets " + GLYPH_BLOCKS);
+        }
         for (var i = 0; i < LINES.length; i++) {
           var L = LINES[i];
           if (L.rules) {
