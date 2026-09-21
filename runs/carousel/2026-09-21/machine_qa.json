@@ -1,0 +1,169 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'Once a month, a truck takes a picture of' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'The City of Dallas runs AI enabled camer' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.7227,
+        0.8866,
+        0.9706
+      ],
+      "band_ratio": 1.1221
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.27) beneath 'Two cameras. One truck. No zoom.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.979,
+        0.9979,
+        0.9191
+      ],
+      "band_ratio": 0.9542
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'Eight things it is looking for.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'The December briefing listed what the so' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'The December briefing listed what the so', spanning 59%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.12) beneath 'bulk trash participation' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.10) beneath 'collapsing structures' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'trash' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.17) beneath 'tires' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.12) beneath 'illegal dumping' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'graffiti' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.12) beneath 'boarded windows/doors' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.13) beneath 'high grass' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.792,
+        0.9958,
+        0.8934
+      ],
+      "band_ratio": 0.9996
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 83% / mid 50% / bottom 46% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "canvas raster text 'What it IS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'What this IS NOT' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Proactive property condition' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'detection' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Public right-of-way image' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'capture' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Just like Google Street View' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NOT staff replacement' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NOT automated ticketing' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'There is a human in the loop for all' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'actions' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'NOT public safety surveillance' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "busy art under text (bg edge density 0.04) beneath 'What the city said it would not be.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.8277,
+        0.4958,
+        0.4614
+      ],
+      "band_ratio": 0.7835
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text '39 of those citations, or 68%, were issu' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'people in City Council Districts 4, 8 an' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'DISTRICTS 4, 8 AND 7' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "busy art under text (bg edge density 0.04) beneath '39 of the 57 landed in three districts.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'Code Compliance says there are more code' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.7185,
+        0.3803,
+        0.4522
+      ],
+      "band_ratio": 0.8797
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 66% of this slide's own average craft density (top 85% / mid 56% / bottom 39% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "canvas raster text 'violations identified' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'courtesy notice and is not a citation or' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'If the violations remain, the City may i' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'abatement...' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Please correct the violations promptly t' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "busy art under text (bg edge density 0.22) beneath 'The letter, in its own words.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (6% of the ring around 'The letter, in its own words.', spanning 46%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.05) beneath 'NBC 5 reported the city manager's memo s' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.8529,
+        0.5567,
+        0.3934
+      ],
+      "band_ratio": 0.665
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.15) beneath 'NBC 5 reported the memo saying a courtes' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.16) beneath 'Code Compliance says the notices do not ' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'NBC 5 put it to Jeremy Reed, Assistant D' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'Asked the plain question' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'Asked the plain question', spanning 38%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.09) beneath '07 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (3% of the ring around '07 / 09', spanning 32%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.9895,
+        0.9706,
+        0.9246
+      ],
+      "band_ratio": 0.9633
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'A citation still needs somebody at the d' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.8803,
+        0.855,
+        0.9688
+      ],
+      "band_ratio": 1.0711
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.16) beneath 'October 19th, and the committee takes it' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'October 19th, and the committee takes it', spanning 62%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.08) beneath 'The city manager briefs the Quality of L' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '09 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.9853,
+        0.9139,
+        0.875
+      ],
+      "band_ratio": 0.9486
+    }
+  ],
+  "fails": 0,
+  "warns": 54,
+  "verdict": "WARN"
+}

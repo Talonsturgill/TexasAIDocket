@@ -22,6 +22,7 @@ The Hays County Commissioners Court agenda for September 15th, 2026 carried an i
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-18 · Admitted on the county's own agenda. The waiver is what distinguishes this from an ordinary software purchase, because it asks the court to buy without the comparison its own policy requires. Whether the court granted either request is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today.
+- 2026-09-21 · Whether the court bought the minutes product, and whether it waived the requirement for three quotes, is still unconfirmed. The agenda entry the request was read from sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer.
 
 ## Evidence
 

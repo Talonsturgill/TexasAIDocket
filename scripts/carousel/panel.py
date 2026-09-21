@@ -125,6 +125,136 @@ def threshold() -> float:
     return float(t)
 
 
+def max_rounds() -> int | None:
+    """The rubric's cap, read from the rubric. `run_complete` reads the same key.
+
+    This module never carried the number before and needed it for one thing only, which is to
+    tell a HOLD that has rounds left from a HOLD that does not. Reading it here rather than
+    typing it keeps one number in one file, the way `threshold()` above already does.
+    """
+    import yaml
+    try:
+        doc = yaml.safe_load(RUBRIC.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return None
+    m = (doc or {}).get("max_rounds")
+    return int(m) if isinstance(m, int) else None
+
+
+def declared_round(judges: list) -> tuple:
+    """(the round the cards agree they are, the numbers each card carried).
+
+    A judge card carries its own `round`. This reads it and REPORTS it. It is never the
+    round the cap is measured against, for the reason `count_round` gives at length: a
+    number the graded party writes is a number a run under pressure can write. Cards that
+    disagree with each other describe no round at all, so the value is None and the list is
+    what a reader needs to see.
+    """
+    nums = []
+    for card in judges:
+        r = card.get("round") if isinstance(card, dict) else None
+        nums.append(int(r) if isinstance(r, int) else None)
+    real = [n for n in nums if n is not None]
+    agreed = real[0] if real and len(set(real)) == 1 and len(real) == len(nums) else None
+    return agreed, nums
+
+
+def believable_declared(judges: list) -> tuple:
+    """(the round these cards may be believed to be, or None, and why not).
+
+    THE CARDS CAN RAISE THE COUNT AND THIS IS WHAT THEY HAVE TO PAY TO DO IT. A run that wants
+    to reach the cap cheaply copies one card three times, or scores one lens, or hands back a
+    set that says round 9 with nothing behind it. None of those get through here:
+
+      three cards          a panel is three, and a round is a panel
+      three distinct lenses   `LENSES` is the reason a panel is not one judge with more tokens
+      three distinct digests  the same card three times is one card, by `card_digests`
+      one number            cards that disagree about which round they are describe no round
+
+    What this cannot test is whether the judges were really asked five times, and nothing
+    inside one container can. `count_round` is the witness for that and it is the one that is
+    believed whenever it is the larger. See `reconcile_rounds`.
+    """
+    decl, nums = declared_round(judges)
+    if decl is None:
+        return None, (f"the cards carry {nums} and a round is one number" if any(nums)
+                      else "no card carries a round number")
+    if len(judges) < 3:
+        return None, f"{len(judges)} card(s), and a panel is three, so a round is three"
+    lenses = [str(j.get("lens") or "").strip().lower() for j in judges]
+    if not all(lenses) or len(set(lenses)) != len(judges):
+        return None, (f"the cards carry lenses {lenses}, and three cards from one lens are one "
+                      f"judge with more tokens rather than a panel")
+    if len(set(card_digests(judges))) != len(judges):
+        return None, "two of these cards are byte for byte the same card, so they are one card"
+    return decl, None
+
+
+def reconcile_rounds(verdict: dict, derived: int, declared, cap) -> dict:
+    """Set `rounds` to the larger of what this counter saw and what the cards say they are.
+
+    THE DEFECT, 2026-09-21. Three cards each carrying `"round": 5` combined to a verdict
+    reading `"rounds": 2` beside a `hold_reason` of "This is a HOLD. Keep working the deck",
+    on a deck that had run five scoring rounds, was at the rubric's cap, and had nothing left
+    to spend. `shipped_check`'s completion gate then went red on it, correctly and for the
+    wrong reason: `run_complete` reaches the cap path only when `rounds` has reached
+    `max_rounds`, so at 2 it read a deck with three rounds of work left and called it held.
+
+    WHY THE LOG WAS WRONG RATHER THAN THE CARDS, which is the whole judgement here. Rounds 1
+    to 3 were scored by agents that never invoked this module, so `panel_rounds.jsonl` holds
+    two lines for five rounds. **The two witnesses fail in opposite directions and that is what
+    decides it.** The log can only UNDERCOUNT, because it counts what happened to be routed
+    through one function and a round it never saw is a round it cannot record. A card can only
+    OVERCOUNT, because a number typed on it is a number somebody could have typed. So the
+    larger of the two is the honest figure whenever the smaller one is a log, and this takes
+    `max(derived, declared)` rather than either alone.
+
+    WHAT THE CARDS PAY FOR IT. `believable_declared` refuses a declared round that is not
+    three distinct cards from three distinct lenses agreeing on one number, which is every
+    cheap way to manufacture one. A run that wants the cap this way has to have actually
+    spawned the panel.
+
+    AND THE DOOR THIS OPENS, STATED RATHER THAN LEFT TO BE DISCOVERED. `count_round`'s docstring
+    argues that a cap keyed on a number the run writes is the most valuable lie in the run, and
+    that argument is still true. This is a narrower version of the same trade: the number can
+    now be raised by a panel that was really spawned, and cannot be raised by a field on its
+    own. What would tell us it was wrong is a deck reaching the cap path with fewer honest
+    medians behind it than `rounds` claims, which is visible in the run record, because every
+    round's median is written there. The durable fix is upstream and out of this lane: Phase 15
+    should route every scoring round through this module, and then the log is the larger number
+    and none of this is reached. Filed in `UPGRADE_BACKLOG.md`.
+
+    Nothing here moves `ship`, `hard_fails`, the median or the bar.
+    """
+    verdict["rounds_derived"] = derived
+    if declared is not None and declared > derived:
+        verdict["rounds"] = declared
+        verdict["rounds_source"] = "the judge cards"
+        verdict["rounds_declared"] = declared
+        verdict["rounds_disagreement"] = (
+            f"this counter logged {derived} scoring round(s) on this tree and the judge cards "
+            f"say they are round {declared}. `rounds` carries {declared}, because a log can only "
+            f"undercount a round it never saw while a card can only overcount, so the larger is "
+            f"the honest figure. The cards were checked first for three distinct lenses and three "
+            f"distinct digests")
+    else:
+        verdict["rounds"] = derived
+        verdict["rounds_source"] = "this module's own log of cards it has scored"
+        if declared is not None:
+            verdict["rounds_declared"] = declared
+    rounds = verdict["rounds"]
+    at_cap = cap is not None and rounds >= cap
+    if at_cap:
+        verdict["at_cap"] = True
+    if "hold_reason" in verdict and at_cap:
+        verdict["hold_reason"] = verdict["hold_reason"].replace(
+            "This is a HOLD. Keep working the deck",
+            f"This deck is AT CAP, at {rounds} of the rubric's {cap} rounds. Another scoring "
+            f"round is not what is called for. `run_complete.py` is what decides whether a deck "
+            f"at the cap ships under the bar")
+    return verdict
+
+
 def combine(judges: list, bar: float | None = None, want: dict | None = None) -> tuple:
     """Returns (verdict dict, problems list).
 
@@ -413,7 +543,15 @@ def run(date: str, paths: list, out: str | None) -> int:
     verdict, probs = combine(judges)
     if verdict:
         rounds, repeats = count_round(date, judges)
-        verdict["rounds"] = rounds
+        decl, why_not = believable_declared(judges)
+        reconcile_rounds(verdict, rounds, decl, max_rounds())
+        if decl is None and any(n is not None for n in declared_round(judges)[1]):
+            verdict["rounds_declared_note"] = (
+                f"the cards carry a round number and it was not believed, because {why_not}. "
+                f"`rounds` is this module's own count of {rounds}")
+            print(f"  note  {verdict['rounds_declared_note']}", file=sys.stderr)
+        if verdict.get("rounds_disagreement"):
+            print(f"  note  {verdict['rounds_disagreement']}", file=sys.stderr)
         if repeats:
             # SAID OUT LOUD, in the file and on the terminal. A re-combination that passed
             # silently is how the count drifted in the first place, and a run that does not know
@@ -744,6 +882,114 @@ def self_test() -> int:
         fresh = [card(l, 9, 7.1) for l in ("integrity", "craft", "reader")]
         ok("an old-format line with no cards is still counted as the round it was",
            count_round(DATE, fresh, root)[0] == 8, "the old line plus this one")
+
+    # ---- THE ROUND THE CARDS SAY, REPLAYED ON CAROUSEL 31 (2026-09-21) -----------------
+    #
+    # THE DEFECT. Three judge cards each carrying `"round": 5` were combined and the verdict
+    # came back `"rounds": 2`, with `hold_reason` reading "This is a HOLD. Keep working the
+    # deck" on a deck that was AT the rubric's cap of 5. The cards are archived at
+    # `runs/carousel/2026-09-21/scores/` and `out/2026-09-21/panel_rounds.jsonl` holds two
+    # counted lines, so both numbers are real and they are three apart. Rounds 1 to 3 were
+    # scored without this counter ever being invoked, which is how the gap opened.
+    #
+    # WHAT IT COST, which is why this is not cosmetic. `shipped_check`'s completion gate calls
+    # `run_complete.check`, whose cap path is the only one that licenses a deck under the bar
+    # with no hard fail, and that path is reachable only when `rounds` has reached `max_rounds`.
+    # At 2 the gate read a deck with three rounds of work left and went red on a run that had
+    # spent all five.
+    #
+    # THE LOG WAS THE WRONG WITNESS HERE AND THE CARDS WERE THE RIGHT ONE. Rounds 1 to 3 were
+    # scored by agents that never invoked this module. A log can only UNDERCOUNT and a card can
+    # only OVERCOUNT, so the larger is the honest figure, and what the cards pay to be believed
+    # is three distinct lenses and three distinct digests.
+    def rc(rnd, lenses=("integrity", "craft", "reader"), scores=(7.2, 7.1, 7.204)):
+        return [{"lens": l, "round": rnd, "weighted_score": s, "hard_fails": [], "ship": False}
+                for l, s in zip(lenses, scores)]
+
+    ok("three cards agreeing on a round number report it", declared_round(rc(5))[0] == 5)
+    mixed = rc(5)
+    mixed[1]["round"] = 4
+    ok("...and cards that disagree with EACH OTHER report no number",
+       declared_round(mixed)[0] is None, str(declared_round(mixed)))
+    ok("...and name the numbers they carried", declared_round(mixed)[1] == [5, 4, 5],
+       str(declared_round(mixed)[1]))
+    ok("...and cards carrying no round at all are not invented for",
+       declared_round([j(7.2), j(7.1)])[0] is None)
+
+    # ---- WHAT A DECLARED ROUND HAS TO PAY TO BE BELIEVED --------------------------------
+    ok("a real panel's declared round is believed", believable_declared(rc(5))[0] == 5)
+    ok("two cards are not a round", believable_declared(rc(5)[:2])[0] is None)
+    ok("...and three cards from ONE lens are not either",
+       believable_declared(rc(5, lenses=("craft", "craft", "craft")))[0] is None)
+    same = rc(5, scores=(7.2, 7.2, 7.2), lenses=("integrity", "craft", "reader"))
+    for c in same:
+        c["lens"] = "craft"
+    ok("...and the same card three times is one card, whatever number is on it",
+       believable_declared(same)[0] is None, str(believable_declared(same)))
+    ok("...and the refusal says which of those it was",
+       "one judge with more tokens" in (believable_declared(same)[1] or ""),
+       str(believable_declared(same)[1]))
+    ok("...and a card set that disagrees with itself buys nothing",
+       believable_declared(mixed)[0] is None)
+
+    # THE REAL VERDICT OF 2026-09-21. Derived 2, the cards said 5, the cap is 5, and the gate
+    # downstream could not reach its cap path.
+    v, _ = combine(rc(5), bar=8.0)
+    v["weighted_score"] = 7.21
+    v["hold_reason"] = ("no judge found a hard fail, and the median 7.21 is under the rubric's "
+                        "8.0 bar. This is a HOLD. Keep working the deck")
+    reconcile_rounds(v, derived=2, declared=believable_declared(rc(5))[0], cap=5)
+    ok("the deck that ran five rounds carries rounds 5", v["rounds"] == 5, str(v.get("rounds")))
+    ok("...and says which witness said so", v.get("rounds_source") == "the judge cards", str(v))
+    ok("...and keeps the log's own number beside it rather than overwriting the record",
+       v.get("rounds_derived") == 2, str(v.get("rounds_derived")))
+    ok("...and states the disagreement in the file",
+       "2" in v.get("rounds_disagreement", "") and "5" in v.get("rounds_disagreement", ""),
+       str(v.get("rounds_disagreement")))
+    ok("...and the HOLD says AT CAP rather than keep working",
+       "AT CAP" in v.get("hold_reason", "")
+       and "keep working" not in v.get("hold_reason", "").lower(), str(v.get("hold_reason")))
+    ok("...and the verdict carries the cap flag a later reader can act on", v.get("at_cap") is True)
+
+    # AND THE DOWNSTREAM GATE CAN NOW REACH ITS CAP PATH, which is the assertion the whole
+    # change is for. This is the gate that was red, run against the number this module writes.
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("rc_mod", Path(__file__).with_name("run_complete.py"))
+    _rc = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_rc)
+    at2 = _rc._check_dict(dict(v, rounds=2), 8.0, 5)
+    at5 = _rc._check_dict(dict(v, rounds=5), 8.0, 5)
+    ok("run_complete says THE DECK DID NOT SHIP when `rounds` says 2 of 5",
+       any("DID NOT SHIP" in x for x in at2), str(at2)[:160])
+    ok("...and stops saying it once `rounds` carries the 5 the panel really ran",
+       not any("DID NOT SHIP" in x for x in at5), str(at5)[:200])
+
+    # A DECK WITH ROUNDS LEFT IS STILL TOLD TO KEEP WORKING, which is the assertion that proves
+    # this is not a widening. A forged card set cannot buy the cap.
+    v3, _ = combine([j(7.2), j(7.1), j(7.3)], bar=8.0)
+    before_ship = v3["ship"]
+    reconcile_rounds(v3, derived=2, declared=believable_declared(same)[0], cap=5)
+    ok("a deck whose cards were refused keeps the log's count", v3["rounds"] == 2, str(v3))
+    ok("...and is still told to keep working",
+       "keep working" in v3.get("hold_reason", "").lower(), str(v3.get("hold_reason")))
+    ok("...and no reconciliation changes the ship decision", v3["ship"] is before_ship is False)
+    ok("...and run_complete still holds it",
+       any("DID NOT SHIP" in x for x in _rc._check_dict(v3, 8.0, 5)))
+
+    # THE LOG STILL WINS WHEN IT IS THE LARGER, so a card claiming an EARLIER round cannot walk
+    # a count backwards to buy another pass.
+    v5, _ = combine([j(7.2), j(7.1), j(7.3)], bar=8.0)
+    reconcile_rounds(v5, derived=5, declared=2, cap=5)
+    ok("a card claiming an earlier round cannot walk the count back", v5["rounds"] == 5, str(v5))
+    ok("...and that deck is AT CAP", "AT CAP" in v5.get("hold_reason", ""))
+
+    # A SHIPPING DECK HAS NO hold_reason AND STILL GETS NONE.
+    v4, _ = combine([j(8.4), j(8.5), j(8.6)], bar=8.0)
+    reconcile_rounds(v4, derived=5, declared=5, cap=5)
+    ok("a deck that ships is given no hold_reason by any of this",
+       "hold_reason" not in v4 and v4["ship"] is True, str(v4))
+
+    ok("the live rubric still declares a numeric cap", isinstance(max_rounds(), int))
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

@@ -22,6 +22,7 @@ The Hays County Commissioners Court agenda for September 8th, 2026 carried an it
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-18 · Admitted on the county's own agenda. This is the standing rule beside the narrower promise the same court posted a week earlier. The policy text itself is not attached to the agenda entry. Whether it was adopted is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th.
+- 2026-09-21 · Whether the county adopted a policy on AI in surveillance is still unconfirmed, and the policy text is still not attached to anything public. The agenda entry sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer.
 
 ## Evidence
 

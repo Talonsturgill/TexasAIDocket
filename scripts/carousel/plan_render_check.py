@@ -346,6 +346,106 @@ def in_band(measured: float, b: dict) -> bool:
     return True
 
 
+# ---------------------------------------------------------------------------------------------
+# THE SIXTH KIND: A DECLARED LIT FACE AGAINST ITS OWN SHADE FACE (2026-09-21, carousel no. 31)
+#
+# THE DEFECT, and it is the most expensive one this file has been pointed at. Four scoring rounds
+# on carousel 31 produced four DISJOINT sets of elements the storyboard declared and the render
+# does not carry. Not a shrinking list, four different lists, sixteen misses with no two rounds
+# naming the same one. `UPGRADE_BACKLOG.md` entries 13 and 14 hold the account, and entry 14 is
+# the part that makes it a machine defect rather than a bad deck: three judges who could not see
+# each other's cards converged on the same fix, one of them proposing, unprompted, a gate that
+# "samples the declared lit and shade faces off the rendered PNG and fails the frame when their
+# L* separation is under a stated floor, because right now the only thing checking graded is the
+# plan claiming it".
+#
+# Slide 1 of that deck declared `the truck's left face is measurably darker than its right face,
+# which is S.box doing its job under a key at az 38`. The truck shipped as outline linework with
+# no faces at all. Slide 9 declared the same property of a dais and shipped the same way. Both
+# items are true-sounding, both assert something a camera could settle, and this gate counted
+# both as PROSE, because a sentence is not a measurement.
+#
+# WHY A DECLARATION IS REQUIRED RATHER THAN DISCOVERED. Resolving "the truck's left face" to a
+# region of pixels is the hard half, and every cheap version of it guesses. A gate that
+# MISREPORTS costs more than one that misses, because the run then hunts for something that was
+# never there. So the dossier says where to look, in fractions of its own canvas, and this gate
+# does arithmetic on what it is pointed at and nothing else.
+#
+# THE FLOOR IS EXTERNAL AND IT HAD TO BE. WCAG 2.1 SC 1.4.11 Non-text Contrast requires 3:1
+# between a graphical object needed to understand the content and its adjacent colours. Two faces
+# of one solid under a key light are exactly that: the separation IS the information, because it
+# is the only thing saying the object turns in space rather than being a silhouette with a
+# colour. Entry 13 carries the measurement that kills the obvious alternative. A cast on that
+# deck's ground measured L* 37.8 against 32.1 and a judge still could not see it at 432 px, so
+# the rule can never be "differs from the ground". That pair is a contrast ratio of 1.24, which
+# this floor refuses, and a floor derived from our own frames would have blessed it.
+#
+# MEASURED AT THE SIZE A READER RECEIVES, from the item, the same way a band is. Entry 13's
+# warning is that a separation that survives at 2160 px can be invisible at 432, and the size
+# that decides is the one in the feed.
+NON_TEXT_CONTRAST_FLOOR = 3.0
+
+_FRAC = r"(\d*\.?\d+)"
+_RECT = _FRAC + r"\s*,\s*" + _FRAC + r"\s*,\s*" + _FRAC + r"\s*,\s*" + _FRAC
+FACE_PAIR = re.compile(r"\blit\s+" + _RECT + r"\b.*?\bshade\s+" + _RECT, re.I | re.S)
+
+# The prose half, which fails nothing and is the pressure that makes the count go up. Measured
+# 2026-09-21 across all 31 shipped storyboards: 15 acceptance items in 1810 match, under one per
+# deck, and the two on carousel 31 are the two the judges found by reading pixels. A row that is
+# always long is ignored exactly as fast as one that is always empty, so the width of this was
+# measured before it was written rather than after.
+FACE_PROSE = re.compile(r"\bfaces?\b", re.I)
+FACE_RELATION = re.compile(r"\b(lit|shade|shaded|darker|lighter|in shadow)\b", re.I)
+
+
+def parse_faces(item: str) -> dict | None:
+    """`{lit, shade, size}` for an item that declares a lit rect and a shade rect, else None.
+
+    Rects are `x,y,w,h` as fractions of the frame's own canvas, so a dossier states them once
+    and they survive any render size. `size` is read off the item exactly as a band's is, and a
+    pair with no stated size cannot be settled, because entry 13's whole warning is that the
+    answer moves with the scale.
+    """
+    m = FACE_PAIR.search(item)
+    if not m:
+        return None
+    nums = [float(x) for x in m.groups()]
+    px = _AT_PX.search(item)
+    return {"lit": tuple(nums[:4]), "shade": tuple(nums[4:]),
+            "size": (int(px.group(1)), None) if px else None}
+
+
+def region_luminance(path: Path, size: tuple, rect: tuple) -> float:
+    """Mean sRGB relative luminance inside `rect`, on the frame resampled to `size` first.
+
+    `rect` is `(x, y, w, h)` in fractions of the frame. The resample is what makes this the
+    reader's answer rather than the renderer's, and it is done before the crop so a region
+    smaller than one output pixel still has the neighbours a reader's eye would average with.
+    """
+    from PIL import Image
+    import numpy as np
+    im = Image.open(path).convert("RGB")
+    w, h = size
+    if h is None:
+        h = round(w * im.size[1] / im.size[0])
+    a = np.asarray(im.resize((w, h), Image.LANCZOS), dtype=float) / 255.0
+    x0, y0, rw, rh = rect
+    c0, r0 = int(round(x0 * w)), int(round(y0 * h))
+    c1, r1 = max(c0 + 1, int(round((x0 + rw) * w))), max(r0 + 1, int(round((y0 + rh) * h)))
+    patch = a[max(0, r0):min(h, r1), max(0, c0):min(w, c1)]
+    if patch.size == 0:
+        raise ValueError(f"rect {rect} falls outside the {w} by {h} frame")
+    lin = np.where(patch <= 0.04045, patch / 12.92, ((patch + 0.055) / 1.055) ** 2.4)
+    Y = lin[..., 0] * 0.2126 + lin[..., 1] * 0.7152 + lin[..., 2] * 0.0722
+    return float(np.mean(Y))
+
+
+def contrast_ratio(y_light: float, y_dark: float) -> float:
+    """WCAG's own formula, lighter over darker. Symmetric by construction, never negative."""
+    hi, lo = max(y_light, y_dark), min(y_light, y_dark)
+    return round((hi + 0.05) / (lo + 0.05), 3)
+
+
 def median_lstar(path: Path, size: tuple) -> float:
     """The median CIE L* of one frame, resampled to `size` first.
 
@@ -633,6 +733,61 @@ def rgb(hexv: str) -> tuple:
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
+def in_render(hexv: str, png: Path, floor: float = 0.001) -> bool | None:
+    """Is this colour ON the rendered frame? None when there is no render to read.
+
+    THE THIRD SHAPE OF THE SAME MISTAKE, and the first two are written into `drawn` below. That
+    docstring already says a hex literal is not the only way to draw a colour, having learned it
+    from a deck that wrote its ramps as `tint:'176,200,214'`. THE CHASSIS LAW OF 2026-09-16 broke
+    the assumption again and much harder: a frame now reaches for the deck's colours BY NAME,
+    `M.G.stone` and `M.ACCENT`, and the hex lives once in `assets/js/deck/<date>-<world>.js`. So
+    a grep over the slide's own HTML finds nothing, on a frame that drew the colour perfectly.
+
+    On 2026-09-21 that was 25 false failures out of 28, and the evidence was already inside this
+    suite: `layout_check` measured the accent at 0.0021 of slide 1 IN THE PIXELS while this file
+    reported the same colour "never drawn" on the same frame. Two gates, one frame, opposite
+    answers, and the one reading the render was right.
+
+    RESOLVING THE CHASSIS BY NAME WOULD NOT HAVE FIXED IT. Slide 1 never writes `M.ACCENT` at
+    all: it calls `M.captureRect`, and the helper defaults to the deck's accent. Following the
+    identifier answers a different question than the one the gate is asking. The question is
+    whether the colour is on the frame, which is a question about pixels.
+
+    So the source grep stays as the fast path and this is the fallback. It is STRICTLY STRONGER
+    than what it backs up, because a colour that is merely reachable from the frame still fails
+    unless it was actually put down. That is not theoretical: on the run that prompted this,
+    three dossiers named a brick colour the chassis defines and no frame ever draws, and this
+    measure kept all three failing while clearing the twenty five.
+
+    The floor is a tenth of a percent of the frame, an order below `layout_check`'s own accent
+    floor, because a palette token may legitimately be a hairline where an accent may not.
+    """
+    if not png.exists():
+        return None
+    try:
+        from PIL import Image
+        import numpy as np
+    except Exception:
+        return None
+    thumb = np.asarray(Image.open(png).convert("RGB").resize((216, 270), Image.BOX)).astype(float)
+    want = np.array(rgb(hexv), float)
+    # CIE76 over sRGB to XYZ to Lab under D65, the same distance `layout_check` uses, written
+    # here so this file keeps depending on numpy and Pillow and nothing else.
+    def to_lab(a):
+        s = a / 255.0
+        s = np.where(s <= 0.04045, s / 12.92, ((s + 0.055) / 1.055) ** 2.4)
+        m = np.array([[0.4124, 0.3576, 0.1805],
+                      [0.2126, 0.7152, 0.0722],
+                      [0.0193, 0.1192, 0.9505]])
+        xyz = s @ m.T / np.array([0.95047, 1.0, 1.08883])
+        f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+        return np.stack([116 * f[..., 1] - 16,
+                         500 * (f[..., 0] - f[..., 1]),
+                         200 * (f[..., 1] - f[..., 2])], axis=-1)
+    d = np.sqrt(((to_lab(thumb) - to_lab(want)) ** 2).sum(axis=-1))
+    return bool((d <= 12.0).mean() >= floor)
+
+
 def drawn(hexv: str, html_upper: str) -> bool:
     """Is this colour anywhere in the frame's source, in ANY of the forms a frame writes it?
 
@@ -851,6 +1006,19 @@ def check(storyboard: str, slides_dir: Path, report: dict,
             if not re.search(rf"\b{re.escape(token)}\b", prose):
                 continue
             if html and not drawn(hexv, html):
+                # THE RENDER GETS THE LAST WORD. See `in_render`: under the chassis law the hex
+                # is not in the slide's own source at all, so a miss here is a question rather
+                # than a verdict. None means there was no render to ask, and then the source
+                # grep stands as it always did.
+                # RESOLVED, NOT ASSUMED. This was `slides_dir.parent / "render"`, which is
+                # right for `out/<date>/slides` and wrong for a shipped run, where the frames sit
+                # at the run root and two of them are `.webp`. So the fallback asked a path that
+                # cannot exist, got None on every frame, and the source grep it was written to
+                # back up went blind again the moment a deck was archived. `frame_image` already
+                # answers both layouts and both encodings.
+                shot = frame_image(slides_dir, n)
+                if shot is not None and in_render(hexv, shot) is True:
+                    continue
                 fails.append(
                     f"slide {n}: the dossier's palette names {token} ({hexv}, "
                     f"rgb {','.join(str(c) for c in rgb(hexv))}) and the frame does not contain "
@@ -1017,6 +1185,70 @@ def check(storyboard: str, slides_dir: Path, report: dict,
                         f"threshold this gate chose. Redraw the frame or rewrite the band, and "
                         f"say in the run record which you did")
                 continue
+            # A DECLARED LIT FACE AGAINST ITS OWN SHADE FACE, asked before the prose filter for
+            # the same reason a band is: it is arithmetic whatever the sentence around it says.
+            faces = parse_faces(item)
+            if faces is not None:
+                if faces["size"] is None:
+                    warns.append(
+                        f"slide {n}: an acceptance item declares a lit rect and a shade rect and "
+                        f"never says at what size to measure them, so it could not be settled. A "
+                        f"separation that survives at 2160px can be invisible at 432. Write `at "
+                        f"432px`, the size a reader receives")
+                    stats["prose"] += 1
+                    continue
+                png = frame_image(slides_dir, n)
+                if png is None:
+                    fails.append(
+                        f"slide {n}: the dossier declares a lit face and a shade face and no "
+                        f"render of this frame could be found to measure them. A check that "
+                        f"CANNOT run is not a check that passed")
+                    stats["prose"] += 1
+                    continue
+                try:
+                    yl = region_luminance(png, faces["size"], faces["lit"])
+                    ys = region_luminance(png, faces["size"], faces["shade"])
+                except Exception as exc:                            # noqa: BLE001
+                    fails.append(
+                        f"slide {n}: the dossier declares a lit face and a shade face and they "
+                        f"could not be measured: {exc}")
+                    stats["prose"] += 1
+                    continue
+                ratio = contrast_ratio(yl, ys)
+                w = faces["size"][0]
+                stats.setdefault("faces", []).append((n, ratio, w))
+                checkable_here += 1
+                stats["checkable"] += 1
+                if yl <= ys:
+                    fails.append(
+                        f"slide {n}: the dossier names {faces['lit']} the LIT face and "
+                        f"{faces['shade']} the shade face, and at {w}px the lit one is not the "
+                        f"lighter of the two. The plan and the drawing disagree about which way "
+                        f"the key is pointing, so one of them is wrong")
+                elif ratio < NON_TEXT_CONTRAST_FLOOR:
+                    fails.append(
+                        f"slide {n}: the declared lit and shade faces measure a contrast ratio "
+                        f"of {ratio} at {w}px, under the {NON_TEXT_CONTRAST_FLOOR} to 1 that WCAG "
+                        f"2.1 SC 1.4.11 asks of a graphical object against its adjacent colours. "
+                        f"The separation between two faces of one solid IS the information that "
+                        f"it turns in space, and at this ratio a reader in the feed sees a "
+                        f"silhouette with a colour. Draw the faces or stop declaring them. The "
+                        f"floor is WCAG's and is never moved to pass a frame")
+                continue
+            if FACE_PROSE.search(item) and FACE_RELATION.search(item):
+                # NOT A FAILURE, AND IT CANNOT BECOME ONE HERE. The item may be perfectly true
+                # and the gate has no way to know, which is the whole reason the declaration is
+                # opt in. What it can say is that the deck made a claim about pixels in a form
+                # nothing can settle, which is the number `plan_render_check` already prints in
+                # public every run and which has read 0 of 69 on a deck whose plan was
+                # systematically richer than its drawing.
+                warns.append(
+                    f"slide {n}: an acceptance item asserts a relation between a lit face and a "
+                    f"shaded one and declares no rects, so nothing measured it. Four scoring "
+                    f"rounds on 2026-09-21 found sixteen declared-but-absent elements this way. "
+                    f"Add `lit <x>,<y>,<w>,<h> shade <x>,<y>,<w>,<h> at 432px` in fractions of "
+                    f"the canvas and this gate settles it")
+                stats.setdefault("face_prose", []).append(n)
             if any(p in low for p in PROSE_ONLY):
                 stats["prose"] += 1
                 continue
@@ -1132,6 +1364,9 @@ def run(date: str, quiet: bool = False) -> int:
         # whole file's coverage count exists to refuse.
         for fn, got, band, at in stats.get("bands", []):
             print(f"  band  slide {fn}: median L* {got:g} at {at}, declared {band}")
+        for fn, ratio, at in stats.get("faces", []):
+            print(f"  faces slide {fn}: declared lit against declared shade measures {ratio} to 1 "
+                  f"at {at}px, floor {NON_TEXT_CONTRAST_FLOOR}")
         print(f"plan_render_check: {stats['slides']} slide(s), {stats['checkable']} of {total} "
               f"acceptance items carry a machine-checkable assertion, and every one holds. "
               f"{stats.get('compared', 0)} of {stats['declared']} declared display string(s) "
@@ -1200,6 +1435,52 @@ acceptance:
         f, w, s = check(SB, dd, REPORT)
         ok("...and the same frame with pecos actually drawn passes", not f, str(f))
         ok("the checkable acceptance items were counted", s["checkable"] >= 1, str(s))
+
+        # THE CHASSIS CASE, 2026-09-21. A frame that names its colours through the deck module
+        # carries no hex at all in its own source, so the grep above finds nothing on a frame
+        # that drew the colour properly. BOTH HALVES ARE ASSERTED HERE, because a fallback that
+        # only ever says yes is not a check: the second case is the 2026-08-19 defect again,
+        # committed in chassis style, and it has to stay caught.
+        try:
+            from PIL import Image as _PIL
+        except Exception:
+            _PIL = None
+        if _PIL is not None:
+            with tempfile.TemporaryDirectory() as d2:
+                root = Path(d2)
+                (root / "slides").mkdir()
+                (root / "render").mkdir()
+                CHASSIS = ("<script src='../js/deck/2026-09-21-x.js'></script>"
+                           "<script>var M=TXD;M.pecos;</script>"
+                           "<div>One office. The same day. Two wordings.</div>")
+                (root / "slides" / "slide-05.html").write_text(CHASSIS, encoding="utf-8")
+
+                # a render that DOES carry pecos, over a hundredth of the frame
+                img = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                img.paste((0x8E, 0x4B, 0x3A), (0, 0, 1080, 300))
+                img.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                img.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("a chassis frame with no hex in its source PASSES when the render carries "
+                   "the colour", not any("pecos" in x for x in f), str(f))
+
+                # the same chassis frame, and this time nobody drew it
+                bare = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                bare.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                bare.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("...and the same chassis frame with pecos nowhere in the render is STILL "
+                   "CAUGHT",
+                   any("pecos" in x and "does not contain" in x for x in f), str(f))
+
+                # and a hairline under the floor is not a colour that was drawn
+                thin = _PIL.new("RGB", (1080, 1350), (35, 32, 43))
+                thin.paste((0x8E, 0x4B, 0x3A), (0, 0, 20, 20))
+                thin.paste((0xF6, 0xF1, 0xE4), (0, 300, 1080, 420))
+                thin.save(root / "render" / "slide-05.png")
+                f, w, s = check(SB, root / "slides", REPORT)
+                ok("...and a smear under a tenth of a percent does not count as drawn",
+                   any("pecos" in x for x in f), str(f))
 
         # A REQUIRED string the render does not print.
         R2 = {"slides": [{"file": "slide-05.html",
@@ -1777,6 +2058,131 @@ acceptance:
            not in_band(dark, parse_band("the frame's median L* at 432px is 60 or higher")))
         ok("...while its own `28 or lower` holds",
            in_band(dark, parse_band("the frame's median L* at 432px is 28 or lower")))
+
+    # ---- A DECLARED LIT FACE AGAINST ITS OWN SHADE FACE (2026-09-21) -------------------
+    #
+    # THE DEFECT REPLAYED, in both halves. The prose half is replayed against carousel 31's own
+    # storyboard, which is the artifact four scoring rounds were spent on. The arithmetic half is
+    # replayed against the measurement `UPGRADE_BACKLOG.md` entry 13 carries, which is the only
+    # separation on this project anybody has recorded a judge failing to see.
+    ok("a declared pair reads, with its rects and its size",
+       parse_faces("the cab turns, lit 0.60,0.50,0.06,0.06 shade 0.70,0.50,0.06,0.06 at 432px")
+       == {"lit": (0.6, 0.5, 0.06, 0.06), "shade": (0.7, 0.5, 0.06, 0.06), "size": (432, None)})
+    ok("...and a pair with no stated size is read but not settled",
+       parse_faces("lit 0.1,0.1,0.1,0.1 shade 0.5,0.1,0.1,0.1")["size"] is None)
+    ok("...and an item that declares no rects is not a pair",
+       parse_faces("the truck's left face is measurably darker than its right face") is None)
+
+    # THE ENTRY 13 MEASUREMENT, which is the reason the floor is WCAG's and not `differs from
+    # the ground`. L* 37.8 against 32.1 is a separation a judge could not see at 432px.
+    def _y(lstar):
+        return ((lstar + 16) / 116) ** 3
+    entry13 = contrast_ratio(_y(37.8), _y(32.1))
+    ok(f"the pair a judge could not see measures {entry13} to 1 and is under the floor",
+       entry13 < NON_TEXT_CONTRAST_FLOOR, str(entry13))
+    ok("...and the floor is WCAG 2.1 SC 1.4.11's number rather than one measured from our decks",
+       NON_TEXT_CONTRAST_FLOOR == 3.0)
+
+    import tempfile
+    from PIL import Image as _Image
+    import numpy as _np
+
+    def _frame(td, name, lit_rgb, shade_rgb):
+        """A 1080 by 1350 frame with a lit patch at 0.60 and a shade patch at 0.75."""
+        a = _np.zeros((1350, 1080, 3), dtype=_np.uint8)
+        a[:, :] = (20, 24, 22)
+        a[600:900, 600:750] = lit_rgb
+        a[600:900, 780:930] = shade_rgb
+        d = Path(td) / "render"
+        d.mkdir(parents=True, exist_ok=True)
+        _Image.fromarray(a).save(d / name)
+        return Path(td)
+
+    FSB = """
+```yaml
+slide: 1
+job: >
+  the object turns
+composition:
+  focal: >
+    the near face
+art:
+  palette: >
+    ground and ink.
+type:
+  hook: "A truck."
+  dek: "It turns."
+acceptance:
+  - "the near solid turns, lit 0.556,0.444,0.139,0.222 shade 0.722,0.444,0.139,0.222 at 432px"
+```
+"""
+    with tempfile.TemporaryDirectory() as td:
+        root = _frame(td, "slide-01.png", (214, 210, 190), (40, 44, 38))
+        f, w, st = check(FSB, root / "slides", {})
+        ok("a pair drawn with real separation passes and is COUNTED as checkable",
+           not [x for x in f if "contrast ratio" in x] and st.get("faces"), str(f) + str(st.get("faces")))
+
+    with tempfile.TemporaryDirectory() as td:
+        # The two values entry 13 measured, as sRGB greys, so the fixture IS the defect.
+        def _grey(lstar):
+            v = _y(lstar) ** (1 / 2.4) * 1.055 - 0.055
+            return tuple([int(round(max(0.0, v) * 255))] * 3)
+        root = _frame(td, "slide-01.png", _grey(37.8), _grey(32.1))
+        f, w, st = check(FSB, root / "slides", {})
+        hit = [x for x in f if "contrast ratio" in x]
+        ok("the separation a judge could not see is REFUSED on real pixels", len(hit) == 1, str(f))
+        ok("...and the message names WCAG rather than a number this file chose",
+           "1.4.11" in hit[0], hit[0][:120])
+        ok("...and it is still counted as a checkable item, not as prose",
+           st.get("faces") and st["checkable"] >= 1, str(st.get("faces")))
+
+    with tempfile.TemporaryDirectory() as td:
+        # THE KEY POINTING THE WRONG WAY is its own finding, because a frame can be drawn with
+        # plenty of separation and lit on the side the plan called shade.
+        root = _frame(td, "slide-01.png", (40, 44, 38), (214, 210, 190))
+        f, _w, _st = check(FSB, root / "slides", {})
+        ok("a lit face DARKER than its own shade face is refused separately",
+           any("which way the key is pointing" in x for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as td:
+        # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED.
+        f, _w, _st = check(FSB, Path(td) / "slides", {})
+        ok("a declared pair with no render to measure FAILS rather than passing quietly",
+           any("CANNOT run" in x for x in f), str(f))
+        f, _w, _st = check(FSB.replace(" at 432px", ""), Path(td) / "slides", {})
+        ok("...and a pair with no stated size warns rather than picking a size",
+           not [x for x in f if "lit face" in x or "contrast ratio" in x]
+           and any("at what size" in x for x in _w), str(f) + str(_w))
+
+    # THE PROSE HALF, ON THE REAL STORYBOARD FOUR ROUNDS WERE SPENT ON. Slides 1 and 9 of
+    # carousel 31 each declare a lit-against-shade relation in a form nothing could settle, and
+    # both objects shipped as outline linework with no faces at all.
+    c31 = REPO_ROOT / "runs" / "carousel" / "2026-09-21"
+    if (c31 / "storyboard.md").exists():
+        _f, _w, st31 = check((c31 / "storyboard.md").read_text(encoding="utf-8"), c31 / "slides",
+                             json.loads((c31 / "render_report.json").read_text(encoding="utf-8"))
+                             if (c31 / "render_report.json").exists() else {})
+        ok("carousel 31's two undeclared face claims are named, by slide",
+           sorted(st31.get("face_prose") or []) == [1, 9], str(st31.get("face_prose")))
+        ok("...and neither is a failure, because the gate cannot know they are false",
+           not [x for x in _f if "lit face" in x or "contrast ratio" in x], str(_f[:2]))
+
+    # AND THE PROSE DETECTOR IS NARROW ENOUGH TO BE READ. Measured over every shipped deck on
+    # 2026-09-21: 15 acceptance items in 1810. A row that is always long is ignored as fast as
+    # one that is always empty, so this asserts the width rather than hoping for it.
+    swept_prose, swept_items = 0, 0
+    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
+        if not (p / "storyboard.md").exists():
+            continue
+        for body in parse_dossiers((p / "storyboard.md").read_text(encoding="utf-8")).values():
+            for it in acceptance_items(body):
+                swept_items += 1
+                if FACE_PROSE.search(it) and FACE_RELATION.search(it):
+                    swept_prose += 1
+    ok(f"the face-prose detector stays under one item per deck ({swept_prose} in {swept_items})",
+       swept_items and swept_prose <= len(list((REPO_ROOT / "runs" / "carousel").glob("2*"))),
+       f"{swept_prose} of {swept_items}")
+    ok("...and it is not asleep either", swept_prose >= 10, str(swept_prose))
 
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",

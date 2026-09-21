@@ -2034,6 +2034,82 @@
     "angle": 52,
     "note": "Chosen on probe frame evidence over line at cell 5 and 9 and stipple at 5, measured by thumb standard deviation. Line went WORSE as it went coarser, which killed that family. Deliberately not September 19th's halftone."
    }
+  },
+  {
+   "date": "2026-09-21",
+   "carousel_no": 31,
+   "written_from": "machine_qa.json, render_report.json, measurements.json, layout_check's own accent measurement and the gate suite BY EXIT CODE. The value block is measured off the nine shipped PNGs by out/2026-09-21/measure.py at 432 px, never planned and never asserted. The screen block below is measured too, by printing all nine steps of the chassis grey scale as full width bands through this deck's own press and reading each band's L* off the render.",
+   "register": "AN OAK CLIFF BLOCK IN DALLAS COUNTY AT TEN PAST SEVEN ON A BULK TRASH MORNING. Ground #222E16 St. Augustine in live oak shade, one ink #D9DEC9 chalked fleet panel, printed: every scene is drawn in greys into TXINK's offscreen twin at true scale, the press lays the paper, screens the tone into ink at a STIPPLE of cell 5 at gamma 0.5, and paints flat what must not be screened. The ground is one of the machine's own eight detection categories, high grass, so the paper this deck is printed on is a thing the software is looking for.",
+   "structural_laws": [
+    "THE PRESS IS MEASURED ACROSS THE WHOLE SCALE BEFORE THE ARC IS COMMITTED, AND MEASURING ONLY THE CEILING IS WHAT COST THIS DECK A ROUND. The chassis told this run to print a white field and record the ceiling. It did. Nobody printed the other eight steps. The nine step grey scale, spanning 95 L* in the twin, printed across NINETEEN and ran BACKWARDS twice: `shade` came out darker than `dark`. So S.box's lit face and its shadow face were the same colour, porchBoards at `shade` was the colour of the ground, and six independent pixel critics read nine correctly drawn frames as hairline wireframes over noise. The frames were fine. The press could not print what they drew.",
+    "INK COVERAGE GOES AS LUMINANCE TO THE POWER 2 * GAMMA, and that is the arithmetic behind the line above. INK.screen's stipple lays n = round(d * d * perCell) dots where d = pow(lum, gamma), so gamma 1.18 is lum^2.36 and the default perCell of 6 quantises what survives into four usable levels for nine declared steps. gamma 0.5 makes the exponent exactly 1 and perCell 20 supplies the levels.",
+    "A MASS RIGHT OF THE LENS AXIS SHOWS ONLY ITS SHADOWED FLANK UNDER THIS DECK'S KEY, and that is geometry rather than a fault to design around. S.box shows the LEFT face of a mass sitting right of the axis and the RIGHT face of one sitting left, and the key is off the camera's right shoulder. Frame 1's truck was moved left to catch the light and that mirrored the EDGE_TEASE handoff into frame 2, so it went back where its dossier puts it and takes its form from a RIM on the roofline and cab instead, which is what a low sun actually gives a shadowed flank.",
+    "A BOARD RUN TURNED A QUARTER TURN CANNOT STRIKE A LINE OF TYPE. Frame 7's joints run top to bottom because the camera looks along the porch rather than across it. At the pitch the carve's own arithmetic requires, no board origin could keep a horizontal joint out of both type blocks, and qa.py reads a full width edge through a glyph band as a strikethrough and is right to. A vertical joint crosses a line at a point instead of along it.",
+    "A DARK MASS BELOW TYPE IS A DROP SHADOW, whatever it was drawn for. Frame 7 painted a blurred bar under the carve's last line as the cast spilling out of the groove, and it made an incised letter read as raised. An incised letter has no cast at all, only two walls.",
+    "WHAT THE CUT PAINTS OVER WAS NEVER DRAWN. Frame 9 projected two rows of gallery seat backs at Z 1.35 and 2.30, which at a seated 1.10 m eye land below y 800, and SPLIT_HORIZON's flat ground fill covers all of it. Every render of that frame drew the occluding mass a critic then reported as missing."
+   ],
+   "techniques": [
+    "a nine step grey scale printed as full width bands through the deck's own press and read back in L*, as the first thing the run does after the chassis exists and before any frame is judged",
+    "a rim light on the roofline, cab edge and top rail of a mass whose visible faces are all on the shadow side, in place of the lit face the camera cannot see",
+    "porch board joints as a soft groove plus a lit shoulder rather than a stroke, with an axis option so one construction serves a camera looking across the run and a camera looking along it",
+    "the machine's motif projected as a ground QUAD through the scene's own camera, so a rectangle lying on a road is the trapezoid the camera gives rather than an axis aligned screen rectangle that reads as a HUD bar",
+    "a count field whose column count is DERIVED from the page it is printed on, by widening until the rows fit the sheet's own type area, so all 57 marks are on the paper rather than 25 of them",
+    "a drawn notice cropped to the four sentences that contradict each other, with the letter's own type set larger on a larger page, because a document frame that cannot be read at 432 px is a rectangle",
+    "a per glyph halo in the opposite value where a true geometry edge crosses a line of type and no composition can move it"
+   ],
+   "value_block": {
+    "per_frame_median_lstar": [
+     14.3,
+     23.1,
+     19.3,
+     19.1,
+     12.4,
+     40.4,
+     22.6,
+     18.6,
+     18.8
+    ],
+    "max_adjacent_delta": 28.0,
+    "deck_median_lstar": 19.1,
+    "note": "Measured at 432 px off the shipped PNGs. The 5 to 6 step is the deck's largest and it is the paper block arriving: frame 5 is a dark sheet carrying 39 filled marks and frame 6 is a cropped letter filling the lower two thirds. deck_coherence measures the same track its own way and reports mean jump 6.66 with spread 22.1, inside its band. THE ARC IS WRITTEN AGAINST THE PRESS AND THE PRESS IS NEVER CHASED TO THE ARC, which is why the press was measured across all nine steps first this time rather than at the ceiling alone."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet",
+    "frames_above_floor": [
+     1,
+     2,
+     3,
+     8,
+     9
+    ],
+    "note": "BLUEBONNET IS THE MACHINE'S SIGHT AND PAPER IS THE CITY'S LANGUAGE, AND THEY NEVER TOUCH. It lands only on the capture rectangle, its brackets and its detection marks. Frames 4, 5, 6 and 7 are the paper frames and carry none at all, and frame 4's absence is the load bearing one because on December 9th nothing had been detected yet. The count field on frame 5 carries none either, deliberately: painting the filled marks in the machine's colour would be the drawing asserting that the machine put those citations there, and the record establishes where they landed and nothing whatever about cause."
+   },
+   "ground": {
+    "hex": "#222E16",
+    "nearest_dE76_in_last_six": 16.57,
+    "note": "Measured against the last six shipped grounds before any frame was drawn. It is also an argument rather than a colour: high grass is the last item on the detection list the December briefing gave its committee, so a reader who learns the list on frame 3 has been standing on it since frame 1."
+   },
+   "screen": {
+    "mode": "stipple",
+    "cell": 5,
+    "angle": 0,
+    "gamma": 0.5,
+    "perCell": 20,
+    "weight": 1.0,
+    "measured_scale_lstar": {
+     "voidd": 10.0,
+     "deep": 16.3,
+     "dark": 25.1,
+     "shade": 31.9,
+     "mid": 36.6,
+     "stone": 44.4,
+     "metal": 50.1,
+     "bright": 54.0,
+     "glare": 56.7
+    },
+    "note": "The same nine bands at gamma 1.18 with the default perCell measured 10.0, 11.5, 13.6, 11.3, 18.9, 18.2, 21.3, 28.0, 29.1: nineteen L* of range, non monotonic in two places. Deliberately not September 19th's halftone or September 20th's hatch."
+   }
   }
  ]
 }

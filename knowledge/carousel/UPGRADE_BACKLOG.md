@@ -3555,3 +3555,279 @@ accident of the data. **What to check: a checker must be able to say "I could no
 subject", as a third outcome with its own exit code, and a self-test has to exercise it. Counting
 how many subjects were RESOLVED, and refusing when that count is short, is the cheap version.**
 
+
+### 9. `reverify.py` DOES NOT CONSULT `robots.txt`, found 2026-09-21
+
+The re-verification path fetches a source's URL without ever asking whether the host allows it.
+On 2026-09-21 `public.destinyhosted.com` was found to serve a blanket disallow, the session
+noticed BY HAND and did not fetch, and nothing in the machine would have stopped it. The crawl
+boundary this project keeps in `knowledge/shared/SOURCES_REGISTRY.md` is therefore enforced by a
+session remembering to look, on every item, every run.
+
+**Why this lane cannot fix it and a maintainer must.** The registry is `human` owned on purpose,
+and the map says why in as many words: an unattended run that can edit its own crawl boundary
+does not have one. A fix that has `reverify.py` read the registry is fine and is `upgrade` lane.
+A fix that has it fetch and parse `robots.txt` live is also fine. What neither may do is let the
+result write back anywhere near the registry.
+
+**One measured trap for whoever writes it.** That host's whole `robots.txt` is 25 bytes and both
+directives sit on ONE LINE with no newline between them: `User-agent: * Disallow: /`. A parser
+that splits on lines sees a single unrecognised directive and concludes there is no disallow,
+which is the exact inverse of what the host is asking for. Python's `urllib.robotparser` is
+line-oriented. Whatever is used has to be tested against that byte string specifically, and the
+self-test case is the file itself.
+
+### 10. THE ACCEPTANCE LISTS ARE PROSE, 0 of 69 on this deck
+
+`plan_render_check` reports the ratio of acceptance items that assert something a render could
+contradict. Carousel 31 scored **0 of 69**, which is the same number the 8.03 deck scored, so
+nothing has moved on this since it was first measured. `SLIDE_DOSSIER_SPEC.md` already says how
+to write a checkable item and it costs the writing nothing.
+
+This is a PROMPT problem rather than a code problem: the directors write the lists, and they
+write descriptions because nothing asks them for assertions. The cheapest fix is in the treatment
+director's brief in Phase 9, not in the gate. The gate is already measuring it correctly and has
+been ignored 31 times.
+
+### 11. THE ARTICLE SPAN GATE A JUDGE ASKED FOR WOULD BE WRONG, and the measurement says so
+
+An integrity judge on 2026-09-21 found a real fabrication in that day's web edition. The prose
+said the notice told an owner the City may "perform the work and bill the property owner", and
+c22's quote says "refer the property for abatement". A cost recovery the record never carries.
+Real defect, correctly caught, fixed.
+
+Its one sentence fix was: **add a gate asserting every `[text](cNN)` span in
+`ledger/articles/*.json` is a literal substring of that claim.** DO NOT BUILD THAT GATE. It rests
+on a premise about the file format that is false, and the premise came from that day's edition
+being unusual rather than from the contract.
+
+`ledger/articles/README.md` line 15 states the contract: **``[source label](c7)`` links directly
+to that claim's source.** It is a LINK LABEL. Measured across every shipped edition: **86
+bracketed spans, 61 of them not literal**, and they are labels doing exactly what the README
+says, "county minutes archive", "press release says", "federal award abstract", "user guide",
+"company announcement", "Waymo announced". The gate would go red on 29 of 31 shipped editions on
+its first run, on nothing that is wrong.
+
+**The defect it was reaching for is real and is a different shape.** It is not a span that fails
+to match a claim. It is PROSE ASSERTING A CONSEQUENCE THE CLAIM DOES NOT CARRY, and it would have
+been just as wrong with no brackets in the sentence at all. `absence_check` reads negatives and
+`noun_trace` reads named things, and neither asks whether a stated consequence is in the source.
+That is the gate worth designing, and it is harder than a substring test.
+
+**One cheap thing IS available and is worth it on its own.** The 2026-09-21 edition happened to
+use every bracket as a verbatim span, and auditing all 37 against their claims found the
+fabrication plus one span with a stray leading article. A gate can't demand that convention, but
+a REPORT can measure it: print how many of an edition's spans are literal and name the ones that
+are close but not exact, say above 0.8 word overlap and not a match. A label like "user guide"
+scores near zero and never appears. A near miss like "perform the work and bill the property
+owner" against "refer the property for abatement" is what the report exists to surface.
+
+THE GENERAL LESSON, which is why this entry is long. A judge is a reader of the artifact and not
+of the contract. This one inferred a file's rule from one day's file, stated it with confidence,
+and was wrong about the whole archive. Read the contract before building the gate a judge asks
+for. The same run took three other findings from the same judge straight to the code, because
+those were checkable and checked.
+
+### 12. THE SCREENED PRINT AESTHETIC IS WEBP'S WORST CASE, AND IT IS COSTING WHOLE DECKS
+
+`ship_images.py` walks a quality ladder and, if nothing on it clears the 40 dB floor, ships the
+PNG instead. That fallback is correct and its docstring argues for it well. What nobody has
+measured is how often it fires.
+
+Measured 2026-09-21 across four consecutive shipped runs:
+
+    2026-09-18   9 webp, 0 png    22 MB
+    2026-09-19   9 webp, 0 png    82 MB
+    2026-09-20   0 webp, 9 png   119 MB
+    2026-09-21   2 webp, 7 png    97 MB
+
+**Two of the last four decks shipped almost entirely as PNGs**, and the page a reader on a county
+road has to load is the whole reason this phase exists. The common factor is a high frequency
+screen: September 20th shipped a hatch at cell 6 and September 21st a stipple at cell 5. A screen
+is, by construction, dense high frequency noise, which is exactly what a perceptual codec cannot
+model, so the encoder spends its whole budget on the tooth and still misses the floor.
+
+**Do not answer this by lowering the floor.** The floor is what stopped 2026-08-16 shipping two
+visibly degraded slides, and `convert_one`'s docstring is right that the encoder should be asked
+to work harder rather than the bar lowered. Three routes worth measuring instead:
+
+- **Coarsen the screen.** A stipple at cell 7 with `perCell` scaled to hold the same ink coverage
+  has the same tone and lower spatial frequency. Measure whether it clears 40 dB. This is the
+  cheapest test and it is one render plus one encode.
+- **Ask whether PSNR is the right instrument for a screened image.** A codec that moves a dot by
+  one pixel is perceptually identical and scores badly, which is exactly the failure mode here.
+  SSIM or a downsampled comparison at feed width may be the honest measure for this deck engine,
+  and that is a gate question rather than a taste question.
+- **Ship AVIF beside webp.** It handles noise better and every browser this site targets takes it.
+
+**One measured trap.** 2026-09-21's press change made this worse, not better, and the run should
+own that: gamma 0.5 with `perCell` 20 lays four times the dots of the old configuration, so the
+image got noisier at exactly the moment its tonal range got fixed. The tonal fix was right and
+necessary, and it had a cost nobody priced. Whatever is done here has to hold both.
+
+### 13. THE ACCEPTANCE LISTS NEED A HARNESS, and four scoring rounds proved it rather than argued it
+
+Entry 10 above records that carousel 31's acceptance items scored **0 of 69** on
+`plan_render_check`'s own measure of items a render could contradict, and called it a prompt
+problem. That was right and it was too small. What the same deck then demonstrated is the cost.
+
+**Four scoring rounds produced four DISJOINT sets of declared-but-absent elements.** Not a
+shrinking list. Four different lists, each found by reading the pixels against the plan:
+
+    round 1   frame 1's lit and dark faces, frame 9's dais as a solid, frame 6's boards
+    round 2   frame 9's podium and two of five chairs, frame 4's forearm, frame 6's curl
+    round 3   frame 5's board and clip, frame 5's rake, frame 8's two figure casts
+    round 4   frame 3's eight leaders, frame 2's accent ring, frame 1's and frame 3's casts
+
+Every one of those was written in a dossier, several were written as acceptance items, and
+several were called "load bearing and checkable in the render" by the dossier itself. Nothing
+checked any of them. A craft judge's diagnosis at round 4 is the entry's title: this is a planning
+document systematically more detailed than the drawing, with nothing in between checking they
+agree, which is this repository's oldest failure shape stated in `CLAUDE.md` about four other
+surfaces already.
+
+**THE ANSWER IS NOT ANOTHER ROUND AND IT IS NOT A REDRAW.** Round 4 said so plainly and it is
+worth preserving the reasoning. More rounds produce more disjoint lists at the same cost per
+round. A redraw throws away the chassis, the palette, the motif and the three frames that are
+genuinely good, and then reproduces the defect on new frames, because the mechanism that let it
+happen is untouched either way.
+
+**What to build: a per-frame acceptance harness that reads the PNG.** The shape is already proven
+twice in this suite. `layout_check` measures a declared rect's silhouette against the frame's own
+ground. `plan_render_check` now measures a declared colour's coverage in the render after the
+chassis law made a source grep blind. The same move generalises:
+
+- A dossier declares an element with a MEASURABLE assertion rather than a description. The spec
+  for that already exists at `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` and is ignored.
+- The harness evaluates each one against the rendered PNG and fails the build on a miss.
+- Start with the single item that recurs most and is cheapest to measure: **a declared lit face
+  is measurably lighter than the declared shadow face of the same object.** That one item alone
+  would have caught frame 1's truck in round 1, frame 9's dais in round 1, frame 8's house in
+  round 3 and frame 2's housings in round 4, which is four of the sixteen misses above in one
+  pass.
+- The second cheapest: **a declared cast exists, runs in the deck's own cast direction, and is
+  measurably darker than the ground beside it.** That is three more.
+
+**One measured warning for whoever builds it.** A cast on this deck's ground measured L* 37.8
+against 32.1 and a judge still could not see it at 432 px, so the threshold cannot be "differs
+from the ground". It has to be a separation a reader gets at feed scale, which means measuring at
+432 px and not at 2160, the same lesson `layout_check`'s silhouette measure already encodes.
+
+### 14. Round 5 confirmed entry 13 independently, and that is the strongest evidence it carries
+
+Added 2026-09-21, after the final round.
+
+Entry 13 was written from the round 4 craft judge's diagnosis, which is one voice. Round 5 ran
+three judges who could not see each other's cards, and **two of the three arrived at the same
+fix without being asked for one.** One wrote that the dossiers "describe a richer world than the
+renders carry" and named four declared properties false against the shipped pixels. The other
+proposed, as its single sentence of advice, a gate that "samples the declared lit and shade faces
+off the rendered PNG and fails the frame when their L* separation is under a stated floor,
+because right now the only thing checking graded is the plan claiming it."
+
+That is entry 13's first bullet, reached from a different frame set by a judge that had never
+read it. A proposal one reviewer makes is an opinion. A proposal three independent readers
+converge on across two rounds is a measurement of where the machine actually leaks.
+
+Nothing in entry 13 changes. This entry exists so whoever picks it up knows the evidence is
+three cards and not one.
+
+### 15. `panel.py` reports a round number it derives rather than the one on the cards
+
+Added 2026-09-21. Small, and it misleads at exactly the wrong moment.
+
+Three judge cards each carrying `"round": 5` were combined and the verdict came back
+`"rounds": 2`, with `hold_reason` reading "This is a HOLD. Keep working the deck". The median and
+the hard-fail logic are correct and the ship decision was right. The round count is not, and the
+HOLD wording assumes rounds remain.
+
+It matters because `max_rounds` is 5 and the cap is what decides whether a deck under the bar
+ships or gets another pass. A verdict file that says round 2 when the run is at its cap is a file
+a later reader, or a later gate, could act on wrongly. The fix is to read the round off the cards
+it was handed and to say "AT CAP" rather than "keep working" when that number equals
+`max_rounds` from the rubric.
+
+---
+
+## 2026-09-21, the upgrade phase. Entry 15 built, entry 13's first slice built, and one lock
+
+Three landed and are in `ledger/carousel/upgrades.json` with the command that proves each can go
+red. What follows is the part a later session needs and a ledger entry can't carry.
+
+### Entry 15 was not cosmetic, and what it cost is the lesson
+
+The round count is read by `run_complete.check`, whose cap path is the only one that licenses a
+deck under the bar with no hard fail. Three surfaces read that one call, and `rounds: 2` on a deck
+that ran five rounds took all three down at once.
+
+- `shipped_check`'s completion gate went red, which was the only thing holding CI
+- `site_context.load_runs` delegates publication to the same call, so `docs/articles/2026-09-21/`
+  was never built and the whole carousel was absent from the articles surface
+- `article_check` reported 30 editions on a day that should have had 31
+
+**Nobody would have found the second one from the error message**, because there is no error
+message. A builder that omits an edition prints nothing. It was found by somebody noticing a
+directory was not there.
+
+**`rounds` now takes the larger of the log and the cards.** The argument is in `panel.py` and it
+is one sentence: a log can only UNDERCOUNT, because it records what happened to be routed through
+one function, and a card can only OVERCOUNT, because a number on it is a number somebody could
+have typed. `believable_declared` is what a card pays to be believed, three cards from three
+distinct lenses with three distinct digests, which refuses every cheap forgery.
+
+**The door this opens closes upstream and out of this lane.** Rounds 1 to 3 were scored by agents
+that never invoked `panel.py`. If Phase 15 routed every round through it the log would be the
+larger number, the card fallback would never be reached, and none of this would be load bearing.
+`prompts/daily_routine.md` is `human` lane. Filed as a proposal.
+
+### Entry 13's first slice, and the two things the next slice must not repeat
+
+Built as a SIXTH acceptance kind in `plan_render_check` rather than as a new gate, because that
+file already had the resize, the L* conversion, the frame resolver and the machine-checkable
+counter that `gate_status` prints in public. A second copy of any of those is the defect this
+repository has closed four times elsewhere.
+
+- **The floor is WCAG 2.1 SC 1.4.11's 3 to 1** and it had to come from outside. Entry 13's own
+  measurement is what proves it: L* 37.8 against 32.1 is 1.235 to 1, a judge could not see it at
+  432 px, and no rule derived from our own frames would have refused it.
+- **A rect on a contour reads the contour.** Measured on this deck's frame 1, a 3 percent rect
+  sitting on the truck's drawn outline reads 3.8 to 1 on a truck that has no faces at all. That
+  is why the declaration is opt in and why the spec tells an author to keep the rects clear of
+  the edge. **The next slice, the declared cast, has the same trap and worse**, because a cast is
+  thin and a rect around one is mostly ground.
+- **The prose half was measured before it was written.** 15 acceptance items in 1810 across all
+  31 shipped storyboards, under one per deck, and the two on this deck are the two the judges
+  found by reading pixels. Any widening of that detector should be measured the same way first,
+  and the sweep is one pass over `parse_dossiers` and reproduces in seconds.
+
+**What is NOT built, from entry 13's own list:** the declared cast that runs in the deck's own
+cast direction and is measurably darker than the ground beside it. That is three more of the
+sixteen misses. Three is the ceiling and a fourth would have shipped without calibration.
+
+### A mixed png and webp ship broke two frame resolvers, and one of them by a ratio
+
+`layout_check.find_renders` and `construction_check.check` both read
+`glob(slide-*.png) or glob(slide-*.webp)`. `or` on a non-empty list never evaluates its right hand
+side. Carousel 31 is the first deck to ship a mixed directory, seven png and two webp, because
+`ship_images` keeps the png wherever webp misses its 40 dB floor, and **pointed at the real
+shipped directory the old line returns seven of the nine frames.**
+
+In `layout_check` two frames are silently dropped from every measurement. In `construction_check`
+it is worse: `share` is a RATIO over the frames the function returns, so the deck was measured
+nine-ninths on seven frames. **A count that loses its subject reports a smaller number. A ratio
+that loses its subject reports a confident wrong one, and that one has no symptom at all.**
+
+### The diagnosis this phase was handed, and why measuring it first mattered
+
+The showrunner sent two CI findings with a cause for each, a hex-literal story and a webp story,
+then retracted both: the real cause was a stale `render_report.json` in the shipped directory, and
+refreshing it cleared 24 plan-vs-render problems and both layout problems with no gate touched.
+
+The change made on the `plan_render_check` half **was reverted**, because a change whose defect
+cannot be demonstrated cannot be verified. The mixed-format half **was kept**, on evidence that
+stands without the story and was measured after the report was fresh.
+
+Two defects on one frame number, and reasoning from an error message to a cause found the wrong
+one. That is `CLAUDE.md`'s rule about the 403 and the empty check list, met from a third direction
+in a single day, and it is worth saying plainly: **an explanation that fits the message is not the
+same as an explanation that survives a measurement.**

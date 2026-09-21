@@ -1,0 +1,225 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Cities, policing and public services",
+ "dek": {
+  "text": "Dallas put AI cameras on its brush trucks and said in December what the program would not be. The friction is a letter that is formally not a warning and reads like one.",
+  "claims": [
+   "c1",
+   "c11",
+   "c19",
+   "c23"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "On {{date:c1}} a City of Dallas Finance Committee briefing proposed to [implement 100 AI-enabled cameras on Sanitation](c1) brush trucks. It was a staff presentation ahead of a council decision rather than an approval. The item went to the City Council the next day.",
+   "claims": [
+    "c1",
+    "c16"
+   ]
+  },
+  {
+   "text": "Nine months on, the cameras are running. The city has issued its [first citations to homeowners for violations that the city says AI cameras first detected and humans later confirmed](c17). The question the record raises is not whether Dallas broke a promise. It is what a letter means to the person who opens it.",
+   "claims": [
+    "c17",
+    "c35"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the city said it would not be",
+   "paragraphs": [
+    {
+     "text": "The December briefing gave one slide to two columns, [one headed What it IS and one headed What this IS NOT](c11). Three items in the right column each open with the word NOT. They are [NOT staff replacement](c12), NOT automated ticketing, and [NOT public safety surveillance](c13).",
+     "claims": [
+      "c11",
+      "c12",
+      "c13"
+     ]
+    },
+    {
+     "text": "Two lines on that slide are sub points rather than refusals, and reading them as a fourth promise would misstate the document. The briefing answered its own automated ticketing line by saying [there is a human in the loop for all actions](c14). The phrase [Just like Google Street View](c15) sits in the left column, under public right-of-way image capture, and carries no NOT at all.",
+     "claims": [
+      "c14",
+      "c15"
+     ]
+    },
+    {
+     "text": "Every check on whether those terms held is the city's own account of itself, which is worth saying before the account. FOX 4 reports the September memo saying [citations are only issued after a code officer inspects the property in-person](c44) and gives notice to the owner. The city says the images are kept for one year, that [the system does not connect to any law enforcement database](c36) and that faces and license plates are blurred. No independent audit of any of it is public.",
+     "claims": [
+      "c44",
+      "c36",
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The hardware, in the briefing's own numbers",
+   "paragraphs": [
+    {
+     "text": "The briefing described [2 cameras mounted on 1 city vehicle](c2), photographing while the truck drives at [25 to 35 MPH](c3). The capture is [1920p x 1080p](c4) at a fixed focal length. It promised [automated blurring of personal information](c6). The software was set to detect a list of [property conditions](c7) that begins with bulk trash participation and runs through illegal dumping, graffiti and boarded windows to high grass.",
+     "claims": [
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "The contract went to the committee as a three-year agreement with an estimated value of {{money:c8}} and an annual cost of {{money:c9}}, covering the cameras and the associated technology. The City may end it on [10 days' written notice](c10) at any time, without penalty. FOX 4 gives the same annual figure nine months later.",
+     "claims": [
+      "c8",
+      "c9",
+      "c10",
+      "c45"
+     ]
+    },
+    {
+     "text": "One hundred cameras at two per vehicle does not give a fleet size, and this account does not estimate one. Code Compliance does state the coverage. It told NBC 5 [it's likely the cameras will photograph every residential property in the city once a month on bulk trash pickup days](c41).",
+     "claims": [
+      "c41",
+      "c2"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A letter that is not a warning",
+   "paragraphs": [
+    {
+     "text": "The city manager's memo, as NBC 5 reports it, states that [A courtesy notice is not a warning or a violation](c19). Code Compliance told the station in a statement that the notices [do not require anything of the property owners](c40).",
+     "claims": [
+      "c19",
+      "c40"
+     ]
+    },
+    {
+     "text": "The notice an Oak Cliff homeowner received carries [violations identified](c20) in bold near the top. It describes itself as a [courtesy notice and is not a citation or formal notice of violation](c21). It then says that if the violations remain, the City [may issue a Notice of Violation, issue a citation, or refer the property for abatement](c22). It closes by asking the owner to [correct the violations promptly to avoid further enforcement action](c23).",
+     "claims": [
+      "c20",
+      "c21",
+      "c22",
+      "c23"
+     ]
+    },
+    {
+     "text": "NBC 5 asked Assistant Director of Code Compliance Jeremy Reed about the gap between the memo's wording and the notice's. He answered that [you could call that a warning](c26). Both statements are the city's. Neither is false. They describe the same piece of paper from two sides of a counter.",
+     "claims": [
+      "c26",
+      "c25"
+     ]
+    },
+    {
+     "text": "Sarrah Morrison received one and told the station the wording [just seems really slimy and manipulative](c30). She worries about people who do not understand what it does not carry. The city told her the camera had detected what appeared to be [a temporary repair on her roof](c31).",
+     "claims": [
+      "c30",
+      "c31"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Where the enforcement has landed",
+   "paragraphs": [
+    {
+     "text": "NBC 5 reports the memo stating that [57 citations have been issued at 34 properties for non-compliance](c18). Of those, NBC 5 reports, [39 of those citations, or 68%, were issued to people in City Council Districts 4, 8 and 7 in Southern Dallas](c27). NBC 5 separately reports that records show most went to Southern Dallas owners in [three City Council districts where a majority of residents are Black and Hispanic](c39).",
+     "claims": [
+      "c18",
+      "c27",
+      "c39"
+     ]
+    },
+    {
+     "text": "Reed's explanation is that there are [more code violations in Southern Dallas than in Northern Dallas](c38) and that the goal is never citations. He also says the city looks at code violations at properties and [does not profile residents](c37) or look at demographics. Councilmember Chad West's concern is that the program [could end up being inadvertently a tax on the poor](c32).",
+     "claims": [
+      "c38",
+      "c37",
+      "c32"
+     ]
+    },
+    {
+     "text": "West gave FOX 4 a different figure, saying [70% of the citations issued from what the cameras have identified come from predominantly African American neighborhoods](c47). That is his own characterization of a different grouping and it is not the 68 percent NBC 5 reports. This account states both and reconciles neither, because the record does not establish that they measure the same thing.",
+     "claims": [
+      "c47",
+      "c27"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not establish",
+   "paragraphs": [
+    {
+     "text": "The September memo is quoted by two outlets and published at no city URL this run could find. So every figure here names the outlet that reported it rather than the document. Two outlets quoting one unpublished memo are two sources for what it says and not two for the memo itself.",
+     "claims": [
+      "c42",
+      "c18"
+     ]
+    },
+    {
+     "text": "Three counts appear in the reporting and none of them contains another. Records show the cameras spotted potential violations at [21,000 addresses in four months](c29). FOX 4 reports the memo saying the cameras have [scanned 10,000 properties](c43). The city says it has sent courtesy notices to [3,700 property owners](c28). Three sources, three measures, three windows, so no difference between them is computed here.",
+     "claims": [
+      "c29",
+      "c43",
+      "c28"
+     ]
+    },
+    {
+     "text": "Nothing in the record establishes how many of the roughly [300 cases](c24) the city has opened began with a camera rather than a complaint. Nothing establishes how often a human inspector has overruled a detection. The privacy protections are the city's description of its own system and no audit of them is public.",
+     "claims": [
+      "c24",
+      "c36",
+      "c48"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What happens next",
+   "paragraphs": [
+    {
+     "text": "West [proposed pulling funding for the camera program and withdrew the request](c33) after the city manager agreed to a briefing. FOX 4 carries the date, putting the briefing on {{date:c49}} and attributing it to City Manager Kim Tolbert. A Dallas Morning News report names the committee as [Quality of Life, Arts and Culture](c50).",
+     "claims": [
+      "c33",
+      "c49",
+      "c50"
+     ]
+    },
+    {
+     "text": "That meeting is the next thing on this record with a date on it. The council item a Texan can read today is the December briefing itself, which remains the clearest statement of what the program was said to be.",
+     "claims": [
+      "c49",
+      "c1"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0179",
+   "label": "The first code citations from the brush truck cameras"
+  },
+  {
+   "id": "tx-2026-0116",
+   "label": "The Dallas briefing on the police plate reader program"
+  },
+  {
+   "id": "tx-2026-0030",
+   "label": "Austin's surveillance technology ordinance"
+  },
+  {
+   "id": "tx-2026-0174",
+   "label": "El Paso's order to take down its plate readers"
+  }
+ ]
+}

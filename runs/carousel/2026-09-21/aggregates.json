@@ -1,0 +1,101 @@
+{
+ "date": "2026-09-21",
+ "_note": "Every number this deck STATES is either read off a verbatim quote or computed from quotes by out/2026-09-21/compute.py, which runs at build time rather than being copied. This file declares the ones the deck asserts as counts, ratios and spans, with the claims each was counted from. compute.py's docstring names the four things it REFUSES to compute and why, and the largest of those is that the three reported counts do not contain one another, so no difference between them is declared here or drawn anywhere. ONE CORRECTION, MADE AFTER AN INTEGRITY JUDGE CAUGHT IT. An earlier cut of this file said, in this note AND in the 39 of the 57 row's own computed_by, that the deck 'states the pair and never the percentage'. That was wrong as written, and the row was still saying it one round after the note above it was corrected, which is the same mistake this run made in the topics ledger: 68% IS on frame 5, inside the memo's own sentence set on the drawn page, and it is declared below. The rule the deck actually keeps is narrower and worth stating exactly. It never COMPUTES a percentage of its own, and it never prints one as the deck's own voice. Quoting the source's sentence whole, on a drawing of the source, is not the deck asserting a ratio. The distinction matters here because West separately gives 70% of a different grouping, and a deck that recomputed its own figure would be putting a third number beside two the record already disagrees about. The judge also noted that copy.json is built from render_report.json's text_nodes, which exclude canvas fillText, so frame 5's sentence is a published string no downstream check reads. That is a real gap in the SUITE and it is in the upgrade backlog rather than answered by retyping this file. The 68% is therefore NOT declared as a row below, and that absence is deliberate rather than an oversight: aggregate_check can only match a declaration against a phrase it can find, it reads copy.json and the caption, and frame 5's sentence is on canvas where neither looks. A declared row nothing can be matched to is what this gate calls a declaration waiting to be reused wrongly, and it refuses one for that reason. So the fact is recorded here in prose and the gate's blind spot is in knowledge/carousel/UPGRADE_BACKLOG.md, which is where a fix belongs.",
+ "aggregates": [
+  {
+   "phrase": "Two cameras",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "compute.py cameras_per_vehicle, the first numeral in c2's verbatim quote '2 cameras mounted on 1 city vehicle', parsed rather than typed",
+   "from_claims": [
+    "c2"
+   ],
+   "note": "The briefing's own figure for ONE vehicle. 100 cameras at 2 per vehicle gives no fleet count and compute.py refuses to derive one, which is why frame 1 draws a single truck and never a row of them."
+  },
+  {
+   "phrase": "Eight things",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 8,
+   "computed_by": "compute.py detection_conditions, the length of the condition list c7 sets out, counted from that list rather than tallied by hand",
+   "from_claims": [
+    "c7"
+   ],
+   "note": "bulk trash participation, collapsing structures, trash, tires, illegal dumping, graffiti, boarded windows and one more the claim enumerates. The frame draws eight marks because the source names eight conditions."
+  },
+  {
+   "phrase": "two columns",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the number of column headings c11's own sentence names",
+   "from_claims": [
+    "c11"
+   ],
+   "note": "c11 reads 'one slide to two columns, one headed What it IS and one headed What this IS NOT'. The count is the source's own, and frame 4 draws those two and no third."
+  },
+  {
+   "phrase": "three refusals",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py refusals, the number of items on that briefing slide beginning with the word NOT, counted across the claims that carry them",
+   "from_claims": [
+    "c12",
+    "c13"
+   ],
+   "note": "THREE AND NOT FOUR, and the fact checker corrected this before a frame was planned. c12 carries two, NOT staff replacement and NOT automated ticketing. c13 carries the third, NOT public safety surveillance. The human in the loop line is an indented sub point under the second and is never a peer, and 'Just like Google Street View' carries no NOT and sits in the LEFT column, which is where c15 places it."
+  },
+  {
+   "phrase": "39 of the 57",
+   "slide": "slide-05.html",
+   "kind": "ratio",
+   "value": 39,
+   "computed_by": "compute.py southern_districts, both numerals parsed out of verbatim quotes: 39 from c27 and 57 from c18. The deck states the pair here and never computes a percentage of its own, because the source states its own 68% and recomputing it would put a second, slightly different number beside the city's",
+   "from_claims": [
+    "c27",
+    "c18"
+   ],
+   "note": "compute.py explicitly refuses to reconcile the memo's 68% against West's 70% in c47. They are two speakers describing two different groupings and the difference is not the deck's to resolve. c27's sentence, carrying the 68%, is set whole on frame 5's drawn page. A judge noted it is NBC 5's REPORTING PROSE about the memo rather than words NBC 5 puts in quotation marks, so the page is a reconstruction of what the memo says and not a facsimile of it, and the frame's own source line names c27 rather than the memo.",
+   "of": 57
+  },
+  {
+   "phrase": "three districts",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the length of the district list c27's quote names, which is Districts 4, 8 and 7",
+   "from_claims": [
+    "c27",
+    "c39"
+   ],
+   "note": "c39 independently describes 'three City Council districts', so the count is stated by a second source as well as being the length of the first's list."
+  },
+  {
+   "phrase": "3,700 property owners",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3700,
+   "computed_by": "read, not computed. The figure c28's verbatim quote states, corroborated by c43 quoting the same memo through a second outlet",
+   "from_claims": [
+    "c28",
+    "c43"
+   ],
+   "note": "The caption states the figure the way c28 states it, as courtesy notices sent TO 3,700 property owners rather than as 3,700 notices. An integrity judge caught the earlier wording changing the noun that was counted. No arithmetic is performed on it, and it is NOT subtracted from the 10,000 properties scanned or the 21,000 addresses flagged: three sources, three measures, three windows, and nothing establishes that any one contains another."
+  },
+  {
+   "phrase": "three news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "sources_block.py groups the claims file by url and counts the distinct documents whose source_type is a news report, rather than a number written into the block",
+   "from_claims": [
+    "c17",
+    "c42",
+    "c50"
+   ],
+   "note": "One representative claim id per news document. NBC 5 carries c17 to c41, FOX 4 carries c42 to c49 and Government Technology carries c50. The fourth document, the December 9th briefing, is the official record the same line counts separately."
+  }
+ ]
+}

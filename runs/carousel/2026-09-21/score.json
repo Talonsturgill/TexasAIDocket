@@ -1,0 +1,110 @@
+{
+ "weighted_score": 7.21,
+ "judges": [
+  7.1,
+  7.2,
+  7.204
+ ],
+ "spread": 0.104,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    5.5,
+    6.0,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.5,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.4
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.204 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.1,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.2,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.204,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.204 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "hold_reason": "no judge found a hard fail, and the median 7.21 is under the rubric's 8.0 bar. This deck is AT CAP, at 5 of the rubric's 5 rounds. Another scoring round is not what is called for. `run_complete.py` is what decides whether a deck at the cap ships under the bar",
+ "rounds_derived": 2,
+ "rounds": 5,
+ "rounds_source": "the judge cards",
+ "rounds_declared": 5,
+ "rounds_disagreement": "this counter logged 2 scoring round(s) on this tree and the judge cards say they are round 5. `rounds` carries 5, because a log can only undercount a round it never saw while a card can only overcount, so the larger is the honest figure. The cards were checked first for three distinct lenses and three distinct digests",
+ "at_cap": true,
+ "rounds_note": "3 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again"
+}

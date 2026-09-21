@@ -1,0 +1,247 @@
+{
+ "_note": "Every value here is extracted from a claim's verbatim quote by compute.py, which is executed at build time rather than copied. A numeral in this deck's prose or artwork that is not in this file is a numeral somebody typed. Read the module docstring for the four things this file refuses to compute and why.",
+ "counts_reported": {
+  "no_containment": true,
+  "why": "Three sources, three measures, three windows. Nothing here establishes that any one count contains any other, so these are drawn at ONE scale as a flat set, never as a funnel, a chain, a nested set, a stacked bar or an arrow.",
+  "rows": [
+   {
+    "key": "addresses_flagged",
+    "value": 21000,
+    "label": "addresses where the cameras spotted potential violations, in four months",
+    "from": [
+     "c29"
+    ],
+    "said_by": "city records, reported by NBC 5"
+   },
+   {
+    "key": "properties_scanned",
+    "value": 10000,
+    "label": "properties the cameras have scanned",
+    "from": [
+     "c43"
+    ],
+    "said_by": "the September 8th memo, reported by FOX 4"
+   },
+   {
+    "key": "courtesy_notices",
+    "value": 3700,
+    "label": "property owners sent a courtesy notice",
+    "from": [
+     "c28",
+     "c43"
+    ],
+    "said_by": "the city, reported by NBC 5"
+   },
+   {
+    "key": "cases_opened",
+    "value": 300,
+    "label": "cases opened where priority dictates a code officer visit",
+    "from": [
+     "c24"
+    ],
+    "said_by": "Jeremy Reed, Assistant Director of Dallas Code Compliance"
+   },
+   {
+    "key": "citations",
+    "value": 57,
+    "label": "citations issued",
+    "from": [
+     "c18"
+    ],
+    "said_by": "the September 8th memo, reported by NBC 5"
+   },
+   {
+    "key": "properties_cited",
+    "value": 34,
+    "label": "properties those citations were issued at",
+    "from": [
+     "c18"
+    ],
+    "said_by": "the September 8th memo, reported by NBC 5"
+   }
+  ]
+ },
+ "southern_districts": {
+  "part": 39,
+  "of": 57,
+  "basis": "measured",
+  "from": [
+   "c27",
+   "c18"
+  ],
+  "districts": [
+   4,
+   8,
+   7
+  ],
+  "how": "Both numerals are read out of the quotes by compute.py. The memo states the part and the whole in the same sentence, so this is the one containment in this deck. The difference is never taken, because the memo says nothing about the rest.",
+  "set_counted": "citations issued under the camera program as of the September 8th memo"
+ },
+ "percentages_not_reconciled": {
+  "why": "Two speakers describing two different sets. The deck prints both with the speaker named on each and computes nothing from either.",
+  "rows": [
+   {
+    "key": "memo_share",
+    "value": 68,
+    "unit": "percent",
+    "said_by": "the City Manager's memo, reported by NBC 5",
+    "of_what": "the citations, issued in City Council Districts 4, 8 and 7 in Southern Dallas",
+    "from": [
+     "c27"
+    ]
+   },
+   {
+    "key": "west_share",
+    "value": 70,
+    "unit": "percent",
+    "said_by": "Council member Chad West, to FOX 4",
+    "of_what": "the citations, coming from predominantly African American neighborhoods",
+    "from": [
+     "c47"
+    ]
+   }
+  ]
+ },
+ "hardware": {
+  "cameras": {
+   "value": 100,
+   "from": [
+    "c1",
+    "c9"
+   ],
+   "label": "AI enabled cameras on sanitation brush trucks"
+  },
+  "cameras_per_vehicle": {
+   "value": 2,
+   "from": [
+    "c2"
+   ],
+   "label": "cameras mounted on one city vehicle"
+  },
+  "speed_range": {
+   "value": "25-35",
+   "from": [
+    "c3"
+   ],
+   "label": "the speed the truck photographs at, in miles per hour"
+  },
+  "resolution": {
+   "value": "1920p x 1080p",
+   "from": [
+    "c4"
+   ],
+   "label": "the capture resolution"
+  },
+  "annual_cost": {
+   "value": 852000,
+   "unit": "dollars",
+   "from": [
+    "c9",
+    "c45"
+   ],
+   "label": "the contract cost per year"
+  },
+  "three_year_cost": {
+   "value": 2556000,
+   "unit": "dollars",
+   "from": [
+    "c8"
+   ],
+   "label": "the three year contract's estimated amount"
+  },
+  "termination_days": {
+   "value": 10,
+   "unit": "days",
+   "from": [
+    "c10"
+   ],
+   "label": "written notice the City may terminate on"
+  },
+  "retention_years": {
+   "value": 1,
+   "unit": "years",
+   "from": [
+    "c36"
+   ],
+   "label": "how long the city says the images are kept"
+  }
+ },
+ "capture_aspect": {
+  "value": 1.7777777777777777,
+  "from": [
+   "c4"
+  ],
+  "of": 1920,
+  "label": "the capture rectangle's width over its height, divided in code from the two numerals in c4's quote",
+  "how": "the only division compute.py performs, and it sets a drawn width from a drawn height"
+ },
+ "capture_width_px": {
+  "value": 1920,
+  "from": [
+   "c4"
+  ],
+  "label": "the capture's width in machine pixels"
+ },
+ "capture_height_px": {
+  "value": 1080,
+  "from": [
+   "c4"
+  ],
+  "label": "the capture's height in machine pixels"
+ },
+ "cameras_per_vehicle": {
+  "value": 2,
+  "from": [
+   "c2"
+  ],
+  "label": "cameras mounted on one city vehicle"
+ },
+ "cameras_total": {
+  "value": 100,
+  "from": [
+   "c1",
+   "c9"
+  ],
+  "label": "AI enabled cameras the briefing proposed"
+ },
+ "detection_conditions": {
+  "value": 8,
+  "words": [
+   "bulk trash participation",
+   "collapsing structures",
+   "trash",
+   "tires",
+   "illegal dumping",
+   "graffiti",
+   "boarded windows/doors",
+   "high grass"
+  ],
+  "from": [
+   "c7"
+  ],
+  "label": "property conditions the software detects, as the briefing lists them"
+ },
+ "letter_lines": {
+  "value": 4,
+  "from": [
+   "c20",
+   "c21",
+   "c22",
+   "c23"
+  ],
+  "label": "separate things the courtesy notice says about itself, one per claim"
+ },
+ "refusals": {
+  "value": 3,
+  "words": [
+   "staff replacement",
+   "automated ticketing",
+   "public safety surveillance"
+  ],
+  "from": [
+   "c12",
+   "c13"
+  ],
+  "label": "things the December 2025 briefing said the system is NOT"
+ }
+}

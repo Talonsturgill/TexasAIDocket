@@ -1,0 +1,215 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 9 of 9. Archetype SPLIT_HORIZON.
+     THE CLOSE. A council committee room before it fills, built in metres at 14 by 9 by 3.4 m, a
+     9 m dais as an S.box with a lit right face and a dark left face, five empty chairs, a podium,
+     two rows of gallery seat backs occluding the near ground, and a wall screen carrying an empty
+     capture rectangle. Seen from a seated public eye at 1.10 m, because the reader is now in the
+     room rather than on the street.
+     NOTHING IS DRAWN THAT HAS NOT HAPPENED. The room is empty, no briefer and no member is
+     depicted, and the rectangle on the screen carries nothing. That emptiness is a state rather
+     than a count.
+     THE DAIS IS AN S.box AND THE CLOSING FRAME HAS BEEN A FLAT FILL IN SIX CONSECUTIVE LEDGER
+     ENTRIES. A solid with a lit face and a shadow face off the deck's one declared light is the
+     cheapest cure there is, and S.box had not been called by any of twenty seven decks.
+     THE MOTIF'S LAST STATE. The capture rectangle has been 7.8 m on a lane, a housing's own
+     field, eight marks on a house and 1.2 m on a patch of flashing. Here it is empty again, in a
+     room where nothing has been decided.
+     Frame median L* 20, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:818px; width:820px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.96;
+          letter-spacing:-0.022em; color:#D9DEC9; font-variation-settings:"opsz" 110; z-index:10; }
+  .dek  { position:absolute; left:82px; top:990px; width:830px; font-size:24px;
+          line-height:1.44; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">October 19th, and the committee takes it up.</h1>
+<p class="dek">The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "Where it goes next", counter: "09 / 09",
+      src: "c49 c50 c40 c44   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 82, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    var CAP_ASPECT = 1920 / 1080;
+    var CUT = 800;                       /* the straight horizon cut, dead level */
+    var geom = {};
+
+    M.print(cx, {
+      seed: 49,
+      draw: function (a) {
+        /* A SEATED PUBLIC EYE AT 1.10 m. The deck's last camera move, and the reader is in a
+         * gallery seat rather than at a viewpoint. */
+        var S = TXSCENE.create(a, M.cam({ eye: 1.10, horizon: 560, f: 1050 , light: { az: 38, el: 22 } }));
+
+        /* THE ROOM. A back wall at 13 m and a ceiling, both drawn as planes rather than as a
+         * gradient, so the room has a box around it. */
+        (function () {
+          /* RE-TONED FOR THE PRESS MEASURED ON 2026-09-21. This ran bright to metal to stone,
+           * which was right when the whole nine step scale printed inside nineteen L* and every
+           * one of those three came out near the ground. Through a press with range they print at
+           * L* 54, 50 and 44, so the back wall of a committee room became the brightest thing in
+           * the deck and swallowed the dais, the chairs and the seat backs. A room lit by one
+           * window is DIM, and the values now say so: the wall falls from shade on the window's
+           * own side to deep in the far corner. */
+          var g = a.createLinearGradient(W, 0, 0, CUT);
+          g.addColorStop(0.00, M.G.shade);
+          g.addColorStop(0.46, M.G.dark);
+          g.addColorStop(1.00, M.G.deep);
+          a.fillStyle = g; a.fillRect(0, 0, W, CUT);
+        })();
+        /* the ceiling, darker, and its own line where it meets the back wall */
+        (function () {
+          var g = a.createLinearGradient(0, 0, 0, 230);
+          g.addColorStop(0.00, "rgba(0,0,0,0.78)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.00)");
+          a.fillStyle = g; a.fillRect(0, 0, W, 240);
+        })();
+
+        /* THE ONE WINDOW, on the key's own side, which is where all this frame's light comes
+         * from and why the dais's right face is the lit one. */
+        (function () {
+          var g = a.createRadialGradient(W * 0.96, 250, 20, W * 0.96, 250, 620);
+          g.addColorStop(0.00, "rgba(240,242,224,0.30)");
+          g.addColorStop(0.42, "rgba(240,242,224,0.07)");
+          g.addColorStop(1.00, "rgba(240,242,224,0.00)");
+          a.fillStyle = g; a.fillRect(0, 0, W, CUT);
+        })();
+
+        /* THE FLOOR, near to far, taking the same light. */
+        S.ground({ near: 0.8, far: 40, fill: M.G.dark, fadeToSky: false });
+        S.gridZ({ dz: 1.2, from: 2.0, to: 13, ink: "rgba(0,0,0,0.34)", width: 1.1 });
+
+        /* DRAW FAR FIRST. The bench does not z-sort, deliberately, because a slide is a drawing
+         * and the drawer decides the order. The first cut of this frame drew the dais at Z 7 and
+         * then the chairs at Z 8.6 on top of it, so the nearer object was occluded by the farther
+         * one and the dais read as the dark field behind a row of chairs. Occlusion is the most
+         * reliable depth cue there is and it is the one most easily drawn backwards. */
+
+        /* FIVE EMPTY CHAIRS behind the dais, at true scale, in the deck's greys. */
+        var chair = TXOBJ.sprite("office_chair", { seed: 5 });
+        for (var i = 0; i < 5; i++) {
+          /* SPREAD SO ALL FIVE CLEAR THE DAIS. The dais moved to X -5.2 to show its lit right
+           * face and is drawn AFTER the chairs, so it covered the two at X -2.6 and -1.0 and a
+           * judge counted three of five. Occlusion order is right. The spacing was not. */
+          var X = -4.4 + i * 2.2;
+          S.shadow(chair, { X: X, Z: 8.6, ink: "#000", alpha: 0.30 });
+          S.sprite(chair, { X: X, Z: 8.6, fade: false,
+                            inks: { ink: M.G.metal, paper: M.G.dark, accent: M.G.stone } });
+        }
+
+        /* THE DAIS, NEARER, so it occludes the chairs behind it. A solid with a lit right face
+         * and a dark left face off the deck's one declared light. S.box had not been called by
+         * any of twenty seven shipped decks and the closing frame has been a flat fill in six
+         * consecutive ledger entries, which is what it is for.
+         * ITS OWN HULL SHADOW IS OFF. paintShadow projects onto the ground plane, and at this
+         * camera the projection lands up and left into the wall region rather than on the floor,
+         * which printed as a dark blob hanging in the middle of the back wall. The dais gets its
+         * contact from the floor's own falloff instead. */
+        var dais = S.box({ X: -1.4, Z: 6.2, w: 9.0, h: 0.85, d: 1.3,
+                           fill: M.G.metal, shadow: false });
+        geom.dais = dais;
+
+        /* THE PODIUM at the dais's left, nearer still. */
+        var podium = TXOBJ.sprite("podium", { seed: 2 });
+        S.shadow(podium, { X: 5.6, Z: 4.6, ink: "#000", alpha: 0.44 });
+        S.sprite(podium, { X: 5.6, Z: 4.6, fade: false,
+                           inks: { ink: M.G.bright, paper: M.G.shade, accent: M.G.glare } });
+
+        /* THE WALL SCREEN, and the empty rectangle on it is the motif's last state. The screen
+         * itself is drawn here in the twin, because it is a thing in the room. What goes ON it
+         * is painted flat in `over`, because that is the machine's sight. */
+        (function () {
+          var ppm = S.ppm(12.6);
+          var sw = 4.4 * ppm, sh = sw / CAP_ASPECT;
+          var p = S.project(4.1, 2.1, 12.6);
+          var r = { x: p[0] - sw / 2, y: p[1] - sh / 2, w: sw, h: sh };
+          a.fillStyle = M.G.deep; a.fillRect(r.x, r.y, r.w, r.h);
+          var g = a.createLinearGradient(r.x + r.w, r.y, r.x, r.y + r.h);
+          g.addColorStop(0.00, "rgba(240,242,224,0.16)");
+          g.addColorStop(1.00, "rgba(240,242,224,0.00)");
+          a.fillStyle = g; a.fillRect(r.x, r.y, r.w, r.h);
+          geom.screen = r;
+        })();
+
+        /* THE CUT. Everything below it is flat ground for the close, which is what SPLIT_HORIZON
+         * is, and the line itself is dead level across the full width. */
+        a.fillStyle = M.GROUND;
+        a.fillRect(0, CUT, W, H - CUT);
+
+        /* THE GALLERY SEAT BACKS, AND THEY ARE DRAWN AFTER THE CUT BECAUSE THE CUT WAS ERASING
+         * THEM. They were projected at Z 1.35 and Z 2.30, which at a seated 1.10 m eye puts them
+         * BELOW y 800, and the flat ground fill above is painted over the whole of that. So two
+         * rows of seating were drawn on every render of this frame and no reader ever saw one
+         * pixel of either. A pixel critic reported the near ground as carrying nothing and was
+         * right, and the frame had been drawing the thing it was missing all along.
+         *
+         * They sit ON the cut now, which is also where they belong. The cut is the rail in front
+         * of the reader and what lies below it is the reader's own row. */
+        (function () {
+          var railTop = CUT - 54, seatW = 84, gap = 16;
+          for (var px = -40; px < W + 100; px += seatW + gap) {
+            a.fillStyle = M.G.voidd;
+            a.fillRect(px, railTop, seatW, CUT - railTop + 8);
+            a.fillStyle = "rgba(240,242,224,0.38)";
+            a.fillRect(px, railTop, seatW, 5);
+            a.fillStyle = "rgba(240,242,224,0.16)";
+            a.fillRect(px + seatW - 4, railTop, 4, CUT - railTop + 8);
+          }
+        })();
+      },
+      over: function (c) {
+        /* THE MOTIF'S LAST STATE, empty, on the screen. Flat and unscreened, like every other
+         * appearance of the machine's own sight in this deck. */
+        var r = geom.screen;
+        M.captureRect(c, { x: r.x + r.w * 0.14, y: r.y + r.h * 0.18,
+                           w: r.w * 0.72, h: (r.w * 0.72) / CAP_ASPECT },
+                      { width: 9, brackets: true, bracket: 48 });
+
+        M.quiet(c, boxes, 0.36);
+        M.reserve(c, { top: 142, topSolid: 84, bottom: 0 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

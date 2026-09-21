@@ -1,0 +1,570 @@
+{
+ "story": "Dallas mounted AI cameras on sanitation brush trucks to detect code violations, told its Finance Committee in December 2025 what the system was not, and reported its first citations in a City Manager memo dated September 8th, 2026.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "A City of Dallas Finance Committee briefing dated December 9th, 2025 proposed putting 100 AI enabled cameras on Sanitation brush trucks. It was a staff presentation ahead of a council decision and not itself an approval.",
+   "quote": "Implement 100 AI-enabled cameras on Sanitation",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "Verified against the committed pypdf extraction. See the notes block on why the PDF could not be re-rendered.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c2",
+   "text": "The December 2025 briefing described the hardware as two cameras mounted on one city vehicle.",
+   "quote": "2 cameras mounted on 1 city vehicle",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c3",
+   "text": "The briefing said the cameras photograph while the truck is driving at 25 to 35 MPH.",
+   "quote": "Take photos as it drives (25-35 MPH)",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c4",
+   "text": "The briefing put the capture resolution at 1920p x 1080p.",
+   "quote": "The cameras capture images at 1920p x 1080p resolution",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c5",
+   "text": "The briefing said the cameras have a fixed focal length. The same sentence runs onto the next line of the slide to say they do not support any zoom capability.",
+   "quote": "They have a fixed focal length, which means they do not support",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The quote stops where the document's line breaks. The words 'any zoom capability' begin the next line.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c6",
+   "text": "The briefing promised automated blurring of personal information. The slide's next line names license plate numbers and faces.",
+   "quote": "Automated blurring of personal information",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c7",
+   "text": "The briefing listed the property conditions the software detects. They are bulk trash participation, collapsing structures, trash, tires, illegal dumping, graffiti, boarded windows/doors and high grass.",
+   "quote": "Detection of property conditions",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "Each list item sits on its own line and is too short on its own to serve as a searchable quote, so the heading is quoted and the items are given in the document's own words.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c8",
+   "text": "The briefing put the contract to the committee as a three-year agreement with an estimated value of $2,556,000 that stays subject to annual City Council appropriations.",
+   "quote": "This is a three-year contract for an estimated amount of $2,556,000",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c9",
+   "text": "The briefing gave the annual cost as $852,000 per year, covering 100 cameras and the associated technology, installation, data services, maintenance, warranty and replacement support.",
+   "quote": "The contract cost is $852,000 per year, which includes 100 cameras",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c10",
+   "text": "The briefing told the committee the City may end the contract on 10 days' written notice at any time, without penalty.",
+   "quote": "The City may terminate the contract with 10 days’ written notice",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The document uses a curly apostrophe in 10 days’ and the quote preserves it.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c11",
+   "text": "The briefing gave one slide to two columns, one headed What it IS and one headed What this IS NOT.",
+   "quote": "What it IS What this IS NOT",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The two column headings land on one line of the text extraction because they sit side by side on the slide.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c12",
+   "text": "The items on that slide written as refusals each begin with the word NOT. Two of them are NOT staff replacement and NOT automated ticketing.",
+   "quote": "NOT staff replacement\n• NOT automated ticketing",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The quote spans two consecutive lines of the document and the line break is preserved rather than smoothed into a space.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c13",
+   "text": "The third refusal on that slide is NOT public safety surveillance, answered by a sub point about the ability to blur faces and license plates for privacy.",
+   "quote": "NOT public safety surveillance",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c14",
+   "text": "The briefing answered its own NOT automated ticketing line with a sub point saying there is a human in the loop for all actions. That was a promise made to a committee in December 2025 and not a measurement of anything.",
+   "quote": "There is a human in the loop for all actions",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The words 'for all actions' begin the next line of the document. The phrase wraps across two lines of the pypdf extraction, 'There is a human in the loop' then 'for all actions', which is why the quote field was first captured short. Verified against page 12 of the committed extraction. Frame 4 prints the whole phrase and a craft judge was right that the frame and the quote field disagreed.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c15",
+   "text": "The phrase Just like Google Street View sits on that same slide under the bullet Public right-of-way image capture. It carries no NOT and belongs to what the briefing said the system IS rather than to the refusals.",
+   "quote": "Just like Google Street View",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "Column placement is read from the extraction's ordering and from the fact that every refusal on the slide is prefixed NOT. This one is not.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c16",
+   "text": "The briefing closed by telling the committee the item would be considered by the City Council on December 10th, 2025.",
+   "quote": "Council on December 10, 2025",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The line breaks after 'the City', so the quote starts at the next line.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  },
+  {
+   "id": "c17",
+   "text": "NBC 5 Investigates reported that Dallas has issued its first citations to homeowners for violations the city says the AI cameras detected first and humans confirmed afterwards.",
+   "quote": "The records show the city has issued its first citations to homeowners for violations that the city says AI cameras first detected and humans later confirmed.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c18",
+   "text": "A City Manager memo reported by NBC 5 states that 57 citations have been issued at 34 properties for non-compliance. The memo is not published at a URL this run could find, so the figure is carried as reported and never as read from the memo.",
+   "quote": "In a memo written last week addressing questions about the cameras, City Manager Kimberly Bizor Tolbert wrote that \"57 citations have been issued at 34 properties for non-compliance,\" so far.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c19",
+   "text": "NBC 5 reported the same memo stating that a courtesy notice is not a warning or a violation.",
+   "quote": "And in the city manager's recent memo, Tolbert wrote, \"A courtesy notice is not a warning or a violation.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c20",
+   "text": "The courtesy notice a homeowner received carried the words violations identified in bold near the top, according to NBC 5.",
+   "quote": "Near the top of the notice, in bold letters, it said \"violations identified.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c21",
+   "text": "The notice describes itself as a courtesy notice and not a citation or formal notice of violation.",
+   "quote": "It does go on to say the letter is a \"courtesy notice and is not a citation or formal notice of violation.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c22",
+   "text": "The same notice goes on to tell the owner what happens if the violations remain. The City may issue a Notice of Violation, issue a citation, or refer the property for abatement.",
+   "quote": "But after that it said, \"If the violations remain, the City may issue a Notice of Violation, issue a citation, or refer the property for abatement...\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c23",
+   "text": "The notice also asks the owner to correct the violations promptly to avoid further enforcement action.",
+   "quote": "It also said, \"Please correct the violations promptly to avoid further enforcement action.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c24",
+   "text": "Jeremy Reed, Assistant Director of Dallas Code Compliance, told NBC 5 the city has opened about 300 cases where priority dictates that a code officer visit the property.",
+   "quote": "\"We have opened about 300 cases where we believe that priority dictates that a code officer is out there and that the issue get resolved soon,\" said Jeremy Reed, Assistant Director of Dallas Code Compliance.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c25",
+   "text": "Reed described the courtesy notice to NBC 5 as an education for the property rather than a step toward enforcement.",
+   "quote": "\"I would say it's an education for the property that any code violation on a property that's not dealt with could result in enforcement, but it's not going to happen because they received a courtesy notice,\" Reed said.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c26",
+   "text": "Pressed by NBC 5 on the gap between the memo's wording and the notice's wording, Reed said you could call that a warning.",
+   "quote": "After NBC 5 Investigates reminded Reed the notice asks the homeowner to do something to avoid enforcement and asked if that isn't a warning, Reed replied: \"I think at this point, you're mincing words. I would say you could call that a warning. It is a notification to the property that there is a code violation.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c27",
+   "text": "The City Manager's memo, as reported by NBC 5, said 39 of the citations, or 68%, went to people in City Council Districts 4, 8 and 7 in Southern Dallas.",
+   "quote": "The city manager's memo said 39 of those citations, or 68%, were issued to people in City Council Districts 4, 8 and 7 in Southern Dallas.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c28",
+   "text": "The city has sent what it calls courtesy notices to 3,700 property owners, according to NBC 5.",
+   "quote": "On top of the citations issued and new cases opened, the city said it has also sent what it calls \"courtesy notices\" to 3,700 property owners, notifying them of detected violations.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c29",
+   "text": "NBC 5 reported that city records show the cameras spotted potential violations at 21,000 addresses in four months.",
+   "quote": "In just four months, city records show the cameras spotted potential violations at 21,000 addresses.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c30",
+   "text": "Sarrah Morrison is an Oak Cliff homeowner who received a notice. She told NBC 5 the wording seems slimy and manipulative and that she worries about people who don't understand what it carries.",
+   "quote": "\"It just seems really slimy and manipulative and, you know, I'm worried about people who don't understand that this doesn't actually carry the weight that the wording implies it does,\" said Morrison.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c31",
+   "text": "Morrison told NBC 5 that the city said the AI camera had detected what appeared to be a temporary repair on her roof.",
+   "quote": "She said she called the city and they told her the AI camera detected what appeared to be a temporary repair on her roof.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c32",
+   "text": "City Councilmember Chad West told NBC 5 his primary concern is that the program could end up being inadvertently a tax on the poor.",
+   "quote": "\"My primary concern is that this could end up being inadvertently a tax on the poor,\" said City Councilmember Chad West.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c33",
+   "text": "NBC 5 reported that West proposed pulling funding for the camera program and withdrew the request after the city manager's office agreed to brief a council committee.",
+   "quote": "Councilmember West recently proposed pulling funding for the camera program but agreed to withdraw that request after the city manager's office agreed to brief a council committee on the issue.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c34",
+   "text": "NBC 5 places the promised committee briefing in October and carries no date for it. FOX 4 is the source that carries the date.",
+   "quote": "That meeting is now scheduled for October.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c35",
+   "text": "NBC 5 reported the cameras reached full operation over the summer. FOX 4 describes the city as having used them since early 2026, and the two characterizations are not the same.",
+   "quote": "The cameras just went fully operational over the summer.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c36",
+   "text": "The city says the images are kept for one year, that the system does not connect to any law enforcement database and that faces and license plates are blurred. That is the city's own assertion as reported to NBC 5 and not an independent audit of the system.",
+   "quote": "The city said the images will be retained for one year but insists the system does not connect to any law enforcement database and that faces and license plates in photos are blurred.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c37",
+   "text": "Reed told NBC 5 that the city looks at code violations at properties and does not profile residents or look at demographics.",
+   "quote": "\"We look at code violations at properties. We don't profile residents. We don't look at demographics at properties,\" said Reed.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c38",
+   "text": "Reed told NBC 5 there are more code violations in Southern Dallas than in Northern Dallas and that the goal is never citations.",
+   "quote": "\"There are more code violations in Southern Dallas than in Northern Dallas. And we attempt, at every single instance, we attempt voluntary compliance. The goal is never citations,\" Reed said.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c39",
+   "text": "NBC 5 reported that records show most of the 57 citations went to Southern Dallas property owners. They fell in three City Council districts where a majority of residents are Black and Hispanic.",
+   "quote": "As for the 57 citations issued so far, records show most went to Southern Dallas property owners in three City Council districts where a majority of residents are Black and Hispanic.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c40",
+   "text": "Code Compliance told NBC 5 in a statement that the notices do not require anything of the property owners.",
+   "quote": "In a statement, Code Compliance recently told NBC 5 Investigates that those notices \"do not require anything of the property owners.\"",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c41",
+   "text": "Every residential property in the city is likely to be photographed once a month on bulk trash pickup days, Code Compliance told NBC 5.",
+   "quote": "Code Compliance told NBC 5 Investigates it's likely the cameras will photograph every residential property in the city once a month on bulk trash pickup days.",
+   "url": "https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "Dallas AI code enforcement cameras lead to first homeowner citations, NBC 5 Dallas-Fort Worth"
+  },
+  {
+   "id": "c42",
+   "text": "A memo from the City of Dallas dated September 8th, 2026 set out the findings and costs of the camera program, according to FOX 4.",
+   "quote": "A September 8 memo from the City of Dallas detailed the findings and costs of AI-powered cameras that the city has been using on its trash trucks since early 2026.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c43",
+   "text": "FOX 4 reported that the memo says the cameras have scanned 10,000 properties and produced 3,700 violations that drew notices. That figure sits beside NBC 5's separate report of potential violations at 21,000 addresses, and nothing in this record reconciles the two.",
+   "quote": "According to the memo, the cameras have scanned 10,000 properties and have resulted in 3,700 violations, resulting in notices from the city.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c44",
+   "text": "FOX 4 reported that the memo says citations are only issued after a code officer inspects the property in person and gives notice to the owner. That is the December 2025 human in the loop promise reported as kept.",
+   "quote": "57 citations have also been handed out at 34 properties from what the cameras have scanned. The memo also states citations are only issued after a code officer inspects the property in-person and provides notice to the owner.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c45",
+   "text": "FOX 4 gave the taxpayer cost of the cameras as $852,000 a year. The December 2025 contract slide states the same annual figure.",
+   "quote": "The taxpayer cost for the cameras is $852,000 a year.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c46",
+   "text": "The cameras are made by a company called City Detect, according to FOX 4. The December 2025 briefing names the same vendor.",
+   "quote": "The cameras, which are made by a company called City Detect, scan homes and buildings for potential code violations.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c47",
+   "text": "FOX 4 reported West saying 70% of the citations come from predominantly African American neighborhoods. That is West's own characterization to FOX 4 and it is not the memo's 68% figure for Districts 4, 8 and 7.",
+   "quote": "West says 70% of the citations issued from what the cameras have identified come from predominantly African American neighborhoods.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c48",
+   "text": "West told FOX 4 his concern is whether the city has privacy protections in place as it learns more about AI.",
+   "quote": "\"The staff's desire is to be able to have a cleaner, more tidy, orderly city, right? My concern is, as we're learning more about AI and the lack of privacy and lack of protections, does the city have those protections in place to make sure my home, your home, our residents' homes, and our privacy are protected, number one,\" West said.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c49",
+   "text": "FOX 4 is the source that carries the date of the briefing, putting it on October 19th, 2026 and attributing it to City Manager Kim Tolbert.",
+   "quote": "A briefing on the cameras from Dallas City Manager Kim Tolbert will take place on October 19.",
+   "url": "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "high",
+   "source_title": "AI-powered cameras on Dallas trash trucks result in almost 4,000 notices, 57 citations, FOX 4 Dallas-Fort Worth"
+  },
+  {
+   "id": "c50",
+   "text": "A Dallas Morning News report republished by Government Technology names the committee, putting the program before the Quality of Life, Arts and Culture Committee on October 19th, 2026.",
+   "quote": "The program is scheduled for a Quality of Life, Arts and Culture Committee briefing Oct. 19, where council members are expected to question the system's cost, privacy safeguards, geographic impact and measurable results.",
+   "url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The only source found that names the committee. The page is a republication of a Dallas Morning News article by Maria Ramos Pacheco and William Tong, distributed by Tribune Content Agency. The sentence was returned identically on two separate fetches.",
+   "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited, Government Technology"
+  },
+  {
+   "id": "c51",
+   "text": "The first item in the What it IS column of that briefing slide is proactive property condition detection. It carries no NOT and it is answered by a sub point calling the system a tool for staff to support their work.",
+   "quote": "Proactive property condition detection",
+   "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-21",
+   "confidence": "medium",
+   "note": "The phrase wraps across two lines of the pypdf extraction, as 'Proactive property condition' then 'detection', which is why it did not match a single line search when the claims were first built. Verified against page 12 of the committed extraction at out/2026-09-21/sources/dallas_dec2025_briefing.txt. Frame 4 had been printing this string as the document's own words with no claim behind it, which a pixel critic caught on the first review round.",
+   "source_title": "Update on the Use of AI-Powered Camera Technology, Code Compliance and Sanitation briefing to the Dallas City Council Finance Committee"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "The December 2025 briefing said four things the system IS NOT, including \"There is a human in the loop for all actions\" and \"Just like Google Street View\".",
+   "reason": "The slide carries three refusals, each prefixed NOT. They are NOT staff replacement, NOT automated ticketing and NOT public safety surveillance. \"There is a human in the loop\" is a sub point answering NOT automated ticketing rather than a refusal in its own right, and \"Just like Google Street View\" carries no NOT at all and sits under the bullet \"Public right-of-way image capture\", which is on the What it IS side. Carried correctly as c12, c13, c14 and c15."
+  },
+  {
+   "finding": "The City Manager memo of September 8th, 2026 as a citable primary source.",
+   "reason": "No public URL for the memo was found. Every figure from it is carried through NBC 5 or FOX 4 and attributed in the claim text as reported, never as read from the memo. This is why c18, c19, c27, c43 and c44 all name the reporting outlet."
+  },
+  {
+   "finding": "Government Technology's statement that the city sent about 520 courtesy notices between June and August.",
+   "reason": "A different window and a different measure from NBC 5's 3,700 property owners, and reconciling them would be arithmetic this record does not perform. The first fetch of that page also returned a model summary carrying figures that the later verbatim passes did not reproduce, so nothing from that page is carried except the one sentence confirmed on two separate fetches."
+  },
+  {
+   "finding": "The headline figure that AI flagged 20,000 code violations in Dallas.",
+   "reason": "The number appears in the page title and URL slug. The one article sentence offered for it read \"more than 20,000 code concerns\", which is a third measure beside FOX 4's 10,000 scanned properties and NBC 5's 21,000 addresses. Confirmed only once and not carried."
+  },
+  {
+   "finding": "The NBC 5 sentence naming litter and a roof that was not in operating condition on Morrison's notice.",
+   "reason": "The saved snapshot renders curly quotation marks around one phrase and straight ones around the other in the same sentence, and the re-fetch returned straight marks throughout. No verbatim form can be stated with confidence, so the sentence is dropped. The roof detection is carried instead by c31, whose sentence contains no quotation marks."
+  },
+  {
+   "finding": "The NBC 5 sentence that Morrison provided documentation showing the roof repair is a permanent piece of flashing installed years ago.",
+   "reason": "Not put to the re-fetch for character by character confirmation, so not carried. It was read only in the saved snapshot."
+  },
+  {
+   "finding": "Re-verification of the December 2025 briefing by rendering the PDF.",
+   "reason": "The URL is live and returned 200 with a 1.7 MB application/pdf body on three separate fetches this run, so the document exists at the cited address. The fetch pipeline could not produce a readable text layer from it, returning encoded image stream data on two attempts and refusing on a third. Every briefing claim is therefore verified against the committed pypdf extraction and carries confidence medium for that reason."
+  },
+  {
+   "finding": "A claim that the December 2025 promises were broken.",
+   "reason": "The reporting does not support it. FOX 4 reports the memo saying citations issue only after an in-person inspection by a code officer, and NBC 5 reports the citations as detected by AI and confirmed by humans, which is the human in the loop promise reported as kept. NBC 5 also reports the city saying faces and license plates are blurred and that the system connects to no law enforcement database. Carried as c36 and c44. The tension in this story is the courtesy notice's wording, not a broken promise about automated ticketing."
+  }
+ ],
+ "notes": [
+  "The December 2025 document is a PROMISE made to a committee before a council decision. The September 2026 figures are a REPORTED OUTCOME carried through two newsrooms. No claim in this file blurs the two, and every claim drawn from the memo names the outlet that reported it.",
+  "The committee briefing date is carried by three sources at three levels of detail. NBC 5 says only October (c34), FOX 4 gives October 19 (c49), and the Dallas Morning News report republished by Government Technology names the Quality of Life, Arts and Culture Committee and the same date (c50). FOX 4 is the outlet that first carries the date.",
+  "Two percentages appear and they are not the same measure. The memo's 68% is 39 of the citations in Districts 4, 8 and 7 as reported by NBC 5 (c27). The 70% is Chad West's own characterization to FOX 4 about predominantly African American neighborhoods (c47). Nothing here reconciles them and neither was computed.",
+  "Three different counts of what the cameras found appear across sources. FOX 4 reports 10,000 properties scanned (c43), NBC 5 reports potential violations at 21,000 addresses in four months (c29), and Government Technology's headline says 20,000. They measure different things and no arithmetic was performed on any of them.",
+  "The start date is described differently by the two newsrooms. NBC 5 says the cameras went fully operational over the summer and FOX 4 says the city has used them since early 2026. Both readings are carried in c35 rather than one being chosen.",
+  "Claims c1 through c16 were verified against out/2026-09-21/sources/dallas_dec2025_briefing.txt, a pypdf extraction of the live PDF, because the PDF could not be re-rendered this run. See the rejection entry for the measurement behind that.",
+  "Three quotes stop where the document's own line breaks rather than being smoothed into running text. c5 stops before 'any zoom capability', c14 before 'for all actions' and c16 begins at 'Council'. c12 preserves a line break inside the quote rather than replacing it with a space.",
+  "c10 preserves a curly apostrophe in 10 days' written notice because that is what the document carries. No apostrophe, dash or quotation mark in any quote field was normalized."
+ ]
+}

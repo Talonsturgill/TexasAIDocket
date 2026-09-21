@@ -1,10 +1,21 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-20",
+    "generated": "2026-09-21",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
+    "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/": {
+      "etag": null,
+      "last_modified": "Mon, 21 Sep 2026 06:19:37 GMT",
+      "hash": "8a7aeb2dd43d3eb542533a473585af7b06eab761348384a0487de2f2617f17d6",
+      "proven": [
+        "tx-2026-0167-c1",
+        "tx-2026-0167-c2",
+        "tx-2026-0167-c3",
+        "tx-2026-0167-c4"
+      ]
+    },
     "https://abc13.com/story/conroe-city-council-indefinitely-tables-2-flock-camera-proposals/19575313/": {
       "etag": null,
       "last_modified": "Sat, 19 Sep 2026 06:15:02 GMT",
@@ -292,6 +303,23 @@
         "tx-2026-0026-c3"
       ]
     },
+    "https://clinicaltrials.gov/api/v2/studies/NCT07626112": {
+      "etag": "\"0/0.34.1/mu6q9sf4\"",
+      "last_modified": null,
+      "hash": "d4432c4153be76336f8fcb3330ca6a0232182b0b80dcb075e992fe4e03c77659",
+      "proven": [
+        "tx-2026-0166-c1",
+        "tx-2026-0166-c10",
+        "tx-2026-0166-c2",
+        "tx-2026-0166-c3",
+        "tx-2026-0166-c4",
+        "tx-2026-0166-c5",
+        "tx-2026-0166-c6",
+        "tx-2026-0166-c7",
+        "tx-2026-0166-c8",
+        "tx-2026-0166-c9"
+      ]
+    },
     "https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/": {
       "etag": null,
       "last_modified": "Sat, 19 Sep 2026 06:15:12 GMT",
@@ -421,11 +449,15 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "fcb2ab89d70e7f0272e86e32a268869f3b10b2edd5a51d68da6704e39b030421",
+      "hash": "623f6ca01c3cc21c3b412c225fcb228e3f2893a1fdde37b7ae04e1afee49b8c8",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
-        "tx-2026-0147-c3"
+        "tx-2026-0147-c3",
+        "tx-2026-0147-c4",
+        "tx-2026-0147-c5",
+        "tx-2026-0147-c6",
+        "tx-2026-0147-c7"
       ]
     },
     "https://engineering.unt.edu/cse/undergraduate/bsai.html": {
@@ -767,8 +799,8 @@
     },
     "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/": {
       "etag": null,
-      "last_modified": "Fri, 18 Sep 2026 01:05:20 GMT",
-      "hash": "9f8dfaa26e4013c01cbb700e6bc06622d6a1394885097488b24c2b9b7bc7be86",
+      "last_modified": "Sun, 20 Sep 2026 21:51:41 GMT",
+      "hash": "924bcfb894e884306236c1199c539be8f6446c04315327acaf212558183c1c21",
       "proven": [
         "tx-2026-0160-c1",
         "tx-2026-0160-c2",
@@ -950,10 +982,43 @@
         "tx-2026-0117-c4"
       ]
     },
+    "https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=135": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "2c3e02fb527d6ee33c5f8c1d41cf00daffa1d1a77707baf9a26ce09090752c66",
+      "proven": [
+        "tx-2026-0168-c1",
+        "tx-2026-0168-c2",
+        "tx-2026-0168-c3",
+        "tx-2026-0168-c4"
+      ]
+    },
+    "https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=136": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "028ba409759b423c79c0781cf9a2190ceebbe8dfd3b08973b9175306101b6cb7",
+      "proven": [
+        "tx-2026-0169-c1",
+        "tx-2026-0169-c2",
+        "tx-2026-0169-c3",
+        "tx-2026-0169-c4"
+      ]
+    },
+    "https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=141": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "fc8d286390bb160703f6f4dc09f2f90db7063dfe33b46ffec626f4ee8cb1133e",
+      "proven": [
+        "tx-2026-0170-c1",
+        "tx-2026-0170-c2",
+        "tx-2026-0170-c3",
+        "tx-2026-0170-c4"
+      ]
+    },
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "473e30b0bc56fadb9e49ffe11e69d30fab902d076e374f5a0a2081c2cb7967e8",
+      "hash": "e9c417c33d525acf1ede4c835f768929b5f4902c7e2de56a7ab29b3461bcce0c",
       "proven": [
         "tx-2026-0002-c12",
         "tx-2026-0002-c4",
@@ -1036,7 +1101,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Sat, 19 Sep 2026 12:00:00 GMT",
+      "last_modified": "Sun, 20 Sep 2026 12:00:00 GMT",
       "hash": "8dea91edb1817c65c0be830b24e01718b47c6f837cfff4da13eea5b32db64ef7",
       "proven": [
         "tx-2026-0109-c1",
@@ -1493,6 +1558,15 @@
         "tx-2026-0115-c1"
       ]
     },
+    "https://www.axon.com/products/draft-one": {
+      "etag": null,
+      "last_modified": "Wed, 02 Sep 2026 19:46:34 GMT",
+      "hash": "af402037b10a267601344817cebe3e335289735e0829b79cddc1947cd020b0e0",
+      "proven": [
+        "tx-2026-0168-c5",
+        "tx-2026-0168-c6"
+      ]
+    },
     "https://www.blancogroundwatertx.gov/2026-04-16-district-meeting": {
       "etag": "W/\"c36577b10086c72ad6278c19f885f5bb\"",
       "last_modified": null,
@@ -1546,9 +1620,9 @@
       ]
     },
     "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic": {
-      "etag": "W/\"1789695921:dtagent10343260715123811GX5J\"",
-      "last_modified": "Fri, 18 Sep 2026 01:45:20 GMT",
-      "hash": "18b5bffd8409a3308c637933e64ead0cec0a4ef6431417ecfc5603dba6f74f91",
+      "etag": "W/\"1789933999:dtagent10343260715123811GX5J\"",
+      "last_modified": "Sun, 20 Sep 2026 19:53:18 GMT",
+      "hash": "60cfa71def59861d6bfba8652db898d291a5275dd194035f52d7a1c85b25dfce",
       "proven": [
         "tx-2026-0148-c1",
         "tx-2026-0148-c2"
@@ -1576,13 +1650,15 @@
       ]
     },
     "https://www.ercot.com/mktrules/issues/PGRR144": {
-      "etag": null,
+      "etag": "\"e69aad3f\"",
       "last_modified": null,
-      "hash": "448dbed0ee5822afdf309f7026890df19326071828fa1f0b65e87f604a223da1",
+      "hash": "5c5efd18193f4336830b16bc4be84647b18632d2428e82d25c9676c93df20b07",
       "proven": [
         "tx-2026-0159-c11",
         "tx-2026-0159-c12",
-        "tx-2026-0159-c13"
+        "tx-2026-0159-c13",
+        "tx-2026-0159-c14",
+        "tx-2026-0159-c15"
       ]
     },
     "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04": {
@@ -1673,6 +1749,14 @@
       "hash": "87a04c11e02a61f8d2dcf3eeb1c9aace150ebc9d9d58d14823052a5e19f41e07",
       "proven": [
         "tx-2026-0157-c7"
+      ]
+    },
+    "https://www.govably.com/": {
+      "etag": "\"c7dce374e659c2dfae31eae1f352abe4721093ec7ecc034116c907e52fb30576\"",
+      "last_modified": "Thu, 17 Sep 2026 13:49:50 GMT",
+      "hash": "a054476d17a4693be87385dfc9d019fb58b47b056d230c8680998caed42b1189",
+      "proven": [
+        "tx-2026-0169-c5"
       ]
     },
     "https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm": {
@@ -2123,7 +2207,7 @@
     "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells": {
       "etag": null,
       "last_modified": null,
-      "hash": "9ab09a72f765bb02b9699c3af27f84a5b8dbf9f36e3e496f256abc22482cc52a",
+      "hash": "ee18859ddf1e0ebae0f285f481afd677ee1455a36402493a993d90cb8b66198d",
       "proven": [
         "tx-2026-0161-c1",
         "tx-2026-0161-c2",

@@ -1,0 +1,2119 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Once a month, a truck takes a picture of your house.",
+          "x": 80,
+          "y": 170,
+          "w": 760,
+          "h": 264,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              155,
+              587,
+              117
+            ],
+            [
+              80,
+              243,
+              743,
+              117
+            ],
+            [
+              80,
+              331,
+              510,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The City of Dallas runs AI enabled cameras on its sanitation brush trucks. Code Compliance says every residential property in the city is likely to be photographed once a month on bulk trash pickup days.",
+          "x": 82,
+          "y": 512,
+          "w": 600,
+          "h": 180,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              512,
+              553,
+              35
+            ],
+            [
+              82,
+              548,
+              540,
+              35
+            ],
+            [
+              82,
+              584,
+              562,
+              35
+            ],
+            [
+              82,
+              620,
+              562,
+              35
+            ],
+            [
+              82,
+              656,
+              61,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Oak Cliff, Dallas County",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c4 c41 c35 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 515,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              515,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5478,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 40.1,
+          "variance": 2738
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two cameras. One truck. No zoom.",
+          "x": 80,
+          "y": 846,
+          "w": 800,
+          "h": 172,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              833,
+              654,
+              112
+            ],
+            [
+              80,
+              919,
+              559,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information.",
+          "x": 82,
+          "y": 1076,
+          "w": 740,
+          "h": 102,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1076,
+              737,
+              33
+            ],
+            [
+              82,
+              1110,
+              710,
+              33
+            ],
+            [
+              82,
+              1144,
+              526,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hardware, from the briefing",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c4 c5 c6 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 482,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              482,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6199,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 56.9,
+          "variance": 3444.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Eight things it is looking for.",
+          "x": 80,
+          "y": 158,
+          "w": 640,
+          "h": 162,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              145,
+              525,
+              106
+            ],
+            [
+              80,
+              226,
+              383,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The December briefing listed what the software detects. The house is in good repair and the eight are the machine's categories, not a finding about anybody's property.",
+          "x": 82,
+          "y": 320,
+          "w": 668,
+          "h": 144,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              320,
+              648,
+              35
+            ],
+            [
+              82,
+              356,
+              552,
+              35
+            ],
+            [
+              82,
+              392,
+              594,
+              35
+            ],
+            [
+              82,
+              428,
+              104,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The detection list, verbatim",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c1 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "bulk trash participation",
+          "x": 80,
+          "y": 872,
+          "w": 357,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              871,
+              357,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "collapsing structures",
+          "x": 80,
+          "y": 926,
+          "w": 312,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              925,
+              312,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "trash",
+          "x": 80,
+          "y": 980,
+          "w": 74,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              979,
+              74,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "tires",
+          "x": 80,
+          "y": 1034,
+          "w": 74,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1033,
+              74,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "illegal dumping",
+          "x": 777,
+          "y": 872,
+          "w": 223,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              777,
+              871,
+              223,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "graffiti",
+          "x": 881,
+          "y": 926,
+          "w": 119,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              881,
+              925,
+              119,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "boarded windows/doors",
+          "x": 688,
+          "y": 980,
+          "w": 312,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              979,
+              312,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "high grass",
+          "x": 851,
+          "y": 1034,
+          "w": 149,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 232, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              851,
+              1033,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6052,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 54.8,
+          "variance": 3768.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the city said it would not be.",
+          "x": 80,
+          "y": 160,
+          "w": 820,
+          "h": 166,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              147,
+              658,
+              108
+            ],
+            [
+              80,
+              230,
+              451,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A Finance Committee briefing on December 9th, 2025 set out the terms and gave one slide to two columns. The three refusals are the document's own words in the document's own order.",
+          "x": 82,
+          "y": 404,
+          "w": 700,
+          "h": 144,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              404,
+              699,
+              35
+            ],
+            [
+              82,
+              440,
+              633,
+              35
+            ],
+            [
+              82,
+              476,
+              659,
+              35
+            ],
+            [
+              82,
+              512,
+              120,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "December 9th, 2025",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c51 c12 c13 c14 c15 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 627,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              627,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "What it IS",
+          "fn": "fillText",
+          "font": "800 35.7px Manrope, sans-serif"
+        },
+        {
+          "text": "What this IS NOT",
+          "fn": "fillText",
+          "font": "800 35.7px Manrope, sans-serif"
+        },
+        {
+          "text": "Proactive property condition",
+          "fn": "fillText",
+          "font": "500 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "detection",
+          "fn": "fillText",
+          "font": "500 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "Public right-of-way image",
+          "fn": "fillText",
+          "font": "500 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "capture",
+          "fn": "fillText",
+          "font": "500 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "Just like Google Street View",
+          "fn": "fillText",
+          "font": "21.4px Manrope, sans-serif"
+        },
+        {
+          "text": "NOT staff replacement",
+          "fn": "fillText",
+          "font": "600 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "NOT automated ticketing",
+          "fn": "fillText",
+          "font": "600 26.4px Manrope, sans-serif"
+        },
+        {
+          "text": "There is a human in the loop for all",
+          "fn": "fillText",
+          "font": "21.4px Manrope, sans-serif"
+        },
+        {
+          "text": "actions",
+          "fn": "fillText",
+          "font": "21.4px Manrope, sans-serif"
+        },
+        {
+          "text": "NOT public safety surveillance",
+          "fn": "fillText",
+          "font": "600 26.4px Manrope, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6357,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 92.3,
+          "variance": 8234.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "39 of the 57 landed in three districts.",
+          "x": 80,
+          "y": 170,
+          "w": 600,
+          "h": 147,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              158,
+              567,
+              96
+            ],
+            [
+              80,
+              232,
+              501,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor.",
+          "x": 82,
+          "y": 606,
+          "w": 330,
+          "h": 315,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              607,
+              316,
+              33
+            ],
+            [
+              82,
+              642,
+              294,
+              33
+            ],
+            [
+              82,
+              677,
+              256,
+              33
+            ],
+            [
+              82,
+              712,
+              313,
+              33
+            ],
+            [
+              82,
+              747,
+              298,
+              33
+            ],
+            [
+              82,
+              782,
+              287,
+              33
+            ],
+            [
+              82,
+              817,
+              208,
+              33
+            ],
+            [
+              82,
+              852,
+              281,
+              33
+            ],
+            [
+              82,
+              887,
+              55,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the citations landed",
+          "x": 80,
+          "y": 80,
+          "w": 431,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              431,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18 c27 c38 c39 c32 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "39 of those citations, or 68%, were issued to",
+          "fn": "fillText",
+          "font": "600 14.1px Manrope, sans-serif"
+        },
+        {
+          "text": "people in City Council Districts 4, 8 and 7 in Southern Dallas.",
+          "fn": "fillText",
+          "font": "600 14.1px Manrope, sans-serif"
+        },
+        {
+          "text": "DISTRICTS 4, 8 AND 7",
+          "fn": "fillText",
+          "font": "500 12.9px \"JetBrains Mono\", monospace"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4767,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 73.7,
+          "variance": 7273.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The letter, in its own words.",
+          "x": 80,
+          "y": 146,
+          "w": 760,
+          "h": 172,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              710,
+              112
+            ],
+            [
+              80,
+              219,
+              242,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says.",
+          "x": 82,
+          "y": 330,
+          "w": 660,
+          "h": 108,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              330,
+              566,
+              35
+            ],
+            [
+              82,
+              366,
+              600,
+              35
+            ],
+            [
+              82,
+              402,
+              245,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the notice says about itself",
+          "x": 80,
+          "y": 80,
+          "w": 546,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              546,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c20 c21 c22 c23 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "violations identified",
+          "fn": "fillText",
+          "font": "bold 27.4px Manrope, sans-serif"
+        },
+        {
+          "text": "courtesy notice and is not a citation or formal notice of violation",
+          "fn": "fillText",
+          "font": "500 18px Manrope, sans-serif"
+        },
+        {
+          "text": "If the violations remain, the City may issue a Notice of Violation, issue a citation, or refer the property for",
+          "fn": "fillText",
+          "font": "17.2px Manrope, sans-serif"
+        },
+        {
+          "text": "abatement...",
+          "fn": "fillText",
+          "font": "17.2px Manrope, sans-serif"
+        },
+        {
+          "text": "Please correct the violations promptly to avoid further enforcement action.",
+          "fn": "fillText",
+          "font": "600 18.5px Manrope, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5576,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 108.2,
+          "variance": 7990.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.",
+          "x": 80,
+          "y": 330,
+          "w": 800,
+          "h": 77,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(198, 204, 182)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              330,
+              721,
+              37
+            ],
+            [
+              80,
+              368,
+              269,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"I would say you could call that a warning.\"",
+          "x": 74,
+          "y": 452,
+          "w": 930,
+          "h": 195,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(110, 122, 95)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              437,
+              863,
+              127
+            ],
+            [
+              74,
+              534,
+              770,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Code Compliance says the notices do not require anything of the property owners.",
+          "x": 80,
+          "y": 1000,
+          "w": 800,
+          "h": 77,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(198, 204, 182)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1000,
+              757,
+              37
+            ],
+            [
+              80,
+              1038,
+              259,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer.",
+          "x": 80,
+          "y": 1088,
+          "w": 800,
+          "h": 101,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(154, 162, 146)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1088,
+              679,
+              33
+            ],
+            [
+              80,
+              1122,
+              797,
+              33
+            ],
+            [
+              80,
+              1155,
+              344,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Asked the plain question",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c26 c19 c40 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6154,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55.8,
+          "variance": 3287.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A citation still needs somebody at the door.",
+          "x": 80,
+          "y": 170,
+          "w": 700,
+          "h": 235,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              158,
+              629,
+              101
+            ],
+            [
+              80,
+              236,
+              520,
+              101
+            ],
+            [
+              80,
+              314,
+              171,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FOX 4 reported the September 8th memo saying citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof.",
+          "x": 82,
+          "y": 430,
+          "w": 600,
+          "h": 216,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              430,
+              548,
+              35
+            ],
+            [
+              82,
+              466,
+              501,
+              35
+            ],
+            [
+              82,
+              502,
+              592,
+              35
+            ],
+            [
+              82,
+              538,
+              577,
+              35
+            ],
+            [
+              82,
+              574,
+              539,
+              35
+            ],
+            [
+              82,
+              610,
+              202,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The human step, drawn",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c44 c42 c17 c31 c36 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 611,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              611,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5412,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.9,
+          "variance": 2662.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "October 19th, and the committee takes it up.",
+          "x": 80,
+          "y": 818,
+          "w": 820,
+          "h": 156,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(217, 222, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              806,
+              685,
+              101
+            ],
+            [
+              80,
+              884,
+              694,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person.",
+          "x": 82,
+          "y": 990,
+          "w": 830,
+          "h": 138,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(174, 182, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              990,
+              810,
+              33
+            ],
+            [
+              82,
+              1025,
+              818,
+              33
+            ],
+            [
+              82,
+              1059,
+              787,
+              33
+            ],
+            [
+              82,
+              1094,
+              385,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where it goes next",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c49 c50 c40 c44 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 150, 131)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5695,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.8,
+          "variance": 2744.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

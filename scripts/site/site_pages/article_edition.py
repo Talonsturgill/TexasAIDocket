@@ -224,8 +224,20 @@ def _expand(text: str, claims: dict) -> str:
         found = re.search(r"\$([\d,]+(?:\.\d+)?)", claim["quote"])
         if not found:
             raise ValueError(f"No quoted amount in {claim_id}")
-        value = Decimal(found.group(1).replace(",", ""))
-        return f"${value:,.2f}"
+        raw = found.group(1)
+        value = Decimal(raw.replace(",", ""))
+        # THE SOURCE'S OWN PRECISION, READ OFF THE SOURCE. This was always `,.2f`, so a contract
+        # the briefing states as $2,556,000 published as $2,556,000.00, and those cents were the
+        # renderer's invention rather than the record's. numeral_lint caught it: the computed set
+        # holds 2556000 and the page printed a figure the build never computed.
+        #
+        # The first fix was "drop the cents when the amount is whole" and it was wrong in the
+        # other direction. 2026-09-18 quotes $19,200.00, whose cents ARE stated, and dropping
+        # them invented a different precision and broke a page that had been passing. So the rule
+        # is neither always two places nor never: it is however many places the quote itself
+        # carries. A figure this project prints matches the document it came from.
+        places = len(raw.partition(".")[2])
+        return f"${value:,.{places}f}"
     expanded = TOKEN.sub(token, text)
     if "{{" in expanded or "}}" in expanded:
         raise ValueError("Unresolved article token")

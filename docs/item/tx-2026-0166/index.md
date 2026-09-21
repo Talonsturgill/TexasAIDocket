@@ -12,7 +12,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
 - Public access: Write to the decider
 - Take part: https://clinicaltrials.gov/study/NCT07626112
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-21
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-18 · Admitted on the trial's own registration. The study is recruiting at three Texas academic campuses, and what it is registered to measure is whether the application can be used rather than whether it changes any outcome.
 - 2026-09-18 · A code review found that the summary published the recruitment status, the sponsor's role and two dates with no claim behind any of them. The registry was re-fetched and four claims were added, quoting the status, the start date, the last update date and the responsible party's title. The reader-facing link pointed at the JSON API and now points at the human study page. This is a recruiting trial and that field is the route a prospective participant would follow.
+- 2026-09-21 · The registry entry still shows the trial recruiting at the three Texas campuses, under the same sponsor and by the same method of holding a phone against the abdomen.
 
 ## Evidence
 

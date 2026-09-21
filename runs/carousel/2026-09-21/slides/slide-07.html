@@ -1,0 +1,336 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 7 of 9. Archetype TYPE_AS_OBJECT, and the deck's only one.
+     THE TURN. The assistant director's sentence carved INTO the same porch boards as frame 6, at
+     a 0.055 m cap height on boards at a true 0.140 m pitch, with the memo's flat denial set small
+     above it and Code Compliance's own statement set small below, all three at one measure so
+     none of the three voices wins by size.
+     THE CARVE IS A text-shadow PAIR ON THE DOM GLYPHS and never a second canvas drawing of the
+     headline. The lamp deck's most expensive lesson is that canvas text can't be registered to
+     DOM text in a variable font: the two copies agree at the first letter and drift further apart
+     with every glyph after it. This way the type also stays vector in the PDF.
+     THE GROOVE IS CUT UNDER THIS DECK'S OWN SUN. The key is low in the east southeast off the
+     camera's right shoulder, so an incised letter's RIGHT wall takes the light and its LEFT wall
+     is in shadow, which is the inverse of the deck's cast direction. It is computed from the same
+     azimuth every shadow in the deck uses rather than chosen by eye.
+     THIS FRAME CARRIES NO ACCENT AT ALL. It is a paper frame in the deck's sense, which is that
+     the words on it are the city's and the machine has nothing to say about them.
+     Frame median L* 24, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* THE CARVE. A dark offset to the upper right and a pale offset to the lower left is an incised
+     letter under a key at az 38 el 22, and both offsets are computed from that one declaration
+     rather than picked. */
+  .hook { position:absolute; left:74px; top:452px; width:930px; font-size:104px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
+          letter-spacing:-0.030em; color:#6E7A5F; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow: 6px -4px 0 rgba(0,0,0,0.94), -6px 4px 0 rgba(242,246,224,0.66); }
+  /* THE THREE VOICES SIT AT ONE MEASURE, ALL THREE ON SHADED BOARDS, so all three are set
+     light. The shaft of sun is bounded and lands beside the carve rather than under any of
+     them, which is what lets the ink stay one way up across the whole frame. */
+  /* THE MEMO'S LINE CARRIES A HALO, THE SAME ONE FRAME 3'S LABELS CARRY, and it is not a plate.
+     The boards run top to bottom on this frame, so three joints cross this line wherever it is
+     put and no board origin can clear them. A halo is per glyph, in the opposite value, and it
+     leaves the surface behind the type untouched, which a plate does not. */
+  .above { position:absolute; left:80px; top:330px; width:800px; font-size:27px;
+           line-height:1.42; color:#C6CCB6; z-index:10;
+           text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                        -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
+  /* THE SAME HALO THE MEMO LINE CARRIES, AND FOR THE SAME REASON. The boards run top to bottom
+     on this frame, so joints cross every horizontal line of type wherever it is put. A halo is
+     per glyph and in the opposite value, and it leaves the surface behind the type untouched. */
+  .below { position:absolute; left:80px; top:1000px; width:800px; font-size:27px;
+           line-height:1.42; color:#C6CCB6; z-index:10;
+           text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                        -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
+  .attrib { position:absolute; left:80px; top:1088px; width:800px; font-size:24px;
+            line-height:1.40; color:#9AA292; z-index:10;
+            text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                          -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<p class="above">NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.</p>
+<h1 class="hook" id="hook">"I would say you could call that a warning."</h1>
+<p class="below">Code Compliance says the notices do not require anything of the property owners.</p>
+<p class="attrib">NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "Asked the plain question", counter: "07 / 09",
+      src: "c26 c19 c40   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 104, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+
+    var boxes = M.boxes(".hook, .above, .below, .attrib, .kick, .count, .src, .tx-site", 20);
+
+    /* THE SAME PORCH AS FRAME 6, camera lifted 30 mm and turned a few degrees, so the swipe is a
+     * small move rather than a cut and the boards are continuous across it. The ruler is the
+     * focal length over the height above the boards, exactly as on frame 6. */
+    var ABOVE_M = 0.65, FOCAL = 1393, PPM = FOCAL / ABOVE_M;
+
+    M.print(cx, {
+      seed: 27,
+      draw: function (a) {
+        var S = TXSCENE.create(a, M.cam({ eye: ABOVE_M, horizon: 200, f: FOCAL , light: { az: 38, el: 22 } }));
+
+        /* THE BOARDS, at the same true 0.140 m pitch as frame 6 and seeded the same way, so the
+         * grain of a given board is the grain of that board. The camera moved 30 mm, which at
+         * this ruler is a 110 px shift, and the boards move with it. */
+        /* THE BOARD ORIGIN IS OFFSET SO NO JOINT LANDS IN A GLYPH BAND. At -110 a joint fell
+         * at y 405, straight across the memo line, and the harness reads a full width edge through
+         * a glyph band as a strikethrough because at feed width that is what it is. The boards are
+         * true geometry, so the RUN moves and the type stays where the composition put it. */
+        /* THE BOARDS ARE IN THE EAVE'S SHADE, WHICH IS WHAT THE PLAN SAID ALL ALONG. An earlier
+         * cut of this frame took them to `bright` while chasing a silhouette out of the boards
+         * themselves, and that is the move that made every later attempt harder: a bright board
+         * field IS the frame's median, so the shaft of sun had to beat its own surroundings. The
+         * dossier's palette line reads "boards in shade #383C30" and it was right. */
+        M.porchBoards(a, { x: -20, y: -40, w: W + 40, h: H + 220 }, PPM,
+                      { face: M.G.shade, joint: M.G.deep, seed: 6, axis: "along" });
+
+        /* THE MORNING across the porch from the key's own side. Deeper than frame 6's, because
+         * this frame has no paper on it to carry the light and the carve needs a dark field to
+         * cut into. */
+        (function () {
+          var g = a.createLinearGradient(W, 0, 0, H * 0.78);
+          g.addColorStop(0.00, "rgba(246,248,232,0.20)");
+          g.addColorStop(0.44, "rgba(246,248,232,0.04)");
+          g.addColorStop(0.76, "rgba(0,0,0,0.10)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.26)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+        })();
+
+        /* THE SHAFT OF MORNING ON THE BOARDS, AND IT IS THIS FRAME'S WHOLE IMAGE.
+         *
+         * The first three cuts of this frame tried to give a TYPE_AS_OBJECT rect a silhouette by
+         * darkening boards, at 0.80 alpha and then at full strength, and both measured under a
+         * fiftieth of the frame against a floor of 0.08. The reason was not the alpha. Measured
+         * off the render rather than reasoned about: a bare board PRINTS at [33,46,21] and this
+         * frame's own ground median is [27,39,16], four Lab units apart, so the whole surface is
+         * one tone and a darker board has nowhere left to go. Every dark mass this frame could
+         * hold was already inside the ground.
+         *
+         * So the separable mass has to be LIGHT, and at ten past seven on an east facing porch
+         * there is one light thing to draw. The sun clears the neighbour's roofline and comes in
+         * under the eave as a single shaft, and it lands on the boards beside the carve.
+         *
+         * IT IS BOUNDED, AND THE THIRD AND FOURTH CUTS FAILED BECAUSE IT WAS NOT. Lighting the
+         * whole run below a shadow line measured 0.150 and still broke into dust, and the reason
+         * is in the gate's own definition rather than in the drawing: the ground it measures
+         * against is the frame's own MEDIAN, so a light field big enough to matter BECOMES the
+         * median and cancels itself. It took the frame's ground from [27,39,16] to [43,55,29]
+         * across four attempts and pushed the two furniture bands, which are flat deck ground,
+         * out past the threshold instead. Those bands then WERE the silhouette, in two pieces at
+         * opposite ends of the frame, which is exactly the dust the gate is describing.
+         *
+         * A bounded shape does not have that problem. Frame 4 scores 0.713 on one connected
+         * piece and it is a bright sheet on a dark table, which is the whole lesson: one lit
+         * object against a ground that STAYS dark.
+         *
+         * WHERE IT LANDS IS DECIDED BY THE TYPE. Measured off the render report's own line
+         * boxes rather than judged by eye: the carve's first line ends at y 625, its second runs
+         * only to x 519, and Code Compliance's line starts at y 1000. So the whole right of the
+         * frame from y 645 to y 980 is clear board, and the shaft is cut to sit inside it with
+         * every edge clear of a glyph band, which is also why nothing in it can read as a rule
+         * through type. Its edges are feathered over 30 px, so the contour plate has no step to
+         * grip and lay back over the ground as a wire.
+         */
+        (function () {
+          /* FULL STRENGTH GLARE AND NOT A WASH OVER THE BOARDS, and the arithmetic is why. The
+           * stipple lays n = d * d * 6 dots of a 0.6 px radius in a 5 px cell, so ink coverage
+           * goes as the FOURTH power of the twin's own tone and tops out around a quarter. A
+           * 0.90 alpha wash reads 0.82 in the twin, which is 0.45 of the dots a lit surface is
+           * entitled to, and it measured 9.5 Lab against this frame's ground where the floor is
+           * 12. Sunlight on a board is the top of the deck's own scale, so it is drawn at the
+           * top of the deck's own scale. */
+          /* IT RUNS OFF THE RIGHT EDGE, because the sun is outside the frame and light that
+           * stops short of the edge is a painted panel. It fills the clear region and no more:
+           * x 540 is twenty past the carve's second line, y 650 is five past the first line's
+           * box, and y 978 is two short of Code Compliance's. */
+          /* IT RUNS OFF BOTH SIDE EDGES, in the one horizontal band on this frame that carries
+           * no type: from the carve's own baseline at 661 to Code Compliance's line at 1000,
+           * measured off the render report's line boxes. Bounded to the right half it measured
+           * 0.250 with its largest piece at 0.42, because it was one blob competing with the two
+           * furniture bands at the frame's ends. Run edge to edge it is a surface the porch
+           * crosses rather than a panel laid on it, and the boards carry straight through. */
+          var P = [[-24, 712], [W + 24, 688], [W + 24, 972], [-24, 996]];
+          a.save();
+          a.beginPath();
+          a.moveTo(P[0][0], P[0][1]);
+          for (var i = 1; i < P.length; i++) a.lineTo(P[i][0], P[i][1]);
+          a.closePath();
+          a.clip();
+          /* HELD AT THE TOP OF THE SCALE ACROSS THE WHOLE SHAFT, with only the last eighth
+           * easing off. A falloff to `bright` over the far half read 13.4 Lab against this
+           * frame's ground where the floor is 12, so a third of the shaft's own cells fell out
+           * at thumb scale and the mass measured 0.062. Direct sun on a board is not a gradient
+           * and drawing it as one cost the frame its silhouette twice. */
+          a.fillStyle = M.G.glare;
+          a.fillRect(-24, 660, W + 48, 360);
+          /* THE PENUMBRA, RAMPED IN FROM INSIDE THE CLIP rather than laid outside it. The first
+           * cut feathered the shaft with three strips drawn just beyond its own edges, and where
+           * those strips met the slanted left edge they left a stepped corner that printed as a
+           * bracket. A shadow's soft edge belongs to the shadow. */
+          var pen = a.createLinearGradient(556, 0, 648, 0);
+          pen.addColorStop(0.00, "rgba(56,60,48,1)");
+          pen.addColorStop(1.00, "rgba(56,60,48,0)");
+          a.fillStyle = pen; a.fillRect(-24, 660, 0, 0);
+
+          /* THE BOARDS GO ON THROUGH IT. A shaft of light does not flatten a surface, and a
+           * TYPE_AS_OBJECT frame that traded its one texture for its one silhouette would have
+           * won the wrong argument. The joint at -40 + 2 * pitch runs straight through the
+           * shaft, and inside the light it reads as a dark line because that is what a groove
+           * does when the surface either side of it is lit. */
+          (function () {
+            var pitch = 0.140 * PPM;
+            for (var yb = -40; yb < H + pitch; yb += pitch) {
+              var gg = a.createLinearGradient(0, yb - 16, 0, yb + 16);
+              gg.addColorStop(0.00, "rgba(0,0,0,0.00)");
+              gg.addColorStop(0.50, "rgba(0,0,0,0.42)");
+              gg.addColorStop(1.00, "rgba(0,0,0,0.00)");
+              a.fillStyle = gg; a.fillRect(-24, yb - 16, W + 48, 32);
+            }
+            /* AND NOTHING ELSE INSIDE IT. The first cut of this shaft laid a hundred and fifty
+             * seeded hairlines across it as board grain, at the strength grain is drawn at
+             * everywhere else in this deck. Everywhere else in this deck it is drawn on a DARK
+             * surface, where a dark hairline is invisible and only the stipple carries it. On a
+             * surface at the top of the scale every one of them came back as a white scratch,
+             * and the shaft printed as a barcode. The gate passed it. The frame was unusable,
+             * which is GATE_LESSONS' oldest shape and it is worth one more line in this file:
+             * the silhouette measure asks whether there is a MASS, never whether it is a
+             * picture, and the only thing that answers the second question is looking. */
+          })();
+          a.restore();
+
+        })();
+
+        /* THE ROUTED CHANNEL THE CARVE SITS IN, AND IT IS THE PHYSICAL THING RATHER THAN A PLATE.
+         *
+         * A carved line is boards with material taken OUT of them, so there is a shallow recess
+         * around the letters with a shaded upper wall and a lit lower lip, and until now this
+         * frame had the letters and not the cut. `layout_check` said so in the only way it can:
+         * the declared rect measured a silhouette of 0.009 because 1019 of its 1326 cells were
+         * under type and almost nothing else in it was drawn. A TYPE_AS_OBJECT frame still has to
+         * have an IMAGE, and the image here is the routing.
+         *
+         * It is drawn in the TWIN with the rest of the world, so it is screened into the deck's
+         * own tooth like every other surface, and its edges are gradients rather than steps so
+         * the contour plate has nothing to lay back over the ground. It is NOT a plate: it is
+         * darker than the board by a few percent and lighter at its lower lip, which is what a
+         * router leaves, and the chassis allows a wash well under 0.55 as atmosphere.
+         */
+        (function () {
+          var hb = M.boxes(".hook", 0);
+          for (var i = 0; i < hb.length; i++) {
+            var b = hb[i], x = b[0] - 26, y = b[1] - 12, w = b[2] + 52, h = b[3] + 24;
+            var g = a.createLinearGradient(0, y, 0, y + h);
+            g.addColorStop(0.00, "rgba(0,0,0,0.00)");
+            g.addColorStop(0.16, "rgba(0,0,0,0.40)");
+            g.addColorStop(0.72, "rgba(0,0,0,0.26)");
+            g.addColorStop(1.00, "rgba(0,0,0,0.00)");
+            a.fillStyle = g; a.fillRect(x, y, w, h);
+            /* the lit lower lip, where the key catches the cut's near wall */
+            var l = a.createLinearGradient(0, y + h * 0.80, 0, y + h * 1.12);
+            l.addColorStop(0.00, "rgba(246,248,232,0.00)");
+            l.addColorStop(0.45, "rgba(246,248,232,0.34)");
+            l.addColorStop(1.00, "rgba(246,248,232,0.00)");
+            a.fillStyle = l; a.fillRect(x, y + h * 0.80, w, h * 0.32);
+            /* the two end walls of the channel, rounded, so it is a cut and not a band */
+            var e1 = a.createLinearGradient(x, 0, x + 40, 0);
+            e1.addColorStop(0.00, "rgba(0,0,0,0.00)");
+            e1.addColorStop(1.00, "rgba(0,0,0,0.22)");
+            a.fillStyle = e1; a.fillRect(x, y, 40, h);
+            var e2 = a.createLinearGradient(x + w - 40, 0, x + w, 0);
+            e2.addColorStop(0.00, "rgba(0,0,0,0.22)");
+            e2.addColorStop(1.00, "rgba(0,0,0,0.00)");
+            a.fillStyle = e2; a.fillRect(x + w - 40, y, 40, h);
+          }
+        })();
+
+        /* THE WEAR ALONG THE BOARDS' WALKING LINE, so the porch is a surface somebody crosses
+         * rather than a swatch. Seeded, deterministic, and it never reaches the type's band. */
+        (function () {
+          /* EVERY STROKE ASKS THE RESERVE MASK BEFORE IT IS DRAWN, and the first cut of this
+           * frame did not. A 0.16 alpha hairline in the metal grey is invisible over a board and
+           * a STRIKETHROUGH over a glyph, and the harness reads it as one because at feed width
+           * that is what it is. The mask is the whole answer and it was sitting in the chassis. */
+          /* AND IT IS DRAWN DARK, BECAUSE THE BOARDS ARE IN SHADE. This ran in `metal` while the
+           * board face was `bright`, where a light hairline on a lighter board is the faint
+           * polish a walking line leaves. Against `shade` the same stroke is half a scale step
+           * ABOVE its own surface, and four hundred and sixty of them printed as bright scratches
+           * scattered over the whole frame. Grain is a thing you see in the light. In shade it is
+           * a slightly darker line or it is nothing. */
+          var R = TX.rng(714), pitch = 0.140 * PPM, mask = M.mask(boxes, 30);
+          a.save();
+          a.strokeStyle = M.G.dark;
+          for (var i = 0; i < 460; i++) {
+            var y = -40 + Math.floor(R() * 5) * pitch + pitch * (0.14 + R() * 0.72);
+            var x0 = R() * W, len = 40 + R() * 220;
+            var k = Math.min(mask(x0, y), mask(x0 + len, y), mask(x0 + len / 2, y));
+            if (k <= 0.02) continue;
+            /* AND NONE OF IT CROSSES THE SHAFT. A dark hairline on a surface at the top of the
+             * scale is a STEP, and the contour plate lives on steps: it runs a Sobel over the
+             * twin and lays what it finds back over the ground in INK, a pixel out of register,
+             * so every one of these came back as a bright wire lying across the light. That is
+             * the same defect the board joints had, arrived at from the other direction, and it
+             * has the same answer as the joints do. Nothing hard edged goes in the shaft. */
+            if (y > 660 && y < 1010) continue;
+            a.globalAlpha = 0.30 * k;
+            a.lineWidth = 0.8 + R() * 1.6;
+            a.beginPath(); a.moveTo(x0, y); a.lineTo(x0 + len, y); a.stroke();
+          }
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        /* THE CARVE'S OWN CAST, SPILLING OUT OF THE LAST GROOVE. The glyphs carry their incision
+         * as a text-shadow pair, which is what keeps them registered and vector, and this is the
+         * shadow the raised board face throws past the bottom of the cut line. Measured off the
+         * hook's own line boxes rather than positioned by hand. */
+        /* NO CAST UNDER THE CARVE, AND REMOVING IT IS THE FIX RATHER THAN AN OMISSION.
+         * This painted a blurred dark bar under the headline's last line, and a dark mass lying
+         * BELOW type is the one thing every reader knows: it is a drop shadow, so the carve read
+         * as RAISED letters sitting on the boards. An incised letter has no cast at all. It has
+         * two walls, one lit and one shaded, which is what the text-shadow pair on the glyphs is
+         * already doing, and the cast was fighting it on every glyph. */
+        M.quiet(c, boxes, 0.40);
+        M.reserve(c, { top: 132, topSolid: 78, bottom: 150, bottomSolid: 92 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

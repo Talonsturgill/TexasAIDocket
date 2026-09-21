@@ -1,0 +1,219 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 3 of 9. Archetype DIAGRAM.
+     THE MACHINE'S WHOLE VOCABULARY, ON A SOUND HOUSE. One ordinary Oak Cliff bungalow at true
+     scale, 16 by 6 m, with EIGHT hollow capture marks on it and eight leaders out to eight mono
+     labels set in the briefing's own words.
+     THE CONDITION LAW LANDS HERE. Not one of the eight conditions is DRAWN on this house or on
+     any house in nine frames. The roof is sound, the openings are glazed, the grass is cut and
+     the drive is clear. The eight exist in exactly one place in this deck, as eight lines of mono
+     type, and never as a drawn defect. A drawn fault would make the machine right, which the
+     record does not.
+     EVERY LEADER IS A WORLD COORDINATE POLYLINE that terminates ON its mark's own coordinates and
+     stops clear of its label's glyph band, and each one is asserted through window.__txLeaders so
+     the harness can check the landing rather than the ink.
+     Frame median L* 20, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:158px; width:640px; font-size:86px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.95;
+          letter-spacing:-0.024em; color:#D9DEC9; font-variation-settings:"opsz" 110; z-index:10; }
+  .dek  { position:absolute; left:82px; top:320px; width:668px; font-size:25px;
+          line-height:1.44; color:#AEB6A0; z-index:10; }
+  /* A HALO AND NOT A PLATE. The house's own window and door edges run straight through this
+     band, and a halo is drawn in the OPPOSITE value to the glyphs, so it lifts the letterforms
+     off the drawing without putting a box on the picture. The harness reads a plate as furniture
+     and a halo as legibility, correctly. */
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.02em; line-height:1.24; color:#E4E8D6; z-index:12; white-space:nowrap;
+          text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                       -1px -1px 0 #141810, 1px -1px 0 #141810, -1px 1px 0 #141810; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Eight things it is looking for.</h1>
+<p class="dek">The December briefing listed what the software detects. The house is in good repair and the eight are the machine's categories, not a finding about anybody's property.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "The detection list, verbatim", counter: "03 / 09",
+      src: "c7 c1   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 86, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+
+    /* THE EIGHT, IN THE BRIEFING'S OWN WORDS AND ITS OWN ORDER. figures.json carries
+     * detection_conditions, counted in compute.py off c7's own claim text rather than typed, and
+     * this list is that list. Eight marks, eight leaders, eight labels, and no ninth anything. */
+    var COND = ["bulk trash participation", "collapsing structures", "trash", "tires",
+                "illegal dumping", "graffiti", "boarded windows/doors", "high grass"];
+
+    /* WHERE EACH MARK SITS ON THE PROPERTY, in metres in the house's own local frame, so the
+     * eight are distributed across roof, wall, opening, drive and parkway rather than clustered.
+     * Nothing here is a defect. Each is a place the software looks. */
+    var SPOT = [
+      { lx: -6.6, ly: 0.5,  side: "L" },   /* the kerb, where a set-out would be */
+      { lx: -4.2, ly: 4.4,  side: "L" },   /* the gable return */
+      { lx: -2.0, ly: 0.7,  side: "L" },   /* the drive apron */
+      { lx:  0.1, ly: 0.5,  side: "L" },   /* the side yard */
+      { lx:  2.2, ly: 0.6,  side: "R" },   /* the alley end of the drive */
+      { lx:  4.4, ly: 2.1,  side: "R" },   /* the flank wall */
+      { lx:  5.9, ly: 2.6,  side: "R" },   /* the window opening */
+      { lx:  7.0, ly: 0.35, side: "R" }    /* the parkway strip */
+    ];
+
+    /* THE GEOMETRY IS COMPUTED BEFORE ANYTHING IS DRAWN, and the first cut of this frame ran the
+     * print first and then mounted the labels, so `over` looked for label elements that did not
+     * exist yet and `boxes` was undefined when the reserve asked for it. A frame that needs its
+     * own type's position in order to draw has to fit and measure the type FIRST, which is the
+     * order this whole system is built on and which this frame briefly forgot.
+     * `S.project` is pure arithmetic, so a scene made on the visible context for the maths gives
+     * exactly the same answers as the one the print makes on the twin. */
+    var HZ = 14;
+    var SMATH = TXSCENE.create(cx, M.cam({ eye: 1.63, horizon: 700, f: 900 , light: { az: 38, el: 22 } }));
+    var placed = [];
+    for (var pi = 0; pi < COND.length; pi++) {
+      var pp = SMATH.project(0.4 + SPOT[pi].lx, SPOT[pi].ly, HZ);
+      placed.push({ x: pp[0], y: pp[1], side: SPOT[pi].side, label: COND[pi] });
+    }
+
+    /* THE LABELS, mounted in the DOM so they stay vector and so the harness can read them, in two
+     * flanking columns and STACKED at a fixed step, because two labels sharing a horizontal band
+     * read as a collision to the harness even when the glyphs do not touch. */
+    (function () {
+      var left = [], right = [];
+      for (var i = 0; i < placed.length; i++) (placed[i].side === "L" ? left : right).push(i);
+      function stack(list, side) {
+        var y0 = 872, step = 54;
+        for (var k = 0; k < list.length; k++) {
+          var i = list[k], el = document.createElement("div");
+          el.className = "lab"; el.id = "lab" + i; el.textContent = COND[i];
+          el.style.top = (y0 + k * step) + "px";
+          if (side === "L") { el.style.left = "80px"; }
+          else { el.style.right = "80px"; el.style.textAlign = "right"; }
+          document.body.appendChild(el);
+        }
+      }
+      stack(left, "L"); stack(right, "R");
+    })();
+
+    var boxes = M.boxes(".hook, .dek, .lab, .kick, .count, .src, .tx-site", 16);
+
+    M.print(cx, {
+      seed: 33,
+      draw: function (a) {
+        var S = TXSCENE.create(a, M.cam({ eye: 1.63, horizon: 700, f: 900 , light: { az: 38, el: 22 } }));
+
+        /* THE SKY, kept dark so the type band above the ridge is quiet by construction. */
+        (function () {
+          var g = a.createLinearGradient(0, 0, 0, 700);
+          g.addColorStop(0.00, "#0A0D08");
+          g.addColorStop(0.66, "#141810");
+          g.addColorStop(1.00, "#232A1B");
+          a.fillStyle = g; a.fillRect(0, 0, W, 702);
+        })();
+
+        S.ground({ near: 0.8, far: 200, fill: M.G.dark, fadeToSky: true });
+        S.gridZ({ dz: 3, from: 3, to: 80, ink: "rgba(0,0,0,0.12)", width: 1.0 });
+
+        /* THE DRIVE APRON and the sidewalk, at true widths, separated from the turf across the
+         * hole in the middle of the scale rather than inside it. */
+        S.strip({ X: -2.6, w: 3.1, near: 1.0, far: 13.4, fill: S.fade(M.G.shade, 10) });
+        S.strip({ X: 0.0, w: 1.5, near: 0.9, far: 70, fill: S.fade(M.G.stone, 12) });
+
+        /* A LIVE OAK far back on the left, so the block continues past the lot. */
+        var oak = TXOBJ.sprite("live_oak", { seed: 9 });
+        S.shadow(oak, { X: -13.5, Z: 42, ink: "#000", alpha: 0.24 });
+        /* THE OAK MOVED BACK TO Z 42 AND ITS CANOPY TOP WITH IT. At Z 24 its crown projected to
+         * y 424 and ran a 594 px edge straight through the dek's last line, which the harness
+         * reads as a strikethrough and is right to. The tree is true geometry, so the tree moved
+         * rather than the type being plated. */
+        S.sprite(oak, { X: -13.5, Z: 42, fade: false,
+                        inks: { ink: S.fade(M.G.shade, 42), paper: S.fade(M.G.dark, 42),
+                                accent: S.fade(M.G.shade, 42) } });
+
+        /* THE BUNGALOW at true scale, SOUND. Drawn in the chassis's greys, never in a colour. */
+        var house = TXOBJ.sprite("house", { seed: 21 });
+        S.shadow(house, { X: 0.4, Z: HZ, ink: "#000", alpha: 0.44 });
+        var hb = S.sprite(house, { X: 0.4, Z: HZ, fade: false,
+                                   inks: { ink: M.G.metal, paper: M.G.stone, accent: M.G.bright } });
+        window.__hb = hb;
+
+        window.__placed = placed;
+      },
+      over: function (c) {
+        /* THE MARKS, flat and unscreened, at the capture aspect. The machine's sight is never
+         * screened into the world's tooth. */
+        var CAP_ASPECT = 1920 / 1080;
+        var mw = 92, mh = mw / CAP_ASPECT;
+        for (var i = 0; i < placed.length; i++) {
+          var p = placed[i];
+          p.rect = { x: p.x - mw / 2, y: p.y - mh / 2, w: mw, h: mh };
+          M.captureRect(c, p.rect, { width: 6 });
+        }
+
+        /* THE LEADERS, each a polyline from the label's own anchor to the mark's own centre, and
+         * each one asserted so the harness checks the landing rather than the ink. */
+        var leaders = [];
+        c.save();
+        c.strokeStyle = M.RULE;
+        c.lineWidth = 1.6;
+        c.globalAlpha = 0.66;
+        for (var j = 0; j < placed.length; j++) {
+          var q = placed[j], el = document.getElementById("lab" + j);
+          if (!el) continue;
+          var r = el.getBoundingClientRect();
+          var ax = q.side === "L" ? r.right + 30 : r.left - 30;
+          var ay = r.top + r.height / 2;
+          var bendX = q.side === "L" ? ax + 26 : ax - 26;
+          var target = [q.x + (q.side === "L" ? -mw / 2 - 3 : mw / 2 + 3), q.y];
+          c.beginPath();
+          c.moveTo(ax, ay);
+          c.lineTo(bendX, ay);
+          c.lineTo(target[0], target[1]);
+          c.stroke();
+          leaders.push({ target: q.label, at: target, to: target });
+        }
+        c.restore();
+        window.__txLeaders = leaders;
+
+        M.quiet(c, boxes, 0.40);
+        M.reserve(c, { top: 146, topSolid: 88, bottom: 150, bottomSolid: 92 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

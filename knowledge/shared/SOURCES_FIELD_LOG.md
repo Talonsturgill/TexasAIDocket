@@ -1511,3 +1511,23 @@ limit encountered across seven queries in one run, and `.../COUNT/JSON` returns 
 whose `TOTALQUERYRESULTS` is directly quotable as a verbatim claim. Three counts were fetched three
 separate times across this run and returned identical values each time. When a figure has to be
 both computed and quotable, this endpoint gives you both.
+
+## 2026-09-21
+
+**`public.destinyhosted.com` serves a 25 byte `robots.txt` that is a blanket disallow, and it is
+written on ONE LINE.** The whole file is `User-agent: * Disallow: /`, with no newline between the
+two directives. A parser splitting on lines sees a single unrecognised directive and can conclude
+there is no disallow at all, which is the opposite of what the host is asking for. The honest read
+is the one this run took: it is a blanket disallow and the host was not fetched.
+
+**`reverify.py` does not consult `robots.txt` at all.** That is a real gap and it is recorded here
+rather than fixed here, because the crawl boundary is `SOURCES_REGISTRY.md` and that file is human
+owned for exactly the reason the map states above. What a run can say is what it saw: the
+re-verification path fetches without asking, and the only thing standing between it and a host
+that has said no is a session noticing by hand. A proposal is in the upgrade backlog.
+
+**NBC 5 and FOX 4 both carry the September 8th Dallas city manager memo and neither publishes it
+at a URL.** Two outlets quoting the same unpublished document is not two sources for the document,
+it is two sources for what the document says. Every claim this run took from that memo is attributed
+to the outlet that reported it rather than to the memo, and the memo's own absence from any city
+URL is stated in the record rather than worked around.
