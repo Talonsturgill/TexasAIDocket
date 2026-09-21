@@ -1,6 +1,6 @@
 # Dallas issues its first code citations from the AI cameras on its brush trucks
 
-The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among four things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. The city manager briefs a council committee on the program on October 19th.
+The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among the three things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. The city manager briefs a council committee on the program on October 19th.
 
 - Topic: surveillance-and-policing
 - Decided by: City of Dallas (city)
@@ -24,7 +24,7 @@ The City of Dallas put AI enabled cameras on its sanitation brush trucks to phot
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-21 · Admitted on the city's own Finance Committee briefing, which is where the terms and the four disclaimers are written down. The reported outcome comes from a city manager memo the city has not published at an address a reader can open. Every figure from it is carried here as reported rather than as read. What the committee does with the program on October 19th is the next thing to watch.
+- 2026-09-21 · Admitted on the city's own Finance Committee briefing, which is where the terms and the three disclaimers are written down. The reported outcome comes from a city manager memo the city has not published at an address a reader can open. Every figure from it is carried here as reported rather than as read. What the committee does with the program on October 19th is the next thing to watch.
 
 ## Evidence
 
@@ -101,4 +101,16 @@ Source (journalism): https://www.fox4news.com/news/ai-powered-cameras-dallas-tra
 > A briefing on the cameras from Dallas City Manager Kim Tolbert will take place on October 19.
 
 Source (journalism): https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations
+
+### The station reports when the cameras reached full operation.
+
+> The cameras just went fully operational over the summer.
+
+Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/
+
+### The station reports the words the courtesy notice carries near its top.
+
+> Near the top of the notice, in bold letters, it said "violations identified."
+
+Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/
 

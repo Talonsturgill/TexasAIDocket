@@ -6,9 +6,10 @@ at the round 5 cap, with no hard fail from any judge.
 ## What shipped
 
 Nine bespoke slides on Dallas Code Compliance's vehicle mounted camera enforcement, one web
-edition, one caption, one Gmail draft. The record carried one new item admitted this run
-(tx-2026-0179) alongside tx-2026-0181, and re-verification notes on tx-2026-0024, tx-2026-0120,
-tx-2026-0159 and tx-2026-0168.
+edition, one caption, one Gmail draft. The record went from 153 items to 156 on three
+admissions, tx-2026-0179 (the Dallas cameras, which is the deck's subject), tx-2026-0180
+(Leander stopping payment on its plate reader contract) and tx-2026-0181. Re-verification notes
+went on tx-2026-0024, tx-2026-0120, tx-2026-0159 and tx-2026-0168.
 
 ## The score, stated rather than rounded
 
