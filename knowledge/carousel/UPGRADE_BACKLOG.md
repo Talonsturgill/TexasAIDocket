@@ -3712,3 +3712,37 @@ chassis law made a source grep blind. The same move generalises:
 against 32.1 and a judge still could not see it at 432 px, so the threshold cannot be "differs
 from the ground". It has to be a separation a reader gets at feed scale, which means measuring at
 432 px and not at 2160, the same lesson `layout_check`'s silhouette measure already encodes.
+
+### 14. Round 5 confirmed entry 13 independently, and that is the strongest evidence it carries
+
+Added 2026-09-21, after the final round.
+
+Entry 13 was written from the round 4 craft judge's diagnosis, which is one voice. Round 5 ran
+three judges who could not see each other's cards, and **two of the three arrived at the same
+fix without being asked for one.** One wrote that the dossiers "describe a richer world than the
+renders carry" and named four declared properties false against the shipped pixels. The other
+proposed, as its single sentence of advice, a gate that "samples the declared lit and shade faces
+off the rendered PNG and fails the frame when their L* separation is under a stated floor,
+because right now the only thing checking graded is the plan claiming it."
+
+That is entry 13's first bullet, reached from a different frame set by a judge that had never
+read it. A proposal one reviewer makes is an opinion. A proposal three independent readers
+converge on across two rounds is a measurement of where the machine actually leaks.
+
+Nothing in entry 13 changes. This entry exists so whoever picks it up knows the evidence is
+three cards and not one.
+
+### 15. `panel.py` reports a round number it derives rather than the one on the cards
+
+Added 2026-09-21. Small, and it misleads at exactly the wrong moment.
+
+Three judge cards each carrying `"round": 5` were combined and the verdict came back
+`"rounds": 2`, with `hold_reason` reading "This is a HOLD. Keep working the deck". The median and
+the hard-fail logic are correct and the ship decision was right. The round count is not, and the
+HOLD wording assumes rounds remain.
+
+It matters because `max_rounds` is 5 and the cap is what decides whether a deck under the bar
+ships or gets another pass. A verdict file that says round 2 when the run is at its cap is a file
+a later reader, or a later gate, could act on wrongly. The fix is to read the round off the cards
+it was handed and to say "AT CAP" rather than "keep working" when that number equals
+`max_rounds` from the rubric.
