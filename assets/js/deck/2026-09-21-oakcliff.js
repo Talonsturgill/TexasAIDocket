@@ -367,6 +367,33 @@
    * rectangle is 1.2 m wide and an 8 px stroke alone measures under layout_check's 0.2 percent
    * floor at 432 px. A colour spent below the floor costs the deck its scarcity and buys a
    * reader nothing. */
+  /* THE MOTIF LYING ON A GROUND PLANE, AS A PROJECTED QUAD RATHER THAN A SCREEN RECTANGLE.
+   *
+   * `captureRect` takes x, y, w, h and strokes an axis aligned rectangle, which is right for a
+   * rectangle on a wall or on a sheet and WRONG for one lying on a road. A flat quad under a
+   * pinhole camera projects to a TRAPEZOID with its far edge shorter than its near edge, and a
+   * critic reading frame 1 said the rectangle looked like a HUD bar cut by the frame edge rather
+   * than like something lying on the lane. It was: parallel top and bottom edges under
+   * LINEAR_PERSPECTIVE are the one thing a ground plane never produces.
+   *
+   * The four corners go through the scene's own projection, so the shape is the camera's answer
+   * rather than a drawing of one. Painted flat in `over` like every other appearance of the
+   * machine's sight.
+   */
+  N.captureQuad = function (c, pts, o) {
+    o = o || {};
+    c.save();
+    c.strokeStyle = o.ink || N.ACCENT;
+    c.lineWidth = o.width == null ? 8 : o.width;
+    c.lineJoin = "miter";
+    c.beginPath();
+    c.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+    c.closePath();
+    c.stroke();
+    c.restore();
+  };
+
   N.captureRect = function (c, r, o) {
     o = o || {};
     var lw = o.width == null ? 8 : o.width;
