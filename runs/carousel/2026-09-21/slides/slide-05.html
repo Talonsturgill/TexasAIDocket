@@ -1,0 +1,185 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 5 of 9. Archetype GRID, and the deck's ONLY mark field.
+     THE ONE CONTAINMENT THE MEMO STATES. 57 citation marks stamped from ONE mark drawn once, so
+     identical is a property of the code rather than a claim about the drawing, of which 39 are
+     filled. One scale, one object class, one pitch.
+     THE REMAINDER IS NEVER NAMED. The memo states 39 of the 57 and says nothing whatever about
+     the rest, so the count of the rest is a subtraction this deck refuses. No numeral for it
+     appears on this frame, in its dek, in its labels or anywhere in this file.
+     THE FRAME CARRIES NO ACCENT AT ALL, AND THAT IS A REFUSAL. Painting the filled marks in the
+     machine's own colour would be the drawing asserting that the machine put them there, and the
+     record establishes where the citations landed and nothing whatever about cause. Both
+     explanations sit under the field at the same size in their own words.
+     70% DOES NOT APPEAR ANYWHERE ON THIS FRAME. It is a different speaker measuring a different
+     set and reconciling the two is forbidden.
+     NOTHING JOINS THIS COUNT TO ANY OTHER NUMBER IN THE DECK. No arrow, no leader, no bracket.
+     Frame median L* 15, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:170px; width:600px; font-size:78px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.95;
+          letter-spacing:-0.024em; color:#D9DEC9; font-variation-settings:"opsz" 110; z-index:10; }
+  .dek  { position:absolute; left:82px; top:606px; width:330px; font-size:24px;
+          line-height:1.46; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">39 of the 57 landed in three districts.</h1>
+<p class="dek">Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "Where the citations landed", counter: "05 / 09",
+      src: "c18 c27 c38 c39 c32   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 78, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    /* THE TWO NUMBERS, AND THEY ARE THE MEMO'S OWN. figures.json carries southern_districts as
+     * part 39 of 57, both READ out of the quotes by compute.py rather than typed by anybody.
+     * Their difference is not taken here and is not taken anywhere. */
+    var TOTAL = 57, FILLED = 39, DISTRICTS = [4, 8, 7];
+
+    /* THE SHEET SITS RIGHT AND THE TYPE SITS LEFT, which is the composition the first cut did
+     * not have. That cut put a 780 px page down the middle of the frame, ran it past the bottom
+     * edge and put the dek on top of its own foot. A page that has to be cropped to fit is a page
+     * at the wrong distance, so the camera moved back rather than the page being trimmed. */
+    var ABOVE_M = 0.727, FOCAL = 2180, PPM = FOCAL / ABOVE_M;
+    var SHEET = M.sheetRect({ ppm: PPM, wM: 0.216, hM: 0.279,
+                              cx: W * 0.735, cy: 404, anchor: 0.0, tilt: 2.1 });
+    var geom = {};
+
+    M.print(cx, {
+      seed: 55,
+      draw: function (a) {
+        var S = TXSCENE.create(a, M.cam({ eye: ABOVE_M, horizon: 190, f: FOCAL , light: { az: 38, el: 22 } }));
+
+        /* THE CLIPBOARD CAME OUT, AND THE REASON IS THE SAME ONE THE PORCH JOINTS TAUGHT.
+         * A 0.30 m hardboard drawn behind the sheet is a hard edged rectangle, and the contour
+         * plate finds a step of any size and lays it back over the ground a pixel out of
+         * register, so it printed as a bright outlined rectangle behind the page rather than as
+         * a board. The sheet lies on the table, which is what the record supports anyway: the
+         * memo is a document and nothing says anybody was holding it.
+         */
+
+        /* THE TABLE around it, in shade, so the board sits on something. */
+        (function () {
+          var g = a.createLinearGradient(W, 0, 0, H);
+          g.addColorStop(0.00, "rgba(240,242,224,0.10)");
+          g.addColorStop(0.40, "rgba(240,242,224,0.01)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.42)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+        })();
+
+        M.sheetCast(a, SHEET, { alpha: 0.44, lift: 0.010, blur: 10 });
+      },
+      over: function (c) {
+        M.sheetFace(c, SHEET, { stock: "#DED6BC" });
+
+        c.save();
+        c.translate(SHEET.x + SHEET.w / 2, SHEET.y + SHEET.h / 2);
+        c.rotate(SHEET.tilt);
+        c.translate(-(SHEET.x + SHEET.w / 2), -(SHEET.y + SHEET.h / 2));
+
+        /* THE FIELD. ONE MARK DRAWN ONCE AND STAMPED 57 TIMES, so identical is a property of the
+         * code. The pitch comes from the sheet's own inner measure and the row count, never from
+         * a number somebody liked, and the marks are laid in reading order with no ranking and no
+         * ordering of any kind implied. */
+        /* THE GRID IS SIZED SO ALL 57 ARE ON THE PAGE, and the first cut was not. At 5 columns
+         * the field needed 12 rows, the sheet holds about 5, and 32 of the 57 marks were drawn
+         * below the page's own lower edge. A pixel critic counted 25 marks against a headline
+         * that says 57, every one of them filled, so the frame's whole figure lived in its
+         * headline and the count a reader could make contradicted it. THE ARTWORK CARRIES THE
+         * DATA or the frame is decoration with a number written on it.
+         *
+         * The column count is DERIVED from the page rather than chosen: the widest grid whose
+         * rows still fit the sheet's own type area, so the field is a property of the paper. */
+        var pad = SHEET.w * 0.085, inner = SHEET.w - pad * 2;
+        var top = SHEET.y + SHEET.h * 0.135;
+        var avail = SHEET.h * 0.470;
+        var cols = 5, rows = 0, pitchX = 0, pitchY = 0;
+        for (cols = 5; cols <= 14; cols++) {
+          rows = Math.ceil(TOTAL / cols);
+          pitchX = inner / cols; pitchY = pitchX * 1.34;
+          if (rows * pitchY <= avail) break;
+        }
+        var mw = pitchX * 0.66, mh = pitchY * 0.66;
+
+        function mark(x, y, filled) {
+          /* one citation slip, 0.10 by 0.19 m in the world, drawn once */
+          c.beginPath();
+          c.rect(x, y, mw, mh);
+          if (filled) { c.fillStyle = M.TONER; c.fill(); }
+          else { c.strokeStyle = M.TONER; c.globalAlpha = 0.52; c.lineWidth = Math.max(1.6, mw * 0.070); c.stroke(); c.globalAlpha = 1; }
+        }
+        for (var i = 0; i < TOTAL; i++) {
+          var r = Math.floor(i / cols), k = i % cols;
+          mark(SHEET.x + pad + k * pitchX, top + r * pitchY, i < FILLED);
+        }
+        geom.field = { x: SHEET.x + pad, y: top, w: inner, h: rows * pitchY };
+
+        /* THE MEMO'S OWN SENTENCE, set on the page under the field in the page's own type. */
+        /* SET FOR THE FEED, NOT FOR THE PAGE. At 0.0092 of the sheet this rendered at 12 px on
+         * a 1080 canvas, which is 4.8 px at 432, and a judge measured it there and could not read
+         * it. The headline says three districts and this is the only line in the frame that names
+         * them, so a size nobody reads means the frame does not carry its own figure in words
+         * either. Same defect frame 6 had, on a different frame, caught one round later. */
+        var px = Math.max(12, SHEET.h * 0.0168);
+        c.font = '600 ' + px.toFixed(1) + 'px "Manrope", sans-serif';
+        c.fillStyle = M.TONER;
+        c.textBaseline = "top";
+        var yy = top + rows * pitchY + SHEET.h * 0.030;
+        var lines = ["39 of those citations, or 68%, were issued to",
+                     "people in City Council Districts " + DISTRICTS[0] + ", " + DISTRICTS[1] +
+                     " and " + DISTRICTS[2] + " in Southern Dallas."];
+        for (var q = 0; q < lines.length; q++) c.fillText(lines[q], SHEET.x + pad, yy + q * px * 1.34);
+
+        /* THE FILLED GROUP'S OWN LABEL, in mono, on the page, beside the field's last filled
+         * row. It names the districts and nothing else names geography anywhere on this frame. */
+        c.font = '500 ' + (px * 0.92).toFixed(1) + 'px "JetBrains Mono", monospace';
+        c.globalAlpha = 0.70;
+        c.fillText("DISTRICTS " + DISTRICTS.join(", "), SHEET.x + pad, top - px * 1.5);
+        c.globalAlpha = 1;
+        c.restore();
+
+        M.quiet(c, boxes, 0.42);
+        M.reserve(c, { top: 146, topSolid: 88, bottom: 258, bottomSolid: 200 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

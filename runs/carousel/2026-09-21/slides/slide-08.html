@@ -1,0 +1,183 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 8 of 9. Archetype FIGURE_SCALE.
+     THE COUNTER-IMAGE, AND IT IS A WHOLE FRAME RATHER THAN A LINE. The memo says a citation issues
+     only after a code officer inspects the property in person, so the person is drawn at true
+     scale, 1.70 m with a clipboard, on the parkway strip at the property line, with the homeowner
+     on the porch steps behind him and the bungalow from frame 3 filling the upper right.
+     THE MACHINE'S FRAME AT ITS SMALLEST. The capture rectangle is 1.2 m wide here against 7.8 m on
+     frame 1, closed tight on one run of galvanized step flashing at the eave, at the SAME computed
+     aspect. The motif's scale is the argument: the machine's whole contribution to this scene was
+     a box around a piece of metal.
+     THE FLASHING IS DRAWN SOUND. The record says a camera flagged what it TOOK to be a temporary
+     repair on a roof its owner says is permanent flashing, so what is drawn is correctly lapped
+     step flashing and no defect appears on the house. Drawing a fault would make the machine
+     right, which the record does not.
+     THE ACCENT CARRIES BRACKETS AND A TICK. A 1.2 m rectangle at this depth is about 96 px wide
+     and an 8 px stroke alone measures under layout_check's 0.2 percent floor at 432 px. A colour
+     spent below the floor buys a reader nothing.
+     Frame median L* 22, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:170px; width:700px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.96;
+          letter-spacing:-0.022em; color:#D9DEC9; font-variation-settings:"opsz" 110; z-index:10; }
+  .dek  { position:absolute; left:82px; top:430px; width:600px; font-size:25px;
+          line-height:1.44; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A citation still needs somebody at the door.</h1>
+<p class="dek">FOX 4 reported the September 8th memo saying citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "The human step, drawn", counter: "08 / 09",
+      src: "c44 c42 c17 c31 c36 c4   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 82, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    /* THE CAPTURE ASPECT, COMPUTED. figures.json carries capture_aspect as 1920 over 1080 divided
+     * in compute.py from the two numerals in the briefing's own sentence. It is stated here as
+     * the same division of the same two numbers so the frame draws the document's shape rather
+     * than a 16 by 9 somebody remembered, and a changed quote changes this rectangle. */
+    var CAP_W_PX = 1920, CAP_H_PX = 1080, CAP_ASPECT = CAP_W_PX / CAP_H_PX;
+    var RECT_M = 1.2;                                   /* the rectangle's width in metres */
+
+    var geom = {};
+
+    M.print(cx, {
+      seed: 38,
+      draw: function (a) {
+        /* STANDING ON THE PARKWAY STRIP. The same eye the street frames use. */
+        var S = TXSCENE.create(a, M.cam({ eye: 1.62, horizon: 790, f: 880 , light: { az: 38, el: 22 } }));
+        var ink = { ink: M.G.metal, paper: M.G.dark, accent: M.G.metal };
+
+        /* THE SKY above the roofline, which is the band the hook sits in, kept dark by the
+         * scene itself rather than by a plate. */
+        (function () {
+          var g = a.createLinearGradient(0, 0, 0, 790);
+          g.addColorStop(0.00, "#0B0E09");
+          g.addColorStop(0.62, "#151A11");
+          g.addColorStop(1.00, "#242A1C");
+          a.fillStyle = g; a.fillRect(0, 0, W, 792);
+        })();
+
+        /* THE GROUND, far to near, with aerial perspective walking it toward the sky value so
+         * the far end of the block goes somewhere instead of stopping. */
+        S.ground({ near: 0.8, far: 260, fill: M.G.mid, fadeToSky: true });
+        S.gridZ({ dz: 3, from: 3, to: 90, ink: "rgba(0,0,0,0.13)", width: 1.0 });
+
+        /* THE SIDEWALK and the kerb, at true widths, separated from the turf ACROSS the hole in
+         * the middle of the scale rather than inside it. */
+        S.strip({ X: 0.2, w: 1.5, near: 0.9, far: 90, fill: S.fade(M.G.stone, 14) });
+        S.strip({ X: -3.4, w: 0.18, near: 0.9, far: 90, fill: S.fade(M.G.shade, 14) });
+
+        /* EVERY OBJECT BELOW IS DRAWN IN THE CHASSIS'S GREY SCALE AND NOT IN A COLOUR, and the
+         * first cut of this frame was not. Painting the house in brick and shingle put its body
+         * and its roof at luminance 0.31 and 0.20 against a ground at 0.19, so the screen found
+         * no tone difference to turn into marks and the ONLY thing that printed was the contour
+         * plate's outline. The frame came back as a wireframe diagram of a place, which is the
+         * exact defect the illustration doctrine names and the exact thing this chassis's grey
+         * scale exists to prevent. A frame that picks its own colours has left the deck. */
+
+        /* THE LIVE OAK far back, so the block has depth past the house. */
+        var oak = TXOBJ.sprite("live_oak", { seed: 4 });
+        S.shadow(oak, { X: 8.6, Z: 22, ink: "#000", alpha: 0.30 });
+        S.sprite(oak, { X: 8.6, Z: 22, fade: false,
+                        inks: { ink: S.fade(M.G.shade, 22), paper: S.fade(M.G.dark, 22),
+                                accent: S.fade(M.G.shade, 22) } });
+
+        /* THE BUNGALOW at true scale, 16 by 6 m, filling the upper right. It is SOUND: no high
+         * grass, no boarded opening, no graffiti, nothing on the detection list anywhere on it. */
+        var house = TXOBJ.sprite("house", { seed: 11 });
+        S.shadow(house, { X: 4.8, Z: 15, ink: "#000", alpha: 0.42 });
+        var hb = S.sprite(house, { X: 4.8, Z: 15, fade: false,
+                                   inks: { ink: M.G.stone, paper: M.G.shade, accent: M.G.metal } });
+        geom.house = hb;
+
+        /* THE STEP FLASHING AT THE EAVE, drawn in metres from parts because it is not in the
+         * catalogue: a 1.8 m run of 0.2 m galvanized, correctly lapped, on the eave's own line.
+         * It is the brightest thing in the frame, which is what galvanized steel taking a low sun
+         * looks like and is also why the machine's rectangle has something to close on. */
+        var ppmH = S.ppm(15);
+        var eaveY = hb.y + hb.h * 0.34, eaveX = hb.x + hb.w * 0.58;
+        var flashW = 1.8 * ppmH, flashH = 0.2 * ppmH;
+        a.save();
+        for (var i = 0; i < 7; i++) {
+          var fx = eaveX + i * (flashW / 7);
+          a.fillStyle = i % 2 ? M.G.glare : M.G.bright;
+          a.fillRect(fx, eaveY, flashW / 7 + 1.5, flashH);
+          a.fillStyle = "rgba(0,0,0,0.34)";
+          a.fillRect(fx, eaveY + flashH * 0.58, flashW / 7 + 1.5, flashH * 0.42);
+        }
+        a.restore();
+        geom.flash = { x: eaveX, y: eaveY, w: flashW, h: flashH };
+
+        /* THE HOMEOWNER on the porch steps, and THE CODE OFFICER at the property line with a
+         * clipboard. Both at true scale, both with a cast from the deck's one declared light, and
+         * both a clear step brighter than the ground they stand on. */
+        var owner = TXFIG.figure({ pose: "stand", height: 1.65 });
+        M.figureCast(a, S, { X: 2.6, Z: 11, h: 1.65, alpha: 0.72 });
+        S.sprite(owner, { X: 2.6, Z: 11, fade: false,
+                          inks: { ink: M.G.bright, paper: M.G.shade, accent: M.G.bright } });
+
+        var officer = TXFIG.figure({ pose: "stand", height: 1.70, hold: "clipboard" });
+        M.figureCast(a, S, { X: -1.6, Z: 5.4, h: 1.70, alpha: 0.80 });
+        var ob = S.sprite(officer, { X: -1.6, Z: 5.4, fade: false,
+                                     inks: { ink: M.G.glare, paper: M.G.dark, accent: M.G.bright } });
+        geom.officer = ob;
+      },
+      over: function (c) {
+        /* THE MACHINE'S FRAME, at its smallest occurrence and at the computed aspect. Painted
+         * flat in `over` because the machine's sight is never screened into the world's tooth. */
+        var f = geom.flash;
+        var rw = f.w * (RECT_M / 1.8) * 1.9;
+        var rh = rw / CAP_ASPECT;
+        var rect = { x: f.x + f.w * 0.5 - rw * 0.5, y: f.y + f.h * 0.5 - rh * 0.5, w: rw, h: rh };
+        M.captureRect(c, rect, { width: 8, brackets: true, bracket: 46 });
+        window.__rect = rect;
+
+        M.quiet(c, boxes, 0.42);
+        M.reserve(c, { top: 156, topSolid: 92, bottom: 150, bottomSolid: 92 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

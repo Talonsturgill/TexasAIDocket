@@ -1,0 +1,108 @@
+{
+ "weighted_score": 6.9,
+ "judges": [
+  6.64,
+  6.72,
+  6.966
+ ],
+ "spread": 0.326,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "judges": [
+    5.5,
+    5.5,
+    5.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    5.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    7.5,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "A colon in published prose in the web edition (REPAIRED after this card was written: the colon is gone and scripts/site/article_check.py now lints every edition's prose against caption_check, green on all 30 shipped editions and proved able to go red on the judge's own sentence)"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "A colon in published prose in the web edition (REPAIRED after this card was written: the colon is gone and scripts/site/article_check.py now lints every edition's prose against caption_check, green on all 30 shipped editions and proved able to go red on the judge's own sentence)"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.966 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.72,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.966,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.966 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "deck_coherence",
+  "claim_integrity"
+ ],
+ "rounds": 1
+}

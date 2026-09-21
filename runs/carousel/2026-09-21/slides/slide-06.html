@@ -1,0 +1,225 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 6 of 9. Archetype DOCUMENT, and it is the deck's one image.
+     THE LETTER. A courtesy notice lying face up on porch boards at a true 140 mm tongue and
+     groove pitch, US Letter portrait at 0.216 by 0.279 m, near left corner curled 12 mm and
+     throwing its own shadow back onto the page, running off the bottom and the right edges.
+     THIS IS ALSO THE DECK'S PROBE FRAME. It was rendered before the other eight because it tests
+     the screen, the stock, the toner contrast, the board pitch and the one cast all at once, and
+     a chassis that is wrong is wrong nine times. It found three things, all of them in the
+     chassis rather than here, and all three are written up in the chassis where the next frame
+     will read them.
+     THE PAGE'S NEGATIVE SPACE IS A LAW RATHER THAN A CHOICE. Four quoted blocks carry glyphs and
+     every other line on the sheet is a hairline rule run at a true line length. No seal, no
+     letterhead, no address block, no case number and no name, because the record describes four
+     lines and nothing else and a plausible letterhead would be a fabrication a Texan would try to
+     identify.
+     THIS FRAME CARRIES NO ACCENT AT ALL. The deck's accent law is that bluebonnet is the machine's
+     sight and paper is the city's language and they never touch. This is a paper frame.
+     Frame median L* 40, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:146px; width:760px; font-size:92px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
+          letter-spacing:-0.024em; color:#D9DEC9; font-variation-settings:"opsz" 120; z-index:10; }
+  .dek  { position:absolute; left:82px; top:330px; width:660px; font-size:25px;
+          line-height:1.44; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The letter, in its own words.</h1>
+<p class="dek">NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the notice says about itself", counter: "06 / 09",
+      src: "c19 c20 c21 c22 c23   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 70, max: 92, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+
+    /* THE TYPE IS FITTED AND MEASURED BEFORE THE ART DRAWS. That order is what makes a reserve
+     * live geometry rather than a guess, and an element repositioned after this was never
+     * measured. */
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    /* THE FRAME'S ONE RULER. The camera looks down at the boards from 0.62 m with a 2280 px lens,
+     * so px per metre is 2280 over 0.62. The page, the board pitch, the curl and the cast are all
+     * derived from this one number and nothing on the frame is sized in screen pixels. */
+    var ABOVE = 0.62, FOCAL = 2280, PPM = FOCAL / ABOVE;
+
+    /* THE PAGE, running off the bottom and the right, because a sheet floating with margin all
+     * round is a postage stamp and a deck of postage stamps is what the judges called an object
+     * in a void. */
+    /* THE PAGE IS CROPPED HARDER, AND THE REASON IS A MEASUREMENT RATHER THAN A PREFERENCE.
+     *
+     * At the full US Letter sheet the notice's four sentences were set at about ten pixels in
+     * the 1080 frame, which is a FOUR PIXEL cap height at feed scale. Two judges independently
+     * reported the same thing: at 432 px only VIOLATIONS IDENTIFIED resolves and the other three
+     * lines are grey hairlines indistinguishable from the rule runs standing in for the rest of
+     * the document. This frame's own risk line says "this is the deck's one image and if it
+     * reads as a rectangle the deck has no centre". It was reading as a rectangle.
+     *
+     * A reader is not holding the letter at arm's length. They are looking at the part of it
+     * that matters, so the camera does too: the sheet is drawn at 1.26 times its old size, with the letter's own type set larger on it, and
+     * runs off the right edge and the bottom, which is what the dossier's own bleeds declare and
+     * what the frame was not delivering. The type scales with the page, because every size on it
+     * is a fraction of PAGE.h, so the letter's own proportions are untouched. */
+    var PAGE = M.sheetRect({ ppm: PPM * 1.26, wM: 0.216, hM: 0.279,
+                             cx: W * 0.60, cy: 640, anchor: 0.0, tilt: -1.4 });
+
+    /* THE PAGE'S OWN LINES, in the record's own reading order. The four that carry glyphs are
+     * verbatim from claims.json. Everything else on the sheet is a rule run at a true line
+     * length, which asserts that a document continues and nothing whatever about what it says. */
+    var LINES = [
+      /* THE LETTER OPENS AT ITS OWN HEADING. A two line run sat above it and pushed the last of
+       * the four sentences down into the furniture band's fade, where the one line that asks
+       * the owner to act was the dimmest thing on the page. The head of a notice is not what
+       * this frame is about. */
+      { rules: 1, w: [0.62] },
+      /* LOWERCASE, BECAUSE c20 QUOTES IT LOWERCASE. The claim reads: Near the top of
+         the notice, in bold letters, it said "violations identified." Bold is what the
+         source states and caps is what a reconstruction invents, on the one frame whose
+         headline is "The letter, in its own words". */
+      { text: "violations identified", weight: 800, size: 0.0212, gap: 0.030 },
+      { rules: 2, w: [0.88, 0.55] },
+      { text: "courtesy notice and is not a citation or formal notice of violation",
+        weight: 500, size: 0.0139, gap: 0.022 },
+      { rules: 2, w: [0.86, 0.47] },
+      { text: "If the violations remain, the City may issue a Notice of Violation, issue a citation, or refer the property for abatement...",
+        weight: 400, size: 0.0133, gap: 0.020 },
+      { rules: 2, w: [0.90, 0.38] },
+      { text: "Please correct the violations promptly to avoid further enforcement action.",
+        weight: 600, size: 0.0143, gap: 0.022 },
+      { rules: 2, w: [0.72, 0.30] },
+      /* THE LETTER GOES ON TO THE BOTTOM OF THE PAGE, and it has to. Enlarging the sheet so the
+       * four sentences could be read at feed scale left its lower half blank stock, and qa.py
+       * read that correctly as a top loaded composition with a dead lower third. A real notice
+       * does not stop halfway down the paper. These runs assert that the document continues and
+       * nothing whatever about what it says, which is the same refusal the runs above are. */
+      { rules: 2, w: [0.84, 0.52] },
+      { rules: 2, w: [0.91, 0.38] }
+    ];
+
+    M.print(cx, {
+      seed: 22,
+      draw: function (a) {
+        /* THE SCENE IS STILL CREATED, because it is what carries the deck's declared light and
+         * what the cast direction comes from. Its own ppm at this height is the number above. */
+        var S = TXSCENE.create(a, M.cam({ eye: ABOVE, horizon: 200, f: FOCAL , light: { az: 38, el: 22 } }));
+
+        /* THE BOARDS at a true 0.140 m tongue and groove pitch, which at this ruler is a 515 px
+         * board, so the reader sees two and a half of them. That is what a porch looks like from
+         * a forearm's length and it is why the pitch is not a texture at a rate somebody liked. */
+        M.porchBoards(a, { x: 0, y: 0, w: W, h: H }, PPM,
+                      { face: M.G.stone, joint: M.G.deep, seed: 6 });
+
+        /* THE MORNING falling across the porch from the key's own side, so the boards have a lit
+         * end and a shaded end rather than being a pattern swatch. */
+        (function () {
+          var g = a.createLinearGradient(W, 0, 0, H * 0.72);
+          g.addColorStop(0.00, "rgba(240,242,224,0.30)");
+          g.addColorStop(0.28, "rgba(240,242,224,0.06)");
+          g.addColorStop(0.60, "rgba(0,0,0,0.30)");
+          g.addColorStop(1.00, "rgba(0,0,0,0.56)");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+        })();
+
+        /* THE SHEET'S CAST, in the twin with the rest of the world, because a shadow belongs to
+         * the world and not to the paper. */
+        M.sheetCast(a, PAGE, { alpha: 0.40, lift: 0.009, blur: 11 });
+      },
+      over: function (c) {
+        /* THE PAGE'S FACE, FLAT AND UNSCREENED. The world is printed and the paper is flat, and
+         * nothing in this deck is both. The probe frame is what established that. */
+        M.sheetFace(c, PAGE, { stock: "#DED6BC", curl: 0.012, curlAt: "tl" });
+
+        c.save();
+        c.translate(PAGE.x + PAGE.w / 2, PAGE.y + PAGE.h / 2);
+        c.rotate(PAGE.tilt);
+        c.translate(-(PAGE.x + PAGE.w / 2), -(PAGE.y + PAGE.h / 2));
+
+        var pad = PAGE.w * 0.092, inner = PAGE.w - pad * 2;
+        var y = PAGE.y + PAGE.h * 0.070;
+        c.textBaseline = "top";
+
+        for (var i = 0; i < LINES.length; i++) {
+          var L = LINES[i];
+          if (L.rules) {
+            /* A RULE RUN, which asserts that a document continues and nothing about what it
+             * says. Toner at a low alpha, because a rule run is set matter seen too small to
+             * read rather than a drawn line. */
+            c.strokeStyle = M.TONER;
+            for (var k = 0; k < L.rules; k++) {
+              c.globalAlpha = 0.30;
+              c.lineWidth = Math.max(1.4, PAGE.h * 0.0032);
+              c.beginPath();
+              c.moveTo(PAGE.x + pad, y);
+              c.lineTo(PAGE.x + pad + inner * L.w[k], y);
+              c.stroke();
+              y += PAGE.h * 0.0215;
+            }
+            c.globalAlpha = 1;
+            y += PAGE.h * 0.013;
+          } else {
+            var px = Math.max(11, PAGE.h * L.size);
+            c.font = (L.weight >= 700 ? "700 " : L.weight >= 600 ? "600 " : L.weight >= 500 ? "500 " : "400 ")
+                     + px.toFixed(1) + 'px "Manrope", sans-serif';
+            var words = L.text.split(" "), line = "", rows = [];
+            for (var w2 = 0; w2 < words.length; w2++) {
+              var t = line ? line + " " + words[w2] : words[w2];
+              if (c.measureText(t).width > inner && line) { rows.push(line); line = words[w2]; }
+              else line = t;
+            }
+            if (line) rows.push(line);
+            var lh = px * 1.32;
+            c.fillStyle = M.TONER;
+            for (var q = 0; q < rows.length; q++) c.fillText(rows[q], PAGE.x + pad, y + q * lh);
+            y += rows.length * lh + PAGE.h * L.gap;
+          }
+        }
+        c.restore();
+
+        /* THE TYPE'S OWN QUIET, and it is a wash rather than a plate. The boards are true
+         * geometry and a board joint crossing a glyph band reads as a strike, correctly, so the
+         * light dims toward the furniture instead of the world moving to dodge it. */
+        M.quiet(c, boxes, 0.46);
+        M.reserve(c, { top: 146, topSolid: 84, bottom: 158, bottomSolid: 96 });
+      }
+    });
+
+    /* THE LAST LINE THAT TOUCHES THE ART CANVAS, on every frame, without exception. */
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

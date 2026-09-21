@@ -1,0 +1,226 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 1 of 9. Archetype FULL_BLEED. THE COVER.
+     THE STREET. An Oak Cliff lane at ten past seven on a bulk trash morning, from standing eye on
+     the parkway strip. A City of Dallas sanitation grapple truck at true scale, built in metres
+     from solids because no catalogue sprite carries one, with TWO camera housings on its roof
+     rail and no third housing anywhere. A squared bulk trash set-out at the kerb, a bungalow set
+     back behind a live oak, and the machine's own capture rectangle lying EMPTY on the asphalt.
+     ONE VEHICLE AND NEVER A ROW. 100 cameras at 2 per vehicle gives no fleet count and this frame
+     refuses to imply one.
+     THE SET-OUT IS SQUARED, INTACT AND DELIBERATE, because that is what a person who read the
+     bulk trash rules produces, and because nothing on the detection list is drawn on any property
+     in nine frames.
+     THE RECTANGLE IS EMPTY. Nothing has been detected yet.
+     Frame median L* 17, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:170px; width:760px; font-size:96px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.92;
+          letter-spacing:-0.028em; color:#E4E8D6; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; top:512px; width:600px; font-size:25px;
+          line-height:1.44; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Once a month, a truck takes a picture of your house.</h1>
+<p class="dek">The City of Dallas runs AI enabled cameras on its sanitation brush trucks. Code Compliance says every residential property in the city is likely to be photographed once a month on bulk trash pickup days.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "Oak Cliff, Dallas County", counter: "01 / 09",
+      src: "c1 c2 c4 c41 c35   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 96, maxLines: 4 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    /* THE CAPTURE ASPECT, the same division of the same two numerals compute.py performs on c4's
+     * quote, so the rectangle is the document's shape rather than one somebody remembered. */
+    var CAP_ASPECT = 1920 / 1080;
+    var RECT_M = 7.8;                     /* the rectangle's width on the lane, in metres */
+    var geom = {};
+
+    M.print(cx, {
+      seed: 11,
+      draw: function (a) {
+        var S = TXSCENE.create(a, M.cam({ eye: 1.63, horizon: 760, f: 900 , light: { az: 38, el: 22 } }));
+
+        /* THE SKY under the oak canopy, kept dark by the scene so the hook needs no plate. */
+        (function () {
+          var g = a.createLinearGradient(0, 0, 0, 762);
+          g.addColorStop(0.00, "#090C07");
+          g.addColorStop(0.52, "#10140C");
+          g.addColorStop(1.00, "#1F2619");
+          a.fillStyle = g; a.fillRect(0, 0, W, 764);
+        })();
+
+        /* THE LANE, the parkway and the far block. Aerial perspective walks the far end toward
+         * the sky value so the street goes somewhere rather than stopping. */
+        S.ground({ near: 0.8, far: 240, fill: M.G.dark, fadeToSky: true });
+        S.strip({ X: -4.2, w: 8.2, near: 0.9, far: 150, fill: M.ASPHALT });
+        S.strip({ X: 0.6, w: 1.5, near: 0.9, far: 150, fill: S.fade(M.G.stone, 16) });
+        S.gridZ({ dz: 4, from: 4, to: 130, ink: "rgba(0,0,0,0.13)", width: 1.0 });
+
+        /* THE BLOCK, far first. A bungalow set back at Z 27 and a live oak over the parkway. */
+        var oak = TXOBJ.sprite("live_oak", { seed: 3 });
+        S.shadow(oak, { X: 15.5, Z: 30, ink: "#000", alpha: 0.24 });
+        S.sprite(oak, { X: 15.5, Z: 30, fade: false,
+                        inks: { ink: S.fade(M.G.shade, 30), paper: S.fade(M.G.dark, 30),
+                                accent: S.fade(M.G.shade, 30) } });
+
+        var house = TXOBJ.sprite("house", { seed: 7 });
+        S.shadow(house, { X: 13.0, Z: 27, ink: "#000", alpha: 0.30 });
+        S.sprite(house, { X: 13.0, Z: 27, fade: false,
+                          inks: { ink: S.fade(M.G.stone, 27), paper: S.fade(M.G.shade, 27),
+                                  accent: S.fade(M.G.metal, 27) } });
+
+        /* THE CAPTURE RECTANGLE'S GROUND POSITION, computed now and painted flat in `over`.
+         * It lies on the lane between the set-out and the truck, empty. */
+        (function () {
+          var Zr = 11.5, ppm = S.ppm(Zr);
+          var rw = RECT_M * ppm, rh = rw / CAP_ASPECT;
+          /* ON CLEAR LANE AND CLEAR OF THE SET-OUT. At X -3.4 the rectangle's own footprint
+           * reached across the squared bulk trash stack at the kerb, so the machine's frame was
+           * drawn AROUND a pile of debris on the one frame whose whole job is that nothing has
+           * been detected yet. The rectangle lies on empty asphalt. That is the picture. */
+          var p = S.project(-3.2, 0, Zr);
+          /* a rectangle lying FLAT reads foreshortened, so its drawn height is its own true
+           * height at this depth compressed by the ground plane's own slope at this camera */
+          var dM = RECT_M / CAP_ASPECT;                 /* its true depth on the lane */
+          geom.quad = [S.project(-3.2 - RECT_M / 2, 0, Zr + dM / 2),
+                       S.project(-3.2 + RECT_M / 2, 0, Zr + dM / 2),
+                       S.project(-3.2 + RECT_M / 2, 0, Zr - dM / 2),
+                       S.project(-3.2 - RECT_M / 2, 0, Zr - dM / 2)];
+        })();
+
+        /* THE SET-OUT at the kerb, nearest the lens. A 2.0 by 0.9 by 0.8 m squared stack, drawn
+         * as solids with a lit face and a shadow face, intact and deliberate. */
+        S.box({ X: -1.9, Z: 7.4, w: 2.0, h: 0.8, d: 0.9, fill: M.G.stone,
+                shadowInk: "#000", shadowAlpha: 0.44 });
+        S.box({ X: -1.4, Z: 7.1, w: 0.7, h: 0.5, d: 0.6, fill: M.G.metal,
+                shadowInk: "#000", shadowAlpha: 0.36 });
+
+        /* THE TRUCK, at true scale, built in metres from solids because no catalogue sprite
+         * carries one. Cab 2.20 long by 2.40 wide by 2.90 high, open body 5.80 by 2.40 by 1.60
+         * on a 0.95 m chassis, overall 9.60 m, cut by the right edge. S.box gives every mass a
+         * lit right face and a dark left face off the deck's one declared light, which is the
+         * difference between a truck and a slab. */
+        /* THE TRUCK IS BACK ON THE RIGHT, WHERE ITS OWN DOSSIER PUTS IT, AND THE FORM COMES
+         * FROM THE LIGHT RATHER THAN FROM THE SIDE OF THE ROAD IT PARKS ON.
+         *
+         * It was moved to X -5.2 in an earlier round to get a lit face, because S.box shows a
+         * mass's LEFT face when it sits right of the lens axis and its RIGHT face when it sits
+         * left, and this deck's key is off the camera's right shoulder. That worked and it cost
+         * more than it bought: the storyboard says the truck owns the right two thirds and runs
+         * off the RIGHT edge into frame 2's housing, so the whole EDGE_TEASE handoff was
+         * mirrored and a judge caught it on the contact sheet.
+         *
+         * A brush truck on a bulk trash morning parks on the right of the lane. Its near flank
+         * is the shadow side and that is CORRECT under this key. What a low sun actually gives
+         * you on a shadowed flank is a RIM: the roofline, the cab's leading edge and the body's
+         * top rail catch the light while the flank stays dark. That is a stronger drawing than a
+         * lit slab and it is what the frame now does, through S.box's own `edge`. */
+        var TX0 = 4.6, TZ = 13.0;
+        S.box({ X: TX0, Z: TZ, w: 2.40, h: 0.95, d: 5.80, fill: M.G.dark,
+                edge: M.G.metal, edgePx: 2.0,
+                shadowInk: "#000", shadowAlpha: 0.52 });                    /* chassis */
+        S.box({ X: TX0, Z: TZ + 0.2, w: 2.40, h: 2.55, d: 5.40, fill: M.G.shade,
+                edge: M.G.bright, edgePx: 2.6, shadow: false });             /* open body */
+        S.box({ X: TX0, Z: TZ + 5.6, w: 2.40, h: 2.90, d: 2.20, fill: M.G.stone,
+                edge: M.G.glare, edgePx: 3.0,
+                shadowInk: "#000", shadowAlpha: 0.46 });                     /* cab */
+
+        /* THE WHEELS, and a truck without them is a shipping container. Two on the near flank at
+         * true scale, 1.05 m diameter on a 0.95 m chassis, drawn as solids sitting ON the lane
+         * with their own contact rather than as outlines. A critic named the largest mass on
+         * this frame as a building with a chimney, and a wheel is the cheapest word in the
+         * drawing that says otherwise. */
+        (function () {
+          var wr = 0.525;
+          [TZ + 1.1, TZ + 4.9].forEach(function (wz) {
+            var ppm = S.ppm(wz);
+            var cxy = S.project(TX0 - 1.20, wr, wz);
+            var rad = wr * ppm;
+            a.save();
+            a.fillStyle = M.G.voidd;
+            a.beginPath(); a.ellipse(cxy[0], cxy[1], rad * 0.62, rad, 0, 0, Math.PI * 2); a.fill();
+            a.fillStyle = M.G.stone;
+            a.beginPath(); a.ellipse(cxy[0], cxy[1], rad * 0.26, rad * 0.42, 0, 0, Math.PI * 2); a.fill();
+            a.restore();
+          });
+        })();
+
+        /* THE ROOF RAIL AND THE TWO HOUSINGS, at true scale on the cab roof. EXACTLY TWO. */
+        (function () {
+          var ppm = S.ppm(TZ + 5.6);
+          var railY = S.project(TX0, 2.90, TZ + 5.6)[1];
+          var railX0 = S.project(TX0 - 0.95, 2.90, TZ + 5.6)[0];
+          var railX1 = S.project(TX0 + 0.95, 2.90, TZ + 5.6)[0];
+          a.save();
+          a.strokeStyle = M.G.bright; a.lineWidth = Math.max(2, 0.04 * ppm);
+          a.beginPath(); a.moveTo(railX0, railY); a.lineTo(railX1, railY); a.stroke();
+          var hw = 0.16 * ppm, hh = 0.11 * ppm;
+          geom.housings = [];
+          for (var k = 0; k < 2; k++) {
+            var hx = S.project(TX0 - 0.46 + k * 0.92, 2.90, TZ + 5.6)[0];
+            a.fillStyle = M.G.bright;
+            a.fillRect(hx - hw / 2, railY - hh, hw, hh);
+            a.fillStyle = M.G.deep;                                          /* the lens */
+            a.fillRect(hx - hw * 0.16, railY - hh * 0.72, hw * 0.32, hh * 0.44);
+            geom.housings.push(hx);
+          }
+          a.restore();
+        })();
+
+        /* THE RESIDENT on the porch, so the truck has a person's size beside it. */
+        var fig = TXFIG.figure({ pose: "stand", height: 1.70 });
+        M.figureCast(a, S, { X: 10.4, Z: 22, h: 1.70, alpha: 0.60 });
+        S.sprite(fig, { X: 10.4, Z: 22, fade: false,
+                        inks: { ink: S.fade(M.G.bright, 22), paper: S.fade(M.G.shade, 22),
+                                accent: S.fade(M.G.bright, 22) } });
+      },
+      over: function (c) {
+        /* THE MACHINE'S FRAME, empty, on the lane. Flat and unscreened. */
+        M.captureQuad(c, geom.quad, { width: 6 });
+        M.quiet(c, boxes, 0.42);
+        M.reserve(c, { top: 150, topSolid: 90, bottom: 150, bottomSolid: 92 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>

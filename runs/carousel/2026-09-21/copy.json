@@ -1,0 +1,219 @@
+{
+ "date": "2026-09-21",
+ "carousel_no": 31,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. What it cannot see is a string a drawing has painted over, which is a gap in the SUITE rather than something to answer by retyping this file from the plan and calling the disagreement a check. On this deck that gap is the canvas fillText on frames 4, 5 and 6, which qa.py transcribes and warns about by name.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Oak Cliff, Dallas County",
+   "headline": "Once a month, a truck takes a picture of your house.",
+   "claims": [
+    "c1",
+    "c2",
+    "c4",
+    "c41",
+    "c35"
+   ],
+   "cite": "c1 c2 c4 c41 c35 TEXAS AI DOCKET",
+   "body": "The City of Dallas runs AI enabled cameras on its sanitation brush trucks. Code Compliance says every residential property in the city is likely to be photographed once a month on bulk trash pickup days.",
+   "strings": [
+    "texasaidocket.com",
+    "Once a month, a truck takes a picture of your house.",
+    "The City of Dallas runs AI enabled cameras on its sanitation brush trucks. Code Compliance says every residential property in the city is likely to be photographed once a month on bulk trash pickup days.",
+    "Oak Cliff, Dallas County",
+    "01 / 09",
+    "c1 c2 c4 c41 c35 TEXAS AI DOCKET"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The hardware, from the briefing",
+   "headline": "Two cameras. One truck. No zoom.",
+   "claims": [
+    "c2",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c2 c3 c4 c5 c6 TEXAS AI DOCKET",
+   "body": "Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information.",
+   "strings": [
+    "texasaidocket.com",
+    "Two cameras. One truck. No zoom.",
+    "Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information.",
+    "The hardware, from the briefing",
+    "02 / 09",
+    "c2 c3 c4 c5 c6 TEXAS AI DOCKET"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The detection list, verbatim",
+   "headline": "Eight things it is looking for.",
+   "claims": [
+    "c7",
+    "c1"
+   ],
+   "cite": "c7 c1 TEXAS AI DOCKET",
+   "body": "The December briefing listed what the software detects. The house is in good repair and the eight are the machine's categories, not a finding about anybody's property.",
+   "strings": [
+    "texasaidocket.com",
+    "Eight things it is looking for.",
+    "The December briefing listed what the software detects. The house is in good repair and the eight are the machine's categories, not a finding about anybody's property.",
+    "The detection list, verbatim",
+    "03 / 09",
+    "c7 c1 TEXAS AI DOCKET",
+    "bulk trash participation",
+    "collapsing structures",
+    "trash",
+    "tires",
+    "illegal dumping",
+    "graffiti",
+    "boarded windows/doors",
+    "high grass"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "December 9th, 2025",
+   "headline": "What the city said it would not be.",
+   "claims": [
+    "c11",
+    "c51",
+    "c12",
+    "c13",
+    "c14",
+    "c15"
+   ],
+   "cite": "c11 c51 c12 c13 c14 c15 TEXAS AI DOCKET",
+   "body": "A Finance Committee briefing on December 9th, 2025 set out the terms and gave one slide to two columns. The three refusals are the document's own words in the document's own order.",
+   "strings": [
+    "texasaidocket.com",
+    "What the city said it would not be.",
+    "A Finance Committee briefing on December 9th, 2025 set out the terms and gave one slide to two columns. The three refusals are the document's own words in the document's own order.",
+    "December 9th, 2025",
+    "04 / 09",
+    "c11 c51 c12 c13 c14 c15 TEXAS AI DOCKET"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Where the citations landed",
+   "headline": "39 of the 57 landed in three districts.",
+   "claims": [
+    "c18",
+    "c27",
+    "c38",
+    "c39",
+    "c32"
+   ],
+   "cite": "c18 c27 c38 c39 c32 TEXAS AI DOCKET",
+   "body": "Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor.",
+   "strings": [
+    "texasaidocket.com",
+    "39 of the 57 landed in three districts.",
+    "Code Compliance says there are more code violations in Southern Dallas than in Northern Dallas and the goal is never citations. A council member says the program could end up being inadvertently a tax on the poor.",
+    "Where the citations landed",
+    "05 / 09",
+    "c18 c27 c38 c39 c32 TEXAS AI DOCKET"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "What the notice says about itself",
+   "headline": "The letter, in its own words.",
+   "claims": [
+    "c19",
+    "c20",
+    "c21",
+    "c22",
+    "c23"
+   ],
+   "cite": "c19 c20 c21 c22 c23 TEXAS AI DOCKET",
+   "body": "NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says.",
+   "strings": [
+    "texasaidocket.com",
+    "The letter, in its own words.",
+    "NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says.",
+    "What the notice says about itself",
+    "06 / 09",
+    "c19 c20 c21 c22 c23 TEXAS AI DOCKET"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Asked the plain question",
+   "headline": "\"I would say you could call that a warning.\"",
+   "claims": [
+    "c19",
+    "c26",
+    "c40"
+   ],
+   "cite": "c26 c19 c40 TEXAS AI DOCKET",
+   "body": "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer.",
+   "strings": [
+    "texasaidocket.com",
+    "The memo says a courtesy notice is not a warning or a violation.",
+    "\"I would say you could call that a warning.\"",
+    "Code Compliance says the notices do not require anything of the property owners.",
+    "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer.",
+    "Asked the plain question",
+    "07 / 09",
+    "c26 c19 c40 TEXAS AI DOCKET"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The human step, drawn",
+   "headline": "A citation still needs somebody at the door.",
+   "claims": [
+    "c44",
+    "c42",
+    "c17",
+    "c31",
+    "c36",
+    "c4"
+   ],
+   "cite": "c44 c42 c17 c31 c36 c4 TEXAS AI DOCKET",
+   "body": "FOX 4 reported the September 8th memo saying citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof.",
+   "strings": [
+    "texasaidocket.com",
+    "A citation still needs somebody at the door.",
+    "FOX 4 reported the September 8th memo saying citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof.",
+    "The human step, drawn",
+    "08 / 09",
+    "c44 c42 c17 c31 c36 c4 TEXAS AI DOCKET"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Where it goes next",
+   "headline": "October 19th, and the committee takes it up.",
+   "claims": [
+    "c49",
+    "c50",
+    "c40",
+    "c44"
+   ],
+   "cite": "c49 c50 c40 c44 TEXAS AI DOCKET",
+   "body": "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person.",
+   "strings": [
+    "texasaidocket.com",
+    "October 19th, and the committee takes it up.",
+    "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person.",
+    "Where it goes next",
+    "09 / 09",
+    "c49 c50 c40 c44 TEXAS AI DOCKET"
+   ]
+  }
+ }
+}

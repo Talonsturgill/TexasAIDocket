@@ -1,0 +1,224 @@
+<!doctype html>
+<!-- CAROUSEL 31, frame 2 of 9. Archetype CLOSE_CROP.
+     THE MACHINE'S EYE AT THE SIZE OF A FIST. Two camera housings on the cab roof rail, each
+     0.16 by 0.11 m with a 0.05 m lens barrel and a mount foot, on a 0.04 m section rail, at 0.9 m
+     from the lens on a long lens so both read at the same size and neither is favoured. This is
+     the only frame in the deck shot from a height nobody stands at.
+     THE ABSENCE OF ZOOM IS GEOMETRY AND NOT A CAPTION. Both housings throw an IDENTICAL field of
+     view cone at one half angle. A fixed focal length is a property of the drawing here, which a
+     reader can check, rather than a sentence under a picture of a box.
+     THE MUTE WORLD LAW HOLDS. No livery, no decal, no model plate, no label on the housing, the
+     rail or the cab. Paper is the only thing in this deck that carries glyphs.
+     Frame median L* 24, measured. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#222E16; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:846px; width:800px; font-size:92px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
+          letter-spacing:-0.026em; color:#E4E8D6; font-variation-settings:"opsz" 130; z-index:10; }
+  .dek  { position:absolute; left:82px; top:1076px; width:740px; font-size:24px;
+          line-height:1.42; color:#AEB6A0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two cameras. One truck. No zoom.</h1>
+<p class="dek">Two cameras mounted on one city vehicle, taking photographs as it drives at 25 to 35 MPH, at 1920p x 1080p, with a fixed focal length and automated blurring of personal information.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-21-oakcliff.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "The hardware, from the briefing", counter: "02 / 09",
+      src: "c2 c3 c4 c5 c6   TEXAS AI DOCKET", ink: "#8F9683"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 92, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXOC, W = M.W, H = M.H;
+    TX.reseed(20260921);
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    var CAP_ASPECT = 1920 / 1080;
+    /* THE COUNT IS THE FIGURE. figures.json carries cameras_per_vehicle, read out of c2's quote
+     * by compute.py. This loop runs that many times and there is no other housing in the frame. */
+    var HOUSINGS = 2;
+    var geom = {};
+
+    M.print(cx, {
+      seed: 22,
+      draw: function (a) {
+        /* UP ON THE CAB ROOF RAIL AT 2.90 m, 0.9 m from the near housing, on a long lens so the
+         * two read at the same size and neither is favoured. */
+        var ABOVE = 2.90, FOCAL = 2200;
+        var S = TXSCENE.create(a, M.cam({ eye: ABOVE, horizon: 430, f: FOCAL , light: { az: 38, el: 22 } }));
+        var ppm = S.ppm(0.9);            /* about 2444 px per metre at the near housing */
+
+        /* THE STREET BEYOND THE RAIL, held low in contrast by the deck's own haze so nothing
+         * down there competes with the two objects this frame is about. */
+        (function () {
+          var g = a.createLinearGradient(0, 300, 0, H);
+          g.addColorStop(0.00, "#151A11");
+          g.addColorStop(0.34, "#222A1A");
+          g.addColorStop(1.00, "#0D1009");
+          a.fillStyle = g; a.fillRect(0, 0, W, H);
+          /* the block running away, as a few bands of constant depth rather than as objects */
+          var R = TX.rng(202);
+          for (var i = 0; i < 9; i++) {
+            var y = 470 + i * (24 + R() * 30);
+            a.globalAlpha = 0.10 + R() * 0.10;
+            a.fillStyle = M.G.shade;
+            a.fillRect(0, y, W, 6 + R() * 14);
+          }
+          a.globalAlpha = 1;
+        })();
+
+        /* THE STREET'S OWN GROUND PLANE, far below and behind the rail. The first cut of this
+         * frame drew the block as flat bands and the gate said so in as many words: a frame that
+         * builds the bench and draws no ground plane leaves its solids floating. The plane is
+         * real here, because there is a street down there and the housings are pointed at it. */
+        S.ground({ near: 3.0, far: 220, fill: M.G.dark, fadeToSky: true });
+        S.gridZ({ dz: 6, from: 8, to: 160, ink: "rgba(0,0,0,0.16)", width: 1.0 });
+
+        /* AND SOMETHING PLACED THROUGH THE CAMERA AT TRUE SCALE, so the rail has a world under
+         * it rather than a backdrop. A utility pole at 9.1 m on the far verge, with its own cast
+         * from the deck's one declared light. */
+        (function () {
+          var pole = TXOBJ.sprite("utility_pole", { seed: 8 });
+          S.shadow(pole, { X: -7.5, Z: 34, ink: "#000", alpha: 0.26 });
+          S.sprite(pole, { X: -7.5, Z: 34, fade: false,
+                           inks: { ink: S.fade(M.G.shade, 34), paper: S.fade(M.G.dark, 34),
+                                   accent: S.fade(M.G.shade, 34) } });
+        })();
+
+        /* THE CAB ROOF SKIN, a chalked fleet panel running off both sides, which is the surface
+         * the reader is standing on. */
+        (function () {
+          var roofY = 690;
+          var g = a.createLinearGradient(W, roofY, 0, H);
+          g.addColorStop(0.00, M.G.bright);
+          g.addColorStop(0.46, M.G.metal);
+          g.addColorStop(1.00, M.G.shade);
+          a.fillStyle = g; a.fillRect(0, roofY, W, H - roofY);
+          /* a rolled edge where the roof turns down, softened so the contour plate has no step */
+          var e = a.createLinearGradient(0, roofY - 16, 0, roofY + 16);
+          e.addColorStop(0.00, "rgba(0,0,0,0)");
+          e.addColorStop(0.50, "rgba(0,0,0,0.34)");
+          e.addColorStop(1.00, "rgba(0,0,0,0)");
+          a.fillStyle = e; a.fillRect(0, roofY - 16, W, 32);
+          geom.roofY = roofY;
+        })();
+
+        /* THE RAIL, a 0.04 m section running off both sides at true scale. */
+        (function () {
+          var railY = 656, t = 0.04 * ppm;
+          a.fillStyle = M.G.stone; a.fillRect(0, railY, W, t);
+          a.fillStyle = "rgba(240,242,224,0.34)"; a.fillRect(0, railY, W, Math.max(2, t * 0.22));
+          geom.railY = railY; geom.railT = t;
+        })();
+
+        /* THE TWO HOUSINGS, EXACTLY TWO, at true scale, with their mount feet on the rail and
+         * their casts running down and to the left from the deck's one declared light. */
+        var hw = 0.16 * ppm, hh = 0.11 * ppm, barrel = 0.05 * ppm;
+        var centres = [W * 0.30, W * 0.72];
+        geom.cones = [];
+        for (var k = 0; k < HOUSINGS; k++) {
+          var hx = centres[k], hy = geom.railY - hh - 0.02 * ppm;
+
+          /* the cast, first, so the housing sits on the rail rather than over its own shadow */
+          var dir = M.castDir();
+          a.save();
+          a.filter = "blur(7px)";
+          a.fillStyle = "rgba(0,0,0,0.46)";
+          a.fillRect(hx - hw / 2 + dir[0] * hh * 1.1, geom.railY + dir[1] * 4, hw, geom.railT * 2.2);
+          a.filter = "none";
+          a.restore();
+
+          /* the mount foot */
+          a.fillStyle = M.G.shade;
+          a.fillRect(hx - hw * 0.16, hy + hh, hw * 0.32, 0.02 * ppm + 2);
+
+          /* the body, with a lit right face and a dark left face off the declared key */
+          var g = a.createLinearGradient(hx + hw / 2, hy, hx - hw / 2, hy + hh);
+          g.addColorStop(0.00, M.G.glare);
+          g.addColorStop(0.44, M.G.bright);
+          g.addColorStop(1.00, M.G.shade);
+          a.fillStyle = g;
+          a.fillRect(hx - hw / 2, hy, hw, hh);
+
+          /* the lens barrel, facing the reader's left, which is where the street is */
+          a.fillStyle = M.G.deep;
+          a.beginPath();
+          a.ellipse(hx - hw * 0.30, hy + hh * 0.46, barrel * 0.42, barrel * 0.42, 0, 0, Math.PI * 2);
+          a.fill();
+          a.fillStyle = M.G.metal;
+          a.beginPath();
+          a.ellipse(hx - hw * 0.30, hy + hh * 0.46, barrel * 0.42, barrel * 0.42, 0, 0, Math.PI * 2);
+          a.lineWidth = Math.max(2, barrel * 0.10); a.strokeStyle = M.G.metal; a.stroke();
+
+          geom.cones.push({ x: hx - hw * 0.30, y: hy + hh * 0.46 });
+        }
+      },
+      over: function (c) {
+        /* THE TWO FIELDS OF VIEW, IDENTICAL, at one half angle. A fixed focal length cannot zoom
+         * and this is that stated as geometry. Flat and unscreened, because this is the machine's
+         * own sight, and the half angle is written ONCE and used twice so the two cones can never
+         * disagree. */
+        var HALF = 26 * Math.PI / 180, LEN = 300;
+        c.save();
+        for (var k = 0; k < geom.cones.length; k++) {
+          var o = geom.cones[k];
+          var g = c.createLinearGradient(o.x, o.y, o.x - LEN * Math.cos(0.35), o.y + LEN * Math.sin(0.35));
+          g.addColorStop(0.00, "rgba(78,95,168,0.42)");
+          g.addColorStop(1.00, "rgba(78,95,168,0.00)");
+          c.fillStyle = g;
+          c.beginPath();
+          c.moveTo(o.x, o.y);
+          c.lineTo(o.x - LEN * Math.cos(0.35 - HALF), o.y + LEN * Math.sin(0.35 - HALF));
+          c.lineTo(o.x - LEN * Math.cos(0.35 + HALF), o.y + LEN * Math.sin(0.35 + HALF));
+          c.closePath();
+          c.fill();
+        }
+        c.restore();
+
+        /* THE CAPTURE RECTANGLE at the housing's own field, 0.42 m across, where the two cones
+         * cross. The motif's second state. */
+        var mid = (geom.cones[0].x + geom.cones[1].x) / 2;
+        var rw = 224, rh = rw / CAP_ASPECT;
+        M.captureRect(c, { x: mid - rw / 2, y: geom.cones[0].y + 148, w: rw, h: rh },
+                      { width: 5, brackets: true, bracket: 34 });
+
+        M.quiet(c, boxes, 0.42);
+        M.reserve(c, { top: 146, topSolid: 88, bottom: 150, bottomSolid: 92 });
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { reject(e); }
+  }).catch(reject);
+});
+</script>
+</body>
+</html>
