@@ -333,51 +333,111 @@
    * lift in metres, and the shadow it throws BACK ONTO ITS OWN PAGE is what makes a drawn sheet
    * a physical object rather than a rectangle of a lighter grey. Returns the page's screen rect
    * so a frame can mount its type on it. */
-  N.sheet = function (a, S, o) {
+  /* THE PROBE FRAME REWROTE THIS FUNCTION AND THE REASON IS WORTH KEEPING.
+   *
+   * The first cut placed the page through `S.project` on the ground plane at Y 0, which is the
+   * right instinct and the wrong geometry. A LEVEL CAMERA AT A KNEELING EYE SEES A PAGE LYING
+   * FLAT AT A GRAZING ANGLE, so a 0.216 m sheet at 0.75 m projects to about 280 px wide, lands
+   * at screen y 1630 on a 1350 px frame, and is not in the picture at all. Nothing threw. The
+   * frame rendered clean with no page on it, which is precisely the failure the probe exists to
+   * find and the reason the near uniform canvas gate is in the harness.
+   *
+   * A DOCUMENT FRAME IS AN OVERHEAD CAMERA and that is not a dodge, it is how anybody looks at a
+   * sheet of paper they have just picked up. The camera sits `above` metres over the surface and
+   * looks down it, so the page is very nearly undistorted and an axis aligned rect is the honest
+   * projection of it. SCALE IS STILL TRUE: `ppm` is the focal length over the height above the
+   * surface, exactly as `S.ppm` computes it for a depth, and every other measurement on the frame
+   * (the board pitch, the curl, the cast) is derived from that same number. The scene bench is
+   * still what declares the light and still what the cast direction comes from.
+   */
+  N.sheetRect = function (o) {
     o = o || {};
     var wM = o.wM == null ? 0.216 : o.wM, hM = o.hM == null ? 0.279 : o.hM;
-    var X = o.X == null ? 0 : o.X, Z = o.Z == null ? 0.8 : o.Z, Y = o.Y == null ? 0 : o.Y;
-    var ppm = S.ppm(Z);
+    var ppm = o.ppm;
+    if (!isFinite(ppm) || ppm <= 0)
+      throw new Error("oakcliff.sheetRect needs a finite ppm, which is the focal length over the "
+                    + "camera's height above the surface in metres");
     var w = wM * ppm, h = hM * ppm;
-    var p = S.project(X, Y, Z);
-    var r = { x: p.x - w / 2, y: p.y - h * (o.anchor == null ? 0.5 : o.anchor), w: w, h: h };
-    var tilt = (o.tilt == null ? 0 : o.tilt) * Math.PI / 180;
+    var cxp = o.cx == null ? N.W / 2 : o.cx, cyp = o.cy == null ? N.H / 2 : o.cy;
+    return { x: cxp - w / 2, y: cyp - h * (o.anchor == null ? 0.5 : o.anchor), w: w, h: h,
+             ppm: ppm, tilt: (o.tilt == null ? 0 : o.tilt) * Math.PI / 180 };
+  };
+
+  /* THE CAST OF A SHEET, DRAWN IN THE TWIN WITH THE REST OF THE WORLD.
+   * A sheet lying flat throws a short offset rather than a long one, because its own height above
+   * the surface is a millimetre or two and not its width. The shadow belongs to the WORLD, so it
+   * is screened into the world's tooth like every other shadow in the deck. */
+  N.sheetCast = function (a, r, o) {
+    o = o || {};
     var dir = TXDECK.castDir();
-
+    var off = Math.max(3, r.h * (o.lift == null ? 0.012 : o.lift));
     a.save();
-    a.translate(r.x + r.w / 2, r.y + r.h / 2);
-    a.rotate(tilt);
+    a.translate(r.x + r.w / 2, r.y + r.h / 2); a.rotate(r.tilt);
     a.translate(-(r.x + r.w / 2), -(r.y + r.h / 2));
-
-    /* THE CAST FIRST, so the page sits on the surface rather than over its own shadow. A sheet
-     * lying flat casts a short offset rather than a long one, because its own height above the
-     * surface is a millimetre or two and not its width. */
-    var off = Math.max(3, h * 0.012);
-    a.fillStyle = "rgba(0,0,0,0.42)";
+    /* BLURRED, AND THE PROBE FRAME IS WHY. A hard edged rectangle at 0.62 alpha in the twin gives
+     * the contour plate a perfect step to find, and TXINK lays that Sobel back over the ground
+     * a pixel out of register, so the page's shadow printed as a bright OUTLINED RECTANGLE
+     * beside the page. A sheet lying a millimetre off a board does not have a hard shadow edge
+     * and it should never have been drawn with one. The blur is the honest geometry and it also
+     * gives the contour nothing to grip. */
+    a.filter = "blur(" + (o.blur == null ? 9 : o.blur) + "px)";
+    a.fillStyle = "rgba(0,0,0," + (o.alpha == null ? 0.42 : o.alpha) + ")";
     a.fillRect(r.x + dir[0] * off, r.y + dir[1] * off, r.w, r.h);
-
-    a.fillStyle = o.stock || N.G.bright;
-    a.fillRect(r.x, r.y, r.w, r.h);
-
-    /* THE CURLED NEAR CORNER AND ITS SHADOW ON ITSELF. Drawn only when asked for, because a
-     * curl on every sheet in the deck would be a mannerism rather than an observation. */
-    if (o.curl) {
-      var cm = o.curl * ppm;
-      var cxn = r.x, cyn = r.y + r.h;                      /* the near left corner */
-      a.beginPath();
-      a.moveTo(cxn, cyn); a.lineTo(cxn + cm * 2.1, cyn); a.lineTo(cxn, cyn - cm * 2.1);
-      a.closePath();
-      a.fillStyle = "rgba(0,0,0,0.30)";                    /* the shadow the lift throws back */
-      a.fill();
-      a.beginPath();
-      a.moveTo(cxn + cm * 0.5, cyn - cm * 0.5);
-      a.lineTo(cxn + cm * 2.1, cyn - cm * 0.2);
-      a.lineTo(cxn + cm * 0.2, cyn - cm * 2.1);
-      a.closePath();
-      a.fillStyle = o.stock || N.G.bright;                 /* the lifted underside, still lit */
-      a.fill();
-    }
+    a.filter = "none";
     a.restore();
+  };
+
+  /* THE FACE OF A SHEET, PAINTED FLAT IN `over` AND NEVER SCREENED, AND THE PROBE FRAME IS WHY.
+   *
+   * The first cut drew the page into the twin with everything else and the press screened it. On
+   * a dark ground TXINK inverts and blends the tone plate with `screen`, so a bright page becomes
+   * a FIELD OF STIPPLE DOTS on the deck's green rather than a sheet of paper, and the probe
+   * printed exactly that: a document made of tooth, unreadable as a material. No amount of
+   * drawing the stock brighter fixes it, because the screen is what turns tone into marks and a
+   * page's whole point is that it is NOT made of the world's marks.
+   *
+   * So it is a law rather than a workaround, and it is the two materials law made operational:
+   *
+   *     THE WORLD IS PRINTED. THE PAPER IS FLAT. NOTHING IN THIS DECK IS BOTH.
+   *
+   * The sheet's CAST stays in the twin, because a shadow is the world's and not the paper's.
+   */
+  N.sheetFace = function (c, r, o) {
+    o = o || {};
+    c.save();
+    c.translate(r.x + r.w / 2, r.y + r.h / 2); c.rotate(r.tilt);
+    c.translate(-(r.x + r.w / 2), -(r.y + r.h / 2));
+
+    c.fillStyle = o.stock || N.STOCK;
+    c.fillRect(r.x, r.y, r.w, r.h);
+
+    /* THE RAKE ACROSS THE PAGE. A flat fill is a rectangle, and a sheet under a low sun has a lit
+     * end and a shaded end. Painted here rather than in the twin for the same reason the fill is. */
+    var g = c.createLinearGradient(r.x + r.w, r.y, r.x, r.y + r.h);
+    g.addColorStop(0.00, "rgba(255,255,248,0.16)");
+    g.addColorStop(0.42, "rgba(255,255,248,0.00)");
+    g.addColorStop(1.00, "rgba(20,16,8,0.20)");
+    c.fillStyle = g; c.fillRect(r.x, r.y, r.w, r.h);
+
+    /* THE CURLED NEAR CORNER AND ITS SHADOW ON ITSELF. Drawn only when asked for, because a curl
+     * on every sheet in the deck would be a mannerism rather than an observation. */
+    if (o.curl) {
+      var cm = o.curl * r.ppm;
+      var cxn = r.x, cyn = r.y + r.h;
+      c.beginPath();
+      c.moveTo(cxn, cyn); c.lineTo(cxn + cm * 2.4, cyn); c.lineTo(cxn, cyn - cm * 2.4);
+      c.closePath();
+      c.fillStyle = "rgba(20,16,8,0.34)";
+      c.fill();
+      c.beginPath();
+      c.moveTo(cxn + cm * 0.45, cyn - cm * 0.45);
+      c.lineTo(cxn + cm * 2.4, cyn - cm * 0.1);
+      c.lineTo(cxn + cm * 0.1, cyn - cm * 2.4);
+      c.closePath();
+      c.fillStyle = o.stock || N.STOCK;
+      c.fill();
+    }
+    c.restore();
     return r;
   };
 
@@ -392,17 +452,30 @@
     a.beginPath(); a.rect(r.x, r.y, r.w, r.h); a.clip();
     a.fillStyle = o.face || N.G.shade;
     a.fillRect(r.x, r.y, r.w, r.h);
+    /* EACH BOARD GETS ITS OWN TONE BEFORE ANY JOINT IS DRAWN. A surface made of lines between
+     * equal fields is a tiled floor, which is what the probe frame printed. A porch is a run of
+     * separate boards that each took the weather differently, so the modelling is IN the boards
+     * and the joint is only where two of them meet. */
+    var n = 0, R = TX && TX.rng ? TX.rng(o.seed == null ? 6 : o.seed) : function () { return 0.5; };
+    for (var yb = r.y - pitch; yb <= r.y + r.h + pitch; yb += pitch, n++) {
+      /* A NARROW SPREAD, AND THE PROBE FRAME SET THE NUMBER. At plus or minus eighteen percent
+       * the step between two boards was large enough for the contour plate's Sobel to find, and
+       * TXINK lays that edge back over the ground in INK at 0.78 alpha, so every joint printed as
+       * a bright wire running the full width of the frame. The boards still each take the weather
+       * differently. The difference is now under the threshold the contour plate reads. */
+      var k = 0.94 + R() * 0.12;
+      a.globalAlpha = 1;
+      a.fillStyle = N.mixGrey(o.face || N.G.stone, k);
+      a.fillRect(r.x, yb, r.w, pitch);
+    }
+    /* THE JOINTS, damped hard. The contour plate finds a step of any size and lays it back over
+     * the ground a pixel out of register, so a joint drawn at the strength a joint looks like in
+     * life prints as a wire. */
     a.strokeStyle = o.joint || N.G.deep;
-    a.lineWidth = Math.max(1, pitch * 0.05);
-    for (var y = r.y; y <= r.y + r.h + pitch; y += pitch) {
-      a.globalAlpha = 0.66;
-      a.beginPath(); a.moveTo(r.x, y); a.lineTo(r.x + r.w, y); a.stroke();
-      /* the lit shoulder of each board, on the key's own side */
+    a.lineWidth = Math.max(1, pitch * 0.020);
+    for (var y = r.y - pitch; y <= r.y + r.h + pitch; y += pitch) {
       a.globalAlpha = 0.20;
-      a.strokeStyle = N.G.metal;
-      a.beginPath(); a.moveTo(r.x, y + pitch * 0.09); a.lineTo(r.x + r.w, y + pitch * 0.09);
-      a.stroke();
-      a.strokeStyle = o.joint || N.G.deep;
+      a.beginPath(); a.moveTo(r.x, y); a.lineTo(r.x + r.w, y); a.stroke();
     }
     a.globalAlpha = 1;
     a.restore();
@@ -470,16 +543,23 @@
     var g = [parseInt(N.GROUND.slice(1, 3), 16),
              parseInt(N.GROUND.slice(3, 5), 16),
              parseInt(N.GROUND.slice(5, 7), 16)];
+    /* TXDECK.lineBoxes RETURNS ARRAYS [x, y, w, h] AND NOT OBJECTS, and this loop read b.y and
+     * b.h until the probe frame. undefined arithmetic goes NaN, createLinearGradient throws on a
+     * non finite value, and the whole `over` pass dies with it. It threw rather than drawing
+     * nothing, which is the lucky half: the same mistake one function up in `N.sheet` produced a
+     * silent blank instead. Index them. */
     c.save();
     for (var i = 0; i < boxes.length; i++) {
-      var b = boxes[i], fe = b.h;
-      var grad = c.createLinearGradient(0, b.y - fe, 0, b.y + b.h + fe);
+      var b = boxes[i];
+      var by = b[1], bh = b[3], fe = bh;
+      if (!isFinite(by) || !isFinite(bh)) continue;
+      var grad = c.createLinearGradient(0, by - fe, 0, by + bh + fe);
       grad.addColorStop(0.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
       grad.addColorStop(0.30, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
       grad.addColorStop(0.70, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
       grad.addColorStop(1.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
       c.fillStyle = grad;
-      c.fillRect(0, b.y - fe, N.W, b.h + fe * 2);
+      c.fillRect(0, by - fe, N.W, bh + fe * 2);
     }
     c.restore();
   };
@@ -503,6 +583,19 @@
     c.fillRect(r.x - pad, r.y - pad, r.w + pad * 2, r.h + pad * 2);
     c.restore();
     return { x: r.x - pad, y: r.y - pad, w: r.w + pad * 2, h: r.h + pad * 2 };
+  };
+
+  /* A GREY LIFTED OR DROPPED BY A FACTOR, so a board can take its own light without a frame
+   * inventing a second palette. Clamped, because a factor over the top of the ramp is a blown
+   * highlight the screen cannot print. */
+  N.mixGrey = function (hex, k) {
+    var c = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+    var out = "#";
+    for (var i = 0; i < 3; i++) {
+      var v = Math.max(0, Math.min(255, Math.round(c[i] * k)));
+      out += (v < 16 ? "0" : "") + v.toString(16);
+    }
+    return out;
   };
 
   global.TXOC = N;

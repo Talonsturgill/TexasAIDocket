@@ -114,8 +114,17 @@ seated in a gallery at 1.10 m (9). The deck walks toward the paper and then sits
 eave leaves 3 and the clipped board opens 5. The notice's lower right corner leaves 6 and its cast
 direction continues under the carved type of 7. The parkway strip leaves 8.
 
-**VALUE AND PALETTE ARC.** Planned frame median L* in slide order, written against the press rather
-than the press chased to the arc: 12, 10, 14, 21, 18, 22, 15, 13, 9.
+**VALUE AND PALETTE ARC.** Planned frame median L* in slide order, and the numbers are the probe
+frame's rather than the plan's. The first cut of this line read 12, 10, 14, 21, 18, 22, 15, 13, 9,
+written before anything was printed. Frame 6 is the deck's brightest, because it is the most paper
+of the nine, and it **measured 13.9 at 432 px against a plan of 22**. A stipple at cell 5 over this
+ground does not reach the twenties however bright the stock is drawn, so the arc moved and the press
+did not. That is September 15th's lesson and carousel no. 25 paid for it once.
+
+    9, 8, 10, 12, 12, 14, 9, 9, 7
+
+Maximum adjacent step 5, mean about 2.4, no hard cut anywhere. The deck brightens only where paper
+is present and returns to its darkest in the committee room.
 
 ---
 
@@ -184,7 +193,7 @@ art:
   value_structure: >
     Lightest is the cab's right flank and the top of the boom taking the low key square on. Darkest is
     the oak canopy over the top third, which is where the type lives. The asphalt runs mid and the
-    rectangle on it is the one straight cool line in the frame. Frame median L* planned at 12.
+    rectangle on it is the one straight cool line in the frame. Frame median L* planned at 7.
   motion: >
     the eye enters at the set-out nearest the lens, runs left along the kerb to the rectangle, lifts to
     the two housings on the rail and then to the porch, which is the order the story needs
@@ -262,7 +271,7 @@ art:
   value_structure: >
     Lightest is the right face of each housing and the chrome edge of the rail. Darkest is the underside of
     the header and the shaded left faces. The street beyond is held mid and low contrast by S.fade so the
-    two housings are the only sharp things in the frame. Frame median L* planned at 10.
+    two housings are the only sharp things in the frame. Frame median L* planned at 8.
   motion: >
     the eye lands on the near lens, travels along the rail to the second housing, then down the two cones
     into the street
@@ -340,7 +349,7 @@ art:
   value_structure: >
     Lightest is the concrete apron and the kerb taking the low key. Darkest is the sky above the ridge and
     the shaded left flank, which is where the type sits. The brick and the shingle hold the middle and the
-    eight hollow marks are the only cool hue on any of it. Frame median L* planned at 14.
+    eight hollow marks are the only cool hue on any of it. Frame median L* planned at 10.
   motion: >
     the eye enters at the densest mark cluster at the eave, follows the leaders outward to the labels, and
     then down the flank to the apron
@@ -421,7 +430,7 @@ art:
   value_structure: >
     Lightest is the page itself, which is the brightest thing in the deck so far and is meant to be, because
     this is where the paper starts talking. Darkest is the table beyond the page's far edge and the forearm
-    cropped at the left. Nothing else in the frame competes. Frame median L* planned at 21.
+    cropped at the left. Nothing else in the frame competes. Frame median L* planned at 12.
   motion: >
     the eye enters at the two column headings, runs down the right column through the three NOT rows, and
     stops at the indented sub row
@@ -505,7 +514,7 @@ art:
   value_structure: >
     Lightest is the lit half of the sheet. Darkest is the board beyond the sheet's edge and the clip. The
     shaded half of the sheet is the mid and the marks read on both halves because they are toner on stock
-    rather than a value difference. Frame median L* planned at 18.
+    rather than a value difference. Frame median L* planned at 12.
   motion: >
     the eye enters at the filled group, runs to the boundary, and drops to the memo's sentence beneath
 type:
@@ -585,7 +594,7 @@ art:
   value_structure: >
     Lightest is the page, and it is the brightest surface in the deck. Darkest is the gap between the boards
     and the shadow under the curled corner. The boards hold the mid and the page sits on them rather than
-    over them. Frame median L* planned at 22.
+    over them. Frame median L* planned at 14.
   motion: >
     the eye lands on the bold line, drops through the two middle sentences, and finishes at the correction
     request at the foot, which is the order the page itself sets
@@ -664,7 +673,7 @@ art:
   value_structure: >
     Lightest is the lit right wall of each groove, which is a hairline and is the only light in the frame.
     Darkest is the groove's left wall and the gaps between the boards. The boards hold one mid across the
-    whole frame so the carve is the only event. Frame median L* planned at 15.
+    whole frame so the carve is the only event. Frame median L* planned at 9.
   motion: >
     the eye reads the carve, lifts to the denial above it, and drops to the statement below, which is the
     order the argument happened in
