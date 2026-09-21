@@ -576,7 +576,7 @@ accent: none
 job: >
   Hand the reader the document the whole argument is about, at arm's length, with its four sentences in its
   own order, and let the page contradict itself without a word of help.
-claims: [c20, c21, c22, c23]
+claims: [c19, c20, c21, c22, c23]
 numerals:
   - computed_by: "out/2026-09-21/compute.py, letter_lines counted as the four claims that quote the notice"
 data_in_art:
@@ -712,7 +712,7 @@ art:
     order the argument happened in
 type:
   hook: "\"I would say you could call that a warning.\""
-  dek: "Jeremy Reed, Assistant Director of Dallas Code Compliance, asked whether a notice that tells an owner to correct violations to avoid enforcement is a warning."
+  dek: "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer."
   labels: ["The memo says a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
 verbatim:
   - c26: "I think at this point, you're mincing words. I would say you could call that a warning."
@@ -828,7 +828,7 @@ accent: "#4E5FA8"
 job: >
   Put the reader in the room the program goes to next, empty, and give them the date and the committee by
   name, without drawing one thing that has not happened.
-claims: [c49, c50, c33]
+claims: [c49, c50, c40, c44]
 numerals:
   - value_from: c49
 data_in_art: null
@@ -872,7 +872,7 @@ art:
     screen, and drops to the date
 type:
   hook: "October 19th, and the room is open."
-  dek: "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. A council member proposed pulling its funding and withdrew the request when that briefing was agreed."
+  dek: "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person."
   labels: []
 verbatim:
   - c50: "Quality of Life, Arts and Culture Committee briefing Oct. 19"
