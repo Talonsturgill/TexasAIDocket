@@ -408,7 +408,7 @@ accent: none
 job: >
   Draw the promise straight, in the document's own words and its own two column order, on the one frame in
   the deck that carries no accent at all, because on December 9th nothing had been detected.
-claims: [c11, c12, c13, c14, c15, c8, c9, c10]
+claims: [c11, c51, c12, c13, c14, c15, c8, c9, c10]
 numerals:
   - value_from: c8
   - value_from: c9
@@ -651,8 +651,8 @@ primary_image:
   subject: >
     the assistant director's sentence carved INTO the same porch boards as frame 6, at a 0.055 m cap
     height on boards at a true 140 mm pitch, the groove's left wall in shadow and its right wall taking
-    the key, with a bounded shaft of morning sun lying on the boards to its right and running off the
-    frame's own right edge, and the memo's flat denial set small above the carve with Code Compliance's
+    the key, with a band of morning sun lying across the boards below the carve and running off both of the
+    frame's side edges, and the memo's flat denial set small above the carve with Code Compliance's
     statement set small below
   rect: [0, 0, 1080, 1350]
   bleeds: [top, left, right, bottom]
@@ -670,18 +670,22 @@ depth:
   subject_at: {X: 0, Z: 0.70}
 composition:
   structure: >
-    The same porch, the same boards, the camera lifted 30 mm and turned 4 degrees, so the swipe from frame 6
-    is a small move rather than a cut and the cast direction is continuous across it. The carved line fills
+    The same porch and the same boards, with the camera turned a QUARTER TURN from frame 6 so it looks
+    ALONG the run instead of across it. That is the deck's CAMERA_MOVE doing real work rather than being
+    declared: one construction seen from two places, and it is also what makes a joint on this frame a
+    vertical line, which can cross a line of type at a point but never run along one. The carved line fills
     the middle band with the boards running off both edges, and the two small settings above and below it are
-    at the same measure as each other, so none of the three voices wins by size. The shaft of sun sits in the
-    one region no voice occupies, which is what lets all three be set light on shaded boards.
+    at the same measure as each other, so none of the three voices wins by size. The band of sun sits in the one region no voice
+    occupies, which is what lets all three be set light on shaded boards. The memo's line carries a per
+    glyph halo rather than a plate, because three joints cross it wherever it sits.
   bands: >
     Top third, the boards above the carve with the memo's denial set small in it and the hook in the reserve
     above that. Middle third, the carved sentence at 0.055 m cap height, the grooves raking left to right
     under the deck's own key. Bottom third, the boards below the carve with Code Compliance's statement set
     small, each board's lit shoulder and shaded groove carrying the texture down to the frame's lower
-    edge, and the carve's own cast shadow spilling out of the last groove. The shaft of sun crosses the
-    middle and bottom bands on the key's own side, in the one region of the frame that carries no type.
+    edge, and the carve's own cast shadow spilling out of the last groove. The band of sun crosses the frame edge to edge between the
+    carve and Code Compliance's line, which is the one region carrying no type, and every board joint
+    runs straight through it.
   focal: >
     the carved word warning, an area of about 320 by 90 px at centre, reached because the carve's lit right
     wall is the brightest EDGE in the frame. The shaft of sun beside it is the brightest MASS, and the two
@@ -697,7 +701,7 @@ art:
     The same porch as frame 6. Ground #222E16, boards in shade #383C30, the groove's dark wall at #111410 and
     its lit wall at #A4A89A, dek ink #AEB6A0. No accent on this frame.
   value_structure: >
-    Lightest is the shaft of sun on the boards, held at the top of the deck's scale across its whole area
+    Lightest is the band of sun on the boards, held at the top of the deck's scale across its whole area
     rather than graded, because direct sun on a board is not a gradient. Next is the lit right wall of each
     groove, a hairline. Darkest is the groove's left wall and the gaps between the boards. The boards hold
     one shaded mid everywhere the sun does not reach, so the frame has exactly two events. Frame median L*
@@ -707,7 +711,7 @@ art:
     the eye reads the carve, lifts to the denial above it, and drops to the statement below, which is the
     order the argument happened in
 type:
-  hook: "\"You could call that a warning.\""
+  hook: "\"I would say you could call that a warning.\""
   dek: "Jeremy Reed, Assistant Director of Dallas Code Compliance, asked whether a notice that tells an owner to correct violations to avoid enforcement is a warning."
   labels: ["The memo says a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
 verbatim:
@@ -718,9 +722,9 @@ acceptance:
   - "the carve is a text-shadow pair on the DOM glyphs and no second copy of the headline is drawn on the canvas"
   - "the groove's dark offset runs to the upper right and its light offset to the lower left, which is the inverse of the deck's cast and is what an incised letter looks like under a key at az 38"
   - "the two small settings above and below are the same font size and the same measure as each other"
-  - "the board pitch is continuous with frame 6's, so the two frames are the same porch"
+  - "the board joints run TOP TO BOTTOM, because the camera has turned a quarter turn from frame 6 to look along the same run, and their pitch is the same true 140 mm"
   - "the frame carries no accent at all"
-  - "the quoted sentence matches c26 character for channel, including the apostrophe in you're and the terminal period"
+  - "the quoted sentence on the frame is a COMPLETE SENTENCE of c26 and matches it character for character, terminal period included, with no word capitalised that the source does not capitalise"
   - "nothing in this frame is drawn that anybody made, apart from the boards and the words"
 risks:
   - "carved type over boards is where a groove and a board joint can land on the same line, and the harness reads a board joint crossing a glyph band as a strikethrough, correctly. The carve is placed on a board face rather than across a joint, and the joints in the carve's band are damped by the chassis's quiet rather than moved, because the boards are true geometry"
@@ -743,7 +747,7 @@ job: >
   Carry the counter-image at full size rather than as a line, because the memo says a citation issues only
   after a person walks up to the property, and show the machine's frame at its smallest, closed on the one
   thing a camera actually reported.
-claims: [c44, c17, c31, c36, c4]
+claims: [c44, c42, c17, c31, c36, c4]
 numerals:
   - computed_by: "out/2026-09-21/compute.py, hardware.resolution parsed out of c4's quote"
 data_in_art:

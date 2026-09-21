@@ -199,7 +199,62 @@
    * never chased to the arc, which is September 15th's lesson and carousel no. 25 paid for it.
    * The stated fallback is hatch at cell 7, deliberately not cell 6, which shipped yesterday.
    */
-  N.SCREEN = { mode: "stipple", cell: 5, angle: 0, gamma: 1.18, floor: 0.05 };
+  /* THE CEILING WAS MEASURED AND THE SCALE WAS NOT, AND THAT COST THE DECK ITS FORM.
+   *
+   * The paragraph above says to print a white field through this configuration and record the
+   * ceiling before the value arc is committed. That was done. What nobody printed was the other
+   * eight steps, and the ceiling is not the question: the SEPARATION is.
+   *
+   * Measured on 2026-09-21 by printing all nine steps of N.G as full width bands through this
+   * exact press and reading each band's L* off the rendered PNG:
+   *
+   *     step     twin L*   printed L*
+   *     voidd        0.0         10.0
+   *     deep         5.9         11.5
+   *     dark        14.5         13.6
+   *     shade       24.6         11.3      <- DARKER than `dark`
+   *     mid         39.1         18.9
+   *     stone       52.8         18.2      <- DARKER than `mid`
+   *     metal       68.2         21.3
+   *     bright      83.5         28.0
+   *     glare       94.9         29.1
+   *
+   * A scale spanning 95 L* in the twin printed across NINETEEN, and it was not monotonic. Two
+   * adjacent steps differed by one L* and two ran backwards. So S.box's lit face and its shadow
+   * face came out the same colour, `porchBoards` at `shade` came out the colour of the ground,
+   * and the only thing left with any contrast on a frame was the CONTOUR PLATE, which is why
+   * five independent critics read this deck as hairline wireframes over noise and called it one
+   * value group. Nothing was wrong with any frame's drawing. Every frame was drawing through a
+   * press with no tonal range.
+   *
+   * WHY, and it is arithmetic rather than taste. INK.screen's stipple lays
+   * `n = round(d * d * perCell)` dots where `d = pow(luminance, gamma)`, so ink coverage goes as
+   * luminance to the power 2 * gamma. At gamma 1.18 that is luminance^2.36, which crushes
+   * everything below `bright` into the ground. The default perCell of 6 then quantises what is
+   * left into about four usable levels for nine declared steps.
+   *
+   * gamma 0.5 makes 2 * gamma exactly 1, so dot count is LINEAR in the twin's own luminance and
+   * the nine steps land on nine distinct dot counts rather than four. perCell 20 supplies the
+   * levels and `weight`, the dot radius multiplier, is held at 1.00 so the dots stay separate:
+   * a bigger dot buys coverage and spends it again on overlap, which flattens the top of the
+   * scale exactly where `bright` and `glare` have to stay apart. Measured at weight 1.17 the top
+   * three steps were 3.1, 4.6 and 1.9 L* apart. At 1.00 they are 5.7, 3.9 and 2.7.
+   *
+   * The same nine bands through the press as configured below:
+   *
+   *     voidd 10.0   deep 16.3   dark 25.1   shade 31.9   mid 36.6
+   *     stone 44.4   metal 50.1  bright 54.0  glare 56.7
+   *
+   * Monotonic, 47 L* of range against the 19 it had, and no step under 2.7. A lit face and a
+   * shadow face are now different colours, which is all S.box ever needed.
+   *
+   * This is the press being written to the arc's requirements, which is the right direction. The
+   * lesson the paragraph above cites, that the press is never chased to the arc, is about not
+   * moving the press per frame to rescue a composition. One measurement of the whole scale,
+   * before any frame is judged, is the thing it was asking for.
+   */
+  N.SCREEN = { mode: "stipple", cell: 5, angle: 0, gamma: 0.5, floor: 0.05,
+               perCell: 20, weight: 1.00 };
   N.EDGES  = { threshold: 18, width: 1.3, alpha: 0.78, dx: -1.1, dy: 0.6 };
 
   /* THE GREY SCALE THE TWIN IS DRAWN IN, dark to light. A frame reaches for these by name so nine
@@ -458,9 +513,26 @@
    * the boards are one construction called twice rather than two drawings that resemble each
    * other. `ppm` is pixels per metre at the surface's distance, from the scene, so the board
    * pitch is the frame's own ruler rather than a texture at an invented pitch. */
+  /* `axis` IS "across" BY DEFAULT AND "along" WHEN THE CAMERA LOOKS DOWN THE RUN.
+   *
+   * A porch is decked one way and a camera can stand either side of it. Frame 6 looks ACROSS the
+   * boards, so their joints run left to right in the frame. Frame 7 stands at the same porch a
+   * quarter turn round and looks ALONG them, so the same joints run top to bottom. It is one
+   * construction seen from two places rather than two drawings, which is what this whole file is
+   * for, and the quarter turn is the deck's declared CAMERA_MOVE doing real work.
+   *
+   * IT IS ALSO THE PERMANENT END OF A DEFECT. A joint running the full width of a frame is a
+   * horizontal rule, and a horizontal rule that lands in a line of type is a STRIKETHROUGH, which
+   * qa.py reads as one and is right to. Frame 7 hit it twice in one run and the second time no
+   * board origin could clear it: at the pitch the frame's own carve arithmetic requires, the gaps
+   * between joints are shorter than the two type blocks that have to sit in them. A joint running
+   * top to bottom crosses a line of type at one point a few pixels wide instead of along it, so
+   * the failure mode is not available at all.
+   */
   N.porchBoards = function (a, r, ppm, o) {
     o = o || {};
     var pitch = 0.140 * ppm;
+    var along = o.axis === "along";
     a.save();
     a.beginPath(); a.rect(r.x, r.y, r.w, r.h); a.clip();
     a.fillStyle = o.face || N.G.shade;
@@ -470,16 +542,24 @@
      * separate boards that each took the weather differently, so the modelling is IN the boards
      * and the joint is only where two of them meet. */
     var n = 0, R = TX && TX.rng ? TX.rng(o.seed == null ? 6 : o.seed) : function () { return 0.5; };
-    for (var yb = r.y - pitch; yb <= r.y + r.h + pitch; yb += pitch, n++) {
+    var b0 = along ? r.x : r.y, b1 = along ? r.x + r.w : r.y + r.h;
+    for (var yb = b0 - pitch; yb <= b1 + pitch; yb += pitch, n++) {
       /* A NARROW SPREAD, AND THE PROBE FRAME SET THE NUMBER. At plus or minus eighteen percent
        * the step between two boards was large enough for the contour plate's Sobel to find, and
        * TXINK lays that edge back over the ground in INK at 0.78 alpha, so every joint printed as
        * a bright wire running the full width of the frame. The boards still each take the weather
        * differently. The difference is now under the threshold the contour plate reads. */
-      var k = 0.90 + R() * 0.20;
+      /* A NARROW SPREAD GOT NARROWER WHEN THE PRESS GOT ITS RANGE BACK. At plus or minus ten
+       * percent this was invisible through the old press and is a visible step through the new
+       * one, which put a value edge per board across every line of type the frame carries and
+       * broke the board field into alternating strips instead of one surface. The groove and its
+       * lit shoulder are what separate two boards. The faces barely differ, which is also what a
+       * run of the same timber actually looks like. */
+      var k = 0.97 + R() * 0.06;
       a.globalAlpha = 1;
       a.fillStyle = N.mixGrey(o.face || N.G.stone, k);
-      a.fillRect(r.x, yb, r.w, pitch);
+      if (along) a.fillRect(yb, r.y, pitch, r.h);
+      else a.fillRect(r.x, yb, r.w, pitch);
     }
     /* THE JOINTS, damped hard. The contour plate finds a step of any size and lays it back over
      * the ground a pixel out of register, so a joint drawn at the strength a joint looks like in
@@ -500,13 +580,28 @@
      * separate boards, because the per board tone above is what was carrying that all along.
      */
     var gw = Math.max(3, pitch * 0.055);
-    for (var y = r.y - pitch; y <= r.y + r.h + pitch; y += pitch) {
-      var gg = a.createLinearGradient(0, y - gw, 0, y + gw);
+    for (var y = b0 - pitch; y <= b1 + pitch; y += pitch) {
+      /* THE GROOVE, AND THE LIT SHOULDER BESIDE IT. The shoulder is new: until the press was
+       * measured on 2026-09-21 it would have printed at the colour of the groove, because the
+       * whole nine step scale was landing inside nineteen L*. With a press that has range, the
+       * shoulder is what makes a joint read as two boards meeting rather than as a dark line
+       * ruled on a flat field, and it is the cheapest form cue in the deck. */
+      var gg = along ? a.createLinearGradient(y - gw, 0, y + gw, 0)
+                     : a.createLinearGradient(0, y - gw, 0, y + gw);
       gg.addColorStop(0.00, "rgba(0,0,0,0)");
-      gg.addColorStop(0.50, "rgba(0,0,0,0.30)");
+      gg.addColorStop(0.50, "rgba(0,0,0,0.34)");
       gg.addColorStop(1.00, "rgba(0,0,0,0)");
       a.fillStyle = gg;
-      a.fillRect(r.x, y - gw, r.w, gw * 2);
+      if (along) a.fillRect(y - gw, r.y, gw * 2, r.h);
+      else a.fillRect(r.x, y - gw, r.w, gw * 2);
+
+      var sh = along ? a.createLinearGradient(y + gw, 0, y + gw * 3.2, 0)
+                     : a.createLinearGradient(0, y + gw, 0, y + gw * 3.2);
+      sh.addColorStop(0.00, "rgba(240,242,224,0.30)");
+      sh.addColorStop(1.00, "rgba(240,242,224,0.00)");
+      a.fillStyle = sh;
+      if (along) a.fillRect(y + gw, r.y, gw * 2.2, r.h);
+      else a.fillRect(r.x, y + gw, r.w, gw * 2.2);
     }
     a.globalAlpha = 1;
     a.restore();
