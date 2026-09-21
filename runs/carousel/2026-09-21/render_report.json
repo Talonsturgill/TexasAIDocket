@@ -1229,7 +1229,7 @@
           "font": "600 14.1px Manrope, sans-serif"
         },
         {
-          "text": "DISTRICTS 4, 8, 7",
+          "text": "DISTRICTS 4, 8 AND 7",
           "fn": "fillText",
           "font": "500 12.9px \"JetBrains Mono\", monospace"
         }
@@ -1239,7 +1239,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4501,
+      "render_ms": 4767,
       "ok": true,
       "canvases": [
         {
@@ -1502,11 +1502,11 @@
           "anc": []
         },
         {
-          "text": "The memo says a courtesy notice is not a warning or a violation.",
+          "text": "NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.",
           "x": 80,
           "y": 330,
           "w": 800,
-          "h": 38,
+          "h": 77,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -1517,7 +1517,13 @@
             [
               80,
               330,
-              782,
+              721,
+              37
+            ],
+            [
+              80,
+              368,
+              269,
               37
             ]
           ],
@@ -1687,7 +1693,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 6598,
+      "render_ms": 6154,
       "ok": true,
       "canvases": [
         {
@@ -1700,8 +1706,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 56.3,
-          "variance": 3328.5
+          "mean": 55.8,
+          "variance": 3287.6
         }
       ],
       "breather": false,

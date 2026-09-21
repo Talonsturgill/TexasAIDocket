@@ -42,10 +42,17 @@
            line-height:1.42; color:#C6CCB6; z-index:10;
            text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
                         -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
+  /* THE SAME HALO THE MEMO LINE CARRIES, AND FOR THE SAME REASON. The boards run top to bottom
+     on this frame, so joints cross every horizontal line of type wherever it is put. A halo is
+     per glyph and in the opposite value, and it leaves the surface behind the type untouched. */
   .below { position:absolute; left:80px; top:1000px; width:800px; font-size:27px;
-           line-height:1.42; color:#C6CCB6; z-index:10; }
+           line-height:1.42; color:#C6CCB6; z-index:10;
+           text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                        -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
   .attrib { position:absolute; left:80px; top:1088px; width:800px; font-size:24px;
-            line-height:1.40; color:#9AA292; z-index:10; }
+            line-height:1.40; color:#9AA292; z-index:10;
+            text-shadow: 0 0 9px #141810, 0 0 5px #141810, 0 0 3px #141810, 1px 1px 0 #141810,
+                          -1px 1px 0 #141810, 1px -1px 0 #141810, -1px -1px 0 #141810; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8F9683;
              white-space:nowrap; z-index:20; }
@@ -54,7 +61,7 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<p class="above">The memo says a courtesy notice is not a warning or a violation.</p>
+<p class="above">NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.</p>
 <h1 class="hook" id="hook">"I would say you could call that a warning."</h1>
 <p class="below">Code Compliance says the notices do not require anything of the property owners.</p>
 <p class="attrib">NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer.</p>

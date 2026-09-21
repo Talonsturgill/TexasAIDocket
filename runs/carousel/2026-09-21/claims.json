@@ -127,12 +127,12 @@
   {
    "id": "c14",
    "text": "The briefing answered its own NOT automated ticketing line with a sub point saying there is a human in the loop for all actions. That was a promise made to a committee in December 2025 and not a measurement of anything.",
-   "quote": "There is a human in the loop",
+   "quote": "There is a human in the loop for all actions",
    "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
    "source_type": "primary_official",
    "retrieved": "2026-09-21",
    "confidence": "medium",
-   "note": "The words 'for all actions' begin the next line of the document."
+   "note": "The words 'for all actions' begin the next line of the document. The phrase wraps across two lines of the pypdf extraction, 'There is a human in the loop' then 'for all actions', which is why the quote field was first captured short. Verified against page 12 of the committed extraction. Frame 4 prints the whole phrase and a craft judge was right that the frame and the quote field disagreed."
   },
   {
    "id": "c15",

@@ -103,7 +103,9 @@ depicted, and the rectangle on its screen carries nothing.
 mark on her roof would assert a defect the record does not establish, and her own documentation was
 not carried into claims.json.
 
-**NOBODY IS ACCUSED.** The city kept the promise it made in December and the reporting says so.
+**NOBODY IS ACCUSED, AND NOBODY IS CLEARED EITHER.** The record does not support a claim that
+the December promises were broken, and it does not establish that they were kept: every check on that
+is the city describing its own process through a newsroom.
 Frame 4 draws the promise straight and carries no accent. Frame 8 draws the person who walks the
 property. Frame 5 gives the memo and Reed's counter the same measure. No frame anywhere uses the
 word promise, broken or surveillance.
@@ -148,8 +150,17 @@ measured the instrument rather than the deck.
 
     17, 24, 20, 21, 15, 40, 24, 22, 20
 
-Maximum adjacent step 25, at frame 5 into frame 6, and it is a flat band with one spike rather than
-an arc. Six of the nine sit inside 17 to 24. Frame 6 is the deck's brightest at 40 because it is the
+MEASURED BY `panel_ready.py`, WHICH IS NAMED HERE BECAUSE TWO INSTRUMENTS IN THIS RUN READ THE SAME
+NINE FRAMES AND DISAGREE. `out/2026-09-21/measure.py` reads the whole frame at 432 px and gives
+14, 23, 19, 21, 12, 40, 23, 18, 19 with a maximum step of 27.9. `panel_ready` is the GATE that holds
+each frame to its own dossier, so the dossiers carry its numbers and this section carries them too,
+and the other reading is in `measurements.json` beside it rather than hidden. A craft judge caught
+the two disagreeing and was right to: a document with two accounts of one measurement has none.
+Neither instrument is wrong. They crop differently, and NOT SAYING WHICH ONE A NUMBER CAME FROM is
+what was wrong.
+
+Maximum adjacent step 25 on that instrument and 27.9 on the other, at frame 5 into frame 6 either
+way, and it is a flat band with one spike rather than an arc. Six of the nine sit inside 17 to 24. Frame 6 is the deck's brightest at 40 because it is the
 most paper of the nine and it was cropped harder this run so a reader could read the letter at feed
 scale, which is the trade: the frame that carries the argument got legible and the track got a
 strobe. THE ARC WAS REWRITTEN AND THE PRESS WAS NOT CHASED, which is the right direction and is not
@@ -724,7 +735,7 @@ art:
 type:
   hook: "\"I would say you could call that a warning.\""
   dek: "NBC 5 put it to Jeremy Reed, Assistant Director of Dallas Code Compliance, that a notice asking an owner to act to avoid enforcement is a warning. That was his answer."
-  labels: ["The memo says a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
+  labels: ["NBC 5 reported the memo saying a courtesy notice is not a warning or a violation.", "Code Compliance says the notices do not require anything of the property owners."]
 verbatim:
   - c26: "I think at this point, you're mincing words. I would say you could call that a warning."
   - c19: "A courtesy notice is not a warning or a violation."

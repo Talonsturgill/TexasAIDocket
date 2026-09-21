@@ -166,7 +166,8 @@ window.renderReady = new Promise(function (resolve, reject) {
          * row. It names the districts and nothing else names geography anywhere on this frame. */
         c.font = '500 ' + (px * 0.92).toFixed(1) + 'px "JetBrains Mono", monospace';
         c.globalAlpha = 0.70;
-        c.fillText("DISTRICTS " + DISTRICTS.join(", "), SHEET.x + pad, top - px * 1.5);
+        c.fillText("DISTRICTS " + DISTRICTS[0] + ", " + DISTRICTS[1] + " AND " + DISTRICTS[2],
+                   SHEET.x + pad, top - px * 1.5);
         c.globalAlpha = 1;
         c.restore();
 
