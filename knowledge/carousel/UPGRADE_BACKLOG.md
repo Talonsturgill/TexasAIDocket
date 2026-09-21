@@ -3588,3 +3588,42 @@ This is a PROMPT problem rather than a code problem: the directors write the lis
 write descriptions because nothing asks them for assertions. The cheapest fix is in the treatment
 director's brief in Phase 9, not in the gate. The gate is already measuring it correctly and has
 been ignored 31 times.
+
+### 11. THE ARTICLE SPAN GATE A JUDGE ASKED FOR WOULD BE WRONG, and the measurement says so
+
+An integrity judge on 2026-09-21 found a real fabrication in that day's web edition. The prose
+said the notice told an owner the City may "perform the work and bill the property owner", and
+c22's quote says "refer the property for abatement". A cost recovery the record never carries.
+Real defect, correctly caught, fixed.
+
+Its one sentence fix was: **add a gate asserting every `[text](cNN)` span in
+`ledger/articles/*.json` is a literal substring of that claim.** DO NOT BUILD THAT GATE. It rests
+on a premise about the file format that is false, and the premise came from that day's edition
+being unusual rather than from the contract.
+
+`ledger/articles/README.md` line 15 states the contract: **``[source label](c7)`` links directly
+to that claim's source.** It is a LINK LABEL. Measured across every shipped edition: **86
+bracketed spans, 61 of them not literal**, and they are labels doing exactly what the README
+says, "county minutes archive", "press release says", "federal award abstract", "user guide",
+"company announcement", "Waymo announced". The gate would go red on 29 of 31 shipped editions on
+its first run, on nothing that is wrong.
+
+**The defect it was reaching for is real and is a different shape.** It is not a span that fails
+to match a claim. It is PROSE ASSERTING A CONSEQUENCE THE CLAIM DOES NOT CARRY, and it would have
+been just as wrong with no brackets in the sentence at all. `absence_check` reads negatives and
+`noun_trace` reads named things, and neither asks whether a stated consequence is in the source.
+That is the gate worth designing, and it is harder than a substring test.
+
+**One cheap thing IS available and is worth it on its own.** The 2026-09-21 edition happened to
+use every bracket as a verbatim span, and auditing all 37 against their claims found the
+fabrication plus one span with a stray leading article. A gate can't demand that convention, but
+a REPORT can measure it: print how many of an edition's spans are literal and name the ones that
+are close but not exact, say above 0.8 word overlap and not a match. A label like "user guide"
+scores near zero and never appears. A near miss like "perform the work and bill the property
+owner" against "refer the property for abatement" is what the report exists to surface.
+
+THE GENERAL LESSON, which is why this entry is long. A judge is a reader of the artifact and not
+of the contract. This one inferred a file's rule from one day's file, stated it with confidence,
+and was wrong about the whole archive. Read the contract before building the gate a judge asks
+for. The same run took three other findings from the same judge straight to the code, because
+those were checkable and checked.
