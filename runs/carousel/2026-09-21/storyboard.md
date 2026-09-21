@@ -52,6 +52,24 @@ remainder appears in any frame, label, dek, caption or file.
 estimated by eye. #222E16 was measured in code against the last six shipped grounds at dE76 16.57 to
 its nearest, which is #2E2016 from yesterday, against a floor of 10.
 
+**Slide 5 is a DIAGRAM and not a GRID, and the pixels decided it.** It was planned as a GRID,
+which is what a count of 57 marks is. `layout_check` measures a GRID by whether the subject comes
+apart into four or more separable pieces at 432 px, because a count a reader can't separate in the
+feed is not a count. This deck's marks are TONER ON BRIGHT STOCK, so at feed scale the measurable
+subject against a dark ground is the SHEET, which is one piece, and no size of mark changes that.
+The frame is a drawn page carrying a field, a mono label and the memo's own sentence set under it,
+which is what DIAGRAM names. Nothing about the drawing moved. The rotation still passes with three
+distinct archetypes and no two the same in a row.
+
+**Frame 7's primary image is the WHOLE FRAME and the pixels decided that too.** It was declared as
+the carved band alone, which is where the letters are. `layout_check` measures a subject as ink
+that is not type, and 1019 of that band's 1326 cells were under the headline, so the frame reported
+a silhouette of 0.009 against a floor of 0.08 while having a perfectly good drawn surface either
+side of the carve. The porch IS the image on this frame. It is one continuous run of boards at a
+true 0.140 m pitch, cropped by both edges, with a routed channel cut into it, and the rect now says
+so. The drawing did not change to satisfy the gate. The declaration was wrong and the gate was
+reading it correctly.
+
 **Overruled in the third, the screen.** It argued well for a line screen as the raster of a 1080 line
 capture, and then named the moire risk itself, which is that sidewalk joints, eaves, shingle courses
 and kerbs are all near horizontal. September 20th also measured a line screen getting WORSE as it
@@ -101,6 +119,8 @@ stipple at cell 5, decided on the probe frame.
 
 ## The continuity devices
 
+CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, EDGE_TEASE, VALUE_ARC
+
 **MOTIF EVOLUTION, and it is the deck's spine.** The machine's own frame, at the capture aspect
 computed from the figure rather than typed. 7.8 m lying empty across the lane (1). 0.42 m as the
 housing's own field (2). Eight small hollow marks on one sound house (3). 1.2 m closed tight on a
@@ -139,8 +159,8 @@ primary_image:
     boards, knuckle boom folded at 3.40 m, overall 9.60 m, cut by the right edge, with a squared bulk
     trash set-out at the kerb at 2.0 by 0.9 by 0.8 m, a live oak over the parkway, a bungalow at 16
     by 6 m set back at Z 27 and one resident standing on the porch at 1.7 m
-  rect: [0, 0, 1080, 1350]
-  bleeds: [top, left, right, bottom]
+  rect: [0, 660, 1080, 690]
+  bleeds: [left, right, bottom]
 accent: "#4E5FA8"
 job: >
   Put the reader at the kerb on a normal morning and establish, at true scale, the size of everything
@@ -226,8 +246,8 @@ primary_image:
     mount foot, on a 0.04 m section rail, at 0.9 m from the lens on a long lens so both read at the same
     size and neither is favoured, with the windscreen header behind them at Z 1.6 and the block running
     away out of focus past the rail
-  rect: [0, 180, 1080, 900]
-  bleeds: [top, left, right]
+  rect: [0, 400, 1080, 560]
+  bleeds: [left, right]
 accent: "#4E5FA8"
 job: >
   Turn the camera on the camera at the size of a fist, and make the absence of zoom a property of the
@@ -462,7 +482,7 @@ risks:
 
 ```yaml
 slide: 5
-layout: GRID
+layout: DIAGRAM
 primary_image:
   subject: >
     57 identical citation marks stamped on a drawn sheet clipped to a board, the sheet at 0.216 by 0.279 m
@@ -504,7 +524,7 @@ composition:
 art:
   technique: a unit mark field drawn once and stamped, on a drawn sheet raked by the deck's declared light
   why_this_technique: >
-    A count wants GRID, and 57 is inside the count ceiling a mark field has, which 3,700 and 21,000 are not.
+    A count wants a field a reader can count, and 57 is inside the count ceiling a mark field has, which 3,700 and 21,000 are not.
     Stamping one mark 57 times makes identical a property of the code rather than a claim about the drawing,
     and one fill state rather than two objects is what keeps 39 a part of 57 instead of a second quantity
     beside it.
@@ -629,10 +649,11 @@ primary_image:
   subject: >
     the assistant director's sentence carved INTO the same porch boards as frame 6, at a 0.055 m cap
     height on boards at a true 140 mm pitch, the groove's left wall in shadow and its right wall taking
-    the key, with the boards running off both edges and the memo's flat denial set small above it and
-    Code Compliance's statement set small below
-  rect: [0, 360, 1080, 640]
-  bleeds: [left, right]
+    the key, with a bounded shaft of morning sun lying on the boards to its right and running off the
+    frame's own right edge, and the memo's flat denial set small above the carve with Code Compliance's
+    statement set small below
+  rect: [0, 0, 1080, 1350]
+  bleeds: [top, left, right, bottom]
 accent: none
 job: >
   Land the turn, which is that nobody in Dallas said a false word and the city's own assistant director,
@@ -650,16 +671,19 @@ composition:
     The same porch, the same boards, the camera lifted 30 mm and turned 4 degrees, so the swipe from frame 6
     is a small move rather than a cut and the cast direction is continuous across it. The carved line fills
     the middle band with the boards running off both edges, and the two small settings above and below it are
-    at the same measure as each other, so none of the three voices wins by size.
+    at the same measure as each other, so none of the three voices wins by size. The shaft of sun sits in the
+    one region no voice occupies, which is what lets all three be set light on shaded boards.
   bands: >
     Top third, the boards above the carve with the memo's denial set small in it and the hook in the reserve
     above that. Middle third, the carved sentence at 0.055 m cap height, the grooves raking left to right
     under the deck's own key. Bottom third, the boards below the carve with Code Compliance's statement set
     small, each board's lit shoulder and shaded groove carrying the texture down to the frame's lower
-    edge, and the carve's own cast shadow spilling out of the last groove.
+    edge, and the carve's own cast shadow spilling out of the last groove. The shaft of sun crosses the
+    middle and bottom bands on the key's own side, in the one region of the frame that carries no type.
   focal: >
     the carved word warning, an area of about 320 by 90 px at centre, reached because the carve's lit right
-    wall is the brightest edge in a frame with no other bright edge in it
+    wall is the brightest EDGE in the frame. The shaft of sun beside it is the brightest MASS, and the two
+    do not compete: one is a hairline on the type and the other is a field with no type on it at all
 art:
   technique: display type carved with a text-shadow pair computed from TXDECK.castDir and applied to the glyphs themselves
   why_this_technique: >
@@ -671,9 +695,12 @@ art:
     The same porch as frame 6. Ground #222E16, boards in shade #383C30, the groove's dark wall at #111410 and
     its lit wall at #A4A89A, dek ink #AEB6A0. No accent on this frame.
   value_structure: >
-    Lightest is the lit right wall of each groove, which is a hairline and is the only light in the frame.
-    Darkest is the groove's left wall and the gaps between the boards. The boards hold one mid across the
-    whole frame so the carve is the only event. Frame median L* planned at 9.
+    Lightest is the shaft of sun on the boards, held at the top of the deck's scale across its whole area
+    rather than graded, because direct sun on a board is not a gradient. Next is the lit right wall of each
+    groove, a hairline. Darkest is the groove's left wall and the gaps between the boards. The boards hold
+    one shaded mid everywhere the sun does not reach, so the frame has exactly two events. Frame median L*
+    planned at 11: the shaft raises it two points over the rest of the porch, and that is the whole of what
+    the light costs.
   motion: >
     the eye reads the carve, lifts to the denial above it, and drops to the statement below, which is the
     order the argument happened in
@@ -788,8 +815,8 @@ primary_image:
     the council committee room before it fills, built in metres at 14 by 9 by 3.4 m, a 9 m dais with five
     empty chairs behind it, a podium at its left, two rows of gallery seat backs occluding the near ground,
     and a wall screen carrying an empty capture rectangle, seen from a seated public eye
-  rect: [0, 0, 1080, 800]
-  bleeds: [top, left, right]
+  rect: [0, 170, 1080, 630]
+  bleeds: [left, right]
 accent: "#4E5FA8"
 job: >
   Put the reader in the room the program goes to next, empty, and give them the date and the committee by

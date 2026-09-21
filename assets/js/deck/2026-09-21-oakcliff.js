@@ -241,11 +241,24 @@
    * near/far, and `S.gridZ` takes Z extents in from/to, and they are NOT the same shape. Read
    * the signature in txscene.js before the call, then look at the render.
    */
-  N.scene = function (a, o) {
-    if (!global.TXSCENE) throw new Error("oakcliff.scene needs txscene.js on this frame");
+  /* THE CAMERA OPTIONS, WITH THE DECK'S LIGHT IN THEM, AND THE FRAME MAKES ITS OWN BENCH.
+   *
+   * This used to be `N.scene(a, opts)`, which built the TXSCENE and handed it back. That hid the
+   * bench inside the chassis, and it cost the deck its whole depth reading: `depth_floor.py` binds
+   * on the literal `X = TXSCENE.create(` in a FRAME's own source, deliberately, because a gate
+   * matching a bare method name once counted 62 calls belonging to things that were not the bench
+   * at all. Nine genuinely staged frames measured as ZERO staged frames.
+   *
+   * The fix is the right shape anyway. THE CAMERA BELONGS TO THE FRAME and the LIGHT belongs to
+   * the deck, so the frame writes `TXSCENE.create` where a reader can see which camera it stands
+   * in, and this function supplies the light from `TXDECK.deck()` so there is still exactly ONE
+   * declaration of it. Nine frames still can't hold nine lights.
+   */
+  N.cam = function (o) {
+    if (!global.TXSCENE) throw new Error("oakcliff.cam needs txscene.js on this frame");
     o = o || {};
     var d = TXDECK.deck();
-    return TXSCENE.create(a, {
+    return {
       w: N.W, h: N.H,
       eye:     o.eye     == null ? 1.63 : o.eye,
       horizon: o.horizon == null ? 760  : o.horizon,
@@ -253,7 +266,7 @@
       sky:     o.sky     || N.G.deep,
       fogZ:    o.fogZ    == null ? 1e9 : o.fogZ,
       light:   { az: d.light.az, el: d.light.el }
-    });
+    };
   };
 
   /* -------------------------------------------------------------------- print
@@ -463,7 +476,7 @@
        * TXINK lays that edge back over the ground in INK at 0.78 alpha, so every joint printed as
        * a bright wire running the full width of the frame. The boards still each take the weather
        * differently. The difference is now under the threshold the contour plate reads. */
-      var k = 0.94 + R() * 0.12;
+      var k = 0.90 + R() * 0.20;
       a.globalAlpha = 1;
       a.fillStyle = N.mixGrey(o.face || N.G.stone, k);
       a.fillRect(r.x, yb, r.w, pitch);
@@ -471,11 +484,29 @@
     /* THE JOINTS, damped hard. The contour plate finds a step of any size and lays it back over
      * the ground a pixel out of register, so a joint drawn at the strength a joint looks like in
      * life prints as a wire. */
-    a.strokeStyle = o.joint || N.G.deep;
-    a.lineWidth = Math.max(1, pitch * 0.020);
+    /* THE JOINT IS A SOFT GROOVE AND NEVER A STROKE, AND THIS IS THE THIRD SHAPE IT HAS HAD.
+     *
+     * A STROKE ACROSS THE FULL WIDTH OF THE FRAME IS A PERFECT STEP, AND THE CONTOUR PLATE LIVES
+     * ON STEPS. TXINK runs a Sobel over the twin and lays the result back over the ground in INK,
+     * a pixel out of register, at 0.78 alpha. So a joint drawn at the strength a joint looks like
+     * in life came back as a BRIGHT WIRE running wall to wall, twice, and on frame 7 one of them
+     * landed across a line of type, which the harness reads as a strikethrough and is right to.
+     * Damping the stroke did not fix it and could not, because the Sobel finds a step of any
+     * size: at 0.34 alpha it was still a step.
+     *
+     * A GRADIENT HAS NO STEP. The groove is now a narrow vertical falloff, dark at its centre and
+     * fading to the board face over a few millimetres either side, which is also what a router
+     * actually leaves. There is nothing for an edge detector to grip and the boards still read as
+     * separate boards, because the per board tone above is what was carrying that all along.
+     */
+    var gw = Math.max(3, pitch * 0.055);
     for (var y = r.y - pitch; y <= r.y + r.h + pitch; y += pitch) {
-      a.globalAlpha = 0.20;
-      a.beginPath(); a.moveTo(r.x, y); a.lineTo(r.x + r.w, y); a.stroke();
+      var gg = a.createLinearGradient(0, y - gw, 0, y + gw);
+      gg.addColorStop(0.00, "rgba(0,0,0,0)");
+      gg.addColorStop(0.50, "rgba(0,0,0,0.30)");
+      gg.addColorStop(1.00, "rgba(0,0,0,0)");
+      a.fillStyle = gg;
+      a.fillRect(r.x, y - gw, r.w, gw * 2);
     }
     a.globalAlpha = 1;
     a.restore();
@@ -548,18 +579,43 @@
      * non finite value, and the whole `over` pass dies with it. It threw rather than drawing
      * nothing, which is the lucky half: the same mistake one function up in `N.sheet` produced a
      * silent blank instead. Index them. */
+    /* BOUNDED IN X AS WELL AS IN Y, AND FRAME 5 IS WHY.
+     *
+     * The first cut filled the FULL FRAME WIDTH at every line box's height. That is right for a
+     * frame whose type spans the frame, which the probe frame's did, and it is wrong the moment
+     * a frame puts type in a column beside a picture. Frame 5 sets its dek in a 330 px column on
+     * the left and has a drawn page on the right, and eight full width washes at 0.42 alpha laid
+     * a dark band straight across the middle of the page, which took the filled marks down into
+     * the ground they were supposed to read against.
+     *
+     * A reserve is for the type that is there. It has no business over the part of the frame
+     * where there is none.
+     */
     c.save();
     for (var i = 0; i < boxes.length; i++) {
       var b = boxes[i];
-      var by = b[1], bh = b[3], fe = bh;
-      if (!isFinite(by) || !isFinite(bh)) continue;
-      var grad = c.createLinearGradient(0, by - fe, 0, by + bh + fe);
-      grad.addColorStop(0.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
-      grad.addColorStop(0.30, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
-      grad.addColorStop(0.70, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
-      grad.addColorStop(1.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
-      c.fillStyle = grad;
-      c.fillRect(0, by - fe, N.W, bh + fe * 2);
+      var bx = b[0], by = b[1], bw = b[2], bh = b[3];
+      if (!isFinite(by) || !isFinite(bh) || !isFinite(bx) || !isFinite(bw)) continue;
+      var feY = bh, feX = Math.max(40, bh * 1.2);
+      var gy = c.createLinearGradient(0, by - feY, 0, by + bh + feY);
+      gy.addColorStop(0.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
+      gy.addColorStop(0.30, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
+      gy.addColorStop(0.70, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
+      gy.addColorStop(1.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
+      /* the horizontal bound, as a clip with a feathered edge either side of the box */
+      c.save();
+      var gx = c.createLinearGradient(bx - feX, 0, bx + bw + feX, 0);
+      gx.addColorStop(0.00, "rgba(0,0,0,0)");
+      gx.addColorStop(feX / (bw + feX * 2), "rgba(0,0,0,1)");
+      gx.addColorStop(1 - feX / (bw + feX * 2), "rgba(0,0,0,1)");
+      gx.addColorStop(1.00, "rgba(0,0,0,0)");
+      var off = TXDECK.offscreen(N.W, N.H, function (o) {
+        o.fillStyle = gy; o.fillRect(bx - feX, by - feY, bw + feX * 2, bh + feY * 2);
+        o.globalCompositeOperation = "destination-in";
+        o.fillStyle = gx; o.fillRect(bx - feX, by - feY, bw + feX * 2, bh + feY * 2);
+      });
+      c.drawImage(off, 0, 0, N.W, N.H);
+      c.restore();
     }
     c.restore();
   };
