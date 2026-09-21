@@ -3555,3 +3555,36 @@ accident of the data. **What to check: a checker must be able to say "I could no
 subject", as a third outcome with its own exit code, and a self-test has to exercise it. Counting
 how many subjects were RESOLVED, and refusing when that count is short, is the cheap version.**
 
+
+### 9. `reverify.py` DOES NOT CONSULT `robots.txt`, found 2026-09-21
+
+The re-verification path fetches a source's URL without ever asking whether the host allows it.
+On 2026-09-21 `public.destinyhosted.com` was found to serve a blanket disallow, the session
+noticed BY HAND and did not fetch, and nothing in the machine would have stopped it. The crawl
+boundary this project keeps in `knowledge/shared/SOURCES_REGISTRY.md` is therefore enforced by a
+session remembering to look, on every item, every run.
+
+**Why this lane cannot fix it and a maintainer must.** The registry is `human` owned on purpose,
+and the map says why in as many words: an unattended run that can edit its own crawl boundary
+does not have one. A fix that has `reverify.py` read the registry is fine and is `upgrade` lane.
+A fix that has it fetch and parse `robots.txt` live is also fine. What neither may do is let the
+result write back anywhere near the registry.
+
+**One measured trap for whoever writes it.** That host's whole `robots.txt` is 25 bytes and both
+directives sit on ONE LINE with no newline between them: `User-agent: * Disallow: /`. A parser
+that splits on lines sees a single unrecognised directive and concludes there is no disallow,
+which is the exact inverse of what the host is asking for. Python's `urllib.robotparser` is
+line-oriented. Whatever is used has to be tested against that byte string specifically, and the
+self-test case is the file itself.
+
+### 10. THE ACCEPTANCE LISTS ARE PROSE, 0 of 69 on this deck
+
+`plan_render_check` reports the ratio of acceptance items that assert something a render could
+contradict. Carousel 31 scored **0 of 69**, which is the same number the 8.03 deck scored, so
+nothing has moved on this since it was first measured. `SLIDE_DOSSIER_SPEC.md` already says how
+to write a checkable item and it costs the writing nothing.
+
+This is a PROMPT problem rather than a code problem: the directors write the lists, and they
+write descriptions because nothing asks them for assertions. The cheapest fix is in the treatment
+director's brief in Phase 9, not in the gate. The gate is already measuring it correctly and has
+been ignored 31 times.
