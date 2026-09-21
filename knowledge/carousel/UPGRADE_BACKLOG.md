@@ -3627,3 +3627,40 @@ of the contract. This one inferred a file's rule from one day's file, stated it 
 and was wrong about the whole archive. Read the contract before building the gate a judge asks
 for. The same run took three other findings from the same judge straight to the code, because
 those were checkable and checked.
+
+### 12. THE SCREENED PRINT AESTHETIC IS WEBP'S WORST CASE, AND IT IS COSTING WHOLE DECKS
+
+`ship_images.py` walks a quality ladder and, if nothing on it clears the 40 dB floor, ships the
+PNG instead. That fallback is correct and its docstring argues for it well. What nobody has
+measured is how often it fires.
+
+Measured 2026-09-21 across four consecutive shipped runs:
+
+    2026-09-18   9 webp, 0 png    22 MB
+    2026-09-19   9 webp, 0 png    82 MB
+    2026-09-20   0 webp, 9 png   119 MB
+    2026-09-21   2 webp, 7 png    97 MB
+
+**Two of the last four decks shipped almost entirely as PNGs**, and the page a reader on a county
+road has to load is the whole reason this phase exists. The common factor is a high frequency
+screen: September 20th shipped a hatch at cell 6 and September 21st a stipple at cell 5. A screen
+is, by construction, dense high frequency noise, which is exactly what a perceptual codec cannot
+model, so the encoder spends its whole budget on the tooth and still misses the floor.
+
+**Do not answer this by lowering the floor.** The floor is what stopped 2026-08-16 shipping two
+visibly degraded slides, and `convert_one`'s docstring is right that the encoder should be asked
+to work harder rather than the bar lowered. Three routes worth measuring instead:
+
+- **Coarsen the screen.** A stipple at cell 7 with `perCell` scaled to hold the same ink coverage
+  has the same tone and lower spatial frequency. Measure whether it clears 40 dB. This is the
+  cheapest test and it is one render plus one encode.
+- **Ask whether PSNR is the right instrument for a screened image.** A codec that moves a dot by
+  one pixel is perceptually identical and scores badly, which is exactly the failure mode here.
+  SSIM or a downsampled comparison at feed width may be the honest measure for this deck engine,
+  and that is a gate question rather than a taste question.
+- **Ship AVIF beside webp.** It handles noise better and every browser this site targets takes it.
+
+**One measured trap.** 2026-09-21's press change made this worse, not better, and the run should
+own that: gamma 0.5 with `perCell` 20 lays four times the dots of the old configuration, so the
+image got noisier at exactly the moment its tonal range got fixed. The tonal fix was right and
+necessary, and it had a cost nobody priced. Whatever is done here has to hold both.
