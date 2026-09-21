@@ -135,16 +135,26 @@ eave leaves 3 and the clipped board opens 5. The notice's lower right corner lea
 direction continues under the carved type of 7. The parkway strip leaves 8.
 
 **VALUE AND PALETTE ARC.** Planned frame median L* in slide order, and the numbers are the probe
-frame's rather than the plan's. The first cut of this line read 12, 10, 14, 21, 18, 22, 15, 13, 9,
-written before anything was printed. Frame 6 is the deck's brightest, because it is the most paper
-of the nine, and it **measured 13.9 at 432 px against a plan of 22**. A stipple at cell 5 over this
-ground does not reach the twenties however bright the stock is drawn, so the arc moved and the press
-did not. That is September 15th's lesson and carousel no. 25 paid for it once.
+frame's rather than the plan's, AND THIS SECTION WAS LEFT CARRYING THE OLD ONE FOR A WHOLE ROUND.
+A craft judge found the document holding two contradictory accounts of the same measurement, this
+section against every frame's own dossier, which is the third time in this run that a correction
+was written somewhere near the thing it corrected instead of over it.
 
-    9, 8, 10, 12, 12, 14, 9, 9, 7
+The track below is what the nine shipped frames MEASURE, and the first two cuts of it are both
+wrong for the same reason. The first read 12, 10, 14, 21, 18, 22, 15, 13, 9 and was written before
+anything was printed. The second read 9, 8, 10, 12, 12, 14, 9, 9, 7 and was measured through a
+press whose nine step grey scale was landing inside nineteen L* and running backwards twice, so it
+measured the instrument rather than the deck.
 
-Maximum adjacent step 5, mean about 2.4, no hard cut anywhere. The deck brightens only where paper
-is present and returns to its darkest in the committee room.
+    17, 24, 20, 21, 15, 40, 24, 22, 20
+
+Maximum adjacent step 25, at frame 5 into frame 6, and it is a flat band with one spike rather than
+an arc. Six of the nine sit inside 17 to 24. Frame 6 is the deck's brightest at 40 because it is the
+most paper of the nine and it was cropped harder this run so a reader could read the letter at feed
+scale, which is the trade: the frame that carries the argument got legible and the track got a
+strobe. THE ARC WAS REWRITTEN AND THE PRESS WAS NOT CHASED, which is the right direction and is not
+the same claim as the arc being good. It is not good. It is stated here as measured so the next run
+inherits a number rather than an intention.
 
 ---
 
@@ -624,7 +634,7 @@ art:
     request at the foot, which is the order the page itself sets
 type:
   hook: "The letter, in its own words."
-  dek: "The city manager's memo says a courtesy notice is not a warning or a violation. This is what the notice says."
+  dek: "NBC 5 reported the city manager's memo saying a courtesy notice is not a warning or a violation. This is what the notice says."
   labels: []
 verbatim:
   - c20: "violations identified"
@@ -795,7 +805,7 @@ art:
     at the eave, which is the last thing found and the point
 type:
   hook: "A citation still needs somebody at the door."
-  dek: "The September 8th memo says citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof."
+  dek: "FOX 4 reported the September 8th memo saying citations are only issued after a code officer inspects the property in person and provides notice to the owner. The homeowner was told the camera had detected what appeared to be a temporary repair on her roof."
   labels: []
 verbatim:
   - c44: "citations are only issued after a code officer inspects the property in-person and provides notice to the owner"
@@ -871,7 +881,7 @@ art:
     the eye enters over the seat backs, runs up the dais to the empty chairs, finds the blue rectangle on the
     screen, and drops to the date
 type:
-  hook: "October 19th, and the room is open."
+  hook: "October 19th, and the committee takes it up."
   dek: "The city manager briefs the Quality of Life, Arts and Culture Committee on the camera program. Code Compliance says the notices require nothing of the property owners. The city says no citation issues until a code officer has been to the property in person."
   labels: []
 verbatim:
