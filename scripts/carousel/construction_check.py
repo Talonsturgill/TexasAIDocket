@@ -119,9 +119,31 @@ def plated(png: Path):
     return len(best) / box, len(best) / bright.size
 
 
+def find_frames(render_dir: Path) -> list:
+    """Every frame in one directory, one file per slide number, png preferred over webp.
+
+    THE DEFECT, 2026-09-21, and it is the same line `layout_check.find_renders` carried. This
+    read `glob(png) or glob(webp)`, and `or` on a non-empty list never evaluates its right
+    hand side. Carousel 31 shipped seven png and two webp in one directory, because
+    `ship_images` keeps the png wherever webp misses its 40 dB floor. Measured on
+    `runs/carousel/2026-09-21/`, the old line returns seven of nine frames.
+
+    Here the cost is worse than a missing frame. `share` below is a RATIO over the frames this
+    function returns, so the deck was measured nine-ninths on seven frames and the denominator
+    moved with the miss. A count that loses its subject reports a smaller number. A RATIO that
+    loses its subject reports a confident wrong one.
+    """
+    import re as _re
+    by_n: dict = {}
+    for p in sorted(render_dir.glob("slide-*.png")) + sorted(render_dir.glob("slide-*.webp")):
+        m = _re.search(r"slide-(\d+)", p.name)
+        if m:
+            by_n.setdefault(int(m.group(1)), p)
+    return [by_n[k] for k in sorted(by_n)]
+
+
 def check(render_dir: Path):
-    # a shipped run carries webp, a live run carries png, and this reads whichever is there
-    pngs = sorted(render_dir.glob("slide-*.png")) or sorted(render_dir.glob("slide-*.webp"))
+    pngs = find_frames(render_dir)
     if not pngs:
         return 2, [f"no rendered slides in {render_dir}"], []
     rows = []
@@ -183,6 +205,20 @@ def self_test() -> int:
             Image.fromarray(a).save(d / f"slide-{i:02d}.png")
         code, probs, rows = check(d)
         ok("a small solid chip is not a plate, so area is load bearing", code == 0)
+
+    # ---- A MIXED PNG AND WEBP SHIP (2026-09-21) --------------------------------------
+    # The same `or` that hid two frames from `layout_check` hid them from the RATIO below, so a
+    # deck measured nine-ninths on seven frames and said nothing about the other two.
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        for i in (1, 2, 3, 6, 7, 8, 9):
+            Image.fromarray(np.full((270, 216, 3), 30, np.uint8)).save(d / f"slide-{i:02d}.png")
+        for i in (4, 5):
+            Image.fromarray(np.full((270, 216, 3), 30, np.uint8)).save(d / f"slide-{i:02d}.webp")
+        ok("a mixed png and webp ship is measured over all nine frames",
+           len(find_frames(d)) == 9)
+        code, probs, rows = check(d)
+        ok("...and the ratio below is taken over nine rows rather than seven", len(rows) == 9)
 
     print("construction_check self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

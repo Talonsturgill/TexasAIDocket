@@ -297,11 +297,40 @@ def _slide_no(name: str) -> int | None:
 
 
 def find_renders(run_dir: Path) -> list[Path]:
-    """A live run keeps png under render/, a shipped run keeps webp beside the storyboard."""
+    """Every frame of one deck, one file per slide number, png preferred over webp.
+
+    A live run keeps png under `render/`. A shipped run keeps its frames at the run root, and
+    since carousel 31 it keeps SOME of them as png and some as webp in one directory.
+
+    THE DEFECT, 2026-09-21, and it is MEASURED rather than inferred from an error message.
+    This read `glob(png) or glob(webp)`, and `or` on a non-empty list never evaluates its right
+    hand side. Carousel 31 is the first deck to ship a MIXED directory, seven png and two webp,
+    because `ship_images` encodes to webp only where the result clears its 40 dB floor and
+    keeps the png where it does not. Pointed at `runs/carousel/2026-09-21/` the old line
+    returns SEVEN of the nine frames and the two webp are invisible to every measurement below.
+
+        old line   slide-01 02 03 06 07 08 09 .png
+        this one   all nine, with slide-04 and slide-05 as .webp
+
+    A mixed deck has been possible since that ladder was written and nothing had produced one,
+    which is why an `or` stood for a month reading as a fallback.
+
+    WHAT THIS DID NOT CAUSE, recorded because the run first believed it did. The same deck
+    reported `slide 4 declares a layout and no frame slide-04 was rendered`, and that came from
+    a STALE `render_report.json` in the shipped directory rather than from this line. It
+    cleared when the report was refreshed, with this function unchanged. Two defects on one
+    frame number, and reasoning from the message to the cause found the wrong one.
+    """
     for d in (run_dir / "render", run_dir):
-        pngs = sorted(d.glob("slide-*.png")) or sorted(d.glob("slide-*.webp"))
-        if pngs:
-            return pngs
+        by_n: dict = {}
+        for p in sorted(d.glob("slide-*.png")) + sorted(d.glob("slide-*.webp")):
+            n = _slide_no(p.name)
+            # png first and `setdefault`, so a lossless frame wins wherever both exist. That is
+            # the same preference `ship_images` encodes when it keeps a png it could not beat.
+            if n is not None:
+                by_n.setdefault(n, p)
+        if by_n:
+            return [by_n[k] for k in sorted(by_n)]
     return []
 
 
@@ -1183,6 +1212,33 @@ def self_test() -> int:
        (white, black))
     ok("the flag red and the accent are far apart in Lab",
        lab_distance(lab(np.array(hex_rgb(FLAG_RED), float)), lab(np.array(hex_rgb(ACC), float))) > 30)
+
+    # ---- A MIXED PNG AND WEBP SHIP (2026-09-21) --------------------------------------
+    #
+    # THE DEFECT REPLAYED. Carousel 31 shipped seven png and two webp in one directory and this
+    # gate reported `slide 4 declares a layout and no frame slide-04 was rendered` about two
+    # frames that rendered perfectly, because `glob(png) or glob(webp)` never evaluates its
+    # right hand side once the left is non-empty.
+    import tempfile as _tf
+    from PIL import Image as _I
+    with _tf.TemporaryDirectory() as _td:
+        _d = Path(_td)
+        for _i in (1, 2, 3, 6, 7, 8, 9):
+            _I.new("RGB", (16, 20), (10, 12, 11)).save(_d / f"slide-{_i:02d}.png")
+        for _i in (4, 5):
+            _I.new("RGB", (16, 20), (10, 12, 11)).save(_d / f"slide-{_i:02d}.webp")
+        _got = find_renders(_d)
+        ok("a mixed png and webp ship yields all nine frames", len(_got) == 9, len(_got))
+        ok("...including the two that shipped as webp",
+           {_slide_no(p.name) for p in _got} == set(range(1, 10)),
+           sorted(_slide_no(p.name) for p in _got))
+        ok("...and they come back in slide order",
+           [_slide_no(p.name) for p in _got] == list(range(1, 10)))
+        # And where a slide has BOTH, the lossless one wins, which is the preference
+        # `ship_images` encodes when it keeps a png it could not beat.
+        _I.new("RGB", (16, 20), (10, 12, 11)).save(_d / "slide-04.png")
+        ok("...and a slide carrying both formats resolves to the png",
+           [p for p in find_renders(_d) if _slide_no(p.name) == 4][0].suffix == ".png")
 
     print("\nlayout_check self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

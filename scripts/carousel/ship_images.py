@@ -36,8 +36,13 @@ Exit 0 on success, 1 if any run failed to convert, 2 if the tool could not run.
 from __future__ import annotations
 
 import argparse
+import contextlib
+import json
 import math
+import os
 import sys
+import threading
+import time
 from pathlib import Path
 
 try:
@@ -171,7 +176,161 @@ def write_og(png: Path, dest: Path, dry: bool) -> dict | None:
     return out
 
 
-def ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
+class Busy(RuntimeError):
+    """Another live process is already shipping this run's images."""
+
+
+def _start_time(pid: int) -> str | None:
+    """The kernel's own start time for a pid, or None where it cannot be read.
+
+    A PID IS NOT AN IDENTITY AND THIS IS THE CHEAPEST THING THAT IS. Pids are recycled, so a
+    lock naming a dead holder whose number has been reused reads as live and would block a run
+    that has every right to proceed. Field 22 of `/proc/<pid>/stat` is the process's start
+    time in clock ticks since boot, it is fixed for the life of that process, and a pid plus a
+    start time is a process INSTANCE. Read from the comm field's closing parenthesis onward,
+    because a process name may contain spaces and parentheses and splitting the whole line is
+    the classic way to read the wrong field.
+
+    None on a platform without `/proc`, and then the check below falls back to the pid alone
+    and says so rather than pretending to an identity it does not have.
+    """
+    try:
+        raw = Path(f"/proc/{pid}/stat").read_text(encoding="utf-8")
+        return raw[raw.rindex(")") + 1:].split()[19]
+    except (OSError, ValueError, IndexError):
+        return None
+
+
+def _alive(pid: int, start: str | None = None) -> bool:
+    """Whether a pid names the SAME process instance the lock was written by.
+
+    `start` is the start time recorded when the lock was taken. When it is present and the
+    live process's own start time disagrees, the number has been recycled and the holder is
+    gone. Never kills anything.
+    """
+    if pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    if start is not None:
+        now = _start_time(pid)
+        if now is not None and now != start:
+            return False
+    return True
+
+
+def lock_path(run_dir: Path, lock_root: Path | None = None) -> Path:
+    """`out/<run>/tmp/ship_images.lock`. Scratch, in the tree, gitignored, per CLAUDE.md."""
+    root = lock_root or (REPO_ROOT / "out")
+    return root / run_dir.name / "tmp" / "ship_images.lock"
+
+
+@contextlib.contextmanager
+def only_one(run_dir: Path, lock_root: Path | None = None):
+    """One shipper per run directory, and a second concurrent one FAILS LOUDLY.
+
+    THE DEFECT, 2026-09-21. Two `ship_images.py` processes were launched against one run,
+    one backgrounded with `&` and one with the tool's own background flag. This function
+    encodes a slide, verifies it, and then REMOVES the source PNG, so two of them
+    interleaving is a race over the only copy of an image. The shipped directory came out
+    inconsistent and slide 02 carried no image at all. Nothing reported it. The run found it
+    by auditing the directory afterwards, and a deck that publishes eight of nine images is
+    a defect a reader sees before any gate does.
+
+    WHY A LOCK AND NOT A QUEUE. There is no legitimate reason to ship one run's images
+    twice at once, so the second caller has nothing useful to wait for. It should stop and
+    say which process is already doing the work, which is the outcome-shaped answer
+    `push.sh` takes for a different defect.
+
+    WHY A STALE LOCK CANNOT WEDGE A RUN. `UPGRADE_BACKLOG.md` states the trap in as many
+    words, on the `guards_local --verdict` proposal: a guard a contributor has to clear by
+    hand is a guard they learn to delete. So the lock records the holder's pid, and a lock
+    whose pid names no live process is taken over with a line saying so. An unattended run
+    is never blocked by a crash that happened before it started.
+
+    AND A PID IS NOT AN IDENTITY. The lock records the holder's process start time beside its
+    pid, so a recycled number is recognised as a dead holder rather than read as a live one.
+    Without it the failure is quiet and one sided: a crashed run whose pid is reused wedges
+    every later run on this directory until something unrelated exits.
+
+    RELEASED ONLY IF IT IS STILL MINE. If a lock is taken over as stale while its holder is
+    in fact running, and that holder then unlinks on the way out, it deletes the NEW holder's
+    lock and two shippers run with no lock at all. So release re-reads the file and unlinks
+    only when it still names this process instance.
+    """
+    p = lock_path(run_dir, lock_root)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    mine_id = {"pid": os.getpid(), "start": _start_time(os.getpid())}
+    mine = json.dumps(dict(mine_id, run=run_dir.name, at=time.time()))
+    # WRITTEN WHOLE, THEN LINKED INTO PLACE. `O_CREAT | O_EXCL` then write is two steps, and the
+    # self-test caught the window between them on its first run: a second shipper opened the
+    # empty file, read no pid, concluded the holder was dead and took the lock over. A lock with
+    # a race in it is worse than none, because it reads as a guarantee. `os.link` is atomic and
+    # fails when the target exists, so the lock never exists in a half written state.
+    staging = p.with_name(f"{p.name}.{os.getpid()}.{threading.get_ident()}")
+    while True:
+        staging.write_text(mine, encoding="utf-8")
+        try:
+            os.link(staging, p)
+            break
+        except FileExistsError:
+            pass
+        finally:
+            staging.unlink(missing_ok=True)
+        try:
+            held = json.loads(p.read_text(encoding="utf-8") or "{}")
+        except (OSError, ValueError):
+            held = {}
+        pid = held.get("pid")
+        if isinstance(pid, int) and _alive(pid, held.get("start")) and pid != os.getpid():
+            raise Busy(
+                f"{run_dir.name}: process {pid} is already shipping these images, holding "
+                f"{p}. Two shippers race over the source PNGs, which this one deletes after "
+                f"a verified encode, and that is how a slide ends up with no image at all. "
+                f"Wait for it or kill it. Never run two")
+        # THE SAME PROCESS INSTANCE, which is both halves and not the pid alone. A lock naming
+        # this pid with a DIFFERENT start time was written before this process existed and the
+        # number was recycled, so it is stale rather than mine, and testing the pid on its own
+        # here sent the pid-reuse case down the wrong branch.
+        if isinstance(pid, int) and pid == os.getpid() \
+                and held.get("start") == mine_id["start"]:
+            raise Busy(
+                f"{run_dir.name}: this same process ({pid}) already holds {p}. Two shippers "
+                f"in one process race over the source PNGs exactly as two processes do")
+        print(f"ship_images: {p} was held by pid {pid}, which is not running. Taking it over.",
+              file=sys.stderr)
+        p.unlink(missing_ok=True)
+    try:
+        yield p
+    finally:
+        # RELEASED ON THE WAY OUT OF EVERY PATH, exception included, so a refused encode does
+        # not leave a lock behind for the stale-takeover branch to have to clean up. AND ONLY
+        # IF IT IS STILL MINE, because unlinking somebody else's lock is worse than leaving a
+        # stale one: the stale one is detected and taken over, and the wrong unlink leaves two
+        # shippers running with no lock between them.
+        try:
+            now = json.loads(p.read_text(encoding="utf-8") or "{}")
+        except (OSError, ValueError):
+            now = {}
+        if now.get("pid") == mine_id["pid"] and now.get("start") == mine_id["start"]:
+            p.unlink(missing_ok=True)
+
+
+def ship(run_dir: Path, dry: bool, keep_png: bool = False,
+         lock_root: Path | None = None) -> tuple[list[dict], list[str]]:
+    if not dry:
+        # A dry run writes nothing and deletes nothing, so it needs no lock and must not be
+        # refused by one. Everything below this line mutates the run directory.
+        with only_one(run_dir, lock_root):
+            return _ship(run_dir, dry, keep_png)
+    return _ship(run_dir, dry, keep_png)
+
+
+def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
     pngs = sorted(run_dir.rglob("slide-*.png"))
     if not pngs:
         return [], [f"{run_dir.name}: no slide PNGs found"]
@@ -282,7 +441,8 @@ def self_test() -> int:
            and not any(p.suffix == ".webp" for p in run.iterdir()), str(problems))
         ok("...and still counts every slide plus the unfurl", len(results) == 3, str(len(results)))
 
-        results, problems = ship(run, dry=False, keep_png=True)
+        results, problems = ship(run, dry=False, keep_png=True,
+                                 lock_root=Path(td) / "locks")
         ok("a real run converts without problems", problems == [], str(problems))
         ok("every slide got a webp", all((run / f"slide-{i:02d}.webp").exists() for i in (1, 2)))
         ok("slide 1 also got an og.jpg, because scrapers still mishandle webp",
@@ -337,7 +497,7 @@ def self_test() -> int:
         # The PNGs go only when the WebP is there AND nothing failed.
         ok("the source PNGs survive with --keep", all((run / f"slide-{i:02d}.png").exists()
                                                       for i in (1, 2)))
-        ship(run, dry=False)
+        ship(run, dry=False, lock_root=Path(td) / "locks")
         ok("...and are removed once every slide has a verified webp beside it",
            not any(run.glob("slide-*.png")))
 
@@ -345,6 +505,101 @@ def self_test() -> int:
         empty.mkdir()
         _, problems = ship(empty, dry=True)
         ok("a run with no slides says so rather than reporting success", problems != [])
+
+        # ---- ONE SHIPPER PER RUN (2026-09-21) -----------------------------------------
+        #
+        # THE DEFECT REPLAYED. Two shippers were launched at once against one run, they raced
+        # over the source PNGs this tool deletes after a verified encode, and slide 02 shipped
+        # with no image at all. The assertion that matters is that the SECOND one stops.
+        locks = Path(td) / "locks"
+        race = Path(td) / "2026-09-21"
+        race.mkdir()
+        for i in (1, 2):
+            Image.fromarray(img).save(race / f"slide-{i:02d}.png")
+
+        with only_one(race, locks):
+            try:
+                with only_one(race, locks):
+                    ok("a second shipper on one run is REFUSED", False, "it was let in")
+            except Busy as exc:
+                ok("a second shipper on one run is REFUSED", True)
+                ok("...and the message says two shippers race over the source PNGs",
+                   "race over the source PNGs" in str(exc), str(exc))
+            ok("...and the lock is a real file naming the holder's pid",
+               json.loads(lock_path(race, locks).read_text())["pid"] == os.getpid())
+
+        ok("the lock is released on the way out", not lock_path(race, locks).exists())
+
+        # TWO CONCURRENT SHIPPERS, FOR REAL, one per thread on one directory. Exactly one runs
+        # and the directory is left whole, which is the outcome the run lost.
+        import threading
+        outcomes = []
+
+        def go():
+            try:
+                outcomes.append(("ran", ship(race, dry=False, keep_png=True, lock_root=locks)[1]))
+            except Busy:
+                outcomes.append(("refused", []))
+
+        ts = [threading.Thread(target=go) for _ in range(2)]
+        for t in ts:
+            t.start()
+        for t in ts:
+            t.join()
+        ok("of two concurrent shippers exactly one is refused",
+           sorted(k for k, _ in outcomes) == ["ran", "refused"], str(outcomes))
+        ok("...and every slide still has exactly one shipping image",
+           all((race / f"slide-{i:02d}.webp").exists() or (race / f"slide-{i:02d}.png").exists()
+               for i in (1, 2)))
+
+        # A LOCK FROM A DEAD PROCESS NEVER WEDGES A LATER RUN. A guard somebody has to clear by
+        # hand is a guard they learn to delete, which `UPGRADE_BACKLOG.md` says in as many words.
+        import subprocess
+        dead = subprocess.Popen([sys.executable, "-c", "pass"])
+        dead.wait()
+        lock_path(race, locks).parent.mkdir(parents=True, exist_ok=True)
+        lock_path(race, locks).write_text(json.dumps({"pid": dead.pid, "run": race.name}))
+        with only_one(race, locks):
+            ok("a lock held by a pid that is not running is taken over rather than obeyed",
+               json.loads(lock_path(race, locks).read_text())["pid"] == os.getpid())
+
+        # A PID IS NOT AN IDENTITY. A lock naming a LIVE pid whose start time disagrees is a
+        # recycled number and a dead holder, and reading it as live would wedge every later run
+        # on this directory until some unrelated process exited.
+        lock_path(race, locks).write_text(json.dumps(
+            {"pid": os.getpid(), "start": "1", "run": race.name}))
+        if _start_time(os.getpid()) is not None:
+            with only_one(race, locks):
+                ok("a live pid with a start time that disagrees is a recycled number",
+                   json.loads(lock_path(race, locks).read_text())["start"]
+                   == _start_time(os.getpid()))
+            ok("...and this process's own start time is stable across two reads",
+               _start_time(os.getpid()) == _start_time(os.getpid()))
+        else:
+            lock_path(race, locks).unlink(missing_ok=True)
+            ok("no /proc here, so the pid-reuse guard is inert and says so", True)
+
+        # A HOLDER THAT WAS EVICTED AS STALE MUST NOT UNLINK THE NEW HOLDER'S LOCK.
+        other = json.dumps({"pid": os.getpid(), "start": "somebody else", "run": race.name})
+        with contextlib.suppress(Busy):
+            with only_one(race, locks):
+                lock_path(race, locks).write_text(other)
+        ok("a shipper releases only the lock it still holds",
+           lock_path(race, locks).exists()
+           and json.loads(lock_path(race, locks).read_text())["start"] == "somebody else",
+           lock_path(race, locks).read_text() if lock_path(race, locks).exists() else "gone")
+        lock_path(race, locks).unlink(missing_ok=True)
+
+        # AND A LOCK IS RELEASED WHEN THE BODY RAISES, so a refused encode leaves nothing behind.
+        with contextlib.suppress(ValueError):
+            with only_one(race, locks):
+                raise ValueError("an encode that blew up")
+        ok("a lock is released even when the shipper raises", not lock_path(race, locks).exists())
+
+        # A DRY RUN IS NOT LOCKED, because it writes nothing and deleting nothing cannot race.
+        with only_one(race, locks):
+            _, dry_problems = ship(race, dry=True, lock_root=locks)
+        ok("a dry run is not refused by a held lock", dry_problems == [], str(dry_problems))
 
     if failures:
         print(f"\nship_images self-test: {failures} FAILED", file=sys.stderr)
@@ -394,7 +649,11 @@ def main() -> int:
             print(f"ship_images: {d} does not exist", file=sys.stderr)
             bad += 1
             continue
-        results, problems = ship(d, dry, keep_png=a.keep)
+        try:
+            results, problems = ship(d, dry, keep_png=a.keep)
+        except Busy as exc:
+            print(f"ship_images: REFUSED. {exc}", file=sys.stderr)
+            return 2
         report(d.name, results, dry)
         for p in problems:
             print(f"  PROBLEM: {p}", file=sys.stderr)

@@ -277,6 +277,34 @@ back under the bar on all three lenses and the craft judge's one line fix was to
 phase do the comparison. `plan_render_check` does it now, at Phase 12b, on the frame's own pixels
 against the frame's own plan.
 
+**A LIT FACE AGAINST ITS OWN SHADE FACE, written so a camera can settle it.** Added 2026-09-21.
+Say which rectangle is lit and which is shaded, in fractions of the frame's own canvas, and at
+what size to measure them.
+
+    the cab turns, lit 0.62,0.53,0.06,0.05 shade 0.78,0.53,0.06,0.05 at 432px
+
+`plan_render_check` samples both rectangles off the rendered PNG at that size and refuses the
+frame when their contrast ratio is under 3 to 1, which is what WCAG 2.1 SC 1.4.11 asks of a
+graphical object against its adjacent colours. Two faces of one solid are exactly that: the
+separation IS the information that the object turns in space rather than being a silhouette with
+a colour. It also refuses a frame where the rectangle called lit is the darker of the two, which
+is a different fault and gets its own message.
+
+- **Put the rectangles INSIDE the faces, clear of the outline.** A rectangle straddling a bright
+  contour reads the contour as a lit face and the gate will believe it. Measured on carousel 31's
+  frame 1, where a 3 percent rectangle on the truck's drawn edge reads 3.8 to 1 on a truck that
+  has no faces at all.
+- **Say at what size, for the reason a band does.** A cast on carousel 31's ground measured L*
+  37.8 against 32.1 and a judge still could not see it at 432px. That pair is 1.24 to 1 and this
+  floor refuses it, which no rule derived from our own frames would have.
+
+**The defect this exists for.** Four scoring rounds on carousel 31 produced four DISJOINT sets of
+elements the storyboard declared and the render does not carry, sixteen in all, no two rounds
+naming the same one. Frame 1 declared `the truck's left face is measurably darker than its right
+face` and shipped outline linework with no faces. Frame 9 declared the same of a dais and shipped
+the same way. Both items are true-sounding and neither could be settled by anything, so the gate
+now names an item of that shape as unsettled every run until it carries rectangles.
+
 An item that is genuinely about judgement stays prose, and should. `the void reads as a hole
 rather than as a dark tile at 432px` cannot be mechanised and is one of the best items ever
 written on this deck. The rule is not that every item must be checkable. It is that an item

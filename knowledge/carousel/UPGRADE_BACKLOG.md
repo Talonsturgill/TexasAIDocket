@@ -3746,3 +3746,88 @@ ships or gets another pass. A verdict file that says round 2 when the run is at 
 a later reader, or a later gate, could act on wrongly. The fix is to read the round off the cards
 it was handed and to say "AT CAP" rather than "keep working" when that number equals
 `max_rounds` from the rubric.
+
+---
+
+## 2026-09-21, the upgrade phase. Entry 15 built, entry 13's first slice built, and one lock
+
+Three landed and are in `ledger/carousel/upgrades.json` with the command that proves each can go
+red. What follows is the part a later session needs and a ledger entry can't carry.
+
+### Entry 15 was not cosmetic, and what it cost is the lesson
+
+The round count is read by `run_complete.check`, whose cap path is the only one that licenses a
+deck under the bar with no hard fail. Three surfaces read that one call, and `rounds: 2` on a deck
+that ran five rounds took all three down at once.
+
+- `shipped_check`'s completion gate went red, which was the only thing holding CI
+- `site_context.load_runs` delegates publication to the same call, so `docs/articles/2026-09-21/`
+  was never built and the whole carousel was absent from the articles surface
+- `article_check` reported 30 editions on a day that should have had 31
+
+**Nobody would have found the second one from the error message**, because there is no error
+message. A builder that omits an edition prints nothing. It was found by somebody noticing a
+directory was not there.
+
+**`rounds` now takes the larger of the log and the cards.** The argument is in `panel.py` and it
+is one sentence: a log can only UNDERCOUNT, because it records what happened to be routed through
+one function, and a card can only OVERCOUNT, because a number on it is a number somebody could
+have typed. `believable_declared` is what a card pays to be believed, three cards from three
+distinct lenses with three distinct digests, which refuses every cheap forgery.
+
+**The door this opens closes upstream and out of this lane.** Rounds 1 to 3 were scored by agents
+that never invoked `panel.py`. If Phase 15 routed every round through it the log would be the
+larger number, the card fallback would never be reached, and none of this would be load bearing.
+`prompts/daily_routine.md` is `human` lane. Filed as a proposal.
+
+### Entry 13's first slice, and the two things the next slice must not repeat
+
+Built as a SIXTH acceptance kind in `plan_render_check` rather than as a new gate, because that
+file already had the resize, the L* conversion, the frame resolver and the machine-checkable
+counter that `gate_status` prints in public. A second copy of any of those is the defect this
+repository has closed four times elsewhere.
+
+- **The floor is WCAG 2.1 SC 1.4.11's 3 to 1** and it had to come from outside. Entry 13's own
+  measurement is what proves it: L* 37.8 against 32.1 is 1.235 to 1, a judge could not see it at
+  432 px, and no rule derived from our own frames would have refused it.
+- **A rect on a contour reads the contour.** Measured on this deck's frame 1, a 3 percent rect
+  sitting on the truck's drawn outline reads 3.8 to 1 on a truck that has no faces at all. That
+  is why the declaration is opt in and why the spec tells an author to keep the rects clear of
+  the edge. **The next slice, the declared cast, has the same trap and worse**, because a cast is
+  thin and a rect around one is mostly ground.
+- **The prose half was measured before it was written.** 15 acceptance items in 1810 across all
+  31 shipped storyboards, under one per deck, and the two on this deck are the two the judges
+  found by reading pixels. Any widening of that detector should be measured the same way first,
+  and the sweep is one pass over `parse_dossiers` and reproduces in seconds.
+
+**What is NOT built, from entry 13's own list:** the declared cast that runs in the deck's own
+cast direction and is measurably darker than the ground beside it. That is three more of the
+sixteen misses. Three is the ceiling and a fourth would have shipped without calibration.
+
+### A mixed png and webp ship broke two frame resolvers, and one of them by a ratio
+
+`layout_check.find_renders` and `construction_check.check` both read
+`glob(slide-*.png) or glob(slide-*.webp)`. `or` on a non-empty list never evaluates its right hand
+side. Carousel 31 is the first deck to ship a mixed directory, seven png and two webp, because
+`ship_images` keeps the png wherever webp misses its 40 dB floor, and **pointed at the real
+shipped directory the old line returns seven of the nine frames.**
+
+In `layout_check` two frames are silently dropped from every measurement. In `construction_check`
+it is worse: `share` is a RATIO over the frames the function returns, so the deck was measured
+nine-ninths on seven frames. **A count that loses its subject reports a smaller number. A ratio
+that loses its subject reports a confident wrong one, and that one has no symptom at all.**
+
+### The diagnosis this phase was handed, and why measuring it first mattered
+
+The showrunner sent two CI findings with a cause for each, a hex-literal story and a webp story,
+then retracted both: the real cause was a stale `render_report.json` in the shipped directory, and
+refreshing it cleared 24 plan-vs-render problems and both layout problems with no gate touched.
+
+The change made on the `plan_render_check` half **was reverted**, because a change whose defect
+cannot be demonstrated cannot be verified. The mixed-format half **was kept**, on evidence that
+stands without the story and was measured after the report was fresh.
+
+Two defects on one frame number, and reasoning from an error message to a cause found the wrong
+one. That is `CLAUDE.md`'s rule about the 403 and the empty check list, met from a third direction
+in a single day, and it is worth saying plainly: **an explanation that fits the message is not the
+same as an explanation that survives a measurement.**
