@@ -101,7 +101,24 @@
   /* ------------------------------------------------------------------- stock */
   N.GROUND = "#17233F";   /* hot mix and night sky, the deck's paper */
   N.INK    = "#CDD6DE";   /* hot dip galvanised steel and retroreflective sheeting */
-  N.ACCENT = "#E0956A";   /* dusk_gold. THE CLOCK, and nothing else wears it */
+  N.ACCENT = "#E0956A";   /* dusk_gold. THE CLOCK, and nothing else wears it. THE DECLARED value */
+
+  /* THE PAINTED ACCENT IS NOT THE DECLARED ACCENT, AND THE DIFFERENCE IS THE GRADE.
+   *
+   * TXDECK.finish is the last thing that touches the art canvas and this deck's grade lifts the
+   * highlights toward a cold lamp: gain [0.982, 0.996, 1.038] pushes blue up and saturation sits
+   * at 0.98. Paint #E0956A through that and what LANDS is #D2A57D, measured off the render,
+   * which is about 12 Lab units from the declared hex. `layout_check` reads the accent off the
+   * RENDER at thumb scale and counts pixels within 12 Lab of the declared colour, so a deck that
+   * paints its own accent hex and then grades it reports an accent present on ZERO frames while
+   * looking perfectly correct to a person.
+   *
+   * So the paint is pre-compensated by the inverse of the measured shift and the DECLARATION
+   * stays put. The declared colour is the one checked for variety against the recent window and
+   * it is what a reader sees. Changing the declaration to match the drift would have been fixing
+   * the measurement rather than the product.
+   */
+  N.ACCENT_INK = "#EE8557";
   N.DEK    = "#9AA6B6";
   N.RULE   = "#7B8798";   /* the furniture, one pale ink on all nine frames */
 
@@ -301,7 +318,7 @@
     var pts = o.path || [];
     if (pts.length < 2) return null;
     var n = o.n == null ? 24 : o.n;
-    var ink = o.ink || N.ACCENT;
+    var ink = o.ink || N.ACCENT_INK;
     var lw = o.width == null ? 4 : o.width;
     var cross = o.cross == null ? 11 : o.cross;
 
@@ -378,6 +395,29 @@
     }
     c.restore();
     return { total: total, n: n, filled: !!o.filled };
+  };
+
+  /* ---------------------------------------------------------------- flat stock
+   *
+   * TYPE NEVER SITS ON A SCREEN, and a drawn page is where that rule gets broken, because the
+   * page's own type is dark on light and the stock under it is the brightest thing in the frame,
+   * which is exactly where a screen lays its heaviest marks. Frame 5's first render put eighteen
+   * screen rules through eight lines of type and qa.py reported every one of them as a
+   * strikethrough.
+   *
+   * This is laid in `over`, AFTER the screen has run, so the paper under the type is flat. It is
+   * not a plate: a plate is an opaque rectangle put behind type to rescue art that was drawn
+   * without knowing where the type goes. This is the page's own stock, and the page is the
+   * subject.
+   */
+  N.stock = function (c, r, o) {
+    o = o || {};
+    var pad = o.pad == null ? 12 : o.pad;
+    c.save();
+    c.fillStyle = o.stock || N.STOCK;
+    c.fillRect(r.x - pad, r.y - pad, r.w + pad * 2, r.h + pad * 2);
+    c.restore();
+    return { x: r.x - pad, y: r.y - pad, w: r.w + pad * 2, h: r.h + pad * 2 };
   };
 
   /* A two part contact shadow along the declared cast direction, so a thing sits ON the apron
