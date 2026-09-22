@@ -32,6 +32,10 @@
  *   the correct thing for a browser to do and this says nothing. A gate that called a correct
  *   product a violation is how a gate gets switched off.
  *
+ *   WATER STATISTICS KEEP THEIR COMPLETE VALUES INSIDE THEIR CELLS. A nowrap figure can spill
+ *   into its neighbour without overflowing the page. Measure the painted text bounds, with
+ *   the real fonts loaded, at phone and desktop widths and with longer signed readings.
+ *
  * AT SEVERAL WIDTHS, above the breakpoint where these tables restack to two columns on purpose.
  * The fault that prompted this gate sat at the boundary: a hundred pixels of text in a hundred
  * and four pixel track, so it wrapped at one window size and fitted at another sixteen pixels
@@ -149,6 +153,59 @@ const measureOn = async (pg) => {
 };
 const measure = () => measureOn(page);
 
+// Water's equal-width statistic columns hid a collision inside an otherwise fitting page.
+// Measure the text itself, including its unit, rather than the span's smaller layout box.
+const measureReadout = async (pg) => {
+  await pg.evaluate(() => document.fonts.ready);
+  return pg.evaluate(() => {
+    const values = [...document.querySelectorAll(".wreadout .wrv")];
+    const problems = [];
+    for (const value of values) {
+      const cell = value.parentElement;
+      const box = cell.getBoundingClientRect(), style = getComputedStyle(cell);
+      const range = document.createRange();
+      range.selectNodeContents(value);
+      const text = range.getBoundingClientRect();
+      const font = getComputedStyle(value);
+      const family = font.fontFamily.split(",")[0].replace(/["']/g, "").trim();
+      if (!document.fonts.check(`${font.fontSize} "${family}"`)
+          || text.left < box.left + parseFloat(style.paddingLeft) - 1
+          || text.right > box.right - parseFloat(style.paddingRight) + 1
+          || text.right > document.documentElement.clientWidth + 1) {
+        problems.push({text:value.textContent.trim(), left:text.left, right:text.right,
+          cellRight:box.right});
+      }
+    }
+    return {count:values.length, problems};
+  });
+};
+
+const READOUT_WIDTHS = [320, 390, 414, 600, 768, 1024, 1180, 1280, 1363, 1440, 1920];
+await page.goto(`${ORIGIN}/water/`);
+for (const scenario of ["published readings", "long signed readings"]) {
+  if (scenario === "long signed readings") {
+    await page.locator(".wreadout .wrv").evaluateAll((values) => {
+      // Leave the real units and markup in place. Only the test data grows.
+      values.filter((value) => value.querySelector(".wru")?.textContent.trim() === "AF")
+        .forEach((value, i) => { value.firstChild.textContent = i % 2 ? "+9,999,999,999" : "-9,999,999,999"; });
+    });
+  }
+  const problems = [];
+  for (const width of READOUT_WIDTHS) {
+    await page.setViewportSize({width, height:1200});
+    const result = await measureReadout(page);
+    if (!result.count || result.problems.length) problems.push({width, ...result});
+    if (process.env.SCREENSHOT_DIR && scenario === "published readings"
+        && [320, 390, 1363].includes(width)) {
+      fs.mkdirSync(process.env.SCREENSHOT_DIR, {recursive:true});
+      await page.locator(".wreadout").screenshot({animations:"disabled",
+        path:path.join(process.env.SCREENSHOT_DIR, `water-readout-${width}.png`)});
+    }
+  }
+  check(`water statistics retain each complete value and unit with ${scenario}`,
+    problems.length === 0, JSON.stringify(problems.slice(0, 3)));
+}
+
 const WIDTHS = [1280, 1120, 960, 800];
 // FIVE PERCENT, because the two chromium builds installed here measure the same string about
 // four percent apart, and a reader's machine is a third instrument again. Below this a pass is
@@ -209,6 +266,16 @@ check(`every table on those pages was measured (${looked})`, looked > 0,
 // element, and a fixture whose stylesheet never applied would measure a one column table and
 // agree with itself.
 const fixture = await browser.newPage({ viewport: { width: 900, height: 400 } });
+await fixture.setContent(`<style>
+  .wreadout{display:grid;grid-template-columns:100px 100px}
+  .wreadout>div{padding:10px}.wrv{display:block;white-space:nowrap;font:24px monospace}
+  </style><div class="wreadout"><div><span class="wrv">-1,540,563 AF</span></div>
+  <div><span class="wrv">119</span></div></div>`);
+const readoutCollision = await measureReadout(fixture);
+check("the statistic check catches text spilling out of a fitting layout box",
+  readoutCollision.count === 2 && readoutCollision.problems.length === 1,
+  JSON.stringify(readoutCollision));
+
 const at = async (html) => {
   await fixture.setContent(html);
   return await measureOn(fixture);

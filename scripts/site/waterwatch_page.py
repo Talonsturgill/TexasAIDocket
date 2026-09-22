@@ -437,19 +437,14 @@ STAGE_CSS = """
   animation:wsheen 14s cubic-bezier(.5,0,.5,1) infinite}
 @keyframes wsheen{0%{transform:translateX(-60%)}62%,100%{transform:translateX(160%)}}
 
-/* THE READOUT. The figures a reader came for, at the top, at a size that says they are the
-   subject rather than a caption. This is the block that replaced three paragraphs, and it
-   holds every number those paragraphs held. `auto-fit` rather than a fixed column count
-   because the chips are of unequal width and a phone should be allowed to reflow them
-   instead of squeezing six into a row and hyphenating every label. */
-/* THE COLUMN IS SIZED FOR THE WIDEST FIGURE THIS BLOCK CAN HOLD, which is a signed six digit
-   acre foot total with its unit beside it. At 7.5rem that value wrapped and dropped its "AF"
-   onto a second line, which both broke the row rhythm and separated a number from the unit
-   that gives it meaning. A figure and its unit are one thing and they do not get to be on
-   different lines. */
-.wreadout{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.75rem,1fr));
+/* THE READOUT. Give each figure and its unit their full natural width, then wrap whole
+   statistics when the row runs out of room. Equal grid tracks sized for six digits let a
+   seven digit signed total spill into the next statistic. The record keeps growing, so its
+   content determines the minimum width rather than a guessed digit count. */
+.wreadout{display:flex;flex-wrap:wrap;
   gap:.1rem;margin:1.25rem 0 1.6rem;border-top:var(--hair) solid var(--rule-strong)}
-.wreadout>div{padding:.85rem .9rem .95rem;border-bottom:var(--hair) solid var(--rule)}
+.wreadout>div{flex:1 0 9.75rem;min-width:max-content;
+  padding:.85rem .9rem .95rem;border-bottom:var(--hair) solid var(--rule)}
 .wrk{display:block;font-size:var(--s-2);letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink-mute);margin-bottom:.3rem}
 .wrv{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;
