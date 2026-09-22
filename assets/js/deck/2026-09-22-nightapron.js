@@ -1,8 +1,8 @@
 /* nightapron.js — the chassis for carousel No. 32 (2026-09-22).
  *
  * WHAT THIS IS. The deck "GOOD FOR 24 HOURS" spends nine frames on one inspection apron under
- * one high mast lamp and argues that the last barrier to driverless freight in Texas was never
- * the truck. It is a person walking around it, and what that person signs runs out. Nine frames
+ * one high mast lamp and argues that the barrier to driverless freight in Texas was never the
+ * truck. It is a person walking around it, and what that person signs runs out. Nine frames
  * share one light, one stock and one way of seating type, and this file is those three things
  * and nothing else. Every frame's COMPOSITION is written per frame.
  *
@@ -112,7 +112,7 @@
   N.STOCK = "#B9BEC4";
   N.TONER = "#141820";
 
-  /* LINE, CELL 5, ANGLE 12, AND THE GAMMA IS THE ONE NUMBER THE PROBE FRAME DECIDES.
+  /* LINE, CELL 5, ANGLE 76, AND BOTH THE ANGLE AND THE GAMMA WERE DECIDED ON THE PROBE.
    *
    * A LINE SCREEN is the banknote and security print register, which is what a deck about a
    * signed record with a stated expiry wants. It is also the only one of the four screens
@@ -126,14 +126,25 @@
    * coverage is ALREADY linear in d and a gamma of 1.0 is the linear setting. Copying the 0.5
    * across would have bent a scale that was straight.
    *
+   * THE ANGLE IS 76 AND IT STARTED AT 12, WHICH IS THE DEFECT THIS LINE EXISTS FOR.
+   * A line screen at 12 degrees lays its rules NEARLY HORIZONTAL at a 5 px pitch. Type is also
+   * horizontal, so one of those rules runs the full width of every line of type that is not
+   * sitting in a reserve, and qa.py reads a ruled line crossing a whole label as a strikethrough
+   * and is right to. Frame 4's three diagram labels sit out in the art by definition, and all
+   * three were struck. The doctrine's own answer, that type never sits on a screen, is not
+   * available to a DIAGRAM whose labels have to be beside the thing they point at. So the SCREEN
+   * turns instead: at 76 degrees the rules run nearly vertical and a glyph band can't be crossed
+   * along its length. It also stops the whole family of moire risks against the apron joints,
+   * the horizon and the trailer's own long edges, which are the deck's main horizontals.
+   *
    * THAT IS A DERIVATION AND NOT A MEASUREMENT, so it is not trusted. Phase 10.5 prints all
    * nine steps of N.G as full width bands through this exact press and reads each band's L* off
-   * the render BEFORE the value arc is committed. September 21st's press ran BACKWARDS between
+   * the render BEFORE the value arc is committed, at 12 degrees and again at 76. September 21st's press ran BACKWARDS between
    * two steps and its deck was read as hairline wireframes over noise by five critics, with
    * nothing wrong with any frame's drawing. The stated fallback is halftone at cell 9, which is
    * the coarse end and is deliberately not September 19th's cell 7.
    */
-  N.SCREEN = { mode: "line", cell: 5, angle: 12, gamma: 1.0, floor: 0.04 };
+  N.SCREEN = { mode: "line", cell: 5, angle: 76, gamma: 1.0, floor: 0.04 };
   N.EDGES  = { threshold: 18, width: 1.3, alpha: 0.80, dx: 1.2, dy: -0.9 };
 
   /* THE GREY SCALE THE TWIN IS DRAWN IN, dark to light. A frame reaches for these by name so
@@ -236,12 +247,23 @@
     c.save();
     for (var i = 0; i < boxes.length; i++) {
       var b = boxes[i], bx = b[0], by = b[1], bw = b[2], bh = b[3];
-      var feY = bh, feX = Math.max(40, bh * 1.2);
+      var feY = bh * 1.6, feX = Math.max(40, bh * 1.2);
+      /* A SMOOTH RAMP WITH NO PLATEAU, AND THE PLATEAU IS WHY THIS IS WRITTEN OUT LONGHAND.
+       * The first cut ran four stops, 0 to A at 0.42, A to A across the middle, A to 0 at 1.00.
+       * The alpha is constant between those inner stops, so the RATE of change jumps at each of
+       * them, and TXINK's contour plate runs a Sobel over the twin and traced that jump as a
+       * hairline rule. It landed about a quarter of a line height into the glyph band, so the QA
+       * reported the deck's own type reserve as a strikethrough THROUGH THE LABEL IT WAS
+       * PROTECTING, and moving the label moved the strike with it, which is the tell.
+       * A sampled smoothstep has no step in its derivative anywhere, so there is nothing for an
+       * edge detector to find. */
       var gy = c.createLinearGradient(0, by - feY, 0, by + bh + feY);
-      gy.addColorStop(0.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
-      gy.addColorStop(0.42, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
-      gy.addColorStop(0.58, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
-      gy.addColorStop(1.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
+      for (var s = 0; s <= 24; s++) {
+        var t = s / 24;
+        var u = Math.abs(t - 0.5) * 2;                 /* 0 at the middle, 1 at either end */
+        var k = 1 - u * u * (3 - 2 * u);               /* smoothstep, zero slope at both ends */
+        gy.addColorStop(t, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + (A * k).toFixed(4) + ")");
+      }
       c.fillStyle = gy;
       c.fillRect(bx - feX, by - feY, bw + feX * 2, bh + feY * 2);
     }
