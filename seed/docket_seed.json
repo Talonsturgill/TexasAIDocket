@@ -10516,5 +10516,287 @@
     "note": "Admitted on the company's own announcement. Nothing here has been through a regulator and the producer has an equity stake in the vendor whose system it is buying, so every claim about the system's results is a claim by a party with an interest in it. Nothing reaches an engineer on the company's own timeline until about day 90."
    }
   ]
+ },
+ {
+  "title": "Driverless trucks start feeding their safety inspection records into Texas roadside enforcement",
+  "summary": "PrePass and Kodiak AI announced on September 21st, 2026 an automated process that carries the Commercial Vehicle Safety Alliance Enhanced Inspection record from an autonomous truck into the roadside screening systems Texas enforcement agencies already run. The release says implementation begins that day in Texas and Louisiana. The inspection itself is unchanged and is still performed by a CVSA trained inspector who verifies the vehicle is free of safety defects before driverless operation begins. A successful inspection stays valid for up to 24 hours. Kodiak says it is preparing to launch driverless commercial operations on public highways by the end of this year. Neither company names a Texas county, a highway or a weigh station, and neither names a fleet size. Nothing published by a Texas agency describes this arrangement.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "PrePass Safety Alliance and Kodiak AI, Inc.",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "on_ercot": false
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-21",
+    "kind": "filed",
+    "note": "Date on the companies' joint announcement, which is also the date it says implementation begins"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A joint company announcement carries no comment window and no public docket. Kodiak AI is listed on Nasdaq, so its material arrangements reach the public through securities filings. The Commercial Vehicle Safety Alliance publishes the Enhanced Commercial Motor Vehicle Inspection Program the arrangement is built on.",
+   "url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The companies state what they connected and who performs the inspection.",
+    "verbatim_quote": "PrePass, a leader in integrated weigh-station bypass, toll payment, safety, and compliance solutions, and Kodiak AI, Inc. (\"Kodiak\") (Nasdaq: KDK), a leading provider of Physical AI-powered autonomous driving technology, today announced a new collaboration to integrate Enhanced Inspections of Kodiak's autonomous trucks, conducted by Commercial Vehicle Safety Alliance-trained inspectors, into established state roadside screening and enforcement systems.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c1"
+   },
+   {
+    "text": "The release names where it starts and when.",
+    "verbatim_quote": "Initial implementation begins today in Texas and Louisiana, and the collaboration paves the way for the safe scaling of driverless commercial vehicle operations nationwide.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c2"
+   },
+   {
+    "text": "The release states what a person still does before a driverless run begins.",
+    "verbatim_quote": "Under the program, a CVSA-trained inspector verifies that an autonomous commercial vehicle is free of safety defects before it begins driverless operations.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c3"
+   },
+   {
+    "text": "The release states how long an inspection lasts and what the arrangement does not change.",
+    "verbatim_quote": "A successful Enhanced Inspection remains valid for up to 24 hours, subject to applicable program requirements. The PrePass and Kodiak collaboration does not change or replace that process; it makes the resulting inspection information available through established roadside screening systems.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c4"
+   },
+   {
+    "text": "The chief technology officer of PrePass states where the company locates the remaining barrier.",
+    "verbatim_quote": "The next barrier to scaling driverless trucking isn't inside the truck. It's the infrastructure around it,",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c5"
+   },
+   {
+    "text": "The release gives the size of the screening network the arrangement runs on.",
+    "verbatim_quote": "Its network spans more than 580 inspection and screening locations nationwide.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c6"
+   },
+   {
+    "text": "Kodiak states what it is preparing to launch and when.",
+    "verbatim_quote": "The initiative supports Kodiak's operational and regulatory readiness as the company prepares to launch driverless commercial vehicle operations on public highways by the end of this year.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c7"
+   },
+   {
+    "text": "The safety alliance's executive director states the position of the body whose inspectors do the work.",
+    "verbatim_quote": "As commercial motor vehicle technologies continue to advance, inspection and enforcement processes must evolve with them while maintaining a strong focus on transportation safety.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c8"
+   },
+   {
+    "text": "The release states that the arrangement is meant to avoid a separate process at the roadside.",
+    "verbatim_quote": "The collaboration also gives state agencies a practical way to incorporate autonomous trucks into existing safety and enforcement operations without creating a separate roadside process.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c9"
+   },
+   {
+    "text": "Kodiak states that its system already runs with nobody in the cab and names its commercial customers.",
+    "verbatim_quote": "Today, the Kodiak Driver operates in the long-haul trucking, industrial trucking, and defense sectors, and is already deployed in commercial operation with no one in the cab.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365413/0/en/prepass-and-kodiak-ai-collaborate-to-advance-safe-scalable-driverless-trucking-nationwide.html",
+    "source_title": "PrePass and Kodiak AI Collaborate to Advance Safe, Scalable Driverless Trucking Nationwide",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0182-c10"
+   }
+  ],
+  "id": "tx-2026-0182",
+  "last_verified": "2026-09-22",
+  "history": [
+   {
+    "date": "2026-09-22",
+    "note": "Admitted to the record on the day implementation was announced to begin. The companies name Texas and Louisiana as the first two states and name no Texas county, no highway and no weigh station. No Texas agency has published anything describing the arrangement."
+   }
+  ]
+ },
+ {
+  "title": "The racks Amazon's AI runs on are built in El Paso County, on a grid that is not ERCOT",
+  "summary": "Wiwynn opened its advanced manufacturing facility in Socorro on September 14th, 2026. The company says the site carries complete production and testing capability for both air cooled and liquid cooled server racks, and that it has put more than one and a half billion dollars into it. The first building is in mass production and a second is expected to begin producing in the second quarter of 2027. Amazon Annapurna Labs is named in the release as the customer relationship behind the site. Socorro sits in El Paso County, which is served by El Paso Electric and is outside the ERCOT region the rest of the state's data center argument is about.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Wiwynn Corporation",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "El Paso"
+   ],
+   "on_ercot": false,
+   "metro": "El Paso, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-14",
+    "kind": "filed",
+    "note": "Date on the company's own announcement of the grand opening"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A company announcement of its own facility carries no comment window and no public docket. Wiwynn is listed on the Taiwan Stock Exchange, so its material investments reach the public through that exchange's filings.",
+   "url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The company states the date and the place.",
+    "verbatim_quote": "Socorro, Texas, September 14, 2026 – Wiwynn, a cloud data center IT infrastructure provider, today held the grand opening ceremony for its advanced manufacturing facility in Texas, marking another significant addition to its global manufacturing footprint.",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c1"
+   },
+   {
+    "text": "The release names the county the plant sits in.",
+    "verbatim_quote": "Located in Socorro, El Paso, Texas, the facility will further enhance Wiwynn's local manufacturing and delivery capabilities in North America.",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c2"
+   },
+   {
+    "text": "The company states what the plant can build and test.",
+    "verbatim_quote": "The Texas facility is equipped with state-of-the-art server manufacturing and rack integration technologies, offering complete production and testing capabilities for both air cooled and liquid-cooled racks.",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c3"
+   },
+   {
+    "text": "The company gives the investment, the size of each building and when the second is expected to produce.",
+    "verbatim_quote": "Wiwynn has invested more than US$1.6 billion in the Texas facility. The first building, spanning about 393,000 square feet, kicked off in 2025 and began shipments by the end of that year, now entering mass production, demonstrating Wiwynn's swift execution in establishing U.S.-based manufacturing and delivery capabilities. The second building, spanning approximately 476,000 square feet, is expected to begin production in the second quarter of 2027.",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c4"
+   },
+   {
+    "text": "Amazon's vice president for Annapurna Labs names the relationship behind the plant.",
+    "verbatim_quote": "This facility is the result of an extraordinary relationship between Amazon and Wiwynn,",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c5"
+   },
+   {
+    "text": "The chair of the company states what the site is for.",
+    "verbatim_quote": "This site will provide advanced production capacity for server racks, becoming a vital hub for Wiwynn's AI and cloud infrastructure business in the United States.",
+    "source_url": "https://www.wiwynn.com/news/wiwynn-strengthens-global-supply-chain-resilience-with-grand-opening-of-advanced-manufacturing-facility-in-texas",
+    "source_title": "Wiwynn Strengthens Global Supply Chain Resilience with Grand Opening of Advanced Manufacturing Facility in Texas",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0183-c6"
+   }
+  ],
+  "id": "tx-2026-0183",
+  "last_verified": "2026-09-22",
+  "history": [
+   {
+    "date": "2026-09-22",
+    "note": "Admitted to the record from the company's own announcement of the grand opening. The plant's first building is in production and the second is a stated expectation rather than a built thing."
+   }
+  ]
+ },
+ {
+  "title": "TxDOT starts the first phase of its air taxi program with aircraft that carry no passengers",
+  "summary": "The Texas Department of Transportation announced on September 10th, 2026 that phase one of Project Nexus is under way. The department's proposal was selected in March 2026 by the United States Transportation Secretary and the Federal Aviation Administration for the Electric Vertical Takeoff and Landing Integration Pilot Program. The department says the first phase flies traditional helicopters and fixed wing aircraft across the state to gather data and validate routes. Autonomous flight technologies are one of the operational concepts the nationwide program covers. The pilot advances in phases over three years.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Texas Department of Transportation",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "on_ercot": false
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-09-10",
+    "kind": "filed",
+    "note": "Date on the department's own news release announcing phase one"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A department news release about a federal pilot program carries no comment window of its own. The Federal Aviation Administration runs the Electric Vertical Takeoff and Landing Integration Pilot Program the Texas proposal was selected into.",
+   "url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+   "closes": null
+  },
+  "confidence": "medium",
+  "claims": [
+   {
+    "text": "The department states what phase one flies.",
+    "verbatim_quote": "The first phase will test across the state using traditional aircraft such as helicopters and fixed-wing planes.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "Air-taxi testing taking flight in Texas, Texas Department of Transportation",
+    "source_type": "primary_official",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0184-c1"
+   },
+   {
+    "text": "A Texas Transportation Commissioner states what the department takes the program to be.",
+    "verbatim_quote": "Project Nexus puts Texas at the forefront of a transformational moment in aviation.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "Air-taxi testing taking flight in Texas, Texas Department of Transportation",
+    "source_type": "primary_official",
+    "fetched": "2026-09-22",
+    "id": "tx-2026-0184-c2"
+   }
+  ],
+  "id": "tx-2026-0184",
+  "last_verified": "2026-09-22",
+  "history": [
+   {
+    "date": "2026-09-22",
+    "note": "Admitted to the record from the department's own news release. Phase one flies conventional aircraft, so the autonomy in this program is a later phase rather than a current one."
+   }
+  ]
  }
 ]
