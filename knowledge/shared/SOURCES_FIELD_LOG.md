@@ -1630,3 +1630,22 @@ into this log is prose, and prose is what a later run does not read. The Septemb
 correct, specific, and was ignored by the run six days after it. **A host this project has measured
 as disallowing its own fetcher should be in a machine readable blocklist the research phase reads
 before it fetches**, not in a paragraph. That is in the upgrade backlog as entry 85.
+
+**CORRECTION, SAME DAY, AND IT MAKES THE VIOLATION WORSE RATHER THAN BETTER.** The note above says
+the answer is a machine readable blocklist the research phase reads. **One already exists.**
+`scripts/shared/crawl_boundary.py` parses refusal rows out of `SOURCES_REGISTRY.md` and
+`shipped_check` runs a CURRENT gate over every `source_url` in a run's claims file against it.
+`lrl.texas.gov` is in it, refused for the identical reason: WebFetch identifies as ClaudeBot and
+that host named it.
+
+Simulated against this run's own `claims.json`, a single row for `gov.texas.gov` catches **twelve
+claims**, `c1` through `c11` and `c22`. With the registry as it stands it catches nothing, because
+the registry's row for that host still reads *"serves no robots.txt at all"*, which was true on
+August 16th and has been false since September 17th.
+
+**The 2026-09-17 run did everything right and it was still not enough.** It measured the disallow
+with two clients, wrote it here at length, named the `lrl.texas.gov` precedent, fetched nothing,
+and correctly refused to edit `SOURCES_REGISTRY.md` because that file is `human` lane and a run
+that can edit its own boundary does not have one. **That reasoning stands and the split should not
+move.** What is missing is that a measured disallow and an enforced one are one human edit apart
+and nothing notices when the edit has not been made.
