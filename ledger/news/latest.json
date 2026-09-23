@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-23T12:50:16Z",
+  "checked_at": "2026-09-23T17:53:57Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "15e82ad08a67d8eaa52df41105a2db5513e174292b58e924dae6aa1756f0ab6a",
+  "response_sha256": "136ec6b77411a7be151ea0ca62e451b904335db76eb0c41826ec29a3740513ae",
   "articles": [
     {
       "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
@@ -41,91 +41,20 @@
     }
   ],
   "selected": {
-    "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-    "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-    "first_seen_at": "2026-09-21T10:19:29Z",
-    "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
+    "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+    "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+    "first_seen_at": "2026-09-23T08:49:00Z",
+    "summary": "ERCOT claims the audit will be completed by December",
     "feed": "https://www.datacenterdynamics.com/en/rss/",
     "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.232498,
+    "score": 0.76927,
     "priority": 1
   },
-  "expires_at": "2026-09-28T10:19:29Z",
+  "expires_at": "2026-09-30T08:49:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-09-23T07:23:00Z",
-      "selected": {
-        "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-        "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-        "first_seen_at": "2026-09-21T10:19:29Z",
-        "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.232498,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-          "first_seen_at": "2026-09-21T10:19:29Z",
-          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.232498,
-          "priority": 1
-        },
-        {
-          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
-          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
-          "first_seen_at": "2026-09-23T08:49:00Z",
-          "summary": "ERCOT claims the audit will be completed by December",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.890356,
-          "priority": 1
-        },
-        {
-          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-          "first_seen_at": "2026-09-22T13:08:11Z",
-          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.504331,
-          "priority": 1
-        },
-        {
-          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
-          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
-          "first_seen_at": "2026-09-21T15:16:10Z",
-          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.268189,
-          "priority": 1
-        },
-        {
-          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
-          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
-          "first_seen_at": "2026-09-17T18:04:25Z",
-          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.018176,
-          "priority": 3
-        }
-      ]
-    },
     {
       "starts_at": "2026-09-23T13:23:00Z",
       "selected": {
@@ -136,7 +65,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.876437,
+        "score": 0.76927,
         "priority": 1
       },
       "stories": [
@@ -148,7 +77,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.876437,
+          "score": 0.76927,
           "priority": 1
         },
         {
@@ -159,7 +88,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.496447,
+          "score": 0.435743,
           "priority": 1
         },
         {
@@ -170,7 +99,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.263996,
+          "score": 0.231716,
           "priority": 1
         },
         {
@@ -181,7 +110,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.228863,
+          "score": 0.200879,
           "priority": 1
         },
         {
@@ -192,7 +121,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.017892,
+          "score": 0.015704,
           "priority": 3
         }
       ]
@@ -338,6 +267,77 @@
           "priority": 3
         }
       ]
+    },
+    {
+      "starts_at": "2026-09-24T07:23:00Z",
+      "selected": {
+        "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+        "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+        "first_seen_at": "2026-09-17T18:04:25Z",
+        "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.010638,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
+          "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
+          "first_seen_at": "2026-09-17T18:04:25Z",
+          "summary": "Reflecting the rise of AI, two Dallas-based consulting firms that specialize in AI business products and services recently combined. CoPoint AI acquired the client engagements of Strategy for AI. The companies did not disclose the financial terms. In tandem with the deal, Strategy for AI founder and CEO Brad Bush will join CoPoint AI as vice president effective Sept.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.010638,
+          "priority": 3
+        },
+        {
+          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+          "first_seen_at": "2026-09-23T08:49:00Z",
+          "summary": "ERCOT claims the audit will be completed by December",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.521133,
+          "priority": 1
+        },
+        {
+          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
+          "first_seen_at": "2026-09-22T13:08:11Z",
+          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.295189,
+          "priority": 1
+        },
+        {
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.156973,
+          "priority": 1
+        },
+        {
+          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
+          "first_seen_at": "2026-09-21T10:19:29Z",
+          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.136083,
+          "priority": 1
+        }
+      ]
     }
   ],
   "history": [
@@ -430,12 +430,19 @@
       "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
       "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
       "shown_at": "2026-09-23T07:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+      "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+      "shown_at": "2026-09-23T13:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "2bd06e3a3e53e2c8c89fd4547f892cffa9ad077eb66398cb24c3a755e2e2b97f"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -445,23 +452,25 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "9dd86d11da66cddf7977a5f03cac27c18d83899c8ab8a8e66c50f83cdf8545e0"
+      "sha256": "224b702dbaaeca608bef3f4805ceb1b2bbd19bc0f8951ab64ed64430f62f3760"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "db7381d9457a4a81e554b66dc2bb916d4d5558eec2c685c282f2e5da03d13e38"
+      "sha256": "c266753bb56947a53ee02dba73075ffcf103f94caabc99b2ccbed912f0b01c9c"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1221,
-      "sha256": "b0a6e9cb6ef1fac67af326e449efb8f9e59ee3fa7490120a8e6a9348f252f829"
+      "items": 1223,
+      "sha256": "6f64f7b5e9514af19ea7802cea00e6726f4d753029c24f0efd13e389a0aea845"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "febf99aa9a2238f4b5ae10cdfefea0143387e974c050d53aaf03205a7323358a"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -473,7 +482,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "77bfb44e364e412ea9ed1656e912b99059ee43b2a991b531df2c7bebc036ee9b"
+      "sha256": "4449f30b2ad1a257a62b960a6b9cbdcffbf694c3a11a1cdcd2a94a29b94bbad6"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -482,13 +491,15 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 35,
+      "sha256": "83155f4cb6b0e4ff4210871c1b14f024f04cddb505100393687da9cd89e5a9bb"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "d45fa4ef1ef5dd00168dbe1f57924d5afe323f6d1723f45ecafa35a26f1642fa"
+      "sha256": "ed76c8f7bf5356a54de73809126635d5c8c66c469c7e5e0191ed0026a2958b52"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -502,68 +513,70 @@
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "0169b3efdc5269ea4df04b1ea6c8043cba8a4976e33fc02b2383929495d8f93c"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"04831a3e6419566565b760a5f05cbaf0\"",
-      "last_modified": "Tue, 22 Sep 2026 17:36:38 GMT",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
-      "sha256": "c16f5c6d9eaab4a5b121fdf43f93bc9dda4dd5f1fb0a5f86dadae1b0eaca7c38",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "2bd06e3a3e53e2c8c89fd4547f892cffa9ad077eb66398cb24c3a755e2e2b97f",
+      "etag": "\"995cf9d4b74bf48f50ee17948efa25b5\"",
+      "last_modified": "Wed, 23 Sep 2026 17:03:46 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9dd86d11da66cddf7977a5f03cac27c18d83899c8ab8a8e66c50f83cdf8545e0",
-      "last_modified": "Wed, 23 Sep 2026 12:22:25 GMT"
+      "sha256": "224b702dbaaeca608bef3f4805ceb1b2bbd19bc0f8951ab64ed64430f62f3760",
+      "last_modified": "Wed, 23 Sep 2026 16:10:51 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "db7381d9457a4a81e554b66dc2bb916d4d5558eec2c685c282f2e5da03d13e38",
-      "etag": "\"1790166307\"",
-      "last_modified": "Wed, 23 Sep 2026 12:25:07 GMT"
+      "sha256": "c266753bb56947a53ee02dba73075ffcf103f94caabc99b2ccbed912f0b01c9c",
+      "etag": "\"1790185328\"",
+      "last_modified": "Wed, 23 Sep 2026 17:42:08 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b0a6e9cb6ef1fac67af326e449efb8f9e59ee3fa7490120a8e6a9348f252f829"
+      "sha256": "6f64f7b5e9514af19ea7802cea00e6726f4d753029c24f0efd13e389a0aea845"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"371695588e6ef29f82e97b2f33538c19-gzip\"",
-      "last_modified": "Wed, 23 Sep 2026 02:30:22 GMT",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
-      "sha256": "5c3b68781d3deb5d4bc3620c7abfce832d48e4445654563586323a107674f86f",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "febf99aa9a2238f4b5ae10cdfefea0143387e974c050d53aaf03205a7323358a",
+      "etag": "\"1cb4909e9817271ff1b2f66088188bd4-gzip\"",
+      "last_modified": "Wed, 23 Sep 2026 16:38:37 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "77bfb44e364e412ea9ed1656e912b99059ee43b2a991b531df2c7bebc036ee9b",
-      "etag": "\"71e63778d97f15d92f874016a03a86ca\"",
-      "last_modified": "Wed, 23 Sep 2026 12:30:38 GMT"
+      "sha256": "4449f30b2ad1a257a62b960a6b9cbdcffbf694c3a11a1cdcd2a94a29b94bbad6",
+      "etag": "\"a85a59acfd94ffb3aba45a90c149e39a\"",
+      "last_modified": "Wed, 23 Sep 2026 17:31:01 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"a5a4044f4288c1a98ae10a542936a14b\"",
@@ -575,40 +588,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "etag": "W/\"836d2abb1ccf236d7623490a6343c532\"",
-      "last_modified": "Tue, 22 Sep 2026 23:00:47 GMT",
-      "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
-      "sha256": "48e1d0a9621f2ea7e0ba4de6e1dc38d4841795b818947bcf232899606282d703",
-      "parser_version": 2
-    },
-    "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d45fa4ef1ef5dd00168dbe1f57924d5afe323f6d1723f45ecafa35a26f1642fa",
-      "etag": "W/\"0d33a5198fbd92eb5a4ecccdfff0cfd0\""
+      "sha256": "83155f4cb6b0e4ff4210871c1b14f024f04cddb505100393687da9cd89e5a9bb",
+      "etag": "W/\"a420f918b7620f796f7df53ccf9af071\"",
+      "last_modified": "Wed, 23 Sep 2026 16:34:15 GMT"
+    },
+    "https://www.techspot.com/backend.xml": {
+      "ok_at": "2026-09-23T17:53:55Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "ed76c8f7bf5356a54de73809126635d5c8c66c469c7e5e0191ed0026a2958b52",
+      "etag": "W/\"04b8f3b66db6e57b673f5d42d5d22514\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Wed, 23 Sep 2026 03:52:14 GMT",
       "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "sha256": "37dfe8bc1a3ad9d98dea45b13ac0b6b1264527c47680c9583e6ebe8ff525c688",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-23T12:50:12Z",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "5b82ba58fe92486b1b87a7e525c0cf11d86ff808748bccf405960d664c654c2b"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"a9a46423df23e5d963c69b04beae772d\"",
-      "last_modified": "Tue, 22 Sep 2026 13:35:18 GMT",
+      "ok_at": "2026-09-23T17:53:55Z",
       "failures": 0,
-      "ok_at": "2026-09-23T12:50:12Z",
-      "sha256": "f660d34c9f5b9b0dbee4ffd131e8be3bcf6e2aab5e59e577a6d3b0d6f6d018ec",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "0169b3efdc5269ea4df04b1ea6c8043cba8a4976e33fc02b2383929495d8f93c",
+      "etag": "W/\"71ba56d7bebac8809bb7a20ea39dc0c4\"",
+      "last_modified": "Wed, 23 Sep 2026 17:31:12 GMT"
     }
   }
 }
