@@ -74,7 +74,8 @@
  *
  * THE RESERVED RED IS NOT SPENT, DELIBERATELY. `signal_soon` #BF0A30 means a deadline inside a
  * week and nothing else on this project wears it. The report back is October 19th, which is
- * further out than that, and the Abilene comment file has no stated close date at all.
+ * further out than that. A line here once described an Abilene comment file's close date,
+ * from a finding whose every element the fact check could not verify, and it is gone.
  * Spending the urgent colour on either would be this deck asserting an urgency the documents
  * do not carry.
  *
@@ -208,7 +209,9 @@
 
   N.CALICHE  = "#5A5140";  /* compacted pad, warm against the sky */
   N.GRAVEL   = "#3E3A38";
-  N.STACKTOP = "#9AA0A4";  /* galvanised flue, the one thing the permit is about */
+  N.STACKTOP = "#9AA0A4";  /* galvanised flue. The deck draws it because it is what a gas
+                            set LOOKS like, not because any verified claim says what a permit
+                            regulates. See the header. */
   N.DARKSTEEL= "#4A4E56";
 
   /* THE GREY SCALE THE FRAMES DRAW IN, nine steps, dark to light. A frame that picks its own
@@ -315,7 +318,8 @@
         { type: "rect", x: -L / 2 + 0.2, y: H - 0.22, w: L - 0.4, h: 0.22, fill: "accent" },
         /* louvre bank at the radiator end */
         { type: "rect", x: L / 2 - 2.8, y: 0.7, w: 2.2, h: H - 1.3, fill: "ink" },
-        /* THE STACK. The one thing an air permit is about. */
+        /* THE STACK, because it is what a gas set looks like. The deck asserts nothing
+         * about what any permit regulates and no frame does either. */
         { type: "rect", x: -L / 2 + 2.1, y: H, w: 0.62, h: S - H, fill: "paper" },
         { type: "rect", x: -L / 2 + 1.85, y: S - 0.5, w: 1.12, h: 0.30, fill: "accent" }
       ]

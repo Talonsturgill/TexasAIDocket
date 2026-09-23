@@ -1568,3 +1568,21 @@ a verification nobody performed. Same disposition as `public.destinyhosted.com` 
 every attempt across the run. Neither is a disallow and neither was routed around. Both are noted
 so the next run reaching for a Texas university newsroom or the utility's own site budgets a
 second source rather than a second try.
+
+**`www.hayscountytx.gov` answers 403 to curl AND to WebFetch**, which is the other half of the
+rule two paragraphs up and the reason that rule is worth having in the narrow form it took. One
+403 is a fact about one client. The same 403 from both clients this routine has is a fact about
+the site, and it is the point where a second attempt stops being diligence.
+
+That closes the last door on three Hays County items, `tx-2026-0168`, `tx-2026-0169` and
+`tx-2026-0170`. They were read off `public.destinyhosted.com`, which serves `User-agent: *` and
+`Disallow: /`, re-measured today. The county's own site carries the same agendas and refuses both
+clients. There is no second source for what an agenda entry says, because a news account of a
+meeting is a different claim with a different author.
+
+**So the record now says unreachable rather than unchecked**, which is a distinction it could not
+make before today. `scripts/site/docket_staleness.py` had called those three ROTTEN every day
+since the 22nd and printed a remedy, re-verify these before writing anything new, that no run
+could take. The carve-out is earned by a dated measurement on the item, covers only an item whose
+own front door is shut, and LAPSES IN SEVEN DAYS, so the boundary is a standing obligation to
+re-measure rather than a note that silences a gate once. Never route around one.

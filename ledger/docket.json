@@ -20757,10 +20757,22 @@
     {
      "date": "2026-09-23",
      "note": "The sheriff's undertaking not to switch the report writing tool on is unconfirmed this run, and the agenda item recording it is the only place the record has it."
+    },
+    {
+     "date": "2026-09-23",
+     "note": "The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file and the county's own site answers 403 to both clients this routine has, so this item is recorded as unreachable rather than as unchecked. Nothing about what it asserts moved."
     }
    ],
    "last_verified": "2026-09-18",
-   "id": "tx-2026-0168"
+   "id": "tx-2026-0168",
+   "unreachable": {
+    "hosts": [
+     "public.destinyhosted.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-09-23",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+   }
   },
   {
    "title": "The Hays County Clerk asks the commissioners court to buy AI that writes the county's official minutes",
@@ -20861,10 +20873,22 @@
     {
      "date": "2026-09-23",
      "note": "Whether the clerk's minute writing purchase went through as the agenda proposed is unconfirmed this run, and no vote is on the record either way."
+    },
+    {
+     "date": "2026-09-23",
+     "note": "The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file and the county's own site answers 403 to both clients this routine has, so this item is recorded as unreachable rather than as unchecked. Nothing about what it asserts moved."
     }
    ],
    "last_verified": "2026-09-18",
-   "id": "tx-2026-0169"
+   "id": "tx-2026-0169",
+   "unreachable": {
+    "hosts": [
+     "public.destinyhosted.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-09-23",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+   }
   },
   {
    "title": "Hays County takes up a policy on how it governs AI in surveillance",
@@ -20956,10 +20980,22 @@
     {
      "date": "2026-09-23",
      "note": "Whether the county adopted the surveillance policy statement its agenda contemplated is unconfirmed this run."
+    },
+    {
+     "date": "2026-09-23",
+     "note": "The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file and the county's own site answers 403 to both clients this routine has, so this item is recorded as unreachable rather than as unchecked. Nothing about what it asserts moved."
     }
    ],
    "last_verified": "2026-09-18",
-   "id": "tx-2026-0170"
+   "id": "tx-2026-0170",
+   "unreachable": {
+    "hosts": [
+     "public.destinyhosted.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-09-23",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+   }
   },
   {
    "title": "Governor directs the water board to enforce the state water use survey against data centers that did not return it",
