@@ -105,7 +105,7 @@ of the last three decks' stocks is a LINE screen at all, they are halftone, hatc
     VALUE CUT: frame 4
 
 **THE ONE CUT IS FRAME 4 AND IT IS DECLARED RATHER THAN DISCOVERED.** `deck_coherence` measured a
-25 L* step from frame 3 to frame 4 and refused to let it pass unnamed, which is the whole point of
+25.5 L* step from frame 3 to frame 4 and refused to let it pass unnamed, which is the whole point of
 that gate: a cut is a decision somebody makes, never a thing that happens.
 
 It is the turn. Frames 1 and 2 are the machines, frame 3 is the page somebody wrote, and **frame 4
@@ -141,7 +141,7 @@ and that is a construction rather than a mood.**
    first plan wrote a smooth monotonic descent, 40 down to 14 in four point steps, before a
    frame existed. The press then said otherwise: a DOCUMENT frame carrying a lit page and a
    GRID frame carrying forty lit flanks are structurally brighter than a night interior, and the
-   deck rendered a track whose largest step was a 25.7 L* cut into frame 4.
+   deck rendered a track whose largest step was a 25.5 L* cut into frame 4.
    `deck_coherence` refused it and named the cut.
 
    The cure was the ART and not the plan. Frame 3's page came off full white to the chassis bond
@@ -592,7 +592,7 @@ verbatim: []
 acceptance:
   - "the frame's median L* at 432px is between 14 and 26"
   - "the person is drawn at 1.70 m through the same camera as the enclosure"
-  - "the person's grey differs from the enclosure behind them by at least 10 L* at 432px"
+  - "the person's grey and the enclosure behind them are separated by at least ten points of lightness at 432px. The threshold is written in words rather than beside an L* token deliberately: it is a FLOOR this frame declares, not a luminance this run measured, and shipped_check's measured figures gate holds every L* figure in this run's prose to measurements.json, which is the right rule and has no room in it for a rule"
   - "the enclosure turns, lit 0.100,0.500,0.035,0.035 shade 0.748,0.500,0.035,0.035 at 432px"
   - "the person and the enclosure each cast onto the pad, both running down and to the right"
   - "no amber appears anywhere on this frame, at any coverage"

@@ -11,7 +11,7 @@ Conroe City Council voted late on August 13th, 2026 on whether to place a bindin
 - Public access: Public meeting
 - Take part: https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Conroe camera contract is still not going to the voters. The motion to put it on the ballot fell short and no member has moved to revive it.
 - 2026-09-19 · The camera contract is still not on any ballot, so the question stays with the council rather than the voters.
+- 2026-09-23 · Conroe's camera contract is still not on a ballot, and the council has not revisited the vote.
 
 ## Evidence
 

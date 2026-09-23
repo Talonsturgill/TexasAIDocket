@@ -11,7 +11,7 @@ Memorial Hermann Health System says its clinicians are using an artificial intel
 - Public access: Write to the decider
 - Take part: https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html
 
-- Last checked: 2026-09-20
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-17 · Admitted to the record. The health system's own announcement is where the public first learned that a model drafts the sentence a Houston patient reads beside their lab or imaging result. Every figure in it was published by the software vendor and its customer, and a trade publication reading the same announcement two days later named what they leave out.
 - 2026-09-20 · The health system's account of clinicians sending Houston patients an AI drafted explanation of their own results still stands. Nothing has moved on what the assistant drafts or on the clinician who reviews it before it goes out.
+- 2026-09-23 · Houston patients are still getting an explanation of their own results that software drafted first.
 
 ## Evidence
 

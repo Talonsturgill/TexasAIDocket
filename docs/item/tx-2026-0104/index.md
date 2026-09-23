@@ -11,7 +11,7 @@ The National Science Foundation made award 2535195 to the University of Texas at
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/show-award?AWD_ID=2535195
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The UT Austin center on how people and robots adapt to each other is still funded across its full term. Nothing has altered the award.
 - 2026-09-19 · The center is funded for its full term and the award has not been amended.
+- 2026-09-23 · The co-adaptation center is still funded for its full five years.
 
 ## Evidence
 

@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Public access: Write to the decider
 - Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The committee's sittings on cooling water now sit in its video archive, and the interim charge that sent it there is still the charge it carries.
 - 2026-09-16 · Both of the committee's sittings on data center cooling water now sit in its own permanent meeting archive, which is where a held hearing goes. The interim charge that sent it there is still the charge it carries, and it has published no recommendation.
 - 2026-09-19 · The committee has held both sittings on cooling water and still published no recommendation, so nothing is before the Legislature from it.
+- 2026-09-23 · Neither sitting is on the senate's list of upcoming meetings any more, so the committee has heard its subject twice and has nothing further scheduled. No recommendation has been published.
 
 ## Evidence
 

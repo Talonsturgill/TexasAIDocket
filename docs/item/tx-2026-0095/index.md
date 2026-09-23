@@ -11,7 +11,7 @@ The Board of Regents approved adding the first phase of the UT Dell Medical Cent
 - Public access: Closed
 - Take part: https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The first tranche for the UT Dell Medical Center is still in the capital program as approved. The regents have not revisited it.
 - 2026-09-19 · The first tranche of the medical center is still in the capital program.
+- 2026-09-23 · The first tranche for the Austin medical center is still in the capital program.
 
 ## Evidence
 

@@ -1,5 +1,30 @@
 # Run record, September 23rd, 2026
 
+## DISPOSITION: THE RECORD SHIPPED AND THE DECK DID NOT. THIS BRANCH IS NOT MERGED.
+
+`shipped_check`'s `completion` gate refuses it and the refusal is correct rather than a
+technicality:
+
+> THE DECK WENT BACKWARDS. 5.95 against a 8.0 bar is under 7.01, which is what the last 10
+> shipped decks have actually been holding. **The 5 round cap ends the SEARCH and it does not
+> end the STANDARD.** Shipping here is the regression the floor exists to refuse.
+
+That is the sentence this run had been reading the wrong way round all afternoon. The delivery
+policy says a run past the cap ships whatever the score is and names the shortfall, and that is
+true of a deck that is merely SHORT of the bar. It is not a licence to ship a deck a full point
+below what the product has actually been holding for ten decks. A floor measured off shipped work
+is a harder fact than a threshold in a config, and this deck is under it.
+
+**So the branch carries its evidence and stops.** Per the delivery policy, failed runs commit and
+do not merge.
+
+**THE COST, STATED SO IT IS A CHOICE RATHER THAN AN OVERSIGHT.** The record work on this branch is
+sound, it passes every gate, and it includes the fix that stops `docket_staleness` reporting three
+Hays County items as ROTTEN. CI exits 1 on a rotten item. **So until somebody merges this branch or
+redoes that work, every pull request against `main` is red on a gate whose remedy no run can
+take.** That is the one thing here worth a person's attention today.
+
+
 Carousel no. 32, a gas generator yard at night. The record went from 156 items to 157 on one
 admission, `tx-2026-0182`, which is the deck's subject. Ninety four items were re-verified.
 

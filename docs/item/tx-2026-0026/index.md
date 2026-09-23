@@ -12,7 +12,7 @@ The Temple Planning and Zoning Commission has three data center items on its Aug
 - Comment closes: 2026-08-17
 - Take part: https://www.templetx.gov/datacenters
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The comment window closed on August 17th.
 - 2026-09-16 · The Temple amendment that would make every future data center a conditional use is still waiting on the planning commission. No sitting has been noticed to take it up.
 - 2026-09-19 · The comment window closed on August 17th.
+- 2026-09-23 · Temple's permit amendment is still before the commission and has not come back to the council.
 
 ## Evidence
 

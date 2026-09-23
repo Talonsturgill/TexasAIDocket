@@ -9,7 +9,7 @@ Texas law restricts the channels through which the Public Utility Commission may
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The limit on how the commission may direct the grid operator still reads as it did, and the bar on a verbal directive is intact. Nothing has been added to let an instruction travel any other way.
 - 2026-09-19 · The limit on how the commission may direct the grid operator is unchanged, and a verbal directive is still barred.
+- 2026-09-23 · The limit on how the commission may direct the grid operator is unchanged, and the bar on verbal directives still stands.
 
 ## Evidence
 

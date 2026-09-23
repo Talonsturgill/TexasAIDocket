@@ -11,7 +11,7 @@ The University of Texas at Arlington College of Business launched two artificial
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -22,6 +22,7 @@ The University of Texas at Arlington College of Business launched two artificial
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-19 · The university states that the artificial intelligence degrees replace the Business Analytics programs. The release does not say what happens to a student already enrolled in one.
+- 2026-09-23 · The Arlington campus still offers artificial intelligence degrees where the analytics degrees used to be.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Texas A&M national user facility for robot and model designed alloys is still funded as a user facility. Its terms have not moved.
 - 2026-09-19 · The user facility is still funded, and it is still open to researchers who do not work at the campus.
+- 2026-09-23 · The national user facility at the Texas A and M campus still stands as awarded.
 
 ## Evidence
 

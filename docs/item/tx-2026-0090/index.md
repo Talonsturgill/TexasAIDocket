@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Texas A&M alloy laboratory is still funded as an open access facility outside researchers may book. The booking route is still published.
 - 2026-09-19 · The alloy laboratory is still funded as an open access facility, so a researcher outside the campus can still book time on it.
+- 2026-09-23 · The alloy laboratory is still open to outside researchers on the terms the award set.
 
 ## Evidence
 

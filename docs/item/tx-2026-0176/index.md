@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to the Texas A&M Engineeri
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
 
-- Last checked: 2026-09-20
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -24,6 +24,7 @@ The National Science Foundation made a standard grant to the Texas A&M Engineeri
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-20 · Admitted to the record. The federal award record carries the dates, the awardee, the principal investigator and the abstract that states the objective.
+- 2026-09-23 · The digital twin project still aims at the small and mid-sized systems that have the least to spend on one.
 
 ## Evidence
 
