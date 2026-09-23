@@ -160,6 +160,17 @@
   N.GROUND = "#322C44";   /* night sky over a mast lit pad. Measured, see the header */
   N.INK    = "#CFD2D8";   /* galvanised steel under a discharge lamp, the deck's paper */
   N.ACCENT = "#E0A33F";   /* posted notice amber. THE STATE'S PAPER, and nothing else wears it */
+
+  /* THE ACCENT IS PAINTED PRE COMPENSATED, AND THE NUMBER WAS MEASURED RATHER THAN GUESSED.
+   * `over` runs before TXDECK.finish, so the grade moves whatever is painted there. Painting
+   * N.ACCENT straight rendered as (181, 152, 52), which is dE76 15.85 from the declared hex
+   * against layout_check's allowance of 12, and the gate reported the accent present on ZERO
+   * frames while a reader could plainly see it. The transfer was then measured a SECOND time off a real
+   * painted swatch rather than off a shadowed corner of one, which is what the first pass got
+   * wrong: green came back at 204 against a target of 163. This is the colour that LANDS on
+   * #E0A33F through this deck's grade.
+   * A frame paints N.ACCENT_PAINT. Nothing paints N.ACCENT. */
+  N.ACCENT_PAINT = "#F98C4A";
   N.DEK    = "#A7A6B4";
   N.RULE   = "#8A8798";   /* the furniture, one pale ink on all nine frames */
 
@@ -411,6 +422,31 @@
    * SO THE LIGHT DIMS TOWARD THE TYPE. A soft falloff over each measured line box, in the deck's
    * own ground, capped well under the 0.55 alpha `deck_chassis.py` fails the build on, and
    * feathered over the full height of the box again above and below it.
+   */
+  /* THE FURNITURE BAND RESERVE. The kicker, the counter and the source line live in a fixed
+   * band top and bottom, and the print is faded to the deck's own ground under them so those
+   * lines never sit on a screen. */
+  N.reserve = function (c, o) {
+    o = o || {};
+    TXINK.reserve(c, {
+      ground: o.ground || N.GROUND,
+      top: o.top == null ? 150 : o.top,
+      topSolid: o.topSolid == null ? 92 : o.topSolid,
+      bottom: o.bottom == null ? 150 : o.bottom,
+      bottomSolid: o.bottomSolid == null ? 94 : o.bottomSolid
+    });
+  };
+
+  /* QUIET IS CALLED ON `over`'s CONTEXT AND NEVER ON THE TWIN, AND THAT IS NOT A STYLE NOTE.
+   *
+   * Called inside `draw`, this paints its gradients into the offscreen twin, and TXINK's edge
+   * pass then runs a Sobel over that twin and lays the RESULT as contour ink. So the reserve's
+   * own soft boundaries come back as hairline rules lying exactly across the type they were
+   * drawn to protect, and machine QA reports them as strikethroughs. It is right to: at feed
+   * width that is what they are. This deck's first full pass reported 74 strikes across eight
+   * frames from precisely that, and every one of them was the reserve striking its own type.
+   *
+   * Called on `over`, it dims the finished print after the screen and the contour have run.
    */
   N.quiet = function (c, boxes, alpha) {
     if (!boxes || !boxes.length) return;
