@@ -29,7 +29,7 @@ policy are independent, and both vary host by host.**
 |---|---|---|---|
 | **`gisweb.tceq.texas.gov`** | **`Disallow: /` for ALL agents** | would serve data | **Do not fetch. Use EPA Envirofacts instead** |
 | **`courtlistener.com`** | disallows `*` **but explicitly ALLOWS `claudebot`** | 200, **and a CloudFront 403 on `robots.txt` itself was seen 2026-08-16** | **Send the ClaudeBot UA. It is the compliant one here. A 403 fetching the robots file is an edge failure and NOT a policy change, so do not write this host off on one** |
-| `gov.texas.gov` | **serves no robots.txt at all** | 200 to a browser UA, posts and `/uploads/files/press/` PDFs alike | Browser UA. Nothing is disallowed because nothing is stated |
+| **`gov.texas.gov`** | **names `ClaudeBot` with `Disallow: /` for the whole host**, measured 2026-09-17 and again 2026-09-23 with two clients. `User-agent: *` disallows only eight `/Apps/` paths | 200 to a browser UA, 403 to a ClaudeBot UA on the robots file itself | **OFF LIMITS to WebFetch and to every scout, whole host, because WebFetch identifies as ClaudeBot. Cite a Governor's directive through a permitted outlet: `texastribune.org`, `cbsnews.com` and `troutman.com` were checked 2026-09-23. This row read "serves no robots.txt at all" until 2026-09-23, six days after the disallow appeared, and a run fetched the host ten times on that reading. Whether a collector sending `TexasAIDocket/1.0` may use the `*` rule is an owner call, not a run's** |
 | `lrl.texas.gov` | content signals, **no path disallow** | 200 | Usable. The weekly interim hearings post is the cheapest dated public microphone |
 | `interchange.puc.texas.gov` | **no robots.txt at all** | **402 to a ClaudeBot UA, 200 to a browser UA** | Browser UA. Nothing is disallowed |
 | `texastribune.org` | permits both | **403s a ClaudeBot UA, 200 to a browser UA** | Browser UA |
@@ -268,8 +268,8 @@ productive source of that run and was not in this registry at all.
 
 | Source | Endpoint | Key | ✓ | Geo |
 |---|---|---|---|---|
-| **Governor's press releases** | `gov.texas.gov/news/post/<slug>` | none | **[V]** **serves NO robots.txt**, answers a browser User-Agent | statewide, names the county in the body |
-| **Governor's directive letters and press PDFs** | `gov.texas.gov/uploads/files/press/<file>.pdf` | none | **[V]** same host, same terms. This is where a directive's actual text lives, rather than the summary in the post | |
+| **Governor's press releases** | `gov.texas.gov/news/post/<slug>` | none | **RESTRICTED, see section 1. `ClaudeBot` is `Disallow: /` for the whole host since 2026-09-17**, so no WebFetch and no scout. Cite through a permitted outlet | statewide, names the county in the body |
+| **Governor's directive letters and press PDFs** | `gov.texas.gov/uploads/files/press/<file>.pdf` | none | **RESTRICTED, same host, same terms as the row above.** This is where a directive's actual text lives, and it is out of reach of the automated fetcher | |
 | **LRL interim hearings, weekly** | `lrl.texas.gov/whatsNew/client/index.cfm/<yyyy>/<m>/<d>/Interim-Hearings--Week-of-<Month>-<D>-<YYYY>` | none | **RESTRICTED, see section 1.** There is no PATH disallow, which is what this row used to say and why the real rule was missed. **`User-agent: ClaudeBot` is `Disallow: /` for the whole host**, so no WebFetch and no scout. `User-agent: *` is `Allow: /` with `Content-Signal: ai-train=no, use=reference` | statewide |
 
 **The LRL weekly post is the cheapest route to a dated public microphone**, which is exactly what
