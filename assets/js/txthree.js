@@ -179,6 +179,7 @@ export function init(THREE) {
     made[0].target.position.set(t[0], t[1], t[2]);
     R.scene.add(made[0].target);
     if (o.shadowFar) made[0].shadow.camera.far = o.shadowFar;
+    made[0].shadow.normalBias = o.normalBias != null ? o.normalBias : 0.02;  // no acne on thin parts
     made[0].shadow.camera.updateProjectionMatrix();
     return made;
   };
