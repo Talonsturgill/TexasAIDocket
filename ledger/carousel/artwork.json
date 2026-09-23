@@ -2133,17 +2133,17 @@
    ],
    "value": {
     "per_frame_median_L": [
-     8.6,
-     11.2,
-     8.6,
-     8.6,
-     8.1,
-     10.1,
+     8.2,
+     7.7,
+     6.6,
+     5.2,
+     6.9,
      7.6,
-     11.1,
-     6.0
+     4.4,
+     7.8,
+     5.7
     ],
-    "deck_median_L": 8.6,
+    "deck_median_L": 6.9,
     "max_adjacent_delta": 5.1,
     "note": "Measured at 432 px off the rendered PNGs. No cut is declared and none is taken. deck_coherence measured a mean adjacent jump of 2.46 L*, against the reference product's 2.6."
    },
