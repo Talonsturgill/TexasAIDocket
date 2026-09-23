@@ -114,9 +114,26 @@ work is sound and should land ahead of the held deck. That is no longer uncondit
 Said plainly here, on the pull request, and to the owner directly, because the earlier version of
 this advice already reached them.
 
-Backlog entry 85 is the structural answer. A crawl boundary in prose is a boundary the next run
-does not read, so it belongs in a machine readable blocklist the research phase consults BEFORE it
-fetches, one that expires and that a run may add a row to and never remove one.
+**AND THE FIRST DIAGNOSIS OF THIS, WRITTEN HOURS EARLIER TODAY, WAS WRONG.** It said the answer is
+a machine readable blocklist the research phase reads. **One already exists.**
+`scripts/shared/crawl_boundary.py` parses refusal rows out of `SOURCES_REGISTRY.md` and
+`shipped_check` runs a CURRENT gate over every `source_url` against it. `lrl.texas.gov` is in it,
+refused for the identical reason. It was found only because CI's log printed a `crawl boundary`
+note for an older deck.
+
+Simulated against this run's own claims file, **one row for `gov.texas.gov` catches twelve claims**,
+`c1` through `c11` and `c22`. With the registry as it stands it catches nothing, because that
+host's row still reads "serves no robots.txt at all", true on August 16th and false since
+September 17th.
+
+**Which makes it worse rather than better, and the 2026-09-17 run did everything right.** It
+measured the disallow with two clients, wrote it up at length, named the precedent, fetched
+nothing, and correctly refused to edit the registry because that file is `human` lane and a run
+that can edit its own boundary does not have one. That reasoning stands and the split should not
+move. **What is missing is that a measured disallow and an enforced one are one human edit apart,
+and nothing notices when the edit has not been made.** Six days, one unmade row, twelve claims.
+Backlog entry 85 is rewritten around that, proposing a gate in the run's OWN lane that goes red
+while this project's measurement and its boundary disagree.
 
 ## The review found five more things and four of them are fixed
 
