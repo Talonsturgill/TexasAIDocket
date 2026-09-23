@@ -118,7 +118,9 @@ and a deck with the keys on some frames and not others is not in the system.
   frames, never over eight percent of one.
 
 `knowledge/carousel/ILLUSTRATION_SYSTEM.md` is where the archetypes and the register are
-explained, and `examples/editorial-deck/storyboard.md` carries nine dossiers written this way.
+explained, and `examples/figure-bearing/storyboard.md` carries dossiers written this way. A
+dossier that names a screen, a paper stock or a print register is planning the deleted look, and
+`print_ban.py` will refuse the frame it produces.
 
 ## THE VERBATIM KEY, and the five strings that made it necessary
 

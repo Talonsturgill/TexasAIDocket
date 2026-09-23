@@ -96,8 +96,11 @@ slide used.
 
 ## The primary image law, checked before the global standards (2026-09-11)
 
-`knowledge/carousel/ILLUSTRATION_SYSTEM.md` is the standard and `examples/editorial-deck/` is
-what meeting it looks like. Every dossier now declares `layout`, `primary_image` and `accent`.
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md` is the standard and `examples/figure-bearing/` is
+what meeting it looks like. **The print screen is DELETED (owner, 2026-09-23).** A frame that
+reads as a screen, halftone, line, hatch or stipple texture over its surfaces is the faded look
+the owner rejected, and it is a must-fix whatever else is right with it. Frames are RENDERED:
+solid objects with a material, one light, a soft shadow and a contact. Every dossier now declares `layout`, `primary_image` and `accent`.
 Grade them off the thumb:
 
 - **Is the subject the dossier named actually there**, at the place and size its rect declares,

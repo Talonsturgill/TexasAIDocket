@@ -34,9 +34,11 @@ Only then, if you need to, a full-size render.
   with an image running off an edge. Read the contact sheet and say whether it does. Nine
   frames with a headline at the top and a drawing under it is the finding this rule exists
   for, and it is a must-fix by slide number.
-- **The screens and the accent.** The print register varies with the layout: halftone, line,
-  hatch, stipple. Nine of one is one drawing nine times in a new way. The one accent should
-  appear on three to six frames, small, and nowhere else.
+- **The hero object and the accent.** The print register is DELETED (owner, 2026-09-23), and a
+  deck held together by a screen texture is the faded look the owner rejected. What holds a deck
+  together now is ONE hero object rendered in one material under one rig, seen from a new camera
+  or in a new state on every frame. Check that it is recognisably the same object throughout. The
+  one accent should appear on three to six frames, small, and nowhere else.
 - **Frames 7 to 9 against 1 to 3.** The close is where every judged deck went thin. If the
   last three frames carry less drawing than the first three, say so by number.
 

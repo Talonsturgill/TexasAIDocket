@@ -835,6 +835,30 @@ def g_deck_coherence(d: Path):
 
 
 YEAR_SINCE = "2026-09-22"   # the newest deck shipped before the check was wired
+def g_print_ban(d: Path):
+    """The print screen is deleted, and a shipped deck may not carry it or fall short of the render.
+
+    Owner, 2026-09-23: "delete that fallback bullshit look, make it impossible for me to have to
+    tell u this again." `print_ban.check_run` refuses a printed frame and counts rendered ones.
+
+    Its own since-date, for the reason stated at RESERVE_SINCE: every deck on or before
+    PRINT_SINCE was drawn under a routine that ORDERED the print, in so many words, and pointed
+    every director at an example built on it. They are the decks that produced this rule and a
+    gate does not judge the work that produced it. They are still measured and printed, which is
+    the difference between a carve-out and a switched-off check. From the day after, a printed
+    deck is red here, in CI, on every build.
+    """
+    import print_ban as m
+    if not (d / "slides").is_dir():
+        return None
+    probs = m.check_run(d)
+    if probs and d.name <= m.PRINT_SINCE:
+        return (f"the print screen was deleted on 2026-09-23 and this deck was drawn under a "
+                f"routine that ordered it. Run into it anyway it reports {len(probs)} finding(s), "
+                f"first: {str(probs[0])[:160]}")
+    return probs
+
+
 FIGURE_SINCE = "2026-09-20"
 
 
@@ -1117,6 +1141,7 @@ GATES = [
     ("craft floor", g_craft_floor, CURRENT),
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
+    ("print ban", g_print_ban, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
     ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
