@@ -4148,38 +4148,51 @@ from it: **when a policy has a failure branch, give the failure branch its own w
 same time you write the rule.** A failure branch that has to borrow the success branch's directory
 is not a failure branch, it is a success branch with worse artifacts in it.
 
-### 85. A crawl boundary in prose is a boundary the next run does not read
+### 85. The boundary IS machine readable, and nothing escalates a measured disallow into it
 
-On 2026-09-17 a run measured `gov.texas.gov` serving `User-agent: ClaudeBot` / `Disallow: /`,
-wrote it into `SOURCES_FIELD_LOG.md` in capitals, said **"No scout and no WebFetch may touch this
-host"**, and fetched nothing from it. On 2026-09-23 the next carousel run cited that host for ten
-claims through WebFetch, which identifies as ClaudeBot, and admitted a docket item on them. The
-research batch names the host nine times and **contains the strings `robots`, `Disallow` and
-`ClaudeBot` zero times.**
+**THIS ENTRY'S FIRST VERSION HAD THE WRONG DIAGNOSIS AND IS REPLACED RATHER THAN PATCHED.** It
+said a crawl boundary lives only in prose and proposed building a machine readable blocklist. That
+blocklist already exists. `scripts/shared/crawl_boundary.py` parses refusal rows out of
+`SOURCES_REGISTRY.md`, `shipped_check`'s `crawl boundary` gate is registered CURRENT, and it checks
+every `source_url` in a run's `claims.json` against it. Five hosts are in it today, one of them
+`lrl.texas.gov`, refused for **the exact reason this run's violation happened**: *"WebFetch
+identifies as ClaudeBot and this host named it, which settles the research phase on its own."*
+A wrong explanation here is worse than none, which is what CLAUDE.md says about the push defect,
+so the wrong one is gone.
 
-The rule was right, it was six days old, it was written in the file the routine is told to append
-findings to, and it did not run. **Nothing reads it.** `SOURCES_REGISTRY.md` is `human` lane and
-carries the boundary by design, which is correct and is also why a run cannot keep it current; the
-field log is where a run writes what it measured, and it is prose.
+**THE REAL DEFECT, MEASURED.** Simulated with one extra row for `gov.texas.gov` against this run's
+own claims file:
 
-This is CLAUDE.md's oldest shape, stated there three times about other things: **a rule stated in
-config, a surface that keeps its own copy, and nothing in between checking they agree.** Here it is
-worse, because there is no surface at all: the rule is stated in prose and nothing checks anything.
+    with the row present   c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c22  -- twelve claims, caught
+    with the registry as it stands                                 -- nothing
 
-**What to check instead.** A machine readable blocklist, `config/crawl_boundaries.yaml` or the
-`ledger/` equivalent, holding one row per host with the agent named, the date measured and the
-evidence, that the research phase reads BEFORE it fetches and that a gate asserts every cited URL
-against. A run appending a measured disallow writes a row rather than a paragraph, and a scout
-handed a disallowed host refuses it without needing to have read anything.
+**One row would have turned this run red at a gate CI already runs.** The registry's row for that
+host still reads *"serves no robots.txt at all"* and *"Nothing is disallowed because nothing is
+stated"*. That was true when it was written on 2026-08-16 and has been false since 2026-09-17.
 
-Two properties it must have, both learned the expensive way in this file:
+**AND THE RUN THAT MEASURED IT DID EVERYTHING RIGHT.** On 2026-09-17 a run measured the ClaudeBot
+disallow with two clients, wrote three paragraphs into `SOURCES_FIELD_LOG.md`, named the
+`lrl.texas.gov` precedent explicitly, fetched nothing from the host, and said why it was not
+editing the registry: *"The registry is `human` lane and carries the crawl boundary, so this run
+does not touch it and writes what it saw here instead... a run that can edit its own boundary does
+not have one."* **That reasoning is correct and the split should not move.** A routine that can
+widen its own crawl boundary has no boundary.
 
-- **It expires.** A boundary is a measurement and `docket_staleness`'s unreachable carve-out
-  already models this: a row older than its window stops being authoritative and has to be
-  re-measured rather than trusted.
-- **A run may add a row and never remove one.** Removing a disallow is widening this project's own
-  crawl boundary, which is the `SOURCES_REGISTRY.md` split's whole reason for existing: *a run that
-  can edit its own boundary does not have one.*
+So the gap is not the mechanism and not the rule. It is that **a measured disallow and an enforced
+one are separated by exactly one human edit, and nothing anywhere notices when that edit has not
+happened.** Six days, one unmade row, twelve claims.
 
-The prose stays, because the reasoning is worth more than the row. What changes is that the row is
-what the machine obeys.
+**What to check instead, and it is a run's own lane rather than the registry's.** A gate that reads
+the field log's measured refusals and asserts every one of them has a row in the registry, going
+red while the two disagree. That widens nothing: it cannot add a host, it can only refuse to
+proceed while this project's own measurement and this project's own boundary contradict each
+other. The escalation stays a human edit, which is the point, and the run stops instead of
+fetching.
+
+Two smaller wants that survive from the first version:
+
+- **The gate is post hoc.** `g_crawl_boundary` reads `claims.json`, which exists only after the
+  fetching is done. It catches a violation, it does not prevent one. The research phase should ask
+  `crawl_boundary.forbidden()` before a scout is handed a URL.
+- **A boundary row should expire**, the way `docket_staleness`'s unreachable carve-out does, so a
+  host that lifts a disallow is re-measured rather than refused forever on a stale reading.
