@@ -231,7 +231,7 @@
     /* THE GRADIENT IS A TEXTURE, read per pixel down the sphere's own latitude, because vertex
      * colours interpolate ring by ring and the first render showed every ring as a band. */
     var n = 1024, c = document.createElement("canvas");
-    c.width = 4; c.height = n;
+    c.width = 4; c.height = n; /* four columns, each dithered on its own */
     var x = c.getContext("2d");
     var zen = new THREE.Color(o.zenith || N.ZENITH), hor = new THREE.Color(o.horizon || N.HORIZON);
     var warm = new THREE.Color(o.warm || 0x3a3431), col = new THREE.Color();
@@ -242,8 +242,8 @@
       var t = Math.max(0, Math.min(1, lat / (o.span || 38)));
       col.copy(hor).lerp(zen, Math.pow(t, 0.5));
       if (lat < 2.2) col.lerp(warm, Math.min(1, (2.2 - Math.max(lat, 0)) / 2.2) * 0.6);
-      var d = (Rn() - 0.5) / 255;                       /* dither, so eight bits never step */
       for (var i = 0; i < 4; i++) {
+        var d = (Rn() - 0.5) * 2.5 / 255;               /* per pixel dither, so eight bits never band */
         var p = (j * 4 + i) * 4;
         im.data[p] = 255 * Math.max(0, col.r + d); im.data[p + 1] = 255 * Math.max(0, col.g + d);
         im.data[p + 2] = 255 * Math.max(0, col.b + d); im.data[p + 3] = 255;
