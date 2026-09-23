@@ -1531,3 +1531,40 @@ at a URL.** Two outlets quoting the same unpublished document is not two sources
 it is two sources for what the document says. Every claim this run took from that memo is attributed
 to the outlet that reported it rather than to the memo, and the memo's own absence from any city
 URL is stated in the record rather than worked around.
+
+## 2026-09-23
+
+**`www.federalregister.gov` serves an interstitial AT HTTP 200, and it is the most dangerous
+thing this run met.** The body is a CloudFlare style page carrying `unblock.federalregister.gov`
+and the words "Request Access". Nothing in the status line says so. A re-verification that reads
+the status code and then looks for its quoted string finds the string absent and concludes the
+document MOVED, which is exactly what happened here to two record items before the second pass
+caught it. The cure that worked is `govinfo.gov/content/pkg/`, which carries the same documents
+as the Federal Register's own package and served them without complaint on every try.
+
+The general shape is worth more than the host. **A 200 is a claim about the transport and not
+about the document.** Any checker that treats a missing quote as movement has to first rule out
+that it was handed a block page, and the marker strings above are how this run did it.
+
+**`www.dhs.gov` refuses `curl` and answers WebFetch, which revises the 2026-09-21 entry above
+without contradicting what that run measured.** That entry is right that every client it had was
+refused at the edge, `robots.txt` included, and right that carrying a verification forward would
+have been dishonest. What it could not know is that the refusal is client shaped rather than
+absolute: the same twelve claims on the same URL came back in full through WebFetch on this run,
+and `tx-2026-0120` is stamped as a result. It would otherwise have hard failed the build the
+moment its verification aged out.
+
+So the rule this run would write for the next one is narrow. **A 403 from one client is a fact
+about that client.** It is not a robots decision, it is not a disallow, and before an item is left
+unstamped over one it is worth one attempt through a different fetcher. What it is NEVER worth is
+a second user agent aimed at the same fetcher, which is routing around a refusal rather than
+asking a different question.
+
+**`tacc.utexas.edu` disallows the paths this project would want.** Held out by name, and the two
+record items depending on it carry a dated note saying what is therefore unconfirmed rather than
+a verification nobody performed. Same disposition as `public.destinyhosted.com` the run before.
+
+**`news.rice.edu` answers 406 Not Acceptable to a plain fetch** and `www.oncor.com` timed out on
+every attempt across the run. Neither is a disallow and neither was routed around. Both are noted
+so the next run reaching for a Texas university newsroom or the utility's own site budgets a
+second source rather than a second try.
