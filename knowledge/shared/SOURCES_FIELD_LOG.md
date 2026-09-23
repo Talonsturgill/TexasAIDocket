@@ -1586,3 +1586,47 @@ since the 22nd and printed a remedy, re-verify these before writing anything new
 could take. The carve-out is earned by a dated measurement on the item, covers only an item whose
 own front door is shut, and LAPSES IN SEVEN DAYS, so the boundary is a standing obligation to
 re-measure rather than a note that silences a gate once. Never route around one.
+
+## 2026-09-23, a second note, and it is a violation rather than a finding
+
+**THIS RUN FETCHED `gov.texas.gov` WITH ClaudeBot, AND THAT HOST HAS NAMED ClaudeBot WITH
+`Disallow: /` SINCE SEPTEMBER 17TH.** The September 17th entry above says it in as many words,
+**"No scout and no WebFetch may touch this host"**, and records that nothing was fetched from it
+that run. Six days later this run cited it for ten claims, `c1` and `c3` through `c11`, all
+stamped `retrieved: 2026-09-23`, and admitted `tx-2026-0182` on them.
+
+Re-measured today, twice, to be sure the boundary had not moved back:
+
+    https://gov.texas.gov/robots.txt   browser UA            200, names ClaudeBot, Disallow: /
+    https://gov.texas.gov/robots.txt   TexasAIDocket/1.0     200
+
+The file still names `GPTBot`, `ClaudeBot`, `Amazonbot`, `Applebot` and `PerplexityBot` with
+`Disallow: /`, and `User-agent: *` still disallows only eight `/Apps/` paths.
+
+**HOW IT HAPPENED, as far as it can be established from the artifacts.** The scouts and the fact
+checker hold `WebFetch` and `WebSearch` and nothing else, and WebFetch identifies as ClaudeBot.
+`out/2026-09-23/research/batch-2026-09-23.json` names `gov.texas.gov` nine times and **contains no
+occurrence of the strings `robots`, `Disallow` or `ClaudeBot` anywhere in it.** The boundary was
+not re-checked, so the rule that would have caught it never ran. The prose rule existed, was
+correct, and was six days old.
+
+**THE PART THAT IS NOT A DEFENCE AND IS WORTH STATING ANYWAY.** The `User-agent: *` block permits
+everything outside those eight paths, so a collector sending `TexasAIDocket/1.0` is allowed on the
+letter of the file, and that is what the September 17th entry already said. **That does not make
+this fetch permitted**, because the fetch was made by the client the file names. And the repair is
+NOT to re-fetch the same pages under a different User-Agent: the August 25th entry settles that in
+advance, *"a second user agent aimed at the same fetcher, which is routing around a refusal rather
+than asking a different question."* Switching agents specifically to get past an agent-specific
+disallow is the definition of routing around one.
+
+**WHAT WAS DONE.** Nothing was re-fetched and nothing was quietly kept. The violation is recorded
+here, in the run record, and on the pull request, and the ten claims and the docket item resting on
+them are flagged for the owner rather than defended. **Whether that material may stay in the record
+is an owner call**, exactly as the September 17th entry says the policy question is, and a run that
+committed the violation is the last thing that should rule on it.
+
+**WHAT TO CHECK INSTEAD, and it is the reason this was findable at all.** A robots decision written
+into this log is prose, and prose is what a later run does not read. The September 17th entry is
+correct, specific, and was ignored by the run six days after it. **A host this project has measured
+as disallowing its own fetcher should be in a machine readable blocklist the research phase reads
+before it fetches**, not in a paragraph. That is in the upgrade backlog as entry 85.
