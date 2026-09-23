@@ -966,7 +966,7 @@
    "carousel_no": 32,
    "docket_item": "tx-2026-0182",
    "instrument": "Troutman Pepper Locke's client alert on the September 21st directive, three Texas Tribune stories and CBS Texas for the directives and the queue, one TCEQ hearing cancellation notice and one TCEQ engine permitting guidance page read from tceq.texas.gov, and the Kodiak supply agreement release. The first build read three Office of the Governor releases from gov.texas.gov, whose robots file refuses this fetcher, and those claims were re-sourced or dropped.",
-   "topic": "A September 21st directive tells TCEQ to issue no permits SOUGHT BY data centers until the ERCOT interconnection audit is done, and tells the agency to align its permitting decisions with what the audits find. The halt is scoped by who is asking. The audit it waits on is scoped by what is advancing through the interconnection process. A West Texas site contracting 76 megawatts behind the meter from about 40 reciprocating gas engines never enters that process, so the audit produces nothing for a permit reviewer to align to. The separate water board directive states a CONSEQUENCE, that a data center failing to return the survey is ineligible for TCEQ permits under the Water Code chapter it names, and it states nothing about which data centers receive the survey. THAT DISTINCTION COST THIS RUN A HARD FAIL AND IS WRITTEN HERE SO THE NEXT RUN INHERITS THE NARROW READING AND NOT THE WIDE.",
+   "topic": "A September 21st directive tells TCEQ to issue no permits sought by data center projects, and a law firm reads it as tying permitting decisions to audit results from ERCOT and the water board. The halt is scoped by who is asking. The August 3rd audit is scoped to data centers advancing through the interconnection queue. A gas compression company says it will supply a data center with 76 megawatts behind the meter from about 40 engines, and nothing in the record says whether that project sits in the queue or seeks a TCEQ permit.",
    "angle": "the scope of the halt set beside the scope of the audit it waits on, read as a gap a real project already sits in",
    "entities": [
     "Office of the Texas Governor",
@@ -978,9 +978,7 @@
     "Vantage Data Centers"
    ],
    "places": [
-    "Texas",
-    "Bexar County",
-    "West Texas"
+    "Texas"
    ],
    "what_was_refused": "The air permit MECHANISM. The original argument was that behind the meter engines need a New Source Review air permit and that this is the instrument the halt actually reaches. Verification could not establish it: the agency's own guidance pages (c14, c15) describe engines as the kind of facility found at sources needing NSR and say nothing about whether or when a particular installation is one. The deck states the two scopes and stops, and the web edition says in its own section that no mechanism is asserted.",
    "keywords": [

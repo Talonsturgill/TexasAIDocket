@@ -7,24 +7,23 @@
  },
  "section": "Land, water and permitting",
  "dek": {
-  "text": "A permit halt is scoped by who asks for the permit. The audit it waits on is scoped by what stands in the grid queue, and the two do not reach the same projects.",
+  "text": "A permit halt is scoped by who asks for the permit. It waits on two audits, and the record states the scope of only one of them.",
   "claims": [
    "c1",
-   "c5",
-   "c11",
-   "c16"
+   "c3",
+   "c5"
   ]
  },
  "introduction": [
   {
-   "text": "The Governor [directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects](c1). The halt lasts until the grid operator finishes its audit. In the Governor's own words as CBS Texas carried them, [TCEQ will issue no permits sought by data center projects](c3) until data centers complete the ERCOT and water board audits.",
+   "text": "The Governor [directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects](c1). In the Governor's own words as CBS Texas carried them, [TCEQ will issue no permits sought by data center projects](c3) until data centers complete the ERCOT and water board audits.",
    "claims": [
     "c1",
     "c3"
    ]
   },
   {
-   "text": "The directive reaches past the one agency it is addressed to. The Texas Tribune reports that it says [no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired](c2). One dated obligation follows from it, which is a [report to the Office of the Governor on its compliance with the directive](c4) by October 19th.",
+   "text": "The directive reaches past the one agency it is addressed to. The Texas Tribune reports that it says [no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired](c2). It also sets a date for a [report to the Office of the Governor on its compliance with the directive](c4), October 19th.",
    "claims": [
     "c2",
     "c4"
@@ -33,10 +32,10 @@
  ],
  "sections": [
   {
-   "heading": "One page, two scopes",
+   "heading": "Two scopes",
    "paragraphs": [
     {
-     "text": "The halt is written around the applicant. It names permits sought by data center projects, which is a test a reviewer applies to whoever filed the paperwork. The audit it waits on is written around a process. The August letter aims it at [all data centers advancing through ERCOT's interconnection queue](c5). The Tribune's account of the September directive traces it to that same order, [ordering ERCOT on Aug. 3 to ensure data center developers provide information](c9).",
+     "text": "The halt is written around the applicant. It names permits sought by data center projects, which is a test a reviewer applies to whoever filed the paperwork. It waits on two audits. The ERCOT audit is written around a process, and the Tribune reports the August letter aimed it at [all data centers advancing through ERCOT's interconnection queue](c5). The Tribune's account of the September directive traces it to that same order, [ordering ERCOT on Aug. 3 to ensure data center developers provide information](c9).",
      "claims": [
       "c1",
       "c5",
@@ -44,13 +43,15 @@
      ]
     },
     {
-     "text": "The same directive says the agency [must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)](c11). That instruction is only as wide as the audits are. A project the audit never looks at produces nothing for a permit reviewer to align to.",
+     "text": "Troutman Pepper Locke reads the directive as saying the agency [must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)](c11). Two audits, then. The record gives the ERCOT audit's scope and states nothing about the water board's.",
      "claims": [
-      "c11"
+      "c11",
+      "c3",
+      "c5"
      ]
     },
     {
-     "text": "The audit names one consequence and it is a grid consequence. [Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid](c7). The Tribune reports the same consequence for a project that does not finish. [Projects that fail to complete the ERCOT audit are to be denied interconnection](c10). Refusal of a connection reaches a project that is asking for one.",
+     "text": "The Governor's August 3rd statement, as the Texas Tribune quoted it, names a grid consequence. [Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid](c7). The Tribune reports the same consequence for a project that does not finish. [Projects that fail to complete the ERCOT audit are to be denied interconnection](c10). Refusal of a connection reaches a project that is asking for one.",
      "claims": [
       "c7",
       "c10"
@@ -69,7 +70,7 @@
      ]
     },
     {
-     "text": "No published figure counts how many permits the halt reaches. None of the reports on the directive states a count, and this edition publishes none rather than an estimate dressed as a measurement.",
+     "text": "Nothing in this record counts how many permits the halt reaches, and this edition publishes no estimate dressed as a measurement.",
      "claims": [
       "c1",
       "c2",
@@ -90,10 +91,11 @@
      ]
     },
     {
-     "text": "Being outside the queue is not the same as being outside the halt. The halt is scoped by who is asking for a permit. It never asks whether the project is in the queue, so the same directive reads one way by its first sentence and another way by its second.",
+     "text": "Being outside the queue is not the same as being outside the halt. As the Governor's words were reported, the halt is scoped by who is asking for a permit. One of the audits it waits on has a scope this record does not state.",
      "claims": [
       "c1",
-      "c11"
+      "c11",
+      "c3"
      ]
     }
    ]

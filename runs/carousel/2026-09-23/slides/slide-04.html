@@ -1,329 +1,95 @@
 <!doctype html>
-<!-- CAROUSEL 32, frame 4 of 9. Archetype DIAGRAM.
-     THE TWO CHANNELS, AND THEY DO NOT MEET. The upper is the NEW REQUESTS to connect, with the
-     data center share shaded along it. The lower is the permit counter and it carries NO BAND AT
-     ALL and NO MEASURABLE LENGTH, because nothing measures how many permits this reaches and the
-     deck refuses to draw a figure nobody computed.
-     THE SHADED RUN'S LENGTH IS data_center_share.percent FROM figures.json.
-     474 IS NOT ON A BAND, AND THIS IS THE FRAME'S SECOND CUT. In the first, 474 GW was set flush
-     with the upper band's left origin and 90% sat over the band's unshaded tail, so a reader took
-     the band to BE 474 gigawatts and the shaded run to be ninety percent of it. That is the one
-     multiplication figures.json forbids by name, and the frame published it in the largest
-     graphic on the page while the dek underneath said the opposite. Body copy does not win that
-     argument against a drawn length.
-     So 474 GW now sits ALONE in the dark band above the instruments, with its own label, on no
-     geometry at all. The only drawn length on this frame measures the new requests, and the 90%
-     sits over the END of the shaded run it describes.
-     THE UPPER LABEL SAID "NEW REQUESTS ONLY   WHAT THE AUDIT READS" AND THAT WAS A FACTUAL
-     ERROR, not a wording preference. Mono set at one tracking with a wide space between two
-     fields reads as ONE line, so a reader received a sentence saying the audit reads new
-     requests only. Three of the four claims cited on this frame say the opposite: c5, c6 and c9
-     each scope the audit to ALL data centers advancing through ERCOT's interconnection process.
-     "New power requests" is c8's denominator for the ninety percent and is not the audit's
-     scope. The label now names what the channel MEASURES and claims nothing about what the
-     audit reads, and the lower one takes c1's own words.
-     THE ONE AMBER IS THE COUNTER'S ORIGIN MARK, a stub and never a fill, because a full width
-     amber bar under an empty track reads as that track at a hundred percent.
-     Frame median L* planned at 29. -->
+<!-- CAROUSEL 32, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js.
+     ONE HUNDRED PLATES ON THE PAD, TEN BY TEN, UNDER A PARALLEL CAMERA. The number painted amber
+     is data_center_share.percent from figures.json. Parallel, because perspective would shrink the
+     far rows and a reader would read the shrink as a smaller share. The queue's 474 GW is stated
+     on NO scale here, because it is a different denominator and nothing multiplies the two. -->
 <html>
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:1080px; height:1350px; overflow:hidden; background:#322C44; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
   body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
   canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
-  .hook { position:absolute; left:80px; top:158px; width:840px; font-size:88px;
-          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
-          letter-spacing:-0.024em; color:#E8EAEE; font-variation-settings:"opsz" 122; z-index:10; }
-  /* THE MONO LABELS ARE CALICHE AT 22px, NOT STEEL AT 20px. At the first size and tint the line
-     screen crossed every letterform and a reviewer transcribing the 432px thumb read PACT where
-     the word is HALT. A wrong noun is worse than a blur, because a blur invites a second look. */
-  /* AND IT IS ONE LABEL, NOT TWO WITH A GAP. It read "NEW POWER REQUESTS   DATA CENTER SHARE",
-     three spaces, which HTML collapses to one, so the frame's load bearing label rendered as a
-     single run-on that parses as neither phrase. The other two part labels in this deck survive
-     the collapse because their halves are different registers, a date then a verb phrase, a
-     figure then a noun. These two were noun phrases of the same kind and there was nothing left
-     to tell a reader where one ended. c8 says "Approximately 90 percent of the new power
-     requests are", so one label saying exactly that is both clearer and closer to the source.
-  /* AND 24px NOT 22, FOR THE SAME REASON THE LINE ABOVE IS CALICHE. The harness's mobile
-     floor is 24 and every one of these four sat under it, on the frame that has to keep two
-     denominators apart. A reader who can't read NEW POWER REQUESTS and PERMITS SOUGHT BY
-     DATA CENTERS has two bars and no idea they measure different populations, which is the
-     whole frame. .lqa moves up 4px to keep its gap over the 474 GW numeral. */
-  .lq, .lp, .lqa, .lnf { position:absolute; font-family:"JetBrains Mono", monospace;
-             font-size:24px; letter-spacing:0.09em; color:#E4D8C3; z-index:10; }
-  .lqa { left:82px; top:342px; }
-  .lq  { left:82px; top:530px; }
-  .lp  { left:82px; top:826px; }
-  .lnf { left:150px; top:1002px; color:#E4D8C3; }
-  /* THE DEK'S OWN RULE, WHICH THE REWRITE OF THIS FRAME DROPPED. Without it the paragraph
-     inherited the browser's defaults, 16px in black, on a frame whose ground is black: the
-     contrast measured 1.2 against the rubric's 4.5 floor and the sentence carrying this deck's
-     TWO DENOMINATORS was invisible on the frame that exists to keep them apart. */
-  .dek  { position:absolute; left:82px; top:1140px; width:840px; font-size:25px;
-          line-height:1.40; color:#C4C3CE; z-index:10; }
-  .gw { position:absolute; left:82px; top:382px; font-family:"JetBrains Mono", monospace;
-        font-size:62px; font-weight:700; letter-spacing:-0.01em; color:#CFD2D8; z-index:10;
-        font-variant-numeric:tabular-nums; }
-  /* THE SHARE SITS ON THE LABEL'S OWN LINE, ABOVE THE BED, AND NOT ON THE BAR.
-     On the bar it sat on a LIT bed, where the line screen lays ink at the glyphs' own value
-     and a stroke crossed the zero's bowl: a reviewer transcribing the thumb read 98%, which is
-     a number no claim carries. That is this frame's second time. Seated at the right end of
-     the channel's own label line, it reads as the share OF new power requests, which is what
-     c8 says, and it is on the deck's floor where the screen lays almost no ink. */
-  .pct { position:absolute; left:860px; top:518px; font-family:"JetBrains Mono", monospace;
-         font-size:32px; font-weight:700; color:#CFD2D8; z-index:10;
-         font-variant-numeric:tabular-nums; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
+  .fig  { position:absolute; font-family:"Fraunces", serif; font-weight:700; color:#EEF0F3;
+          font-variation-settings:"opsz" 144; line-height:1; z-index:12; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
-             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8A8798;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
              white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:88px; }
+  .dek  { left:82px; width:880px; font-size:28px; }
+  .fig.big { font-size:96px; }
 </style>
 </head>
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Ninety percent of the new ones</h1>
-<div class="lqa" id="lqa">THE WHOLE QUEUE, ON NO SCALE HERE</div>
-<div class="gw" id="gw">474 GW</div>
-<div class="lq" id="lq">DATA CENTER SHARE OF NEW POWER REQUESTS</div>
-<div class="pct" id="pct">90%</div>
-<div class="lp" id="lp">PERMITS SOUGHT BY DATA CENTERS</div>
-<div class="lnf" id="lnf">NO COUNT IN THE DIRECTIVE</div>
-<p class="dek">The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.</p>
+<p class="dek" data-follow="20">ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.</p>
+<div class="lab" id="l1">Approximate data center share<br>of new power requests</div>
+<div class="fig big" id="f1">90%</div>
+<div class="lab" id="l2">The whole queue,<br>on no scale here</div>
+<div class="fig" id="f2" style="font-size:54px">474 GW</div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
-<script src="@@ASSETS@@/js/txscene.js"></script>
-<script src="@@ASSETS@@/js/txink.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
-<script>
-window.renderReady = new Promise(function (resolve, reject) {
-  document.fonts.ready.then(function () {
-  try {
-    TXLAYOUT.mount(document.body, {
-      kicker: "Two instruments, two axes", counter: "04 / 09",
-      src: "c5 c6 c8 c9   TEXAS AI DOCKET", ink: "#8A8798"
-    });
-    TX.fitText(document.getElementById("hook"), { min: 66, max: 88, maxLines: 2 });
-
-    var cv = document.getElementById("art"), cx = cv.getContext("2d");
-    cx.scale(2, 2);
-    var M = YARD, W = M.W, H = M.H, G = M.G;
-    TX.reseed(M.SEED + 4);
-    /* THE 90% IS DELIBERATELY NOT IN THIS LIST, and leaving it out is what holds the frame
-     * together. `quiet` paints the deck's ground over every box it is given, so with the 90%
-     * in it the upper bed came apart into two pieces and the frame's largest silhouette
-     * measured 0.47 against a floor of 0.50. It does not need quieting: it is the one label
-     * that sits on a FLAT LIT BED rather than on the deck's floor, and a flat bed is already
-     * the quiet a line of type wants. Taken off the bed instead, onto the floor, the line
-     * screen struck it twice at ten to one, which is the 98% defect from round 2 coming back
-     * by the other door. */
-    var boxes = M.boxes(".hook, .dek, .lq, .lp, .lqa, .lnf, .gw, .pct, .kick, .count, .src, .tx-site", 18);
-
-    /* THE SHARE, from figures.json. */
-    var SHARE = 90;
-    var counter = null;
-
-    M.print(cx, {
-      seed: 4,
-      draw: function (a) {
-        var R = M.rng(4);
-        var d = M.castDir();
-
-        a.fillStyle = G.voidd; a.fillRect(0, 0, W, H);
-
-        /* NO LIGHT BED. It was there so the channels would sit on something, and it made every
-         * mono label on this frame illegible. quiet paints the deck's GROUND over a measured
-         * line box, so over a light bed it is a dark rectangle rather than a dimming, which is
-         * exactly the plate with the sign flipped this system refuses. Each channel carries its
-         * own shade band instead, and every label sits on the deck's own dark where nothing has
-         * to be quieted at all. */
-        /* THE LIT AREA GROWS ONLY WHERE NO TYPE IS, which is how a frame carries its place
-         * on the deck's value track without putting a screened surface under a mono label. */
-        /* NO LABEL SITS ON A LIT BED, AND THAT IS THE SECOND THING THIS FRAME GOT WRONG.
-         *
-         * THE DEFECT, MEASURED RATHER THAN REASONED ABOUT. A line screen lays ink in proportion
-         * to tone, so over the deck's own floor it lays almost none and over a lit bed it lays
-         * a lot. The 90% was set on the channel's mid bed, where the screen's light strokes come
-         * out at the same value as the glyphs, and a reviewer reading the 432 px thumb
-         * transcribed 98%. Looking at the crop, they were right: a stroke crosses the zero's
-         * bowl and makes it an eight. 98 is a number no claim in this run carries. It reached a
-         * reader through a GLYPH rather than through a string, so copy_sync_check,
-         * numeral_trace and numeral_lint all read 90 and all of them were reading the DOM.
-         *
-         * A wrong figure a reader cannot tell is wrong is the worst thing this project can
-         * publish. So the lit beds are narrow now, they carry the two drawn instruments and
-         * nothing else, and every label on this frame sits on the deck's floor.
-         *
-         * IT ALSO FIXES THE FRAME'S ARGUMENT. The first cut ran one dark band from 520 to 1100
-         * with both channels inside it, so the two instruments shared one continuous lighter
-         * field, which is a shared axis asserted by tone. The space between them is the frame's
-         * darkest region now, which is what the dossier declares and what the frame means. */
-        /* THE MEASURED INSTRUMENT CARRIES THE FRAME'S MASS AND THE UNMEASURED ONE DOES NOT,
-         * WHICH IS THE ARGUMENT DRAWN AS AREA RATHER THAN SAID IN A LABEL.
-         *
-         * Moving the accent off the counter split the subject into two near equal pieces and
-         * layout_check called the largest 0.47 against a floor of 0.50, which is its way of
-         * saying a DIAGRAM with two equal masses and nothing joining them is two diagrams. The
-         * upper band is the instrument that has a number in it and it is 224 px deep. The lower
-         * one is a stub, 70 px, cut by a drafting break. A reader should be able to see which of
-         * the two anybody has measured without reading a word.
-         *
-         * AND NO LABEL SITS ON EITHER BED. `quiet` paints the deck's ground over every measured
-         * line box, so a label inside a bed punches a hole clean through it, which is what had
-         * the upper bed rendering in two pieces. Every label is on the deck's own floor, where
-         * the screen lays almost no ink and quiet has nothing to take away. */
-        /* AND THE FIELD IS THE DECK'S VOID, NOT ITS DARK, WHICH IS THE FRAME'S ARGUMENT.
-         * The dossier declares the space between the two channels as this frame's DARKEST
-         * region, on the reasoning that the gap between the instruments is the thing being
-         * said. At G.dark under a line screen that lays ink in proportion to tone, the gap
-         * came out at the same value as everything around it, so the frame drew two beds on
-         * one flat field and the space between them carried nothing. Two round 4 scorers
-         * arrived at that independently, one calling the gap invisible and both calling the
-         * cream labels near-illegible, which is the SAME defect: those labels sit in the gap,
-         * and a label is only as readable as the ground under it. The round 3 repair raised
-         * them from 20px to 24px and never touched the ground, which is treating a contrast
-         * failure as a size failure. */
-        a.fillStyle = G.voidd;
-        /* ITS BOTTOM EDGE RUNS PAST THE LAST LABEL RATHER THAN THROUGH IT. At 450 deep the field
-         * ended at y 1020, which is inside NO COUNT IN THE DIRECTIVE's glyph band, and the
-         * harness read the band's own edge as a rule through the line. It was right to: a full
-         * width value boundary crossing a line of type is a strikethrough at feed width whatever
-         * it is the edge of. */
-        a.fillRect(0, 570, W, 510);      /* one dark field, both instruments inside it */
-        a.fillStyle = G.mid;
-        a.fillRect(0, 592, W, 224);      /* the new requests channel's bed */
-        a.fillRect(0, 900, W, 70);       /* the permit counter's, a stub beside it */
-        /* NOTHING LIES BETWEEN THEM. From 816 to 900 the frame is the deck's own floor. */
-
-        /* NO RULE UNDER THE 474, AND DELETING IT IS THE POINT. A short lit rule sat under that
-         * figure so the dark band would read as a surface. A DRAWN LENGTH under the one number
-         * on this frame labelled ON NO SCALE HERE contradicts the label in the same eye
-         * movement, and a reviewer read it as a ruler. The figure sits on nothing. */
-
-        /* THE UPPER CHANNEL, a drafted plan section: two rails with a bed between them. It
-         * measures NEW REQUESTS and nothing else. */
-        var x0 = 82, x1 = W - 82, uy = 624, ch = 46;
-        a.fillStyle = G.dark;  a.fillRect(x0, uy, x1 - x0, ch);
-        a.fillStyle = G.metal; a.fillRect(x0, uy, x1 - x0, 5);          /* LIT top rail */
-        a.fillStyle = G.voidd; a.fillRect(x0, uy + ch - 4, x1 - x0, 4); /* shade underside */
-        /* dimension ticks along the underside, so it reads as a drawn section */
-        a.fillStyle = G.shade;
-        for (var t = 0; t <= 10; t += 1) {
-          a.fillRect(x0 + (x1 - x0) * (t / 10) - 1, uy + ch, 2, 9);
-        }
-        /* THE SHADED RUN, its LENGTH set by the share */
-        var runW = (x1 - x0) * (SHARE / 100);
-        a.fillStyle = G.bright; a.fillRect(x0, uy + 9, runW, ch - 14);
-        /* the hatch inside the run, so it is a drawn surface rather than a fill */
-        a.strokeStyle = "rgba(50,44,68,0.34)"; a.lineWidth = 1.4;
-        for (i = 0; i < runW; i += 9) {
-          a.beginPath(); a.moveTo(x0 + i, uy + 9); a.lineTo(x0 + i + 9, uy + ch - 5); a.stroke();
-        }
-        /* THE RUN'S END IS MARKED, and the 90% label is seated over THAT mark rather than over
-         * the unshaded tail it does not describe. */
-        a.fillStyle = G.glare; a.fillRect(x0 + runW - 2, uy - 14, 4, ch + 28);
-        /* the remainder is left as unmarked bed. Nothing is drawn in it. */
-        window.__share = { runW: runW, full: x1 - x0, endX: x0 + runW };
-
-        /* THE LOWER CHANNEL, a counter. IT HAS NO MEASURABLE LENGTH.
-         *
-         * The first cut drew it at the upper band's exact extent, left and right aligned to it,
-         * and left it empty. An empty track the same length as a full one reads as ZERO on the
-         * full one's scale, so the frame's refusal to publish a figure came out as a published
-         * figure of nought. It is broken now and runs off the right edge unterminated, its left
-         * origin offset from the channel above so the two cannot share an axis, and its outline
-         * is dashed rather than solid, which is how a drawing says this edge is not where the
-         * thing ends. */
-        var lx = 142, ly = 910, cth = 50;
-        /* AND IT STOPS AT ITS OWN BREAK. The first cut drew the slashes ON TOP of a track that
-         * carried on through them to the frame edge, so they read as hazard striping rather than
-         * as the drafting convention for an edge that is not where the thing ends. The track's
-         * last drawn pixel is the break. */
-        var cutX = W - 210;
-        a.fillStyle = G.shade; a.fillRect(lx, ly, cutX - lx, cth);
-        a.fillStyle = G.metal; a.fillRect(lx, ly, cutX - lx, 7);            /* LIT counter top */
-        a.fillStyle = G.deep;  a.fillRect(lx, ly + cth - 16, cutX - lx, 16); /* return in shadow */
-        a.fillStyle = G.stone; a.lineWidth = 3;
-        a.strokeStyle = G.stone;
-        a.beginPath();
-        a.moveTo(cutX - 26, ly + cth + 10); a.lineTo(cutX + 8, ly - 10); a.stroke();
-        a.beginPath();
-        a.moveTo(cutX + 14, ly + cth + 10); a.lineTo(cutX + 48, ly - 10); a.stroke();
-        a.save(); a.globalAlpha = 0.42; a.fillStyle = G.voidd;
-        a.fillRect(lx + 8, ly + cth, cutX - lx - 8, 9); a.restore();
-        counter = { x: lx, y: ly, w: cutX - lx, h: cth };
-
-        /* THE SPACE BETWEEN THEM IS EMPTY AND STAYS EMPTY. Nothing joins these two channels at
-         * any point along them, which is the frame's entire claim. */
-
-        /* two short leaders, each terminating ON its own channel */
-        a.strokeStyle = "rgba(255,255,255,0.30)"; a.lineWidth = 1.4;
-        a.beginPath(); a.moveTo(x0 + 6, 562); a.lineTo(x0 + 6, uy - 4); a.stroke();
-        a.beginPath(); a.moveTo(lx + 6, 866); a.lineTo(lx + 6, ly - 4); a.stroke();
-        /* and the share's own leader, from the end of the shaded run down to its label */
-        a.beginPath(); a.moveTo(x0 + runW, uy + ch + 12); a.lineTo(x0 + runW, 722); a.stroke();
-        window.__txLeaders = [
-          { target: "the new requests channel's top rail", at: [x0 + 6, uy], to: [x0 + 6, uy - 4] },
-          { target: "the permit counter's top", at: [lx + 6, ly], to: [lx + 6, ly - 4] }
-        ];
-
-      },
-      over: function (c) {
-        /* the print is faded to the deck's ground under the fixed furniture bands, and the
-         * light DIMS toward the display type. Both run here, on the finished print, never on
-         * the twin, because the edge pass would otherwise contour the reserve itself. */
-        M.reserve(c, { top: 150, topSolid: 92, bottom: 150, bottomSolid: 94 });
-        /* QUIET AT 0.12, NOT 0.34, AND THE STRONGER SETTING WAS ITSELF THE STRIKETHROUGH.
-         *
-         * quiet lays a vertical gradient over each measured line box. At 0.34 its own stops are
-         * a steep enough value change that the QA harness found two horizontal edges inside the
-         * 90% label, each exactly the width of that label, and reported them as rules through the
-         * glyph band at 10.6:1. They were: the repair drew them. The labels are caliche on the
-         * deck's dark on flat beds now and have nothing to be protected from, so the wash comes
-         * back down to where it cannot mark anything. */
-        M.quiet(c, boxes, 0.12);
-        /* THE ONE AMBER, an ORIGIN STUB on the counter rather than a bar along it.
-         * A full width amber bar sitting under an empty track reads at feed size as that track
-         * filled to a hundred percent, which is the single quantity this frame says nobody
-         * has measured. A stub at the origin marks where the counter starts and says nothing
-         * at all about how far it runs. */
-        c.save();
-        c.fillStyle = M.ACCENT_PAINT;
-        /* AMBER ANNOTATES THE COUNTER, IT DOES NOT FILL IT. A filled block at the origin of a
-         * long empty track is a bar at two percent, which is a published quantity on the one
-         * channel this deck says nobody has measured. A rule ABOVE the track, running the
-         * track's whole drawn length and stopping where the track's break stops, marks the
-         * instrument without measuring anything along it. */
-        /* THE AMBER UNDERLINES THE SENTENCE, IT DOES NOT RUN ALONG THE INSTRUMENT.
-         *
-         * THREE JUDGES FOUND THIS INDEPENDENTLY AND ALL THREE WERE RIGHT. As a rule above the
-         * counter it ran the counter's whole drawn length, roughly a thousand pixels, directly
-         * beneath a band whose length encodes ninety percent. A reader compares two lengths.
-         * So the frame drew a quantity on the one channel whose own label says NO COUNT IN THE
-         * DIRECTIVE, which is the exact reading this frame exists to refuse, and its own risk
-         * note predicted it.
-         *
-         * An accent under a LINE OF TYPE annotates the sentence. It is nowhere near the shaded
-         * run, it is a fraction of its length, and there is nothing on the frame to read it
-         * against. The origin tick stays so the counter is still marked as the state's surface. */
-        var nb = M.boxes(".lnf", 8)[0];
-        if (nb) { c.fillRect(nb[0] - 6, nb[1] + nb[3] + 26, nb[2] + 12, 15); }
-        c.fillRect(counter.x, counter.y - 26, 22, counter.h + 40);
-        c.restore();
-      }
-    });
-
-    TXDECK.finish(cx);
-    resolve();
-  } catch (e) { document.title = "ERR " + e.message; reject(e); }
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'What the queue holds', counter: "04 / 09",
+    src: 'c8 c23   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
-});
+  TX.fitText(document.getElementById("hook"), { min: 64, max: 88, maxLines: 2 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE SHARE, FROM figures.json. data_center_share.percent, read out of c23 by compute.py. */
+  const SHARE = 90;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 60, 160], exposure: 1.0 });
+  Y.ortho(THREE, R, 17.5);
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 200, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 70 });
+  const M = Y.mats(TXT);
+  const amber = TXT.mat.clay(0xb8761c, { metalness: 0.1, roughness: 0.55 });
+  const steel = TXT.mat.clay(0x6a6c70, { metalness: 0.3, roughness: 0.55 });
+
+  /* TEN BY TEN, a 0.84 m plate at a 1.0 m pitch, filled row by row from the near edge so the ten
+   * plain plates are the far row and the share reads as a fill level. */
+  const N = 10, PITCH = 1.0;
+  for (let k = 0; k < N * N; k++) {
+    const r = Math.floor(k / N), c = k % N;
+    const plate = Y.tile(THREE, 0.84, 0.18, 0.84, k < SHARE ? amber : steel);
+    plate.position.set((c - (N - 1) / 2) * PITCH, 0.09, (N - 1) / 2 * PITCH - r * PITCH);
+    TXT.add(R, plate);
+  }
+  TXT.frame(R, { from: [-24, 26, 34], look: [-0.6, 0, -2.2] });
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  const put = (id, x, y) => { const e = document.getElementById(id); e.style.left = x + "px"; e.style.top = y + "px"; };
+  put("l1", 620, 1000); put("f1", 620, 1062);
+  put("l2", 80, 1010); put("f2", 80, 1072);
+
+  TXDECK.finish(cx, { aberration: 0 });
+  return true;
+})();
 </script>
 </body>
 </html>

@@ -1,295 +1,120 @@
 <!doctype html>
-<!-- CAROUSEL 32, frame 7 of 9. Archetype SPLIT_HORIZON.
-     THE CLOCK. One straight horizontal cut at the deck's own held horizon of 700, the pad and
-     the yard's far fence below it, and above it a measured rule carrying TWO RUNS OF TICKS at
-     ONE PITCH, forty nine and twenty eight.
-     BOTH COUNTS ARE clocks.days_audit_to_halt AND clocks.days_halt_to_report FROM figures.json,
-     which compute.py derives as calendar differences between dates read out of c9's and c4's
-     own quotes. Nothing here is typed.
-     ONE PITCH, AND IT IS THE WHOLE REASON THE COMPARISON IS HONEST. Two spans at one pitch is
-     the only drawing where a reader sees that forty nine is longer than twenty eight without
-     being told. If the runs did not fit, the answer would be a shorter tick and never a second
-     pitch, because two pitches would make the comparison a lie.
-     THE ONE AMBER IS THE REPORT BACK TICK. The state's paper, on the one date the directive
-     actually requires something on.
-     Frame median L* planned at 20. -->
+<!-- CAROUSEL 32, frame 7 of 9. Archetype DIAGRAM. RENDERED through txthree.js.
+     TWO RUNS OF DAYS AT ONE PITCH, standing on rails on the pad under a parallel camera so the
+     runs compare by length. The first run is clocks.days_audit_to_halt plates, the second
+     clocks.days_halt_to_report. The second run is amber, because it is the state's own clock:
+     the days the agency has to answer on paper to the Governor's office. -->
 <html>
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  /* THE THIRD DATE IS A CEILING AND THE LABEL SAID IT WAS A DAY. c4 is "provide an update to
-     the Office of the Governor on its compliance by Monday, October 19", so the obligation is
-     by that date rather than on it, which is the difference between a deadline and an event.
-     The caption had it right the whole time and two frames did not.
-     AND THE FIRST ATTEMPT AT THIS EDIT SILENTLY MISSED. The source separates the two halves of
-     each label with three spaces, the browser collapses them to one, and a replace written
-     against the string the render REPORTS matches nothing in the file. Third time in this run
-     that a replace no-opped against drifted text, and the cure is the same one each time:
-     grep the file afterwards rather than trusting that the edit applied. */
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:1080px; height:1350px; overflow:hidden; background:#322C44; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
   body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
   canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
-  .hook { position:absolute; left:80px; top:170px; width:840px; font-size:92px;
-          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
-          letter-spacing:-0.024em; color:#E8EAEE; font-variation-settings:"opsz" 124; z-index:10; }
-  .dek  { position:absolute; left:82px; top:1104px; width:830px; font-size:26px;
-          line-height:1.42; color:#C4C3CE; z-index:10; }
-  /* 24px, NOT 21. The harness warns below 24 against a MOBILE floor and it was right to.
-     These three are the only words that say what each run of ticks counts, so at feed size
-     the frame is two runs of marks and no legend. An instrument label is not decoration
-     because it sits beside the instrument. */
-  .d1, .d2, .d3 { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
-                  letter-spacing:0.05em; color:#A7A6B4; z-index:10; font-variant-numeric:tabular-nums; }
-  .d1 { left:82px;  top:438px; }
-  .d2 { left:82px;  top:538px; }
-  /* THE THIRD DATE IS STEEL, NOT AMBER. The deck's law is one accent element per
-     frame and this frame had two, the label and the marker on the rule. The marker
-     stays, because the report back is a mark ON a measurement rather than a colour
-     on a word. */
-  .d3 { left:82px;  top:624px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
-             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8A8798;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
              white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:88px; }
+  .dek  { left:82px; width:860px; font-size:28px; }
 </style>
 </head>
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Forty nine days, then twenty eight</h1>
-<div class="d1" id="d1">AUGUST 3RD   AUDIT ORDERED</div>
-<div class="d2" id="d2">SEPTEMBER 21ST   PERMITS DIRECTED</div>
-<div class="d3" id="d3">BY OCTOBER 19TH   AGENCY ANSWERS</div>
-<p class="dek">The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.</p>
+<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.</p>
+<div class="lab" id="l1">August 3rd<br>audit ordered</div>
+<div class="lab" id="l2">September 21st<br>halt directed</div>
+<div class="lab" id="l3">By October 19th<br>agency answers</div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
-<script src="@@ASSETS@@/js/txscene.js"></script>
-<script src="@@ASSETS@@/js/txink.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
-<script>
-window.renderReady = new Promise(function (resolve, reject) {
-  document.fonts.ready.then(function () {
-  try {
-    TXLAYOUT.mount(document.body, {
-      kicker: "How long each step took", counter: "07 / 09",
-      src: "c9 c4   TEXAS AI DOCKET", ink: "#8A8798"
-    });
-    TX.fitText(document.getElementById("hook"), { min: 66, max: 92, maxLines: 2 });
-
-    var cv = document.getElementById("art"), cx = cv.getContext("2d");
-    cx.scale(2, 2);
-    var M = YARD, W = M.W, H = M.H, G = M.G;
-    TX.reseed(M.SEED + 7);
-    var boxes = M.boxes(".hook, .dek, .d1, .d2, .d3, .kick, .count, .src, .tx-site", 18);
-
-    /* THE TWO SPANS, from figures.json. */
-    var RUN1 = 49, RUN2 = 28;
-    var CUT = 700;                      /* the deck's own held horizon, and the frame's cut */
-    var tick1 = [], tick2 = [];
-
-    M.print(cx, {
-      seed: 7,
-      draw: function (a) {
-        var S = TXSCENE.create(a, M.cam({ eye: 1.65, horizon: CUT, f: 900, fogZ: 150, light: { az: -48, el: 28 } }));
-        var P = function (X, Y, Z) { var q = S.project(X, Y, Z); return { x: q[0], y: q[1] }; };
-        var R = M.rng(7);
-        var d = M.castDir();
-
-        /* ABOVE THE CUT, the sky carries the measurement. */
-        /* THE SKY IS FLAT AT THE DECK'S FLOOR, AND THAT IS THE SCREEN'S DOING. A LINE SCREEN
-         * lays ink in proportion to tone, so a sky graded up toward `deep` carries visible
-         * stroke exactly where the three date labels sit, and the harness reads that tooth as
-         * art crossing the letterforms. At `voidd` the screen lays its floor and nothing more,
-         * which is what the doctrine means by the scene keeping the type's zone dark BY
-         * CONSTRUCTION rather than by a wash laid over it afterwards. */
-        a.fillStyle = G.voidd; a.fillRect(0, 0, W, CUT);
-
-        /* BELOW THE CUT, the pad running to the yard's far fence, its tooth tightening with
-         * distance, and the ground beyond the last post falling to the deck's own dark. */
-        S.ground({ near: 0.9, far: 150, fill: G.dark });
-        S.gridZ({ dz: 2.6, from: 4.6, to: 110, ink: "rgba(255,255,255,0.05)", width: 1 });
-        a.save(); a.globalCompositeOperation = "lighter";
-        /* THE POOL IS PULLED BACK AND PULLED UP. At peak 0.52 centred on y 1040 the pad was
-         * the largest and brightest mass on the frame, which is the inverse of this frame's own
-         * value plan: the ticks carry the argument and they must be the lightest thing here.
-         * The centre moves to the fence line and the peak comes down, so the pad reads as a pad
-         * the mast half reaches rather than as a lit swatch. */
-        var pool = a.createRadialGradient(250, 900, 0, 250, 900, 820);
-        pool.addColorStop(0.00, "rgba(255,255,255,0.19)");
-        pool.addColorStop(0.48, "rgba(255,255,255,0.08)");
-        pool.addColorStop(1.00, "rgba(255,255,255,0)");
-        a.fillStyle = pool; a.fillRect(0, CUT, W, H - CUT); a.restore();
-
-        /* THE FENCE, each post modeled with a lit LEFT face against a dark RIGHT face. */
-        /* THE FENCE RUNS AWAY FROM THE READER RATHER THAN ACROSS THEM.
-         *
-         * A fence at ONE depth is frontoparallel, so its posts are evenly spaced and evenly
-         * sized, which is correct physics and a comb in a picture. A reviewer named it a row of
-         * comb teeth and was reading what was drawn. Run obliquely, from 16 m at the left edge
-         * to 44 m at the right, the same fence tightens and shrinks with distance and becomes
-         * the frame's texture gradient instead of its ornament. */
-        var fZ0 = 11, fZ1 = 30, fPosts = 9;
-        M.fence(S, [-26, fZ0], [34, fZ1], { h: 2.4, posts: fPosts, ink: G.shade, w: 2 });
-        for (var i = 0; i <= fPosts; i += 1) {
-          var ft = i / fPosts;
-          var X = -26 + 60 * ft, fZi = fZ0 + (fZ1 - fZ0) * ft;
-          var pb = P(X, 0, fZi), pt = P(X, 2.4, fZi), pp = S.ppm(fZi);
-          /* EACH POST CASTS, and it casts DOWN AND TO THE RIGHT like everything in this deck.
-           * Only the nearest post cast before this, so the run read as teeth standing on
-           * nothing. */
-          a.save(); a.globalAlpha = 0.26; a.fillStyle = G.voidd;
-          var cl = M.castLen(2.4) * pp;
-          a.beginPath();
-          a.moveTo(pb.x - 0.055 * pp, pb.y); a.lineTo(pb.x + 0.055 * pp, pb.y);
-          a.lineTo(pb.x + 0.055 * pp + d[0] * cl, pb.y + d[1] * cl * 0.30);
-          a.lineTo(pb.x - 0.055 * pp + d[0] * cl, pb.y + d[1] * cl * 0.30);
-          a.closePath(); a.fill(); a.restore();
-          a.fillStyle = G.metal; a.fillRect(pt.x - 0.055 * pp, pt.y, 0.055 * pp, pb.y - pt.y);
-          a.fillStyle = G.voidd; a.fillRect(pt.x, pt.y, 0.05 * pp, pb.y - pt.y);
-        }
-
-        /* A BENCH CAST FROM THE DECK'S ONE DECLARED LIGHT, off the nearest post.
-         * Removed when the fence was turned oblique and per post casts were added by hand, which
-         * cost the frame its staging: depth_floor counts a frame as standing in a place only
-         * when it builds the bench, places something through the camera at true scale AND casts
-         * from the deck's light through that same bench. The hand drawn casts are the run's
-         * texture. This one is the frame's proof that the camera was used for staging rather
-         * than for arithmetic. */
-        S.shadow({ w: 0.11, h: 2.4, parts: [
-          { type: "rect", x: -0.055, y: 0, w: 0.11, h: 2.4, fill: "ink" }] },
-          { X: -26, Z: fZ0, ink: G.voidd, alpha: 0.34 });
-
-        /* the ground beyond the last post falls away */
-        var bg = a.createLinearGradient(0, P(0, 0, fZ1).y, 0, CUT);
-        bg.addColorStop(0, "rgba(0,0,0,0)"); bg.addColorStop(1, "rgba(0,0,0,0.85)");
-        a.fillStyle = bg; a.fillRect(0, CUT, W, P(0, 0, fZ1).y - CUT);
-
-        /* THE NEAR PAD IS BEYOND THE POOL. A mast lights a circle and the ground in front of
-         * the camera is outside it, so the bottom band falls to the deck's own floor. That is
-         * what a yard actually looks like and it is also where the dek sits. */
-        /* THE BOTTOM BAND FALLS TO THE DECK'S FLOOR ABOVE THE DEK, AND THIS IS THE WORST
-         * DEFECT THIS DECK PRODUCED.
-         *
-         * The falloff used to finish at y 1180 and the dek's first line sits at 1104, so the
-         * line ran across the brightest, finest part of the pad's tooth. A reviewer transcribing
-         * the 432 px thumb read "The halt came 45 days later" off a slide that says 49. Not a
-         * blur inviting a second look. A DIFFERENT NUMBER, and 49 is the whole of what this
-         * frame asserts.
-         *
-         * So the pad is dark before the type starts, by construction, rather than being washed
-         * afterwards. The falloff begins at 940 and is complete at 1080, which is 24 px of clear
-         * floor above the dek's first baseline. */
-        /* THE FALLOFF RUNS TO THE BOTTOM EDGE, so the pad reaches the frame's own edge as the
-         * dossier's bleed declares and the frame has ONE horizon rather than two. Terminating it
-         * at 1080 put a second full width horizontal cut across the picture, which a reviewer
-         * read as a second horizon, on a SPLIT_HORIZON frame whose whole construction is that
-         * there is exactly one. */
-        var ng = a.createLinearGradient(0, 880, 0, 1140);
-        ng.addColorStop(0.00, "rgba(0,0,0,0)");
-        ng.addColorStop(0.62, "rgba(0,0,0,0.86)");
-        ng.addColorStop(1.00, "rgba(0,0,0,0.97)");
-        a.fillStyle = ng; a.fillRect(0, 880, W, H - 880);
-
-        /* the pad's own tooth, coarsening toward the reader */
-        for (i = 0; i < 260; i += 1) {
-          var gx = R() * W, gy = CUT + 120 + R() * (1060 - CUT - 120);
-          var gs = 1.5 + (gy - CUT) / (880 - CUT) * 4.2;
-          a.fillStyle = R() > 0.5 ? G.shade : G.deep;
-          a.fillRect(gx, gy, gs, gs * 0.7);
-        }
-
-        /* THE RULE AND ITS TWO RUNS, in the sky above the cut, at ONE PITCH. */
-        /* THE TWO RULES MOVE UP SO EVERY LABEL HAS AIR BELOW IT. At 648 the second rule left
-         * 52 px between its ticks and the horizon cut, and the third date sat in that gap with
-         * the cut running straight through it. The cut is the frame's one hard edge and it is
-         * not negotiable, so the measurement moves instead. */
-        var x0 = 82, x1 = W - 82, ruleY1 = 496, ruleY2 = 596;
-        var pitch = (x1 - x0) / RUN1;              /* the pitch is set by the LONGER run */
-        a.strokeStyle = G.shade; a.lineWidth = 2;
-        a.beginPath(); a.moveTo(x0, ruleY1); a.lineTo(x1, ruleY1); a.stroke();
-        a.beginPath(); a.moveTo(x0, ruleY2); a.lineTo(x0 + pitch * RUN2, ruleY2); a.stroke();
-
-        for (i = 0; i < RUN1; i += 1) {
-          var tx = x0 + i * pitch;
-          a.fillStyle = G.stone;
-          a.fillRect(tx, ruleY1 - 26, Math.max(2.2, pitch * 0.34), 26);
-          tick1.push(tx);
-        }
-        for (i = 0; i < RUN2; i += 1) {
-          var tx2 = x0 + i * pitch;
-          a.fillStyle = G.stone;
-          a.fillRect(tx2, ruleY2 - 26, Math.max(2.2, pitch * 0.34), 26);
-          tick2.push(tx2);
-        }
-        window.__ticks = { run1: tick1.length, run2: tick2.length, pitch: pitch };
-
-      },
-      over: function (c) {
-        /* the print is faded to the deck's ground under the fixed furniture bands, and the
-         * light DIMS toward the display type. Both run here, on the finished print, never on
-         * the twin, because the edge pass would otherwise contour the reserve itself. */
-        M.reserve(c, { top: 150, topSolid: 92, bottom: 150, bottomSolid: 94 });
-        M.quiet(c, boxes, 0.16);
-        /* THE ONE AMBER. The report back tick, at the end of the second run, and it is the only
-         * place a date in this deck asks anything of anybody. */
-        var x0 = 82, x1 = W - 82, pitch = (x1 - x0) / 49;
-        c.save();
-        c.fillStyle = M.ACCENT_PAINT;
-        /* THE REPORT BACK MARKER, sized to clear the 0.2 percent floor. It is a marker on a
-         * rule rather than a tick in the run, so it reads as the state's own mark on somebody
-         * else's measurement. */
-        var mx = x0 + pitch * 28 - 6;
-        /* THE MARKER SITS IN THE RUN, NOT ABOVE IT. It used to rise 68 px against ticks 26 px
-         * tall, so at feed width it read as a bookmark flag pinned to the word DIRECTED beside
-         * it rather than as the run's own last mark. It is the tick height now, with a short
-         * tail below the rule so it still clears the accent's own area floor, and it is the only
-         * amber on the frame. */
-        /* ONE CONNECTED MARK, drawn as an L so it is a single element rather than a run of
-         * amber pieces, and large enough to clear layout_check's own area floor now that the
-         * third date label has gone back to steel. */
-        /* ONE TICK, AT THE RUN'S OWN PITCH AND WEIGHT, AND THE L WAS A LETTER.
-         *
-         * The mark was drawn as an L shaped bracket so it would clear layout_check's accent area
-         * floor. At 432 px a reviewer read it as a capital L standing in the yard, on a deck
-         * whose mute world law says PAPER is the only thing here that carries glyphs. It also
-         * reached down to the horizon cut, and this deck's accent never touches the pad.
-         *
-         * The dossier's focal was always the run BREAKING rather than a flag beside it. So the
-         * amber is the twenty eighth tick, drawn at the steel ticks' own height and pitch, plus
-         * the short length of rule it sits on, which is the smallest shape that is still a mark
-         * on a measurement rather than an object in the picture. */
-        /* AND THE RULE OVERHANGS THE RUN, WHICH IS THE WHOLE OF THE LAST FIX.
-         *
-         * It was drawn at exactly `pitch * 28`, so the longest amber shape on the frame was
-         * the twenty eight day span itself, in the deck's accent, on a deck that spent frame 4
-         * taking an amber bar OFF a channel for drawing a quantity in the accent colour. The
-         * dossier's acceptance also says the amber tick is the only chromatic mark here, and a
-         * 780 px rule is not a tick. A round 4 scorer measured it and was right.
-         *
-         * It cannot simply be shortened. layout_check holds this frame to an accent area floor
-         * and the rule is most of the amber, so cutting it drops the frame under the floor and
-         * the tick cannot make the area back without growing into the bookmark flag two
-         * paragraphs up. What CAN change is the length MEANING something. Run it two pitches
-         * short of the origin and two past the mark and it is a baseline the run sits on,
-         * which is what a mark on somebody else's measurement needs, and it encodes no count. */
-        var tw = Math.max(2.2, pitch * 0.34);
-        c.fillRect(mx, 596 - 26, tw * 2.4, 26);
-        c.fillRect(x0 - pitch * 2, 596 - 3, pitch * 32 + tw * 2.4, 7);
-        c.fillRect(mx, 596 + 4, tw * 2.4, 16);
-        c.restore();
-      }
-    });
-
-    TXDECK.finish(cx);
-    resolve();
-  } catch (e) { document.title = "ERR " + e.message; reject(e); }
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'How long each step took', counter: "07 / 09",
+    src: 'c9 c24 c4   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
-});
+  TX.fitText(document.getElementById("hook"), { min: 68, max: 88, maxLines: 2 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE SPANS, FROM figures.json. clocks.days_audit_to_halt and clocks.days_halt_to_report,
+   * calendar differences computed by compute.py. */
+  const FIRST = 49, SECOND = 28;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 60, 180], exposure: 1.0 });
+  Y.ortho(THREE, R, 23);
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 200, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 80 });
+  const M = Y.mats(TXT);
+  const plain = TXT.mat.clay(0xa9aba7, { metalness: 0.2, roughness: 0.5 });
+  /* THE SECOND RUN IS THE STATE'S CLOCK, the twenty eight days the agency has to answer on paper,
+   * so it wears the accent */
+  const amber = Y.paperMat(THREE);
+
+  /* ONE PITCH FOR BOTH RUNS, 0.4 m a day, left aligned, so 49 and 28 compare as lengths. Each
+   * day stands as a plate 0.28 m wide and 1.1 m tall facing the key, so every day is a separate
+   * lit thing. The runs lie along +Z, which is the frame's right under this camera. */
+  const DAY = 0.4, Z0 = -9.8;
+  const run = (n, x, mat, last) => {
+    for (let d = 0; d < n; d++) {
+      const p = Y.tile(THREE, 0.12, 2.0, 0.28, (last && d === n - 1) ? amber : mat);
+      p.position.set(x, 1.12, Z0 + d * DAY + 0.14);
+      TXT.add(R, p);
+    }
+  };
+  /* a steel rail under each run, so a run is one thing standing on the pad and not dust */
+  const rail = (n, x) => {
+    const r = Y.tile(THREE, 0.5, 0.12, n * DAY + 0.2, M.skid);
+    r.position.set(x, 0.06, Z0 + n * DAY / 2 - 0.02); TXT.add(R, r);
+  };
+  rail(FIRST, 3.4); rail(SECOND, -3.4);
+  /* ONE SLAB UNDER BOTH RUNS, the concrete the hero stands on, so the two periods read as one
+   * record laid on one surface rather than as two loose strips */
+  const slab = Y.tile(THREE, 9.2, 0.08, FIRST * DAY + 1.0, M.conc);
+  slab.position.set(0, 0.04, Z0 + FIRST * DAY / 2 - 0.02); TXT.add(R, slab);
+  run(FIRST, 3.4, plain, false);
+  run(SECOND, -3.4, amber, false);
+  /* THE HERO in front of the runs, its door side to the light, cut by nothing: the deck's object
+   * standing on the same pad the days are laid on */
+  const hero = Y.genset(THREE, M, {});
+  hero.rotation.y = -Math.PI / 2;
+  hero.position.set(-17, 0, 3);
+  TXT.add(R, hero);
+
+  /* from the key side, a third of the way up, so the two runs stack one above the other */
+  TXT.frame(R, { from: [-30, 20, 0], look: [2.2, 0.5, 0] });
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  const p1 = Y.project(THREE, R, [3.4, 2.0, Z0]);
+  const p2 = Y.project(THREE, R, [3.4, 2.0, Z0 + FIRST * DAY]);
+  const p3 = Y.project(THREE, R, [-3.4, 2.0, Z0 + SECOND * DAY]);
+  const put = (id, x, y) => { const e = document.getElementById(id); e.style.left = x + "px"; e.style.top = y + "px"; };
+  put("l1", p1.x, p1.y - 74);
+  put("l2", Math.min(p2.x - 210, 1000 - 270), p2.y - 74);
+  put("l3", p3.x + 26, p3.y - 40);
+
+  TXDECK.finish(cx, { aberration: 0 });
+  return true;
+})();
 </script>
 </body>
 </html>

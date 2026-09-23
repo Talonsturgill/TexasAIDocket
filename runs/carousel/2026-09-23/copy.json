@@ -29,94 +29,90 @@
    "n": 2,
    "file": "slide-02.html",
    "kicker": "What the audit can do",
-   "headline": "Denied connection",
+   "headline": "A connection to deny",
    "claims": [
     "c7",
-    "c10"
+    "c10",
+    "c5"
    ],
-   "cite": "c7 c10 TEXAS AI DOCKET",
-   "body": "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
+   "cite": "c7 c10 c5 TEXAS AI DOCKET",
+   "body": "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
    "strings": [
     "texasaidocket.com",
-    "Denied connection",
-    "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
+    "A connection to deny",
+    "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
     "What the audit can do",
     "02 / 09",
-    "c7 c10 TEXAS AI DOCKET"
+    "c7 c10 c5 TEXAS AI DOCKET"
    ]
   },
   "S3": {
    "n": 3,
    "file": "slide-03.html",
-   "kicker": "The directive, as written",
-   "headline": "One page, two scopes",
+   "kicker": "The directive, as reported",
+   "headline": "Two scopes",
    "claims": [
-    "c1",
     "c3",
     "c11",
-    "c4"
+    "c5"
    ],
-   "cite": "c1 c3 c11 c4 TEXAS AI DOCKET",
-   "body": "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
+   "cite": "c3 c11 c5 TEXAS AI DOCKET",
+   "body": "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
    "strings": [
     "texasaidocket.com",
-    "One page, two scopes",
-    "One sentence names who is asking. One names an audit a project may never enter.",
-    "PERMITS SOUGHT c1",
-    "\"all permits sought by data centers\"",
-    "ALIGN PERMITTING DECISIONS c11",
-    "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
-    "The directive, as written",
+    "Two scopes",
+    "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
+    "THE GOVERNOR, AS CBS QUOTED IT c3",
+    "\"TCEQ will issue no permits sought by data center projects\"",
+    "A LAW FIRM'S READING c11",
+    "\"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)\"",
+    "The directive, as reported",
     "03 / 09",
-    "c1 c3 c11 c4 TEXAS AI DOCKET"
+    "c3 c11 c5 TEXAS AI DOCKET"
    ]
   },
   "S4": {
    "n": 4,
    "file": "slide-04.html",
-   "kicker": "Two instruments, two axes",
-   "headline": "Ninety percent of the new ones",
+   "kicker": "What the queue holds",
+   "headline": "90%",
    "claims": [
-    "c5",
-    "c6",
     "c8",
-    "c9"
+    "c23"
    ],
-   "cite": "c5 c6 c8 c9 TEXAS AI DOCKET",
-   "body": "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
+   "cite": "c8 c23 TEXAS AI DOCKET",
+   "body": "Ninety percent of the new ones",
    "strings": [
     "texasaidocket.com",
     "Ninety percent of the new ones",
-    "THE WHOLE QUEUE, ON NO SCALE HERE",
-    "474 GW",
-    "DATA CENTER SHARE OF NEW POWER REQUESTS",
+    "ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.",
+    "Approximate data center share of new power requests",
     "90%",
-    "PERMITS SOUGHT BY DATA CENTERS",
-    "NO COUNT IN THE DIRECTIVE",
-    "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
-    "Two instruments, two axes",
+    "The whole queue, on no scale here",
+    "474 GW",
+    "What the queue holds",
     "04 / 09",
-    "c5 c6 c8 c9 TEXAS AI DOCKET"
+    "c8 c23 TEXAS AI DOCKET"
    ]
   },
   "S5": {
    "n": 5,
    "file": "slide-05.html",
-   "kicker": "What never joins the queue",
-   "headline": "Forty, behind the meter",
+   "kicker": "Behind the meter",
+   "headline": "About forty, behind the meter",
    "claims": [
     "c16",
     "c17",
     "c18"
    ],
    "cite": "c16 c17 c18 TEXAS AI DOCKET",
-   "body": "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
+   "body": "A gas compression company says it will supply one data center with 76 megawatts of behind-the-meter capacity from about 40 reciprocating gas engines.",
    "strings": [
     "texasaidocket.com",
-    "Forty, behind the meter",
-    "76 MW",
-    "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
-    "What never joins the queue",
+    "About forty, behind the meter",
+    "A gas compression company says it will supply one data center with 76 megawatts of behind-the-meter capacity from about 40 reciprocating gas engines.",
+    "76 MW, behind the meter",
+    "Behind the meter",
     "05 / 09",
     "c16 c17 c18 TEXAS AI DOCKET"
    ]
@@ -148,63 +144,60 @@
    "headline": "Forty nine days, then twenty eight",
    "claims": [
     "c9",
+    "c24",
     "c4"
    ],
-   "cite": "c9 c4 TEXAS AI DOCKET",
+   "cite": "c9 c24 c4 TEXAS AI DOCKET",
    "body": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
    "strings": [
     "texasaidocket.com",
     "Forty nine days, then twenty eight",
-    "AUGUST 3RD AUDIT ORDERED",
-    "SEPTEMBER 21ST PERMITS DIRECTED",
-    "BY OCTOBER 19TH AGENCY ANSWERS",
     "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+    "August 3rd audit ordered",
+    "September 21st halt directed",
+    "By October 19th agency answers",
     "How long each step took",
     "07 / 09",
-    "c9 c4 TEXAS AI DOCKET"
+    "c9 c24 c4 TEXAS AI DOCKET"
    ]
   },
   "S8": {
    "n": 8,
    "file": "slide-08.html",
-   "kicker": "The other arrangement",
-   "headline": "Next door says nothing about the meter",
+   "kicker": "The engine page",
+   "headline": "Engines have a page of their own",
    "claims": [
-    "c19",
-    "c20",
-    "c21"
+    "c15",
+    "c17"
    ],
-   "cite": "c19 c20 c21 TEXAS AI DOCKET",
-   "body": "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
+   "cite": "c15 c17 TEXAS AI DOCKET",
+   "body": "The agency publishes an \"Overview of air permitting requirements and options for new internal combustion engine operations.\" Nothing verified says whether these engines need an air permit.",
    "strings": [
     "texasaidocket.com",
-    "Next door says nothing about the meter",
-    "1,180 MW THE PLANT",
-    "207 MW CONTRACTED, PHASE ONE",
-    "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
-    "The other arrangement",
+    "Engines have a page of their own",
+    "The agency publishes an \"Overview of air permitting requirements and options for new internal combustion engine operations.\" Nothing verified says whether these engines need an air permit.",
+    "The engine page",
     "08 / 09",
-    "c19 c20 c21 TEXAS AI DOCKET",
-    "ODESSA"
+    "c15 c17 TEXAS AI DOCKET"
    ]
   },
   "S9": {
    "n": 9,
    "file": "slide-09.html",
    "kicker": "Where a Texan could have spoken",
-   "headline": "The room was already empty.",
+   "headline": "A hearing with no date",
    "claims": [
     "c12",
     "c13",
     "c4"
    ],
    "cite": "c12 c13 c4 TEXAS AI DOCKET",
-   "body": "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
+   "body": "The agency canceled the notice and comment hearing on data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date. Separately, TCEQ answers to the Governor's office by October 19th.",
    "strings": [
     "texasaidocket.com",
-    "The room was already empty.",
-    "NO DATE YET FOR THE HEARING. TCEQ ANSWERS TO THE GOVERNOR'S OFFICE BY OCTOBER 19TH.",
-    "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
+    "A hearing with no date",
+    "The agency canceled the notice and comment hearing on data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date. Separately, TCEQ answers to the Governor's office by October 19th.",
+    "No date yet for the hearing.",
     "Where a Texan could have spoken",
     "09 / 09",
     "c12 c13 c4 TEXAS AI DOCKET"

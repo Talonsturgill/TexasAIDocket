@@ -7,7 +7,7 @@
   "from": [
    "c8"
   ],
-  "said_by": "the Office of the Texas Governor, August 3rd release",
+  "said_by": "ERCOT, as the Texas Tribune reported it on August 3rd",
   "label": "gigawatts of requests to connect to the Texas grid",
   "peak_multiple_words": "five",
   "peak_note": "c8 says more than five times the record peak and gives no peak figure, so the multiple is carried AS THE SOURCE'S OWN WORD and no peak is computed from it."
@@ -16,8 +16,9 @@
   "percent": 90,
   "basis": "measured",
   "from": [
-   "c8"
+   "c23"
   ],
+  "said_by": "the Governor, as the Texas Tribune reported it on August 3rd",
   "counts": "the NEW power requests, not the whole queue",
   "no_multiply": "474 GW is the whole queue and 90 percent is of the new requests. Two denominators. Nothing here multiplies them and no frame may."
  },
@@ -35,19 +36,6 @@
   "label": "megawatts a West Texas data center takes without touching the grid",
   "no_division": "76 over about 40 is a per unit rating no document states, and approximately 40 is not a count. Nothing divides these."
  },
- "adjacent_plant": {
-  "phase1_min_mw": 200,
-  "phase1_max_mw": 207,
-  "plant_mw": 1180,
-  "basis": "measured",
-  "from": [
-   "c19",
-   "c20",
-   "c21"
-  ],
-  "said_by": "New Era Energy and Digital",
-  "not_established": "where the meter sits between that plant and that project, in either direction. c19, c20 and c21 are the whole of what was verified and none of them reaches it. Immediately adjacent is a statement about DISTANCE. The deck may not draw this as an escape from the grid and it may not draw it as a grid connection either."
- },
  "clocks": {
   "audit_ordered": "2026-08-03",
   "halt_issued": "2026-09-21",
@@ -59,8 +47,8 @@
   "from": [
    "c9",
    "c4",
-   "tx-2026-0182"
+   "c24"
   ],
-  "how": "The audit date is read out of c9's quote and the report back date out of c4's, both by regular expression, and the spans are calendar differences. THE HALT'S OWN DATE COMES FROM NEITHER CLAIM. It is the release date the record carries at tx-2026-0182 and it is typed into compute.py, which the module docstring states. `from` used to list c9 and c4 alone, so the one date in this block that is not parsed from a quote was the one the provenance did not name, and it is load bearing: the 49 day span and frame 7's SEPTEMBER 21ST both rest on it."
+  "how": "The audit date is read out of c9's quote, the report back date out of c4's, and the halt's date out of c24's published field, asserted to be the Monday c24's quote names. The spans are calendar differences."
  }
 }

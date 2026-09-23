@@ -27,7 +27,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -44,12 +44,12 @@
           "text": "Sought by",
           "x": 80,
           "y": 176,
-          "w": 850,
+          "w": 860,
           "h": 147,
           "font_px": 167.5,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -65,19 +65,19 @@
         {
           "text": "Two words decide who a permit halt reaches.",
           "x": 82,
-          "y": 396,
-          "w": 760,
+          "y": 388,
+          "w": 640,
           "h": 43,
           "font_px": 31,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              396,
+              388,
               636,
               42
             ]
@@ -93,7 +93,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -115,7 +115,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -139,7 +139,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -161,7 +161,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -182,7 +182,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5681,
+      "render_ms": 10949,
       "ok": true,
       "canvases": [
         {
@@ -195,8 +195,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 81,
-          "variance": 5063.5
+          "mean": 30.9,
+          "variance": 971.4
         }
       ],
       "breather": false,
@@ -219,7 +219,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -233,63 +233,63 @@
           "anc": []
         },
         {
-          "text": "Denied connection",
+          "text": "A connection to deny",
           "x": 80,
-          "y": 198,
-          "w": 600,
-          "h": 193,
+          "y": 968,
+          "w": 920,
+          "h": 95,
           "font_px": 103.5,
-          "weight": "700",
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              182,
-              292,
-              127
-            ],
-            [
-              80,
-              278,
-              445,
+              952,
+              841,
               127
             ]
           ],
           "anc": []
         },
         {
-          "text": "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
-          "x": 400,
-          "y": 388,
-          "w": 600,
-          "h": 115,
-          "font_px": 27,
+          "text": "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
+          "x": 82,
+          "y": 1085,
+          "w": 830,
+          "h": 162,
+          "font_px": 29,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              400,
-              388,
-              572,
-              37
+              82,
+              1085,
+              778,
+              40
             ],
             [
-              400,
-              426,
-              494,
-              37
+              82,
+              1126,
+              769,
+              40
             ],
             [
-              400,
-              465,
-              593,
-              37
+              82,
+              1166,
+              646,
+              40
+            ],
+            [
+              82,
+              1207,
+              313,
+              40
             ]
           ],
           "anc": []
@@ -303,7 +303,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -325,7 +325,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -339,22 +339,22 @@
           "anc": []
         },
         {
-          "text": "c7 c10 TEXAS AI DOCKET",
+          "text": "c7 c10 c5 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 354,
+          "w": 402,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1236,
-              354,
+              402,
               31
             ]
           ],
@@ -368,7 +368,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5965,
+      "render_ms": 9339,
       "ok": true,
       "canvases": [
         {
@@ -381,8 +381,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 85.7,
-          "variance": 4945.1
+          "mean": 46.3,
+          "variance": 3146.7
         }
       ],
       "breather": false,
@@ -405,7 +405,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -419,172 +419,208 @@
           "anc": []
         },
         {
-          "text": "One page, two scopes",
+          "text": "Two scopes",
           "x": 80,
-          "y": 158,
-          "w": 800,
-          "h": 86,
+          "y": 150,
+          "w": 920,
+          "h": 84,
           "font_px": 91.5,
-          "weight": "700",
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              145,
-              754,
+              136,
+              412,
               112
             ]
           ],
           "anc": []
         },
         {
-          "text": "One sentence names who is asking. One names an audit a project may never enter.",
+          "text": "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
           "x": 82,
-          "y": 268,
-          "w": 800,
-          "h": 73,
-          "font_px": 26,
+          "y": 254,
+          "w": 820,
+          "h": 81,
+          "font_px": 29,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              268,
-              778,
-              36
+              254,
+              751,
+              40
             ],
             [
               82,
-              304,
-              196,
-              36
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "PERMITS SOUGHT c1",
-          "x": 268,
-          "y": 482,
-          "w": 301,
-          "h": 35,
-          "font_px": 26,
-          "weight": "700",
-          "family": "JetBrains Mono",
-          "color": "rgb(20, 16, 20)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              268,
-              482,
-              301,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "\"all permits sought by data centers\"",
-          "x": 268,
-          "y": 534,
-          "w": 590,
-          "h": 43,
-          "font_px": 33,
-          "weight": "500",
-          "family": "Fraunces",
-          "color": "rgb(20, 18, 14)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              268,
-              535,
-              539,
+              295,
+              540,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "ALIGN PERMITTING DECISIONS c11",
-          "x": 268,
-          "y": 898,
-          "w": 530,
-          "h": 35,
-          "font_px": 26,
-          "weight": "700",
+          "text": "THE GOVERNOR, AS CBS QUOTED IT c3",
+          "x": 347,
+          "y": 498,
+          "w": 386,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(20, 16, 20)",
+          "color": "rgb(76, 70, 64)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              268,
-              898,
-              530,
-              35
+              347,
+              498,
+              326,
+              31
+            ],
+            [
+              347,
+              529,
+              212,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
-          "x": 268,
-          "y": 930,
-          "w": 590,
-          "h": 104,
-          "font_px": 27,
-          "weight": "500",
+          "text": "\"TCEQ will issue no permits sought by data center projects\"",
+          "x": 347,
+          "y": 569,
+          "w": 386,
+          "h": 101,
+          "font_px": 30,
+          "weight": "600",
           "family": "Fraunces",
-          "color": "rgb(20, 18, 14)",
+          "color": "rgb(22, 24, 29)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              268,
-              930,
-              480,
-              33
+              347,
+              567,
+              360,
+              37
             ],
             [
-              268,
-              965,
-              572,
-              33
+              347,
+              601,
+              276,
+              37
             ],
             [
-              268,
-              999,
-              230,
-              33
+              347,
+              635,
+              115,
+              37
             ]
           ],
           "anc": []
         },
         {
-          "text": "The directive, as written",
+          "text": "A LAW FIRM'S READING c11",
+          "x": 347,
+          "y": 702,
+          "w": 386,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(76, 70, 64)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              347,
+              702,
+              196,
+              31
+            ],
+            [
+              347,
+              733,
+              196,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)\"",
+          "x": 347,
+          "y": 773,
+          "w": 386,
+          "h": 168,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(22, 24, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              347,
+              771,
+              382,
+              37
+            ],
+            [
+              347,
+              805,
+              299,
+              37
+            ],
+            [
+              347,
+              838,
+              367,
+              37
+            ],
+            [
+              347,
+              872,
+              340,
+              37
+            ],
+            [
+              347,
+              906,
+              207,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The directive, as reported",
           "x": 80,
           "y": 80,
-          "w": 414,
+          "w": 431,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               82,
-              414,
+              431,
               31
             ]
           ],
@@ -599,7 +635,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -613,22 +649,22 @@
           "anc": []
         },
         {
-          "text": "c1 c3 c11 c4 TEXAS AI DOCKET",
+          "text": "c3 c11 c5 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 450,
+          "w": 402,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1236,
-              450,
+              402,
               31
             ]
           ],
@@ -642,7 +678,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5029,
+      "render_ms": 19730,
       "ok": true,
       "canvases": [
         {
@@ -655,8 +691,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 110.5,
-          "variance": 7001.9
+          "mean": 60.5,
+          "variance": 5489.8
         }
       ],
       "breather": false,
@@ -679,7 +715,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -695,92 +731,82 @@
         {
           "text": "Ninety percent of the new ones",
           "x": 80,
-          "y": 158,
-          "w": 840,
-          "h": 165,
+          "y": 150,
+          "w": 920,
+          "h": 161,
           "font_px": 87.5,
-          "weight": "700",
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              145,
-              701,
+              136,
+              867,
               108
             ],
             [
               80,
-              227,
-              315,
+              217,
+              162,
               108
             ]
           ],
           "anc": []
         },
         {
-          "text": "THE WHOLE QUEUE, ON NO SCALE HERE",
+          "text": "ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.",
           "x": 82,
-          "y": 342,
-          "w": 546,
-          "h": 31,
-          "font_px": 24,
+          "y": 331,
+          "w": 880,
+          "h": 78,
+          "font_px": 28,
           "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
+          "family": "Manrope",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              342,
-              546,
+              331,
+              869,
+              38
+            ],
+            [
+              82,
+              370,
+              880,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Approximate data center share of new power requests",
+          "x": 620,
+          "y": 1000,
+          "w": 459,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 179, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              620,
+              1000,
+              459,
               31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "474 GW",
-          "x": 82,
-          "y": 382,
-          "w": 219,
-          "h": 82,
-          "font_px": 62,
-          "weight": "700",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
+            ],
             [
-              82,
-              382,
-              219,
-              82
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "DATA CENTER SHARE OF NEW POWER REQUESTS",
-          "x": 82,
-          "y": 530,
-          "w": 646,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              530,
-              646,
+              620,
+              1032,
+              333,
               31
             ]
           ],
@@ -788,115 +814,93 @@
         },
         {
           "text": "90%",
-          "x": 860,
-          "y": 518,
-          "w": 58,
-          "h": 43,
-          "font_px": 32,
+          "x": 620,
+          "y": 1062,
+          "w": 178,
+          "h": 96,
+          "font_px": 96,
           "weight": "700",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
+          "family": "Fraunces",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              860,
-              518,
-              58,
-              43
+              620,
+              1051,
+              178,
+              118
             ]
           ],
           "anc": []
         },
         {
-          "text": "PERMITS SOUGHT BY DATA CENTERS",
-          "x": 82,
-          "y": 826,
-          "w": 497,
-          "h": 31,
+          "text": "The whole queue, on no scale here",
+          "x": 80,
+          "y": 1010,
+          "w": 253,
+          "h": 65,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
+          "color": "rgb(174, 179, 189)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              82,
-              826,
-              497,
+              80,
+              1010,
+              253,
               31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "NO COUNT IN THE DIRECTIVE",
-          "x": 150,
-          "y": 1002,
-          "w": 414,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              150,
-              1002,
-              414,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
-          "x": 82,
-          "y": 1140,
-          "w": 840,
-          "h": 70,
-          "font_px": 25,
-          "weight": "400",
-          "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              1140,
-              819,
-              35
             ],
             [
-              82,
-              1175,
-              674,
-              35
+              80,
+              1042,
+              253,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "Two instruments, two axes",
+          "text": "474 GW",
+          "x": 80,
+          "y": 1072,
+          "w": 184,
+          "h": 54,
+          "font_px": 54,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 240, 243)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1065,
+              184,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the queue holds",
           "x": 80,
           "y": 80,
-          "w": 414,
+          "w": 331,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               82,
-              414,
+              331,
               31
             ]
           ],
@@ -911,7 +915,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -925,22 +929,22 @@
           "anc": []
         },
         {
-          "text": "c5 c6 c8 c9 TEXAS AI DOCKET",
+          "text": "c8 c23 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 434,
+          "w": 354,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1236,
-              434,
+              354,
               31
             ]
           ],
@@ -954,7 +958,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4632,
+      "render_ms": 8545,
       "ok": true,
       "canvases": [
         {
@@ -967,8 +971,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 60.7,
-          "variance": 3153.1
+          "mean": 31.6,
+          "variance": 1754.2
         }
       ],
       "breather": false,
@@ -991,7 +995,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1005,106 +1009,100 @@
           "anc": []
         },
         {
-          "text": "Forty, behind the meter",
+          "text": "About forty, behind the meter",
           "x": 80,
-          "y": 176,
-          "w": 790,
-          "h": 178,
-          "font_px": 95.5,
-          "weight": "700",
+          "y": 150,
+          "w": 920,
+          "h": 73,
+          "font_px": 79,
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              161,
-              629,
-              117
-            ],
-            [
-              80,
-              250,
-              225,
-              117
+              137,
+              914,
+              97
             ]
           ],
           "anc": []
         },
         {
-          "text": "76 MW",
-          "x": 835,
-          "y": 186,
-          "w": 165,
-          "h": 74,
-          "font_px": 56,
-          "weight": "700",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              835,
-              186,
-              165,
-              74
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
+          "text": "A gas compression company says it will supply one data center with 76 megawatts of behind-the-meter capacity from about 40 reciprocating gas engines.",
           "x": 82,
-          "y": 1082,
-          "w": 830,
-          "h": 111,
-          "font_px": 26,
+          "y": 243,
+          "w": 880,
+          "h": 118,
+          "font_px": 28,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              1082,
-              756,
-              36
+              243,
+              864,
+              38
             ],
             [
               82,
-              1119,
-              792,
-              36
+              282,
+              755,
+              38
             ],
             [
               82,
-              1156,
-              113,
-              36
+              321,
+              341,
+              38
             ]
           ],
           "anc": []
         },
         {
-          "text": "What never joins the queue",
+          "text": "76 MW, behind the meter",
+          "x": 80,
+          "y": 1170,
+          "w": 364,
+          "h": 32,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 224, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1170,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Behind the meter",
           "x": 80,
           "y": 80,
-          "w": 431,
+          "w": 265,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               82,
-              431,
+              265,
               31
             ]
           ],
@@ -1119,7 +1117,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1141,7 +1139,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1162,7 +1160,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4454,
+      "render_ms": 9265,
       "ok": true,
       "canvases": [
         {
@@ -1175,8 +1173,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 56.2,
-          "variance": 2163.8
+          "mean": 30.9,
+          "variance": 1214.8
         }
       ],
       "breather": false,
@@ -1199,7 +1197,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1214,56 +1212,44 @@
         },
         {
           "text": "This is one of them",
-          "x": 470,
-          "y": 188,
-          "w": 530,
-          "h": 185,
-          "font_px": 99.5,
-          "weight": "700",
+          "x": 80,
+          "y": 952,
+          "w": 900,
+          "h": 88,
+          "font_px": 95.5,
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              470,
-              173,
-              493,
-              122
-            ],
-            [
-              470,
-              266,
-              203,
-              122
+              80,
+              937,
+              691,
+              117
             ]
           ],
           "anc": []
         },
         {
           "text": "A single set on its skid, and somebody who works on it.",
-          "x": 470,
-          "y": 412,
-          "w": 530,
-          "h": 77,
-          "font_px": 27,
+          "x": 82,
+          "y": 1060,
+          "w": 820,
+          "h": 41,
+          "font_px": 29,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(228, 216, 195)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              470,
-              412,
-              527,
-              37
-            ],
-            [
-              470,
-              450,
-              140,
-              37
+              82,
+              1060,
+              722,
+              40
             ]
           ],
           "anc": []
@@ -1277,7 +1263,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1299,7 +1285,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1321,7 +1307,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1342,7 +1328,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5460,
+      "render_ms": 8416,
       "ok": true,
       "canvases": [
         {
@@ -1355,8 +1341,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 87.2,
-          "variance": 5831.4
+          "mean": 43.8,
+          "variance": 2869.6
         }
       ],
       "breather": false,
@@ -1379,7 +1365,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1395,93 +1381,27 @@
         {
           "text": "Forty nine days, then twenty eight",
           "x": 80,
-          "y": 170,
-          "w": 840,
-          "h": 172,
-          "font_px": 91.5,
-          "weight": "700",
+          "y": 150,
+          "w": 920,
+          "h": 161,
+          "font_px": 87.5,
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              157,
-              732,
-              112
+              136,
+              711,
+              108
             ],
             [
               80,
-              243,
-              438,
-              112
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "AUGUST 3RD AUDIT ORDERED",
-          "x": 82,
-          "y": 438,
-          "w": 374,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(167, 166, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              438,
-              374,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "SEPTEMBER 21ST PERMITS DIRECTED",
-          "x": 82,
-          "y": 538,
-          "w": 484,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(167, 166, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              538,
-              484,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "BY OCTOBER 19TH AGENCY ANSWERS",
-          "x": 82,
-          "y": 624,
-          "w": 468,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(167, 166, 180)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              624,
-              468,
-              31
+              217,
+              425,
+              108
             ]
           ],
           "anc": []
@@ -1489,27 +1409,117 @@
         {
           "text": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
           "x": 82,
-          "y": 1104,
-          "w": 830,
-          "h": 74,
-          "font_px": 26,
+          "y": 331,
+          "w": 860,
+          "h": 118,
+          "font_px": 28,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              1104,
-              803,
-              36
+              331,
+              795,
+              38
             ],
             [
               82,
-              1141,
-              750,
-              36
+              370,
+              810,
+              38
+            ],
+            [
+              82,
+              409,
+              62,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August 3rd audit ordered",
+          "x": 80,
+          "y": 512,
+          "w": 206,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 179, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              512,
+              158,
+              31
+            ],
+            [
+              80,
+              544,
+              206,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 21st halt directed",
+          "x": 730,
+          "y": 512,
+          "w": 222,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 179, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              730,
+              512,
+              222,
+              31
+            ],
+            [
+              730,
+              544,
+              206,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "By October 19th agency answers",
+          "x": 632,
+          "y": 711,
+          "w": 238,
+          "h": 65,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 179, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              632,
+              711,
+              238,
+              31
+            ],
+            [
+              632,
+              743,
+              222,
+              31
             ]
           ],
           "anc": []
@@ -1523,7 +1533,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1545,7 +1555,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1559,22 +1569,22 @@
           "anc": []
         },
         {
-          "text": "c9 c4 TEXAS AI DOCKET",
+          "text": "c9 c24 c4 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 338,
+          "w": 402,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1236,
-              338,
+              402,
               31
             ]
           ],
@@ -1588,7 +1598,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4451,
+      "render_ms": 20805,
       "ok": true,
       "canvases": [
         {
@@ -1601,8 +1611,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 58,
-          "variance": 2433.4
+          "mean": 38.6,
+          "variance": 2579.1
         }
       ],
       "breather": false,
@@ -1625,7 +1635,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1639,128 +1649,84 @@
           "anc": []
         },
         {
-          "text": "Next door says nothing about the meter",
+          "text": "Engines have a page of their own",
           "x": 80,
-          "y": 150,
-          "w": 900,
-          "h": 142,
-          "font_px": 75.5,
-          "weight": "700",
+          "y": 872,
+          "w": 920,
+          "h": 143,
+          "font_px": 77.5,
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(232, 234, 238)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              138,
-              848,
-              93
+              859,
+              833,
+              96
             ],
             [
               80,
-              209,
-              282,
-              93
+              930,
+              131,
+              96
             ]
           ],
           "anc": []
         },
         {
-          "text": "1,180 MW THE PLANT",
+          "text": "The agency publishes an \"Overview of air permitting requirements and options for new internal combustion engine operations.\" Nothing verified says whether these engines need an air permit.",
           "x": 82,
-          "y": 892,
-          "w": 276,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              892,
-              276,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "207 MW CONTRACTED, PHASE ONE",
-          "x": 82,
-          "y": 966,
-          "w": 430,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              966,
-              430,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
-          "x": 82,
-          "y": 1078,
-          "w": 860,
-          "h": 101,
-          "font_px": 24,
+          "y": 1033,
+          "w": 900,
+          "h": 113,
+          "font_px": 27,
           "weight": "400",
           "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              1078,
-              856,
-              33
+              1033,
+              864,
+              37
             ],
             [
               82,
-              1112,
-              859,
-              33
+              1070,
+              802,
+              37
             ],
             [
               82,
-              1145,
-              379,
-              33
+              1108,
+              684,
+              37
             ]
           ],
           "anc": []
         },
         {
-          "text": "The other arrangement",
+          "text": "The engine page",
           "x": 80,
           "y": 80,
-          "w": 348,
+          "w": 248,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               82,
-              348,
+              248,
               31
             ]
           ],
@@ -1775,7 +1741,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1789,44 +1755,22 @@
           "anc": []
         },
         {
-          "text": "c19 c20 c21 TEXAS AI DOCKET",
+          "text": "c15 c17 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 434,
+          "w": 370,
           "h": 36,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
               1236,
-              434,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "ODESSA",
-          "x": 96,
-          "y": 525,
-          "w": 99,
-          "h": 31,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(207, 210, 216)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              96,
-              525,
-              99,
+              370,
               31
             ]
           ],
@@ -1840,7 +1784,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4524,
+      "render_ms": 8369,
       "ok": true,
       "canvases": [
         {
@@ -1853,8 +1797,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 46,
-          "variance": 1000.3
+          "mean": 45.7,
+          "variance": 2887.6
         }
       ],
       "breather": false,
@@ -1877,7 +1821,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1891,91 +1835,85 @@
           "anc": []
         },
         {
-          "text": "The room was already empty.",
+          "text": "A hearing with no date",
           "x": 80,
-          "y": 196,
-          "w": 840,
-          "h": 166,
+          "y": 872,
+          "w": 920,
+          "h": 81,
           "font_px": 87.5,
-          "weight": "700",
+          "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(207, 210, 216)",
+          "color": "rgb(238, 240, 243)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              183,
-              755,
-              108
-            ],
-            [
-              80,
-              266,
-              238,
+              858,
+              765,
               108
             ]
           ],
           "anc": []
         },
         {
-          "text": "NO DATE YET FOR THE HEARING. TCEQ ANSWERS TO THE GOVERNOR'S OFFICE BY OCTOBER 19TH.",
+          "text": "The agency canceled the notice and comment hearing on data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date. Separately, TCEQ answers to the Governor's office by October 19th.",
           "x": 82,
-          "y": 1102,
-          "w": 900,
-          "h": 74,
+          "y": 971,
+          "w": 880,
+          "h": 151,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(201, 204, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              971,
+              860,
+              37
+            ],
+            [
+              82,
+              1008,
+              809,
+              37
+            ],
+            [
+              82,
+              1046,
+              859,
+              37
+            ],
+            [
+              82,
+              1084,
+              498,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No date yet for the hearing.",
+          "x": 82,
+          "y": 1150,
+          "w": 840,
+          "h": 32,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(228, 216, 195)",
+          "color": "rgb(201, 204, 212)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               82,
-              1105,
-              772,
+              1150,
+              444,
               31
-            ],
-            [
-              82,
-              1142,
-              547,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
-          "x": 82,
-          "y": 966,
-          "w": 850,
-          "h": 108,
-          "font_px": 25,
-          "weight": "400",
-          "family": "Manrope",
-          "color": "rgb(196, 195, 206)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              82,
-              966,
-              795,
-              35
-            ],
-            [
-              82,
-              1002,
-              843,
-              35
-            ],
-            [
-              82,
-              1038,
-              742,
-              35
             ]
           ],
           "anc": []
@@ -1989,7 +1927,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2011,7 +1949,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2033,7 +1971,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(138, 135, 152)",
+          "color": "rgb(154, 160, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2054,7 +1992,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4439,
+      "render_ms": 20364,
       "ok": true,
       "canvases": [
         {
@@ -2067,8 +2005,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 61.6,
-          "variance": 2551.1
+          "mean": 42.4,
+          "variance": 2499.4
         }
       ],
       "breather": false,

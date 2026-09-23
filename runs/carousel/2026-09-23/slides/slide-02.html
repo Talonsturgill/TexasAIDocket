@@ -1,248 +1,96 @@
 <!doctype html>
-<!-- CAROUSEL 32, frame 2 of 9. Archetype CLOSE_CROP.
-     THE ABSENCE, MADE PHYSICAL. One galvanised exhaust stack and the radiator louvre bank beside
-     it, cropped by the top, left and right edges at detail scale. NO WIRE, CONDUIT, INSULATOR,
-     BUSHING OR TRANSMISSION STRUCTURE APPEARS ANYWHERE IN THE FRAME, and that is the frame's
-     whole content: the audit's only stated consequence is refusal of a connection, and a machine
-     on a pad is not asking for one.
-     THE EDGE TEASE LANDS HERE. The line of skids cut by frame 1's right edge completes into this
-     crop. Same world, one object later.
-     NO HORIZON AND NO SKY, so the reader has no way out of the picture.
-     Frame median L* planned at 36. -->
+<!-- CAROUSEL 32, frame 2 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js.
+     INSIDE THE MACHINE'S OWN SPACE. The hero's radiator end and its stack, cropped by the top,
+     left and right edges, at detail scale, with no wire, conduit or insulator anywhere. The set is
+     turned so its radiator end faces the deck's light. What the frame is missing is the whole of
+     the audit's reach. -->
 <html>
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  /* AND THE PHRASE IS ATTRIBUTED RATHER THAN OWNED. The dek read "The only consequence the
-     audit names is refusal of a connection to the Texas grid", and brand.yaml's voice.dont
-     names calling ERCOT "the Texas grid" as the clearest tell an outsider wrote it: El Paso is
-     WECC, Amarillo is SPP, Beaumont is MISO. c7 says it, so the deck may report it, and what
-     it may not do is say it in its own voice. "calls it" is the whole repair.
-     THE FIRST ATTEMPT AT THIS SHIPPED TWO DEFECTS IN ONE SENTENCE. It read "is, in its own
-     words, being ..." with the phrase in quote marks, which is a hedge fenced off by a pair of
-     commas, banned by this repo's own comma construction rule, and the quote marks broke the
-     storyboard's own parse so layout_check lost this frame's dossier entirely. */
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:1080px; height:1350px; overflow:hidden; background:#322C44; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
   body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
   canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
-  .hook { position:absolute; left:80px; top:198px; width:600px; font-size:104px;
-          font-family:"Fraunces", serif; font-weight:700; line-height:0.93;
-          letter-spacing:-0.026em; color:#E8EAEE; font-variation-settings:"opsz" 130; z-index:10; }
-  .dek  { position:absolute; left:400px; top:388px; width:600px; font-size:27px;
-          line-height:1.42; color:#C4C3CE; z-index:10; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
-             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8A8798;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
              white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:968px; width:920px; font-size:104px; }
+  .dek  { left:82px; width:830px; font-size:29px; }
 </style>
 </head>
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">Denied connection</h1>
-<p class="dek">The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.</p>
+<h1 class="hook" id="hook">A connection to deny</h1>
+<p class="dek" data-follow="22">The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
 <script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
-<script src="@@ASSETS@@/js/txscene.js"></script>
-<script src="@@ASSETS@@/js/txink.js"></script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
-<script>
-window.renderReady = new Promise(function (resolve, reject) {
-  document.fonts.ready.then(function () {
-  try {
-    TXLAYOUT.mount(document.body, {
-      kicker: "What the audit can do", counter: "02 / 09",
-      src: "c7 c10   TEXAS AI DOCKET", ink: "#8A8798"
-    });
-    TX.fitText(document.getElementById("hook"), { min: 74, max: 104, maxLines: 2 });
-
-    var cv = document.getElementById("art"), cx = cv.getContext("2d");
-    cx.scale(2, 2);
-    var M = YARD, W = M.W, H = M.H, G = M.G;
-    TX.reseed(M.SEED + 2);
-    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
-
-    M.print(cx, {
-      seed: 2,
-      draw: function (a) {
-        var S = TXSCENE.create(a, M.cam({ eye: 1.65, horizon: 980, f: 2100, light: { az: -48, el: 28 } }));
-        var P = function (X, Y, Z) { var q = S.project(X, Y, Z); return { x: q[0], y: q[1] }; };
-        var R = M.rng(2);
-        var d = M.castDir();
-
-        /* NO SKY AND NO HORIZON. The enclosure fills the ground behind everything. */
-        a.fillStyle = G.deep; a.fillRect(0, 0, W, H);
-        /* THE PAD IS A REAL GROUND PLANE, so the set stands on something rather than floating.
-         * depth_floor reads this and it is right to: a frame that builds the bench and draws no
-         * plane has used the camera for arithmetic and not for staging. */
-        S.ground({ near: 0.9, far: 26, fill: G.dark });
-
-        /* THE ENCLOSURE FLANK, filling the right two thirds, its louvre fins running to a
-         * vanishing point just off frame. This is the texture gradient cue and it is what
-         * stops the frame being two rectangles. */
-        var Z0 = 2.4;
-        var flankTop = P(1.2, 3.0, Z0), flankBot = P(1.2, 0.30, Z0);
-        a.fillStyle = G.deep;
-        a.fillRect(360, 0, W - 360, H);
-
-        /* THE BANK STARTS AT THE SET'S ROOF, NOT AT THE TOP OF THE PAGE. Running the fins the
-         * full height put twenty six long drawn edges through every glyph band on the frame and
-         * machine QA reported twenty five strikes. It was right to. The cure is not a plate and
-         * not a heavier wash: it is that a louvre bank on a 3 m enclosure does not reach the
-         * sky, and the band above it is the night the type sits in. */
-        var ROOF = 596;
-        a.fillStyle = G.voidd; a.fillRect(0, 0, W, ROOF);
-        a.fillStyle = G.dark;
-        a.fillRect(366, ROOF, W - 366, H - 236 - ROOF);
-        a.fillStyle = G.metal; a.fillRect(366, ROOF, W - 366, 9);   /* the LIT roof edge */
-
-        /* THE FINS, REDRAWN. The first cut leaned each fin's top edge down by up to 26 px across
-         * the bank, so the run of fin tops made a line of shallow arcs under the roof rail and a
-         * reviewer read it, correctly, as a SAGGING CABLE. On the one frame in this deck whose
-         * entire content is that no connection appears anywhere, that is the worst sentence the
-         * art could have said. The same lean also compressed the fin pitch to nothing across the
-         * left two thirds, so the bank was a flat grey field and the frame had no mid range.
-         *
-         * A louvre bank on a radiator end is a run of parallel fins at ONE pitch, all of them
-         * the same height, each a lit leading edge over a shadowed channel. No lean, no arc, and
-         * the pitch chosen so a fin survives the downsample to 432 px. */
-        /* THE BANK IS CLOSED AND IT CONVERGES, AND PARALLEL FINS OVER OPEN DARK WERE A FENCE.
-         *
-         * The first cut leaned the fin tops and made a sagging cable. The second ran them
-         * strictly parallel and strictly vertical over the deck's own floor, and a reviewer read
-         * the result as a PICKET FENCE: evenly pitched uprights on a bottom rail under a top
-         * rail with open dark between every one. On the one frame in this deck whose content is
-         * that no connection and no boundary appears anywhere, that is the second wrong sentence
-         * the same object has said in two rounds.
-         *
-         * Two things separate a radiator bank from a fence and the frame had neither. A bank is
-         * CLOSED, so what lies between the fins is the machine's own shadowed interior and never
-         * the night behind it. And a bank seen from 3.2 m has PERSPECTIVE, so its fins compress
-         * toward the vanishing point instead of marching at one pitch. Frame 1 beside it carries
-         * full linear perspective and this frame was drawn as an elevation. */
-        var bankL = 380, bankR = W, yTop = ROOF + 14, yBot = H - 250;
-        a.fillStyle = G.dark;  a.fillRect(bankL, yTop, bankR - bankL, yBot - yTop);   /* CLOSED */
-        var fins = 20, VP = 1460;
-        for (var i = 0; i < fins; i += 1) {
-          /* the fin pitch compresses toward the vanishing point off the right edge */
-          var f0 = bankL + (bankR + 320 - bankL) * (1 - Math.pow(1 - i / fins, 1.55));
-          var f1 = bankL + (bankR + 320 - bankL) * (1 - Math.pow(1 - (i + 1) / fins, 1.55));
-          var fw = Math.max(2, (f1 - f0) * 0.46);
-          if (f0 > bankR) break;
-          /* each fin leans toward the vanishing point, so the run is a receding surface */
-          var lean = (f0 - VP) * 0.030;
-          a.fillStyle = G.shade;
-          a.beginPath();
-          a.moveTo(f0 - lean, yTop); a.lineTo(f0 + fw - lean, yTop);
-          a.lineTo(f0 + fw + lean, yBot); a.lineTo(f0 + lean, yBot);
-          a.closePath(); a.fill();
-          a.fillStyle = G.metal;
-          a.beginPath();
-          a.moveTo(f0 - lean, yTop); a.lineTo(f0 + fw * 0.30 - lean, yTop);
-          a.lineTo(f0 + fw * 0.30 + lean, yBot); a.lineTo(f0 + lean, yBot);
-          a.closePath(); a.fill();
-        }
-        /* the bank's own bottom return, so the fins stand in the machine rather than on a rail */
-        a.fillStyle = G.deep;  a.fillRect(bankL, yBot - 26, bankR - bankL, 26);
-        a.fillStyle = G.voidd; a.fillRect(bankL, yBot - 8, bankR - bankL, 8);
-        /* the bank falls away from the light toward its own lower edge, which is what gives the
-         * frame a real dark to set against the stack's real light */
-        var bankFall = a.createLinearGradient(0, yBot - 420, 0, yBot);
-        bankFall.addColorStop(0, "rgba(20,17,28,0)");
-        bankFall.addColorStop(1, "rgba(20,17,28,0.62)");
-        a.fillStyle = bankFall; a.fillRect(bankL, yBot - 420, bankR - bankL, 420);
-
-        /* THE STACK, off centre left, running the full height and out of the top edge. Its
-         * LIT LEFT CHEEK is the brightest continuous column in the frame and its right return
-         * is the deck's dark side. */
-        var sxL = 140, sxR = 380, cheek = 104;
-        a.fillStyle = G.dark;   a.fillRect(sxL, 0, sxR - sxL, H);            /* barrel body */
-        a.fillStyle = G.bright; a.fillRect(sxL, 0, cheek, H);                /* LIT left cheek */
-        a.fillStyle = G.voidd;  a.fillRect(sxR - 60, 0, 60, H);              /* shade return */
-        /* THE BARREL FALLS AWAY ABOVE THE ROOF LINE, AND THAT IS THE LIGHT RATHER THAN A PLATE.
-         *
-         * The mast is a LOCAL source near the ground, so a 11.5 m flue is lit at its base and
-         * unlit at its top, which is what a yard actually looks like. The first cut ran the lit
-         * cheek at full strength from the roof to the top edge, making it the brightest
-         * continuous column in the frame, and the hook's first word sat on it: at feed width
-         * "Denied" lost most of its separation from the column behind it. Falling the barrel off
-         * with height fixes the type's ground and is the truer drawing at the same time. */
-        var stkFall = a.createLinearGradient(0, ROOF, 0, 120);
-        stkFall.addColorStop(0.00, "rgba(15,15,18,0)");
-        stkFall.addColorStop(0.62, "rgba(15,15,18,0.72)");
-        stkFall.addColorStop(1.00, "rgba(15,15,18,0.94)");
-        a.fillStyle = stkFall; a.fillRect(sxL - 6, 0, sxR - sxL + 12, ROOF);
-        /* the stack is the ONE thing that does reach the sky, so the weld bands above the roof
-         * are the only drawn edges in the type band, and they are 216 px wide rather than 700 */
-        /* THE BARREL TURNS, AND SIX EVENLY SPACED RUNGS MADE IT A LADDER. Two circumferential
-         * weld seams and a drawn silhouette on both sides is what a galvanised flue actually
-         * carries, and the shade side steps in ONE discrete value rather than fading, which is
-         * what survives the downsample to 432 px. */
-        a.fillStyle = G.voidd; a.fillRect(sxL - 4, 0, 4, H);
-        a.fillStyle = G.voidd; a.fillRect(sxR, 0, 4, H);
-        a.fillStyle = G.shade; a.fillRect(sxL + cheek, 0, (sxR - 60) - (sxL + cheek), H);
-        for (i = 1; i < 3; i += 1) {
-          var by = H * (i / 3) - 5;
-          a.fillStyle = G.metal; a.fillRect(sxL - 8, by, sxR - sxL + 16, 11);
-          a.fillStyle = G.glare; a.fillRect(sxL - 8, by, cheek + 8, 4);
-          a.fillStyle = G.voidd; a.fillRect(sxL - 8, by + 11, sxR - sxL + 16, 5);
-        }
-
-        /* THE SKID RAIL AND THE PAD, in the bottom band, modeled from a lit top edge down to a
-         * dark underside, with the contact spreading down and to the right. */
-        var railY = H - 236;
-        a.fillStyle = G.deep;  a.fillRect(0, railY, W, H - railY);
-        a.fillStyle = G.metal; a.fillRect(0, railY, W, 15);
-        a.fillStyle = G.dark;  a.fillRect(0, railY + 15, W, 34);
-        /* the pad below, with its tooth coarsening toward the reader */
-        var padTop = railY + 96;
-        a.fillStyle = G.dark; a.fillRect(0, padTop, W, H - padTop);
-        for (i = 0; i < 190; i += 1) {
-          var gx = R() * W, gy = padTop + R() * (H - padTop);
-          var gs = 1.4 + (gy - padTop) / (H - padTop) * 4.6;
-          a.fillStyle = R() > 0.5 ? G.shade : G.deep;
-          a.fillRect(gx, gy, gs, gs * 0.7);
-        }
-        /* the contact, down and to the right where the set meets the pad */
-        a.save(); a.globalAlpha = 0.5; a.fillStyle = G.voidd;
-        a.beginPath();
-        a.moveTo(0, padTop); a.lineTo(W, padTop);
-        a.lineTo(W, padTop + 96 + d[1] * 60); a.lineTo(0, padTop + 42);
-        a.closePath(); a.fill(); a.restore();
-
-        /* a bench cast from the deck's ONE declared light, at the foot of the stack */
-        S.shadow({ w: 1.1, h: 2.4, parts: [
-          { type: "rect", x: -0.55, y: 0, w: 1.1, h: 2.4, fill: "ink" }] },
-          { X: -0.6, Z: 5.2, ink: G.voidd, alpha: 0.34 });
-
-        /* THE MAST'S REACH, falling off hard to the right so the crop has a light direction. */
-        a.save(); a.globalCompositeOperation = "lighter";
-        var pg = a.createLinearGradient(80, 0, W, 0);
-        pg.addColorStop(0.00, "rgba(255,255,255,0.20)");
-        pg.addColorStop(0.42, "rgba(255,255,255,0.08)");
-        pg.addColorStop(1.00, "rgba(255,255,255,0)");
-        a.fillStyle = pg; a.fillRect(0, 0, W, H); a.restore();
-
-      },
-      over: function (c) {
-        /* the print is faded to the deck's ground under the fixed furniture bands, and the
-         * light DIMS toward the display type. Both run here, on the finished print, never on
-         * the twin, because the edge pass would otherwise contour the reserve itself. */
-        M.reserve(c, { top: 150, topSolid: 92, bottom: 150, bottomSolid: 94 });
-        M.quiet(c, boxes, 0.44);
-      }
-    });
-
-    TXDECK.finish(cx);
-    resolve();
-  } catch (e) { document.title = "ERR " + e.message; reject(e); }
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'What the audit can do', counter: "02 / 09",
+    src: 'c7 c10 c5   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
-});
+  TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 16, 90], exposure: 1.0, fov: 40 });
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 300, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 80 });
+  const M = Y.mats(TXT);
+
+  /* THE HERO, turned half a turn so the radiator end and its louvres face the key. */
+  const hero = Y.genset(THREE, M, {});
+  hero.rotation.y = Math.PI;
+  TXT.add(R, hero);
+  /* the next set down the line, dark behind, so the crop sits in a yard rather than a void */
+  const next = Y.genset(THREE, M, { detail: false });
+  next.rotation.y = Math.PI; next.position.set(0, 0, -4.6);
+  TXT.add(R, next);
+
+  /* WHAT ONLY A CLOSE CROP SEES, added here rather than in the chassis because it is detail at
+   * this range and noise at every other: forklift pockets through the skid's end rail, lifting
+   * lugs at the four roof corners, and the bird screen behind the louvres. Still no cable. */
+  for (const pz of [-0.7, 0.7]) {
+    const pocket = Y.tile(THREE, 0.06, 0.2, 0.36, M.recess);
+    pocket.position.set(-6.32, 0.28, pz); TXT.add(R, pocket);
+  }
+  for (const [lx, lz] of [[-6.0, 1.1], [-6.0, -1.1], [6.0, 1.1], [6.0, -1.1]]) {
+    const lug = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.022, 8, 16), M.galv);
+    lug.position.set(lx, 3.46, lz); lug.rotation.y = Math.PI / 2; TXT.add(R, lug);
+  }
+  const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.01, 2.3, 0.012), M.skid, 40);
+  const mm = new THREE.Matrix4();
+  for (let k = 0; k < 40; k++) { mm.makeTranslation(-6.12, 1.9, -1.0 + k * 0.052); mesh.setMatrixAt(k, mm); }
+  TXT.add(R, mesh);
+
+  /* Close on the louvred end from low and off its corner, so the end fills the top two thirds
+   * and leaves the top edge, and the pad in front of it holds the type. */
+  TXT.frame(R, { fov: 46, from: [-13.5, 0.9, 2.8], look: [-3.8, 1.4, -0.6] });
+  Y.sky(THREE, R);
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  TXDECK.finish(cx);
+  return true;
+})();
 </script>
 </body>
 </html>

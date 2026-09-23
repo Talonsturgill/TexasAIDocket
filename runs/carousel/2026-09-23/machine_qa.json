@@ -5,117 +5,113 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1849,
-        0.9958,
-        0.9706
+        0.2647,
+        0.1702,
+        0.2114
       ],
-      "band_ratio": 1.3321
+      "band_ratio": 0.9821
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "busy art under text (bg edge density 0.12) beneath 'Denied connection' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "art touching glyphs (4% of the ring around 'c7 c10 c5 TEXAS AI DOCKET', spanning 21%) -- pixel critic verify the label is not crossed"
       ],
       "bands": [
-        0.8866,
-        0.9328,
-        0.9724
+        0.2857,
+        0.3571,
+        0.2684
       ],
-      "band_ratio": 1.0428
+      "band_ratio": 0.8883
     },
     {
       "file": "slide-03.html",
       "fails": [],
-      "warns": [
-        "busy art under text (bg edge density 0.09) beneath 'One sentence names who is asking. One na' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
-        "art touching glyphs (4% of the ring around 'One sentence names who is asking. One na', spanning 100%) -- pixel critic verify the label is not crossed"
-      ],
+      "warns": [],
       "bands": [
-        0.6408,
-        1.0,
-        0.9449
+        0.187,
+        0.1933,
+        0.1636
       ],
-      "band_ratio": 1.0915
+      "band_ratio": 0.9065
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 80% of this slide's own average craft density (top 23% / mid 64% / bottom 31% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 18% / mid 31% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'Approximate data center share of new pow' at 620,1000 459x65 (margin 80px)"
       ],
       "bands": [
-        0.2269,
-        0.645,
-        0.3107
+        0.1849,
+        0.3067,
+        0.1673
       ],
-      "band_ratio": 0.7958
+      "band_ratio": 0.77
     },
     {
       "file": "slide-05.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.3782,
-        0.979,
-        0.7408
+        0.187,
+        0.395,
+        0.318
       ],
-      "band_ratio": 1.0565
+      "band_ratio": 1.0572
     },
     {
       "file": "slide-06.html",
       "fails": [],
       "warns": [
-        "art touching glyphs (3% of the ring around 'c16 c17 TEXAS AI DOCKET', spanning 14%) -- pixel critic verify the label is not crossed"
+        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 37% / mid 23% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ],
       "bands": [
-        0.2122,
-        0.8676,
-        0.9798
+        0.3676,
+        0.229,
+        0.1673
       ],
-      "band_ratio": 1.4
+      "band_ratio": 0.6673
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "busy art under text (bg edge density 0.07) beneath 'The audit was ordered August 3rd. The di' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 21% / mid 39% / bottom 21% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ],
       "bands": [
-        0.1933,
-        0.6429,
-        0.8125
+        0.2101,
+        0.3929,
+        0.2132
       ],
-      "band_ratio": 1.447
+      "band_ratio": 0.7916
     },
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 30% / mid 50% / bottom 27% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ],
+      "warns": [],
       "bands": [
-        0.2983,
-        0.5021,
-        0.2665
+        0.2668,
+        0.271,
+        0.2132
       ],
-      "band_ratio": 0.7581
+      "band_ratio": 0.8575
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 99% / mid 85% / bottom 54% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 25% / mid 52% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ],
       "bands": [
-        0.9853,
-        0.8466,
-        0.5423
+        0.2458,
+        0.5231,
+        0.261
       ],
-      "band_ratio": 0.6952
+      "band_ratio": 0.7687
     }
   ],
   "fails": 0,
-  "warns": 8,
+  "warns": 6,
   "verdict": "WARN"
 }

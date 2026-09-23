@@ -6,17 +6,15 @@ anchored on the words around it, so the value on a frame and the value in the so
 same string by construction. If a quote changes, this raises rather than quietly publishing
 yesterday's number.
 
-ONE DATE IS NOT, AND SAYING SO IS THE POINT. `halt_issued` is typed as 2026-09-21, because it
-is the RELEASE'S OWN PUBLICATION DATE and no quote in this run's claims file contains it. It is
-in the record at `tx-2026-0182`, which is where it is checkable. Both clocks on frame 7, the 49
-and the 28, descend from it. This paragraph used to read "NOT ONE NUMBER IN THIS FILE IS
-WRITTEN BY HAND", which was false with the typed date eleven lines below it, and a scorer said
-so. An absolute claim a file's own body contradicts is worse than a narrower true one.
+THE HALT'S DATE COMES FROM c24. The Tribune's quote says the order came "on Monday" and the
+story is dated 2026-09-21. The date is read from that claim's `published` field and asserted to
+be a Monday, so the day in the quote and the date on the page have to agree or this raises. Both
+clocks on frame 7, the 49 and the 28, descend from it.
 
 WHAT THIS FILE REFUSES TO COMPUTE, and the refusals are the argument.
 
-1. NO SHARE OF THE QUEUE IN MEGAWATTS. c8 gives 474 gigawatts of requests and "approximately
-   90 percent" of the NEW requests being data centers. Those are two different denominators,
+1. NO SHARE OF THE QUEUE IN MEGAWATTS. c8 gives 474 gigawatts of requests and c23 gives
+   "approximately 90%" of the NEW requests being data centers. Those are two different denominators,
    the whole queue and the new arrivals, and multiplying them would publish a gigawatt figure
    nobody measured. The two are carried separately, each saying what it counts.
 
@@ -25,12 +23,10 @@ WHAT THIS FILE REFUSES TO COMPUTE, and the refusals are the argument.
    rating no document states. The engines are drawn as a COUNT and the megawatts as a
    SEPARATE quantity, and nothing on any frame divides one by the other.
 
-3. NO TOTAL OF THE TWO PROJECTS. 76 MW behind the meter (c16) and 200 to 207 MW from a
-   neighbouring plant (c19) are different arrangements at different sites, and NOTHING VERIFIED
-   SAYS WHERE THE METER SITS on the second one. Adding them would assert a class of load that
-   nobody has defined, let alone measured. This paragraph used to say the Odessa plant is itself
-   a grid resource, which no claim among the twenty two supports, and it survived two rounds of
-   repair because each round edited the one copy a scorer quoted.
+3. NO TOTAL OF ANY TWO PROJECTS. This refusal once covered an Odessa supply contract beside
+   the Kodiak one. Its claims were fetched from a host whose robots file refuses this fetcher,
+   no permitted source was found, and they were dropped on 2026-09-23 with the frame that drew
+   them. The refusal stands for the next deck that is tempted to add unlike arrangements.
 
 4. NO COUNT OF PERMITS AFFECTED. The record holds exactly one data center permit by number
    and its program is not established. A deck that counted "the permits this reaches" would
@@ -62,28 +58,31 @@ def num(cid, pattern, label):
 
 
 # ------------------------------------------------------------------ the queue, as stated
-queue_gw = num("c8", r"approximately over ([\d,]+) gigawatts", "474 gigawatts")
+queue_gw = num("c8", r"over ([\d,]+) gigawatts", "474 gigawatts")
 peak_multiple = grab("c8", r"more than (five) times", "five times")
-dc_share = num("c8", r"Approximately (\d+) percent of the new power requests", "90 percent")
+dc_share = num("c23", r"Approximately (\d+)% of the new power requests", "90 percent")
 
 # --------------------------------------------------------- the one behind-the-meter project
 btm_mw = num("c16", r"(\d+) megawatts of behind-the-meter", "76 megawatts")
 btm_units = num("c17", r"approximately (\d+) reciprocating", "about 40 units")
 btm_quarter = grab("c18", r"begin in the (fourth) quarter of 2026", "fourth quarter")
 
-# ------------------------------------------------------------- the adjacent-plant project
-ppa_min = num("c19", r"a minimum of (\d+) MW", "200 MW")
-ppa_max = num("c19", r"up to (\d+) MW", "207 MW")
-plant_mw = num("c20", r"([\d,]+) MW natural gas-fired", "1,180 MW")
-
 # ------------------------------------------------------------------------- the two clocks
-audit_ordered = date(
-    int(re.search(r"On August \d+, (\d{4})", C["c9"]["quote"]).group(1)), 8,
-    int(re.search(r"On August (\d+),", C["c9"]["quote"]).group(1)))
+# THE HALT'S DATE COMES FROM c24 NOW. The Tribune's quote says the order came "on Monday" and the
+# story is dated 2026-09-21. The date is read from the claim's own `published` field and ASSERTED
+# to be a Monday, so the day in the quote and the date on the page have to agree or this fails.
+_c24 = C["c24"]
+assert "on Monday" in _c24["quote"], "c24's quote no longer dates the order"
+halt_issued = date.fromisoformat(_c24["published"])
+assert halt_issued.weekday() == 0, f"c24 says Monday and {halt_issued} is not one"
+# THE AUDIT'S YEAR IS THE HALT'S YEAR, stated rather than typed a second time. c9's quote is
+# "ordering ERCOT on Aug. 3", from the Tribune's September 21st account of this year's sequence,
+# and it carries the day and not the year. The year is the one date already in the record.
+audit_ordered = date(halt_issued.year, 8,
+    int(re.search(r"on Aug\. (\d+)", C["c9"]["quote"]).group(1)))
 report_back = date(
     int(re.search(r"October \d+, (\d{4})", C["c4"]["quote"]).group(1)), 10,
     int(re.search(r"October (\d+),", C["c4"]["quote"]).group(1)))
-halt_issued = date(2026, 9, 21)   # the release's own publication date, in the record at tx-2026-0182
 
 days_audit_to_halt = (halt_issued - audit_ordered).days
 days_halt_to_report = (report_back - halt_issued).days
@@ -96,7 +95,7 @@ FIGURES = {
 
     "queue": {
         "gigawatts": queue_gw, "unit": "GW", "basis": "measured", "from": ["c8"],
-        "said_by": "the Office of the Texas Governor, August 3rd release",
+        "said_by": "ERCOT, as the Texas Tribune reported it on August 3rd",
         "label": "gigawatts of requests to connect to the Texas grid",
         "peak_multiple_words": peak_multiple,
         "peak_note": ("c8 says more than five times the record peak and gives no peak figure, so "
@@ -104,7 +103,8 @@ FIGURES = {
                       "from it."),
     },
     "data_center_share": {
-        "percent": dc_share, "basis": "measured", "from": ["c8"],
+        "percent": dc_share, "basis": "measured", "from": ["c23"],
+        "said_by": "the Governor, as the Texas Tribune reported it on August 3rd",
         "counts": "the NEW power requests, not the whole queue",
         "no_multiply": ("474 GW is the whole queue and 90 percent is of the new requests. Two "
                         "denominators. Nothing here multiplies them and no frame may."),
@@ -118,27 +118,6 @@ FIGURES = {
         "no_division": ("76 over about 40 is a per unit rating no document states, and "
                         "approximately 40 is not a count. Nothing divides these."),
     },
-    "adjacent_plant": {
-        "phase1_min_mw": ppa_min, "phase1_max_mw": ppa_max, "plant_mw": plant_mw,
-        "basis": "measured", "from": ["c19", "c20", "c21"],
-        "said_by": "New Era Energy and Digital",
-        # NO on_grid BOOLEAN, AND ITS ABSENCE IS THE FINDING. It stood here as `on_grid: True`
-        # with a note calling the supplying plant a grid resource, and NO claim among the twenty
-        # two says the Vistra Odessa facility is interconnected, sells into ERCOT or is a grid
-        # resource. Two scorers found the sentence it backed on frame 8 and both were right.
-        #
-        # THE FIRST REPAIR LANDED ON figures.json AND NOT HERE, which is worse than not repairing
-        # it. This file's `__main__` writes that artifact, so the next build would have
-        # republished the refuted boolean under a header promising every value was extracted from
-        # a quote. A third scorer caught that. A repair that reaches the artifact a reader sees
-        # and not the file the next run executes has not landed.
-        "not_established": ("where the meter sits between that plant and that project, in either "
-                            "direction. c19, c20 and c21 are the whole of what was verified and "
-                            "none of them reaches it. Immediately adjacent is a statement about "
-                            "DISTANCE. The deck may not draw this as an escape from the grid and "
-                            "it may not draw it as a grid connection either."),
-    },
-
     "clocks": {
         "audit_ordered": audit_ordered.isoformat(),
         "halt_issued": halt_issued.isoformat(),
@@ -147,24 +126,10 @@ FIGURES = {
         "days_halt_to_report": days_halt_to_report,
         "days_left_to_report": days_left_to_report,
         "basis": "measured",
-        # THE PROVENANCE NAMES ALL THREE SOURCES, AND IT USED TO NAME TWO.
-        #
-        # `from` read ["c9", "c4"] while the one date in this block that is NOT parsed from a
-        # quote, the halt's own, comes from the record at tx-2026-0182 and is typed eleven lines
-        # up. So the single load-bearing figure with the weakest provenance was the one the
-        # provenance did not mention, and the 49 day span and frame 7's SEPTEMBER 21ST both rest
-        # on it. A scorer found it in figures.json and a review bot then found that the repair
-        # had landed on figures.json ALONE: re-running this generator would have silently put
-        # the two-source list back. Same defect as the refuted sentence that survived in four
-        # files, in a fifth place.
-        "from": ["c9", "c4", "tx-2026-0182"],
-        "how": ("The audit date is read out of c9's quote and the report back date out of c4's, "
-                "both by regular expression, and the spans are calendar differences. THE HALT'S "
-                "OWN DATE COMES FROM NEITHER CLAIM. It is the release date the record carries at "
-                "tx-2026-0182 and it is typed into compute.py, which the module docstring "
-                "states. `from` used to list c9 and c4 alone, so the one date in this block that "
-                "is not parsed from a quote was the one the provenance did not name, and it is "
-                "load bearing: the 49 day span and frame 7's SEPTEMBER 21ST both rest on it."),
+        "from": ["c9", "c4", "c24"],
+        "how": ("The audit date is read out of c9's quote, the report back date out of c4's, and "
+                "the halt's date out of c24's published field, asserted to be the Monday c24's "
+                "quote names. The spans are calendar differences."),
     },
 }
 
@@ -172,6 +137,6 @@ if __name__ == "__main__":
     out = HERE / "figures.json"
     out.write_text(json.dumps(FIGURES, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print("wrote", out)
-    for k in ("queue", "data_center_share", "behind_the_meter", "adjacent_plant", "clocks"):
+    for k in ("queue", "data_center_share", "behind_the_meter", "clocks"):
         print(" ", k, json.dumps({a: b for a, b in FIGURES[k].items()
                                   if isinstance(b, (int, float, str)) and len(str(b)) < 40}))
