@@ -4100,3 +4100,39 @@ what the focal competes with.**
 declaring two things that can contradict each other, and nothing checks that they can both be true
 before the frame is drawn. The cheap version is a warning at plan time when a declared focal is a
 LIT element on a frame whose band floor is within a few L* of the deck's own ground.
+
+### 84. A held run has nowhere to put its evidence, so the policy that saves it makes CI red
+
+The delivery policy has two branches and only one of them has a home on disk. A run that SHIPS
+writes `runs/carousel/<date>/` and merges. A run that FAILS is told to "commit its evidence to
+its branch and NOT merge", and the only directory the `daily` lane owns under `runs/` is
+`runs/carousel/**`, which CLAUDE.md's own Layout section defines as **"shipped artifacts, merged
+to main each run"**.
+
+So on 2026-09-23 carousel no. 32 was held at 5.95 against a floor of 7.01, did the right thing,
+and put its evidence in the shipped-work directory because there was nowhere else. `shipped_check`
+scans that directory, refused the deck, and **the branch went red by construction.** One
+`##[error]` in a 4,326 line job, one step, one problem.
+
+**The cost is not the red.** The red is correct and the deck really is below the floor. The cost is
+that the same branch carried the record work, including the fix that stops three items reporting
+as ROTTEN, and `guards.yml` exits 1 on a rotten item. **A held deck took the record hostage**, and
+every pull request against `main` stayed red behind it.
+
+**Neither exit is reachable from inside a run, and that is the actual finding.** Moving the
+evidence to `runs/held/<date>/` needs an `ownership.yaml` entry, and a routine widening the map
+that holds it back is the one thing this repo is most explicit about. Deleting it from `runs/` is
+one of the three stop-and-ask items. So the policy's failure branch **terminates in a state a
+routine cannot leave**, which is the same shape as the six wedged days in the actor-stamp section:
+a rule that makes an unattended run depend on something it cannot grant itself.
+
+**The tempting fix is the wrong one and it is worth naming.** Narrowing `g_completion` so it skips
+a run that has not shipped would clear the red in one line, and `shipped_check`'s own self-test
+exists to stop it: *"reported {g_completion(_d)}, so lowering the rubric laundered a held deck"*.
+A gate that refuses your deck today is not evidence the gate is mis-scoped.
+
+**What to check instead.** `ownership.yaml` should grant `daily` a held-evidence path before a run
+needs one, so the failure branch has a home the way the success branch does. The rule to generalise
+from it: **when a policy has a failure branch, give the failure branch its own writable path at the
+same time you write the rule.** A failure branch that has to borrow the success branch's directory
+is not a failure branch, it is a success branch with worse artifacts in it.
