@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the correction",
   "the object",
   "the place",
   "the quiet decision",
   "the before and after",
-  "the two things"
+  "the two things",
+  "the plain question"
  ],
  "entries": [
   {
@@ -539,15 +539,35 @@
     "#CityDetect"
    ],
    "critic_note": "Two candidates and the rewrite was spent before scoring. The exclusion arrays in this file were ONE RUN STALE again, for the fourth time, so candidate A was disqualified against a move that had in fact shipped the day before and B won on moves verified clean by reading the last entry directly. THEN AN INTEGRITY JUDGE FOUND A HARD FAIL IN IT AND WAS RIGHT. The caption asserted, of the December no automated ticketing promise, 'It held.' Nothing fetched supports that. c44 is FOX 4 reporting what the memo SAYS about the city's own process and c44's own text ends 'reported as kept'; c17 is NBC 5 reporting what 'the city says' its cameras and humans did. Both are the city describing itself. The deck spends four frames showing that the city's self-description of its NOTICE is contradicted by the notice's own text, and the caption took its self-description of its CITATION PROCESS on trust. It now reads 'FOX 4 reported the memo saying a code officer inspects in person before a citation issues. That is the city's account of its own process rather than an audit.' Two smaller repairs from the same judge. '3,700 courtesy notices' counted a different noun than c28, which says notices sent TO 3,700 property owners. And 'FOX 4 reports' parsed in aggregate_check as a count of four reports, which is a false positive worth knowing about: an outlet whose name ends in a numeral followed by a plural noun reads as an aggregate. 'reported' clears it."
+  },
+  {
+   "date": "2026-09-23",
+   "carousel_no": 32,
+   "opening_move": "the number that is wrong",
+   "structure": "Two columns",
+   "closing_move": "Ask the one question the decision leaves open.",
+   "first_line": "ERCOT tracks more than 474 gigawatts in its queue.",
+   "words": 129,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 797,
+   "hashtags": [
+    "#TCEQ",
+    "#ERCOT",
+    "#WestTexas"
+   ],
+   "critic_note": "Two candidates, and the critic's rewrite was spent on an HONESTY exposure rather than on craft. The winning caption closed on 'there is nothing to align to', and the critic pointed out that c22 makes a missed water board survey a bar on TCEQ permits under Water Code Chapter 11, so the sentence held for the ERCOT audit and not for the water one. The fix named the ERCOT audit specifically and added the survey as a SEPARATE instrument reached on the same applicant test, which is the finding rather than a hedge on it. A flow critic then caught that the added sentence floated: it named an instrument appearing on no frame, was unattributed, and collided with frame 4's kicker TWO INSTRUMENTS, TWO AXES. It is attributed to the water board now and marked separate. THE EXCLUSION ARRAYS IN THIS FILE WERE ONE RUN STALE AGAIN, for the fifth time: they listed 'the correction' and 'Clock' where the last entry is 'the plain question' and 'Question and answer'. They were derived from ledger_check.windows() against the entries themselves this run rather than read as written. REPAIRED ON THE SAME DAY: the winning caption's water directive paragraph rested on c22, which had been fetched from a host whose robots file refuses this fetcher and was dropped with no permitted source. The paragraph is cut, the 474 figure is attributed to ERCOT as the Tribune reported it, and the 90 percent to the Governor.",
+   "ending_note": "The caption and the deck ended in different places for two rounds: the caption closed on frame 7's October 19th clock and never mentioned frames 8 or 9. It closes on the canceled Bexar County hearing now, which is frame 9, so the last beat a reader meets first and the last frame they swipe to are the same beat.",
+   "move_note": "Named off the CAPTION_CRAFT menu rather than freehand, which ledger_check refused twice and was right to: a made up name cannot be excluded by a list of real ones. The opening is 'the number that is wrong' because 474 gigawatts is the figure a reader will take for the data center number and the next two sentences say it is the whole queue and that the ninety percent is of a different denominator. The structure is 'Two columns' because the halt's test, who is asking, sits beside the audit's test, what is advancing through the interconnection process, and the gap between them is the story."
   }
  ],
  "structures_recent": [
-  "Clock",
   "Pivot",
-  "Ledger"
+  "Ledger",
+  "Question and answer"
  ],
  "closing_moves_recent": [
-  "Ask the one question the decision leaves open."
+  "name what is still not public"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

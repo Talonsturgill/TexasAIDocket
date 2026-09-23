@@ -1,0 +1,137 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Land, water and permitting",
+ "dek": {
+  "text": "A permit halt is scoped by who asks for the permit. It waits on two audits, and the record states the scope of only one of them.",
+  "claims": [
+   "c1",
+   "c3",
+   "c5"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "The Governor [directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects](c1). In the Governor's own words as CBS Texas carried them, [TCEQ will issue no permits sought by data center projects](c3) until data centers complete the ERCOT and water board audits.",
+   "claims": [
+    "c1",
+    "c3"
+   ]
+  },
+  {
+   "text": "The directive reaches past the one agency it is addressed to. The Texas Tribune reports that it says [no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired](c2). It also sets a date for a [report to the Office of the Governor on its compliance with the directive](c4), October 19th.",
+   "claims": [
+    "c2",
+    "c4"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Two scopes",
+   "paragraphs": [
+    {
+     "text": "The halt is written around the applicant. It names permits sought by data center projects. It waits on two audits. The Tribune reports the August letter aimed the ERCOT audit at [all data centers advancing through ERCOT's interconnection queue](c5). The Tribune dates that order [August 3rd](c9).",
+     "claims": [
+      "c1",
+      "c5",
+      "c9"
+     ]
+    },
+    {
+     "text": "Troutman Pepper Locke reads the directive as saying the agency [must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)](c11). Two audits, then. The record gives the ERCOT audit's scope and states nothing about the water board's.",
+     "claims": [
+      "c11",
+      "c3",
+      "c5"
+     ]
+    },
+    {
+     "text": "The Governor's August 3rd statement, as the Texas Tribune quoted it, names a grid consequence. [Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid](c7). The Tribune reports the same consequence for a project that does not finish. [Projects that fail to complete the ERCOT audit are to be denied interconnection](c10). Refusal of a connection reaches a project that is asking for one.",
+     "claims": [
+      "c7",
+      "c10"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The size of the queue",
+   "paragraphs": [
+    {
+     "text": "ERCOT is [currently tracking more than {{number:c8}} projects in the queue, representing over {{number:c8:1}} gigawatts of electricity](c8), the Texas Tribune reported on August 3rd. The Governor puts [approximately {{number:c23}} of the new power requests](c23) at data centers. Those are two different denominators, the whole queue and the new requests. Nothing in the record multiplies one by the other.",
+     "claims": [
+      "c8",
+      "c23"
+     ]
+    },
+    {
+     "text": "Nothing in this record counts how many permits the halt reaches, and this edition publishes no estimate dressed as a measurement.",
+     "claims": [
+      "c1",
+      "c2",
+      "c3"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Behind the meter",
+   "paragraphs": [
+    {
+     "text": "A gas compression company says it will supply one data center with [{{number:c16}} megawatts of behind-the-meter, baseload power capacity](c16) from [approximately {{number:c17}} reciprocating natural gas-fueled generation units](c17). Deployment is [expected to begin in the fourth quarter of 2026](c18). Nothing in the record says whether that project sits in the queue the audit reads.",
+     "claims": [
+      "c16",
+      "c17",
+      "c18"
+     ]
+    },
+    {
+     "text": "Being outside the queue is not the same as being outside the halt. As the Governor's words were reported, the halt is scoped by who is asking for a permit. One of the audits it waits on has a scope this record does not state.",
+     "claims": [
+      "c1",
+      "c11",
+      "c3"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What this edition does not establish",
+   "paragraphs": [
+    {
+     "text": "It does not establish that any behind-the-meter project needs, or escapes, an environmental permit. The agency publishes an [Overview of air permitting requirements and options for new internal combustion engine operations](c15). It also publishes a [List of facilities typically found at sources that need New Source Review permits](c14). Whether a particular installation needs one is a question this record does not answer, and no mechanism is asserted here.",
+     "claims": [
+      "c14",
+      "c15"
+     ]
+    },
+    {
+     "text": "It does not establish that any permit was refused, withdrawn or denied. What the record carries is a [canceled notice and comment hearing on data center permit O4791](c12). The agency says the hearing [will be rescheduled for a later date](c13) and gives no date.",
+     "claims": [
+      "c12",
+      "c13"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0171",
+   "label": "The water board directed to enforce the state water survey"
+  },
+  {
+   "id": "tx-2026-0143",
+   "label": "ERCOT's Batch Zero questionnaires and what a non-answer costs"
+  },
+  {
+   "id": "tx-2026-0108",
+   "label": "An Armstrong County load shed in full, then left without conditions"
+  }
+ ]
+}

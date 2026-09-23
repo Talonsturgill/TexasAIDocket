@@ -2,11 +2,17 @@
 
 Written 2026-09-11, the upgrade session after carousel no. 21, on the owner's instruction that
 the artwork was "very mediocre" and had to be a different order of thing by the next run. This
-file is the whole of that answer in one place: the diagnosis, the law, the ten layouts, the print
-register, the five libraries, the order of work, and the gate that reads the pixels afterwards.
+file is the whole of that answer in one place: the diagnosis, the law, the ten layouts, THE
+RENDER, the libraries, the order of work, and the gates.
 **Read it before the directors room. Read it again before the art build.** The example that
-shows all of it working is `examples/editorial-deck/`, nine frames with their storyboard, and
-its contact sheet is what a director should look at before pitching.
+shows it working is `examples/figure-bearing/`, solid shaded forms drawing a computed figure,
+the owner's own worked example, and its contact sheet is what a director looks at before pitching.
+
+> **THE PRINT SCREEN IS DELETED (owner, 2026-09-23).** *"delete that fallback bullshit look, make
+> it impossible for me to have to tell u this again."* `assets/js/txink.js` and
+> `examples/editorial-deck/` are gone, `scripts/carousel/print_ban.py` fails the build if either
+> returns, and every frame is RENDERED. Read THE RENDER below. Anything in this file that still
+> describes a screen, a paper stock or a print is history and is marked as such.
 
 ## The diagnosis, so the cure is not mistaken for taste
 
@@ -31,8 +37,10 @@ The cause was structural, four ways at once, and none of them was a lapse of tas
    the room and nobody in it. A figure gives every object beside it a size, gives the reader
    somewhere to stand, and turns a statistic into a count of people.
 
-So the cure is not a nicer gradient. It is a camera, a subject drawn at true scale, a decision
-per frame about where the image goes, a print register that says a hand made it, and a gate.
+So the cure is not a nicer gradient. It is a camera, a subject RENDERED at true scale with a real
+material and a real light, a decision per frame about where the image goes, and a gate. (This
+sentence said "a print register that says a hand made it" until 2026-09-23. The print register
+became the faded look the owner rejected, and it is deleted.)
 
 ## THE DECK IS THE UNIT (2026-09-16, owner, and it outranks every rule below it)
 
@@ -96,7 +104,7 @@ composition is still written per frame, which is the whole strength of this mach
 The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
 not edit the workshop.
 
-### ONE LIGHT, ONE RAMP, ONE GRADE, ONE SCREEN
+### ONE LIGHT, ONE MATERIAL, ONE GRADE, AND NO SCREEN
 
 Declared once in the chassis, for all nine frames. Not one per frame, which is what the old
 wording under THE PRIMARY IMAGE LAW said and what produced nine unrelated pictures.
@@ -108,7 +116,7 @@ graded, so the grade can be strong without costing a single point of legibility.
 
 ### THE CONTINUITY MANDATE, and it replaces the old variety mandate
 
-The old rule said the deck must turn the page: nine different layouts, a different screen each
+The old rule said the deck must turn the page: nine different layouts, a different look each
 time, at least five distinct archetypes, never the same one twice running. **That rule is why
 the deck does not flow together, and the machine was obeying it correctly.** It was told the
 wrong thing.
@@ -541,7 +549,7 @@ What follows from it:
   is what the judges called "objects in a void". At least four frames of nine bleed an edge.
 - **One accent per deck, used with restraint.** One colour from `config/brand.yaml`, never the
   flag red, present on three to six frames and never over eight percent of any frame. The rest
-  of the deck is paper and ink.
+  of the deck is the rendered world in its own materials and light.
 - **One light per scene.** Declared once, in the camera, and every shadow in the scene falls
   from it.
 
@@ -552,7 +560,7 @@ carries a copy its self-test asserts against that file. The names:
 
 | archetype | the image | the type |
 |---|---|---|
-| **FULL_BLEED** | fills the frame edge to edge | one reserve, a band top or bottom, kept quiet by the scene itself (a black ceiling, a dark sky, `TXINK.reserve`) |
+| **FULL_BLEED** | fills the frame edge to edge | one reserve, a band top or bottom, kept quiet by the scene itself (a black ceiling, a dark sky, `the render keeps it quiet by construction) |
 | **SPLIT_HORIZON** | one side of one straight horizontal cut, at least 55 percent of the height | the other side, on flat ground |
 | **TYPE_AS_OBJECT** | the headline IS the image, carved, cast, stacked, extruded, poured | the rest is small. At most one per deck |
 | **OBJECT_AND_CAPTION** | one object drawn large on a ground plane with a horizon, the poster | a short caption beside or under it |
@@ -578,39 +586,78 @@ CLOSE_CROP. A claim about a place wants FULL_BLEED or SPLIT_HORIZON. A claim tha
 own words wants DOCUMENT. A count wants GRID. A mechanism wants DIAGRAM. A where wants MAP. A
 "how big" wants FIGURE_SCALE. A single phrase that is the whole story wants TYPE_AS_OBJECT, once.
 
-## THE PRINT REGISTER
+## THE RENDER (2026-09-23, owner, and it REPLACES the print register, which is deleted)
 
-A gradient is what a screen does when nobody decided anything. A print is a set of decisions: a
-paper, an ink, a screen that turns tone into marks a reader can see, a contour that says a hand
-drew the edge, and plates that do not quite register. That is why an illustration in a magazine
-looks made and a stock vector looks placed, and it is the whole surface of this system.
+**The owner, verbatim:** *"a few days ago we made a bunch of updates to the automation so that it
+would stop just trying to use like that faded look with the stupid shapes because it looked bad.
+And so it would start actually creating like its own artwork for each run. But it's not doing
+that. It's reverted back to the same old bullshit artwork on these last runs."* And then:
+*"delete that fallback bullshit look, make it impossible for me to have to tell u this again."*
 
-`TXINK.print` does it in one call. The scene is drawn in GREYS into an offscreen twin, then:
+### What the faded look was, measured
 
-1. **Paper.** The ground colour with fibre and a faint mottle. Night paper (`#0F0C1C`) is the
-   house default because the brand caps light decks at one in eight. A light deck is the same
-   pipeline with a pale paper and dark ink.
-2. **Screen.** The twin's tone becomes marks in the ink. Four screens, and the choice is named
-   in the dossier and held by the critic:
-   - `halftone`, round dots on a rotated grid, the newspaper photograph. Cell 6 to 9.
-   - `line`, parallel lines whose weight carries the tone, the banknote. Cell 4 to 6.
-   - `hatch`, three threshold passes at three angles, the engraver's cross hatch. Cell 6 to 8.
-   - `stipple`, jittered dots whose count carries the tone, the field guide, stars, stone.
-     Cell 5.
-   Under cell 4 a screen becomes texture and stops being a mark. Over 12 the tone breaks up.
-3. **Contour.** A Sobel on the twin, laid as ink a pixel or so out of register. This is what
-   makes a flat shape read as drawn.
-4. **The accent plate.** Anything that must stay flat colour is painted last in `over`: the one
-   accent, and any type reserve (`TXINK.reserve`).
+This section used to be THE PRINT REGISTER: every scene drawn in greys on an offscreen twin, then
+pushed through a halftone, line, hatch or stipple screen onto a paper stock by `TXINK.print`. It
+argued that "a gradient is what a screen does when nobody decided anything". What it produced was
+one engraved texture over every surface, so steel, caliche, water and sky all read as the same
+faded etching, and that texture is what the owner has been rejecting since September 20th.
+Loaded, by frame:
 
-**ONE SCREEN FOR THE DECK, chosen in the chassis** (amended 2026-09-16). This paragraph used to
-read "vary the screen across the deck the way the layouts vary", and it was wrong in the same way
-the rotation rule was wrong. A screen is the deck's STOCK. Changing stock between frames is not
-variety, it is a different print job, and it is half of why the value track strobed. Nine
-halftones is not "one drawing nine times" if the nine drawings are different, any more than nine
-photographs on the same film stock are one photograph. What must vary between frames is the
-SUBJECT and the CAMERA. What must not vary is the paper, the ink, the screen, the light and the
-grade.
+| decks | frames printed | |
+|---|---|---|
+| 2026-09-14, -15, -16 | 9 of 9 | |
+| 2026-09-17, -18 | 0 of 9 | the owner's fixes had landed |
+| 2026-09-19, -20, -21, -23 | 9 of 9 | **reverted** |
+
+**`assets/js/txthree.js`, the GPU physically based bench, was loaded by ZERO frames in the
+history of this repository.** It was always here.
+
+### Why it came back, because the September 20th fix missed this
+
+It was not drift. This file and `prompts/daily_routine.md` ORDERED it. The routine said every
+frame is "printed in paper and ink" and pointed every director at `examples/editorial-deck/`, a
+deck built on the print, as "what a 7 looks like". The treatment director, the pixel critic and the
+flow critic carried the same pointer. September 20th added THE ARTWORK CARRIES THE DATA and THE
+FRAME STANDS IN A PLACE, both right, and **neither asked whether a frame was printed**, so every
+run passed both new gates while producing the look they were written to end. A fix that does not
+measure the defect does not hold.
+
+Pixel statistics could not have caught it either, and that was measured on 2026-09-23 rather than
+assumed: a high frequency residual scored the owner's own worked example at 0.84, higher than a
+printed deck, and a spectral periodicity test scored one printed deck at 0.00 because shipped WebP
+compression erases the frequencies a screen lives in. **The look is chosen in the code, so
+`print_ban.py` refuses it in the code.**
+
+### What a frame is now
+
+The sister corpus's own doctrine is THE RENDERED LADDER: *"hero slides should reach for the
+highest rung the story supports. GPU PBR, real materials, soft shadow maps, IBL reflections, ACES.
+The default for object heroes."* Its decks render solid objects and carry ONE hero object through
+all nine frames, a tide staff on one deck and a sea ice model on another. No screen anywhere.
+
+1. **ONE HERO OBJECT, modelled once and carried through the deck.** Built as `three.js` geometry
+   in the deck's chassis (`TXT.extrude`, `TXT.lathe`, `TXT.tube`, boxes with bevels), so every
+   frame renders the SAME object from a new camera or in a new state. That is the continuity
+   device, and it is stronger than any screen, because a reader recognises a thing before they
+   recognise a texture.
+2. **A real material and one rig.** `TXT.mat.steel`, `clay`, `plastic`, `emissive`, lit by one of
+   `TXT.rigs` chosen in the chassis for the deck. Soft shadow onto a ground the object touches,
+   and a contact where it touches.
+3. **At least six of nine frames render through `txthree.js` and call `snapshot()`.** Counted by
+   `print_ban.py`. The others may be solid shaded forms on the canvas bench (`S.box`, `S.slab`,
+   the way `examples/figure-bearing/` does it). None is printed.
+4. **The figure is geometry.** Forty engines are forty rendered units, a ratio is two rendered
+   lengths at ONE scale, and any quantity uses parallel projection. Perspective is for scenes.
+5. **The finish is a GRADE, never a screen.** `txpost.js` for tone, a vignette and fine grain over
+   a render. Grain on a solid render reads as film. A screen over it reads as the faded look.
+6. **Text stays DOM**, seated in quiet the render leaves for it, because the PDF must keep vector
+   type and because 3D type is how a render starts looking like a template.
+
+### What a director is told
+
+Pitch the HERO OBJECT first, in metres, as geometry: what it is, what it is made of, and the one
+thing about its shape the story turns on. Then nine cameras and states of that object. A pitch that
+names a screen, a paper, a stock or a print register is pitching the deleted look.
 
 ## THE FIVE LIBRARIES
 
@@ -621,7 +668,7 @@ missing dependency:**
 
 ```
 noise.js  txtype.js  txcolor.js  txpost.js  txdeck.js  deck/<date>-<world>.js  [txscene.js txfig.js
-txobjects.js txink.js]  txlayout.js
+txobjects.js]  txlayout.js        and, as an ES module, three.module.min.js + txthree.js
 ```
 
 `txcolor.js` and `txpost.js` are NOT optional and are not "for hero frames". They were loaded by
@@ -704,27 +751,35 @@ four part kinds: `poly`, `rect`, `ellipse`, `line` (thick, round capped). The ta
 of the example deck is nine lines. When a run draws one worth keeping, it goes in the backlog as
 a proposal for the catalogue.
 
-### txink.js — the print
+### txthree.js — the render (and txink.js, which is deleted)
+
+`txink.js` sat here until 2026-09-23 and is deleted on the owner's instruction. Its API is not
+reproduced, because a signature in this file is an invitation to call it.
 
 ```js
-TXINK.print(cx, {
-  ground:"#0F0C1C", ink:"#EDE6D6", fibre:0.05, seed:21,
-  screen:{ mode:"halftone", cell:6, angle:22, gamma:1.15, floor:0.05 },
-  edges:{ threshold:20, width:1.4, alpha:0.8, dx:1.0, dy:-0.8 },
-  draw:  function (a) { /* the scene, in greys, on a */ },
-  over:  function (c) { TXINK.reserve(c, { ground:"#0F0C1C", bottom:200, bottomSolid:130 });
-                        /* the accent plate */ }
-});
+// an ES module script, inside window.renderReady
+const THREE = await import('@@ASSETS@@/js/three.module.min.js');
+const TXT   = (await import('@@ASSETS@@/js/txthree.js')).init(THREE);
+const R = TXT.setup(document.getElementById('scene'),
+                    { w:1080, h:1350, bg:0x0b0f16, fog:[0x0f1520, 10, 40], exposure:1.1 });
+TXT.environment(R, { intensity: 0.5 });    // procedural IBL, so metal reflects something
+TXT.rig(R, TXT.rigs.arcticNight);          // ONE rig for the deck, chosen in the chassis
+TXT.ground(R, { color: 0x1a1a1f, y: 0 });  // the object stands ON something
+const hero = buildHero(THREE, TXT);        // the deck's one object, from the chassis
+TXT.add(R, hero);                          // add() sets the shadow flags
+TXT.frame(R, { from:[7, 3.4, 9], look:[0, 1.2, 0], fov:42 });
+const shot = await TXT.snapshot(R);        // render + black frame sentinel
+if (!shot.ok) throw new Error('black frame'); // never ship a black rectangle
 ```
 
-The pieces are separate when you need them: `TXINK.canvas`, `screen`, `edges`, `duotone`,
-`posterise`, `tint`, `paper`, `press`, `wobble` (an SVG path redrawn by hand), `hatchFill`.
+Verified in this container on 2026-09-23: WebGL2 through SwiftShader, a PBR steel solid with fog
+and a soft shadow rendered cleanly in 5.8 seconds. Rules: `setup` sets pixel ratio before size,
+so the 2x store is filled; never `Math.random`, use `TX.rng(seed)`; text stays DOM; perspective
+for scenes and parallel projection for any quantity; fog in the sky's own hue.
 
-**The reserve rule.** Type never sits on a screen. The scene keeps the type's zone dark by
-construction (a black ceiling, the sky above the horizon glow, the floor falling to black away
-from the pool of light) or `TXINK.reserve` fades the print to paper under the furniture band.
-The furniture band is 130 px top and bottom. A frame whose only quiet zone is the reserve is
-still a frame with an image on it, which is the point.
+**The reserve rule survives the print.** Type never sits on busy surface. The render keeps the
+type's zone quiet by construction: sky above a horizon, a dark ceiling, a floor falling off away
+from the key light. The furniture band is 130 px top and bottom.
 
 ### txlayout.js — the table and the furniture
 
@@ -745,7 +800,8 @@ a regex and a line a script mounts is not in the file. `mount` throws if asked f
    ran out where the argument lands. Build the close first, then the turn, then the open.
 3. **Image before type, on every frame.** Draw the scene, render it, look at it at 432 px with
    no type on it. If it is not an image yet, no headline will make it one.
-4. **One frame, one screen, one light.** Declared in the dossier, held by the critic.
+4. **One hero object, one material, one light, for the deck.** Declared in the chassis, held by
+   the critic. Nothing is screened.
 5. **Then the type,** into the reserve the image left. `TX.fitText` for the hook. The furniture
    through `TXLAYOUT.mount`.
 6. **Then the gates,** `qa.py` and `layout_check.py --require`, before any critic sees a
@@ -775,18 +831,18 @@ which is the finding the judges made in words and the number that says the gate 
   the subject in until it owns its rect, and let something else carry the distance.
 - **A crowd as a mass.** Figures at the same tone as the furniture beside them merge into one
   pale shape. Give the figures and the objects different greys in the twin.
-- **A screen under type.** The contrast gate will catch it and the critic will fail it. The
-  scene keeps the reserve dark, or `TXINK.reserve` does.
+- **Busy surface under type.** The contrast gate will catch it and the critic will fail it. The
+  render keeps the reserve quiet by construction: sky, ceiling, or a floor falling off.
 - **A ring or a leader through a letter.** Draw marks beside type in the DOM (an SVG path), and
   end every leader short of the glyph band. `qa.py` reads a canvas stroke through a line as a
   strikethrough, and it is right.
 - **Rotated DOM text.** The QA's line boxes are axis aligned and rotated lines overlap. Rotate
   the drawn sheet a degree if you must, never the type by more than that.
 - **The accent everywhere.** One object, one stroke, one window. Three to six frames.
-- **Nine halftones.** One screen for the deck, chosen in the chassis. This line read "vary the
-  screen with the layout" until 2026-09-18 and it was the old variety mandate surviving in the
-  imperative, three hundred lines under the paragraph that amended it. What varies between
-  frames is the subject and the camera.
+- **Any screen at all.** Halftone, line, hatch, stipple: the print screen is DELETED on the
+  owner's instruction of 2026-09-23 and `print_ban.py` fails the build on one. What varies
+  between frames is the camera and the state of the hero object. What holds them together is
+  that it is the SAME object, rendered in one material under one rig.
 - **A slab where a thing should be.** If it is not in the catalogue, draw it in metres from
   parts, and put it in the backlog.
 - **Nine frames that are one call.** `bespoke_check` compares slide CODE and fails a deck at a

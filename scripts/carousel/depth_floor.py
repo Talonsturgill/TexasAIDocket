@@ -194,7 +194,85 @@ def chassis_light(chassis_src: str) -> tuple[float, float] | None:
     return float(az.group(1)), float(el.group(1))
 
 
+# THE GPU BENCH STAGES A FRAME TOO, and until 2026-09-23 this file could not see it.
+#
+# Every cue above is a TXSCENE call, so a frame rendered through `assets/js/txthree.js`, which
+# places a physically based object through a perspective camera onto a ground plane under a
+# shadow mapped key light with fog, scored as unstaged with zero cues. The gate was measuring the
+# TOOL rather than the depth. That mattered the day the print screen was deleted and the routine
+# made the GPU bench the default, because the old answer would have been to keep drawing in 2D to
+# satisfy a gate, which is how the flat look survives.
+#
+# The same discipline as the canvas bench: cues are calls on the BOUND instance, so a frame that
+# imports the bench and draws nothing with it earns nothing.
+GPU_BIND = re.compile(r"(?:(?:var|let|const)\s+)?([A-Za-z_$][\w$]*)\s*=\s*\(\s*await\s+import\s*\("
+                      r"[^)]*txthree\.js[^)]*\)\s*\)\s*\.init\s*\(")
+GPU_CUES = {
+    "LINEAR_PERSPECTIVE": ("frame",),        # a perspective camera placed in the world
+    "HEIGHT_IN_FIELD":    ("ground",),       # the plane everything stands on
+    "FORM_SHADING":       ("mat.",),         # a physically based material under a key light
+}
+
+
+# THE STATIC FORM, which is what a frame writes once craft_floor refuses a dynamic import():
+#     import { init } from '@@ASSETS@@/js/txthree.js';   const TXT = init(THREE);
+GPU_STATIC = re.compile(r"import\s*\{\s*init(?:\s+as\s+([A-Za-z_$][\w$]*))?\s*\}\s*from\s*"
+                        r"['\"][^'\"]*txthree\.js['\"]")
+
+
+def _static_bench_names(src: str) -> set[str]:
+    out = set()
+    for m in GPU_STATIC.finditer(src):
+        fn = m.group(1) or "init"
+        out |= set(re.findall(r"(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*" + re.escape(fn)
+                              + r"\s*\(", src))
+    return out
+
+
+def gpu_report(src: str) -> dict | None:
+    """Staging for a frame rendered through txthree.js, or None if it does not use it."""
+    names = {m.group(1) for m in GPU_BIND.finditer(src)} | _static_bench_names(src)
+    if not names:
+        return None
+    alt = "|".join(re.escape(n) for n in sorted(names))
+    def has(method: str) -> bool:
+        return re.search(r"\b(?:" + alt + r")\." + re.escape(method).replace("\\.", "\\.")
+                         + (r"" if method.endswith(".") else r"\s*\("), src) is not None
+    cues = {k for k, ms in GPU_CUES.items() if any(has(m) for m in ms)}
+    adds = len(re.findall(r"\b(?:" + alt + r")\.add\s*\(", src))
+    looped = re.search(r"for\s*\([^)]*\)\s*\{[^}]*\b(?:" + alt + r")\.add\s*\(", src, re.S)
+    if adds >= 2 or looped or ".clone(" in src:
+        cues |= {"OCCLUSION", "RELATIVE_SIZE"}
+    setup = re.search(r"\b(?:" + alt + r")\.setup\s*\((.*?)\)\s*;", src, re.S)
+    if setup and re.search(r"\bfog\s*:", setup.group(1)):
+        cues.add("AERIAL")
+    deck_lit = has("deckRig")
+    rigged = deck_lit or has("rig")
+    added = adds >= 1
+    shot = re.search(r"\.snapshot\s*\(", src) is not None
+    if rigged and added:
+        cues.add("CAST_SHADOW")
+    placed = has("frame") and added
+    grounded = has("ground")
+    return {
+        "cues": cues,
+        "bench": True,
+        "placed": placed,
+        "shadow": rigged and added,
+        "ground": grounded,
+        "staged": placed and grounded and rigged and added and shot,
+        # A frame lit by deckRig agrees with its chassis BY CONSTRUCTION, because the key's
+        # direction is read from TXDECK.declare. A frame lit by TXT.rig alone carries its own key
+        # position, which is a second copy of the light, and reads as unreadable, fail closed.
+        "light": "deck" if deck_lit else None,
+    }
+
+
 def frame_report(name: str, src: str) -> dict:
+    g = gpu_report(src)
+    if g is not None:
+        g["name"] = name
+        return g
     al = bench_aliases(src)
     bench = bool(CREATE.search(src))
     hit = cues_in(src, al)
@@ -249,6 +327,8 @@ def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
     # ONE LIGHT, AND THE TWO SURFACES THAT HOLD IT MUST AGREE.
     if deck_light is not None:
         for f in frames:
+            if f["light"] == "deck":
+                continue      # txthree's deckRig reads the chassis's own light, so it agrees
             if f["light"] is None:
                 # FAIL CLOSED (2026-09-20, review). `TXSCENE.create(cx, CAM)` and a call with no
                 # `light` key both read as None here, and skipping them let the bench fall back
@@ -558,6 +638,43 @@ def self_test() -> int:
             continue
         got = check(frames_in(sd), load_config(), deck_light_of(sd))
         ok(f"the shipped {date} deck is refused", bool(got), "it passed")
+
+    # THE GPU BENCH, 2026-09-23. A frame rendered through txthree.js places a physically based
+    # object through a perspective camera onto a ground plane under a shadow mapped key light,
+    # and this gate used to score it as unstaged with zero cues.
+    GPU = ("<script type=\"module\">window.renderReady=(async()=>{"
+           "const THREE=await import('@@ASSETS@@/js/three.module.min.js');"
+           "const T=(await import('@@ASSETS@@/js/txthree.js')).init(THREE);"
+           "const R=T.setup(c,{w:1080,h:1350,fog:[0x0f1520,10,40]});"
+           "T.deckRig(R,T.rigs.arcticNight); T.ground(R,{});"
+           "const m=new THREE.Mesh(g,T.mat.steel()); for (let i=0;i<40;i++){ T.add(R,m.clone()); }"
+           "T.frame(R,{from:[1,2,3]}); await T.snapshot(R);})();</script>")
+    g = frame("g", GPU)
+    ok("a GPU rendered frame is STAGED", g["staged"], str(g))
+    ok("...and carries at least five distinct cues", len(g["cues"]) >= 5, str(sorted(g["cues"])))
+    ok("...and its light agrees with the chassis by construction", g["light"] == "deck", str(g["light"]))
+    ok("nine GPU frames satisfy the deck floor",
+       check([frame(f"s{i}", GPU) for i in range(9)], cfg, (40.0, 30.0)) == [])
+    rigonly = frame("r", GPU.replace("T.deckRig(R", "T.rig(R"))
+    ok("a GPU frame lit by its OWN rig carries a second copy of the light and fails closed",
+       any("cannot be read" in x for x in check([rigonly] * 9, cfg, (40.0, 30.0))),
+       str(check([rigonly] * 9, cfg, (40.0, 30.0)))[:160])
+    ok("importing the GPU bench and drawing nothing with it is NOT staged",
+       not frame("i", "<script type=\"module\">const T=(await import('@@ASSETS@@/js/txthree.js')).init(THREE);"
+                 "</script>")["staged"])
+    ok("a GPU frame that never snapshots is NOT staged",
+       not frame("n", GPU.replace("await T.snapshot(R);", ""))["staged"])
+    ok("a GPU frame with no ground plane is NOT staged",
+       not frame("f", GPU.replace("T.ground(R,{});", ""))["staged"])
+    STATIC = GPU.replace("const T=(await import('@@ASSETS@@/js/txthree.js')).init(THREE);",
+                         "").replace("<script type=\"module\">",
+                                     "<script type=\"module\">import { init } from "
+                                     "'@@ASSETS@@/js/txthree.js';const T=init(THREE);")
+    ok("the STATIC import form binds the bench too, and stages",
+       frame("s", STATIC)["staged"] and frame("s", STATIC)["light"] == "deck", str(frame("s", STATIC)))
+    ok("...and a static import with nothing drawn is NOT staged",
+       not frame("s0", "<script type=\"module\">import { init } from '@@ASSETS@@/js/txthree.js';"
+                       "const T=init(THREE);</script>")["staged"])
 
     print(f"\ndepth_floor self-test: {'FAIL' if fails else 'ok'}, {len(fails)} failure(s)")
     return 1 if fails else 0

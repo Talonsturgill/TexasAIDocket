@@ -1,0 +1,42 @@
+{
+ "weighted_score": 6.526,
+ "judges": [
+  6.526,
+  6.82,
+  6.472
+ ],
+ "spread": 0.348,
+ "criteria": {},
+ "hard_fails": [
+  "An unverified fact presented as verified. caption.txt: 'That project never joins the queue.' No claim supports it; c16 establishes only that 76 MW of SUPPLY is behind the meter, and a site can take behind the meter baseload and still hold a queue position for the rest of its load.",
+  "A DATE IN THE POST'S OWN YEAR CARRIES A YEAR, four times on frame 7. The run's own caption prints the same three dates correctly without the year, so two surfaces of one post give two answers to a rule the run demonstrably knows. caption_check.post_shape_problems is reached only from run(), which is called on caption.txt alone, so no gate reads a slide string.",
+  "UNVERIFIED FACT PRESENTED AS VERIFIED, slide-08. 'That plant is a grid resource.' under a cite line of c19 c20 c21. None of those three supports it and no claim among the 22 says the Vistra Odessa facility is interconnected. Its only backing was a hand typed on_grid: true in figures.json, under a header stating every value there is extracted from a verbatim quote by compute.py.",
+  "TOPIC REPEATED INSIDE THE 30 DAY WINDOW. dedupe_check returned LIKELY REPEAT at 0.72 against carousel no. 29 of September 19th and the run overrode it in prose."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified. caption.txt: 'That project never joins the queue.' No claim supports it; c16 establishes only that 76 MW of SUPPLY is behind the meter, and a site can take behind the meter baseload and still hold a queue position for the rest of its load."
+  },
+  {
+   "judge": 2,
+   "fail": "A DATE IN THE POST'S OWN YEAR CARRIES A YEAR, four times on frame 7. The run's own caption prints the same three dates correctly without the year, so two surfaces of one post give two answers to a rule the run demonstrably knows. caption_check.post_shape_problems is reached only from run(), which is called on caption.txt alone, so no gate reads a slide string."
+  },
+  {
+   "judge": 3,
+   "fail": "UNVERIFIED FACT PRESENTED AS VERIFIED, slide-08. 'That plant is a grid resource.' under a cite line of c19 c20 c21. None of those three supports it and no claim among the 22 says the Vistra Odessa facility is interconnected. Its only backing was a hand typed on_grid: true in figures.json, under a header stating every value there is extracted from a verbatim quote by compute.py."
+  },
+  {
+   "judge": 3,
+   "fail": "TOPIC REPEATED INSIDE THE 30 DAY WINDOW. dedupe_check returned LIKELY REPEAT at 0.72 against carousel no. 29 of September 19th and the run overrode it in prose."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "median of judge totals (fallback)",
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared_note": "the cards carry a round number and it was not believed, because the cards carry lenses ['', '', ''], and three cards from one lens are one judge with more tokens rather than a panel. `rounds` is this module's own count of 1"
+}

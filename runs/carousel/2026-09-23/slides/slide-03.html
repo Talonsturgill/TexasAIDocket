@@ -1,0 +1,127 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 3 of 9. Archetype DOCUMENT. RENDERED through txthree.js.
+     THE PAGE. The directive, posted on a notice board at the edge of the pad and turned into the
+     deck's light, with the yard behind it in the fog. The page is the one lit sheet in the frame.
+     Its two sentences are set on the page itself, projected onto its drawn rect through the
+     frame's camera. Amber is the state's paper: it lands on the page's rule and nowhere else. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:92px; }
+  .dek  { left:82px; width:820px; font-size:29px; }
+  .page { position:absolute; z-index:12; color:#16181D; }
+  .page .k { font-family:"JetBrains Mono", monospace; font-size:19px; letter-spacing:0.08em; color:#4C4640; }
+  .page .k { font-size:24px; }
+  .page .q { font-family:"Fraunces", serif; font-weight:600; font-size:30px; line-height:1.12;
+             letter-spacing:-0.012em; margin:9px 0 32px 0; font-variation-settings:"opsz" 72; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two scopes</h1>
+<p class="dek" data-follow="20">The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue.</p>
+<div class="page" id="page">
+  <div class="k">THE GOVERNOR, AS CBS QUOTED IT&nbsp;&nbsp;c3</div>
+  <div class="q">"complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects."</div>
+  <div class="k">THE ERCOT AUDIT, AS THE TRIBUNE REPORTED IT&nbsp;&nbsp;c5</div>
+  <div class="q" style="margin-bottom:0">"all data centers advancing through ERCOT's interconnection queue"</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'The directive, as reported', counter: "03 / 09",
+    src: 'c3 c5   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 76, max: 92, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 10, 70], exposure: 1.0, fov: 38 });
+  TXT.environment(R, { intensity: 0.45 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 1, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 300, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 90 });
+  const M = Y.mats(TXT);
+
+  /* THE BOARD faces the key: its normal points back along the light's own ground direction, so
+   * the page takes the deck's light square on and needs no second lamp. */
+  const L = TXDECK.deck().light, az = L.az * Math.PI / 180;
+  const nx = Math.sin(az), nz = Math.cos(az);
+  const board = new THREE.Group();
+  const ply = Y.tile(THREE, 1.06, 1.30, 0.04, TXT.mat.clay(0x4d443a, { roughness: 0.8 }));
+  ply.position.set(0, 1.55, 0); board.add(ply);
+  /* ONE post, on the board's centre line, so it leaves the frame between the source line and
+   * the site line rather than through either of them */
+  const post = Y.tile(THREE, 0.1, 1.3, 0.1, TXT.mat.clay(0x3a332b, { roughness: 0.85 }));
+  post.position.set(0, 0.65, -0.075); board.add(post);
+  /* THE PAGE, 0.90 m by 1.10 m, a posted notice. Paper white, the amber rule across its head. */
+  const PW = 0.90, PH = 1.10, PY = 1.55;
+  const paper = Y.tile(THREE, PW, PH, 0.004, TXT.mat.clay(0xefece4, { roughness: 0.85 }));
+  paper.position.set(0, PY, 0.024); board.add(paper);
+  const rule = Y.tile(THREE, PW - 0.12, 0.05, 0.004, Y.paperMat(THREE));
+  rule.position.set(0, PY + PH / 2 - 0.07, 0.028); board.add(rule);
+  board.rotation.y = Math.atan2(nx, nz);
+  TXT.add(R, board);
+
+  /* THE YARD BEHIND THE BOARD, in the fog: a line of sets across the view, far enough back that
+   * their stacks stay under the dek. Forward is -n, right is forward x up. */
+  const fx = -nx, fz = -nz, rx = -fz, rz = fx;
+  for (let i = 0; i < 9; i++) {
+    const t = 40 + (i % 3) * 5, lat = -26 + i * 6.5;
+    const g = Y.genset(THREE, M, { detail: false });
+    g.position.set(fx * t + rx * lat, 0, fz * t + rz * lat);
+    g.rotation.y = Math.atan2(-fx, -fz) + Math.PI;
+    TXT.add(R, g);
+  }
+
+  /* square on to the board, from the key side, a little low so the yard rises behind it */
+  const D = 3.9;
+  TXT.frame(R, { fov: 38, from: [nx * D, 1.45, nz * D], look: [0, 1.65, 0] });
+  Y.sky(THREE, R);
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  /* THE PAGE'S TYPE, onto the page's drawn rect through the camera, inset by its margin. */
+  const corner = (u, v) => {
+    const p = new THREE.Vector3(u * PW / 2, PY + v * PH / 2, 0.03).applyMatrix4(board.matrixWorld);
+    return Y.project(THREE, R, [p.x, p.y, p.z]);
+  };
+  const cs = [corner(-1, 1), corner(1, 1), corner(-1, -1), corner(1, -1)];
+  const x0 = Math.min(...cs.map(c => c.x)), x1 = Math.max(...cs.map(c => c.x));
+  const y0 = Math.min(...cs.map(c => c.y)), y1 = Math.max(...cs.map(c => c.y));
+  const pg = document.getElementById("page");
+  const inset = (x1 - x0) * 0.08;
+  pg.style.left = (x0 + inset) + "px";
+  pg.style.top = (y0 + (y1 - y0) * 0.09) + "px";
+  pg.style.width = (x1 - x0 - 2 * inset) + "px";
+
+  TXDECK.finish(cx, { bloom: { threshold: 0.9, strength: 0.08, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

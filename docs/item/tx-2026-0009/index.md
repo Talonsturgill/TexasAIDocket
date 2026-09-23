@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-16 · The sandbox the state technology agency owes is still owed. No rule, no application form and no participating agency has appeared to show it running.
 - 2026-09-19 · The sandbox the agency is required to run has not opened, so no state agency is yet testing a system outside the ordinary rules.
+- 2026-09-23 · The sandbox is still a duty the statute assigns and not a program with a door on it.
 
 ## Evidence
 

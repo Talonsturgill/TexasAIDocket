@@ -960,6 +960,39 @@
     "City Detect"
    ],
    "prose_note": "The nearest recent neighbours in the record are plate reader stories, tx-2026-0180 Leander and tx-2026-0174 El Paso, and this is not one. No plate reader, no police department, no law enforcement database, and the detected thing is a roof and a kerb rather than a vehicle. dedupe_check cleared it. AND THE DEDUPE NOTE MISSED ITS NEAREST NEIGHBOUR, which a judge caught. Carousel no. 18 on 2026-09-08, thirteen days back, is Austin barring its city manager from buying park cameras or drones that depend on artificial intelligence: a Texas city government, AI, and cameras pointed at residents. This entry checked itself against the plate reader items in Leander and El Paso and never named no. 18. It is still not a repeat, on mechanism and on decision: Austin is a council restricting a future purchase and this is a department already sending letters. But six earlier entries wrote the dedupe blind spot into this ledger in capitals and this one had to be told."
+  },
+  {
+   "date": "2026-09-23",
+   "carousel_no": 32,
+   "docket_item": "tx-2026-0182",
+   "instrument": "Troutman Pepper Locke's client alert on the September 21st directive, three Texas Tribune stories and CBS Texas for the directives and the queue, one TCEQ hearing cancellation notice and one TCEQ engine permitting guidance page read from tceq.texas.gov, and the Kodiak supply agreement release. The first build read three Office of the Governor releases from gov.texas.gov, whose robots file refuses this fetcher, and those claims were re-sourced or dropped.",
+   "topic": "A September 21st directive tells TCEQ to issue no permits sought by data center projects, and a law firm reads it as tying permitting decisions to audit results from ERCOT and the water board. The halt is scoped by who is asking. The August 3rd audit is scoped to data centers advancing through the interconnection queue. A gas compression company says it will supply a data center with 76 megawatts behind the meter from about 40 engines, and nothing in the record says whether that project sits in the queue or seeks a TCEQ permit.",
+   "angle": "the scope of the halt set beside the stated scope of the ERCOT audit it waits on, with the record silent on whether any named project sits between them",
+   "entities": [
+    "Office of the Texas Governor",
+    "TCEQ",
+    "ERCOT",
+    "PUCT",
+    "TWDB",
+    "Kodiak Gas Services",
+    "Vantage Data Centers"
+   ],
+   "places": [
+    "Texas"
+   ],
+   "what_was_refused": "The air permit MECHANISM. The original argument was that behind the meter engines need a New Source Review air permit and that this is the instrument the halt actually reaches. Verification could not establish it: the agency's own guidance pages (c14, c15) are a facility list and an engine permitting overview, and neither says whether a particular installation needs a permit. The deck states the two scopes and stops, and the web edition says in its own section that no mechanism is asserted.",
+   "keywords": [
+    "data center permit halt",
+    "permits sought by data centers",
+    "ERCOT interconnection audit",
+    "behind the meter generation",
+    "reciprocating gas engines",
+    "applicant scope",
+    "TCEQ permitting",
+    "notice and comment hearing canceled",
+    "engine air permitting"
+   ],
+   "angle_note": "THIS IS THE THIRD DECK IN TEN DAYS BUILT ON A GOVERNOR'S OFFICE DIRECTIVE TO A STATE AGENCY ABOUT DATA CENTERS, after no. 24 on September 14th and no. 29 on September 19th, and dedupe_check returned LIKELY REPEAT at 0.72 against no. 29. The override is recorded in SELECTION.md with its reasons: a different agency, a different instrument, a different docket item and an argument that is different in kind. One round 1 scorer called it a hard fail anyway and stated the counter-argument themselves, which is the honest way to disagree and is why it is written here rather than left in a scoring card. THE NEXT RUN SHOULD TREAT A FOURTH GOVERNOR DIRECTIVE AS A REPEAT WHATEVER THE KEYWORDS SAY. The entry also shipped without a `keywords` array on its first write, which is one of the three fields dedupe_check compares, so the run made itself harder for the next run to see in the run where it sat closest to a repeat it has been. That is the fifth instrument repeat this ledger records in capitals."
   }
  ]
 }

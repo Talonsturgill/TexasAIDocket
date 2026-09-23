@@ -134,6 +134,21 @@
     ],
     "topic": [
       "string"
+    ],
+    "unreachable": [
+      "object"
+    ],
+    "unreachable.boundary": [
+      "string"
+    ],
+    "unreachable.checked": [
+      "string"
+    ],
+    "unreachable.hosts": [
+      "array"
+    ],
+    "unreachable.note": [
+      "string"
     ]
   },
   "vocabularies": {

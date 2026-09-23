@@ -125,8 +125,9 @@ criteria:
       Do the nine frames read as ONE DECK, cut from one piece of stock, or as nine pictures that
       arrived in the same envelope? Look at the contact sheet as a FILMSTRIP and answer in the
       reader's order, because a reader swipes and never sees a frame alone.
-      Does one light run through the whole deck, every cast the same way? One ground, one screen,
-      one grade, one ramp? Does the VALUE hold from frame to frame, or does the deck strobe light
+      Does one light run through the whole deck, every cast the same way? One ground, one HERO
+      OBJECT rendered in one material, one grade, one ramp? A deck held together by a print
+      screen is not coherent, it is the deleted faded look, and scores no higher than a 3 here. Does the VALUE hold from frame to frame, or does the deck strobe light
       to dark to light? Are at least two continuity devices actually working and named in the
       storyboard, a spine, an edge tease, a motif that changes state, a camera that moves, a
       value arc that goes one way? When the deck cuts, is the cut the argument's turn and did
@@ -140,7 +141,7 @@ criteria:
       9: "A filmstrip. One world, one light, one grade, and a spine a reader could describe without being told to look for it. Any frame is unmistakably from this deck and no other."
       7: "Clearly one deck. One ground and one light held, with a continuity device or two doing real work, and one frame that sits slightly outside."
       5: "A shared wordmark and a shared furniture strip over nine unrelated pictures. The value track jumps more than once."
-      3: "Nine different print jobs. The reader can see the seams from the feed."
+      3: "Nine unrelated renders, OR nine frames held together only by a screen texture, which is the faded look the owner rejected on 2026-09-23. The reader can see the seams, or sees no objects at all."
 
   - name: claim_integrity
     weight: 0.20

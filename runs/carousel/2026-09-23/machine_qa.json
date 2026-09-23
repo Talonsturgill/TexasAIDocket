@@ -1,0 +1,112 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2647,
+        0.1702,
+        0.2114
+      ],
+      "band_ratio": 0.9821
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2857,
+        0.3571,
+        0.2702
+      ],
+      "band_ratio": 0.8924
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2017,
+        0.2038,
+        0.1581
+      ],
+      "band_ratio": 0.8477
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 18% / mid 31% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.1849,
+        0.3067,
+        0.1618
+      ],
+      "band_ratio": 0.7516
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.187,
+        0.395,
+        0.318
+      ],
+      "band_ratio": 1.0572
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3718,
+        0.2122,
+        0.2408
+      ],
+      "band_ratio": 0.8808
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 21% / mid 39% / bottom 21% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.2101,
+        0.3929,
+        0.2132
+      ],
+      "band_ratio": 0.7916
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2668,
+        0.271,
+        0.2132
+      ],
+      "band_ratio": 0.8575
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 25% / mid 52% / bottom 26% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.2458,
+        0.5231,
+        0.261
+      ],
+      "band_ratio": 0.7687
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}

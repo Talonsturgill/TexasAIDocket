@@ -1,0 +1,188 @@
+{
+ "date": "2026-09-23",
+ "_note": "Every number this deck ASSERTS, declared once, keyed by the phrase the detector reports. The header used to read 'every number on a published surface' and a scorer was right that it claimed a completeness it did not have: aggregate_check's shapes need a plural noun or a time unit after the numeral, so a quoted figure like 'Ninety percent of the new ones' is invisible to it. Those are listed under `_quoted_and_undetected` below, with the claim each was read off, so this file is complete about the deck even where the gate is not. They are NOT in the `aggregates` array, because the gate fails a declaration no surface says and these phrases are the ones it cannot see.",
+ "_phrase_keys": "Keys are copied from the detector verbatim, as aggregate_check's own self-test says an author should. Frame 7's hook key read \"nine days\" for most of this run, because the detector's number-word table stopped at twenty and could not read a compound ten, so the key was the tail of a phrase the frame does not contain. The gate was fixed in the upgrade lane on 2026-09-23 and the key is the whole phrase the frame sets. The declaration's `value` did not move.",
+ "aggregates": [
+  {
+   "phrase": "Two words",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the word count of the fragment \"sought by\", which is frame 1's hook and which claims c1 and c3 each contain verbatim, taken over the fragment rather than added up from anything",
+   "note": "The frame's whole subject. Those two words are what scopes the halt to the applicant rather than to the permit, and the count is of words on the frame above the line."
+  },
+  {
+   "phrase": "two scopes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c3",
+    "c5"
+   ],
+   "note": "Applicant scope from c3, the Governor's words as CBS quoted them, set in full including the two audits they name. Queue scope from c5, the ERCOT audit as the Tribune reported it. Two reports, each labelled on the frame."
+  },
+  {
+   "phrase": "474 gigawatts",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 474,
+   "quoted_from": "c8",
+   "quote": "over 474 gigawatts of electricity",
+   "note": "ERCOT's own figure for the whole queue, as the Texas Tribune reported it on August 3rd. Nothing is derived from it on any surface."
+  },
+  {
+   "phrase": "76 megawatts",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "The supplier's own figure. It is never added to, divided by or compared against any queue figure, because no source relates the two."
+  },
+  {
+   "phrase": "40 reciprocating gas engines",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 40,
+   "quoted_from": "c17",
+   "quote": "approximately 40 reciprocating natural gas-fueled generation units",
+   "note": "The source says approximately and so does the copy. No megawatt per engine figure is derived, because the source states neither a per unit rating nor that the units are identical."
+  },
+  {
+   "phrase": "Forty nine days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 49,
+   "from_date": "2026-08-03",
+   "to_date": "2026-09-21",
+   "computed_by": "compute.py clocks.days_audit_to_halt, a calendar difference between the August 3rd date parsed out of c9's verbatim quote and the September 21st date read from c24's published field and asserted to be the Monday its quote names",
+   "from_claims": [
+    "c9",
+    "c24"
+   ],
+   "note": "The frame sets \"Forty nine days\" and the key is now the whole of it. Drawn as the first run of tick marks, one tick per day, at the same pitch as the second run, because two pitches would make the comparison a lie."
+  },
+  {
+   "phrase": "49 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 49,
+   "from_date": "2026-08-03",
+   "to_date": "2026-09-21",
+   "computed_by": "compute.py clocks.days_audit_to_halt, a calendar difference between the August 3rd date parsed out of c9's verbatim quote and the September 21st date read from c24's published field and asserted to be the Monday its quote names",
+   "from_claims": [
+    "c9",
+    "c24"
+   ],
+   "note": "The same span as the hook, set again in the dek where the two endpoint dates are named, so a reader can do the subtraction themselves."
+  },
+  {
+   "phrase": "28 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 28,
+   "from_date": "2026-09-21",
+   "to_date": "2026-10-19",
+   "computed_by": "compute.py clocks.days_halt_to_report, a calendar difference between the September 21st date read from c24 and the October 19, 2026 date parsed out of c4's verbatim quote",
+   "from_claims": [
+    "c24",
+    "c4"
+   ],
+   "note": "Drawn as the second run of day plates on frame 7, at the first run's own pitch, in the accent because it is the state's own clock."
+  },
+  {
+   "phrase": "Two different denominators",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the two distinct denominators across c8 and c23, the whole queue of projects in c8 and the new power requests in c23, counted by reading the two quotes rather than by combining any figures in them",
+   "from_claims": [
+    "c8",
+    "c23"
+   ],
+   "note": "The caption's load bearing sentence and the reason no gigawatt figure for data centers appears anywhere on this deck."
+  },
+  {
+   "phrase": "474 gigawatts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 474,
+   "quoted_from": "c8",
+   "quote": "over 474 gigawatts of electricity",
+   "note": "ERCOT's own figure for the whole queue, as the Texas Tribune reported it on August 3rd. Nothing is derived from it on any surface."
+  },
+  {
+   "phrase": "76 megawatts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "Same figure as frame 5, quoted from the same string."
+  },
+  {
+   "phrase": "40 gas engines",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 40,
+   "quoted_from": "c17",
+   "quote": "approximately 40 reciprocating natural gas-fueled generation units",
+   "note": "Same figure as frame 5, quoted from the same string. c17's own words are 'approximately 40 reciprocating natural gas-fueled generation units', and the caption says 'about 40 gas engines', inside the quote."
+  },
+  {
+   "phrase": "four news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "sources_block.py, a tally of the distinct cited documents typed secondary_reported with no narrower noun: three Texas Tribune stories and the CBS Texas report carrying the Governor's own words",
+   "note": "The head of the sources block, counted from the documents rather than typed."
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, a tally of the distinct cited documents typed primary_official: the TCEQ hearing cancellation and the TCEQ engine permitting guidance page",
+   "note": "Both fetched from tceq.texas.gov, whose robots file permits this fetcher."
+  },
+  {
+   "phrase": "two audits",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c3",
+    "c11"
+   ],
+   "computed_by": "the audits named in c3's quote, 'complete the ERCOT and TWDB audits', counted, and c11 names the same two, ERCOT and the Texas Water Development Board",
+   "note": "The count that corrected the deck's thesis. The halt waits on both, and the record states the scope of only the ERCOT one."
+  }
+ ],
+ "_quoted_and_undetected": [
+  {
+   "phrase": "Ninety percent of the new ones",
+   "surface": "slide-04.html hook, slide-04.html dek, caption.txt",
+   "value": 90,
+   "quoted_from": "c23",
+   "quote": "Approximately 90% of the new power requests are data centers",
+   "note": "The Governor's own share, of the NEW requests, as the Texas Tribune reported it. It is never multiplied by 474, which is the whole queue, and frame 4 gives the 474 no drawn length at all."
+  },
+  {
+   "phrase": "90%",
+   "surface": "slide-04.html",
+   "value": 90,
+   "quoted_from": "c23",
+   "quote": "Approximately 90% of the new power requests are data centers",
+   "note": "Set beside the ninety amber plates it describes, on the pad the machines stand on."
+  },
+  {
+   "phrase": "76 MW",
+   "surface": "slide-05.html",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "The same figure as the dek's '76 megawatts', which the detector does see and which is declared above."
+  }
+ ]
+}

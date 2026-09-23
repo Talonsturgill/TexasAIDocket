@@ -24,9 +24,11 @@ work and should not try to guess it. The showrunner picks one and grafts the bes
   "why_this_story_this_way": "the argument. Two or three sentences",
   "spine": ["slide 1 does this", "slide 2 does this", "..."],
   "frames": [
-    {"slide": 1, "layout": "FULL_BLEED", "subject": "a classroom at seated eye height, three rows of student desks with students, drawn on the bench", "objects": ["student_desk", "figure:sit"], "screen": "halftone 6", "bleeds": ["left", "right", "bottom"]},
-    {"slide": 2, "layout": "DOCUMENT", "subject": "...", "objects": [], "screen": "line 5", "bleeds": ["bottom"]}
+    {"slide": 1, "layout": "FULL_BLEED", "subject": "a classroom at seated eye height, three rows of student desks with students", "hero_state": "the hero object whole, lit by the deck's rig, from a low three quarter camera", "render": "txthree", "bleeds": ["left", "right", "bottom"]},
+    {"slide": 2, "layout": "DOCUMENT", "subject": "...", "hero_state": "...", "render": "txthree", "bleeds": ["bottom"]}
   ],
+  "hero_object": "the ONE object this deck renders on every frame, in metres, as geometry, and the one thing about its shape the story turns on",
+  "material_and_rig": "the PBR material from TXT.mat and the ONE rig from TXT.rigs, for the whole deck",
   "accent": "one hex from config/brand.yaml, never the flag red, and which three to six frames carry it",
   "visual_system": {
     "structure": "how the frame is organised, and why this story wants that",
@@ -41,10 +43,16 @@ work and should not try to guess it. The showrunner picks one and grafts the bes
 
 ## THE IMAGE COMES FIRST, and this is the law since 2026-09-11
 
-Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` before anything else, and look at
-`examples/editorial-deck/contact_sheet.jpg`, which is what a 7 looks like, and
-`examples/objects/catalogue-1.jpg` and `catalogue-2.jpg`, which is what the engine can draw at
-true scale. Twenty one decks were pitched as surfaces, a technique and a palette and a
+**THE PRINT SCREEN IS DELETED (owner, 2026-09-23): "delete that fallback bullshit look, make it
+impossible for me to have to tell u this again."** Never pitch a screen, a halftone, a paper
+stock or a print register. Every frame is RENDERED: one HERO OBJECT modelled once, a real PBR
+material, one rig, a soft shadow on a ground it touches, through `txthree.js`. Pitch the hero
+object first, in metres, then nine cameras and states of it.
+
+Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` before anything else, THE RENDER first, and look
+at `examples/figure-bearing/contact_sheet.webp`, the owner's worked example of solid shaded forms
+drawing a computed figure, and `examples/objects/catalogue-1.jpg` and `catalogue-2.jpg`, which is
+what the engine can draw at true scale. Twenty one decks were pitched as surfaces, a technique and a palette and a
 structure, and every judge found an object in a void under a headline. **You pitch nine
 SUBJECTS and nine LAYOUTS before you pitch a surface.**
 
@@ -57,7 +65,8 @@ SUBJECTS and nine LAYOUTS before you pitch a surface.**
   and CLOSE_CROP at least two between them, four or more frames bleeding an edge. Check your
   nine against those rules before you return them, because the gate will.
 - Somebody is in the picture wherever the claim has a person in it.
-- One accent, one light, and a screen per frame that varies with the layout.
+- One accent, one light, one hero object. The camera and the object's state vary with the
+  layout. Nothing is screened.
 
 ## What makes a treatment good
 

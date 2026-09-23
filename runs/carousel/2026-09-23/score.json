@@ -1,0 +1,155 @@
+{
+ "weighted_score": 6.272,
+ "judges": [
+  5.77,
+  6.8,
+  6.13
+ ],
+ "spread": 1.03,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.6,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    6.8,
+    6.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.3,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 5.5,
+   "weight": 0.16,
+   "judges": [
+    5.5,
+    6.4,
+    4.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.5,
+    5.5
+   ]
+  },
+  "voice": {
+   "score": 6.3,
+   "weight": 0.1,
+   "judges": [
+    6.3,
+    7.0,
+    6.0
+   ]
+  },
+  "variety": {
+   "score": 4.5,
+   "weight": 0.1,
+   "judges": [
+    4.5,
+    7.0,
+    4.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Web edition universal 'No published figure counts how many permits the halt reaches'"
+  },
+  {
+   "judge": 1,
+   "fail": "Uniqueness universal 'one dated obligation' in web edition, c4 text, storyboard, SELECTION.md"
+  },
+  {
+   "judge": 1,
+   "fail": "Singular one-audit paragraph in the web edition's Two scopes section"
+  },
+  {
+   "judge": 1,
+   "fail": "Frame 6 presents a modelled 12.2 m enclosure as the real units' size"
+  },
+  {
+   "judge": 1,
+   "fail": "Bexar County in c12 claim text and topics places without quoted support; stale Odessa profile in SELECTION.md"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.8 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.13 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.8,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.8 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.13,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.13 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 1.03, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity",
+  "story_and_stakes",
+  "variety"
+ ],
+ "rounds_derived": 4,
+ "rounds": 5,
+ "rounds_source": "the judge cards",
+ "rounds_declared": 5,
+ "rounds_disagreement": "this counter logged 4 scoring round(s) on this tree and the judge cards say they are round 5. `rounds` carries 5, because a log can only undercount a round it never saw while a card can only overcount, so the larger is the honest figure. The cards were checked first for three distinct lenses and three distinct digests",
+ "at_cap": true,
+ "hard_fails_at_round5": [
+  "Web edition universal 'No published figure counts how many permits the halt reaches'",
+  "Uniqueness universal 'one dated obligation' in web edition, c4 text, storyboard, SELECTION.md",
+  "Singular one-audit paragraph in the web edition's Two scopes section",
+  "Frame 6 presents a modelled 12.2 m enclosure as the real units' size",
+  "Bexar County in c12 claim text and topics places without quoted support; stale Odessa profile in SELECTION.md"
+ ],
+ "hard_fail_repairs": {
+  "note": "Past the round cap, repairs were limited to hard fails, as the routine allows. Each round 5 hard fail was repaired on every surface that carried it, then confirmed by two separate integrity-only verification passes, which also found and repaired follow-on text on the web edition, caption, claim texts, topic ledger and plan files. No new hard fail stands on a published surface.",
+  "repaired": [
+   "web edition 'no published figure' universal restated to this record",
+   "'one dated obligation' uniqueness removed from web edition, c4, storyboard and SELECTION",
+   "web edition one-audit paragraph rewritten to name both audits",
+   "frame 6 now says the set is illustrated, not measured",
+   "Bexar County removed from c12 text and topics places; Odessa profile corrected",
+   "frame 3 carries c3 in full",
+   "frame 7 kicker and dek state the October 19th deadline as a deadline",
+   "caption restores 'Separately' before the O4791 cancellation",
+   "web edition drops an unsourced clause about how reviewers apply the scope"
+  ]
+ },
+ "owner_override": {
+  "instruction": "Ship it under the floor and fix whatever is broken, man. You just keep like letting shit be broken and telling me what's broken. Like, fix it, dude. Do your fucking job.",
+  "date": "2026-09-23",
+  "by": "the owner, in the session, after rounds 1 to 3 scored under the 7.01 floor"
+ }
+}

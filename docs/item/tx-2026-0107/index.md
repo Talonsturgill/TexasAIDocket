@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-20
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The five year review of the ERCOT offer caps is still open and comments are still due September 17th. That is the nearest dated door in this part of the record.
 - 2026-09-17 · The five year review of the system-wide offer caps has reached its deadline. September 17th is the last day comments are taken, and the commission's own calendar still carries the same closing date the staff memorandum set.
 - 2026-09-20 · Comments on the five year review of the system-wide offer caps are no longer being taken. The window the staff memorandum set ran out on September 17th, and what the commission does with what was filed has not been published.
+- 2026-09-23 · The comment window shut on September 17th and the file filled the same day. Responses came from the grid operator, from generators and retailers, from industrial and municipal buyers, and from Google, which is the first time a hyperscaler has filed in this project. What the commission does with them has not been published.
 
 ## Evidence
 
@@ -93,6 +94,18 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 ### The commission's market analysis staff filed the memo that opened the comment period.
 
 > Staff memo asking for comments
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The grid operator answered the commission staff's questions in the project.
+
+> ERCOT COMMENTS IN RESPONSE TO COMMISSION STAFF QUESTIONS
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### Google filed comments in the review of the system-wide offer caps.
+
+> System Wide Offer Cap - Google Comments
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

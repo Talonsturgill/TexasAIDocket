@@ -1,0 +1,19 @@
+{
+ "lens": "reader",
+ "round": 4,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "An image on every frame and one real light, but four of nine (2, 3, 4, 7) are large flat hatch fields with type laid over them. Frame 1's acceptance claims forty skids and the render shows three or four boxy hatch shapes. Frame 6's declared focal, the 1.70 m person, is a dark speck on contact_sheet.png, and that frame's only job is scale. Frames 9 and 5 are genuinely good."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One ground, one line screen at cell 6, one hatch direction, casts down and right on every frame. The accent law is real and legible without being told: amber lands only on paper and never on machinery. Against it, frame 3 sits 16 L* above everything, and the deck coheres partly by sameness."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 4.0, "why": "ledger/articles/2026-09-23.json published 'The plant it buys from is a grid resource.' under c19, c20, c21, none of which supports it, and which this run's own storyboard, claims.json rejected list and figures.json each declare NOT ESTABLISHED. Frame 8 was repaired in round 1 and the web edition was not."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "What was decided, by whom and when are clear and dated. Frame 9's closing line now gives a body and a date to watch, which defeats the earlier 'finishes with nothing'. What is missing is the door: the deck never tells a Texan where the rescheduled date will appear, and Bexar County is named on frame 9 and never placed on frame 8's map."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "A real turn at frame 4 and a real landing at frame 9. Against it, the cover names no subject at all, and frame 6 repeats frame 5's fact with no new information."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Dry, plainspoken, no first person, no banned phrase. The charge is that frame 2's dek says 'connection to the Texas grid' in the deck's own voice, and brand.yaml's voice.dont names exactly that as the outsider tell."},
+  {"name": "variety", "weight": 0.10, "score": 4.5, "why": "Visually distinct, editorially the closest to a repeat this account has shipped without refusing. dedupe_check returned LIKELY REPEAT at 0.72 against no. 29 four days back, where carousel no. 7 refused a topic at 0.70. The close is now 14 of 32 captions."}
+ ],
+ "weighted_score": 5.73,
+ "hard_fails": [
+  "An unverified fact presented as verified in published copy. ledger/articles/2026-09-23.json: 'The plant it buys from is a grid resource.' cited to c19, c20 and c21, none of which establishes it. Seventh copy of the sentence across four rounds, in the surface a reader reaches from the site."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Frame 9 tells a Texan the one room they could have spoken in is dark and gives them nowhere to stand, so put the TCEQ hearings page for O4791 on that frame as the thing to watch."
+}

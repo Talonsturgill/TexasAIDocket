@@ -11,7 +11,7 @@ The Department of Homeland Security Science and Technology Directorate brought i
 - Public access: Write to the decider
 - Take part: https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient
 
-- Last checked: 2026-09-17
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-17 · The directorate's account of the Progreso pedestrian exit test still reads as the record holds it. The three solutions taken to the bridge, the opt out lane offered to U.S. citizens and the testing done after dark are all still described the same way, and no correction has been posted against it.
 - 2026-09-20 · What the directorate published about the Progreso pedestrian exit test is unconfirmed this run. The account would not answer, so who was invited, what was captured and when it happened stand on the last reading rather than on a fresh one.
 - 2026-09-21 · What the directorate published about the Progreso pedestrian exit test is unconfirmed again this run. Who was invited, which solutions went to the bridge and what was offered to citizens who did not want their face captured all rest on one account. That account has now gone unread for four days running.
+- 2026-09-23 · The demonstration account still reads as the directorate published it. The image capture is still described as having exceeded expectations, and the opt-out lane for U.S. citizens is still part of what was tested.
 
 ## Evidence
 

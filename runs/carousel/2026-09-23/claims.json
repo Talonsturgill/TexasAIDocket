@@ -1,0 +1,276 @@
+{
+ "story": "The Governor directed TCEQ on September 21st, 2026 to issue no permits sought by data center projects until data centers complete the ERCOT and TWDB audits, as CBS Texas and the Texas Tribune reported it. The halt is scoped by who is asking. It waits on two audits. The record states the ERCOT audit's scope, data centers advancing through the interconnection queue, and states nothing about the TWDB audit's.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The Governor directed the environmental agency to suspend action on all permits sought by data center projects until the grid operator completes its audit.",
+   "quote": "Governor Greg Abbott directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects until the Electric Reliability Council of Texas (ERCOT) completes its ongoing audit",
+   "url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+   "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. A law firm's own wording of the directive, keeping 'all permits sought by' and 'until ERCOT completes' exactly.",
+   "source_noun": [
+    "law firm client alert",
+    "law firm client alerts"
+   ]
+  },
+  {
+   "id": "c2",
+   "text": "The directive reaches beyond the one agency it was addressed to.",
+   "quote": "no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired",
+   "url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
+   "source_title": "The Texas Tribune, Gov. Greg Abbott broadens moratorium on data center approvals to include environmental permits",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The Tribune quotes this as the letter to TCEQ."
+  },
+  {
+   "id": "c3",
+   "text": "As CBS quoted it, the Governor said TCEQ will issue no permits sought by data center projects until data centers complete the ERCOT and TWDB audits.",
+   "quote": "Data centers must pay their own way, protect our grid and water, and complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects.",
+   "url": "https://www.cbsnews.com/texas/news/texas-gov-greg-abbott-pause-new-data-center-permits-sept-21-2026/",
+   "source_title": "CBS News Texas, Gov. Abbott pauses new data center permits until water, power audit complete",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The Governor's words, attributed by CBS to the news release, character for character."
+  },
+  {
+   "id": "c4",
+   "text": "The directive sets a date for the agency to report back on its compliance.",
+   "quote": "TCEQ must report to the Office of the Governor on its compliance with the directive by Monday, October 19, 2026.",
+   "url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+   "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. A law firm's own wording, keeping 'compliance' and 'by Monday, October 19, 2026' exactly.",
+   "source_noun": [
+    "law firm client alert",
+    "law firm client alerts"
+   ]
+  },
+  {
+   "id": "c5",
+   "text": "As the Tribune reported it, the ERCOT audit covers all data centers advancing through the interconnection queue.",
+   "quote": "Abbott's letter to the PUCT and ERCOT directs them to conduct the audit on all data centers advancing through ERCOT's interconnection queue",
+   "url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+   "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed, Gov. Greg Abbott says",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The reporter's account of the August 3rd letter. It says queue where the letter said process."
+  },
+  {
+   "id": "c7",
+   "text": "The consequence the audit directive names is refusal of a connection to the grid.",
+   "quote": "Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid.",
+   "url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+   "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed, Gov. Greg Abbott says",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The Tribune quotes the Governor's August 3rd statement."
+  },
+  {
+   "id": "c8",
+   "text": "The grid operator counts the whole connection queue at over 474 gigawatts.",
+   "quote": "ERCOT is currently tracking more than 1,800 projects in the queue, representing over 474 gigawatts of electricity, or more than five times the grid's record for peak demand, according to ERCOT.",
+   "url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+   "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed, Gov. Greg Abbott says",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The 474 is ERCOT's own figure, which is more precise than the original, which carried it in the Governor's voice."
+  },
+  {
+   "id": "c9",
+   "text": "The audit order is dated August 3rd.",
+   "quote": "ordering ERCOT on Aug. 3 to ensure data center developers provide information",
+   "url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
+   "source_title": "The Texas Tribune, Gov. Greg Abbott broadens moratorium on data center approvals to include environmental permits",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. Names ERCOT only, where the original named the PUCT and ERCOT. Used here for the date alone."
+  },
+  {
+   "id": "c10",
+   "text": "A project that fails the audit is to be refused an interconnection.",
+   "quote": "Projects that fail to complete the ERCOT audit are to be denied interconnection, according to the governor's directive.",
+   "url": "https://www.texastribune.org/2026/09/14/texas-data-centers-abbott-water-survey-enforcement/",
+   "source_title": "The Texas Tribune, Gov. Greg Abbott orders Texas water agency to penalize data centers that don't report their water usage",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. The reporter's account, credited to the directive."
+  },
+  {
+   "id": "c11",
+   "text": "The environmental agency is told to tie its permitting decisions to what the audits find.",
+   "quote": "must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)",
+   "url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+   "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. A law firm's own wording. The subject, TCEQ, is earlier in the same sentence.",
+   "source_noun": [
+    "law firm client alert",
+    "law firm client alerts"
+   ]
+  },
+  {
+   "id": "c12",
+   "text": "The environmental agency canceled the notice and comment hearing on data center permit O4791.",
+   "quote": "Cancellation of Notice & Comment Hearing: Vantage Data Centers TX11, LLC, O4791",
+   "url": "https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791",
+   "source_title": "TCEQ, Cancellation of Notice and Comment Hearing, Vantage Data Centers TX11, LLC, O4791",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-23",
+   "confidence": "high"
+  },
+  {
+   "id": "c13",
+   "text": "The agency says that canceled hearing is to be rescheduled rather than dropped, and gives no date for it.",
+   "quote": "The hearing will be rescheduled for a later date.",
+   "url": "https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791",
+   "source_title": "TCEQ, Cancellation of Notice and Comment Hearing, Vantage Data Centers TX11, LLC, O4791",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-23",
+   "confidence": "high"
+  },
+  {
+   "id": "c14",
+   "text": "The agency publishes a list of facilities typically found at sources that need New Source Review permits.",
+   "quote": "List of facilities typically found at sources that need New Source Review permits.",
+   "url": "https://www.tceq.texas.gov/permitting/air/guidance/newsourcereview/nsr_fac_index.html",
+   "source_title": "TCEQ, Air NSR Permits, Index of Common Permitted Facilities",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-23",
+   "confidence": "medium"
+  },
+  {
+   "id": "c15",
+   "text": "The agency publishes air permitting guidance written for new internal combustion engine operations.",
+   "quote": "Overview of air permitting requirements and options for new internal combustion engine operations.",
+   "url": "https://www.tceq.texas.gov/permitting/air/guidance/newsourcereview/engine/nsr_fac_engine.html",
+   "source_title": "TCEQ, NSR Guidance for Internal Combustion Engines",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-23",
+   "confidence": "medium"
+  },
+  {
+   "id": "c16",
+   "text": "A gas compression company says it will supply a data center with 76 megawatts of behind-the-meter capacity.",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "url": "https://ir.kodiakgas.com/news-events/press-releases/detail/86/kodiak-gas-services-announces-power-supply-agreement-with",
+   "source_title": "Kodiak Gas Services, Kodiak Gas Services Announces Power Supply Agreement",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-09-23",
+   "confidence": "high"
+  },
+  {
+   "id": "c17",
+   "text": "That supply is to come from a stated number of reciprocating gas engines.",
+   "quote": "approximately 40 reciprocating natural gas-fueled generation units",
+   "url": "https://ir.kodiakgas.com/news-events/press-releases/detail/86/kodiak-gas-services-announces-power-supply-agreement-with",
+   "source_title": "Kodiak Gas Services, Kodiak Gas Services Announces Power Supply Agreement",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-09-23",
+   "confidence": "high"
+  },
+  {
+   "id": "c18",
+   "text": "The company expects to start putting those engines in during the last quarter of this year.",
+   "quote": "Deployment of the power assets is expected to begin in the fourth quarter of 2026",
+   "url": "https://ir.kodiakgas.com/news-events/press-releases/detail/86/kodiak-gas-services-announces-power-supply-agreement-with",
+   "source_title": "Kodiak Gas Services, Kodiak Gas Services Announces Power Supply Agreement",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-09-23",
+   "confidence": "high"
+  },
+  {
+   "id": "c23",
+   "text": "The Governor puts data centers at about ninety percent of the new power requests.",
+   "quote": "Approximately 90% of the new power requests are data centers, Abbott said.",
+   "url": "https://www.texastribune.org/2026/08/03/texas-data-center-project-audit-greg-abbott/",
+   "source_title": "The Texas Tribune, Data center approvals in Texas halted until audits completed, Gov. Greg Abbott says",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-23",
+   "confidence": "medium",
+   "resourced": "Re-sourced 2026-09-23. The original was fetched from gov.texas.gov, which names ClaudeBot with Disallow: / and was fetched by WebFetch, which identifies as ClaudeBot. This quote is from a host whose robots.txt permits that fetcher, checked the same day. Split from the original c8, because the Tribune attributes the 90 percent to Abbott and the 474 to ERCOT. Two speakers, two claims."
+  },
+  {
+   "id": "c24",
+   "text": "The Governor ordered TCEQ to stop issuing new data center permits on Monday, September 21st, the date of the report.",
+   "quote": "Gov. Greg Abbott ordered the Texas Commission on Environmental Quality on Monday to stop issuing new permits for data centers",
+   "url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
+   "source_title": "The Texas Tribune, Gov. Greg Abbott broadens moratorium on data center approvals to include environmental permits",
+   "source_type": "secondary_reported",
+   "published": "2026-09-21",
+   "retrieved": "2026-09-23",
+   "confidence": "medium"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "Crusoe's gas plant air permit 182126 at the Abilene data center campus in Taylor County, with its comment window and the route to comment.",
+   "reason": "NOTHING ABOUT IT IS VERIFIED and the whole finding is dropped. The notice PDF serves HTTP 200 and its text streams do not extract. A first read of it returned an applicant name, a reference number and an expansion of NAPD that is simply not what those letters mean, and a strict copy-only re-read of the same file returned no extractable text at all. Not the applicant, not the county, not that it is an air permit, not that comments are open, not the deadline. This was to have been the deck's closing frame and it is cut."
+  },
+  {
+   "finding": "Vantage Data Centers TX11 permit O4791 is an AIR permit.",
+   "reason": "The agency's hearing page names it only as a permit number and states no program. The word air appears on that page solely as a navigation item. The O prefix is consistent with a federal operating permit and no page reachable this run documents the numbering convention, so the deck says permit and never air permit."
+  },
+  {
+   "finding": "A stationary gas engine or turbine of this kind requires an air authorization from the environmental agency. This was to be the deck's mechanism claim.",
+   "reason": "NOT ESTABLISHED, and the deck's original argument is cut because of it. No agency page reachable this run states the requirement. Seven were checked. The categorical rule sits in Health and Safety Code 382.0518 and 30 TAC 116.110, and both hosts failed to serve text. What survives is weaker and is carried as c14 and c15: engines and turbines sit inside the agency's air permitting programme. The word typically in c14 is load bearing and the agency's own permits by rule pages concede a tier below."
+  },
+  {
+   "finding": "A bulleted Key Actions and Requirements for Data Center Projects list in the Governor's release.",
+   "reason": "An artifact of the fetching tool rather than the page. A first pass rendered bullets the page does not have. A copy only re-read shows seven plain paragraphs. Every quote carried above survived a targeted present or absent pass against the live page."
+  },
+  {
+   "finding": "That the Odessa power purchase agreement escapes the grid.",
+   "reason": "It does not and the deck must not imply it. `immediately adjacent` is a statement about DISTANCE and not about metering, and NOTHING VERIFIED SAYS WHERE THE METER SITS in either direction. The clean behind the meter example is the one at c16. This reason used to assert that the supplying plant is itself a grid resource, which is the sentence a scorer hard-failed on frame 8, and it survived here for two further rounds."
+  },
+  {
+   "finding": "That the environmental agency has stopped issuing permits.",
+   "reason": "This is a directive rather than a rule and nothing verified says the agency has halted anything. The one enforceable thing in the text is a report back. Every string in this deck says the Governor directed and none says the agency has halted."
+  },
+  {
+   "finding": "The September 21st release restates that same scope in the same terms.",
+   "was": "c6",
+   "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+   "reason": "Dropped 2026-09-23 in the re-sourcing after the robots violation. The claim was about the September release restating the scope IN THE SAME TERMS, and no permitted host reproduces the release's wording."
+  },
+  {
+   "finding": "A separate Odessa project contracts its first phase from a neighbouring plant.",
+   "was": "c19",
+   "url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+   "reason": "Dropped 2026-09-23 in the re-sourcing after the robots violation. Sourced to globenewswire.com, whose robots.txt timed out from this container on 2026-09-23 over HTTP/2 and HTTP/1.1, so it could not be confirmed that the host permits the fetcher. Not fetched again and not assumed."
+  },
+  {
+   "finding": "The plant supplying it is an existing gas fired generating facility at Odessa.",
+   "was": "c20",
+   "url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+   "reason": "Dropped 2026-09-23 in the re-sourcing after the robots violation. Same host and same reason as c19."
+  },
+  {
+   "finding": "The company describes that plant as sitting immediately beside the data center site.",
+   "was": "c21",
+   "url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+   "reason": "Dropped 2026-09-23 in the re-sourcing after the robots violation. Same host and same reason as c19."
+  },
+  {
+   "finding": "The water directive ties a missed water survey to permit ineligibility under a named chapter of the Water Code.",
+   "was": "c22",
+   "url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+   "reason": "Dropped 2026-09-23 in the re-sourcing after the robots violation. No permitted host carries the Chapter 11 ineligibility language. The Tribune has only a water board official saying entities must respond for certain environmental permits, which is a different speaker and a looser scope."
+  }
+ ],
+ "resourcing": "On 2026-09-23 a review found that twelve claims had been fetched from gov.texas.gov with WebFetch, which identifies as ClaudeBot, and that host names ClaudeBot with Disallow: / since 2026-09-17. Nothing was re-fetched from it. Eight were re-sourced verbatim from hosts checked the same day to permit the fetcher (texastribune.org, cbsnews.com, troutman.com), one was split into two for two speakers, and four were dropped. globenewswire.com could not be confirmed and its three claims were dropped with it. Every re-sourced claim is secondary and carries confidence medium, because a law firm or a newspaper reporting a directive is not the directive."
+}

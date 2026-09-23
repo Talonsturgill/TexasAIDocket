@@ -11,7 +11,7 @@ The University of North Texas is offering a Bachelor of Science in Artificial In
 - Public access: Write to the decider
 - Take part: https://engineering.unt.edu/cse/undergraduate/bsai.html
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The degree is still published as a named four year bachelor of science rather than a concentration, and the start of the curriculum is unchanged.
 - 2026-09-16 · The University of North Texas undergraduate artificial intelligence degree is still open as launched. No change to the program has been posted.
 - 2026-09-19 · The undergraduate degree is still open and the university has not changed what it admits into it.
+- 2026-09-23 · The undergraduate degree is still open at Denton.
 
 ## Evidence
 

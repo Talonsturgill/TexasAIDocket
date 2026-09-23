@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 7 of 9. Archetype DIAGRAM. RENDERED through txthree.js.
+     TWO RUNS OF DAYS AT ONE PITCH, standing on rails on the pad under a parallel camera so the
+     runs compare by length. The first run is clocks.days_audit_to_halt plates, the second
+     clocks.days_halt_to_report. The second run is amber, because it is the state's own clock:
+     the days the agency has to answer on paper to the Governor's office. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:88px; }
+  .dek  { left:82px; width:860px; font-size:28px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Forty nine days, then twenty eight</h1>
+<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.</p>
+<div class="lab" id="l1">August 3rd<br>audit ordered</div>
+<div class="lab" id="l2">September 21st<br>halt directed</div>
+<div class="lab" id="l3">By October 19th<br>agency answers</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'The dates on the record', counter: "07 / 09",
+    src: 'c9 c24 c4   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 68, max: 88, maxLines: 2 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE SPANS, FROM figures.json. clocks.days_audit_to_halt and clocks.days_halt_to_report,
+   * calendar differences computed by compute.py. */
+  const FIRST = 49, SECOND = 28;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 60, 180], exposure: 1.0 });
+  Y.ortho(THREE, R, 23);
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 200, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 80 });
+  const M = Y.mats(TXT);
+  const plain = TXT.mat.clay(0xa9aba7, { metalness: 0.2, roughness: 0.5 });
+  /* THE SECOND RUN IS THE STATE'S CLOCK, the twenty eight days the agency has to answer on paper,
+   * so it wears the accent */
+  const amber = Y.paperMat(THREE);
+
+  /* ONE PITCH FOR BOTH RUNS, 0.4 m a day, left aligned, so 49 and 28 compare as lengths. Each
+   * day stands as a plate 0.28 m wide and 1.1 m tall facing the key, so every day is a separate
+   * lit thing. The runs lie along +Z, which is the frame's right under this camera. */
+  const DAY = 0.4, Z0 = -9.8;
+  const run = (n, x, mat, last) => {
+    for (let d = 0; d < n; d++) {
+      const p = Y.tile(THREE, 0.12, 2.0, 0.28, (last && d === n - 1) ? amber : mat);
+      p.position.set(x, 1.12, Z0 + d * DAY + 0.14);
+      TXT.add(R, p);
+    }
+  };
+  /* a steel rail under each run, so a run is one thing standing on the pad and not dust */
+  const rail = (n, x) => {
+    const r = Y.tile(THREE, 0.5, 0.12, n * DAY + 0.2, M.skid);
+    r.position.set(x, 0.06, Z0 + n * DAY / 2 - 0.02); TXT.add(R, r);
+  };
+  rail(FIRST, 3.4); rail(SECOND, -3.4);
+  /* ONE SLAB UNDER BOTH RUNS, the concrete the hero stands on, so the two periods read as one
+   * record laid on one surface rather than as two loose strips */
+  const slab = Y.tile(THREE, 9.2, 0.08, FIRST * DAY + 1.0, M.conc);
+  slab.position.set(0, 0.04, Z0 + FIRST * DAY / 2 - 0.02); TXT.add(R, slab);
+  run(FIRST, 3.4, plain, false);
+  run(SECOND, -3.4, amber, false);
+  /* THE HERO in front of the runs, its door side to the light, cut by nothing: the deck's object
+   * standing on the same pad the days are laid on */
+  const hero = Y.genset(THREE, M, {});
+  hero.rotation.y = -Math.PI / 2;
+  hero.position.set(-17, 0, 3);
+  TXT.add(R, hero);
+
+  /* from the key side, a third of the way up, so the two runs stack one above the other */
+  TXT.frame(R, { from: [-30, 20, 0], look: [2.2, 0.5, 0] });
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  const p1 = Y.project(THREE, R, [3.4, 2.0, Z0]);
+  const p2 = Y.project(THREE, R, [3.4, 2.0, Z0 + FIRST * DAY]);
+  const p3 = Y.project(THREE, R, [-3.4, 2.0, Z0 + SECOND * DAY]);
+  const put = (id, x, y) => { const e = document.getElementById(id); e.style.left = x + "px"; e.style.top = y + "px"; };
+  put("l1", p1.x, p1.y - 74);
+  put("l2", Math.min(p2.x - 210, 1000 - 270), p2.y - 74);
+  put("l3", p3.x + 26, p3.y - 40);
+
+  TXDECK.finish(cx, { aberration: 0 });
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1531,3 +1531,121 @@ at a URL.** Two outlets quoting the same unpublished document is not two sources
 it is two sources for what the document says. Every claim this run took from that memo is attributed
 to the outlet that reported it rather than to the memo, and the memo's own absence from any city
 URL is stated in the record rather than worked around.
+
+## 2026-09-23
+
+**`www.federalregister.gov` serves an interstitial AT HTTP 200, and it is the most dangerous
+thing this run met.** The body is a CloudFlare style page carrying `unblock.federalregister.gov`
+and the words "Request Access". Nothing in the status line says so. A re-verification that reads
+the status code and then looks for its quoted string finds the string absent and concludes the
+document MOVED, which is exactly what happened here to two record items before the second pass
+caught it. The cure that worked is `govinfo.gov/content/pkg/`, which carries the same documents
+as the Federal Register's own package and served them without complaint on every try.
+
+The general shape is worth more than the host. **A 200 is a claim about the transport and not
+about the document.** Any checker that treats a missing quote as movement has to first rule out
+that it was handed a block page, and the marker strings above are how this run did it.
+
+**`www.dhs.gov` refuses `curl` and answers WebFetch, which revises the 2026-09-21 entry above
+without contradicting what that run measured.** That entry is right that every client it had was
+refused at the edge, `robots.txt` included, and right that carrying a verification forward would
+have been dishonest. What it could not know is that the refusal is client shaped rather than
+absolute: the same twelve claims on the same URL came back in full through WebFetch on this run,
+and `tx-2026-0120` is stamped as a result. It would otherwise have hard failed the build the
+moment its verification aged out.
+
+So the rule this run would write for the next one is narrow. **A 403 from one client is a fact
+about that client.** It is not a robots decision, it is not a disallow, and before an item is left
+unstamped over one it is worth one attempt through a different fetcher. What it is NEVER worth is
+a second user agent aimed at the same fetcher, which is routing around a refusal rather than
+asking a different question.
+
+**`tacc.utexas.edu` disallows the paths this project would want.** Held out by name, and the two
+record items depending on it carry a dated note saying what is therefore unconfirmed rather than
+a verification nobody performed. Same disposition as `public.destinyhosted.com` the run before.
+
+**`news.rice.edu` answers 406 Not Acceptable to a plain fetch** and `www.oncor.com` timed out on
+every attempt across the run. Neither is a disallow and neither was routed around. Both are noted
+so the next run reaching for a Texas university newsroom or the utility's own site budgets a
+second source rather than a second try.
+
+**`www.hayscountytx.gov` answers 403 to curl AND to WebFetch**, which is the other half of the
+rule two paragraphs up and the reason that rule is worth having in the narrow form it took. One
+403 is a fact about one client. The same 403 from both clients this routine has is a fact about
+the site, and it is the point where a second attempt stops being diligence.
+
+That closes the last door on three Hays County items, `tx-2026-0168`, `tx-2026-0169` and
+`tx-2026-0170`. They were read off `public.destinyhosted.com`, which serves `User-agent: *` and
+`Disallow: /`, re-measured today. The county's own site carries the same agendas and refuses both
+clients. There is no second source for what an agenda entry says, because a news account of a
+meeting is a different claim with a different author.
+
+**So the record now says unreachable rather than unchecked**, which is a distinction it could not
+make before today. `scripts/site/docket_staleness.py` had called those three ROTTEN every day
+since the 22nd and printed a remedy, re-verify these before writing anything new, that no run
+could take. The carve-out is earned by a dated measurement on the item, covers only an item whose
+own front door is shut, and LAPSES IN SEVEN DAYS, so the boundary is a standing obligation to
+re-measure rather than a note that silences a gate once. Never route around one.
+
+## 2026-09-23, a second note, and it is a violation rather than a finding
+
+**THIS RUN FETCHED `gov.texas.gov` WITH ClaudeBot, AND THAT HOST HAS NAMED ClaudeBot WITH
+`Disallow: /` SINCE SEPTEMBER 17TH.** The September 17th entry above says it in as many words,
+**"No scout and no WebFetch may touch this host"**, and records that nothing was fetched from it
+that run. Six days later this run cited it for ten claims, `c1` and `c3` through `c11`, all
+stamped `retrieved: 2026-09-23`, and admitted `tx-2026-0182` on them.
+
+Re-measured today, twice, to be sure the boundary had not moved back:
+
+    https://gov.texas.gov/robots.txt   browser UA            200, names ClaudeBot, Disallow: /
+    https://gov.texas.gov/robots.txt   TexasAIDocket/1.0     200
+
+The file still names `GPTBot`, `ClaudeBot`, `Amazonbot`, `Applebot` and `PerplexityBot` with
+`Disallow: /`, and `User-agent: *` still disallows only eight `/Apps/` paths.
+
+**HOW IT HAPPENED, as far as it can be established from the artifacts.** The scouts and the fact
+checker hold `WebFetch` and `WebSearch` and nothing else, and WebFetch identifies as ClaudeBot.
+`out/2026-09-23/research/batch-2026-09-23.json` names `gov.texas.gov` nine times and **contains no
+occurrence of the strings `robots`, `Disallow` or `ClaudeBot` anywhere in it.** The boundary was
+not re-checked, so the rule that would have caught it never ran. The prose rule existed, was
+correct, and was six days old.
+
+**THE PART THAT IS NOT A DEFENCE AND IS WORTH STATING ANYWAY.** The `User-agent: *` block permits
+everything outside those eight paths, so a collector sending `TexasAIDocket/1.0` is allowed on the
+letter of the file, and that is what the September 17th entry already said. **That does not make
+this fetch permitted**, because the fetch was made by the client the file names. And the repair is
+NOT to re-fetch the same pages under a different User-Agent: the August 25th entry settles that in
+advance, *"a second user agent aimed at the same fetcher, which is routing around a refusal rather
+than asking a different question."* Switching agents specifically to get past an agent-specific
+disallow is the definition of routing around one.
+
+**WHAT WAS DONE.** Nothing was re-fetched and nothing was quietly kept. The violation is recorded
+here, in the run record, and on the pull request, and the ten claims and the docket item resting on
+them are flagged for the owner rather than defended. **Whether that material may stay in the record
+is an owner call**, exactly as the September 17th entry says the policy question is, and a run that
+committed the violation is the last thing that should rule on it.
+
+**WHAT TO CHECK INSTEAD, and it is the reason this was findable at all.** A robots decision written
+into this log is prose, and prose is what a later run does not read. The September 17th entry is
+correct, specific, and was ignored by the run six days after it. **A host this project has measured
+as disallowing its own fetcher should be in a machine readable blocklist the research phase reads
+before it fetches**, not in a paragraph. That is in the upgrade backlog as entry 85.
+
+**CORRECTION, SAME DAY, AND IT MAKES THE VIOLATION WORSE RATHER THAN BETTER.** The note above says
+the answer is a machine readable blocklist the research phase reads. **One already exists.**
+`scripts/shared/crawl_boundary.py` parses refusal rows out of `SOURCES_REGISTRY.md` and
+`shipped_check` runs a CURRENT gate over every `source_url` in a run's claims file against it.
+`lrl.texas.gov` is in it, refused for the identical reason: WebFetch identifies as ClaudeBot and
+that host named it.
+
+Simulated against this run's own `claims.json`, a single row for `gov.texas.gov` catches **twelve
+claims**, `c1` through `c11` and `c22`. With the registry as it stands it catches nothing, because
+the registry's row for that host still reads *"serves no robots.txt at all"*, which was true on
+August 16th and has been false since September 17th.
+
+**The 2026-09-17 run did everything right and it was still not enough.** It measured the disallow
+with two clients, wrote it here at length, named the `lrl.texas.gov` precedent, fetched nothing,
+and correctly refused to edit `SOURCES_REGISTRY.md` because that file is `human` lane and a run
+that can edit its own boundary does not have one. **That reasoning stands and the split should not
+move.** What is missing is that a measured disallow and an enforced one are one human edit apart
+and nothing notices when the edit has not been made.

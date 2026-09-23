@@ -2110,6 +2110,59 @@
     },
     "note": "The same nine bands at gamma 1.18 with the default perCell measured 10.0, 11.5, 13.6, 11.3, 18.9, 18.2, 21.3, 28.0, 29.1: nineteen L* of range, non monotonic in two places. Deliberately not September 19th's halftone or September 20th's hatch."
    }
+  },
+  {
+   "date": "2026-09-23",
+   "carousel_no": 32,
+   "written_from": "render_report.json, layout_check's own accent measurement, deck_coherence and the gate suite BY EXIT CODE. The value track is measured off the nine rendered PNGs at 432 px, never planned. This entry REPLACES the one written for this deck's first build, which was printed through a line screen and was rebuilt as a render the same day on the owner's instruction.",
+   "register": "RENDERED, NOT PRINTED. A containerised gas generator set modelled once in metres in assets/js/deck/2026-09-23-gensetyard.js and rendered through txthree.js on every frame: physically based painted steel, galvanised stacks and louvres, one key light read by TXT.deckRig from the chassis declaration at azimuth -105 and elevation 27, soft shadow mapped casts on a textured caliche pad, fog in the horizon's own hue, and a sky dome centred on the camera. The one amber #E0A33F is paper only and is solved through the deck's grade so it lands on the declared hex.",
+   "structural_laws": [
+    "A GRADE MOVES THE ACCENT. Paper printed at #E0A33F came out of TXDECK.finish at about (233, 194, 40), a different colour, and layout_check found the accent on one frame of four. The ink is now SOLVED through the deck's own grade once per page, so if the grade changes the ink follows it and the accent a reader sees is the declared one by construction.",
+    "A PARALLEL CAMERA HAS TO STAND BACK ALONG ITS OWN VIEW. At 77 m from the block the bottom edge of an 94 m orthographic frame starts its rays below the ground, so the near plane clipped the pad and the frame showed a dark band that read as a missing floor. Distance changes nothing in a parallel projection except whether the ground is behind the camera.",
+    "A SKY DOME IS CENTRED ON THE CAMERA OR IT IS CLIPPED. A 400 m dome at the origin fell past the 200 m far plane and the sky rendered black; the first dome that did render showed its latitude rings as bands, because vertex colours interpolate ring by ring. The gradient is a texture read per pixel now.",
+    "A FRAME WHOSE DRAWING LIVES IN THE CHASSIS READS AS A TEMPLATE. The hero is modelled once so it is the same machine on every frame, which left five frames with fifteen tokens of their own drawing under forty of shared shell, and bespoke_check measured 0.63. Each frame now builds what only it shows, the fence, the forklift pockets and bird screen, the kit beside the person, the opened bay and its engine, and the shell lives in the chassis. 0.47.",
+    "ONE READABLE SILHOUETTE NEEDS SOMETHING UNDER THE PIECES. Two runs of day plates on bare caliche measured as dust, 0.46 of the subject in its largest piece. A rail under each run and one slab under both made the record one object on the pad, which is also what it is."
+   ],
+   "techniques": [
+    "physically based rendering through txthree.js on all nine frames, with the chassis hero instanced from one model",
+    "a parallel camera on every frame that compares quantities, the share, the forty and the two runs of days",
+    "type projected onto a rendered page through the frame's own camera, so the directive's sentences sit on the paper",
+    "an opened state of the hero that shows a sixteen cylinder engine, for the frame about engine permitting",
+    "a person modelled in capsules at 1.70 m beside the hero, with a toolbox, wheel chocks and a folding step as second rulers",
+    "paper amber solved through the grade, unlit and outside the tone map"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     8.2,
+     7.7,
+     6.6,
+     5.2,
+     6.9,
+     7.6,
+     4.4,
+     7.8,
+     5.7
+    ],
+    "deck_median_L": 6.9,
+    "max_adjacent_delta": 5.1,
+    "note": "Measured at 432 px off the rendered PNGs. No cut is declared and none is taken. deck_coherence measured a mean adjacent jump of 2.46 L*, against the reference product's 2.6."
+   },
+   "accent": {
+    "hex": "#E0A33F",
+    "name": "posted notice amber",
+    "frames_above_floor": [
+     3,
+     4,
+     7,
+     9
+    ],
+    "note": "The directive's rule, the Governor's share, the state's twenty eight day clock and the cancellation on the hearing table. Never a machine."
+   },
+   "ground": {
+    "hex": "#0D1117",
+    "nearest_dE76_in_last_six": 16.95,
+    "note": "Measured against the two of the last six shipped decks that record a ground hex, 2026-09-20's #2E2016 at 16.95 and 2026-09-21's #222E16 at 24.16. The other four record none, so the window this comparison can fill is two decks and is named as such."
+   }
   }
  ]
 }

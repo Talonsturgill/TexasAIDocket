@@ -572,6 +572,22 @@ jobs:
       - name: Depth floor self-test (the frame stands in a place)
         run: python3 scripts/carousel/depth_floor.py --self-test
 
+      - name: The print screen stays deleted (owner, 2026-09-23)
+        run: |
+          # "delete that fallback bullshit look, make it impossible for me to have to tell u this
+          # again." The owner, on the day the faded look came back for the fourth deck running.
+          #
+          # assets/js/txink.js pushed every frame through a halftone, line, hatch or stipple
+          # screen, and that texture IS the faded look. It was deleted, and so was the example
+          # deck the routine told every run to copy. This step fails the build if the module, a
+          # file defining it, or its vocabulary ever returns to the bench, and the self-test
+          # replays every way that could happen, including a print hidden inside a chassis.
+          #
+          # It runs on every build rather than only on a run's own slides, because the way a
+          # deleted thing comes back is somebody restoring it on a branch nobody was watching.
+          python3 scripts/carousel/print_ban.py --self-test
+          python3 scripts/carousel/print_ban.py --assets
+
       - name: The figure bearing reference plans its cameras
         run: |
           # The planning half, at the storyboard. A depth block that names no cues, or names one

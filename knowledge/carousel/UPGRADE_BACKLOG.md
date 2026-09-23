@@ -3831,3 +3831,368 @@ Two defects on one frame number, and reasoning from an error message to a cause 
 one. That is `CLAUDE.md`'s rule about the 403 and the empty check list, met from a third direction
 in a single day, and it is worth saying plainly: **an explanation that fits the message is not the
 same as an explanation that survives a measurement.**
+
+---
+
+# 2026-09-23, carousel no. 32. Three shipped, five proposed, and the corpus corrected one of them
+
+Three upgrades landed, each in an already wired gate, each replayed against the defect it exists
+for and each green on this run's own artifacts. What follows the three is the list this lane could
+not reach, with the reason in each case.
+
+## What the three have in common, and it is the finding
+
+**All three are a rule this project already holds, on a surface nothing pointed the rule at.**
+That sentence is written in `CLAUDE.md` about the missing hashtags, the missing progress counter
+and the wrong public URL, and it is entry 39, 34 and 31 in `GATE_LESSONS.md` wearing three sets of
+clothes. Here it was:
+
+- the post's-own-year rule, enforced on `caption.txt` and on nothing the reader looks at first
+- the number-word table, written for COUNTS and used by every shape including DURATIONS
+- the file protocol, known to the harness and to nobody reading a slide before it rendered
+
+None of the three needed a new idea. Each needed the rule pointed at one more surface.
+
+## The two-line fix the corpus made, which is the part worth keeping
+
+The render-time fetch rule swept `XMLHttpRequest` in its first cut, on the reasonable-sounding
+grounds that a network call is a network call. **Replayed over the 31 shipped decks it went red on
+four that drew their maps perfectly**, and carousel no. 25's own frame 8 says why in its source:
+
+> XHR rather than fetch: Chromium refuses the Fetch API on a file:// URL whatever
+> --allow-file-access-from-files says, and that flag DOES cover XHR.
+
+XHR is the repair this project already found for this exact defect, four decks deep. A gate
+banning it would have refused the fix and left only the broken route. The fixture agreed with the
+detector and the corpus did not, which is `GATE_LESSONS.md` 16 arriving on schedule.
+
+---
+
+## PROPOSED, and why this lane could not make them
+
+### 1. The harness should record a failed request, and the harness is out of reach
+
+**Owner: `.claude/skills/carousel-engine/`, which is `upgrade` lane in `ownership.yaml` and
+unreachable unattended, because the host prompts on every edit under `.claude/` whatever the
+permission mode says.** So this is a proposal and stops, exactly as `CLAUDE.md` prescribes.
+
+The gate shipped today is STATIC. It reads slide source and names a call it recognises, which
+catches the cause that was measured and cannot catch a cause nobody has met yet. The outcome check
+is one listener in the render harness:
+
+```js
+const failed = [];
+page.on("requestfailed", r => failed.push({url: r.url(), why: r.failure()?.errorText}));
+```
+
+written into `render_report.json` beside `errors` and `warnings`, and read by `craft_floor` as a
+hard fail. That answers the question for any cause at all: a font that 404s, an image whose path
+the assets rewrite missed, a stylesheet that never arrived. **A render that reported zero errors
+and zero warnings on 2026-09-23 had a request fail in it, and the browser knew.**
+
+Note the asymmetry a session implementing this has to respect: an HTTP 404 completes as a
+`requestfinished` in both Playwright and Puppeteer, so a status check is a separate assertion from
+a failure listener and neither substitutes for the other.
+
+### 2. `sources_block.py` prints the retrieved date where a claim carries no published date
+
+Reachable, in `scripts/carousel/`, and NOT taken today because the repair regenerates
+`first_comment.txt`, which is a `daily` artifact this run has already built, declared figures
+against in `aggregates.json` and reviewed. Fixing the module without regenerating the file leaves
+the two disagreeing, and regenerating it is the showrunner's call rather than this lane's.
+
+The defect: today's block dates a GlobeNewswire release "September 23rd" when the document's own
+URL carries `2026/09/21`. Every line of the sources block reads as though every document were
+published today. The honest forms are to print `retrieved September 23rd` when only a retrieval
+date is known, or to derive the published date where the URL states it and label which is which.
+**A date printed with no qualifier is a claim about when a document was written.**
+
+### 3. `ledger/carousel/artwork.json` entries carry no `ground.hex`, so the comparison window is
+short and says it is not
+
+Four of the last six entries before 2026-09-20 carry no `ground` block at all. Today's entry
+declares `nearest_dE76_in_last_six: 24.54` and only TWO of the six entries behind it carry a hex
+to compare against, so "the last six shipped grounds" describes a window the ledger cannot fill.
+That is `GATE_LESSONS.md` 20: a true figure about the wrong set reads exactly like a true figure.
+
+The gate belongs in `ledger_check.check_register`, which already has the machinery for it: a
+`*_BINDS_AFTER` date, a NOTE for entries that predate the check and a hard fail after. Two
+assertions, no threshold:
+
+- an entry dated after the binding date carries `ground.hex` as a six digit hex
+- an entry declaring `nearest_dE76_in_last_six` has six predecessors that all carry one, and where
+  it does not, the finding says how many it could actually reach
+
+**Not taken today because the failing half cannot bind yet.** Six entries carrying a hex do not
+exist, the ledger is `daily` lane and append only, and backfilling a measured field into published
+entries is the one operation an append only ledger exists to refuse. It binds cleanly once six
+accumulate, which is four runs away.
+
+### 4. Nothing compares a number in a chassis comment or a storyboard paragraph against the ledger
+
+This run committed two wrong measurements and a scorer found both: the deck ground's dE76, where
+the chassis and the storyboard said 14.18 and the artwork ledger said 24.54, and the screen cell,
+where the storyboard said 5 and the chassis and the ledger said 6. Both were corrected. **Nothing
+in the suite reads a figure out of a prose comment and asks the ledger whether it agrees.**
+
+`ledger_check` already does this for `topics.json` against the run's computed figures, which is the
+same move one surface over, and `shipped_check`'s `ledgers` adapter already reports it. The
+extension is a measurement pass over the chassis's own comment block and the storyboard's prose,
+keyed on the fields the artwork ledger holds. It is real work rather than a line, and it is third
+in this list rather than first because both defects were caught before publication.
+
+### 5. `reverify.py` does not consult `robots.txt`
+
+Logged 2026-09-21, still open, recorded again because it recurred on 2026-09-23. It lives in
+`scripts/` under a lane this phase does not hold, and the crawl boundary in
+`knowledge/shared/SOURCES_REGISTRY.md` is `human` owned for the reason written there: a run able
+to edit its own boundary does not have one. So the fetcher honouring `robots.txt` is a maintainer's
+change, not this lane's.
+
+---
+
+## GATE_LESSONS.md entries owed, drafted here because that file is `human` lane
+
+`knowledge/shared/**` is `human`. The brief for this phase says a gate change belongs in that file
+and the ownership map says this lane may not write it, and the map wins. Three entries, ready to
+paste, numbered from 78.
+
+### 78. A table fitted to one shape was read by four, and it misreported the figure
+
+`aggregate_check.WORDS` stopped at twenty, with a comment giving the reason: twenty is "past any
+count a single deck has ever legitimately printed". That sentence was true and it was about COUNTS.
+The table is used by every shape the gate has, DURATIONS included, and a duration is a calendar
+span with no such ceiling. Frame 7 set "Forty nine days" and the gate reported the phrase as
+`nine days`.
+
+The cost is the one the file's own docstring argues four separate times: **a gate that misreports a
+figure is worse than one that misses it.** The run could not key its declaration on the string the
+frame contains, so it keyed it on a string the frame does not contain and wrote a note in its own
+artifact explaining that the key was a lie.
+
+**And the sharper half was already in reach.** "Twenty one days" read as `one days` and resolved to
+a value of 1, because `twenty` WAS in the table, so the phrase matched and the wrong half of it
+won.
+
+**What to check instead.** When a lookup table carries a bound, write down which QUESTION the bound
+was fitted to, then ask every consumer whether it is asking that question. A ceiling justified by
+"no deck prints more than twenty of anything" says nothing about how many days are in a span,
+how many megawatts are in a plant or how many counties are in a state.
+
+### 79. The rule had a gate, and the gate was pointed at one of the two surfaces
+
+`CLAUDE.md`: a date in the post's own year carries no year, with the site named as the one
+exception. `caption_check.post_shape_problems` enforces it and is reached only from
+`caption_check.run()`, which every run points at `caption.txt` alone.
+
+So frame 7 of carousel no. 32 set "AUGUST 3RD, 2026" three times, and a dek reading "The audit was
+ordered August 3rd, 2026", through two pixel review rounds and nine green gates, **while the
+caption of the same post printed the same three dates correctly without the year.** Two surfaces of
+one post gave two answers to a rule the run demonstrably knew, and a scorer reading the picture is
+what found it.
+
+This is the third time in nine days that `copy_sync_check` was the file that should have caught
+something and could not: the en dash on 2026-09-15 for a different reason, and this. The nine
+frames are the published surface with the fewest copy rules pointed at them, because every rule in
+`caption_check` was written about a caption.
+
+**What to check instead.** When a rule's gate takes a string, ask what the CALLERS pass it. A rule
+enforced on one surface of a multi-surface product is a rule the product breaks on the other one.
+And the test for which rules travel is the one entry 46 states: a rule that is structural travels
+("a semicolon is a semicolon", a year is a year), a rule that is a judgement about a whole document
+does not.
+
+### 80. Every gate green, zero errors, zero warnings, and nothing on the canvas
+
+A frame drew the state outline and the county mesh from
+`fetch("@@ASSETS@@/geo/tx-counties.topo.json")`. The render harness opens a slide over the FILE
+PROTOCOL, where Chromium refuses the Fetch API whatever `--allow-file-access-from-files` says.
+Measured on a shipped slide: **384 ms, zero errors, zero warnings, empty canvas.** A rejection that
+something catches and logs, or an `await` inside a handler nobody awaits, leaves no trace in any
+artifact a gate reads.
+
+`craft_floor` is the only gate that could ever notice and it notices only the extreme case, where
+the frame's whole drawing came out of the fetch and measures flat. A frame that draws its type, its
+furniture and its bench in code and gets only its SUBJECT from a fetch measures perfectly healthy
+with the subject missing.
+
+**What to check instead, and there are two answers rather than one.** The cause is static and cheap:
+no slide may call the Fetch API while it draws, because over `file://` that is a promise nobody can
+keep. The outcome needs the harness, which records `page.on("requestfailed")` into the render report
+and answers for any cause at all.
+
+**The part that generalises is what the corpus did to the rule.** The first cut swept
+`XMLHttpRequest` too and went red on four shipped decks that drew their maps perfectly, because
+XHR IS the workaround and that Chromium flag does cover it. A plausible rule, a fixture that
+agreed with it, and only the real corpus disagreed. Entry 16, again.
+
+### 81. `dedupe_check` was clean, and five run records in a row have named the axis it cannot see
+
+Carousel no. 32 is the third deck in ten days built on an instrument of the same SHAPE: the Office
+of the Texas Governor directing a state agency to do something about data centers. No. 24 on August
+19th, no. 29 on September 19th, this one on September 23rd. `dedupe_check` returned LIKELY REPEAT
+at 0.72 and it got there on keyword overlap alone, because the three fields it compares are topic,
+entities and keywords, and those genuinely differ: a different agency, a different docket item, a
+different act on a different date.
+
+Three round 4 and round 5 scorers, on two different lenses, independently named the repeating thing
+and none of them could point at a field. It is the INSTRUMENT. A reader who saw all three sees the
+Governor's office telling an agency what to do about data centers, three times, and no combination
+of topic, entity and keyword says that.
+
+The ledger's own precedent is the sharp part. No. 7 refused a candidate at 0.70 and no. 30 refused
+its strongest story of the day at 0.74, and this run overrode at 0.72 on an argument whose second
+leg its own appendix later voided without the override being revisited.
+
+**What to check instead.** A `docket.json` item already carries `decider.name` and `decider.type`.
+An instrument axis is derivable from what the record holds rather than from a new field somebody
+has to remember to fill: the acting body plus the kind of act. Compare it over the same 30 day
+window, and when an override is argued on two legs, make the run re-read the override if either
+leg is later withdrawn. This run's override survived only because nothing asked it to.
+
+### 82. A flat declarative sentence carrying no numeral and no universal is examined by nothing
+
+Four hard fails across this run's five scoring rounds, from three different judges, were all this
+one shape. "That plant is a grid resource." "That project never joins the queue." "The plant it
+buys from is a grid resource." "sought by Vantage Data Centers TX11."
+
+Every gate in the carousel suite polices NUMERALS (`numeral_trace`, `numeral_lint`, `aggregate_check`,
+`figure_bearing`) or UNIVERSALS (`quantifier_check`) or STRINGS (`copy_sync_check`, `verbatim_check`,
+`label_guard`). A factual assertion carrying neither reaches a reader unexamined, and one of these
+shipped through nine green gates, two full pixel review rounds and three scoring rounds.
+
+**The second half is worse than the first and is the one to build for.** Every repair landed on ONE
+copy while the same proposition survived in two or three other committed files. The grid resource
+sentence was repaired on frame 8 in round 1, and in round 4 it was still live in
+`ledger/articles/2026-09-23.json`, the one surface that is an article a reader opens from the site.
+Seventh copy, fourth round, and it contradicted the frame it accompanies.
+
+**What to check instead.** When a fact check refuses a proposition, grep the whole run directory
+and the ledgers for the PROPOSITION rather than for the sentence the scorer quoted. `claims.json`
+already carries a `rejected` block with a reason string per entry, so the refusals are machine
+readable and a gate could read every published surface against them. That is a real gate and it is
+not written.
+
+### 83. A gate floor can force a frame to draw the thing another rule forbids
+
+`layout_check` holds a frame that declares the accent to a minimum accent AREA, which exists so a
+frame cannot claim an accent it never spent. Frame 7 cleared it by running the amber rule under its
+marker at exactly `pitch * 28`, which made the longest amber shape on the frame the twenty eight
+day span itself. That is a quantity drawn in the accent, on a deck that spent frame 4 of the same
+run taking an amber bar OFF a channel for doing precisely that.
+
+The frame could not simply shorten the rule, because the rule is most of the amber and cutting it
+drops the frame under the floor, and the marker cannot make the area back without growing into the
+bookmark flag an earlier round already rejected. The repair was to keep the area and break the
+MEANING, by running the rule two pitches short of the origin and two past the mark so its length
+encodes no count.
+
+**The same shape appeared on frame 1 and there was no repair available.** Its dossier declares a
+median band of 15 to 27 and a focal of the near set's lit flank. Measured at 432px, one connected
+component holds 0.86 of every pixel over L* 30 and covers 0.37 of the frame, so the machines, the
+pad and the right edge slab are one mass and the cover reads as texture. Darkening the pad is the
+only tone move available and it was already made and taken back at a median of 12.9. A deeper
+contact at the skids was tried this run and measured: the largest component stayed at 0.86 and the
+median fell to 14.4. **The band can only be held by keeping the pad bright, and a bright pad is
+what the focal competes with.**
+
+**What to check instead.** A dossier that declares both a frame median band and a focal is
+declaring two things that can contradict each other, and nothing checks that they can both be true
+before the frame is drawn. The cheap version is a warning at plan time when a declared focal is a
+LIT element on a frame whose band floor is within a few L* of the deck's own ground.
+
+### 84. A held run has nowhere to put its evidence, so the policy that saves it makes CI red
+
+The delivery policy has two branches and only one of them has a home on disk. A run that SHIPS
+writes `runs/carousel/<date>/` and merges. A run that FAILS is told to "commit its evidence to
+its branch and NOT merge", and the only directory the `daily` lane owns under `runs/` is
+`runs/carousel/**`, which CLAUDE.md's own Layout section defines as **"shipped artifacts, merged
+to main each run"**.
+
+So on 2026-09-23 carousel no. 32 was held at 5.95 against a floor of 7.01, did the right thing,
+and put its evidence in the shipped-work directory because there was nowhere else. `shipped_check`
+scans that directory, refused the deck, and **the branch went red by construction.** One
+`##[error]` in a 4,326 line job, one step, one problem.
+
+**The cost is not the red.** The red is correct and the deck really is below the floor. The cost is
+that the same branch carried the record work, including the fix that stops three items reporting
+as ROTTEN, and `guards.yml` exits 1 on a rotten item. **A held deck took the record hostage**, and
+every pull request against `main` stayed red behind it.
+
+**Neither exit is reachable from inside a run, and that is the actual finding.** Moving the
+evidence to `runs/held/<date>/` needs an `ownership.yaml` entry, and a routine widening the map
+that holds it back is the one thing this repo is most explicit about. Deleting it from `runs/` is
+one of the three stop-and-ask items. So the policy's failure branch **terminates in a state a
+routine cannot leave**, which is the same shape as the six wedged days in the actor-stamp section:
+a rule that makes an unattended run depend on something it cannot grant itself.
+
+**The tempting fix is the wrong one and it is worth naming.** Narrowing `g_completion` so it skips
+a run that has not shipped would clear the red in one line, and `shipped_check`'s own self-test
+exists to stop it: *"reported {g_completion(_d)}, so lowering the rubric laundered a held deck"*.
+A gate that refuses your deck today is not evidence the gate is mis-scoped.
+
+**AND THE LEDGERS SPEND A HELD DECK'S BUDGET AS IF IT SHIPPED**, which a review bot found and
+this entry had missed. `topics.json`, `artwork.json` and `captions.json` all carry an entry for
+2026-09-23, so `dedupe_check` will steer the next four weeks of runs away from a topic that was
+never posted, and today's entry goes further: it instructs the next run to treat a fourth Governor
+directive as a repeat. A deck nobody saw is holding a thirty day exclusion against decks that could
+be seen. The same held-run concept the path question needs would answer this too, and the two
+should be designed together rather than one at a time.
+
+**What to check instead.** `ownership.yaml` should grant `daily` a held-evidence path before a run
+needs one, so the failure branch has a home the way the success branch does. The variety ledgers
+need the same distinction: a held run's entry should record what was MADE, because the next run
+still needs to know a gas yard at night was drawn, and should not spend the TOPIC exclusion,
+because nothing was published to be repetitive against. The rule to generalise
+from it: **when a policy has a failure branch, give the failure branch its own writable path at the
+same time you write the rule.** A failure branch that has to borrow the success branch's directory
+is not a failure branch, it is a success branch with worse artifacts in it.
+
+### 85. The boundary IS machine readable, and nothing escalates a measured disallow into it
+
+**THIS ENTRY'S FIRST VERSION HAD THE WRONG DIAGNOSIS AND IS REPLACED RATHER THAN PATCHED.** It
+said a crawl boundary lives only in prose and proposed building a machine readable blocklist. That
+blocklist already exists. `scripts/shared/crawl_boundary.py` parses refusal rows out of
+`SOURCES_REGISTRY.md`, `shipped_check`'s `crawl boundary` gate is registered CURRENT, and it checks
+every `source_url` in a run's `claims.json` against it. Five hosts are in it today, one of them
+`lrl.texas.gov`, refused for **the exact reason this run's violation happened**: *"WebFetch
+identifies as ClaudeBot and this host named it, which settles the research phase on its own."*
+A wrong explanation here is worse than none, which is what CLAUDE.md says about the push defect,
+so the wrong one is gone.
+
+**THE REAL DEFECT, MEASURED.** Simulated with one extra row for `gov.texas.gov` against this run's
+own claims file:
+
+    with the row present   c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c22  -- twelve claims, caught
+    with the registry as it stands                                 -- nothing
+
+**One row would have turned this run red at a gate CI already runs.** The registry's row for that
+host still reads *"serves no robots.txt at all"* and *"Nothing is disallowed because nothing is
+stated"*. That was true when it was written on 2026-08-16 and has been false since 2026-09-17.
+
+**AND THE RUN THAT MEASURED IT DID EVERYTHING RIGHT.** On 2026-09-17 a run measured the ClaudeBot
+disallow with two clients, wrote three paragraphs into `SOURCES_FIELD_LOG.md`, named the
+`lrl.texas.gov` precedent explicitly, fetched nothing from the host, and said why it was not
+editing the registry: *"The registry is `human` lane and carries the crawl boundary, so this run
+does not touch it and writes what it saw here instead... a run that can edit its own boundary does
+not have one."* **That reasoning is correct and the split should not move.** A routine that can
+widen its own crawl boundary has no boundary.
+
+So the gap is not the mechanism and not the rule. It is that **a measured disallow and an enforced
+one are separated by exactly one human edit, and nothing anywhere notices when that edit has not
+happened.** Six days, one unmade row, twelve claims.
+
+**What to check instead, and it is a run's own lane rather than the registry's.** A gate that reads
+the field log's measured refusals and asserts every one of them has a row in the registry, going
+red while the two disagree. That widens nothing: it cannot add a host, it can only refuse to
+proceed while this project's own measurement and this project's own boundary contradict each
+other. The escalation stays a human edit, which is the point, and the run stops instead of
+fetching.
+
+Two smaller wants that survive from the first version:
+
+- **The gate is post hoc.** `g_crawl_boundary` reads `claims.json`, which exists only after the
+  fetching is done. It catches a violation, it does not prevent one. The research phase should ask
+  `crawl_boundary.forbidden()` before a scout is handed a URL.
+- **A boundary row should expire**, the way `docket_staleness`'s unreachable carve-out does, so a
+  host that lifts a disallow is re-measured rather than refused forever on a stale reading.

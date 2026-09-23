@@ -10,7 +10,7 @@ The National Telecommunications and Information Administration submitted its Int
 - Comment closes: 2026-11-09
 - Take part: https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The comment window on whether the household internet survey should measure artificial intelligence is still open on the close date the notice published.
 - 2026-09-16 · The household internet survey question on measuring artificial intelligence use is still open for comment until November 9th. Nothing has been withdrawn.
 - 2026-09-19 · The window is still open and the notice still gives November 9th as the last day a comment is sure to be read.
+- 2026-09-23 · The survey office is still asking whether the household internet survey should start measuring artificial intelligence, and the window still closes November 9th.
 
 ## Evidence
 

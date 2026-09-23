@@ -793,16 +793,47 @@ them nothing.** An instinct reaches that list by surviving three runs without be
 and a lesson no run has confirmed is worth less than the director's own judgement. This repo has
 shipped no decks, so early runs will get an empty list, and that is correct rather than a gap.
 
+## THE ARTWORK IS RENDERED. THE PRINT SCREEN IS DELETED. (AUTHORITATIVE, owner, 2026-09-23)
+
+**The owner, verbatim:** *"delete that fallback bullshit look, make it impossible for me to have
+to tell u this again."* And on why: *"a few days ago we made a bunch of updates to the automation
+so that it would stop just trying to use like that faded look with the stupid shapes because it
+looked bad. And so it would start actually creating like its own artwork for each run. But it's
+not doing that. It's reverted back to the same old bullshit artwork on these last runs."*
+
+**`assets/js/txink.js` IS DELETED and `examples/editorial-deck/` IS DELETED.** The print screen,
+halftone, line, hatch and stipple, pushed every surface through one engraved texture, and that
+texture IS the faded look. It came back on 2026-09-19 because THIS FILE told every run to print:
+it said every frame is "printed in paper and ink" and called the editorial deck "what a 7 looks
+like". Nothing here says that any more, and `scripts/carousel/print_ban.py` fails the build if
+the module, its vocabulary, or a printed frame ever returns.
+
+**Every frame is RENDERED, the way the sister corpus renders it.** Its own doctrine, THE RENDERED
+LADDER: *"hero slides should reach for the highest rung the story supports. GPU PBR, real
+materials, soft shadow maps, IBL reflections, ACES. The default for object heroes."* Here that is
+`assets/js/txthree.js` on `three.module.min.js`, proven in this container on 2026-09-23 at about
+six seconds a frame. Concretely:
+
+- **One HERO OBJECT, built once as geometry and carried through the deck**, the way the sister
+  corpus carries a tide staff or a sea ice model through nine frames. Solid, with a real material
+  (`TXT.mat.steel`, `clay`, `plastic`, `emissive`), lit by one rig, casting a soft shadow onto a
+  ground it touches.
+- **At least six of nine frames render through `txthree.js` and call `snapshot()`.**
+  `print_ban.py` counts them. A frame that avoids the word print by drawing flat 2D shapes has not
+  met this either.
+- **The figure is built out of geometry**, per THE ARTWORK CARRIES THE DATA: forty engines are
+  forty rendered units, a ratio is two rendered lengths at one scale, parallel projection for any
+  quantity and perspective only for scenes.
+- **Finish with `txpost.js`**, the film grade, never with a screen. Grain is a grade on a render,
+  not a substitute for one.
+- **Text stays DOM.** Never render type in 3D, because the PDF must keep vector type.
+
 **Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first, and look at
-`examples/editorial-deck/contact_sheet.jpg` and `examples/objects/catalogue-1.jpg` and
-`catalogue-2.jpg` before a director is spawned.** Written 2026-09-11 on the owner's instruction
-after twenty one decks whose artwork three judges called, in different words every day, an
-object in a void under a headline. That file is the law now: **every frame carries one drawn
-SUBJECT, a thing at true scale, owning at least thirty percent of the frame, in one of ten
-LAYOUTS rotated across the deck, printed in paper and ink rather than laid over a gradient.** The
-contact sheet is what a 7 looks like. Hand each director the doctrine, the sheet and the
-catalogue pages, because a director who has not seen a bus drawn at twelve metres beside a person
-will pitch a bus as a slab.
+`examples/figure-bearing/contact_sheet.webp` before a director is spawned.** That example is solid
+shaded forms drawing a computed figure, with no screen anywhere, and it is the owner's own worked
+example. Hand each director this section, the doctrine and the example. **Every frame still
+carries one drawn SUBJECT at true scale owning at least thirty percent of the frame, in one of the
+LAYOUTS rotated across the deck, and now it is RENDERED rather than printed.**
 
 Then read `knowledge/carousel/TECHNIQUE_LIBRARY.md`. Everything above its SUBJECTS section is a
 surface, what a frame is made of, and a technique is chosen because this claim wants it.
@@ -828,8 +859,8 @@ Then write a **dossier per slide** before any code. It OPENS with `layout`, `pri
 (the subject, the rect it owns in frame px, the edges it bleeds) and `accent`, then what it
 claims, which claim ids, the technique, the composition, the value structure, the palette drawn
 from this story's own region, and an acceptance checklist the pixel critic will grade against.
-The format is `knowledge/carousel/SLIDE_DOSSIER_SPEC.md`, and `examples/editorial-deck/storyboard.md`
-carries nine written this way.
+The format is `knowledge/carousel/SLIDE_DOSSIER_SPEC.md`, and `examples/figure-bearing/storyboard.md`
+carries dossiers written this way.
 
 **No code is written before the dossiers exist.** A slide planned while it is being coded is a
 slide that will be argued for rather than judged.
@@ -920,7 +951,13 @@ python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides 
 python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
 python3 scripts/carousel/figure_bearing.py --date <date>
 python3 scripts/carousel/depth_floor.py --slides-dir out/<date>/slides
+python3 scripts/carousel/print_ban.py --assets --date <date>
 ```
+
+**THE LAST ONE IS THE OWNER'S, AND IT RUNS ON THE PROBE FRAME, NOT AFTER NINE.** `print_ban.py`
+refuses a printed frame and counts rendered ones, and on the probe it tells you in the first
+minute whether the chassis is building the deck the owner asked for or the one they rejected.
+A red here is fixed before frame two is written.
 
 **THE THIRD ONE IS THE CAMERA, AND IT IS THE ONE THIS ENGINE KEEPS NOT USING.** At least five
 frames of nine stand on the scene bench: `TXSCENE.create`, something placed through the camera
@@ -949,11 +986,10 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Five rules from
 2. **Image before type, on every frame.** Draw the image, render it, and read it at 432 px with
    NO type on it. If it is not an image yet, no headline will make it one. Then fit the type,
    measure the line boxes, and hand the reserve to the art.
-3. **The deck's light, the deck's ramp, the deck's screen, the deck's grade.** Not one per
-   frame. What varies between frames is the SUBJECT and the CAMERA. What does not vary is the
-   paper, the ink, the screen, the light and the grade. This rule read "one screen per frame,
-   the screen varies with the layout" until 2026-09-16 and that is half of why the value track
-   strobed.
+3. **The deck's hero object, the deck's material, the deck's light, the deck's grade.** Not
+   one per frame. What varies between frames is the CAMERA and the object's STATE. What does not
+   vary is the object, its material, the rig and the grade. There is no screen at all, since
+   2026-09-23: the print register is deleted and `print_ban` refuses it.
 4. **`TXDECK.finish(cx)` is the last line that touches the art canvas, on every frame.** One
    line, the deck's own grade. It was missing from 204 of 205 shipped slides and that is the
    single largest measured cause of the flat look. A frame may move bloom and aberration and
@@ -991,21 +1027,24 @@ it sees canvas ink that no DOM check can. A slide that draws nothing renders wit
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
-at 432 px, printed rather than placed.** Fix what they find, re-render, re-review. Then 1
+at 432 px, rendered rather than placed, with no screen on it.** Fix what they find, re-render, re-review. Then 1
 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
 nine slides.
 
 **TELL THE FLOW CRITIC THE ROTATION RULE CHANGED, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
 definition under `.claude/agents/` still says "no two frames in a row laid out the same way, at
 least five layouts across nine" and "the print register varies with the layout". Those are the
-SUPERSEDED rule as of 2026-09-16, no routine may edit a file under `.claude/`, and a critic
+SUPERSEDED rule as of 2026-09-16, and the print register itself is DELETED as of 2026-09-23, so a
+critic asking for one is asking for the look the owner rejected. No routine may edit a file under
+`.claude/`, and a critic
 enforcing a superseded rule argues the deck back toward the defect it was changed to fix. So
 hand it the current rule with the deck:
 
 > The rotation rule changed on 2026-09-16. Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
 > "THE DECK IS THE UNIT", and judge against that. Any copy of the rotation rule in your own
 > definition is stale. At most TWO of the same archetype in a row and at least THREE distinct,
-> not five. ONE screen, ONE light, ONE grade for the whole deck, not one per frame. Judge
+> not five. ONE hero object, ONE light, ONE grade for the whole deck, and no screen at all,
+> because the print register is deleted. Judge
 > whether the nine frames read as one deck and whether at least two continuity devices are
 > doing real work, and treat a deck that turns the page nine different ways as a FAULT.
 
@@ -1657,8 +1696,18 @@ python3 scripts/carousel/email_check.py --run <date>
 That gate fails if the payload is missing, is not HTML, omits the post copy or the first comment
 verbatim, links a file that is not on disk, or does not state the score. It is the thing that
 makes hand-writing the email impossible to ship: a run with no `gmail_payload.json` fails CI, and
-a payload that is an essay fails it too. When it passes, pass the payload's `to`, `subject` and
-`body` to the Gmail connector's `create_draft`. The body is already HTML, so draft it as HTML.
+a payload that is an essay fails it too. When it passes, call the Gmail connector's
+`create_draft` with the payload's `to`, its `subject`, and **its `body` passed as `htmlBody`**.
+
+**`htmlBody`, NEVER `body` alone, and never a summary you wrote instead.** The connector takes two
+fields: `body` is PLAIN TEXT and `htmlBody` is the rendered email. On 2026-09-23 a run passed a
+hand-written plain text summary as `body`, the nine slide thumbnails never rendered, and the owner
+opened a draft with no deck in it: *"you literally didnt even include the deck in the email."* The
+payload's body IS the email, with the thumbnails, the PDF link, the post copy and the first comment
+already placed. Pass it whole as `htmlBody`. A plain text `body` is only ever a fallback beside it.
+
+**Then read the draft back** with `get_draft` and confirm it carries the slide images before you
+report it. A draft you have not looked at is a draft you are guessing about.
 
 The mailbox is the `DRAFT_TO` module constant in the draft scripts, and it is documented in
 `CLAUDE.md`. It is written down in exactly those two places on purpose, so a repoint is one edit.

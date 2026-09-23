@@ -1,0 +1,28 @@
+{
+ "date": "2026-09-23",
+ "round": 5,
+ "_note": "Round 5 is the cap the rubric sets, so there is no round 6 to re-score in. The judges' cards are left EXACTLY as they were written, because a card is a reader's finding and a run does not get to edit one. This file is the separate record of what was done about each hard fail after the cards arrived, and of how the repair was verified. `round5-panel.json` still reads HOLD on 2 hard fails and that is the honest state of the tree AT THE MOMENT THE JUDGES READ IT.",
+ "policy": "CLAUDE.md: past the cap the run ships whatever the score is, states it in the email and the run record, and names the shortfall. Hard fails never move, which means they are FIXED rather than waived. Both below are fixed.",
+ "hard_fails": [
+  {
+   "raised_by": ["round5-integrity", "round4-integrity", "round4-reader"],
+   "surface": "ledger/articles/2026-09-23.json",
+   "was": "A second arrangement sits the other side of the line.",
+   "why_it_failed": "It places the Odessa power purchase on a side of the metering line. claims.json's rejected block says NOTHING VERIFIED SAYS WHERE THE METER SITS in either direction, figures.json forbids it both ways, and the same paragraph's closing clause already said the edition places that arrangement on neither side. Its claims list is c19, c20, c21 and none reaches placement.",
+   "now": "A second arrangement has a different shape.",
+   "verified": "Every paragraph in the file touching Odessa, adjacent, meter or line was read sentence by sentence. The paragraph now opens on shape, states the contract and the adjacency from c19, c20 and c21, and closes by refusing placement in both directions. A regex sweep of the web edition, the caption, the first comment and copy.json for grid resource, other side, either side, outside the queue, outside the line, on the grid, interconnected and sells into returns nothing that places it.",
+   "lineage": "This was the ROUND 4 hard fail surviving in a new wording three sentences upstream of the sentence that was repaired. The round 4 repair was made against the sentence a scorer quoted rather than against the proposition, which is entry 82 in the upgrade backlog and the run's single most repeated defect: seven committed files, four rounds."
+  },
+  {
+   "raised_by": ["round5-reader"],
+   "surface": "out/2026-09-23/caption.txt",
+   "was": "A separate water directive makes a data center that misses its survey ineligible for TCEQ permits.",
+   "why_it_failed": "c22 quotes ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code. Dropping the chapter limiter asserts a blanket bar on TCEQ permits that no fetched source states, on the one surface most readers meet, in a deck whose entire thesis is that scope wording decides reach.",
+   "now": "A separate water directive makes a missed survey a bar to TCEQ permits under Chapter 11 of the Texas Water Code.",
+   "verified": "The limiter is present in caption.txt and the caption measures 900 characters against brand.yaml's 300 to 900 band, so it fits without the earlier trim that caused this. caption_check exits 0. The web edition kept the full quote throughout and now also carries timely inside it.",
+   "self_inflicted": true,
+   "lineage": "MINE, and it is worth saying so plainly. The line was correct as A missed water survey costs a data center its Chapter 11 permits until round 3 called Chapter 11 unqualified a bankruptcy misread. The repair named the Water Code, went 14 characters over the caption band, and the trim that brought it back under took the chapter limiter out. A length budget spent a scope limiter, which is the same class of error as the one above: a repair that moved one surface and broke another."
+  }
+ ],
+ "live_hard_fails_after_repair": 0
+}

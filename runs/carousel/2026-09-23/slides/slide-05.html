@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 5 of 9. Archetype GRID. RENDERED through txthree.js.
+     FORTY SETS, COUNTABLE. Four columns by ten rows under a parallel camera from the key side,
+     so every lit end reads and every cast falls the same way. The count is
+     behind_the_meter.units from figures.json. No per unit rating anywhere: 76 over about 40 is a
+     division no document performs. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:92px; }
+  .dek  { left:82px; width:880px; font-size:28px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About forty, behind the meter</h1>
+<p class="dek" data-follow="20">A gas compression company says it will supply one data center with 76 megawatts of behind-the-meter capacity from about 40 reciprocating gas engines.</p>
+<div class="lab" id="l1" style="color:#DDE0E6">76 MW, behind the meter</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'Behind the meter', counter: "05 / 09",
+    src: 'c16 c17 c18   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 72, max: 92, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE COUNT, FROM figures.json. behind_the_meter.units, read out of c17 by compute.py. */
+  const UNITS = 40;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 175, 330], exposure: 1.0 });
+  Y.ortho(THREE, R, 92);
+  TXT.environment(R, { intensity: 0.45 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 100, shadowFar: 240 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 900, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 300 });
+  const M = Y.mats(TXT);
+
+  /* the walkways are wide enough that each set stands apart from its neighbours at thumb scale,
+   * because a count a reader can't separate in the feed is not a count */
+  const COLS = 4, PX = 16.8, PZ = 6.0;
+  const ROWS = Math.ceil(UNITS / COLS);
+  for (let k = 0; k < UNITS; k++) {
+    const r = Math.floor(k / COLS), c = k % COLS;
+    const g = Y.genset(THREE, M, { detail: true });
+    g.position.set((c - (COLS - 1) / 2) * PX, 0, (ROWS - 1) / 2 * PZ - r * PZ);
+    TXT.add(R, g);
+  }
+  /* high off the lit ends' corner of the block, so each set reads as a box with a lit end, a
+   * door side and a stack, and the forty read as four columns of ten */
+  TXT.frame(R, { from: [-130, 112, 100], look: [4, 12, -6] });
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  const e = document.getElementById("l1");
+  e.style.left = "80px"; e.style.top = "1170px";
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -45,6 +45,7 @@ from __future__ import annotations
 import argparse
 import html
 import io
+import datetime as _dt
 import json
 import contextlib
 import importlib.util
@@ -65,13 +66,49 @@ def _load(p: Path):
 
 # --------------------------------------------------------------------------- the gates
 def g_copy_sync(d: Path):
+    """AND THE POST'S OWN YEAR, which this adapter did not reach either.
+
+    `copy_sync_check.redundant_year` enforces the rule that a date in the post's own year
+    carries no year, on every authored string in `copy.json` and every node the browser laid
+    out. It was added on 2026-09-23 out of frame 7 printing 2026 four times through nine green
+    gates, and it was reachable only from `copy_sync_check.run()`. This adapter called
+    `compare()` alone, so the production sweep could not see it.
+
+    The run directory's own name carries the year, which is the same source `sources_block`
+    uses and for the same reason: rebuilding an old run years later must render what that run
+    published rather than what the clock says today.
+    """
     import copy_sync_check as m
     copy, rep = _load(d / "copy.json"), _load(d / "render_report.json")
     if not (copy and rep):
         return None
     claims = _load(d / "claims.json")
     drifted, uncited = m.compare(copy, rep, claims)
-    return drifted + uncited
+    out = list(drifted) + list(uncited)
+    if d.name[:4].isdigit():
+        years = list(m.redundant_year(copy, rep, d.name[:4]))
+        # ITS OWN SINCE-DATE, for the reason stated at RESERVE_SINCE and FIGURE_SINCE, and this
+        # one was learned by running it. Wiring the check into the sweep turned ELEVEN already
+        # published decks red in one go, back to 2026-09-02, over a rule nothing enforced when
+        # they shipped. That is a gate reaching back to reclassify history, which is the exact
+        # fault `g_completion`'s own docstring records about the threshold moving from 6.8 to
+        # 6.7 and taking two held decks red with it. The decks did not change. The ruler did.
+        #
+        # The house rule itself is older than the gate, which is the uncomfortable half and is
+        # why this is a note rather than a deletion: some of those decks broke a rule that was
+        # in force. What none of them had was anything that could tell them. The finding is
+        # MEASURED and PRINTED for every one of them, which is the difference between a
+        # carve-out and a switched-off check, and published copy is not something a sweep can
+        # fix anyway.
+        if d.name <= YEAR_SINCE:
+            if years and not out:
+                return (f"the post's own year check was wired into this sweep on "
+                        f"{_dt.date.fromisoformat(YEAR_SINCE) + _dt.timedelta(days=1)} and this "
+                        f"deck shipped before anything enforced it. Run into it anyway it "
+                        f"reports {len(years)} finding(s), first: {str(years[0])[:180]}")
+        else:
+            out += years
+    return out
 
 
 def g_quotations(d: Path):
@@ -146,11 +183,30 @@ def g_coherence(d: Path):
 
 
 def g_craft_floor(d: Path):
+    """AND THE SOURCE SCAN, which this adapter did not reach.
+
+    `craft_floor.network_calls` refuses a render-time Fetch API call in slide source, because
+    over `file://` that is a promise nobody can keep and the frame renders empty with zero
+    errors and zero warnings. It was added on 2026-09-23 and enforced only by the CLI, while
+    `guards.yml` sweeps every shipped run through THIS function, which read the render report
+    and never opened `slides/`. So a deck carrying the defect passes the production sweep
+    whenever the direct pre-ship invocation is missed, which is the one place it matters.
+
+    A review bot found it on the pull request that shipped the check. It is the same shape as
+    `g_plan_render` twenty lines down and as GATE_LESSONS 79, written the same day: a rule
+    enforced on one surface of a multi-surface product is a rule the product breaks on the
+    other one. An adapter that silently covers less than the checker it names is worse than no
+    adapter, because the registry says the gate ran.
+    """
     import craft_floor as m
     rep = _load(d / "render_report.json")
     if not rep:
         return None
     fails, _warns, _meta = m.check(rep, _load(d / "machine_qa.json"))
+    slides = d / "slides"
+    if slides.is_dir():
+        net, _n = m.network_calls(slides)
+        fails = list(fails) + list(net)
     return fails
 
 
@@ -778,6 +834,31 @@ def g_deck_coherence(d: Path):
     return list(got.get("problems") or [])
 
 
+YEAR_SINCE = "2026-09-22"   # the newest deck shipped before the check was wired
+def g_print_ban(d: Path):
+    """The print screen is deleted, and a shipped deck may not carry it or fall short of the render.
+
+    Owner, 2026-09-23: "delete that fallback bullshit look, make it impossible for me to have to
+    tell u this again." `print_ban.check_run` refuses a printed frame and counts rendered ones.
+
+    Its own since-date, for the reason stated at RESERVE_SINCE: every deck on or before
+    PRINT_SINCE was drawn under a routine that ORDERED the print, in so many words, and pointed
+    every director at an example built on it. They are the decks that produced this rule and a
+    gate does not judge the work that produced it. They are still measured and printed, which is
+    the difference between a carve-out and a switched-off check. From the day after, a printed
+    deck is red here, in CI, on every build.
+    """
+    import print_ban as m
+    if not (d / "slides").is_dir():
+        return None
+    probs = m.check_run(d)
+    if probs and d.name <= m.PRINT_SINCE:
+        return (f"the print screen was deleted on 2026-09-23 and this deck was drawn under a "
+                f"routine that ordered it. Run into it anyway it reports {len(probs)} finding(s), "
+                f"first: {str(probs[0])[:160]}")
+    return probs
+
+
 FIGURE_SINCE = "2026-09-20"
 
 
@@ -1060,6 +1141,7 @@ GATES = [
     ("craft floor", g_craft_floor, CURRENT),
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
+    ("print ban", g_print_ban, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
     ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),

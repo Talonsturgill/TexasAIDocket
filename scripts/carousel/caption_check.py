@@ -459,10 +459,17 @@ def post_shape_problems(text: str, today: str | None = None) -> list[str]:
         if m.group(1) != year:
             continue
         shown = m.group(0)
+        # THE REPAIR IS CUT AT THE YEAR'S OWN SPAN, NOT AT A COMMA (2026-09-23). This read
+        # `shown.split(",")[0]`, and the pattern's comma is optional: the deck corpus writes
+        # "AUGUST 25TH 2026" as well as "AUGUST 25TH, 2026", so on the uncommaed form the advice
+        # handed back the string that was already wrong and told the writer to write it. A gate
+        # that misreports the repair is the same fault as one that misreports the figure, which
+        # `aggregate_check` argues at length four times over.
+        bare = shown[:m.start(1) - m.start(0)].rstrip().rstrip(",").rstrip()
         problems.append(
             f"{shown!r} prints the year and the post is published in {year}. A reader works that "
             f"out from the fact that they are reading it this week, so drop it and write "
-            f"{shown.split(',')[0].rstrip()!r}. The year stays on any date outside {year}, which "
+            f"{bare!r}. The year stays on any date outside {year}, which "
             f"is what makes this a rule about redundancy rather than a rule against years")
 
     return problems
@@ -1090,6 +1097,19 @@ def self_test() -> int:
     ok("...and the message names the form to write instead, rather than only the rule",
        any("September 5th'" in x
            for x in post_shape_problems(_dated("September 5th, 2026"), "2026-09-11")))
+    # THE COMMA IS OPTIONAL IN THE PATTERN AND THE ADVICE USED TO ASSUME IT (2026-09-23). On the
+    # uncommaed form, which the deck corpus writes, `split(",")[0]` returned the whole string and
+    # the message said "write 'September 5th 2026'" about the string being rejected.
+    ok("...and the repair is cut at the year even when no comma separates it",
+       any("write 'September 5th'." in x or "'September 5th'" in x
+           for x in post_shape_problems(_dated("September 5th 2026"), "2026-09-11")),
+       str(post_shape_problems(_dated("September 5th 2026"), "2026-09-11"))[:220])
+    # ...and the advice clause never hands back the string being rejected. The message quotes
+    # the offender at the front, which is right, so the assertion is on the `write ...` clause.
+    ok("...and the 'write' clause never hands back the string it is rejecting",
+       not any("write 'September 5th 2026'" in x
+               for x in post_shape_problems(_dated("September 5th 2026"), "2026-09-11")),
+       str(post_shape_problems(_dated("September 5th 2026"), "2026-09-11"))[:220])
     # THE SITE IS THE EXCEPTION AND IT IS DELIBERATE. `check()` also judges record pages, which a
     # reader reaches years later out of a search result.
     ok("the year rule is POST level and never reaches check(), which judges the website",

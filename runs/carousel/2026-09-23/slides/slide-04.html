@@ -1,0 +1,95 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js.
+     ONE HUNDRED PLATES ON THE PAD, TEN BY TEN, UNDER A PARALLEL CAMERA. The number painted amber
+     is data_center_share.percent from figures.json. Parallel, because perspective would shrink the
+     far rows and a reader would read the shrink as a smaller share. The queue's 474 GW is stated
+     on NO scale here, because it is a different denominator and nothing multiplies the two. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
+  .fig  { position:absolute; font-family:"Fraunces", serif; font-weight:700; color:#EEF0F3;
+          font-variation-settings:"opsz" 144; line-height:1; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:150px; width:920px; font-size:88px; }
+  .dek  { left:82px; width:880px; font-size:28px; }
+  .fig.big { font-size:96px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ninety percent of the new ones</h1>
+<p class="dek" data-follow="20">ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.</p>
+<div class="lab" id="l1">Data center share of new<br>requests, approximate</div>
+<div class="fig big" id="f1">90%</div>
+<div class="lab" id="l2">The whole queue,<br>on no scale here</div>
+<div class="fig" id="f2" style="font-size:54px">474 GW</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'What the queue holds', counter: "04 / 09",
+    src: 'c8 c23   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 64, max: 88, maxLines: 2 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE SHARE, FROM figures.json. data_center_share.percent, read out of c23 by compute.py. */
+  const SHARE = 90;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 60, 160], exposure: 1.0 });
+  Y.ortho(THREE, R, 17.5);
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 200, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 70 });
+  const M = Y.mats(TXT);
+  const amber = TXT.mat.clay(0xb8761c, { metalness: 0.1, roughness: 0.55 });
+  const steel = TXT.mat.clay(0x6a6c70, { metalness: 0.3, roughness: 0.55 });
+
+  /* TEN BY TEN, a 0.84 m plate at a 1.0 m pitch, filled row by row from the near edge so the ten
+   * plain plates are the far row and the share reads as a fill level. */
+  const N = 10, PITCH = 1.0;
+  for (let k = 0; k < N * N; k++) {
+    const r = Math.floor(k / N), c = k % N;
+    const plate = Y.tile(THREE, 0.84, 0.18, 0.84, k < SHARE ? amber : steel);
+    plate.position.set((c - (N - 1) / 2) * PITCH, 0.09, (N - 1) / 2 * PITCH - r * PITCH);
+    TXT.add(R, plate);
+  }
+  TXT.frame(R, { from: [-24, 26, 34], look: [-0.6, 0, -2.2] });
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  const put = (id, x, y) => { const e = document.getElementById(id); e.style.left = x + "px"; e.style.top = y + "px"; };
+  put("l1", 620, 1000); put("f1", 620, 1062);
+  put("l2", 80, 1010); put("f2", 80, 1072);
+
+  TXDECK.finish(cx, { aberration: 0 });
+  return true;
+})();
+</script>
+</body>
+</html>

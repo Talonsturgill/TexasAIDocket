@@ -56,6 +56,33 @@ Three properties this tool must keep:
   3 IT NAMES WHAT IS ROTTEN. Past twice its limit while still live is a different and worse
     condition than merely due, and it exits non-zero so a scheduled check cannot ignore it.
 
+  4 IT SEPARATES CANNOT FROM DID NOT (2026-09-23). Rot is the run's failure to do reachable
+    work. An item whose own front door is shut to every client this routine has is a
+    different condition, it is a published limit of the record, and working harder does not
+    touch it. Three Hays County items sat on a vendor agenda portal serving
+    `Disallow: /` to `User-agent: *`. Their movement notes had said so for three days running,
+    the tool called them ROTTEN every day, and the remedy it printed, re-verify these before
+    writing anything new, was one no run could take. A gate whose remedy is impossible is a
+    gate that goes red forever and is then read as noise, which is the exact failure this
+    repo's own notes record about `remote rejected` on a push that landed.
+
+    SO IT IS NOT AN EXEMPTION AND IT IS NOT FREE. Three things hold it down:
+
+      - IT IS EARNED BY EVIDENCE THE ITEM CARRIES, never by a status. The item declares
+        `unreachable` with the hosts, the boundary, and the DATE the boundary was measured.
+        No block, no carve-out. A run that wants the red to stop must go and look.
+      - IT IS TIED TO THE ITEM'S FRONT DOOR. `public_access.url`'s host must be one of the
+        named hosts, so this covers an item a reader can't reach either, rather than an item
+        whose incidental third source happens to be shut.
+      - IT LAPSES IN 7 DAYS. A robots file is a live document and this repo's rule is to
+        re-check it per host. An unreachable block older than the window stops counting and
+        the item is rotten again, which is what makes the carve-out a standing obligation
+        rather than a note that silences a gate once.
+
+    It is also LOUD. Unreachable items print in their own section every run, with their age
+    and the boundary, whether or not anything else is due. They are not hidden, they are
+    filed under the right heading.
+
     docket_staleness.py --today 2026-08-11
     docket_staleness.py --json
     docket_staleness.py --self-test
@@ -70,6 +97,7 @@ import datetime as _dt
 import json
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -92,6 +120,50 @@ SLA_TERMINAL = {
 }
 # Statuses where the world can still move under us.
 LIVE = {"open", "pending", "unknown"}
+
+# How long a measured crawl boundary counts for. A robots file can change any day, so an
+# `unreachable` block is a measurement with a shelf life rather than a standing exemption.
+UNREACHABLE_WINDOW_DAYS = 7
+UNREACHABLE_BOUNDARIES = {"robots", "blocks_every_client"}
+
+
+def _host(url: str) -> str:
+    """The netloc of a URL, lowercased, or "" for anything unparseable."""
+    try:
+        return urlparse(str(url or "")).netloc.lower()
+    except ValueError:
+        return ""
+
+
+def unreachable_state(item: dict, today: _dt.date) -> dict | None:
+    """Return the item's live crawl-boundary declaration, or None.
+
+    None covers every way the claim can fail: no block, a block naming no hosts, a boundary
+    this tool does not recognise, an undated or unparseable measurement, a measurement past
+    the window, and a block whose hosts do not include the item's own front door. Each is a
+    reason to keep calling the item rotten, because each leaves the assertion unproven.
+    """
+    block = item.get("unreachable")
+    if not isinstance(block, dict):
+        return None
+    hosts = [str(h).lower() for h in (block.get("hosts") or []) if str(h).strip()]
+    if not hosts:
+        return None
+    if str(block.get("boundary", "")) not in UNREACHABLE_BOUNDARIES:
+        return None
+    try:
+        checked = parse_date(str(block.get("checked", "")))
+    except Exception:
+        return None
+    age = (today - checked).days
+    if age < 0 or age > UNREACHABLE_WINDOW_DAYS:
+        return None
+    door = _host((item.get("public_access") or {}).get("url"))
+    if not door or door not in hosts:
+        return None
+    return {"hosts": hosts, "boundary": block.get("boundary"),
+            "checked": checked.isoformat(), "checked_age_days": age,
+            "note": str(block.get("note", ""))[:160]}
 
 # The unscheduled-decision leash. Equal to the flat leash now, so it tightens nothing and is
 # kept only so the reason for it stays readable beside the rule it used to carry.
@@ -164,6 +236,8 @@ def assess(item: dict, today: _dt.date) -> dict:
         reasons.append(f"key date in {days_to_next}d")
         urgency += 2.5 - (days_to_next * 0.2)
 
+    unreachable = unreachable_state(item, today)
+
     return {
         "id": item.get("id"),
         "title": str(item.get("title", ""))[:60],
@@ -171,7 +245,11 @@ def assess(item: dict, today: _dt.date) -> dict:
         "age_days": age,
         "sla_days": sla,
         "due": bool(reasons),
-        "rotten": age > sla * 2 and status in LIVE,
+        # STILL DUE, NEVER ROTTEN. An unreachable item stays on the work list, because the
+        # boundary is what a run re-measures and the item is what it re-reads if it opens.
+        # What it stops being is the run's failure to do work it could have done.
+        "rotten": age > sla * 2 and status in LIVE and unreachable is None,
+        "unreachable": unreachable,
         "days_to_next_key": days_to_next,
         "no_scheduled_event": unscheduled,
         "urgency": round(urgency, 2),
@@ -191,6 +269,12 @@ def select(items: list, today: _dt.date, budget: int | None) -> tuple[list, list
     if budget is None:
         return due, [], rotten
     return due[:budget], due[budget:], rotten
+
+
+def unreachable_rows(items: list, today: _dt.date) -> list:
+    """Every item whose crawl boundary is currently proven, oldest first."""
+    rows = [assess(i, today) for i in items]
+    return sorted([r for r in rows if r["unreachable"]], key=lambda r: -r["age_days"])
 
 
 def main() -> int:
@@ -218,8 +302,11 @@ def main() -> int:
     today = parse_date(a.today)
     work, deferred, rotten = select(items, today, a.budget)
 
+    blocked = unreachable_rows(items, today)
+
     if a.json:
-        print(json.dumps({"work": work, "deferred": deferred, "rotten": rotten}, indent=1))
+        print(json.dumps({"work": work, "deferred": deferred, "rotten": rotten,
+                          "unreachable": blocked}, indent=1))
         return 2 if rotten else 0
 
     cap = "no cap" if a.budget is None else f"capped at {a.budget}"
@@ -246,6 +333,20 @@ def main() -> int:
         for r in rotten:
             print(f"    {r['id']}  ({r['age_days']}d old against a {r['sla_days']}d limit)")
         print("    Re-verify these BEFORE writing anything new.")
+
+    # Printed whether or not anything else is due, because the whole point is that these are
+    # filed rather than hidden. The age is printed too: a reader of this output should be able
+    # to see exactly how stale the record is admitting it has gone.
+    if blocked:
+        print(f"\n  UNREACHABLE, and NOT counted as rot. The boundary is measured, the record "
+              f"can't go back to the source, and working harder does not touch it:")
+        for r in blocked:
+            u = r["unreachable"]
+            print(f"    {r['id']}  ({r['age_days']}d since last verified, boundary "
+                  f"{u['boundary']} on {', '.join(u['hosts'])}, measured {u['checked']}, "
+                  f"{UNREACHABLE_WINDOW_DAYS - u['checked_age_days']}d left)")
+        print(f"    RE-MEASURE the boundary within {UNREACHABLE_WINDOW_DAYS}d or these go "
+              f"rotten again. Never route around one.")
     return 2 if rotten else 0
 
 
@@ -335,6 +436,48 @@ def self_test() -> int:
     work6, deferred6, _ = select(items, today, budget=6)
     expect("an explicit budget still caps the worklist", len(work6), 6)
     expect("...and the other 3 are reported as deferred, never dropped", len(deferred6), 3)
+
+    # THE CRAWL BOUNDARY, and every way the claim can fail. Each `expect` below is one thing
+    # a future edit could loosen without noticing, so each is pinned rather than described.
+    def blocked(**o):
+        d = {"hosts": ["public.destinyhosted.com"], "boundary": "robots",
+             "checked": "2026-08-10", "note": "Disallow: / to User-agent: *"}
+        d.update(o)
+        return d
+    door = {"url": "https://public.destinyhosted.com/agenda_publish.cfm?id=1", "room": "contact_only"}
+    rotten_base = dict(status="open", last_verified="2026-07-20", public_access=door)
+
+    expect("the same item with no block is rotten",
+           assess(item(**rotten_base), today)["rotten"], True)
+    ok = assess(item(unreachable=blocked(), **rotten_base), today)
+    expect("a proven boundary takes it out of rot", ok["rotten"], False)
+    expect("...and it is STILL due, because the boundary is what gets re-measured",
+           ok["due"], True)
+    expect("...and it is reported, never silent",
+           unreachable_rows([item(unreachable=blocked(), **rotten_base)], today)[0]["id"], "x")
+
+    expect("a block naming no hosts proves nothing", assess(
+        item(unreachable=blocked(hosts=[]), **rotten_base), today)["rotten"], True)
+    expect("a boundary this tool does not recognise proves nothing", assess(
+        item(unreachable=blocked(boundary="site was slow"), **rotten_base), today)["rotten"], True)
+    expect("an undated measurement proves nothing", assess(
+        item(unreachable=blocked(checked=""), **rotten_base), today)["rotten"], True)
+    expect("a measurement from the future proves nothing", assess(
+        item(unreachable=blocked(checked="2026-09-01"), **rotten_base), today)["rotten"], True)
+    # THE SHELF LIFE IS THE WHOLE DIFFERENCE between a measurement and an exemption. 2026-08-11
+    # minus 7 days is 2026-08-04, so that date is the last one that still counts.
+    expect("a measurement exactly at the window still counts", assess(
+        item(unreachable=blocked(checked="2026-08-04"), **rotten_base), today)["rotten"], False)
+    expect("...and one day past it does not", assess(
+        item(unreachable=blocked(checked="2026-08-03"), **rotten_base), today)["rotten"], True)
+    # A BLOCK THAT DOES NOT COVER THE ITEM'S OWN FRONT DOOR is a fact about some third source.
+    expect("a block that misses the public_access host proves nothing", assess(
+        item(unreachable=blocked(hosts=["www.axon.com"]), **rotten_base), today)["rotten"], True)
+    expect("an item with no public_access url cannot claim one", assess(
+        item(unreachable=blocked(), status="open", last_verified="2026-07-20"),
+        today)["rotten"], True)
+    expect("a block that is not an object proves nothing", assess(
+        item(unreachable="robots", **rotten_base), today)["rotten"], True)
 
     if failures:
         print(f"\ndocket_staleness self-test: {failures} FAILED", file=sys.stderr)

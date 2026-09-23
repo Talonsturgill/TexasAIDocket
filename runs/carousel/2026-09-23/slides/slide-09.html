@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 9 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js.
+     THE CLOSE. The hearing room with nobody in it: rows of folding chairs facing a table, and on
+     the table the one amber sheet, the cancellation. Rendered under the deck's light like every
+     other frame, so the room reads as the same world as the yard. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em;
+          line-height:1.35; color:#AEB3BD; white-space:nowrap; z-index:12; text-transform:uppercase; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:872px; width:920px; font-size:88px; }
+  .dek  { left:82px; width:880px; font-size:27px; }
+  .lab.note { left:82px; top:1150px; white-space:normal; width:840px; color:#C9CCD4; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A hearing with no date</h1>
+<p class="dek" data-follow="18">The agency canceled the notice and comment hearing on data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date. Separately, TCEQ answers to the Governor's office by October 19th.</p>
+<div class="lab note" id="l1">No date yet for the hearing.</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'Where a Texan could have spoken', counter: "09 / 09",
+    src: 'c12 c13 c4   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 70, max: 88, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 10, 34], exposure: 1.05, fov: 40 });
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, -2], distance: 30, shadowFar: 90 });
+  const floor = TXT.ground(R, { color: 0x302b27, size: 120, roughness: 0.7 });
+  Y.padMap(THREE, floor, { repeat: 50, tint: 0x3c424c });
+  const M = Y.mats(TXT);
+  /* the room's chairs are pale moulded seats on galvanised frames, so the empty rows are the lit
+   * thing in a dark room, the way every set in the yard is */
+  M.seat = TXT.mat.clay(0xa9acb1, { metalness: 0.05, roughness: 0.5 });
+
+  /* SIX ROWS OF EIGHT, a narrow aisle down the middle, all facing the table. */
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 8; c++) {
+    const ch = Y.chair(THREE, M);
+    const x = (c - 3.5) * 0.58 + (c >= 4 ? 0.1 : -0.1);
+    ch.position.set(x, 0, -r * 1.05);
+    TXT.add(R, ch);
+  }
+  /* THE TABLE, and the one amber sheet on it: the cancellation, the state's paper. */
+  const top = Y.tile(THREE, 2.6, 0.05, 0.8, TXT.mat.clay(0x5a4632, { roughness: 0.55 }));
+  top.position.set(0, 0.74, 2.4); TXT.add(R, top);
+  for (const [lx, lz] of [[-1.2, 2.1], [1.2, 2.1], [-1.2, 2.7], [1.2, 2.7]]) {
+    const leg = Y.tile(THREE, 0.05, 0.72, 0.05, M.skid); leg.position.set(lx, 0.36, lz); TXT.add(R, leg);
+  }
+  const sheet = Y.tile(THREE, 0.22, 0.004, 0.28, Y.paperMat(THREE));
+  sheet.position.set(0.3, 0.77, 2.35); sheet.rotation.y = 0.2; TXT.add(R, sheet);
+  /* the cancellation, posted on the front of the table where the room would have read it */
+  const notice = Y.tile(THREE, 0.62, 0.80, 0.004, Y.paperMat(THREE));
+  notice.position.set(-0.55, 0.42, 1.99); TXT.add(R, notice, { cast: false });
+  for (const cxp of [-0.6, 0.6]) {
+    const ch = Y.chair(THREE, M); ch.position.set(cxp, 0, 3.2); ch.rotation.y = Math.PI; TXT.add(R, ch);
+  }
+
+  /* from the back of the room, raised, looking down the aisle to the table, so the rows fill the
+   * top of the frame and the floor in front of them holds the caption */
+  TXT.frame(R, { fov: 40, from: [0.3, 4.6, -12.5], look: [0.1, -2.3, 0.6] });
+  Y.sky(THREE, R);
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

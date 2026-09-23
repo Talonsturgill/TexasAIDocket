@@ -23,6 +23,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-18 · Admitted on the county's own agenda. The waiver is what distinguishes this from an ordinary software purchase, because it asks the court to buy without the comparison its own policy requires. Whether the court granted either request is unconfirmed. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today.
 - 2026-09-21 · Whether the court bought the minutes product, and whether it waived the requirement for three quotes, is still unconfirmed. The agenda entry the request was read from sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer.
+- 2026-09-23 · Whether the clerk's minute writing purchase went through as the agenda proposed is unconfirmed this run, and no vote is on the record either way.
+- 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
 
 ## Evidence
 

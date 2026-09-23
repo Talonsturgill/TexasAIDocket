@@ -1,0 +1,26 @@
+{
+ "judge": "reader",
+ "round": 1,
+ "weighted_score": 6.472,
+ "criteria": {
+  "artwork_craft": 6.8,
+  "deck_coherence": 6.9,
+  "claim_integrity": 5.6,
+  "story_and_stakes": 6.8,
+  "sequence_and_momentum": 7.0,
+  "voice": 6.5,
+  "variety": 5.9
+ },
+ "hard_fails": [
+  "UNVERIFIED FACT PRESENTED AS VERIFIED, slide-08. 'That plant is a grid resource.' under a cite line of c19 c20 c21. None of those three supports it and no claim among the 22 says the Vistra Odessa facility is interconnected. Its only backing was a hand typed on_grid: true in figures.json, under a header stating every value there is extracted from a verbatim quote by compute.py.",
+  "TOPIC REPEATED INSIDE THE 30 DAY WINDOW. dedupe_check returned LIKELY REPEAT at 0.72 against carousel no. 29 of September 19th and the run overrode it in prose."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Require every factual assertion on a slide to name the claim id that carries it, the same way a numeral must, and make compute.py refuse to emit any field it did not extract from a verbatim quote.",
+ "other_findings": [
+  "aggregates.json's header claims completeness it does not have, because the detector cannot read canvas fillText.",
+  "Frame 4's dek reads 'The queue holds 474 gigawatts' where c8 says 'approximately over 474'.",
+  "The caption's 'advancing through it' had no antecedent.",
+  "Frames 1 and 2 are the same move twice."
+ ]
+}

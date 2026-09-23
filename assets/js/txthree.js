@@ -152,6 +152,38 @@ export function init(THREE) {
     if (spec.ambient) { R.scene.add(new THREE.AmbientLight(spec.ambient.color, spec.ambient.i)); }
     return made;
   };
+  /* THE DECK'S LIGHT, READ FROM THE CHASSIS AND NEVER RESTATED (2026-09-23).
+   * A frame rendered here used to pick a rig from TXT.rigs, and a rig carries its own key
+   * position, which is a SECOND copy of the deck's light that nothing checks against the first.
+   * That shape shipped the wrong site URL on three decks and a scene light disagreeing with its
+   * chassis on others. deckRig takes the key's DIRECTION from TXDECK.declare's light and keeps
+   * only colour and intensity from the spec, so nine frames rendered from nine cameras are lit
+   * by one sun in the world, by construction. depth_floor.py reads a frame that calls this as
+   * agreeing with its chassis, and a frame that calls TXT.rig alone as unreadable, fail closed.
+   *
+   * World convention, fixed here once: +Y up, the default camera sits toward +Z looking at the
+   * origin, az is degrees clockwise from +Z toward +X, el is degrees above the ground plane. */
+  TXT.deckRig = function (R, spec, o) {
+    o = o || {};
+    const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
+    if (!TXD || !TXD.deck) throw new Error('TXT.deckRig needs txdeck.js and a TXDECK.declare');
+    const L = TXD.deck().light;
+    const a = L.az * Math.PI / 180, e = L.el * Math.PI / 180, dist = o.distance || 14;
+    // o.target moves where the key AIMS, never which way it points: the key sits at the same
+    // direction from the target, so a yard forty metres long keeps its shadows inside the key's
+    // shadow camera without anybody restating the light.
+    const t = o.target || [0, 0, 0];
+    const pos = [t[0] + dist * Math.sin(a) * Math.cos(e), t[1] + dist * Math.sin(e), t[2] + dist * Math.cos(a) * Math.cos(e)];
+    const s = Object.assign({}, spec, { key: Object.assign({}, spec.key, { pos: pos }) });
+    const made = TXT.rig(R, s);
+    made[0].target.position.set(t[0], t[1], t[2]);
+    R.scene.add(made[0].target);
+    if (o.shadowFar) made[0].shadow.camera.far = o.shadowFar;
+    made[0].shadow.normalBias = o.normalBias != null ? o.normalBias : 0.02;  // no acne on thin parts
+    made[0].shadow.camera.updateProjectionMatrix();
+    return made;
+  };
+
   TXT.rigs = {
     // house rigs, colors from brand.yaml's world
     arcticNight: {  // warm sodium key, aurora-ice rim — the default hero rig

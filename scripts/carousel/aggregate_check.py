@@ -61,14 +61,48 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
-# Number words, because a slide sets "FOUR FILINGS" far more often than "4 FILINGS". Through
-# twenty, which is past any count a single deck has ever legitimately printed.
-WORDS = {
+# Number words, because a slide sets "FOUR FILINGS" far more often than "4 FILINGS".
+#
+# THE TABLE USED TO STOP AT TWENTY, ON THE ARGUMENT THAT TWENTY IS "past any count a single
+# deck has ever legitimately printed". That sentence was about COUNTS and the table is used by
+# every shape, DURATIONS included, where a deck prints a calendar span it computed. Carousel
+# no. 32's frame 7 set "Forty nine days" and this gate reported the phrase as `nine days`.
+#
+# That is the 2,600-streamlines defect again, which this file argues against four separate
+# times above and below: **a gate that misreports a figure is worse than one that misses it.**
+# It cost more than a wrong line in a report. The declaration in that run's aggregates.json had
+# to be keyed on "nine days", a string the frame does not contain, and the run wrote a note in
+# its own artifact explaining why the key was a lie rather than editing the gate it was running.
+#
+# "Twenty one days" was worse still and was in reach the whole time. `twenty` WAS in the table,
+# so the compound read as the tail `one days`, and `to_int` returned 1 for a span of 21.
+#
+# So the tens are here and a COMPOUND TEN is one token. The three groups stay separate because
+# only `TENS` x `UNITS` is a legal compound in English: there is no "twenty twelve" and no
+# "thirty zero", and generating those would invent phrases the detector then reports.
+UNITS = {
     "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7,
-    "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
-    "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
-    "nineteen": 19, "twenty": 20,
+    "eight": 8, "nine": 9,
 }
+TEENS = {
+    "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+}
+TENS = {
+    "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90,
+}
+WORDS = {**UNITS, **TEENS, **TENS}
+# A hyphen or whitespace between the two halves. Both forms ship: a dek writes "forty-nine" and
+# a hook set in caps writes "FORTY NINE".
+JOIN = r"(?:\s+|\s*-\s*)"
+COMPOUND = re.compile(rf"^({'|'.join(TENS)}){JOIN}({'|'.join(k for k in UNITS if k != 'zero')})$",
+                      re.I)
+# LONGEST FIRST, AND THE COMPOUNDS BEFORE ANY BARE WORD. Python's alternation is first-match,
+# not longest-match, so `forty|nine` would take `forty` out of "forty nine" and leave the unit
+# behind for the next token. Ordering is what makes the compound win, and the self-test pins it.
+_WORD_ALTS = [rf"{t}{JOIN}{u}" for t in TENS for u in UNITS if u != "zero"] + \
+             sorted(WORDS, key=len, reverse=True)
 # `\d{1,4}` was wrong and the end-to-end proof is what caught it. On a slide reading
 # "2,600 streamlines" it matched the "600" and reported `600 streamlines`, so the gate named a
 # number the slide does not contain. **A gate that misreports a figure is worse than one that
@@ -82,7 +116,8 @@ WORDS = {
 # whole number on its own. Same lesson as the thousands separator below: a token the pattern
 # cuts in half is a number the report describes wrongly, and a wrong number in a gate's own
 # output is worse than silence, because somebody goes looking for it.
-NUM = r"(?:(?<![\d.])\d{1,3}(?:,\d{3})+|(?<![\d.])\d{1,4}(?:\.\d+)?|" + "|".join(WORDS) + r")"
+NUM = (r"(?:(?<![\d.])\d{1,3}(?:,\d{3})+|(?<![\d.])\d{1,4}(?:\.\d+)?|"
+       + "|".join(_WORD_ALTS) + r")")
 
 # THE FOUR SHAPES. Each is a number the deck computed rather than quoted.
 #
@@ -209,6 +244,13 @@ def to_int(tok: str) -> int | None:
     A figure a source WROTE DOWN as a decimal could not be declared through `quoted_from`, and
     a water cap is written that way by every ordinance that has one. Returns an int when the
     value is whole so nothing downstream that compares against an integer changes.
+
+    THE SAME DEFECT A THIRD TIME AT THE COMPOUND TEN (2026-09-23). `WORDS` stopped at twenty, so
+    "Forty nine days" was read as `nine days` and "Twenty one days" as `one days`. The second is
+    the sharper one, because `twenty` was already in the table: the phrase matched, the report
+    named a string the frame does not set, and this function returned 1 for a span of 21. See the
+    comment on `WORDS` above. A compound is resolved here as well as matched there, because a
+    token the pattern can see and this cannot is the 1,400 defect recorded two paragraphs up.
     """
     t = tok.strip().lower().replace(",", "")
     if t.isdigit():
@@ -216,8 +258,13 @@ def to_int(tok: str) -> int | None:
     try:
         v = float(t)
     except ValueError:
-        return WORDS.get(tok.strip().lower())
-    return int(v) if v.is_integer() else v
+        pass
+    else:
+        return int(v) if v.is_integer() else v
+    m = COMPOUND.match(t)
+    if m:
+        return TENS[m.group(1).lower()] + UNITS[m.group(2).lower()]
+    return WORDS.get(t)
 
 
 def detect(text: str, n_slides: int | None = None) -> list[dict]:
@@ -824,8 +871,41 @@ def self_test() -> int:
     for _line in ("One reads the record.", "one news report", "One says so and the other does",
                   "01 ADS Incident Reports"):
         ok(f"...nor is {_line!r}", detect(_line, 9) == [], str(detect(_line, 9)))
-    # THE HALF THE EXEMPTION MUST NOT EAT. `WORDS` stops at twenty, so a scale word after the
-    # numeral means the figure is not one, and that phrase stays detected and stays declarable.
+    # THE COMPOUND TEN, carousel no. 32's frame 7, verbatim. Before 2026-09-23 the table stopped
+    # at twenty and this reported the phrase as "nine days", so the run's aggregates.json had to
+    # be keyed on a string the frame does not contain and wrote a note saying so. Each of these
+    # four goes red on the pre-fix table, and the second pair is the worse half: `twenty` WAS in
+    # the table, so "Twenty one days" matched as "one days" and resolved to a value of 1.
+    ok("a compound ten is one phrase, not its tail",
+       [d["phrase"] for d in detect("Forty nine days")] == ["Forty nine days"],
+       str(detect("Forty nine days")))
+    ok("...hyphenated too, which is how a dek sets it",
+       [d["phrase"] for d in detect("the forty-nine days between them")] == ["forty-nine days"],
+       str(detect("the forty-nine days between them")))
+    ok("...and it resolves to the figure a reader sees", to_int("Forty nine") == 49
+       and to_int("forty-nine") == 49, str(to_int("Forty nine")))
+    ok("a compound whose tens word was already in the table is the sharper case",
+       [d["phrase"] for d in detect("Twenty one days")] == ["Twenty one days"]
+       and to_int("Twenty one") == 21, str(detect("Twenty one days")))
+    # ORDERING, which is what makes the compound win. Python alternates first-match, so a bare
+    # `forty|nine` would take `forty` and leave the unit behind. A teen must not be cut either.
+    ok("a teen is still read whole",
+       [d["phrase"] for d in detect("nineteen days")] == ["nineteen days"],
+       str(detect("nineteen days")))
+    ok("...and a bare tens word on its own still counts",
+       [d["phrase"] for d in detect("ninety counties")] == ["ninety counties"],
+       str(detect("ninety counties")))
+    # AND THE COMPOUNDS ENGLISH DOES NOT WRITE ARE NOT INVENTED. Generating every tens-by-word
+    # pair would put "twenty twelve" and "thirty zero" in the pattern, and a detector that
+    # reports a phrase nobody writes is the same fault as one that reports half a phrase.
+    ok("no such compound as 'twenty twelve'", to_int("twenty twelve") is None
+       and [d["phrase"] for d in detect("twenty twelve days")] == ["twelve days"],
+       str(detect("twenty twelve days")))
+    ok("...nor 'thirty zero'", to_int("thirty zero") is None, str(to_int("thirty zero")))
+
+    # THE HALF THE EXEMPTION MUST NOT EAT. `WORDS` no longer stops at twenty, but it still stops
+    # below a scale word, so a scale word after the numeral means the figure is not one, and that
+    # phrase stays detected and stays declarable.
     ok("a scale word after 'one' keeps the count", detect("one hundred filings") != [],
        str(detect("one hundred filings")))
     ok("...and a real tally is untouched", detect("FIVE PUCT FILINGS")[0]["kind"] == "count")

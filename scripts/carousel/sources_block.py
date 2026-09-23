@@ -93,7 +93,21 @@ def ordinal_date(iso: str, context_year: int | None = None) -> str:
 # names reports a KeyError on history and gets read as a broken run rather than a naming drift.
 URL_KEYS = ("source_url", "url")
 TITLE_KEYS = ("document", "source_title", "source_publisher", "publisher")
-DATE_KEYS = ("published", "published_date", "retrieved")
+# THE LINE'S DATE IS THE DOCUMENT'S, NEVER THE FETCH'S (2026-09-23)
+#
+# `retrieved` used to sit at the end of this tuple as a fallback, so a claim carrying no
+# published date printed the day the run FETCHED it in the position a reader reads as the day
+# the document was issued. On carousel no. 32 that put "Governor Abbott Directs Comprehensive
+# Data Center Audit, September 23rd" under a deck whose frame 7 says that audit was ordered
+# August 3rd, and the header two lines above already said "all fetched September 23rd", so the
+# block asserted a publication date it did not have and contradicted its own deck to do it.
+# Two round 5 scorers found it independently.
+#
+# This is the same defect as the "Day counts computed" line thirty lines down, which was
+# appended unconditionally until a deck published it over a compute.py that computed nothing.
+# A provenance line may only state what the record holds. A claim with no published date gets
+# NO date on its line, and the header's fetch sentence carries what is actually known.
+DATE_KEYS = ("published", "published_date")
 
 
 def field(claim: dict, keys) -> str | None:
@@ -170,15 +184,25 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]",
             "secondary_reported": ("news report", "news reports"),
             "data": ("published dataset", "published data"),
             "unstated": ("document of unstated type", "documents of unstated type")}
-    kinds: dict[str, int] = {}
+    # A DOCUMENT MAY NAME ITSELF MORE NARROWLY THAN ITS TYPE (2026-09-23). That run re-sourced its
+    # directive claims from a law firm's client alert, typed `secondary_reported` because it is a
+    # secondary account, and this line then published it as a "news report", which it is not.
+    # `source_noun: [singular, plural]` on the claim is the true noun and wins over the type's.
+    # Optional, so every shipped deck without it renders exactly what it published.
+    kinds: dict = {}
     for d in docs:
-        k = d.get("source_type") or "unstated"
+        noun = d.get("source_noun")
+        if isinstance(noun, (list, tuple)) and len(noun) == 2 and all(isinstance(x, str) for x in noun):
+            NAME[tuple(noun)] = tuple(noun)
+            k = tuple(noun)
+        else:
+            k = d.get("source_type") or "unstated"
         kinds[k] = kinds.get(k, 0) + 1
     def _n(i: int) -> str:
         words = "one two three four five six seven eight nine ten eleven twelve".split()
         return words[i - 1] if 1 <= i <= len(words) else str(i)
     parts = [f"{_n(v)} {(NAME.get(k) or (k, k))[0 if v == 1 else 1]}" for k, v in
-             sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
+             sorted(kinds.items(), key=lambda kv: (-kv[1], str(kv[0])))]
     grade = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
     days = sorted({fetched} if isinstance(fetched, str) else set(fetched))
     if not days:
@@ -256,7 +280,11 @@ def build(run_dir: Path) -> str:
     aggs = (json.loads(agg_f.read_text(encoding="utf-8")).get("aggregates", [])
             if agg_f.exists() else [])
     if any(computed_span(a) for a in aggs if isinstance(a, dict)):
-        lines.append("Day counts computed in compute.py from the source dates above.")
+        # AND IT NAMES WHERE THE DATES CAME FROM, which is not "above" unless they are there.
+        # It read "from the source dates above" while every line above carried the fetch date,
+        # so a reader checking the arithmetic against the printed dates got a different answer.
+        # compute.py parses its endpoints out of the QUOTES, so that is what this says.
+        lines.append("Day counts computed in compute.py from dates inside the quoted sources.")
     return "\n".join(lines) + "\n"
 
 
@@ -455,6 +483,12 @@ def self_test() -> int:
     # the current output rather than against the intended output freezes whatever shipped.
     ok("...and a single source of a kind is not pluralised",
        "one official records" not in _line and "one news reports" not in _line, _line)
+    _alert = dict(_mix["claims"][1], source_noun=["law firm client alert", "law firm client alerts"])
+    _l2 = provenance_line([_mix["claims"][0], _alert, _mix["claims"][2]], "2026-08-25")
+    ok("a document's own noun wins over its type's, so a law firm alert is not a news report",
+       "one law firm client alert" in _l2 and "one news report" in _l2 and "two news reports" not in _l2, _l2)
+    ok("...and a document without one reads exactly as before",
+       provenance_line(_mix["claims"], "2026-08-25") == _line)
     ok("...and never claims they are all primary",
        "all primary" not in _line, _line)
     ok("...and a single grade reads as one clause",
@@ -528,6 +562,34 @@ def self_test() -> int:
 
         (d / "first_comment.txt").write_text(built)
         ok("the block it just built passes its own check", check(d) == [], str(check(d)))
+
+        # A LINE'S DATE IS THE DOCUMENT'S AND NEVER THE FETCH'S.
+        ok("a published date prints on the line", "August 3rd" in built, built)
+        ok("...and the fetch date does not appear on any citation line",
+           all("August 19th" not in ln for ln in built.splitlines()[1:]), built)
+        (d / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/doc", "retrieved": "2026-08-19",
+             "document": "A notice"}]}))
+        (d / "copy.json").write_text(json.dumps({"slides": {"S1": {"claims": ["c1"]}}}))
+        nodate = build(d)
+        ok("a claim with only a retrieved date gets NO date on its line",
+           "A notice. c1" in nodate, nodate)
+        ok("...and the header still says when it was fetched",
+           "fetched August 19th" in nodate.splitlines()[0], nodate)
+        ok("...and the fetch date is nowhere else in the block",
+           all("August 19th" not in ln for ln in nodate.splitlines()[1:]), nodate)
+        # put the fixture back for the cases below
+        (d / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/doc", "published": "2026-08-03",
+             "retrieved": "2026-08-19", "document": "A notice"},
+            {"id": "c2", "source_url": "https://a.example/doc", "published": "2026-08-03",
+             "retrieved": "2026-08-19", "document": "A notice"},
+            {"id": "c3", "source_url": "https://b.example/rel", "published": "2026-08-18",
+             "retrieved": "2026-08-19", "document": "A release"},
+        ]}))
+        (d / "copy.json").write_text(json.dumps(
+            {"slides": {"S1": {"claims": ["c1", "c2"]}, "S2": {"claims": ["c3"]}}}))
+        (d / "first_comment.txt").write_text(build(d))
 
         # THE REAL DEFECT, replayed. The deck grew a claim and the block did not.
         (d / "copy.json").write_text(json.dumps(

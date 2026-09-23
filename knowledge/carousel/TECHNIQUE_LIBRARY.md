@@ -292,7 +292,7 @@ frames and a weak strip. Open the contact sheet before the pixel critics, not af
 Everything above this line is a SURFACE: what a frame is made of. Nothing above it is what a
 frame is a picture of, and after twenty one decks the judges' finding was that the frames were
 surfaces with a headline on them. These entries are subjects. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
-is the doctrine, `examples/editorial-deck/` is the demonstration, and every one of these is a
+is the doctrine, `examples/figure-bearing/` is the demonstration, and every one of these is a
 library under `assets/js/`. **Every frame names one of the ten layouts and one drawn subject
 before it names a surface.**
 
@@ -313,11 +313,15 @@ shows them all beside a person. *Fails when:* an object is used as a symbol rath
 subject (a small pump jack in a corner is clip art; a pump jack at 7 m filling the frame is a
 picture), or when a subject not in the catalogue is drawn as a slab instead of in parts.
 
-**The print** — `TXINK.print`. Paper, one ink, a screen (halftone, line, hatch, stipple), a
-contour plate out of register, one accent laid flat. The surface that says a hand made it.
-*Fails when:* the screen runs under type (keep the reserve dark by construction or fade it
-with `TXINK.reserve`), the cell drops under 4 and becomes texture, or nine frames share one
-screen.
+**The render** — `txthree.js` on `three.module.min.js`. The deck's one HERO OBJECT modelled
+once as geometry in the chassis, a real PBR material, one rig, a soft shadow onto a ground it
+touches, finished with the `txpost.js` grade. The surface of every frame, and at least six of
+nine go through it. (**The print, `TXINK.print`, is DELETED** on the owner's instruction of
+2026-09-23: *"delete that fallback bullshit look, make it impossible for me to have to tell u
+this again."* Its screens were the faded look. `print_ban.py` fails the build if it returns.)
+*Fails when:* the object is a primitive where the story needs a made thing, the rig changes
+between frames, a quantity is drawn in perspective, or the type sits on a busy part of the
+render.
 
 **The ten layouts** — `TXLAYOUT`. FULL_BLEED, SPLIT_HORIZON, TYPE_AS_OBJECT, OBJECT_AND_CAPTION,
 DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE, rotated under the rule `TXLAYOUT.check`

@@ -1,0 +1,23 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "weighted_score": 6.58,
+ "criteria": {
+  "artwork_craft": 6.0,
+  "deck_coherence": 5.5,
+  "claim_integrity": 7.5,
+  "story_and_stakes": 7.5,
+  "sequence_and_momentum": 6.5,
+  "voice": 7.5,
+  "variety": 5.0
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut VALUE_ARC and EDGE_TEASE from the storyboard and buy the camera move the doctrine licenses instead.",
+ "other_findings": [
+  "The chassis docstring shipped the REFUTED air permit mechanism as the deck's argument and a deck title no surface uses.",
+  "The storyboard's typed medians were labelled measured and disagree with measurements.json on frames 1, 3 and 6.",
+  "Casts are positively findable on two frames, not the five that declare CAST_SHADOW.",
+  "The person on frame 6 was called a 2 to 3 px speck at feed size. MEASURED AND REFUTED by the showrunner: the figure is about 50 px tall in the 432 px thumb with a visible cast. Recorded because a scorer finding that does not survive a measurement is worth as much as one that does."
+ ]
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 2 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js.
+     INSIDE THE MACHINE'S OWN SPACE. The hero's radiator end and its stack, cropped by the top,
+     left and right edges, at detail scale, with no wire, conduit or insulator anywhere. The set is
+     turned so its radiator end faces the deck's light. What the frame is missing is the whole of
+     the audit's reach. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:948px; width:920px; font-size:104px; }
+  .dek  { left:82px; width:830px; font-size:29px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A connection to deny</h1>
+<p class="dek" data-follow="22">A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'What the audit can do', counter: "02 / 09",
+    src: 'c10 c5   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 16, 90], exposure: 1.0, fov: 40 });
+  TXT.environment(R, { intensity: 0.5 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, 0], distance: 40, shadowFar: 120 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 300, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 80 });
+  const M = Y.mats(TXT);
+
+  /* THE HERO, turned half a turn so the radiator end and its louvres face the key. */
+  const hero = Y.genset(THREE, M, {});
+  hero.rotation.y = Math.PI;
+  TXT.add(R, hero);
+  /* the next set down the line, dark behind, so the crop sits in a yard rather than a void */
+  const next = Y.genset(THREE, M, { detail: false });
+  next.rotation.y = Math.PI; next.position.set(0, 0, -4.6);
+  TXT.add(R, next);
+
+  /* WHAT ONLY A CLOSE CROP SEES, added here rather than in the chassis because it is detail at
+   * this range and noise at every other: forklift pockets through the skid's end rail, lifting
+   * lugs at the four roof corners, and the bird screen behind the louvres. Still no cable. */
+  for (const pz of [-0.7, 0.7]) {
+    const pocket = Y.tile(THREE, 0.06, 0.2, 0.36, M.recess);
+    pocket.position.set(-6.32, 0.28, pz); TXT.add(R, pocket);
+  }
+  for (const [lx, lz] of [[-6.0, 1.1], [-6.0, -1.1], [6.0, 1.1], [6.0, -1.1]]) {
+    const lug = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.022, 8, 16), M.galv);
+    lug.position.set(lx, 3.46, lz); lug.rotation.y = Math.PI / 2; TXT.add(R, lug);
+  }
+  const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.01, 2.3, 0.012), M.skid, 40);
+  const mm = new THREE.Matrix4();
+  for (let k = 0; k < 40; k++) { mm.makeTranslation(-6.12, 1.9, -1.0 + k * 0.052); mesh.setMatrixAt(k, mm); }
+  TXT.add(R, mesh);
+
+  /* Close on the louvred end from low and off its corner, so the end fills the top two thirds
+   * and leaves the top edge, and the pad in front of it holds the type. */
+  TXT.frame(R, { fov: 46, from: [-13.5, 0.9, 2.8], look: [-3.8, 1.4, -0.6] });
+  Y.sky(THREE, R);
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

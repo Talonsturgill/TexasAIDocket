@@ -146,6 +146,15 @@ def computed_values(run_dir: Path) -> dict[str, list[float]]:
                 if isinstance(v, dict):
                     for kk in ("value", "of", "count", "n"):
                         add(k, v.get(kk))
+                    # DOTTED NAMES RESOLVE (2026-09-23). figures.json is a block per story
+                    # thread, `behind_the_meter: {units: 40, megawatts: 76}`, and dossiers name
+                    # `behind_the_meter.units`. That name resolved to nothing, so `keys` came
+                    # back empty, the membership test above is skipped on an empty set, and
+                    # `render_problems` found no number and returned clean. Every figure in the
+                    # 2026-09-23 storyboard was checked at the plan and at no render at all.
+                    for kk, vv in v.items():
+                        if not str(kk).startswith("_"):
+                            add(f"{k}.{kk}", vv)
                 else:
                     add(k, v)
 
@@ -404,6 +413,27 @@ def self_test() -> int:
         six[n] = {"slide": n}
     ok("six of nine meets a six-frame floor", not check(six, keys, 6))
     ok("...and five of nine does not", bool(check({**six, 6: {"slide": 6}}, keys, 6)))
+
+    # DOTTED NAMES, 2026-09-23. A figures.json block per thread resolves `block.field`, and a
+    # frame that declares one and never uses its value is refused at the render rather than
+    # passed in silence because the name looked up nothing.
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        rd = Path(td)
+        (rd / "figures.json").write_text(json.dumps(
+            {"_note": "x", "behind_the_meter": {"units": 40, "megawatts": 76, "basis": "measured"}}))
+        vals = computed_values(rd)
+        ok("a dotted figure name resolves to its number",
+           vals.get("behind_the_meter.units") == [40.0], str(vals))
+        (rd / "slides").mkdir()
+        fr = {"slide": 1, "data_in_art": {"figure": "behind_the_meter.units", "drives": "the count of sets"}}
+        (rd / "slides" / "slide-01.html").write_text(
+            "<script>const UNITS = 40; for (let i = 0; i < UNITS; i++) add(i);</script>")
+        ok("...and a frame that loops over it passes the render check",
+           render_problems(1, fr, rd / "slides", vals) == [])
+        (rd / "slides" / "slide-01.html").write_text("<script>draw(room);</script><h1>40 of them</h1>")
+        ok("...and a frame that only WRITES it is refused rather than skipped",
+           bool(render_problems(1, fr, rd / "slides", vals)))
 
     # A FIGURE THE BUILD DID NOT COMPUTE is the law this repo already had, applied to art.
     typed = dict(good)

@@ -533,6 +533,93 @@ def banned_characters(copy: dict, report: dict) -> list[str]:
     return findings
 
 
+# ---------------------------------------------------------------- a date in the post's own year
+#
+# THE RULE HAD A GATE AND THE GATE COULD NOT SEE THE DECK (2026-09-23, carousel no. 32).
+#
+# `CLAUDE.md`: "A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR", owner's instruction 2026-09-11,
+# with the SITE named as the one exception because a record page is a permanent archive. A
+# carousel is not the site. It is the post.
+#
+# `caption_check.post_shape_problems` enforces it and is reached only from `caption_check.run()`,
+# which this run pointed at `caption.txt` and at nothing else. So frame 7 set "AUGUST 3RD, 2026"
+# three times and a dek reading "The audit was ordered August 3rd, 2026", through two pixel
+# review rounds and nine green gates, while the CAPTION of the same post printed the same three
+# dates correctly without the year. **Two surfaces of one post gave two answers to a rule the run
+# demonstrably knew**, and the only thing that found it was a scorer reading the picture.
+#
+# That is this repo's named recurring shape, said in `CLAUDE.md` about the missing hashtags, the
+# missing progress counter and the wrong public URL: a rule stated in one place, a surface
+# keeping its own copy, and nothing in between checking they agree. It is also the identical
+# omission `banned_characters` above exists for, eight days later, one function down.
+#
+# WHY THIS RULE AND NOT THE REST OF `post_shape_problems`. The argument is the one written above
+# for the character classes and it is the same argument. Length, the link rule and the required
+# interrogative ending are judgements about a CAPTION as a whole and are meaningless applied to a
+# label. A year printed beside a date is structural: it is redundant on a hook, on a dek, on an
+# axis label and in a sentence alike, it admits no exception anywhere on this surface, and there
+# is nothing to tune. GATE_LESSONS 46's test for a safe rule is "a semicolon is a semicolon".
+#
+# ONE PATTERN, NOT A SECOND COPY OF ONE. `DATED_YEAR` is imported from `caption_check` for the
+# reason the line above imports `DASHES`: a pattern that exists in two files is two patterns and
+# the second one is always the one that misses. GATE_LESSONS 75, and the two numeral tokenisers.
+#
+# THE YEAR COMES FROM THE RUN, NEVER FROM THE CLOCK. `sources_block.py` takes it from the run
+# directory's own name so that rebuilding an old run renders what that run published, and the
+# same reasoning applies with more force here: read this with `date.today()` and every archived
+# deck starts failing on January 1st for copy that was correct when it shipped.
+def redundant_year(copy: dict, report: dict, year: str) -> list[str]:
+    """Dates printing the post's own year, in the deck's copy and in its render.
+
+    `year` is the four-digit year of the RUN. A date in any other year keeps its year, which is
+    what makes this a rule about redundancy rather than a rule against years.
+    """
+    try:
+        import caption_check as house
+    except ImportError as exc:                                          # pragma: no cover
+        raise SystemExit(
+            f"copy_sync: cannot import caption_check, which owns DATED_YEAR ({exc}). This gate "
+            f"will not restate the pattern locally: a second copy is how the two numeral "
+            f"tokenisers in this repo came to carry the same bug. Fix the import")
+    if not (isinstance(year, str) and re.fullmatch(r"\d{4}", year)):
+        raise SystemExit(
+            f"copy_sync: redundant_year was given {year!r} as the post's year. It reads the run "
+            f"date and never the clock, so an unreadable run date is a gate that cannot run "
+            f"rather than a gate that passes")
+
+    findings: list[str] = []
+
+    def note(where: str, s: str):
+        for m in house.DATED_YEAR.finditer(s):
+            if m.group(1) != year:
+                continue
+            shown = m.group(0)
+            # THE REPAIR IS THE STRING WITHOUT ITS YEAR, cut at the year's own span rather than
+            # at a comma. The corpus writes both "AUGUST 25TH, 2026" and "AUGUST 25TH 2026", and
+            # splitting on the comma hands the second one back unchanged, so the advice reads
+            # "Write 'AUGUST 25TH 2026'" about the string that is already wrong. A gate that
+            # misreports the repair is the same fault as one that misreports the figure.
+            bare = shown[:m.start(1) - m.start(0)].rstrip().rstrip(",").rstrip()
+            msg = (f"{where}: {shown!r} prints the year and this post ships in {year}. Write "
+                   f"{bare!r}. A reader works the year out from the fact that they are reading "
+                   f"it this week, and the first surface of a post is the only real estate it "
+                   f"has. The year STAYS on any date outside {year}")
+            if msg not in findings:
+                findings.append(msg)
+
+    for key, slide in sorted(normalize_slides(copy.get("slides")).items(),
+                             key=lambda kv: (slide_no(kv[0]) or 0)):
+        for s in strings_in(slide):
+            note(f"copy.json {key}", str(s))
+    for s in strings_in({k: v for k, v in copy.items() if k != "slides"}):
+        note("copy.json", str(s))
+    for rec in report.get("slides") or []:
+        n = rec.get("n") or rec.get("slide") or slide_no(rec.get("file", ""))
+        for t in rec.get("text_nodes") or []:
+            note(f"render slide {n}", str(t.get("text", "")))
+    return findings
+
+
 def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], list[str]]:
     """Returns (drifted, uncited). Both empty means in sync."""
     drifted, uncited = [], []
@@ -610,13 +697,22 @@ def run(date: str, out_root: Path) -> int:
     drifted, uncited = compare(copy, report, claims)
     untraced, quoted_n = untraced_quotations(copy, claims)
     banned = banned_characters(copy, report)
+    # The post's own year, off the run directory's name. Never the clock. See `redundant_year`.
+    m_year = re.match(r"(\d{4})-\d{2}-\d{2}$", date)
+    if not m_year:
+        print(f"copy_sync: {date!r} is not a run date, so the post's own year cannot be read and "
+              f"the redundant-year rule cannot run. That is a failure, not a skip.",
+              file=sys.stderr)
+        return 2
+    dated = redundant_year(copy, report, m_year.group(1))
     n_slides = len(normalize_slides(copy.get("slides")))
 
-    if not drifted and not uncited and not untraced and not banned:
+    if not drifted and not uncited and not untraced and not banned and not dated:
         extra = ("" if claims is not None
                  else ", citations and quotations unchecked (no claims.json)")
         print(f"copy sync: clean, {n_slides} slide(s) match what the browser laid out{extra}")
         print("copy sync: no em dash, en dash, curly quote or emoji in the copy or the render")
+        print(f"copy sync: no date on any frame prints {m_year.group(1)}, the post's own year")
         if claims is not None:
             print(f"copy sync: {quoted_n} quoted phrase(s) traced to a claim the slide declares")
         return 0
@@ -656,6 +752,16 @@ def run(date: str, out_root: Path) -> int:
               "  surface with no house-rule gate on them. On 2026-09-15 frame 5 shipped an en\n"
               "  dash through the render and the machine qa pass, and a pixel critic reading the\n"
               "  picture is what caught it. FIX BOTH SURFACES: the slide's HTML and copy.json.")
+    if dated:
+        print(f"\ncopy sync: {len(dated)} date(s) printing the post's own year\n")
+        for m in dated:
+            print(f"  {m}")
+        print("\n  CLAUDE.md, owner's instruction 2026-09-11. The SITE is the one exception and a\n"
+              "  deck is not the site, it is the post. `caption_check` has held this rule since\n"
+              "  the day it was written and is only ever pointed at caption.txt, so on 2026-09-23\n"
+              "  frame 7 set \"AUGUST 3RD, 2026\" three times while the caption of the same post\n"
+              "  printed the same dates correctly. FIX BOTH SURFACES: the slide's HTML and\n"
+              "  copy.json. Drop only the year, never the date.")
     return 1
 
 
@@ -1091,6 +1197,103 @@ def self_test() -> int:
     ok("the banned classes are imported from caption_check, never restated here",
        _house.DASHES.search("a–b") is not None and _house.CURLY.search("“x”")
        is not None and _house.emojis("\U0001F600") == ["\U0001F600"])
+
+    # ------------------------------------------------- A DATE IN THE POST'S OWN YEAR, 2026-09-23
+    #
+    # THE DEFECT AS IT SHIPPED, verbatim from carousel no. 32's frame 7 before a scorer read the
+    # picture. All four of these go green on the pre-fix code, because the pre-fix code did not
+    # look at a slide at all.
+    frame7 = {"slides": {"S7": {
+        "kicker": "AUGUST 3RD, 2026",
+        "dek": "The audit was ordered August 3rd, 2026. The directive came 49 days later."}}}
+    rep7 = {"slides": [{"n": 7, "text_nodes": [{"text": "AUGUST 3RD, 2026"}]}]}
+    hits = redundant_year(frame7, rep7, "2026")
+    ok("the 2026-09-23 defect is CAUGHT on the record and on the render",
+       len(hits) == 3, str(hits))
+    ok("...and the ALL CAPS form is seen, which is the only form a hook ever sets",
+       any("AUGUST 3RD, 2026" in h and "render slide 7" in h for h in hits), str(hits))
+    ok("...and the finding names the bare date to write instead",
+       any("'August 3rd'" in h for h in hits), str(hits))
+    ok("...and it names the surface, so a repair lands on the frame that was named",
+       any(h.startswith("copy.json S7") for h in hits), str(hits))
+
+    # THE HALF THAT MAKES IT A RULE ABOUT REDUNDANCY. A date outside the post's year keeps it.
+    other = {"slides": {"S1": {"line": "the rule was adopted September 5th, 2019"}}}
+    ok("a date outside the post's own year is untouched",
+       redundant_year(other, {}, "2026") == [], str(redundant_year(other, {}, "2026")))
+    ok("...and the same date IS caught in a post from that year",
+       len(redundant_year(other, {}, "2019")) == 1, str(redundant_year(other, {}, "2019")))
+    bare = {"slides": {"S1": {"line": "the audit was ordered August 3rd"}}}
+    ok("the corrected form passes", redundant_year(bare, {}, "2026") == [],
+       str(redundant_year(bare, {}, "2026")))
+
+    # A GATE THAT CANNOT READ ITS YEAR IS RED, NEVER GREEN. GATE_LESSONS 37: a skip and an
+    # unavailable check are not the same event. The year comes off the run directory's name, so
+    # a caller that hands this a clock, a None or a date it cannot parse gets a refusal.
+    for bad in (None, "2026-09-23", "26", 2026):
+        try:
+            redundant_year(bare, {}, bad)
+        except SystemExit:
+            pass
+        else:
+            ok(f"a year of {bad!r} refuses to run", False, "it returned instead of refusing")
+            break
+    else:
+        ok("a year it cannot read is a refusal to run, not a pass", True)
+
+    # ONE PATTERN. If caption_check stops owning DATED_YEAR this breaks loudly rather than drift,
+    # and the case that matters is the uppercase month: GATE_LESSONS 35 is a date rule that could
+    # see every form except the one the renderer emits.
+    ok("DATED_YEAR is imported from caption_check and reads an uppercase month",
+       _house.DATED_YEAR.search("AUGUST 3RD, 2026") is not None)
+
+    ok("the repair is cut at the year, not at a comma, so an uncommaed date is not handed back",
+       any("Write 'AUGUST 25TH'" in h
+           for h in redundant_year({"slides": {"S7": {"k": "AUGUST 25TH 2026"}}}, {}, "2026")),
+       str(redundant_year({"slides": {"S7": {"k": "AUGUST 25TH 2026"}}}, {}, "2026")))
+
+    # REPLAYED AGAINST THE REAL SHIPPED CORPUS, for the reason the character replay above is.
+    #
+    # AND NOT AS "every shipped deck is clean", WHICH IS THE ASSERTION THIS BLOCK STARTED AS AND
+    # WHICH WENT RED ON 21 OF 31 DECKS. The rule was written on 2026-09-11 and the corpus reaches
+    # back to 2026-08-16, so most of it was drawn before the rule existed and three decks after
+    # it broke it. **A test that asserts the corpus is clean is measuring the corpus**, which is
+    # the trap written up against the non-ASCII witness forty lines above, and it would have put
+    # this gate's own suite permanently red over copy nobody is going to redraw.
+    #
+    # What a replay owes is DISCRIMINATION: on real rendered strings, does the rule separate the
+    # year it is about from every other year on the same frames? So the corpus is measured rather
+    # than graded, and the two halves are asserted against each other.
+    corpus_hits, other_years = 0, 0
+    for cand in shipped:
+        live = cand.parent
+        cp = live / "copy.json"
+        if not cp.exists():
+            continue
+        yr = live.name[:4]
+        rep = json.loads(cand.read_text(encoding="utf-8"))
+        cpy = json.loads(cp.read_text(encoding="utf-8"))
+        found = redundant_year(cpy, rep, yr)
+        corpus_hits += len(found)
+        ok(f"{live.name}: every finding is a date in {yr} and no other year",
+           all(f"prints the year and this post ships in {yr}" in h for h in found), str(found))
+        # ...and the same deck read as though it shipped in a year it cannot contain must be
+        # silent. This is the half that proves the rule is about the POST'S year rather than
+        # about years, and it cannot pass by accident on a deck with no dates at all.
+        #
+        # THE COUNTERFACTUAL YEAR IS 1999 AND IT IS NOT AN ARBITRARY NUMBER. The first cut of
+        # this probe used 2025 and 2027, and it went red with ten findings, correctly: the record
+        # carries real dates in the years either side of the post and those decks print them with
+        # their years, which is the rule working. A counterfactual probe has to name a year the
+        # corpus cannot contain, or it measures the record rather than the rule.
+        quiet = redundant_year(cpy, rep, "1999")
+        ok(f"{live.name}: read as a 1999 post, the same frames report nothing",
+           quiet == [], str(quiet))
+        other_years += len(quiet)
+    ok("the rule fires on real shipped rendered strings, so the replay is not vacuous",
+       corpus_hits > 0, f"{corpus_hits} findings across {len(shipped)} shipped decks")
+    ok("...and is silent on every one of them under a year the corpus cannot hold",
+       other_years == 0, f"{other_years} findings under a counterfactual year")
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)

@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Frontera queues still close permanently on October 1st. No reprieve and no extension has been published.
 - 2026-09-19 · The machine's queues still close permanently on October 1st, 2026, and no reprieve has been published.
+- 2026-09-23 · Whether the decommission notice still reads as it did is unconfirmed this run. The queues are still dated to close on October 1st on the record as it stands.
 
 ## Evidence
 

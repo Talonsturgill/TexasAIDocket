@@ -59,6 +59,25 @@ LEDGER = REPO_ROOT / "ledger" / "docket.json"
 sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
 import caption_check                                               # noqa: E402
 
+# ONE CRAWL BOUNDARY DECISION, IMPORTED RATHER THAN RESTATED.
+#
+# THE DEFECT, 2026-09-23. `docket_staleness.py` learned to separate an item nobody CHECKED from
+# an item nobody CAN check, and this file has its own staleness gate that knew nothing about it.
+# `docket_staleness` exits 0 on the three Hays County items behind a measured robots boundary,
+# and `gate_staleness` below hard-fails on exactly the same three the moment they pass six days,
+# which is two days later. So the fix that was supposed to end a permanent red CI state merely
+# moved it, and re-measuring the boundary could not clear it, because the boundary is not
+# `last_verified` and never becomes it.
+#
+# A review bot found this within minutes of the pull request opening and it was right. It is the
+# shape GATE_LESSONS 79 was written about THE SAME DAY: a rule enforced on one surface of a
+# multi-surface product is a rule the product breaks on the other one.
+#
+# So the predicate is IMPORTED. Two copies of a rule about which items are unreachable is how
+# the two gates disagreed in the first place, and CLAUDE.md names that shape three times: a
+# value with one home, surfaces that keep their own copy, and nothing in between checking.
+from docket_staleness import unreachable_state, UNREACHABLE_WINDOW_DAYS  # noqa: E402
+
 # EVERY FIELD AN ITEM MUST CARRY. Named rather than written inline in the validator, because
 # `schema_contract.py` checks the record's shape against this exact list. Two copies of a
 # required-field list is one of them going stale, and the stale one is always the check.
@@ -881,9 +900,24 @@ def gate_staleness(items: list, today: str,
             age = (t - _dt.date.fromisoformat(str(it.get("last_verified")))).days
         except ValueError:
             continue
-        aged.append((it.get("id"), age))
-    for i, age in sorted(aged, key=lambda x: -x[1]):
-        if age > fail_days:
+        aged.append((it.get("id"), age, unreachable_state(it, t)))
+    for i, age, blocked in sorted(aged, key=lambda x: -x[1]):
+        # AN ITEM BEHIND A PROVEN BOUNDARY IS NOT A FALSE CLAIM, WHICH IS WHAT THIS BAND SAYS.
+        # The hard band's own message is that publishing an unchecked item as current is a false
+        # claim. An item whose source refuses every client this project has is not being
+        # published as current on anybody's say-so: it carries a dated measurement of why it
+        # can't be re-read, and `docket_staleness` prints it in its own section every run. The
+        # band that means "nobody looked" does not describe it.
+        #
+        # It still WARNS, at every age, because the obligation does not go away and the window
+        # on the measurement does expire. What it never becomes is a reason not to publish.
+        if blocked:
+            left = UNREACHABLE_WINDOW_DAYS - blocked["checked_age_days"]
+            r.warn(f"{i}: not re-verified in {age} days and UNREACHABLE, boundary "
+                   f"{blocked['boundary']} on {', '.join(blocked['hosts'])} measured "
+                   f"{blocked['checked']}, {left}d left on that measurement. Re-measure the "
+                   f"boundary; never route around it")
+        elif age > fail_days:
             r.fail(f"{i}: not re-verified in {age} days, past the {fail_days} day limit. "
                    f"Re-verify it or drop it; publishing it as current is a false claim")
         elif age > warn_days:
@@ -1562,6 +1596,35 @@ def self_test() -> int:
            gate_staleness([base(last_verified="2026-08-04")], today), "FAIL")
     expect("staleness FAILS far past the outer band",
            gate_staleness([base(last_verified="2025-12-01")], today), "FAIL")
+
+    # THE TWO STALENESS GATES SHARE ONE CRAWL BOUNDARY DECISION, and this is what pins it.
+    # Until 2026-09-23 they did not. `docket_staleness` learned to separate an item nobody
+    # checked from an item nobody CAN check, this gate knew nothing about it, and the fix that
+    # was meant to end a permanent red merely moved it two days. A review bot found it within
+    # minutes of the pull request opening.
+    def _blocked(**o):
+        d = {"hosts": ["example.invalid"], "boundary": "robots",
+             "checked": today, "note": "Disallow: / to User-agent: *"}
+        d.update(o)
+        return d
+    _door = {"url": "https://example.invalid/agenda", "room": "contact_only"}
+    expect("an item past the hard band with no boundary still FAILS",
+           gate_staleness([base(last_verified="2025-12-01", public_access=_door)], today), "FAIL")
+    expect("...and a PROVEN boundary takes it out of the hard band",
+           gate_staleness([base(last_verified="2025-12-01", public_access=_door,
+                                unreachable=_blocked())], today), "WARN")
+    # It WARNS rather than passing silently, which the case above already pins: the obligation
+    # to re-measure does not go away just because the item is out of the hard band.
+    # THE SHELF LIFE IS THE WHOLE DIFFERENCE between a measurement and an exemption, and this
+    # gate has to honour the SAME window docket_staleness does or the two disagree again.
+    _stale_measure = (_dt.date.fromisoformat(today)
+                      - _dt.timedelta(days=UNREACHABLE_WINDOW_DAYS + 1)).isoformat()
+    expect("...and a boundary measured past its own window stops counting",
+           gate_staleness([base(last_verified="2025-12-01", public_access=_door,
+                                unreachable=_blocked(checked=_stale_measure))], today), "FAIL")
+    expect("...and a boundary that misses the item's own front door proves nothing",
+           gate_staleness([base(last_verified="2025-12-01", public_access=_door,
+                                unreachable=_blocked(hosts=["other.invalid"]))], today), "FAIL")
 
     # THE DISTINCTION THE BUILDER DEPENDS ON. A stale record is loud everywhere and stops only
     # the ship, never the rebuild. Anything that would make the OUTPUT wrong still stops both.

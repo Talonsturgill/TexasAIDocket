@@ -11,7 +11,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-23
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Harlingen effluent supply agreement is still approved and still points at a data center that has not been built. No amendment or cancellation has been posted.
 - 2026-09-19 · The effluent supply agreement stands, so the proposed data center's water is still to come from treated wastewater rather than from drinking supply.
+- 2026-09-23 · The Harlingen effluent agreement still stands as the board approved it.
 
 ## Evidence
 

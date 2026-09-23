@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js.
+     THE OPEN. The line of sets from off its near end at night, receding into fog. The count
+     of sets built is behind_the_meter.units from figures.json, so the line IS the figure.
+     One light, the deck's. No amber: a machinery frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:176px; width:860px; font-size:168px; line-height:0.88; letter-spacing:-0.030em; }
+  .dek  { left:82px; top:388px; width:640px; font-size:31px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Sought by</h1>
+<p class="dek">Two words decide who a permit halt reaches.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'Texas AI Docket', kicker2: "September 23rd", counter: "01 / 09",
+    src: 'c1 c16 c17   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 118, max: 168, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* THE COUNT, FROM figures.json. behind_the_meter.units, read out of c17 by compute.py. */
+  const UNITS = 40;
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 30, 165], exposure: 1.0, fov: 40 });
+  TXT.environment(R, { intensity: 0.45 });
+  TXT.deckRig(R, Y.RIG, { target: [0, 0, -50], distance: 140, shadowFar: 300 });
+  const pad = TXT.ground(R, { color: Y.PAD, size: 600, roughness: 0.96 });
+  Y.padMap(THREE, pad, { repeat: 150 });
+  const M = Y.mats(TXT);
+
+  /* THE LINE. Long axis across the camera, a 4.6 m pitch, which is a 2.44 m box and a walkway. */
+  const PITCH = 4.6;
+  for (let i = 0; i < UNITS; i++) {
+    const g = Y.genset(THREE, M, { detail: i < 6 });
+    g.position.set(0, 0, -i * PITCH);
+    TXT.add(R, g);
+  }
+  for (const z of [-58, -118]) { const m = Y.mast(THREE, M, { height: 12 }); m.position.set(-10, 0, z); TXT.add(R, m); }
+
+  /* THE YARD FENCE down the line's far side: galvanised posts every 3 m and a top rail, one
+   * instanced mesh, so the line reads as a site with an edge rather than machines on a plain. */
+  const postGeo = new THREE.CylinderGeometry(0.035, 0.035, 2.1, 8);
+  const posts = new THREE.InstancedMesh(postGeo, M.galv, 70);
+  const m4 = new THREE.Matrix4();
+  for (let k = 0; k < 70; k++) { m4.makeTranslation(9.5, 1.05, 12 - k * 3); posts.setMatrixAt(k, m4); }
+  TXT.add(R, posts);
+  const topRail = Y.tile(THREE, 0.05, 0.05, 210, M.galv);
+  topRail.position.set(9.5, 2.08, 12 - 105); TXT.add(R, topRail);
+
+  /* Off the line's near end, looking down it, its vanishing point left of centre inside the
+   * frame and the nearest stack tops under the dek. */
+  TXT.frame(R, { fov: 40, from: [-12.5, 2.1, 23], look: [-5.4, 8.6, -26] });
+  Y.sky(THREE, R);
+
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  TXDECK.finish(cx, { bloom: { threshold: 0.8, strength: 0.18, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -67,8 +67,23 @@ BOILERPLATE = re.compile(
     r"getcontext\s*\(|\.width\s*=[^;]*\*\s*SC|\.height\s*=[^;]*\*\s*SC|"
     r"\.style\.width|\.style\.height|\bcx\.scale\s*\(|\bconst\s+SC\b|"
     r"TX\.reseed\s*\(|TX\.rng\s*\(|document\.body\.dataset\.ready|"
-    r"window\.renderReady|document\.getElementById\s*\(",
-    re.IGNORECASE)
+    r"window\.renderReady|document\.getElementById\s*\(|"
+    # THE GPU BENCH'S CONTRACT, the same argument one bench over (2026-09-23). The print screen
+    # was deleted that day and the routine made `txthree.js` the default, and depth_floor.py
+    # REQUIRES every rendered frame to call setup with fog, environment, deckRig, ground, add,
+    # frame and snapshot in its own source, and deck_chassis requires TXDECK.finish. Nine frames
+    # obeying that were scoring 0.60 against each other on compliance, exactly as two canvas
+    # slides once scored 0.76 on getContext and reseed. The CALL NAMES go and everything passed
+    # to them stays, and so does whatever a frame BUILDS, so one scene shot from nine cameras
+    # still fails: the self-test replays that deck and holds it above the line.
+    # The WHOLE statement goes, arguments included, because `{ fog: [...] }` and `{ from, look }`
+    # are the contract's own vocabulary on every frame and leaving them put the floor straight
+    # back. What a frame adds to the scene is never inside one of these calls.
+    r"\bTXT\.(?:setup|environment|deckRig|ground|frame|snapshot)\s*\([^;\n]*\)|"
+    r"\bTXDECK\.finish\s*\([^;\n]*\)|\bTXLAYOUT\.mount\s*\(\s*document\.body\s*,|"
+    r"\bTX\.fitText\s*\([^;\n]*\)|^\s*import\s[^\n]*$|"
+    r"document\.createElement\s*\(\s*[\"']canvas[\"']\s*\)",
+    re.IGNORECASE | re.MULTILINE)
 COMMENT = re.compile(r"<!--.*?-->|/\*.*?\*/|//[^\n]*", re.DOTALL)
 STRING = re.compile(r"\"[^\"]*\"|'[^']*'")
 NUMBER = re.compile(r"\b\d+(?:\.\d+)?\b")
@@ -288,6 +303,39 @@ def self_test() -> int:
        stripped_med < raw_med, f"stripped {stripped_med} vs raw {raw_med}")
     ok("...which is the point: unstripped, a bespoke deck would score like a template",
        raw_med > stripped_med + 0.15, f"{raw_med} vs {stripped_med}")
+
+    # THE GPU CONTRACT, 2026-09-23. Nine rendered frames that each stage a DIFFERENT scene pass,
+    # and nine that stage ONE scene from nine cameras still fail, because only the call names
+    # the contract requires are stripped and never what a frame builds.
+    GPU = ("<script type=\"module\">\nimport * as THREE from '@@ASSETS@@/js/three.module.min.js';\n"
+           "import { init } from '@@ASSETS@@/js/txthree.js';\nconst TXT = init(THREE);\n"
+           "const gl = document.createElement('canvas');\n"
+           "const R = TXT.setup(gl, { fog: [1, 2, 3] }); TXT.environment(R, {});\n"
+           "TXT.deckRig(R, Y.RIG, {}); const pad = TXT.ground(R, {});\n%s\n"
+           "TXT.frame(R, { from: [1, 2, 3] }); await TXT.snapshot(R); TXDECK.finish(cx);\n</script>")
+    one_scene = {f"slide-{i:02d}.html": SHELL + GPU % (
+        "for (let k = 0; k < units; k++) { const g = Y.genset(THREE, M, {}); "
+        "g.position.set(0, 0, -k * pitch); TXT.add(R, g); }") for i in range(1, 10)}
+    scenes = [
+        'const hero = Y.genset(THREE, M, {}); hero.rotation.y = Math.PI; TXT.add(R, hero); const rim = hero.userData.top; hero.traverse(m => { m.castShadow = rim > 0; });',
+        'const board = new THREE.Group(); const ply = Y.tile(THREE, a, b, c, M.ply); board.add(ply); const paper = Y.tile(THREE, a, b, c, Y.paperMat(THREE)); board.add(paper); TXT.add(R, board); const inset = (x1 - x0) * margin; pg.style.left = x0 + inset;',
+        'Y.ortho(THREE, R, span); for (let k = 0; k < share; k++) { const plate = Y.tile(THREE, a, b, c, amber); plate.position.set(col, lift, row); TXT.add(R, plate); } const nearL = Y.project(THREE, R, corner); put(label, nearL.x, nearL.y);',
+        'const who = Y.person(THREE, {}); who.rotation.y = turn; TXT.add(R, who); const tool = Y.tile(THREE, a, b, c, steel); const chock = new THREE.CylinderGeometry(r, r, w, 3);',
+        'for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const ch = Y.chair(THREE, M); ch.position.set(x, 0, z); TXT.add(R, ch); } const table = Y.tile(THREE, w, t, d, wood); const sheet = Y.tile(THREE, a, b, c, Y.paperMat(THREE)); sheet.rotation.y = skew;',
+        'const block = new THREE.CylinderGeometry(bore, bore, stroke, 24); const head = new THREE.Mesh(block, iron); for (const bank of [-1, 1]) for (let cyl = 0; cyl < 8; cyl++) { const c = head.clone(); c.rotation.z = bank * vee; } const drum = new THREE.Mesh(alternator, paint); const fly = new THREE.TorusGeometry(ring, tube);',
+        'const rail = Y.tile(THREE, a, b, n * day, M.skid); const slab = Y.tile(THREE, w, t, d, M.conc); for (let d = 0; d < first; d++) { const p = Y.tile(THREE, a, b, c, plain); TXT.add(R, p); } const l3 = Y.project(THREE, R, [x, y, z]); put(answer, l3.x + gap, l3.y);',
+        'const mast = Y.mast(THREE, M, { height }); const fence = new THREE.InstancedMesh(post, galv, posts); fence.setMatrixAt(k, m4); TXT.add(R, fence); const posts = new THREE.InstancedMesh(postGeo, galv, count); posts.instanceMatrix.needsUpdate = true;',
+        'const floor = TXT.ground(R, {}); Y.padMap(THREE, floor, {}); const notice = Y.tile(THREE, w, h, d, paper); floor.material.map.repeat.set(tiles, tiles); const aisle = seats / 2;',
+    ]
+    varied = {f"slide-{i + 1:02d}.html": SHELL + GPU % sc for i, sc in enumerate(scenes)}
+    m_one, m_var = measure(one_scene), measure(varied)
+    ok("nine GPU frames that stage ONE scene from nine cameras still FAIL",
+       m_one["verdict"] == "fail", str(m_one["median"]))
+    ok("nine GPU frames that stage different scenes under the same contract pass",
+       m_var["median"] < FAIL_AT, str(m_var["median"]))
+    ok("...and the contract call names are what was stripped, not the scene",
+       "y.genset" in normalise(one_scene["slide-01.html"])
+       and "txt.setup" not in normalise(one_scene["slide-01.html"]))
 
     ok("numbers do not count as difference",
        similarity(normalise("<script>drawPanel(cx, 1, 2, 3)</script>"),
