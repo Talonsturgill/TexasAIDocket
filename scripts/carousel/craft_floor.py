@@ -68,11 +68,106 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import statistics
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+
+# --------------------------------------------------------------------------------------------
+# A FRAME THAT FETCHES AT RENDER TIME DRAWS NOTHING AND SAYS NOTHING (2026-09-23, carousel no. 32)
+#
+# THE DEFECT, measured against a shipped slide rather than reasoned about. A frame drew the state
+# outline and the county mesh with
+#
+#     fetch("@@ASSETS@@/geo/tx-counties.topo.json")
+#
+# and the render harness opens a slide over the FILE PROTOCOL, where that promise rejects. The
+# frame rendered in 384 ms, `render_report.json` recorded **zero errors and zero warnings**, and
+# the canvas had nothing on it. A `.catch()` that logs, or an `await` inside a handler nobody
+# awaits, is all it takes for the rejection to leave no trace anywhere a gate can read.
+#
+# WHY THIS BELONGS BESIDE THE VARIANCE FLOOR AND NOT IN A GATE OF ITS OWN. The floor above is the
+# only thing in this suite that would ever notice, and it notices only the extreme case: a frame
+# whose ENTIRE drawing came out of one fetch measures flat and fails here. A frame that draws its
+# type, its furniture and its bench in code and gets only its GEOGRAPHY from a fetch measures
+# perfectly healthy with the subject missing, which is the shape that shipped. So this catches the
+# CAUSE and the floor below catches the one consequence it can see. GATE_LESSONS 43's chain.
+#
+# THE RULE IS ABOUT THE CALL, NOT THE URL, and that is deliberate. A slide may reference any
+# committed asset it likes through `<script src>`, `<link href>` or an `<img>`: the harness
+# resolves those to real file paths and the browser loads them, which is why every deck here runs
+# ten of them. What no slide may do is ask the FETCH API to go and get something while it draws.
+#
+# **XMLHttpRequest IS NOT THIS, AND THAT IS A MEASUREMENT RATHER THAN A CONCESSION.** The first
+# cut of this rule swept XHR too, on the reasonable-sounding grounds that a network call is a
+# network call, and the replay over the shipped corpus turned it red on four decks that drew
+# their maps perfectly. Carousel no. 25's frame 8 says why, in its own source, and it was right:
+#
+#     "XHR rather than fetch: Chromium refuses the Fetch API on a file:// URL whatever
+#      --allow-file-access-from-files says, and that flag DOES cover XHR."
+#
+# So XHR is the WORKAROUND this project already found for this exact defect, four decks deep,
+# and a gate that banned it would have refused the repair and left only the broken route. This
+# is the shape CLAUDE.md warns about on the push defect: **a wrong explanation is worse than
+# none, because the next session inherits it and stops looking.** The corpus is what caught it.
+#
+# `d3.json` and its siblings ARE this, because d3-fetch is the Fetch API with a parser bolted on.
+# A dynamic `import()` is too, because a module graph over file:// is refused for the same
+# origin reason. A STATIC `import x from "..."` is resolved by the loader the way `<script src>`
+# is, so the lookbehind refuses the keyword form rather than the whole word.
+#
+# THE FIX THE RUN ALREADY FOUND, so the message can name it: pre-project the geometry into the
+# slide at build time. Carousel no. 32 did exactly that for the outline, the county mesh and the
+# place marks, with a script under its own `tmp/`, and the frame drew.
+NETWORK_CALLS = [
+    (re.compile(r"\bfetch\s*\("), "fetch()"),
+    (re.compile(r"\bd3\s*\.\s*(?:json|csv|tsv|text|xml|buffer|image)\s*\("), "a d3 fetch loader"),
+    (re.compile(r"(?<![.\w$])import\s*\("), "a dynamic import()"),
+]
+
+
+def strip_comments(src: str) -> str:
+    """HTML, block and line comments out, so a slide may DESCRIBE the trap without tripping it.
+
+    Carousel no. 32's frame 8 carries a comment reading `fetch("@@ASSETS@@/geo/...")` to explain
+    why its geometry is inline. That comment is the repair being documented at the site of the
+    defect, which is the habit this whole repo runs on, and a gate that punished it would teach
+    the next run to delete the explanation.
+
+    THE TRAP INSIDE THE STRIPPER, which is why the line-comment arm has a lookbehind and a
+    self-test case: `https://example.com` contains `//` and a naive rule deletes the rest of the
+    line, taking any real call after it with it. A stripper that eats the code is a gate that
+    goes quiet, which is worse than one that never existed.
+    """
+    out = re.sub(r"<!--.*?-->", " ", src, flags=re.S)
+    out = re.sub(r"/\*.*?\*/", " ", out, flags=re.S)
+    out = re.sub(r"(?m)(?<![:\w'\"/`])//[^\n]*$", " ", out)
+    return out
+
+
+def network_calls(slides_dir: Path) -> tuple[list, int]:
+    """(findings, slides read). A finding per (file, kind, line)."""
+    found, n = [], 0
+    for f in sorted(slides_dir.glob("slide-*.html")):
+        n += 1
+        src = strip_comments(f.read_text(encoding="utf-8", errors="replace"))
+        for rx, kind in NETWORK_CALLS:
+            for m in rx.finditer(src):
+                line = src.count("\n", 0, m.start()) + 1
+                frag = src[m.start():m.start() + 72].split("\n")[0].strip()
+                found.append(
+                    f"{f.name}:{line} calls {kind} while the frame draws: {frag!r}. The render "
+                    f"harness opens a slide over file://, where Chromium REFUSES the Fetch API "
+                    f"whatever --allow-file-access-from-files says, and a frame that swallows "
+                    f"the rejection renders clean with nothing on it. On 2026-09-23 that was "
+                    f"384 ms, zero errors, zero warnings and an empty canvas. PRE-PROJECT the "
+                    f"data into the slide at build time and draw from the literal, which is what "
+                    f"that run did for the outline, the county mesh and the place marks. XHR is "
+                    f"the other route and that flag DOES cover it. A committed asset reached "
+                    f"through <script src> or <link href> is fine and is not this")
+    return found, n
 
 # RELATIVE FLOOR. A frame carrying less than this fraction of its own deck's median tonal range is
 # not the same kind of object as the frames around it. Fitted on the three decks shipped to
@@ -278,6 +373,94 @@ def self_test() -> int:
     else:
         print("  note  qa.py not found, so the producer contract was not checked")
 
+    # ---- A RENDER-TIME FETCH IS AN EMPTY FRAME (2026-09-23) -----------------------------
+    #
+    # THE DEFECT AS IT WAS MEASURED, verbatim. Written into a scratch slide under out/, never
+    # /tmp, because this repo's scratch never leaves the working tree.
+    import tempfile
+    scratch = REPO_ROOT / "out" / "craft_floor"
+    scratch.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=str(scratch)) as td:
+        sd = Path(td)
+        (sd / "slide-01.html").write_text(
+            "<html><script>\n"
+            'const topo = await fetch("@@ASSETS@@/geo/tx-counties.topo.json").then(r=>r.json());\n'
+            "draw(topo);\n</script></html>", encoding="utf-8")
+        hits, n = network_calls(sd)
+        ok("the 2026-09-23 defect, verbatim, is CAUGHT", len(hits) == 1 and n == 1, str(hits))
+        ok("...and the finding names the file, the line and the call",
+           bool(hits) and "slide-01.html:2" in hits[0] and "fetch()" in hits[0], str(hits))
+        ok("...and names the repair the run actually used",
+           bool(hits) and "PRE-PROJECT" in hits[0], str(hits))
+
+        # THE FORM A SLIDE IS ALLOWED TO USE. Every deck here loads ten committed assets through
+        # <script src>, and a rule that swept those would fail every correct frame ever drawn.
+        (sd / "slide-01.html").write_text(
+            '<html><head><link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">\n'
+            '<script src="@@ASSETS@@/js/txscene.js"></script></head>\n'
+            '<body><img src="@@ASSETS@@/art/mark.png"></body></html>', encoding="utf-8")
+        ok("a committed asset reached through src or href is not a render-time call",
+           network_calls(sd)[0] == [], str(network_calls(sd)[0]))
+
+        # THE COMMENT THAT DOCUMENTS THE TRAP MUST NOT TRIP IT, which is carousel no. 32's own
+        # frame 8. Nor may the stripper eat live code: a protocol-relative or https URL carries
+        # `//` and a naive line-comment rule deletes everything after it.
+        (sd / "slide-01.html").write_text(
+            "<html>\n<!-- never fetch() a committed asset here -->\n<script>\n"
+            '/* `fetch("@@ASSETS@@/geo/tx.json")` is the pattern this frame refuses */\n'
+            "// and neither does XMLHttpRequest\n"
+            'const SRC = "https://texasaidocket.com/x";  // the site, for the footer\n'
+            "</script></html>", encoding="utf-8")
+        ok("a comment describing the trap does not trip it",
+           network_calls(sd)[0] == [], str(network_calls(sd)[0]))
+        (sd / "slide-01.html").write_text(
+            "<html><script>\n"
+            'const SITE = "https://texasaidocket.com/"; fetch(SITE + "d.json");\n'
+            "</script></html>", encoding="utf-8")
+        ok("...and a URL's own slashes do not hide a real call after them",
+           len(network_calls(sd)[0]) == 1, str(network_calls(sd)[0]))
+
+        # A STATIC MODULE IMPORT IS NOT A RUNTIME GET. Only the dynamic call form is.
+        (sd / "slide-01.html").write_text(
+            '<html><script type="module">\nimport {draw} from "@@ASSETS@@/js/txscene.js";\n'
+            "draw();\n</script></html>", encoding="utf-8")
+        ok("a static module import is not a render-time call",
+           network_calls(sd)[0] == [], str(network_calls(sd)[0]))
+        (sd / "slide-01.html").write_text(
+            '<html><script type="module">\nconst m = await import("@@ASSETS@@/js/late.js");\n'
+            "</script></html>", encoding="utf-8")
+        ok("...and a dynamic import() is",
+           len(network_calls(sd)[0]) == 1, str(network_calls(sd)[0]))
+
+    # REPLAYED AGAINST THE REAL SHIPPED CORPUS, which is where the first cut of this rule was
+    # found to be wrong. GATE_LESSONS 16: a fixture written by the author of a detector agrees
+    # with the detector, and only real artifacts carry the shapes nobody thought to write down.
+    #
+    # TWO SHIPPED DECKS CARRY THE PATTERN AND THEY ARE NAMED RATHER THAN EXEMPTED. Both predate
+    # the XHR discovery written into carousel no. 25's own frame 8, and the 27 decks after it are
+    # clean. Naming them does two things at once: it proves the rule FIRES on real published
+    # slide source rather than only on a fixture, and it means a THIRD deck growing one goes red
+    # here. An exemption pattern would have done neither.
+    _shipped = [p for p in sorted((REPO_ROOT / "runs" / "carousel").glob("*/slides"))
+                if any(p.glob("slide-*.html"))]
+    ok("shipped decks with slide source exist to replay this against", bool(_shipped),
+       "runs/carousel/*/slides matched no slide HTML")
+    _HISTORICAL = {"2026-08-16", "2026-08-18"}
+    _scanned, _hit_decks = 0, set()
+    for _sd in _shipped:
+        _hits, _n = network_calls(_sd)
+        _scanned += _n
+        if _hits:
+            _hit_decks.add(_sd.parent.name)
+        elif _sd.parent.name in _HISTORICAL:
+            ok(f"{_sd.parent.name} still carries the fetch this rule is written for", False,
+               "the historical carrier came back clean, so the replay proves nothing")
+    ok("every deck after the XHR discovery is clean under this rule",
+       _hit_decks == _HISTORICAL,
+       f"carriers found: {sorted(_hit_decks)}, expected {sorted(_HISTORICAL)}")
+    ok("...over a corpus big enough for the pass to mean something", _scanned > 100,
+       f"only {_scanned} shipped slide(s) were read")
+
     print("\ncraft_floor self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0
 
@@ -301,6 +484,24 @@ def main() -> int:
     qp = d / "machine_qa.json"
     qa = json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else None
 
+    # THE SLIDE SOURCE, FOUND FROM THE RENDER DIRECTORY RATHER THAN ASKED FOR. A live run keeps
+    # it at out/<date>/slides beside out/<date>/render, and `ship_images` archives a shipped deck
+    # with render_report.json at the run root and slides/ under it. Both layouts are tried.
+    #
+    # A GATE THAT CANNOT RUN IS RED, NEVER GREEN. GATE_LESSONS 37: a skip and an unavailable
+    # check are not the same event and must not share a report line. If no slide source can be
+    # found, this says so and exits non-zero rather than printing a clean floor over a scan that
+    # never happened.
+    slides_dir = next((p for p in (d.parent / "slides", d / "slides", d) if
+                       p.is_dir() and any(p.glob("slide-*.html"))), None)
+    if slides_dir is None:
+        print(f"craft_floor: no slide source found near {d}. The render-time fetch scan CANNOT "
+              f"RUN, which is a failure and not a skip: a frame whose data never arrives renders "
+              f"clean with nothing on it, and this is the only thing that reads for it.",
+              file=sys.stderr)
+        return 2
+    fetches, n_scanned = network_calls(slides_dir)
+
     fails, warns, m = check(report, qa)
     for r in sorted(m.get("rows", []), key=lambda x: -x["variance"]):
         mark = "FAIL" if r.get("thin") and r in [x for x in m["rows"]] and any(
@@ -309,11 +510,18 @@ def main() -> int:
     print(f"\n  deck median {m.get('median', 0):.1f}, floor {m.get('floor', 0):.1f}")
     for w in warns:
         print("  warn  " + w)
+    if fetches:
+        print(f"\ncraft_floor: {len(fetches)} render-time network call(s) in the slide source.",
+              file=sys.stderr)
+        for f in fetches:
+            print("  " + f, file=sys.stderr)
     if fails:
         print("\ncraft_floor: a frame in this deck was not drawn.", file=sys.stderr)
         for f in fails:
             print("  " + f, file=sys.stderr)
+    if fetches or fails:
         return 1
+    print(f"craft floor: no render-time network call in {n_scanned} slide(s) of source")
     print("craft floor: clean, every frame carries a real light and a real dark")
     return 0
 

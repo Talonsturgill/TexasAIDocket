@@ -3831,3 +3831,197 @@ Two defects on one frame number, and reasoning from an error message to a cause 
 one. That is `CLAUDE.md`'s rule about the 403 and the empty check list, met from a third direction
 in a single day, and it is worth saying plainly: **an explanation that fits the message is not the
 same as an explanation that survives a measurement.**
+
+---
+
+# 2026-09-23, carousel no. 32. Three shipped, five proposed, and the corpus corrected one of them
+
+Three upgrades landed, each in an already wired gate, each replayed against the defect it exists
+for and each green on this run's own artifacts. What follows the three is the list this lane could
+not reach, with the reason in each case.
+
+## What the three have in common, and it is the finding
+
+**All three are a rule this project already holds, on a surface nothing pointed the rule at.**
+That sentence is written in `CLAUDE.md` about the missing hashtags, the missing progress counter
+and the wrong public URL, and it is entry 39, 34 and 31 in `GATE_LESSONS.md` wearing three sets of
+clothes. Here it was:
+
+- the post's-own-year rule, enforced on `caption.txt` and on nothing the reader looks at first
+- the number-word table, written for COUNTS and used by every shape including DURATIONS
+- the file protocol, known to the harness and to nobody reading a slide before it rendered
+
+None of the three needed a new idea. Each needed the rule pointed at one more surface.
+
+## The two-line fix the corpus made, which is the part worth keeping
+
+The render-time fetch rule swept `XMLHttpRequest` in its first cut, on the reasonable-sounding
+grounds that a network call is a network call. **Replayed over the 31 shipped decks it went red on
+four that drew their maps perfectly**, and carousel no. 25's own frame 8 says why in its source:
+
+> XHR rather than fetch: Chromium refuses the Fetch API on a file:// URL whatever
+> --allow-file-access-from-files says, and that flag DOES cover XHR.
+
+XHR is the repair this project already found for this exact defect, four decks deep. A gate
+banning it would have refused the fix and left only the broken route. The fixture agreed with the
+detector and the corpus did not, which is `GATE_LESSONS.md` 16 arriving on schedule.
+
+---
+
+## PROPOSED, and why this lane could not make them
+
+### 1. The harness should record a failed request, and the harness is out of reach
+
+**Owner: `.claude/skills/carousel-engine/`, which is `upgrade` lane in `ownership.yaml` and
+unreachable unattended, because the host prompts on every edit under `.claude/` whatever the
+permission mode says.** So this is a proposal and stops, exactly as `CLAUDE.md` prescribes.
+
+The gate shipped today is STATIC. It reads slide source and names a call it recognises, which
+catches the cause that was measured and cannot catch a cause nobody has met yet. The outcome check
+is one listener in the render harness:
+
+```js
+const failed = [];
+page.on("requestfailed", r => failed.push({url: r.url(), why: r.failure()?.errorText}));
+```
+
+written into `render_report.json` beside `errors` and `warnings`, and read by `craft_floor` as a
+hard fail. That answers the question for any cause at all: a font that 404s, an image whose path
+the assets rewrite missed, a stylesheet that never arrived. **A render that reported zero errors
+and zero warnings on 2026-09-23 had a request fail in it, and the browser knew.**
+
+Note the asymmetry a session implementing this has to respect: an HTTP 404 completes as a
+`requestfinished` in both Playwright and Puppeteer, so a status check is a separate assertion from
+a failure listener and neither substitutes for the other.
+
+### 2. `sources_block.py` prints the retrieved date where a claim carries no published date
+
+Reachable, in `scripts/carousel/`, and NOT taken today because the repair regenerates
+`first_comment.txt`, which is a `daily` artifact this run has already built, declared figures
+against in `aggregates.json` and reviewed. Fixing the module without regenerating the file leaves
+the two disagreeing, and regenerating it is the showrunner's call rather than this lane's.
+
+The defect: today's block dates a GlobeNewswire release "September 23rd" when the document's own
+URL carries `2026/09/21`. Every line of the sources block reads as though every document were
+published today. The honest forms are to print `retrieved September 23rd` when only a retrieval
+date is known, or to derive the published date where the URL states it and label which is which.
+**A date printed with no qualifier is a claim about when a document was written.**
+
+### 3. `ledger/carousel/artwork.json` entries carry no `ground.hex`, so the comparison window is
+short and says it is not
+
+Four of the last six entries before 2026-09-20 carry no `ground` block at all. Today's entry
+declares `nearest_dE76_in_last_six: 24.54` and only TWO of the six entries behind it carry a hex
+to compare against, so "the last six shipped grounds" describes a window the ledger cannot fill.
+That is `GATE_LESSONS.md` 20: a true figure about the wrong set reads exactly like a true figure.
+
+The gate belongs in `ledger_check.check_register`, which already has the machinery for it: a
+`*_BINDS_AFTER` date, a NOTE for entries that predate the check and a hard fail after. Two
+assertions, no threshold:
+
+- an entry dated after the binding date carries `ground.hex` as a six digit hex
+- an entry declaring `nearest_dE76_in_last_six` has six predecessors that all carry one, and where
+  it does not, the finding says how many it could actually reach
+
+**Not taken today because the failing half cannot bind yet.** Six entries carrying a hex do not
+exist, the ledger is `daily` lane and append only, and backfilling a measured field into published
+entries is the one operation an append only ledger exists to refuse. It binds cleanly once six
+accumulate, which is four runs away.
+
+### 4. Nothing compares a number in a chassis comment or a storyboard paragraph against the ledger
+
+This run committed two wrong measurements and a scorer found both: the deck ground's dE76, where
+the chassis and the storyboard said 14.18 and the artwork ledger said 24.54, and the screen cell,
+where the storyboard said 5 and the chassis and the ledger said 6. Both were corrected. **Nothing
+in the suite reads a figure out of a prose comment and asks the ledger whether it agrees.**
+
+`ledger_check` already does this for `topics.json` against the run's computed figures, which is the
+same move one surface over, and `shipped_check`'s `ledgers` adapter already reports it. The
+extension is a measurement pass over the chassis's own comment block and the storyboard's prose,
+keyed on the fields the artwork ledger holds. It is real work rather than a line, and it is third
+in this list rather than first because both defects were caught before publication.
+
+### 5. `reverify.py` does not consult `robots.txt`
+
+Logged 2026-09-21, still open, recorded again because it recurred on 2026-09-23. It lives in
+`scripts/` under a lane this phase does not hold, and the crawl boundary in
+`knowledge/shared/SOURCES_REGISTRY.md` is `human` owned for the reason written there: a run able
+to edit its own boundary does not have one. So the fetcher honouring `robots.txt` is a maintainer's
+change, not this lane's.
+
+---
+
+## GATE_LESSONS.md entries owed, drafted here because that file is `human` lane
+
+`knowledge/shared/**` is `human`. The brief for this phase says a gate change belongs in that file
+and the ownership map says this lane may not write it, and the map wins. Three entries, ready to
+paste, numbered from 78.
+
+### 78. A table fitted to one shape was read by four, and it misreported the figure
+
+`aggregate_check.WORDS` stopped at twenty, with a comment giving the reason: twenty is "past any
+count a single deck has ever legitimately printed". That sentence was true and it was about COUNTS.
+The table is used by every shape the gate has, DURATIONS included, and a duration is a calendar
+span with no such ceiling. Frame 7 set "Forty nine days" and the gate reported the phrase as
+`nine days`.
+
+The cost is the one the file's own docstring argues four separate times: **a gate that misreports a
+figure is worse than one that misses it.** The run could not key its declaration on the string the
+frame contains, so it keyed it on a string the frame does not contain and wrote a note in its own
+artifact explaining that the key was a lie.
+
+**And the sharper half was already in reach.** "Twenty one days" read as `one days` and resolved to
+a value of 1, because `twenty` WAS in the table, so the phrase matched and the wrong half of it
+won.
+
+**What to check instead.** When a lookup table carries a bound, write down which QUESTION the bound
+was fitted to, then ask every consumer whether it is asking that question. A ceiling justified by
+"no deck prints more than twenty of anything" says nothing about how many days are in a span,
+how many megawatts are in a plant or how many counties are in a state.
+
+### 79. The rule had a gate, and the gate was pointed at one of the two surfaces
+
+`CLAUDE.md`: a date in the post's own year carries no year, with the site named as the one
+exception. `caption_check.post_shape_problems` enforces it and is reached only from
+`caption_check.run()`, which every run points at `caption.txt` alone.
+
+So frame 7 of carousel no. 32 set "AUGUST 3RD, 2026" three times, and a dek reading "The audit was
+ordered August 3rd, 2026", through two pixel review rounds and nine green gates, **while the
+caption of the same post printed the same three dates correctly without the year.** Two surfaces of
+one post gave two answers to a rule the run demonstrably knew, and a scorer reading the picture is
+what found it.
+
+This is the third time in nine days that `copy_sync_check` was the file that should have caught
+something and could not: the en dash on 2026-09-15 for a different reason, and this. The nine
+frames are the published surface with the fewest copy rules pointed at them, because every rule in
+`caption_check` was written about a caption.
+
+**What to check instead.** When a rule's gate takes a string, ask what the CALLERS pass it. A rule
+enforced on one surface of a multi-surface product is a rule the product breaks on the other one.
+And the test for which rules travel is the one entry 46 states: a rule that is structural travels
+("a semicolon is a semicolon", a year is a year), a rule that is a judgement about a whole document
+does not.
+
+### 80. Every gate green, zero errors, zero warnings, and nothing on the canvas
+
+A frame drew the state outline and the county mesh from
+`fetch("@@ASSETS@@/geo/tx-counties.topo.json")`. The render harness opens a slide over the FILE
+PROTOCOL, where Chromium refuses the Fetch API whatever `--allow-file-access-from-files` says.
+Measured on a shipped slide: **384 ms, zero errors, zero warnings, empty canvas.** A rejection that
+something catches and logs, or an `await` inside a handler nobody awaits, leaves no trace in any
+artifact a gate reads.
+
+`craft_floor` is the only gate that could ever notice and it notices only the extreme case, where
+the frame's whole drawing came out of the fetch and measures flat. A frame that draws its type, its
+furniture and its bench in code and gets only its SUBJECT from a fetch measures perfectly healthy
+with the subject missing.
+
+**What to check instead, and there are two answers rather than one.** The cause is static and cheap:
+no slide may call the Fetch API while it draws, because over `file://` that is a promise nobody can
+keep. The outcome needs the harness, which records `page.on("requestfailed")` into the render report
+and answers for any cause at all.
+
+**The part that generalises is what the corpus did to the rule.** The first cut swept
+`XMLHttpRequest` too and went red on four shipped decks that drew their maps perfectly, because
+XHR IS the workaround and that Chromium flag does cover it. A plausible rule, a fixture that
+agreed with it, and only the real corpus disagreed. Entry 16, again.
