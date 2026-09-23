@@ -291,6 +291,42 @@ the ask worker fetches it from a public URL, so the box cannot answer without it
 download closed the bulk-import front door. It did not make the record unreadable, and saying
 otherwise would be the kind of claim this project does not get to make.
 
+## THE ARTWORK IS RENDERED. THE PRINT SCREEN IS DELETED. (AUTHORITATIVE, owner, 2026-09-23)
+
+**The owner, verbatim:** *"delete that fallback bullshit look, make it impossible for me to have to
+tell u this again."* And: *"a few days ago we made a bunch of updates to the automation so that it
+would stop just trying to use like that faded look with the stupid shapes because it looked bad.
+And so it would start actually creating like its own artwork for each run. But it's not doing
+that. It's reverted back to the same old bullshit artwork on these last runs."* And: *"we have a
+sister company called Alaska AI that does this right."*
+
+**The faded look was `assets/js/txink.js`**, a print screen that pushed every frame through a
+halftone, line, hatch or stipple texture. It printed 9 of 9 frames on September 14th to 16th, 0 of
+9 on the 17th and 18th after the owner's fixes, and 9 of 9 again on the 19th, 20th, 21st and 23rd.
+**It came back because the routine ORDERED it**: `prompts/daily_routine.md` said every frame is
+"printed in paper and ink" and pointed every director at an example deck built on the print as
+"what a 7 looks like", and the treatment director's own pitch schema had a `"screen"` field. The
+September 20th fixes added two correct gates and neither asked whether a frame was printed.
+
+**What is now true, and what enforces it:**
+
+- `assets/js/txink.js` and `examples/editorial-deck/` are **deleted**.
+- `scripts/carousel/print_ban.py` **fails the build** in CI on every push if the module, a file
+  defining it, or its vocabulary returns to `assets/js/`, and fails a run whose slides or chassis
+  print, or whose frames are not rendered. It is registered in `shipped_check`, run on the probe
+  frame by the routine, and wired into `guards.yml`.
+- **Every frame is RENDERED**, the way the Alaska corpus renders: one HERO OBJECT modelled once as
+  geometry and carried through the deck, a real PBR material, one rig, a soft shadow onto a ground
+  it touches, through `assets/js/txthree.js`. **At least six of nine frames render through it.**
+  Finish with the `txpost.js` grade, never a screen. Text stays DOM.
+- The routine, `ILLUSTRATION_SYSTEM.md`, `TECHNIQUE_LIBRARY.md`, `SLIDE_DOSSIER_SPEC.md`, the
+  scoring rubric and all three art agents say this, and none of them says print any more.
+
+**Never reintroduce a screen, at any path, under any name.** Not a halftone, not a line screen,
+not a hatch or stipple over the frame, not "a print register", not "paper and ink". If a future
+session thinks the look needs texture, the answer is the grade on a render. **A fix that does not
+measure the defect does not hold**, and this is the second time that has been true here.
+
 ## Numbers are computed, never generated (THE LAW, and we publish it)
 
 **Every numeral this project publishes is produced by code, from data, and can be recomputed
@@ -699,6 +735,10 @@ The connector authenticates as `docket@alaskaaihq.com`. Scripts set it as a modu
 If the mailbox moves, change `DRAFT_TO` and this paragraph, and nothing else.
 
 These routines DRAFT ONLY and never send.
+
+**Pass the payload's body as `htmlBody`, never as `body`.** `body` is plain text. On 2026-09-23 a
+run passed a hand-written plain text summary as `body`, no slide thumbnail rendered, and the owner
+opened a draft with no deck in it. Read the draft back with `get_draft` before reporting it.
 
 ## House rules that never bend
 
