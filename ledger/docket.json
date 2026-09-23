@@ -22057,7 +22057,7 @@
   },
   {
    "title": "Governor directs the environmental agency to issue no data center permits until the grid audit is done",
-   "summary": "The Office of the Governor issued a directive to the Texas Commission on Environmental Quality on September 21st, 2026. It tells the agency to halt all permits sought by data centers until the grid operator completes the interconnection audit the Governor ordered on August 3rd, 2026. The directive goes wider than one agency. It states that no state agency is to move forward with regulatory approvals related to data center development until that information is in hand, because the utility commission, the grid operator and the water board need it to decide anything. The release sets out what a data center project must do, which is cover all electrical infrastructure costs, lower residential bills, finish the grid audit, stay off water local communities need, report its electricity and water use, and meet setback requirements. The agency is told to align its permitting decisions with the directives and to use what the audits find. It must report back on its compliance by October 19th, 2026. The release closes by saying the Governor will work with the Legislature next session to eliminate financial incentives for data centers.",
+   "summary": "On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects until the grid operator completes the audit ordered in August. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency, stating that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency is to align its permitting decisions with what the audits find, and it must report to the Office of the Governor on its compliance by October 19th, 2026.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Office of the Texas Governor",
@@ -22085,83 +22085,56 @@
    "public_access": {
     "room": "contact_only",
     "how": "The directive is published in full on the Governor's own newsroom, with a link to the letter it was sent under. No comment window attaches to a directive. The Texas Commission on Environmental Quality is the reachable party on how it will apply this to a pending permit, and its agenda and public hearings are posted on its own site.",
-    "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
     "closes": null
    },
-   "confidence": "high",
+   "confidence": "medium",
    "notes_for_editor": "Geography is statewide on the same reading the record applies to tx-2026-0171 and tx-2026-0072. This is a directive from a statewide office to a statewide agency and it reaches a permit in any county. on_ercot is left null because the directive names no grid region and the agency permits in the parts of Texas that are outside ERCOT as well.",
    "claims": [
     {
-     "text": "The directive tells the environmental agency what to stop doing and for how long.",
-     "verbatim_quote": "the Texas Commission on Environmental Quality (TCEQ) to halt all permits sought by data centers until the Electric Reliability Council of Texas (ERCOT) completes its audit.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
+     "text": "The Governor directed the environmental agency to suspend action on all permits sought by data center projects until the grid operator finishes its audit.",
+     "verbatim_quote": "Governor Greg Abbott directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects until the Electric Reliability Council of Texas (ERCOT) completes its ongoing audit",
+     "source_url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+     "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+     "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c1"
     },
     {
-     "text": "The directive reaches beyond the one agency it was addressed to.",
-     "verbatim_quote": "no state agency shall move forward with regulatory approvals related to data center development until it is acquired.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
+     "text": "The directive reaches past the one agency it is addressed to.",
+     "verbatim_quote": "no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
+     "source_title": "The Texas Tribune, Gov. Greg Abbott broadens moratorium on data center approvals to include environmental permits",
+     "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c2"
     },
     {
-     "text": "The Governor states the condition in his own words.",
+     "text": "In the Governor's own words the halt is scoped to who is asking for the permit.",
      "verbatim_quote": "Data centers must pay their own way, protect our grid and water, and complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
+     "source_url": "https://www.cbsnews.com/texas/news/texas-gov-greg-abbott-pause-new-data-center-permits-sept-21-2026/",
+     "source_title": "CBS News Texas, Gov. Abbott pauses new data center permits until water, power audit complete",
+     "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c3"
     },
     {
-     "text": "The release states what a project has to do on the electricity side.",
-     "verbatim_quote": "Data center projects must cover all electrical infrastructure costs, result in lower residential electrical bills, and complete the ERCOT audit.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
+     "text": "The agency is told to align its permitting decisions with what the audits find.",
+     "verbatim_quote": "must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)",
+     "source_url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+     "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+     "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c4"
     },
     {
-     "text": "The release states what a project has to do on the water and siting side.",
-     "verbatim_quote": "Data centers must not use water needed by local communities, must report electricity and water usage, and must abide by setback requirements that will protect the communities in which they operate.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
+     "text": "The agency must report on its compliance by a fixed date.",
+     "verbatim_quote": "TCEQ must report to the Office of the Governor on its compliance with the directive by Monday, October 19, 2026.",
+     "source_url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+     "source_title": "Troutman Pepper Locke, Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits",
+     "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c5"
-    },
-    {
-     "text": "The agency is told to tie its permitting to what the audits find.",
-     "verbatim_quote": "As ERCOT and TWDB conduct their audits, TCEQ must align its permitting decisions with the Governor's directives and use the information from those audits.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
-     "fetched": "2026-09-23",
-     "id": "tx-2026-0182-c6"
-    },
-    {
-     "text": "The directive carries a dated report back.",
-     "verbatim_quote": "TCEQ shall provide an update to the Office of the Governor on its compliance with this directive by Monday, October 19, 2026.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
-     "fetched": "2026-09-23",
-     "id": "tx-2026-0182-c7"
-    },
-    {
-     "text": "The release names what the Governor intends to ask the Legislature for next.",
-     "verbatim_quote": "Next session, Governor Abbott will work with the Legislature to eliminate any financial incentives for data centers.",
-     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-     "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
-     "source_type": "primary_official",
-     "fetched": "2026-09-23",
-     "id": "tx-2026-0182-c8"
     }
    ],
    "id": "tx-2026-0182",
@@ -22171,6 +22144,10 @@
      "date": "2026-09-23",
      "note": "Admitted on the directive the Governor's office published on September 21st. The environmental agency has published nothing of its own about how it will apply the halt to a permit already filed.",
      "checked": true
+    },
+    {
+     "date": "2026-09-23",
+     "note": "The Governor's own site refuses the automated fetcher in its exclusion file, so the directive is cited through the Texas Tribune, CBS News Texas and Troutman Pepper Locke instead. Three conditions the release set out and its closing line on incentives are not carried, since none of those three reproduces them."
     }
    ]
   }
