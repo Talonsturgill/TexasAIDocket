@@ -4131,8 +4131,19 @@ a run that has not shipped would clear the red in one line, and `shipped_check`'
 exists to stop it: *"reported {g_completion(_d)}, so lowering the rubric laundered a held deck"*.
 A gate that refuses your deck today is not evidence the gate is mis-scoped.
 
+**AND THE LEDGERS SPEND A HELD DECK'S BUDGET AS IF IT SHIPPED**, which a review bot found and
+this entry had missed. `topics.json`, `artwork.json` and `captions.json` all carry an entry for
+2026-09-23, so `dedupe_check` will steer the next four weeks of runs away from a topic that was
+never posted, and today's entry goes further: it instructs the next run to treat a fourth Governor
+directive as a repeat. A deck nobody saw is holding a thirty day exclusion against decks that could
+be seen. The same held-run concept the path question needs would answer this too, and the two
+should be designed together rather than one at a time.
+
 **What to check instead.** `ownership.yaml` should grant `daily` a held-evidence path before a run
-needs one, so the failure branch has a home the way the success branch does. The rule to generalise
+needs one, so the failure branch has a home the way the success branch does. The variety ledgers
+need the same distinction: a held run's entry should record what was MADE, because the next run
+still needs to know a gas yard at night was drawn, and should not spend the TOPIC exclusion,
+because nothing was published to be repetitive against. The rule to generalise
 from it: **when a policy has a failure branch, give the failure branch its own writable path at the
 same time you write the rule.** A failure branch that has to borrow the success branch's directory
 is not a failure branch, it is a success branch with worse artifacts in it.
