@@ -111,8 +111,10 @@ Grade them off the thumb:
   the edges the dossier says it does?
 - **Is it drawn at a size**: is there something in the frame a reader can measure it against,
   and do the objects agree about how big they are?
-- **Is it printed, not placed**: is there a visible screen (dots, lines, hatch, stipple), a
-  drawn edge, paper, or is it flat vector shapes over a gradient with grain on top?
+- **Is it rendered, not placed**: does the object have a material that answers the light, a
+  soft shadow on a ground it touches, and a contact where it meets it? A visible screen (dots,
+  lines, hatch, stipple) is the deleted print look and a must-fix. Flat vector shapes over a
+  gradient with grain on top is a must-fix too.
 - **Is the layout the one declared**, and is it a different one from the frame before?
 - **Is the accent the one accent**, on this frame only where the dossier says, and small?
 

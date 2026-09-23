@@ -104,7 +104,7 @@ composition is still written per frame, which is the whole strength of this mach
 The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
 not edit the workshop.
 
-### ONE LIGHT, ONE RAMP, ONE GRADE, ONE SCREEN
+### ONE LIGHT, ONE MATERIAL, ONE GRADE, AND NO SCREEN
 
 Declared once in the chassis, for all nine frames. Not one per frame, which is what the old
 wording under THE PRIMARY IMAGE LAW said and what produced nine unrelated pictures.
@@ -116,7 +116,7 @@ graded, so the grade can be strong without costing a single point of legibility.
 
 ### THE CONTINUITY MANDATE, and it replaces the old variety mandate
 
-The old rule said the deck must turn the page: nine different layouts, a different screen each
+The old rule said the deck must turn the page: nine different layouts, a different look each
 time, at least five distinct archetypes, never the same one twice running. **That rule is why
 the deck does not flow together, and the machine was obeying it correctly.** It was told the
 wrong thing.
@@ -800,7 +800,8 @@ a regex and a line a script mounts is not in the file. `mount` throws if asked f
    ran out where the argument lands. Build the close first, then the turn, then the open.
 3. **Image before type, on every frame.** Draw the scene, render it, look at it at 432 px with
    no type on it. If it is not an image yet, no headline will make it one.
-4. **One frame, one screen, one light.** Declared in the dossier, held by the critic.
+4. **One hero object, one material, one light, for the deck.** Declared in the chassis, held by
+   the critic. Nothing is screened.
 5. **Then the type,** into the reserve the image left. `TX.fitText` for the hook. The furniture
    through `TXLAYOUT.mount`.
 6. **Then the gates,** `qa.py` and `layout_check.py --require`, before any critic sees a

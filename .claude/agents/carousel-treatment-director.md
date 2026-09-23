@@ -65,7 +65,8 @@ SUBJECTS and nine LAYOUTS before you pitch a surface.**
   and CLOSE_CROP at least two between them, four or more frames bleeding an edge. Check your
   nine against those rules before you return them, because the gate will.
 - Somebody is in the picture wherever the claim has a person in it.
-- One accent, one light, and a screen per frame that varies with the layout.
+- One accent, one light, one hero object. The camera and the object's state vary with the
+  layout. Nothing is screened.
 
 ## What makes a treatment good
 
