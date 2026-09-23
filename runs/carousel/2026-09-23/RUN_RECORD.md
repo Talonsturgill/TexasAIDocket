@@ -85,6 +85,27 @@ CI exits 1 on a rotten item, so nothing could merge. The alternative considered 
 new host keyed ledger file, which needs a lane grant in `ownership.yaml`. **A routine widening the
 map that holds it back is the worse of the two by a distance**, whatever the file it widens it for.
 
+## CI went red on the held deck, and the reason is structural rather than a defect
+
+`gates` failed on `1d485a9` with exactly one `##[error]` in a 4,326 line job: `shipped_check`,
+one problem, the completion gate on this run. Every other step passed.
+
+**The deck being under the floor is correct. Its evidence being in `runs/carousel/` is not.** That
+directory is defined in CLAUDE.md as shipped artifacts merged to main each run, and the delivery
+policy tells a failed run to commit to its BRANCH. There is no held-evidence path, because only
+`runs/carousel/**` is `daily` lane, so this run put held work in the shipped directory and the
+branch went red by construction.
+
+**Neither way out is reachable from inside a run.** A `runs/held/` path needs an `ownership.yaml`
+entry, and deleting from `runs/` is one of the three stop-and-ask items. So this is said once on
+the pull request and left for a person, with the recommendation being the map entry and a `git mv`.
+Backlog entry 84.
+
+**What was NOT done, and it is the more useful half.** Narrowing `g_completion` to skip a run that
+has not shipped would have cleared the red in one line. `shipped_check`'s own self-test pins that
+move as laundering a held deck. A gate that refuses your deck on the day it refuses it is not
+evidence the gate is mis-scoped.
+
 ## Two commits on this branch carry a lane other than `daily`, named here as the map requires
 
 - **`config/schema_contract.json`, stamped `human`.** The reasoning is in its own section below.
