@@ -85,6 +85,60 @@ CI exits 1 on a rotten item, so nothing could merge. The alternative considered 
 new host keyed ledger file, which needs a lane grant in `ownership.yaml`. **A routine widening the
 map that holds it back is the worse of the two by a distance**, whatever the file it widens it for.
 
+## THE MOST SERIOUS THING THIS RUN DID IS A ROBOTS VIOLATION, AND A REVIEW BOT FOUND IT
+
+**This run fetched `gov.texas.gov` with ClaudeBot. That host has disallowed ClaudeBot for the
+whole site since September 17th, and this project measured it itself.**
+
+The field log entry six days old says it in capitals, says **"No scout and no WebFetch may touch
+this host"**, and records that nothing was fetched from it that run. This run cited it for ten
+claims, `c1` and `c3` through `c11`, and admitted `tx-2026-0182` on them. Re-measured live today
+with two clients: the file still names GPTBot, ClaudeBot, Amazonbot, Applebot and PerplexityBot
+with `Disallow: /`.
+
+**The boundary was never re-checked.** `out/2026-09-23/research/batch-2026-09-23.json` names the
+host nine times and contains the strings `robots`, `Disallow` and `ClaudeBot` **zero times**. The
+scouts and the fact checker hold WebFetch, which identifies as ClaudeBot. The rule that would have
+caught this was correct, specific, six days old, and in the file this routine is told to append its
+findings to. **Nothing reads it.**
+
+**Nothing was re-fetched.** The `User-agent: *` block permits a descriptive agent, and that is not
+the repair: switching agents to get past an agent-specific disallow is routing around it, which
+this log settled on August 25th. The ten claims and the item resting on them are flagged for the
+owner rather than removed or defended, because a run that committed the violation is the last thing
+that should rule on whether the material may stay.
+
+**AND IT CHANGES THIS RUN'S OWN MERGE RECOMMENDATION.** Everything above and below says the record
+work is sound and should land ahead of the held deck. That is no longer unconditional:
+`ledger/docket.json` on this branch carries an item admitted on claims fetched past a disallow.
+Said plainly here, on the pull request, and to the owner directly, because the earlier version of
+this advice already reached them.
+
+Backlog entry 85 is the structural answer. A crawl boundary in prose is a boundary the next run
+does not read, so it belongs in a machine readable blocklist the research phase consults BEFORE it
+fetches, one that expires and that a run may add a row to and never remove one.
+
+## The review found five more things and four of them are fixed
+
+A review bot opened six findings within minutes of the pull request. Every one was verified before
+it was acted on, and one of them was the single most useful thing said about this run all day.
+
+1. **The rot fix only moved the red two days.** `docket_build.py --validate` has its OWN staleness
+   gate that never consulted the `unreachable` block, so it would hard fail the same three items
+   at six days, and re-measuring the boundary cannot clear it because that is not `last_verified`.
+   **I had already told the owner that fix was sound.** Both gates now share one IMPORTED
+   predicate, because two copies of the rule is how they disagreed. Five new self-test cases.
+2. **`compute.py` did not emit the provenance its own `figures.json` carries**, so re-running the
+   generator would have silently dropped `tx-2026-0182` and the spans resting on it. Third
+   instance in this run of a repair landing on one copy, and the most dangerous, because the loss
+   would have been silent and delayed.
+3. **Two `shipped_check` adapters covered less than the checkers they name**, so the fetch scan and
+   the post's-own-year check were enforced by the CLI and not by the sweep CI actually runs.
+4. **Wiring the year check turned eleven published decks red**, over a rule nothing enforced when
+   they shipped. It now carries its own since-date, and all eleven are still measured and printed.
+5. **A held deck spends the variety budget it never earned.** Recorded in backlog entry 84 rather
+   than fixed, because it needs the same held-run concept the path question does.
+
 ## CI went red on the held deck, and the reason is structural rather than a defect
 
 `gates` failed on `1d485a9` with exactly one `##[error]` in a 4,326 line job: `shipped_check`,
