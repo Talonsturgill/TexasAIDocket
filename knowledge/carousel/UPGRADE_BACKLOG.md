@@ -4025,3 +4025,78 @@ and answers for any cause at all.
 `XMLHttpRequest` too and went red on four shipped decks that drew their maps perfectly, because
 XHR IS the workaround and that Chromium flag does cover it. A plausible rule, a fixture that
 agreed with it, and only the real corpus disagreed. Entry 16, again.
+
+### 81. `dedupe_check` was clean, and five run records in a row have named the axis it cannot see
+
+Carousel no. 32 is the third deck in ten days built on an instrument of the same SHAPE: the Office
+of the Texas Governor directing a state agency to do something about data centers. No. 24 on August
+19th, no. 29 on September 19th, this one on September 23rd. `dedupe_check` returned LIKELY REPEAT
+at 0.72 and it got there on keyword overlap alone, because the three fields it compares are topic,
+entities and keywords, and those genuinely differ: a different agency, a different docket item, a
+different act on a different date.
+
+Three round 4 and round 5 scorers, on two different lenses, independently named the repeating thing
+and none of them could point at a field. It is the INSTRUMENT. A reader who saw all three sees the
+Governor's office telling an agency what to do about data centers, three times, and no combination
+of topic, entity and keyword says that.
+
+The ledger's own precedent is the sharp part. No. 7 refused a candidate at 0.70 and no. 30 refused
+its strongest story of the day at 0.74, and this run overrode at 0.72 on an argument whose second
+leg its own appendix later voided without the override being revisited.
+
+**What to check instead.** A `docket.json` item already carries `decider.name` and `decider.type`.
+An instrument axis is derivable from what the record holds rather than from a new field somebody
+has to remember to fill: the acting body plus the kind of act. Compare it over the same 30 day
+window, and when an override is argued on two legs, make the run re-read the override if either
+leg is later withdrawn. This run's override survived only because nothing asked it to.
+
+### 82. A flat declarative sentence carrying no numeral and no universal is examined by nothing
+
+Four hard fails across this run's five scoring rounds, from three different judges, were all this
+one shape. "That plant is a grid resource." "That project never joins the queue." "The plant it
+buys from is a grid resource." "sought by Vantage Data Centers TX11."
+
+Every gate in the carousel suite polices NUMERALS (`numeral_trace`, `numeral_lint`, `aggregate_check`,
+`figure_bearing`) or UNIVERSALS (`quantifier_check`) or STRINGS (`copy_sync_check`, `verbatim_check`,
+`label_guard`). A factual assertion carrying neither reaches a reader unexamined, and one of these
+shipped through nine green gates, two full pixel review rounds and three scoring rounds.
+
+**The second half is worse than the first and is the one to build for.** Every repair landed on ONE
+copy while the same proposition survived in two or three other committed files. The grid resource
+sentence was repaired on frame 8 in round 1, and in round 4 it was still live in
+`ledger/articles/2026-09-23.json`, the one surface that is an article a reader opens from the site.
+Seventh copy, fourth round, and it contradicted the frame it accompanies.
+
+**What to check instead.** When a fact check refuses a proposition, grep the whole run directory
+and the ledgers for the PROPOSITION rather than for the sentence the scorer quoted. `claims.json`
+already carries a `rejected` block with a reason string per entry, so the refusals are machine
+readable and a gate could read every published surface against them. That is a real gate and it is
+not written.
+
+### 83. A gate floor can force a frame to draw the thing another rule forbids
+
+`layout_check` holds a frame that declares the accent to a minimum accent AREA, which exists so a
+frame cannot claim an accent it never spent. Frame 7 cleared it by running the amber rule under its
+marker at exactly `pitch * 28`, which made the longest amber shape on the frame the twenty eight
+day span itself. That is a quantity drawn in the accent, on a deck that spent frame 4 of the same
+run taking an amber bar OFF a channel for doing precisely that.
+
+The frame could not simply shorten the rule, because the rule is most of the amber and cutting it
+drops the frame under the floor, and the marker cannot make the area back without growing into the
+bookmark flag an earlier round already rejected. The repair was to keep the area and break the
+MEANING, by running the rule two pitches short of the origin and two past the mark so its length
+encodes no count.
+
+**The same shape appeared on frame 1 and there was no repair available.** Its dossier declares a
+median band of 15 to 27 and a focal of the near set's lit flank. Measured at 432px, one connected
+component holds 0.86 of every pixel over L* 30 and covers 0.37 of the frame, so the machines, the
+pad and the right edge slab are one mass and the cover reads as texture. Darkening the pad is the
+only tone move available and it was already made and taken back at a median of 12.9. A deeper
+contact at the skids was tried this run and measured: the largest component stayed at 0.86 and the
+median fell to 14.4. **The band can only be held by keeping the pad bright, and a bright pad is
+what the focal competes with.**
+
+**What to check instead.** A dossier that declares both a frame median band and a focal is
+declaring two things that can contradict each other, and nothing checks that they can both be true
+before the frame is drawn. The cheap version is a warning at plan time when a declared focal is a
+LIT element on a frame whose band floor is within a few L* of the deck's own ground.
