@@ -1,0 +1,22 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "weighted_score": 6.634,
+ "criteria": {
+  "artwork_craft": 6.2,
+  "deck_coherence": 7.5,
+  "claim_integrity": 7.8,
+  "story_and_stakes": 5.5,
+  "sequence_and_momentum": 5.5,
+  "voice": 6.8,
+  "variety": 7.0
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Print the permit number and applicant from c12's own quote on frame 9 and in the caption's last line.",
+ "other_findings": [
+  "Frame 8's map marks Odessa and Bexar County while the deck's central example gets no mark, so a reader assumes the 76 MW project is one of the two dots.",
+  "The caption opens on a jargon number with no stake and no Texas in it.",
+  "SELECTION.md as committed still asserted things claims.json refuted."
+ ]
+}

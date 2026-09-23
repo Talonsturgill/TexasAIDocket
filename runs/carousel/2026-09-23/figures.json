@@ -1,0 +1,66 @@
+{
+ "_note": "Every value here is extracted from a claim's verbatim quote by compute.py, which is executed at build time rather than copied. A numeral in this deck's prose or artwork that is not in this file is a numeral nothing computed.",
+ "queue": {
+  "gigawatts": 474,
+  "unit": "GW",
+  "basis": "measured",
+  "from": [
+   "c8"
+  ],
+  "said_by": "the Office of the Texas Governor, August 3rd release",
+  "label": "gigawatts of requests to connect to the Texas grid",
+  "peak_multiple_words": "five",
+  "peak_note": "c8 says more than five times the record peak and gives no peak figure, so the multiple is carried AS THE SOURCE'S OWN WORD and no peak is computed from it."
+ },
+ "data_center_share": {
+  "percent": 90,
+  "basis": "measured",
+  "from": [
+   "c8"
+  ],
+  "counts": "the NEW power requests, not the whole queue",
+  "no_multiply": "474 GW is the whole queue and 90 percent is of the new requests. Two denominators. Nothing here multiplies them and no frame may."
+ },
+ "behind_the_meter": {
+  "megawatts": 76,
+  "units": 40,
+  "quarter_words": "fourth",
+  "basis": "measured",
+  "from": [
+   "c16",
+   "c17",
+   "c18"
+  ],
+  "said_by": "Kodiak Gas Services",
+  "label": "megawatts a West Texas data center takes without touching the grid",
+  "no_division": "76 over about 40 is a per unit rating no document states, and approximately 40 is not a count. Nothing divides these."
+ },
+ "adjacent_plant": {
+  "phase1_min_mw": 200,
+  "phase1_max_mw": 207,
+  "plant_mw": 1180,
+  "basis": "measured",
+  "from": [
+   "c19",
+   "c20",
+   "c21"
+  ],
+  "said_by": "New Era Energy and Digital",
+  "not_established": "where the meter sits between that plant and that project, in either direction. c19, c20 and c21 are the whole of what was verified and none of them reaches it. Immediately adjacent is a statement about DISTANCE. The deck may not draw this as an escape from the grid and it may not draw it as a grid connection either."
+ },
+ "clocks": {
+  "audit_ordered": "2026-08-03",
+  "halt_issued": "2026-09-21",
+  "report_back": "2026-10-19",
+  "days_audit_to_halt": 49,
+  "days_halt_to_report": 28,
+  "days_left_to_report": 26,
+  "basis": "measured",
+  "from": [
+   "c9",
+   "c4",
+   "tx-2026-0182"
+  ],
+  "how": "The audit date is read out of c9's quote and the report back date out of c4's, both by regular expression, and the spans are calendar differences. THE HALT'S OWN DATE COMES FROM NEITHER CLAIM. It is the release date the record carries at tx-2026-0182 and it is typed into compute.py, which the module docstring states. `from` used to list c9 and c4 alone, so the one date in this block that is not parsed from a quote was the one the provenance did not name, and it is load bearing: the 49 day span and frame 7's SEPTEMBER 21ST both rest on it."
+ }
+}

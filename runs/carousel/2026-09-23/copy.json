@@ -1,0 +1,214 @@
+{
+ "date": "2026-09-23",
+ "carousel_no": 32,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. What it cannot see is a string a drawing has painted over, which is a gap in the SUITE rather than something to answer by retyping this file from the plan and calling the disagreement a check. THIS DECK HAS NO SUCH GAP AND THE NOTE USED TO SAY IT DID. It named a canvas fillText on frames 4, 5 and 6 that render_report has never recorded: `canvas_text` is empty on all nine slides, because the mute world law puts every glyph in the DOM. A scorer caught the note describing a render the render does not carry, which is the seventh time in this run a committed file asserted something about its own output that was not measured.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas AI Docket September 23rd",
+   "headline": "Sought by",
+   "claims": [
+    "c1",
+    "c16",
+    "c17"
+   ],
+   "cite": "c1 c16 c17 TEXAS AI DOCKET",
+   "body": "Two words decide who a permit halt reaches.",
+   "strings": [
+    "texasaidocket.com",
+    "Sought by",
+    "Two words decide who a permit halt reaches.",
+    "Texas AI Docket September 23rd",
+    "September 23rd",
+    "01 / 09",
+    "c1 c16 c17 TEXAS AI DOCKET"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "What the audit can do",
+   "headline": "Denied connection",
+   "claims": [
+    "c7",
+    "c10"
+   ],
+   "cite": "c7 c10 TEXAS AI DOCKET",
+   "body": "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
+   "strings": [
+    "texasaidocket.com",
+    "Denied connection",
+    "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
+    "What the audit can do",
+    "02 / 09",
+    "c7 c10 TEXAS AI DOCKET"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The directive, as written",
+   "headline": "One page, two scopes",
+   "claims": [
+    "c1",
+    "c3",
+    "c11",
+    "c4"
+   ],
+   "cite": "c1 c3 c11 c4 TEXAS AI DOCKET",
+   "body": "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
+   "strings": [
+    "texasaidocket.com",
+    "One page, two scopes",
+    "One sentence names who is asking. One names an audit a project may never enter.",
+    "PERMITS SOUGHT c1",
+    "\"all permits sought by data centers\"",
+    "ALIGN PERMITTING DECISIONS c11",
+    "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
+    "The directive, as written",
+    "03 / 09",
+    "c1 c3 c11 c4 TEXAS AI DOCKET"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Two instruments, two axes",
+   "headline": "Ninety percent of the new ones",
+   "claims": [
+    "c5",
+    "c6",
+    "c8",
+    "c9"
+   ],
+   "cite": "c5 c6 c8 c9 TEXAS AI DOCKET",
+   "body": "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
+   "strings": [
+    "texasaidocket.com",
+    "Ninety percent of the new ones",
+    "THE WHOLE QUEUE, ON NO SCALE HERE",
+    "474 GW",
+    "DATA CENTER SHARE OF NEW POWER REQUESTS",
+    "90%",
+    "PERMITS SOUGHT BY DATA CENTERS",
+    "NO COUNT IN THE DIRECTIVE",
+    "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
+    "Two instruments, two axes",
+    "04 / 09",
+    "c5 c6 c8 c9 TEXAS AI DOCKET"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "What never joins the queue",
+   "headline": "Forty, behind the meter",
+   "claims": [
+    "c16",
+    "c17",
+    "c18"
+   ],
+   "cite": "c16 c17 c18 TEXAS AI DOCKET",
+   "body": "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
+   "strings": [
+    "texasaidocket.com",
+    "Forty, behind the meter",
+    "76 MW",
+    "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
+    "What never joins the queue",
+    "05 / 09",
+    "c16 c17 c18 TEXAS AI DOCKET"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The size of the thing",
+   "headline": "This is one of them",
+   "claims": [
+    "c16",
+    "c17"
+   ],
+   "cite": "c16 c17 TEXAS AI DOCKET",
+   "body": "A single set on its skid, and somebody who works on it.",
+   "strings": [
+    "texasaidocket.com",
+    "This is one of them",
+    "A single set on its skid, and somebody who works on it.",
+    "The size of the thing",
+    "06 / 09",
+    "c16 c17 TEXAS AI DOCKET"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "How long each step took",
+   "headline": "Forty nine days, then twenty eight",
+   "claims": [
+    "c9",
+    "c4"
+   ],
+   "cite": "c9 c4 TEXAS AI DOCKET",
+   "body": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+   "strings": [
+    "texasaidocket.com",
+    "Forty nine days, then twenty eight",
+    "AUGUST 3RD AUDIT ORDERED",
+    "SEPTEMBER 21ST PERMITS DIRECTED",
+    "BY OCTOBER 19TH AGENCY ANSWERS",
+    "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+    "How long each step took",
+    "07 / 09",
+    "c9 c4 TEXAS AI DOCKET"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The other arrangement",
+   "headline": "Next door says nothing about the meter",
+   "claims": [
+    "c19",
+    "c20",
+    "c21"
+   ],
+   "cite": "c19 c20 c21 TEXAS AI DOCKET",
+   "body": "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
+   "strings": [
+    "texasaidocket.com",
+    "Next door says nothing about the meter",
+    "1,180 MW THE PLANT",
+    "207 MW CONTRACTED, PHASE ONE",
+    "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
+    "The other arrangement",
+    "08 / 09",
+    "c19 c20 c21 TEXAS AI DOCKET",
+    "ODESSA"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Where a Texan could have spoken",
+   "headline": "The room was already empty.",
+   "claims": [
+    "c12",
+    "c13",
+    "c4"
+   ],
+   "cite": "c12 c13 c4 TEXAS AI DOCKET",
+   "body": "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
+   "strings": [
+    "texasaidocket.com",
+    "The room was already empty.",
+    "NO DATE YET FOR THE HEARING. TCEQ ANSWERS TO THE GOVERNOR'S OFFICE BY OCTOBER 19TH.",
+    "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
+    "Where a Texan could have spoken",
+    "09 / 09",
+    "c12 c13 c4 TEXAS AI DOCKET"
+   ]
+  }
+ }
+}

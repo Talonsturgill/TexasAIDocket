@@ -1,0 +1,114 @@
+{
+ "weighted_score": 5.95,
+ "judges": [
+  6.17,
+  7.06,
+  5.77
+ ],
+ "spread": 1.29,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 4.5,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    8.5,
+    4.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.0,
+   "weight": 0.1,
+   "judges": [
+    5.0,
+    6.5,
+    4.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, in published copy: ledger/articles/2026-09-23.json opened a paragraph 'A second arrangement sits the other side of the line.' That places the Odessa power purchase on a side of the line the audit reads. claims.json rejected exactly this and the same paragraph's closing clause says the edition places that arrangement on neither side. This is the round 4 hard fail surviving in a new wording, three sentences upstream of the sentence that was repaired.",
+  "An unverified fact presented as verified in published copy. caption.txt said 'ineligible for TCEQ permits' where c22 quotes 'ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code'. Dropping the chapter limiter asserts a blanket bar no fetched source states. The web edition kept the full quote, so the caption was the one surface carrying the wide reading."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified, in published copy: ledger/articles/2026-09-23.json opened a paragraph 'A second arrangement sits the other side of the line.' That places the Odessa power purchase on a side of the line the audit reads. claims.json rejected exactly this and the same paragraph's closing clause says the edition places that arrangement on neither side. This is the round 4 hard fail surviving in a new wording, three sentences upstream of the sentence that was repaired."
+  },
+  {
+   "judge": 3,
+   "fail": "An unverified fact presented as verified in published copy. caption.txt said 'ineligible for TCEQ permits' where c22 quotes 'ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code'. Dropping the chapter limiter asserts a blanket bar no fetched source states. The web edition kept the full quote, so the caption was the one surface carrying the wide reading."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.06 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.06,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.06 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 1.29, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity",
+  "story_and_stakes",
+  "variety"
+ ],
+ "rounds_derived": 3,
+ "rounds": 5,
+ "rounds_source": "the judge cards",
+ "rounds_declared": 5,
+ "rounds_disagreement": "this counter logged 3 scoring round(s) on this tree and the judge cards say they are round 5. `rounds` carries 5, because a log can only undercount a round it never saw while a card can only overcount, so the larger is the honest figure. The cards were checked first for three distinct lenses and three distinct digests",
+ "at_cap": true
+}

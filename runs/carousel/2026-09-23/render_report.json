@@ -1,0 +1,2078 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sought by",
+          "x": 80,
+          "y": 176,
+          "w": 850,
+          "h": 147,
+          "font_px": 167.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              146,
+              661,
+              207
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two words decide who a permit halt reaches.",
+          "x": 82,
+          "y": 396,
+          "w": 760,
+          "h": 43,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              396,
+              636,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas AI Docket September 23rd",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 23rd",
+          "x": 80,
+          "y": 116,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              232,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c16 c17 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5681,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 81,
+          "variance": 5063.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Denied connection",
+          "x": 80,
+          "y": 198,
+          "w": 600,
+          "h": 193,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              182,
+              292,
+              127
+            ],
+            [
+              80,
+              278,
+              445,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The audit names one consequence and calls it denial of connection to the Texas grid. A machine standing on a pad is not asking for one.",
+          "x": 400,
+          "y": 388,
+          "w": 600,
+          "h": 115,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              400,
+              388,
+              572,
+              37
+            ],
+            [
+              400,
+              426,
+              494,
+              37
+            ],
+            [
+              400,
+              465,
+              593,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the audit can do",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c10 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 354,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              354,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5965,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 85.7,
+          "variance": 4945.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One page, two scopes",
+          "x": 80,
+          "y": 158,
+          "w": 800,
+          "h": 86,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              145,
+              754,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One sentence names who is asking. One names an audit a project may never enter.",
+          "x": 82,
+          "y": 268,
+          "w": 800,
+          "h": 73,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              268,
+              778,
+              36
+            ],
+            [
+              82,
+              304,
+              196,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PERMITS SOUGHT c1",
+          "x": 268,
+          "y": 482,
+          "w": 301,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 16, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              482,
+              301,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"all permits sought by data centers\"",
+          "x": 268,
+          "y": 534,
+          "w": 590,
+          "h": 43,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(20, 18, 14)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              535,
+              539,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALIGN PERMITTING DECISIONS c11",
+          "x": 268,
+          "y": 898,
+          "w": 530,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 16, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              898,
+              530,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"align its permitting decisions with the Governor's directives and use the information from those audits\"",
+          "x": 268,
+          "y": 930,
+          "w": 590,
+          "h": 104,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(20, 18, 14)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              930,
+              480,
+              33
+            ],
+            [
+              268,
+              965,
+              572,
+              33
+            ],
+            [
+              268,
+              999,
+              230,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The directive, as written",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c3 c11 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 450,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              450,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5029,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 110.5,
+          "variance": 7001.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ninety percent of the new ones",
+          "x": 80,
+          "y": 158,
+          "w": 840,
+          "h": 165,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              145,
+              701,
+              108
+            ],
+            [
+              80,
+              227,
+              315,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE WHOLE QUEUE, ON NO SCALE HERE",
+          "x": 82,
+          "y": 342,
+          "w": 546,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              342,
+              546,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "474 GW",
+          "x": 82,
+          "y": 382,
+          "w": 219,
+          "h": 82,
+          "font_px": 62,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              382,
+              219,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DATA CENTER SHARE OF NEW POWER REQUESTS",
+          "x": 82,
+          "y": 530,
+          "w": 646,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              530,
+              646,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "90%",
+          "x": 860,
+          "y": 518,
+          "w": 58,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              860,
+              518,
+              58,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PERMITS SOUGHT BY DATA CENTERS",
+          "x": 82,
+          "y": 826,
+          "w": 497,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              826,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO COUNT IN THE DIRECTIVE",
+          "x": 150,
+          "y": 1002,
+          "w": 414,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              1002,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The queue holds about 474 gigawatts of requests to connect. The state puts data centers at about ninety percent of the new ones.",
+          "x": 82,
+          "y": 1140,
+          "w": 840,
+          "h": 70,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1140,
+              819,
+              35
+            ],
+            [
+              82,
+              1175,
+              674,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two instruments, two axes",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c6 c8 c9 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4632,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 60.7,
+          "variance": 3153.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Forty, behind the meter",
+          "x": 80,
+          "y": 176,
+          "w": 790,
+          "h": 178,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              161,
+              629,
+              117
+            ],
+            [
+              80,
+              250,
+              225,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "76 MW",
+          "x": 835,
+          "y": 186,
+          "w": 165,
+          "h": 74,
+          "font_px": 56,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              835,
+              186,
+              165,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.",
+          "x": 82,
+          "y": 1082,
+          "w": 830,
+          "h": 111,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1082,
+              756,
+              36
+            ],
+            [
+              82,
+              1119,
+              792,
+              36
+            ],
+            [
+              82,
+              1156,
+              113,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What never joins the queue",
+          "x": 80,
+          "y": 80,
+          "w": 431,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              431,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 c18 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4454,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 56.2,
+          "variance": 2163.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This is one of them",
+          "x": 470,
+          "y": 188,
+          "w": 530,
+          "h": 185,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              470,
+              173,
+              493,
+              122
+            ],
+            [
+              470,
+              266,
+              203,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A single set on its skid, and somebody who works on it.",
+          "x": 470,
+          "y": 412,
+          "w": 530,
+          "h": 77,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              470,
+              412,
+              527,
+              37
+            ],
+            [
+              470,
+              450,
+              140,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The size of the thing",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5460,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 87.2,
+          "variance": 5831.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Forty nine days, then twenty eight",
+          "x": 80,
+          "y": 170,
+          "w": 840,
+          "h": 172,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              157,
+              732,
+              112
+            ],
+            [
+              80,
+              243,
+              438,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 3RD AUDIT ORDERED",
+          "x": 82,
+          "y": 438,
+          "w": 374,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 166, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              438,
+              374,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 21ST PERMITS DIRECTED",
+          "x": 82,
+          "y": 538,
+          "w": 484,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 166, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              538,
+              484,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BY OCTOBER 19TH AGENCY ANSWERS",
+          "x": 82,
+          "y": 624,
+          "w": 468,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 166, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              624,
+              468,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+          "x": 82,
+          "y": 1104,
+          "w": 830,
+          "h": 74,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1104,
+              803,
+              36
+            ],
+            [
+              82,
+              1141,
+              750,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How long each step took",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4451,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 58,
+          "variance": 2433.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Next door says nothing about the meter",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 142,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(232, 234, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              848,
+              93
+            ],
+            [
+              80,
+              209,
+              282,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1,180 MW THE PLANT",
+          "x": 82,
+          "y": 892,
+          "w": 276,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              892,
+              276,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "207 MW CONTRACTED, PHASE ONE",
+          "x": 82,
+          "y": 966,
+          "w": 430,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              966,
+              430,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An Odessa project contracts up to 207 megawatts from a 1,180 megawatt plant immediately adjacent to it. Adjacent is a statement about distance. The record does not say where the meter sits.",
+          "x": 82,
+          "y": 1078,
+          "w": 860,
+          "h": 101,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1078,
+              856,
+              33
+            ],
+            [
+              82,
+              1112,
+              859,
+              33
+            ],
+            [
+              82,
+              1145,
+              379,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The other arrangement",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c20 c21 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ODESSA",
+          "x": 96,
+          "y": 525,
+          "w": 99,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              525,
+              99,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4524,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46,
+          "variance": 1000.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The room was already empty.",
+          "x": 80,
+          "y": 196,
+          "w": 840,
+          "h": 166,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(207, 210, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              183,
+              755,
+              108
+            ],
+            [
+              80,
+              266,
+              238,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO DATE YET FOR THE HEARING. TCEQ ANSWERS TO THE GOVERNOR'S OFFICE BY OCTOBER 19TH.",
+          "x": 82,
+          "y": 1102,
+          "w": 900,
+          "h": 74,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1105,
+              772,
+              31
+            ],
+            [
+              82,
+              1142,
+              547,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The state canceled the notice and comment hearing on Bexar County data center permit O4791, captioned to Vantage Data Centers TX11. It says the hearing will be rescheduled for a later date and gives no date.",
+          "x": 82,
+          "y": 966,
+          "w": 850,
+          "h": 108,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 195, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              966,
+              795,
+              35
+            ],
+            [
+              82,
+              1002,
+              843,
+              35
+            ],
+            [
+              82,
+              1038,
+              742,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where a Texan could have spoken",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c13 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(138, 135, 152)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4439,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 61.6,
+          "variance": 2551.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

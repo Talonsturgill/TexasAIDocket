@@ -1,0 +1,54 @@
+{
+ "weighted_score": 6.58,
+ "judges": [
+  5.86,
+  6.58,
+  6.634
+ ],
+ "spread": 0.774,
+ "criteria": {},
+ "hard_fails": [
+  "CAPTION: 'A separate water board survey reaches the project on the test the halt uses.' c22 establishes only a CONSEQUENCE and says nothing about which data centers receive the survey or on what test. The sentence asserts both the reach and the trigger, and it had been written into ledger/carousel/topics.json.",
+  "GENERATOR AND ARTIFACT DISAGREE. compute.py still emitted on_grid: True and still asserted the plant is a grid resource, and its __main__ writes figures.json, so any rebuild republishes the refuted boolean. The round 1 repair landed on the artifact and not on the file the next run executes.",
+  "FRAME 4 LABEL 'NEW REQUESTS ONLY WHAT THE AUDIT READS' renders as one unbroken mono line asserting the audit reads new requests only, which c5, c6 and c9 each contradict."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "CAPTION: 'A separate water board survey reaches the project on the test the halt uses.' c22 establishes only a CONSEQUENCE and says nothing about which data centers receive the survey or on what test. The sentence asserts both the reach and the trigger, and it had been written into ledger/carousel/topics.json."
+  },
+  {
+   "judge": 1,
+   "fail": "GENERATOR AND ARTIFACT DISAGREE. compute.py still emitted on_grid: True and still asserted the plant is a grid resource, and its __main__ writes figures.json, so any rebuild republishes the refuted boolean. The round 1 repair landed on the artifact and not on the file the next run executes."
+  },
+  {
+   "judge": 1,
+   "fail": "FRAME 4 LABEL 'NEW REQUESTS ONLY WHAT THE AUDIT READS' renders as one unbroken mono line asserting the audit reads new requests only, which c5, c6 and c9 each contradict."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "median of judge totals (fallback)",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.58 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.634 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.58,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.58 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.634,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.634 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 0.77, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2
+}

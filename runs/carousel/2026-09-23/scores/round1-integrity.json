@@ -1,0 +1,25 @@
+{
+ "judge": "integrity",
+ "round": 1,
+ "weighted_score": 6.526,
+ "criteria": {
+  "artwork_craft": 6.5,
+  "deck_coherence": 7.8,
+  "claim_integrity": 5.5,
+  "story_and_stakes": 6.0,
+  "sequence_and_momentum": 7.5,
+  "voice": 7.0,
+  "variety": 6.5
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified. caption.txt: 'That project never joins the queue.' No claim supports it; c16 establishes only that 76 MW of SUPPLY is behind the meter, and a site can take behind the meter baseload and still hold a queue position for the rest of its load."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Set c11 WHOLE on frame 3, because the deck's argument is that the two sentences pull against each other and the pull was coming from dropping the conjunct that resolves it.",
+ "other_findings": [
+  "Frame 3 quotes only the second half of c11's conjunction.",
+  "'A separate water board survey reaches it' extends c22 to a project whose survey status nobody checked.",
+  "At feed size frame 4's guards are all at or below the 24px mobile floor, so a scrolling reader gets a big 474 and a 90 percent bar with the caveats stripped off.",
+  "Frame 9's kicker and hook are past tense about an opportunity c13 says is coming back."
+ ]
+}

@@ -1,0 +1,214 @@
+{
+ "date": "2026-09-23",
+ "_note": "Every number this deck ASSERTS, declared once, keyed by the phrase the detector reports. The header used to read 'every number on a published surface' and a scorer was right that it claimed a completeness it did not have: aggregate_check's shapes need a plural noun or a time unit after the numeral, so a quoted figure like 'Ninety percent of the new ones' or '1,180 megawatt plant' is invisible to it. Those are listed under `_quoted_and_undetected` below, with the claim each was read off, so this file is complete about the deck even where the gate is not. They are NOT in the `aggregates` array, because the gate fails a declaration no surface says and these phrases are the ones it cannot see.",
+ "_phrase_keys": "Keys are copied from the detector verbatim, as aggregate_check's own self-test says an author should. Frame 7's hook key read \"nine days\" for most of this run, because the detector's number-word table stopped at twenty and could not read a compound ten, so the key was the tail of a phrase the frame does not contain. The gate was fixed in the upgrade lane on 2026-09-23 and the key is the whole phrase the frame sets. The declaration's `value` did not move.",
+ "aggregates": [
+  {
+   "phrase": "Two words",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the word count of the fragment \"sought by\", which is frame 1's hook and which claims c1 and c3 each contain verbatim, taken over the fragment rather than added up from anything",
+   "note": "The frame's whole subject. Those two words are what scopes the halt to the applicant rather than to the permit, and the count is of words on the frame above the line."
+  },
+  {
+   "phrase": "two scopes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c11"
+   ],
+   "note": "One claim per scope, and both are set as real type on the drawn page. c1 is applicant scoped, all permits sought by data centers. c11 is audit scoped, align permitting decisions with what the audits find. The distance between those two sentences on one page is the frame."
+  },
+  {
+   "phrase": "474 gigawatts",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 474,
+   "quoted_from": "c8",
+   "quote": "over 474 gigawatts of requests to connect to the Texas grid",
+   "note": "The audit directive's own figure for the whole queue. Nothing is derived from it on any surface."
+  },
+  {
+   "phrase": "Two instruments",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c5",
+    "c1"
+   ],
+   "note": "One claim per instrument. c5 is the interconnection audit and c1 is the permit halt, which are the frame's two drawn channels and the reason nothing joins them."
+  },
+  {
+   "phrase": "two axes",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c5",
+    "c1"
+   ],
+   "note": "The same two instruments counted as the two things they each measure along. Same pair of claims, said the other way round in the kicker."
+  },
+  {
+   "phrase": "76 megawatts",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "The supplier's own figure. It is never added to, divided by or compared against any queue figure, because no source relates the two."
+  },
+  {
+   "phrase": "40 reciprocating gas engines",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 40,
+   "quoted_from": "c17",
+   "quote": "approximately 40 reciprocating natural gas-fueled generation units",
+   "note": "The source says approximately and so does the copy. No megawatt per engine figure is derived, because the source states neither a per unit rating nor that the units are identical."
+  },
+  {
+   "phrase": "Forty nine days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 49,
+   "from_date": "2026-08-03",
+   "to_date": "2026-09-21",
+   "computed_by": "compute.py clocks.days_audit_to_halt, a calendar difference between the August 3rd date parsed out of c9's verbatim quote and the September 21st release date the record carries at tx-2026-0182",
+   "from_claims": [
+    "c9",
+    "c1"
+   ],
+   "note": "The frame sets \"Forty nine days\" and the key is now the whole of it. Drawn as the first run of tick marks, one tick per day, at the same pitch as the second run, because two pitches would make the comparison a lie."
+  },
+  {
+   "phrase": "49 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 49,
+   "from_date": "2026-08-03",
+   "to_date": "2026-09-21",
+   "computed_by": "compute.py clocks.days_audit_to_halt, a calendar difference between the August 3rd date parsed out of c9's verbatim quote and the September 21st release date the record carries at tx-2026-0182",
+   "from_claims": [
+    "c9",
+    "c1"
+   ],
+   "note": "The same span as the hook, set again in the dek where the two endpoint dates are named, so a reader can do the subtraction themselves."
+  },
+  {
+   "phrase": "28 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 28,
+   "from_date": "2026-09-21",
+   "to_date": "2026-10-19",
+   "computed_by": "compute.py clocks.days_halt_to_report, a calendar difference between the September 21st release date and the October 19, 2026 date parsed out of c4's verbatim quote",
+   "from_claims": [
+    "c1",
+    "c4"
+   ],
+   "note": "Drawn twice. As the second run of tick marks on frame 7 at the first run's own pitch, and as the count of ruled lines on the drawn page of frame 3, one rule per day between the directive and the answer it requires."
+  },
+  {
+   "phrase": "207 megawatts",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 207,
+   "quoted_from": "c19",
+   "quote": "up to 207 MW",
+   "note": "The upper end of the contracted first phase. It sits beside the plant's own 1,180 MW as two bar lengths at one scale, and the ratio between them is never printed as a numeral, because the sources do not say what share of that plant this project is."
+  },
+  {
+   "phrase": "Two different denominators",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "the two distinct denominators inside c8's own sentence, the whole queue of requests to connect and the new power requests, counted by reading that one quote rather than by combining any figures in it",
+   "from_claims": [
+    "c8"
+   ],
+   "note": "The caption's load bearing sentence and the reason no gigawatt figure for data centers appears anywhere on this deck."
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "sources_block.py, a tally of the distinct documents THE DECK CITES that are published by a government body, which is three releases from the Office of the Governor and one hearing notice from TCEQ. It counts the block's own documents rather than every government document in claims.json: this description used to say the latter, which would return six, because c14 and c15 sit on two further TCEQ pages that no frame cites and the block therefore does not list.",
+   "note": "The head of the sources block. It counts DOCUMENTS and not claim ids, which is why it is computed rather than declared as a tally of claims: the three Governor releases carry thirteen claims between them."
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, a tally of the distinct documents in out/2026-09-23/claims.json issued by the company the claim is about, which is the Kodiak supply agreement release and the New Era Energy release carried on GlobeNewswire",
+   "note": "Named first party rather than industry or news because each is the acting company's own statement about its own arrangement, which is what makes it good evidence of the arrangement and no evidence of anything else."
+  },
+  {
+   "phrase": "474 gigawatts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 474,
+   "quoted_from": "c8",
+   "quote": "over 474 gigawatts of requests to connect to the Texas grid",
+   "note": "The caption repeats the directive's figure for the whole queue. Declared once and matched on both surfaces it appears on."
+  },
+  {
+   "phrase": "76 megawatts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "Same figure as frame 5, quoted from the same string."
+  },
+  {
+   "phrase": "40 gas engines",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 40,
+   "quoted_from": "c17",
+   "quote": "approximately 40 reciprocating natural gas-fueled generation units",
+   "note": "Same figure as frame 5, quoted from the same string. The caption says 40 gas engines where the frame says 40 reciprocating gas engines, and the word went to buy back the character budget the Chapter 11 limiter needed. c17's own words are 'approximately 40 reciprocating natural gas-fueled generation units', so both surfaces are inside the quote and neither adds to it."
+  }
+ ],
+ "_quoted_and_undetected": [
+  {
+   "phrase": "Ninety percent of the new ones",
+   "surface": "slide-04.html hook, slide-04.html dek, caption.txt",
+   "value": 90,
+   "quoted_from": "c8",
+   "quote": "Approximately 90 percent of the new power requests are",
+   "note": "The audit directive's own share, of the NEW requests. It is never multiplied by 474, which is the whole queue, and frame 4 puts the two figures on different surfaces with no drawn length under the 474."
+  },
+  {
+   "phrase": "90%",
+   "surface": "slide-04.html",
+   "value": 90,
+   "quoted_from": "c8",
+   "quote": "Approximately 90 percent of the new power requests are",
+   "note": "Set over the END of the shaded run it describes rather than over the unshaded tail it does not."
+  },
+  {
+   "phrase": "1,180 megawatt plant",
+   "surface": "slide-08.html dek and its bar label",
+   "value": 1180,
+   "quoted_from": "c20",
+   "quote": "Vistra's 1,180 MW natural gas-fired generating facility in Odessa, Texas",
+   "note": "Drawn as a bar length beside the 207 at one scale. The ratio between the two is declared in the aggregates array above and is never printed as a numeral."
+  },
+  {
+   "phrase": "76 MW",
+   "surface": "slide-05.html",
+   "value": 76,
+   "quoted_from": "c16",
+   "quote": "76 megawatts of behind-the-meter, baseload power capacity",
+   "note": "The same figure as the dek's '76 megawatts', which the detector does see and which is declared above."
+  }
+ ]
+}

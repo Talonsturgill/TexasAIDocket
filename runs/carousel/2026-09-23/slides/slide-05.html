@@ -1,0 +1,263 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 5 of 9. Archetype GRID. THE HERO FRAME.
+     THE COUNT, MADE COUNTABLE. Forty reciprocating gas sets, one mark per engine, at ONE scale,
+     seen through a long lens at sixteen metres so near and far subtend the same width. Eight
+     columns of five.
+     NEURATH'S RULE, AND THIS DECK'S OWN VERSION OF IT. A greater quantity is more units of the
+     same size and never a bigger unit. A second scale is how you draw a lie without noticing,
+     and a frame that needs two scales is usually a frame whose point is not true at one.
+     THE MARK COUNT IS behind_the_meter.units FROM figures.json, read by compute.py out of c17's
+     quote. Not a suggestive number of machines. Forty.
+     76 AND 40 NEVER TOUCH. The megawatts are a numeral in the copy and the engines are the
+     geometry, and nothing on this frame divides one by the other, because "approximately 40" is
+     not a count and the quotient would be a per unit rating no document states.
+     NO UNIT IS PICKED OUT AND NO AMBER APPEARS. Nothing distinguishes one of these from another.
+     Frame median L* planned at 26. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#322C44; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:790px; font-size:96px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.93;
+          letter-spacing:-0.024em; color:#E8EAEE; font-variation-settings:"opsz" 126; z-index:10; }
+  .mw   { position:absolute; right:80px; top:186px; font-family:"JetBrains Mono", monospace;
+          font-size:56px; font-weight:700; letter-spacing:-0.01em; color:#CFD2D8;
+          font-variant-numeric:tabular-nums; z-index:10; }
+  .dek  { position:absolute; left:82px; top:1082px; width:830px; font-size:26px;
+          line-height:1.42; color:#C4C3CE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8A8798;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Forty, behind the meter</h1>
+<div class="mw" id="mw">76 MW</div>
+<p class="dek">One West Texas data center has contracted 76 megawatts from about 40 reciprocating gas engines. None of them asks the grid for anything.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "What never joins the queue", counter: "05 / 09",
+      src: "c16 c17 c18   TEXAS AI DOCKET", ink: "#8A8798"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 70, max: 96, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = YARD, W = M.W, H = M.H, G = M.G;
+    TX.reseed(M.SEED + 5);
+    var boxes = M.boxes(".hook, .dek, .mw, .kick, .count, .src, .tx-site", 20);
+
+    /* THE COUNT. behind_the_meter.units. */
+    var UNITS = 40, COLS = 8, ROWS = 5;
+
+    M.print(cx, {
+      seed: 5,
+      draw: function (a) {
+        /* A LONG LENS AT SIXTEEN METRES. f 2400 flattens the rows so every unit subtends the
+         * same width, which is what makes this a COUNT rather than a perspective. */
+        var S = TXSCENE.create(a, M.cam({ eye: 1.40, horizon: 700, f: 2400, light: { az: -48, el: 28 } }));
+        var P = function (X, Y, Z) { var q = S.project(X, Y, Z); return { x: q[0], y: q[1] }; };
+        var R = M.rng(5);
+        var d = M.castDir();
+
+        /* THE PAD IS ONE VALUE ACROSS THE WHOLE OF THE PRIMARY IMAGE RECT, AND THAT IS WHAT
+         * LETS THE COUNT BE COUNTED.
+         *
+         * layout_check separates subject from ground by colour distance from the rect's own
+         * modal colour. The first cut left the top of the rect at the deck's ground and put the
+         * ground plane's own darker caliche under the lower half, so the PAD ITSELF measured as
+         * subject across the bottom of the frame: a solid mass with forty units embedded in it,
+         * one connected piece, no count. The field's separability is not a property of the
+         * units. It is a property of what lies between them, and between them there is now one
+         * flat pad from the top of the rect to the bottom of it. */
+        /* THE PAD IS THE SAME VALUE AS THE FRAME AROUND THE FIELD, AND THAT IS WHAT LETS THE
+         * COUNT BE COUNTED.
+         *
+         * layout_check takes a frame's GROUND to be the median colour OUTSIDE the primary image
+         * rect, and calls subject anything inside the rect that differs from it. Two cuts of
+         * this frame lost the count to that and each lost it a different way: first the mast's
+         * pool lifted the whole pad to the units' own value, then a darker caliche pad laid
+         * under the rect measured as subject in its own right. Both produced one connected mass
+         * with forty units embedded in it.
+         *
+         * A field's separability is not a property of its units. It is a property of what lies
+         * between them, and what lies between them here is the same night that surrounds the
+         * whole frame. The units are the only lit things in the rect. */
+        a.fillStyle = G.voidd; a.fillRect(0, 0, W, H);
+        S.ground({ near: 6, far: 40, fill: G.voidd });
+
+        /* THE MAST'S POOL, wide and even, because a count has to be readable across the field
+         * rather than falling into the dark at one end. */
+        a.save(); a.globalCompositeOperation = "lighter";
+        var pool = a.createRadialGradient(430, 660, 0, 430, 660, 1080);
+        /* THE POOL IS CUT HARD, AND IT WAS THE REASON THE COUNT COULD NOT BE COUNTED.
+         *
+         * At peak 0.26 laid in `lighter` across the whole field zone, the PAD came up to the
+         * units' own value, so the bright mass a reader sees is one continuous band with forty
+         * slightly brighter outlines inside it. layout_check measured the subject as ONE piece
+         * against a floor of four and it was measuring correctly: a field that does not come
+         * apart is not a count, it is a texture. The units are the lit things here and the pad
+         * they stand on is the night. */
+        pool.addColorStop(0.00, "rgba(255,255,255,0.05)");
+        pool.addColorStop(0.50, "rgba(255,255,255,0.018)");
+        pool.addColorStop(1.00, "rgba(255,255,255,0)");
+        a.fillStyle = pool; a.fillRect(0, 380, W, H - 380); a.restore();
+
+        /* THE FIELD. Eight columns of five, laid out in SCREEN space at ONE size, because a
+         * long lens is exactly the camera that makes that honest. Each unit is a drawn set
+         * with a lit left flank, a shade right flank, a roof band and its own stack. */
+        /* THE ROW PITCH OPENED FROM 116 TO 132 SO THE FIVE ROWS SEPARATE. layout_check measured
+         * the field coming apart into 3 pieces against a floor of 4, and a GRID is a count, so
+         * units a reader can't separate in the feed are not countable. */
+        var x0 = 96, y0 = 420, cw = 112, ch = 128;
+        /* THE UNITS SHRINK SO THE GAPS BETWEEN THEM SURVIVE THE MEASURE.
+         *
+         * layout_check thresholds this frame at a 54 by 51 px mask, which is what forty units
+         * on a phone screen really come to. At 78 px wide on a 112 px pitch the gap was 34
+         * design px, about 1.7 px in that mask, and the contact shadow reaching down and to the
+         * right ate half of it. Every unit touched its neighbour, the field measured as ONE
+         * piece and the count could not be performed. At 58 on the same pitch the clear pad is
+         * 54 design px, and a row occupies 72 px in a 128 px slot, so both gaps are about three
+         * pixels of the mask. The units are smaller and the COUNT is legible, which is the only
+         * thing this frame is for. */
+        var uw = 58, uh = 34, stH = 22;
+        /* THE PAD BETWEEN THE ROWS, AND IT IS DRAWN BEFORE THE UNITS RATHER THAN AFTER THEM.
+         *
+         * Painted afterwards, each band covered the NEXT row's stack exactly: the band for row
+         * r sat at y0 + r*ch - 44 and row r's stack runs from y0 + r*ch - 44 to y0 + r*ch. So
+         * row one kept its stacks and rows two to five lost theirs, and eight of the forty marks
+         * became a different mark from the other thirty two. Isotype's whole rule is one mark
+         * per unit at one size, and the field broke it invisibly, in the drawing order.
+         *
+         * Narrowed from 38 px to 20 as well. Four full width opaque bars 38 px deep letterboxed
+         * the frame into five strips, so the field stopped being one mass on one plane, which is
+         * the focal this frame declares. */
+        /* AND THE GAP IS SIZED FROM WHAT A ROW ACTUALLY OCCUPIES, which is stack plus body
+         * plus skid plus contact. At a 132 px pitch with a 44 px stack that came to 131 px of
+         * ink in a 132 px slot, so every row touched the row below through its own stack and
+         * layout_check measured the field as ONE piece against a floor of four. A GRID is a
+         * count and units a reader can't separate in the feed are not countable. At a 128 px
+         * pitch with a 30 px stack a row occupies 100 px and the clear pad between rows is 28. */
+        a.fillStyle = G.voidd;
+        /* AND THE BAND SITS IN THE GAP RATHER THAN ON A ROW, WHICH IT DID NOT.
+         * A row occupies [y0 + r*ch - stH, y0 + r*ch + uh + 10], so the clear pad before row r
+         * runs from y0 + (r-1)*ch + uh + 10 to y0 + r*ch - stH. At ch 128, stH 22 and uh 34
+         * that is 62 px wide starting at y0 + r*ch - 94. The first cut put the band at
+         * y0 + r*ch - 124, which is 30 px ABOVE the gap and therefore across the previous row's
+         * enclosure, and a reviewer reported faint bands cutting rows 2 and 4 at mid height. */
+        for (var r0 = 1; r0 < ROWS; r0 += 1) a.fillRect(0, y0 + r0 * ch - 88, W, 26);
+
+        /* A BAND OF LIGHT UNDER EACH ROW, AND WITHOUT ONE A CONTACT CANNOT EXIST.
+         *
+         * The pad was taken to the deck's own floor so the forty would separate, and that is
+         * right. It also made every contact invisible, because a shadow is the ABSENCE of light
+         * and there was none on the pad to remove. Two reviewers said the field reads as a
+         * stamped pattern and both were right.
+         *
+         * So each row stands in its own narrow band of the mast's light, which is what a row of
+         * machines under a yard light actually looks like, and the contacts fall into it. The
+         * bands do not touch, so the five rows stay five separable pieces. */
+        for (var rl = 0; rl < ROWS; rl += 1) {
+          var by0 = y0 + rl * ch - 6, bh0 = uh + 34;
+          var lb = a.createLinearGradient(0, by0, 0, by0 + bh0);
+          lb.addColorStop(0.00, "rgba(255,255,255,0.00)");
+          lb.addColorStop(0.42, "rgba(255,255,255,0.10)");
+          lb.addColorStop(1.00, "rgba(255,255,255,0.00)");
+          a.save(); a.globalCompositeOperation = "lighter";
+          a.fillStyle = lb; a.fillRect(0, by0, W, bh0); a.restore();
+        }
+
+        var n = 0;
+        for (var r = 0; r < ROWS; r += 1) {
+          for (var c = 0; c < COLS; c += 1) {
+            if (n >= UNITS) break;
+            var ux = x0 + c * cw + Math.round((R() - 0.5) * 9), uy = y0 + r * ch + Math.round((R() - 0.5) * 5);
+            /* its own contact, down and to the right */
+            /* ITS OWN CONTACT, down and to the right, in TWO PARTS. At one flat part at 0.46
+             * over a pad already carrying the pool, no reviewer could find a contact under any
+             * of the forty units at any size, and a field of objects with no contact is a
+             * stamped pattern rather than forty things standing on caliche. A hard core at the
+             * base edge is what survives the downsample to 432 px. */
+            a.save(); a.fillStyle = G.voidd;
+            a.globalAlpha = 0.34;
+            a.beginPath();
+            a.moveTo(ux, uy + uh);
+            a.lineTo(ux + uw, uy + uh);
+            a.lineTo(ux + uw + d[0] * 10, uy + uh + d[1] * 10);
+            a.lineTo(ux + d[0] * 10, uy + uh + d[1] * 10);
+            a.closePath(); a.fill();
+            a.globalAlpha = 0.80;
+            a.beginPath();
+            a.moveTo(ux + 2, uy + uh + 5);
+            a.lineTo(ux + uw, uy + uh + 5);
+            a.lineTo(ux + uw + d[0] * 5, uy + uh + 5 + d[1] * 5);
+            a.lineTo(ux + 2 + d[0] * 5, uy + uh + 5 + d[1] * 5);
+            a.closePath(); a.fill();
+            a.restore();
+            /* the stack */
+            a.fillStyle = G.stone; a.fillRect(ux + 10, uy - stH, 7, stH);
+            a.fillStyle = G.bright; a.fillRect(ux + 6, uy - stH - 4, 15, 4);
+            /* the body, lit left face against shade right face */
+            a.fillStyle = G.mid;    a.fillRect(ux, uy, uw, uh);
+            a.fillStyle = G.bright; a.fillRect(ux, uy, 13, uh);          /* LIT left flank */
+            a.fillStyle = G.deep;   a.fillRect(ux + uw - 10, uy, 10, uh); /* shade return */
+            a.fillStyle = G.metal;  a.fillRect(ux, uy, uw, 5);            /* roof band */
+            /* the louvre end */
+            a.fillStyle = G.dark;   a.fillRect(ux + uw - 24, uy + 8, 12, uh - 16);
+            /* the skid */
+            a.fillStyle = G.deep;   a.fillRect(ux - 2, uy + uh, uw + 4, 5);
+            n += 1;
+          }
+        }
+
+        /* the pad's own tooth, coarsening toward the reader, under the field and STOPPING above
+         * the dek. The dek used to sit on live screen and every letterform carried the tooth
+         * through it. The light runs out before the type starts, by construction. */
+        for (var i = 0; i < 200; i += 1) {
+          var gx = R() * W, gy = y0 + ROWS * ch - 44 + R() * 130;
+          a.fillStyle = R() > 0.5 ? G.shade : G.deep;
+          var gs = 1.6 + (gy - y0) / H * 4.2;
+          a.fillRect(gx, gy, gs, gs * 0.7);
+        }
+        /* NO BLACKOUT UNDER THE DEK. It was there to give the dek a dark ground and it was
+         * itself a second value inside the primary image rect, which is what the paragraph above
+         * is about. The pad is already the deck's near floor and the dek reads on it. */
+        a.fillStyle = G.voidd; a.fillRect(0, 1200, W, H - 1200);
+
+      },
+      over: function (c) {
+        /* the print is faded to the deck's ground under the fixed furniture bands, and the
+         * light DIMS toward the display type. Both run here, on the finished print, never on
+         * the twin, because the edge pass would otherwise contour the reserve itself. */
+        M.reserve(c, { top: 150, topSolid: 92, bottom: 150, bottomSolid: 94 });
+        M.quiet(c, boxes, 0.40);
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { document.title = "ERR " + e.message; reject(e); }
+  });
+});
+</script>
+</body>
+</html>

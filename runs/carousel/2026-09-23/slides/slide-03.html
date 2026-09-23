@@ -1,0 +1,227 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 3 of 9. Archetype DOCUMENT.
+     THE TWO SCOPES, ON ONE PAGE, IN THE DOCUMENT'S OWN WORDS. A sheet of agency bond on a desk
+     at a slight angle, its two governing sentences set as real type in two ruled blocks with
+     ruled emptiness between them, because the distance between those two sentences on the real
+     page is the frame's whole content.
+     THE RULE COUNT IS clocks.days_halt_to_report FROM figures.json. Twenty eight ruled lines,
+     one per day between the directive and the report back. The page's own ruling IS the figure.
+     THE ONE AMBER IS THE DOCKET LINE. The state's paper, and it never touches an engine.
+     THE LIGHT DIMS TOWARD THE TYPE RATHER THAN BEING PUNCHED AWAY FROM IT. A hole cut in a
+     light layer at full strength is a plate with the sign flipped.
+     Frame median L* planned at 33. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#322C44; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:158px; width:800px; font-size:92px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.94;
+          letter-spacing:-0.024em; color:#E8EAEE; font-variation-settings:"opsz" 124; z-index:10; }
+  /* THE SECOND QUOTE IS SET SMALLER BECAUSE IT IS SET WHOLE, and that trade is the point.
+     It carried only the second half of c11's sentence, 'use the information from those audits',
+     and a scorer put it plainly: this deck's whole tension is that the two sentences on the page
+     pull against each other, so taking the sharpness from a SELECTION rather than from the page
+     is the one thing a frame titled THE DIRECTIVE, AS WRITTEN may not do. The dropped conjunct
+     tells the agency to align with the Governor's directives, which is the halt itself and is
+     applicant scoped, so the full sentence leaves the gap exactly where the half sentence did.
+     The frame is stronger for having shown it. */
+  .q1, .q2 { position:absolute; font-family:"Fraunces", serif; font-weight:500;
+             font-size:33px; line-height:1.30; color:#14120E; z-index:12;
+             font-variation-settings:"opsz" 36; }
+  .q2 { font-size:27px; line-height:1.28; }
+  .q1 { left:268px; top:534px; width:590px; }
+  .q2 { left:268px; top:930px; width:590px; }
+  /* TONER AT 19px, NOT KHAKI AT 17. Set in #6B6455 on light stock with the deck's 68 degree
+     line screen running through every letterform, both of these were noise at feed width: a
+     reviewer transcribed "WHO IS ASKING   c1" as "and is Adkins c:". A wrong word is worse
+     than a blur, because a blur invites a second look and a wrong word does not. */
+  .qc1, .qc2 { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px;
+               letter-spacing:0.08em; color:#141014; font-weight:700; z-index:12; }
+  .qc1 { left:268px; top:482px; }
+  .qc2 { left:268px; top:898px; }
+  .dek  { position:absolute; left:82px; top:268px; width:800px; font-size:26px;
+          line-height:1.40; color:#C4C3CE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#8A8798;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One page, two scopes</h1>
+<p class="dek">One sentence names who is asking. One names an audit a project may never enter.</p>
+<div class="qc1" id="qc1">PERMITS SOUGHT   c1</div>
+<div class="q1" id="q1">"all permits sought by data centers"</div>
+<div class="qc2" id="qc2">ALIGN PERMITTING DECISIONS   c11</div>
+<div class="q2" id="q2">"align its permitting decisions with the Governor's directives and use the information from those audits"</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve, reject) {
+  document.fonts.ready.then(function () {
+  try {
+    TXLAYOUT.mount(document.body, {
+      kicker: "The directive, as written", counter: "03 / 09",
+      src: "c1 c3 c11 c4   TEXAS AI DOCKET", ink: "#8A8798"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 92, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = YARD, W = M.W, H = M.H, G = M.G;
+    TX.reseed(M.SEED + 3);
+    /* the quoted blocks are DARK ON LIGHT and want the light rather than a reserve, so they are
+     * deliberately NOT in this list. Two kinds of type want opposite things from the light. */
+    var boxes = M.boxes(".hook, .dek, .kick, .count, .src, .tx-site", 20);
+
+    /* THE RULE COUNT, from figures.json. */
+    var RULES = 28;
+    var sheet = null;
+
+    M.print(cx, {
+      seed: 3,
+      draw: function (a) {
+        var S = TXSCENE.create(a, M.cam({ eye: 1.15, horizon: 700, f: 980, light: { az: -48, el: 28 } }));
+        var P = function (X, Y, Z) { var q = S.project(X, Y, Z); return { x: q[0], y: q[1] }; };
+        var R = M.rng(3);
+        var d = M.castDir();
+
+        /* THE DESK, falling to the deck's dark beyond the pool so the hook has its quiet. */
+        a.fillStyle = G.voidd; a.fillRect(0, 0, W, H);
+        a.fillStyle = G.dark;  a.fillRect(0, 424, W, H - 424);
+        /* the desk's own grain, running with the light */
+        a.strokeStyle = "rgba(255,255,255,0.045)"; a.lineWidth = 1;
+        for (var i = 0; i < 48; i += 1) {
+          var gy = 424 + i * 23 + R() * 6;
+          if (gy > 1180) continue;      /* clear of the dek */
+          a.beginPath(); a.moveTo(0, gy); a.lineTo(W, gy + 14); a.stroke();
+        }
+
+        /* THE POOL, from the left, as everywhere in this deck. */
+        a.save(); a.globalCompositeOperation = "lighter";
+        var pool = a.createRadialGradient(300, 800, 0, 300, 800, 940);
+        pool.addColorStop(0.00, "rgba(255,255,255,0.26)");
+        pool.addColorStop(0.46, "rgba(255,255,255,0.08)");
+        pool.addColorStop(1.00, "rgba(255,255,255,0)");
+        a.fillStyle = pool; a.fillRect(0, 300, W, H - 300); a.restore();
+
+        /* THE SHEET. Lower two thirds, running off the bottom edge, at a slight angle so it is
+         * a page on a desk rather than a rectangle on a picture. */
+        var sx = 176, sy = 448, sw = 740, sh = 1188 - 448;
+        sheet = { x: sx, y: sy, w: sw, h: sh };
+        a.save();
+        a.translate(sx + sw / 2, sy + sh / 2);
+        a.rotate(-0.028);   /* 1.6 degrees. At 0.7 it read as axis aligned at every scale. */
+        a.translate(-(sx + sw / 2), -(sy + sh / 2));
+
+        /* its cast, down and to the right */
+        /* A TWO PART CONTACT. One flat offset rectangle is a drop shadow, which is a sticker
+         * rather than a page lying on a desk. A tight dark core hugging the sheet's own lower
+         * and right edges, then a broad soft spread under the whole of it. */
+        a.save(); a.fillStyle = G.voidd;
+        a.globalAlpha = 0.22; a.fillRect(sx + 20, sy + 18, sw + 16, sh + 10);
+        a.globalAlpha = 0.58; a.fillRect(sx + 5, sy + 5, sw + 4, sh + 4);
+        a.restore();
+
+        /* the bond itself, held OFF full white at the chassis value, and falling off in tone
+         * toward its own lower edge as the desk drops out of the pool */
+        /* THE SHEET IS ONE FLAT TONE, AND THAT IS THE SCREEN'S DOING RATHER THAN A TASTE CALL.
+         * A LINE SCREEN carries tone in stroke weight, so it quantises a gradient into visible
+         * bands, and every band boundary is an edge that has to land somewhere. On a DOCUMENT
+         * frame the somewhere is the type, because the type is where the page is. Three stops
+         * put a rule through the second quote; two stops put nine of them across both. A sheet
+         * of bond lying flat under one light IS one value, and the modelling belongs at its
+         * edges, which is where the curl below puts it. */
+        a.fillStyle = G.bright; a.fillRect(sx, sy, sw, sh);
+        /* AND IT FALLS OFF TOWARD ITS OWN LOWER EDGE. The sheet rendered uniform top to bottom,
+         * so the deck's ONE LIGHT did no work at all on the frame that states the deck's case.
+         * A single linear falloff is not a gradient the line screen has to band: it is the same
+         * stock walking one press step down its own height. */
+        var fall = a.createLinearGradient(0, sy, 0, sy + sh);
+        fall.addColorStop(0.00, "rgba(0,0,0,0)");
+        /* CLAMPED, AND THE UNCLAMPED VERSION BURIED HALF THE FRAME'S CONTENT. At a straight
+         * falloff to 0.20 across the sheet's whole height, the stock under the SECOND quote sat
+         * 12 to 15 L* below the stock under the first, so the second scope read as the lesser
+         * of the two. This frame's entire claim is that the two sentences are equals on one
+         * page. The falloff now holds flat over the type and happens below it. */
+        fall.addColorStop(0.72, "rgba(0,0,0,0.05)");
+        fall.addColorStop(1.00, "rgba(0,0,0,0.22)");
+        a.fillStyle = fall; a.fillRect(sx, sy, sw, sh);
+
+        /* THE RULING, TWENTY EIGHT MARKS, ONE PER DAY, BACK ON THE PAGE.
+         *
+         * It was full width rules first and half of them were never drawn, because they had to
+         * dodge both quote blocks. It was a margin ruling second and a reviewer read it as a
+         * barcode at full size and as spiral binding at 432 px, which is a fair reading of
+         * twenty eight marks stacked in a 44 px strip with nothing labelling them.
+         *
+         * The band BETWEEN the two quotes is empty by construction, because the distance between
+         * those two sentences is this frame's whole content. So the ruling lives there, as page
+         * rules across the text column at one pitch, where it needs to dodge nothing, all
+         * twenty eight are drawn, and it reads as what it is: a page ruled for the days between
+         * the directive and the answer it requires. */
+        var top = sy + 192, bot = sy + 426, pitch = (bot - top) / (RULES - 1);
+        a.strokeStyle = "rgba(26,23,18,0.30)"; a.lineWidth = 1.6;
+        for (i = 0; i < RULES; i += 1) {
+          var ry = top + i * pitch;
+          a.beginPath(); a.moveTo(sx + 92, ry); a.lineTo(sx + sw - 62, ry); a.stroke();
+        }
+        /* the count's own left tick, so a reader sees where the run starts and stops */
+        a.fillStyle = "rgba(26,23,18,0.42)";
+        a.fillRect(sx + 78, top, 3, (RULES - 1) * pitch);
+        window.__rules = RULES;
+
+        /* the two quoted blocks get a faint recess so the eye finds them before the ruling */
+        /* NO RECESS. The two faint rectangles that were meant to find the eye were themselves
+         * the edges the harness reported through the captions, at 21 and 7 percent of the ring.
+         * The blocks are found by the ruling STOPPING, which is quieter and is how a set page
+         * actually signals a block. */
+
+        /* the right margin catches the light where the sheet curls */
+        var cg = a.createLinearGradient(sx + sw - 54, 0, sx + sw, 0);
+        cg.addColorStop(0, "rgba(255,255,255,0)"); cg.addColorStop(1, "rgba(255,255,255,0.34)");
+        a.fillStyle = cg; a.fillRect(sx + sw - 54, sy, 54, sh);
+        a.restore();
+
+      },
+      over: function (c) {
+        /* the print is faded to the deck's ground under the fixed furniture bands, and the
+         * light DIMS toward the display type. Both run here, on the finished print, never on
+         * the twin, because the edge pass would otherwise contour the reserve itself. */
+        M.reserve(c, { top: 150, topSolid: 92, bottom: 150, bottomSolid: 94 });
+        M.quiet(c, boxes, 0.14);
+        /* THE DOCKET LINE, the one amber on the frame, low on the sheet. */
+        c.save();
+        c.fillStyle = M.ACCENT_PAINT;
+        /* THE DOCKET BLOCK. Sized to clear layout_check's 0.2 percent floor at 432 px,
+         * because an accent under the floor is an accent that is not there, and a colour
+         * spent below the floor costs the deck its scarcity and buys a reader nothing. */
+        /* ONE RULE, NOT THREE. Three amber bars of descending length, stacked, read at feed
+         * width as a small bar chart, one frame ahead of a frame whose entire subject is bars.
+         * The docket line is a line. */
+        c.fillRect(sheet.x + 100, sheet.y + sheet.h - 78, 470, 22);
+        c.restore();
+      }
+    });
+
+    TXDECK.finish(cx);
+    resolve();
+  } catch (e) { document.title = "ERR " + e.message; reject(e); }
+  });
+});
+</script>
+</body>
+</html>

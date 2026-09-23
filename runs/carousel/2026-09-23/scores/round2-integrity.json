@@ -1,0 +1,25 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "weighted_score": 5.86,
+ "criteria": {
+  "artwork_craft": 6.0,
+  "deck_coherence": 7.5,
+  "claim_integrity": 4.0,
+  "story_and_stakes": 6.5,
+  "sequence_and_momentum": 6.5,
+  "voice": 7.0,
+  "variety": 4.5
+ },
+ "hard_fails": [
+  "CAPTION: 'A separate water board survey reaches the project on the test the halt uses.' c22 establishes only a CONSEQUENCE and says nothing about which data centers receive the survey or on what test. The sentence asserts both the reach and the trigger, and it had been written into ledger/carousel/topics.json.",
+  "GENERATOR AND ARTIFACT DISAGREE. compute.py still emitted on_grid: True and still asserted the plant is a grid resource, and its __main__ writes figures.json, so any rebuild republishes the refuted boolean. The round 1 repair landed on the artifact and not on the file the next run executes.",
+  "FRAME 4 LABEL 'NEW REQUESTS ONLY WHAT THE AUDIT READS' renders as one unbroken mono line asserting the audit reads new requests only, which c5, c6 and c9 each contradict."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Extend the traceability contract from numerals to SENTENCES.",
+ "other_findings": [
+  "compute.py's docstring said NOT ONE NUMBER IN THIS FILE IS WRITTEN BY HAND while halt_issued is typed eleven lines below it.",
+  "SELECTION.md as committed still asserted the refuted mechanism, still called O4791 an air permit and still routed a reader to permit 182126."
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "judge": "craft",
+ "round": 1,
+ "weighted_score": 6.82,
+ "criteria": {
+  "artwork_craft": 6.0,
+  "deck_coherence": 6.5,
+  "claim_integrity": 8.0,
+  "story_and_stakes": 7.0,
+  "sequence_and_momentum": 7.0,
+  "voice": 7.5,
+  "variety": 5.5
+ },
+ "hard_fails": [
+  "A DATE IN THE POST'S OWN YEAR CARRIES A YEAR, four times on frame 7. The run's own caption prints the same three dates correctly without the year, so two surfaces of one post give two answers to a rule the run demonstrably knows. caption_check.post_shape_problems is reached only from run(), which is called on caption.txt alone, so no gate reads a slide string."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Draw the three continuity devices instead of declaring them.",
+ "other_findings": [
+  "The chassis and the storyboard state the ground sits at dE76 14.18 from its nearest of the last six; the artwork ledger says 24.54 against #2E2016. They cannot both hold.",
+  "The storyboard says the screen is a LINE SCREEN AT CELL 5 while the chassis and the ledger say cell 6.",
+  "Frame 4's amber annotation runs a specific length along a channel labelled NO COUNT IN THE DIRECTIVE.",
+  "topics.json's entry is the only one in that file with no keywords array, which is one of the three fields dedupe_check compares."
+ ]
+}

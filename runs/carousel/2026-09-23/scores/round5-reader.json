@@ -1,0 +1,19 @@
+{
+ "lens": "reader",
+ "round": 5,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "A drawn subject, one light and a real grade on every frame, and two frames are genuinely good: slide 5's isotype comes apart into 8 columns of 5 and the count is countable at 432px, and slide 9's interior carries form shading and one amber notice. Against that, the cover is the weakest frame and the one that matters most: its dossier says a line of about forty sets receding and at 432px there are four or five boxy masses. Slide 6's footer sits on the hatched pad and is close to unreadable at thumb size."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One ground, one line screen, one light, every cast down and right, and the accent law legible without being told. Against it, slide 3 measures 37.7 against a deck median of 13.6, and the deck holds together partly by sameness."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 4.5, "why": "Round 4's hard fail is genuinely repaired and was checked rather than taken on trust. But the caption published a blanket bar on TCEQ permits where c22's quote reads ineligible for TCEQ permits under Chapter 11 of the Texas Water Code, dropping the scope limiter on the one surface most readers meet, in a deck whose entire thesis is that scope wording decides reach. first_comment.txt also stamps the fetch date on every citation line, so the August 3rd audit release reads as September 23rd."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "A Texan finishes knowing what was decided, by whom and when, and the argument about reach is the best thing here because slide 5 puts a real West Texas project inside the gap. What is still missing is the door: nothing tells a reader where the report or the rescheduled hearing will appear."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "A real turn at slide 4 and a real landing at slide 9. Against it, the cover names no subject, so the swipe is bought purely on intrigue, and slide 6 adds a size to slide 5's fact and no new information."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "All nine frames and the caption transcribed against the house rules with no breach found. Against it, the caption carries zero commas across its whole body, which reads clipped, and the regional specificity is nominal."},
+  {"name": "variety", "weight": 0.10, "score": 4.5, "why": "Visually this shares nothing with the fortnight but the wordmark. Editorially it is the closest to a repeat this account has shipped without refusing, and the caption's fifth paragraph is no. 29's own subject restated. Not called a thirty day topic repeat, because tx-2026-0182 is a different decision by a different body admitted this run."}
+ ],
+ "weighted_score": 5.77,
+ "hard_fails": [
+  "An unverified fact presented as verified in published copy. caption.txt said 'ineligible for TCEQ permits' where c22 quotes 'ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code'. Dropping the chapter limiter asserts a blanket bar no fetched source states. The web edition kept the full quote, so the caption was the one surface carrying the wide reading."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put the Chapter 11 limiter back into the caption's water sentence and end the caption on something a reader can act on by naming where TCEQ posts the rescheduled O4791 hearing."
+}
