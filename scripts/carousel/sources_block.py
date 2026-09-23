@@ -184,15 +184,25 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]",
             "secondary_reported": ("news report", "news reports"),
             "data": ("published dataset", "published data"),
             "unstated": ("document of unstated type", "documents of unstated type")}
-    kinds: dict[str, int] = {}
+    # A DOCUMENT MAY NAME ITSELF MORE NARROWLY THAN ITS TYPE (2026-09-23). That run re-sourced its
+    # directive claims from a law firm's client alert, typed `secondary_reported` because it is a
+    # secondary account, and this line then published it as a "news report", which it is not.
+    # `source_noun: [singular, plural]` on the claim is the true noun and wins over the type's.
+    # Optional, so every shipped deck without it renders exactly what it published.
+    kinds: dict = {}
     for d in docs:
-        k = d.get("source_type") or "unstated"
+        noun = d.get("source_noun")
+        if isinstance(noun, (list, tuple)) and len(noun) == 2 and all(isinstance(x, str) for x in noun):
+            NAME[tuple(noun)] = tuple(noun)
+            k = tuple(noun)
+        else:
+            k = d.get("source_type") or "unstated"
         kinds[k] = kinds.get(k, 0) + 1
     def _n(i: int) -> str:
         words = "one two three four five six seven eight nine ten eleven twelve".split()
         return words[i - 1] if 1 <= i <= len(words) else str(i)
     parts = [f"{_n(v)} {(NAME.get(k) or (k, k))[0 if v == 1 else 1]}" for k, v in
-             sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
+             sorted(kinds.items(), key=lambda kv: (-kv[1], str(kv[0])))]
     grade = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " and " + parts[-1]
     days = sorted({fetched} if isinstance(fetched, str) else set(fetched))
     if not days:
@@ -473,6 +483,12 @@ def self_test() -> int:
     # the current output rather than against the intended output freezes whatever shipped.
     ok("...and a single source of a kind is not pluralised",
        "one official records" not in _line and "one news reports" not in _line, _line)
+    _alert = dict(_mix["claims"][1], source_noun=["law firm client alert", "law firm client alerts"])
+    _l2 = provenance_line([_mix["claims"][0], _alert, _mix["claims"][2]], "2026-08-25")
+    ok("a document's own noun wins over its type's, so a law firm alert is not a news report",
+       "one law firm client alert" in _l2 and "one news report" in _l2 and "two news reports" not in _l2, _l2)
+    ok("...and a document without one reads exactly as before",
+       provenance_line(_mix["claims"], "2026-08-25") == _line)
     ok("...and never claims they are all primary",
        "all primary" not in _line, _line)
     ok("...and a single grade reads as one clause",

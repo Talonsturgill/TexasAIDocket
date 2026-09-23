@@ -317,21 +317,15 @@ def self_test() -> int:
         "for (let k = 0; k < units; k++) { const g = Y.genset(THREE, M, {}); "
         "g.position.set(0, 0, -k * pitch); TXT.add(R, g); }") for i in range(1, 10)}
     scenes = [
-        "const hero = Y.genset(THREE, M, {}); hero.rotation.y = Math.PI; TXT.add(R, hero);",
-        "const board = new THREE.Group(); const ply = Y.tile(THREE, a, b, c, M.ply); board.add(ply);"
-        " const paper = Y.tile(THREE, a, b, c, Y.paperMat(THREE)); board.add(paper); TXT.add(R, board);",
-        "Y.ortho(THREE, R, span); for (let k = 0; k < share; k++) { const plate = Y.tile(THREE, a, b, c, amber);"
-        " plate.position.set(col, lift, row); TXT.add(R, plate); }",
-        "const who = Y.person(THREE, {}); who.rotation.y = turn; TXT.add(R, who);",
-        "for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const ch = Y.chair(THREE, M);"
-        " ch.position.set(x, 0, z); TXT.add(R, ch); } const table = Y.tile(THREE, w, t, d, wood);",
-        "const block = new THREE.CylinderGeometry(bore, bore, stroke, 24); const head = new THREE.Mesh(block, iron);"
-        " for (const bank of [-1, 1]) for (let cyl = 0; cyl < 8; cyl++) { const c = head.clone(); c.rotation.z = bank * vee; }",
-        "const rail = Y.tile(THREE, a, b, n * day, M.skid); const slab = Y.tile(THREE, w, t, d, M.conc);"
-        " for (let d = 0; d < first; d++) { const p = Y.tile(THREE, a, b, c, plain); TXT.add(R, p); }",
-        "const mast = Y.mast(THREE, M, { height }); const fence = new THREE.InstancedMesh(post, galv, posts);"
-        " fence.setMatrixAt(k, m4); TXT.add(R, fence);",
-        "const floor = TXT.ground(R, {}); Y.padMap(THREE, floor, {}); const notice = Y.tile(THREE, w, h, d, paper);",
+        'const hero = Y.genset(THREE, M, {}); hero.rotation.y = Math.PI; TXT.add(R, hero); const rim = hero.userData.top; hero.traverse(m => { m.castShadow = rim > 0; });',
+        'const board = new THREE.Group(); const ply = Y.tile(THREE, a, b, c, M.ply); board.add(ply); const paper = Y.tile(THREE, a, b, c, Y.paperMat(THREE)); board.add(paper); TXT.add(R, board); const inset = (x1 - x0) * margin; pg.style.left = x0 + inset;',
+        'Y.ortho(THREE, R, span); for (let k = 0; k < share; k++) { const plate = Y.tile(THREE, a, b, c, amber); plate.position.set(col, lift, row); TXT.add(R, plate); } const nearL = Y.project(THREE, R, corner); put(label, nearL.x, nearL.y);',
+        'const who = Y.person(THREE, {}); who.rotation.y = turn; TXT.add(R, who); const tool = Y.tile(THREE, a, b, c, steel); const chock = new THREE.CylinderGeometry(r, r, w, 3);',
+        'for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const ch = Y.chair(THREE, M); ch.position.set(x, 0, z); TXT.add(R, ch); } const table = Y.tile(THREE, w, t, d, wood); const sheet = Y.tile(THREE, a, b, c, Y.paperMat(THREE)); sheet.rotation.y = skew;',
+        'const block = new THREE.CylinderGeometry(bore, bore, stroke, 24); const head = new THREE.Mesh(block, iron); for (const bank of [-1, 1]) for (let cyl = 0; cyl < 8; cyl++) { const c = head.clone(); c.rotation.z = bank * vee; } const drum = new THREE.Mesh(alternator, paint); const fly = new THREE.TorusGeometry(ring, tube);',
+        'const rail = Y.tile(THREE, a, b, n * day, M.skid); const slab = Y.tile(THREE, w, t, d, M.conc); for (let d = 0; d < first; d++) { const p = Y.tile(THREE, a, b, c, plain); TXT.add(R, p); } const l3 = Y.project(THREE, R, [x, y, z]); put(answer, l3.x + gap, l3.y);',
+        'const mast = Y.mast(THREE, M, { height }); const fence = new THREE.InstancedMesh(post, galv, posts); fence.setMatrixAt(k, m4); TXT.add(R, fence); const posts = new THREE.InstancedMesh(postGeo, galv, count); posts.instanceMatrix.needsUpdate = true;',
+        'const floor = TXT.ground(R, {}); Y.padMap(THREE, floor, {}); const notice = Y.tile(THREE, w, h, d, paper); floor.material.map.repeat.set(tiles, tiles); const aisle = seats / 2;',
     ]
     varied = {f"slide-{i + 1:02d}.html": SHELL + GPU % sc for i, sc in enumerate(scenes)}
     m_one, m_var = measure(one_scene), measure(varied)
