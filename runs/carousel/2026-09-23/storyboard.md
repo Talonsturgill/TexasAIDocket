@@ -75,9 +75,13 @@ because no source gives a site plan for the project in c16.
 |---|---|---|
 | `night` | `#0D1117` | the ground of every frame, and the DOM body behind the render |
 | `amber` | `#E0A33F` | the state's paper, frames 3, 4, 7 and 9 only |
+| `hook` | `#EEF0F3` | the hook on every frame |
+| `dek` | `#C9CCD4` | the dek on every frame |
+| `rule` | `#9AA0AC` | the site line, the source line and the counter |
 
 The machine's own colours live in the chassis as material values and are lit, so no frame
-carries them as flat hex, and the palette names only what a frame declares as a token.
+carries them as flat hex, and the palette names only what a frame declares as a token, which is the ground, the accent and
+the three DOM inks.
 
 ## The continuity devices
 
