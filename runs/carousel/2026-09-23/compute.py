@@ -147,10 +147,24 @@ FIGURES = {
         "days_halt_to_report": days_halt_to_report,
         "days_left_to_report": days_left_to_report,
         "basis": "measured",
-        "from": ["c9", "c4"],
-        "how": ("Both endpoint dates are read out of the quotes by regular expression and the "
-                "spans are calendar differences. The halt's own date is the release date the "
-                "record carries at tx-2026-0182."),
+        # THE PROVENANCE NAMES ALL THREE SOURCES, AND IT USED TO NAME TWO.
+        #
+        # `from` read ["c9", "c4"] while the one date in this block that is NOT parsed from a
+        # quote, the halt's own, comes from the record at tx-2026-0182 and is typed eleven lines
+        # up. So the single load-bearing figure with the weakest provenance was the one the
+        # provenance did not mention, and the 49 day span and frame 7's SEPTEMBER 21ST both rest
+        # on it. A scorer found it in figures.json and a review bot then found that the repair
+        # had landed on figures.json ALONE: re-running this generator would have silently put
+        # the two-source list back. Same defect as the refuted sentence that survived in four
+        # files, in a fifth place.
+        "from": ["c9", "c4", "tx-2026-0182"],
+        "how": ("The audit date is read out of c9's quote and the report back date out of c4's, "
+                "both by regular expression, and the spans are calendar differences. THE HALT'S "
+                "OWN DATE COMES FROM NEITHER CLAIM. It is the release date the record carries at "
+                "tx-2026-0182 and it is typed into compute.py, which the module docstring "
+                "states. `from` used to list c9 and c4 alone, so the one date in this block that "
+                "is not parsed from a quote was the one the provenance did not name, and it is "
+                "load bearing: the 49 day span and frame 7's SEPTEMBER 21ST both rest on it."),
     },
 }
 
