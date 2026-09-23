@@ -18,9 +18,9 @@
    "value": 2,
    "from_claims": [
     "c3",
-    "c11"
+    "c5"
    ],
-   "note": "One claim per scope, both set as real type on the drawn page. c3 is the Governor's own words as CBS Texas quoted them, applicant scoped. c11 is Troutman Pepper Locke's reading, audit scoped. Two reports of one directive, labelled as such on the frame."
+   "note": "Applicant scope from c3, the Governor's words as CBS quoted them, set in full including the two audits they name. Queue scope from c5, the ERCOT audit as the Tribune reported it. Two reports, each labelled on the frame."
   },
   {
    "phrase": "474 gigawatts",
@@ -128,7 +128,7 @@
    "value": 40,
    "quoted_from": "c17",
    "quote": "approximately 40 reciprocating natural gas-fueled generation units",
-   "note": "Same figure as frame 5, quoted from the same string. The caption says 40 gas engines where the frame says 40 reciprocating gas engines, and the word went to buy back the character budget the Chapter 11 limiter needed. c17's own words are 'approximately 40 reciprocating natural gas-fueled generation units', so both surfaces are inside the quote and neither adds to it."
+   "note": "Same figure as frame 5, quoted from the same string. c17's own words are 'approximately 40 reciprocating natural gas-fueled generation units', and the caption says 'about 40 gas engines', inside the quote."
   },
   {
    "phrase": "four news reports",
@@ -145,6 +145,18 @@
    "value": 2,
    "computed_by": "sources_block.py, a tally of the distinct cited documents typed primary_official: the TCEQ hearing cancellation and the TCEQ engine permitting guidance page",
    "note": "Both fetched from tceq.texas.gov, whose robots file permits this fetcher."
+  },
+  {
+   "phrase": "two audits",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c3",
+    "c11"
+   ],
+   "computed_by": "the audits named in c3's quote, 'complete the ERCOT and TWDB audits', counted, and c11 names the same two, ERCOT and the Texas Water Development Board",
+   "note": "The count that corrected the deck's thesis. The halt waits on both, and the record states the scope of only the ERCOT one."
   }
  ],
  "_quoted_and_undetected": [

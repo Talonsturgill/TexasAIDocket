@@ -31,19 +31,18 @@
    "kicker": "What the audit can do",
    "headline": "A connection to deny",
    "claims": [
-    "c7",
     "c10",
     "c5"
    ],
-   "cite": "c7 c10 c5 TEXAS AI DOCKET",
-   "body": "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
+   "cite": "c10 c5 TEXAS AI DOCKET",
+   "body": "A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.",
    "strings": [
     "texasaidocket.com",
     "A connection to deny",
-    "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
+    "A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.",
     "What the audit can do",
     "02 / 09",
-    "c7 c10 c5 TEXAS AI DOCKET"
+    "c10 c5 TEXAS AI DOCKET"
    ]
   },
   "S3": {
@@ -53,22 +52,21 @@
    "headline": "Two scopes",
    "claims": [
     "c3",
-    "c11",
     "c5"
    ],
-   "cite": "c3 c11 c5 TEXAS AI DOCKET",
-   "body": "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
+   "cite": "c3 c5 TEXAS AI DOCKET",
+   "body": "The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue.",
    "strings": [
     "texasaidocket.com",
     "Two scopes",
-    "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
+    "The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue.",
     "THE GOVERNOR, AS CBS QUOTED IT c3",
-    "\"TCEQ will issue no permits sought by data center projects\"",
-    "A LAW FIRM'S READING c11",
-    "\"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)\"",
+    "\"complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects.\"",
+    "THE ERCOT AUDIT, AS THE TRIBUNE REPORTED IT c5",
+    "\"all data centers advancing through ERCOT's interconnection queue\"",
     "The directive, as reported",
     "03 / 09",
-    "c3 c11 c5 TEXAS AI DOCKET"
+    "c3 c5 TEXAS AI DOCKET"
    ]
   },
   "S4": {
@@ -86,7 +84,7 @@
     "texasaidocket.com",
     "Ninety percent of the new ones",
     "ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.",
-    "Approximate data center share of new power requests",
+    "Data center share of new requests, approximate",
     "90%",
     "The whole queue, on no scale here",
     "474 GW",
@@ -120,19 +118,19 @@
   "S6": {
    "n": 6,
    "file": "slide-06.html",
-   "kicker": "The size of the thing",
-   "headline": "This is one of them",
+   "kicker": "Illustrated, not measured",
+   "headline": "A set like these",
    "claims": [
     "c16",
     "c17"
    ],
    "cite": "c16 c17 TEXAS AI DOCKET",
-   "body": "A single set on its skid, and somebody who works on it.",
+   "body": "A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.",
    "strings": [
     "texasaidocket.com",
-    "This is one of them",
-    "A single set on its skid, and somebody who works on it.",
-    "The size of the thing",
+    "A set like these",
+    "A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.",
+    "Illustrated, not measured",
     "06 / 09",
     "c16 c17 TEXAS AI DOCKET"
    ]
@@ -140,7 +138,7 @@
   "S7": {
    "n": 7,
    "file": "slide-07.html",
-   "kicker": "How long each step took",
+   "kicker": "The dates on the record",
    "headline": "Forty nine days, then twenty eight",
    "claims": [
     "c9",
@@ -148,15 +146,15 @@
     "c4"
    ],
    "cite": "c9 c24 c4 TEXAS AI DOCKET",
-   "body": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+   "body": "The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.",
    "strings": [
     "texasaidocket.com",
     "Forty nine days, then twenty eight",
-    "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+    "The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.",
     "August 3rd audit ordered",
     "September 21st halt directed",
     "By October 19th agency answers",
-    "How long each step took",
+    "The dates on the record",
     "07 / 09",
     "c9 c24 c4 TEXAS AI DOCKET"
    ]

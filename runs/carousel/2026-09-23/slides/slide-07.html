@@ -29,7 +29,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Forty nine days, then twenty eight</h1>
-<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.</p>
+<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.</p>
 <div class="lab" id="l1">August 3rd<br>audit ordered</div>
 <div class="lab" id="l2">September 21st<br>halt directed</div>
 <div class="lab" id="l3">By October 19th<br>agency answers</div>
@@ -46,7 +46,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 window.renderReady = (async () => {
   await document.fonts.ready;
   TXLAYOUT.mount(document.body, {
-    kicker: 'How long each step took', counter: "07 / 09",
+    kicker: 'The dates on the record', counter: "07 / 09",
     src: 'c9 c24 c4   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
   TX.fitText(document.getElementById("hook"), { min: 68, max: 88, maxLines: 2 });

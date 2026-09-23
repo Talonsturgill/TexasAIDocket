@@ -1,0 +1,50 @@
+{
+ "lens": "integrity",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.3
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.5
+  }
+ ],
+ "weighted_score": 5.77,
+ "hard_fails": [
+  "Web edition universal 'No published figure counts how many permits the halt reaches'",
+  "Uniqueness universal 'one dated obligation' in web edition, c4 text, storyboard, SELECTION.md",
+  "Singular one-audit paragraph in the web edition's Two scopes section",
+  "Frame 6 presents a modelled 12.2 m enclosure as the real units' size",
+  "Bexar County in c12 claim text and topics places without quoted support; stale Odessa profile in SELECTION.md"
+ ],
+ "ship": false
+}

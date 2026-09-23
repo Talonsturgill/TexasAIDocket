@@ -1,41 +1,50 @@
 # Run record, September 23rd, 2026
 
-## DISPOSITION: THE RECORD SHIPPED AND THE DECK DID NOT. THIS BRANCH IS NOT MERGED.
+## DISPOSITION: SHIPPED UNDER THE 7.01 FLOOR ON THE OWNER'S INSTRUCTION. THE PRINTED DECK IS GONE.
 
-`shipped_check`'s `completion` gate refuses it and the refusal is correct rather than a
-technicality:
+**Panel median 6.272 on round 5 against the 7.01 floor**, judges 5.77, 6.80 and 6.13. It ships
+because the owner said so, in the session, in these words, recorded verbatim in `score.json`
+`owner_override`:
 
-> THE DECK WENT BACKWARDS. 5.95 against a 8.0 bar is under 7.01, which is what the last 10
-> shipped decks have actually been holding. **The 5 round cap ends the SEARCH and it does not
-> end the STANDARD.** Shipping here is the regression the floor exists to refuse.
+> Ship it under the floor and fix whatever is broken, man. You just keep like letting shit be
+> broken and telling me what's broken. Like, fix it, dude. Do your fucking job.
 
-That is the sentence this run had been reading the wrong way round all afternoon. The delivery
-policy says a run past the cap ships whatever the score is and names the shortfall, and that is
-true of a deck that is merely SHORT of the bar. It is not a licence to ship a deck a full point
-below what the product has actually been holding for ten decks. A floor measured off shipped work
-is a harder fact than a threshold in a config, and this deck is under it.
+`run_complete` accepts an owner override only with no hard fail standing, and it reads
+`hard_fails: []`. Round 5 found five. Every one was repaired on every surface that carried it and
+re-verified by two integrity-only passes, listed in `score.json` `hard_fail_repairs`:
 
-**So the branch carries its evidence and stops.** Per the delivery policy, failed runs commit and
-do not merge.
+1. a web edition universal, "no published figure counts how many permits the halt reaches"
+2. a uniqueness universal, "one dated obligation", in the edition, c4, the storyboard and SELECTION
+3. a one-audit paragraph when the directive names two, the ERCOT audit and the TWDB audit
+4. frame 6 presenting a modelled enclosure as the real units' size. It now says illustrated, not measured
+5. Bexar County in claim text and topic places with no quoted support
 
-**THE COST, STATED SO IT IS A CHOICE RATHER THAN AN OVERSIGHT.** The record work on this branch is
-sound, it passes every gate, and it includes the fix that stops `docket_staleness` reporting three
-Hays County items as ROTTEN. CI exits 1 on a rotten item. **So until somebody merges this branch or
-redoes that work, every pull request against `main` is red on a gate whose remedy no run can
-take.** That is the one thing here worth a person's attention today.
+**The deck was rebuilt from nothing on the rendered engine.** The owner's instruction was to delete
+the faded print look and make it impossible to come back. `assets/js/txink.js` and
+`examples/editorial-deck/` are deleted. `scripts/carousel/print_ban.py` fails CI if the module or
+its vocabulary returns, or if fewer than six of nine frames render through `txthree.js`. All nine
+frames of this deck render through it, in a real PBR yard at night lit from the deck's one
+declared light, in `assets/js/deck/2026-09-23-gensetyard.js`. The printed deck's round cards are
+kept under `scores/` as history. The rebuilt deck's are under `scores/rebuild/`.
 
-
-Carousel no. 32, a gas generator yard at night. The record went from 156 items to 157 on one
-admission, `tx-2026-0182`, which is the deck's subject. Ninety four items were re-verified.
+**Things fixed rather than reported, this run:**
+- `depth_floor` did not recognise the static import binding of `txthree.js`
+- `figure_bearing` could not resolve a dotted figure name
+- `bespoke_check` counted GPU contract calls as bespoke scene code
+- `sources_block` named a law firm client alert as a news report. Claims may now carry `source_noun`
+- the directive's own date had no source, so `c24` carries it from the Tribune
+- the `runs/` folder held the printed deck and turned `shipped_check` red, and it was rebuilt
+- a web edition sentence wrote "Aug. 3" and failed house style
 
 ## What shipped
 
-Nine bespoke slides on the September 21st directive telling TCEQ to issue no permits sought by
-data centers, one web edition, one caption, one first comment, one Gmail draft.
+Nine rendered slides on the September 21st directive that TCEQ issue no permits sought by data
+center projects until the ERCOT and TWDB audits are complete. Plus one web edition, one caption,
+one first comment and one Gmail draft that carries the deck's thumbnails.
 
-The deck's claim, in one sentence: **a permit halt scoped by WHO IS ASKING cannot be aligned to
-an audit scoped by WHAT IS ADVANCING THROUGH THE INTERCONNECTION PROCESS, and a real West Texas
-project already sits in the gap.**
+The deck's argument, in one sentence: **the halt reaches permits SOUGHT BY data center projects,
+and the ERCOT audit it waits on reaches projects ADVANCING THROUGH THE INTERCONNECTION QUEUE. Those
+are two scopes, and a project behind the meter shows where they can come apart.**
 
 ## The record, first, because it is the run's first deliverable
 
@@ -155,6 +164,11 @@ it was acted on, and one of them was the single most useful thing said about thi
    they shipped. It now carries its own since-date, and all eleven are still measured and printed.
 5. **A held deck spends the variety budget it never earned.** Recorded in backlog entry 84 rather
    than fixed, because it needs the same held-run concept the path question does.
+
+## EVERYTHING BELOW THIS LINE DESCRIBES THE PRINTED DECK, WHICH WAS HELD AND THEN REPLACED
+
+Kept as history. It is not the deck that shipped. Its thesis named West Texas and Odessa, which
+the rebuilt deck refuses because no quoted source supports them.
 
 ## CI went red on the held deck, and the reason is structural rather than a defect
 
@@ -379,21 +393,21 @@ one that holds, and because taking a judge at their word is how a wrong number g
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 22 verified claim(s) |
+| claims         | PASS   | 19 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
-| qa             | WARN   | 0 fail(s), 8 warn(s) |
-| aggregates     | PASS   | 15 declaration(s), 18 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 14.6 MB, vector |
-| score          | ABSENT | score.json not written yet |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | PASS   | 13 declaration(s), 15 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 4.8 MB, vector |
+| score          | WARN   | 6.272 against 8.0 target; owner ended the search; not a ship failure |
 | labels         | PASS   | 56 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 75 published string(s) read from one list, every universal names its set |
-| verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
-| dossiers       | PASS   | 47,220 chars planned |
-| caption        | PASS   | 154 words |
-| craft floor    | PASS   | 9 frame(s), median 3153, floor 568 |
-| plan vs render | WARN   | 12 of 63 acceptance item(s) checkable |
-| texan          | PASS   | places Bexar County, Odessa / body yes / deadline yes / next step yes |
-| absences       | PASS   | 15 of 15 scoped to a named document |
-| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| quantifiers    | PASS   | 70 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 30,795 chars planned |
+| caption        | PASS   | 126 words |
+| craft floor    | PASS   | 9 frame(s), median 2579, floor 464 |
+| plan vs render | WARN   | 8 of 38 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
+| absences       | PASS   | 11 of 11 scoped to a named document |
+| numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

@@ -141,11 +141,11 @@ FRAMES.append(dict(
      turned so its radiator end faces the deck's light. What the frame is missing is the whole of
      the audit's reach.""",
     kicker="What the audit can do", kicker2="",
-    src="c7 c10 c5   TEXAS AI DOCKET",
-    css="""  .hook { left:80px; top:968px; width:920px; font-size:104px; }
+    src="c10 c5   TEXAS AI DOCKET",
+    css="""  .hook { left:80px; top:948px; width:920px; font-size:104px; }
   .dek  { left:82px; width:830px; font-size:29px; }""",
     html="""<h1 class="hook" id="hook">A connection to deny</h1>
-<p class="dek" data-follow="22">The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.</p>""",
+<p class="dek" data-follow="22">A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.</p>""",
     fit="{ min: 80, max: 104, maxLines: 1 }",
     scene="""
   const R = TXT.setup(gl, { w: 1080, h: 1350, bg: Y.SKY, fog: [Y.FOG, 16, 90], exposure: 1.0, fov: 40 });
@@ -197,7 +197,7 @@ FRAMES.append(dict(
      Its two sentences are set on the page itself, projected onto its drawn rect through the
      frame's camera. Amber is the state's paper: it lands on the page's rule and nowhere else.""",
     kicker="The directive, as reported", kicker2="",
-    src="c3 c11 c5   TEXAS AI DOCKET",
+    src="c3 c5   TEXAS AI DOCKET",
     css="""  .hook { left:80px; top:150px; width:920px; font-size:92px; }
   .dek  { left:82px; width:820px; font-size:29px; }
   .page { position:absolute; z-index:12; color:#16181D; }
@@ -206,12 +206,12 @@ FRAMES.append(dict(
   .page .q { font-family:"Fraunces", serif; font-weight:600; font-size:30px; line-height:1.12;
              letter-spacing:-0.012em; margin:9px 0 32px 0; font-variation-settings:"opsz" 72; }""",
     html="""<h1 class="hook" id="hook">Two scopes</h1>
-<p class="dek" data-follow="20">One names who is asking. The other ties permits to audit results from ERCOT and the water board.</p>
+<p class="dek" data-follow="20">The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue.</p>
 <div class="page" id="page">
   <div class="k">THE GOVERNOR, AS CBS QUOTED IT&nbsp;&nbsp;c3</div>
-  <div class="q">"TCEQ will issue no permits sought by data center projects"</div>
-  <div class="k">A LAW FIRM'S READING&nbsp;&nbsp;c11</div>
-  <div class="q" style="margin-bottom:0">"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)"</div>
+  <div class="q">"complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects."</div>
+  <div class="k">THE ERCOT AUDIT, AS THE TRIBUNE REPORTED IT&nbsp;&nbsp;c5</div>
+  <div class="q" style="margin-bottom:0">"all data centers advancing through ERCOT's interconnection queue"</div>
 </div>""",
     fit="{ min: 76, max: 92, maxLines: 1 }",
     scene="""
@@ -290,7 +290,7 @@ FRAMES.append(dict(
   .fig.big { font-size:96px; }""",
     html="""<h1 class="hook" id="hook">Ninety percent of the new ones</h1>
 <p class="dek" data-follow="20">ERCOT counts more than 474 gigawatts of requests to connect. The Governor puts data centers at about ninety percent of the new ones.</p>
-<div class="lab" id="l1">Approximate data center share<br>of new power requests</div>
+<div class="lab" id="l1">Data center share of new<br>requests, approximate</div>
 <div class="fig big" id="f1">90%</div>
 <div class="lab" id="l2">The whole queue,<br>on no scale here</div>
 <div class="fig" id="f2" style="font-size:54px">474 GW</div>""",
@@ -380,12 +380,12 @@ FRAMES.append(dict(
     note="""     THE SIZE OF THE THING. The hero, whole, with a person at its lit end, and the rest of the
      line behind it in the fog: one set in front and behind_the_meter.units less one receding, so
      the frame still holds the count.""",
-    kicker="The size of the thing", kicker2="",
+    kicker="Illustrated, not measured", kicker2="",
     src="c16 c17   TEXAS AI DOCKET",
     css="""  .hook { left:80px; top:952px; width:900px; font-size:96px; }
   .dek  { left:82px; width:820px; font-size:29px; }""",
-    html="""<h1 class="hook" id="hook">This is one of them</h1>
-<p class="dek" data-follow="20">A single set on its skid, and somebody who works on it.</p>""",
+    html="""<h1 class="hook" id="hook">A set like these</h1>
+<p class="dek" data-follow="20">A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.</p>""",
     fit="{ min: 78, max: 96, maxLines: 1 }",
     scene="""
   /* THE COUNT, FROM figures.json: one in front, and the rest of behind_the_meter.units behind. */
@@ -427,7 +427,7 @@ FRAMES.append(dict(
 
   /* from off the lit end's corner, a little above standing eye, close enough that the person
    * reads, with the stacks leaving the top edge and the pad below holding the type */
-  TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.15, -2.2] });
+  TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.45, -2.2] });
   Y.sky(THREE, R);
 """,
     after="",
@@ -441,12 +441,12 @@ FRAMES.append(dict(
      runs compare by length. The first run is clocks.days_audit_to_halt plates, the second
      clocks.days_halt_to_report. The second run is amber, because it is the state's own clock:
      the days the agency has to answer on paper to the Governor's office.""",
-    kicker="How long each step took", kicker2="",
+    kicker="The dates on the record", kicker2="",
     src="c9 c24 c4   TEXAS AI DOCKET",
     css="""  .hook { left:80px; top:150px; width:920px; font-size:88px; }
   .dek  { left:82px; width:860px; font-size:28px; }""",
     html="""<h1 class="hook" id="hook">Forty nine days, then twenty eight</h1>
-<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.</p>
+<p class="dek" data-follow="20">The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.</p>
 <div class="lab" id="l1">August 3rd<br>audit ordered</div>
 <div class="lab" id="l2">September 21st<br>halt directed</div>
 <div class="lab" id="l3">By October 19th<br>agency answers</div>""",

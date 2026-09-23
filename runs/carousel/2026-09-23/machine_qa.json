@@ -14,40 +14,37 @@
     {
       "file": "slide-02.html",
       "fails": [],
-      "warns": [
-        "art touching glyphs (4% of the ring around 'c7 c10 c5 TEXAS AI DOCKET', spanning 21%) -- pixel critic verify the label is not crossed"
-      ],
+      "warns": [],
       "bands": [
         0.2857,
         0.3571,
-        0.2684
+        0.2702
       ],
-      "band_ratio": 0.8883
+      "band_ratio": 0.8924
     },
     {
       "file": "slide-03.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.187,
-        0.1933,
-        0.1636
+        0.2017,
+        0.2038,
+        0.1581
       ],
-      "band_ratio": 0.9065
+      "band_ratio": 0.8477
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 18% / mid 31% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "outside safe zone: 'Approximate data center share of new pow' at 620,1000 459x65 (margin 80px)"
+        "top-loaded composition: the bottom third carries 75% of this slide's own average craft density (top 18% / mid 31% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
       ],
       "bands": [
         0.1849,
         0.3067,
-        0.1673
+        0.1618
       ],
-      "band_ratio": 0.77
+      "band_ratio": 0.7516
     },
     {
       "file": "slide-05.html",
@@ -63,15 +60,13 @@
     {
       "file": "slide-06.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 37% / mid 23% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ],
+      "warns": [],
       "bands": [
-        0.3676,
-        0.229,
-        0.1673
+        0.3718,
+        0.2122,
+        0.2408
       ],
-      "band_ratio": 0.6673
+      "band_ratio": 0.8808
     },
     {
       "file": "slide-07.html",
@@ -112,6 +107,6 @@
     }
   ],
   "fails": 0,
-  "warns": 6,
+  "warns": 3,
   "verdict": "WARN"
 }

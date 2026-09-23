@@ -19,7 +19,7 @@
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
              white-space:nowrap; z-index:20; }
-  .hook { left:80px; top:968px; width:920px; font-size:104px; }
+  .hook { left:80px; top:948px; width:920px; font-size:104px; }
   .dek  { left:82px; width:830px; font-size:29px; }
 </style>
 </head>
@@ -27,7 +27,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">A connection to deny</h1>
-<p class="dek" data-follow="22">The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.</p>
+<p class="dek" data-follow="22">A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -42,7 +42,7 @@ window.renderReady = (async () => {
   await document.fonts.ready;
   TXLAYOUT.mount(document.body, {
     kicker: 'What the audit can do', counter: "02 / 09",
-    src: 'c7 c10 c5   TEXAS AI DOCKET', ink: '#9AA0AC'
+    src: 'c10 c5   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
   TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 1 });
   YARD.follow();

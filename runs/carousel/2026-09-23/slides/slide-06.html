@@ -25,8 +25,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">This is one of them</h1>
-<p class="dek" data-follow="20">A single set on its skid, and somebody who works on it.</p>
+<h1 class="hook" id="hook">A set like these</h1>
+<p class="dek" data-follow="20">A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -40,7 +40,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 window.renderReady = (async () => {
   await document.fonts.ready;
   TXLAYOUT.mount(document.body, {
-    kicker: 'The size of the thing', counter: "06 / 09",
+    kicker: 'Illustrated, not measured', counter: "06 / 09",
     src: 'c16 c17   TEXAS AI DOCKET', ink: '#9AA0AC'
   });
   TX.fitText(document.getElementById("hook"), { min: 78, max: 96, maxLines: 1 });
@@ -87,7 +87,7 @@ window.renderReady = (async () => {
 
   /* from off the lit end's corner, a little above standing eye, close enough that the person
    * reads, with the stacks leaving the top edge and the pad below holding the type */
-  TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.15, -2.2] });
+  TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.45, -2.2] });
   Y.sky(THREE, R);
 
   const cx = Y.develop(await TXT.snapshot(R), gl);

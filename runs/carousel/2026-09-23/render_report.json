@@ -182,7 +182,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 10949,
+      "render_ms": 8664,
       "ok": true,
       "canvases": [
         {
@@ -235,7 +235,7 @@
         {
           "text": "A connection to deny",
           "x": 80,
-          "y": 968,
+          "y": 948,
           "w": 920,
           "h": 95,
           "font_px": 103.5,
@@ -247,7 +247,7 @@
           "lines": [
             [
               80,
-              952,
+              932,
               841,
               127
             ]
@@ -255,11 +255,11 @@
           "anc": []
         },
         {
-          "text": "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue.",
+          "text": "A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue.",
           "x": 82,
-          "y": 1085,
+          "y": 1065,
           "w": 830,
-          "h": 162,
+          "h": 122,
           "font_px": 29,
           "weight": "400",
           "family": "Manrope",
@@ -269,25 +269,19 @@
           "lines": [
             [
               82,
-              1085,
-              778,
+              1065,
+              735,
               40
             ],
             [
               82,
-              1126,
-              769,
+              1106,
+              813,
               40
             ],
             [
               82,
-              1166,
-              646,
-              40
-            ],
-            [
-              82,
-              1207,
+              1146,
               313,
               40
             ]
@@ -339,10 +333,10 @@
           "anc": []
         },
         {
-          "text": "c7 c10 c5 TEXAS AI DOCKET",
+          "text": "c10 c5 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 402,
+          "w": 354,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -354,7 +348,7 @@
             [
               80,
               1236,
-              402,
+              354,
               31
             ]
           ],
@@ -368,7 +362,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 9339,
+      "render_ms": 8164,
       "ok": true,
       "canvases": [
         {
@@ -441,7 +435,7 @@
           "anc": []
         },
         {
-          "text": "One names who is asking. The other ties permits to audit results from ERCOT and the water board.",
+          "text": "The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue.",
           "x": 82,
           "y": 254,
           "w": 820,
@@ -456,13 +450,13 @@
             [
               82,
               254,
-              751,
+              813,
               40
             ],
             [
               82,
               295,
-              540,
+              793,
               40
             ]
           ],
@@ -497,71 +491,9 @@
           "anc": []
         },
         {
-          "text": "\"TCEQ will issue no permits sought by data center projects\"",
+          "text": "\"complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects.\"",
           "x": 347,
           "y": 569,
-          "w": 386,
-          "h": 101,
-          "font_px": 30,
-          "weight": "600",
-          "family": "Fraunces",
-          "color": "rgb(22, 24, 29)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              347,
-              567,
-              360,
-              37
-            ],
-            [
-              347,
-              601,
-              276,
-              37
-            ],
-            [
-              347,
-              635,
-              115,
-              37
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "A LAW FIRM'S READING c11",
-          "x": 347,
-          "y": 702,
-          "w": 386,
-          "h": 62,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(76, 70, 64)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              347,
-              702,
-              196,
-              31
-            ],
-            [
-              347,
-              733,
-              196,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "\"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)\"",
-          "x": 347,
-          "y": 773,
           "w": 386,
           "h": 168,
           "font_px": 30,
@@ -573,32 +505,94 @@
           "lines": [
             [
               347,
-              771,
-              382,
+              567,
+              338,
               37
             ],
             [
               347,
-              805,
-              299,
+              601,
+              361,
               37
             ],
+            [
+              347,
+              635,
+              350,
+              37
+            ],
+            [
+              347,
+              668,
+              276,
+              37
+            ],
+            [
+              347,
+              702,
+              121,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE ERCOT AUDIT, AS THE TRIBUNE REPORTED IT c5",
+          "x": 347,
+          "y": 769,
+          "w": 386,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(76, 70, 64)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              347,
+              769,
+              375,
+              31
+            ],
+            [
+              347,
+              800,
+              375,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"all data centers advancing through ERCOT's interconnection queue\"",
+          "x": 347,
+          "y": 840,
+          "w": 386,
+          "h": 101,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(22, 24, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
             [
               347,
               838,
-              367,
+              344,
               37
             ],
             [
               347,
               872,
-              340,
+              231,
               37
             ],
             [
               347,
               906,
-              207,
+              301,
               37
             ]
           ],
@@ -649,10 +643,10 @@
           "anc": []
         },
         {
-          "text": "c3 c11 c5 TEXAS AI DOCKET",
+          "text": "c3 c5 TEXAS AI DOCKET",
           "x": 80,
           "y": 1234,
-          "w": 402,
+          "w": 338,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -664,7 +658,7 @@
             [
               80,
               1236,
-              402,
+              338,
               31
             ]
           ],
@@ -678,7 +672,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 19730,
+      "render_ms": 19352,
       "ok": true,
       "canvases": [
         {
@@ -785,10 +779,10 @@
           "anc": []
         },
         {
-          "text": "Approximate data center share of new power requests",
+          "text": "Data center share of new requests, approximate",
           "x": 620,
           "y": 1000,
-          "w": 459,
+          "w": 380,
           "h": 65,
           "font_px": 24,
           "weight": "400",
@@ -800,7 +794,7 @@
             [
               620,
               1000,
-              459,
+              380,
               31
             ],
             [
@@ -958,7 +952,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 8545,
+      "render_ms": 7815,
       "ok": true,
       "canvases": [
         {
@@ -1160,7 +1154,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 9265,
+      "render_ms": 8939,
       "ok": true,
       "canvases": [
         {
@@ -1211,7 +1205,7 @@
           "anc": []
         },
         {
-          "text": "This is one of them",
+          "text": "A set like these",
           "x": 80,
           "y": 952,
           "w": 900,
@@ -1226,18 +1220,18 @@
             [
               80,
               937,
-              691,
+              546,
               117
             ]
           ],
           "anc": []
         },
         {
-          "text": "A single set on its skid, and somebody who works on it.",
+          "text": "A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.",
           "x": 82,
           "y": 1060,
           "w": 820,
-          "h": 41,
+          "h": 81,
           "font_px": 29,
           "weight": "400",
           "family": "Manrope",
@@ -1248,17 +1242,23 @@
             [
               82,
               1060,
-              722,
+              793,
+              40
+            ],
+            [
+              82,
+              1100,
+              640,
               40
             ]
           ],
           "anc": []
         },
         {
-          "text": "The size of the thing",
+          "text": "Illustrated, not measured",
           "x": 80,
           "y": 80,
-          "w": 348,
+          "w": 414,
           "h": 36,
           "font_px": 24,
           "weight": "400",
@@ -1270,7 +1270,7 @@
             [
               80,
               82,
-              348,
+              414,
               31
             ]
           ],
@@ -1328,7 +1328,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 8416,
+      "render_ms": 9061,
       "ok": true,
       "canvases": [
         {
@@ -1341,8 +1341,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 43.8,
-          "variance": 2869.6
+          "mean": 43.7,
+          "variance": 2832.7
         }
       ],
       "breather": false,
@@ -1407,7 +1407,7 @@
           "anc": []
         },
         {
-          "text": "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that.",
+          "text": "The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later.",
           "x": 82,
           "y": 331,
           "w": 860,
@@ -1428,13 +1428,13 @@
             [
               82,
               370,
-              810,
+              843,
               38
             ],
             [
               82,
               409,
-              62,
+              237,
               38
             ]
           ],
@@ -1525,7 +1525,7 @@
           "anc": []
         },
         {
-          "text": "How long each step took",
+          "text": "The dates on the record",
           "x": 80,
           "y": 80,
           "w": 381,
@@ -1598,7 +1598,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20805,
+      "render_ms": 19918,
       "ok": true,
       "canvases": [
         {
@@ -1784,7 +1784,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 8369,
+      "render_ms": 8331,
       "ok": true,
       "canvases": [
         {
@@ -1992,7 +1992,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20364,
+      "render_ms": 20823,
       "ok": true,
       "canvases": [
         {

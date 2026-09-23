@@ -23,29 +23,27 @@ fetched from `tceq.texas.gov` under a permitting robots file.
 
 The spine was once that the air permit follows the ENGINES rather than the grid connection, so
 the September 21st halt reaches projects the August 3rd audit cannot. **That mechanism is not
-established and is not asserted.** c14 and c15 say only that engines sit inside the agency's air
-permitting programme, and **c14's `typically` is never spent as `must`.** Frame 8 says the page
+established and is not asserted.** c14 and c15 say only that the agency publishes NSR guidance and an engine permitting overview, and **c14's `typically` is never spent as `must`.** Frame 8 says the page
 exists and that nothing verified says whether these forty need one.
 
-What the deck does assert, and the fact check found it inside the directive: **the halt is
-written on two scopes at once.**
+What the deck does assert, set side by side on frame 3 and labelled by source:
 
-    WHO IS ASKING     "suspend action on all permits sought by data center projects"       c1
-    WHAT IT WAITS ON  "align its permitting decisions with forthcoming audit results
-                       from ERCOT"                                                          c11
+    THE GOVERNOR, AS CBS QUOTED IT   "complete the ERCOT and TWDB audits. Until they do, TCEQ
+                                     will issue no permits sought by data center projects."   c3
+    THE ERCOT AUDIT, AS THE TRIBUNE  "all data centers advancing through ERCOT's
+    REPORTED IT                      interconnection queue"                                 c5
 
-and the audit those results come from covers "all data centers advancing through ERCOT's
-interconnection queue" (c5). The only consequence either audit directive names is denial of
-connection (c7, c10). **Both sentences are on the page and the deck puts them beside each other
-rather than deciding between them.**
+The halt reaches permits sought by data center projects. It waits on two audits. The record
+states the ERCOT audit's scope and states nothing about the water board's. The deck decides
+nothing between the two readings.
 
 **THE DECK NEVER SAYS THE AGENCY HAS HALTED ANYTHING.** It is a directive, nothing verified says
-a permit has been refused, and every string says the Governor directed. The one enforceable thing
-in the text is a report back on October 19th.
+a permit has been refused, and every string says the Governor directed. The text sets a date for a
+report back, October 19th.
 
 ## The world, and the laws that hold it
 
-**A GAS GENERATION YARD ON A WEST TEXAS PAD AT NIGHT.** The chassis is
+**A GAS GENERATION YARD ON A CALICHE PAD AT NIGHT.** The chassis is
 `assets/js/deck/2026-09-23-gensetyard.js` and every frame loads it.
 
 **ONE HERO OBJECT.** A containerised reciprocating gas generator set on its skid, modelled once in
@@ -69,7 +67,7 @@ the pad.
 
 **THE MUTE WORLD LAW.** Paper is the only thing that carries glyphs. No maker's plate, no unit
 number, no sign at the gate, so no drawn yard can be read as one real facility, which matters
-because no source gives a site plan for the West Texas project.
+because no source gives a site plan for the project in c16.
 
 ## Palette
 
@@ -178,10 +176,10 @@ primary_image:
   bleeds: []
 accent: none
 job: >
-  Make the absence of a connection physical. The frame is inside the machine's own space, and
-  what it is missing is the whole of the audit's reach.
+  Put the stated consequence, denial of interconnection, beside the machine at detail scale. The
+  frame asserts nothing about whether this project asks for a connection.
 
-claims: [c7, c10, c5]
+claims: [c10, c5]
 numerals: []
 
 depth:
@@ -193,8 +191,7 @@ depth:
 composition:
   structure: >
     The louvred end fills the top two thirds square to the reader, the door side runs off the
-    right edge in shade, and the next set holds the left edge. There is no cable anywhere for the
-    eye to follow out of the frame, which is the frame's argument stated as composition.
+    right edge in shade, and the next set holds the left edge. 
   bands: >
     Top third, the roof cooler and the lit frame of the end, with the stack rising behind it.
     Middle third, the fourteen raked louvres at their densest. Bottom third, the skid and slab
@@ -205,9 +202,8 @@ composition:
 art:
   technique: "physically based close render of the chassis hero turned half a turn so its radiator end takes the deck light"
   why_this_technique: >
-    An absence needs a surface convincing enough that the reader believes it. A diagram of a
-    disconnected box asserts it. A machine at detail scale with nowhere for a cable to go
-    demonstrates it.
+    The stated consequence is about a grid connection, so the frame shows the machine the story
+    is about at detail scale and asserts nothing about its connection.
   palette: "night ground, painted steel, dark louvres, no amber"
   value_structure: >
     Lightest is the lit frame of the radiator end. Darkest is the louvre recess and the pad under
@@ -216,7 +212,7 @@ art:
 
 type:
   hook: "A connection to deny"
-  dek: "The Governor's August 3rd letter says a project that fails to comply must be denied connection to the Texas grid. That audit covers data centers advancing through the interconnection queue."
+  dek: "A project that fails to complete the ERCOT audit is to be denied interconnection. That audit covers data centers in the interconnection queue."
 
 verbatim: []
 
@@ -242,7 +238,7 @@ job: >
   Show the two scopes of the directive side by side, so the reader reads the
   sentences themselves rather than a paraphrase of them.
 
-claims: [c3, c11, c5]
+claims: [c3, c5]
 numerals: []
 
 depth:
@@ -277,17 +273,17 @@ art:
 
 type:
   hook: "Two scopes"
-  dek: "One names who is asking. The other ties permits to audit results from ERCOT and the water board."
+  dek: "The halt reaches permits sought by data center projects. The ERCOT audit it waits on reaches the interconnection queue."
 
 verbatim:
-  - quote: "TCEQ will issue no permits sought by data center projects"
+  - quote: "complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects."
     claim: c3
-  - quote: "align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)"
-    claim: c11
+  - quote: "all data centers advancing through ERCOT's interconnection queue"
+    claim: c5
 
 acceptance:
-  - "the frame reads \"TCEQ will issue no permits sought by data center projects\""
-  - "the frame reads \"align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)\""
+  - "the frame reads \"Until they do, TCEQ will issue no permits sought by data center projects.\""
+  - "the frame reads \"all data centers advancing through ERCOT's interconnection queue\""
   - "both quoted sentences sit inside the drawn page's rect"
   - "the amber rule across the page head is the only amber on the frame"
   - "the post leaves the bottom edge between the source line and the site line, crossing neither"
@@ -371,8 +367,8 @@ primary_image:
   bleeds: []
 accent: none
 job: >
-  Make the forty countable, and put the 76 megawatts beside a physical quantity of machines that
-  never ask the grid for a connection.
+  Make the forty countable, and put the 76 megawatts beside a physical quantity of machines the
+  supplier calls behind-the-meter capacity.
 
 claims: [c16, c17, c18]
 numerals:
@@ -475,14 +471,14 @@ art:
   motion: "from the person up the lit end, then along the line into the fog"
 
 type:
-  hook: "This is one of them"
-  dek: "A single set on its skid, and somebody who works on it."
+  hook: "A set like these"
+  dek: "A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim."
 
 verbatim: []
 
 acceptance:
   - "a person with a head, a body and two legs stands beside the hero, readable at 432 px"
-  - "the frame reads \"This is one of them\""
+  - "the frame reads \"A set like these\""
   - "the line behind the hero holds the rest of behind_the_meter.units"
   - "no amber #E0A33F appears anywhere on the frame"
 
@@ -541,7 +537,7 @@ art:
 
 type:
   hook: "Forty nine days, then twenty eight"
-  dek: "The audit was ordered August 3rd. The directive came 49 days later. The agency answers to the Governor's office 28 days after that."
+  dek: "The audit was ordered August 3rd. The directive came 49 days later. The agency must answer to the Governor's office by October 19th, 28 days later."
 
 verbatim: []
 
@@ -629,8 +625,8 @@ primary_image:
   bleeds: [left, right]
 accent: "#E0A33F"
 job: >
-  Close on the place a Texan could have spoken and could not, and on the one date the record
-  does give.
+  Close on the hearing a Texan could have spoken at, which the agency says will be rescheduled,
+  and on the report back date, October 19th.
 
 claims: [c12, c13, c4]
 numerals: []

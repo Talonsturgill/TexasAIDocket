@@ -107,23 +107,21 @@ correction is what the deck actually shipped on.
 - **The air permit mechanism is NOT ESTABLISHED.** This file argues from it repeatedly: that the
   air permit is "the one state approval that follows the ENGINES", and that it is therefore the
   instrument the halt reaches. Verification could establish no such thing. The agency's own
-  guidance describes internal combustion engines as the kind of facility found at sources needing
-  a New Source Review permit and says nothing about whether or when a particular installation is
+  guidance is a list of facilities typically found at NSR sources and an engine permitting overview, and says nothing about whether or when a particular installation is
   one. No published surface of this deck asserts the mechanism, and the web edition states in its
   own section that none is asserted.
 - **O4791 is NOT established as an air permit.** This file calls it one at line 26. What the
-  record carries is a canceled notice and comment hearing on a data center permit in Bexar
-  County, and a statement that the hearing will be rescheduled with no date given. The deck says
+  record carries is a canceled notice and comment hearing on data center permit O4791, and a statement that the hearing will be rescheduled with no date given. The deck says
   exactly that and no more.
 - **Permit 182126, the Abilene comment route and the closing frame built on it are all cut.** The
   fact check could establish neither the applicant, the county, that it is an air permit, that
   comments are open, nor a deadline. This file says at line 83 that the frame is "the deck's last
   frame and it is the best thing in the story". **It was cut the day it failed and nothing was
-  invented to replace it.** The closing frame carries the one dated obligation the record does
-  hold, which is that TCEQ must answer for its compliance by October 19th.
+  invented to replace it.** The closing frame carries the report back date, that TCEQ
+  must answer for its compliance by October 19th.
 - **Therefore the `texan_check` profile quoted at line 70 is void.** Abilene, San Antonio and
   Taylor County were all read off the air permit candidate and every one of them went with it.
-  The shipped deck's profile is Bexar County and Odessa.
+  The shipped deck names no county. Bexar County was in c12's claim text and not in its quote, so it was removed, and every Odessa claim was dropped in the re-sourcing.
 
 **The reason this appendix exists rather than an edit.** `CLAUDE.md` says a wrong measurement in
 a committed file is worse than none, because the next reader inherits it and stops looking. This
