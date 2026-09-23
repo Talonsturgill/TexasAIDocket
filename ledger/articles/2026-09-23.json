@@ -17,14 +17,14 @@
  },
  "introduction": [
   {
-   "text": "The Office of the Governor [directed the state environmental agency to halt all permits sought by data centers](c1) until the grid operator finishes the audit ordered in August. In the Governor's own words, [until data centers complete the ERCOT and TWDB audits](c3), the agency will issue no permits sought by data center projects.",
+   "text": "The Governor [directed the Texas Commission on Environmental Quality (TCEQ) to suspend action on all permits sought by data center projects](c1). The halt lasts until the grid operator finishes its audit. In the Governor's own words as CBS Texas carried them, [TCEQ will issue no permits sought by data center projects](c3) until data centers complete the ERCOT and water board audits.",
    "claims": [
     "c1",
     "c3"
    ]
   },
   {
-   "text": "The directive reaches past the one agency it is addressed to. It states that [no state agency shall move forward with regulatory approvals](c2) related to data center development until that information is in hand. One dated obligation follows from it, which is a [report back on compliance by October 19th](c4).",
+   "text": "The directive reaches past the one agency it is addressed to. The Texas Tribune reports that it says [no other state agency shall move forward with regulatory approvals related to data centers until this information is acquired](c2). One dated obligation follows from it, which is a [report to the Office of the Governor on its compliance with the directive](c4) by October 19th.",
    "claims": [
     "c2",
     "c4"
@@ -36,23 +36,21 @@
    "heading": "One page, two scopes",
    "paragraphs": [
     {
-     "text": "The halt is written around the applicant. It names permits sought by data centers, which is a test a reviewer applies to whoever filed the paperwork. The audit it waits on is written around a process. It covers [data centers advancing through ERCOT's interconnection process](c5), and the September release [restates that same scope in the same terms](c6).",
+     "text": "The halt is written around the applicant. It names permits sought by data center projects, which is a test a reviewer applies to whoever filed the paperwork. The audit it waits on is written around a process. The August letter aims it at [all data centers advancing through ERCOT's interconnection queue](c5). The Tribune's account of the September directive traces it to that same order, [ordering ERCOT on Aug. 3 to ensure data center developers provide information](c9).",
      "claims": [
       "c1",
-      "c3",
       "c5",
-      "c6",
       "c9"
      ]
     },
     {
-     "text": "The same release tells the agency to [use the information from those audits](c11) as it aligns its permitting decisions. That instruction is only as wide as the audits are. A project the audit never looks at produces nothing for a permit reviewer to align to.",
+     "text": "The same directive says the agency [must align its permitting decisions with forthcoming audit results from ERCOT and the Texas Water Development Board (TWDB)](c11). That instruction is only as wide as the audits are. A project the audit never looks at produces nothing for a permit reviewer to align to.",
      "claims": [
       "c11"
      ]
     },
     {
-     "text": "The audit names one consequence and it is a grid consequence. [Any project that fails to comply will be denied connection to the Texas grid](c7), and a project that [fails to complete the audit process must be denied interconnection](c10). Refusal of a connection reaches a project that is asking for one.",
+     "text": "The audit names one consequence and it is a grid consequence. [Any project that fails to comply with the requirements set forth by the PUCT and ERCOT, and by state law, must be denied connection to the Texas grid](c7). The Tribune reports the same consequence for a project that does not finish. [Projects that fail to complete the ERCOT audit are to be denied interconnection](c10). Refusal of a connection reaches a project that is asking for one.",
      "claims": [
       "c7",
       "c10"
@@ -64,13 +62,14 @@
    "heading": "The size of the queue is not the size of the gap",
    "paragraphs": [
     {
-     "text": "The audit directive states the queue's own dimensions. ERCOT is [considering approximately over {{number:c8}} gigawatts of requests to connect](c8) to the Texas grid, and it puts data centers at about ninety percent of the new power requests. Those are two different denominators, the whole queue and the new requests, and nothing in the record multiplies one by the other.",
+     "text": "ERCOT is [currently tracking more than {{number:c8}} projects in the queue, representing over {{number:c8:1}} gigawatts of electricity](c8), the Texas Tribune reported on August 3rd. The Governor puts [approximately {{number:c23}} of the new power requests](c23) at data centers. Those are two different denominators, the whole queue and the new requests. Nothing in the record multiplies one by the other.",
      "claims": [
-      "c8"
+      "c8",
+      "c23"
      ]
     },
     {
-     "text": "No published figure counts how many permits the halt reaches. The directive states no count, the release states no count, and this edition publishes none rather than an estimate dressed as a measurement.",
+     "text": "No published figure counts how many permits the halt reaches. None of the reports on the directive states a count, and this edition publishes none rather than an estimate dressed as a measurement.",
      "claims": [
       "c1",
       "c2",
@@ -91,17 +90,10 @@
      ]
     },
     {
-     "text": "Being outside the queue is not the same as being outside the state's reach. A separate water directive ties a missed survey to permit eligibility, stating that [a data center that fails to timely complete and return the survey is ineligible for TCEQ permits under Chapter 11 of the Texas Water Code](c22). That instrument is scoped by who is asking, the same way the halt is, and it does not ask whether the project is in the queue.",
+     "text": "Being outside the queue is not the same as being outside the halt. The halt is scoped by who is asking for a permit. It never asks whether the project is in the queue, so the same directive reads one way by its first sentence and another way by its second.",
      "claims": [
-      "c22"
-     ]
-    },
-    {
-     "text": "A second arrangement has a different shape. An Odessa project contracts [a minimum of {{number:c19}} MW and up to {{number:c19:1}} MW for its first phase](c19) from a [{{number:c20}} MW natural gas-fired generating facility](c20) that is [located immediately adjacent to the site](c21). Adjacent is a statement about distance. The record does not say where the meter sits, so this edition places that arrangement on neither side of the line the audit reads.",
-     "claims": [
-      "c19",
-      "c20",
-      "c21"
+      "c1",
+      "c11"
      ]
     }
    ]
@@ -110,14 +102,14 @@
    "heading": "What this edition does not establish",
    "paragraphs": [
     {
-     "text": "It does not establish that any behind-the-meter project escapes environmental permitting. The agency publishes [air permitting guidance written for new internal combustion engine operations](c15) and lists engines and turbines among [the facilities typically found at sources that need New Source Review permits](c14). Whether and when a particular installation needs one is a question this record does not answer, and no mechanism is asserted here.",
+     "text": "It does not establish that any behind-the-meter project needs, or escapes, an environmental permit. The agency publishes an [Overview of air permitting requirements and options for new internal combustion engine operations](c15). It also publishes a [List of facilities typically found at sources that need New Source Review permits](c14). Whether a particular installation needs one is a question this record does not answer, and no mechanism is asserted here.",
      "claims": [
       "c14",
       "c15"
      ]
     },
     {
-     "text": "It does not establish that any permit was refused, withdrawn or denied. What the record carries is a [canceled notice and comment hearing on a Bexar County data center permit](c12), which the agency says [will be rescheduled for a later date](c13) without giving one.",
+     "text": "It does not establish that any permit was refused, withdrawn or denied. What the record carries is a [canceled notice and comment hearing on a Bexar County data center permit](c12). The agency says the hearing [will be rescheduled for a later date](c13) and gives no date.",
      "claims": [
       "c12",
       "c13"

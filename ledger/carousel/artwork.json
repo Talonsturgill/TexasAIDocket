@@ -2114,45 +2114,41 @@
   {
    "date": "2026-09-23",
    "carousel_no": 32,
-   "written_from": "machine_qa.json, render_report.json, measurements.json, layout_check's own accent measurement and the gate suite BY EXIT CODE. The value block is measured off the nine shipped PNGs by out/2026-09-23/measure.py at 432 px, never planned and never asserted. The screen block is measured too, by printing all nine steps of the chassis grey scale through this deck's own press and reading each band's L* back off the render.",
-   "register": "A GAS GENERATOR YARD AT NIGHT UNDER ONE MAST. Ground #322C44, one ink #CFD2D8, printed: every scene is drawn in greys into TXINK's offscreen twin at true scale in metres, the press lays the paper, screens the tone into ink at a LINE screen of cell 6 at 68 degrees, and paints flat what must not be screened. The one amber #E0A33F is the state's posted paper and touches no machine, no stack, no skid, no fence rail and no pad.",
+   "written_from": "render_report.json, layout_check's own accent measurement, deck_coherence and the gate suite BY EXIT CODE. The value track is measured off the nine rendered PNGs at 432 px, never planned. This entry REPLACES the one written for this deck's first build, which was printed through a line screen and was rebuilt as a render the same day on the owner's instruction.",
+   "register": "RENDERED, NOT PRINTED. A containerised gas generator set modelled once in metres in assets/js/deck/2026-09-23-gensetyard.js and rendered through txthree.js on every frame: physically based painted steel, galvanised stacks and louvres, one key light read by TXT.deckRig from the chassis declaration at azimuth -105 and elevation 27, soft shadow mapped casts on a textured caliche pad, fog in the horizon's own hue, and a sky dome centred on the camera. The one amber #E0A33F is paper only and is solved through the deck's grade so it lands on the declared hex.",
    "structural_laws": [
-    "A LINE SCREEN LAYS INK IN PROPORTION TO TONE, SO WHERE TYPE SITS IS A TONE DECISION AND NEVER A PLATE DECISION. Frame 4's 90% was set on the channel's lit mid bed and the screen's own strokes came out at the glyphs' value: a stroke crossed the zero's bowl and a reviewer transcribing the 432 px thumb read 98%. 98 is a number no claim in this run carries. It reached a reader through a GLYPH rather than through a string, so copy_sync_check, numeral_trace and numeral_lint all read 90 and every one of them was reading the DOM. The cure is that every mono label on that frame now sits on the deck's own floor, where the screen lays almost nothing.",
-    "A CONTACT SHADOW MAY NOT LENGTHEN THE OBJECT IT FALLS FROM. Frame 8's bar contacts ran from x+6 at the bar's own width, so each silhouette measured six pixels longer than the fillRect. On the one frame whose entire assertion is the ratio between two bar lengths, six pixels of shadow past the end of a 147 px bar is six pixels of lie. Measured off the render afterwards, the print adds about 2.5 px to any silhouette it is given, the same 2.5 to both, so the drawn lengths are now solved for the PRINTED extents rather than for the requested ones.",
-    "A FIELD'S SEPARABILITY IS A PROPERTY OF WHAT LIES BETWEEN THE UNITS, NOT OF THE UNITS. Frame 5 lost its count twice, first to a mast pool that lifted the pad to the units' own value and then to a darker caliche pad that measured as subject in its own right against the frame's surround. layout_check takes the ground to be the median colour OUTSIDE the primary image rect, so the pad between forty machines has to be the same night that surrounds the whole frame or the field is one connected mass with forty units embedded in it.",
-    "AND A CONTACT CANNOT EXIST ON A PAD WITH NO LIGHT ON IT, which is the other half of the law above and they pull against each other. With the pad at the deck's floor, forty voidd shadows on a voidd ground were invisible and the field read as a stamped pattern. Each ROW stands in its own narrow band of the mast's throw now, so the contacts have something to fall into and the five bands still do not touch.",
-    "A REPEATED ELEMENT AT A LADDER'S PROPORTION IS A LADDER. Frame 6's stack carried four weld bands at 120 px spacing on a 46 px barrel and two independent reviewers read it as a LATTICE MAST, which is transmission structure, on a deck whose whole case is that these machines never ask the grid for anything and on which frame 2's own acceptance forbids a transmission structure anywhere in frame. Two flanges wider than the barrel and a drawn silhouette on both sides is a flue. The same defect ran the other way on frame 2, where parallel fins over open dark read as a PICKET FENCE until the bank was closed behind them and given the perspective a 3.2 m camera implies.",
-    "AN OBJECT WITH NEITHER END IN FRAME HAS NO LENGTH, SO IT IS A WALL. Frame 6 was drawn three times. At 9 m the figure was unreadable, at 5 m the 12.2 m enclosure was 1830 px wide on a 1080 px frame and its roofline, both ends and its stack all fell outside, and three reviewers in two rounds called it a corridor wall with a door. At 12 m, set 2 m left of the lens axis, it bleeds the left edge and closes on its own end cap inside the picture.",
-    "THE ACCEPTANCE ITEM THAT NAMES FORBIDDEN OBJECTS PASSES THE FRAME THAT COMMITS THE ERROR WITH A FIFTH ONE. Frame 4's two argument-carrying items read 'nothing is drawn joining the two channels' and 'no arrow, funnel, nesting or bracket', and the first cut joined them with a shared bright field and invited the multiplication with a ruler fragment. Both items scored full marks. An item that tests a RESULT a reader reaches is the only kind that can catch this."
+    "A GRADE MOVES THE ACCENT. Paper printed at #E0A33F came out of TXDECK.finish at about (233, 194, 40), a different colour, and layout_check found the accent on one frame of four. The ink is now SOLVED through the deck's own grade once per page, so if the grade changes the ink follows it and the accent a reader sees is the declared one by construction.",
+    "A PARALLEL CAMERA HAS TO STAND BACK ALONG ITS OWN VIEW. At 77 m from the block the bottom edge of an 94 m orthographic frame starts its rays below the ground, so the near plane clipped the pad and the frame showed a dark band that read as a missing floor. Distance changes nothing in a parallel projection except whether the ground is behind the camera.",
+    "A SKY DOME IS CENTRED ON THE CAMERA OR IT IS CLIPPED. A 400 m dome at the origin fell past the 200 m far plane and the sky rendered black; the first dome that did render showed its latitude rings as bands, because vertex colours interpolate ring by ring. The gradient is a texture read per pixel now.",
+    "A FRAME WHOSE DRAWING LIVES IN THE CHASSIS READS AS A TEMPLATE. The hero is modelled once so it is the same machine on every frame, which left five frames with fifteen tokens of their own drawing under forty of shared shell, and bespoke_check measured 0.63. Each frame now builds what only it shows, the fence, the forklift pockets and bird screen, the kit beside the person, the opened bay and its engine, and the shell lives in the chassis. 0.47.",
+    "ONE READABLE SILHOUETTE NEEDS SOMETHING UNDER THE PIECES. Two runs of day plates on bare caliche measured as dust, 0.46 of the subject in its largest piece. A rail under each run and one slab under both made the record one object on the pad, which is also what it is."
    ],
    "techniques": [
-    "mono labels seated on the deck's own floor rather than on a lit bed, because the screen's ink is a function of the tone under the type",
-    "a permit counter drawn with a drafting break at its right end and NO fill along it, so an instrument nobody has measured has no measurable length",
-    "a light band per row of an isotype field, so forty objects can both separate from the pad and cast onto it",
-    "a scatter drawn AROUND its own frame's measured line boxes, which is the chassis reserve applied to a texture rather than to a wash",
-    "a page ruled once per day between two quoted blocks, where the count needs to dodge nothing because the band between the two sentences is the frame's subject",
-    "a receding fence run obliquely from 11 m to 30 m so the posts carry a texture gradient instead of standing as a comb",
-    "a second machine drawn at 26 m behind and right of the near one, so a frame whose hook is THIS IS ONE OF THEM has a THEM in it"
+    "physically based rendering through txthree.js on all nine frames, with the chassis hero instanced from one model",
+    "a parallel camera on every frame that compares quantities, the share, the forty and the two runs of days",
+    "type projected onto a rendered page through the frame's own camera, so the directive's sentences sit on the paper",
+    "an opened state of the hero that shows a sixteen cylinder engine, for the frame about engine permitting",
+    "a person modelled in capsules at 1.70 m beside the hero, with a toolbox, wheel chocks and a folding step as second rulers",
+    "paper amber solved through the grade, unlit and outside the tone map"
    ],
-   "value_block": {
-    "per_frame_median_lstar": [
-     15.7,
-     21.1,
-     38.0,
-     12.2,
-     12.4,
-     15.7,
-     12.7,
-     11.9,
-     13.8
+   "value": {
+    "per_frame_median_L": [
+     8.6,
+     11.2,
+     8.6,
+     8.6,
+     8.1,
+     10.1,
+     7.6,
+     11.1,
+     6.0
     ],
-    "max_adjacent_delta": 25.8,
-    "deck_median_lstar": 13.8,
-    "note": "Measured at 432 px off the shipped PNGs. The 3 to 4 step is the deck's declared cut and the only one. deck_coherence measures the same track its own way and prints its own numbers; no figure for that track is typed into the storyboard any more, because the one that was there had been measured on an earlier cut of the art and a flow critic caught that it could not be reproduced from the numbers beside it."
+    "deck_median_L": 8.6,
+    "max_adjacent_delta": 5.1,
+    "note": "Measured at 432 px off the rendered PNGs. No cut is declared and none is taken. deck_coherence measured a mean adjacent jump of 2.46 L*, against the reference product's 2.6."
    },
    "accent": {
     "hex": "#E0A33F",
-    "paint": "#F98C4A",
     "name": "posted notice amber",
     "frames_above_floor": [
      3,
@@ -2160,37 +2156,12 @@
      7,
      9
     ],
-    "coverage": {
-     "3": 0.0064,
-     "4": 0.0055,
-     "7": 0.0022,
-     "9": 0.0012
-    },
-    "note": "THE PAINT IS NOT THE COLOUR, and that is this deck's grade rather than a second accent. #F98C4A laid on the twin lands at #E0A33F through this deck's exposure, filmic curve and gain, measured rather than guessed: the first calibration was read off a shadowed corner and overshot green to 204 against 163. Amber falls on the docket line, the permit counter's annotation, the report back tick and the posted notice, which are four surfaces of the state's own paper. Frames 1, 2, 5, 6 and 8 are the machinery frames and carry none at all."
+    "note": "The directive's rule, the Governor's share, the state's twenty eight day clock and the cancellation on the hearing table. Never a machine."
    },
    "ground": {
-    "hex": "#322C44",
-    "nearest_dE76_in_last_six": 24.54,
-    "note": "Measured against the last six shipped grounds before any frame was drawn. Nearest is 2026-09-20's #2E2016 at 24.54, which is a different hue family entirely. It is a night sky over a mast lit pad, which is the only condition under which a reader sees a generator yard at all."
-   },
-   "screen": {
-    "mode": "line",
-    "cell": 6,
-    "angle": 68,
-    "gamma": 0.72,
-    "floor": 0.02,
-    "measured_scale_lstar": {
-     "voidd": 10.8,
-     "deep": 30.3,
-     "dark": 42.3,
-     "shade": 50.8,
-     "mid": 60.2,
-     "stone": 66.6,
-     "metal": 71.1,
-     "bright": 75.0,
-     "glare": 75.0
-    },
-    "note": "Nine steps printed as full width bands through this deck's own press and read back. Monotonic, span 62.28, smallest step 2.15, so every declared face pair has room to separate. The angle is worth recording as a HAZARD rather than as a setting: at 68 degrees the strokes run about eleven degrees off horizontal, which is why they read as rules through a line of type wherever the tone under that type is light."
+    "hex": "#0D1117",
+    "nearest_dE76_in_last_six": 16.95,
+    "note": "Measured against the two of the last six shipped decks that record a ground hex, 2026-09-20's #2E2016 at 16.95 and 2026-09-21's #222E16 at 24.16. The other four record none, so the window this comparison can fill is two decks and is named as such."
    }
   }
  ]
