@@ -986,11 +986,10 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Five rules from
 2. **Image before type, on every frame.** Draw the image, render it, and read it at 432 px with
    NO type on it. If it is not an image yet, no headline will make it one. Then fit the type,
    measure the line boxes, and hand the reserve to the art.
-3. **The deck's light, the deck's ramp, the deck's screen, the deck's grade.** Not one per
-   frame. What varies between frames is the SUBJECT and the CAMERA. What does not vary is the
-   paper, the ink, the screen, the light and the grade. This rule read "one screen per frame,
-   the screen varies with the layout" until 2026-09-16 and that is half of why the value track
-   strobed.
+3. **The deck's hero object, the deck's material, the deck's light, the deck's grade.** Not
+   one per frame. What varies between frames is the CAMERA and the object's STATE. What does not
+   vary is the object, its material, the rig and the grade. There is no screen at all, since
+   2026-09-23: the print register is deleted and `print_ban` refuses it.
 4. **`TXDECK.finish(cx)` is the last line that touches the art canvas, on every frame.** One
    line, the deck's own grade. It was missing from 204 of 205 shipped slides and that is the
    single largest measured cause of the flat look. A frame may move bloom and aberration and
@@ -1028,7 +1027,7 @@ it sees canvas ink that no DOM check can. A slide that draws nothing renders wit
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
-at 432 px, printed rather than placed.** Fix what they find, re-render, re-review. Then 1
+at 432 px, rendered rather than placed, with no screen on it.** Fix what they find, re-render, re-review. Then 1
 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
 nine slides.
 
@@ -1044,7 +1043,8 @@ hand it the current rule with the deck:
 > The rotation rule changed on 2026-09-16. Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
 > "THE DECK IS THE UNIT", and judge against that. Any copy of the rotation rule in your own
 > definition is stale. At most TWO of the same archetype in a row and at least THREE distinct,
-> not five. ONE screen, ONE light, ONE grade for the whole deck, not one per frame. Judge
+> not five. ONE hero object, ONE light, ONE grade for the whole deck, and no screen at all,
+> because the print register is deleted. Judge
 > whether the nine frames read as one deck and whether at least two continuity devices are
 > doing real work, and treat a deck that turns the page nine different ways as a FAULT.
 
