@@ -293,7 +293,7 @@
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = 8;
     ground.material.map = t;
-    ground.material.color.set(o.tint || 0x6f685e);
+    ground.material.color.set(o.tint || 0x4c525c);
     ground.material.needsUpdate = true;
     return t;
   };
