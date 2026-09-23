@@ -1,10 +1,23 @@
 /* gensetyard.js — the chassis for carousel No. 32 (2026-09-23).
  *
- * WHAT THIS IS. The deck "THE DOOR THAT WAS ALWAYS THERE" spends nine frames on one gas
- * generation yard and the paper that yard has to come to, and argues that the Governor's
- * September 21st halt reaches projects the August 3rd audit structurally could not. Nine
- * frames share one light, one stock and one way of seating type, and this file is those
- * three things and nothing else. Every frame's COMPOSITION is written per frame.
+ * WHAT THIS IS. The deck spends nine frames on one gas generation yard and the paper that
+ * yard has to come to. Nine frames share one light, one stock and one way of seating type, and
+ * this file is those three things and nothing else. Every frame's COMPOSITION is written per
+ * frame.
+ *
+ * THE DECK'S ARGUMENT, AS IT SHIPPED. A permit halt scoped by WHO IS ASKING cannot be aligned
+ * to an audit scoped by WHAT IS ADVANCING THROUGH THE INTERCONNECTION PROCESS, and a real West
+ * Texas project already sits in the gap: 76 megawatts contracted behind the meter from about
+ * forty reciprocating gas engines, which the audit's process never sees.
+ *
+ * THIS FILE SHIPPED A REFUTED ARGUMENT IN ITS OWN HEADER AND A SCORER CAUGHT IT. It read that
+ * the deck argues from the AIR PERMIT, "the one state approval that follows engines rather than
+ * wires", and it named the deck "THE DOOR THAT WAS ALWAYS THERE". That mechanism was the plan
+ * and the fact check REFUTED it: the agency's guidance describes internal combustion engines as
+ * the kind of facility found at sources needing New Source Review and says nothing about whether
+ * or when a particular installation is one. The claim was cut from every published surface on
+ * the day it failed, and this header, which is committed and merges to main, kept it. A file
+ * the next run reads is not a comment. It is the premise it will start from.
  *
  * THE WORLD. A GAS GENERATION YARD ON A WEST TEXAS PAD AT TWENTY TO TEN AT NIGHT, LIT BY ITS
  * OWN MAST. Reciprocating gas sets in line on skids, their stacks going up out of the pool of
@@ -12,12 +25,9 @@
  * notice wired to it. Inside that world, one interior the same fixture does not reach, which
  * is a counter where a permit is filed.
  *
- * WHY A YARD AT NIGHT, AND IT IS THE DECK'S ARGUMENT RATHER THAN A MOOD. The thing an air
- * permit regulates is the STACK. Not the building, not the racks, not the connection to the
- * grid. A project that contracts with the plant next door or stands its own engines behind
- * its own meter never enters the interconnection process the August audit reads, and the
- * audit never sees it. The engines are still engines. So the deck draws the engines, and the
- * one piece of paper that follows engines rather than wires.
+ * WHY A YARD AT NIGHT. Because the argument is about machines a process never sees, and the
+ * machines are the thing this deck can actually draw. It is not a claim about what any permit
+ * regulates, and no frame makes one.
  *
  * THE LIGHT, IN WORDS A FRAME AUTHOR CAN CHECK A DRAWING AGAINST. THE KEY IS A YARD MAST,
  * HIGH AND OFF THE CAMERA'S LEFT SHOULDER, AT 28 DEGREES ABOVE THE PLANE. So every lit face
