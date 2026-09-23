@@ -93,7 +93,21 @@ def ordinal_date(iso: str, context_year: int | None = None) -> str:
 # names reports a KeyError on history and gets read as a broken run rather than a naming drift.
 URL_KEYS = ("source_url", "url")
 TITLE_KEYS = ("document", "source_title", "source_publisher", "publisher")
-DATE_KEYS = ("published", "published_date", "retrieved")
+# THE LINE'S DATE IS THE DOCUMENT'S, NEVER THE FETCH'S (2026-09-23)
+#
+# `retrieved` used to sit at the end of this tuple as a fallback, so a claim carrying no
+# published date printed the day the run FETCHED it in the position a reader reads as the day
+# the document was issued. On carousel no. 32 that put "Governor Abbott Directs Comprehensive
+# Data Center Audit, September 23rd" under a deck whose frame 7 says that audit was ordered
+# August 3rd, and the header two lines above already said "all fetched September 23rd", so the
+# block asserted a publication date it did not have and contradicted its own deck to do it.
+# Two round 5 scorers found it independently.
+#
+# This is the same defect as the "Day counts computed" line thirty lines down, which was
+# appended unconditionally until a deck published it over a compute.py that computed nothing.
+# A provenance line may only state what the record holds. A claim with no published date gets
+# NO date on its line, and the header's fetch sentence carries what is actually known.
+DATE_KEYS = ("published", "published_date")
 
 
 def field(claim: dict, keys) -> str | None:
@@ -256,7 +270,11 @@ def build(run_dir: Path) -> str:
     aggs = (json.loads(agg_f.read_text(encoding="utf-8")).get("aggregates", [])
             if agg_f.exists() else [])
     if any(computed_span(a) for a in aggs if isinstance(a, dict)):
-        lines.append("Day counts computed in compute.py from the source dates above.")
+        # AND IT NAMES WHERE THE DATES CAME FROM, which is not "above" unless they are there.
+        # It read "from the source dates above" while every line above carried the fetch date,
+        # so a reader checking the arithmetic against the printed dates got a different answer.
+        # compute.py parses its endpoints out of the QUOTES, so that is what this says.
+        lines.append("Day counts computed in compute.py from dates inside the quoted sources.")
     return "\n".join(lines) + "\n"
 
 
@@ -528,6 +546,34 @@ def self_test() -> int:
 
         (d / "first_comment.txt").write_text(built)
         ok("the block it just built passes its own check", check(d) == [], str(check(d)))
+
+        # A LINE'S DATE IS THE DOCUMENT'S AND NEVER THE FETCH'S.
+        ok("a published date prints on the line", "August 3rd" in built, built)
+        ok("...and the fetch date does not appear on any citation line",
+           all("August 19th" not in ln for ln in built.splitlines()[1:]), built)
+        (d / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/doc", "retrieved": "2026-08-19",
+             "document": "A notice"}]}))
+        (d / "copy.json").write_text(json.dumps({"slides": {"S1": {"claims": ["c1"]}}}))
+        nodate = build(d)
+        ok("a claim with only a retrieved date gets NO date on its line",
+           "A notice. c1" in nodate, nodate)
+        ok("...and the header still says when it was fetched",
+           "fetched August 19th" in nodate.splitlines()[0], nodate)
+        ok("...and the fetch date is nowhere else in the block",
+           all("August 19th" not in ln for ln in nodate.splitlines()[1:]), nodate)
+        # put the fixture back for the cases below
+        (d / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/doc", "published": "2026-08-03",
+             "retrieved": "2026-08-19", "document": "A notice"},
+            {"id": "c2", "source_url": "https://a.example/doc", "published": "2026-08-03",
+             "retrieved": "2026-08-19", "document": "A notice"},
+            {"id": "c3", "source_url": "https://b.example/rel", "published": "2026-08-18",
+             "retrieved": "2026-08-19", "document": "A release"},
+        ]}))
+        (d / "copy.json").write_text(json.dumps(
+            {"slides": {"S1": {"claims": ["c1", "c2"]}, "S2": {"claims": ["c3"]}}}))
+        (d / "first_comment.txt").write_text(build(d))
 
         # THE REAL DEFECT, replayed. The deck grew a claim and the block did not.
         (d / "copy.json").write_text(json.dumps(
