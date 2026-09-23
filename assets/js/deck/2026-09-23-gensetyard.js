@@ -33,11 +33,24 @@
  * construction instead of by a plate. It is also when these yards are actually watched, and
  * the one frame that carries daylight is the counter, which is the point being made.
  *
- * THE GROUND WAS MEASURED, NOT CHOSEN. #322C44 is a night sky over a sodium lit pad. It sits
- * at dE76 14.18 from its nearest neighbour in the last six shipped grounds, against a floor of
- * 10, and its chroma is inside the band those six occupy so it reads as paper rather than as a
- * colour. The first two passes at this picked warm darks by eye and both landed inside dE 3 of
- * September 20th's #2E2016. A palette checked only by eye is a palette that repeats.
+ * THE GROUND WAS MEASURED, NOT CHOSEN. #322C44 is a night sky over a sodium lit pad. Its
+ * nearest neighbour among the shipped grounds this run could read is September 20th's #2E2016
+ * at dE76 24.54, against a floor of 10, and its chroma is inside the band those grounds occupy
+ * so it reads as paper rather than as a colour. The first two passes at this picked warm darks
+ * by eye and both landed inside dE 3 of #2E2016. A palette checked only by eye is a palette
+ * that repeats.
+ *
+ * THE FIGURE THAT STOOD HERE WAS 14.18 AND IT WAS WRONG, WHICH IS RECORDED RATHER THAN QUIETLY
+ * CORRECTED. A scorer recomputed the distance to #2E2016 by hand, got about 26, and said the
+ * chassis and the artwork ledger could not both be right. They were right to: the two numbers
+ * disagreed and one of them was going to be inherited. 24.54 is what this run computes from the
+ * two entries in the last six that carry a ground hex at all, which is the other half of the
+ * finding and is worth stating rather than smoothing: FOUR of the last six shipped decks record
+ * no ground colour, so "the last six" is a window this comparison cannot actually fill. The
+ * claim is narrowed to what was measured.
+ *
+ * AND IT SAT TWO PARAGRAPHS FROM A PARAGRAPH CONGRATULATING THIS RUN FOR CATCHING THE SAME
+ * DEFECT IN THE VALUE ARC. That is the whole reason it is written down.
  *
  * THE ACCENT LAW, AND IT IS THE STRICTEST THING IN THIS FILE.
  *

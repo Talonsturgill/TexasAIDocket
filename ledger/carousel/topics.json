@@ -985,7 +985,19 @@
     "Odessa",
     "West Texas"
    ],
-   "what_was_refused": "The air permit MECHANISM. The original argument was that behind the meter engines need a New Source Review air permit and that this is the instrument the halt actually reaches. Verification could not establish it: the agency's own guidance pages (c14, c15) describe engines as the kind of facility found at sources needing NSR and say nothing about whether or when a particular installation is one. The deck states the two scopes and stops, and the web edition says in its own section that no mechanism is asserted."
+   "what_was_refused": "The air permit MECHANISM. The original argument was that behind the meter engines need a New Source Review air permit and that this is the instrument the halt actually reaches. Verification could not establish it: the agency's own guidance pages (c14, c15) describe engines as the kind of facility found at sources needing NSR and say nothing about whether or when a particular installation is one. The deck states the two scopes and stops, and the web edition says in its own section that no mechanism is asserted.",
+   "keywords": [
+    "data center permit halt",
+    "permits sought by data centers",
+    "ERCOT interconnection audit",
+    "behind the meter generation",
+    "reciprocating gas engines",
+    "applicant scope",
+    "TCEQ permitting",
+    "notice and comment hearing canceled",
+    "adjacent plant power purchase"
+   ],
+   "angle_note": "THIS IS THE THIRD DECK IN TEN DAYS BUILT ON A GOVERNOR'S OFFICE DIRECTIVE TO A STATE AGENCY ABOUT DATA CENTERS, after no. 24 on September 14th and no. 29 on September 19th, and dedupe_check returned LIKELY REPEAT at 0.72 against no. 29. The override is recorded in SELECTION.md with its reasons: a different agency, a different instrument, a different docket item and an argument that is different in kind. One round 1 scorer called it a hard fail anyway and stated the counter-argument themselves, which is the honest way to disagree and is why it is written here rather than left in a scoring card. THE NEXT RUN SHOULD TREAT A FOURTH GOVERNOR DIRECTIVE AS A REPEAT WHATEVER THE KEYWORDS SAY. The entry also shipped without a `keywords` array on its first write, which is one of the three fields dedupe_check compares, so the run made itself harder for the next run to see in the run where it sat closest to a repeat it has been. That is the fifth instrument repeat this ledger records in capitals."
   }
  ]
 }
