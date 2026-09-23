@@ -10516,5 +10516,292 @@
     "note": "Admitted on the company's own announcement. Nothing here has been through a regulator and the producer has an equity stake in the vendor whose system it is buying, so every claim about the system's results is a claim by a party with an interest in it. Nothing reaches an engineer on the company's own timeline until about day 90."
    }
   ]
+ },
+ {
+  "title": "Governor directs the environmental agency to issue no data center permits until the grid audit is done",
+  "summary": "The Office of the Governor issued a directive to the Texas Commission on Environmental Quality on September 21st, 2026. It tells the agency to halt all permits sought by data centers until the grid operator completes the interconnection audit the Governor ordered on August 3rd, 2026. The directive goes wider than one agency. It states that no state agency is to move forward with regulatory approvals related to data center development until that information is in hand, because the utility commission, the grid operator and the water board need it to decide anything. The release sets out what a data center project must do, which is cover all electrical infrastructure costs, lower residential bills, finish the grid audit, stay off water local communities need, report its electricity and water use, and meet setback requirements. The agency is told to align its permitting decisions with the directives and to use what the audits find. It must report back on its compliance by October 19th, 2026. The release closes by saying the Governor will work with the Legislature next session to eliminate financial incentives for data centers.",
+  "topic": "land-water-and-permitting",
+  "decider": {
+   "name": "Office of the Texas Governor",
+   "type": "governor"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "metro": null,
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-21",
+    "kind": "ordered",
+    "note": "Directive issued to the Texas Commission on Environmental Quality"
+   },
+   {
+    "date": "2026-10-19",
+    "kind": "administrative_deadline",
+    "note": "Agency must report to the Office of the Governor on its compliance with the directive"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The directive is published in full on the Governor's own newsroom, with a link to the letter it was sent under. No comment window attaches to a directive. The Texas Commission on Environmental Quality is the reachable party on how it will apply this to a pending permit, and its agenda and public hearings are posted on its own site.",
+   "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Geography is statewide on the same reading the record applies to tx-2026-0171 and tx-2026-0072. This is a directive from a statewide office to a statewide agency and it reaches a permit in any county. on_ercot is left null because the directive names no grid region and the agency permits in the parts of Texas that are outside ERCOT as well.",
+  "claims": [
+   {
+    "text": "The directive tells the environmental agency what to stop doing and for how long.",
+    "verbatim_quote": "the Texas Commission on Environmental Quality (TCEQ) to halt all permits sought by data centers until the Electric Reliability Council of Texas (ERCOT) completes its audit.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c1"
+   },
+   {
+    "text": "The directive reaches beyond the one agency it was addressed to.",
+    "verbatim_quote": "no state agency shall move forward with regulatory approvals related to data center development until it is acquired.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c2"
+   },
+   {
+    "text": "The Governor states the condition in his own words.",
+    "verbatim_quote": "Data centers must pay their own way, protect our grid and water, and complete the ERCOT and TWDB audits. Until they do, TCEQ will issue no permits sought by data center projects.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c3"
+   },
+   {
+    "text": "The release states what a project has to do on the electricity side.",
+    "verbatim_quote": "Data center projects must cover all electrical infrastructure costs, result in lower residential electrical bills, and complete the ERCOT audit.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c4"
+   },
+   {
+    "text": "The release states what a project has to do on the water and siting side.",
+    "verbatim_quote": "Data centers must not use water needed by local communities, must report electricity and water usage, and must abide by setback requirements that will protect the communities in which they operate.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c5"
+   },
+   {
+    "text": "The agency is told to tie its permitting to what the audits find.",
+    "verbatim_quote": "As ERCOT and TWDB conduct their audits, TCEQ must align its permitting decisions with the Governor's directives and use the information from those audits.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c6"
+   },
+   {
+    "text": "The directive carries a dated report back.",
+    "verbatim_quote": "TCEQ shall provide an update to the Office of the Governor on its compliance with this directive by Monday, October 19, 2026.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c7"
+   },
+   {
+    "text": "The release names what the Governor intends to ask the Legislature for next.",
+    "verbatim_quote": "Next session, Governor Abbott will work with the Legislature to eliminate any financial incentives for data centers.",
+    "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
+    "source_title": "Office of the Texas Governor, Governor Abbott Directs TCEQ To Halt Data Center Permits",
+    "source_type": "primary_official",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0182-c8"
+   }
+  ],
+  "id": "tx-2026-0182",
+  "last_verified": "2026-09-23",
+  "history": [
+   {
+    "date": "2026-09-23",
+    "note": "Admitted on the directive the Governor's office published on September 21st. The environmental agency has published nothing of its own about how it will apply the halt to a permit already filed.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "A Midland company signs a twenty year power contract with the gas plant next door to its Odessa data center",
+  "summary": "New Era Energy and Digital said on September 21st, 2026 that its subsidiary TCDC PowerCo LLC entered a twenty year power purchase agreement with Luminant ET Services Company LLC, an affiliate of Vistra. The agreement covers the first phase of the Texas Critical Data Center near Odessa. The power comes from Vistra's existing gas fired generating facility in Odessa, which the release says is immediately adjacent to the data center site. The release states the minimum and maximum megawatts the agreement covers and the size of the plant supplying it, and puts first power in the third quarter of 2027. The arrangement is a contract with a neighbouring plant rather than a new interconnection request.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "New Era Energy and Digital, Inc.",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Ector"
+   ],
+   "metro": "Odessa, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-21",
+    "kind": "decided",
+    "note": "Power purchase agreement executed and announced"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The agreement is between two private companies and no public comment attaches to it. The release is published on the company's own wire. A resident of Ector County who wants a say reaches the county and the environmental agency through whatever permit the generating facility and the data center each hold.",
+   "url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+   "closes": null
+  },
+  "confidence": "medium",
+  "notes_for_editor": "The release names Odessa and no county. Odessa is the county seat of Ector County and the city lies in Ector and Midland counties. HELD REASON IF GATED: the county is not stated in the source. A run that admits this should confirm the site's county against a county or permit record rather than from the city name.",
+  "claims": [
+   {
+    "text": "The release states the parties, the term and the megawatts.",
+    "verbatim_quote": "has entered into a 20-year power purchase agreement with Luminant ET Services Company LLC (\"Luminant\"), an affiliate of Vistra Corp. (\"Vistra\", NYSE: VST), under which Luminant has agreed to supply a minimum of 200 MW and up to 207 MW of power for Phase 1 of New Era's Texas Critical Data Center",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+    "source_title": "GlobeNewswire, New Era Energy and Digital Secures 20-Year, 207 MW PPA with Vistra",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0183-c1"
+   },
+   {
+    "text": "The release states where the power comes from and how far away it is.",
+    "verbatim_quote": "Under the PPA, Luminant will supply power from Vistra's 1,180 MW natural gas-fired generating facility in Odessa, Texas, which is located immediately adjacent to the TCDC site.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365358/0/en/new-era-energy-digital-secures-20-year-207-mw-ppa-with-vistra.html",
+    "source_title": "GlobeNewswire, New Era Energy and Digital Secures 20-Year, 207 MW PPA with Vistra",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0183-c2"
+   }
+  ],
+  "id": "tx-2026-0183",
+  "last_verified": "2026-09-23",
+  "history": [
+   {
+    "date": "2026-09-23",
+    "note": "Admitted on the company's own announcement of the agreement. No filing with the utility commission or the county accompanies it.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "A Galveston medical school says an AI answering tool inside its health record is used by more than half its clinicians",
+  "summary": "OpenEvidence published an announcement with the University of Texas Medical Branch on September 22nd, 2026 describing an integration that puts its cited evidence tool inside the medical branch's electronic health record. A clinician reaches it through the same enterprise credentials they already use rather than through a separate account. The announcement says the integration went live in March 2026 and that more than half of the medical branch's clinicians actively use the tool for clinical decision support. The adoption figure is stated jointly by the vendor and the health system and no independent measurement of usage, accuracy or override rate accompanies it.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "University of Texas Medical Branch",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Galveston"
+   ],
+   "metro": "Houston-Pasadena-The Woodlands, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-22",
+    "kind": "decided",
+    "note": "Integration announced jointly by the health system and the vendor"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The announcement is published on the vendor's own site. No comment window attaches. The University of Texas Medical Branch is the reachable party on what the tool does inside a patient's chart, and the UT System Board of Regents is where a contract of this kind appears on a public agenda.",
+   "url": "https://www.openevidence.com/announcements/university-of-texas-medical-branch-utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+   "closes": null
+  },
+  "confidence": "medium",
+  "notes_for_editor": "The only source is a joint vendor and health system announcement, which is primary for what the two parties say and is not an independent measurement of anything. The adoption share should never be published without saying who counted it. A stronger primary would be the UT System Regents agenda item for the contract, which the record already touches at tx-2026-0094 for a different platform at the same institution. decider.type is state-agency because the medical branch is an institution of the University of Texas System, which the vocabulary has no separate word for.",
+  "claims": [
+   {
+    "text": "The vendor's named executive states the finding the announcement rests on.",
+    "verbatim_quote": "When you remove friction and put useful AI where clinicians actually work, they use it.",
+    "source_url": "https://www.openevidence.com/announcements/university-of-texas-medical-branch-utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "OpenEvidence, University of Texas Medical Branch (UTMB) Collaborates with OpenEvidence to Integrate AI Platform Directly into Clinical Workflows",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0184-c1"
+   }
+  ],
+  "id": "tx-2026-0184",
+  "last_verified": "2026-09-23",
+  "history": [
+   {
+    "date": "2026-09-23",
+    "note": "Admitted on the joint announcement the vendor published. The adoption share rests on the two parties to the deployment and nobody else has measured it.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "Nuclear regulator receives a construction permit application for reactors at the Port of Victoria",
+  "summary": "Blue Energy announced on September 16th, 2026 that it filed the initial portion of a construction permit application with the United States Nuclear Regulatory Commission for a project at the Port of Victoria. The plan pairs gas turbines with small modular reactors and the company states a final investment decision in 2027. The application asks for authorization to begin limited construction, including deep foundation work, before the full permit is decided. The announcement never uses the words data center or artificial intelligence.",
+  "topic": "power-and-the-grid",
+  "decider": {
+   "name": "United States Nuclear Regulatory Commission",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Victoria"
+   ],
+   "metro": "Victoria, TX",
+   "on_ercot": true
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-09-16",
+    "kind": "filed",
+    "note": "Initial portion of the construction permit application filed"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A construction permit application becomes a public docket at the Nuclear Regulatory Commission, and the commission publishes a hearing opportunity notice in the Federal Register once the application is docketed. No such notice has been published, so no dated window is open. The commission's public document system is where the filing itself will appear.",
+   "url": "https://www.blueenergy.co/news/blue-energy-submits-construction-permit-application-to-nuclear-regulatory-commission",
+   "closes": null
+  },
+  "confidence": "medium",
+  "notes_for_editor": "The source is the company's announcement of its filing rather than the filing. No accession number is given. The commission's own docket entry is the primary document and it will also carry the hearing opportunity date a reader could act on. The words artificial intelligence and data center do not appear in the source and no reader copy here may imply they do.",
+  "claims": [
+   {
+    "text": "The company's named chief executive states what was filed and what it is for.",
+    "verbatim_quote": "This is serious work done by serious people for a serious project. This is another huge step towards building the world's first gas-to-nuclear power plant and proving the Blue Energy approach to build nuclear in the safest, quickest, and most scalable way possible,",
+    "source_url": "https://www.blueenergy.co/news/blue-energy-submits-construction-permit-application-to-nuclear-regulatory-commission",
+    "source_title": "Blue Energy, Blue Energy Submits Construction Permit Application to Nuclear Regulatory Commission",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-23",
+    "id": "tx-2026-0185-c1"
+   }
+  ],
+  "id": "tx-2026-0185",
+  "last_verified": "2026-09-23",
+  "history": [
+   {
+    "date": "2026-09-23",
+    "note": "Admitted on the company's announcement of its filing. The commission has published no docketing notice and no hearing opportunity.",
+    "checked": true
+   }
+  ]
  }
 ]
