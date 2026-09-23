@@ -4136,3 +4136,39 @@ needs one, so the failure branch has a home the way the success branch does. The
 from it: **when a policy has a failure branch, give the failure branch its own writable path at the
 same time you write the rule.** A failure branch that has to borrow the success branch's directory
 is not a failure branch, it is a success branch with worse artifacts in it.
+
+### 85. A crawl boundary in prose is a boundary the next run does not read
+
+On 2026-09-17 a run measured `gov.texas.gov` serving `User-agent: ClaudeBot` / `Disallow: /`,
+wrote it into `SOURCES_FIELD_LOG.md` in capitals, said **"No scout and no WebFetch may touch this
+host"**, and fetched nothing from it. On 2026-09-23 the next carousel run cited that host for ten
+claims through WebFetch, which identifies as ClaudeBot, and admitted a docket item on them. The
+research batch names the host nine times and **contains the strings `robots`, `Disallow` and
+`ClaudeBot` zero times.**
+
+The rule was right, it was six days old, it was written in the file the routine is told to append
+findings to, and it did not run. **Nothing reads it.** `SOURCES_REGISTRY.md` is `human` lane and
+carries the boundary by design, which is correct and is also why a run cannot keep it current; the
+field log is where a run writes what it measured, and it is prose.
+
+This is CLAUDE.md's oldest shape, stated there three times about other things: **a rule stated in
+config, a surface that keeps its own copy, and nothing in between checking they agree.** Here it is
+worse, because there is no surface at all: the rule is stated in prose and nothing checks anything.
+
+**What to check instead.** A machine readable blocklist, `config/crawl_boundaries.yaml` or the
+`ledger/` equivalent, holding one row per host with the agent named, the date measured and the
+evidence, that the research phase reads BEFORE it fetches and that a gate asserts every cited URL
+against. A run appending a measured disallow writes a row rather than a paragraph, and a scout
+handed a disallowed host refuses it without needing to have read anything.
+
+Two properties it must have, both learned the expensive way in this file:
+
+- **It expires.** A boundary is a measurement and `docket_staleness`'s unreachable carve-out
+  already models this: a row older than its window stops being authoritative and has to be
+  re-measured rather than trusted.
+- **A run may add a row and never remove one.** Removing a disallow is widening this project's own
+  crawl boundary, which is the `SOURCES_REGISTRY.md` split's whole reason for existing: *a run that
+  can edit its own boundary does not have one.*
+
+The prose stays, because the reasoning is worth more than the row. What changes is that the row is
+what the machine obeys.
