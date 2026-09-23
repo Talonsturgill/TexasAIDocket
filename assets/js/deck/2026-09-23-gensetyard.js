@@ -74,16 +74,40 @@
  * rather than a colour ramp. The one place real colour is painted is `over`, where the accent
  * and the type reserve go, after the screen has run.
  *
- * THE SCREEN IS A LINE SCREEN AT CELL 5, AND BOTH NUMBERS ARE PROBE FRAME DECISIONS. A LINE
- * screen is the banknote and the engineering sheet, which is what a permit drawing is, and it
- * is NOT the last three decks' screens: halftone at cell 7 on September 19th, hatch at cell 6
- * on September 20th, stipple at cell 5 on September 21st. Its gamma and perCell are NOT
- * guessed here. Phase 10.5 prints all nine steps of N.G as full width bands through this exact
- * press, reads each band's L* off the rendered PNG, and the numbers below are amended to what
- * that measured. September 21st shipped a scale spanning 95 L* in the twin that printed across
- * nineteen and was not monotonic, and five critics read that deck as hairline wireframes over
- * noise. Nothing was wrong with any frame's drawing. Every frame was drawing through a press
- * with no tonal range.
+ * THE SCREEN IS A LINE SCREEN AT CELL 6, AND EVERY NUMBER IN IT WAS MEASURED RATHER THAN
+ * GUESSED. A LINE screen is the banknote and the engineering sheet, which is what a permit
+ * drawing is, and it is none of the last three decks' stocks: halftone at cell 7 on September
+ * 19th, hatch at cell 6 on September 20th, stipple at cell 5 on September 21st.
+ *
+ * THE PRESS WAS PRINTED AND READ BEFORE THE VALUE ARC WAS COMMITTED. Phase 10.5 laid all nine
+ * steps of N.G as full width bands through this exact configuration and read each band's L* off
+ * the rendered PNG. The first pass, at cell 5 with gamma 0.5 and bloom at threshold 0.78
+ * strength 0.26, printed a MONOTONIC scale spanning 64 L* and then COLLIDED AT THE TOP: `bright`
+ * and `glare` both came out at 75.01, which is the ink's own value at full coverage, so the two
+ * lightest steps of nine were the same colour. Note that `weight` does nothing in line mode,
+ * which is why the first fix aimed at it would have been wasted: TXINK's line branch takes its
+ * stroke width from `cell * 0.9 * d` and reads `o.weight` only for a hatch.
+ *
+ * Cell 6 opens the pitch, gamma 0.72 pulls the low end down off the floor, and bloom at
+ * threshold 0.88 strength 0.14 stops the grade clipping the top. Measured on the second print:
+ *
+ *     step     twin L*   printed L*
+ *     voidd        0.00        10.83
+ *     deep         4.40        22.25
+ *     dark        15.34        32.18
+ *     shade       26.45        40.12
+ *     mid         42.21        50.22
+ *     stone       56.16        58.33
+ *     metal       69.06        64.63
+ *     bright      84.30        70.96
+ *     glare       95.54        73.11
+ *
+ * Monotonic, spanning 62.28 L*, smallest step 2.15 and largest 11.43. **`glare` and `bright` are
+ * only 2.15 L* apart and a frame may not rest a reading on telling them apart.** `glare` is
+ * spent on specular hits alone. September 21st shipped a twin scale spanning 95 L* that printed
+ * across nineteen and was not monotonic, and five critics read that deck as hairline wireframes
+ * over noise. Nothing was wrong with any frame's drawing. Every frame was drawing through a
+ * press with no tonal range.
  */
 (function (global) {
   "use strict";
@@ -107,7 +131,7 @@
       lift: [0.016, 0.012, 0.022],
       gain: [0.982, 1.006, 1.038],
       vignette: 0.24,
-      bloom: { threshold: 0.78, strength: 0.26, radius: 10 },
+      bloom: { threshold: 0.88, strength: 0.14, radius: 10 },
       /* GRAIN AT 0.014, CARRIED FORWARD FROM THE SEPTEMBER 19TH MEASUREMENT rather than the
        * house 0.044. That run measured its vector PDF at 68.7 MB against 6 to 14 MB for every
        * deck before it, tested three hypotheses, and found cutting per pixel noise and the
@@ -168,15 +192,11 @@
   };
   N.STEPS = ["voidd", "deep", "dark", "shade", "mid", "stone", "metal", "bright", "glare"];
 
-  /* THE PRESS. One stock for nine frames.
-   *
-   * gamma 0.5 makes 2 * gamma exactly 1 for a dot screen, so coverage is LINEAR in the twin's
-   * own luminance and nine declared steps land on nine distinct marks rather than four. A LINE
-   * screen carries tone in stroke WEIGHT rather than in dot count, so the same reasoning runs
-   * through `weight` instead of `perCell`. Both are probe frame decisions and Phase 10.5
-   * amends them to what the nine band print actually measured.
-   */
-  N.SCREEN = { mode: "line", cell: 5, angle: 68, gamma: 0.5, floor: 0.04, weight: 1.00 };
+  /* THE PRESS. One stock for nine frames, and every number in it was read off a print.
+   * See the measured nine step scale in this file's header. Do not change one of these without
+   * re-printing the probe, because the value arc in the storyboard is written against THIS
+   * press and a frame median is a claim about what comes out the other side. */
+  N.SCREEN = { mode: "line", cell: 6, angle: 68, gamma: 0.72, floor: 0.02 };
   N.EDGES  = { threshold: 18, width: 1.3, alpha: 0.78, dx: -0.9, dy: 0.8 };
 
   /* ------------------------------------------------------------------ helpers
@@ -229,57 +249,72 @@
     cx.putImageData(im, 0, 0);
   };
 
-  /* A reciprocating gas set on a skid, drawn in METRES as TXSCENE parts.
+  /* A reciprocating gas set on a skid, drawn in METRES as a TXSCENE SPRITE.
+   *
    * Not in the catalogue, so it is built from parts and goes in the backlog as a proposal.
-   * Real machines of this class sit about 2.9 m to 3.2 m to the enclosure roof on a skid, and
-   * the flue runs well above that. Nothing here is a slab. */
+   * Real machines of this class sit about 2.9 m to 3.2 m to the enclosure roof on a skid and the
+   * flue runs well above that. Nothing here is a slab.
+   *
+   * THE PART KEY IS `type` AND NOT `kind`, AND THE SPRITE IS AN OBJECT AND NOT AN ARRAY.
+   * TXSCENE's drawPart branches on `part.type` and silently draws nothing for anything else, and
+   * S.spriteBox reads `sprite.w` and `sprite.h` off the sprite rather than off the parts. Both
+   * mistakes render clean and produce an empty frame, which the near-uniform canvas gate is the
+   * only thing that would catch.
+   *
+   * FILLS ARE NAMED, NEVER HEX. `ink`, `paper` and `accent` are resolved against the `inks` the
+   * frame passes, so S.fade can walk them toward the sky with depth. A hex written here would be
+   * a frame that does not fade, sitting in a row of frames that do.
+   */
   N.genset = function (o) {
     o = o || {};
     var L = o.len == null ? 12.2 : o.len;      /* a 40 foot skid */
     var H = o.h == null ? 3.0 : o.h;           /* enclosure roof */
     var S = o.stack == null ? 11.5 : o.stack;  /* flue above grade */
-    var inks = o.inks || {};
-    return [
-      /* skid */
-      { kind: "rect", x: -L / 2, y: 0, w: L, h: 0.35, fill: inks.dark || N.G.dark },
-      /* enclosure body, the lit LEFT face and the dark RIGHT face are set by the frame */
-      { kind: "rect", x: -L / 2 + 0.2, y: 0.35, w: L - 0.4, h: H - 0.35,
-        fill: inks.body || N.G.mid },
-      /* roof band */
-      { kind: "rect", x: -L / 2 + 0.2, y: H - 0.22, w: L - 0.4, h: 0.22,
-        fill: inks.roof || N.G.stone },
-      /* louvre bank, the radiator end */
-      { kind: "rect", x: L / 2 - 2.6, y: 0.7, w: 2.2, h: H - 1.3,
-        fill: inks.louvre || N.G.shade },
-      /* THE STACK. The one thing an air permit is about. */
-      { kind: "rect", x: -L / 2 + 2.1, y: H, w: 0.62, h: S - H,
-        fill: inks.stack || N.G.metal },
-      { kind: "rect", x: -L / 2 + 1.85, y: S - 0.5, w: 1.12, h: 0.30,
-        fill: inks.cap || N.G.bright }
-    ];
+    return {
+      w: L, h: S,
+      parts: [
+        /* skid */
+        { type: "rect", x: -L / 2, y: 0, w: L, h: 0.35, fill: "ink" },
+        /* enclosure body */
+        { type: "rect", x: -L / 2 + 0.2, y: 0.35, w: L - 0.4, h: H - 0.57, fill: "paper" },
+        /* roof band, a shade lighter so the top edge reads */
+        { type: "rect", x: -L / 2 + 0.2, y: H - 0.22, w: L - 0.4, h: 0.22, fill: "accent" },
+        /* louvre bank at the radiator end */
+        { type: "rect", x: L / 2 - 2.8, y: 0.7, w: 2.2, h: H - 1.3, fill: "ink" },
+        /* THE STACK. The one thing an air permit is about. */
+        { type: "rect", x: -L / 2 + 2.1, y: H, w: 0.62, h: S - H, fill: "paper" },
+        { type: "rect", x: -L / 2 + 1.85, y: S - 0.5, w: 1.12, h: 0.30, fill: "accent" }
+      ]
+    };
   };
 
-  /* A run of chain link with a top rail, between two ground points, in metres. */
+  /* A run of chain link with a top rail, between two ground points, in metres.
+   *
+   * TXSCENE EXPOSES ITS CONTEXT AS `S.ctx` AND NOT `S.cx`, AND `S.project` RETURNS AN ARRAY
+   * [x, y] AND NOT AN OBJECT. The first cut of this helper got both wrong, which threw on the
+   * first call rather than drawing quietly, and that is the better of the two failure modes:
+   * the projection mistake inside a frame renders clean and produces nothing.
+   */
   N.fence = function (S, a, b, o) {
     o = o || {};
+    var c = S.ctx;
     var h = o.h == null ? 2.4 : o.h;
     var posts = o.posts == null ? 9 : o.posts;
-    var ink = o.ink || N.G.shade;
     var i, t, X, Z, p0, p1;
-    S.cx.save();
-    S.cx.strokeStyle = ink;
-    S.cx.lineWidth = o.w == null ? 2 : o.w;
+    c.save();
+    c.strokeStyle = o.ink || N.G.shade;
+    c.lineWidth = o.w == null ? 2 : o.w;
     for (i = 0; i <= posts; i += 1) {
       t = i / posts;
       X = a[0] + (b[0] - a[0]) * t;
       Z = a[1] + (b[1] - a[1]) * t;
       p0 = S.project(X, 0, Z);
       p1 = S.project(X, h, Z);
-      S.cx.beginPath(); S.cx.moveTo(p0.x, p0.y); S.cx.lineTo(p1.x, p1.y); S.cx.stroke();
+      c.beginPath(); c.moveTo(p0[0], p0[1]); c.lineTo(p1[0], p1[1]); c.stroke();
     }
     p0 = S.project(a[0], h, a[1]); p1 = S.project(b[0], h, b[1]);
-    S.cx.beginPath(); S.cx.moveTo(p0.x, p0.y); S.cx.lineTo(p1.x, p1.y); S.cx.stroke();
-    S.cx.restore();
+    c.beginPath(); c.moveTo(p0[0], p0[1]); c.lineTo(p1[0], p1[1]); c.stroke();
+    c.restore();
   };
 
   /* A sheet of the agency's own bond, drawn on a surface, with its own ruled blocks.
@@ -302,6 +337,103 @@
   };
 
   N.rng = function (salt) { return TX.rng(N.SEED + (salt || 0)); };
+
+  /* --------------------------------------------------------------------- camera
+   *
+   * THE DECK'S CAMERA, HANDED TO A FRAME WITH THE DECK'S OWN LIGHT ALREADY IN IT. A frame may
+   * move the eye and the horizon, which is a CAMERA MOVE and is one of this deck's continuity
+   * devices. It may not move the light, because `depth_floor` fails a frame whose scene light
+   * disagrees with the chassis declaration and two surfaces holding their own copy of one rule
+   * is this repo's oldest defect.
+   */
+  N.cam = function (o) {
+    if (!global.TXSCENE) throw new Error("gensetyard.cam needs txscene.js on this frame");
+    o = o || {};
+    var d = TXDECK.deck();
+    return {
+      w: N.W, h: N.H,
+      eye:     o.eye     == null ? 1.65 : o.eye,
+      horizon: o.horizon == null ? 700  : o.horizon,
+      f:       o.f       == null ? 900  : o.f,
+      sky:     o.sky     || N.G.voidd,
+      fogZ:    o.fogZ    == null ? 1e9 : o.fogZ,
+      light:   { az: d.light.az, el: d.light.el }
+    };
+  };
+
+  N.castDir = function () { return TXDECK.castDir(); };
+  N.castLen = function (h) { return TXDECK.castLen(h); };
+
+  /* ---------------------------------------------------------------------- press
+   *
+   * THE DECK'S STOCK, HANDED TO A FRAME. A frame passes its own `draw` and its own `over` and
+   * gets the deck's paper, ink, screen and contour. There is no drawFrame here and there never
+   * will be. The chassis hands a frame the press. The frame decides what goes through it.
+   */
+  N.print = function (cx, o) {
+    if (!global.TXINK) throw new Error("gensetyard.print needs txink.js on this frame");
+    o = o || {};
+    TXINK.print(cx, {
+      w: N.W, h: N.H,
+      ground: o.ground || N.GROUND,
+      ink:    o.ink    || N.INK,
+      fibre:  o.fibre  == null ? 0.05 : o.fibre,
+      screen: o.screen || N.SCREEN,
+      edges:  o.edges  || N.EDGES,
+      seed:   o.seed   == null ? 32 : o.seed,
+      draw:   o.draw,
+      over:   o.over
+    });
+  };
+
+  /* ------------------------------------------------------------------ type seating
+   *
+   * ONE WAY OF SEATING TYPE, AND IT IS A RESERVE RATHER THAN A PLATE. The art is told where the
+   * type goes BEFORE it draws, every field multiplies its density by the mask, and a layer that
+   * can't consult a mask as it goes gets quieted afterwards.
+   */
+  N.boxes = function (sel, pad) {
+    return TXDECK.lineBoxes(sel || ".hook, .dek, .kick, .count, .src, .tx-site",
+                            pad == null ? 18 : pad);
+  };
+  N.mask = function (boxes, feather) {
+    return TXDECK.reserveMask(boxes, feather == null ? 28 : feather);
+  };
+
+  /* QUIET THE ART BEHIND A LINE OF TYPE, AND IT IS A WASH RATHER THAN A PLATE.
+   *
+   * This deck is nine drawn worlds with real horizontal geometry in them: a skid rail, a fence
+   * top rail, a horizon cut, the edge of a sheet, a window sill. Every one of those is a long
+   * edge, and wherever one crosses a glyph band the QA harness reads it as a strikethrough,
+   * correctly, because at feed width that is what it looks like. Moving real geometry to dodge
+   * the furniture would be drawing the world around the type, which is backwards.
+   *
+   * SO THE LIGHT DIMS TOWARD THE TYPE. A soft falloff over each measured line box, in the deck's
+   * own ground, capped well under the 0.55 alpha `deck_chassis.py` fails the build on, and
+   * feathered over the full height of the box again above and below it.
+   */
+  N.quiet = function (c, boxes, alpha) {
+    if (!boxes || !boxes.length) return;
+    var A = alpha == null ? 0.42 : Math.min(0.50, alpha);
+    var g = [parseInt(N.GROUND.slice(1, 3), 16),
+             parseInt(N.GROUND.slice(3, 5), 16),
+             parseInt(N.GROUND.slice(5, 7), 16)];
+    /* TXDECK.lineBoxes RETURNS ARRAYS [x, y, w, h] AND NOT OBJECTS. Reading b.y off one of
+     * these yields undefined, the gradient goes NaN, and the wash paints at the origin. */
+    c.save();
+    for (var i = 0; i < boxes.length; i += 1) {
+      var b = boxes[i];
+      var x = b[0], y = b[1], w = b[2], h = b[3];
+      var gr = c.createLinearGradient(0, y - h, 0, y + h * 2);
+      gr.addColorStop(0.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
+      gr.addColorStop(0.34, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
+      gr.addColorStop(0.66, "rgba(" + g[0] + "," + g[1] + "," + g[2] + "," + A + ")");
+      gr.addColorStop(1.00, "rgba(" + g[0] + "," + g[1] + "," + g[2] + ",0)");
+      c.fillStyle = gr;
+      c.fillRect(x - 40, y - h, w + 80, h * 3);
+    }
+    c.restore();
+  };
 
   global.YARD = N;
 })(this);
