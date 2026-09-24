@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The abatement Carson County approved for the Project Matador campus is still described the same way in the company's own quarterly report to federal securities regulators.
 - 2026-09-16 · The phased abatement Carson County approved for the Fermi development is still in force. The company's own filings could not be read this run, so anything they might say about it is unconfirmed.
 - 2026-09-19 · The phased abatement agreement is still in force on the terms the court approved.
+- 2026-09-24 · Whether the phased abatement is still in force on the court's terms is unconfirmed this run. The report it is read from sits on a newsroom site whose exclusion file refuses the reader that checks it.
 
 ## Evidence
 

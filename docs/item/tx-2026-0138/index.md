@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The council's own agenda for the hearing still carries the moratorium as a public hearing and the resolution as a separate item expressing a desire. No ordinance has followed it.
 - 2026-09-16 · Lubbock's council has still only heard the petition for a moratorium and has adopted nothing binding on data centers. Nothing further has been scheduled.
 - 2026-09-19 · The council has taken no action on the petition, so the moratorium it asks for is still nobody's proposal.
+- 2026-09-24 · Whether the council has acted on the petition is unconfirmed this run. The city's own agenda could not be read again.
 
 ## Evidence
 

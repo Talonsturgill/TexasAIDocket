@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Williamson County's performance based abatement for the Georgetown facility is unchanged, and the county still withholds the abatement until the company meets the measures.
 - 2026-09-16 · The abatement granted to Compal is still in force exactly as the court approved it. Every term the record quotes is still on the county's own posting.
 - 2026-09-19 · The abatement for the Georgetown server service center is still in force on the terms the court granted.
+- 2026-09-24 · Whether the Georgetown abatement still stands on the court's terms is unconfirmed this run. The county's own notice is the record's source for it and could not be read again.
 
 ## Evidence
 

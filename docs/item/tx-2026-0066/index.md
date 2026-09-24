@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Data centers are still a conditional use in San Angelo's zoning code, and the ordinance that made them one is still the version the city publishes.
 - 2026-09-16 · Data centers are still a conditional use in the San Angelo code and still nowhere permitted by right. The zoning text is unchanged.
 - 2026-09-19 · A data center is still a conditional use in the city's zoning code rather than a permitted one, so each one still goes before the commission.
+- 2026-09-24 · Whether a data center is still a conditional use only in San Angelo's zoning code is unconfirmed this run. The city's own copy of the ordinance could not be read again.
 
 ## Evidence
 

@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The conditional use permit for the Airport Drive building still stands, and the prohibition on evaporative cooling is still attached to it.
 - 2026-09-16 · The conditional use permit for the Wichita Falls data center is still approved as granted. No appeal or revocation has been posted.
 - 2026-09-19 · The conditional use permit is still granted and the commission has taken nothing further on the site.
+- 2026-09-24 · Whether the conditional use permit still stands is unconfirmed this run. The city's agenda center could not be read again, and the reporting on the vote sits on newsroom sites whose exclusion files refuse the reader that checks it.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to Texas Southern U
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2619041&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-20 · Admitted to the record. The federal award record carries the dates, the awardee, the principal investigator and the abstract that names Texas Southern as one of five node leads.
 - 2026-09-23 · Texas Southern still leads its regional node in the network.
+- 2026-09-24 · Texas Southern is still the lead institution for its regional node, and the award record shows no change to the network around it.
 
 ## Evidence
 

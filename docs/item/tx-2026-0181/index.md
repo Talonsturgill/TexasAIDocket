@@ -11,7 +11,7 @@ Battalion Oil Corporation announced on September 8th, 2026 an equity investment 
 - Public access: Write to the decider
 - Take part: https://www.globenewswire.com/news-release/2026/09/08/3358243/18320/en/battalion-oil-corporation-announces-strategic-investment-in-collide-the-ai-native-operations-system-for-oil-and-gas.html
 
-- Last checked: 2026-09-21
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -22,6 +22,7 @@ Battalion Oil Corporation announced on September 8th, 2026 an equity investment 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-21 · Admitted on the company's own announcement. Nothing here has been through a regulator and the producer has an equity stake in the vendor whose system it is buying. Every claim about the system's results is a claim by a party with an interest in it. Nothing reaches an engineer on the company's own timeline until about day 90.
+- 2026-09-24 · The producer's announcement still commits its Ward County operations to a vendor it holds a stake in. Every claim about results is still the company's own.
 
 ## Evidence
 

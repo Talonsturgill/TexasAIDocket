@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The temporary moratorium is still something the commission has taken up rather than adopted, and no date has been published for a vote on it.
 - 2026-09-16 · Brownsville's temporary moratorium is still before the commission rather than adopted, and the staff advice that prompted it is unchanged. No vote has been posted.
 - 2026-09-19 · The temporary moratorium is still before the commission, whose own staff told it the code has no rules for these buildings.
+- 2026-09-24 · Where the temporary moratorium stands before the commission is unconfirmed this run. The city's own notice could not be read again.
 
 ## Evidence
 
