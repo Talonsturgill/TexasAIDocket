@@ -724,7 +724,9 @@ def main() -> int:
             continue
         sd = json.loads(sp.read_text(encoding="utf-8"))
         sc = score_of(sd)
-        if sc is None or float(sc) >= bar:
+        # EACH RUN AGAINST THE TOP RUNG IT RECORDED, never today's (Codex, #357): a later raise of
+        # the threshold must not relabel a deck that cleared its own bar as a lower-rung pass.
+        if sc is None or float(sc) >= bar_for_run(d):
             continue
         ov = sd.get("owner_override") or {}
         if ov.get("instruction") and ov.get("date"):
