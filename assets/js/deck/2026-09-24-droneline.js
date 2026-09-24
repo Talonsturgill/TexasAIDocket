@@ -59,7 +59,8 @@
    * shingle on the houses, galvanised steel on the posts, and the accent on the line alone. */
   N.mats = function (TXT, THREE) {
     var S = function (c, m, r) { return TXT.mat.clay(c, { metalness: m, roughness: r }); };
-    var line = new THREE.MeshBasicMaterial({ color: N.ACCENT, toneMapped: false });
+    /* the line ignores fog: it is the accent, and haze would turn it into the sky's own colour */
+    var line = new THREE.MeshBasicMaterial({ color: N.ACCENT, toneMapped: false, fog: false });
     return {
       skin: TXT.mat.plastic(0xe9ebe6, { roughness: 0.34, metalness: 0.02 }),
       trim: S(0x2b3138, 0.1, 0.5),
@@ -74,14 +75,17 @@
       trimWhite: S(0xe6e2d8, 0, 0.7),
       window: TXT.mat.plastic(0x1b2530, { roughness: 0.1, metalness: 0.4 }),
       windowLit: TXT.mat.emissive(0xffc98a, 1.2),
-      fence: S(0x7a5e45, 0, 0.9),
+      fence: S(0x8a7a66, 0, 0.9),
       galv: S(0x9aa2a6, 0.7, 0.4),
       concrete: S(0x9c978d, 0, 0.95),
+      asphalt: S(0x3a3a3c, 0, 0.92),
       kiosk: S(0x2e353d, 0.3, 0.45),
-      leaf: [S(0x3e4a2c, 0, 0.9), S(0x4b5632, 0, 0.9), S(0x36422a, 0, 0.9)],
+      leaf: [S(0x4f5e34, 0, 0.88), S(0x5d6b3a, 0, 0.88), S(0x46542f, 0, 0.88)],
       bark: S(0x3b3027, 0, 0.95),
       cloth: [S(0x3c4a5c, 0, 0.8), S(0x6b4d3a, 0, 0.8), S(0x51603f, 0, 0.8)],
       skinTone: S(0x9c7458, 0, 0.7),
+      denim: S(0x2e3a4c, 0, 0.85),
+      hair: S(0x241c17, 0, 0.8),
       package: S(0xb58e5f, 0, 0.85)
     };
   };
@@ -106,6 +110,45 @@
     return g;
   }
 
+  /* A BRICK WALL MATERIAL, a canvas texture of running bond courses with mortar and a seeded
+   * variation per brick, repeated at true brick size (0.2 by 0.065 m plus mortar) over a face of
+   * w by h metres. For a wall seen close enough that a flat colour reads as a plate. */
+  N.brickMat = function (THREE, w, h) {
+    var c = document.createElement("canvas"); c.width = 512; c.height = 256;
+    var x = c.getContext("2d"), s = 7;
+    var r = function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    x.fillStyle = "#4a3d34"; x.fillRect(0, 0, 512, 256);
+    for (var row = 0; row < 8; row++) {
+      var off = (row % 2) * 32;
+      for (var col = -1; col < 9; col++) {
+        var v = 0.72 + r() * 0.5;
+        x.fillStyle = "rgb(" + Math.round(150 * v) + "," + Math.round(82 * v) + "," + Math.round(60 * v) + ")";
+        x.fillRect(col * 64 + off + 3, row * 32 + 3, 58, 26);
+      }
+    }
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(w / (8 * 0.21), h / (8 * 0.075)); t.anisotropy = 8;
+    return new THREE.MeshStandardMaterial({ map: t, roughness: 0.92, metalness: 0 });
+  };
+
+  /* WEATHERED CEDAR, a canvas texture of grain streaks and a few knots, for boards seen close. */
+  N.cedarMat = function (THREE) {
+    var c = document.createElement("canvas"); c.width = 256; c.height = 1024;
+    var x = c.getContext("2d"), s = 11;
+    var r = function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    x.fillStyle = "#8d7c68"; x.fillRect(0, 0, 256, 1024);
+    for (var i = 0; i < 140; i++) {
+      var gx = r() * 256, w = 1 + r() * 3, v = r();
+      x.strokeStyle = v > 0.5 ? "rgba(70,56,44," + (0.25 + r() * 0.35) + ")" : "rgba(190,176,156," + (0.15 + r() * 0.25) + ")";
+      x.lineWidth = w; x.beginPath(); x.moveTo(gx, 0);
+      for (var yy = 0; yy <= 1024; yy += 64) x.lineTo(gx + Math.sin(yy * 0.01 + i) * 4, yy);
+      x.stroke();
+    }
+    for (var k = 0; k < 3; k++) { x.fillStyle = "rgba(60,46,36,0.55)"; x.beginPath(); x.ellipse(r() * 256, r() * 1024, 6 + r() * 6, 12 + r() * 10, 0, 0, Math.PI * 2); x.fill(); }
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    return new THREE.MeshStandardMaterial({ map: t, roughness: 0.9, metalness: 0 });
+  };
+
   /* THE AIRCRAFT, nose toward -Z, wing along X, centred on its own centre of mass, y up.
    * o.span, o.length, o.height are METRES from figures.json. o.mode 'hover' tips the tail pair
    * up to lift, 'cruise' lays them back to push. o.bay true opens the pod bay. */
@@ -115,7 +158,7 @@
     if (!(span > 0 && len > 0 && ht > 0)) throw new Error("N.zip needs span, length and height in metres from figures.json");
     var g = new THREE.Group();
     /* the fuselage, a lathed teardrop along Z, its depth set by the draft's height */
-    var R = ht * 0.36;
+    var R = ht * 0.25;
     var prof = [];
     for (var i = 0; i <= 24; i++) {
       var t = i / 24, y = (t - 0.5) * len;
@@ -129,9 +172,9 @@
     var eye = new THREE.Mesh(new THREE.SphereGeometry(R * 0.32, 20, 12), M.glass);
     eye.position.set(0, -R * 0.55, -len * 0.36); eye.scale.set(1, 0.6, 1.3); g.add(eye);
     /* the wing: straight, thin, a rounded box, set a third of the way back */
-    var chord = len * 0.13;
+    var chord = len * 0.17;
     var wing = TXT.roundedBox(span, ht * 0.05, chord, ht * 0.02, M.skin);
-    wing.position.set(0, R * 0.55, -len * 0.06); g.add(wing);
+    wing.position.set(0, R * 0.7, -len * 0.06); g.add(wing);
     /* two booms under the wing carrying the lift rotors forward and the tilting pair aft */
     var boomX = span * 0.23, boomL = len * 0.78;
     [-1, 1].forEach(function (s) {
@@ -167,14 +210,17 @@
   N.pod = function (THREE, TXT, M, o) {
     o = o || {};
     var g = new THREE.Group();
-    var body = TXT.lathe([[0.001, -0.22], [0.1, -0.2], [0.15, -0.1], [0.16, 0.05], [0.12, 0.18], [0.04, 0.24], [0.001, 0.245]], M.pod, { segments: 40 });
+    /* a slim teardrop, blunt nose down, tapering to the winch eye, with four thin steering fins */
+    var prof = [[0.001, -0.26], [0.06, -0.25], [0.105, -0.2], [0.125, -0.12], [0.128, -0.02], [0.115, 0.08], [0.085, 0.17], [0.045, 0.23], [0.012, 0.26], [0.001, 0.262]];
+    var body = TXT.lathe(prof, M.pod, { segments: 48 });
     g.add(body);
-    var band = new THREE.Mesh(new THREE.CylinderGeometry(0.162, 0.162, 0.04, 40), M.podBand);
-    band.position.y = 0.0; g.add(band);
+    var band = new THREE.Mesh(new THREE.CylinderGeometry(0.129, 0.129, 0.018, 48), M.podBand);
+    band.position.y = -0.05; g.add(band);
+    var eye = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 12), M.glass); eye.position.set(0, -0.2, 0.09); g.add(eye);
     [0, 1, 2, 3].forEach(function (k) {
-      var fin = TXT.roundedBox(0.012, 0.16, 0.12, 0.004, M.podBand);
-      var a = k * Math.PI / 2;
-      fin.position.set(Math.cos(a) * 0.15, 0.1, Math.sin(a) * 0.15); fin.rotation.y = -a; g.add(fin);
+      var fin = TXT.roundedBox(0.006, 0.13, 0.07, 0.002, M.podBand);
+      var a = k * Math.PI / 2 + Math.PI / 4;
+      fin.position.set(Math.cos(a) * 0.12, 0.13, Math.sin(a) * 0.12); fin.rotation.y = -a; g.add(fin);
     });
     if (o.package) { var p = TXT.roundedBox(0.22, 0.14, 0.18, 0.01, M.package); p.position.set(0, -0.3, 0); g.add(p); }
     return g;
@@ -224,13 +270,34 @@
     o = o || {};
     var h = o.h || 8, s = o.seed || 1, g = new THREE.Group();
     var rnd = TXT.rng ? TXT.rng(s) : function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
-    var trunk = new THREE.Mesh(new THREE.CylinderGeometry(h * 0.04, h * 0.06, h * 0.45, 10), M.bark);
-    trunk.position.y = h * 0.225; g.add(trunk);
-    for (var i = 0; i < 9; i++) {
-      var a = rnd() * Math.PI * 2, rr = h * (0.18 + rnd() * 0.3);
-      var blob = new THREE.Mesh(new THREE.IcosahedronGeometry(h * (0.22 + rnd() * 0.12), 2), M.leaf[i % M.leaf.length]);
-      blob.position.set(Math.cos(a) * rr, h * (0.55 + rnd() * 0.3), Math.sin(a) * rr);
-      blob.scale.set(1.2, 0.7, 1.2); g.add(blob);
+    /* a live oak leans and forks low: two limbs off a short trunk, then a broad crown */
+    var trunk = new THREE.Mesh(new THREE.CylinderGeometry(h * 0.045, h * 0.07, h * 0.36, 12), M.bark);
+    trunk.position.y = h * 0.18; g.add(trunk);
+    [[0.7, 0.5], [-0.9, -0.4], [0.1, -1.0]].forEach(function (q) {
+      var limb = new THREE.Mesh(new THREE.CylinderGeometry(h * 0.025, h * 0.04, h * 0.42, 8), M.bark);
+      limb.position.set(q[0] * h * 0.12, h * 0.42, q[1] * h * 0.12);
+      limb.rotation.set(q[1] * 0.7, 0, -q[0] * 0.7); g.add(limb);
+    });
+    /* the crown: many small lobes, each an icosphere whose surface is pushed in and out by a
+     * seeded field, so it reads as leaf mass with pockets of shade rather than as one ball */
+    var lobes = o.lobes || 26;
+    for (var i = 0; i < lobes; i++) {
+      var a = rnd() * Math.PI * 2, rr = h * Math.sqrt(rnd()) * 0.55;
+      var r0 = h * (0.12 + rnd() * 0.1);
+      var geo = new THREE.SphereGeometry(r0, 28, 18);
+      var pos = geo.attributes.position, v = new THREE.Vector3(), ph = rnd() * 10;
+      for (var j = 0; j < pos.count; j++) {
+        v.fromBufferAttribute(pos, j);
+        var nz = Math.sin(v.x * 7.1 / r0 + ph) * Math.sin(v.y * 6.3 / r0 + ph * 1.7) * Math.sin(v.z * 8.2 / r0 - ph);
+        var nz2 = Math.sin(v.x * 17.0 / r0 - ph) * Math.sin(v.z * 15.0 / r0 + ph) * 0.5;
+        v.multiplyScalar(1 + 0.16 * nz + 0.07 * nz2);
+        pos.setXYZ(j, v.x, v.y, v.z);
+      }
+      geo.computeVertexNormals();
+      var blob = new THREE.Mesh(geo, M.leaf[i % M.leaf.length]);
+      var y = h * (0.58 + rnd() * 0.3 - (rr / h) * 0.25);
+      blob.position.set(Math.cos(a) * rr * 1.25, y, Math.sin(a) * rr * 1.25);
+      blob.scale.set(1.25, 0.72, 1.25); g.add(blob);
     }
     return g;
   };
@@ -239,14 +306,26 @@
   N.fence = function (THREE, TXT, M, a, b, o) {
     o = o || {};
     var g = new THREE.Group(), h = o.h || 1.8;
-    var dx = b[0] - a[0], dz = b[1] - a[1], L = Math.hypot(dx, dz);
-    var panel = TXT.roundedBox(L, h, 0.04, 0.01, M.fence);
-    panel.position.set((a[0] + b[0]) / 2, h / 2, (a[1] + b[1]) / 2);
-    panel.rotation.y = -Math.atan2(dz, dx); g.add(panel);
-    var n = Math.max(1, Math.round(L / 2.4));
-    for (var i = 0; i <= n; i++) {
-      var t = i / n, post = TXT.roundedBox(0.1, h + 0.1, 0.1, 0.01, M.fence);
-      post.position.set(a[0] + dx * t, (h + 0.1) / 2, a[1] + dz * t + 0.04); g.add(post);
+    var dx = b[0] - a[0], dz = b[1] - a[1], L = Math.hypot(dx, dz), yaw = -Math.atan2(dz, dx);
+    /* cedar pickets, 14 cm wide with a finger gap, on two rails, posts every 2.4 m. Each picket
+     * is its own board so the low sun rakes across them and the fence stops reading as a slab. */
+    var pw = 0.14, gap = 0.012, n = Math.floor(L / (pw + gap));
+    var pick = new THREE.BoxGeometry(pw, h, 0.018);
+    for (var i = 0; i < n; i++) {
+      var t = (i + 0.5) / n, hh = h * (0.985 + 0.03 * ((i * 7919) % 13) / 13);
+      var p = new THREE.Mesh(pick, M.fence);
+      p.scale.y = hh / h;
+      p.position.set(a[0] + dx * t, hh / 2, a[1] + dz * t); p.rotation.y = yaw; g.add(p);
+    }
+    [0.3, h - 0.3].forEach(function (y) {
+      var rail = TXT.roundedBox(L, 0.09, 0.04, 0.01, M.fence);
+      rail.position.set((a[0] + b[0]) / 2, y, (a[1] + b[1]) / 2); rail.rotation.y = yaw;
+      rail.translateZ(-0.03); g.add(rail);
+    });
+    var np = Math.max(1, Math.round(L / 2.4));
+    for (var j = 0; j <= np; j++) {
+      var u = j / np, post = TXT.roundedBox(0.1, h + 0.08, 0.1, 0.01, M.fence);
+      post.position.set(a[0] + dx * u, (h + 0.08) / 2, a[1] + dz * u); post.rotation.y = yaw; post.translateZ(-0.07); g.add(post);
     }
     return g;
   };
@@ -255,14 +334,16 @@
   N.person = function (THREE, M, o) {
     o = o || {};
     var g = new THREE.Group(), c = M.cloth[(o.seed || 0) % M.cloth.length];
-    function cap(r, len, mat, x, y, z) { var m = new THREE.Mesh(new THREE.CapsuleGeometry(r, len, 6, 12), mat); m.position.set(x, y, z); return m; }
-    g.add(cap(0.075, 0.72, M.trim, -0.1, 0.44, 0));
-    g.add(cap(0.075, 0.72, M.trim, 0.1, 0.44, 0));
-    g.add(cap(0.19, 0.42, c, 0, 1.12, 0));
-    g.add(cap(0.05, 0.56, c, -0.25, 1.1, 0));
-    g.add(cap(0.05, 0.56, c, 0.25, 1.1, 0));
-    var head = new THREE.Mesh(new THREE.SphereGeometry(0.105, 20, 14), M.skinTone); head.position.set(0, 1.58, 0); g.add(head);
-    if (o.lookUp) head.rotation.x = -0.5;
+    function cap(r, len, mat, x, y, z, rz) { var m = new THREE.Mesh(new THREE.CapsuleGeometry(r, len, 8, 16), mat); m.position.set(x, y, z); if (rz) m.rotation.z = rz; return m; }
+    g.add(cap(0.065, 0.74, M.denim, -0.09, 0.45, 0));
+    g.add(cap(0.065, 0.74, M.denim, 0.09, 0.45, 0));
+    var torso = cap(0.16, 0.36, c, 0, 1.13, 0); torso.scale.set(1, 1, 0.66); g.add(torso);
+    g.add(cap(0.045, 0.5, c, -0.215, 1.1, 0, 0.07));
+    g.add(cap(0.045, 0.5, c, 0.215, 1.1, 0, -0.07));
+    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.08, 12), M.skinTone); neck.position.set(0, 1.43, 0); g.add(neck);
+    var head = new THREE.Mesh(new THREE.SphereGeometry(0.095, 24, 16), M.skinTone); head.scale.set(0.92, 1.1, 1); head.position.set(0, 1.56, 0); g.add(head);
+    var hair = new THREE.Mesh(new THREE.SphereGeometry(0.1, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.55), M.hair); hair.scale.set(0.95, 1.1, 1.02); hair.position.set(0, 1.575, -0.004); g.add(hair);
+    if (o.lookUp) { head.rotation.x = -0.45; hair.rotation.x = -0.45; }
     return g;
   };
 
@@ -294,6 +375,14 @@
     }
     var base = TXT.roundedBox(1.6, 0.3, 1.6, 0.03, M.concrete); base.position.y = 0.15; g.add(base);
     return g;
+  };
+
+  /* A world point to frame CSS px, through the frame's own camera, for leaders and labels that
+   * have to land on what they name. */
+  N.project = function (THREE, R, p) {
+    R.camera.updateMatrixWorld(true);
+    var v = new THREE.Vector3(p[0], p[1], p[2]).project(R.camera);
+    return [(v.x + 1) / 2 * N.W, (1 - v.y) / 2 * N.H];
   };
 
   /* THE DECK'S SHELL, kept here rather than typed into nine frames. */
