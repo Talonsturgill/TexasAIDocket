@@ -7,7 +7,7 @@
  },
  "section": "Defense and federal",
  "dek": {
-  "text": "The FAA takes comment until {{date:c2}} on a draft that would let Zipline fly delivery drones over five Texas metros. In it, a pod on a line judges the drop spot itself.",
+  "text": "The FAA takes comment until {{date:c2}} on a draft that assesses letting Zipline fly delivery drones over five Texas metros. In it, a pod on a line judges the drop spot itself.",
   "claims": [
    "c1",
    "c2",
@@ -23,7 +23,7 @@
    ]
   },
   {
-   "text": "The document is a draft, and it says who drafted it. [Zipline prepared this draft environmental assessment (draft EA) under the supervision of the FAA](c6). The agency says [all substantive comments received will be responded to in the final EA](c5), so the final assessment and the decision it informs are still to come.",
+   "text": "The document is a draft, and it says who prepared it. [Zipline prepared this draft environmental assessment (draft EA) under the supervision of the FAA](c6). The agency says [all substantive comments received will be responded to in the final EA](c5), so the final assessment and the decision it informs are still to come.",
    "claims": [
     "c6",
     "c5"
@@ -48,9 +48,10 @@
      ]
     },
     {
-     "text": "A person enters in one sentence. [If the pod is unable to automatically identify the delivery target and evaluate its suitability, an image is sent to an operator for real-time evaluation](c18). The draft gives no figure for how often that happens. The sentence sits in its section on visual effects rather than in its description of flight operations.",
+     "text": "[If the pod is unable to automatically identify the delivery target and evaluate its suitability, an image is sent to an operator for real-time evaluation](c18). The draft gives no figure for how often that happens. The sentence sits in its section on visual effects rather than in its description of flight operations. People appear elsewhere in the draft too. It says [the Remote Pilot in Command has the ability to command flight termination](c33) if an aircraft flies outside its operating area.",
      "claims": [
-      "c18"
+      "c18",
+      "c33"
      ]
     },
     {
@@ -64,7 +65,7 @@
    ]
   },
   {
-   "heading": "What the draft allows",
+   "heading": "What the draft assesses",
    "paragraphs": [
     {
      "text": "The draft's table sets a ceiling for each metro. [Across the five metros the totals are 220 Chargers, 4,400 Dropboxes and 220,000 deliveries a day](c7), and every delivery counts as [three transits](c8). A Charger is a site rather than a single mast, since [most Chargers would have around 36 docks](c32). Houston and San Antonio carry the largest allotments. Operations would run [24 hours a day, 7 days per week, including holidays](c9), with [approximately 95% of flights](c10) between 7 am and 10 pm.",
@@ -72,7 +73,8 @@
       "c7",
       "c8",
       "c9",
-      "c10"
+      "c10",
+      "c32"
      ]
     },
     {
@@ -88,10 +90,12 @@
    "heading": "Noise, as the draft measures it",
    "paragraphs": [
     {
-     "text": "The draft applies the FAA's own test, under which [noise impacts would be significant if the action would increase the DNL by 1.5 dB or more for a noise sensitive area that is exposed to noise at or above DNL 65 dB](c20). At [400 average daily deliveries per day](c21) it puts delivery noise at no more than DNL 58.1 dB at any distance from a delivery point. The draft adds that [deliveries to single family homes would be much lower, so this maximum represents delivery locations such as a large apartment complex](c29).",
+     "text": "The draft applies the FAA's own test, under which [noise impacts would be significant if the action would increase the DNL by 1.5 dB or more for a noise sensitive area that is exposed to noise at or above DNL 65 dB](c20). At [400 average daily deliveries per day](c21) it puts delivery noise at no more than DNL 58.1 dB at any distance from a delivery point, and says it [would not exceed DNL 59.7 dB at any point](c21). The draft calls 59.7 dB [the DNL threshold below which increases of 1.5 dB or more in aviation noise cannot result in significant impacts](c35). The draft adds that [deliveries to single family homes would be much lower, so this maximum represents delivery locations such as a large apartment complex](c29).",
      "claims": [
       "c20",
-      "c21"
+      "c21",
+      "c29",
+      "c35"
      ]
     },
     {
