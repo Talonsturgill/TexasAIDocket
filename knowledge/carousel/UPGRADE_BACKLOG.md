@@ -2687,7 +2687,14 @@ what this pipeline does.
 
 ---
 
-## OPEN, 2026-09-16 — TWO CRITIC DEFINITIONS STILL ENFORCE THE SUPERSEDED ROTATION RULE
+## DONE 2026-09-23 (opened 2026-09-16) — TWO CRITIC DEFINITIONS STILL ENFORCED THE SUPERSEDED ROTATION RULE
+
+**Closed by a maintainer session on 2026-09-23, exactly as proposed below.** Both definitions now
+carry the pointer to "THE DECK IS THE UNIT" in `knowledge/carousel/ILLUSTRATION_SYSTEM.md` and
+restate none of the numbers, and `layout_check.py --prose` reports no surface carrying the old
+wording. The spawn-time paragraph in `prompts/daily_routine.md` Phase 12 stays, as a copy of the
+rule that travels with the deck, and now agrees with the definitions rather than overriding them.
+The account below is kept as the record of why.
 
 **A maintainer at a keyboard has to make this edit and no routine can.** Both files are under
 `.claude/`, the host treats that path as a sensitive file class and prompts on every write

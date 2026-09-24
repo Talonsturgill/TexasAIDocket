@@ -26,6 +26,36 @@ be careless. It is the reason to be careful.
 The lens on every visual and editorial decision: **WOW the reader.** Not impress the maintainer,
 not satisfy the rubric. A Texan scrolling past should stop.
 
+## HOW A TURN ENDS IN THIS RUN (2026-09-23)
+
+A message with no tool call in it ends your turn. In a scheduled run nobody is there to answer
+it, so the work stops where the turn stopped and stays stopped. The prompting guide Anthropic
+publishes for the model this routine now runs on names that as the model's own failure in
+exactly this setting: on a long task with several parts it reports progress as it works, and
+some of those reports end the turn instead of carrying on. It is written down here before it
+costs a run.
+
+The owner does not want any of these four, and each one ends a turn while work is still owed:
+
+1. A long summary of what was done that closes by announcing the next phase and makes no tool
+   call, so the next phase never starts.
+2. An offer to carry on unless somebody would prefer otherwise, which waits for an answer nobody
+   is going to give.
+3. A list of decisions for the owner when, by your own account, none of them blocks the rest of
+   the work.
+4. Deciding that this is a good place to report, because the run has been long or a phase just
+   finished.
+
+Status notes are welcome, and so are your recommendations on open decisions. Put them in the
+same message as your next tool call and carry on with whatever does not depend on an answer. If
+you notice yourself inviting somebody to redirect you or offering to wait, delete it and do the
+next thing. If something you started is still running, a subagent or a background command, the
+task is not done until it has returned and you have used what it returned.
+
+The run ends in two places only: after Phase 19's draft is created and read back, or where
+nothing can move without a person. A usage limit is neither. It is a wait, and FAILURE PROTOCOL
+says how to take it. None of this overrides the three things `CLAUDE.md` says stop and ask.
+
 ---
 
 ## WHAT THIS RUN COSTS, and it is a design constraint rather than a footnote
@@ -180,7 +210,7 @@ Today is the America/Chicago date.
 At wake, write `out/<date>/run_state.json`:
 
 ```json
-{"run_date": "...", "phases": {
+{"run_date": "...", "effort": "...", "phases": {
   "wake": "pending", "craft": "pending", "sweep": "pending", "reverify": "pending",
   "discover": "pending", "admit": "pending", "claims": "pending", "instrument": "pending",
   "selection": "pending", "directors": "pending", "copy": "pending", "art": "pending",
@@ -191,6 +221,11 @@ At wake, write `out/<date>/run_state.json`:
 Mark each phase `done` **with its artifact paths**. If the container is reclaimed mid-run, the
 next context resumes from this file rather than starting over. Commit early and often. An
 ephemeral container has destroyed finished work before.
+
+Fill `effort` at wake from `echo $CLAUDE_EFFORT`, the level this session reasons at. The repo's
+settings carry `high`, because the routine's model defaults to `medium` and a scheduled run
+passes no level of its own. Any other value means that setting did not take, and it goes at the
+top of the run record.
 
 ---
 
@@ -776,9 +811,11 @@ Say in writing why this story and not the others.
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
 
 **BEFORE ANY DIRECTOR IS SPAWNED, hand each one the current rotation rule.** Their own definition
-under `.claude/` is stale as of 2026-09-16 and no routine may edit it, and these agents run before
-everything else, so a stale pitch here is a deck the later phases can only argue with. The
-paragraph is in Phase 12 under the flow critic and is the same one. **They also name the deck's
+carried the superseded numbers until a maintainer session replaced them with a pointer to
+`ILLUSTRATION_SYSTEM.md` on 2026-09-23, and these agents run before everything else, so a stale
+pitch here is a deck the later phases can only argue with. The paragraph travels with the brief
+anyway, because it is the one copy of the rule no later edit can strand. It is in Phase 12 under
+the flow critic and is the same one. **They also name the deck's
 continuity devices**, at least two from `ILLUSTRATION_SYSTEM.md`, because `layout_check --require`
 refuses a storyboard that declares fewer and the directors are who decide them.
 
@@ -979,7 +1016,7 @@ not edit the workshop.
 
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
 dossiers, every one of them loading the chassis Phase 10.5 wrote. **The order of work is the
-craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Five rules from it bind here:**
+craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Seven rules from it bind here:**
 
 1. **Frames 7, 8 and 9 are built first.** Every judged deck was thinnest where the argument
    lands, because the budget ran out there. The close, then the turn, then the open.
@@ -1000,6 +1037,13 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Five rules from
 6. **A slab is never a subject.** A thing not in the catalogue is drawn in metres from parts
    with `TXSCENE.sprite`, and goes in `knowledge/carousel/UPGRADE_BACKLOG.md` as a proposal for
    the catalogue. The bench serves the chassis, never the other way round.
+7. **None of the model's own defaults without a reason.** Asked for design work without
+   direction, the model this routine runs on falls back on a few default styles, and a general
+   "avoid a generic look" only swaps one for another. `ILLUSTRATION_SYSTEM.md` names them for
+   this brand under "What still fails": a cream or off-white ground, italic accent words in a
+   headline, numbered section labels beside the counter, pill-shaped chips. A frame uses one only
+   where its dossier argues for it. If the deck reaches for a default that list does not name,
+   Phase 17 adds it there.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render
@@ -1031,33 +1075,32 @@ at 432 px, rendered rather than placed, with no screen on it.** Fix what they fi
 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
 nine slides.
 
-**TELL THE FLOW CRITIC THE ROTATION RULE CHANGED, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
-definition under `.claude/agents/` still says "no two frames in a row laid out the same way, at
-least five layouts across nine" and "the print register varies with the layout". Those are the
-SUPERSEDED rule as of 2026-09-16, and the print register itself is DELETED as of 2026-09-23, so a
-critic asking for one is asking for the look the owner rejected. No routine may edit a file under
-`.claude/`, and a critic
-enforcing a superseded rule argues the deck back toward the defect it was changed to fix. So
-hand it the current rule with the deck:
+**TELL THE FLOW CRITIC THE CURRENT ROTATION RULE, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
+definition used to say "no two frames in a row laid out the same way, at least five layouts
+across nine" and "the print register varies with the layout". Those were the SUPERSEDED rule as
+of 2026-09-16, and the print register itself is DELETED as of 2026-09-23, so a critic asking for
+one is asking for the look the owner rejected. A maintainer session replaced both sentences with
+a pointer to `ILLUSTRATION_SYSTEM.md` on 2026-09-23, and a critic enforcing a superseded rule
+argues the deck back toward the defect it was changed to fix, so the rule still travels with the
+deck:
 
 > The rotation rule changed on 2026-09-16. Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
-> "THE DECK IS THE UNIT", and judge against that. Any copy of the rotation rule in your own
-> definition is stale. At most TWO of the same archetype in a row and at least THREE distinct,
+> "THE DECK IS THE UNIT", and judge against that. If anything in your own definition disagrees
+> with it, this paragraph wins. At most TWO of the same archetype in a row and at least THREE distinct,
 > not five. ONE hero object, ONE light, ONE grade for the whole deck, and no screen at all,
 > because the print register is deleted. Judge
 > whether the nine frames read as one deck and whether at least two continuity devices are
 > doing real work, and treat a deck that turns the page nine different ways as a FAULT.
 
-**AND THE SAME OVERRIDE GOES TO THE TREATMENT DIRECTORS IN PHASE 9, WHICH MATTERS MORE.** They
-run FIRST and their pitches become the dossiers, so a director still planning to the old rule
-seeds a deck the flow critic can only complain about afterwards. `carousel-treatment-director.md`
-says "at least five distinct" and that the register "varies with the layout", both superseded.
-Hand every director the same paragraph above with its pitch brief.
+**AND THE SAME PARAGRAPH GOES TO THE TREATMENT DIRECTORS IN PHASE 9, WHICH MATTERS MORE.** They
+run FIRST and their pitches become the dossiers, so a director planning to an old rule seeds a
+deck the flow critic can only complain about afterwards. Hand every director the same paragraph
+above with its pitch brief.
 
-`scripts/carousel/layout_check.py --prose` reports every surface still carrying the old wording,
-and `knowledge/carousel/UPGRADE_BACKLOG.md` carries the proposal to fix the two agent files,
-which needs a maintainer at a keyboard because the host prompts on every write under `.claude/`. **Both critics run on every round, never only the
-first**, because a repair pass is where a frame quietly becomes the skeleton again.
+`scripts/carousel/layout_check.py --prose` reports any surface still carrying the old wording,
+the agent definitions included, and a finding there is fixed on the surface, never on the list.
+**Both critics run on every round, never only the first**, because a repair pass is where a frame
+quietly becomes the skeleton again.
 
 When the last round settles, before anything is assembled:
 

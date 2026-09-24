@@ -851,3 +851,18 @@ which is the finding the judges made in words and the number that says the gate 
   a different scene, and a deck that copies a frame and swaps the object will not.
 - **A site line a script wrote.** `coherence_check` reads `class="tx-site"` from the HTML
   file. The line is static in every slide, never mounted.
+- **The model's own defaults, which it reaches for when design direction runs out** (2026-09-23).
+  Anthropic's prompting guide for the model the routine now runs on lists five: a cream or
+  off-white ground, italic accent words in headlines, numbered "01, 02, 03" section labels,
+  monospace labels and pill-shaped buttons. It also gives the cure, which is to name them: a
+  general "avoid a generic look" mostly swaps one default for another. For this brand four of
+  the five are out and one stays. **A cream, paper or off-white ground** is the retired paper
+  register (`paper` is `quoted_only` in `config/brand.yaml`) and the faded look the owner
+  rejected. **Italic accent words** carry emphasis the headline's own words should carry.
+  **Numbered section labels** duplicate the `NN / NN` counter, which is the only numbering the
+  furniture prints. **Pill-shaped chips and tags** are web furniture, not render furniture.
+  **Monospace stays**: the counter, the site line, the kicker and a DIAGRAM's labels are this
+  brand's instrument voice. A frame uses one of the four only where its dossier argues for it.
+  When a deck falls into a default this list does not name, the retro adds it here with the
+  date and the frame, because the guide's own advice is to work iteratively and extend the list
+  from what the first result reached for.

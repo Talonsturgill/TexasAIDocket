@@ -66,8 +66,22 @@
     "",
     "`additionalDirectories` names the harness scratch root, where the harness itself writes",
     "subagent transcripts. Run scratch belongs in `out/<run>/tmp/` and CLAUDE.md is emphatic",
-    "about that, but the harness's own scratch is not a rule a run can follow its way out of."
+    "about that, but the harness's own scratch is not a rule a run can follow its way out of.",
+    "",
+    "`effortLevel`, 2026-09-23. The routines moved to a model whose Claude Code default effort is",
+    "`medium`, one level below the `high` the previous model defaulted to, and a scheduled run",
+    "passes no effort of its own: the September 19th and 20th routine sessions record none. So this",
+    "line is the level every scheduled run reasons at, and every subagent inherits it unless its own",
+    "frontmatter names one. Anthropic's guidance for the new model is that its `medium` already",
+    "matches or beats the previous model's `high` on coding and knowledge work, that it thinks more",
+    "per turn at any given level, and that `xhigh` and `max` are for gains somebody has measured.",
+    "`high` is one step above its default: more reasoning than any earlier run had, at a lower price",
+    "per token. Raise it on evidence, never on a hunch. Unlike the permission grant above, this key",
+    "is not a privilege, so a cloned repository may set it and the resolver in the CLI honours it.",
+    "The Bash tool and every hook see the level as $CLAUDE_EFFORT, and the routine records it in",
+    "run_state.json at wake, so every run says whether this line took."
   ],
+  "effortLevel": "high",
   "permissions": {
     "defaultMode": "bypassPermissions",
     "additionalDirectories": ["/tmp/claude-0"],

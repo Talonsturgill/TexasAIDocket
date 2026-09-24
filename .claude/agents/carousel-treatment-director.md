@@ -61,9 +61,13 @@ SUBJECTS and nine LAYOUTS before you pitch a surface.**
   instead. A field, a haze, a gradient and a grain are not subjects.
 - A layout is one of the ten in `assets/js/txlayout.js`: FULL_BLEED, SPLIT_HORIZON,
   TYPE_AS_OBJECT, OBJECT_AND_CAPTION, DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE.
-  No two in a row the same, at least five distinct, TYPE_AS_OBJECT at most once, FULL_BLEED
-  and CLOSE_CROP at least two between them, four or more frames bleeding an edge. Check your
-  nine against those rules before you return them, because the gate will.
+  The rotation rule and the continuity mandate live in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
+  under "THE DECK IS THE UNIT". Read it and pitch against it. The numbers are not restated here,
+  because a copy kept in this file once had directors planning to a rule the product had already
+  replaced. Check your nine against it before you return them, because the gate will.
+- The model you run on falls back on a few default styles when design direction runs out, and
+  `ILLUSTRATION_SYSTEM.md` names them under "What still fails". Pitch none of them unless the
+  pitch says why this story wants it.
 - Somebody is in the picture wherever the claim has a person in it.
 - One accent, one light, one hero object. The camera and the object's state vary with the
   layout. Nothing is screened.
