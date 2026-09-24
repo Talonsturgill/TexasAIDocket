@@ -359,7 +359,7 @@ export function install(K, THREE, TXT) {
     } else {
       const pieces = exec ? [[0.52, 0.8, 0.1, 0.0]] : [[0.46, 0.5, 0.075, 0.0]];
       pieces.forEach(([w, h, d, y0]) => {
-        const pc = TXT.roundedBox(w, h, d, exec ? 0.05 : 0.032, cover, { segments: exec ? 10 : 4 });
+        const pc = TXT.roundedBox(w, h, d, exec ? 0.05 : 0.032, cover, { segments: exec ? 6 : 4 });
         deform(pc.geometry, (v) => {
           v.z += 0.5 * v.x * v.x;
           v.z += 0.02 * Math.exp(-(((v.y + (exec ? 0.18 : 0.08)) / 0.1) ** 2));
@@ -582,11 +582,11 @@ export function install(K, THREE, TXT) {
     const g = new THREE.Group();
     const fab = M.fabric(color);
     const legs = [[-0.21, 0.2], [0.21, 0.2], [-0.2, -0.2], [0.2, -0.2]];
-    legs.forEach(([x, z]) => { K.bar([x, 0.012, z * 1.12], [x * 0.96, 0.44, z], 0.011, frameMat, 10, g); cyl(0.013, 0.013, 0.012, M.rubber(), x, 0, z * 1.12, 10, g); });
-    K.bar([-0.2, 0.44, 0.2], [0.2, 0.44, 0.2], 0.011, frameMat, 10, g); K.bar([-0.2, 0.44, -0.2], [0.2, 0.44, -0.2], 0.011, frameMat, 10, g);
-    K.bar([-0.2, 0.44, 0.2], [-0.2, 0.44, -0.2], 0.011, frameMat, 10, g); K.bar([0.2, 0.44, 0.2], [0.2, 0.44, -0.2], 0.011, frameMat, 10, g);
+    legs.forEach(([x, z]) => { K.bar([x, 0.012, z * 1.12], [x * 0.96, 0.44, z], 0.011, frameMat, 7, g); cyl(0.013, 0.013, 0.012, M.rubber(), x, 0, z * 1.12, 10, g); });
+    K.bar([-0.2, 0.44, 0.2], [0.2, 0.44, 0.2], 0.011, frameMat, 7, g); K.bar([-0.2, 0.44, -0.2], [0.2, 0.44, -0.2], 0.011, frameMat, 7, g);
+    K.bar([-0.2, 0.44, 0.2], [-0.2, 0.44, -0.2], 0.011, frameMat, 7, g); K.bar([0.2, 0.44, 0.2], [0.2, 0.44, -0.2], 0.011, frameMat, 7, g);
     // back uprights, curved back
-    for (const s of [-1, 1]) K.bar([s * 0.2, 0.44, -0.2], [s * 0.19, 0.88, -0.27], 0.011, frameMat, 10, g);
+    for (const s of [-1, 1]) K.bar([s * 0.2, 0.44, -0.2], [s * 0.19, 0.88, -0.27], 0.011, frameMat, 7, g);
     const seat = TXT.roundedBox(0.46, 0.06, 0.45, 0.025, fab, { segments: 3 });
     deform(seat.geometry, (v) => { if (v.z > 0.1) v.y -= (v.z - 0.1) ** 2 * 1.2; }); K.uvBox(seat.geometry, 0.3);
     seat.position.set(0, 0.48, 0.005); g.add(seat);
