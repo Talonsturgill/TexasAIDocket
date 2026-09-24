@@ -333,9 +333,9 @@ export function install(K, THREE, TXT) {
    * hill_country_terrain
    * ====================================================================================== */
   const SEASON = {
-    summer: { flat: [0x9c9463, 0x898a5a, 0xb2a676], slope: 0x6f7247, brake: 0x3c4a2d, rock: 0xd2c6a6, rim: 0x857d4c },
-    spring: { flat: [0x7a8a48, 0x6c7d40, 0x8e9656], slope: 0x5d6b3a, brake: 0x34452a, rock: 0xd0c4a4, rim: 0x7c7d48 },
-    winter: { flat: [0xa89a74, 0x98906c, 0xb4a782], slope: 0x7e765a, brake: 0x3f4a31, rock: 0xcfc3a5, rim: 0x8d8060 },
+    summer: { flat: [0x8e8c58, 0x7b8048, 0xa39c68], slope: 0x66703f, brake: 0x3c4a2d, rock: 0xd2c6a6 },
+    spring: { flat: [0x7a8a48, 0x6c7d40, 0x8e9656], slope: 0x5d6b3a, brake: 0x34452a, rock: 0xd0c4a4 },
+    winter: { flat: [0xa89a74, 0x98906c, 0xb4a782], slope: 0x7e765a, brake: 0x3f4a31, rock: 0xcfc3a5 },
   };
   function hillHeight(o, seed) {
     const S = o.size, relief = o.relief, nA = noise2(seed), nB = noise2(seed + 1), nC = noise2(seed + 2);
@@ -361,10 +361,10 @@ export function install(K, THREE, TXT) {
   }
   K.define('hill_country_terrain', {
     size: [800, 60, 800],
-    options: { size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0 },
-    note: 'Central Texas Hill Country: rolling stair-stepped limestone hills, exposed ledges, juniper brakes and live oak mottes, grass by slope. size 200 to 2000 m, relief in metres. Rim dips 0.4 m under y=0 so it rises out of TXT.ground. Middle ground and far distance.',
+    options: { size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c },
+    note: 'Central Texas Hill Country: rolling stair-stepped limestone hills, exposed ledges, juniper brakes and live oak mottes, grass by slope. size 200 to 2000 m, relief in metres. Rim dips 0.4 m under y=0 so it rises out of TXT.ground; ground is that plane\'s colour, for the rim to melt into. trees scales juniper, oak motte and understory density. Middle ground and far distance; never call TXT.contact on it. userData.heightAt(x, z) seats things on it.',
     make(o, r) {
-      o = Object.assign({ size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0 }, o);
+      o = Object.assign({ size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c }, o);
       o.size = clamp(o.size, 200, 2000);
       const S = o.size, g = new THREE.Group(), seed = 1000 + o.seed * 31;
       const Hf = hillHeight(o, seed);
@@ -374,7 +374,7 @@ export function install(K, THREE, TXT) {
       // colour by slope, by height, by the brake noise
       const P = geo.attributes.position, N = geo.attributes.normal, C = new Float32Array(P.count * 3);
       const pal = SEASON[o.season] || SEASON.summer, flats = pal.flat.map(col), cS = col(pal.slope), cB = col(pal.brake),
-        cR = col(pal.rock), cRim = col(pal.rim), nP = noise2(seed + 7), nQ = noise2(seed + 8), tmp = new THREE.Color(), t2 = new THREE.Color();
+        cR = col(pal.rock), cRim = col(o.ground), nP = noise2(seed + 7), nQ = noise2(seed + 8), tmp = new THREE.Color(), t2 = new THREE.Color();
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i), ny = N.getY(i), slope = 1 - ny;
         const pn = fbm(nP, x / 60, z / 60, 3);
@@ -396,8 +396,16 @@ export function install(K, THREE, TXT) {
       const ground = new THREE.Mesh(geo, tm); ground.receiveShadow = true; g.add(ground);
 
       // sample helpers
-      const hAt = (x, z) => Hf(x, z);
-      const slopeAt = (x, z) => { const e = 2, a = hAt(x + e, z).y - hAt(x - e, z).y, b = hAt(x, z + e).y - hAt(x, z - e).y;
+      // placement reads the built grid, bilinear, instead of re-running the noise stack per try
+      const NV = seg + 1, cell = S / seg;
+      const hAt = (x, z) => {
+        const fx = clamp((x + S / 2) / cell, 0, seg - 1e-6), fz = clamp((z + S / 2) / cell, 0, seg - 1e-6), ix = Math.floor(fx), iz = Math.floor(fz), tx = fx - ix, tz = fz - iz;
+        const a = iz * NV + ix, b = a + 1, c = a + NV, d = c + 1;
+        const y = (P.getY(a) * (1 - tx) + P.getY(b) * tx) * (1 - tz) + (P.getY(c) * (1 - tx) + P.getY(d) * tx) * tz;
+        const m = (MK[a] * (1 - tx) + MK[b] * tx) * (1 - tz) + (MK[c] * (1 - tx) + MK[d] * tx) * tz;
+        return { y, m };
+      };
+      const slopeAt = (x, z) => { const e = cell, a = hAt(x + e, z).y - hAt(x - e, z).y, b = hAt(x, z + e).y - hAt(x, z - e).y;
         return { s: Math.hypot(a, b) / (2 * e), gx: a, gz: b }; };
 
       // limestone ledges: slabs laid along the contour on the risers, half buried
@@ -926,14 +934,14 @@ export function install(K, THREE, TXT) {
    * ====================================================================================== */
   K.define('caliche_road', {
     size: [9, 0.3, 60],
-    options: { length: 60, width: 4.2, curve: 0.25, centerGrass: true, verge: 2.6 },
+    options: { length: 60, width: 4.2, curve: 0.25, centerGrass: true, verge: 2.6, ground: 0x6d7a3c },
     note: 'A pale caliche ranch road running along z: a crowned bed, two packed wheel tracks, a weedy centre strip, graded berms of loose gravel and grass verges that sink into TXT.ground. curve bows it sideways (fraction of length/4).',
     make(o, r) {
-      o = Object.assign({ length: 60, width: 4.2, curve: 0.25, centerGrass: true, verge: 2.6 }, o);
+      o = Object.assign({ length: 60, width: 4.2, curve: 0.25, centerGrass: true, verge: 2.6, ground: 0x6d7a3c }, o);
       const g = new THREE.Group(), L = o.length, W = o.width, V = o.verge, seed = 5000 + o.seed * 13;
       const n1 = noise2(seed), n2 = noise2(seed + 1);
       const centre = (t) => [o.curve * L * 0.25 * (1 - Math.pow(2 * t - 1, 2)) - o.curve * L * 0.125 + (n1(t * 4, 2) - 0.5) * 0.6, L / 2 - t * L];
-      const cRoad = col(0xebe2ca), cTrack = col(0xf4eddb), cLoose = col(0xddd1b3), cVerge = col(0x8a8250), cEdge = col(0x857d4c), cMid = col(0x9d9464);
+      const cRoad = col(0xebe2ca), cTrack = col(0xf4eddb), cLoose = col(0xddd1b3), cVerge = col(0x7a8045), cEdge = col(o.ground), cMid = col(0x9d9464);
       const prof = [];
       const S = [-W / 2 - V, -W / 2 - V * 0.6, -W / 2 - V * 0.3, -W / 2 - 0.35, -W / 2 - 0.1];
       S.forEach((s) => prof.push({ s }));
@@ -988,16 +996,16 @@ export function install(K, THREE, TXT) {
    * ====================================================================================== */
   K.define('highway', {
     size: [40, 1, 80],
-    options: { length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6 },
+    options: { length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6, ground: 0x6d7a3c },
     note: 'A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an overhead truss with blank green panels over the right carriageway; overpass adds a crossing bridge on round columns and bent caps with MSE walled approaches.',
     make(o, r) {
-      o = Object.assign({ length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6 }, o);
+      o = Object.assign({ length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6, ground: 0x6d7a3c }, o);
       const g = new THREE.Group(), L = o.length, E = o.embank, LW = 3.66, SI = 1.2, SO = 3.0, MED = 0.9;
       const CW = SI + o.lanes * LW + SO;                         // one carriageway
       const half = MED / 2 + CW;                                 // edge of pavement
       const slope = 4 * E + 3;                                   // side slope and ditch
       // ---- earthwork: grassed side slopes and a shallow ditch
-      const cG = col(0x7d7a48), cG2 = col(0x8d8752), cEdge = col(0x857d4c);
+      const cG = col(0x74783f), cG2 = col(0x828548), cEdge = col(o.ground);
       const eprof = [];
       [-half - slope, -half - slope * 0.7, -half - slope * 0.35, -half - 0.6, -half].forEach((s) => eprof.push({ s }));
       [half, half + 0.6, half + slope * 0.35, half + slope * 0.7, half + slope].forEach((s) => eprof.push({ s }));
@@ -1185,10 +1193,10 @@ export function install(K, THREE, TXT) {
    * ====================================================================================== */
   K.define('creek', {
     size: [30, 2, 40],
-    options: { length: 40, width: 30, bed: 9, bank: 1.8, water: 'shallow' },
+    options: { length: 40, width: 30, bed: 9, bank: 1.8, water: 'shallow', ground: 0x6d7a3c },
     note: 'A Hill Country creek running along z: flat limestone bedrock with stepped ledges and potholes, gravel bars, slabs, grassy banks that rise 1 to 2.5 m and sink back into TXT.ground at the sides. water: dry, shallow (clear pools over the rock) or full. Built above grade, since nothing can be cut into the ground plane.',
     make(o, r) {
-      o = Object.assign({ length: 40, width: 30, bed: 9, bank: 1.8, water: 'shallow' }, o);
+      o = Object.assign({ length: 40, width: 30, bed: 9, bank: 1.8, water: 'shallow', ground: 0x6d7a3c }, o);
       const g = new THREE.Group(), L = o.length, W = o.width, B = o.bed, seed = 7000 + o.seed * 7;
       const nM = noise2(seed), nR = noise2(seed + 1), nS = noise2(seed + 2);
       const cx = (z) => (nM(z / 18 + 3, 1) - 0.5) * B * 0.9;                // the meander
@@ -1209,7 +1217,7 @@ export function install(K, THREE, TXT) {
       };
       const geo = heightfield(W, L, Math.round(W * 4), Math.round(L * 4), bedAt);
       const P = geo.attributes.position, N = geo.attributes.normal, C = new Float32Array(P.count * 3);
-      const cRock = col(0xe4dccb), cRockD = col(0xc8bfac), cGrav = col(0xcfc8b8), cBankRock = col(0xd6cdb8), cGrass = col(0x7f7a45), cGrass2 = col(0x9a8f58), cEdge = col(0x857d4c), cMud = col(0x7a6a52), tmp = new THREE.Color();
+      const cRock = col(0xe4dccb), cRockD = col(0xc8bfac), cGrav = col(0xcfc8b8), cBankRock = col(0xd6cdb8), cGrass = col(0x6f7a3e), cGrass2 = col(0x87874a), cEdge = col(o.ground), cMud = col(0x7a6a52), tmp = new THREE.Color();
       const levelW = o.water === 'full' ? 0.62 : o.water === 'shallow' ? 0.42 : -1;
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i), slope = 1 - N.getY(i), s = Math.abs(x - cx(z)), H = hw(z);
@@ -1268,10 +1276,10 @@ export function install(K, THREE, TXT) {
    * ====================================================================================== */
   K.define('reservoir_shore', {
     size: [300, 4, 260],
-    options: { width: 300, water: 200, land: 60, bluff: 3.5, drawdown: 1.2, ramp: true },
+    options: { width: 300, water: 200, land: 60, bluff: 3.5, drawdown: 1.2, ramp: true, ground: 0x6d7a3c },
     note: 'A reservoir shore: land at -z rising to a low bluff and sinking back into TXT.ground, a pale drawdown band of cracked mud and rock (the bathtub ring of a Texas lake in drought), and a wide reflective water plane toward +z with waves. ramp adds a grooved concrete boat ramp with curbs running into the water. The water surface stands at y = 0.35.',
     make(o, r) {
-      o = Object.assign({ width: 300, water: 200, land: 60, bluff: 3.5, drawdown: 1.2, ramp: true }, o);
+      o = Object.assign({ width: 300, water: 200, land: 60, bluff: 3.5, drawdown: 1.2, ramp: true, ground: 0x6d7a3c }, o);
       const g = new THREE.Group(), W = o.width, D = o.land, seed = 8000 + o.seed * 11, level = 0.35;
       const nA = noise2(seed), nB = noise2(seed + 1);
       const shore = (x) => (fbm(nA, x / 40, 3, 3) - 0.5) * 22 + (nA(x / 9, 8) - 0.5) * 4;     // z of the waterline
@@ -1299,7 +1307,7 @@ export function install(K, THREE, TXT) {
       const P = geo.attributes.position; for (let i = 0; i < P.count; i++) P.setY(i, hAt(P.getX(i), P.getZ(i)));
       geo.computeVertexNormals();
       const N = geo.attributes.normal, C = new Float32Array(P.count * 3), tmp = new THREE.Color();
-      const cBed = col(0x6f6553), cMud = col(0xd3c9b2), cCrack = col(0xbdb39c), cRock = col(0xc7bfae), cGrass = col(0x827c46), cGrass2 = col(0x9b9157), cEdge = col(0x857d4c), cWet = col(0x6b5d48);
+      const cBed = col(0x6f6553), cMud = col(0xd3c9b2), cCrack = col(0xbdb39c), cRock = col(0xc7bfae), cGrass = col(0x72793f), cGrass2 = col(0x8a8a4c), cEdge = col(o.ground), cWet = col(0x6b5d48);
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i), u = shore(x) - z, sl = 1 - N.getY(i);
         if (u < 0) tmp.copy(cBed);
@@ -1373,11 +1381,6 @@ export function install(K, THREE, TXT) {
     for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * s * 1.05, p.getY(i) * s * 0.78, p.getZ(i) * s * 0.92);
     return smoothNormals(g);
   }
-  // a puff of lint: two octahedra turned 45 degrees and merged, smoothed round (16 triangles)
-  function puff(rng, s) {
-    const a = boll(rng, s), b = boll(rng, s * 0.9); b.rotateY(Math.PI / 4); b.rotateX(0.5);
-    return mergeGeos([a, b]);
-  }
   // a lock of lint: a smoothed octahedron, white above, the brown bur showing underneath
   function lintGeo(rng, s) {
     const g = boll(rng, s), p = g.attributes.position, C = new Float32Array(p.count * 3), w = col(rng() < 0.2 ? 0xe9e1d2 : 0xf7f5ef), b = col(0x4a3828);
@@ -1429,10 +1432,10 @@ export function install(K, THREE, TXT) {
    * ====================================================================================== */
   K.define('crop_rows', {
     size: [20, 1.4, 30],
-    options: { crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40 },
+    options: { crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40, ground: 0x6d7a3c },
     note: 'A field block of bedded rows running along z, 40 inch rows on South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green with flowers, 1 defoliated with open white bolls) or sorghum (growth 1 ripe rust heads). The block edge feathers into TXT.ground over a turn row.',
     make(o, r) {
-      o = Object.assign({ crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40 }, o);
+      o = Object.assign({ crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40, ground: 0x6d7a3c }, o);
       const g = new THREE.Group(), W = o.width, L = o.length, sp = o.row, seed = 9000 + o.seed * 3;
       const nS = noise2(seed), rows = Math.floor(W / sp), x0 = -(rows - 1) * sp / 2;
       const bedAt = (x, z) => {
@@ -1443,7 +1446,7 @@ export function install(K, THREE, TXT) {
         return lerp(-0.04, y, smooth(0, 1.2, e));
       };
       const geo = heightfield(W + 2, L + 2, Math.round((W + 2) * 6), Math.round((L + 2) * 1.6), bedAt);
-      const P = geo.attributes.position, C = new Float32Array(P.count * 3), cs = col(o.soil), cd = col(o.soil).multiplyScalar(0.72), ce = col(0x857d4c), tmp = new THREE.Color();
+      const P = geo.attributes.position, C = new Float32Array(P.count * 3), cs = col(o.soil), cd = col(o.soil).multiplyScalar(0.72), ce = col(o.ground), tmp = new THREE.Color();
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i);
         mix3(tmp, cd, cs, smooth(0.05, 0.13, y)); tmp.multiplyScalar(0.9 + fbm(nS, x * 0.3, z * 0.3, 2) * 0.2);
@@ -1490,7 +1493,7 @@ export function install(K, THREE, TXT) {
       const tx = bx + Math.sin(lean * Math.cos(a)) * -h * 0.55, tz = bz + Math.sin(lean * Math.sin(a)) * h * 0.55, ty = h * 0.53;
       const spikeH = h * 0.5, fl = kind === 'bluebonnet' ? [0x2d3f9a, 0x3a4fb4, 0x4a5cc4] : [0xd8431e, 0xe2582a, 0xc93a1c];
       const prof = kind === 'bluebonnet' ? [[0, 0], [0.022, 0.02], [0.026, 0.15], [0.025, 0.32], [0.022, 0.5], [0.017, 0.68], [0.011, 0.84], [0.004, 0.96], [0, 1]] : [[0, 0], [0.016, 0.05], [0.028, 0.3], [0.032, 0.55], [0.026, 0.8], [0.012, 0.95], [0, 1]];
-      const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1] * spikeH)), 8).toNonIndexed();
+      const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1] * spikeH)), 7).toNonIndexed();
       const p = lg.attributes.position, cc = new Float32Array(p.count * 3), cA = col(fl[Math.floor(rng() * 3)]), cW = col(0xf4f2ea), cG = col(0x6f8a3a), c = new THREE.Color();
       const nf = noise2(Math.floor(rng() * 1e4));
       for (let i = 0; i < p.count; i++) {
@@ -1516,7 +1519,7 @@ export function install(K, THREE, TXT) {
       const pal = (PASTURE[o.season] || PASTURE.summer).tufts;
       const flow = o.flowers !== 'none';
       const edgeK = (x, z) => smooth(0, Math.min(W, D) * 0.18, Math.min(W / 2 - Math.abs(x), D / 2 - Math.abs(z)));
-      const count = Math.round(W * D * 5.2 * o.density);
+      const count = Math.round(W * D * (flow ? 4.2 : 5.2) * o.density);
       const groups = pal.map((c, i) => ({ geo: tuftGeo(r, { blades: 18, height: o.height * (i === 2 ? 1.15 : 1), spread: 0.16, width: 0.01, lean: 0.38, colors: c }), list: [], cols: [] }));
       // seed stalks: a few tall stems with a head, for the texture a real prairie has against the sky
       const stalk = (() => { const parts = []; for (let k = 0; k < 5; k++) { const h = o.height * (1.2 + r() * 0.5), a = r() * TAU, l = 0.08 + r() * 0.1;
@@ -1541,7 +1544,7 @@ export function install(K, THREE, TXT) {
       if (flow) {
         const kinds = o.flowers === 'mixed' ? ['bluebonnet', 'bluebonnet', 'paintbrush'] : [o.flowers];
         const fv = []; kinds.forEach((k) => { for (let v = 0; v < 3; v++) fv.push({ kind: k, geo: flowerSpike(r, k), list: [], cols: [] }); });
-        const nFl = Math.round(W * D * 3.4 * o.density);
+        const nFl = Math.round(W * D * 2.4 * o.density);
         for (let i = 0; i < nFl; i++) {
           const x = (r() - 0.5) * W, z = (r() - 0.5) * D, e = edgeK(x, z), b = smooth(0.46 - o.drift * 0.2, 0.64, nF(x / 4, z / 4));
           if (r() > b * (0.3 + 0.7 * e)) continue;

@@ -37,7 +37,7 @@ export function install(K, THREE, TXT) {
   function texture(key, W, H, paint, srgb) {
     if (TEXC.has(key)) return TEXC.get(key);
     const c = canvas(W, H), x = c.getContext('2d');
-    paint(x, W, H, K.rng(hashStr(key)));
+    const _t = performance.now(); paint(x, W, H, K.rng(hashStr(key))); (window.__TT = window.__TT || []).push([key, Math.round(performance.now() - _t)]);
     const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
     t.colorSpace = srgb === false ? THREE.NoColorSpace : THREE.SRGBColorSpace;
     TEXC.set(key, t); return t;
@@ -62,6 +62,7 @@ export function install(K, THREE, TXT) {
     crape:   { base: '#b39a80', dark: '#7a6450', light: '#dccab4', kind: 'mottle' },  // smooth, exfoliating patches
     palm:    { base: '#7a7166', dark: '#3a342e', light: '#a39a8c', kind: 'ring' },
   };
+  const FIELD = new Map();
   function barkMat(name) {
     return mat('bark|' + name, () => {
       const B = BARKS[name];
@@ -79,22 +80,33 @@ export function install(K, THREE, TXT) {
     if (B.kind === 'block' || B.kind === 'scale' || B.kind === 'shag' || B.kind === 'shred') {
       /* a furrow field, per pixel: ridges run up the stem (warped so they wander and merge),
        * broken across by cracks at a per-ridge rhythm. Tileable: integer counts, periodic warps. */
-      const P0 = { block: [11, [5, 9], 0.22, 0.09], scale: [15, [9, 15], 0.18, 0.07], shag: [18, [1, 3], 0.35, 0.05], shred: [22, [1, 2], 0.5, 0.03] }[B.kind];
-      const nR = P0[0], cr = [], ph = [];
-      for (let i = 0; i < nR; i++) { cr.push(P0[1][0] + Math.floor(r() * (P0[1][1] - P0[1][0] + 1))); ph.push(r()); }
-      const wp = [r() * 6.28, r() * 6.28, r() * 6.28], im = x.createImageData(W, H), d = im.data;
-      const ss = (e0, e1, v) => { const t = Math.max(0, Math.min(1, (v - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+      if (!FIELD.has(B)) {
+        const P0 = { block: [11, [5, 9], 0.22, 0.09], scale: [15, [9, 15], 0.18, 0.07], shag: [18, [1, 3], 0.35, 0.05], shred: [22, [1, 2], 0.5, 0.03] }[B.kind];
+        const nR = P0[0], cr = [], ph = [];
+        for (let i = 0; i < nR; i++) { cr.push(P0[1][0] + Math.floor(r() * (P0[1][1] - P0[1][0] + 1))); ph.push(r()); }
+        const wp = [r() * 6.28, r() * 6.28, r() * 6.28], F = new Float32Array(W * H);
+        const ss = (e0, e1, v) => { const t = Math.max(0, Math.min(1, (v - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+        const sy1 = new Float32Array(H), sy2 = new Float32Array(H), sx2 = new Float32Array(W);
+        for (let yy = 0; yy < H; yy++) { sy1[yy] = yy / H * 6.283 * 2 + wp[0]; sy2[yy] = yy / H * 6.283 * 5 + wp[1]; }
+        for (let xx = 0; xx < W; xx++) sx2[xx] = 0.15 * Math.sin(xx / W * 6.283 * 2 + wp[2]);
+        for (let yy = 0; yy < H; yy++) {
+          const fy = yy / H;
+          for (let xx = 0; xx < W; xx++) {
+            const fx = xx / W;
+            const u = fx * nR + P0[2] * (Math.sin(sy1[yy] + fx * 18.85) + 0.5 * Math.sin(sy2[yy] + fx * 43.98));
+            const fl = Math.floor(u), cell = ((fl % nR) + nR) % nR, f = u - fl;
+            const ridge = ss(0, 0.28, f) * ss(1, 0.72, f);
+            const v = fy * cr[cell] + ph[cell] + sx2[xx], g = v - Math.floor(v);
+            const crack = ss(0, P0[3], g) * ss(1, 1 - P0[3], g);
+            F[yy * W + xx] = ridge * (0.35 + 0.65 * crack) * (0.82 + 0.18 * Math.sin(cell * 12.9 + ph[cell] * 20));
+          }
+        }
+        FIELD.set(B, F);
+      }
+      const F = FIELD.get(B), im = x.createImageData(W, H), d = im.data;
       for (let yy = 0; yy < H; yy++) {
-        const fy = yy / H;
         for (let xx = 0; xx < W; xx++) {
-          const fx = xx / W;
-          const u = fx * nR + P0[2] * (Math.sin(fy * 6.283 * 2 + wp[0] + fx * 6.283 * 3) + 0.5 * Math.sin(fy * 6.283 * 5 + wp[1] + fx * 6.283 * 7));
-          const cell = ((Math.floor(u) % nR) + nR) % nR, f = u - Math.floor(u);
-          const ridge = ss(0, 0.28, f) * ss(1, 0.72, f);
-          const v = fy * cr[cell] + ph[cell] + 0.15 * Math.sin(fx * 6.283 * 2 + wp[2]), g = v - Math.floor(v);
-          const crack = ss(0, P0[3], g) * ss(1, 1 - P0[3], g);
-          let val = ridge * (0.35 + 0.65 * crack);
-          val *= 0.82 + 0.18 * Math.sin(cell * 12.9 + ph[cell] * 20);
+          const val = F[yy * W + xx];
           const i4 = (yy * W + xx) * 4;
           if (bump) { const q = 20 + val * 220; d[i4] = d[i4 + 1] = d[i4 + 2] = q; }
           else {
@@ -191,8 +203,7 @@ export function install(K, THREE, TXT) {
         const t = (i + 0.7) / n, cc = mix(c, cols[r() < 0.5 ? 1 : 2], r() * 0.4);
         for (const s of [-1, 1]) {
           x.save(); x.translate(L * t, 0); x.rotate(s * (0.9 - t * 0.4));
-          const g = x.createLinearGradient(0, -Wd, 0, Wd); g.addColorStop(0, css(cc, 1.15)); g.addColorStop(1, css(cc, 0.8));
-          x.fillStyle = g; x.beginPath(); x.ellipse(Wd * 1.2, 0, Wd * 1.25, Wd * 0.42, 0, 0, 6.3); x.fill(); x.restore();
+          x.fillStyle = css(cc, s > 0 ? 0.85 : 1.1); x.beginPath(); x.ellipse(Wd * 1.2, 0, Wd * 1.25, Wd * 0.42, 0, 0, 6.3); x.fill(); x.restore();
         }
       }
       x.fillStyle = css(c); x.beginPath(); x.ellipse(L + Wd, 0, Wd * 1.2, Wd * 0.45, 0, 0, 6.3); x.fill();
@@ -518,7 +529,7 @@ export function install(K, THREE, TXT) {
         trunks, flare: 0.25, roots: 0, minRad: 0.008,
         levels: [
           { step: 0.3, wander: 0.45, up: 0.02, spread: 0.02, taper: 0.62 },
-          { n: 3, t0: 0.6, t1: 1.0, angle: 0.7, angleJit: 0.5, lenK: 1.25 * k, radK: 0.72, shorten: 0.2, step: 0.35, wander: 0.5, up: 0.02, droop: 0.09, spread: 0.07, taper: 0.3 },
+          { n: 3, t0: 0.6, t1: 1.0, angle: 0.7, angleJit: 0.5, lenK: 1.1 * k, radK: 0.72, shorten: 0.2, step: 0.35, wander: 0.5, up: 0.02, droop: 0.09, spread: 0.07, taper: 0.3 },
           { n: 5, t0: 0.2, t1: 1.0, angle: 0.95, angleJit: 0.5, lenK: 0.5, radK: 0.55, shorten: 0.3, step: 0.3, wander: 0.55, up: 0.02, droop: 0.06, taper: 0.35 },
           { n: 3, t0: 0.3, t1: 1.0, angle: 0.9, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.2, step: 0.25, wander: 0.5, droop: 0.04, taper: 0.4 },
         ],
@@ -546,12 +557,12 @@ export function install(K, THREE, TXT) {
         flare: 0.35, roots: 5, floor: 2.4 * kh, minRad: 0.01,
         levels: [
           { step: 0.5, wander: 0.06, up: 0.03, taper: 0.7 },
-          { n: 5, t0: 0.7, t1: 1.0, angle: 0.5, angleJit: 0.3, lenK: 2.3 * kh, radK: 0.62, shorten: 0.1, step: 0.55, wander: 0.18, up: 0.04, droop: 0.05, spread: 0.02, taper: 0.25 },
+          { n: 5, t0: 0.7, t1: 1.0, angle: 0.55, angleJit: 0.3, lenK: 1.75 * kh, radK: 0.62, shorten: 0.1, step: 0.55, wander: 0.18, up: 0.04, droop: 0.05, spread: 0.02, taper: 0.25 },
           { n: 7, t0: 0.2, t1: 0.98, angle: 0.8, angleJit: 0.4, lenK: 0.42, radK: 0.5, shorten: 0.35, step: 0.4, wander: 0.3, up: 0.03, droop: 0.08, taper: 0.3 },
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.3, wander: 0.35, droop: 0.1, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.5, 0.75], lift: 0.05 },
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.15), y0: H * 0.6, ry: H * 0.42, base: H * 0.3, hollow: 0.5 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.15), y0: H * 0.56, ry: H * 0.36, base: H * 0.3, hollow: 0.5 },
         shell: { n: 900, size: [0.55, 0.85], thick: 0.25, skirt: 0.75, below: 0.8, gaps: -0.18, lobe: 0.14 },
       };
       return makeTree(S, r, { bark: 'elm', leafKey: 'elm', leaf: ELM_LEAF, cards: 10, colors: [0xfff4d8, 0xf0ecc8, 0xffffff, 0xe4e4c4] });
@@ -675,7 +686,7 @@ export function install(K, THREE, TXT) {
       const core = mat('shrubcore|' + kind, () => new THREE.MeshStandardMaterial({ color: kind === 'yaupon' ? 0x1c2a16 : 0x22341a, roughness: 0.95 }));
       const pts = [];
       if (form === 'hedge') {
-        const c = TXT.roundedBox(L - 0.12, H - 0.16, D - 0.12, 0.18, core, { segments: 3 }); c.position.y = (H - 0.16) / 2 + 0.1; g.add(c);
+        const c = TXT.roundedBox(L - 0.2, H - 0.22, D - 0.2, 0.16, core, { segments: 3 }); c.position.y = (H - 0.22) / 2 + 0.1; g.add(c);
         // clusters over the top and the four sides, shoulders rounded, the foot tucked in
         const area = [L * D, L * H, L * H, D * H, D * H], tot = area.reduce((a, b) => a + b, 0), N = 1500;
         for (let i = 0; i < N; i++) {
@@ -689,7 +700,7 @@ export function install(K, THREE, TXT) {
           const cut = Math.hypot(dx, dz, dy) > sh ? (Math.hypot(dx, dz, dy) - sh) : 0;
           if (cut > 0) { const s = sh / Math.hypot(dx, dz, dy); x = Math.sign(x) * ((L / 2 - sh) + dx * s); z = Math.sign(z) * ((D / 2 - sh) + dz * s); y = (H - sh) + dy * s * (dy > 0 ? 1 : 0) + (dy > 0 ? 0 : y - (H - sh)); }
           if (y < 0.25) { const t = y / 0.25; x *= 0.92 + 0.08 * t; z *= 0.8 + 0.2 * t; }
-          pts.push([x + (r() - 0.5) * 0.05, Math.min(H, y) - 0.06, z + (r() - 0.5) * 0.05, 0.16 + r() * 0.08]);
+          const ins = 0.13; pts.push([Math.sign(x) * Math.max(0, Math.abs(x) - ins) + (r() - 0.5) * 0.04, Math.max(0.16, Math.min(H - ins, y)), Math.sign(z) * Math.max(0, Math.abs(z) - ins) + (r() - 0.5) * 0.04, 0.11 + r() * 0.05]);
         }
       } else {
         const R = L / 2;
@@ -697,7 +708,7 @@ export function install(K, THREE, TXT) {
         for (let i = 0; i < 1200; i++) {
           const u = r() * 1.2 - 0.2, th = r() * 6.283, sq = Math.sqrt(1 - u * u);
           const d = 0.9 + r() * 0.12;
-          pts.push([sq * Math.cos(th) * R * d, H * 0.5 + u * H * 0.5 * d, sq * Math.sin(th) * R * d, 0.18 + r() * 0.1]);
+          pts.push([sq * Math.cos(th) * (R - 0.14) * d, Math.max(0.16, H * 0.5 + u * (H * 0.5 - 0.14) * d), sq * Math.sin(th) * (R - 0.14) * d, 0.12 + r() * 0.06]);
         }
       }
       // a few stems at the foot

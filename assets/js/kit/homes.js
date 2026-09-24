@@ -1405,11 +1405,13 @@ export function install(K, THREE, TXT) {
         const x = pos.getX(i), z = pos.getZ(i), p = patch(x, z), k = 0.82 + 0.3 * p;
         col[i * 3] = k * (1 + dry * 0.1 * (p - 0.5)); col[i * 3 + 1] = k; col[i * 3 + 2] = k * 0.95;
         uv.setXY(i, (x + W / 2) / T.metres, (z + D / 2) / T.metres);
-        pos.setY(i, 0.012 + 0.006 * Math.sin(x * 3.1 + ph[3]) * Math.sin(z * 2.7));
+        pos.setY(i, 0.04 + 0.004 * Math.sin(x * 3.1 + ph[3]) * Math.sin(z * 2.7));   // sod sits proud of the dirt, clear of any contact decal
       }
       base.setAttribute('color', new THREE.BufferAttribute(col, 3)); base.computeVertexNormals();
       const bm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: T.map, bumpMap: T.bump, bumpScale: 1.2, roughness: 0.95, vertexColors: true });
       const bmesh = new THREE.Mesh(base, bm); g.add(bmesh);
+      const soil = new THREE.Mesh(new THREE.BoxGeometry(W, 0.04, D), mat('sodedge', () => new THREE.MeshStandardMaterial({ color: 0x3b3024, roughness: 1 })));
+      soil.position.y = 0.019; g.add(soil);
       // clump: 9 broad blunt blades, each a tapered quad folded along its midrib (3 tris)
       const P = [], C = [], NN = [];
       const cr = K.rng(4242);
@@ -1430,19 +1432,22 @@ export function install(K, THREE, TXT) {
       const gm = mat('stAug', () => oneFace(new THREE.MeshStandardMaterial({ vertexColors: true, side: THREE.DoubleSide, roughness: 0.72 })));
       const tri = 12, budget = (opt(o, 'budget', 38000)) - 2 * seg * seg, count = Math.max(200, Math.min(Math.floor(budget / tri), Math.round(W * D * 140)));
       const im = new THREE.InstancedMesh(cg, gm, count), Mx = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new V3(), p = new V3(), c = new THREE.Color();
-      const green = [0.34, 0.5, 0.18], blue = [0.27, 0.46, 0.22], straw = [0.7, 0.6, 0.34], tan = [0.58, 0.5, 0.3];
+      const green = [0.36, 0.52, 0.16], blue = [0.3, 0.5, 0.18], straw = [0.7, 0.6, 0.34], tan = [0.58, 0.5, 0.3];
       const edge = opt(o, 'edge', true) ? 0.04 : 0;
       for (let i = 0; i < count; i++) {
         const x = (r() - 0.5) * (W - edge * 2), z = (r() - 0.5) * (D - edge * 2), pp = patch(x, z);
         e.set((r() - 0.5) * 0.3, r() * 6.283, (r() - 0.5) * 0.3); q.setFromEuler(e);
-        const k = 0.7 + r() * 0.6; s.set(k, 0.6 + r() * 0.7, k); p.set(x, 0.008, z);
+        const k = 0.7 + r() * 0.6; s.set(k, 0.55 + r() * 0.6, k); p.set(x, 0.036, z);
         Mx.compose(p, q, s); im.setMatrixAt(i, Mx);
         const dd = Math.max(0, Math.min(1, dry + (pp - 0.5) * 0.35 + (r() - 0.5) * 0.2));
         let cc = mix(mix(green, blue, r()), mix(straw, tan, r()), dd);
         const j = 0.8 + r() * 0.4; c.setRGB(cc[0] * j, cc[1] * j, cc[2] * j, THREE.SRGBColorSpace); im.setColorAt(i, c);
       }
       im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true;
-      im.castShadow = false;
+      // blades this small never read in a shadow map; cast into it they only blot the lawn
+      // (TXT.add turns casting on for every mesh, so the depth pass is told to discard instead)
+      im.customDepthMaterial = new THREE.MeshDepthMaterial({ alphaTest: 1.01 });
+      im.customDistanceMaterial = new THREE.MeshDistanceMaterial({ alphaTest: 1.01 });
       g.add(im);
       return g;
     },
