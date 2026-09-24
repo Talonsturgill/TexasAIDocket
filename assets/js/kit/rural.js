@@ -159,7 +159,13 @@ export function install(K, THREE, TXT) {
     inner.position.set(-c.x, -bb.min.y, -c.z); g.add(inner); return g;
   }
 
-  /* ---- signed distance body and a surface nets mesher ------------------------------------ */
+  /* ---- signed distance body and a surface nets mesher (cattle) ---------------------------
+   * Primitives: 'e' ellipsoid (optionally pitched about x), 'r' round cone, 'b' a tapered rounded
+   * box along an axis in the yz plane (lateral is world x), and any of them with `sub` carves.
+   * The field is meshed in REGIONS of different cell size (head fine, legs fine, barrel coarse),
+   * each overlapping the next by two cells, so detail goes where the silhouette needs it. Every
+   * superblock of 8 cells evaluates only the primitives that can reach it, which is most of the
+   * speed. */
   function sdEll(px, py, pz, e) {
     let x = px - e.c[0], y = py - e.c[1], z = pz - e.c[2];
     if (e.ay) { const u = y * e.ay[1] + z * e.ay[2], w = y * e.az[1] + z * e.az[2]; y = u; z = w; }   // pitched about x
@@ -181,258 +187,493 @@ export function install(K, THREE, TXT) {
     if (Math.sign(y) * a2 * y2 < k) return Math.sqrt(x2 + y2) * il2 - s.r1;
     return (Math.sqrt(x2 * a2 * il2) + y * rr) * il2 - s.r1;
   }
+  function sdTB(px, py, pz, p) {        // tapered rounded box: half widths s0 -> s1, centre offset c0 -> c1 along n
+    const qx = px - p.a[0], qy = py - p.a[1], qz = pz - p.a[2];
+    const u = qy * p.d[1] + qz * p.d[2], w = qy * p.n[1] + qz * p.n[2];
+    const t = u <= 0 ? 0 : u >= p.L ? 1 : u / p.L;
+    const hx = p.s0[0] + (p.s1[0] - p.s0[0]) * t - p.rr, hw = p.s0[1] + (p.s1[1] - p.s0[1]) * t - p.rr;
+    const dx = Math.abs(qx) - hx, du = Math.abs(u - p.L / 2) - p.L / 2, dw = Math.abs(w - (p.c0 + (p.c1 - p.c0) * t)) - hw;
+    const ox = dx > 0 ? dx : 0, ou = du > 0 ? du : 0, ow = dw > 0 ? dw : 0;
+    return Math.sqrt(ox * ox + ou * ou + ow * ow) + Math.min(Math.max(dx, du, dw), 0) - p.rr;
+  }
   function smin(a, b, k) { if (k <= 0) return Math.min(a, b); const h = Math.max(k - Math.abs(a - b), 0) / k; return Math.min(a, b) - h * h * k * 0.25; }
-  function buildSDF(prims) {
-    // bounding sphere per primitive for an early out
-    prims.forEach((p) => {
-      if (p.t === 'e') { p.bc = p.c; p.br = Math.max(p.r[0], p.r[1], p.r[2]); }
-      else { p.bc = [(p.a[0] + p.b[0]) / 2, (p.a[1] + p.b[1]) / 2, (p.a[2] + p.b[2]) / 2];
-             p.br = Math.hypot(p.b[0] - p.a[0], p.b[1] - p.a[1], p.b[2] - p.a[2]) / 2 + Math.max(p.r1, p.r2); }
-    });
-    return function (x, y, z) {
-      let d = 1e9;
-      for (let i = 0; i < prims.length; i++) {
-        const p = prims[i], k = p.k || 0;
-        const dx = x - p.bc[0], dy = y - p.bc[1], dz = z - p.bc[2], lim = d + k + p.br * 1.05;
-        if (d < 1e8 && dx * dx + dy * dy + dz * dz > lim * lim && lim > 0) continue;
-        const di = p.t === 'e' ? sdEll(x, y, z, p) : sdRC(x, y, z, p);
+  const primD = (p, x, y, z) => p.t === 'e' ? sdEll(x, y, z, p) : p.t === 'r' ? sdRC(x, y, z, p) : sdTB(x, y, z, p);
+  function evalPrims(L, x, y, z) {
+    EVALS++;
+    let d = 1e9;
+    for (let i = 0; i < L.length; i++) {
+      const p = L[i], k = p.k || 0;
+      const dx = x - p.bc[0], dy = y - p.bc[1], dz = z - p.bc[2], dd = dx * dx + dy * dy + dz * dz;
+      if (p.sub) {
+        const lim = p.br * 1.05 + k + (d < 0 ? -d : 0);
+        if (d > 1e8 || dd > lim * lim) continue;
+        d = -smin(-d, primD(p, x, y, z), k);
+      } else {
+        const lim = d + k + p.br * 1.05;
+        if (d < 1e8 && lim > 0 && dd > lim * lim) continue;
+        const di = primD(p, x, y, z);
         d = d > 1e8 ? di : smin(d, di, k);
       }
-      return d;
-    };
+    }
+    return d;
   }
+  function buildSDF(prims) {
+    prims.forEach((p) => {
+      if (p.t === 'e') { p.bc = p.c; p.br = Math.max(p.r[0], p.r[1], p.r[2]); }
+      else if (p.t === 'r') { p.bc = [(p.a[0] + p.b[0]) / 2, (p.a[1] + p.b[1]) / 2, (p.a[2] + p.b[2]) / 2];
+        p.br = Math.hypot(p.b[0] - p.a[0], p.b[1] - p.a[1], p.b[2] - p.a[2]) / 2 + Math.max(p.r1, p.r2); }
+      else { const m = p.L / 2, cm = (p.c0 + p.c1) / 2;
+        p.bc = [p.a[0], p.a[1] + p.d[1] * m + p.n[1] * cm, p.a[2] + p.d[2] * m + p.n[2] * cm];
+        p.br = Math.hypot(m, Math.max(p.s0[0], p.s1[0]), Math.max(p.s0[1], p.s1[1]) + Math.abs(p.c1 - p.c0) / 2); }
+    });
+    // carving primitives run last, so they cut what the rest built
+    const all = prims.filter((p) => !p.sub).concat(prims.filter((p) => p.sub));
+    const f = (x, y, z) => evalPrims(all, x, y, z);
+    // the primitives that can matter anywhere inside a ball of radius `rad` about (cx, cy, cz), chosen
+    // from `src` (all of them by default): anything farther than a known surface plus its blend is out
+    f.near = function (cx, cy, cz, rad, src) {
+      src = src || all;
+      const add = [], ds = []; let m = 1e9;
+      for (const p of src) {
+        if (p.sub) continue;
+        const dx = cx - p.bc[0], dy = cy - p.bc[1], dz = cz - p.bc[2], lo = Math.sqrt(dx * dx + dy * dy + dz * dz) - p.br * 1.05 - rad;
+        if (lo > m + (p.k || 0)) continue;
+        const di = primD(p, cx, cy, cz); add.push(p); ds.push(di); if (di + rad * 1.25 < m) m = di + rad * 1.25;
+      }
+      const L = [];
+      for (let i = 0; i < add.length; i++) if (ds[i] - rad * 1.25 < m + (add[i].k || 0) + 0.002) L.push(add[i]);
+      for (const p of src) if (p.sub && Math.hypot(cx - p.bc[0], cy - p.bc[1], cz - p.bc[2]) - p.br * 1.05 - rad < (p.k || 0) + 0.01) L.push(p);
+      return L;
+    };
+    return f;
+  }
+  // Surface nets over a uniform grid. Blocks of 8 cells, then of 4, each keep only the primitives
+  // that can reach them, and a block farther from the surface than its own radius is filled with
+  // its centre value and never sampled again. Normals come from the field's gradient.
   function surfaceNets(sdf, lo, hi, h) {
     const nx = Math.ceil((hi[0] - lo[0]) / h) + 1, ny = Math.ceil((hi[1] - lo[1]) / h) + 1, nz = Math.ceil((hi[2] - lo[2]) / h) + 1;
-    const val = new Float32Array(nx * ny * nz), I = (i, j, k) => i + nx * (j + ny * k);
-    const B = 4, rad = B * h * 0.87;
-    for (let bk = 0; bk < nz; bk += B) for (let bj = 0; bj < ny; bj += B) for (let bi = 0; bi < nx; bi += B) {
-      const cx = lo[0] + (bi + B / 2) * h, cy = lo[1] + (bj + B / 2) * h, cz = lo[2] + (bk + B / 2) * h;
-      const dc = sdf(cx, cy, cz), skip = Math.abs(dc) > rad * 1.25 + h;
-      for (let k = bk; k < Math.min(nz, bk + B); k++) for (let j = bj; j < Math.min(ny, bj + B); j++) for (let i = bi; i < Math.min(nx, bi + B); i++)
-        val[I(i, j, k)] = skip ? dc : sdf(lo[0] + i * h, lo[1] + j * h, lo[2] + k * h);
+    const val = new Float32Array(nx * ny * nz).fill(1), I = (i, j, k) => i + nx * (j + ny * k);
+    const bx = Math.ceil(nx / 4), by = Math.ceil(ny / 4), lists = new Array(bx * by * Math.ceil(nz / 4)), BI = (i, j, k) => (i >> 2) + bx * ((j >> 2) + by * (k >> 2));
+    const r8 = 3.5 * h * 1.733, r4 = 1.5 * h * 1.733, nearB = [];
+    const fill = (i0, j0, k0, n, v) => { if (v > 0) return; for (let k = k0; k < Math.min(nz, k0 + n); k++) for (let j = j0; j < Math.min(ny, j0 + n); j++) for (let i = i0; i < Math.min(nx, i0 + n); i++) val[I(i, j, k)] = v; };
+    for (let bk = 0; bk < nz; bk += 8) for (let bj = 0; bj < ny; bj += 8) for (let bi = 0; bi < nx; bi += 8) {
+      const cx = lo[0] + (bi + 3.5) * h, cy = lo[1] + (bj + 3.5) * h, cz = lo[2] + (bk + 3.5) * h;
+      const L8 = sdf.near(cx, cy, cz, r8 + h);
+      const d8 = L8.length ? evalPrims(L8, cx, cy, cz) : 1;
+      if (Math.abs(d8) > r8 * 1.25 + h) { fill(bi, bj, bk, 8, d8); continue; }
+      for (let qk = bk; qk < Math.min(nz, bk + 8); qk += 4) for (let qj = bj; qj < Math.min(ny, bj + 8); qj += 4) for (let qi = bi; qi < Math.min(nx, bi + 8); qi += 4) {
+        const ex = lo[0] + (qi + 1.5) * h, ey = lo[1] + (qj + 1.5) * h, ez = lo[2] + (qk + 1.5) * h;
+        const L4 = sdf.near(ex, ey, ez, r4 + h, L8), d4 = L4.length ? evalPrims(L4, ex, ey, ez) : d8;
+        if (Math.abs(d4) > r4 * 1.25 + h) { fill(qi, qj, qk, 4, d4); continue; }
+        lists[BI(qi, qj, qk)] = L4; nearB.push(qi, qj, qk);
+        for (let sk = qk; sk < Math.min(nz, qk + 4); sk += 2) for (let sj = qj; sj < Math.min(ny, qj + 4); sj += 2) for (let si = qi; si < Math.min(nx, qi + 4); si += 2) {
+          const d2 = evalPrims(L4, lo[0] + (si + 0.5) * h, lo[1] + (sj + 0.5) * h, lo[2] + (sk + 0.5) * h);
+          if (Math.abs(d2) > h * 1.2) { fill(si, sj, sk, 2, d2); continue; }
+          for (let k = sk; k < Math.min(nz, sk + 2); k++) for (let j = sj; j < Math.min(ny, sj + 2); j++) for (let i = si; i < Math.min(nx, si + 2); i++)
+            val[I(i, j, k)] = evalPrims(L4, lo[0] + i * h, lo[1] + j * h, lo[2] + k * h);
+        }
+      }
     }
     const cell = new Int32Array((nx - 1) * (ny - 1) * (nz - 1)).fill(-1), C = (i, j, k) => i + (nx - 1) * (j + (ny - 1) * k);
-    const verts = [];
+    const verts = [], vl = [];
     const E = [[0, 1], [2, 3], [4, 5], [6, 7], [0, 2], [1, 3], [4, 6], [5, 7], [0, 4], [1, 5], [2, 6], [3, 7]];
     const cv = new Float32Array(8), co = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0], [0, 0, 1], [1, 0, 1], [0, 1, 1], [1, 1, 1]];
-    for (let k = 0; k < nz - 1; k++) for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+    // only nodes in a block that was sampled, or one cell below it, can start a cell or an edge the surface crosses
+    const seen = new Uint8Array(nx * ny * nz), todo = [];
+    for (let b = 0; b < nearB.length; b += 3)
+      for (let k = Math.max(0, nearB[b + 2] - 1); k < Math.min(nz, nearB[b + 2] + 4); k++) for (let j = Math.max(0, nearB[b + 1] - 1); j < Math.min(ny, nearB[b + 1] + 4); j++)
+        for (let i = Math.max(0, nearB[b] - 1); i < Math.min(nx, nearB[b] + 4); i++) { const q = I(i, j, k); if (!seen[q]) { seen[q] = 1; todo.push(q); } }
+    for (const q of todo) {
+      const i = q % nx, j = ((q - i) / nx) % ny, k = (q - i - nx * j) / (nx * ny);
+      if (i >= nx - 1 || j >= ny - 1 || k >= nz - 1) continue;
       let neg = 0;
-      for (let q = 0; q < 8; q++) { cv[q] = val[I(i + co[q][0], j + co[q][1], k + co[q][2])]; if (cv[q] < 0) neg++; }
+      for (let c = 0; c < 8; c++) { cv[c] = val[I(i + co[c][0], j + co[c][1], k + co[c][2])]; if (cv[c] < 0) neg++; }
       if (neg === 0 || neg === 8) continue;
       let sx = 0, sy = 0, sz = 0, n = 0;
       for (const [a, b] of E) {
         if ((cv[a] < 0) === (cv[b] < 0)) continue;
-        const t = cv[a] / (cv[a] - cv[b]);
-        sx += co[a][0] + (co[b][0] - co[a][0]) * t; sy += co[a][1] + (co[b][1] - co[a][1]) * t; sz += co[a][2] + (co[b][2] - co[a][2]) * t; n++;
+        const tt = cv[a] / (cv[a] - cv[b]);
+        sx += co[a][0] + (co[b][0] - co[a][0]) * tt; sy += co[a][1] + (co[b][1] - co[a][1]) * tt; sz += co[a][2] + (co[b][2] - co[a][2]) * tt; n++;
       }
       cell[C(i, j, k)] = verts.length / 3;
       verts.push(lo[0] + (i + sx / n) * h, lo[1] + (j + sy / n) * h, lo[2] + (k + sz / n) * h);
+      vl.push(lists[BI(i, j, k)] || lists[BI(Math.min(nx - 1, i + 1), Math.min(ny - 1, j + 1), Math.min(nz - 1, k + 1))] || null);
     }
     const idx = [];
     const quad = (a, b, c, d, flip) => { if (a < 0 || b < 0 || c < 0 || d < 0) return; if (flip) idx.push(a, c, b, a, d, c); else idx.push(a, b, c, a, c, d); };
-    for (let k = 0; k < nz; k++) for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
-      const v0 = val[I(i, j, k)] < 0;
+    for (const q of todo) {
+      const i = q % nx, j = ((q - i) / nx) % ny, k = (q - i - nx * j) / (nx * ny);
+      const v0 = val[q] < 0;
       if (i < nx - 1 && j > 0 && k > 0 && j < ny - 1 && k < nz - 1) { const v1 = val[I(i + 1, j, k)] < 0; if (v0 !== v1) quad(cell[C(i, j - 1, k - 1)], cell[C(i, j, k - 1)], cell[C(i, j, k)], cell[C(i, j - 1, k)], v1); }
       if (j < ny - 1 && i > 0 && k > 0 && i < nx - 1 && k < nz - 1) { const v1 = val[I(i, j + 1, k)] < 0; if (v0 !== v1) quad(cell[C(i - 1, j, k - 1)], cell[C(i - 1, j, k)], cell[C(i, j, k)], cell[C(i, j, k - 1)], v1); }
       if (k < nz - 1 && i > 0 && j > 0 && i < nx - 1 && j < ny - 1) { const v1 = val[I(i, j, k + 1)] < 0; if (v0 !== v1) quad(cell[C(i - 1, j - 1, k)], cell[C(i, j - 1, k)], cell[C(i, j, k)], cell[C(i - 1, j, k)], v1); }
     }
-    // project onto the surface, normals from the field gradient
-    const e = h * 0.35, nor = new Float32Array(verts.length);
-    for (let v = 0; v < verts.length; v += 3) {
-      let x = verts[v], y = verts[v + 1], z = verts[v + 2];
-      // tetrahedral gradient: four samples give the value and the gradient together
-      const a = sdf(x + e, y - e, z - e), b = sdf(x - e, y - e, z + e), c = sdf(x - e, y + e, z - e), d4 = sdf(x + e, y + e, z + e);
+    // project onto the surface; tetrahedral gradient, four samples give the value and the normal together
+    const nv = verts.length / 3, P = new Float32Array(nv * 3), N = new Float32Array(nv * 3), e = h * 0.35;
+    for (let v = 0; v < nv; v++) {
+      const x = verts[v * 3], y = verts[v * 3 + 1], z = verts[v * 3 + 2], L = vl[v];
+      const F = L ? (a1, a2, a3) => evalPrims(L, a1, a2, a3) : sdf;
+      const a = F(x + e, y - e, z - e), b = F(x - e, y - e, z + e), c = F(x - e, y + e, z - e), d4 = F(x + e, y + e, z + e);
       let gx = a - b - c + d4, gy = -a - b + c + d4, gz = -a + b - c + d4;
       const gl = Math.sqrt(gx * gx + gy * gy + gz * gz) || 1; gx /= gl; gy /= gl; gz /= gl;
       const d = Math.max(-h, Math.min(h, (a + b + c + d4) / 4));
-      verts[v] = x - gx * d; verts[v + 1] = y - gy * d; verts[v + 2] = z - gz * d; nor[v] = gx; nor[v + 1] = gy; nor[v + 2] = gz;
+      P[v * 3] = x - gx * d; P[v * 3 + 1] = y - gy * d; P[v * 3 + 2] = z - gz * d; N[v * 3] = gx; N[v * 3 + 1] = gy; N[v * 3 + 2] = gz;
     }
     const g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
-    g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
-    g.setIndex(idx);
+    g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.BufferAttribute(N, 3));
+    g.setIndex(nv > 65535 ? new THREE.Uint32BufferAttribute(idx, 1) : new THREE.Uint16BufferAttribute(idx, 1));
+    g.userData.evals = 0;
     return g;
   }
 
-  /* ================================================================================ CATTLE */
-  function cattleSpec(breed, r) {
-    const LH = breed === 'longhorn';
-    const H = LH ? 1.4 : 1.3, B = LH ? 0.78 : 0.66, Lz = LH ? 0.8 : 0.76, W = LH ? 0.27 : 0.32;
-    const lr = LH ? 0.9 : 1;                         // leg radius factor
+  /* ================================================================================ CATTLE
+   * A Hereford or a Texas longhorn, as a cow, a steer or a bull. The body is built the way a beef
+   * animal is: a deep rectangular barrel with a level topline, hooks and pins and a tailhead you
+   * can see, a brisket and dewlap hanging forward between the legs, a flank that climbs to the
+   * stifle, muscled forearms and gaskins over clean cannons. The head is a wedge, broad and flat at
+   * the forehead, narrowing down the face and flaring to a wide square muzzle with a moist nose pad
+   * and flared nostrils, carried low and forward on a thick neck.
+   * The mesh is cached per breed and sex, so a herd costs one field build per kind of animal. */
+  function cattleSpec(breed, sex) {
+    const LH = breed === 'longhorn', bull = sex === 'bull', cow = sex === 'cow';
+    const S = LH
+      ? { H: 1.42, B: 0.76, W: 0.235, Lf: 0.62, Lr: -0.84, HL: 0.56, pitch: 0.98, hw: 0.88, th: 0.8, knee: 0.47, hock: 0.57, rump: 0.1, lr: 0.9, bk: 0.8 }
+      : { H: 1.3, B: 0.6, W: 0.3, Lf: 0.66, Lr: -0.8, HL: 0.5, pitch: 0.95, hw: 1, th: 1, knee: 0.41, hock: 0.5, rump: 0.03, lr: 1, bk: 1 };
+    if (bull) { S.H += 0.05; S.W += 0.025; S.hw *= 1.1; S.B -= 0.02; }
+    if (sex === 'steer' && !LH) { S.W += 0.01; }
+    const { H, B, W, Lf, Lr, HL, hw, lr } = S, s = HL / 0.5;
     const P = [];
-    const E = (c, rr, k) => P.push({ t: 'e', c, r: rr, k: k || 0 });
+    const ang = (a) => ({ ay: [0, Math.cos(a), Math.sin(a)], az: [0, -Math.sin(a), Math.cos(a)] });
+    const E = (c, r, k, a, sub) => P.push(Object.assign({ t: 'e', c, r, k: k || 0, sub: !!sub }, a ? ang(a) : {}));
     const R = (a, b, r1, r2, k) => P.push({ t: 'r', a, b, r1, r2, k: k || 0 });
-    const Yc = (H + B) / 2 - 0.02, Hy = (H - B) / 2;
-    E([0, Yc, -0.02], [W, Hy, Lz]);                                                           // barrel
-    E([0, H - 0.11, -0.04], [W * 0.6, 0.09, Lz * 0.96], 0.14);                                // topline
-    E([0, B + 0.2, Lz - 0.16], [W * 0.74, 0.26, 0.28], 0.16);                                 // chest, brisket
-    E([0, H - 0.21, Lz - 0.2], [W * 0.84, 0.22, 0.3], 0.16);                                  // shoulder
-    E([0, H - 0.15, -Lz + 0.2], [W * 0.92, 0.21, 0.34], 0.14);                                // rump
-    for (const s of [-1, 1]) {
-      E([s * W * 0.7, H - 0.1, -Lz + 0.44], [0.07, 0.06, 0.08], 0.12);                        // hooks
-      E([s * 0.09, H - 0.14, -Lz - 0.04], [0.05, 0.05, 0.05], 0.1);                          // pins
-      E([s * W * 0.6, B + 0.18, -Lz + 0.2], [0.15 * lr, 0.32, 0.24], 0.12);                  // thigh, stifle
+    const T = (a, d, n, L, s0, s1, c0, c1, rr, k, sub) => P.push({ t: 'b', a, d, n, L, s0, s1, c0, c1, rr, k: k || 0, sub: !!sub });
+    const Z = [0, 0, 1], Y = [0, 1, 0];
+    /* barrel: deep, rectangular, level topped, with a round paunch under the ribs */
+    T([0, (H + B) / 2, Lr + 0.3], Z, Y, Lf - 0.08 - (Lr + 0.3), [W, (H - B) / 2], [W * 0.94, (H - B) / 2 - 0.01], 0, 0.005, 0.2, 0);
+    E([0, B + 0.25, -0.08], [W * 1.04, 0.28, 0.5], 0.2);
+    /* hindquarter: a box whose floor is the flank rising to the stifle, the round down the thigh */
+    T([0, H - 0.23, Lr], Z, Y, 0.52, [W * 0.8, 0.21], [W * 0.95, 0.23], -S.rump, 0, 0.15, 0.16);
+    for (const q of [-1, 1]) {
+      E([q * W * 0.6, B + 0.3, Lr + 0.2], [0.14 * S.th + 0.03, 0.34, 0.24], 0.14);                  // round, thigh
+      E([q * (W - 0.01), H - 0.035, Lr + 0.37], [0.075, 0.05, 0.07], 0.05);                         // hooks
+      E([q * 0.1, H - 0.1 - S.rump, Lr - 0.02], [0.05, 0.05, 0.05], 0.05);                          // pins
+      E([q * (W - 0.07), H - 0.34, Lf - 0.2], [0.1, 0.34, 0.2], 0.12, -0.38);                        // shoulder blade
+      E([q * (W - 0.05), B + 0.32, Lf - 0.03], [0.08, 0.09, 0.08], 0.08);                           // point of shoulder
     }
-    // legs (stance varies a little by seed)
-    const fs = (r() - 0.5) * 0.12, hs = (r() - 0.5) * 0.12;
-    const fx = W * 0.55, hx = W * 0.54;
-    [[-1, fs], [1, -fs]].forEach(([s, dz]) => {
-      const kz = Lz - 0.13 + dz;
-      R([s * W * 0.6, B + 0.16, Lz - 0.2], [s * fx, 0.38, kz], 0.105 * lr, 0.062 * lr, 0.09);   // forearm
-      E([s * fx, 0.37, kz + 0.008], [0.052 * lr, 0.05, 0.05 * lr], 0.03);                      // knee
-      R([s * fx, 0.37, kz], [s * fx, 0.11, kz + 0.01], 0.05 * lr, 0.043 * lr, 0.025);         // cannon
-      R([s * fx, 0.11, kz + 0.01], [s * fx, 0.05, kz + 0.05], 0.05 * lr, 0.042 * lr, 0.02);    // fetlock, pastern
-    });
-    [[-1, hs], [1, -hs]].forEach(([s, dz]) => {
-      const hz = -Lz - 0.06 + dz;
-      R([s * W * 0.6, B + 0.02, -Lz + 0.14], [s * hx, 0.48, hz], 0.11 * lr, 0.056 * lr, 0.08);  // gaskin
-      E([s * hx, 0.5, hz - 0.04], [0.035 * lr, 0.05, 0.04], 0.03);                             // point of hock
-      R([s * hx, 0.47, hz], [s * hx, 0.11, hz + 0.07], 0.048 * lr, 0.042 * lr, 0.025);         // cannon
-      R([s * hx, 0.11, hz + 0.07], [s * hx, 0.05, hz + 0.11], 0.048 * lr, 0.04 * lr, 0.02);    // pastern
-    });
-    // head frame: poll, axis a down the face, w out of the face
-    const pitch = LH ? 1.0 : 1.05, HL = LH ? 0.54 : 0.46;
-    const poll = [0, H - 0.02, Lz + 0.34];
-    const ax = [0, -Math.sin(pitch), Math.cos(pitch)], aw = [0, Math.cos(pitch), Math.sin(pitch)];
+    R([0, H - 0.02 - S.rump * 0.5, Lr + 0.12], [0, H - 0.1 - S.rump, Lr - 0.07], 0.07, 0.05, 0.06);   // tailhead
+    E([0, H - 0.05, Lf - 0.28], [0.13, 0.07, 0.2], 0.1);                                                // withers
+    E([0, B + 0.12, Lf - 0.04], [0.17 * S.bk, 0.18, 0.2], 0.14);                                       // brisket
+    /* head frame: poll, a down the face, w out of the face */
+    const poll = [0, H - (LH ? 0.07 : 0.1), Lf + 0.42];
+    const ax = [0, -Math.sin(S.pitch), Math.cos(S.pitch)], aw = [0, Math.cos(S.pitch), Math.sin(S.pitch)];
     const at = (u, w, x) => [x || 0, poll[1] + ax[1] * u + aw[1] * w, poll[2] + ax[2] * u + aw[2] * w];
-    const HE = (u, w, rx, ru, rw, k) => P.push({ t: 'e', c: at(u, w), r: [rx, ru, rw], ay: ax, az: aw, k: k || 0 });
-    // neck into the back of the skull
-    R([0, H - 0.24, Lz - 0.12], at(0.1, -0.1), 0.25, 0.13, 0.14);
-    E([0, B + 0.14, Lz + 0.02], [0.06, LH ? 0.1 : 0.14, LH ? 0.12 : 0.16], 0.1);              // dewlap
-    const hw = LH ? 0.9 : 1;
-    HE(0.02, -0.04, 0.11 * hw, 0.06, 0.08, 0.04);                   // poll
-    HE(0.12, -0.03, 0.125 * hw, 0.12, 0.1, 0.05);                   // cranium, eye sockets
-    HE(0.3 * HL / 0.5, -0.005, 0.095 * hw, 0.2 * HL / 0.5, 0.07, 0.06);   // face
-    HE(0.27 * HL / 0.5, -0.1, 0.085 * hw, 0.17 * HL / 0.5, 0.065, 0.06);  // cheeks, jaw
-    HE(HL - 0.05, -0.035, 0.095 * hw, 0.07, 0.085, 0.05);           // muzzle
-    R(at(HL - 0.12, -0.12), at(HL - 0.04, -0.1), 0.045, 0.04, 0.04); // chin
-    R([0, H - 0.1, -Lz - 0.03], [0, H - 0.22, -Lz - 0.1], 0.045, 0.032, 0.05);                 // tail head
-    if (!LH) E([0, B - 0.02, -Lz + 0.36], [0.1, 0.08, 0.12], 0.07);                             // udder
-    const muz = at(HL, -0.03);
-    return { P, H, B, Lz, W, poll, muz, at, fx, hx, fs, hs, LH, HL };
+    const HT = (u0, u1, s0, s1, c0, c1, rr, k, sub, x) => T(at(u0, 0, x), ax, aw, u1 - u0, s0, s1, c0, c1, rr, k, sub);
+    const HE = (u, w, x, r, k, sub) => P.push({ t: 'e', c: at(u, w, x), r: [r[0], r[1], r[2]], ay: ax, az: aw, k: k || 0, sub: !!sub });
+    /* neck: thick, carried forward, a throat under it and a dewlap to the brisket */
+    const nb = [0, H - 0.24, Lf - 0.25], na = at(0.1, -0.16);
+    R(nb, na, bull ? 0.33 : 0.3, LH ? 0.15 : 0.165, 0.1);
+    R([0, B + 0.3, Lf + 0.05], at(0.24, -0.2), 0.13, 0.08, 0.1);
+    E([0, B + 0.22, Lf + 0.12], [LH ? 0.04 : 0.05, LH ? 0.15 : 0.2, 0.1], 0.09, 0.5);                  // dewlap
+    if (bull) E([0, H + 0.02, Lf - 0.02], [0.15, 0.13, 0.3], 0.14, -0.3);                              // crest
+    /* skull and face: a wedge, flat in front */
+    HT(-0.03, 0.26, [0.125 * hw, 0.08], [0.11 * hw, 0.07], -0.08, -0.07, 0.05, 0.03);                     // forehead, cranium
+    HT(0.2, 0.44 * s, [0.1 * hw, 0.055], [0.082 * hw, 0.05], -0.055, -0.05, 0.04, 0.05);                   // nasal bridge
+    HT(0.1, 0.42 * s, [0.1 * hw, 0.08], [0.075 * hw, 0.05], -0.17, -0.12, 0.045, 0.06);                    // jaw
+    HT(0.4 * s, 0.51 * s, [0.1 * hw, 0.07], [0.1 * hw, 0.068], -0.075, -0.075, 0.045, 0.05);             // muzzle, wide and square
+    HE(0.47 * s, -0.15, 0, [0.06, 0.05, 0.03], 0.03);                                                       // chin, lower lip
+    HE(-0.02, -0.06, 0, LH ? [0.125 * hw, 0.045, 0.06] : [0.1, 0.05, 0.07], 0.04);                          // poll
+    for (const q of [-1, 1]) {
+      HE(0.2, -0.16, q * 0.085 * hw, [0.04, 0.09, 0.07], 0.04);                                             // cheek
+      HE(0.12, -0.035, q * 0.1 * hw, [0.045, 0.035, 0.035], 0.03);                                          // brow ridge
+      HE(0.165, -0.075, q * 0.1 * hw, [0.035, 0.035, 0.03], 0.02);                                          // eye, lids
+      HE(0.49 * s, -0.03, q * 0.058 * hw, [0.035, 0.035, 0.03], 0.025);                                     // nostril flare
+      HE(0.515 * s, -0.04, q * 0.056 * hw, [0.016, 0.03, 0.022], 0.012, true);                              // nostril
+    }
+    /* legs: the knee and hock heights set the stance */
+    const fx = Math.max(0.16, W * 0.63), hx = Math.max(0.15, W * 0.6), fz = Lf - 0.1, hz = Lr + 0.05, kn = S.knee, hk = S.hock;
+    for (const q of [-1, 1]) {
+      R([q * (W - 0.07), B + 0.08, Lf - 0.14], [q * fx, kn + 0.02, fz], 0.1 * lr, 0.056 * lr, 0.07);       // arm, forearm
+      E([q * (fx + 0.005), kn + (B - kn) * 0.55, fz + 0.01], [0.068 * lr, 0.13, 0.078 * lr], 0.05);        // forearm muscle
+      E([q * fx, kn, fz + 0.008], [0.05 * lr, 0.055, 0.052 * lr], 0.03);                                    // knee
+      R([q * fx, kn - 0.01, fz], [q * fx, 0.125, fz + 0.01], 0.042 * lr, 0.038 * lr, 0.02);                 // cannon
+      R([q * fx, kn - 0.05, fz - 0.025], [q * fx, 0.14, fz - 0.02], 0.022 * lr, 0.02 * lr, 0.02);           // flexor tendon
+      E([q * fx, 0.115, fz + 0.005], [0.048 * lr, 0.045, 0.052 * lr], 0.02);                               // fetlock
+      R([q * fx, 0.11, fz + 0.01], [q * fx, 0.055, fz + 0.04], 0.04 * lr, 0.043 * lr, 0.015);             // pastern
+      R([q * W * 0.55, B + 0.1, Lr + 0.22], [q * hx, hk + 0.02, hz], 0.11 * lr, 0.05 * lr, 0.07);          // stifle to hock
+      E([q * hx, hk + 0.14, hz + 0.06], [0.07 * lr, 0.12, 0.085 * lr], 0.05, 0.4);                         // gaskin
+      R([q * hx, hk + 0.2, hz + 0.02], [q * hx, hk + 0.01, hz - 0.04], 0.028 * lr, 0.034 * lr, 0.03);      // hamstring to the point of hock
+      E([q * hx, hk, hz - 0.01], [0.045 * lr, 0.06, 0.055 * lr], 0.03);                                     // hock
+      R([q * hx, hk - 0.02, hz], [q * hx, 0.125, hz + 0.05], 0.044 * lr, 0.038 * lr, 0.02);                 // cannon
+      E([q * hx, 0.115, hz + 0.05], [0.048 * lr, 0.045, 0.052 * lr], 0.02);                                 // fetlock
+      R([q * hx, 0.11, hz + 0.055], [q * hx, 0.055, hz + 0.085], 0.04 * lr, 0.043 * lr, 0.015);            // pastern
+      E([q * (W + 0.05), H - 0.2, Lr + 0.52], [0.07, 0.12, 0.1], 0.08, 0, true);                           // hollow of the flank
+    }
+    /* sex */
+    if (cow) E([0, B + 0.02, Lr + 0.34], LH ? [0.08, 0.06, 0.09] : [0.1, 0.07, 0.11], 0.07);                 // udder, small: beef
+    else E([0, B - 0.03, 0.04], [0.04, 0.05, 0.13], 0.07, -0.25);                                           // sheath
+    if (bull) E([0, B + 0.02, Lr + 0.2], [0.065, 0.11, 0.07], 0.06);                                        // scrotum
+    Object.assign(S, { P, poll, ax, aw, at, fx, hx, fz, hz, s, nb, na, LH, sex });
+    return S;
   }
+  // head coordinates of a point: u down the face, w out of it
+  const headUW = (S, x, y, z) => { const qy = y - S.poll[1], qz = z - S.poll[2]; return [qy * S.ax[1] + qz * S.ax[2], qy * S.aw[1] + qz * S.aw[2]]; };
+  const CATTLE_MESH = new Map(), CATTLE_H = 0.015;
+  function cattleMesh(breed, sex) {
+    const key = breed + '|' + sex;
+    if (CATTLE_MESH.has(key)) return CATTLE_MESH.get(key);
+    const S = cattleSpec(breed, sex), sdf = buildSDF(S.P);
+    const X = S.W + 0.14;
+    const geo = surfaceNets(sdf, [-X, -0.02, S.Lr - 0.2], [X, S.H + 0.2, S.poll[2] + S.HL * 0.9 + 0.1], CATTLE_H);
+    // a Hereford's curly poll: the forehead's hair raised into tufts
+    if (!S.LH) {
+      const nz = makeNoise(911), p = geo.attributes.position, n = geo.attributes.normal;
+      for (let i = 0; i < p.count; i++) {
+        if (p.getZ(i) < S.poll[2] - 0.2) continue;
+        const [u, w] = headUW(S, p.getX(i), p.getY(i), p.getZ(i));
+        if (u > 0.16 || u < -0.1 || w < -0.05) continue;
+        const k = (1 - smooth01(0.06, 0.16, u)) * smooth01(-0.1, -0.04, u) * smooth01(-0.05, -0.015, w);
+        const x = p.getX(i), y = p.getY(i), z = p.getZ(i), d = (nz(x * 70, y * 70, z * 70) - 0.45) * 0.009 * k;
+        p.setXYZ(i, x + n.getX(i) * d, y + n.getY(i) * d, z + n.getZ(i) * d);
+      }
+    }
+    const out = { S, sdf, geo };
+    CATTLE_MESH.set(key, out); return out;
+  }
+  // Short hair: a screen space bump from an object space streak pattern that lies head to tail on
+  // the body and down the legs, fading out before it can alias. Plus a wet nose (vertex `wet`).
+  function hideMaterial() {
+    if (MATS.has('hideHair')) return MATS.get('hideHair');
+    const m = new THREE.MeshPhysicalMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.75, metalness: 0,
+      sheen: 0.35, sheenRoughness: 0.55, sheenColor: 0xcdb89a, specularIntensity: 0.6 });
+    m.onBeforeCompile = (sh) => {
+      sh.vertexShader = sh.vertexShader
+        .replace('#include <common>', '#include <common>\nattribute float wet;\nvarying float vWet;\nvarying vec3 vOP;\nvarying vec3 vON;')
+        .replace('#include <begin_vertex>', '#include <begin_vertex>\nvWet = wet; vOP = position; vON = normal;');
+      sh.fragmentShader = sh.fragmentShader
+        .replace('#include <common>', `#include <common>
+varying float vWet; varying vec3 vOP; varying vec3 vON;
+float hH(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float hN(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
+  return mix(mix(hH(i), hH(i + vec2(1, 0)), f.x), mix(hH(i + vec2(0, 1)), hH(i + vec2(1, 1)), f.x), f.y); }
+float hairStreak(vec2 along_across){ vec2 p = along_across;
+  return hN(vec2(p.x * 28., p.y * 230.)) * 0.6 + hN(vec2(p.x * 70., p.y * 520.) + 17.) * 0.4; }
+float hairH(vec3 p, vec3 n){
+  vec3 w = pow(abs(n), vec3(4.)); w /= (w.x + w.y + w.z);
+  float leg = 1. - smoothstep(0.5, 0.7, p.y);
+  // sides: hair runs along z on the body, down y on the legs
+  float sx = mix(hairStreak(vec2(p.z, p.y + 0.3 * p.z)), hairStreak(vec2(p.y, p.z)), leg);
+  float sy = hairStreak(vec2(p.z, p.x));
+  float sz = mix(hairStreak(vec2(p.x, p.y)), hairStreak(vec2(p.y, p.x)), 0.5);
+  float coat = hN(p.xz * 45. + p.y * 30.) * 0.35;
+  return (sx * w.x + sy * w.y + sz * w.z + coat) * 0.0005;
+}
+vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
+  vec3 sX = normalize(dFdx(sp)), sY = normalize(dFdy(sp));
+  vec3 r1 = cross(sY, sn), r2 = cross(sn, sX); float det = dot(sX, r1) * fd;
+  return normalize(abs(det) * sn - sign(det) * (dH.x * r1 + dH.y * r2));
+}`)
+        .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(roughnessFactor, 0.26, vWet);')
+        .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+{ float fw = length(fwidth(vOP)); float amp = (1. - smoothstep(0.0015, 0.005, fw)) * (1. - vWet);
+  if (amp > 0.001) { float hh = hairH(vOP, normalize(vON)) * amp;
+    vec2 dH = vec2(dFdx(hh) / max(length(dFdx(vOP)), 1e-5), dFdy(hh) / max(length(dFdy(vOP)), 1e-5));
+    normal = hairBump(-vViewPosition, normal, dH, faceDirection); } }`);
+    };
+    m.customProgramCacheKey = () => 'txkit-cattle-hide-1';
+    MATS.set('hideHair', m); return m;
+  }
+  // a cupped, pointed cattle ear, x along its length, the cup opening toward +y
+  function earGeometry(L, Wd) {
+    const nu = 12, nv = 10, pos = [], idx = [];
+    for (let i = 0; i <= nu; i++) {
+      const u = i / nu, wd = Wd * Math.pow(Math.sin(Math.PI * Math.min(1, 0.12 + u * 0.95)), 0.75) * (1 - 0.2 * u) + 0.004;
+      for (let j = 0; j <= nv; j++) {
+        const v = j / nv * 2 - 1;
+        pos.push(L * u, -0.35 * wd * (1 - v * v) * Math.sin(Math.PI * Math.min(1, u * 1.15)) + 0.12 * wd * v * v, v * wd);
+      }
+    }
+    for (let i = 0; i < nu; i++) for (let j = 0; j < nv; j++) { const a = i * (nv + 1) + j, b = a + nv + 1; idx.push(a, a + 1, b, b, a + 1, b + 1); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+  // one claw of a cloven hoof: a half cone, flat inside, the toe drawn forward and the wall sloped
+  let CLAW = null;
+  function clawGeometry() {
+    if (CLAW) return CLAW;
+    const g = new THREE.LatheGeometry([[0, 0], [0.036, 0], [0.037, 0.006], [0.031, 0.04], [0.02, 0.066], [0, 0.07]].map((p) => new THREE.Vector2(p[0], p[1])), 14, 0, Math.PI);
+    deform(g, (v) => { if (v.z > 0) v.z *= 1.55; v.z -= v.y * 0.55; }, false);
+    g.computeVertexNormals(); CLAW = g; return g;
+  }
+  let EVALS = 0;
   K.define('cattle', {
+    _debug: { uniform(breed, sex, h) { const S = cattleSpec(breed, sex), sdf = buildSDF(S.P); EVALS = 0;
+      const r = surfaceNets(sdf, [-S.W - 0.14, -0.02, S.Lr - 0.2], [S.W + 0.14, S.H + 0.2, S.poll[2] + S.HL * 0.9 + 0.1], h); return { idx: r.index.array, evals: EVALS }; } },
     size: [0.8, 1.55, 2.5],
-    options: { breed: 'hereford', horns: true, spread: 1.9, coat: 'auto' },
-    note: 'A beef animal standing, facing +z, modelled as one smooth body (signed distance field meshed with surface nets): barrel, topline, hooks and pins, dewlap, jointed legs with knees and hocks, cloven hooves, head, ears, eyes, tail with a switch. breed hereford (red with a white face, crest, underline and socks; horns true gives the down curving horns, false is polled) or longhorn (rangy, spread in metres tip to tip, coat auto | red | paint | brindle | dun | speckle).',
+    options: { breed: 'hereford', sex: 'auto', horns: 'auto', spread: 1.9, coat: 'auto' },
+    note: 'A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge head with a wide square muzzle, wet nose and flared nostrils, short hair on the hide. breed hereford (red, white face, crest, underline, socks and switch; polled unless horns true, which gives short horns sweeping out and forward) or longhorn (rangy; lyre horns spread in metres tip to tip, coat auto | red | paint | brindle | dun | speckle). sex auto (hereford cow, longhorn steer) | cow (small beef udder) | steer | bull (crest, heavier neck and head).',
     make(o, r) {
       const breed = o.breed === 'longhorn' ? 'longhorn' : 'hereford', LH = breed === 'longhorn';
-      const S = cattleSpec(breed, r), sdf = buildSDF(S.P);
-      const geo = surfaceNets(sdf, [-0.42, -0.02, -S.Lz - 0.25], [0.42, S.H + 0.12, S.Lz + 0.8], 0.025);
-      // coat
-      const nz = makeNoise((o.seed || 1) * 17 + 3), pos = geo.attributes.position, col = new Float32Array(pos.count * 3);
-      let coat = o.coat && o.coat !== 'auto' ? o.coat : (LH ? ['paint', 'red', 'speckle', 'brindle', 'dun', 'paint'][Math.floor(r() * 6)] : 'hereford');
-      const red = new THREE.Color(LH ? 0x8b3a1c : 0x8c3a1c), white = new THREE.Color(0xe9e2d4), black = new THREE.Color(0x1f1a17);
-      const dun = new THREE.Color(0xb89a6c), brown = new THREE.Color(0x4a2b1a), nose = new THREE.Color(LH ? 0x2b2522 : 0xc28a7d);
-      const patch = new THREE.Color(r() < 0.5 ? 0x8a3a1c : 0x221c19);
-      const c = new THREE.Color();
+      const sex = ['cow', 'steer', 'bull'].includes(o.sex) ? o.sex : (LH ? 'steer' : 'cow');
+      const { S, sdf, geo: base } = cattleMesh(breed, sex);
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', base.attributes.position); geo.setAttribute('normal', base.attributes.normal); geo.setIndex(base.index);
+      /* ---- coat ---- */
+      const nz = makeNoise((o.seed || 1) * 17 + 3), pos = geo.attributes.position, col = new Float32Array(pos.count * 3), wet = new Float32Array(pos.count);
+      const coats = ['paint', 'red', 'speckle', 'brindle', 'dun', 'paint'];
+      const coat = !LH ? 'hereford' : (o.coat && o.coat !== 'auto' && coats.includes(o.coat) ? o.coat : coats[Math.floor(r() * 6)]);
+      const redHex = LH ? [0x8b3a1c, 0x7a2f16, 0x93481f][Math.floor(r() * 3)] : [0x8c3719, 0x96401c, 0x7e3016][Math.floor(r() * 3)];
+      const red = new THREE.Color(redHex), white = new THREE.Color(0xe6ddcc), black = new THREE.Color(0x1d1815);
+      const dun = new THREE.Color(0xb3915f), brown = new THREE.Color(0x4a2b1a), dirt = new THREE.Color(0x7d6a52);
+      const noseLH = coat === 'paint' || coat === 'speckle' ? 0x9c6a62 : 0x2b2522;
+      const nose = new THREE.Color(LH ? noseLH : 0xa3645c), nostril = new THREE.Color(0x2a1714);
+      const patch = new THREE.Color(r() < 0.55 ? redHex : 0x231c19);
+      const redEyes = !LH && r() < 0.45;
+      const c = new THREE.Color(), tmp = new THREE.Color();
       const segDist = (px, py, pz, a, b) => { const bx = b[0] - a[0], by = b[1] - a[1], bz = b[2] - a[2];
         const t = Math.max(0, Math.min(1, ((px - a[0]) * bx + (py - a[1]) * by + (pz - a[2]) * bz) / (bx * bx + by * by + bz * bz)));
         return Math.hypot(px - a[0] - bx * t, py - a[1] - by * t, pz - a[2] - bz * t); };
+      // the plane behind the jaw where a white face ends, slanting back down the throat
+      const nd = [S.na[0] - S.nb[0], S.na[1] - S.nb[1], S.na[2] - S.nb[2]], nl = Math.hypot(...nd); nd[0] /= nl; nd[1] /= nl; nd[2] /= nl;
+      const crestA = S.at(-0.03, -0.06), crestB = [0, S.H + 0.01, S.Lf - 0.34];
+      const eyeUW = [0.165, -0.075];
+      const edge = 0.012;                                            // a colour border is a hair line, not an airbrush
       for (let i = 0; i < pos.count; i++) {
-        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-        const n1 = nz(x * 9, y * 9, z * 9) * 0.7 + nz(x * 23, y * 23, z * 23) * 0.3, n2 = nz(x * 2.2 + 11, y * 2.2, z * 2.2), n3 = nz(x * 60, y * 60, z * 60);
+        const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), ny = base.attributes.normal.getY(i);
+        const n1 = nz(x * 9, y * 9, z * 9) * 0.55 + nz(x * 26, y * 26, z * 26) * 0.3 + nz(x * 70, y * 70, z * 70) * 0.15;
+        const n2 = nz(x * 2.2 + 11, y * 2.2, z * 2.2) * 0.75 + nz(x * 11 + 5, y * 11, z * 11) * 0.25, n3 = nz(x * 60, y * 60, z * 60);
+        const rag = (n1 - 0.5) * 0.09;
+        const [hu, hw2] = headUW(S, x, y, z);
+        const inHead = z > S.Lf + 0.1 && hu > -0.12;
         let w = 0;
         if (coat === 'hereford') {
-          c.copy(red).multiplyScalar(0.88 + n1 * 0.22);
-          const head = smooth01(S.Lz + 0.27, S.Lz + 0.3, z + (n1 - 0.5) * 0.08);
-          const crest = 1 - smooth01(0.09, 0.105, segDist(x, y, z, S.at(0.0, 0.0), [0, S.H + 0.02, S.Lz - 0.25]) + (n1 - 0.5) * 0.04);
-          const under = (1 - smooth01(S.B + 0.05, S.B + 0.08, y + (n1 - 0.5) * 0.1)) * smooth01(S.B - 0.16, S.B - 0.1, y) * smooth01(-S.Lz + 0.05, -S.Lz + 0.2, z) * (1 - smooth01(0.3, 0.42, Math.abs(y - 0.4) < 1 ? 1 - y : 0));
-          const brisket = smooth01(S.Lz - 0.3, S.Lz - 0.15, z) * (1 - smooth01(S.B + 0.3, S.B + 0.4, y)) * (1 - smooth01(0.1, 0.18, Math.abs(x)));
-          const socks = 1 - smooth01(0.34, 0.37, y + (n1 - 0.5) * 0.1);
-          w = Math.max(head, crest, under * (y > 0.45 ? 1 : 0), brisket, socks);
-          // red eye patches
-          if (head > 0) { const ey = S.at(0.13, 0.02); const ep = Math.hypot(Math.abs(x) - 0.12, y - ey[1], z - ey[2]); w *= smooth01(0.03, 0.06, ep + (n1 - 0.5) * 0.03); }
-          c.lerp(white.clone().multiplyScalar(0.92 + n1 * 0.1), w);
+          c.copy(red).multiplyScalar(0.86 + n1 * 0.26);
+          const along = (x - S.na[0]) * nd[0] + (y - S.na[1]) * nd[1] + (z - S.na[2]) * nd[2];
+          const below = S.na[1] - y;                                   // the throat carries the white further back
+          const face = smooth01(-edge, edge, along + 0.05 + Math.max(0, below) * 0.55 + rag);
+          const crest = 1 - smooth01(0.055 - edge, 0.055 + edge, segDist(x, y, z, crestA, crestB) + rag * 0.8);
+          const topSide = y > S.H - 0.25 || z > S.Lf - 0.2 ? 1 : 0;
+          const under = (1 - smooth01(S.B + 0.07 - edge, S.B + 0.07 + edge, y + rag * 1.3)) * smooth01(S.Lr + 0.2, S.Lr + 0.34, z)
+            * Math.max(1 - smooth01(-0.55, -0.25, ny), 1 - smooth01(0.12, 0.16, Math.abs(x)));
+          const chest = (1 - smooth01(0.11 - edge, 0.11 + edge, Math.abs(x) + rag)) * smooth01(S.Lf - 0.35, S.Lf - 0.2, z) * (1 - smooth01(S.B + 0.42, S.B + 0.46, y + rag));
+          const socks = 1 - smooth01(S.knee + 0.04 - edge, S.knee + 0.04 + edge, y + rag * 1.4);
+          w = Math.max(face, crest * topSide, under, chest, socks);
+          if (redEyes && inHead) { const ep = Math.hypot(Math.abs(x) - 0.1 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]);
+            w *= smooth01(0.045 - edge, 0.045 + edge, ep + rag * 0.6); }
+          tmp.copy(white).multiplyScalar(0.9 + n1 * 0.12);
+          c.lerp(tmp, w);
         } else {
-          const base = coat === 'dun' ? dun : coat === 'brindle' ? brown : coat === 'speckle' ? white : red;
-          c.copy(base).multiplyScalar(0.86 + n1 * 0.24);
-          if (coat === 'paint') { const p = smooth01(0.52, 0.55, n2 + (n1 - 0.5) * 0.12); c.lerp(white, p); if (r() < 0) c.set(0); }
-          if (coat === 'speckle') { const p = smooth01(0.55, 0.6, n2); c.lerp(patch, p); const sp = nz(x * 40, y * 40, z * 40); if (sp > 0.72) c.lerp(patch, 0.8); }
-          if (coat === 'brindle') { const st = nz(x * 3, y * 26, z * 3); c.lerp(black, smooth01(0.45, 0.6, st) * 0.8); }
-          if (coat === 'red') { const p = smooth01(0.6, 0.64, n2); c.lerp(white, p * (y < S.B + 0.15 ? 1 : 0.4)); }
-          if (coat === 'dun') { c.lerp(brown, (1 - smooth01(0.25, 0.4, y)) * 0.7); }
+          const base2 = coat === 'dun' ? dun : coat === 'brindle' ? brown : coat === 'speckle' ? white : red;
+          c.copy(base2).multiplyScalar(0.84 + n1 * 0.28);
+          if (coat === 'paint') { const p = smooth01(0.53 - 0.02, 0.53 + 0.02, n2 + rag * 1.2); c.lerp(tmp.copy(white).multiplyScalar(0.92 + n1 * 0.1), p); w = p; }
+          if (coat === 'speckle') { const p = smooth01(0.57, 0.6, n2 + rag); c.lerp(patch, p); const sp = nz(x * 38, y * 38, z * 38) + (n3 - 0.5) * 0.2; if (sp > 0.7) c.lerp(patch, 0.85); }
+          if (coat === 'brindle') { const st = nz(x * 3 + n1 * 2, y * 24, z * 3); c.lerp(black, smooth01(0.48, 0.58, st) * 0.8); }
+          if (coat === 'red') { const p = smooth01(0.62, 0.65, n2 + rag); c.lerp(white, p * (y < S.B + 0.15 ? 1 : 0.35)); w = p; }
+          if (coat === 'dun') { c.lerp(brown, (1 - smooth01(0.25, 0.45, y)) * 0.6); }
+          // dark points on the longhorn's muzzle and ear edges, darker poll
+          if (inHead && hu > 0.36 * S.s) c.lerp(black, 0.25 * (1 - w));
         }
-        // darker muzzle, nose pad
-        const nt = S.at(S.HL + 0.02, -0.01), dm = Math.hypot(x * 0.8, y - nt[1], z - nt[2]);
-        c.lerp(nose, (1 - smooth01(0.045, 0.075, dm)) * 0.85);
-        // hooves region below the pasterns, darker points
-        if (y < 0.08) c.lerp(black, 0.3);
-        c.multiplyScalar(0.94 + n3 * 0.12);
-        col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+        // shade: the underside and the legs darker, grime at the fetlocks
+        const underK = 1 - 0.16 * (1 - smooth01(-0.6, 0.1, ny)) * (1 - smooth01(S.B, S.B + 0.4, y));
+        c.multiplyScalar(underK * (1 - 0.1 * (1 - smooth01(S.knee - 0.1, S.B, y))));
+        c.lerp(dirt, 0.4 * (1 - smooth01(0.06, 0.2, y + (n1 - 0.5) * 0.06)));
+        // muzzle: nose pad, nostrils, the mouth line
+        let wt = 0;
+        if (inHead && hu > 0.4 * S.s) {
+          const pad = smooth01(0.455 * S.s, 0.475 * S.s, hu + (n3 - 0.5) * 0.01) * smooth01(-0.105, -0.085, hw2);
+          c.lerp(tmp.copy(nose).multiplyScalar(0.9 + n3 * 0.2), pad); wt = pad;
+          const hole = 1 - smooth01(0.012, 0.03, Math.hypot(Math.abs(x) - 0.056 * S.hw, (hu - 0.515 * S.s) * 0.8, hw2 + 0.04));
+          c.lerp(nostril, hole * 0.9);
+          const mouth = 1 - smooth01(0.004, 0.012, Math.abs(hw2 + 0.122));
+          c.lerp(nostril, mouth * smooth01(0.4 * S.s, 0.44 * S.s, hu) * 0.6);
+        }
+        // the eye rim
+        if (inHead) { const er = Math.hypot(Math.abs(x) - 0.1 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]); c.lerp(black, (1 - smooth01(0.028, 0.04, er)) * 0.7); }
+        // the udder and sheath are bare and pink
+        if (sex === 'cow' && y < S.B + 0.05 && Math.abs(z - (S.Lr + 0.34)) < 0.14 && Math.abs(x) < 0.12) c.lerp(tmp.set(0xc99c8c), (1 - smooth01(S.B - 0.02, S.B + 0.05, y)) * 0.8);
+        if (y < 0.075) c.lerp(black, 0.35);
+        c.multiplyScalar(0.95 + n3 * 0.1);
+        col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b; wet[i] = wt;
       }
       geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-      const hide = mat('hide', { color: 0xffffff, vertexColors: true, roughness: 0.85, sheen: 0.25, sheenRoughness: 0.7, sheenColor: 0xb8a48a }, true);
-      const g = new THREE.Group();
-      g.add(new THREE.Mesh(geo, hide));
-      // find the surface along a ray (for eyes, ears, horn roots)
+      geo.setAttribute('wet', new THREE.BufferAttribute(wet, 1));
+      const g = new THREE.Group(), outer = new THREE.Group(); outer.add(g);
+      const body = new THREE.Mesh(geo, hideMaterial()); g.add(body);
+      // find the surface along a ray from inside the body (for eyes, ears, horn roots)
       const onSurface = (from, dir) => { const p = new V3(...from), d = new V3(...dir).normalize();
         let sd = sdf(p.x, p.y, p.z), n = 0;
         while (sd < 0 && n++ < 200) { p.addScaledVector(d, Math.max(0.002, -sd)); sd = sdf(p.x, p.y, p.z); }
         for (let i = 0; i < 12; i++) { p.addScaledVector(d, -sd); sd = sdf(p.x, p.y, p.z); }
         return p; };
-      // eyes
-      const eyeM = mat('eye', { color: 0x0c0806, roughness: 0.08, metalness: 0.1 }, false);
-      for (const s of [-1, 1]) {
-        const p = onSurface(S.at(0.13, 0.03), [s, 0.02, 0.12]);
-        const e = new THREE.Mesh(new THREE.SphereGeometry(0.019, 16, 12), eyeM); e.position.copy(p).add(new V3(-s * 0.006, 0, 0)); g.add(e);
-        const lid = new THREE.Mesh(new THREE.TorusGeometry(0.02, 0.006, 6, 18), mat('eyelid', { color: 0x2a211d, roughness: 0.8 }));
-        lid.position.copy(e.position); lid.rotation.y = s * Math.PI / 2 * 0.8; g.add(lid);
+      /* eyes: dark, wet, set in the lids under the brow */
+      const eyeM = mat('cattleEye', { color: 0x140c08, roughness: 0.05, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.03 }, true);
+      for (const q of [-1, 1]) {
+        const c0 = S.at(eyeUW[0], eyeUW[1], q * 0.06 * S.hw), p = onSurface(c0, [q, 0, 0]);
+        const e = new THREE.Mesh(new THREE.SphereGeometry(0.021, 18, 12), eyeM);
+        e.scale.set(0.8, 0.85, 1.05); e.position.copy(p).add(new V3(-q * 0.011, 0.002, 0)); g.add(e);
       }
-      // ears: cupped, horizontal, slightly drooping
-      for (const s of [-1, 1]) {
-        const root = onSurface(S.at(0.07, -0.05), [s, 0.1, -0.1]);
-        const ear = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 10, 0, TAU, 0, Math.PI * 0.62), mat('ear' + breed + coat, { color: LH ? (coat === 'dun' ? 0xa88a60 : 0x7a3a22) : 0x7a2c14, roughness: 0.85, side: THREE.DoubleSide }));
-        ear.scale.set(0.035, 0.11, 0.065); ear.rotation.set(0, 0, -s * (Math.PI / 2 + 0.25)); ear.rotation.y = s * 0.35;
-        ear.position.copy(root).add(new V3(s * 0.07, -0.01, 0)); g.add(ear);
-        const inner = new THREE.Mesh(new THREE.CircleGeometry(1, 16), mat('earIn', { color: 0xc9a58f, roughness: 0.9, side: THREE.DoubleSide }));
-        inner.scale.set(0.045, 0.028, 1); inner.position.copy(ear.position).add(new V3(s * 0.005, 0.012, 0.004)); inner.rotation.set(-Math.PI / 2 + 0.2, 0, s * 0.3); g.add(inner);
-      }
-      // nostrils
-      for (const s of [-1, 1]) { const p = onSurface([s * 0.03, S.muz[1] - 0.01, S.muz[2] + 0.02], [s * 0.3, 0, 1]);
-        const n = new THREE.Mesh(new THREE.SphereGeometry(0.012, 10, 8), mat('nostril', { color: 0x120c0a, roughness: 0.4 })); n.scale.set(0.7, 1, 0.5); n.position.copy(p); g.add(n); }
-      // horns
-      if (o.horns !== false || LH) {
-        const hornCol = (t) => new THREE.Color(0xd9c7a0).lerp(new THREE.Color(0xb49a6a), smooth01(0, 0.35, t) * 0.4).lerp(new THREE.Color(0x2b241e), smooth01(0.72, 0.97, t)).multiplyScalar(1 - 0.08 * Math.max(0, Math.sin(t * 70)) * (1 - t));
-        const hm = mat('horn', { color: 0xffffff, vertexColors: true, roughness: 0.5, clearcoat: 0.15, clearcoatRoughness: 0.5 }, true);
-        for (const s of [-1, 1]) {
-          const root = S.at(0.0, -0.01, s * 0.07);
-          let pts;
-          if (LH) {
-            const sp = (o.spread || 1.9) / 2, up = 0.18 + r() * 0.12, fw = (r() - 0.3) * 0.12;
-            const [, ry, rz] = root;
-            pts = [root, [s * 0.18, ry + 0.02, rz + 0.01], [s * sp * 0.45, ry + 0.04, rz + fw * 0.5], [s * sp * 0.78, ry + up * 0.45, rz - 0.02 + fw],
-                   [s * sp * 0.97, ry + up, rz - 0.09 + fw * 1.5], [s * sp, ry + up * 1.35, rz - 0.19 + fw]];
-          } else {
-            const [, ry, rz] = root;
-            pts = [root, [s * 0.16, ry + 0.025, rz + 0.0], [s * 0.24, ry + 0.045, rz + 0.06], [s * 0.27, ry + 0.03, rz + 0.13], [s * 0.26, ry - 0.01, rz + 0.18]];
-          }
-          const rBase = LH ? 0.055 : 0.038;
-          g.add(taperTube(pts, (t) => rBase * (1 - 0.86 * Math.pow(t, 0.9)) + 0.003, hm, LH ? 64 : 32, 14, (t) => hornCol(t)));
+      /* ears: cupped leaves set level off the side of the poll, behind the horns */
+      // the cup's inside is the geometry's front face
+      const earOut = mat('cattleEar' + coat + redHex, { color: LH ? (coat === 'dun' ? 0x9c7f58 : coat === 'speckle' ? 0xcfc6b6 : coat === 'brindle' ? 0x3d2618 : redHex) : redHex, roughness: 0.85, sheen: 0.3, sheenRoughness: 0.6, sheenColor: 0xcdb89a, side: THREE.BackSide }, true);
+      const earIn = mat('cattleEarIn' + breed, { color: LH ? 0x8a6a5c : 0xd8cfc0, roughness: 0.95, side: THREE.FrontSide });
+      const eg = earGeometry(LH ? 0.2 : 0.19, LH ? 0.065 : 0.07);
+      for (const q of [-1, 1]) {
+        const root = onSurface(S.at(0.05, -0.1, q * 0.04), [q, 0.15, -0.1]);
+        // level and out to the side, the opening forward, the tip drooping a little and swept back
+        const side = new THREE.Group(); side.position.copy(root).add(new V3(-q * 0.015, 0, 0)); side.scale.x = q; g.add(side);
+        for (const m2 of [earOut, earIn]) {
+          const ear = new THREE.Mesh(eg, m2); ear.rotation.order = 'YZX'; ear.rotation.set(Math.PI / 2 - 0.25, 0.32, -0.3); side.add(ear);
         }
       }
-      // hooves: two claws each, with dew claws
-      const hoofM = mat('hoof', { color: 0x2a2320, roughness: 0.55 });
-      const hoofGeo = new THREE.LatheGeometry([[0, 0], [0.034, 0], [0.036, 0.008], [0.03, 0.045], [0.018, 0.068], [0, 0.07]].map((p) => new THREE.Vector2(p[0], p[1])), 20);
-      const feet = [[-S.fx, S.Lz - 0.13 + S.fs + 0.06], [S.fx, S.Lz - 0.13 - S.fs + 0.06], [-S.hx, -S.Lz - 0.06 + S.hs + 0.12], [S.hx, -S.Lz - 0.06 - S.hs + 0.12]];
+      /* horns */
+      const horned = o.horns === true || o.horns === 'true' || (LH && o.horns !== false && o.horns !== 'false');
+      if (horned) {
+        const hornCol = (t) => tmp.set(0xd8c7a2).lerp(new THREE.Color(0xb39667), smooth01(0, 0.4, t) * 0.5)
+          .lerp(new THREE.Color(0x2a221c), smooth01(LH ? 0.78 : 0.6, 0.98, t)).multiplyScalar(1 - 0.12 * Math.max(0, Math.sin(t * 90)) * Math.pow(1 - t, 3)).clone();
+        const hm = mat('cattleHorn', { color: 0xffffff, vertexColors: true, roughness: 0.42, clearcoat: 0.3, clearcoatRoughness: 0.35 }, true);
+        const sp = Math.max(0.5, (o.spread || 1.9) / 2 - 0.1), up = 0.26 + r() * 0.16, fw = (r() - 0.4) * 0.1;
+        const rBase = LH ? (sex === 'cow' ? 0.042 : sex === 'bull' ? 0.066 : 0.056) : 0.034;
+        for (const q of [-1, 1]) {
+          const root = S.at(-0.005, -0.055, q * 0.1 * S.hw), [rx, ry, rz] = root;
+          const P2 = (dx, dy, dz) => [rx + q * dx, ry + dy, rz + dz];
+          const pts = LH
+            ? [P2(-0.03, -0.005, 0), P2(0.1, 0, -0.01), P2(sp * 0.33, -0.02, 0.02 + fw * 0.3), P2(sp * 0.6, 0.015, 0.07 + fw), P2(sp * 0.8, up * 0.3, 0.06 + fw),
+               P2(sp * 0.94, up * 0.7, -0.01 + fw * 0.5), P2(sp, up, -0.1)]
+            : [P2(-0.02, -0.005, 0), P2(0.08, 0.012, -0.01), P2(0.15, 0.02, 0.02), P2(0.2, 0.0, 0.07), P2(0.22, -0.04, 0.12), P2(0.21, -0.08, 0.15)];
+          g.add(taperTube(pts, (t) => rBase * (1 - 0.97 * Math.pow(t, 1.1)) * (1 + 0.05 * Math.sin(t * 90) * Math.pow(1 - t, 3)) + 0.0012,
+            hm, LH ? 72 : 36, 16, (t) => hornCol(t)));
+        }
+      }
+      /* hooves: two claws each and the dew claws behind */
+      const hoofM = mat('cattleHoof', { color: 0x2b2420, roughness: 0.5, side: THREE.DoubleSide });
+      const feet = [[-S.fx, S.fz + 0.045], [S.fx, S.fz + 0.045], [-S.hx, S.hz + 0.09], [S.hx, S.hz + 0.09]];
       feet.forEach(([x, z]) => {
-        for (const s of [-1, 1]) { const h = new THREE.Mesh(hoofGeo, hoofM); h.scale.set(0.62, 1, 1.25); h.position.set(x + s * 0.02, 0, z); h.rotation.x = 0.12; g.add(h); }
-        const dew = new THREE.Mesh(new THREE.SphereGeometry(0.012, 8, 6), hoofM); dew.position.set(x, 0.1, z - 0.07); g.add(dew);
+        for (const q of [-1, 1]) { const h = new THREE.Mesh(clawGeometry(), hoofM); h.position.set(x + q * 0.004, 0, z); if (q < 0) h.scale.x = -1; h.rotation.y = q * 0.06; g.add(h); }
+        for (const q of [-1, 1]) { const dew = new THREE.Mesh(new THREE.SphereGeometry(0.011, 8, 6), hoofM); dew.scale.set(1, 0.8, 1.3); dew.position.set(x + q * 0.022, 0.1, z - 0.06); g.add(dew); }
       });
-      // tail and switch
-      const tailCol = new THREE.Color(); const tc = S.P.length; void tc;
-      const tailTop = [0, S.H - 0.22, -S.Lz - 0.11];
-      const tailPts = [tailTop, [0.0, S.H - 0.4, -S.Lz - 0.16], [0.02, 0.8, -S.Lz - 0.17], [0.035, 0.55, -S.Lz - 0.14]];
-      const switchWhite = coat === 'hereford';
-      tailCol.set(switchWhite ? 0x7a2c14 : (coat === 'dun' ? 0x9c7f58 : coat === 'speckle' ? 0xd9d2c4 : 0x6e2f18));
-      const tailM = mat('tail' + coat, { color: tailCol, roughness: 0.85 });
-      g.add(taperTube(tailPts, (t) => 0.034 - 0.018 * t, tailM, 24, 8));
-      const swM = mat('switch' + coat, { color: switchWhite ? 0xe6dfd2 : (coat === 'brindle' ? 0x1e1916 : coat === 'dun' ? 0x3a2a1c : 0x2a1f19), roughness: 0.95 });
-      const sw = new THREE.SphereGeometry(1, 14, 10);
-      deform(sw, (v) => { const k = 1 + 0.25 * Math.sin(v.x * 9 + v.z * 7) * Math.sin(v.y * 5); v.x *= k; v.z *= k; if (v.y < 0) { v.x *= 1 + 0.4 * -v.y; v.z *= 1 + 0.3 * -v.y; } });
-      const swm = new THREE.Mesh(sw, swM); swm.scale.set(0.045, 0.16, 0.04); swm.position.set(0.04, 0.44, -S.Lz - 0.135); g.add(swm);
-      for (let k = 0; k < 7; k++) { const a = r() * TAU; tube([[0.04, 0.5, -S.Lz - 0.135], [0.04 + Math.cos(a) * 0.03, 0.36, -S.Lz - 0.135 + Math.sin(a) * 0.03], [0.04 + Math.cos(a) * 0.05, 0.27 + r() * 0.04, -S.Lz - 0.135 + Math.sin(a) * 0.05]], 0.006, swM, 8, 5, g); }
-      return centre(g);
+      /* tail, hanging close to the round, and its switch */
+      const tailTop = [0, S.H - 0.1 - S.rump, S.Lr - 0.07];
+      const tailPts = [tailTop, [0, S.H - 0.3, S.Lr - 0.12], [0.008, S.B + 0.1, S.Lr - 0.11], [0.02, S.hock + 0.02, S.Lr - 0.08]];
+      const tailM = mat('cattleTail' + coat + redHex, { color: coat === 'hereford' ? redHex : coat === 'dun' ? 0x9c7f58 : coat === 'speckle' ? 0xd9d2c4 : coat === 'brindle' ? 0x3d2618 : redHex, roughness: 0.85 });
+      g.add(taperTube(tailPts, (t) => 0.036 - 0.02 * t, tailM, 28, 10));
+      const swM = mat('cattleSwitch' + coat, { color: coat === 'hereford' ? 0xe3dccd : (coat === 'brindle' ? 0x1e1916 : coat === 'dun' ? 0x3a2a1c : coat === 'speckle' ? 0xe0d8c8 : 0x2a1f19), roughness: 0.95 });
+      const sw0 = [0.02, S.hock + 0.06, S.Lr - 0.08];
+      for (let k = 0; k < 16; k++) {
+        const a = r() * TAU, rr = 0.012 + r() * 0.03, len = 0.2 + r() * 0.12;
+        g.add(taperTube([sw0, [sw0[0] + Math.cos(a) * rr * 0.6, sw0[1] - len * 0.4, sw0[2] + Math.sin(a) * rr * 0.6],
+          [sw0[0] + Math.cos(a) * rr, sw0[1] - len * 0.8, sw0[2] + Math.sin(a) * rr], [sw0[0] + Math.cos(a) * rr * 1.2, sw0[1] - len, sw0[2] + Math.sin(a) * rr * 1.2]],
+          (t) => 0.014 * (1 - t) + 0.002, swM, 8, 5));
+      }
+      /* teats on a cow */
+      if (sex === 'cow') {
+        const tM = mat('cattleTeat', { color: 0xb88a7c, roughness: 0.6 });
+        for (const a of [-1, 1]) for (const b of [-1, 1]) {
+          const tt = new THREE.Mesh(new THREE.CapsuleGeometry(0.01, 0.03, 4, 8), tM);
+          tt.position.set(a * 0.045, S.B - 0.055, S.Lr + 0.34 + b * 0.045); g.add(tt);
+        }
+      }
+      // a little variety between animals of one kind, without another field build
+      const sc = 0.97 + r() * 0.06; g.scale.set(sc * (0.98 + r() * 0.04), sc, sc);
+      return centre(outer);
     },
   });
 

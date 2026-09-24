@@ -37,7 +37,7 @@ export function install(K, THREE, TXT) {
   function texture(key, W, H, paint, srgb) {
     if (TEXC.has(key)) return TEXC.get(key);
     const c = canvas(W, H), x = c.getContext('2d');
-    const _t = performance.now(); paint(x, W, H, K.rng(hashStr(key))); (window.__TT = window.__TT || []).push([key, Math.round(performance.now() - _t)]);
+    paint(x, W, H, K.rng(hashStr(key)));
     const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
     t.colorSpace = srgb === false ? THREE.NoColorSpace : THREE.SRGBColorSpace;
     TEXC.set(key, t); return t;
@@ -482,7 +482,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const OAK_LEAF = { shape: 'ellipse', leaf: [21, 10], colors: ['#27361c', '#3d5226', '#52682f'], twig: '#3a3027', twigW: 3, density: 9, angle: 0.8, gloss: true, branchy: 2 };
   K.define('live_oak', {
-    size: [18, 9, 18],
+    size: [20.5, 10, 21],
     options: { height: 9, spread: 18 },
     note: 'Options: height m, spread m across the crown. The Texas live oak: a short massive trunk with a root flare, four to six great limbs that leave low and run out nearly level, sinuous and dipping, secondary branches rising off their backs, and a broad low dome of small dark glossy leaf clusters with depth and sky gaps.',
     make(o, r) {
@@ -503,7 +503,7 @@ export function install(K, THREE, TXT) {
         ],
         leaves: { per: 3, from: 0.2, size: [0.45 * Math.sqrt(k), 0.72 * Math.sqrt(k)], lift: 0.12 },
         // a broad low dome: twice as wide as it is tall, its skirt at the height the limbs sag to
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.88 + r() * 0.2), y0: 3.4 * kh, ry: H - 3.4 * kh, base: 2.1 * kh, hollow: 0.5, flatBottom: 3 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.88 + r() * 0.2), y0: 3.5 * kh, ry: H - 3.5 * kh, base: 2.5 * kh, hollow: 0.5, flatBottom: 3 },
         shell: { n: 1150, size: [0.62 * Math.sqrt(k), 0.95 * Math.sqrt(k)], thick: 0.22, skirt: 0.4, below: 0.3, gaps: -0.12, lobe: 0.2 },
       };
       const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xfff0c8, 0xeee0b0, 0xfff6d4, 0xe2d8a8], fol: { squash: 0.8 } });
@@ -516,7 +516,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const MESQ_LEAF = { shape: 'pinnate', leaf: [70, 5], leaflets: 13, colors: ['#4f6a30', '#6a8640', '#869f52'], twig: '#2e241c', twigW: 3, density: 2, angle: 1.0, branchy: 2, alphaTest: 0.35 };
   K.define('mesquite', {
-    size: [8, 6, 8],
+    size: [9.3, 6.6, 8.5],
     options: { height: 6, spread: 8, stems: null },
     note: 'Options: height m, spread m, stems (null = seeded 2 or 3). Honey mesquite: two or three thin, twisting, near-black stems leaning out from one base, zigzag branches arching over, and a flat, airy, feathery umbrella of lime-green bipinnate leaves with the sky and the limbs showing through.',
     make(o, r) {
@@ -536,7 +536,7 @@ export function install(K, THREE, TXT) {
         ],
         leaves: { per: 1, from: 0.7, size: [0.4, 0.62], lift: 0.05 },
         envelope: { rx: SP / 2, rz: SP / 2 * (0.85 + r() * 0.25), y0: H * 0.62, ry: H * 0.38, base: H * 0.42, flatBottom: 2.5 },
-        shell: { n: 190, size: [0.45, 0.7], thick: 0.4, skirt: 0.3, below: 0.4, gaps: 0.06, lobe: 0.25 },
+        shell: { n: 210, size: [0.45, 0.7], thick: 0.4, skirt: 0.3, below: 0.4, gaps: 0.0, lobe: 0.25 },
       };
       return makeTree(S, r, { bark: 'mesquite', leafKey: 'mesq', leaf: MESQ_LEAF, cards: 7, colors: [0xfff8e0, 0xf2f0d0, 0xffffff, 0xe8eac8], fol: { squash: 0.55, aoMin: 0.6 }, budget: 30000 });
     },
@@ -547,7 +547,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const ELM_LEAF = { shape: 'ellipse', leaf: [17, 10], colors: ['#3a5528', '#50702f', '#678a3c'], twig: '#3b322a', twigW: 2.5, density: 9, angle: 1.1, serrate: true, branchy: 3 };
   K.define('cedar_elm', {
-    size: [9, 12, 9],
+    size: [10.5, 12.5, 10],
     options: { height: 12, spread: 9 },
     note: 'Options: height m, spread m. Cedar elm: a straight grey scaly trunk, ascending limbs, slightly weeping outer twigs and an upright oval crown of small, rough, dark leaves, a little open, the commonest native street elm in Texas.',
     make(o, r) {
@@ -563,8 +563,8 @@ export function install(K, THREE, TXT) {
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.3, wander: 0.35, droop: 0.1, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.5, 0.75], lift: 0.05 },
-        envelope: { rx: SP * 0.42, rz: SP * 0.42 * (0.85 + r() * 0.2), y0: H * 0.6, ry: H * 0.38, base: H * 0.33, hollow: 0.5 },
-        shell: { n: 850, size: [0.55, 0.85], thick: 0.3, skirt: 0.7, below: 0.62, gaps: -0.06, lobe: 0.26 },
+        envelope: { x: (r() - 0.5) * 1.2 * k, z: (r() - 0.5) * 1.2 * k, rx: SP * 0.45, rz: SP * 0.45 * (0.8 + r() * 0.25), y0: H * 0.58, ry: H * 0.4, base: H * 0.26, hollow: 0.5 },
+        shell: { n: 850, size: [0.55, 0.85], thick: 0.35, skirt: 0.8, below: 0.75, gaps: 0.04, lobe: 0.32 },
       };
       return makeTree(S, r, { bark: 'elm', leafKey: 'elm', leaf: ELM_LEAF, cards: 10, colors: [0xfff4d8, 0xf0ecc8, 0xffffff, 0xe4e4c4] });
     },
@@ -575,7 +575,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const JUN_LEAF = { shape: 'scale', leaf: [38, 7], colors: ['#2c3c2a', '#3b4f34', '#4d633f'], twig: '#4a3a2e', twigW: 3, density: 5, angle: 0.7, berries: '#7c8fb0', branchy: 3, alphaTest: 0.4 };
   K.define('ashe_juniper', {
-    size: [5, 6, 5],
+    size: [6.6, 6.8, 6.4],
     options: { height: 6, spread: 5 },
     note: 'Options: height m, spread m. Ashe juniper, the Hill Country cedar: several shaggy, shredding, reddish-grey stems from the ground, a dense irregular rounded-conical crown of dark blue-green scale foliage in ropey sprays carried nearly to the ground, a few frosted blue berries.',
     make(o, r) {
@@ -607,11 +607,11 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const PECAN_LEAF = { shape: 'pinnate', leaf: [120, 13], leaflets: 6, colors: ['#4c6a2a', '#668a34', '#84a444'], twig: '#3e3428', twigW: 3, density: 2, angle: 0.8, branchy: 2, alphaTest: 0.4 };
   K.define('pecan', {
-    size: [16, 22, 16],
-    options: { height: 22, spread: 16 },
+    size: [21, 22, 19],
+    options: { height: 22, spread: 18 },
     note: 'Options: height m, spread m. The pecan, Texas state tree: a tall, straight, grey, scaly trunk clear for five or six metres, big ascending scaffold limbs, and a high, open, rounded-oval crown of long compound yellow-green leaves.',
     make(o, r) {
-      const H = opt(o, 'height', 22), SP = opt(o, 'spread', 16), k = SP / 16, kh = H / 22;
+      const H = opt(o, 'height', 22), SP = opt(o, 'spread', 18), k = SP / 18, kh = H / 22;
       const tH = (5.5 + r() * 1.5) * kh;
       const S = {
         trunks: [{ at: [0, -0.1, 0], dir: [(r() - 0.5) * 0.08, 1, (r() - 0.5) * 0.08], len: tH + 0.1, rad: 0.38 * Math.max(0.6, kh), az: r() * 6.3 }],
@@ -623,8 +623,8 @@ export function install(K, THREE, TXT) {
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.4, wander: 0.3, droop: 0.05, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.8, 1.2], lift: 0.05 },
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.85 + r() * 0.2), y0: H * 0.6, ry: H * 0.36, base: H * 0.36, hollow: 0.5, flatBottom: 1.6 },
-        shell: { n: 900, size: [0.9, 1.35], thick: 0.3, skirt: 0.7, below: 0.6, gaps: -0.02, lobe: 0.32 },
+        envelope: { x: (r() - 0.5) * 2 * k, z: (r() - 0.5) * 2 * k, rx: SP / 2, rz: SP / 2 * (0.8 + r() * 0.25), y0: H * 0.58, ry: H * 0.38, base: H * 0.3, hollow: 0.5, flatBottom: 1.3 },
+        shell: { n: 900, size: [0.9, 1.35], thick: 0.35, skirt: 0.7, below: 0.7, gaps: 0.06, lobe: 0.36 },
       };
       return makeTree(S, r, { bark: 'pecan', leafKey: 'pecan', leaf: PECAN_LEAF, cards: 10, colors: [0xfff6d8, 0xf6f2c8, 0xffffff, 0xeae8c0] });
     },
@@ -636,7 +636,7 @@ export function install(K, THREE, TXT) {
   const CRAPE_LEAF = { shape: 'ellipse', leaf: [26, 14], colors: ['#35532a', '#4a6c30', '#5f823c'], twig: '#6a5040', twigW: 2.5, density: 7, angle: 0.9, gloss: true, branchy: 2 };
   const BLOOMS = { pink: ['#c8407a', '#e46c9e', '#f4a0c4'], white: ['#dcd8d0', '#f4f2ee', '#ffffff'], red: ['#9c1c30', '#c43048', '#e0506a'], lavender: ['#8a6aa8', '#a88ac4', '#c8b0dc'] };
   K.define('crape_myrtle', {
-    size: [4.5, 5.5, 4.5],
+    size: [6, 6, 5.5],
     options: { height: 5.5, spread: 4.5, bloom: 'pink', stems: null },
     note: 'Options: height m, spread m, bloom pink|white|red|lavender (or false for none), stems (null = seeded 4 to 6). Crape myrtle: four to six smooth, sinuous, exfoliating stems in cinnamon, tan and grey patches rising in a vase, a rounded head of small glossy leaves, and crinkled flower panicles held above it.',
     make(o, r) {
@@ -677,7 +677,7 @@ export function install(K, THREE, TXT) {
     yaupon: { shape: 'ellipse', leaf: [16, 9], colors: ['#2c4222', '#3c5a2a', '#4e6e34'], twig: '#6a6258', twigW: 2, density: 9, angle: 1.0, gloss: true, branchy: 3, berries: '#c0281e' },
   };
   K.define('shrub', {
-    size: [3, 1.2, 0.9],
+    size: [3.4, 1.4, 1.3],
     options: { kind: 'boxwood', form: 'hedge', length: 3, height: 1.2, depth: 0.9 },
     note: 'Options: kind boxwood|yaupon (yaupon carries red berries), form hedge|mound, length, height, depth m (a mound uses length as its diameter). A foundation hedge sheared flat with softly rounded shoulders, or a loose mounded shrub: thousands of small glossy leaves over a dark leafy core, a few stems showing at the foot. A hedge runs along x.',
     make(o, r) {
@@ -773,9 +773,9 @@ export function install(K, THREE, TXT) {
     return g;
   }
   K.define('palm', {
-    size: [5, 16, 5],
+    size: [4.9, 18.3, 5],
     options: { height: 16, skirt: true, lean: null },
-    note: 'Options: height m, skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). Washingtonia robusta, the Mexican fan palm of the Rio Grande Valley and Houston: a tall, slender, ringed grey trunk flaring at the foot with a gentle curve, a brown petticoat of dead fronds hanging under the head, and a crown of about two dozen bright green costapalmate fans on long petioles, the young ones upright and the old ones drooping.',
+    note: 'Options: height m (the trunk; the crown stands about 2 m above it), skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). Washingtonia robusta, the Mexican fan palm of the Rio Grande Valley and Houston: a tall, slender, ringed grey trunk flaring at the foot with a gentle curve, a brown petticoat of dead fronds hanging under the head, and a crown of about two dozen bright green costapalmate fans on long petioles, the young ones upright and the old ones drooping.',
     make(o, r) {
       const g = new THREE.Group();
       const H = opt(o, 'height', 16), lean = opt(o, 'lean', (r() - 0.5) * 0.12), az = r() * 6.283;
@@ -790,22 +790,24 @@ export function install(K, THREE, TXT) {
       const wood = { pos: [], nor: [], uv: [], idx: [] };
       taperTube(pts, radii, 14, wood);
       g.add(woodMesh(wood, barkMat('palm')));
-      const top = pts[n], head = top.clone().add(new V3(0, 0.3, 0));
+      const top = pts[n], head = top.clone().add(new V3(0, 0.25, 0));
       // the boot: a knot of old leaf bases at the head
-      const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.22, 1.1, 14), mat('palmboot', () => new THREE.MeshStandardMaterial({ color: 0x6e5a40, roughness: 0.95, map: TEXC.get('bark|palm') || null })));
-      boot.position.copy(top).add(new V3(0, 0.2, 0)); g.add(boot);
+      // the head: a short fibrous taper of old leaf bases, the colour of the petticoat
+      const boot = new THREE.Mesh(new THREE.LatheGeometry([[0.2, -0.6], [0.3, -0.2], [0.28, 0.15], [0.16, 0.4], [0.05, 0.5]].map((q) => new THREE.Vector2(q[0], q[1])), 14),
+        mat('palmboot', () => new THREE.MeshStandardMaterial({ color: 0x7a6040, roughness: 0.95 })));
+      boot.position.copy(top); g.add(boot);
       const green = mat('frond', () => oneFace(new THREE.MeshStandardMaterial({ map: strapTexture(false), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.8, envMapIntensity: 0.35 })));
       const brown = mat('frond-dead', () => oneFace(new THREE.MeshStandardMaterial({ map: strapTexture(true), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.92, envMapIntensity: 0.3 })));
       const petM = mat('petiole', () => new THREE.MeshStandardMaterial({ color: 0x8a8a5a, roughness: 0.7 }));
-      const fan = fanGeo(34, 5, 1.05, 1.7, 0.42, 0.32, 71), dead = fanGeo(14, 3, 0.9, 1.2, 0.3, 0.12, 73);
+      const fan = fanGeo(32, 5, 1.12, 1.7, 0.42, 0.34, 71), dead = fanGeo(14, 3, 0.9, 1.2, 0.3, 0.12, 73);
       const pet = new THREE.CylinderGeometry(0.018, 0.035, 1, 6); pet.translate(0, 0.5, 0); pet.rotateZ(-Math.PI / 2);   // along +x, length 1
-      const live = 22 + Math.floor(r() * 6), deadN = opt(o, 'skirt', true) ? 46 : 8;
+      const live = 30 + Math.floor(r() * 5), deadN = opt(o, 'skirt', true) ? 46 : 8;
       const imF = new THREE.InstancedMesh(fan, green, live), imP = new THREE.InstancedMesh(pet, petM, live);
       const imD = new THREE.InstancedMesh(dead, brown, deadN);
       const Mx = new THREE.Matrix4(), M2 = new THREE.Matrix4(), q = new THREE.Quaternion(), c = new THREE.Color();
       for (let i = 0; i < live; i++) {
         // golden-angle around the head; elevation from upright (young) to drooping (old)
-        const a = i * 2.39996 + r() * 0.3, t = i / live, el = 1.15 - t * 1.7 + (r() - 0.5) * 0.25, pl = 1.1 + r() * 0.5;
+        const a = i * 2.39996 + r() * 0.3, t = i / live, el = 1.1 - t * 1.65 + (r() - 0.5) * 0.25, pl = 0.7 + r() * 0.35;
         const dir = new V3(Math.cos(a) * Math.cos(el), Math.sin(el), Math.sin(a) * Math.cos(el));
         q.setFromUnitVectors(new V3(1, 0, 0), dir);
         // keep the blade roughly face-up: roll about the petiole so its local y is as close to world up as it can be

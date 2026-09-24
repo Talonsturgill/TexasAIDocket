@@ -156,7 +156,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `crowd` | 8 x 1.8 x 5 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z. |
-| `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up; toward -1\|1 for point; hat auto\|none\|cap\|cowboy\|hard; build auto\|male\|female. |
+| `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up; toward -1\|1 for point; hat auto\|none\|cap\|cowboy\|hard; build auto\|male\|female. |
 
 ### homes (9)
 
@@ -164,15 +164,15 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
-| `barbed_wire_fence` | 20 x 1.5 x 0.6 | length, strands, spacing | Options: length m, strands, spacing (T-post spacing, m). |
-| `chain_link_fence` | 12 x 1.3 x 0.12 | length, height, color | Options: length m, height m (1.22 is a 4 ft fence), color galvanized\|black. |
-| `driveway` | 5.5 x 0.08 x 9 | width, length, flare, age | Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). |
-| `mailbox` | 0.7 x 1.5 x 0.7 | style, color, brick | Options (null = seeded choice): style post\|brick, color (box colour), brick (column colour). |
-| `mobile_home` | 22.4 x 3.9 x 6.6 | style, color, trim | Options (null = seeded choice): style modern\|vintage, color (siding), trim (the vintage accent band). |
-| `privacy_fence` | 12 x 1.9 x 0.3 | length, height, gate, weathered | Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). |
-| `ranch_house` | 21 x 5.2 x 11.2 | material, color, brick, roof, trim, door, garage, chimney, gable, shutters | Options (null = seeded choice): material brick\|limestone\|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right\|left\|none, chimney bool, gable (front gable over the garage) bool, shutters hex ... |
-| `two_story_house` | 19 x 9.2 x 11 | brick, siding, roof, trim, door, garage | Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right\|left\|none. |
-| `yard` | 8 x 0.12 x 6 | size, dryness, edge, budget | Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). |
+| `barbed_wire_fence` | 20.2 x 1.6 x 0.2 | length, strands, spacing | Options: length m, strands, spacing (T-post spacing, m). |
+| `chain_link_fence` | 12.2 x 1.3 x 0.25 | length, height, color | Options: length m, height m (1.22 is a 4 ft fence), color galvanized\|black. |
+| `driveway` | 7.5 x 0.06 x 9 | width, length, flare, age | Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). |
+| `mailbox` | 0.7 x 1.45 x 0.7 | style, color, brick | Options (null = seeded choice): style post\|brick, color (box colour), brick (column colour). |
+| `mobile_home` | 23.5 x 4 x 8.7 | style, color, trim | Options (null = seeded choice): style modern\|vintage, color (siding), trim (the vintage accent band). |
+| `privacy_fence` | 12 x 1.9 x 0.15 | length, height, gate, weathered | Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). |
+| `ranch_house` | 23.5 x 5.5 x 11.5 | material, color, brick, roof, trim, door, garage, chimney, gable, shutters | Options (null = seeded choice): material brick\|limestone\|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right\|left\|none, chimney bool, gable (front gable over the garage) bool, shutters hex ... |
+| `two_story_house` | 20 x 9.1 x 12.1 | brick, siding, roof, trim, door, garage | Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right\|left\|none. |
+| `yard` | 8 x 0.1 x 6 | size, dryness, edge, budget | Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). |
 
 ### trees (8)
 
@@ -180,14 +180,14 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
-| `ashe_juniper` | 5 x 6 x 5 | height, spread | Options: height m, spread m. |
-| `cedar_elm` | 9 x 12 x 9 | height, spread | Options: height m, spread m. |
-| `crape_myrtle` | 4.5 x 5.5 x 4.5 | height, spread, bloom, stems | Options: height m, spread m, bloom pink\|white\|red\|lavender (or false for none), stems (null = seeded 4 to 6). |
-| `live_oak` | 18 x 9 x 18 | height, spread | Options: height m, spread m across the crown. |
-| `mesquite` | 8 x 6 x 8 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
-| `palm` | 5 x 16 x 5 | height, skirt, lean | Options: height m, skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). |
-| `pecan` | 16 x 22 x 16 | height, spread | Options: height m, spread m. |
-| `shrub` | 3 x 1.2 x 0.9 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
+| `ashe_juniper` | 6.6 x 6.8 x 6.4 | height, spread | Options: height m, spread m. |
+| `cedar_elm` | 10.5 x 12.5 x 10 | height, spread | Options: height m, spread m. |
+| `crape_myrtle` | 6 x 6 x 5.5 | height, spread, bloom, stems | Options: height m, spread m, bloom pink\|white\|red\|lavender (or false for none), stems (null = seeded 4 to 6). |
+| `live_oak` | 20.5 x 10 x 21 | height, spread | Options: height m, spread m across the crown. |
+| `mesquite` | 9.3 x 6.6 x 8.5 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
+| `palm` | 4.9 x 18.3 x 5 | height, skirt, lean | Options: height m (the trunk; the crown stands about 2 m above it), skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). |
+| `pecan` | 21 x 22 x 19 | height, spread | Options: height m, spread m. |
+| `shrub` | 3.4 x 1.4 x 1.3 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
 
 ### vehicles (7)
 
@@ -288,7 +288,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `barn` | 13.5 x 8.2 x 19.5 | style, material, color, roof, trim, w, l, open, leanTo | A Texas barn, gable end forward (+z): style gable \| gambrel, material metal (R panel steel with a wainscot, trim, standing ridge cap, an open side shed on steel posts) or wood (red board and batten, white trim, X braced doors, hayloft door with a hay hood, a ... |
-| `cattle` | 0.8 x 1.55 x 2.5 | breed, horns, spread, coat | A beef animal standing, facing +z, modelled as one smooth body (signed distance field meshed with surface nets): barrel, topline, hooks and pins, dewlap, jointed legs with knees and hocks, cloven hooves, head, ears, eyes, tail with a switch. breed hereford ... |
+| `cattle` | 0.8 x 1.55 x 2.5 | breed, sex, horns, spread, coat | A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge ... |
 | `cattle_guard` | 7.4 x 1.4 x 4.9 | w, l, finish, color, wings | A ranch road cattle guard, road running along z: steel pipe rails across the road on I beam stringers over a dark pit, concrete grade beams at both approaches with caliche ramps, and pipe wings flaring up at each end to the fence line. finish pipe (bare ... |
 | `cotton_module` | 2.5 x 2.3 x 2.3 | shape, count, wrap | Harvested cotton. shape round: the plastic wrapped round module a picker drops (2.29 m across, 2.44 m wide) in yellow film with its loose tail, white lint and trash specks showing on the spiral faces; count lays them in a row. shape rect: a 32 ft rectangular ... |
 | `grain_bin` | 8.6 x 10.2 x 8.6 | d, rings, fan, ladder | Corrugated steel grain bin (24 ft default, rings of 32 in): horizontal corrugation in the silhouette, sheet laps and bolt rows, a 30 degree roof with standing ribs, a peak collar and cap, roof vents, an eave lip, a caged side ladder with a roof ladder to the ... |
@@ -309,7 +309,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `crop_rows` | 20 x 1.4 x 30 | crop, growth, width, length, row, soil, ground | A field block of bedded rows running along z, 40 inch rows on South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green with flowers, 1 defoliated with open white bolls) or sorghum (growth 1 ripe rust heads). |
 | `grain_elevator` | 46 x 58 x 22 | bins, rows, height, diameter, headhouse, steelBins, shed | A concrete slip form country elevator as on the Panhandle horizon: a double row of cylindrical bins with their interstices, a tall headhouse over the leg with small framed windows, a corrugated gallery along the bin tops, a caged ladder, a truck driveway shed ... |
 | `highway` | 40 x 1 x 80 | length, lanes, surface, gantry, overpass, embank, ground | A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an ... |
-| `hill_country_terrain` | 800 x 60 x 800 | size, relief, ledges, trees, season, segments, ground | Central Texas Hill Country: rolling stair-stepped limestone hills, exposed ledges, juniper brakes and live oak mottes, grass by slope. size 200 to 2000 m, relief in metres. |
+| `hill_country_terrain` | 800 x 60 x 800 | size, relief, ledges, trees, season, segments, ground, rim, near, budget, rocks | Central Texas Hill Country: rolling stair-stepped limestone hills, thin broken limestone ledges along the contours with talus below, Ashe juniper brakes and live oak mottes (the kit's own trees.js models, three levels of detail), grass by slope and hollow ... |
 | `mesa` | 900 x 90 x 700 | kind, width, height, cap, rock, aerial, scrub | A caprock mesa (or kind:"butte") with a vertical cap ledge, a soft slope under it and a gullied talus apron that meets the ground. |
 | `pasture` | 24 x 0.9 x 24 | width, depth, height, density, flowers, season, drift | A block of tall mixed prairie grass (bunchgrass tufts with seed stalks), dense and instanced, thinning at its edges so it melts into TXT.ground. flowers: none, bluebonnet, paintbrush or mixed, in drifts; season: spring, summer or fall. |
 | `reservoir_shore` | 300 x 4 x 260 | width, water, land, bluff, drawdown, ramp, ground | A reservoir shore: land at -z rising to a low bluff and sinking back into TXT.ground, a pale drawdown band of cracked mud and rock (the bathtub ring of a Texas lake in drought), and a wide reflective water plane toward +z with waves. ramp adds a grooved ... |

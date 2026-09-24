@@ -23,7 +23,7 @@ export function install(K, THREE, TXT) {
     if (TEXC.has(key)) return TEXC.get(key);
     const c = canvas(N), b = canvas(N);
     const cx = c.getContext('2d'), bx = b.getContext('2d');
-    const _t0 = performance.now(); paint(cx, bx, N, K.rng(hashStr(key))); (window.__TT = window.__TT || []).push([key, Math.round(performance.now() - _t0)]);
+    paint(cx, bx, N, K.rng(hashStr(key)));
     const mk = (cv, srgb) => {
       const t = new THREE.CanvasTexture(cv);
       t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
@@ -705,12 +705,12 @@ export function install(K, THREE, TXT) {
    * ranch_house
    * ===================================================================================== */
   K.define('ranch_house', {
-    size: [21, 5.2, 11.2],
+    size: [23.5, 5.5, 11.5],
     options: { material: null, color: null, brick: null, roof: null, trim: null, door: null, garage: 'right', chimney: null, gable: null, shutters: 'seeded' },
     note: 'Options (null = seeded choice): material brick|limestone|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right|left|none, chimney bool, gable (front gable over the garage) bool, shutters hex, null for none, seeded to choose. The Texas one-storey ranch: slab, brick/limestone/siding walls with real openings, single-hung windows with sills, a recessed front porch, a two-car garage with a sectional door, a hip roof with overhang, fascia, soffit, gutters and downspouts.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
-      const material = opt(o, 'material', ['brick', 'brick', 'limestone', 'brick', 'siding'][Math.floor(r() * 5)]);
+      const material = opt(o, 'material', o.brick != null ? 'brick' : ['brick', 'brick', 'limestone', 'brick', 'siding'][Math.floor(r() * 5)]);
       if (o.brick != null && o.color == null) o = Object.assign({}, o, { color: hex(o.brick) });
       const trimC = opt(o, 'trim', pick(r, TRIMS)), doorC = opt(o, 'door', pick(r, DOORS));
       const roofC = opt(o, 'roof', pick(r, ROOFS));
@@ -922,7 +922,7 @@ export function install(K, THREE, TXT) {
    * two_story_house
    * ===================================================================================== */
   K.define('two_story_house', {
-    size: [19, 9.2, 11],
+    size: [20, 9.1, 12.1],
     options: { brick: null, siding: null, roof: null, trim: null, door: null, garage: 'right' },
     note: 'Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right|left|none. The suburban two-storey of every Texas subdivision since 1990: brick front, lap siding on the sides and back, a gable roof with the ridge along the street, a gabled portico on columns over the door and a front-loading two-car garage wing.',
     make(o, r) {
@@ -1034,7 +1034,7 @@ export function install(K, THREE, TXT) {
    * mobile_home: a 16 x 72 ft single-wide on a skirt, with its wooden steps
    * ===================================================================================== */
   K.define('mobile_home', {
-    size: [22.4, 3.9, 6.6],
+    size: [23.5, 4, 8.7],
     options: { style: null, color: null, trim: null },
     note: 'Options (null = seeded choice): style modern|vintage, color (siding), trim (the vintage accent band). A single-wide manufactured home: vinyl skirting over the piers, lap siding, a shallow shingled (modern) or white metal (vintage) roof, aluminium windows, a front door with a treated-pine landing and steps, the hitch tongue at one end, a condenser at the back.',
     make(o, r) {
@@ -1122,13 +1122,13 @@ export function install(K, THREE, TXT) {
    * fences
    * ===================================================================================== */
   const cedarColour = (w, r) => {
-    const fresh = [0.92, 0.82, 0.74], grey = [0.7, 0.7, 0.68];
+    const fresh = [0.92, 0.82, 0.74], grey = [0.78, 0.94, 1.1];   // the grey pulls the brown map toward silver
     const k = Math.min(1, Math.max(0, w + (r() - 0.5) * 0.35));
     const c = mix(fresh, grey, k), j = 0.86 + r() * 0.22;
     return [c[0] * j, c[1] * j, c[2] * j];
   };
   K.define('privacy_fence', {
-    size: [12, 1.9, 0.3],
+    size: [12, 1.9, 0.15],
     options: { length: 12, height: 1.83, gate: false, weathered: null },
     note: 'Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). A Texas cedar privacy fence: dog-eared pickets on three 2x4 rails and cedar posts at 8 ft, a kickboard, each picket weathered a little differently; the picket side faces +z. Runs along x.',
     make(o, r) {
@@ -1178,7 +1178,7 @@ export function install(K, THREE, TXT) {
   });
 
   K.define('chain_link_fence', {
-    size: [12, 1.3, 0.12],
+    size: [12.2, 1.3, 0.25],
     options: { length: 12, height: 1.22, color: 'galvanized' },
     note: 'Options: length m, height m (1.22 is a 4 ft fence), color galvanized|black. Residential chain link: galvanized line posts every 3 m with dome caps, heavier terminal posts with tension bands, a top rail through loop caps, 2 in diamond mesh (a real alpha-cut wire pattern that casts a patterned shadow) and a bottom tension wire. Runs along x.',
     make(o, r) {
@@ -1221,7 +1221,7 @@ export function install(K, THREE, TXT) {
   });
 
   K.define('barbed_wire_fence', {
-    size: [20, 1.5, 0.6],
+    size: [20.2, 1.6, 0.2],
     options: { length: 20, strands: 4, spacing: 3.6 },
     note: 'Options: length m, strands, spacing (T-post spacing, m). A ranch pasture fence: green studded steel T-posts with white-painted tops, a cedar H-brace at each end, four strands of galvanized two-point barbed wire that sag between posts, with wire clips on every post. Runs along x.',
     make(o, r) {
@@ -1284,7 +1284,7 @@ export function install(K, THREE, TXT) {
    * mailbox
    * ===================================================================================== */
   K.define('mailbox', {
-    size: [0.7, 1.5, 0.7],
+    size: [0.7, 1.45, 0.7],
     options: { style: null, color: null, brick: null },
     note: 'Options (null = seeded choice): style post|brick, color (box colour), brick (column colour). A curbside mailbox: a T1 arch-top steel box with a red flag on a 4x4 cedar post and arm, or the suburban Texas brick column with a cast-stone cap and a mail door. The door faces +z (the street).',
     make(o, r) {
@@ -1340,7 +1340,7 @@ export function install(K, THREE, TXT) {
    * driveway: a broom-finished slab with sawn joints, a curb apron, a little oil
    * ===================================================================================== */
   K.define('driveway', {
-    size: [5.5, 0.08, 9],
+    size: [7.5, 0.06, 9],
     options: { width: 5.5, length: 9, flare: true, age: null },
     note: 'Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). A residential concrete driveway: 4 in slab in sawn panels about 3 m square, a centre joint, a flared apron at the street, broom finish, tyre darkening and an oil stain near the garage.',
     make(o, r) {
@@ -1388,7 +1388,7 @@ export function install(K, THREE, TXT) {
    * yard: a ready lawn of St. Augustine
    * ===================================================================================== */
   K.define('yard', {
-    size: [8, 0.12, 6],
+    size: [8, 0.1, 6],
     options: { size: [8, 6], dryness: 0.15, edge: true, budget: 38000 },
     note: 'Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). A St. Augustine lawn patch: a lawn-green base painted with blade strokes and slow patches, and ~5000 instanced clumps of broad, blunt, folded blades with per-clump colour, so a frame can lay real grass instead of tufts on dirt.',
     make(o, r) {

@@ -333,13 +333,15 @@ export function install(K, THREE, TXT) {
    * hill_country_terrain
    * ====================================================================================== */
   const SEASON = {
-    summer: { flat: [0x8e8c58, 0x7b8048, 0xa39c68], slope: 0x66703f, brake: 0x3c4a2d, rock: 0xd2c6a6 },
-    spring: { flat: [0x7a8a48, 0x6c7d40, 0x8e9656], slope: 0x5d6b3a, brake: 0x34452a, rock: 0xd0c4a4 },
-    winter: { flat: [0xa89a74, 0x98906c, 0xb4a782], slope: 0x7e765a, brake: 0x3f4a31, rock: 0xcfc3a5 },
+    // flat: three grass fields mixed by noise; dry: sun cured patches; swale: the greener hollows;
+    // thin: the grey, rock strewn soil of the slopes; duff: the dark litter under a brake or motte
+    summer: { flat: [0x9a9570, 0x828463, 0xada07a], dry: 0xb9aa82, swale: 0x66703f, thin: 0x9a9380, duff: 0x55503c, brake: 0x5a5e44, rock: 0xbcb7aa },
+    spring: { flat: [0x7a8a48, 0x6c7d40, 0x8e9656], dry: 0xa39c62, swale: 0x4f6630, thin: 0x8c866a, duff: 0x4a4632, brake: 0x3e4d2e, rock: 0xbdb6a4 },
+    winter: { flat: [0xa89a74, 0x98906c, 0xb4a782], dry: 0xbfae84, swale: 0x7a7656, thin: 0x9c937a, duff: 0x55503c, brake: 0x46503a, rock: 0xc0b9a8 },
   };
   function hillHeight(o, seed) {
     const S = o.size, relief = o.relief, nA = noise2(seed), nB = noise2(seed + 1), nC = noise2(seed + 2);
-    const lam = S * 0.32, step = o.step || Math.max(3, relief / 5.5);
+    const lam = S * 0.32, step = o.step || Math.max(3, relief / 5.5), rim = clamp(o.rim != null ? o.rim : 0.42, 0.1, 0.9);
     return function (x, z) {
       const u = x / lam, v = z / lam;
       let h = fbm(nA, u, v, 5, 0.48);                                  // rolling hills, 0..1
@@ -352,151 +354,445 @@ export function install(K, THREE, TXT) {
       const t = (k + smooth(0.58, 0.96, f)) * step;
       y = lerp(y, t, o.ledges ? 0.72 : 0.0);
       y += (fbm(nC, x / 9, z / 9, 3) - 0.5) * 0.9;                     // small tooth
-      // the rim: a noisy rounded square that falls to just under y = 0
+      /* THE RIM (2026-09-24, second pass). The hills used to rise out of TXT.ground over the outer
+       * 15 % of the block and meet it along a hard, visible line. They now settle over `rim` of the
+       * half width (42 % by default, 84 m on a 400 m block) through a double smoothstep, so the
+       * foot of the last hill is a long gentle apron, and the colour goes to the ground's own. */
       const rr = Math.pow(Math.pow(Math.abs(x) / (S / 2), 4) + Math.pow(Math.abs(z) / (S / 2), 4), 0.25);
-      const edge = 1 - rr + (nC(x / (S * 0.08) + 40, z / (S * 0.08) + 40) - 0.5) * 0.12;
-      const m = smooth(0.0, 0.3, edge);
-      return { y: m * (y + 0.6) - (1 - m) * 0.4, m, step };
+      const edge = 1 - rr + (nC(x / (S * 0.08) + 40, z / (S * 0.08) + 40) - 0.5) * 0.1;
+      const m0 = smooth(0.0, rim, edge), m = m0 * m0 * (3 - 2 * m0);
+      return { y: m * (y + 0.6) - (1 - m) * 0.12, m, step };
     };
   }
+  /* The terrain's own grass map: short blades, straw and grey green, soil between, seen from above.
+   * A multiplier on the vertex colour (its linear mean is stored so the rim can match TXT.ground). */
+  function hillGrassTex() {
+    const t = canvasTex('hct-grass2', 512, (x, N, r) => {
+      const n1 = tileNoise(811, 8), n2 = tileNoise(813, 32);
+      pixelPaint(x, N, (i, j) => { const u = i / N, v = j / N, k = 0.78 + (n1(u * 8, v * 8) - 0.5) * 0.22 + (n2(u * 32, v * 32) - 0.5) * 0.14;
+        return [210 * k, 204 * k, 186 * k]; });
+      for (let i = 0; i < 9000; i++) {                       // blades, clumped
+        const cx = r() * N, cy = r() * N, a = r() * TAU, l = 3 + r() * 9, w = 0.8 + r() * 1.1, q = r();
+        const c = q < 0.45 ? [236, 222, 176] : q < 0.8 ? [196, 204, 168] : q < 0.93 ? [150, 146, 118] : [96, 88, 72];
+        const k = 0.85 + r() * 0.3;
+        x.strokeStyle = 'rgba(' + Math.round(c[0] * k) + ',' + Math.round(c[1] * k) + ',' + Math.round(c[2] * k) + ',0.75)';
+        x.lineWidth = w; x.beginPath(); x.moveTo(cx, cy); x.lineTo(cx + Math.cos(a) * l, cy + Math.sin(a) * l); x.stroke();
+      }
+      for (let i = 0; i < 260; i++) {                        // grit and small stones
+        const cx = r() * N, cy = r() * N, s = 0.8 + r() * 2.2;
+        x.fillStyle = r() < 0.5 ? 'rgba(236,230,214,0.8)' : 'rgba(70,62,50,0.55)'; x.beginPath(); x.ellipse(cx, cy, s, s * 0.7, r() * 3, 0, TAU); x.fill();
+      }
+    });
+    if (t.userData.meanLin == null) {
+      const c = t.image, d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data, lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+      let s = [0, 0, 0], n = 0;
+      for (let i = 0; i < d.length; i += 64) { s[0] += lin(d[i]); s[1] += lin(d[i + 1]); s[2] += lin(d[i + 2]); n++; }
+      t.userData.meanLin = s.map((v) => v / n);
+    }
+    return t;
+  }
+  /* ---- trees on the terrain: the kit's own live oak and Ashe juniper, in three levels of detail
+   * (2026-09-24, second pass). The first pass drew every tree as a dozen leaf cards round a dark
+   * core, and at any distance a reader could see it was a dark round blob. Trees now come from
+   * kit/trees.js: a few seeded variants are grown ONCE per kit and cached, then instanced.
+   *   L0  the whole tree, every cluster and all its wood (the nearest two or three);
+   *   L1  its clusters thinned on a grid and each grown to cover its cell, the twigs dropped;
+   *   L2  the same on a coarse grid (a dozen clusters), a live oak keeping its trunk and great
+   *       limbs, so a far motte is still a broad, flat bottomed, broken crown and never a blob.
+   *       (A smooth shrink wrapped hull was tried for L2 and read as a pillow; it is not coming back.)
+   * A triangle budget decides how far out each level reaches. Without kit/trees.js installed, the
+   * old card crowns are drawn instead. */
+  const TREEKIT = new Map();
+  function treeKit(name, seed, spec) {
+    const key = name + '|' + seed;
+    if (TREEKIT.has(key)) return TREEKIT.get(key);
+    let src = null;
+    try { if (K.registry[name]) src = K.make(name, { seed }); } catch (e) { src = null; }
+    if (!src) { TREEKIT.set(key, null); return null; }
+    src.updateMatrixWorld(true);
+    const woods = [], fols = [];
+    src.traverse((m) => { if (m.isInstancedMesh) fols.push(m); else if (m.isMesh) woods.push(m); });
+    const I = new THREE.Matrix4();
+    const triOf = (geo) => (geo.index ? geo.index.count : geo.attributes.position.count) / 3;
+    // clusters: [matrix, colour, centre, size]
+    const cl = [];
+    fols.forEach((f) => { for (let i = 0; i < f.count; i++) { const Mx = new THREE.Matrix4(); f.getMatrixAt(i, Mx); Mx.premultiply(f.matrixWorld);
+      const c = new THREE.Color(1, 1, 1); if (f.instanceColor) f.getColorAt(i, c);
+      const p = new THREE.Vector3().setFromMatrixPosition(Mx), s = new THREE.Vector3().setFromMatrixScale(Mx);
+      cl.push({ f, M: Mx, c, p, s: (s.x + s.z) / 2 }); } });
+    const box = new THREE.Box3(); cl.forEach((c) => box.expandByPoint(c.p));
+    const ctr = box.getCenter(new THREE.Vector3()), size = box.getSize(new THREE.Vector3());
+    // wood thinned by the width of each triangle (area over longest edge): twigs go first
+    function thinWood(minW) {
+      return woods.map((w) => {
+        const G = w.geometry, P = G.attributes.position, idx = G.index ? G.index.array : null, n = idx ? idx.length : P.count, keep = [];
+        const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), e = new THREE.Vector3(), f2 = new THREE.Vector3();
+        for (let t = 0; t < n; t += 3) {
+          const i0 = idx ? idx[t] : t, i1 = idx ? idx[t + 1] : t + 1, i2 = idx ? idx[t + 2] : t + 2;
+          a.fromBufferAttribute(P, i0); b.fromBufferAttribute(P, i1); c.fromBufferAttribute(P, i2);
+          const area = e.subVectors(b, a).cross(f2.subVectors(c, a)).length() / 2, L = Math.max(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a));
+          if (area / Math.max(1e-6, L) > minW) keep.push(i0, i1, i2);
+        }
+        const g2 = new THREE.BufferGeometry(); Object.keys(G.attributes).forEach((k) => g2.setAttribute(k, G.attributes[k])); g2.setIndex(keep);
+        return { geo: g2, mat: w.material, locals: [w.matrixWorld.clone()], cols: null };
+      });
+    }
+    // clusters thinned on a grid of `cellM` metres, the outermost kept per cell and grown to cover it
+    function thinFol(cellM, grow) {
+      const bins = new Map();
+      cl.forEach((c) => { const k = Math.floor(c.p.x / cellM) + ',' + Math.floor(c.p.y / cellM) + ',' + Math.floor(c.p.z / cellM), d = c.p.distanceTo(ctr), b = bins.get(k);
+        if (!b || d > b.d) bins.set(k, { c, d }); });
+      const byF = new Map();
+      bins.forEach(({ c }) => { if (!byF.has(c.f)) byF.set(c.f, { locals: [], cols: [] }); const L = byF.get(c.f);
+        const k = Math.max(1, (cellM * grow) / Math.max(0.2, c.s)); L.locals.push(c.M.clone().multiply(new THREE.Matrix4().makeScale(k, k, k))); L.cols.push(c.c); });
+      return [...byF.entries()].map(([f, L]) => ({ geo: f.geometry, mat: f.material, locals: L.locals, cols: L.cols }));
+    }
+    const L0 = woods.map((w) => ({ geo: w.geometry, mat: w.material, locals: [w.matrixWorld.clone()], cols: null }))
+      .concat(fols.map((f) => { const L = cl.filter((c) => c.f === f); return { geo: f.geometry, mat: f.material, locals: L.map((c) => c.M), cols: L.map((c) => c.c) }; }));
+    const L1 = thinWood(spec.wood1).concat(thinFol(spec.cell1, 1.05));
+    const L2 = (spec.wood2 ? thinWood(spec.wood2) : []).concat(thinFol(spec.cell2, 1.12));
+    const cost = (L) => L.reduce((s, p) => s + triOf(p.geo) * p.locals.length, 0);
+    const kit = { lods: [L0, L1, L2], cost: [cost(L0), cost(L1), cost(L2)], height: box.max.y, width: Math.max(size.x, size.z) };
+    TREEKIT.set(key, kit);
+    return kit;
+  }
+  const TREESPEC = {
+    live_oak: { cell1: 1.7, cell2: 5.5, wood1: 0.05, wood2: 0.12 },
+    ashe_juniper: { cell1: 0.95, cell2: 2.6, wood1: 0.035, wood2: 0 },
+  };
+  // Place trees: list of {sp, v, x, y, z, ry, sx, sy, sz, tint, d}; returns the triangles spent.
+  function plantTrees(g, trees, budget) {
+    const kits = {}, out = new Map();
+    let fixed = 0;
+    for (const sp of Object.keys(TREESPEC)) { kits[sp] = [1, 2, 3].map((v) => treeKit(sp, v, TREESPEC[sp])); if (kits[sp].some((k) => !k)) return -1; }
+    trees.sort((a, b) => a.d - b.d);
+    let far = 0; trees.forEach((t) => { far += kits[t.sp][t.v].cost[2]; });
+    // too many trees for the budget even far: thin the farthest half first, evenly
+    let i = trees.length - 1; const rr = TXT.rng(trees.length * 17 + 3);
+    while (far > budget * 0.9 && i > trees.length * 0.2) { if (rr() < 0.5) { far -= kits[trees[i].sp][trees[i].v].cost[2]; trees[i].drop = true; } i--; }
+    let spent = 0, n0 = 0;
+    const Mp = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new THREE.Vector3(), p = new THREE.Vector3();
+    for (const t of trees) {
+      if (t.drop) continue;
+      const kit = kits[t.sp][t.v]; far -= kit.cost[2];
+      let L = t.d < t.r0 && n0 < 3 ? 0 : t.d < t.r1 ? 1 : 2;
+      while (L < 2 && spent + kit.cost[L] + far > budget) L++;
+      if (L === 0) n0++;
+      spent += kit.cost[L];
+      e.set(0, t.ry, 0); q.setFromEuler(e); s.set(t.sx, t.sy, t.sz); p.set(t.x, t.y, t.z); Mp.compose(p, q, s);
+      kit.lods[L].forEach((part) => {
+        if (!out.has(part)) out.set(part, { part, M: [], C: [] });
+        const O = out.get(part);
+        part.locals.forEach((lm, j) => { O.M.push(Mp.clone().multiply(lm)); const c = part.cols ? part.cols[j].clone() : new THREE.Color(1, 1, 1); O.C.push(c.multiply(t.tint)); });
+      });
+    }
+    out.forEach(({ part, M: Ms, C }) => {
+      const im = new THREE.InstancedMesh(part.geo, part.mat, Ms.length);
+      Ms.forEach((m, k) => im.setMatrixAt(k, m));
+      if (part.cols || part.mat.vertexColors || true) C.forEach((c, k) => im.setColorAt(k, c));
+      im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      im.castShadow = true; im.receiveShadow = true; im.frustumCulled = false;
+      g.add(im);
+    });
+    return spent;
+  }
+
+  /* ---- limestone ledges along the contours (2026-09-24, second pass) ------------------------
+   * The first pass laid pale boxes on the risers and they read as slabs floating on a lawn. A
+   * Hill Country ledge is the edge of a bed of Glen Rose limestone: a thin, broken, grey band that
+   * follows a contour where the slope steepens, its top a rough tread flush with the soil above,
+   * its lip overhanging a shadowed undercut, its foot buried in the slope below, talus under it.
+   * So the contours of the built mesh are traced (marching squares) at the level of each riser,
+   * kept where the slope is steep, and a profile is swept along them. */
+  function traceContours(Y, NV, cell, S, level, keep) {
+    const segs = [], id = (t, i, j) => t * NV * NV + j * NV + i;
+    const pt = (i0, j0, i1, j1) => { const a = Y[j0 * NV + i0] - level, b = Y[j1 * NV + i1] - level, t = a / (a - b);
+      return [-S / 2 + (i0 + (i1 - i0) * t) * cell, -S / 2 + (j0 + (j1 - j0) * t) * cell]; };
+    for (let j = 0; j < NV - 1; j++) for (let i = 0; i < NV - 1; i++) {
+      const a = Y[j * NV + i] > level, b = Y[j * NV + i + 1] > level, c = Y[(j + 1) * NV + i + 1] > level, d = Y[(j + 1) * NV + i] > level;
+      if (a === b && b === c && c === d) continue;
+      if (!keep(i, j)) continue;
+      const E = [];
+      if (a !== b) E.push([id(0, i, j), pt(i, j, i + 1, j)]);
+      if (b !== c) E.push([id(1, i + 1, j), pt(i + 1, j, i + 1, j + 1)]);
+      if (d !== c) E.push([id(0, i, j + 1), pt(i, j + 1, i + 1, j + 1)]);
+      if (a !== d) E.push([id(1, i, j), pt(i, j, i, j + 1)]);
+      if (E.length === 2) segs.push([E[0], E[1]]);
+      else if (E.length === 4) { segs.push([E[0], E[1]]); segs.push([E[2], E[3]]); }
+    }
+    // chain the segments through their shared edge crossings
+    const at = new Map();
+    segs.forEach((s, k) => s.forEach((e) => { if (!at.has(e[0])) at.set(e[0], []); at.get(e[0]).push(k); }));
+    const used = new Uint8Array(segs.length), chains = [];
+    for (let k0 = 0; k0 < segs.length; k0++) {
+      if (used[k0]) continue;
+      used[k0] = 1;
+      const chain = [segs[k0][0], segs[k0][1]];
+      for (const dir of [1, 0]) {
+        let end = dir ? chain[chain.length - 1] : chain[0];
+        for (;;) {
+          const nx = (at.get(end[0]) || []).find((k) => !used[k]);
+          if (nx == null) break;
+          used[nx] = 1; const s = segs[nx], other = s[0][0] === end[0] ? s[1] : s[0];
+          if (dir) chain.push(other); else chain.unshift(other);
+          end = other;
+        }
+      }
+      chains.push(chain.map((e) => e[1]));
+    }
+    return chains;
+  }
+  function resample(pts, stepM) {
+    // one Chaikin pass, then even spacing
+    let q = [pts[0]];
+    for (let i = 0; i < pts.length - 1; i++) { const a = pts[i], b = pts[i + 1];
+      q.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]); }
+    q.push(pts[pts.length - 1]);
+    const out = [q[0]]; let acc = 0;
+    for (let i = 1; i < q.length; i++) {
+      let a = q[i - 1]; const b = q[i]; let L = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      while (acc + L >= stepM) { const t = (stepM - acc) / L; a = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; out.push(a); L -= stepM - acc; acc = 0; }
+      acc += L;
+    }
+    return out;
+  }
+
   K.define('hill_country_terrain', {
     size: [800, 60, 800],
-    options: { size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c },
-    note: 'Central Texas Hill Country: rolling stair-stepped limestone hills, exposed ledges, juniper brakes and live oak mottes, grass by slope. size 200 to 2000 m, relief in metres. Rim dips 0.4 m under y=0 so it rises out of TXT.ground; ground is that plane\'s colour, for the rim to melt into. trees scales juniper, oak motte and understory density. Middle ground and far distance; never call TXT.contact on it. userData.heightAt(x, z) seats things on it.',
+    options: { size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c, rim: 0.42, near: null, budget: 400000, rocks: 1 },
+    note: 'Central Texas Hill Country: rolling stair-stepped limestone hills, thin broken limestone ledges along the contours with talus below, Ashe juniper brakes and live oak mottes (the kit\'s own trees.js models, three levels of detail), grass by slope and hollow with sun cured patches and rock strewn slopes. size 200 to 2000 m, relief in metres. The block settles into TXT.ground over `rim` of its half width and takes `ground` (that plane\'s colour) at its edge. `near` [x, z] in model space is where the viewer stands (default: the middle of the front edge); detail and rocks gather there. `budget` caps triangles. Middle ground and far distance; never call TXT.contact on it. userData.heightAt(x, z) seats things on it.',
     make(o, r) {
-      o = Object.assign({ size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c }, o);
+      o = Object.assign({ size: 800, relief: 60, ledges: true, trees: 1, season: 'summer', segments: 0, ground: 0x6d7a3c, rim: 0.42, near: null, budget: 400000, rocks: 1 }, o);
       o.size = clamp(o.size, 200, 2000);
       const S = o.size, g = new THREE.Group(), seed = 1000 + o.seed * 31;
       const Hf = hillHeight(o, seed);
       const seg = o.segments || Math.round(clamp(S / 3.6, 160, 220));
-      const MK = [];
-      const geo = heightfield(S, S, seg, seg, (x, z) => { const h = Hf(x, z); MK.push(h.m); return h.y; });
-      // colour by slope, by height, by the brake noise
-      const P = geo.attributes.position, N = geo.attributes.normal, C = new Float32Array(P.count * 3);
-      const pal = SEASON[o.season] || SEASON.summer, flats = pal.flat.map(col), cS = col(pal.slope), cB = col(pal.brake),
-        cR = col(pal.rock), cRim = col(o.ground), nP = noise2(seed + 7), nQ = noise2(seed + 8), tmp = new THREE.Color(), t2 = new THREE.Color();
-      for (let i = 0; i < P.count; i++) {
-        const x = P.getX(i), z = P.getZ(i), y = P.getY(i), ny = N.getY(i), slope = 1 - ny;
-        const pn = fbm(nP, x / 60, z / 60, 3);
-        mix3(tmp, flats[0], flats[1], smooth(0.3, 0.7, pn));
-        mix3(tmp, tmp, flats[2], smooth(0.55, 0.8, fbm(nQ, x / 25, z / 25, 2)) * 0.6);
-        mix3(tmp, tmp, cS, smooth(0.03, 0.12, slope));
-        const brake = smooth(0.46, 0.66, fbm(nQ, x / 45 + 30, z / 45, 3)) * (0.45 + 0.55 * smooth(0.02, 0.08, slope));
-        mix3(tmp, tmp, cB, brake);
-        mix3(tmp, tmp, cR, smooth(0.2, 0.42, slope) * 0.9);            // exposed limestone on risers
-        // a touch lighter on crests, darker in hollows
-        const kk = 0.92 + 0.16 * smooth(0, o.relief, y);
-        tmp.multiplyScalar(kk);
-        mix3(tmp, cRim, tmp, smooth(0.1, 0.8, MK[i]));
-        C[i * 3] = tmp.r; C[i * 3 + 1] = tmp.g; C[i * 3 + 2] = tmp.b;
-      }
-      geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
-      const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * S / 7, uv.getY(i) * S / 7);
-      const tm = M('hct-ground', { color: 0xffffff, roughness: 0.97, vertexColors: true, map: detailTex('grass'), envMapIntensity: 0.5 });
-      const ground = new THREE.Mesh(geo, tm); ground.receiveShadow = true; g.add(ground);
-
-      // sample helpers
-      // placement reads the built grid, bilinear, instead of re-running the noise stack per try
       const NV = seg + 1, cell = S / seg;
+      const MK = new Float32Array(NV * NV);
+      let vi = 0;
+      const geo = heightfield(S, S, seg, seg, (x, z) => { const h = Hf(x, z); MK[vi++] = h.m; return h.y; });
+      const P = geo.attributes.position, N = geo.attributes.normal, Y = new Float32Array(P.count);
+      for (let i = 0; i < P.count; i++) Y[i] = P.getY(i);
+      const near = o.near ? [o.near[0], o.near[1]] : [0, S / 2 * 0.92];
+      const dNear = (x, z) => Math.hypot(x - near[0], z - near[1]);
+      // the height of the MESH (its own two triangles per cell), so whatever sits on it sits exactly
       const hAt = (x, z) => {
         const fx = clamp((x + S / 2) / cell, 0, seg - 1e-6), fz = clamp((z + S / 2) / cell, 0, seg - 1e-6), ix = Math.floor(fx), iz = Math.floor(fz), tx = fx - ix, tz = fz - iz;
-        const a = iz * NV + ix, b = a + 1, c = a + NV, d = c + 1;
-        const y = (P.getY(a) * (1 - tx) + P.getY(b) * tx) * (1 - tz) + (P.getY(c) * (1 - tx) + P.getY(d) * tx) * tz;
-        const m = (MK[a] * (1 - tx) + MK[b] * tx) * (1 - tz) + (MK[c] * (1 - tx) + MK[d] * tx) * tz;
+        const a = iz * NV + ix, d = a + 1, b = a + NV, c = b + 1;
+        const y = tx + tz <= 1 ? Y[a] + (Y[d] - Y[a]) * tx + (Y[b] - Y[a]) * tz : Y[c] + (Y[b] - Y[c]) * (1 - tx) + (Y[d] - Y[c]) * (1 - tz);
+        const m = (MK[a] * (1 - tx) + MK[d] * tx) * (1 - tz) + (MK[b] * (1 - tx) + MK[c] * tx) * tz;
         return { y, m };
       };
       const slopeAt = (x, z) => { const e = cell, a = hAt(x + e, z).y - hAt(x - e, z).y, b = hAt(x, z + e).y - hAt(x, z - e).y;
-        return { s: Math.hypot(a, b) / (2 * e), gx: a, gz: b }; };
+        return { s: Math.hypot(a, b) / (2 * e), gx: a / (2 * e), gz: b / (2 * e) }; };
+      const nBr = noise2(seed + 8);
+      const brakeAt = (x, z) => smooth(0.46, 0.66, fbm(nBr, x / 45 + 30, z / 45, 3));
 
-      // limestone ledges: slabs laid along the contour on the risers, half buried
-      if (o.ledges) {
-        const slabGeo = (() => {
-          const b = new THREE.BoxGeometry(1, 1, 1, 4, 1, 2), p = b.attributes.position, n = noise2(seed + 55);
-          for (let i = 0; i < p.count; i++) {
-            const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
-            const k = 1 + (n(x * 4 + 3, z * 4 + y * 2) - 0.5) * 0.35;
-            p.setXYZ(i, x * (1 + (n(y * 3, z * 5) - 0.5) * 0.25), y * k, z * k);
-          }
-          const g2 = b.toNonIndexed(); g2.computeVertexNormals(); K.uvBox(g2, 1);
-          const u2 = g2.attributes.uv; for (let i = 0; i < u2.count; i++) u2.setXY(i, u2.getX(i) * 0.5, u2.getY(i) * 0.5);
-          return g2;
-        })();
-        const lm = M('hct-ledge', { color: 0xffffff, roughness: 0.9, map: limeTex() });
-        const list = [], cols = [], want = Math.round(170 * (S / 800) * (S / 800) * (o.relief / 60));
-        let tries = 0;
-        while (list.length < Math.min(want, 600) && tries < want * 60) {
-          tries++;
-          const x = (r() - 0.5) * S * 0.92, z = (r() - 0.5) * S * 0.92, H = hAt(x, z);
-          if (H.m < 0.6) continue;
-          const sl = slopeAt(x, z);
-          if (sl.s < 0.28) continue;
-          const len = 6 + r() * 12, ht = 0.6 + r() * 0.9, dp = 1.5 + r() * 2;
-          list.push({ x, y: H.y - ht * 0.45, z, ry: Math.atan2(sl.gx, sl.gz) + Math.PI / 2 + (r() - 0.5) * 0.3,
-            sx: len, sy: ht, sz: dp });
-          cols.push(new THREE.Color().setScalar(0.7 + r() * 0.2));
-        }
-        if (list.length) g.add(instanced(slabGeo, lm, list, cols));
-      }
-
-      // trees: Ashe juniper singly and in brakes on slopes, live oak mottes on the flats
+      /* ---- tree placement first, so the ground under a motte or a brake can take its shade -- */
+      const trees = [], shade = new Float32Array(P.count);
+      const tint = (k) => new THREE.Color(0.9 + r() * 0.16, 0.9 + r() * 0.16, 0.88 + r() * 0.14).multiplyScalar(k);
       if (o.trees > 0) {
-        // shapes for a tree ONE unit tall; the instance scale is its height in metres
-        const J = { rx: 0.32, ry: 0.5, rz: 0.32, cy: 0.5, cards: 18, ao: 0.4 }, O = { rx: 0.62, ry: 0.3, rz: 0.62, cy: 0.66, cards: 26, ao: 0.4 };
-        const B = { rx: 0.6, ry: 0.42, rz: 0.6, cy: 0.42, cards: 5, ao: 0.55 };
-        const jCard = crownGeo(r, J), oCard = crownGeo(r, O), bCard = crownGeo(r, B);
-        const oCore = coreGeo(seed + 4, Object.assign({ trunk: 0.045, detail: 1, k: 0.5 }, O));
-        const coreM = M('hct-core', { color: 0x3a4a2c, roughness: 0.95, vertexColors: true });
-        const jl = [], jc = [], ol = [], oc = [], bl = [], bc = [];
-        const area = S * S, nJ = Math.round(Math.min(2600, area / 220) * o.trees), nO = Math.round(Math.min(360, area / 1700) * o.trees), nB = Math.round(Math.min(5000, area / 110) * o.trees);
-        const tint = (k) => new THREE.Color(0.86 + r() * 0.2, 0.86 + r() * 0.2, 0.84 + r() * 0.16).multiplyScalar(k);
-        const nBr = noise2(seed + 8);
-        let tries = 0;
-        while (jl.length < nJ && tries < nJ * 30) {
+        const area = S * S, r0 = 45, r1 = o.detail || 280;
+        const nJ = Math.round(Math.min(1100, area / 480) * o.trees), nO = Math.round(Math.min(70, area / 8000) * o.trees), nY = Math.round(Math.min(700, area / 900) * o.trees);
+        const clear = (x, z) => dNear(x, z) < 7;   // never a tree on the viewer's own spot
+        let tries = 0, cJ = 0;
+        while (cJ < nJ && tries < nJ * 40) {                    // Ashe juniper: singly and in brakes
           tries++;
           const x = (r() - 0.5) * S, z = (r() - 0.5) * S, H = hAt(x, z);
-          if (H.m < 0.12) continue;
+          if (H.m < 0.25 || clear(x, z)) continue;
           const sl = slopeAt(x, z).s;
-          if (sl > 0.45) continue;
-          const brake = smooth(0.46, 0.66, fbm(nBr, x / 45 + 30, z / 45, 3));
-          const p = 0.1 + brake * 0.95 + smooth(0.05, 0.25, sl) * 0.35;
+          if (sl > 0.6) continue;
+          const p = 0.06 + brakeAt(x, z) * 0.95 + smooth(0.05, 0.3, sl) * 0.3;
           if (r() > p) continue;
-          const h = 3.5 + r() * 3.5;
-          jl.push({ x, y: H.y - 0.15, z, ry: r() * TAU, sx: h * (0.8 + r() * 0.5), sy: h, sz: h * (0.8 + r() * 0.5) });
-          jc.push(tint(0.9 + r() * 0.2));
+          const h = 0.65 + r() * 0.55, w = h * (1.0 + r() * 0.5);
+          trees.push({ sp: 'ashe_juniper', v: Math.floor(r() * 3), x, y: H.y - 0.12, z, ry: r() * TAU, sx: w, sy: h, sz: w * (0.85 + r() * 0.3), tint: tint(0.9 + r() * 0.2), d: dNear(x, z), r0, r1, R: 2.6 * w });
+          cJ++;
         }
-        tries = 0;
-        while (ol.length < nO && tries < nO * 40) {
+        tries = 0; let cY = 0;
+        while (cY < nY && tries < nY * 20) {                    // young cedar and brush: the understory
           tries++;
-          const x = (r() - 0.5) * S, z = (r() - 0.5) * S, H = hAt(x, z);
-          if (H.m < 0.12 || slopeAt(x, z).s > 0.14) continue;
-          const h = 7 + r() * 5;
-          // a motte: two to four oaks grown together
-          const n = 2 + Math.floor(r() * 3);
-          for (let k = 0; k < n && ol.length < nO * 3; k++) {
-            const xx = x + (r() - 0.5) * h * 1.2, zz = z + (r() - 0.5) * h * 1.2, hh = h * (0.75 + r() * 0.35);
-            ol.push({ x: xx, y: hAt(xx, zz).y - 0.15, z: zz, ry: r() * TAU, sx: hh * (0.9 + r() * 0.3), sy: hh, sz: hh * (0.9 + r() * 0.3) });
-            oc.push(tint(0.95 + r() * 0.2));
+          // brush is only worth drawing where it can be seen: within the detail radius of the viewer
+          const d = Math.sqrt(r()) * r1, a = r() * TAU, x = near[0] + Math.cos(a) * d, z = near[1] + Math.sin(a) * d;
+          if (Math.abs(x) > S / 2 || Math.abs(z) > S / 2 || clear(x, z)) continue;
+          const H = hAt(x, z);
+          if (H.m < 0.3 || slopeAt(x, z).s > 0.6) continue;
+          if (r() > 0.25 + brakeAt(x, z) * 0.75) continue;
+          const h = 0.2 + r() * 0.25;
+          trees.push({ sp: 'ashe_juniper', v: Math.floor(r() * 3), x, y: H.y - 0.08, z, ry: r() * TAU, sx: h * (1 + r() * 0.5), sy: h, sz: h * (1 + r() * 0.5), tint: tint(0.95 + r() * 0.2), d: dNear(x, z), r0: 0, r1: r1 * 0.5, R: 0 });
+          cY++;
+        }
+        tries = 0; let cO = 0;
+        while (cO < nO && tries < nO * 60) {                    // live oak mottes: three to seven grown together
+          tries++;
+          const x = (r() - 0.5) * S * 0.9, z = (r() - 0.5) * S * 0.9, H = hAt(x, z);
+          if (H.m < 0.3 || slopeAt(x, z).s > 0.16) continue;
+          const n = 3 + Math.floor(r() * 5);
+          for (let k = 0; k < n; k++) {
+            const a = r() * TAU, rad = Math.sqrt(r()) * 9 * Math.sqrt(n / 4), xx = x + Math.cos(a) * rad, zz = z + Math.sin(a) * rad, hh = hAt(xx, zz);
+            if (hh.m < 0.25 || clear(xx, zz)) continue;
+            const w = 0.55 + r() * 0.4, h = w * (0.85 + r() * 0.3);
+            trees.push({ sp: 'live_oak', v: Math.floor(r() * 3), x: xx, y: hh.y - 0.2, z: zz, ry: r() * TAU, sx: w, sy: h, sz: w * (0.85 + r() * 0.3), tint: tint(0.92 + r() * 0.16), d: dNear(xx, zz), r0, r1, R: 8.5 * w });
           }
+          cO++;
         }
-        tries = 0;
-        while (bl.length < nB && tries < nB * 6) {           // understory: agarita, young cedar, mesquite
-          tries++;
-          const x = (r() - 0.5) * S, z = (r() - 0.5) * S, H = hAt(x, z);
-          if (H.m < 0.2 || slopeAt(x, z).s > 0.5) continue;
-          const h = 0.9 + r() * 1.6;
-          bl.push({ x, y: H.y - 0.1, z, ry: r() * TAU, sx: h * (0.9 + r() * 0.6), sy: h, sz: h * (0.9 + r() * 0.6) });
-          bc.push(tint(0.8 + r() * 0.3));
-        }
-        const add2 = (card, core, mat, list, cols) => { if (!list.length) return;
-          g.add(instanced(card, mat, list, cols)); if (core) g.add(instanced(core, coreM, list, cols)); };
-        add2(jCard, null, leafMat('juniper'), jl, jc);
-        add2(oCard, oCore, leafMat('oak'), ol, oc);
-        add2(bCard, null, leafMat('mesquite'), bl, bc);
+        // shade and litter under each crown, soft edged, on the vertex colours
+        trees.forEach((t) => { if (!t.R) return;
+          const i0 = Math.max(0, Math.floor((t.x - t.R + S / 2) / cell)), i1 = Math.min(seg, Math.ceil((t.x + t.R + S / 2) / cell));
+          const j0 = Math.max(0, Math.floor((t.z - t.R + S / 2) / cell)), j1 = Math.min(seg, Math.ceil((t.z + t.R + S / 2) / cell));
+          for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) { const x = -S / 2 + i * cell, z = -S / 2 + j * cell, d = Math.hypot(x - t.x, z - t.z) / t.R;
+            if (d < 1) shade[j * NV + i] = Math.max(shade[j * NV + i], 1 - smooth(0.45, 1, d)); } });
       }
-      g.userData.heightAt = (x, z) => Hf(x, z).y;   // callers can seat things on it
+
+      /* ---- the ground's colour: grass mixed by noise, sun cured patches, green hollows, the thin
+       * grey soil of the slopes, litter under the trees, and the rim melting into TXT.ground ---- */
+      const C = new Float32Array(P.count * 3);
+      const pal = SEASON[o.season] || SEASON.summer, flats = pal.flat.map(col), cDry = col(pal.dry), cSw = col(pal.swale), cTh = col(pal.thin),
+        cDuff = col(pal.duff), cB = col(pal.brake), cR = col(pal.rock), nP = noise2(seed + 7), nQ = noise2(seed + 9), nD = noise2(seed + 11), tmp = new THREE.Color();
+      const gtex = hillGrassTex(), ml = gtex.userData.meanLin;
+      // TXT.ground's albedo is its colour times about 0.97; the terrain's is vertex times this map
+      const cRim = col(o.ground); cRim.r *= 0.97 / ml[0]; cRim.g *= 0.97 / ml[1]; cRim.b *= 0.97 / ml[2];
+      const k2 = Math.max(1, Math.round(6 / cell));
+      for (let i = 0; i < P.count; i++) {
+        const x = P.getX(i), z = P.getZ(i), y = Y[i], ny = N.getY(i), slope = 1 - ny, ix = i % NV, iz = (i - ix) / NV;
+        const pn = fbm(nP, x / 60, z / 60, 3);
+        mix3(tmp, flats[0], flats[1], smooth(0.3, 0.7, pn));
+        mix3(tmp, tmp, flats[2], smooth(0.55, 0.8, fbm(nQ, x / 25, z / 25, 2)) * 0.6);
+        // sun cured patches, larger on the crests
+        const dry = smooth(0.52, 0.68, fbm(nD, x / 80, z / 80, 4) + 0.12 * smooth(0.4, 1, y / o.relief));
+        mix3(tmp, tmp, cDry, dry * 0.75);
+        // hollows and swales: where the ground sits below its neighbours, greener and darker
+        const iA = Math.max(0, ix - k2), iB = Math.min(seg, ix + k2), jA = Math.max(0, iz - k2), jB = Math.min(seg, iz + k2);
+        const cav = (Y[iz * NV + iA] + Y[iz * NV + iB] + Y[jA * NV + ix] + Y[jB * NV + ix]) / 4 - y;
+        mix3(tmp, tmp, cSw, smooth(0.08, 0.7, cav) * 0.8);
+        // thin, rock strewn soil on the slopes, grey with pale grit
+        mix3(tmp, tmp, cTh, smooth(0.06, 0.24, slope) * 0.8);
+        mix3(tmp, tmp, cR, smooth(0.3, 0.6, slope) * 0.5);
+        mix3(tmp, tmp, cB, brakeAt(x, z) * 0.35 * (1 - dry));
+        mix3(tmp, tmp, cDuff, shade[i] * 0.75);
+        tmp.multiplyScalar(0.94 + 0.12 * smooth(0, o.relief, y));
+        mix3(tmp, cRim, tmp, smooth(0.02, 0.8, MK[i]));
+        C[i * 3] = tmp.r; C[i * 3 + 1] = tmp.g; C[i * 3 + 2] = tmp.b;
+      }
+      geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
+      const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * S / 6, uv.getY(i) * S / 6);
+      const tm = M('hct-ground2', { color: 0xffffff, roughness: 0.97, vertexColors: true, map: gtex, envMapIntensity: 0.6 });
+      const ground = new THREE.Mesh(geo, tm); ground.receiveShadow = true; ground.userData.txGround = true; g.add(ground);
+      let spent = geo.index ? geo.index.count / 3 : P.count / 3;
+
+      /* ---- ledges -------------------------------------------------------------------------- */
+      const stoneSpots = [];
+      if (o.ledges) {
+        const H0 = hillHeight(Object.assign({}, o), seed)(0, 0).step;
+        const levels = [];
+        for (let k = 0; (k + 0.58) * H0 < o.relief * 1.2; k++) levels.push((k + 0.58) * H0 + 0.6, (k + 0.84) * H0 + 0.6);
+        const keepCell = (i, j) => { const a = j * NV + i; if (MK[a] < 0.75) return false;
+          const s = Math.hypot(Y[a + 1] - Y[a], Y[a + NV] - Y[a]) / cell; return s > 0.34; };
+        const nL = noise2(seed + 21), Pp = [], Cc = [], Uu = [], Ix = [];
+        const base = [col(0xc4bda9), col(0xb2ac9c), col(0xcfc6b0), col(0xa9a495)], cc = new THREE.Color();
+        let nPts = 0;
+        // trace every level first: the sample spacing is set so the ledges take at most a fifth of the budget
+        const traced = []; let Lsum = 0;
+        levels.forEach((lev, li) => traceContours(Y, NV, cell, S, lev, keepCell).forEach((chain, ci) => {
+          if (chain.length < 3) return; traced.push([li, ci, chain]);
+          for (let k = 1; k < chain.length; k++) Lsum += Math.hypot(chain[k][0] - chain[k - 1][0], chain[k][1] - chain[k - 1][1]); }));
+        const STEP = Math.max(1.1, 12 * 0.6 * Lsum / (0.2 * o.budget));
+        traced.forEach(([li, ci, chain]) => {
+          {
+            const pts = resample(chain, STEP);
+            if (pts.length < 4) return;
+            // runs: broken where a slow noise says the bed is buried
+            let arc = 0; const on = [];
+            pts.forEach((p, k) => { if (k) arc += STEP; const ph = li * 37.1 + ci * 3.3;
+              on.push({ p, arc, g: nL(arc / 16 + ph, li * 5.3) > (li % 2 ? 0.5 : 0.36), t: nL(arc / 5 + ph + 90, li * 2.1 + 40) }); });
+            const runs = []; let cur = null;
+            on.forEach((q) => { if (q.g) { if (!cur) { cur = []; runs.push(cur); } cur.push(q); } else cur = null; });
+            runs.forEach((run) => {
+              if (run.length < 4) return;
+              const thick = (li % 2 ? 0.55 : 1) * (0.9 + r() * 0.5), tone = base[Math.floor(r() * base.length)], startV = nPts;
+              const L = run[run.length - 1].arc - run[0].arc;
+              run.forEach((q, k) => {
+                const [x, z] = q.p, sl = slopeAt(x, z), gl = Math.hypot(sl.gx, sl.gz) || 1, nx = sl.gx / gl, nz = sl.gz / gl;   // downhill: minus the gradient
+                const dx = -nx, dz = -nz, yc = hAt(x, z).y;
+                const end = smooth(0, 2.4, Math.min(q.arc - run[0].arc, L - (q.arc - run[0].arc)));
+                const h = (0.5 + 1.9 * q.t * q.t) * thick * end, s = Math.max(0.25, sl.s);
+                const a = clamp(0.6 * h / s + 0.3, 0.35, 3);
+                const yT = yc + 0.62 * h;
+                const prof = [
+                  [-a, hAt(x - dx * a, z - dz * a).y - 0.3, 0.72],
+                  [-a * 0.45, yT - 0.04 - 0.08 * h, 0.8],
+                  [0.08, yT, 0.95], [0.08, yT, 1.0],           // the lip, twice: one normal on the tread, one on the face
+                  [0.04, yT - 0.3 * h, 0.78],
+                  [-0.16 * h - 0.05, yT - 0.5 * h, 0.45],      // the undercut, in its own shadow
+                  [-0.06, yc - 0.12, 0.62],
+                  [0.35, hAt(x + dx * 0.35, z + dz * 0.35).y - 0.3, 0.5],
+                ];
+                let vv = 0;
+                prof.forEach((pr, pi) => {
+                  const ox = pr[0];
+                  Pp.push(x + dx * ox, pr[1], z + dz * ox);
+                  if (pi) vv += Math.hypot(prof[pi][0] - prof[pi - 1][0], prof[pi][1] - prof[pi - 1][1]);
+                  Uu.push(q.arc / 2, vv / 2);
+                  const k3 = pr[2] * (0.88 + 0.24 * nL(q.arc / 3 + 7, pi * 1.7));
+                  cc.copy(tone).multiplyScalar(k3); Cc.push(cc.r, cc.g, cc.b);
+                });
+                nPts += prof.length;
+                if (h > 0.5 && r() < 0.45 * o.rocks) {        // talus: blocks fallen from the lip
+                  const off = 0.5 + r() * 2.6;
+                  const k = 0.12 + r() * 0.3 * h; stoneSpots.push([x + dx * off, hAt(x + dx * off, z + dz * off).y - k * 0.45, z + dz * off, k]);
+                }
+              });
+              const NP = 8;
+              for (let k = 0; k < run.length - 1; k++) for (let pi = 0; pi < NP - 1; pi++) {
+                if (pi === 2) continue;                        // the split lip
+                const a0 = startV + k * NP + pi, b0 = a0 + NP;
+                Ix.push(a0, b0, a0 + 1, a0 + 1, b0, b0 + 1);
+              }
+            });
+          }
+        });
+        if (Ix.length) {
+          const lg = new THREE.BufferGeometry();
+          lg.setAttribute('position', new THREE.Float32BufferAttribute(Pp, 3)); lg.setAttribute('color', new THREE.Float32BufferAttribute(Cc, 3));
+          lg.setAttribute('uv', new THREE.Float32BufferAttribute(Uu, 2)); lg.setIndex(Ix); lg.computeVertexNormals();
+          const lm = M('hct-ledge2', { color: 0xffffff, roughness: 0.9, vertexColors: true, map: limeTex(), side: THREE.DoubleSide });
+          const ledge = new THREE.Mesh(lg, lm); ledge.castShadow = true; ledge.receiveShadow = true; g.add(ledge);
+          spent += Ix.length / 3;
+        }
+      }
+      // loose rock on the thin soil of the slopes, gathered toward the viewer where it can be seen
+      if (o.rocks > 0) {
+        const want = Math.round(2600 * o.rocks); let tries = 0, n = 0;
+        while (n < want && tries < want * 30) {
+          tries++;
+          const d = Math.pow(r(), 1.8) * S * 0.7, a = r() * TAU, x = near[0] + Math.cos(a) * d, z = near[1] + Math.sin(a) * d;
+          if (Math.abs(x) > S / 2 || Math.abs(z) > S / 2) continue;
+          const H = hAt(x, z); if (H.m < 0.35) continue;
+          const sl = slopeAt(x, z).s; if (r() > smooth(0.08, 0.3, sl) + 0.04) continue;
+          const k = (0.08 + Math.pow(r(), 2.5) * 0.4) * (1 + d / 300); stoneSpots.push([x, H.y - k * 0.5, z, k]); n++;
+        }
+      }
+      if (stoneSpots.length) { stones(r, stoneSpots, 'hct-lime', [0xa8a293, 0x98938a, 0xb3ad9d, 0x8a857a], g, true); spent += stoneSpots.length * 20; }
+
+      /* ---- trees ----------------------------------------------------------------------------- */
+      if (trees.length) {
+        const got = plantTrees(g, trees, Math.max(20000, o.budget - spent));
+        if (got < 0) legacyTrees(g, trees, r);
+      }
+      g.userData.heightAt = (x, z) => (Math.abs(x) < S / 2 && Math.abs(z) < S / 2 ? hAt(x, z).y : Hf(x, z).y);   // callers can seat things on it
       return g;
     },
   });
+  // the first pass's card crowns, kept for a kit without kit/trees.js
+  function legacyTrees(g, trees, r) {
+    const J = { rx: 0.32, ry: 0.5, rz: 0.32, cy: 0.5, cards: 18, ao: 0.4 }, O = { rx: 0.62, ry: 0.3, rz: 0.62, cy: 0.66, cards: 26, ao: 0.4 };
+    const jCard = crownGeo(r, J), oCard = crownGeo(r, O), oCore = coreGeo(1234, Object.assign({ trunk: 0.045, detail: 1, k: 0.5 }, O));
+    const coreM = M('hct-core', { color: 0x3a4a2c, roughness: 0.95, vertexColors: true });
+    const jl = [], jc = [], ol = [], oc = [];
+    trees.forEach((t) => { if (t.sp === 'live_oak') { const h = 9 * t.sy; ol.push({ x: t.x, y: t.y, z: t.z, ry: t.ry, sx: h * 1.4, sy: h, sz: h * 1.4 }); oc.push(t.tint); }
+      else { const h = 6.5 * t.sy; jl.push({ x: t.x, y: t.y, z: t.z, ry: t.ry, sx: h * 0.9, sy: h, sz: h * 0.9 }); jc.push(t.tint); } });
+    if (jl.length) g.add(instanced(jCard, leafMat('juniper'), jl, jc));
+    if (ol.length) { g.add(instanced(oCard, leafMat('oak'), ol, oc)); g.add(instanced(oCore, coreM, ol, oc)); }
+  }
 
   /* ---- shared: foliage that lights from above on both faces, blade tufts ---------------- */
   // A blade is a thin double sided card. Three flips a back face's normal, so a blade seen from
