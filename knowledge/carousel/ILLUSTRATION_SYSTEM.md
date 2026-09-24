@@ -752,8 +752,11 @@ At 432 px, with the type covered:
 4. Does everything standing touch the ground, with a contact and dirt at its base?
 5. Would it hold as the opening spread of a serious magazine's feature on this story?
 
-**A frame that fails the first question caps artwork craft at 6, whatever else it does.** That is
-the number no. 32 scored, and the reason it scored it.
+**A deck whose every frame passes all five is the artwork 10 in the rubric.** It was a cap at 6
+for one day, 2026-09-24, and the scale was recalibrated to the sibling product's that evening: a
+cap on a scale whose typical deck is 7 decides the verdict before the deck is read. A frame that
+fails it now scores by how far it falls on the descriptors, and the critics still name every
+failed question as a defect to fix.
 
 ### The gate
 

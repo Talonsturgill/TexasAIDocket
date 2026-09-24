@@ -532,6 +532,40 @@ def count_round(date: str, judges: list, out_root: Path | None = None) -> tuple[
     return rounds, repeats
 
 
+def apply_ladder(verdict: dict, date: str) -> dict:
+    """THE LADDER, the sibling's gate (owner, 2026-09-24). From the rubric's `ladder_from`, `ship`
+    is judged against THIS round's rung, and at the round cap the finished deck ships whatever it
+    scored. `run_complete.py` reads the same rubric block, so there is one ladder and not two.
+
+    A deck under its rung is a work order, never a hold: the owner's words are "there's never a
+    reason to stop editing it to actually just meet the standard". A hard fail still stops the
+    deck at any round, because it is repaired and never shipped.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import run_complete as rc
+    import re
+    lf = rc.ladder_from()
+    if not lf or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(date)) or str(date) < lf:
+        return verdict
+    need = rc.rung(verdict.get("rounds"))
+    verdict["rung"] = need
+    fails = verdict.get("hard_fails") or []
+    headline = verdict.get("weighted_score")
+    verdict["ship"] = (not fails) and headline is not None and (need is None or headline >= need)
+    verdict.pop("hold_reason", None)
+    if not fails and need is not None and headline is not None and headline < need:
+        verdict["work_order"] = (
+            f"no judge found a hard fail, and the median {headline} is under this round's rung of "
+            f"{need}. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the "
+            f"round cap the finished deck ships whatever it scored")
+    elif not fails and need is None and headline is not None and headline < verdict.get("threshold", headline):
+        verdict["shortfall"] = (
+            f"at the round cap the finished deck ships at {headline}, "
+            f"{round(verdict['threshold'] - headline, 3)} under the {verdict['threshold']} top rung. "
+            f"Name that in the email and the run record")
+    return verdict
+
+
 def run(date: str, paths: list, out: str | None) -> int:
     judges = []
     for p in paths:
@@ -561,6 +595,8 @@ def run(date: str, paths: list, out: str | None) -> int:
                 f"been scored, so this was a re-combination rather than a scoring round and the "
                 f"round count did not advance. Re-run the judges to score again")
             print(f"  note  {verdict['rounds_note']}", file=sys.stderr)
+    if verdict:
+        apply_ladder(verdict, date)
     for p in probs:
         print(f"  note  {p}", file=sys.stderr)
     if not verdict:
@@ -568,10 +604,16 @@ def run(date: str, paths: list, out: str | None) -> int:
     dest = Path(out) if out else (REPO_ROOT / "out" / date / "score.json")
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(verdict, indent=1) + "\n", encoding="utf-8")
-    if verdict["ship"]:
-        why = f"SHIP (over the {verdict['threshold']} bar, no hard fail)"
+    rung_now = verdict.get("rung", verdict["threshold"]) if "rung" in verdict else verdict["threshold"]
+    if verdict["ship"] and "rung" in verdict and rung_now is None:
+        why = "SHIP (the round cap: the finished deck ships, shortfall named)" if verdict.get("shortfall") \
+            else "SHIP (the round cap, no hard fail)"
+    elif verdict["ship"]:
+        why = f"SHIP (over the {rung_now} rung, no hard fail)"
     elif verdict["hard_fails"]:
-        why = f"{len(verdict['hard_fails'])} hard fail(s), HOLD"
+        why = f"{len(verdict['hard_fails'])} hard fail(s): repair them, then the deck ships"
+    elif "rung" in verdict:
+        why = f"KEEP EDITING, under this round's {rung_now} rung"
     else:
         why = f"HOLD, under the {verdict['threshold']} bar"
     print(f"panel: {verdict['judges']} -> median {verdict['weighted_score']}, "
@@ -990,6 +1032,33 @@ def self_test() -> int:
        "hold_reason" not in v4 and v4["ship"] is True, str(v4))
 
     ok("the live rubric still declares a numeric cap", isinstance(max_rounds(), int))
+
+    # THE LADDER (owner, 2026-09-24), against the rubric's own rungs rather than typed numbers.
+    import run_complete as _rc
+    lf, cap = _rc.ladder_from(), _rc.max_rounds()
+    top = _rc.rung(1)
+
+    def lv(score, rounds, fails=()):
+        return apply_ladder({"weighted_score": score, "rounds": rounds, "threshold": top,
+                             "hard_fails": list(fails), "ship": False,
+                             "hold_reason": "old"}, lf)
+
+    v = lv(top, 1)
+    ok("ladder: round 1 at the top rung ships", v["ship"] is True and "hold_reason" not in v, str(v))
+    v = lv(round(top - 0.01, 2), 1)
+    ok("ladder: under the rung is a WORK ORDER, never a hold",
+       v["ship"] is False and "KEEP EDITING" in v.get("work_order", "") and "hold_reason" not in v, str(v))
+    v = lv(_rc.rung(cap - 1), cap - 1)
+    ok(f"ladder: round {cap - 1}'s lower rung ships a deck on it", v["ship"] is True, str(v))
+    v = lv(5.0, cap)
+    ok("ladder: at the cap the finished deck ships, with the shortfall named",
+       v["ship"] is True and v.get("rung", 1) is None and "shortfall" in v, str(v))
+    v = lv(9.5, cap, fails=["an unverified fact presented as verified"])
+    ok("ladder: a hard fail still stops the deck, even on the cap", v["ship"] is False, str(v))
+    v = apply_ladder({"weighted_score": 6.0, "rounds": 1, "threshold": top, "hard_fails": [],
+                      "ship": False, "hold_reason": "kept"}, "2026-09-23")
+    ok("ladder: a deck dated before it keeps the old verdict untouched",
+       v["ship"] is False and v.get("hold_reason") == "kept" and "rung" not in v, str(v))
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0
