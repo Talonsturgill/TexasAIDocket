@@ -339,7 +339,9 @@ def check(run_dir: Path, bar: float, cap: int | None = None,
     except json.JSONDecodeError as exc:
         return [f"{run_dir.name}: score.json is not JSON ({exc})"]
 
-    if on_ladder(run_dir):
+    # A RECORDED RUNG IS THE DURABLE MARK OF THE LADDER (Codex, #357): moving or removing
+    # `ladder_from` later must not drop a run that was judged on it back to the old rules.
+    if on_ladder(run_dir) or "rung" in d:
         return _check_ladder(run_dir, d)
 
     # THE OWNER MAY END THE SEARCH, AND THE MACHINE RECORDS WHO DID (2026-09-02).
@@ -670,6 +672,12 @@ def self_test() -> int:
         (run_d / "score.json").write_text(json.dumps({"weighted_score": 5.0, "rounds": cap5, "hard_fails": [],
                                                        "rung": None}))
         ok("...and a recorded cap completion stays one", check(run_d, float(top), cap5) == [])
+        old_d = Path(td) / "2026-09-23"                         # dated before the ladder, yet recorded on it
+        old_d.mkdir(exist_ok=True)
+        (old_d / "score.json").write_text(json.dumps({"weighted_score": low, "rounds": cap5 - 1, "hard_fails": [],
+                                                       "rung": low}))
+        ok("a recorded rung keeps a run on the ladder whatever `ladder_from` says later",
+           check(old_d, float(top), cap5) == [], str(check(old_d, float(top), cap5)))
         before = Path(td) / "2026-09-23"                        # the day before: the old rules hold
         before.mkdir()
         (before / "score.json").write_text(json.dumps({"weighted_score": 6.0, "rounds": 2, "ship": False,
@@ -734,10 +742,11 @@ def main() -> int:
         elif on_ladder(d) and (sd["rung"] if "rung" in sd else rung(rounds_of(sd))) is not None:
             on_rung.append(d.name)      # cleared a lower rung before the cap, not the cap
         else:
-            on_cap.append(d.name)
+            on_cap.append(f"{d.name}, {rounds_of(sd)} rounds" if rounds_of(sd) is not None else d.name)
     parts = []
     if on_cap:
-        parts.append(f"{len(on_cap)} under the bar on the {cap} round cap ({', '.join(on_cap)})")
+        # the rounds each run recorded, never today's cap (Codex, #357)
+        parts.append(f"{len(on_cap)} under the bar at the round cap ({'; '.join(on_cap)})")
     if on_rung:
         parts.append(f"{len(on_rung)} under the top bar on a lower rung of the ladder "
                      f"({', '.join(on_rung)})")
