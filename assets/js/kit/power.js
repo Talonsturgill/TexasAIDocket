@@ -98,6 +98,7 @@ export function install(K, THREE, TXT) {
     /* sagging cable a->b, sag metres at mid span, radius r */
     cable(mat, a, b, sag, r, seg, radial) {
       const A = arr(a), B = arr(b), n = seg || 24, pts = [];
+      if (!(A.distanceTo(B) > 1e-3)) { console.warn('power.js cable: degenerate', JSON.stringify([a, b])); return; }
       for (let i = 0; i <= n; i++) {
         const t = i / n; pts.push(V3(A.x + (B.x - A.x) * t, A.y + (B.y - A.y) * t - sag * 4 * t * (1 - t), A.z + (B.z - A.z) * t));
       }
@@ -539,8 +540,8 @@ export function install(K, THREE, TXT) {
 
   K.define('transmission_tower', {
     size: [15.2, 49.5, 9.3],
-    options: { voltage: '138 | 345 | 765 (345)', insulator: 'glass | porcelain | polymer (seeded)', height: 'body extension factor (1)', leads: 'metres of conductor to show each side (0)' },
-    note: 'Self supporting galvanized lattice. 345 kV: double circuit, vertical phases, twin bundle, about 49 m. 138 kV: double circuit about 32 m. 765 kV: single circuit horizontal, 6 bundle V strings. userData.attach and .shield give wire points.',
+    options: { voltage: 345, insulator: null, height: 1, leads: 0 },
+    note: 'OPTIONS voltage 138 | 345 | 765; insulator glass | porcelain | polymer (null = seeded); height is a body extension factor; leads = metres of sagging conductor shown each side. Self supporting galvanized lattice. 345 kV: double circuit, vertical phases, twin bundle, about 49 m. 138 kV: double circuit about 32 m. 765 kV: single circuit horizontal, 6 bundle V strings. userData.attach and .shield give wire points.',
     make(o, r) {
       const kv = +o.voltage || 345;
       return kv >= 765 ? horizontal765(o, r) : doubleCircuit(Object.assign({}, o, { voltage: kv }), r);
@@ -592,8 +593,8 @@ export function install(K, THREE, TXT) {
   /* ========================================================================== monopole 138 */
   K.define('monopole_138', {
     size: [9.2, 30.5, 2.2],
-    options: { circuits: '1 | 2 (2)', insulators: 'suspension | post (suspension)', finish: 'galvanized | weathering (seeded)', height: 'metres above ground (27)' },
-    note: 'Tubular 12 sided tapered steel pole on an anchor bolt pier, curved davit arms, 138 kV polymer strings, shield wire peak. userData.attach/.shield.',
+    options: { circuits: 2, insulators: 'suspension', finish: null, height: 27 },
+    note: 'OPTIONS circuits 1 | 2; insulators suspension | post (braced horizontal line post); finish galvanized | weathering (null = seeded); height m above ground. Tubular 12 sided tapered steel pole on an anchor bolt pier, curved davit arms, 138 kV polymer strings, shield wire peak. userData.attach/.shield.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), H = o.height || 27, hw = M.galvDark();
       const fin = o.finish || (r() < 0.5 ? 'galvanized' : 'weathering');
@@ -669,8 +670,8 @@ export function install(K, THREE, TXT) {
   /* =============================================================================== H-frame */
   K.define('h_frame', {
     size: [9.8, 23.5, 1.4],
-    options: { material: 'wood | steel (wood)', height: 'pole height above ground (21)', voltage: '69 | 138 (138)' },
-    note: 'Two pole H-frame: poles 5.5 m apart, double timber crossarm, timber X brace, three phases horizontal (centre and outboard), static wire on each pole top.',
+    options: { material: 'wood', height: 21, voltage: 138 },
+    note: 'OPTIONS material wood | steel (weathering steel tubes); height m above ground; voltage 69 | 138. Two pole H-frame: poles 5.5 m apart, double timber crossarm, timber X brace, three phases horizontal (centre and outboard), static wire on each pole top.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), H = o.height || 21, hw = M.galvDark(), kv = +o.voltage === 69 ? 69 : 138;
       const steel = o.material === 'steel';
@@ -718,9 +719,8 @@ export function install(K, THREE, TXT) {
   /* ========================================================================== utility pole */
   K.define('utility_pole', {
     size: [2.6, 11.2, 4.6],
-    options: { transformer: 'pole mount can (true)', streetlight: 'cobra head on a davit (false)', guy: 'down guy with guard (true)', guyDir: 'guy runs to -z (-1) or +z (1)',
-               insulators: 'porcelain | polymer (seeded)', height: 'metres above ground (10.7, a 40 ft class 3 pole)' },
-    note: 'Three phase distribution: treated pine pole, 8 ft crossarm on flat braces, two crossarm pins and a pole top pin, neutral on a spool, cutout and arrester feeding a 25 to 50 kVA can.',
+    options: { transformer: true, streetlight: false, guy: true, guyDir: -1, insulators: null, height: 10.7 },
+    note: 'OPTIONS transformer (pole mount can), streetlight (cobra head on a davit), guy (down guy with yellow guard), guyDir -1 = anchor toward -z, 1 = +z; insulators porcelain | polymer (null = seeded); height m above ground (10.7 is a 40 ft class 3 pole). Three phase distribution: treated pine pole, 8 ft crossarm on flat braces, two crossarm pins and a pole top pin, neutral on a spool, cutout and arrester feeding a 25 to 50 kVA can.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), H = o.height || 10.7, hw = M.galvDark();
       const woodC = ['#6b6152', '#615a4e', '#6f6250', '#5d5347'][Math.floor(r() * 4)];
@@ -809,10 +809,8 @@ export function install(K, THREE, TXT) {
   const LINE = { transmission_tower: [330, 0.034], monopole_138: [200, 0.03], h_frame: [230, 0.032], utility_pole: [45, 0.02] };
   K.define('power_line', {
     size: [15.2, 49.5, 660],
-    options: { structure: 'transmission_tower | monopole_138 | h_frame | utility_pole (transmission_tower)', voltage: 'passed to the structure',
-               spans: 'number of spans (2)', span: 'metres (typical for the structure: 330, 200, 230, 45)', sag: 'metres at mid span (span x 0.034)',
-               structures: '[[x, z, rotY], ...] to place structures yourself; wires follow', insulator: 'passed through' },
-    note: 'Structures along z with every conductor and shield wire strung as a sagging span between the attach points each structure publishes; bundles get spacers every 70 m.',
+    options: { structure: 'transmission_tower', spans: 2, span: null, sag: null, structures: null },
+    note: 'OPTIONS structure transmission_tower | monopole_138 | h_frame | utility_pole; spans; span m (null = typical: 330, 200, 230, 45); sag m at mid span (null = about span x 0.034); structures [[x, z, rotY], ...] places them yourself and the wires follow; voltage, insulator, insulators, height, material, circuits, transformer, streetlight, guy pass through to the structure. Structures along z with every conductor and shield wire strung as a sagging span between the attach points each structure publishes; bundles get spacers every 70 m.',
     make(o, r) {
       const g = new THREE.Group(), type = o.structure || 'transmission_tower', D = LINE[type] || LINE.transmission_tower;
       const span = o.span || D[0], n = o.spans || 2, sag = o.sag != null ? o.sag : span * D[1];
@@ -1103,8 +1101,8 @@ export function install(K, THREE, TXT) {
   /* ============================================================================ substation */
   K.define('substation', {
     size: [58, 22, 76],
-    options: { size: 'small | large (small): 2 or 3 transformer bays', kv: 'high side 345 | 138 (345)', leads: 'incoming line stubs (true)' },
-    note: 'A fenced ERCOT yard on a crushed rock pad: dead end gantries, vertical break disconnects, SF6 dead tank breakers, autotransformers with radiators and conservators, a 138 kV low side, lightning masts, control house. Lines enter from -z.',
+    options: { size: 'small', kv: 345, leads: true },
+    note: 'OPTIONS size small | large (2 or 3 transformer bays); kv high side 345 | 138; leads draws the incoming and outgoing line stubs. A fenced ERCOT yard on a crushed rock pad: dead end gantries, vertical break disconnects, SF6 dead tank breakers, autotransformers with radiators and conservators, a 138 kV low side, lightning masts, control house. Lines enter from -z.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), large = o.size === 'large', kv = +o.kv === 138 ? 138 : 345;
       POSTSEG = 8;
@@ -1204,8 +1202,8 @@ export function install(K, THREE, TXT) {
   }
   K.define('wind_turbine', {
     size: [121, 150, 14],
-    options: { rotor: 'rotor angle in degrees (0 = a blade straight up)', hub: 'hub height m (90)', diameter: 'rotor diameter m (120)', yaw: 'degrees (0 = rotor faces +z)' },
-    note: 'A 2.5 to 3 MW class machine: 90 m tapered tubular steel tower with flanges and a base door, nacelle with cooler, met mast and obstruction light, spinner, three twisted and tapered airfoil blades with prebend, 5 degree shaft tilt, pad mount transformer.',
+    options: { rotor: 0, hub: 90, diameter: 120, yaw: 0 },
+    note: 'OPTIONS rotor angle deg (0 = a blade straight up); hub height m; diameter m; yaw deg (0 = rotor faces +z). A 2.5 to 3 MW class machine: 90 m tapered tubular steel tower with flanges and a base door, nacelle with cooler, met mast and obstruction light, spinner, three twisted and tapered airfoil blades with prebend, 5 degree shaft tilt, pad mount transformer.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), H = o.hub || 90, D = o.diameter || 120, R = D / 2;
       const paint = kmat('pw_wtg', { color: 0xdfe1dd, metalness: 0.1, roughness: 0.42 }), blade = kmat('pw_blade', { color: 0xe8eae6, roughness: 0.34 });
@@ -1289,8 +1287,8 @@ export function install(K, THREE, TXT) {
   }
   K.define('solar_array', {
     size: [42, 3.4, 26],
-    options: { rows: 'tracker rows (5)', cols: 'modules per row (36)', tilt: 'tracker rotation, degrees, + faces +z (20)', pitch: 'row spacing m (5.8)' },
-    note: 'Single axis trackers, one module in portrait (1P): 2.28 x 1.13 m bifacial modules on a square torque tube 2.1 m up, W6 piles every 7 m, slew drive at mid row, controller and combiner. Tubes run along x.',
+    options: { rows: 5, cols: 36, tilt: 20, pitch: 5.8 },
+    note: 'OPTIONS rows (trackers); cols (modules per row); tilt deg, positive faces +z, trackers run about plus or minus 60; pitch m row spacing. Single axis trackers, one module in portrait (1P): 2.28 x 1.13 m bifacial modules on a square torque tube 2.1 m up, W6 piles every 7 m, slew drive at mid row, controller and combiner. Tubes run along x.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), rows = o.rows || 5, cols = o.cols || 36, tilt = (o.tilt != null ? o.tilt : 20) * DEG, pitch = o.pitch || 5.8;
       const mw = 1.134, ml = 2.278, gap = 0.02, yT = 2.1, frame = kmat('pw_frame', { color: 0xb9bdbf, metalness: 0.85, roughness: 0.35 });
@@ -1390,8 +1388,8 @@ export function install(K, THREE, TXT) {
   }
   K.define('battery_storage', {
     size: [66, 14, 42],
-    options: { rows: 'rows of containers (3)', cols: 'containers per row, in pairs with a PCS skid between (4)', gsu: 'main step up transformer and dead end (true)' },
-    note: 'Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer.',
+    options: { rows: 3, cols: 4, gsu: true },
+    note: 'OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), rows = o.rows || 3, cols = o.cols || 4;
       const ribs = kmat('pw_cont', { color: 0xffffff, roughness: 0.5, metalness: 0.15, map: K.tex('corrugated', { color: '#e8e9e4' }) });
@@ -1538,8 +1536,8 @@ export function install(K, THREE, TXT) {
   }
   K.define('gas_peaker', {
     size: [48, 32, 22],
-    options: { units: '1 | 2 (1)', transformer: 'generator step up transformer (true)' },
-    note: 'A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ladder, lube oil fin fan, fuel gas skid, step up transformer.',
+    options: { units: 1, transformer: true },
+    note: 'OPTIONS units 1 | 2; transformer adds the generator step up. A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ladder, lube oil fin fan, fuel gas skid, step up transformer.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), n = +o.units === 2 ? 2 : 1;
       for (let i = 0; i < n; i++) peakerUnit(b, (i - (n - 1) / 2) * 20, r);
@@ -1653,8 +1651,8 @@ export function install(K, THREE, TXT) {
   }
   K.define('power_plant', {
     size: [120, 58, 120],
-    options: { units: 'gas turbine and HRSG trains, 1 | 2 (2)', cooling: 'tower | acc (tower)' },
-    note: 'A combined cycle block: F class gas turbines with elevated inlet filter houses, exhaust diffusers into heat recovery steam generators with buckstays, drums, stair towers and 50 m stacks, a steam turbine hall, mechanical draft cooling tower or air cooled condenser, step up transformers, demin water tank.',
+    options: { units: 2, cooling: 'tower' },
+    note: 'OPTIONS units 1 | 2 gas turbine and HRSG trains; cooling tower (mechanical draft) | acc (air cooled condenser). A combined cycle block: F class gas turbines with elevated inlet filter houses, exhaust diffusers into heat recovery steam generators with buckstays, drums, stair towers and 50 m stacks, a steam turbine hall, mechanical draft cooling tower or air cooled condenser, step up transformers, demin water tank.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), n = +o.units === 1 ? 1 : 2, pitch = 30;
       const zs = Array.from({ length: n }, (_, i) => (i - (n - 1) / 2) * pitch);

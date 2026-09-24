@@ -67,7 +67,7 @@ export function install(K, THREE, TXT) {
   /* Inset a closed polygon by d (miter offset along the vertex bisectors), so that a bevel of
    * size d grown back out lands the surface exactly on the profile that was asked for. */
   function insetShape(shape, d) {
-    let pts = shape.getPoints(16);
+    let pts = shape.getPoints(24);
     pts = pts.filter((p, i) => i === 0 || p.distanceTo(pts[i - 1]) > 1e-4);
     if (pts.length > 2 && pts[0].distanceTo(pts[pts.length - 1]) < 1e-4) pts.pop();
     let area = 0; pts.forEach((p, i) => { const q = pts[(i + 1) % pts.length]; area += p.x * q.y - q.x * p.y; });
@@ -81,6 +81,28 @@ export function install(K, THREE, TXT) {
     }
     return new THREE.Shape(out);
   }
+  /* Smooth normals across faces that meet at under `deg` degrees, hard edges elsewhere: the
+   * extruded hood curve and wheel arches shade as one surface, the panel edges stay crisp. */
+  function creaseNormals(g, deg) {
+    const p = g.attributes.position, n = p.count / 3, cos = Math.cos((deg || 34) * Math.PI / 180);
+    const fn = new Float32Array(n * 3), A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3();
+    for (let f = 0; f < n; f++) {
+      A.fromBufferAttribute(p, f * 3); B.fromBufferAttribute(p, f * 3 + 1); C.fromBufferAttribute(p, f * 3 + 2);
+      const nn = C.sub(B).cross(A.sub(B)).negate(); const l = nn.length() || 1; fn[f * 3] = nn.x / l; fn[f * 3 + 1] = nn.y / l; fn[f * 3 + 2] = nn.z / l;
+    }
+    const key = (i) => Math.round(p.getX(i) * 1e4) + ',' + Math.round(p.getY(i) * 1e4) + ',' + Math.round(p.getZ(i) * 1e4);
+    const map = new Map();
+    for (let i = 0; i < p.count; i++) { const k = key(i); if (!map.has(k)) map.set(k, []); map.get(k).push(i); }
+    const out = new Float32Array(p.count * 3);
+    for (const list of map.values()) for (const i of list) {
+      const f = (i / 3) | 0; let x = 0, y = 0, z = 0;
+      for (const j of list) { const g2 = (j / 3) | 0;
+        if (fn[f * 3] * fn[g2 * 3] + fn[f * 3 + 1] * fn[g2 * 3 + 1] + fn[f * 3 + 2] * fn[g2 * 3 + 2] >= cos) { x += fn[g2 * 3]; y += fn[g2 * 3 + 1]; z += fn[g2 * 3 + 2]; } }
+      const l = Math.hypot(x, y, z) || 1; out[i * 3] = x / l; out[i * 3 + 1] = y / l; out[i * 3 + 2] = z / l;
+    }
+    g.setAttribute('normal', new THREE.BufferAttribute(out, 3));
+    return g;
+  }
   function sideExtrude(cmds, width, bevel, mat, o) {
     o = o || {};
     const b = Math.min(bevel, width * 0.3), bs = b * (o.sizeK != null ? o.sizeK : 0.6);
@@ -93,6 +115,7 @@ export function install(K, THREE, TXT) {
       for (let i = 0; i < p.count; i++) { const v = o.deform(p.getX(i), p.getY(i), p.getZ(i)); p.setXYZ(i, v[0], v[1], v[2]); }
       g.computeBoundingBox(); g.computeBoundingSphere();
     }
+    creaseNormals(g, o.crease || 34);
     const m = new THREE.Mesh(g, mat);
     if (o.x) m.position.x = o.x;
     return m;
@@ -128,7 +151,42 @@ export function install(K, THREE, TXT) {
     G.add(sidePane(grow(pts, 0.025), x + sgn * 0.004, 0.012, frameMat || M.trim()));
     G.add(sidePane(pts, x + sgn * 0.011, 0.008, M.glass(), 0.003));
   }
-  const box = (w, h, d, mat, x, y0, z, r, parent) => K.box(w, h, d, mat, x, y0, z, r, parent);
+  // rounded boxes at the segment count their size needs: 2 for trim, 3 for a panel
+  const RB = (w, h, d, r, mat) => TXT.roundedBox(w, h, d, r, mat, { segments: Math.max(w, h, d) > 1.5 ? 3 : 2 });
+  const box = (w, h, d, mat, x, y0, z, r, parent) => {
+    const m = r ? RB(w, h, d, r, mat) : new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x || 0, (y0 || 0) + h / 2, z || 0);
+    if (parent) parent.add(m);
+    return m;
+  };
+  /* Merge every mesh under root that shares a material (one draw call per material). */
+  function mergeByMaterial(root) {
+    root.updateMatrixWorld(true);
+    const inv = new THREE.Matrix4().copy(root.matrixWorld).invert(), groups = new Map();
+    root.traverse((m) => { if (m.isMesh && !m.isInstancedMesh) { if (!groups.has(m.material)) groups.set(m.material, []); groups.get(m.material).push(m); } });
+    const out = new THREE.Group();
+    for (const [mat, list] of groups) {
+      const parts = list.map((m) => {
+        const g = m.geometry.index ? m.geometry.toNonIndexed() : m.geometry.clone();
+        g.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld));
+        if (!g.attributes.normal) g.computeVertexNormals();
+        return g;
+      });
+      const hasUV = parts.every((g) => g.attributes.uv);
+      let total = 0; parts.forEach((g) => { total += g.attributes.position.count; });
+      const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3), uv = hasUV ? new Float32Array(total * 2) : null;
+      let o = 0;
+      parts.forEach((g) => { pos.set(g.attributes.position.array, o * 3); nor.set(g.attributes.normal.array, o * 3);
+        if (uv) uv.set(g.attributes.uv.array, o * 2); o += g.attributes.position.count; g.dispose(); });
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+      if (uv) geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+      out.add(new THREE.Mesh(geo, mat));
+    }
+    root.traverse((m) => { if (m.isInstancedMesh) out.add(m.clone()); });
+    return out;
+  }
+
   const bar = (a, b, r, mat, parent, seg) => K.bar(a, b, r, mat, seg || 10, parent);
 
   /* ---- wheels --------------------------------------------------------------------------- */
@@ -137,7 +195,7 @@ export function install(K, THREE, TXT) {
   function wheelParts(R, w, style, rimR) {
     const key = [R, w, style, rimR].join('|');
     if (WHEELS.has(key)) return WHEELS.get(key);
-    const seg = style === 'truck' || style === 'steel' ? 36 : 48;
+    const seg = style === 'truck' || style === 'steel' ? 32 : 40;
     const rr = rimR || R * 0.62, hw = w / 2;
     // tyre: sidewalls with a bulge, a shoulder, a tread with three grooves
     const pr = [[rr - 0.01, -hw + 0.02], [rr + 0.02, -hw], [R - 0.045, -hw - 0.006], [R - 0.012, -hw + 0.01], [R, -hw + 0.03],
@@ -241,8 +299,8 @@ export function install(K, THREE, TXT) {
     for (const s of [1, -1]) {
       const w = big ? 0.2 : 0.18, h = big ? 0.25 : 0.12;
       bar([s * (x - 0.02), y + 0.02, z], [s * (x + 0.1), y + 0.04, z - 0.02], 0.018, M.trim(), G);
-      const head = TXT.roundedBox(w, h, 0.09, 0.03, mat); head.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.03); G.add(head);
-      const gl = TXT.roundedBox(w - 0.03, h - 0.03, 0.01, 0.005, K.finish.chrome()); gl.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.076); G.add(gl);
+      const head = RB(w, h, 0.09, 0.03, mat); head.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.03); G.add(head);
+      const gl = RB(w - 0.03, h - 0.03, 0.01, 0.005, K.finish.chrome()); gl.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.076); G.add(gl);
     }
   }
   /* Snap to a body surface: returns f(x, y) = the z where a ray along -dir*z first meets the
@@ -261,19 +319,19 @@ export function install(K, THREE, TXT) {
   function lamp(G, w, h, x, y, z, kind, dir) {
     dir = dir || 1;
     for (const s of [1, -1]) {
-      const body = TXT.roundedBox(w, h, 0.05, Math.min(w, h) * 0.3, kind === 'tail' ? M.tail() : kind === 'amber' ? M.amber() : M.lens());
+      const body = RB(w, h, 0.05, Math.min(w, h) * 0.3, kind === 'tail' ? M.tail() : kind === 'amber' ? M.amber() : M.lens());
       const zz = typeof z === 'function' ? z(s * x, y) + dir * 0.012 : z;
       body.position.set(s * x, y, zz); G.add(body);
       if (kind === 'head') {
-        const strip = TXT.roundedBox(w * 0.85, Math.max(0.012, h * 0.12), 0.02, 0.005, M.drl());
+        const strip = RB(w * 0.85, Math.max(0.012, h * 0.12), 0.02, 0.005, M.drl());
         strip.position.set(s * x, y - h * 0.32, zz + dir * 0.02); G.add(strip);
       }
     }
   }
   // a licence plate
   function plate(G, y, z, dir) {
-    const p = TXT.roundedBox(0.305, 0.152, 0.01, 0.01, M.plate()); p.position.set(0, y, z); G.add(p);
-    const t = TXT.roundedBox(0.24, 0.05, 0.004, 0.002, K.mat('v-platetext', { color: 0x1f3050, roughness: 0.5 })); t.position.set(0, y, z + dir * 0.006); G.add(t);
+    const p = RB(0.305, 0.152, 0.01, 0.01, M.plate()); p.position.set(0, y, z); G.add(p);
+    const t = RB(0.24, 0.05, 0.004, 0.002, K.mat('v-platetext', { color: 0x1f3050, roughness: 0.5 })); t.position.set(0, y, z + dir * 0.006); G.add(t);
   }
   // a text panel: canvas-painted sign (school bus, fleet lettering)
   const SIGNS = new Map();
@@ -281,13 +339,13 @@ export function install(K, THREE, TXT) {
     const k = text + fg + bg + w + h;
     if (SIGNS.has(k)) return SIGNS.get(k);
     const c = document.createElement('canvas'); c.width = 512; c.height = Math.round(512 * h / w);
-    const x = c.getContext('2d'); x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height);
+    const x = c.getContext('2d'); if (bg) { x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height); }
     x.fillStyle = fg; x.textAlign = 'center'; x.textBaseline = 'middle';
     let fs = c.height * 0.72; x.font = '900 ' + fs + 'px Arial, Helvetica, sans-serif';
     while (x.measureText(text).width > c.width * 0.9 && fs > 8) { fs -= 2; x.font = '900 ' + fs + 'px Arial, Helvetica, sans-serif'; }
     x.fillText(text, c.width / 2, c.height / 2 + fs * 0.04);
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-    const m = new THREE.MeshStandardMaterial({ map: t, roughness: 0.4 });
+    const m = new THREE.MeshStandardMaterial({ map: t, roughness: 0.4, transparent: !bg, alphaTest: bg ? 0 : 0.4 });
     SIGNS.set(k, m); return m;
   }
   function sign(text, fg, bg, w, h, mat) {
@@ -318,13 +376,13 @@ export function install(K, THREE, TXT) {
       box(W - 0.16, 0.04, 2.5, K.mat('v-liner', { color: 0x1f2022, roughness: 0.9 }), 0, 0.62, (zr - 0.4) / 2 + 0.02, 0, G);
       box(W - 0.1, 0.72, 0.06, P, 0, 0.6, -0.42, 0.02, G);
       for (const s of [1, -1]) box(0.11, 0.035, 2.52, M.trim(), s * (hw - 0.05), 1.33, (zr - 0.4) / 2 + 0.01, 0.012, G);   // bed rail caps
-      const tg = TXT.roundedBox(W - 0.02, 0.72, 0.07, 0.03, P); tg.position.set(0, 0.6 + 0.36, zr + 0.035); G.add(tg);
+      const tg = RB(W - 0.02, 0.72, 0.07, 0.03, P); tg.position.set(0, 0.6 + 0.36, zr + 0.035); G.add(tg);
       box(0.3, 0.05, 0.02, bright, 0, 1.2, zr - 0.002, 0.01, G);                   // tailgate handle
       box(W - 0.3, 0.04, 0.02, M.trim(), 0, 1.3, zr - 0.002, 0.01, G);
       plate(G, 0.52, zr - 0.08, -1);
-      for (const s of [1, -1]) { const tl = TXT.roundedBox(0.09, 0.36, 0.06, 0.02, M.tail()); tl.position.set(s * (hw - 0.05), 1.12, zr + 0.01); G.add(tl); }
+      for (const s of [1, -1]) { const tl = RB(0.09, 0.36, 0.06, 0.02, M.tail()); tl.position.set(s * (hw - 0.05), 1.12, zr + 0.01); G.add(tl); }
       // rear bumper with step pads
-      const rb = TXT.roundedBox(W, 0.22, 0.22, 0.05, bright); rb.position.set(0, 0.5, zr - 0.02); G.add(rb);
+      const rb = RB(W, 0.22, 0.22, 0.05, bright); rb.position.set(0, 0.5, zr - 0.02); G.add(rb);
       box(0.5, 0.02, 0.12, M.trim(), 0, 0.61, zr - 0.06, 0.005, G);
       // greenhouse, roof and pillars
       const belt = 1.38, roof = 1.94;
@@ -334,7 +392,7 @@ export function install(K, THREE, TXT) {
       G.add(rf);
       for (const s of [1, -1]) {
         bar([s * (gh.hw(belt) + 0.012), belt, 1.12], [s * (gh.hw(roof) + 0.012), roof - 0.06, 0.26], 0.042, P, G);    // A
-        const bp = TXT.roundedBox(0.012, roof - belt, 0.11, 0.004, M.trim());                                          // B, black
+        const bp = RB(0.012, roof - belt, 0.11, 0.004, M.trim());                                          // B, black
         bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, 0.06); bp.rotation.z = -s * 0.1 * (hw - 0.13) / (roof - belt); G.add(bp);
         bar([s * (gh.hw(belt) + 0.012), belt, -0.3], [s * (gh.hw(roof) + 0.012), roof - 0.03, -0.29], 0.045, P, G);   // C
         bar([s * (gh.hw(roof) + 0.012), roof - 0.03, 0.2], [s * (gh.hw(roof) + 0.012), roof - 0.03, -0.29], 0.03, P, G);
@@ -347,15 +405,15 @@ export function install(K, THREE, TXT) {
       handle(G, hw, 1.16, 0.22, bright); handle(G, hw, 1.16, -0.2, bright);
       mirror(G, hw, 1.4, 1.02, trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : P, true);
       // front: bumper, grille, headlights, fog lamps, tow hooks
-      const fb = TXT.roundedBox(W - 0.02, 0.3, 0.26, 0.06, bright); fb.position.set(0, 0.55, zf - 0.06); G.add(fb);
+      const fb = RB(W - 0.02, 0.3, 0.26, 0.06, bright); fb.position.set(0, 0.55, zf - 0.06); G.add(fb);
       box(W - 0.5, 0.1, 0.08, M.trim(), 0, 0.46, zf + 0.04, 0.02, G);
       const gw = 1.34, gh2 = 0.5;
       const nz = nose(0, 0.98);
-      const gs = TXT.roundedBox(gw + 0.1, gh2 + 0.1, 0.06, 0.04, bright); gs.position.set(0, 0.75 + gh2 / 2, nz + 0.01); G.add(gs);
+      const gs = RB(gw + 0.1, gh2 + 0.1, 0.06, 0.04, bright); gs.position.set(0, 0.75 + gh2 / 2, nz + 0.01); G.add(gs);
       box(gw, gh2, 0.05, M.well(), 0, 0.75, nz + 0.03, 0.01, G);
       for (let i = 0; i < 4; i++) box(gw - 0.02, 0.035, 0.035, bright, 0, 0.8 + i * 0.12, nz + 0.06, 0.012, G);
-      const vb = TXT.roundedBox(0.035, gh2 - 0.02, 0.035, 0.012, bright); vb.position.set(0, 0.75 + gh2 / 2, nz + 0.06); G.add(vb);
-      const badge = TXT.roundedBox(0.2, 0.08, 0.02, 0.02, M.chrome()); badge.position.set(0, 1.0, nz + 0.085); G.add(badge);
+      const vb = RB(0.035, gh2 - 0.02, 0.035, 0.012, bright); vb.position.set(0, 0.75 + gh2 / 2, nz + 0.06); G.add(vb);
+      const badge = RB(0.2, 0.08, 0.02, 0.02, M.chrome()); badge.position.set(0, 1.0, nz + 0.085); G.add(badge);
       lamp(G, 0.27, 0.22, hw - 0.19, 1.04, nose, 'head');
       lamp(G, 0.12, 0.06, hw - 0.25, 0.55, zf + 0.07, 'amber');
       for (const s of [1, -1]) box(0.05, 0.04, 0.08, K.mat('v-hook', { color: 0x9a1b1b, roughness: 0.5 }), s * 0.5, 0.42, zf + 0.03, 0.01, G);
@@ -382,30 +440,30 @@ export function install(K, THREE, TXT) {
       const G = new THREE.Group(), P = seededPaint(r, o);
       const L = 4.88, W = 1.84, hw = W / 2, zf = L / 2, zr = -L / 2, R = 0.335, fz = zf - 0.97, rz = fz - 2.82;
       const body = sideExtrude([['m', zr + 0.12, 0.24], ['arch', rz, R + 0.035, R], ['arch', fz, R + 0.035, R], ['l', zf - 0.2, 0.24],
-        ['q', zf - 0.02, 0.26, zf, 0.42], ['q', zf + 0.01, 0.62, zf - 0.08, 0.7], ['q', zf - 0.5, 0.82, 1.3, 0.88], ['l', 0.96, 0.925],
-        ['l', -1.55, 0.97], ['q', -1.9, 0.99, -2.28, 0.97], ['q', zr, 0.94, zr, 0.78], ['l', zr + 0.01, 0.42], ['q', zr + 0.01, 0.25, zr + 0.12, 0.24]],
+        ['q', zf - 0.02, 0.26, zf, 0.44], ['q', zf + 0.01, 0.68, zf - 0.1, 0.76], ['q', zf - 0.45, 0.84, 1.3, 0.87], ['l', 0.98, 0.92],
+        ['l', -1.4, 0.97], ['q', -1.6, 1.0, -2.2, 1.0], ['q', zr + 0.02, 0.99, zr, 0.84], ['l', zr + 0.01, 0.44], ['q', zr + 0.01, 0.25, zr + 0.12, 0.24]],
       W, 0.09, P, { deform: planRound(zf, zr, 0.08, 0.55), sizeK: 0.7 }); G.add(body);
       const nose = snapper([body], 1, zf), tail = snapper([body], -1, zr);
       const belt = 0.95, roof = 1.44;
-      const gh = greenhouse([['m', 0.98, belt - 0.03], ['q', 0.55, 1.2, 0.08, roof - 0.04], ['q', -0.3, roof - 0.01, -0.62, roof - 0.04], ['q', -1.1, 1.3, -1.62, belt - 0.01]],
+      const gh = greenhouse([['m', 1.0, belt - 0.03], ['q', 0.55, 1.22, 0.12, roof - 0.04], ['q', -0.4, roof, -0.9, roof - 0.05], ['q', -1.2, 1.28, -1.45, belt - 0.0]],
         hw - 0.1, belt, roof, 0.2, M.glass(), 0.04);
       G.add(gh.mesh);
       // roof skin over the glass
-      G.add(sideExtrude([['m', 0.1, roof - 0.07], ['q', -0.25, roof + 0.005, -0.64, roof - 0.035], ['l', -0.7, roof - 0.09]], (gh.hw(roof) + 0.012) * 2, 0.035, P));
+      G.add(sideExtrude([['m', 0.14, roof - 0.07], ['q', -0.4, roof + 0.012, -0.92, roof - 0.045], ['l', -0.98, roof - 0.1]], (gh.hw(roof) + 0.012) * 2, 0.035, P));
       for (const s of [1, -1]) {
         const x = (y) => s * (gh.hw(y) + 0.01);
-        TXT_tube(G, [[x(belt), belt, 0.98], [x(1.2), 1.2, 0.56], [x(roof - 0.04), roof - 0.045, 0.1]], 0.035, P);   // A
-        const bp = TXT.roundedBox(0.012, roof - belt - 0.04, 0.09, 0.004, M.trim());
+        TXT_tube(G, [[x(belt), belt, 1.0], [x(1.2), 1.2, 0.58], [x(roof - 0.05), roof - 0.055, 0.16]], 0.035, P);   // A
+        const bp = RB(0.012, roof - belt - 0.04, 0.09, 0.004, M.trim());
         bp.position.set(s * (gh.hw(1.19) + 0.004), 1.19, -0.12); bp.rotation.z = -s * 0.2 * (hw - 0.1) / (roof - belt); G.add(bp);
         // C pillar panel: the body closes the greenhouse behind the rear door glass
-        G.add(sidePane([[-0.78, belt - 0.02], [-0.66, roof - 0.07], [-0.62, roof - 0.04], [-1.62, belt - 0.02]], 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.006)));
-        box(0.018, 0.02, 1.78, M.chrome(), s * (gh.hw(belt) + 0.01), belt - 0.02, 0.08, 0.006, G);
+        G.add(sidePane([[-0.95, belt - 0.02], [-0.86, roof - 0.07], [-0.9, roof - 0.05], [-1.45, belt - 0.02]], 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.006)));
+        box(0.018, 0.02, 2.0, M.chrome(), s * (gh.hw(belt) + 0.01), belt - 0.02, -0.2, 0.006, G);
       }
       seam(G, hw, 1.02, 0.3, 0.98, belt); seam(G, hw, -0.1, 0.28, -0.1, belt); seam(G, hw, -0.95, 0.3, -0.85, belt);
       handle(G, hw, 0.84, 0.1, P); handle(G, hw, 0.85, -0.78, P);
       mirror(G, hw, 0.95, 0.86, P, false);
       // nose: grille, lamps; tail: lamps, plate, diffuser
-      const gr = TXT.roundedBox(0.95, 0.2, 0.04, 0.05, M.satin()); gr.position.set(0, 0.5, nose(0, 0.5) + 0.005); G.add(gr);
+      const gr = RB(0.95, 0.2, 0.04, 0.05, M.satin()); gr.position.set(0, 0.5, nose(0, 0.5) + 0.005); G.add(gr);
       box(0.6, 0.05, 0.03, M.chrome(), 0, 0.63, nose(0, 0.65) + 0.004, 0.02, G);
       lamp(G, 0.34, 0.11, hw - 0.25, 0.66, nose, 'head');
       lamp(G, 0.36, 0.1, hw - 0.22, 0.85, tail, 'tail', -1);
@@ -442,7 +500,7 @@ export function install(K, THREE, TXT) {
         const x = (y) => s * (gh.hw(y) + 0.012);
         bar([x(belt), belt, 1.14], [x(roof), roof - 0.06, 0.24], 0.04, P, G);
         for (const [z, m] of [[0.02, M.trim()], [-1.06, M.trim()]]) {
-          const bp = TXT.roundedBox(0.012, roof - belt, 0.1, 0.004, m); bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, z);
+          const bp = RB(0.012, roof - belt, 0.1, 0.004, m); bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, z);
           bp.rotation.z = -s * 0.1 * (hw - 0.1) / (roof - belt); G.add(bp);
         }
         // D pillar, body colour, wide at the tail
@@ -457,16 +515,16 @@ export function install(K, THREE, TXT) {
       handle(G, hw, 1.2, 0.2, M.chrome()); handle(G, hw, 1.2, -0.9, M.chrome());
       mirror(G, hw, 1.38, 1.02, P, false);
       const nz = nose(0, 0.95);
-      const gs = TXT.roundedBox(1.3, 0.46, 0.06, 0.04, M.chrome()); gs.position.set(0, 0.95, nz + 0.01); G.add(gs);
+      const gs = RB(1.3, 0.46, 0.06, 0.04, M.chrome()); gs.position.set(0, 0.95, nz + 0.01); G.add(gs);
       box(1.22, 0.38, 0.05, M.well(), 0, 0.76, nz + 0.025, 0.01, G);
       box(1.24, 0.05, 0.04, M.chrome(), 0, 0.93, nz + 0.05, 0.015, G);
       lamp(G, 0.3, 0.14, hw - 0.2, 1.08, nose, 'head');
-      const fb = TXT.roundedBox(W - 0.04, 0.26, 0.2, 0.06, M.satin()); fb.position.set(0, 0.56, zf - 0.02); G.add(fb);
+      const fb = RB(W - 0.04, 0.26, 0.2, 0.06, M.satin()); fb.position.set(0, 0.56, zf - 0.02); G.add(fb);
       lamp(G, 0.12, 0.44, hw - 0.08, 1.08, tail, 'tail', -1);
-      const rb = TXT.roundedBox(W - 0.04, 0.24, 0.2, 0.06, M.satin()); rb.position.set(0, 0.55, zr + 0.03); G.add(rb);
+      const rb = RB(W - 0.04, 0.24, 0.2, 0.06, M.satin()); rb.position.set(0, 0.55, zr + 0.03); G.add(rb);
       plate(G, 0.88, tail(0, 0.88) - 0.008, -1); plate(G, 0.52, zf + 0.09, 1);
       box(0.9, 0.05, 0.02, M.chrome(), 0, 1.05, tail(0, 1.05) - 0.008, 0.015, G);
-      const hgl = TXT.roundedBox(1.5, 0.42, 0.02, 0.05, M.glass()); hgl.position.set(0, 1.6, tail(0, 1.6) - 0.006); G.add(hgl);
+      const hgl = RB(1.5, 0.42, 0.02, 0.05, M.glass()); hgl.position.set(0, 1.6, tail(0, 1.6) - 0.006); G.add(hgl);
       for (const s of [1, -1]) box(0.14, 0.05, 2.2, M.satin(), s * (hw - 0.03), 0.38, 0.1, 0.02, G);
       box(W - 0.35, 0.2, L - 1.2, M.frame(), 0, 0.28, 0, 0.02, G);
       axle(G, fz, R, 0.275, W - 0.28, 'six', M.alloy(), { rimR: 0.26 });
@@ -512,11 +570,11 @@ export function install(K, THREE, TXT) {
       mirror(G, hw, 1.4, 1.75, M.trim(), true);
       // nose: a big black grille and swept lamps, bumpers in unpainted black
       const nz = nose(0, 0.82);
-      const gs = TXT.roundedBox(1.1, 0.34, 0.06, 0.06, M.trim()); gs.position.set(0, 0.82, nz + 0.01); G.add(gs);
+      const gs = RB(1.1, 0.34, 0.06, 0.06, M.trim()); gs.position.set(0, 0.82, nz + 0.01); G.add(gs);
       for (let i = 0; i < 3; i++) box(1.0, 0.02, 0.03, M.satin(), 0, 0.71 + i * 0.1, nz + 0.04, 0.008, G);
       lamp(G, 0.32, 0.18, hw - 0.2, 0.95, nose, 'head');
-      const fb = TXT.roundedBox(W - 0.02, 0.3, 0.2, 0.06, M.trim()); fb.position.set(0, 0.53, zf - 0.03); G.add(fb);
-      const rb = TXT.roundedBox(W - 0.02, 0.22, 0.16, 0.05, M.trim()); rb.position.set(0, 0.5, zr + 0.02); G.add(rb);
+      const fb = RB(W - 0.02, 0.3, 0.2, 0.06, M.trim()); fb.position.set(0, 0.53, zf - 0.03); G.add(fb);
+      const rb = RB(W - 0.02, 0.22, 0.16, 0.05, M.trim()); rb.position.set(0, 0.5, zr + 0.02); G.add(rb);
       lamp(G, 0.1, 0.5, hw - 0.07, 1.05, tail, 'tail', -1);
       lamp(G, 0.2, 0.05, 0.25, top - 0.2, tail, 'tail', -1);
       plate(G, 0.75, zr - 0.005, -1); plate(G, 0.52, zf + 0.08, 1);
@@ -524,11 +582,11 @@ export function install(K, THREE, TXT) {
       function sideWindowRear(G2, s) {
         const pts = [[zr + 0.02, 1.45], [zr + 0.02, 2.2], [zr + 0.02, 2.2]];
         void pts;
-        const gl = TXT.roundedBox(0.8, 0.6, 0.02, 0.05, M.glass()); gl.position.set(s * 0.46, 1.8, zr - 0.012); G2.add(gl);
-        const fr = TXT.roundedBox(0.86, 0.66, 0.012, 0.06, M.trim()); fr.position.set(s * 0.46, 1.8, zr - 0.004); G2.add(fr);
+        const gl = RB(0.8, 0.6, 0.02, 0.05, M.glass()); gl.position.set(s * 0.46, 1.8, zr - 0.012); G2.add(gl);
+        const fr = RB(0.86, 0.66, 0.012, 0.06, M.trim()); fr.position.set(s * 0.46, 1.8, zr - 0.004); G2.add(fr);
       }
       if (o.lettering) for (const s of [1, -1]) {
-        const sg = sign(o.lettering, '#1d2b44', '#f2f2ee', 2.6, 0.5); sg.position.set(s * (hw + 0.004), 1.65, -0.9); sg.rotation.y = s * Math.PI / 2; G.add(sg);
+        const sg = sign(o.lettering, '#1d2b44', null, 2.1, 0.42); sg.position.set(s * (hw + 0.004), 1.7, -1.75); sg.rotation.y = s * Math.PI / 2; G.add(sg);
       }
       box(W - 0.4, 0.25, L - 1.2, M.frame(), 0, 0.2, 0, 0.02, G);
       axle(G, fz, R, 0.235, W - 0.26, 'steel', M.steelWheel(), { rimR: 0.21 });
@@ -562,7 +620,7 @@ export function install(K, THREE, TXT) {
       // windscreen and front cap
       const ws = sideExtrude([['m', bodyF + 0.02, 1.92], ['l', bodyF - 0.135, 2.6], ['l', bodyF - 0.155, 2.6], ['l', bodyF, 1.92]], W - 0.3, 0.02, M.glass());
       G.add(ws);
-      const cpost = TXT.roundedBox(0.05, 0.72, 0.03, 0.01, blk); cpost.position.set(0, 2.26, bodyF - 0.06); cpost.rotation.x = -0.22; G.add(cpost);
+      const cpost = RB(0.05, 0.72, 0.03, 0.01, blk); cpost.position.set(0, 2.26, bodyF - 0.06); cpost.rotation.x = -0.22; G.add(cpost);
       const cap = sign('SCHOOL BUS', '#111111', '#f4ab00', 1.2, 0.26); cap.position.set(0, 2.86, bodyF - 0.16 + 0.004); G.add(cap);
       const capR = sign('SCHOOL BUS', '#111111', '#f4ab00', 1.2, 0.26); capR.position.set(0, 2.84, zr - 0.012); capR.rotation.y = Math.PI; G.add(capR);
       // eight-way warning lamps, front and rear
@@ -597,11 +655,11 @@ export function install(K, THREE, TXT) {
       // rear: emergency door with its window, tail lamps, the lettering, bumper
       sideWindowRearBus();
       function sideWindowRearBus() {
-        const fr = TXT.roundedBox(0.9, 1.9, 0.02, 0.03, blk); fr.position.set(0, 0.75 + 0.95, zr - 0.006); G.add(fr);
-        const dp = TXT.roundedBox(0.84, 1.84, 0.02, 0.02, Y); dp.position.set(0, 1.7, zr - 0.014); G.add(dp);
-        const gl = TXT.roundedBox(0.7, 0.8, 0.02, 0.04, M.glass()); gl.position.set(0, 2.1, zr - 0.024); G.add(gl);
+        const fr = RB(0.9, 1.9, 0.02, 0.03, blk); fr.position.set(0, 0.75 + 0.95, zr - 0.006); G.add(fr);
+        const dp = RB(0.84, 1.84, 0.02, 0.02, Y); dp.position.set(0, 1.7, zr - 0.014); G.add(dp);
+        const gl = RB(0.7, 0.8, 0.02, 0.04, M.glass()); gl.position.set(0, 2.1, zr - 0.024); G.add(gl);
         box(0.3, 0.04, 0.04, M.chrome(), 0.2, 1.5, zr - 0.03, 0.01, G);
-        for (const s of [1, -1]) { const g2 = TXT.roundedBox(0.5, 0.8, 0.02, 0.04, M.glass()); g2.position.set(s * 0.8, 2.1, zr - 0.012); G.add(g2); }
+        for (const s of [1, -1]) { const g2 = RB(0.5, 0.8, 0.02, 0.04, M.glass()); g2.position.set(s * 0.8, 2.1, zr - 0.012); G.add(g2); }
       }
       lamp(G, 0.2, 0.2, 0.95, 1.2, zr - 0.01, 'tail', -1); lamp(G, 0.2, 0.2, 0.95, 1.45, zr - 0.01, 'amber', -1);
       box(W + 0.04, 0.26, 0.18, blk, 0, 0.55, zr - 0.05, 0.03, G);
@@ -609,7 +667,7 @@ export function install(K, THREE, TXT) {
       plate(G, 0.95, zr - 0.02, -1);
       // grille and headlamps on the hood nose
       const gz = nose(0, 1.12);
-      const gg = TXT.roundedBox(1.0, 0.62, 0.05, 0.04, blk); gg.position.set(0, 1.12, gz + 0.01); G.add(gg);
+      const gg = RB(1.0, 0.62, 0.05, 0.04, blk); gg.position.set(0, 1.12, gz + 0.01); G.add(gg);
       for (let i = 0; i < 6; i++) box(0.94, 0.02, 0.03, M.satin(), 0, 0.87 + i * 0.1, gz + 0.035, 0.005, G);
       lamp(G, 0.2, 0.2, 0.8, 1.2, nose, 'head');
       // stop arm on the driver's side (+x), folded flat unless deployed
@@ -631,7 +689,7 @@ export function install(K, THREE, TXT) {
         box(0.18, 0.38, 0.06, blk, s * (hw + 0.32), 2.0, bodyF - 0.05, 0.03, G);
       }
       if (o.district) for (const s of [1, -1]) {
-        const d = sign(o.district, '#111111', '#f4ab00', 3.6, 0.26); d.position.set(s * (hw + 0.004), 2.72, -0.8); d.rotation.y = s * Math.PI / 2; G.add(d);
+        const d = sign(o.district, '#111111', null, 3.6, 0.26); d.position.set(s * (hw + 0.004), 2.72, -0.8); d.rotation.y = s * Math.PI / 2; G.add(d);
       }
       box(W - 0.4, 0.3, L - 1.6, M.frame(), 0, 0.42, -0.4, 0.02, G);
       axle(G, fz, R, 0.28, 2.1, 'truck', M.steelWheel(), { rimR: 0.29, wellW: 1.4 });
@@ -684,16 +742,16 @@ export function install(K, THREE, TXT) {
       handle(T, hw, 1.9, -2.9, M.chrome());
       mirror(T, hw, 2.3, -1.95, M.chrome(), true);
       // grille, bumper, headlamps, cab marker lamps
-      const gr = TXT.roundedBox(1.1, 0.95, 0.06, 0.05, M.chrome()); gr.position.set(0, 1.45, 0.01); T.add(gr);
+      const gr = RB(1.1, 0.95, 0.06, 0.05, M.chrome()); gr.position.set(0, 1.45, 0.01); T.add(gr);
       box(1.0, 0.86, 0.04, M.well(), 0, 1.02, 0.035, 0.01, T);
       for (let i = 0; i < 9; i++) box(0.98, 0.02, 0.02, M.chrome(), 0, 1.07 + i * 0.09, 0.05, 0.005, T);
-      const fb = TXT.roundedBox(2.4, 0.42, 0.3, 0.08, M.chrome()); fb.position.set(0, 0.72, 0.05); T.add(fb);
+      const fb = RB(2.4, 0.42, 0.3, 0.08, M.chrome()); fb.position.set(0, 0.72, 0.05); T.add(fb);
       lamp(T, 0.26, 0.18, 0.84, 1.5, 0.012, 'head');
-      for (let i = -2; i <= 2; i++) { const m = TXT.roundedBox(0.08, 0.04, 0.05, 0.015, M.amber()); m.position.set(i * 0.25, 3.14, -2.62); T.add(m); }
+      for (let i = -2; i <= 2; i++) { const m = RB(0.08, 0.04, 0.05, 0.015, M.amber()); m.position.set(i * 0.25, 3.14, -2.62); T.add(m); }
       // frame rails, fifth wheel, back of cab bits
       box(0.95, 0.28, 7.3, M.frame(), 0, 0.82, -3.8, 0.02, T);
       box(1.2, 0.12, 1.1, M.frame(), 0, 1.1, -6.2, 0.03, T);
-      const deck = TXT.roundedBox(2.3, 0.05, 0.4, 0.02, M.frame()); deck.position.set(0, 1.22, -4.95); T.add(deck);
+      const deck = RB(2.3, 0.05, 0.4, 0.02, M.frame()); deck.position.set(0, 1.22, -4.95); T.add(deck);
       axle(T, steer, R, 0.3, 2.06, 'truck', M.alloy(), { rimR: 0.3, wellW: 1.4 });
       axle(T, d1, R, 0.28, 2.3, 'truck', M.alloy(), { rimR: 0.3, dual: true, well: false });
       axle(T, d2, R, 0.28, 2.3, 'truck', M.alloy(), { rimR: 0.3, dual: true, well: false });
@@ -701,7 +759,7 @@ export function install(K, THREE, TXT) {
       if (o.trailer !== false) {
         const TR = new THREE.Group(), TP = paint(o.trailerColor != null ? o.trailerColor : 0xeeeeea, 0);
         const tf = -5.1, tl = 16.15, tb = tf - tl, TW = 2.59, thw = TW / 2, fl = 1.24, tt = 4.1;
-        const bx = TXT.roundedBox(TW, tt - fl, tl, 0.05, TP); bx.position.set(0, (fl + tt) / 2, tf - tl / 2); TR.add(bx);
+        const bx = RB(TW, tt - fl, tl, 0.05, TP); bx.position.set(0, (fl + tt) / 2, tf - tl / 2); TR.add(bx);
         // side panel seams, the logistic posts of a plate van
         const post = K.mat('v-post', { color: 0xc9ccd0, metalness: 0.6, roughness: 0.35 });
         const posts = [];
@@ -710,7 +768,7 @@ export function install(K, THREE, TXT) {
         for (const s of [1, -1]) {
           box(0.05, 0.12, tl, post, s * (thw + 0.01), fl, tf - tl / 2, 0.01, TR);                 // bottom rail
           box(0.04, 0.06, tl, post, s * (thw + 0.005), tt - 0.06, tf - tl / 2, 0.01, TR);          // top rail
-          for (let z = tf - 1.5; z > tb + 1; z -= 3) { const ml = TXT.roundedBox(0.04, 0.05, 0.08, 0.01, M.amber()); ml.position.set(s * (thw + 0.02), fl + 0.2, z); TR.add(ml); }
+          for (let z = tf - 1.5; z > tb + 1; z -= 3) { const ml = RB(0.04, 0.05, 0.08, 0.01, M.amber()); ml.position.set(s * (thw + 0.02), fl + 0.2, z); TR.add(ml); }
           // side skirt
           box(0.02, 0.62, 7.0, K.mat('v-skirt', { color: 0xd8d8d4, roughness: 0.5 }), s * (thw - 0.08), fl - 0.64, tf - 6.2, 0.005, TR);
           // landing gear
@@ -726,7 +784,7 @@ export function install(K, THREE, TXT) {
         }
         for (const s of [1, -1]) for (const y of [fl + 0.4, fl + 1.4, fl + 2.4]) box(0.14, 0.1, 0.04, post, s * (thw - 0.07), y, rz0 - 0.02, 0.01, TR);
         lamp(TR, 0.1, 0.18, thw - 0.25, fl - 0.1, rz0 - 0.02, 'tail', -1);
-        for (let i = -1; i <= 1; i++) { const m = TXT.roundedBox(0.08, 0.04, 0.04, 0.01, M.tail()); m.position.set(i * 0.2, tt - 0.12, rz0 - 0.02); TR.add(m); }
+        for (let i = -1; i <= 1; i++) { const m = RB(0.08, 0.04, 0.04, 0.01, M.tail()); m.position.set(i * 0.2, tt - 0.12, rz0 - 0.02); TR.add(m); }
         box(2.3, 0.14, 0.12, M.frame(), 0, 0.46, tb + 0.15, 0.02, TR);
         for (const s of [1, -1]) box(0.1, 0.62, 0.1, M.frame(), s * 0.7, 0.5, tb + 0.25, 0.01, TR);
         // floor frame and the slider tandem
@@ -734,7 +792,7 @@ export function install(K, THREE, TXT) {
         axle(TR, tb + 1.9, R, 0.28, 2.3, 'truck', M.alloy(), { rimR: 0.3, dual: true, well: false });
         axle(TR, tb + 3.12, R, 0.28, 2.3, 'truck', M.alloy(), { rimR: 0.3, dual: true, well: false });
         if (o.lettering) for (const s of [1, -1]) {
-          const lg = sign(o.lettering, '#1d2b44', '#eeeeea', 9, 1.1); lg.position.set(s * (thw + 0.012), 2.7, tf - tl / 2); lg.rotation.y = s * Math.PI / 2; TR.add(lg);
+          const lg = sign(o.lettering, '#1d2b44', null, 9, 1.1); lg.position.set(s * (thw + 0.012), 2.7, tf - tl / 2); lg.rotation.y = s * Math.PI / 2; TR.add(lg);
         }
         G.add(TR);
       }
@@ -766,18 +824,18 @@ export function install(K, THREE, TXT) {
       seam(G, hw, 2.0, 1.1, 2.0, 1.95); seam(G, hw, 1.0, 1.1, 1.0, 2.65);
       handle(G, hw, 1.85, 1.2, M.satin());
       mirror(G, hw, 2.0, 1.95, M.trim(), true);
-      const gr = TXT.roundedBox(1.0, 0.55, 0.05, 0.04, M.chrome()); gr.position.set(0, 1.22, zf + 0.01); G.add(gr);
+      const gr = RB(1.0, 0.55, 0.05, 0.04, M.chrome()); gr.position.set(0, 1.22, zf + 0.01); G.add(gr);
       box(0.92, 0.48, 0.04, M.well(), 0, 0.99, zf + 0.03, 0.01, G);
       for (let i = 0; i < 5; i++) box(0.9, 0.018, 0.02, M.chrome(), 0, 1.03 + i * 0.1, zf + 0.05, 0.005, G);
       lamp(G, 0.24, 0.16, 0.8, 1.3, zf + 0.012, 'head');
       box(2.4, 0.3, 0.26, M.trim(), 0, 0.7, zf - 0.02, 0.05, G);
-      for (let i = -1; i <= 1; i++) { const m = TXT.roundedBox(0.08, 0.04, 0.04, 0.015, M.amber()); m.position.set(i * 0.3, 2.84, 1.62); G.add(m); }
+      for (let i = -1; i <= 1; i++) { const m = RB(0.08, 0.04, 0.04, 0.015, M.amber()); m.position.set(i * 0.3, 2.84, 1.62); G.add(m); }
       // amber light bar on the cab roof
-      const lb = TXT.roundedBox(1.2, 0.1, 0.25, 0.04, M.amber()); lb.position.set(0, 2.9, 1.3); G.add(lb);
+      const lb = RB(1.2, 0.1, 0.25, 0.04, M.amber()); lb.position.set(0, 2.9, 1.3); G.add(lb);
       // service body: compartments either side of a flat bed, doors with handles and hinges
       const sb0 = 0.75, cH = 1.1, cD = 0.5, sy = 0.95;
       for (const s of [1, -1]) {
-        const cb = TXT.roundedBox(cD, cH, sb0 - zr, 0.03, P); cb.position.set(s * (hw - cD / 2), sy + cH / 2, (sb0 + zr) / 2); G.add(cb);
+        const cb = RB(cD, cH, sb0 - zr, 0.03, P); cb.position.set(s * (hw - cD / 2), sy + cH / 2, (sb0 + zr) / 2); G.add(cb);
         const doors = [[sb0 - 0.05, 0.1], [-0.1, -0.9], [-2.15, -3.0], [-3.1, zr + 0.05]];
         for (const [a, b] of doors) {
           seam(G, hw, a, sy + 0.05, a, sy + cH - 0.05); seam(G, hw, b, sy + 0.05, b, sy + cH - 0.05);
@@ -798,34 +856,32 @@ export function install(K, THREE, TXT) {
       box(W, 0.2, 0.15, M.trim(), 0, 0.72, zr - 0.05, 0.03, G);
       lamp(G, 0.12, 0.12, hw - 0.12, 1.2, zr - 0.02, 'tail', -1);
       if (o.lettering) for (const s of [1, -1]) {
-        const lg = sign(o.lettering, '#16325c', '#f0f0ec', 2.6, 0.32); lg.position.set(s * (hw + 0.012), sy + cH * 0.8, -1.9); lg.rotation.y = s * Math.PI / 2; G.add(lg);
+        const lg = sign(o.lettering, '#16325c', null, 2.6, 0.32); lg.position.set(s * (hw + 0.012), sy + cH * 0.8, -1.9); lg.rotation.y = s * Math.PI / 2; G.add(lg);
       }
       // aerial device: turret behind the cab, lower boom (steel), upper boom (insulated), bucket
       const boomM = paint(0xf2f2ee, 0), fg = K.mat('v-fibre', { color: 0xf2c200, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.3 }, true);
       const turret = new THREE.Group(); turret.position.set(0, sy + 0.3, 0.2); turret.rotation.y = o.swing || 0; G.add(turret);
       const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.4, 0.6, 32), K.mat('v-ped', { color: 0x2b2d30, metalness: 0.5, roughness: 0.5 })); ped.position.y = 0.3; turret.add(ped);
       const k = clamp01(o.boom || 0);
-      const lowA = k * 1.15, upA = -0.05 + k * 1.9;          // pitch of each section from horizontal, rearward
+      const lowA = k * 0.95;                                       // lower boom elevation, pointing rearward
+      const absUp = Math.PI + (2.4 - Math.PI) * k;                 // upper boom: folded flat (pi) to 42 deg up, reaching forward
       const lower = new THREE.Group(); lower.position.y = 0.75; lower.rotation.x = lowA; turret.add(lower);
-      const lb2 = TXT.roundedBox(0.34, 0.3, 4.1, 0.05, boomM); lb2.position.set(0, 0, -2.0); lower.add(lb2);
-      const cyl = bar([0, -0.1, -0.2], [0, -0.3, -1.6], 0.07, M.chrome(), lower);
-      void cyl;
-      const elbow = new THREE.Group(); elbow.position.set(0, 0.15, -4.0); lower.add(elbow);
-      const knuckle = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.42, 24), boomM); knuckle.rotation.z = Math.PI / 2; elbow.add(knuckle);
-      const upper = new THREE.Group(); elbow.add(upper);
-      upper.rotation.x = Math.PI - (upA - lowA) - lowA * 2 + (k > 0 ? 0 : 0);
-      // upper boom folds back over the lower when stowed, points up and out when raised
-      upper.rotation.x = k > 0.02 ? -(Math.PI - upA - lowA) + Math.PI : Math.PI;
-      const ub = TXT.roundedBox(0.28, 0.26, 4.3, 0.06, fg); ub.position.set(0, 0.28, -2.1); upper.add(ub);
-      // the platform: a fibreglass bucket that stays level
-      const bk = new THREE.Group(); bk.position.set(0, 0.28, -4.35); upper.add(bk);
-      const lv = new THREE.Group(); bk.add(lv);
-      lv.rotation.x = -(upper.rotation.x + lowA);
-      const bucket = TXT.roundedBox(0.62, 1.05, 0.62, 0.07, fg); bucket.position.set(0, -0.2, -0.1); lv.add(bucket);
-      const rim = TXT.roundedBox(0.66, 0.06, 0.66, 0.03, M.trim()); rim.position.set(0, 0.33, -0.1); lv.add(rim);
+      const lb2 = RB(0.34, 0.3, 4.1, 0.05, boomM); lb2.position.set(0, 0, -2.0); lower.add(lb2);
+      bar([0, -0.12, -0.25], [0, -0.1, -1.7], 0.07, M.chrome(), lower);
+      const elbow = new THREE.Group(); elbow.position.set(0, 0, -4.0); lower.add(elbow);
+      const knuckle = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.72, 24), boomM); knuckle.rotation.z = Math.PI / 2; knuckle.position.x = 0.18; elbow.add(knuckle);
+      const upper = new THREE.Group(); upper.rotation.x = absUp - lowA; elbow.add(upper);
+      // the insulated upper boom rides beside the lower, so it can fold flat over it
+      const ub = RB(0.28, 0.26, 4.1, 0.06, fg); ub.position.set(0.34, 0, -2.05); upper.add(ub);
+      const band = RB(0.3, 0.28, 0.5, 0.06, M.trim()); band.position.set(0.34, 0, -0.5); upper.add(band);
+      // the platform: a fibreglass bucket kept level whatever the booms do
+      const bk = new THREE.Group(); bk.position.set(0.34, 0, -4.15); upper.add(bk);
+      const lv = new THREE.Group(); lv.rotation.x = -absUp; bk.add(lv);
+      const bucket = RB(0.62, 1.05, 0.62, 0.07, fg); bucket.position.set(0, -0.35, 0.4); lv.add(bucket);
+      const rim = RB(0.66, 0.06, 0.66, 0.03, M.trim()); rim.position.set(0, 0.18, bucket.position.z); lv.add(rim);
       if (k > 0.3) {       // a lineman in the bucket
         const man = K.registry.person ? K.make('person', { seed: 7, role: 'worker', pose: 'look_up' }) : null;
-        if (man) { man.position.set(0, -0.72, -0.1); lv.add(man); }
+        if (man) { man.position.set(0, -0.85, bucket.position.z); lv.add(man); }
       }
       // boom rest post at the tail when stowed
       box(0.12, 1.05, 0.12, M.frame(), 0, sy + 0.3, zr + 0.3, 0.01, G);
@@ -836,4 +892,10 @@ export function install(K, THREE, TXT) {
       return G;
     },
   });
+
+  // every vehicle is returned merged by material (one draw call each); option-driven poses are already applied
+  for (const n of ['pickup', 'sedan', 'suv', 'delivery_van', 'school_bus', 'semi_truck', 'utility_bucket_truck']) {
+    const spec = K.registry[n], mk = spec.make;
+    spec.make = (o, r) => mergeByMaterial(mk(o, r));
+  }
 }

@@ -706,22 +706,21 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('ranch_house', {
     size: [21, 5.2, 11.2],
-    options: { material: "'brick'|'limestone'|'siding'", color: 'brick/stone/siding colour (hex string)',
-      roof: 'shingle colour', trim: 'hex', door: 'hex', garage: "'right'|'left'|'none'", chimney: 'bool',
-      gable: "front gable over the garage, bool", shutters: 'hex|null' },
-    note: 'The Texas one-storey ranch: slab, brick/limestone/siding walls with real openings, single-hung windows with sills, a recessed front porch, a two-car garage with a sectional door, a hip roof with overhang, fascia, soffit, gutters and downspouts.',
+    options: { material: null, color: null, brick: null, roof: null, trim: null, door: null, garage: 'right', chimney: null, gable: null, shutters: 'seeded' },
+    note: 'Options (null = seeded choice): material brick|limestone|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right|left|none, chimney bool, gable (front gable over the garage) bool, shutters hex, null for none, seeded to choose. The Texas one-storey ranch: slab, brick/limestone/siding walls with real openings, single-hung windows with sills, a recessed front porch, a two-car garage with a sectional door, a hip roof with overhang, fascia, soffit, gutters and downspouts.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const material = opt(o, 'material', ['brick', 'brick', 'limestone', 'brick', 'siding'][Math.floor(r() * 5)]);
+      if (o.brick != null && o.color == null) o = Object.assign({}, o, { color: hex(o.brick) });
       const trimC = opt(o, 'trim', pick(r, TRIMS)), doorC = opt(o, 'door', pick(r, DOORS));
       const roofC = opt(o, 'roof', pick(r, ROOFS));
       const garage = opt(o, 'garage', 'right'), chimney = opt(o, 'chimney', r() < 0.6);
       const frameC = r() < 0.45 ? 0x3d3129 : trimC;          // bronze aluminium or white vinyl windows
-      const shutters = o.shutters !== undefined ? o.shutters : (r() < 0.45 ? pick(r, [0x243142, 0x1e1e1e, 0x3b4a3a, 0x5b2a24]) : null);
+      const shutters = o.shutters !== undefined && o.shutters !== 'seeded' ? o.shutters : (r() < 0.45 ? pick(r, [0x243142, 0x1e1e1e, 0x3b4a3a, 0x5b2a24]) : null);
       let wallT;
-      if (material === 'limestone') wallT = limestoneTex(opt(o, 'color', pick(r, LIMES)));
-      else if (material === 'siding') wallT = sidingTex(opt(o, 'color', pick(r, SIDINGS)));
-      else wallT = brickTex(opt(o, 'color', pick(r, BRICKS)), pick(r, ['#bdb4a4', '#a9a293', '#c7bca8']));
+      if (material === 'limestone') wallT = limestoneTex(hex(opt(o, 'color', pick(r, LIMES))));
+      else if (material === 'siding') wallT = sidingTex(hex(opt(o, 'color', pick(r, SIDINGS))));
+      else wallT = brickTex(hex(opt(o, 'color', pick(r, BRICKS))), pick(r, ['#bdb4a4', '#a9a293', '#c7bca8']));
       const wallM = texMat(wallT, 'wall|' + material + '|' + (o.color || '') + wallT.map.uuid, { bumpScale: material === 'siding' ? 1.2 : 2.2 });
       const sideT = material === 'brick' && r() < 0.0 ? sidingTex(pick(r, SIDINGS)) : wallT;
       const roofT = shingleTex(roofC), roofM = texMat(roofT, 'roof|' + roofC, { bumpScale: 2.4, roughness: 0.95 });
@@ -924,15 +923,14 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('two_story_house', {
     size: [19, 9.2, 11],
-    options: { brick: 'front brick colour (hex string)', siding: 'side siding colour (hex string)', roof: 'shingle colour',
-      trim: 'hex', door: 'hex', garage: "'right'|'left'|'none'" },
-    note: 'The suburban two-storey of every Texas subdivision since 1990: brick front, lap siding on the sides and back, a gable roof with the ridge along the street, a gabled portico on columns over the door and a front-loading two-car garage wing.',
+    options: { brick: null, siding: null, roof: null, trim: null, door: null, garage: 'right' },
+    note: 'Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right|left|none. The suburban two-storey of every Texas subdivision since 1990: brick front, lap siding on the sides and back, a gable roof with the ridge along the street, a gabled portico on columns over the door and a front-loading two-car garage wing.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const trimC = opt(o, 'trim', pick(r, TRIMS)), doorC = opt(o, 'door', pick(r, DOORS)), roofC = opt(o, 'roof', pick(r, ROOFS));
       const garage = opt(o, 'garage', 'right'), flip = garage === 'left' ? -1 : 1;
-      const bT = brickTex(opt(o, 'brick', pick(r, BRICKS)), pick(r, ['#bdb4a4', '#a9a293'])), bM = texMat(bT, 'b2|' + bT.map.uuid, { bumpScale: 2.2 });
-      const sT = sidingTex(opt(o, 'siding', pick(r, SIDINGS))), sM = texMat(sT, 's2|' + sT.map.uuid, { bumpScale: 1.2 });
+      const bT = brickTex(hex(opt(o, 'brick', pick(r, BRICKS))), pick(r, ['#bdb4a4', '#a9a293'])), bM = texMat(bT, 'b2|' + bT.map.uuid, { bumpScale: 2.2 });
+      const sT = sidingTex(hex(opt(o, 'siding', pick(r, SIDINGS)))), sM = texMat(sT, 's2|' + sT.map.uuid, { bumpScale: 1.2 });
       const roofT = shingleTex(roofC), roofM = texMat(roofT, 'roof|' + roofC, { bumpScale: 2.4, roughness: 0.95 });
       const capM = texMat(roofT, 'cap|' + roofC, { bumpScale: 1.0, roughness: 0.95, color: 0xd8d8d8 });
       const concT = concreteTex('#b3ada2'), concM = texMat(concT, 'slab', { bumpScale: 0.6, roughness: 0.93 });
@@ -1037,12 +1035,12 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('mobile_home', {
     size: [22.4, 3.9, 6.6],
-    options: { style: "'modern'|'vintage'", color: 'siding colour (hex string)', trim: 'hex' },
-    note: 'A single-wide manufactured home: vinyl skirting over the piers, lap siding, a shallow shingled (modern) or white metal (vintage) roof, aluminium windows, a front door with a treated-pine landing and steps, the hitch tongue at one end, a condenser at the back.',
+    options: { style: null, color: null, trim: null },
+    note: 'Options (null = seeded choice): style modern|vintage, color (siding), trim (the vintage accent band). A single-wide manufactured home: vinyl skirting over the piers, lap siding, a shallow shingled (modern) or white metal (vintage) roof, aluminium windows, a front door with a treated-pine landing and steps, the hitch tongue at one end, a condenser at the back.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const style = opt(o, 'style', r() < 0.5 ? 'modern' : 'vintage');
-      const sc = opt(o, 'color', style === 'vintage' ? pick(r, ['#e8e4d8', '#d9d5c3', '#e4ddc6']) : pick(r, SIDINGS));
+      const sc = hex(opt(o, 'color', style === 'vintage' ? pick(r, ['#e8e4d8', '#d9d5c3', '#e4ddc6']) : pick(r, SIDINGS)));
       const trimC = opt(o, 'trim', style === 'vintage' ? pick(r, [0x6d4a36, 0x3b5566, 0x5b6b4a]) : 0xf0eee6);
       const L = 21.9, Wd = 4.88, t = 0.12, yf = 0.8, H = 2.3;
       const sT = sidingTex(sc), sM = texMat(sT, 'mh|' + sT.map.uuid, { bumpScale: style === 'vintage' ? 0.8 : 1.2, metalness: style === 'vintage' ? 0.2 : 0, roughness: 0.6 });
@@ -1131,8 +1129,8 @@ export function install(K, THREE, TXT) {
   };
   K.define('privacy_fence', {
     size: [12, 1.9, 0.3],
-    options: { length: 'metres (12)', height: 'metres (1.83, a 6 ft fence)', gate: 'bool, a gate at the middle', weathered: '0..1 fresh cedar to silver' },
-    note: 'A Texas cedar privacy fence: dog-eared pickets on three 2x4 rails and cedar posts at 8 ft, a kickboard, each picket weathered a little differently; the picket side faces +z. Runs along x.',
+    options: { length: 12, height: 1.83, gate: false, weathered: null },
+    note: 'Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). A Texas cedar privacy fence: dog-eared pickets on three 2x4 rails and cedar posts at 8 ft, a kickboard, each picket weathered a little differently; the picket side faces +z. Runs along x.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const L = opt(o, 'length', 12), H = opt(o, 'height', 1.83), wz = opt(o, 'weathered', 0.25 + r() * 0.5), gate = opt(o, 'gate', false);
@@ -1181,8 +1179,8 @@ export function install(K, THREE, TXT) {
 
   K.define('chain_link_fence', {
     size: [12, 1.3, 0.12],
-    options: { length: 'metres (12)', height: 'metres (1.22, a 4 ft fence)', color: "'galvanized'|'black'" },
-    note: 'Residential chain link: galvanized line posts every 3 m with dome caps, heavier terminal posts with tension bands, a top rail through loop caps, 2 in diamond mesh (a real alpha-cut wire pattern that casts a patterned shadow) and a bottom tension wire. Runs along x.',
+    options: { length: 12, height: 1.22, color: 'galvanized' },
+    note: 'Options: length m, height m (1.22 is a 4 ft fence), color galvanized|black. Residential chain link: galvanized line posts every 3 m with dome caps, heavier terminal posts with tension bands, a top rail through loop caps, 2 in diamond mesh (a real alpha-cut wire pattern that casts a patterned shadow) and a bottom tension wire. Runs along x.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const L = opt(o, 'length', 12), H = opt(o, 'height', 1.22), black = opt(o, 'color', 'galvanized') === 'black';
@@ -1224,8 +1222,8 @@ export function install(K, THREE, TXT) {
 
   K.define('barbed_wire_fence', {
     size: [20, 1.5, 0.6],
-    options: { length: 'metres (20)', strands: 'count (4)', spacing: 'T-post spacing, metres (3.6)' },
-    note: 'A ranch pasture fence: green studded steel T-posts with white-painted tops, a cedar H-brace at each end, four strands of galvanized two-point barbed wire that sag between posts, with wire clips on every post. Runs along x.',
+    options: { length: 20, strands: 4, spacing: 3.6 },
+    note: 'Options: length m, strands, spacing (T-post spacing, m). A ranch pasture fence: green studded steel T-posts with white-painted tops, a cedar H-brace at each end, four strands of galvanized two-point barbed wire that sag between posts, with wire clips on every post. Runs along x.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const L = opt(o, 'length', 20), n = opt(o, 'strands', 4), sp = opt(o, 'spacing', 3.6);
@@ -1287,8 +1285,8 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('mailbox', {
     size: [0.7, 1.5, 0.7],
-    options: { style: "'post'|'brick'", color: 'box colour hex', brick: 'brick colour (hex string)' },
-    note: 'A curbside mailbox: a T1 arch-top steel box with a red flag on a 4x4 cedar post and arm, or the suburban Texas brick column with a cast-stone cap and a mail door. The door faces +z (the street).',
+    options: { style: null, color: null, brick: null },
+    note: 'Options (null = seeded choice): style post|brick, color (box colour), brick (column colour). A curbside mailbox: a T1 arch-top steel box with a red flag on a 4x4 cedar post and arm, or the suburban Texas brick column with a cast-stone cap and a mail door. The door faces +z (the street).',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const style = opt(o, 'style', r() < 0.5 ? 'post' : 'brick'), bc = opt(o, 'color', pick(r, [0x1b1b1b, 0x1b1b1b, 0x8d8f8e, 0x1f3325]));
@@ -1317,7 +1315,7 @@ export function install(K, THREE, TXT) {
         bx(B, wood, 0.25, 0.02, 0.5, 0, 1.02, 0.03, { uv: 1.2 });
         T1(0, 1.04, 0.03);
       } else {
-        const bT = brickTex(opt(o, 'brick', pick(r, BRICKS)), '#b9b0a2'), bm = texMat(bT, 'mbrick|' + bT.map.uuid, { bumpScale: 2.2 });
+        const bT = brickTex(hex(opt(o, 'brick', pick(r, BRICKS))), '#b9b0a2'), bm = texMat(bT, 'mbrick|' + bT.map.uuid, { bumpScale: 2.2 });
         const cw = 0.61, chh = 1.32;
         const M = frameM(-cw / 2, 0, cw / 2, 0);
         wallRun(B, bm, bT.metres, M, cw, chh, cw, [{ u: cw / 2, w: 0.3, y: 0.82, h: 0.24 }]);
@@ -1343,8 +1341,8 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('driveway', {
     size: [5.5, 0.08, 9],
-    options: { width: 'metres (5.5)', length: 'metres (9), runs along z, the street end at +z', flare: 'bool, the curb apron flares (true)', age: '0..1 new to stained' },
-    note: 'A residential concrete driveway: 4 in slab in sawn panels about 3 m square, a centre joint, a flared apron at the street, broom finish, tyre darkening and an oil stain near the garage.',
+    options: { width: 5.5, length: 9, flare: true, age: null },
+    note: 'Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). A residential concrete driveway: 4 in slab in sawn panels about 3 m square, a centre joint, a flared apron at the street, broom finish, tyre darkening and an oil stain near the garage.',
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const W = opt(o, 'width', 5.5), L = opt(o, 'length', 9), flare = opt(o, 'flare', true), age = opt(o, 'age', 0.3 + r() * 0.5);
@@ -1391,8 +1389,8 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   K.define('yard', {
     size: [8, 0.12, 6],
-    options: { budget: 'triangle budget for the blades (38000)', size: 'metres, a number or [w, d] (8 x 6)', dryness: '0..1, watered green to Texas-August straw', edge: 'bool, a mown edge (true)' },
-    note: 'A St. Augustine lawn patch: a lawn-green base painted with blade strokes and slow patches, and ~5000 instanced clumps of broad, blunt, folded blades with per-clump colour, so a frame can lay real grass instead of tufts on dirt.',
+    options: { size: [8, 6], dryness: 0.15, edge: true, budget: 38000 },
+    note: 'Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). A St. Augustine lawn patch: a lawn-green base painted with blade strokes and slow patches, and ~5000 instanced clumps of broad, blunt, folded blades with per-clump colour, so a frame can lay real grass instead of tufts on dirt.',
     make(o, r) {
       const g = new THREE.Group();
       const sz = opt(o, 'size', [8, 6]), W = Array.isArray(sz) ? sz[0] : sz, D = Array.isArray(sz) ? sz[1] : sz;

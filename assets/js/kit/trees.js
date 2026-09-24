@@ -127,7 +127,7 @@ export function install(K, THREE, TXT) {
       const t = texture('leaf|' + name, 1024, 1024, (x, W, H, r) => paintSprays(x, W, H, r, spec));
       t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping;
       const m = new THREE.MeshStandardMaterial({ map: t, alphaTest: spec.alphaTest || 0.42, side: THREE.DoubleSide, roughness: spec.rough || 0.8,
-        metalness: 0, color: 0xffffff, envMapIntensity: 0.55 });
+        metalness: 0, color: 0xffffff, envMapIntensity: 0.4 });
       return oneFace(m);
     });
   }
@@ -403,7 +403,7 @@ export function install(K, THREE, TXT) {
   function budgetClusters(list, cards, woodTris, budget, ctr) {
     const perCl = cards * 2, max = Math.floor((budget - woodTris) / perCl);
     if (list.length <= max) return list;
-    const scored = list.map((c) => [c, Math.hypot(c[0] - ctr.x, (c[1] - ctr.y) * 1.3, c[2] - ctr.z)]);
+    const scored = list.map((c) => [c, Math.hypot(c[0] - ctr.x, (c[1] - ctr.y) * 1.3, c[2] - ctr.z) + (c[4] ? 100 : 0)]);
     scored.sort((a, b) => b[1] - a[1]);
     // keep the outer 70% of the budget from the shell, the rest sampled from the interior evenly
     const keep = scored.slice(0, Math.floor(max * 0.75)).map((s) => s[0]);
@@ -420,6 +420,26 @@ export function install(K, THREE, TXT) {
      * are drawn back onto it so the outline is the species' own, smooth dome or oval; clusters
      * under `base` are dropped so the understory is open and the limbs show; `hollow` thins the
      * deep interior, which nobody sees and every ray pays for. */
+    /* THE SHELL: clusters sampled on the envelope itself, a layer `thick` deep, the bottom
+     * flattened into a skirt, cut into masses by a clump field (low-frequency directional
+     * noise) so the crown is lumps of foliage with dark gaps between, the way a crown reads. */
+    if (S.shell) {
+      const E = S.envelope, Sh = S.shell, ph = [];
+      for (let i = 0; i < 6; i++) ph.push([r() * 6.283, 1 + Math.floor(r() * 3), r() - 0.5, r() - 0.5, r() - 0.5]);
+      const clump = (v) => { let n = 0; for (const [p, f, a, b, c] of ph) n += Math.sin((v.x * a + v.y * b + v.z * c) * 6 * f + p); return n / ph.length; };
+      let tries = 0, added = 0;
+      while (tries++ < Sh.n * 6 && added < Sh.n) {
+        const u = r() * 2 - 1, th = r() * 6.283, sq = Math.sqrt(1 - u * u);
+        const v = new V3(sq * Math.cos(th), u, sq * Math.sin(th));
+        if (v.y < -(Sh.skirt || 0.2)) continue;
+        if (clump(v) < (Sh.gaps || -1)) continue;
+        const dd = 1 - r() * (Sh.thick || 0.25);
+        const x = (E.x || 0) + v.x * E.rx * dd, z = (E.z || 0) + v.z * E.rz * dd;
+        const y = E.y0 + v.y * (v.y < 0 ? E.ry * (Sh.below || 0.35) : E.ry) * dd;
+        const sz = Sh.size[0] + r() * (Sh.size[1] - Sh.size[0]);
+        res.clusters.push([x, y, z, sz, 1]); added++;
+      }
+    }
     if (S.envelope) {
       const E = S.envelope, keep = [];
       for (const c of res.clusters) {
@@ -449,8 +469,8 @@ export function install(K, THREE, TXT) {
   const OAK_LEAF = { shape: 'ellipse', leaf: [21, 10], colors: ['#27361c', '#3d5226', '#52682f'], twig: '#3a3027', twigW: 3, density: 9, angle: 0.8, gloss: true, branchy: 2 };
   K.define('live_oak', {
     size: [18, 9, 18],
-    options: { height: 'metres (9)', spread: 'metres across the crown (18)' },
-    note: 'The Texas live oak: a short massive trunk with a root flare, four to six great limbs that leave low and run out nearly level, sinuous and dipping, secondary branches rising off their backs, and a broad low dome of small dark glossy leaf clusters with depth and sky gaps.',
+    options: { height: 9, spread: 18 },
+    note: 'Options: height m, spread m across the crown. The Texas live oak: a short massive trunk with a root flare, four to six great limbs that leave low and run out nearly level, sinuous and dipping, secondary branches rising off their backs, and a broad low dome of small dark glossy leaf clusters with depth and sky gaps.',
     make(o, r) {
       const H = opt(o, 'height', 9), SP = opt(o, 'spread', 18), k = SP / 18, kh = H / 9;
       const trunkH = (1.9 + r() * 0.7) * Math.min(1.2, kh), nLimbs = 5 + Math.floor(r() * 3);
@@ -469,9 +489,10 @@ export function install(K, THREE, TXT) {
         ],
         leaves: { per: 3, from: 0.2, size: [0.45 * Math.sqrt(k), 0.72 * Math.sqrt(k)], lift: 0.12 },
         // a broad low dome: twice as wide as it is tall, its skirt at the height the limbs sag to
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.2), y0: 2.6 * kh, ry: H - 2.6 * kh, base: 2.3 * kh + trunkH * 0.3, hollow: 0.55 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.88 + r() * 0.2), y0: 3.0 * kh, ry: H - 3.0 * kh, base: 1.9 * kh, hollow: 0.5 },
+        shell: { n: 1100, size: [0.62 * Math.sqrt(k), 0.95 * Math.sqrt(k)], thick: 0.22, skirt: 0.35, below: 0.9, gaps: -0.3 },
       };
-      const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xfaf0d0, 0xe8e0b8, 0xfff4d8, 0xdcd8b0], fol: { squash: 0.8 } });
+      const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xfff0c8, 0xeee0b0, 0xfff6d4, 0xe2d8a8], fol: { squash: 0.8 } });
       return g;
     },
   });

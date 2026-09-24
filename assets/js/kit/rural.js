@@ -29,8 +29,9 @@ export function install(K, THREE, TXT) {
     if (!linear) t.colorSpace = THREE.SRGBColorSpace;
     TEX.set(k, t); return t;
   }
-  const rgb = (c, k) => { const q = new THREE.Color(c); k = k == null ? 1 : k;
-    return 'rgb(' + [q.r, q.g, q.b].map((v) => Math.max(0, Math.min(255, Math.round(v * 255 * k)))).join(',') + ')'; };
+  // sRGB in, sRGB out (a THREE.Color holds linear values, so go through its hex string)
+  const rgb = (c, k) => { const h = parseInt(new THREE.Color(c).getHexString(), 16); k = k == null ? 1 : k;
+    return 'rgb(' + [h >> 16, (h >> 8) & 255, h & 255].map((v) => Math.max(0, Math.min(255, Math.round(v * k)))).join(',') + ')'; };
 
   // Hot dip galvanized: spangle crystals, a little white rust, streaks.
   function paintSpangle(x, W, H, r, o) {
@@ -871,7 +872,7 @@ export function install(K, THREE, TXT) {
     // a tag panel (blank)
     x.fillStyle = 'rgba(250,250,245,0.9)'; x.fillRect(W * 0.3, H * 0.4, W * 0.05, H * 0.12);
     // dust near the bottom of the film
-    for (let k = 0; k < 80; k++) { x.fillStyle = 'rgba(120,100,70,' + (0.03 + r() * 0.06) + ')'; x.beginPath(); x.arc(r() * W, r() * H, 5 + r() * 30, 0, TAU); x.fill(); }
+    for (let k = 0; k < 25; k++) { x.fillStyle = 'rgba(120,100,70,' + (0.02 + r() * 0.03) + ')'; x.beginPath(); x.arc(r() * W, r() * H, 5 + r() * 30, 0, TAU); x.fill(); }
   }
   K.define('cotton_module', {
     size: [2.5, 2.3, 2.3],
@@ -910,12 +911,12 @@ export function install(K, THREE, TXT) {
       // split the index by uv.y: faces (v < f*0.92 or v > 1 - f*0.92) get cotton
       const idx = geo.index.array, uvA = geo.attributes.uv, A = [], B = [];
       for (let t = 0; t < idx.length; t += 3) {
-        const v = (uvA.getY(idx[t]) + uvA.getY(idx[t + 1]) + uvA.getY(idx[t + 2])) / 3;
-        (v < f * 0.95 || v > 1 - f * 0.95 ? A : B).push(idx[t], idx[t + 1], idx[t + 2]);
+        const v0 = uvA.getY(idx[t]), v1 = uvA.getY(idx[t + 1]), v2 = uvA.getY(idx[t + 2]);
+        (Math.max(v0, v1, v2) < f * 0.97 || Math.min(v0, v1, v2) > 1 - f * 0.97 ? A : B).push(idx[t], idx[t + 1], idx[t + 2]);
       }
       geo.setIndex(A.concat(B)); geo.clearGroups(); geo.addGroup(0, A.length, 0); geo.addGroup(A.length, B.length, 1);
       // faces: planar uv; wrap: repeat around
-      for (let i = 0; i < uvA.count; i++) { const v = uvA.getY(i); if (v < f || v > 1 - f) { const p = geo.attributes.position; uvA.setXY(i, p.getZ(i) / 1.2, p.getY(i) / 1.2); } else uvA.setXY(i, uvA.getX(i) * 6, v * 2); }
+      for (let i = 0; i < uvA.count; i++) { const v = uvA.getY(i); if (v < f * 0.97 || v > 1 - f * 0.97) { const p = geo.attributes.position; uvA.setXY(i, p.getZ(i) / 1.2, p.getY(i) / 1.2); } else uvA.setXY(i, uvA.getX(i) * 6, v * 2); }
       for (let i = 0; i < n; i++) {
         const m = new THREE.Mesh(geo, [cotM, wrapM]); m.position.set((i - (n - 1) / 2) * (Wd + 0.6), 0, (r() - 0.5) * 0.4); m.rotation.y = (r() - 0.5) * 0.12; g.add(m);
         // the loose film tail
@@ -968,7 +969,7 @@ export function install(K, THREE, TXT) {
       for (let k = 0; k < nr; k++) {
         const a = k / nr * TAU, mid = (R + 0.14 + peakR) / 2;
         const m4 = new THREE.Matrix4().compose(new V3(Math.cos(a) * mid, He + 0.05 + rise / 2, Math.sin(a) * mid),
-          new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -a, 0)).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, ang))), new V3(1, 1, 1));
+          new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -a, 0)).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, -ang))), new V3(1, 1, 1));
         ribs.push(m4);
       }
       const rg = new THREE.BoxGeometry(sl, 0.035, 0.03); rg.translate(0, 0.0, 0);
