@@ -77,12 +77,14 @@
       windowLit: TXT.mat.emissive(0xffc98a, 1.2),
       fence: S(0x8a7a66, 0, 0.9),
       galv: S(0x9aa2a6, 0.7, 0.4),
+      bright: S(0xc3cacf, 0.8, 0.32),
+      hose: S(0x2f6b3a, 0.05, 0.5),
       concrete: S(0x9c978d, 0, 0.95),
       asphalt: S(0x3a3a3c, 0, 0.92),
       kiosk: S(0x2e353d, 0.3, 0.45),
       leaf: [S(0x4f5e34, 0, 0.88), S(0x5d6b3a, 0, 0.88), S(0x46542f, 0, 0.88)],
       bark: S(0x3b3027, 0, 0.95),
-      cloth: [S(0x3c4a5c, 0, 0.8), S(0x6b4d3a, 0, 0.8), S(0x51603f, 0, 0.8)],
+      cloth: [S(0x2f4a6e, 0, 0.8), S(0x7a8a96, 0, 0.8), S(0x51603f, 0, 0.8)],
       skinTone: S(0x9c7458, 0, 0.7),
       denim: S(0x2e3a4c, 0, 0.85),
       hair: S(0x241c17, 0, 0.8),
@@ -212,7 +214,7 @@
     var g = new THREE.Group();
     /* a slim teardrop, blunt nose down, tapering to the winch eye, with four thin steering fins */
     var prof = [[0.001, -0.26], [0.06, -0.25], [0.105, -0.2], [0.125, -0.12], [0.128, -0.02], [0.115, 0.08], [0.085, 0.17], [0.045, 0.23], [0.012, 0.26], [0.001, 0.262]];
-    var body = TXT.lathe(prof, M.pod, { segments: 48 });
+    var body = TXT.lathe(prof, M.pod, { segments: 72 });
     g.add(body);
     var band = new THREE.Mesh(new THREE.CylinderGeometry(0.129, 0.129, 0.018, 48), M.podBand);
     band.position.y = -0.05; g.add(band);
