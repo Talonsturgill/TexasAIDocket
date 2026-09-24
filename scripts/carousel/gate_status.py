@@ -585,7 +585,8 @@ def _score(s) -> Row:
         r = s.get("rung")
         if r is None:
             return Row("score", WARN if under_target else PASS,
-                       f"{val} at the {cap} round cap, the finished deck ships"
+                       f"{val} at the round cap after {rounds if rounds is not None else 'its'} round(s), "
+                       f"the finished deck ships"
                        + (f"; {threshold} top rung, shortfall named" if under_target else ""))
         if isinstance(val, (int, float)) and float(val) >= float(r):
             return Row("score", PASS, f"{val} over this round's {r} rung")
