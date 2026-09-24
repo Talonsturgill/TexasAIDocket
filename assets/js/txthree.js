@@ -566,43 +566,61 @@ export function init(THREE) {
     o = o || {};
     const grime = o.grime != null ? o.grime : 0.45, height = o.height || 0.9, mottle = o.mottle != null ? o.mottle : 0.22;
     const skip = new Set(o.skip || []);
-    const seen = new Set();
-    R.scene.traverse((m) => {
-      if (!m.isMesh || m.isInstancedMesh || skip.has(m)) return;
-      const mats = Array.isArray(m.material) ? m.material : [m.material];
-      for (const mat of mats) {
-        // A textured facade or enclosure weathers too. Grounds are TAGGED now, so a map is no
-        // longer how one is told apart (Codex, #353). The grime multiplies the mapped colour.
-        if (!mat || !mat.isMeshStandardMaterial || seen.has(mat) || mat.userData.txWeathered) continue;
+    /* FROM EACH OBJECT'S OWN BASE (Codex, #353). Grime used to be measured from world y = 0, so a
+     * crate on a 1.2 m dock had none at its foot and a ground below zero darkened everything.
+     * Each top level object is measured for its base, and a material shared across two bases is
+     * patched once per base, so the same paint on a dock and on a crate weathers at each foot. */
+    const made = new Map();
+    const isStd = (m) => m && m.isMeshStandardMaterial;
+    function patch(mat, base) {
+      const k = mat.uuid + '|' + base.toFixed(3);
+      if (made.has(k)) return made.get(k);
+      let m = mat;
+      if (mat.userData.txWeathered) {
+        if (mat.userData.txBaseY === base) { made.set(k, mat); return mat; }
+        m = mat.clone(); m.userData = Object.assign({}, m.userData, { txWeathered: false });
+      }
+      m.userData.txWeathered = true; m.userData.txBaseY = base;
+      m.onBeforeCompile = (sh) => {
+        sh.uniforms.uGrime = { value: grime }; sh.uniforms.uGrimeH = { value: height };
+        sh.uniforms.uMottle = { value: mottle }; sh.uniforms.uBaseY = { value: m.userData.txBaseY };
+        sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vTxW;')
+          .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvTxW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+        sh.fragmentShader = sh.fragmentShader.replace('#include <common>', `#include <common>
+          varying vec3 vTxW; uniform float uGrime, uGrimeH, uMottle, uBaseY;
+          float txH(vec3 p) { p = fract(p * 0.3183 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
+          float txN(vec3 p) { vec3 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+            return mix(mix(mix(txH(i), txH(i + vec3(1,0,0)), f.x), mix(txH(i + vec3(0,1,0)), txH(i + vec3(1,1,0)), f.x), f.y),
+                       mix(mix(txH(i + vec3(0,0,1)), txH(i + vec3(1,0,1)), f.x), mix(txH(i + vec3(0,1,1)), txH(i + vec3(1,1,1)), f.x), f.y), f.z); }`)
+          .replace('#include <color_fragment>', `#include <color_fragment>
+            float txm = txN(vTxW * 1.7) * 0.6 + txN(vTxW * 7.0) * 0.4;
+            float txg = (1.0 - smoothstep(0.0, uGrimeH, vTxW.y - uBaseY)) * uGrime * (0.65 + 0.7 * txN(vTxW * vec3(3.0, 0.6, 3.0)));
+            diffuseColor.rgb *= (1.0 - txg) * (1.0 - uMottle * 0.35 * (txm - 0.5));`)
+          .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
+            roughnessFactor = clamp(roughnessFactor + uMottle * 0.5 * (txN(vTxW * 2.3) - 0.5) + txg * 0.25, 0.04, 1.0);`);
+      };
+      m.needsUpdate = true;
+      made.set(k, m);
+      return m;
+    }
+    for (const root of R.scene.children.slice()) {
+      if (skip.has(root) || root.userData.txGround || root.isLight || root.isInstancedMesh) continue;
+      const box = new THREE.Box3().setFromObject(root);
+      if (box.isEmpty()) continue;
+      const base = box.min.y;
+      root.traverse((m) => {
+        if (!m.isMesh || m.isInstancedMesh || skip.has(m)) return;
         // GROUNDS ARE TAGGED, NEVER GUESSED. TXT.ground marks its plane. A rotated plane is not
         // terrain on that evidence alone (a tilted solar panel is a subject and weathers, Codex,
         // #353), so the only other plane skipped is one of ground size, 40 m or more both ways,
         // which is how a chassis-built pad is recognised. Anything else goes in `skip`.
-        if (m.userData.txGround) continue;
+        if (m.userData.txGround) return;
         const gp = m.geometry && m.geometry.type === 'PlaneGeometry' ? m.geometry.parameters : null;
-        if (gp && gp.width >= 40 && gp.height >= 40) continue;
-        seen.add(mat); mat.userData.txWeathered = true;
-        mat.onBeforeCompile = (sh) => {
-          sh.uniforms.uGrime = { value: grime }; sh.uniforms.uGrimeH = { value: height };
-          sh.uniforms.uMottle = { value: mottle };
-          sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vTxW;')
-            .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvTxW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
-          sh.fragmentShader = sh.fragmentShader.replace('#include <common>', `#include <common>
-            varying vec3 vTxW; uniform float uGrime, uGrimeH, uMottle;
-            float txH(vec3 p) { p = fract(p * 0.3183 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
-            float txN(vec3 p) { vec3 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
-              return mix(mix(mix(txH(i), txH(i + vec3(1,0,0)), f.x), mix(txH(i + vec3(0,1,0)), txH(i + vec3(1,1,0)), f.x), f.y),
-                         mix(mix(txH(i + vec3(0,0,1)), txH(i + vec3(1,0,1)), f.x), mix(txH(i + vec3(0,1,1)), txH(i + vec3(1,1,1)), f.x), f.y), f.z); }`)
-            .replace('#include <color_fragment>', `#include <color_fragment>
-              float txm = txN(vTxW * 1.7) * 0.6 + txN(vTxW * 7.0) * 0.4;
-              float txg = (1.0 - smoothstep(0.0, uGrimeH, vTxW.y)) * uGrime * (0.65 + 0.7 * txN(vTxW * vec3(3.0, 0.6, 3.0)));
-              diffuseColor.rgb *= (1.0 - txg) * (1.0 - uMottle * 0.35 * (txm - 0.5));`)
-            .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
-              roughnessFactor = clamp(roughnessFactor + uMottle * 0.5 * (txN(vTxW * 2.3) - 0.5) + txg * 0.25, 0.04, 1.0);`);
-        };
-        mat.needsUpdate = true;
-      }
-    });
+        if (gp && gp.width >= 40 && gp.height >= 40) return;
+        if (Array.isArray(m.material)) m.material = m.material.map(x => isStd(x) ? patch(x, base) : x);
+        else if (isStd(m.material)) m.material = patch(m.material, base);
+      });
+    }
   };
 
   /* ---- the sky shader ------------------------------------------------------------------- */
@@ -951,7 +969,30 @@ export function init(THREE) {
       v.multiplyScalar(k); v.y = v.y * squash + squash * 0.35;
       p.setXYZ(i, v.x, v.y, v.z);
     }
-    g.computeVertexNormals();
+    return smoothNormals(g);
+  }
+  /* SMOOTH, NOT FACETED (Codex, #353). IcosahedronGeometry is non-indexed, so computeVertexNormals
+   * gives every triangle its own flat normal and a stone reads as low poly whatever flatShading
+   * says. The displacement is a function of position, so coincident corners stay coincident, and
+   * their area-weighted face normals are averaged here. */
+  function smoothNormals(g) {
+    const p = g.attributes.position, n = p.count, acc = new Map(), key = new Array(n);
+    const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), f = new THREE.Vector3();
+    for (let i = 0; i < n; i++) key[i] = Math.round(p.getX(i) * 1e4) + ',' + Math.round(p.getY(i) * 1e4) + ',' + Math.round(p.getZ(i) * 1e4);
+    for (let t = 0; t < n; t += 3) {
+      a.fromBufferAttribute(p, t); b.fromBufferAttribute(p, t + 1); c.fromBufferAttribute(p, t + 2);
+      f.subVectors(c, b).cross(a.clone().sub(b));             // area weighted face normal
+      for (let j = 0; j < 3; j++) {
+        const k = key[t + j], v = acc.get(k);
+        if (v) v.add(f); else acc.set(k, f.clone());
+      }
+    }
+    const nor = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) {
+      const v = acc.get(key[i]).clone().normalize();
+      nor[i * 3] = v.x; nor[i * 3 + 1] = v.y; nor[i * 3 + 2] = v.z;
+    }
+    g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
     return g;
   }
   TXT.scatter = function (R, o) {

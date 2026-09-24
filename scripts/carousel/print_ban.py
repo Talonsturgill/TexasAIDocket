@@ -176,7 +176,8 @@ def in_world(src: str) -> bool:
     # BEFORE THE KEPT SNAPSHOT (Codex, #353). A sky called after the snapshot is not in the
     # pixels that ship. The kept frame is the last snapshot in the source, which is how every
     # frame here is written, so the sky must come before it.
-    shots = list(re.finditer(r"\.snapshot\s*\(\s*([A-Za-z_$][\w$]*)?", body))
+    # THE BENCH'S OWN SNAPSHOT (Codex, #353). `helper.snapshot(R)` after the sky is not the render.
+    shots = list(re.finditer(r"(?<![\w$.])(?:" + alt + r")\.snapshot\s*\(\s*([A-Za-z_$][\w$]*)?", body))
     if not shots or sky.start() >= shots[-1].start():
         return False
     # THE SAME RENDER CONTEXT (Codex, #353). A sky on one context and the kept snapshot of another
@@ -369,6 +370,11 @@ def self_test() -> int:
         ok("a sky on one render context and the kept snapshot of ANOTHER is not a world",
            not in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                        "TXT.sky(worldR);const s = await TXT.snapshot(keptR);")))
+        ok("a later snapshot on some OTHER object is not the bench's render",
+           not in_world(static.replace("const s = await TXT.snapshot(R);",
+                                       "const s = await TXT.snapshot(R);helper.snapshot(R);")
+                        .replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                 "const s = await TXT.snapshot(R);TXT.sky(R);helper.snapshot(R);")))
         ok("...but the same context under any name is",
            in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                    "TXT.sky(scene1);const s = await TXT.snapshot(scene1);")))
