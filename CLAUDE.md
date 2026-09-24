@@ -530,6 +530,34 @@ to `.claude/settings.local.json`, which `.gitignore` excludes and which dies wit
 So the owner tapping approve fixes that one run and no future one. That is why the count reached
 six before anybody found it.
 
+## The routines' model, and what it changed here (2026-09-23)
+
+Both routine triggers were moved to a new model on 2026-09-23. Four things follow from it, each
+taken from Anthropic's published guidance for that model and from the Claude Code CLI itself
+rather than from memory.
+
+- **Effort is the only thinking control, and `.claude/settings.json` carries it as
+  `effortLevel: high`.** The model always thinks. Its Claude Code default is `medium`, where the
+  previous model's was `high`, and a scheduled run passes no level of its own, so without that key
+  every run would have dropped a level. Subagents inherit the session's level unless their own
+  frontmatter names one. Anthropic's measurement is that the new model's `medium` already matches
+  or beats the old model's `high` on coding and knowledge work, and that it thinks more per turn
+  at any given level, so `high` is more reasoning than any earlier run had. `xhigh` and `max` are
+  for a gain somebody has measured, never for a hunch, and the usage limits this account shares
+  with every other routine are the cost of guessing. The routine records `$CLAUDE_EFFORT` in
+  `run_state.json` at wake, so every run says whether the setting took.
+- **It can end a turn on a progress report.** Anthropic's guide says that on long unattended
+  tasks some of the model's progress updates end the turn, and in a scheduled run that ends the
+  run. `prompts/daily_routine.md` says how a turn ends, under the heading directly after ROLE,
+  in wording adapted from the guide rather than invented.
+- **It follows named design instructions and not general ones.** "Avoid a generic look" swaps one
+  default style for another. The defaults it falls back on are named for this brand in
+  `knowledge/carousel/ILLUSTRATION_SYSTEM.md` under "What still fails", and the retro extends the
+  list from what a deck actually reached for.
+- **It reads charts and screenshots much more precisely.** The pixel critics get that for free.
+  It is no reason to drop the thumb transcription, which checks what a reader receives rather
+  than what the model can see.
+
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 
 **No routine writes a lane stamp. Nothing is written to declare an actor, by any tool, at any

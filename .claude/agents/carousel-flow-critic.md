@@ -28,12 +28,14 @@ Only then, if you need to, a full-size render.
   cut with nothing lost?
 - **The cover and the close.** Does the first frame earn a swipe? Does the last one land, or
   just stop?
-- **The rotation, since 2026-09-11.** Every dossier declares one of ten layouts
-  (`knowledge/carousel/ILLUSTRATION_SYSTEM.md`), and the deck is supposed to turn the page:
-  no two frames in a row laid out the same way, at least five layouts across nine, most frames
-  with an image running off an edge. Read the contact sheet and say whether it does. Nine
-  frames with a headline at the top and a drawing under it is the finding this rule exists
-  for, and it is a must-fix by slide number.
+- **The rotation and the continuity mandate.** Every dossier declares one of ten layouts. The
+  rule for how they sequence, and the continuity devices a deck must name, live in
+  `knowledge/carousel/ILLUSTRATION_SYSTEM.md` under "THE DECK IS THE UNIT". Read it and judge
+  against it. The numbers are not restated here, because a copy kept in this file is how this
+  file once enforced a rule the product had already replaced. Read the contact sheet and say
+  whether the nine frames read as one deck. A deck that turns the page nine different ways is a
+  fault, and so is nine frames with a headline at the top and a drawing under it. Both are
+  must-fixes by slide number.
 - **The hero object and the accent.** The print register is DELETED (owner, 2026-09-23), and a
   deck held together by a screen texture is the faded look the owner rejected. What holds a deck
   together now is ONE hero object rendered in one material under one rig, seen from a new camera
@@ -50,7 +52,7 @@ Only then, if you need to, a full-size render.
   "momentum": "where it builds and where it stalls, by slide number",
   "the_turn": "which slide, or none",
   "rhythm": "the density and weight pattern across the nine",
-  "rotation": "the nine layouts as you read them off the sheet, and whether they turn the page",
+  "rotation": "the nine layouts as you read them off the sheet, and whether they read as one deck",
   "must_fix": [{"slides": [4, 5], "problem": "...", "fix": "..."}],
   "cuttable": ["slides that could go with nothing lost"]
 }
