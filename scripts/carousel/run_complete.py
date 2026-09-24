@@ -139,6 +139,77 @@ def max_rounds() -> int | None:
     return int(m) if isinstance(m, (int, float)) else None
 
 
+# THE LADDER, THE SIBLING'S GATE (owner, 2026-09-24). The bar steps down with the rounds of work a
+# deck has had, and at the rubric's `max_rounds` the finished deck ships with its score and the
+# shortfall named. There is no hold and no floor from `ladder_from` on. The owner's words, the day
+# the floor held carousel no. 33 at 6.418 under 7.01: "The deck should always ship", "if the deck
+# doesn't meet the standard, then there's never a reason to stop editing it to actually just meet
+# the standard", and "Adopt [the sibling's] gate". So under the rung before the cap is KEEP EDITING, and
+# at the cap it ships. A hard fail is repaired, never shipped and never held.
+#
+# The floor below stays for decks dated before `ladder_from`, because a gate does not reach back
+# and reclassify work it did not judge (the same rule as RATCHET_SINCE).
+def _rubric_doc() -> dict:
+    import yaml
+    return yaml.safe_load(RUBRIC.read_text(encoding="utf-8")) or {}
+
+
+def ladder_from() -> str | None:
+    """The first deck date the ladder governs, from the rubric. None when it declares none."""
+    v = _rubric_doc().get("ladder_from")
+    return str(v) if v else None
+
+
+def on_ladder(run_dir) -> bool:
+    """A DATED run on or after `ladder_from`. A folder that is not named as a date is not judged by
+    date at all: compared as strings, 'r' sorts after '2026-09-24' and was put on the ladder."""
+    import re
+    lf, name = ladder_from(), Path(run_dir).name
+    return bool(lf) and bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", name)) and name >= lf
+
+
+def rung(rounds) -> float | None:
+    """The bar a deck must clear after `rounds` scoring rounds. None at or past the cap, where the
+    finished deck ships whatever it scored."""
+    doc = _rubric_doc()
+    cap = doc.get("max_rounds")
+    if isinstance(cap, (int, float)) and rounds is not None and rounds >= cap:
+        return None
+    bar = float(doc["threshold"])
+    steps = sorted((x for x in (doc.get("ladder") or []) if isinstance(x, dict)),
+                   key=lambda x: int(x.get("from_round", 1)))
+    for x in steps:
+        if rounds is not None and rounds >= int(x.get("from_round", 1)):
+            bar = float(x["threshold"])
+    return bar
+
+
+def _check_ladder(run_dir: Path, d: dict) -> list[str]:
+    name = run_dir.name
+    got, n = score_of(d), rounds_of(d)
+    bad = []
+    if got is None:
+        bad.append(f"{name}: score.json states no weighted score under any name this repo has "
+                   f"used ({', '.join(SCORE_KEYS)})")
+    hard = d.get("hard_fails") or []
+    if hard:
+        bad.append(f"{name}: {len(hard)} hard fail(s) stand. A hard fail is repaired, never "
+                   f"shipped and never held: fix it, verify the fix, and the deck ships. "
+                   + "; ".join(str(h)[:120] for h in hard))
+    ov = d.get("owner_override") or {}
+    if got is not None and not hard and not (ov.get("instruction") and ov.get("date")):
+        # THE RUNG THE DECK WAS JUDGED AGAINST, when panel.py recorded it (Codex, #357). A later
+        # change to the ladder or the cap must not unpublish or rewrite a deck already shipped,
+        # the same rule `bar_for_run` keeps for the threshold. None recorded means the cap.
+        need = d["rung"] if "rung" in d else rung(n)
+        if need is not None and float(got) < need:
+            bad.append(f"{name}: KEEP EDITING. {got} after {n if n is not None else 'an unknown number of'} "
+                       f"round(s) is under this round's rung of {need}. A low score is a work "
+                       f"order, never a reason to stop: fix the judges' named defects, re-render "
+                       f"and re-score. At the round cap the finished deck ships whatever it scored")
+    return bad
+
+
 RATCHET_WINDOW = 10          # how many shipped decks the floor looks back over
 
 # THE FLOOR DOES NOT REACH BACKWARDS. It was written on 2026-09-20, and pointed at the corpus it
@@ -267,6 +338,11 @@ def check(run_dir: Path, bar: float, cap: int | None = None,
         d = json.loads(p.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         return [f"{run_dir.name}: score.json is not JSON ({exc})"]
+
+    # A RECORDED RUNG IS THE DURABLE MARK OF THE LADDER (Codex, #357): moving or removing
+    # `ladder_from` later must not drop a run that was judged on it back to the old rules.
+    if on_ladder(run_dir) or "rung" in d:
+        return _check_ladder(run_dir, d)
 
     # THE OWNER MAY END THE SEARCH, AND THE MACHINE RECORDS WHO DID (2026-09-02).
     #
@@ -540,7 +616,8 @@ def self_test() -> int:
             d.mkdir()
             (d / "score.json").write_text(json.dumps(
                 {"weighted_score": 7.0, "spread": 0.3}), encoding="utf-8")
-        run_d = root / "2026-12-20"
+        # Inside the floor's own window, after RATCHET_SINCE and before the ladder replaced it.
+        run_d = root / "2026-09-22"
         run_d.mkdir()
 
         def verdict(score):
@@ -556,6 +633,57 @@ def self_test() -> int:
            any("WENT BACKWARDS" in x and "6.7" in x for x in probs), str(probs[:1]))
         ok("...and `ship: false` under the floor is not waved through either",
            any("WENT BACKWARDS" in x for x in probs))
+
+    # THE LADDER (owner, 2026-09-24). Read off the rubric rather than typed, so a later change to
+    # the rungs cannot leave these tests asserting numbers the gate no longer uses.
+    lf, cap5 = ladder_from(), max_rounds()
+    ok("the rubric declares where the ladder starts, and a cap", bool(lf) and bool(cap5), f"{lf} {cap5}")
+    top, low = rung(1), rung(cap5 - 1)
+    ok("the rungs step DOWN with the rounds and never up", top is not None and low is not None
+       and low <= top and all((rung(k) or 0) >= (rung(k + 1) or 0) for k in range(1, cap5 - 1)),
+       f"{[rung(k) for k in range(1, cap5)]}")
+    ok("at the cap there is no bar: the finished deck ships", rung(cap5) is None and rung(cap5 + 3) is None)
+    with tempfile.TemporaryDirectory() as td:
+        run_d = Path(td) / lf                                  # a deck the ladder governs
+        run_d.mkdir()
+
+        def lad(score, rounds, hard=()):
+            (run_d / "score.json").write_text(json.dumps(
+                {"weighted_score": score, "rounds": rounds, "ship": False, "hard_fails": list(hard)}))
+            return check(run_d, float(top), cap5)
+
+        ok("round 1 at the top rung is done", lad(top, 1) == [], str(lad(top, 1)))
+        probs = lad(round(top - 0.01, 2), 1)
+        ok("round 1 a hair under the top rung is KEEP EDITING, not a hold",
+           any("KEEP EDITING" in x for x in probs) and not any("HOLD" in x or "BACKWARDS" in x for x in probs), str(probs))
+        ok(f"the round {cap5 - 1} rung is lower, and a deck on it is done", lad(low, cap5 - 1) == [], str(lad(low, cap5 - 1)))
+        ok("AT THE CAP A LOW DECK SHIPS, no floor under it", lad(5.0, cap5) == [], str(lad(5.0, cap5)))
+        ok("the 2026-09-24 deck itself, 6.418 on the cap, ships", lad(6.418, cap5) == [])
+        probs = lad(9.0, cap5, hard=["an unverified fact presented as verified"])
+        ok("a hard fail still stops a deck on the cap, and says repair it",
+           any("hard fail" in x and "repaired" in x for x in probs), str(probs))
+        (run_d / "score.json").write_text(json.dumps({"weighted_score": 6.0, "rounds": 2, "hard_fails": [],
+                                                       "owner_override": {"instruction": "ship it", "date": lf}}))
+        ok("an owner override still ends the search under the rung", check(run_d, float(top), cap5) == [])
+        (run_d / "score.json").write_text(json.dumps({"weighted_score": low, "rounds": cap5 - 1, "hard_fails": [],
+                                                       "rung": round(low - 0.5, 2)}))
+        ok("a RECORDED rung wins over the live rubric, so a later ladder cannot unpublish a deck",
+           check(run_d, float(top), cap5) == [], str(check(run_d, float(top), cap5)))
+        (run_d / "score.json").write_text(json.dumps({"weighted_score": 5.0, "rounds": cap5, "hard_fails": [],
+                                                       "rung": None}))
+        ok("...and a recorded cap completion stays one", check(run_d, float(top), cap5) == [])
+        old_d = Path(td) / "2026-09-22"                         # dated before the ladder, yet recorded on it
+        old_d.mkdir()
+        (old_d / "score.json").write_text(json.dumps({"weighted_score": low, "rounds": cap5 - 1, "hard_fails": [],
+                                                       "rung": low}))
+        ok("a recorded rung keeps a run on the ladder whatever `ladder_from` says later",
+           check(old_d, float(top), cap5) == [], str(check(old_d, float(top), cap5)))
+        before = Path(td) / "2026-09-23"                        # the day before: the old rules hold
+        before.mkdir()
+        (before / "score.json").write_text(json.dumps({"weighted_score": 6.0, "rounds": 2, "ship": False,
+                                                        "hard_fails": []}))
+        ok("a deck dated before the ladder keeps the rules it was judged under",
+           any("DID NOT SHIP" in x for x in check(before, 8.0, cap5)), str(check(before, 8.0, cap5)))
 
     print("\nrun_complete self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0
@@ -597,20 +725,31 @@ def main() -> int:
         return 1
     # NAME WHICH PATH EACH UNDER-THE-BAR RUN TOOK. There are two now, and reporting an owner's
     # instruction as "on the round cap" is the summary line telling a reader the wrong reason.
-    on_cap, by_owner = [], []
+    on_cap, by_owner, on_rung = [], [], []
     for d in dirs:
         sp = d / "score.json"
         if not sp.exists():
             continue
         sd = json.loads(sp.read_text(encoding="utf-8"))
         sc = score_of(sd)
-        if sc is None or float(sc) >= bar:
+        # EACH RUN AGAINST THE TOP RUNG IT RECORDED, never today's (Codex, #357): a later raise of
+        # the threshold must not relabel a deck that cleared its own bar as a lower-rung pass.
+        if sc is None or float(sc) >= bar_for_run(d):
             continue
         ov = sd.get("owner_override") or {}
-        (by_owner if (ov.get("instruction") and ov.get("date")) else on_cap).append(d.name)
+        if ov.get("instruction") and ov.get("date"):
+            by_owner.append(d.name)
+        elif on_ladder(d) and (sd["rung"] if "rung" in sd else rung(rounds_of(sd))) is not None:
+            on_rung.append(d.name)      # cleared a lower rung before the cap, not the cap
+        else:
+            on_cap.append(f"{d.name}, {rounds_of(sd)} rounds" if rounds_of(sd) is not None else d.name)
     parts = []
     if on_cap:
-        parts.append(f"{len(on_cap)} under the bar on the {cap} round cap ({', '.join(on_cap)})")
+        # the rounds each run recorded, never today's cap (Codex, #357)
+        parts.append(f"{len(on_cap)} under the bar at the round cap ({'; '.join(on_cap)})")
+    if on_rung:
+        parts.append(f"{len(on_rung)} under the top bar on a lower rung of the ladder "
+                     f"({', '.join(on_rung)})")
     if by_owner:
         parts.append(f"{len(by_owner)} under the bar on the owner's instruction "
                      f"({', '.join(by_owner)})")

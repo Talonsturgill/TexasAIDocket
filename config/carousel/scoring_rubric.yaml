@@ -30,9 +30,54 @@
 # one deck. That is why a deck whose value track jumped 43 points between frames 6 and 7 was
 # described by its own judge as having "a genuine value arc" and given credit for the amplitude.
 
-version: 1
-threshold: 8.0          # below this triggers another round; the bounded-search rule below may ship
-max_rounds: 5           # and after this many scoring rounds it ships anyway, see below
+# THE SCALE WAS RECALIBRATED TO THE SIBLING'S, 2026-09-24, on the owner's diagnosis and
+# instruction. In their words: "[The sibling] just passes the ship gate every day. That's the
+# difference." And: "Yes, recalibrate Texas scoring to [the sibling's], go ahead."
+#
+# THE 8.0 BAR WAS SET ON A PREMISE THAT WAS FALSE, and it was measured rather than argued. The
+# note above says "the sibling product holds 8.3 with the same agents and the same engine". It
+# did not. The sibling scores with ONE scorer told "most good work is 7-8", against descriptors
+# whose 10 is a concrete checklist. This file told three judges "7 is acceptable and 9 is the best
+# thing shipped this month", and their brief said "the only way you fail at that is by being
+# generous". On that scale a typical deck lands on 7 by definition. In 32 panel-scored decks none
+# ever scored above 7.58, so an 8.0 bar on it was a bar nothing could clear.
+#
+# The cross-score that settled it, each grader blind to the other's number:
+#
+#     deck                     sibling's scorer     this panel, old scale
+#     sibling no. 66           8.67                 6.01 (judges 5.43, 6.36, 5.96), and held
+#     Texas no. 33             6.70                 6.42
+#
+# The same deck lost about 2.7 points to this file alone. The sibling's own totals read about 10
+# percent high, because its weights sum to 1.10, so its 8.67 is about 7.9 on a true scale. That
+# was reported to its owner and is NOT copied here: these weights sum to 1.00.
+#
+# WHAT CHANGED. The scale sentence is the sibling's. Every criterion carries 10, 7 and 4
+# descriptors in the sibling's form, the 10 being the checklist of the best version. THE
+# SHOWSTOPPER TEST is the artwork 10 and no longer a cap at 6, because a cap on a scale whose
+# typical deck is 7 decides the verdict before the deck is read. The judges' brief loses "the only
+# way you fail is by being generous". The bar steps down by round, the sibling's gate (see
+# `ladder` below). What did NOT change: three judges with their lenses, because the panel is what
+# catches fabrications (2026-08-19), every hard fail, and "do not round up".
+#
+# AND WHAT THE RECALIBRATION IS NOT. On the sibling's own scale no. 33 scored 6.70, under any
+# bar. The decks have real deficits as well and a scale does not hide them. The gates and the kit
+# carry those.
+#
+version: 2
+threshold: 8.0          # the top rung of the ladder below
+max_rounds: 5           # the last rung: at this many scoring rounds the finished deck ships
+
+# THE LADDER, the sibling's gate, adopted 2026-09-24 on the owner's instruction. The bar a deck
+# must clear steps down with the rounds of work it has had, and at `max_rounds` the finished deck
+# ships with its score and the shortfall named in the email and the run record. There is no hold
+# and no floor under it. A deck under its round's rung goes back for the named defects, because
+# a low score is a work order and never a reason to stop. A hard fail is repaired, never shipped
+# and never held. `run_complete.py` and `panel.py` both read this block, from `ladder_from` on.
+ladder_from: "2026-09-24"
+ladder:
+  - {from_round: 1, threshold: 8.0}
+  - {from_round: 4, threshold: 7.7}
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
 #
@@ -94,7 +139,7 @@ max_rounds: 5           # and after this many scoring rounds it ships anyway, se
 # threshold at the cap ships with its score said out loud in the email and in the run record, and
 # the shortfall named. Lowering the bar moves where that line falls. It does not remove it, and a
 # run that treats 6.7 as the new floor to aim at has misread this paragraph.
-scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this month"
+scale: "Score each criterion 1 to 10 against its descriptors. Be harsh at the top: 9 to 10 means best-in-class on LinkedIn that week. Most good work is 7 to 8."
 
 criteria:
   - name: artwork_craft
@@ -117,14 +162,12 @@ criteria:
       reknowned"). Cover the type and read each rendered frame at 432 px. Is it a photograph of a
       PLACE at a TIME OF DAY: a sky or a deliberate interior, a horizon on a third, haze in depth,
       light from the side its shadows say, contact and dirt where things meet the ground? A frame
-      that fails that caps this criterion at 6 whatever else it does, because an object in a void
-      is the finding under thirty two decks. ILLUSTRATION_SYSTEM.md, THE WORLD.
+      that passes it is what the 10 below describes. One that fails it scores by how far it falls
+      on the descriptors, and is not capped. ILLUSTRATION_SYSTEM.md, THE WORLD.
     scoring:
-      10: "It would hold as the opening spread of a serious magazine's feature on this story. A place, an hour, one hero lit with intent, and nothing a reader would call CG."
-      9: "A frame a reader would screenshot. A subject drawn at true scale, graded, the technique serving the claim, and type seated in quiet the composition made for it."
-      7: "An image on every frame, graded, competent and consistent. Nothing wrong with it, nothing memorable in it."
-      5: "One drawing with different arguments, a template with the story poured in, a headline over a small object floating in a gradient, or a frame that shipped ungraded."
-      3: "Decoration that would fit any story, or a plate with words on it."
+      10: "Every frame is a PLACE at an HOUR, or a deliberate interior: a sky, a ground with contact and dirt, haze in depth, light from the side its shadows say. One hero at true scale owns each frame, graded with a real light and a real dark, type seated in quiet the composition made for it, and it survives the zoom test at full size. It would hold as the opening spread of a serious magazine's feature."
+      7: "Strong overall. One frame leans on a default, a primitive model, a dead zone or a render artifact."
+      4: "Decorated templates, objects floating in a flat gradient, ungraded banding, or type on plates."
 
   - name: deck_coherence
     weight: 0.12
@@ -145,10 +188,9 @@ criteria:
       2026-09-16 a judge called a track of 77.8, 77.4, 32.5, 36.1, 54.9, 34.4, 77.4, 44.3, 17.9
       "a genuine value arc" and gave it credit. Four of those eight steps are hard cuts.
     scoring:
-      9: "A filmstrip. One world, one light, one grade, and a spine a reader could describe without being told to look for it. Any frame is unmistakably from this deck and no other."
-      7: "Clearly one deck. One ground and one light held, with a continuity device or two doing real work, and one frame that sits slightly outside."
-      5: "A shared wordmark and a shared furniture strip over nine unrelated pictures. The value track jumps more than once."
-      3: "Nine unrelated renders, OR nine frames held together only by a screen texture, which is the faded look the owner rejected on 2026-09-23. The reader can see the seams, or sees no objects at all."
+      10: "A filmstrip. One world, one light, one grade, one hero in one material, and a spine a reader could describe unprompted. Any frame is unmistakably from this deck."
+      7: "Clearly one deck, with a continuity device or two doing real work and one frame that sits slightly outside."
+      4: "Nine unrelated pictures sharing a wordmark, or frames held together only by a screen texture."
 
   - name: claim_integrity
     weight: 0.20
@@ -156,9 +198,9 @@ criteria:
       Does every fact trace to a verified claim, and every numeral to a claim or a computation?
       Is anything asserted that a fetched page does not support?
     scoring:
-      9: "Every figure traceable, every source primary where a primary exists."
-      7: "Traceable throughout, some reliance on journalism where a filing existed."
-      5: "A claim that stretches its source."
+      10: "Every figure traces to a claim or a computation, every source is primary where a primary exists, every universal names its set, and nothing is inferred past what its source says."
+      7: "Traceable throughout. One claim leans on journalism where a filing existed, or one phrasing is looser than its source without changing what a reader believes."
+      4: "A claim that stretches its source."
 
   - name: story_and_stakes
     weight: 0.16
@@ -166,9 +208,9 @@ criteria:
       Does a Texan reading this understand what happened, who decided it, where, and whether
       they can still act on it? Is the stake concrete rather than abstract?
     scoring:
-      9: "Names the county, the body and the deadline. A reader knows what to do next."
-      7: "Clear and accurate, stakes stated generally."
-      5: "A topic rather than a story."
+      10: "A Texan knows what happened, who decided it, where, and what they can do next. The county, the body, the decision and the deadline are named."
+      7: "Clear and accurate, with one stake stated generally."
+      4: "A topic rather than a story."
 
   - name: sequence_and_momentum
     weight: 0.10
@@ -176,9 +218,9 @@ criteria:
       Does the deck move? Is there a turn, a place where understanding changes? Does the cover
       earn a swipe and the close land?
     scoring:
-      9: "Builds, turns, lands. Nothing cuttable."
-      7: "Reads well in order."
-      5: "Nine slides in a row."
+      10: "The cover earns the swipe, frame 2 pays at once, the deck turns where understanding changes, and the close lands. Nothing is cuttable."
+      7: "Reads well in order, with one frame that could move without loss."
+      4: "Nine slides in a row."
 
   - name: voice
     weight: 0.10
@@ -186,18 +228,18 @@ criteria:
       Does this sound like a person from Texas wrote it? Texas First without boosterism, honest
       about costs without doom. Regional specificity over state-level abstraction.
     scoring:
-      9: "Nobody would guess a machine wrote it."
-      7: "Clean, on register, a little flat."
-      5: "Reads like a press release, or like an outsider describing Texas."
+      10: "Reads as a Texan who knows the subject wrote it. Specific, Texas First without boosterism, honest about costs without doom. Nobody would guess a machine wrote it."
+      7: "Clean and on register, with one flat or generic line."
+      4: "A press release, or an outsider describing Texas."
 
   - name: variety
     weight: 0.10
     asks: >
       Is this distinct from recent decks in technique, palette, structure and opening move?
     scoring:
-      9: "Shares nothing with the last fortnight but the wordmark."
-      7: "Distinct, with one familiar move."
-      5: "Recognisably last week with a new subject."
+      10: "Technique, palette, structure and opening move all diverge from the last four decks."
+      7: "A fresh concept with one familiar move."
+      4: "A re-skin of a recent deck."
 
 # ANY ONE OF THESE AND THE DECK DOES NOT SHIP, whatever the weighted score says.
 hard_fails:
