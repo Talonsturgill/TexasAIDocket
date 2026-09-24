@@ -144,7 +144,7 @@ def max_rounds() -> int | None:
 # shortfall named. There is no hold and no floor from `ladder_from` on. The owner's words, the day
 # the floor held carousel no. 33 at 6.418 under 7.01: "The deck should always ship", "if the deck
 # doesn't meet the standard, then there's never a reason to stop editing it to actually just meet
-# the standard", and "Adopt Alaska's gate". So under the rung before the cap is KEEP EDITING, and
+# the standard", and "Adopt [the sibling's] gate". So under the rung before the cap is KEEP EDITING, and
 # at the cap it ships. A hard fail is repaired, never shipped and never held.
 #
 # The floor below stays for decks dated before `ladder_from`, because a gate does not reach back
