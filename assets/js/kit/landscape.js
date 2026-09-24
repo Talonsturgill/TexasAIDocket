@@ -1492,7 +1492,7 @@ export function install(K, THREE, TXT) {
       const st = stem(h * 0.55, 0.004, 0.003, 0x4f6a30, 3); st.rotateZ(lean * Math.cos(a)); st.rotateX(lean * Math.sin(a)); st.translate(bx, 0, bz); parts.push(st);
       const tx = bx + Math.sin(lean * Math.cos(a)) * -h * 0.55, tz = bz + Math.sin(lean * Math.sin(a)) * h * 0.55, ty = h * 0.53;
       const spikeH = h * 0.5, fl = kind === 'bluebonnet' ? [0x2d3f9a, 0x3a4fb4, 0x4a5cc4] : [0xd8431e, 0xe2582a, 0xc93a1c];
-      const prof = kind === 'bluebonnet' ? [[0, 0], [0.022, 0.02], [0.026, 0.15], [0.025, 0.32], [0.022, 0.5], [0.017, 0.68], [0.011, 0.84], [0.004, 0.96], [0, 1]] : [[0, 0], [0.016, 0.05], [0.028, 0.3], [0.032, 0.55], [0.026, 0.8], [0.012, 0.95], [0, 1]];
+      const prof = kind === 'bluebonnet' ? [[0, 0], [0.022, 0.02], [0.026, 0.15], [0.025, 0.32], [0.022, 0.5], [0.017, 0.68], [0.011, 0.84], [0.004, 0.96], [0, 1]] : [[0, 0], [0.01, 0.05], [0.017, 0.3], [0.021, 0.55], [0.019, 0.8], [0.009, 0.96], [0, 1]];
       const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1] * spikeH)), 7).toNonIndexed();
       const p = lg.attributes.position, cc = new Float32Array(p.count * 3), cA = col(fl[Math.floor(rng() * 3)]), cW = col(0xf4f2ea), cG = col(0x6f8a3a), c = new THREE.Color();
       const nf = noise2(Math.floor(rng() * 1e4));
@@ -1500,7 +1500,7 @@ export function install(K, THREE, TXT) {
         const t = p.getY(i) / spikeH, k = 1 + (nf(p.getX(i) * 160 + t * 40, p.getZ(i) * 160 + t * 13) - 0.5) * 1.1;
         p.setX(i, p.getX(i) * k); p.setZ(i, p.getZ(i) * k);
         if (kind === 'bluebonnet') { mix3(c, cA, cW, smooth(0.72, 0.84, t)); if (t > 0.93) mix3(c, c, cG, 0.4); }
-        else { mix3(c, cG, cA, smooth(0.0, 0.3, t)); }
+        else { mix3(c, cG, cA, smooth(0.25, 0.6, t)); }
         cc[i * 3] = c.r; cc[i * 3 + 1] = c.g; cc[i * 3 + 2] = c.b;
       }
       lg.setAttribute('color', new THREE.BufferAttribute(cc, 3)); smoothNormals(lg); lg.translate(tx, ty, tz); parts.push(lg);

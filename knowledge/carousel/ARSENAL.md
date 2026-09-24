@@ -413,7 +413,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/actor_stamp_shape.py` | no instruction file may tell a session to WRITE the actor stamp. | --root --self-test | CI |  |
 | `scripts/shared/crawl_boundary.py` | ask the registry whether a url is inside the boundary, once, in one place. | <url> --list --self-test | shipped |  |
 | `scripts/shared/dependency_shape.py` | prove every install uses the committed dependency locks. | --self-test | CI |  |
-| `scripts/shared/gen_port_manifest.py` | enumerate every file in the Alaska machines and route it. | --out --refresh |  |  |
+| `scripts/shared/gen_port_manifest.py` | enumerate every file in the sibling machines and route it. | --out --refresh |  |  |
 | `scripts/shared/guards_local.py` | run what CI runs, here, before pushing. | --fast --only --list --strict --verdict --self-test | CI self-test | 0, 18 |
 | `scripts/shared/guards_shape.py` | the guard workflow's own wiring, checked rather than remembered. | --self-test | CI |  |
 | `scripts/shared/lesson_refs.py` | the lesson a citation points at is the lesson it names. | --root --self-test | CI |  |
@@ -515,7 +515,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `knowledge/shared/ORACLE_SPINE.md` | The Oracle spine | What the state record holds about the two Texas campuses that answer to one tenant. |
 | `knowledge/shared/PRODUCTION_READINESS.md` | Production readiness, audited against the standard list | A widely shared list of about a hundred things "vibe coders" supposedly do not know about, taken seriously and checked one by one against what this project actually runs. |
 | `knowledge/shared/README.md` | knowledge/shared, the long-term context every automation reads | This directory is the project's memory. Research done once lands here and is read on every run thereafter, so the machine gets smarter over time instead of rediscovering the same facts and making the same mistakes. |
-| `knowledge/shared/SIBLING_SITE_STUDY.md` | What the sibling site does, and what Texas took from it | A close read of the Alaska product's published site and its stylesheet, done because the owner looked at both and said the Texas one felt web 2.0 and the Alaska one felt like a real designer made it. |
+| `knowledge/shared/SIBLING_SITE_STUDY.md` | What the sibling site does, and what Texas took from it | A close read of the sibling product's published site and its stylesheet, done because the owner looked at both and said the Texas one felt web 2.0 and the sibling one felt like a real designer made it. |
 | `knowledge/shared/SOURCES_FIELD_LOG.md` | Sources field log, what a run actually saw | Append-only. A run adds to the bottom and never edits a line above it. |
 | `knowledge/shared/SOURCES_REGISTRY.md` | Data sources, what is actually fetchable, and what we may fetch | Compiled 2026-08-11. Verification marks: [V] fetched and saw real data, [P] loaded but the data was not confirmed, [X] blocked or absent. |
 | `knowledge/shared/TEXAS_AI_COMPANIES.md` | Texas AI companies and deployed applications | Compiled 2026-08-11. This is the beat record for the technology half of the coverage: who is building AI in Texas, and where AI is actually running in the state, in the cities and outside them. |

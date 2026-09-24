@@ -59,7 +59,7 @@ export function install(K, THREE, TXT) {
     elm:     { base: '#6c6760', dark: '#2e2b27', light: '#9a948a', kind: 'scale' },   // grey, scaly
     juniper: { base: '#6d5e50', dark: '#2e241d', light: '#a08c78', kind: 'shred' },   // shredding reddish grey strips
     pecan:   { base: '#6a6058', dark: '#2a2521', light: '#958a7e', kind: 'scale' },
-    crape:   { base: '#b39a80', dark: '#7a6450', light: '#dccab4', kind: 'mottle' },  // smooth, exfoliating patches
+    crape:   { base: '#9a7c62', dark: '#5e4636', light: '#c2a688', kind: 'mottle' },  // smooth, exfoliating patches
     palm:    { base: '#7a7166', dark: '#3a342e', light: '#a39a8c', kind: 'ring' },
   };
   const FIELD = new Map();
@@ -447,7 +447,8 @@ export function install(K, THREE, TXT) {
         const cv = clump(v) * 0.7 + 0.3 * clump(new V3(v.z * 1.7 + 0.3, v.x * 1.7 - 0.2, v.y * 1.7 + 0.5));
         if (cv < (Sh.gaps || -1) - Math.max(0, v.y - 0.6) * 1.2) continue;
         const dd = (1 - r() * (Sh.thick || 0.25)) * (1 + (Sh.lobe || 0) * cv);
-        const x = (E.x || 0) + v.x * E.rx * dd, z = (E.z || 0) + v.z * E.rz * dd;
+        const cone = v.y > 0 ? 1 - (E.cone || 0) * v.y : 1;
+        const x = (E.x || 0) + v.x * E.rx * dd * cone, z = (E.z || 0) + v.z * E.rz * dd * cone;
         const y = E.y0 + v.y * (v.y < 0 ? E.ry * (Sh.below || 0.35) : E.ry) * dd;
         const sz = Sh.size[0] + r() * (Sh.size[1] - Sh.size[0]);
         res.clusters.push([x, y, z, sz, 1, cv]); added++;
@@ -592,8 +593,8 @@ export function install(K, THREE, TXT) {
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.7, angleJit: 0.4, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.25, wander: 0.4, up: 0.04, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.4, 0.6], lift: 0.05 },
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.85 + r() * 0.25), y0: H * 0.38, ry: H * 0.62, base: 0.35, flatBottom: 1.2, hollow: 0.45 },
-        shell: { n: 1400, size: [0.42, 0.62], thick: 0.25, skirt: 0.6, below: 0.55, gaps: -0.25, lobe: 0.18 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.8 + r() * 0.3), y0: H * 0.3, ry: H * 0.7, base: 0.3, flatBottom: 1.2, hollow: 0.45, cone: 0.55 + r() * 0.2 },
+        shell: { n: 1300, size: [0.42, 0.62], thick: 0.25, skirt: 0.5, below: 0.45, gaps: -0.1, lobe: 0.3 },
       };
       // a juniper narrows toward its top: pull the upper shell in
       const g = makeTree(Object.assign(S, { taperTop: true }), r, { bark: 'juniper', leafKey: 'juniper', leaf: JUN_LEAF, cards: 10, colors: [0xf2f6ee, 0xe4ecea, 0xffffff, 0xdce6dc] });
@@ -622,8 +623,8 @@ export function install(K, THREE, TXT) {
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.4, wander: 0.3, droop: 0.05, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.8, 1.2], lift: 0.05 },
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.15), y0: H * 0.62, ry: H * 0.38, base: H * 0.33, hollow: 0.5, flatBottom: 1.4 },
-        shell: { n: 950, size: [0.9, 1.35], thick: 0.25, skirt: 0.7, below: 0.7, gaps: -0.1, lobe: 0.2 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.85 + r() * 0.2), y0: H * 0.6, ry: H * 0.36, base: H * 0.36, hollow: 0.5, flatBottom: 1.6 },
+        shell: { n: 900, size: [0.9, 1.35], thick: 0.3, skirt: 0.7, below: 0.6, gaps: -0.02, lobe: 0.32 },
       };
       return makeTree(S, r, { bark: 'pecan', leafKey: 'pecan', leaf: PECAN_LEAF, cards: 10, colors: [0xfff6d8, 0xf6f2c8, 0xffffff, 0xeae8c0] });
     },
@@ -688,7 +689,7 @@ export function install(K, THREE, TXT) {
       if (form === 'hedge') {
         const c = TXT.roundedBox(L - 0.2, H - 0.22, D - 0.2, 0.16, core, { segments: 3 }); c.position.y = (H - 0.22) / 2 + 0.1; g.add(c);
         // clusters over the top and the four sides, shoulders rounded, the foot tucked in
-        const area = [L * D, L * H, L * H, D * H, D * H], tot = area.reduce((a, b) => a + b, 0), N = 1500;
+        const area = [L * D * 1.6, L * H, L * H, D * H, D * H], tot = area.reduce((a, b) => a + b, 0), N = 1500;
         for (let i = 0; i < N; i++) {
           let f = r() * tot, face = 0; while (f > area[face]) { f -= area[face]; face++; }
           let x, y, z;
@@ -730,10 +731,10 @@ export function install(K, THREE, TXT) {
     return texture('fan|' + (dead ? 1 : 0), 1024, 512, (x, W, H, r) => {
       // polar leaf unrolled: u = around the fan (0..1), v = out from the hastula (0 at bottom row)
       x.clearRect(0, 0, W, H);
-      const n = 36, c0 = dead ? [118, 92, 60] : [70, 102, 44], c1 = dead ? [160, 128, 86] : [104, 138, 60];
+      const n = 40, c0 = dead ? [118, 92, 60] : [84, 112, 44], c1 = dead ? [160, 128, 86] : [124, 150, 66];
       for (let i = 0; i < n; i++) {
         const u0 = i / n * W, u1 = (i + 1) / n * W, cc = mix(c0, c1, r());
-        const split = 0.45 + r() * 0.15, tip = 0.9 + r() * 0.1;
+        const split = 0.3 + r() * 0.12, tip = 0.92 + r() * 0.08;
         // a segment: solid to the split, then a tapering, slightly ragged strap
         const g = x.createLinearGradient(u0, 0, u1, 0);
         g.addColorStop(0, css(cc, 0.78)); g.addColorStop(0.5, css(cc, 1.08)); g.addColorStop(1, css(cc, 0.78));
@@ -742,7 +743,7 @@ export function install(K, THREE, TXT) {
         x.lineTo(u1, H * (1 - split)); x.lineTo((u0 + u1) / 2 + (u1 - u0) * 0.08, H * (1 - tip)); x.lineTo(u0 + (u1 - u0) * 0.1, H * (1 - split));
         x.closePath(); x.fill();
         // filaments hanging from the splits (robusta has few; a young leaf has more)
-        if (r() < 0.4) { x.strokeStyle = css(cc, 0.9, 0.9); x.lineWidth = 1.5; x.beginPath(); x.moveTo(u1, H * (1 - split)); x.lineTo(u1 + (r() - 0.5) * 8, H * (1 - split - 0.25)); x.stroke(); }
+        if (r() < 0.08) { x.strokeStyle = css(cc, 0.9, 0.9); x.lineWidth = 1.5; x.beginPath(); x.moveTo(u1, H * (1 - split)); x.lineTo(u1 + (r() - 0.5) * 8, H * (1 - split - 0.25)); x.stroke(); }
         if (dead) { for (let k = 0; k < 6; k++) { x.fillStyle = 'rgba(60,40,20,0.25)'; x.fillRect(u0 + r() * (u1 - u0), H * r(), 2, 10 + r() * 30); } }
       }
       grain(x, W, H, 0.25);
@@ -757,7 +758,7 @@ export function install(K, THREE, TXT) {
       const f = (i % 2 ? 1 : -1) * fold * (j / rings);
       // costapalmate: the midrib runs a third into the blade, so the blade arches along it
       const x = Math.cos(a) * rr, z = Math.sin(a) * rr;
-      const y = f - droop * Math.pow(j / rings, 2) * (0.6 + 0.4 * Math.abs(Math.sin(a))) + 0.12 * R * (1 - Math.abs(a) / spread) * (j / rings);
+      const y = f - droop * Math.pow(j / rings, 2.6) * (0.55 + 0.45 * Math.abs(Math.sin(a))) + 0.14 * R * (1 - Math.abs(a) / spread) * (j / rings);
       P.push(x, y, z); U.push(t, j / rings);
     }
     for (let j = 0; j < rings; j++) for (let i = 0; i < cols; i++) {
@@ -795,10 +796,10 @@ export function install(K, THREE, TXT) {
       // the boot: a knot of old leaf bases at the head
       const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.22, 1.1, 14), mat('palmboot', () => new THREE.MeshStandardMaterial({ color: 0x6e5a40, roughness: 0.95, map: TEXC.get('bark|palm') || null })));
       boot.position.copy(top).add(new V3(0, 0.2, 0)); g.add(boot);
-      const green = mat('frond', () => oneFace(new THREE.MeshStandardMaterial({ map: fanTexture(false), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.62, envMapIntensity: 0.6 })));
+      const green = mat('frond', () => oneFace(new THREE.MeshStandardMaterial({ map: fanTexture(false), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.82, envMapIntensity: 0.35 })));
       const brown = mat('frond-dead', () => oneFace(new THREE.MeshStandardMaterial({ map: fanTexture(true), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.9 })));
       const petM = mat('petiole', () => new THREE.MeshStandardMaterial({ color: 0x8a8a5a, roughness: 0.7 }));
-      const fan = fanGeo(18, 5, 0.85, 1.9, 0.07, 0.28), dead = fanGeo(8, 3, 0.8, 1.6, 0.05, 0.1);
+      const fan = fanGeo(20, 7, 1.0, 1.75, 0.07, 0.5), dead = fanGeo(8, 3, 0.85, 1.4, 0.05, 0.12);
       const pet = new THREE.CylinderGeometry(0.018, 0.035, 1, 6); pet.translate(0, 0.5, 0); pet.rotateZ(-Math.PI / 2);   // along +x, length 1
       const live = 22 + Math.floor(r() * 6), deadN = opt(o, 'skirt', true) ? 46 : 8;
       const imF = new THREE.InstancedMesh(fan, green, live), imP = new THREE.InstancedMesh(pet, petM, live);

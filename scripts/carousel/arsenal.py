@@ -61,6 +61,10 @@ def clean(s: str) -> str:
     s = _EMOJI.sub("", s)
     s = s.replace("‘", "'").replace("’", "'").replace("“", '"').replace("”", '"')
     s = re.sub(r"\s+", " ", s).strip()
+    # port_audit's residue rule keeps the upstream product's name out of this repo outside a few
+    # lineage records. Some sources quoted here are those records, so the inventory says "sibling"
+    s = re.sub(r"\bAlaska(?:'s)?\b", lambda m: "the sibling's" if m.group(0).endswith("'s") else "the sibling", s)
+    s = re.sub(r"\bthe the sibling", "the sibling", s)
     return s.replace("|", "\\|")
 
 

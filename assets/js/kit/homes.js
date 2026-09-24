@@ -223,7 +223,7 @@ export function install(K, THREE, TXT) {
         x.bezierCurveTo(xx + dx, N / 3, xx - dx, 2 * N / 3, xx, N); x.stroke();
         b.strokeStyle = 'rgba(0,0,0,' + a + ')'; b.lineWidth = 1; b.beginPath(); b.moveTo(xx, 0); b.lineTo(xx, N); b.stroke();
       }
-      for (let i = 0; i < 5; i++) { const kx = r() * N, ky = r() * N; x.fillStyle = 'rgba(50,25,10,0.5)'; x.beginPath(); x.ellipse(kx, ky, 3 + r() * 4, 5 + r() * 7, 0, 0, 6.3); x.fill(); }
+      for (let i = 0; i < 3; i++) { const kx = r() * N, ky = r() * N; x.fillStyle = 'rgba(60,35,20,0.35)'; x.beginPath(); x.ellipse(kx, ky, 2 + r() * 3, 4 + r() * 5, 0, 0, 6.3); x.fill(); }
       grain(x, N, r, 0.1, 0.03);
     });
   }
@@ -1122,7 +1122,7 @@ export function install(K, THREE, TXT) {
    * fences
    * ===================================================================================== */
   const cedarColour = (w, r) => {
-    const fresh = [1.0, 0.86, 0.72], grey = [0.66, 0.64, 0.6];
+    const fresh = [0.92, 0.82, 0.74], grey = [0.7, 0.7, 0.68];
     const k = Math.min(1, Math.max(0, w + (r() - 0.5) * 0.35));
     const c = mix(fresh, grey, k), j = 0.86 + r() * 0.22;
     return [c[0] * j, c[1] * j, c[2] * j];
@@ -1134,7 +1134,7 @@ export function install(K, THREE, TXT) {
     make(o, r) {
       const g = new THREE.Group(), B = Bucket();
       const L = opt(o, 'length', 12), H = opt(o, 'height', 1.83), wz = opt(o, 'weathered', 0.25 + r() * 0.5), gate = opt(o, 'gate', false);
-      const T = cedarTex('#b58a64'), cm = texMat(T, 'fence-cedar', { vertexColors: true, bumpScale: 0.8, roughness: 0.92 });
+      const T = cedarTex('#a2826a'), cm = texMat(T, 'fence-cedar', { vertexColors: true, bumpScale: 0.8, roughness: 0.92 });
       const pw = 0.14, gap = 0.004, pt = 0.016, y0 = 0.06;
       const shape = new THREE.Shape([[-pw / 2, 0], [pw / 2, 0], [pw / 2, H - y0 - 0.025], [pw / 2 - 0.025, H - y0], [-pw / 2 + 0.025, H - y0], [-pw / 2, H - y0 - 0.025]].map(p => new THREE.Vector2(p[0], p[1])));
       const pk = new THREE.ExtrudeGeometry(shape, { depth: pt, bevelEnabled: false });
