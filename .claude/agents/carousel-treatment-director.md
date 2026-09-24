@@ -34,6 +34,7 @@ work and should not try to guess it. The showrunner picks one and grafts the bes
     "structure": "how the frame is organised, and why this story wants that",
     "techniques": ["named, from the technique library, one or more per slide"],
     "palette": "drawn from the material world of THIS story's region",
+    "world": "one TXT.worlds preset, the declared light elevation, and why this story wants that light",
     "camera": "eye height, horizon and light, declared once for the deck, and where it changes"
   },
   "the_one_image": "the frame a reader would screenshot, described precisely",
@@ -48,6 +49,14 @@ impossible for me to have to tell u this again."** Never pitch a screen, a halft
 stock or a print register. Every frame is RENDERED: one HERO OBJECT modelled once, a real PBR
 material, one rig, a soft shadow on a ground it touches, through `txthree.js`. Pitch the hero
 object first, in metres, then nine cameras and states of it.
+
+**THEN PITCH THE WORLD IT STANDS IN (2026-09-24, owner: "every single slide should literally look
+world reknowned").** Carousel no. 32 rendered all nine frames and still read as an object in a
+void, because nothing stood in a place at an hour. Name ONE world from the table in
+`ILLUSTRATION_SYSTEM.md`, THE WORLD (golden hour, into the sun, blue hour, night under sodium,
+high noon, overcast, a storm front), the declared light it wants, and why THIS story wants that
+light. Look at `examples/world-proof/compare.webp` first: the same model and camera in four
+worlds, which is what the light alone does to a frame. It is the floor, never the subject.
 
 Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` before anything else, THE RENDER first, and look
 at `examples/figure-bearing/contact_sheet.webp`, the owner's worked example of solid shaded forms

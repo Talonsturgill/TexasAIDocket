@@ -52,7 +52,20 @@ WHAT THIS CHECKS, three ways, because a ban that can be walked around is a sugge
               impossible rather than merely unnamed. A deck that avoids the word "print" by
               drawing flat rectangles in 2D has not met the standard either.
 
+              AND, from WORLD_SINCE, at least WORLD_FLOOR frames stand in a WORLD: they call
+              `TXT.sky`, the dome, the light and the haze a render needs to be a place. A render
+              in a void is the defect the print was deleted for, in a new material.
+
   --self-test Every way each check can fail, replayed.
+
+THE WORLD, 2026-09-24. The owner, the next day: "the artwork hasnt hit the mark yet ever, and it
+needs to be a SHOWSTOPPER every single slide should literally look world reknowned." Carousel
+no. 32 was rendered, as ordered, and every frame was still a primitive in a near black void: the
+bench gave a frame a flat background colour and a plane, and each chassis improvised its own sky.
+`txthree.js` now carries the world (TXT.sky, TXT.ground surfaces, TXT.scatter, TXT.contact,
+TXT.weather), measured on no. 32's own model in `examples/world-proof/`. The floor is five of
+nine rather than nine, because an interior, a document on a desk or a hearing room is a real
+frame with no sky in it, and a gate that forces a horizon into a courtroom makes worse art.
 
 WHY NOT A PIXEL CHECK, stated so nobody spends an afternoon on it. Two render metrics were
 calibrated on 2026-09-23 against today's printed deck, the owner's worked example and two decks
@@ -80,6 +93,12 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 ASSETS = REPO_ROOT / "assets" / "js"
 PRINT_SINCE = "2026-09-22"
 RENDERED_FLOOR = 6
+# THE WORLD. Decks on or before WORLD_SINCE were built before TXT.sky existed, so they are not
+# judged on it. From the day after, five of nine frames stand in a world.
+WORLD_SINCE = "2026-09-23"
+WORLD_FLOOR = 5
+WORLD = re.compile(r"\.sky\s*\(")
+DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 
 # What a print looks like in code. Scanned with comments stripped, because a chassis that
 # explains why it no longer prints must be allowed to say the word.
@@ -125,6 +144,11 @@ def is_rendered(src: str) -> bool:
     return all(rx.search(body) for rx in RENDERED)
 
 
+def in_world(src: str) -> bool:
+    """Rendered AND standing in a world: the frame itself calls the sky, not a comment about it."""
+    return is_rendered(src) and WORLD.search(strip_comments(src)) is not None
+
+
 def check_assets(assets: Path = ASSETS) -> list[str]:
     out = []
     if (assets / "txink.js").exists():
@@ -154,18 +178,21 @@ def check_assets(assets: Path = ASSETS) -> list[str]:
     return out
 
 
-def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS) -> list[str]:
+def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS,
+              world_floor: int = WORLD_FLOOR) -> list[str]:
     slides_dir = run_dir / "slides"
     files = sorted(slides_dir.glob("slide-*.html"))
     if not files:
         return [f"{slides_dir} holds no slide-*.html, so there is nothing to check. A gate that "
                 f"cannot find its subject does not report clean"]
-    out, rendered, chassis = [], 0, set()
+    out, rendered, worlds, chassis = [], 0, 0, set()
     for f in files:
         src = f.read_text(encoding="utf-8", errors="replace")
         out += scan_source(f.name, src)
         if is_rendered(src):
             rendered += 1
+        if in_world(src):
+            worlds += 1
         chassis.update(CHASSIS_REF.findall(strip_comments(src)))
     for rel in sorted(chassis):
         p = chassis_root / rel
@@ -178,6 +205,15 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"print by drawing flat 2D shapes has not met the standard either: the owner "
                    f"asked for artwork each run actually creates, and the sister corpus renders "
                    f"solid objects with a material, a soft shadow and a contact")
+    # History is not judged on a rule it predates: a dated run on or before WORLD_SINCE skips it.
+    dated = DATED.match(run_dir.name)
+    wneed = min(world_floor, len(files))
+    if not (dated and run_dir.name <= WORLD_SINCE) and worlds < wneed:
+        out.append(f"{worlds} of {len(files)} frames stand in a world (a rendered frame that calls "
+                   f"TXT.sky), and the floor is {wneed}. A render in a flat background colour is an "
+                   f"object in a void, the finding under thirty two decks. Five calls build the "
+                   f"world: TXT.sky, TXT.deckRig, TXT.ground with a surface, TXT.contact, "
+                   f"TXT.weather. See examples/world-proof/")
     return out
 
 
@@ -193,7 +229,8 @@ def self_test() -> int:
 
     rendered = ("<script type=\"module\">const T=await import('@@ASSETS@@/js/three.module.min.js');"
                 "const X=(await import('@@ASSETS@@/js/txthree.js')).init(T);"
-                "const s=await X.snapshot(R);</script>")
+                "X.sky(R, X.worlds.goldenHour);const s=await X.snapshot(R);</script>")
+    void = rendered.replace("X.sky(R, X.worlds.goldenHour);", "")
     printed = ("<script src=\"@@ASSETS@@/js/txink.js\"></script><script>"
                "M.print(cx, { screen: { mode: \"line\", cell: 6 } });</script>")
 
@@ -273,6 +310,41 @@ def self_test() -> int:
         empty = root / "empty"
         (empty / "slides").mkdir(parents=True)
         ok("a run with no slides is CAUGHT, never clean", check_run(empty, chassis_root=a) != [])
+
+        # THE WORLD: rendered in a void is caught; a skyless interior or two is allowed.
+        ok("a frame rendered in a void still counts as rendered", is_rendered(void))
+        ok("...but does not stand in a world", not in_world(void))
+        ok("the sky in a comment is not a sky",
+           not in_world(void.replace("</script>", "/* X.sky(R, W) */</script>")))
+        voids = root / "voids"
+        (voids / "slides").mkdir(parents=True)
+        for i in range(1, 10):
+            (voids / "slides" / f"slide-0{i}.html").write_text(void)
+        got = check_run(voids, chassis_root=a)
+        ok("nine renders in a void are CAUGHT", any("0 of 9 frames stand in a world" in g for g in got), got)
+        for i in range(1, 6):
+            (voids / "slides" / f"slide-0{i}.html").write_text(rendered)
+        ok("five worlds and four interiors meet the floor", check_run(voids, chassis_root=a) == [],
+           check_run(voids, chassis_root=a))
+        (voids / "slides" / "slide-05.html").write_text(void)
+        got = check_run(voids, chassis_root=a)
+        ok("four worlds of nine is under it", any("4 of 9 frames stand in a world" in g for g in got), got)
+        hist = root / "2026-09-23"
+        (hist / "slides").mkdir(parents=True)
+        for i in range(1, 10):
+            (hist / "slides" / f"slide-0{i}.html").write_text(void)
+        ok("a deck on or before WORLD_SINCE is not judged on the world", check_run(hist, chassis_root=a) == [],
+           check_run(hist, chassis_root=a))
+        new = root / "2026-09-24"
+        (new / "slides").mkdir(parents=True)
+        for i in range(1, 10):
+            (new / "slides" / f"slide-0{i}.html").write_text(void)
+        ok("...and the day after, it is", any("stand in a world" in g for g in check_run(new, chassis_root=a)))
+        probe = root / "probe"
+        (probe / "slides").mkdir(parents=True)
+        (probe / "slides" / "slide-01.html").write_text(void)
+        ok("the PROBE frame answers to the world too, one of one",
+           any("0 of 1 frames stand in a world" in g for g in check_run(probe, chassis_root=a)))
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())

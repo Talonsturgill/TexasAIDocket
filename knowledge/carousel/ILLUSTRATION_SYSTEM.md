@@ -659,6 +659,115 @@ Pitch the HERO OBJECT first, in metres, as geometry: what it is, what it is made
 thing about its shape the story turns on. Then nine cameras and states of that object. A pitch that
 names a screen, a paper, a stock or a print register is pitching the deleted look.
 
+## THE WORLD (2026-09-24, owner, and it is what THE RENDER was missing)
+
+**The owner, verbatim, the day after THE RENDER shipped:** *"the artwork hasnt hit the mark yet
+ever, and it needs to be a SHOWSTOPPER every single slide should literally look world reknowned."*
+
+### What was measured on the first rendered deck
+
+Carousel no. 32 obeyed THE RENDER to the letter. One hero object, a real material, one rig, all
+nine frames through `txthree.js`. Artwork craft scored 6.8, and the reason is in the pixels rather
+than in the taste of whoever drew it. `examples/world-proof/compare.webp` renders no. 32's own
+model and camera four ways beside the frame that shipped, so the difference is the engine alone.
+
+1. **An object in a void.** `TXT.setup` gave a frame a flat background colour and a grey plane.
+   Seven chassis under `assets/js/deck/` each improvised a sky under deadline, and no. 32's was
+   near black with a two degree band. No horizon, no light in the sky, no haze in depth.
+2. **Hard shadows nobody asked for.** Every rig set `shadow.radius` and `PCFSoftShadowMap` ignores
+   it, so for two months every cast shadow shipped hard edged. VSM is now the default.
+3. **Two tone curves.** The renderer mapped ACES and `TXDECK.finish` ran a second filmic curve on
+   top. Pure white came out near 231 of 255 and the mids lifted. That is the murk, measured.
+   `TXT.snapshot` now marks the page and the grade skips its own curve on a rendered frame.
+4. **Clean clay.** Nothing standing in Texas is clean at the bottom.
+
+A render inherits its world from the engine, and the engine gave it none. All four are fixed IN
+THE ENGINE, so no run has to remember them.
+
+### What a frame stands in now
+
+```js
+const W = TXT.worlds.goldenHour;           // the deck's ONE world, chosen in the chassis
+const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure, tone:W.tone, fov:36 });
+TXT.frame(R, { from:[x, 1.6, z], look:[0, 2, 0] });
+TXT.sky(R, W);                             // dome, IBL rendered FROM it, fog in its horizon hue
+TXT.deckRig(R, W.rig, { target:[0,0,0], distance:80 });    // the sun IS the declared light
+TXT.ground(R, { surface:'caliche', size:900 });            // caliche, dirt, asphalt, concrete, grass
+TXT.scatter(R, { kind:'grass', count:6000, area:[...], avoid:[[...the pad...]] });
+TXT.add(R, hero); TXT.contact(R, hero);    // the dark core where it meets the ground
+TXT.weather(R, {});                        // grime at the base, mottle in the paint
+const shot = await TXT.snapshot(R);
+```
+
+1. **Choose the world for the STORY, in the treatment, before any code.** The storyboard's
+   treatment names the deck's `world:` once and says why this story wants that light. The chassis
+   declares it. A dossier does not restate it, for the same reason SLIDE_DOSSIER_SPEC gives for
+   the light: a second copy is how nine frames end up under two suns.
+
+| world | what the light does | declared el | a story about | type |
+|---|---|---|---|---|
+| `goldenHour` | low warm sun, long shadows, blue sky | 4 to 14 | building, ambition, what is coming | light, on the shadowed ground or sky |
+| `goldenHour`, camera INTO the sun | silhouette, cool rim on steel, a glowing seam | 3 to 8 | scale, weight, consequence | light |
+| `blueHour` | an amber seam under deep blue, lamps on | the LAMP, 25 to 45 | the grid after dark, demand that does not sleep | light |
+| `nightSodium` | black sky, city glow on one horizon, sodium key | the LAMP, 20 to 60 | what runs all night, what is not seen | light |
+| `highNoon` | bleached sky, short black shadows | 55 to 78 | heat, water, strain | dark |
+| `overcast` | no disc, everything soft and honest | 35 to 60 | procedure, a filing, a waiting room | dark |
+| `stormFront` | a bruised sky and one shaft of sun | 6 to 16 | risk, a warning, a deadline | light |
+
+   The chassis declares the light with an elevation in its world's range. To tune a world, copy
+   it and change the copy (`Object.assign({}, TXT.worlds.goldenHour, { haze: 0xd8b48e })`).
+   Never edit `TXT.worlds`, which every future deck stands on.
+2. **The sun is the deck's light.** `TXT.sky` puts the sun's glow where `TXDECK.declare` says,
+   so the glow, the key, the cast shadows and the warm side of every object agree on all nine
+   frames by construction. Pointing the camera toward the declared azimuth puts the glow in frame,
+   and that is the strongest image this engine makes.
+3. **Every standing thing gets `TXT.contact`.** A cast shadow says where the light is. A contact
+   says the thing has weight. Without one every render floats.
+4. **Everything manufactured has an edge.** `TXT.roundedBox(w, h, d, r, material)` for enclosures,
+   cabinets, buildings and tanks, with r from 2 to 6 cm for plate steel. A sharp CG edge catches
+   no light, and that is most of why a primitive looks like a primitive.
+5. **`TXT.weather(R)` before every snapshot.** Grime toward the ground, mottle in paint and
+   roughness, in world space and seeded.
+6. **Scatter makes a place and never touches the type.** A pad is bare and graded, the field
+   around it is not. `avoid` rectangles in world metres keep the pad a pad and the type's reserve
+   calm. Grass over a headline is a plate made of weeds.
+7. **The camera is a photographer's.** Eye at 1.5 to 1.7 m for a human frame, 0.4 to 0.9 m for a
+   monument, 40 to 150 m up for a site. Field of view 26 to 40, the compressed look of industrial
+   photography, and wider than 55 only inside a room. The horizon on a third and never through
+   the middle. The hero owns 30 to 60 percent of the frame, and something in the foreground (a
+   fence post, a stone, a kerb) gives the depth a reader feels before they see it.
+8. **Type sits on the calm value.** The sky above the horizon, or the dark ground under a
+   backlight. Never over scatter and never over the busy middle. `qa.py` measures the contrast.
+
+### THE SHOWSTOPPER TEST, which every critic and the scorer apply
+
+At 432 px, with the type covered:
+
+1. Does it read as a PHOTOGRAPH of a PLACE at a TIME OF DAY?
+2. Is there one thing to look at, lit from the side its shadows say?
+3. Is there a sky or a deliberate interior, a horizon on a third, and haze in the distance?
+4. Does everything standing touch the ground, with a contact and dirt at its base?
+5. Would it hold as the opening spread of a serious magazine's feature on this story?
+
+**A frame that fails the first question caps artwork craft at 6, whatever else it does.** That is
+the number no. 32 scored, and the reason it scored it.
+
+### The gate
+
+`print_ban.py` counts frames that stand in a world, meaning rendered AND calling `TXT.sky` in the
+frame's own code: at least five of nine from 2026-09-24, and the probe frame one of one. Five
+rather than nine because an interior is a real frame. The other four may be rooms, desks or
+documents, lit with `TXT.environment` and a rig on a floor with tooth
+(`TXT.ground({ surface:'concrete' })`), and never a flat colour.
+
+### What this does NOT say
+
+- It does not say every frame is outdoors, and it does not say golden hour. The table exists so
+  decks differ, and the variety ledger still measures the palette each world produces.
+- It does not replace THE ARTWORK CARRIES THE DATA. Forty sets is still forty rendered units.
+- It does not license a chassis to write its own sky, its own ground texture or its own develop
+  that tone maps again. The engine carries those now, and a second copy is how they drift.
+
 ## THE FIVE LIBRARIES
 
 All under `assets/js/`, all deterministic per seed, all loaded with `@@ASSETS@@/js/<name>.js`.
@@ -757,20 +866,27 @@ a proposal for the catalogue.
 reproduced, because a signature in this file is an invitation to call it.
 
 ```js
-// an ES module script, inside window.renderReady
-const THREE = await import('@@ASSETS@@/js/three.module.min.js');
-const TXT   = (await import('@@ASSETS@@/js/txthree.js')).init(THREE);
-const R = TXT.setup(document.getElementById('scene'),
-                    { w:1080, h:1350, bg:0x0b0f16, fog:[0x0f1520, 10, 40], exposure:1.1 });
-TXT.environment(R, { intensity: 0.5 });    // procedural IBL, so metal reflects something
-TXT.rig(R, TXT.rigs.arcticNight);          // ONE rig for the deck, chosen in the chassis
-TXT.ground(R, { color: 0x1a1a1f, y: 0 });  // the object stands ON something
-const hero = buildHero(THREE, TXT);        // the deck's one object, from the chassis
-TXT.add(R, hero);                          // add() sets the shadow flags
-TXT.frame(R, { from:[7, 3.4, 9], look:[0, 1.2, 0], fov:42 });
-const shot = await TXT.snapshot(R);        // render + black frame sentinel
-if (!shot.ok) throw new Error('black frame'); // never ship a black rectangle
+// an ES module script, inside window.renderReady. The world first, then the deck's object.
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const TXT = init(THREE);
+const W = TXT.worlds.goldenHour;                           // the deck's ONE world, from the chassis
+const R = TXT.setup(glCanvas, { w:1080, h:1350, fog:[W.haze, W.fogDensity],
+                                exposure:W.exposure, tone:W.tone, fov:36 });
+TXT.frame(R, { from:[7, 1.6, 9], look:[0, 1.8, 0] });
+TXT.sky(R, W);                                             // sky + IBL from it + fog in its hue
+TXT.deckRig(R, W.rig, { target:[0, 0, 0], distance:60 }); // the sun IS the declared light
+TXT.ground(R, { surface:'caliche', size:900 });            // the object stands ON something
+const hero = buildHero(THREE, TXT);                        // the deck's one object, from the chassis
+TXT.add(R, hero); TXT.contact(R, hero);                    // add() sets the shadow flags
+TXT.weather(R, {});
+const shot = await TXT.snapshot(R);                        // render + black frame sentinel
+if (!shot.ok) throw new Error('black frame');              // never ship a black rectangle
 ```
+
+The whole world is documented at the top of THE WORLD above and in the header of
+`assets/js/txthree.js`, with every option. `TXT.roundedBox`, `TXT.scatter` and `TXT.weather` are
+there too.
 
 Verified in this container on 2026-09-23: WebGL2 through SwiftShader, a PBR steel solid with fog
 and a soft shadow rendered cleanly in 5.8 seconds. Rules: `setup` sets pixel ratio before size,
@@ -826,6 +942,19 @@ plan its layouts, and that is a fail. The example deck measures clean on all six
 which is the finding the judges made in words and the number that says the gate is aimed at it.
 
 ## What still fails, named so nobody rediscovers it
+
+- **An object in a void.** A render in front of a flat background colour, which is every frame of
+  no. 32. `TXT.sky`, and `print_ban.py` counts it. (2026-09-24)
+- **Clean clay.** A painted enclosure with no grime at its base and no mottle in its paint reads
+  as a maquette. `TXT.weather(R)`. (2026-09-24)
+- **A sky that mixes orange into blue.** The midpoint of the two is grey, and the first world
+  proof came out as mauve smog. Warmth lives at the horizon on the sun's side and the zenith stays
+  blue, which is how the presets are built. (2026-09-24)
+- **Weeds over the headline, and faceted stones.** Scatter without `avoid` lands under the type,
+  and a flat shaded stone reads as a game asset. (2026-09-24)
+- **A chassis that develops its own frame and grades it filmic again.** The renderer already tone
+  maps. `TXDECK.finish` now skips its own curve on a rendered frame, and a chassis must not route
+  around it. (2026-09-24)
 
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.

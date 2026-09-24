@@ -103,6 +103,14 @@ the owner rejected, and it is a must-fix whatever else is right with it. Frames 
 solid objects with a material, one light, a soft shadow and a contact. Every dossier now declares `layout`, `primary_image` and `accent`.
 Grade them off the thumb:
 
+- **THE SHOWSTOPPER TEST (2026-09-24), first, with the type covered.** Is it a photograph of a
+  PLACE at a TIME OF DAY: a real sky or a deliberate interior, a horizon on a third, haze in the
+  distance, light from the side its shadows say, a contact and dirt where things meet the ground?
+  A render in front of a flat background colour is an object in a void, and that is a must-fix on
+  its own: the fix is `TXT.sky` and the world in `ILLUSTRATION_SYSTEM.md`, THE WORLD, never a
+  gradient painted behind it. Clean clay (no grime at the base), a hard edged shadow with no
+  contact, scatter under the type and faceted stones are must-fixes too. Say which world the
+  frame is in and whether its light agrees with the deck's.
 - **Is the subject the dossier named actually there**, at the place and size its rect declares,
   and can you say what it IS at 432 px in one word: a bus, a dais, a page, a person at a desk?
   If the answer is a headline over a small shape, that is a must-fix on its own, whatever the

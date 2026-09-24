@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- CAROUSEL 32, frame 6 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js.
+     THE SIZE OF THE THING. The hero, whole, with a person at its lit end, and the rest of the
+     line behind it in the fog: one set in front and behind_the_meter.units less one receding, so
+     the frame still holds the count. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#0D1117; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.92;
+          letter-spacing:-0.026em; color:#EEF0F3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#C9CCD4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9AA0AC;
+             white-space:nowrap; z-index:20; }
+  .hook { left:80px; top:952px; width:900px; font-size:96px; }
+  .dek  { left:82px; width:820px; font-size:29px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A set like these</h1>
+<p class="dek" data-follow="20">A generator set drawn on its skid, with a person beside it. Its size is drawn to illustrate, not taken from a claim.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script>window.__decl = TXDECK.declare; TXDECK.declare = function () { return null; };</script>
+<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
+<script>TXDECK.declare = window.__decl;
+TXDECK.declare({ world: "proof-blueHour", light: { az: -60, el: 35 }, ground: "#1c2436", material: "#C9C4B6", accent: "#E0A33F", grade: { exposure: 0.0, saturation: 1.06, contrast: 1.08, filmic: true, lift: [0.010, 0.012, 0.020], gain: [1.03, 1.0, 0.97], vignette: 0.22, bloom: { threshold: 0.78, strength: 0.26, radius: 12 }, grain: { amount: 0.018, size: 2, seed: 20260924 }, aberration: 0, dither: true, sharpen: 0.22 } });</script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, {
+    kicker: 'Illustrated, not measured', counter: "06 / 09",
+    src: 'c16 c17   TEXAS AI DOCKET', ink: '#9AA0AC'
+  });
+  TX.fitText(document.getElementById("hook"), { min: 78, max: 96, maxLines: 1 });
+  YARD.follow();
+  const TXT = init(THREE);
+  const Y = YARD, gl = Y.glCanvas();
+
+  /* BLUE HOUR, lamps on */
+  const UNITS = 40;
+  const W = TXT.worlds.blueHour;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 38 });
+  TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.45, -2.2] });   // no. 32's camera, exactly
+  TXT.sky(R, W);
+  const rig = JSON.parse(JSON.stringify(W.rig)); rig.key.shadowSize = 34; rig.key.mapSize = 4096;
+  TXT.deckRig(R, rig, { target: [-3, 0, -14], distance: 120, shadowFar: 320 });
+  TXT.ground(R, { surface: 'caliche', size: 900, tile: 5 });
+  /* the pad is bare and graded: grass only past its edge, stones on it */
+  TXT.scatter(R, { kind: 'grass', count: 7000, area: [-120, -280, 90, 40], avoid: [[-26, -200, 14, 30]], seed: 3 });
+  TXT.scatter(R, { kind: 'scrub', count: 240, area: [-170, -330, 130, 30], avoid: [[-30, -205, 18, 34]], seed: 7 });
+  TXT.scatter(R, { kind: 'rock', count: 500, area: [-26, -60, 14, 3], avoid: [[-9.5, -186, 5.5, 4.4]], seed: 11 });   // none under the type
+  const M = Y.mats(TXT);
+  const hero = Y.genset(THREE, M, { lamp: true });
+  TXT.add(R, hero); TXT.contact(R, hero);
+  for (let i = 1; i < UNITS; i++) {
+    const g = Y.genset(THREE, M, { detail: i < 3, lamp: true && i < 12 });
+    g.position.set(0, 0, -i * 4.6);
+    TXT.add(R, g); if (i < 8) TXT.contact(R, g);
+  }
+  const who = Y.person(THREE, { cloth: 0x3c4a5c });
+  who.position.set(-7.3, 0, 1.1); who.rotation.y = -1.2;
+  TXT.add(R, who); TXT.contact(R, who, { opacity: 0.8 });
+  TXT.weather(R, {});
+  const cx = Y.develop(await TXT.snapshot(R), gl);
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
