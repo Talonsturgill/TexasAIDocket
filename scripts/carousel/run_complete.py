@@ -672,8 +672,8 @@ def self_test() -> int:
         (run_d / "score.json").write_text(json.dumps({"weighted_score": 5.0, "rounds": cap5, "hard_fails": [],
                                                        "rung": None}))
         ok("...and a recorded cap completion stays one", check(run_d, float(top), cap5) == [])
-        old_d = Path(td) / "2026-09-23"                         # dated before the ladder, yet recorded on it
-        old_d.mkdir(exist_ok=True)
+        old_d = Path(td) / "2026-09-22"                         # dated before the ladder, yet recorded on it
+        old_d.mkdir()
         (old_d / "score.json").write_text(json.dumps({"weighted_score": low, "rounds": cap5 - 1, "hard_fails": [],
                                                        "rung": low}))
         ok("a recorded rung keeps a run on the ladder whatever `ladder_from` says later",
