@@ -176,8 +176,14 @@ def in_world(src: str) -> bool:
     # BEFORE THE KEPT SNAPSHOT (Codex, #353). A sky called after the snapshot is not in the
     # pixels that ship. The kept frame is the last snapshot in the source, which is how every
     # frame here is written, so the sky must come before it.
-    shots = [m.start() for m in re.finditer(r"\.snapshot\s*\(", body)]
-    return bool(shots) and sky.start() < shots[-1]
+    shots = list(re.finditer(r"\.snapshot\s*\(\s*([A-Za-z_$][\w$]*)?", body))
+    if not shots or sky.start() >= shots[-1].start():
+        return False
+    # THE SAME RENDER CONTEXT (Codex, #353). A sky on one context and the kept snapshot of another
+    # leaves the kept pixels in a void. Both first arguments must name the same context.
+    sky_ctx = re.match(r"\s*([A-Za-z_$][\w$]*)", body[sky.end():])
+    kept_ctx = shots[-1].group(1)
+    return bool(sky_ctx and kept_ctx and sky_ctx.group(1) == kept_ctx)
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:
@@ -360,6 +366,12 @@ def self_test() -> int:
         ok("a sky called AFTER the snapshot is not in the pixels that ship",
            not in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                        "const s = await TXT.snapshot(R);TXT.sky(R);")))
+        ok("a sky on one render context and the kept snapshot of ANOTHER is not a world",
+           not in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                       "TXT.sky(worldR);const s = await TXT.snapshot(keptR);")))
+        ok("...but the same context under any name is",
+           in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                   "TXT.sky(scene1);const s = await TXT.snapshot(scene1);")))
         ok("...but a sky before the LAST snapshot is, when a frame renders twice",
            in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                    "await TXT.snapshot(R);TXT.sky(R);const s = await TXT.snapshot(R);")))

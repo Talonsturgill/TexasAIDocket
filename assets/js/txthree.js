@@ -336,9 +336,15 @@ export function init(THREE) {
      * white near 231 of 255 and lifts the mids: the murk measured, not a taste. Marked ONLY
      * when the render is good and kept, because a frame that falls back to a canvas design
      * after a black render still wants the grade's own curve (Codex, #353). */
-    if (ok && R.renderer.toneMapping !== THREE.NoToneMapping && typeof window !== 'undefined') {
-      window.TXT_TONEMAPPED = true;
-      try { R.renderer.domElement.setAttribute('data-tonemapped', '1'); } catch (e) {}
+    // ASSIGNED, never only set: the last snapshot is the one a frame keeps, so a good preliminary
+    // render followed by a failed final one must not leave the mark behind (Codex, #353).
+    if (typeof window !== 'undefined') {
+      const mapped = ok && R.renderer.toneMapping !== THREE.NoToneMapping;
+      window.TXT_TONEMAPPED = mapped;
+      try {
+        if (mapped) R.renderer.domElement.setAttribute('data-tonemapped', '1');
+        else R.renderer.domElement.removeAttribute('data-tonemapped');
+      } catch (e) {}
     }
     return { ok, variance, litCount };
   };

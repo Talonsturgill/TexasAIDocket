@@ -1067,12 +1067,17 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules fro
    headline, numbered section labels beside the counter, pill-shaped chips. A frame uses one only
    where its dossier argues for it. If the deck reaches for a default that list does not name,
    Phase 17 adds it there.
-8. **Every rendered frame stands in the world, and passes THE SHOWSTOPPER TEST before type.**
-   `TXT.sky`, a `TXT.ground` surface, `TXT.contact` under every standing thing, `TXT.weather`
-   before the snapshot, a manufactured edge through `TXT.roundedBox`, scatter kept off the type
-   with `avoid`. Then cover the type and read the frame at 432 px: a photograph of a place at a
-   time of day, one thing to look at, a horizon on a third, weight where things touch the ground.
-   A frame that fails that is not finished, and no headline makes it one.
+8. **Every rendered frame stands in a place, and passes THE SHOWSTOPPER TEST before type.**
+   An EXTERIOR frame, at least five of nine, stands in the deck's world: `TXT.sky` before the
+   snapshot, a `TXT.ground` surface, scatter kept off the type with `avoid`. An INTERIOR frame, a
+   hearing room, an office or a document on a desk, has no sky and never fakes one. It is a room
+   built as geometry (a floor through `TXT.ground({ surface:'concrete' })` or a `TXT.roundedBox`
+   slab, walls where the camera sees them), lit by `TXT.environment` and the deck's rig, and never
+   a flat background colour. Both get `TXT.contact` under every standing thing, `TXT.weather`
+   before the snapshot and a manufactured edge through `TXT.roundedBox`. Then cover the type and
+   read the frame at 432 px: a photograph of a place, one thing to look at, weight where things
+   touch the ground, and outdoors a horizon on a third. A frame that fails that is not finished,
+   and no headline makes it one.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render

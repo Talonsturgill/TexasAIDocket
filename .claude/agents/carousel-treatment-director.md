@@ -28,7 +28,7 @@ work and should not try to guess it. The showrunner picks one and grafts the bes
     {"slide": 2, "layout": "DOCUMENT", "subject": "...", "hero_state": "...", "render": "txthree", "bleeds": ["bottom"]}
   ],
   "hero_object": "the ONE object this deck renders on every frame, in metres, as geometry, and the one thing about its shape the story turns on",
-  "material_and_rig": "the PBR material from TXT.mat and the ONE rig from TXT.rigs, for the whole deck",
+  "material_and_rig": "the PBR material from TXT.mat, lit by the world's OWN rig (TXT.deckWorld().rig, or a tuned copy of it), never a second rig from TXT.rigs",
   "accent": "one hex from config/brand.yaml, never the flag red, and which three to six frames carry it",
   "visual_system": {
     "structure": "how the frame is organised, and why this story wants that",
