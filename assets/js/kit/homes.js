@@ -1405,13 +1405,13 @@ export function install(K, THREE, TXT) {
         const x = pos.getX(i), z = pos.getZ(i), p = patch(x, z), k = 0.82 + 0.3 * p;
         col[i * 3] = k * (1 + dry * 0.1 * (p - 0.5)); col[i * 3 + 1] = k; col[i * 3 + 2] = k * 0.95;
         uv.setXY(i, (x + W / 2) / T.metres, (z + D / 2) / T.metres);
-        pos.setY(i, 0.04 + 0.004 * Math.sin(x * 3.1 + ph[3]) * Math.sin(z * 2.7));   // sod sits proud of the dirt, clear of any contact decal
+        pos.setY(i, 0.042 + 0.003 * Math.sin(x * 3.1 + ph[3]) * Math.sin(z * 2.7));   // sod sits proud of the dirt, clear of any contact decal
       }
       base.setAttribute('color', new THREE.BufferAttribute(col, 3)); base.computeVertexNormals();
       const bm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: T.map, bumpMap: T.bump, bumpScale: 1.2, roughness: 0.95, vertexColors: true });
       const bmesh = new THREE.Mesh(base, bm); g.add(bmesh);
-      const soil = new THREE.Mesh(new THREE.BoxGeometry(W, 0.04, D), mat('sodedge', () => new THREE.MeshStandardMaterial({ color: 0x3b3024, roughness: 1 })));
-      soil.position.y = 0.019; g.add(soil);
+      const soil = new THREE.Mesh(new THREE.BoxGeometry(W - 0.01, 0.036, D - 0.01), mat('sodedge', () => new THREE.MeshStandardMaterial({ color: 0x3b3024, roughness: 1 })));
+      soil.position.y = 0.018; g.add(soil);
       // clump: 9 broad blunt blades, each a tapered quad folded along its midrib (3 tris)
       const P = [], C = [], NN = [];
       const cr = K.rng(4242);

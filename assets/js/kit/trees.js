@@ -444,8 +444,8 @@ export function install(K, THREE, TXT) {
         const u = r() * 2 - 1, th = r() * 6.283, sq = Math.sqrt(1 - u * u);
         const v = new V3(sq * Math.cos(th), u, sq * Math.sin(th));
         if (v.y < -(Sh.skirt || 0.2)) continue;
-        const cv = clump(v);
-        if (cv < (Sh.gaps || -1)) continue;
+        const cv = clump(v) * 0.7 + 0.3 * clump(new V3(v.z * 1.7 + 0.3, v.x * 1.7 - 0.2, v.y * 1.7 + 0.5));
+        if (cv < (Sh.gaps || -1) - Math.max(0, v.y - 0.6) * 1.2) continue;
         const dd = (1 - r() * (Sh.thick || 0.25)) * (1 + (Sh.lobe || 0) * cv);
         const x = (E.x || 0) + v.x * E.rx * dd, z = (E.z || 0) + v.z * E.rz * dd;
         const y = E.y0 + v.y * (v.y < 0 ? E.ry * (Sh.below || 0.35) : E.ry) * dd;
@@ -513,7 +513,7 @@ export function install(K, THREE, TXT) {
   /* =======================================================================================
    * mesquite — Prosopis glandulosa
    * ===================================================================================== */
-  const MESQ_LEAF = { shape: 'pinnate', leaf: [70, 5], leaflets: 13, colors: ['#5d7a38', '#7a974a', '#98b15e'], twig: '#2e241c', twigW: 3, density: 3, angle: 1.0, branchy: 2, alphaTest: 0.35 };
+  const MESQ_LEAF = { shape: 'pinnate', leaf: [70, 5], leaflets: 13, colors: ['#4f6a30', '#6a8640', '#869f52'], twig: '#2e241c', twigW: 3, density: 2, angle: 1.0, branchy: 2, alphaTest: 0.35 };
   K.define('mesquite', {
     size: [8, 6, 8],
     options: { height: 6, spread: 8, stems: null },
@@ -533,9 +533,9 @@ export function install(K, THREE, TXT) {
           { n: 5, t0: 0.2, t1: 1.0, angle: 0.95, angleJit: 0.5, lenK: 0.5, radK: 0.55, shorten: 0.3, step: 0.3, wander: 0.55, up: 0.02, droop: 0.06, taper: 0.35 },
           { n: 3, t0: 0.3, t1: 1.0, angle: 0.9, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.2, step: 0.25, wander: 0.5, droop: 0.04, taper: 0.4 },
         ],
-        leaves: { per: 1, from: 0.6, size: [0.45, 0.7], lift: 0.05 },
+        leaves: { per: 1, from: 0.7, size: [0.4, 0.62], lift: 0.05 },
         envelope: { rx: SP / 2, rz: SP / 2 * (0.85 + r() * 0.25), y0: H * 0.62, ry: H * 0.38, base: H * 0.42, flatBottom: 2.5 },
-        shell: { n: 260, size: [0.5, 0.8], thick: 0.35, skirt: 0.3, below: 0.4, gaps: 0.02, lobe: 0.2 },
+        shell: { n: 190, size: [0.45, 0.7], thick: 0.4, skirt: 0.3, below: 0.4, gaps: 0.06, lobe: 0.25 },
       };
       return makeTree(S, r, { bark: 'mesquite', leafKey: 'mesq', leaf: MESQ_LEAF, cards: 7, colors: [0xfff8e0, 0xf2f0d0, 0xffffff, 0xe8eac8], fol: { squash: 0.55, aoMin: 0.6 }, budget: 30000 });
     },
@@ -562,8 +562,8 @@ export function install(K, THREE, TXT) {
           { n: 4, t0: 0.3, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.3, wander: 0.35, droop: 0.1, taper: 0.35 },
         ],
         leaves: { per: 2, from: 0.3, size: [0.5, 0.75], lift: 0.05 },
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.15), y0: H * 0.56, ry: H * 0.36, base: H * 0.3, hollow: 0.5 },
-        shell: { n: 900, size: [0.55, 0.85], thick: 0.25, skirt: 0.75, below: 0.8, gaps: -0.18, lobe: 0.14 },
+        envelope: { rx: SP * 0.42, rz: SP * 0.42 * (0.85 + r() * 0.2), y0: H * 0.6, ry: H * 0.38, base: H * 0.33, hollow: 0.5 },
+        shell: { n: 850, size: [0.55, 0.85], thick: 0.3, skirt: 0.7, below: 0.62, gaps: -0.06, lobe: 0.26 },
       };
       return makeTree(S, r, { bark: 'elm', leafKey: 'elm', leaf: ELM_LEAF, cards: 10, colors: [0xfff4d8, 0xf0ecc8, 0xffffff, 0xe4e4c4] });
     },
