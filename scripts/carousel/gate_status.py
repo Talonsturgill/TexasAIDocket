@@ -578,6 +578,18 @@ def _score(s) -> Row:
     override = s.get("owner_override") or {}
     owner_finished = bool(override.get("instruction") and override.get("date"))
     capped = bool(under_target and cap is not None and rounds is not None and rounds >= cap)
+    # THE LADDER (owner, 2026-09-24). `panel.py` writes `rung` for every deck it governs, None at
+    # the round cap. A deck over its round's rung PASSES even under the top bar, and under the rung
+    # it is a work order rather than a hold.
+    if "rung" in s and not owner_finished:
+        r = s.get("rung")
+        if r is None:
+            return Row("score", WARN if under_target else PASS,
+                       f"{val} at the {cap} round cap, the finished deck ships"
+                       + (f"; {threshold} top rung, shortfall named" if under_target else ""))
+        if isinstance(val, (int, float)) and float(val) >= float(r):
+            return Row("score", PASS, f"{val} over this round's {r} rung")
+        return Row("score", FAIL, f"{val} under this round's {r} rung; KEEP EDITING, a work order")
     if owner_finished or capped:
         why = "owner ended the search" if owner_finished else f"{rounds} round(s), cap {cap}"
         return Row("score", WARN, f"{val} against {threshold} target; {why}; not a ship failure")
@@ -888,6 +900,15 @@ def self_test() -> int:
     ok("the score row reads this repo's own weighted_score field",
        "6.82" in _score({"weighted_score": 6.82, "ship": False}).detail,
        _score({"weighted_score": 6.82, "ship": False}).detail)
+    # THE LADDER (owner, 2026-09-24): panel.py writes `rung`, None at the cap.
+    ok("ladder: over this round's rung PASSES though under the top bar",
+       _score({"weighted_score": 7.8, "threshold": 8.0, "rounds": 4, "rung": 7.7, "ship": True}).status == PASS)
+    ok("ladder: under the rung is a work order that says keep editing",
+       "KEEP EDITING" in _score({"weighted_score": 7.5, "threshold": 8.0, "rounds": 2, "rung": 8.0,
+                                 "ship": False}).detail)
+    ok("ladder: at the cap a low deck ships with the shortfall named, a WARN and never a FAIL",
+       _score({"weighted_score": 6.4, "threshold": 8.0, "rounds": 5, "rung": None,
+               "ship": True}).status == WARN)
     ok("...and a run below the target before the cap still says it is below the threshold",
        "below threshold" in _score({"weighted_score": 6.82, "ship": False}).detail)
     ok("...while a below-target run at the cap is an honest warning, not a ship failure",
