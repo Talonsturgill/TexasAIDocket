@@ -225,10 +225,16 @@
           r = l + (r - l) * sat; g = l + (g - l) * sat; b = l + (b - l) * sat;
           r = r < 0 ? 0 : r; g = g < 0 ? 0 : g; b = b < 0 ? 0 : b;
         }
-        // LUT chain
-        let R = lut[0][Math.min(NL - 1, (r / LMAX * (NL - 1)) | 0)];
-        let G = lut[1][Math.min(NL - 1, (g / LMAX * (NL - 1)) | 0)];
-        let B = lut[2][Math.min(NL - 1, (b / LMAX * (NL - 1)) | 0)];
+        // LUT chain, INTERPOLATED (2026-09-24). A linear LUT of 1024 steps over 0 to 2 gives the
+        // deep shadows a handful of entries, and truncating to one posterised every dark gradient
+        // into bands: a night sky, dark wood, the shade side of a render. Measured on the first
+        // interior frame. Reading between two entries costs nothing and the bands go.
+        const fr = Math.min(NL - 1.001, r / LMAX * (NL - 1)), ir = fr | 0, tr = fr - ir;
+        const fg = Math.min(NL - 1.001, g / LMAX * (NL - 1)), ig = fg | 0, tg = fg - ig;
+        const fb = Math.min(NL - 1.001, b / LMAX * (NL - 1)), ib = fb | 0, tb = fb - ib;
+        let R = lut[0][ir] + (lut[0][ir + 1] - lut[0][ir]) * tr;
+        let G = lut[1][ig] + (lut[1][ig + 1] - lut[1][ig]) * tg;
+        let B = lut[2][ib] + (lut[2][ib + 1] - lut[2][ib]) * tb;
         // vignette: multiply toward a slightly COOLER edge (corners stay alive)
         if (vig > 0) {
           const dx = x - cxm, dy = y - cym;

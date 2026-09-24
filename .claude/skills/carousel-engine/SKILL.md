@@ -251,8 +251,39 @@ All under `assets/js/`, all zero-network, all deterministic per seed.
 | `txsdf.js` | `TXSDF` | CPU signed-distance-field raymarcher |
 | `txengrave.js` | `TXENGRAVE` | white-line intaglio, the engraving bench |
 | `txpost.js` | `TXPOST` | film-grade post-processing for slide canvases |
-| `txthree.js` | — | the GPU illustration bench (three.js plus SwiftShader) |
+| `txthree.js` | — | the GPU illustration bench (three.js plus SwiftShader), and since 2026-09-24 the WORLD every rendered frame stands in (below) |
 | `d3.v7.min.js`, `topojson-client.min.js`, `zdog.min.js`, `three.module.min.js` | vendor | untouched |
+
+## The world every rendered frame stands in (2026-09-24)
+
+Carousel no. 32 rendered all nine frames and every one was an object in a void: a flat background
+colour, a grey plane, shadows hard because `PCFSoftShadowMap` ignores `shadow.radius`, and a second
+filmic curve in the grade on top of the renderer's ACES. The world is now IN the engine, so no
+chassis writes its own sky, ground texture or develop step again.
+
+| call | what it does |
+|---|---|
+| `TXT.worlds.<name>` | one coherent light: `goldenHour`, `blueHour`, `nightSodium`, `highNoon`, `overcast`, `stormFront`. Sky colours, haze, fog density, exposure, tone curve, and `rig` colours for `TXT.deckRig`. Copy to tune, never edit |
+| `TXT.setup(c, {fog:[hex, density], tone, exposure})` | a two element fog is exponential haze. `tone` is `aces` (default), `agx` or `neutral`. VSM shadows by default, `shadows:'pcfsoft'` for the old ones. far is 1000 |
+| `TXT.deckWorld()` | the deck's ONE world, from `sky` in the chassis's `TXDECK.declare` (a preset name, or `{ preset, ...overrides }`). Throws if the chassis declares none |
+| `TXT.sky(R, W?)` | the dome (gradient, haze band, sun glow and disc at the DECLARED light, cloud streaks, stars), the IBL rendered from that same sky, and the fog retinted to its horizon. Omit `W` to use the declared sky. THROWS if `W` differs from it, and throws in a declared deck whose chassis declares no sky. A standalone scene with no `TXDECK.declare` may pass any world, with `sunAt:{az, el}` for its sun. Follows the camera, call in any order |
+| `TXT.ground(R, {surface, size, tile, seed, joints})` | `caliche`, `dirt`, `asphalt`, `concrete`, `grass`: seeded map, roughness and bump, with macro variation so the tile never shows. No `surface` is the old flat plane |
+| `TXT.scatter(R, {kind, count, area, avoid, seed, scale})` | `grass`, `scrub`, `rock`, instanced and seeded, denser near the camera, so call it AFTER `TXT.frame`. `avoid` rectangles in world metres keep a pad bare and the type's reserve calm |
+| `TXT.interior(R, {w, d, h, floor, wall, window, ceiling})` | a ROOM for a frame with no sky: a `TXT.ground` floor with tooth, back and side walls that take shadows, a skirting board, a lit window (`left`, `right`, `back`, or `null`), the studio environment when no world lit the frame, and a background from the wall colour. Centred on x = 0, back wall at z = -d/2. A hearing room, an office, a desk |
+| `TXT.contact(R, obj, {opacity, y})` | the soft dark core where a standing thing meets the ground, sized to its footprint and turned with it. It goes on the surface the thing stands on: a `TXT.ground` at any height that passes through it or lies within 25 cm under it, else its own base (a dock, a slab, a desk). `y` overrides |
+| `TXT.roundedBox(w, h, d, r, mat)` | a box whose edges catch a highlight. r 0.02 to 0.06 m for plate steel |
+| `TXT.weather(R, {grime, height, mottle})` | patches every standard material once: darker toward the ground, mottled paint and roughness, in world space |
+| `TXT.snapshot(R)` | as before, and it marks the page so `TXDECK.finish` skips its own filmic curve on an already tone mapped frame |
+
+`TXT.environment` does nothing after `TXT.sky` unless passed `force:true`, because the sky already
+lit the frame. Cost on no. 32's forty set yard: world 0.4 s, snapshot 6.2 s at the default 2048
+shadow map and 9.3 s at 4096, grade 1.2 s, against render.py's 30 s wait.
+
+`examples/world-proof/` renders no. 32's own model and camera in four worlds beside the frame that
+shipped. `print_ban.py` counts frames that call `TXT.sky`: five of nine from 2026-09-24, and the
+probe frame one of one. Every other rendered frame calls `TXT.interior`, and a rendered frame that
+calls neither before its kept snapshot fails the run. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
+THE WORLD, is the doctrine.
 
 `TXGeo` uses the same Albers equal-area conic the website's map builder uses, so a slide and
 the site agree about where places are. `tests/txgeo.mjs` asserts that, and asserts the map is

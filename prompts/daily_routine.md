@@ -864,11 +864,25 @@ six seconds a frame. Concretely:
 - **Finish with `txpost.js`**, the film grade, never with a screen. Grain is a grade on a render,
   not a substitute for one.
 - **Text stays DOM.** Never render type in 3D, because the PDF must keep vector type.
+- **Every rendered frame stands in a WORLD** (new 2026-09-24, and it is what no. 32 was missing).
+  The owner, the day after the render shipped: *"the artwork hasnt hit the mark yet ever, and it
+  needs to be a SHOWSTOPPER every single slide should literally look world reknowned."* No. 32
+  rendered all nine frames and still scored 6.8 on craft, because the engine gave every frame a
+  flat background colour, hard shadows and a second tone curve. The engine now carries the world:
+  `TXT.sky` (a real sky, IBL rendered from it, haze in its horizon hue), `TXT.ground` with a
+  `surface`, `TXT.scatter`, `TXT.contact`, `TXT.weather` and `TXT.roundedBox`. **Look at
+  `examples/world-proof/compare.webp` before anything else in this phase**: the same model and
+  camera as no. 32 frame 6, before and after, differing in the engine alone. `print_ban.py` counts
+  frames that call `TXT.sky`, at least five of nine and the probe one of one.
+  `ILLUSTRATION_SYSTEM.md`, THE WORLD, has the five calls, the table of worlds and THE
+  SHOWSTOPPER TEST every critic applies.
 
 **Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first, and look at
-`examples/figure-bearing/contact_sheet.webp` before a director is spawned.** That example is solid
+`examples/world-proof/compare.webp` and `examples/figure-bearing/contact_sheet.webp` before a
+director is spawned.** The first is the floor for light and atmosphere and never a subject to copy.** The second is solid
 shaded forms drawing a computed figure, with no screen anywhere, and it is the owner's own worked
-example. Hand each director this section, the doctrine and the example. **Every frame still
+example. Hand each director this section, the doctrine and both examples, and have each pitch its
+WORLD from the table in THE WORLD, with the reason this story wants that light. **Every frame still
 carries one drawn SUBJECT at true scale owning at least thirty percent of the frame, in one of the
 LAYOUTS rotated across the deck, and now it is RENDERED rather than printed.**
 
@@ -965,9 +979,13 @@ and it outranks every per frame rule in that file.
 
 It holds three things and nothing else:
 
-1. **One light**, an azimuth and an elevation, stated in the header in words a frame author can
-   check a drawing against ("the key is upper right and every cast runs to the lower left"),
-   not only as numbers.
+1. **One light and the world it belongs to**, an azimuth and an elevation, stated in the header
+   in words a frame author can check a drawing against ("the key is upper right and every cast runs
+   to the lower left"), not only as numbers, and ONE `TXT.worlds` preset (or a tuned copy of one)
+   whose elevation range the declared light sits inside, declared as `sky` in the same
+   `TXDECK.declare`. Frames read it with `TXT.deckWorld()`, and `TXT.sky` refuses any other. The chassis never paints its own sky,
+   writes its own ground texture or develops a frame through a second tone curve. The engine
+   carries all three, and a second copy is how they drift.
 2. **One material vocabulary**, the ramp and the primitives this deck's world is made of.
 3. **One way of seating type**, which is `TXDECK.lineBoxes` plus `reserveMask` and is never a
    plate.
@@ -981,7 +999,9 @@ and the per frame composition is this machine's whole strength. The chassis hand
 primitives. The frame decides what to build from them.
 
 **Then render ONE probe frame against it before writing the other eight**, because a chassis
-that is wrong is wrong nine times and finding that out on frame nine costs the run.
+that is wrong is wrong nine times and finding that out on frame nine costs the run. **Probe an
+EXTERIOR frame**, one that stands in the deck's world, because the probe is where the world is
+checked: `print_ban.py` asks the probe for `TXT.sky`, one of one.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render --only 1
@@ -997,8 +1017,11 @@ minute whether the chassis is building the deck the owner asked for or the one t
 A red here is fixed before frame two is written.
 
 **THE THIRD ONE IS THE CAMERA, AND IT IS THE ONE THIS ENGINE KEEPS NOT USING.** At least five
-frames of nine stand on the scene bench: `TXSCENE.create`, something placed through the camera
-at true scale in metres, and a cast shadow from the chassis's declared light. `assets/js/txscene.js`
+frames of nine are STAGED: placed through a camera at true scale in metres, on a ground, with a
+cast shadow from the chassis's declared light. A frame rendered through `txthree.js` that calls
+`TXT.frame`, `TXT.ground`, `TXT.deckRig`, `TXT.add` and `TXT.snapshot` is staged, and
+`depth_floor.py` reads it that way (its GPU_CUES, since 2026-09-23). That is the default now.
+The canvas bench, `TXSCENE.create`, is for the rare frame that is not rendered. `assets/js/txscene.js`
 has done all of this since September 11th and 241 frames were drawn in screen pixels anyway, with
 54 of them LOADING the bench first. A camera a frame does not place through is a camera it did
 not use. Read THE FRAME STANDS IN A PLACE in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, and
@@ -1016,7 +1039,7 @@ not edit the workshop.
 
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
 dossiers, every one of them loading the chassis Phase 10.5 wrote. **The order of work is the
-craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Seven rules from it bind here:**
+craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules from it bind here:**
 
 1. **Frames 7, 8 and 9 are built first.** Every judged deck was thinnest where the argument
    lands, because the budget ran out there. The close, then the turn, then the open.
@@ -1044,6 +1067,18 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Seven rules fro
    headline, numbered section labels beside the counter, pill-shaped chips. A frame uses one only
    where its dossier argues for it. If the deck reaches for a default that list does not name,
    Phase 17 adds it there.
+8. **Every rendered frame stands in a place, and passes THE SHOWSTOPPER TEST before type.**
+   An EXTERIOR frame, at least five of nine, stands in the deck's world: `TXT.sky` before the
+   snapshot, a `TXT.ground` surface, scatter kept off the type with `avoid`. An INTERIOR frame, a
+   hearing room, an office or a document on a desk, has no sky and never fakes one. It stands in a
+   room `TXT.interior` builds (a floor with tooth, walls that take the shadows, a lit window, the
+   studio environment), lit by the deck's rig, and never a flat background colour. `print_ban.py`
+   fails a rendered frame that calls neither `TXT.sky` nor `TXT.interior` before its kept
+   snapshot. Both get `TXT.contact` under every standing thing, `TXT.weather`
+   before the snapshot and a manufactured edge through `TXT.roundedBox`. Then cover the type and
+   read the frame at 432 px: a photograph of a place, one thing to look at, weight where things
+   touch the ground, and outdoors a horizon on a third. A frame that fails that is not finished,
+   and no headline makes it one.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render
@@ -1071,7 +1106,9 @@ it sees canvas ink that no DOM check can. A slide that draws nothing renders wit
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
-at 432 px, rendered rather than placed, with no screen on it.** Fix what they find, re-render, re-review. Then 1
+at 432 px, rendered rather than placed, with no screen on it, AND does it pass THE SHOWSTOPPER
+TEST in `ILLUSTRATION_SYSTEM.md`: a photograph of a place at a time of day, standing in a world
+rather than a void, with contact and weathering where things meet the ground.** Fix what they find, re-render, re-review. Then 1
 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
 nine slides.
 

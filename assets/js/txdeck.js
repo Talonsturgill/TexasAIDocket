@@ -318,6 +318,15 @@
      * bloom and a data frame may drop the aberration. Everything else is the deck's. */
     if (opts.bloom != null) g.bloom = opts.bloom;
     if (opts.aberration != null) g.aberration = opts.aberration;
+    /* ONE TONE CURVE, NEVER TWO (2026-09-24). A frame rendered through txthree.js arrives here
+     * already tone mapped by the renderer, and the grade's filmic curve on top of it capped white
+     * near 231 of 255 and lifted the mids, which is the murk every rendered deck shipped with.
+     * TXT.snapshot marks the page, and the grade then keeps its contrast, split tone, bloom,
+     * grain and vignette and skips only the second curve. */
+    if (global.TXT_TONEMAPPED && g.filmic !== false) {
+      g.filmic = false;
+      if (global.document && document.body) document.body.setAttribute("data-filmic-once", "1");
+    }
     TXPOST.grade(cx, g);
     if (global.document && document.body) {
       document.body.setAttribute("data-deck-finish", "1");
