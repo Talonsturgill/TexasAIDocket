@@ -185,7 +185,7 @@ export function install(K, THREE, TXT) {
         }
         x.fillStyle = rgb(c, 0.6); x.fillRect(0, 0, 3, h); x.fillRect(w - 3, 0, 3, h);
         speckle(x, w, h, 13, 0.03);
-      }), clamp: true }));
+      }) }));
   }
 
   /* ---- geometry helpers ------------------------------------------------------------------ */
@@ -230,10 +230,10 @@ export function install(K, THREE, TXT) {
     return m;
   }
   // a pipe run along a polyline with an elbow ball at every bend
-  function pipe(pts, r, mat, parent) {
-    for (let i = 0; i < pts.length - 1; i++) bar(pts[i], pts[i + 1], r, mat, parent, 12);
+  function pipe(pts, r, mat, parent, low) {
+    for (let i = 0; i < pts.length - 1; i++) bar(pts[i], pts[i + 1], r, mat, parent, low ? 8 : 12);
     for (let i = 1; i < pts.length - 1; i++) {
-      const s = new THREE.Mesh(new THREE.SphereGeometry(r * 1.08, 12, 8), mat);
+      const s = new THREE.Mesh(new THREE.SphereGeometry(r * 1.08, low ? 8 : 12, low ? 5 : 8), mat);
       s.position.set(pts[i][0], pts[i][1], pts[i][2]); parent.add(s);
     }
   }
@@ -455,7 +455,7 @@ export function install(K, THREE, TXT) {
       const x = a[0] + (b[0] - a[0]) * k / n, z = a[1] + (b[1] - a[1]) * k / n;
       const end = k === 0 || k === n;
       cyl(end ? 0.05 : 0.036, end ? 0.05 : 0.036, h, post, x, 0, z, 8, parent);
-      cyl(0.03, 0.12, 0.2, concrete(), x, -0.1, z, 8, parent);
+      cyl(0.09, 0.13, 0.08, concrete(), x, 0, z, 8, parent);
       if (barbed) bar([x, h, z], [x - uz * 0.4, h + 0.4, z + ux * 0.4], 0.018, post, parent, 5);
     }
     bar([a[0], h - 0.03, a[1]], [b[0], h - 0.03, b[1]], 0.021, post, parent, 6);
@@ -521,7 +521,7 @@ export function install(K, THREE, TXT) {
     return new THREE.Mesh(g, mat);
   }
   K.define('shipping_container', {
-    size: [2.44, 2.59, 12.19],
+    size: [2.44, 2.59, 12.3],
     options: { color: null, highCube: false, doorsOpen: false, rust: 0.5 },
     note: '40 ft ISO dry container, corrugated walls, corner castings, cargo doors with four locking bars on +z. Seeded paint.',
     make(o, r) {
@@ -618,27 +618,28 @@ export function install(K, THREE, TXT) {
     const skin = paint(col, 0.42, 0.28), trim = paint(col === 0xd4a82a ? 0x2a2a2a : col, 0.5, 0.28);
     const tankCol = r() < 0.55 ? col : 0x34373a, tank = paint(tankCol, 0.55, 0.3);
     const L = 12.2, W = 2.9, TK = 1.25, EH = 3.05, pad = o.pad ? 0.2 : 0;
+    const bv = (v) => (low ? 0 : v), SG = low ? 12 : 28;
     const y1 = pad + TK, y2 = y1 + EH;
     if (o.pad) tbox(L + 1.4, pad, W + 1.4, concrete(), 0, 0, 0, root, 3);
     // the belly tank, with its welded top lip, fill box, vents and lifting lugs
-    tbox(L + 0.2, TK, W + 0.34, tank, 0, pad, 0, root, 0, 0.05);
+    tbox(L + 0.2, TK, W + 0.34, tank, 0, pad, 0, root, 0, bv(0.05));
     tbox(L + 0.26, 0.05, W + 0.4, tank, 0, y1 - 0.05, 0, root);
     for (const x of [-L / 2 + 0.4, -L / 2 + 4.2, L / 2 - 4.2, L / 2 - 0.4]) tbox(0.08, TK - 0.15, 0.03, tank, x, pad + 0.05, (W + 0.34) / 2, root);
-    tbox(0.6, 0.42, 0.34, tank, -3.6, pad + 0.6, W / 2 + 0.3, root, 0, 0.02);        // fill spill box
+    tbox(0.6, 0.42, 0.34, tank, -3.6, pad + 0.6, W / 2 + 0.3, root, 0, bv(0.02));        // fill spill box
     tbox(0.64, 0.04, 0.38, tank, -3.6, pad + 1.02, W / 2 + 0.3, root);
     if (!low) {
       cyl(0.09, 0.09, 0.04, chrome(), -2.6, pad + 0.7, W / 2 + 0.19, 16, root).rotation.x = Math.PI / 2;   // level gauge
       for (const sx of [-1, 1]) for (const sz of [-1, 1]) tbox(0.16, 0.2, 0.05, tank, sx * (L / 2 - 0.2), pad + TK - 0.3, sz * (W / 2 + 0.2), root);
     }
-    for (const sx of [-0.5, 0.35]) {                                                   // tank vents to the roof
+    if (!low) for (const sx of [-0.5, 0.35]) {                                         // tank vents to the roof
       const x = sx * L;
       pipe([[x, y1, -W / 2 - 0.1], [x, y2 + 0.5, -W / 2 - 0.1]], 0.035, galv(), root);
       const cap = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 6, 0, TAU, 0, Math.PI / 2), galv());
       cap.position.set(x, y2 + 0.5, -W / 2 - 0.1); root.add(cap);
     }
     // the enclosure, its roof cap with a drip edge, and standing seams every 1.22 m
-    tbox(L, EH, W, skin, 0, y1, 0, root, 0, 0.035);
-    tbox(L + 0.12, 0.09, W + 0.12, trim, 0, y2, 0, root, 0, 0.02);
+    tbox(L, EH, W, skin, 0, y1, 0, root, 0, bv(0.035));
+    tbox(L + 0.12, 0.09, W + 0.12, trim, 0, y2, 0, root, 0, bv(0.02));
     for (let x = -L / 2 + 0.61; x < L / 2 - 0.2; x += 1.22) for (const s of [-1, 1])
       cbox(0.05, EH - 0.12, 0.028, skin, x, y1 + EH / 2, s * (W / 2 + 0.014), root);
     // each long side: doors and intake louvres (the radiator bay at +x stays blank)
@@ -674,7 +675,7 @@ export function install(K, THREE, TXT) {
     // control end, -x: a door and conduit stub ups
     const ce = grp(root); ce.position.set(-L / 2 - 0.02, 0, 0); ce.rotation.y = -Math.PI / 2;
     door(ce, 0, 0);
-    for (const z of [-0.8, -0.5, 0.9]) pipe([[-L / 2 - 0.12, 0, z], [-L / 2 - 0.12, y1 + 0.4, z]], 0.045, galv(), root);
+    if (!low) for (const z of [-0.8, -0.5, 0.9]) pipe([[-L / 2 - 0.12, 0, z], [-L / 2 - 0.12, y1 + 0.4, z]], 0.045, galv(), root);
     cbox(0.3, 0.5, 1.0, trim, -L / 2 - 0.15, y1 + 0.4, -0.65, root);
     // the roof: silencer(s) on saddles, a flex from the engine, the stack and its rain cap
     const two = o.stacks != null ? o.stacks === 2 : r() < 0.5;
@@ -682,21 +683,21 @@ export function install(K, THREE, TXT) {
     const zs = two ? [-0.62, 0.62] : [0];
     for (const z of zs) {
       const sx = 0.2, sl = 4.4, sr = two ? 0.42 : 0.55, sy = y2 + 0.09 + 0.35 + sr;
-      hcyl(sr, sl, silM, sx, sy, z, 'x', 28, root);
+      hcyl(sr, sl, silM, sx, sy, z, 'x', SG, root);
       for (const e of [-1, 1]) {
-        const cone = new THREE.Mesh(new THREE.CylinderGeometry(sr * 0.35, sr, 0.35, 28), silM);
+        const cone = new THREE.Mesh(new THREE.CylinderGeometry(sr * 0.35, sr, 0.35, SG), silM);
         cone.rotation.z = -e * Math.PI / 2; cone.position.set(sx + e * (sl / 2 + 0.175), sy, z); root.add(cone);
-        hcyl(sr + 0.03, 0.05, silM, sx + e * (sl / 2 - 0.1), sy, z, 'x', 28, root);
+        if (!low) hcyl(sr + 0.03, 0.05, silM, sx + e * (sl / 2 - 0.1), sy, z, 'x', SG, root);
       }
-      for (const e of [-1, 1]) { tbox(0.18, 0.35 + sr * 0.35, sr * 1.4, darkSteel(), sx + e * sl * 0.3, y2 + 0.09, z, root); }
-      pipe([[sx - sl / 2 - 0.35, sy, z], [sx - sl / 2 - 0.8, sy, z], [sx - sl / 2 - 0.8, y2 + 0.09, z]], sr * 0.34, silM, root);
+      for (const e of [-1, 1]) { tbox(0.18, 0.35 + sr * 0.35, sr * 1.4, silM, sx + e * sl * 0.3, y2 + 0.09, z, root); }
+      pipe([[sx - sl / 2 - 0.35, sy, z], [sx - sl / 2 - 0.8, sy, z], [sx - sl / 2 - 0.8, y2 + 0.09, z]], sr * 0.34, silM, root, low);
       hcyl(sr * 0.42, 0.25, galv(), sx - sl / 2 - 0.8, y2 + 0.3, z, 'y', 16, root).rotation.set(0, 0, 0);
       const stx = sx + sl / 2 + 0.35, stTop = sy + 2.4;
-      pipe([[stx, sy, z], [stx + 0.4, sy, z], [stx + 0.4, stTop, z]], sr * 0.36, silM, root);
+      pipe([[stx, sy, z], [stx + 0.4, sy, z], [stx + 0.4, stTop, z]], sr * 0.36, silM, root, low);
       // rain cap: a hinged flapper, propped a little open
-      const cap = new THREE.Mesh(new THREE.CylinderGeometry(sr * 0.42, sr * 0.42, 0.02, 20), silM);
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(sr * 0.42, sr * 0.42, 0.02, low ? 10 : 20), silM);
       cap.position.set(stx + 0.4 - sr * 0.1, stTop + 0.07, z); cap.rotation.z = 0.35; root.add(cap);
-      cyl(sr * 0.41, sr * 0.41, 0.04, silM, stx + 0.4, stTop - 0.02, z, 20, root);
+      if (!low) cyl(sr * 0.41, sr * 0.41, 0.04, silM, stx + 0.4, stTop - 0.02, z, 20, root);
     }
     if (!low) for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
       const eye = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.018, 6, 12), galv());
@@ -724,7 +725,7 @@ export function install(K, THREE, TXT) {
     return g;
   }
   K.define('genset', {
-    size: [13.6, 7.4, 4.3],
+    size: [13.6, 8.05, 4.3],
     options: { color: null, stacks: null, pad: true, lod: 'high' },
     note: 'Containerised 2 to 3 MW diesel genset: 12.2 m sound attenuated enclosure on a belly tank, radiator louvres on +x, personnel doors and intake louvres on both sides, roof silencer and stack. lod:"low" for a yard of them.',
     make(o, r) { return bake(buildGenset(o, r)); },
@@ -745,7 +746,7 @@ export function install(K, THREE, TXT) {
     for (const s of [-1, 1]) {
       const nb = n;
       for (let i = 0; i < nb; i++) {
-        const x = -L / 2 + 0.35 + (i + 0.5) * (L - 0.7) / nb, open = !low && (i === 1 || i === 2) && s > 0;
+        const x = -L / 2 + 0.35 + (i + 0.5) * (L - 0.7) / nb, open = false;
         if (open) continue;
         louvrePanel(root, x, 0.25, s * (W / 2), (L - 0.7) / nb - 0.06, cy - 0.3, s, col, true);
       }
@@ -794,7 +795,7 @@ export function install(K, THREE, TXT) {
     return root;
   }
   K.define('chiller', {
-    size: [12.6, 2.6, 2.4],
+    size: [13.3, 2.76, 2.5],
     options: { color: null, fans: 6 },
     note: 'Air cooled screw chiller: V condenser coils under two rows of guarded fans, louvred compressor base, control panel on -x, chilled water nozzles on +x.',
     make(o, r) { return bake(buildChiller(o, r, false)); },
@@ -844,7 +845,7 @@ export function install(K, THREE, TXT) {
     });
   }
   K.define('server_rack', {
-    size: [0.6, 2.0, 1.07],
+    size: [0.6, 2.03, 1.07],
     options: { door: false, leds: true, fill: 0.85, blink: true },
     note: '42U rack, black steel, seeded servers, storage, switch, patch panel and blanks; perforated door optional; LEDs are an unlit instanced layer and userData.tick(t) blinks them.',
     make(o, r) {
@@ -949,7 +950,13 @@ export function install(K, THREE, TXT) {
   for (const n of Object.keys(K.registry)) {
     if (BEFORE.has(n)) continue;
     const spec = K.registry[n], make = spec.make;
-    spec.make = (o, r) => make(Object.assign({}, spec.options || {}, o), r);
+    spec.make = (o, r) => {
+      const g = make(Object.assign({}, spec.options || {}, o), r);
+      // origin at the centre of the footprint, on the ground
+      const bb = new THREE.Box3().setFromObject(g), cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
+      if (Math.abs(cx) > 0.01 || Math.abs(cz) > 0.01) g.children.forEach((c) => { c.position.x -= cx; c.position.z -= cz; c.updateMatrix(); });
+      return g;
+    };
   }
 }
 
@@ -1008,7 +1015,7 @@ function installBig(K, THREE, TXT, H) {
    * tanks, a glazed office entry, truck docks on the +x end, a perimeter security fence.
    * ==================================================================================== */
   K.define('data_center', {
-    size: [228, 20.6, 114],
+    size: [227, 16.2, 111.4],
     options: { length: 180, depth: 70, height: 14, gensets: null, fence: true, color: null, panels: null, site: true },
     note: 'Hyperscale data hall: length 100 to 300 m, IMP walls with louvred intake bays, rooftop dry cooler rows, a front genset yard with stacks and bulk fuel tanks, glazed office, docks on +x, security fence. Front (+z) is the generator yard.',
     make(o, r) {
@@ -1039,7 +1046,7 @@ function installBig(K, THREE, TXT, H) {
       const bays = Math.max(6, Math.round(L / 9.6)), bw = L / bays;
       for (const s of [-1, 1]) {
         const zf = s > 0 ? zb1 : zb0;
-        for (let i = 0; i <= bays; i++) tbox(0.7, Hh - 1.4 - 0.3, 0.3, paint(col, 0.5, 0.3), -L / 2 + i * bw, 1.4, zf + s * 0.15, root, 0, 0.03);
+        for (let i = 0; i <= bays; i++) tbox(0.7, Hh - 1.4 - 0.3, 0.3, paint(col, 0.5, 0.3), -L / 2 + i * bw, 1.4, zf + s * 0.15, root);
         for (let i = 0; i < bays; i++) {
           const cx = -L / 2 + (i + 0.5) * bw;
           if (s > 0 && cx > L / 2 - 40) continue;                                   // office end stays clean
@@ -1178,7 +1185,7 @@ function installBig(K, THREE, TXT, H) {
    * edges, a flared fan stack per cell with its fan inside, handrails, a switchback stair.
    * ==================================================================================== */
   K.define('cooling_tower', {
-    size: [50, 13.8, 14],
+    size: [48.5, 13.6, 15.3],
     options: { cells: 4, cell: 11, color: null },
     note: 'Mechanical draft crossflow cooling tower: cells in a row along x, louvred inlets on +z and -z, FRP casing, fan stacks with fans, deck rails, stair on +x.',
     make(o, r) {
@@ -1263,7 +1270,7 @@ function installBig(K, THREE, TXT, H) {
     });
   }
   K.define('hyperbolic_cooling_tower', {
-    size: [124, 150, 124],
+    size: [125, 150.7, 125],
     options: { height: 150, plume: false },
     note: 'Natural draft hyperbolic cooling tower in weathered concrete, 120 m and up (default 150): hyperboloid shell, V raker columns, basin, dark fill inside. plume:true adds a soft vapour plume.',
     make(o, r) {
@@ -1333,16 +1340,16 @@ function installBig(K, THREE, TXT, H) {
       x.fillStyle = rgb(paintC, 1); x.fillRect(0, 0, w, h);
       speckle(x, w, h, 23, 0.03);
       const inkS = rgb(ink, 1);
-      for (const cx of [w * 0.25, w * 0.75]) {                  // front and back
+      for (const cx of [0, w * 0.5, w]) {                      // back (wrapping at the seam) and front
         let tw = 0;
-        if (name) tw = strokeText(x, name, cx + (star ? 70 : 0), h * 0.5, h * 0.52, inkS, 1.35);
-        if (star) { starPath(x, cx - tw / 2 - (name ? 30 : 0) + (name ? 0 : 0), h * 0.5, h * 0.36); x.fillStyle = inkS; x.fill(); }
+        if (name) tw = strokeText(x, name, cx + (star ? 60 : 0), h * 0.5, h * 0.44, inkS, 1.35);
+        if (star) { starPath(x, cx + (name ? 60 - tw / 2 - 75 : 0), h * 0.5, h * 0.3); x.fillStyle = inkS; x.fill(); }
       }
     });
   }
   const TX_COLOURS = [0xe9eae6, 0xdfe7ec, 0xd9e3e8, 0xefe9da, 0xc9dbe6];
   K.define('water_tower', {
-    size: [18, 46, 18],
+    size: [18.8, 41.2, 21.4],
     options: { style: 'legs', name: 'TEXAS', star: true, color: null, ink: 0x1e3a6b, antennas: true },
     note: 'Texas elevated water tank, 45 m. style "legs" (spheroid on six legs, balcony, riser) or "pedestal" (fluted column and bowl). name paints the town band front and back ("" for none), star adds a lone star.',
     make(o, r) {
@@ -1440,7 +1447,7 @@ function installBig(K, THREE, TXT, H) {
    * electric prime mover. `crank` in degrees poses it; the beam is solved from the linkage.
    * ==================================================================================== */
   K.define('pump_jack', {
-    size: [12.2, 8.2, 3.2],
+    size: [12, 7.4, 3],
     options: { crank: 40, color: null, head: null, guard: null, motor: 'electric' },
     note: 'Conventional beam pumping unit, true linkage: crank (degrees) poses crank, pitmans, beam, horsehead, bridle and polished rod together. Well on +x, prime mover on -x, side profile faces +z.',
     make(o, r) {
@@ -1588,7 +1595,7 @@ function installBig(K, THREE, TXT, H) {
    * load line manifold, a heater treater, a two phase separator and a combustor outside.
    * ==================================================================================== */
   K.define('oil_tank', {
-    size: [26, 9.5, 14],
+    size: [36.9, 7.75, 13.5],
     options: { tanks: 4, color: null },
     note: 'Permian tank battery: stock tanks in a steel containment wall with walkway and stair, thief hatches, vents, load line manifold; heater treater, separator and combustor alongside.',
     make(o, r) {
@@ -1679,7 +1686,7 @@ function installBig(K, THREE, TXT, H) {
    * bumpers and lights on +z, a concrete truck court with trailers at some doors.
    * ==================================================================================== */
   K.define('warehouse', {
-    size: [152, 13.5, 124],
+    size: [156, 13.4, 126],
     options: { length: 150, depth: 80, height: 12.8, docks: null, trucks: true, color: null },
     note: 'Tilt wall distribution warehouse: painted concrete panels with reveals and accent band, clerestory glazing, glazed office corner at +x, dock doors with seals along +z, truck court with trailers.',
     make(o, r) {
@@ -1735,7 +1742,6 @@ function installBig(K, THREE, TXT, H) {
       }
       if (o.trucks) {
         for (let i = 0; i < docks; i++) if (r() < 0.38) trailer(root, dx0 + (i + 0.5) * 3.96, zb1 + 8.3, 0, pick(r, [0xecece8, 0xe0dfd8, 0xd8d8d2, 0xcfd2d4]), r);
-        for (let i = 0; i < 6; i++) trailer(root, dx0 + i * 3.8 + 10, zb1 + court + 1.5, 0, pick(r, [0xecece8, 0xe0dfd8, 0xd8d8d2]), r);
       }
       // painted stall lines on the court
       for (let i = 0; i <= docks; i++) cbox(0.12, 0.01, 12, std('stripe', { color: 0xe8e2c6, roughness: 0.7 }), dx0 + i * 3.96, 0.09, zb1 + 12, root);

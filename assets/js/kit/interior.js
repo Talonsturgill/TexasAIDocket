@@ -149,7 +149,7 @@ export function install(K, THREE, TXT) {
   }
 
   const M = {
-    veneer: (col) => uvm(mat('veneer' + col, { color: 0xffffff, roughness: 0.42, map: ltex('veneer', paintVeneer, { color: css(col) }) }), 1.2),
+    veneer: (col) => uvm(mat('veneer' + col, { color: 0xffffff, roughness: 0.58, map: ltex('veneer', paintVeneer, { color: css(col) }) }), 1.2),
     fabric: (col) => uvm(mat('fabric' + col, { color: col, roughness: 0.95, map: ltex('weave', paintWeave, {}, [256, 256]) }), 0.3),
     leather: (col) => mat('leather' + col, { color: col, roughness: 0.46, clearcoat: 0.25, clearcoatRoughness: 0.5 }, true),
     plastic: (col) => mat('plastic' + col, { color: col != null ? col : 0x1b1c1e, roughness: 0.55 }),
@@ -357,10 +357,18 @@ export function install(K, THREE, TXT) {
       const lum = TXT.roundedBox(0.34, 0.07, 0.025, 0.012, M.plastic(0x222224), { segments: 2 });
       deform(lum.geometry, (v) => { v.z += 0.55 * v.x * v.x; }); lum.position.set(0, 0.17, 0.035); back.add(lum);
     } else {
-      const pieces = exec ? [[0.52, 0.3, 0.1, 0.0], [0.52, 0.3, 0.1, 0.29], [0.44, 0.22, 0.09, 0.575]] : [[0.46, 0.5, 0.075, 0.0]];
-      pieces.forEach(([w, h, d, y0], i) => {
-        const pc = TXT.roundedBox(w, h, d, exec ? 0.045 : 0.032, cover, { segments: 4 });
-        deform(pc.geometry, (v) => { v.z += 0.5 * v.x * v.x; if (!exec || i === 0) v.z += 0.02 * Math.exp(-(((v.y + (exec ? 0 : 0.08)) / 0.1) ** 2)); });
+      const pieces = exec ? [[0.52, 0.8, 0.1, 0.0]] : [[0.46, 0.5, 0.075, 0.0]];
+      pieces.forEach(([w, h, d, y0]) => {
+        const pc = TXT.roundedBox(w, h, d, exec ? 0.05 : 0.032, cover, { segments: exec ? 10 : 4 });
+        deform(pc.geometry, (v) => {
+          v.z += 0.5 * v.x * v.x;
+          v.z += 0.02 * Math.exp(-(((v.y + (exec ? 0.18 : 0.08)) / 0.1) ** 2));
+          if (exec) {
+            // narrower shoulders toward the top, channel stitching as soft grooves
+            const t = (v.y + h / 2) / h; v.x *= 1 - 0.14 * t * t;
+            if (v.z > 0.01) { const ph = (v.y + h / 2) / (h / 5); const gv = Math.abs(ph - Math.round(ph)); v.z -= 0.012 * Math.exp(-((gv / 0.08) ** 2)) * (Math.abs(v.x) < w / 2 - 0.05 ? 1 : 0); }
+          }
+        });
         if (cover.map) K.uvBox(pc.geometry, 0.3);
         pc.position.set(0, y0 + h / 2, 0); back.add(pc);
       });
@@ -413,8 +421,8 @@ export function install(K, THREE, TXT) {
         const m = new THREE.Mesh(geo, material); g.add(m); return m;
       }
       // riser platform and its carpet
-      band(-half - 0.35, half + 0.35, 0.2, 2.9, 0, riser - 0.012, darkWood);
-      band(-half - 0.33, half + 0.33, 0.22, 2.88, riser - 0.012, 0.01, carpet);
+      band(-half - 0.12, half + 0.12, 0.2, 2.9, 0, riser - 0.012, darkWood);
+      band(-half - 0.1, half + 0.1, 0.22, 2.88, riser - 0.012, 0.01, carpet);
       // the front: one faceted millwork section per seat
       for (let i = 0; i < n; i++) {
         const sC = -half + pitch * (i + 0.5);
@@ -450,7 +458,7 @@ export function install(K, THREE, TXT) {
       band(-half - 0.04, half + 0.04, -0.07, ledgeD - 0.02, H, 0.045, wood);
       band(-half, half, ledgeD - 0.04, 0.95, 0.99, 0.035, wood);
       if (o.steps !== false) {
-        for (let k = 0; k < 2; k++) band(-half - 0.35 - 0.3 * (k + 1), -half - 0.35 - 0.3 * k + 0.001, 0.6, 1.8, 0, riser * (2 - k) / 3, darkWood);
+        for (let k = 0; k < 2; k++) band(-half - 0.12 - 0.3 * (k + 1), -half - 0.12 - 0.3 * k + 0.001, 0.6, 1.8, 0, riser * (2 - k) / 3, darkWood);
       }
       // per seat furniture
       for (let i = 0; i < n; i++) {
@@ -648,7 +656,7 @@ export function install(K, THREE, TXT) {
   K.define('desk', {
     size: [1.52, 0.76, 0.76],
     options: { w: 1.52, d: 0.76, h: 0.76, pedestal: 'right', wood: 0x5e3b22, pulls: 'brushed' },
-    note: 'Office desk (60 x 30 in): bevelled veneer top, drawer pedestal (left | right | both | none) with a pencil drawer and a file drawer, bar pulls, recessed toe kick, a panel leg and a modesty panel, and a cable grommet. The sitter is at -z; drawers face -z.',
+    note: 'Office desk (60 x 30 in): bevelled veneer top, drawer pedestal (left | right | both | none) with a pencil drawer and a file drawer, bar pulls, recessed toe kick, a panel leg and a modesty panel, and a cable grommet. Drawers face +z, so the sitter is at +z facing -z.',
     make(o, r) {
       const W = o.w || 1.52, D = o.d || 0.76, Hh = o.h || 0.76;
       const g = new THREE.Group();
@@ -688,7 +696,8 @@ export function install(K, THREE, TXT) {
       gr.position.set(W * 0.3, Hh + 0.001, D / 2 - 0.1); g.add(gr);
       const hole = new THREE.Mesh(new THREE.CircleGeometry(0.03, 32), mat('holeDark', { color: 0x050505, roughness: 1 })); hole.rotation.x = -Math.PI / 2;
       hole.position.set(W * 0.3, Hh + 0.0008, D / 2 - 0.1); g.add(hole);
-      return g;
+      g.rotation.y = Math.PI; const out = new THREE.Group(); out.add(g);
+      return out;
     },
   });
 
@@ -995,7 +1004,7 @@ export function install(K, THREE, TXT) {
     spear.position.set(0, poleH + 0.085, -0.003); spear.rotation.y = turn + Math.PI / 2; g.add(spear);
     // the cloth: arc length preserved, droops from the pole, pleats that run down the fall
     const NS = 44, NT = 30, fringe = 0.07;
-    const th0 = 1.15 + (r() - 0.5) * 0.15, k = 2.2 + r() * 0.8, ph = r() * TAU;
+    const th0 = 1.3 + (r() - 0.5) * 0.15, k = 2.2 + r() * 0.8, ph = r() * TAU;
     function point(s, t) {
       // s along the fly (0 at the pole), t down the hoist (0 at the top); both may exceed 1 for fringe
       const steps = 24; let x = 0.019, y = top - t * Hf, z = 0;
@@ -1004,7 +1013,9 @@ export function install(K, THREE, TXT) {
         const u = (i + 0.5) / steps * s, th = thT * Math.pow(Math.max(0, 1 - u), 1.6) + 0.05;
         x += Math.sin(th) * Lf * s / steps; y -= Math.cos(th) * Lf * s / steps;
       }
-      const amp = 0.07 * Math.pow(Math.min(s, 1.05), 0.8);
+      // folds take up length: the fall is foreshortened and the pleats deepen toward the fly
+      x = 0.019 + (x - 0.019) * 0.72; y = top - t * Hf - ((top - t * Hf) - y) * 0.42;
+      const amp = 0.11 * Math.pow(Math.min(s, 1.05), 0.7);
       z = amp * Math.sin(TAU * k * t + ph + s * 1.2) + 0.03 * Math.sin(TAU * 1.3 * t + ph * 0.7) * s;
       x += amp * 0.35 * Math.cos(TAU * k * t + ph);
       // gather toward the pole low on the hoist

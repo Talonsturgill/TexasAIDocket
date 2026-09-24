@@ -64,11 +64,28 @@ export function install(K, THREE, TXT) {
     s.closePath();
     return s;
   }
+  /* Inset a closed polygon by d (miter offset along the vertex bisectors), so that a bevel of
+   * size d grown back out lands the surface exactly on the profile that was asked for. */
+  function insetShape(shape, d) {
+    let pts = shape.getPoints(16);
+    pts = pts.filter((p, i) => i === 0 || p.distanceTo(pts[i - 1]) > 1e-4);
+    if (pts.length > 2 && pts[0].distanceTo(pts[pts.length - 1]) < 1e-4) pts.pop();
+    let area = 0; pts.forEach((p, i) => { const q = pts[(i + 1) % pts.length]; area += p.x * q.y - q.x * p.y; });
+    const sg = area > 0 ? 1 : -1, n = pts.length, out = [];
+    for (let i = 0; i < n; i++) {
+      const a = pts[(i - 1 + n) % n], p = pts[i], c = pts[(i + 1) % n];
+      const e1 = new THREE.Vector2(p.x - a.x, p.y - a.y).normalize(), e2 = new THREE.Vector2(c.x - p.x, c.y - p.y).normalize();
+      const n1 = new THREE.Vector2(e1.y * sg, -e1.x * sg), n2 = new THREE.Vector2(e2.y * sg, -e2.x * sg);   // outward
+      const k = Math.max(0.35, 1 + n1.dot(n2));
+      out.push(new THREE.Vector2(p.x - d * (n1.x + n2.x) / k, p.y - d * (n1.y + n2.y) / k));
+    }
+    return new THREE.Shape(out);
+  }
   function sideExtrude(cmds, width, bevel, mat, o) {
     o = o || {};
-    const b = Math.min(bevel, width * 0.3);
-    const g = new THREE.ExtrudeGeometry(shapeOf(cmds), { depth: Math.max(0.001, width - 2 * b), bevelEnabled: b > 0,
-      bevelThickness: b, bevelSize: b * (o.sizeK != null ? o.sizeK : 0.6), bevelSegments: o.bevelSeg || 4, curveSegments: o.curveSeg || 16 });
+    const b = Math.min(bevel, width * 0.3), bs = b * (o.sizeK != null ? o.sizeK : 0.6);
+    const g = new THREE.ExtrudeGeometry(bs > 0 ? insetShape(shapeOf(cmds), bs) : shapeOf(cmds), { depth: Math.max(0.001, width - 2 * b), bevelEnabled: b > 0,
+      bevelThickness: b, bevelSize: bs, bevelSegments: o.bevelSeg || 4, curveSegments: o.curveSeg || 16 });
     g.translate(0, 0, -(width - 2 * b) / 2);
     g.rotateY(-Math.PI / 2);
     if (o.deform) {
@@ -93,11 +110,12 @@ export function install(K, THREE, TXT) {
     return { mesh, hw };
   }
   // a thin flat part on a body side at x (sign s), from a polygon in (z, y)
-  function sidePane(pts, x, thick, mat, bevel) {
+  function sidePane(pts, x, thick, mat, bevel, xAt) {
     const s = new THREE.Shape(); pts.forEach((p, i) => (i ? s.lineTo(p[0], p[1]) : s.moveTo(p[0], p[1])));
     const b = bevel != null ? bevel : Math.min(0.006, thick * 0.4);
     const g = new THREE.ExtrudeGeometry(s, { depth: Math.max(0.0005, thick - 2 * b), bevelEnabled: b > 0, bevelThickness: b, bevelSize: b, bevelSegments: 2, curveSegments: 6 });
     g.translate(0, 0, -(thick - 2 * b) / 2); g.rotateY(-Math.PI / 2);
+    if (xAt) { const p = g.attributes.position; for (let i = 0; i < p.count; i++) p.setX(i, p.getX(i) + xAt(p.getY(i))); g.computeBoundingSphere(); }
     const m = new THREE.Mesh(g, mat); m.position.x = x; return m;
   }
   // polygon offset (convex, either winding): grow by d
@@ -221,21 +239,34 @@ export function install(K, THREE, TXT) {
   }
   function mirror(G, x, y, z, mat, big) {
     for (const s of [1, -1]) {
-      const w = big ? 0.24 : 0.2, h = big ? 0.3 : 0.13;
+      const w = big ? 0.2 : 0.18, h = big ? 0.25 : 0.12;
       bar([s * (x - 0.02), y + 0.02, z], [s * (x + 0.1), y + 0.04, z - 0.02], 0.018, M.trim(), G);
       const head = TXT.roundedBox(w, h, 0.09, 0.03, mat); head.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.03); G.add(head);
       const gl = TXT.roundedBox(w - 0.03, h - 0.03, 0.01, 0.005, K.finish.chrome()); gl.position.set(s * (x + 0.1 + w / 2), y + 0.05 + h / 2 - 0.03, z - 0.076); G.add(gl);
     }
   }
-  // a lamp: housing, a mirrored reflector behind a lens, a lit strip
+  /* Snap to a body surface: returns f(x, y) = the z where a ray along -dir*z first meets the
+   * meshes (the nose when dir = 1, the tail when dir = -1). Parts are placed ON the body this way,
+   * never guessed at, so a bevel or a curved nose can never swallow a lamp. */
+  const RC = new THREE.Raycaster();
+  function snapper(meshes, dir, fallback) {
+    meshes.forEach((m) => m.updateMatrixWorld(true));
+    return (x, y) => {
+      RC.set(new THREE.Vector3(x, y, dir * 200), new THREE.Vector3(0, 0, -dir));
+      const h = RC.intersectObjects(meshes, false)[0];
+      return h ? h.point.z : fallback;
+    };
+  }
+  // a lamp: housing, a mirrored reflector behind a lens, a lit strip. z may be a snapper.
   function lamp(G, w, h, x, y, z, kind, dir) {
     dir = dir || 1;
     for (const s of [1, -1]) {
       const body = TXT.roundedBox(w, h, 0.05, Math.min(w, h) * 0.3, kind === 'tail' ? M.tail() : kind === 'amber' ? M.amber() : M.lens());
-      body.position.set(s * x, y, z); G.add(body);
+      const zz = typeof z === 'function' ? z(s * x, y) + dir * 0.012 : z;
+      body.position.set(s * x, y, zz); G.add(body);
       if (kind === 'head') {
         const strip = TXT.roundedBox(w * 0.85, Math.max(0.012, h * 0.12), 0.02, 0.005, M.drl());
-        strip.position.set(s * x, y - h * 0.32, z + dir * 0.02); G.add(strip);
+        strip.position.set(s * x, y - h * 0.32, zz + dir * 0.02); G.add(strip);
       }
     }
   }
@@ -278,9 +309,10 @@ export function install(K, THREE, TXT) {
       const bright = trim === 'chrome' ? M.chrome() : trim === 'work' ? M.trim() : M.satin();
       const R = 0.405, fz = zf - 0.95, rz = fz - 3.68, ay = R;
       // cab and front end
-      G.add(sideExtrude([['m', -0.34, 0.54], ['arch', fz, R + 0.05, ay], ['l', 2.66, 0.54], ['l', 2.8, 0.6], ['l', 2.9, 0.68],
+      const cab = G.add(sideExtrude([['m', -0.34, 0.54], ['arch', fz, R + 0.05, ay], ['l', 2.66, 0.54], ['l', 2.8, 0.6], ['l', 2.9, 0.68],
         ['q', 2.95, 0.74, 2.95, 0.9], ['l', 2.94, 1.16], ['q', 2.93, 1.29, 2.78, 1.3], ['l', 1.25, 1.365], ['l', 1.08, 1.375], ['l', -0.34, 1.385]],
-      W, 0.06, P, { deform: planRound(2.9, -9, 0.04, 0.5) }));
+      W, 0.06, P, { deform: planRound(2.9, -9, 0.04, 0.5) })).children.slice(-1)[0];
+      const nose = snapper([cab], 1, zf);
       // bed sides with the rear arch, a floor, a front wall and the tailgate
       for (const s of [1, -1]) G.add(sideExtrude([['m', zr + 0.02, 0.56], ['arch', rz, R + 0.05, ay], ['l', -0.4, 0.56], ['l', -0.4, 1.33], ['l', zr + 0.02, 1.33]], 0.09, 0.03, P, { x: s * (hw - 0.045) }));
       box(W - 0.16, 0.04, 2.5, K.mat('v-liner', { color: 0x1f2022, roughness: 0.9 }), 0, 0.62, (zr - 0.4) / 2 + 0.02, 0, G);
@@ -301,7 +333,7 @@ export function install(K, THREE, TXT) {
       const rf = sideExtrude([['m', 0.3, roof - 0.07], ['q', 0.1, roof + 0.01, -0.1, roof + 0.015], ['l', -0.34, roof], ['l', -0.34, roof - 0.07]], (gh.hw(roof) + 0.02) * 2, 0.04, P);
       G.add(rf);
       for (const s of [1, -1]) {
-        bar([s * (gh.hw(belt) + 0.012), belt, 1.12], [s * (gh.hw(roof) + 0.012), roof - 0.03, 0.2], 0.042, P, G);    // A
+        bar([s * (gh.hw(belt) + 0.012), belt, 1.12], [s * (gh.hw(roof) + 0.012), roof - 0.06, 0.26], 0.042, P, G);    // A
         const bp = TXT.roundedBox(0.012, roof - belt, 0.11, 0.004, M.trim());                                          // B, black
         bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, 0.06); bp.rotation.z = -s * 0.1 * (hw - 0.13) / (roof - belt); G.add(bp);
         bar([s * (gh.hw(belt) + 0.012), belt, -0.3], [s * (gh.hw(roof) + 0.012), roof - 0.03, -0.29], 0.045, P, G);   // C
@@ -318,11 +350,13 @@ export function install(K, THREE, TXT) {
       const fb = TXT.roundedBox(W - 0.02, 0.3, 0.26, 0.06, bright); fb.position.set(0, 0.55, zf - 0.06); G.add(fb);
       box(W - 0.5, 0.1, 0.08, M.trim(), 0, 0.46, zf + 0.04, 0.02, G);
       const gw = 1.34, gh2 = 0.5;
-      const gs = TXT.roundedBox(gw + 0.08, gh2 + 0.08, 0.06, 0.04, bright); gs.position.set(0, 0.75 + gh2 / 2, zf - 0.01); G.add(gs);
-      box(gw, gh2, 0.05, M.well(), 0, 0.75, zf + 0.005, 0.01, G);
-      for (let i = 0; i < 4; i++) box(gw - 0.02, 0.035, 0.035, bright, 0, 0.8 + i * 0.12, zf + 0.03, 0.012, G);
-      const vb = TXT.roundedBox(0.035, gh2 - 0.02, 0.035, 0.012, bright); vb.position.set(0, 0.75 + gh2 / 2, zf + 0.03); G.add(vb);
-      lamp(G, 0.26, 0.2, hw - 0.2, 1.06, zf - 0.05, 'head');
+      const nz = nose(0, 0.98);
+      const gs = TXT.roundedBox(gw + 0.1, gh2 + 0.1, 0.06, 0.04, bright); gs.position.set(0, 0.75 + gh2 / 2, nz + 0.01); G.add(gs);
+      box(gw, gh2, 0.05, M.well(), 0, 0.75, nz + 0.03, 0.01, G);
+      for (let i = 0; i < 4; i++) box(gw - 0.02, 0.035, 0.035, bright, 0, 0.8 + i * 0.12, nz + 0.06, 0.012, G);
+      const vb = TXT.roundedBox(0.035, gh2 - 0.02, 0.035, 0.012, bright); vb.position.set(0, 0.75 + gh2 / 2, nz + 0.06); G.add(vb);
+      const badge = TXT.roundedBox(0.2, 0.08, 0.02, 0.02, M.chrome()); badge.position.set(0, 1.0, nz + 0.085); G.add(badge);
+      lamp(G, 0.27, 0.22, hw - 0.19, 1.04, nose, 'head');
       lamp(G, 0.12, 0.06, hw - 0.25, 0.55, zf + 0.07, 'amber');
       for (const s of [1, -1]) box(0.05, 0.04, 0.08, K.mat('v-hook', { color: 0x9a1b1b, roughness: 0.5 }), s * 0.5, 0.42, zf + 0.03, 0.01, G);
       plate(G, 0.56, zf + 0.08, 1);
@@ -347,10 +381,11 @@ export function install(K, THREE, TXT) {
     make(o, r) {
       const G = new THREE.Group(), P = seededPaint(r, o);
       const L = 4.88, W = 1.84, hw = W / 2, zf = L / 2, zr = -L / 2, R = 0.335, fz = zf - 0.97, rz = fz - 2.82;
-      G.add(sideExtrude([['m', zr + 0.12, 0.24], ['arch', rz, R + 0.035, R], ['arch', fz, R + 0.035, R], ['l', zf - 0.2, 0.24],
+      const body = sideExtrude([['m', zr + 0.12, 0.24], ['arch', rz, R + 0.035, R], ['arch', fz, R + 0.035, R], ['l', zf - 0.2, 0.24],
         ['q', zf - 0.02, 0.26, zf, 0.42], ['q', zf + 0.01, 0.62, zf - 0.08, 0.7], ['q', zf - 0.5, 0.82, 1.3, 0.88], ['l', 0.96, 0.925],
         ['l', -1.55, 0.97], ['q', -1.9, 0.99, -2.28, 0.97], ['q', zr, 0.94, zr, 0.78], ['l', zr + 0.01, 0.42], ['q', zr + 0.01, 0.25, zr + 0.12, 0.24]],
-      W, 0.09, P, { deform: planRound(zf, zr, 0.08, 0.55), sizeK: 0.7 }));
+      W, 0.09, P, { deform: planRound(zf, zr, 0.08, 0.55), sizeK: 0.7 }); G.add(body);
+      const nose = snapper([body], 1, zf), tail = snapper([body], -1, zr);
       const belt = 0.95, roof = 1.44;
       const gh = greenhouse([['m', 0.98, belt - 0.03], ['q', 0.55, 1.2, 0.08, roof - 0.04], ['q', -0.3, roof - 0.01, -0.62, roof - 0.04], ['q', -1.1, 1.3, -1.62, belt - 0.01]],
         hw - 0.1, belt, roof, 0.2, M.glass(), 0.04);
@@ -363,20 +398,19 @@ export function install(K, THREE, TXT) {
         const bp = TXT.roundedBox(0.012, roof - belt - 0.04, 0.09, 0.004, M.trim());
         bp.position.set(s * (gh.hw(1.19) + 0.004), 1.19, -0.12); bp.rotation.z = -s * 0.2 * (hw - 0.1) / (roof - belt); G.add(bp);
         // C pillar panel: the body closes the greenhouse behind the rear door glass
-        const cp = sidePane([[-0.78, belt - 0.02], [-0.66, roof - 0.07], [-0.62, roof - 0.04], [-1.62, belt - 0.02]], 0, 0.02, P);
-        cp.position.x = s * (gh.hw(1.15) + 0.005); cp.rotation.z = -s * 0.2 * (hw - 0.1) / (roof - belt) * 0.9; G.add(cp);
+        G.add(sidePane([[-0.78, belt - 0.02], [-0.66, roof - 0.07], [-0.62, roof - 0.04], [-1.62, belt - 0.02]], 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.006)));
         box(0.018, 0.02, 1.78, M.chrome(), s * (gh.hw(belt) + 0.01), belt - 0.02, 0.08, 0.006, G);
       }
       seam(G, hw, 1.02, 0.3, 0.98, belt); seam(G, hw, -0.1, 0.28, -0.1, belt); seam(G, hw, -0.95, 0.3, -0.85, belt);
       handle(G, hw, 0.84, 0.1, P); handle(G, hw, 0.85, -0.78, P);
       mirror(G, hw, 0.95, 0.86, P, false);
       // nose: grille, lamps; tail: lamps, plate, diffuser
-      const gr = TXT.roundedBox(0.95, 0.2, 0.04, 0.05, M.satin()); gr.position.set(0, 0.5, zf + 0.0); G.add(gr);
-      box(0.6, 0.07, 0.03, M.chrome(), 0, 0.62, zf - 0.04, 0.02, G);
-      lamp(G, 0.32, 0.1, hw - 0.24, 0.68, zf - 0.1, 'head');
-      lamp(G, 0.34, 0.1, hw - 0.22, 0.86, zr + 0.05, 'tail', -1);
-      box(1.2, 0.08, 0.04, M.satin(), 0, 0.3, zr + 0.02, 0.02, G);
-      plate(G, 0.62, zr + 0.0, -1); plate(G, 0.4, zf + 0.02, 1);
+      const gr = TXT.roundedBox(0.95, 0.2, 0.04, 0.05, M.satin()); gr.position.set(0, 0.5, nose(0, 0.5) + 0.005); G.add(gr);
+      box(0.6, 0.05, 0.03, M.chrome(), 0, 0.63, nose(0, 0.65) + 0.004, 0.02, G);
+      lamp(G, 0.34, 0.11, hw - 0.25, 0.66, nose, 'head');
+      lamp(G, 0.36, 0.1, hw - 0.22, 0.85, tail, 'tail', -1);
+      box(1.2, 0.08, 0.04, M.satin(), 0, 0.3, tail(0, 0.34) - 0.005, 0.02, G);
+      plate(G, 0.62, tail(0, 0.62) - 0.008, -1); plate(G, 0.4, nose(0, 0.4) + 0.008, 1);
       box(W - 0.3, 0.12, L - 1.0, M.frame(), 0, 0.14, 0, 0.02, G);
       axle(G, fz, R, 0.235, W - 0.24, 'five', M.alloy(), { rimR: 0.23 });
       axle(G, rz, R, 0.235, W - 0.24, 'five', M.alloy(), { rimR: 0.23 });
@@ -395,24 +429,24 @@ export function install(K, THREE, TXT) {
     make(o, r) {
       const G = new THREE.Group(), P = seededPaint(r, o);
       const L = 5.35, W = 2.06, hw = W / 2, zf = L / 2, zr = -L / 2, R = 0.4, fz = zf - 0.95, rz = fz - 3.07;
-      G.add(sideExtrude([['m', zr + 0.08, 0.46], ['arch', rz, R + 0.05, R], ['arch', fz, R + 0.05, R], ['l', zf - 0.15, 0.46],
+      const body = sideExtrude([['m', zr + 0.08, 0.46], ['arch', rz, R + 0.05, R], ['arch', fz, R + 0.05, R], ['l', zf - 0.15, 0.46],
         ['q', zf - 0.02, 0.5, zf, 0.62], ['l', zf, 1.1], ['q', zf - 0.02, 1.24, zf - 0.2, 1.25], ['l', 1.1, 1.32],
         ['l', zr + 0.1, 1.34], ['q', zr, 1.34, zr, 1.2], ['l', zr, 0.56], ['q', zr, 0.46, zr + 0.08, 0.46]],
-      W, 0.07, P, { deform: planRound(zf, zr, 0.05, 0.45) }));
+      W, 0.07, P, { deform: planRound(zf, zr, 0.05, 0.45) }); G.add(body);
+      const nose = snapper([body], 1, zf), tail = snapper([body], -1, zr);
       const belt = 1.34, roof = 1.9;
       const gh = greenhouse([['m', 1.12, belt - 0.02], ['l', 0.2, roof - 0.04], ['l', zr + 0.22, roof - 0.03], ['l', zr + 0.1, belt - 0.02]], hw - 0.1, belt, roof, 0.1, M.glass());
       G.add(gh.mesh);
       G.add(sideExtrude([['m', 0.26, roof - 0.07], ['q', 0.1, roof + 0.01, -0.1, roof + 0.012], ['l', zr + 0.24, roof], ['l', zr + 0.18, roof - 0.07]], (gh.hw(roof) + 0.015) * 2, 0.04, P));
       for (const s of [1, -1]) {
         const x = (y) => s * (gh.hw(y) + 0.012);
-        bar([x(belt), belt, 1.14], [x(roof), roof - 0.035, 0.2], 0.04, P, G);
+        bar([x(belt), belt, 1.14], [x(roof), roof - 0.06, 0.24], 0.04, P, G);
         for (const [z, m] of [[0.02, M.trim()], [-1.06, M.trim()]]) {
           const bp = TXT.roundedBox(0.012, roof - belt, 0.1, 0.004, m); bp.position.set(s * (gh.hw((belt + roof) / 2) + 0.004), (belt + roof) / 2, z);
           bp.rotation.z = -s * 0.1 * (hw - 0.1) / (roof - belt); G.add(bp);
         }
         // D pillar, body colour, wide at the tail
-        const dp = sidePane([[zr + 0.1, belt - 0.02], [zr + 0.2, roof - 0.04], [zr + 0.55, roof - 0.04], [zr + 0.62, belt - 0.02]], 0, 0.02, P);
-        dp.position.x = s * (gh.hw(1.6) + 0.006); dp.rotation.z = -s * 0.1 * (hw - 0.1) / (roof - belt); G.add(dp);
+        G.add(sidePane([[zr + 0.1, belt - 0.02], [zr + 0.2, roof - 0.04], [zr + 0.55, roof - 0.04], [zr + 0.62, belt - 0.02]], 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.008)));
         box(0.02, 0.025, 3.7, M.chrome(), s * (gh.hw(belt) + 0.012), belt - 0.02, -0.7, 0.008, G);
         if (o.rack !== false) {
           box(0.05, 0.04, 2.6, M.satin(), s * (gh.hw(roof) - 0.12), roof + 0.01, -0.95, 0.015, G);
@@ -421,16 +455,18 @@ export function install(K, THREE, TXT) {
       }
       seam(G, hw, 1.2, 0.5, 1.12, belt); seam(G, hw, 0.02, 0.48, 0.02, belt); seam(G, hw, -1.1, 0.48, -1.06, belt);
       handle(G, hw, 1.2, 0.2, M.chrome()); handle(G, hw, 1.2, -0.9, M.chrome());
-      mirror(G, hw, 1.38, 1.02, P, true);
-      const gs = TXT.roundedBox(1.3, 0.46, 0.06, 0.04, M.chrome()); gs.position.set(0, 0.95, zf - 0.005); G.add(gs);
-      box(1.22, 0.38, 0.05, M.well(), 0, 0.76, zf + 0.005, 0.01, G);
-      box(1.24, 0.06, 0.04, P, 0, 0.93, zf + 0.03, 0.015, G);
-      lamp(G, 0.3, 0.14, hw - 0.2, 1.08, zf - 0.02, 'head');
+      mirror(G, hw, 1.38, 1.02, P, false);
+      const nz = nose(0, 0.95);
+      const gs = TXT.roundedBox(1.3, 0.46, 0.06, 0.04, M.chrome()); gs.position.set(0, 0.95, nz + 0.01); G.add(gs);
+      box(1.22, 0.38, 0.05, M.well(), 0, 0.76, nz + 0.025, 0.01, G);
+      box(1.24, 0.05, 0.04, M.chrome(), 0, 0.93, nz + 0.05, 0.015, G);
+      lamp(G, 0.3, 0.14, hw - 0.2, 1.08, nose, 'head');
       const fb = TXT.roundedBox(W - 0.04, 0.26, 0.2, 0.06, M.satin()); fb.position.set(0, 0.56, zf - 0.02); G.add(fb);
-      lamp(G, 0.1, 0.44, hw - 0.06, 1.1, zr + 0.02, 'tail', -1);
+      lamp(G, 0.12, 0.44, hw - 0.08, 1.08, tail, 'tail', -1);
       const rb = TXT.roundedBox(W - 0.04, 0.24, 0.2, 0.06, M.satin()); rb.position.set(0, 0.55, zr + 0.03); G.add(rb);
-      plate(G, 0.88, zr - 0.005, -1); plate(G, 0.52, zf + 0.09, 1);
-      box(0.9, 0.05, 0.02, M.chrome(), 0, 1.05, zr - 0.004, 0.015, G);
+      plate(G, 0.88, tail(0, 0.88) - 0.008, -1); plate(G, 0.52, zf + 0.09, 1);
+      box(0.9, 0.05, 0.02, M.chrome(), 0, 1.05, tail(0, 1.05) - 0.008, 0.015, G);
+      const hgl = TXT.roundedBox(1.5, 0.42, 0.02, 0.05, M.glass()); hgl.position.set(0, 1.6, tail(0, 1.6) - 0.006); G.add(hgl);
       for (const s of [1, -1]) box(0.14, 0.05, 2.2, M.satin(), s * (hw - 0.03), 0.38, 0.1, 0.02, G);
       box(W - 0.35, 0.2, L - 1.2, M.frame(), 0, 0.28, 0, 0.02, G);
       axle(G, fz, R, 0.275, W - 0.28, 'six', M.alloy(), { rimR: 0.26 });
@@ -450,10 +486,16 @@ export function install(K, THREE, TXT) {
       const G = new THREE.Group();
       const P = o.color != null ? paint(o.color, 0) : r() < 0.7 ? paint(0xf2f2ee, 0) : seededPaint(r, {});
       const L = 5.98, W = 2.05, hw = W / 2, zf = L / 2, zr = -L / 2, R = 0.36, fz = zf - 0.86, rz = fz - 3.75, top = 2.72;
-      G.add(sideExtrude([['m', zr + 0.05, 0.46], ['arch', rz, R + 0.05, R], ['arch', fz, R + 0.05, R], ['l', zf - 0.1, 0.46],
+      const body = sideExtrude([['m', zr + 0.05, 0.46], ['arch', rz, R + 0.05, R], ['arch', fz, R + 0.05, R], ['l', zf - 0.1, 0.46],
         ['q', zf, 0.5, zf, 0.7], ['l', zf - 0.02, 0.95], ['q', zf - 0.1, 1.1, zf - 0.55, 1.2], ['l', 1.95, 1.3], ['l', 1.22, 2.26],
         ['q', 1.1, top - 0.02, 0.85, top], ['l', zr + 0.12, top], ['q', zr, top, zr, top - 0.14], ['l', zr, 0.56], ['q', zr, 0.46, zr + 0.05, 0.46]],
-      W, 0.09, P, { deform: planRound(zf, zr, 0.05, 0.5) }));
+      W, 0.09, P, { deform: planRound(zf, zr, 0.05, 0.5) }); G.add(body);
+      const nose = snapper([body], 1, zf), tail = snapper([body], -1, zr);
+      // unpainted lower cladding and a rub strip along each side
+      for (const s of [1, -1]) {
+        box(0.02, 0.16, 3.0, M.trim(), s * (hw + 0.004), 0.47, (fz + rz) / 2, 0.008, G);
+        box(0.02, 0.06, 4.9, M.trim(), s * (hw + 0.006), 0.98, -0.2, 0.01, G);
+      }
       // windscreen, raked, proud of the body line; cab side windows
       const ws = sideExtrude([['m', 1.99, 1.33], ['l', 1.24, 2.25], ['l', 1.2, 2.2], ['l', 1.94, 1.29]], W - 0.18, 0.02, M.glass());
       ws.position.set(0, 0.012, 0.012); G.add(ws);
@@ -469,13 +511,14 @@ export function install(K, THREE, TXT) {
       handle(G, hw, 1.2, 1.6, M.satin()); handle(G, hw, 1.2, 0.72, M.satin());
       mirror(G, hw, 1.4, 1.75, M.trim(), true);
       // nose: a big black grille and swept lamps, bumpers in unpainted black
-      const gs = TXT.roundedBox(1.1, 0.34, 0.06, 0.06, M.trim()); gs.position.set(0, 0.82, zf - 0.01); G.add(gs);
-      for (let i = 0; i < 3; i++) box(1.0, 0.02, 0.03, M.satin(), 0, 0.71 + i * 0.1, zf + 0.02, 0.008, G);
-      lamp(G, 0.34, 0.16, hw - 0.2, 1.03, zf - 0.12, 'head');
+      const nz = nose(0, 0.82);
+      const gs = TXT.roundedBox(1.1, 0.34, 0.06, 0.06, M.trim()); gs.position.set(0, 0.82, nz + 0.01); G.add(gs);
+      for (let i = 0; i < 3; i++) box(1.0, 0.02, 0.03, M.satin(), 0, 0.71 + i * 0.1, nz + 0.04, 0.008, G);
+      lamp(G, 0.32, 0.18, hw - 0.2, 0.95, nose, 'head');
       const fb = TXT.roundedBox(W - 0.02, 0.3, 0.2, 0.06, M.trim()); fb.position.set(0, 0.53, zf - 0.03); G.add(fb);
       const rb = TXT.roundedBox(W - 0.02, 0.22, 0.16, 0.05, M.trim()); rb.position.set(0, 0.5, zr + 0.02); G.add(rb);
-      lamp(G, 0.08, 0.5, hw - 0.05, 1.05, zr + 0.01, 'tail', -1);
-      lamp(G, 0.2, 0.05, 0.25, top - 0.04, zr + 0.01, 'tail', -1);
+      lamp(G, 0.1, 0.5, hw - 0.07, 1.05, tail, 'tail', -1);
+      lamp(G, 0.2, 0.05, 0.25, top - 0.2, tail, 'tail', -1);
       plate(G, 0.75, zr - 0.005, -1); plate(G, 0.52, zf + 0.08, 1);
       function sideWindow2(G2, s) { sideWindowRear(G2, s); }
       function sideWindowRear(G2, s) {
@@ -510,19 +553,20 @@ export function install(K, THREE, TXT) {
       const bodyF = 3.95, floor = 0.95, top = 3.18;
       // body: a box with a big rounded roof, the rear arch cut in
       G.add(sideExtrude([['m', zr, 0.72], ['arch', rz, R + 0.07, R], ['l', bodyF - 0.3, 0.72], ['arch', fz, R + 0.08, R], ['l', bodyF, 0.72],
-        ['l', bodyF, 2.62], ['q', bodyF, top, bodyF - 0.3, top], ['l', zr + 0.3, top], ['q', zr, top, zr, 2.62]], W, 0.16, Y, { sizeK: 1, bevelSeg: 6 }));
+        ['l', bodyF, 1.88], ['l', bodyF - 0.16, 2.62], ['l', bodyF - 0.16, top - 0.3], ['q', bodyF - 0.16, top, bodyF - 0.46, top], ['l', zr + 0.3, top], ['q', zr, top, zr, top - 0.3]], W, 0.16, Y, { sizeK: 1, bevelSeg: 6 }));
       if (white) G.add(sideExtrude([['m', bodyF - 0.28, top - 0.1], ['l', zr + 0.28, top - 0.1], ['l', zr + 0.28, top + 0.004], ['l', bodyF - 0.28, top + 0.004]], W - 0.36, 0.06, paint(0xf2f1ec, 0)));
       // hood: narrower, with fenders over the front wheels
-      G.add(sideExtrude([['m', bodyF - 0.02, 0.8], ['arch', fz, R + 0.08, R], ['l', zf - 0.25, 0.8], ['l', zf - 0.12, 0.85], ['l', zf - 0.1, 1.55],
-        ['q', zf - 0.12, 1.7, zf - 0.35, 1.72], ['l', bodyF - 0.02, 1.86]], 2.3, 0.1, Y));
+      const hood = sideExtrude([['m', bodyF - 0.02, 0.8], ['arch', fz, R + 0.08, R], ['l', zf - 0.25, 0.8], ['l', zf - 0.12, 0.85], ['l', zf - 0.1, 1.55],
+        ['q', zf - 0.12, 1.7, zf - 0.35, 1.72], ['l', bodyF - 0.02, 1.86]], 2.3, 0.1, Y); G.add(hood);
+      const nose = snapper([hood], 1, zf);
       // windscreen and front cap
-      const ws = sideExtrude([['m', bodyF + 0.03, 1.9], ['l', bodyF - 0.12, 2.62], ['l', bodyF - 0.16, 2.62], ['l', bodyF - 0.01, 1.9]], W - 0.26, 0.03, M.glass());
+      const ws = sideExtrude([['m', bodyF + 0.02, 1.92], ['l', bodyF - 0.135, 2.6], ['l', bodyF - 0.155, 2.6], ['l', bodyF, 1.92]], W - 0.3, 0.02, M.glass());
       G.add(ws);
-      box(0.04, 0.72, 0.03, blk, 0, 1.9, bodyF + 0.0, 0.01, G).rotation.x = -0.2;                             // centre post
-      const cap = sign('SCHOOL BUS', '#111111', '#f4ab00', 1.2, 0.26); cap.position.set(0, 2.84, bodyF + 0.012); G.add(cap);
+      const cpost = TXT.roundedBox(0.05, 0.72, 0.03, 0.01, blk); cpost.position.set(0, 2.26, bodyF - 0.06); cpost.rotation.x = -0.22; G.add(cpost);
+      const cap = sign('SCHOOL BUS', '#111111', '#f4ab00', 1.2, 0.26); cap.position.set(0, 2.86, bodyF - 0.16 + 0.004); G.add(cap);
       const capR = sign('SCHOOL BUS', '#111111', '#f4ab00', 1.2, 0.26); capR.position.set(0, 2.84, zr - 0.012); capR.rotation.y = Math.PI; G.add(capR);
       // eight-way warning lamps, front and rear
-      for (const z of [bodyF + 0.01, zr - 0.01]) for (const s of [1, -1]) {
+      for (const z of [bodyF - 0.15, zr - 0.01]) for (const s of [1, -1]) {
         const d = z > 0 ? 1 : -1;
         for (const [x, m] of [[0.95, M.tail()], [0.72, M.amber()]]) {
           const hood = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.05, 24), blk); hood.rotation.x = Math.PI / 2; hood.position.set(s * x, 2.86, z); G.add(hood);
@@ -564,9 +608,10 @@ export function install(K, THREE, TXT) {
       box(2.3, 0.28, 0.2, blk, 0, 0.55, zf - 0.1, 0.03, G);
       plate(G, 0.95, zr - 0.02, -1);
       // grille and headlamps on the hood nose
-      const gg = TXT.roundedBox(1.0, 0.62, 0.05, 0.04, blk); gg.position.set(0, 1.12, zf - 0.08); G.add(gg);
-      for (let i = 0; i < 6; i++) box(0.94, 0.02, 0.03, M.satin(), 0, 0.87 + i * 0.1, zf - 0.05, 0.005, G);
-      lamp(G, 0.22, 0.2, 0.84, 1.18, zf - 0.08, 'head');
+      const gz = nose(0, 1.12);
+      const gg = TXT.roundedBox(1.0, 0.62, 0.05, 0.04, blk); gg.position.set(0, 1.12, gz + 0.01); G.add(gg);
+      for (let i = 0; i < 6; i++) box(0.94, 0.02, 0.03, M.satin(), 0, 0.87 + i * 0.1, gz + 0.035, 0.005, G);
+      lamp(G, 0.2, 0.2, 0.8, 1.2, nose, 'head');
       // stop arm on the driver's side (+x), folded flat unless deployed
       const arm = new THREE.Group();
       const oct = []; for (let i = 0; i < 8; i++) { const a = (i + 0.5) / 8 * Math.PI * 2; oct.push([Math.cos(a) * 0.23, Math.sin(a) * 0.23]); }
@@ -643,7 +688,7 @@ export function install(K, THREE, TXT) {
       box(1.0, 0.86, 0.04, M.well(), 0, 1.02, 0.035, 0.01, T);
       for (let i = 0; i < 9; i++) box(0.98, 0.02, 0.02, M.chrome(), 0, 1.07 + i * 0.09, 0.05, 0.005, T);
       const fb = TXT.roundedBox(2.4, 0.42, 0.3, 0.08, M.chrome()); fb.position.set(0, 0.72, 0.05); T.add(fb);
-      lamp(T, 0.3, 0.18, 0.86, 1.5, -0.1, 'head');
+      lamp(T, 0.26, 0.18, 0.84, 1.5, 0.012, 'head');
       for (let i = -2; i <= 2; i++) { const m = TXT.roundedBox(0.08, 0.04, 0.05, 0.015, M.amber()); m.position.set(i * 0.25, 3.14, -2.62); T.add(m); }
       // frame rails, fifth wheel, back of cab bits
       box(0.95, 0.28, 7.3, M.frame(), 0, 0.82, -3.8, 0.02, T);
@@ -724,7 +769,7 @@ export function install(K, THREE, TXT) {
       const gr = TXT.roundedBox(1.0, 0.55, 0.05, 0.04, M.chrome()); gr.position.set(0, 1.22, zf + 0.01); G.add(gr);
       box(0.92, 0.48, 0.04, M.well(), 0, 0.99, zf + 0.03, 0.01, G);
       for (let i = 0; i < 5; i++) box(0.9, 0.018, 0.02, M.chrome(), 0, 1.03 + i * 0.1, zf + 0.05, 0.005, G);
-      lamp(G, 0.26, 0.16, 0.8, 1.3, zf - 0.06, 'head');
+      lamp(G, 0.24, 0.16, 0.8, 1.3, zf + 0.012, 'head');
       box(2.4, 0.3, 0.26, M.trim(), 0, 0.7, zf - 0.02, 0.05, G);
       for (let i = -1; i <= 1; i++) { const m = TXT.roundedBox(0.08, 0.04, 0.04, 0.015, M.amber()); m.position.set(i * 0.3, 2.84, 1.62); G.add(m); }
       // amber light bar on the cab roof

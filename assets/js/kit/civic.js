@@ -139,6 +139,7 @@ export function install(K, THREE, TXT) {
     paint: (c) => mat('paint|' + c, { color: c, roughness: 0.5, metalness: 0.1 }),
     gold: () => mat('gold', { color: 0xd8ab4c, metalness: 1, roughness: 0.25 }),
     galv: () => K.finish.galvanized(),
+    lamp: (c, i) => K.finish.lamp(c, i),
   };
 
   /* ================================ the Builder ================================ */
@@ -363,18 +364,20 @@ export function install(K, THREE, TXT) {
     o = o || {};
     const tw = o.tw != null ? o.tw : 0.16, td = o.td != null ? o.td : 0.2, f = o.f || 0.055;
     const g = M.glass[Math.floor(r() * M.glass.length)];
-    const blind = o.noBlind ? 0 : (r() < 0.35 ? 0.2 + r() * 0.45 : 0);
+    const blind = o.noBlind || o.lite ? 0 : (r() < 0.35 ? 0.2 + r() * 0.45 : 0);
     if (blind) { B.box(F.blind(), w, h * blind, 0.02, x, y0 + h * (1 - blind), 0.03); B.box(g, w, h * (1 - blind), 0.02, x, y0, 0.03); }
     else B.box(g, w, h, 0.02, x, y0, 0.03);
     const fd = 0.07, fz = 0.045;
-    B.box(M.frame, w, f, fd, x, y0, fz); B.box(M.frame, w, f, fd, x, y0 + h - f, fz);
-    B.box(M.frame, f, h, fd, x - w / 2 + f / 2, y0, fz); B.box(M.frame, f, h, fd, x + w / 2 - f / 2, y0, fz);
+    // `lite`: the surround frames the sash, so only the glazing bars are modelled (distant runs)
+    if (!o.lite) { B.box(M.frame, w, f, fd, x, y0, fz); B.box(M.frame, w, f, fd, x, y0 + h - f, fz);
+      B.box(M.frame, f, h, fd, x - w / 2 + f / 2, y0, fz); B.box(M.frame, f, h, fd, x + w / 2 - f / 2, y0, fz); }
     const cols = o.cols || 1, rows = o.rows != null ? o.rows : 2;
     for (let i = 1; i < cols; i++) B.box(M.frame, f * 0.7, h, fd * 0.8, x - w / 2 + (w * i) / cols, y0, fz);
     for (let j = 1; j < rows; j++) B.box(M.frame, w, f * (j === 1 && rows === 2 ? 1.2 : 0.6), fd * 0.8, x, y0 + (h * j) / rows, fz + 0.01);
     if (M.trim && tw > 0) {
-      B.box(M.trim, tw, h + 0.02, td, x - w / 2 - tw / 2, y0, td / 2);
-      B.box(M.trim, tw, h + 0.02, td, x + w / 2 + tw / 2, y0, td / 2);
+      if (!o.lite) { B.box(M.trim, tw, h + 0.02, td, x - w / 2 - tw / 2, y0, td / 2);
+        B.box(M.trim, tw, h + 0.02, td, x + w / 2 + tw / 2, y0, td / 2); }
+      else B.box(M.trim, w + 2 * tw, h + 0.02, 0.03, x, y0, 0.015);
       const hh = o.headH || tw * 1.6;
       B.box(M.trim, w + 2 * tw + (o.headX || 0.14), hh, td + 0.04, x, y0 + h, (td + 0.04) / 2);
       if (o.keystone) B.box(M.trim, 0.28, hh + 0.12, td + 0.08, x, y0 + h - 0.06, (td + 0.08) / 2);
@@ -386,18 +389,18 @@ export function install(K, THREE, TXT) {
     o = o || {};
     const hr = h - w / 2, tw = o.tw != null ? o.tw : 0.2, td = o.td != null ? o.td : 0.22, f = o.f || 0.06;
     const g = M.glass[Math.floor(r() * M.glass.length)];
-    const kk = w.toFixed(3) + '|' + hr.toFixed(3);
-    B.inst(g, tpl('ag|' + kk, () => new THREE.ShapeGeometry(archShape(w, hr), 16)), x, y0, 0.035);
+    const cs = o.seg || 14, kk = w.toFixed(3) + '|' + hr.toFixed(3) + '|' + cs;
+    B.inst(g, tpl('ag|' + kk, () => new THREE.ShapeGeometry(archShape(w, hr), cs)), x, y0, 0.035);
     // frame: the arch ring, a transom at the spring line and a centre mullion
-    B.inst(M.frame, tpl('ar|' + kk + '|' + f, () => {
+    if (!o.lite) B.inst(M.frame, tpl('ar|' + kk + '|' + f, () => {
       const ring = new THREE.Shape(); archPath(ring, w / 2, 0, hr, true);
       ring.holes.push(archPath(new THREE.Path(), w / 2 - f, f, hr, true));
-      return new THREE.ExtrudeGeometry(ring, { depth: 0.07, bevelEnabled: false, curveSegments: 14 }); }), x, y0, 0.01);
+      return new THREE.ExtrudeGeometry(ring, { depth: 0.07, bevelEnabled: false, curveSegments: cs }); }), x, y0, 0.01);
     B.box(M.frame, w, f, 0.075, x, y0 + hr - f / 2, 0.045);
     if (o.mullion !== false) B.box(M.frame, f * 0.8, hr + w / 2 - 0.02, 0.07, x, y0, 0.045);
     if (h > 2.4 && o.meet !== false) B.box(M.frame, w, f, 0.075, x, y0 + hr * 0.5, 0.045);
     if (M.trim && tw > 0) {
-      B.inst(M.trim, tpl('au|' + kk + '|' + tw + '|' + td, () => new THREE.ExtrudeGeometry(archU(w, hr, tw), { depth: td, bevelEnabled: false, curveSegments: 14 })), x, y0, 0);
+      B.inst(M.trim, tpl('au|' + kk + '|' + tw + '|' + td, () => new THREE.ExtrudeGeometry(archU(w, hr, tw), { depth: td, bevelEnabled: false, curveSegments: cs })), x, y0, 0);
       if (o.keystone !== false) B.box(M.trim, 0.3, tw + 0.2, td + 0.06, x, y0 + h - 0.05, (td + 0.06) / 2);
     }
     if (M.sill) B.box(M.sill, w + 2 * tw + 0.14, 0.1, td + 0.1, x, y0 - 0.1, (td + 0.1) / 2);
@@ -466,7 +469,8 @@ export function install(K, THREE, TXT) {
     const prof = [[0, 0], [rad * 1.25, 0], [rad * 1.28, rad * 0.12], [rad * 1.12, rad * 0.26], [rad * 1.05, rad * 0.3], [rad, rad * 0.42],
       [rad * 0.97, sh * 0.35], [rad * 0.86, sh * 0.86], [rad * 0.9, sh * 0.88], [rad * 0.88, sh * 0.9],
       [rad * (o.corinth ? 0.92 : 0.95), sh * 0.92], [rad * (o.corinth ? 1.25 : 1.1), sh - 0.02], [rad * 1.2, sh], [0, sh]];
-    B.inst(m, tpl('col|' + rad + '|' + sh.toFixed(3) + '|' + !!o.corinth, () => new THREE.LatheGeometry(prof.map(p => new THREE.Vector2(p[0], p[1])), 20)), x, y0 + pl, z);
+    const cseg = o.seg || 20;
+    B.inst(m, tpl('col|' + rad + '|' + sh.toFixed(3) + '|' + !!o.corinth + '|' + cseg, () => new THREE.LatheGeometry(prof.map(p => new THREE.Vector2(p[0], p[1])), cseg)), x, y0 + pl, z);
     if (o.corinth) { // acanthus bands: two rings of lobes read as a Corinthian bell at distance
       for (let k = 0; k < 8; k++) {
         const a = (k / 8) * PI * 2;
@@ -940,7 +944,7 @@ export function install(K, THREE, TXT) {
   }
   // a colonnade ring: n columns at radius rad
   function colonnade(B, m, n, rad, y0, h, cr, corinth) {
-    for (let k = 0; k < n; k++) { const a = (k / n) * PI * 2; column(B, m, Math.cos(a) * rad, y0, Math.sin(a) * rad, h, cr, { corinth }); }
+    for (let k = 0; k < n; k++) { const a = (k / n) * PI * 2; column(B, m, Math.cos(a) * rad, y0, Math.sin(a) * rad, h, cr, { corinth, seg: 14 }); }
   }
 
   /* ================================ county courthouse ================================ */
@@ -1178,10 +1182,10 @@ export function install(K, THREE, TXT) {
     B.box(C.trim, L + 0.1, 0.9, 0.3, mid, 0, 0.15);
     for (let j = 0; j < nb; j++) {
       const x = x0 + sp * (j + 0.5);
-      archWin(B, C.W, r, x, 1.8, 1.55, 3.4, { tw: 0.24, td: 0.3 });
-      rectWin(B, C.W, r, x, 7.6, 1.6, 3.5, { cap: true, headH: 0.4, rows: 2, cols: 2, td: 0.24 });
-      rectWin(B, C.W, r, x, 14.1, 1.55, 3.1, { cap: true, rows: 2, cols: 2, td: 0.22 });
-      rectWin(B, C.W, r, x, 20.3, 1.25, 1.55, { tw: 0.12, rows: 1, cols: 2, noBlind: true });
+      archWin(B, C.W, r, x, 1.8, 1.55, 3.4, { tw: 0.24, td: 0.3, seg: 8, meet: false, lite: true });
+      rectWin(B, C.W, r, x, 7.6, 1.6, 3.5, { cap: true, headH: 0.4, rows: 2, cols: 2, td: 0.24, lite: true });
+      rectWin(B, C.W, r, x, 14.1, 1.55, 3.1, { cap: true, rows: 2, cols: 2, td: 0.22, lite: true });
+      rectWin(B, C.W, r, x, 20.3, 1.25, 1.55, { tw: 0.12, rows: 1, cols: 2, lite: true });
     }
     for (let j = 0; j <= nb; j++) {
       const x = x0 + sp * j;
@@ -1192,7 +1196,7 @@ export function install(K, THREE, TXT) {
     B.box(C.trim, L, 0.5, 0.38, mid, 6.1, 0.19);
     B.box(C.trim, L, 0.62, 0.3, mid, 19.35, 0.15);
     B.box(C.trim, L + 0.4, 0.55, 0.95, mid, 23.2, 0.47);
-    dentils(B, C.trim, x0, x1, 23.04, 0.32);
+    B.box(C.trim, L + 0.2, 0.18, 0.6, mid, 22.98, 0.3);
     if (!o.noParapet) {
       B.box(C.wall, L, 1.45, 0.55, mid, 23.75, 0.0);
       B.box(C.trim, L + 0.2, 0.18, 0.7, mid, 25.2, 0.0);
@@ -1222,7 +1226,7 @@ export function install(K, THREE, TXT) {
       const rust = cmat('caprust', granite('#b48270'), 0.8);
       const W = { frame: mat('capframe', { color: 0x3a2e26, roughness: 0.5 }), glass: [F.glass(), F.glass2(), F.blind(), F.glass()], trim, sill: trim };
       const C = { wall, trim, rust, W };
-      const roofM = cmat('caproof', seamTex('#76706a'), 0.5, { metalness: 0.4 });
+      const roofM = cmat('caproof', seamTex('#5e5852'), 0.5, { metalness: 0.4 });
       // the dome and drum are cast iron painted to match the granite
       const dm = mat('capdome', { color: 0xcfa894, roughness: 0.55, metalness: 0.05 }), dt = mat('capdomet', { color: 0xdcbba8, roughness: 0.5 });
       const DW = { frame: mat('capframe', { color: 0x3a2e26, roughness: 0.5 }), glass: [F.glass2(), F.glass()], trim: dt, sill: dt };
@@ -1287,24 +1291,24 @@ export function install(K, THREE, TXT) {
       B.cyl(dm, 16.8, 16.8, 10.2, 0, t1, 0, 72);
       for (let k = 0; k < 24; k++) {
         const a = (k / 24) * PI * 2, a2 = ((k + 0.5) / 24) * PI * 2;
-        B.push(Math.cos(a) * 16.8, 0, Math.sin(a) * 16.8, PI / 2 - a); archWin(B, DW, r, 0, t1 + 2.0, 1.5, 5.0, { tw: 0.2 }); B.pop();
+        B.push(Math.cos(a) * 16.8, 0, Math.sin(a) * 16.8, PI / 2 - a); archWin(B, DW, r, 0, t1 + 2.0, 1.5, 5.0, { tw: 0.2, seg: 10, lite: true }); B.pop();
         B.push(Math.cos(a2) * 16.8, 0, Math.sin(a2) * 16.8, PI / 2 - a2); B.box(dt, 0.8, 9.4, 0.3, 0, t1 + 0.4, 0.1); B.box(dt, 1.0, 0.5, 0.45, 0, t1 + 9.6, 0.15); B.pop();
       }
       B.cyl(dt, 17.4, 17.4, 1.2, 0, t1 + 10.2, 0, 72); B.cyl(dt, 17.9, 17.6, 0.45, 0, t1 + 11.4, 0, 72);
       const t2 = t1 + 11.85;
       B.cyl(dm, 14.6, 14.6, 8.2, 0, t2, 0, 72);
       B.cyl(dt, 16.6, 16.6, 0.4, 0, t2, 0, 72);
-      colonnade(B, dt, 24, 15.9, t2 + 0.4, 7.8, 0.42, true);
-      for (let k = 0; k < 24; k++) { const a = ((k + 0.5) / 24) * PI * 2; B.push(Math.cos(a) * 14.6, 0, Math.sin(a) * 14.6, PI / 2 - a); archWin(B, DW, r, 0, t2 + 1.6, 1.3, 4.6, { tw: 0.16 }); B.pop(); }
+      colonnade(B, dt, 24, 15.9, t2 + 0.4, 7.8, 0.42, false);
+      for (let k = 0; k < 24; k++) { const a = ((k + 0.5) / 24) * PI * 2; B.push(Math.cos(a) * 14.6, 0, Math.sin(a) * 14.6, PI / 2 - a); archWin(B, DW, r, 0, t2 + 1.6, 1.3, 4.6, { tw: 0.16, seg: 10, lite: true }); B.pop(); }
       B.cyl(dt, 16.7, 16.7, 1.3, 0, t2 + 8.2, 0, 72); B.cyl(dt, 17.1, 16.8, 0.45, 0, t2 + 9.5, 0, 72);
       const ta = t2 + 9.95;
-      B.cyl(dm, 15.2, 15.2, 2.3, 0, ta, 0, 72);
-      for (let k = 0; k < 24; k++) { const a = ((k + 0.5) / 24) * PI * 2; B.push(Math.cos(a) * 15.2, 0, Math.sin(a) * 15.2, PI / 2 - a);
-        B.geo(new THREE.CircleGeometry(0.45, 18), F.glass2(), 0, ta + 1.15, 0.03); B.geo(new THREE.TorusGeometry(0.5, 0.09, 6, 18), dt, 0, ta + 1.15, 0.05); B.pop(); }
-      B.cyl(dt, 15.6, 15.4, 0.4, 0, ta + 2.3, 0, 72);
+      B.cyl(dm, 14.7, 14.7, 2.3, 0, ta, 0, 72);
+      for (let k = 0; k < 24; k++) { const a = ((k + 0.5) / 24) * PI * 2; B.push(Math.cos(a) * 14.7, 0, Math.sin(a) * 14.7, PI / 2 - a);
+        B.geo(new THREE.CircleGeometry(0.45, 18), F.glass2(), 0, ta + 1.15, 0.03); B.geo(new THREE.TorusGeometry(0.5, 0.09, 4, 14), dt, 0, ta + 1.15, 0.05); B.pop(); }
+      B.cyl(dt, 15.1, 14.9, 0.4, 0, ta + 2.3, 0, 72);
       const d0 = ta + 2.7;
-      dome(B, dm, 15.0, 20.5, d0, { ribs: 24, ribMat: dt, ogee: 1.3, seg: 72, ribR: 0.22, lights: [[0.22, 24, 0.95, F.glass2()], [0.5, 24, 0.75, F.glass2()], [0.74, 12, 0.6, F.glass2()]] });
-      const l0 = d0 + 20.3;
+      dome(B, dm, 14.4, 20.6, d0, { ribs: 24, ribMat: dt, ogee: 1.5, seg: 72, ribR: 0.22, lights: [[0.22, 24, 0.95, F.glass2()], [0.5, 24, 0.75, F.glass2()], [0.74, 12, 0.6, F.glass2()]] });
+      const l0 = d0 + 20.4;
       B.cyl(dt, 3.9, 3.9, 0.9, 0, l0, 0, 40);
       B.cyl(dm, 2.8, 2.8, 5.0, 0, l0 + 0.9, 0, 40);
       for (let k = 0; k < 8; k++) { const a = ((k + 0.5) / 8) * PI * 2; B.push(Math.cos(a) * 2.8, 0, Math.sin(a) * 2.8, PI / 2 - a); B.geo(new THREE.ShapeGeometry(archShape(1.0, 2.9), 10), F.glass2(), 0, l0 + 1.5, 0.03); B.pop(); }
@@ -1315,6 +1319,360 @@ export function install(K, THREE, TXT) {
       goddess(B, mat('goddess', { color: 0xd6cdbd, roughness: 0.45, metalness: 0.25 }), l0 + 12.8);
       B.flush(G);
       return G;
+    },
+  });
+
+  /* ================================ city hall ================================ */
+  def('city_hall', {
+    size: [46, 19, 34],
+    options: { floors: 4 },
+    note: 'A modern Texas city hall: a limestone office block with deep-set windows and sunshades, a glazed council chamber under a thin cantilevered roof, a plaza with three flags',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), n = Math.max(2, Math.min(6, o.floors | 0)), fh = 4.2, H = n * fh;
+      const lime = tmat('limestone', pick(r, ['#ddd1b4', '#d6c7a3', '#e2d8c0']), 0.82), frame = F.bronze();
+      const conc = F.concrete(), metal = mat('chmetal', { color: 0x8f9396, metalness: 0.7, roughness: 0.35 });
+      const WM = { frame, glass: [F.tintGlass(), F.glass(), F.blind()], trim: lime, sill: null };
+      // the plaza, raised two steps
+      B.box(conc, 46, 0.3, 34, 0, 0, 0);
+      for (let k = 0; k < 2; k++) B.box(conc, 22, 0.15 * (2 - k), 0.35, 8, 0, 17 + 0.175 + k * 0.35);
+      // A: the office block
+      const ax = -6, az = -6, AW = 32, AD = 16;
+      B.push(ax, 0.3, az, 0);
+      B.box(lime, AW, H + 0.9, AD, 0, 0, 0);
+      eachFace(B, AW, AD, (fi, Fw) => {
+        const nb = Math.round(Fw / 2.6), sp = Fw / nb;
+        for (let k = 0; k < n; k++) for (let j = 0; j < nb; j++) {
+          const x = -Fw / 2 + sp * (j + 0.5), y0 = k * fh + (k === 0 ? 0.6 : 0.9);
+          if (k === 0 && fi === 0 && Math.abs(x - 9) < 3) continue;
+          rectWin(B, WM, r, x, y0, sp - 0.9, k === 0 ? 3.2 : 2.7, { tw: 0.3, td: 0.45, rows: 1, cols: 1, headH: 0.3 });
+          if (fi !== 2) B.box(metal, sp - 0.5, 0.06, 0.9, x, y0 + (k === 0 ? 3.2 : 2.7) + 0.5, 0.45);
+        }
+        B.box(metal, Fw + 0.2, 0.25, 0.3, 0, H + 0.9, 0.05);
+      });
+      rtu(B, -6, H + 0.9, -2); rtu(B, 2, H + 0.9, 3, PI / 2);
+      B.box(mat('screenwall', { color: 0x9da1a2, metalness: 0.5, roughness: 0.5 }), 12, 2.2, 0.1, -2, H + 0.9, 5.5);
+      B.pop();
+      // B: the glass council chamber, a tall limestone fin, the cantilevered roof on slender columns
+      const bx = 13, bz = 4, BW = 16, BD = 12, BH = 9.5;
+      B.push(bx, 0.3, bz, 0);
+      B.box(mat('chfloor', { color: 0x3a3632, roughness: 0.8 }), BW - 0.2, BH, BD - 0.2, 0, 0, 0);
+      eachFace(B, BW, BD, (fi, Fw) => { curtain(B, -Fw / 2, Fw / 2, 0, BH, 1.6, F.alum(), F.tintGlass(), 3); });
+      B.box(lime, BW + 6, 0.6, BD + 7, -1, BH, 2.5);
+      B.box(metal, BW + 6.1, 0.12, BD + 7.1, -1, BH + 0.6, 2.5);
+      [[-9, 8.5], [-2, 8.5], [5, 8.5]].forEach(([x, z]) => B.cyl(metal, 0.16, 0.16, BH, x, 0, z, 16));
+      B.pop();
+      B.box(lime, 1.4, 16, 9, bx - BW / 2 - 1.2, 0.3, bz - 1);
+      // the entrance: storefront doors in the office block under the roof
+      B.push(ax, 0.3, az + AD / 2, 0); storefront(B, 6, 12, 0, 3.6, frame, F.tintGlass(), 9); B.pop();
+      // planters and a monument block (blank)
+      [-18, -11].forEach(x => { B.box(lime, 5, 0.7, 2, x, 0.3, 12); B.box(mat('shrub', { color: 0x3d4a2a, roughness: 1 }), 4.6, 0.4, 1.6, x, 1.0, 12); });
+      B.rbox(lime, 5.5, 1.3, 0.8, 0.04, -3, 0.3, 15, 0, 2);
+      B.box(metal, 4.6, 0.5, 0.05, -3, 0.8, 15.42);
+      B.flush(G);
+      [['us', -12], ['texas', -9], ['#1f4e8c', -6]].forEach(([k, x]) => { const fp = flagpoleGroup(r, { height: 11, flags: [k] }); fp.position.set(x, 0.3, 15.5); G.add(fp); });
+      return G;
+    },
+  });
+
+  /* ================================ school ================================ */
+  def('school', {
+    size: [60, 12.5, 26],
+    options: { length: 56, brick: 'auto' },
+    note: 'A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway, an entry vestibule and a flagpole flying the US and Texas flags',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), L = o.length, D = 14, H = 4.8;
+      const bc = o.brick === 'auto' ? pick(r, ['#b56a45', '#c49460', '#a3533a', '#cfae80']) : o.brick;
+      const brick = tmat('brick', bc, 0.9), cast = F.castStone('#ddd3bd'), conc = F.concrete();
+      const frame = pick(r, [F.alum(), F.bronze()]), paint = mat('canopypaint|' + bc, { color: pick(r, [0x1f3b64, 0x7a1e22, 0x24472f, 0xe8e6e0]), roughness: 0.45, metalness: 0.3 });
+      const WM = { frame, glass: [F.glass(), F.blind(), F.glass2()], trim: null, sill: cast };
+      B.box(conc, L + 1, 0.15, D + 1, 0, 0, 0);
+      B.box(brick, L, H, D, 0, 0.15, 0);
+      B.box(cast, L + 0.08, 0.2, D + 0.08, 0, 0.9, 0);
+      B.box(cast, L + 0.08, 0.3, D + 0.08, 0, H - 0.25, 0);
+      coping(B, F.alum(), L, D, H + 0.15);
+      B.box(F.roofDeck(), L - 0.4, 0.3, D - 0.4, 0, H - 0.08, 0);
+      const ex = -L / 2 + 13;
+      eachFace(B, L, D, (fi, Fw) => {
+        const bays = Math.floor(Fw / 9);
+        for (let j = 0; j < bays; j++) {
+          const x = -Fw / 2 + (Fw / bays) * (j + 0.5);
+          if (fi === 0 && Math.abs(x - ex) < 6) continue;
+          rectWin(B, WM, r, x, 1.1, Math.min(6, Fw / bays - 2), 1.9, { rows: 1, cols: 4, f: 0.05 });
+          if (fi % 2 === 0 && j % 3 === 1) { B.box(frame, 1.1, 2.2, 0.12, x + 3.8, 0.15, 0.06); B.box(mat('hmdoor', { color: 0x6e7479, metalness: 0.4, roughness: 0.5 }), 0.95, 2.1, 0.14, x + 3.8, 0.15, 0.07); }
+        }
+      });
+      // the entry vestibule: taller, glazed, with a blank name panel above
+      B.push(ex, 0, D / 2, 0);
+      B.box(brick, 9, 6.6, 3.2, 0, 0.15, 1.6);
+      B.box(cast, 9.1, 0.35, 3.3, 0, 6.4, 1.6);
+      B.push(0, 0, 3.2, 0); storefront(B, -3.2, 3.2, 0.15, 3.4, frame, F.glass(), 0); B.pop();
+      B.box(cast, 6.4, 1.1, 0.1, 0, 4.6, 3.25);
+      B.box(frame, 7, 0.25, 2.2, 0, 3.8, 4.2);
+      B.pop();
+      // the covered walkway: steel posts, a flat metal deck, a fascia
+      const wz = D / 2 + 2.6, x0 = -L / 2 + 1, x1 = L / 2 - 1;
+      for (let x = x0; x <= x1 + 0.01; x += (x1 - x0) / 12) { if (Math.abs(x - ex) < 4.5) continue; B.box(paint, 0.2, 3.25, 0.2, x, 0.15, wz + 1.5); }
+      [[x0, ex - 4.5], [ex + 4.5, x1]].forEach(([a, b]) => {
+        B.box(mat('deck', { color: 0xc9cbcc, metalness: 0.5, roughness: 0.45 }), b - a + 0.4, 0.12, 3.8, (a + b) / 2, 3.4, wz + 0.2);
+        B.box(paint, b - a + 0.4, 0.35, 0.1, (a + b) / 2, 3.2, wz + 2.1);
+      });
+      B.box(conc, L, 0.08, 4.5, 0, 0, wz);
+      B.box(conc, 2.2, 0.08, 9, ex, 0, wz + 6.5);
+      rtu(B, -8, H + 0.1, -2); rtu(B, 6, H + 0.1, 1); rtu(B, 18, H + 0.1, -1);
+      B.flush(G);
+      const fp = flagpoleGroup(r, { height: 10.7, flags: ['us', 'texas'] });
+      fp.position.set(ex + 6, 0, D / 2 + 10); G.add(fp);
+      return G;
+    },
+  });
+
+  /* ================================ hospital ================================ */
+  def('hospital', {
+    size: [62, 40, 46],
+    options: { floors: 7 },
+    note: 'A Texas regional hospital: a precast patient tower with ribbon windows over a two storey podium, a glazed lobby under a porte-cochere, a blank red emergency sign, a rooftop helipad',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), n = Math.max(3, Math.min(10, o.floors | 0)), fh = 4.0;
+      const pre = tmat('concrete', pick(r, ['#d9d3c6', '#d2cab8', '#e0dcd2']), 0.8), brick = tmat('brick', pick(r, ['#8f4a33', '#b07a52']), 0.9);
+      const frame = F.alum(), gl = pick(r, [F.tintGlass(), F.glass()]), conc = F.concrete();
+      const PW = 60, PD = 30, PH = 9.6;
+      B.box(conc, PW + 2, 0.15, PD + 2, 0, 0, 0);
+      B.box(pre, PW, PH, PD, 0, 0.15, 0);
+      eachFace(B, PW, PD, (fi, Fw) => {
+        for (let k = 0; k < 2; k++) {
+          const y = 0.15 + k * 4.8 + 1.1;
+          if (fi === 0 && k === 0) { curtain(B, -Fw / 2 + 2, -8, y, 2.2, 1.5, frame, gl); curtain(B, 8, Fw / 2 - 2, y, 2.2, 1.5, frame, gl); }
+          else curtain(B, -Fw / 2 + 2, Fw / 2 - 2, y, 2.2, 1.5, frame, gl);
+        }
+        B.box(frame, Fw + 0.1, 0.3, 0.2, 0, PH, 0.05);
+      });
+      // the lobby: a two storey glass box at the front with the porte-cochere before it
+      B.push(0, 0.15, PD / 2, 0);
+      B.box(mat('lobbyin', { color: 0x4a4540, roughness: 0.8 }), 14, 8.6, 2.6, 0, 0, 1.3);
+      B.push(0, 0, 2.6, 0); curtain(B, -7, 7, 0, 8.6, 1.75, frame, gl, 2); storefront(B, -2, 2, 0, 2.6, frame, F.glass(), 0, 0.05); B.pop();
+      B.box(pre, 18, 0.7, 12, 0, 4.8, 8.5);
+      B.box(frame, 18.1, 0.12, 12.1, 0, 5.5, 8.5);
+      B.box(mat('signwhite', { color: 0xf2f0ea, roughness: 0.4 }), 9, 0.5, 0.05, 0, 4.9, 14.52);
+      [[-7.5, 13.5], [7.5, 13.5], [-7.5, 5], [7.5, 5]].forEach(([x, z]) => B.cyl(pre, 0.4, 0.4, 4.8, x, 0, z, 24));
+      for (let k = 0; k < 16; k++) B.box(F.lamp(0xfff1dc, 1.2), 0.6, 0.03, 0.6, -6 + (k % 4) * 4, 4.78, 4.5 + Math.floor(k / 4) * 2.8);
+      B.pop();
+      // the tower
+      const TW = 44, TD = 17, tz = -4, T0 = PH + 0.15, TH = n * fh;
+      B.push(0, T0, tz, 0);
+      B.box(pre, TW, TH + 1.2, TD, 0, 0, 0);
+      [-1, 1].forEach(s => B.box(brick, 5.4, TH + 1.6, TD + 0.3, s * (TW / 2 - 2.6), 0, 0));
+      eachFace(B, TW, TD, (fi, Fw) => {
+        const inner = fi % 2 === 0 ? Fw / 2 - 5.6 : Fw / 2 - 1.2;
+        for (let k = 0; k < n; k++) {
+          const y = k * fh + 1.0;
+          curtain(B, -inner, inner, y, 1.9, 1.35, frame, gl);
+          B.box(pre, inner * 2 + 0.1, 0.1, 0.3, 0, y - 0.1, 0.15);
+          if (fi % 2 === 0) [-1, 1].forEach(s => rectWin(B, { frame, glass: [gl], trim: null, sill: null }, r, s * (Fw / 2 - 2.6), y, 1.4, 1.9, { rows: 1 }));
+        }
+      });
+      // the stair and elevator core, glazed, rising above the roof
+      B.push(0, 0, TD / 2, 0); B.box(pre, 6, TH + 4.4, 1.6, 0, 0, 0.8); B.push(0, 0, 1.6, 0); curtain(B, -2.2, 2.2, 0.8, TH + 2.6, 1.1, frame, gl, n); B.pop(); B.pop();
+      // penthouse with louvres, and a helipad over the west wing
+      const lv = tmat('corrugated', '#b8bcbd', 0.55, { metalness: 0.4 });
+      B.box(lv, 16, 4.2, 9, -4, TH + 1.2, -2);
+      B.box(F.alum(), 16.3, 0.3, 9.3, -4, TH + 5.4, -2);
+      B.box(F.galv(), 14, 0.6, 14, 13, TH + 1.2, 0);
+      B.box(mat('helipad', { color: 0x4a4a4c, roughness: 0.85 }), 14, 0.15, 14, 13, TH + 1.8, 0);
+      const wpaint = mat('padwhite', { color: 0xeeeeea, roughness: 0.6 }), ypaint = mat('padyel', { color: 0xe7b31c, roughness: 0.6 });
+      [[0, 6.6, 13.8, 0.3], [0, -6.6, 13.8, 0.3], [6.6, 0, 0.3, 13.8], [-6.6, 0, 0.3, 13.8]].forEach(([x, z, w, d]) => B.box(wpaint, w, 0.02, d, 13 + x, TH + 1.95, z));
+      B.geo(new THREE.RingGeometry(4.2, 4.6, 48), ypaint, 13, TH + 1.97, 0, -PI / 2, 0, 0);
+      B.box(wpaint, 0.6, 0.02, 3.6, 12, TH + 1.96, 0); B.box(wpaint, 0.6, 0.02, 3.6, 14, TH + 1.96, 0); B.box(wpaint, 2.0, 0.02, 0.5, 13, TH + 1.96, 0);
+      B.pop();
+      rtu(B, -20, PH + 0.15, 11); rtu(B, 20, PH + 0.15, 11, PI / 2);
+      // the emergency pylon: a blank red panel with a white band
+      B.push(PW / 2 - 2, 0, PD / 2 + 12, -0.3);
+      B.box(pre, 0.9, 4.2, 2.8, 0, 0, 0);
+      B.box(mat('ered', { color: 0xb3121b, roughness: 0.4, emissive: 0x3a0306, emissiveIntensity: 0.4 }), 0.94, 1.6, 2.5, 0, 2.3, 0);
+      B.box(mat('signwhite', { color: 0xf2f0ea, roughness: 0.4 }), 0.96, 0.4, 2.3, 0, 1.6, 0);
+      B.pop();
+      return B.flush(G);
+    },
+  });
+
+  /* ================================ strip mall ================================ */
+  def('strip_mall', {
+    size: [66, 9, 32],
+    options: { units: 8, parking: true },
+    note: 'A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), n = Math.max(3, o.units | 0), uw = 8, L = n * uw, D = 18, H = 5.2;
+      const stucco = tmat('stucco', pick(r, ['#dcc8a3', '#d8cdb8', '#e1d3b8', '#cdb592']), 0.92), stone = tmat('limestone', '#cdb892', 0.9);
+      const frame = pick(r, [F.bronze(), F.alum()]), conc = F.concrete(), roofT = cmat('smroof|' + n, seamTex(pick(r, ['#8a3a26', '#3e5a4c', '#6b6e70'])), 0.45, { metalness: 0.45 });
+      B.box(conc, L + 2, 0.15, D + 6, 0, 0, 1.5);
+      B.box(stucco, L, H, D, 0, 0.15, 0);
+      B.box(F.roofDeck(), L - 0.3, 0.2, D - 0.3, 0, H, 0);
+      const cz = D / 2 + 3.2;
+      for (let u = 0; u < n; u++) {
+        const x0 = -L / 2 + u * uw, xc = x0 + uw / 2, tower = u === 0 || u === n - 1, ph = tower ? 8.2 : H + 0.7 + (u % 3 === 1 ? 1.3 : r() * 0.5);
+        B.push(0, 0, D / 2, 0);
+        storefront(B, x0 + 0.6, x0 + uw - 0.6, 0.15, 3.3, frame, F.glass(), xc + (r() - 0.5) * 2);
+        B.box(stucco, uw, ph - H, 0.5, xc, H + 0.15, -0.25);
+        B.box(stone, uw + 0.05, 0.25, 0.6, xc, ph + 0.15, -0.25);
+        // the blank sign: a cabinet with a lit face and a coloured band
+        const sc = pick(r, [0x9c1c24, 0x1f4f8f, 0x2c6b3c, 0x333436, 0xc0662a, 0x6b2a6e]);
+        B.box(mat('signcab', { color: 0x2a2b2d, roughness: 0.5 }), uw - 2.2, 1.1, 0.25, xc, 4.25, 0.12);
+        B.box(mat('signface|' + sc, { color: sc, roughness: 0.35, emissive: sc, emissiveIntensity: 0.25 }), uw - 2.4, 0.9, 0.05, xc, 4.35, 0.27);
+        B.pop();
+        if (tower) {
+          B.box(stone, uw, 8.2, D * 0.45, xc, 0.15, D / 2 - D * 0.225 + 0.3);
+          hipRoof(B, roofT, uw + 0.8, D * 0.45 + 0.8, 2.6, xc, 8.35, D / 2 - D * 0.225 + 0.3);
+        }
+      }
+      // the arcade: stone clad piers, a canopy deck and fascia
+      for (let u = 0; u <= n; u++) { const x = -L / 2 + u * uw; B.box(stone, 0.65, 3.65, 0.65, x, 0.15, cz); B.box(stone, 0.8, 0.2, 0.8, x, 0.15, cz); }
+      B.box(stucco, L + 0.8, 0.55, 3.6, 0, 3.8, D / 2 + 1.7);
+      B.box(stone, L + 0.9, 0.12, 3.7, 0, 4.35, D / 2 + 1.7);
+      for (let u = 0; u < n; u++) B.box(F.lamp(0xffe8c8, 1.0), 0.4, 0.03, 0.4, -L / 2 + u * uw + uw / 2, 3.78, D / 2 + 1.7);
+      B.box(conc, L + 1, 0.15, 3.8, 0, 0, D / 2 + 1.9);
+      if (o.parking) {
+        const pz = D / 2 + 3.9 + 5.5, asph = cmat('asphm', asphaltTex('#4a4a4b'), 0.9), paint = mat('roadpaint', { color: 0xeeeeea, roughness: 0.55 });
+        B.box(asph, L + 2, 0.06, 11, 0, 0, pz);
+        const ns = Math.floor((L + 1) / 2.75);
+        for (let k = 0; k <= ns; k++) { const x = -L / 2 + k * 2.75; B.box(paint, 0.1, 0.004, 5.4, x, 0.06, pz - 2.6); if (k < ns) B.box(conc, 1.8, 0.12, 0.15, x + 1.375, 0.06, pz - 4.8); }
+      }
+      rtu(B, -L / 4, H + 0.2, -3); rtu(B, L / 4, H + 0.2, -2);
+      return B.flush(G);
+    },
+  });
+
+  /* ================================ gas station ================================ */
+  function dispenser(B, x, z, band) {
+    B.push(x, 0.2, z, 0);
+    const body = mat('dispbody', { color: 0xe9e9e6, roughness: 0.35, metalness: 0.2 });
+    B.rbox(body, 0.6, 1.95, 1.15, 0.04, 0, 0, 0, 0, 2);
+    B.box(mat('dispband|' + band, { color: band, roughness: 0.4 }), 0.62, 0.3, 1.17, 0, 1.65, 0);
+    [-1, 1].forEach((s) => {
+      B.box(mat('dispscreen', { color: 0x0b0f12, roughness: 0.2, metalness: 0.4 }), 0.02, 0.35, 0.5, s * 0.31, 1.15, 0);
+      B.box(F.black(), 0.03, 0.55, 0.9, s * 0.31, 0.45, 0);
+      for (let k = 0; k < 3; k++) {
+        B.box(F.black(), 0.08, 0.2, 0.09, s * 0.35, 0.75, -0.3 + k * 0.3);
+        B.tube(K.finish.rubber(), [[s * 0.36, 0.8, -0.3 + k * 0.3], [s * 0.5, 0.4, -0.3 + k * 0.3 + 0.05], [s * 0.42, 0.05, -0.2 + k * 0.3], [s * 0.34, 1.7, -0.3 + k * 0.3]], 0.02, 20, 5);
+      }
+    });
+    B.pop();
+  }
+  def('gas_station', {
+    size: [30, 7.5, 36],
+    options: { islands: 2 },
+    note: 'A Texas fuel station: a canopy with a banded fascia over pump islands, dispensers with hoses, bollards, a convenience store with storefront glazing and a blank sign, a blank price pylon',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), conc = F.concrete();
+      const band = pick(r, [0xc41e24, 0x1d4e9e, 0x1f7a3c, 0xe07a1f]), bandM = mat('band|' + band, { color: band, roughness: 0.35, metalness: 0.1 });
+      const white = mat('canwhite', { color: 0xf1f1ee, roughness: 0.4, metalness: 0.1 }), frame = F.alum();
+      B.box(conc, 30, 0.1, 36, 0, 0, 0);
+      // the store
+      const brick = tmat('brick', pick(r, ['#b98b5f', '#9f5a3e', '#c7a57a']), 0.9);
+      B.push(0, 0.1, -10, 0);
+      B.box(brick, 22, 4.6, 12, 0, 0, 0);
+      B.box(white, 22.2, 1.1, 12.2, 0, 4.5, 0);
+      B.box(bandM, 22.25, 0.25, 12.25, 0, 4.9, 0);
+      B.box(F.roofDeck(), 21.6, 0.1, 11.6, 0, 5.5, 0);
+      B.push(0, 0, 6, 0);
+      storefront(B, -9, 5, 0, 3.0, frame, F.glass(), -2);
+      B.box(mat('signblank', { color: 0xf4f2ec, roughness: 0.35, emissive: 0xffffff, emissiveIntensity: 0.05 }), 8, 0.8, 0.12, 0, 4.65, 0.12);
+      B.box(mat('icebox', { color: 0xeef1f3, roughness: 0.35, metalness: 0.2 }), 2.2, 1.9, 0.9, 7.8, 0, 0.5);
+      B.box(mat('icebox2', { color: 0x2f6fb5, roughness: 0.4 }), 2.22, 0.35, 0.92, 7.8, 1.5, 0.5);
+      for (let k = 0; k < 6; k++) B.bar(F.galv(), [-10.5 + k * 0.28, 0, 0.3], [-10.5 + k * 0.28, 1.8, 0.3], 0.02, 5);
+      B.box(F.galv(), 1.6, 0.05, 0.8, -9.8, 1.8, 0.4);
+      for (let k = 0; k < 3; k++) B.cyl(mat('propane', { color: 0xe8e8e2, roughness: 0.4 }), 0.16, 0.16, 0.45, -10.3 + k * 0.4, 0.05, 0.35, 12);
+      B.pop();
+      rtu(B, 3, 5.6, -2);
+      B.pop();
+      // the canopy
+      const cz = 8, CW = 24, CD = 11, y0 = 4.9;
+      B.box(white, CW, 0.9, CD, 0, y0, cz);
+      B.box(bandM, CW + 0.04, 0.3, CD + 0.04, 0, y0 + 0.3, cz);
+      B.box(mat('canunder', { color: 0xdfe1e2, roughness: 0.5, metalness: 0.2 }), CW - 0.1, 0.02, CD - 0.1, 0, y0 - 0.01, cz);
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) B.box(F.lamp(0xffffff, 2.2), 0.9, 0.03, 0.9, -9 + i * 6, y0 - 0.03, cz - 3.5 + j * 3.5);
+      const ni = Math.max(1, Math.min(4, o.islands | 0));
+      for (let i = 0; i < ni; i++) {
+        const ix = ni === 1 ? 0 : -CW / 2 + 4 + (i * (CW - 8)) / (ni - 1);
+        B.rbox(conc, 1.3, 0.2, 7.6, 0.05, ix, 0.1, cz, 0, 1);
+        B.rbox(mat('colclad', { color: 0xd5d6d3, metalness: 0.4, roughness: 0.4 }), 0.5, y0 - 0.3, 0.5, 0.03, ix, 0.3, cz, 0, 1);
+        dispenser(B, ix, cz - 2, band); dispenser(B, ix, cz + 2, band);
+        [-1, 1].forEach(s => [-0.35, 0.35].forEach(dx => { B.cyl(mat('bollard', { color: 0xf0c419, roughness: 0.45 }), 0.1, 0.1, 1.0, ix + dx, 0.3, cz + s * 3.55, 16); B.cyl(mat('bollard', { color: 0xf0c419, roughness: 0.45 }), 0.02, 0.1, 0.08, ix + dx, 1.3, cz + s * 3.55, 16); }));
+        B.box(mat('trashc', { color: 0x2a2c2e, roughness: 0.5 }), 0.5, 0.95, 0.5, ix, 0.3, cz - 3.0);
+      }
+      // the price pylon: blank dark panels in a branded cabinet
+      B.push(12.5, 0, 16, -0.4);
+      [-1, 1].forEach(s => B.box(brick, 0.5, 5.6, 0.6, s * 1.3, 0.1, 0));
+      B.box(white, 2.9, 3.4, 0.45, 0, 2.3, 0);
+      B.box(bandM, 2.95, 1.0, 0.5, 0, 4.7, 0);
+      for (let k = 0; k < 3; k++) B.box(mat('ledpanel', { color: 0x0d0f10, roughness: 0.25, emissive: 0x3a0806, emissiveIntensity: 0.4 }), 2.3, 0.75, 0.48, 0, 2.55 + k * 0.95, 0);
+      B.box(brick, 3.3, 0.8, 1.0, 0, 0.1, 0);
+      B.pop();
+      // air and water machine
+      B.rbox(mat('airm', { color: 0x2f67b1, roughness: 0.4 }), 0.6, 1.3, 0.45, 0.04, -13, 0.1, -2, 0, 1);
+      return B.flush(G);
+    },
+  });
+
+  /* ================================ small town church ================================ */
+  def('church', {
+    size: [11, 25, 26],
+    options: { finish: 'auto' },
+    note: 'A small town Texas church: gabled nave, pointed lancet windows, a front bell tower with louvred belfry and octagonal spire; finish "frame" (white clapboard), "brick" or "stone"',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder();
+      const fin = o.finish === 'auto' ? pick(r, ['frame', 'frame', 'brick', 'stone']) : o.finish;
+      const wall = fin === 'frame' ? tmat('siding', '#f1efe8', 0.7) : fin === 'brick' ? tmat('brick', pick(r, ['#9e4c34', '#b56b48']), 0.9) : tmat('limestone', '#d4c49f', 0.88);
+      const trim = fin === 'frame' ? F.whiteTrim() : F.castStone('#e5dcc6');
+      const roofM = r() < 0.5 ? cmat('chroof', seamTex(pick(r, ['#7e8284', '#4e5d56', '#7b2f22'])), 0.45, { metalness: 0.5 }) : tmat('shingle', '#55504b', 0.9);
+      const spireM = fin === 'frame' ? F.whiteTrim() : roofM;
+      const NW = 9, NL = 20, NH = 6, rise = 4.6;
+      B.push(0, 0, -1.2, 0);   // centre the nave and tower footprint on the origin
+      const stained = [mat('sg1', { color: 0x5a3a2a, emissive: 0x6a3a1a, emissiveIntensity: 0.15, roughness: 0.1, metalness: 0.2 }), mat('sg2', { color: 0x2a3a5a, emissive: 0x1a2a6a, emissiveIntensity: 0.15, roughness: 0.1, metalness: 0.2 }), mat('sg3', { color: 0x3a4a2a, emissive: 0x4a5a1a, emissiveIntensity: 0.12, roughness: 0.1, metalness: 0.2 })];
+      B.box(F.concrete(), NW + 0.4, 0.6, NL + 0.4, 0, 0, -1);
+      B.box(wall, NW, NH - 0.6, NL, 0, 0.6, -1);
+      B.push(0, 0.6, -1 + NL / 2, 0); B.extrude(wall, triShape(NW, rise), 0.01, 0, NH - 0.6, -0.01); B.pop();
+      B.push(0, 0.6, -1 - NL / 2, PI); B.extrude(wall, triShape(NW, rise), 0.01, 0, NH - 0.6, -0.01); B.pop();
+      B.extrude(wall, triShape(NW, rise), NL, 0, NH, -1 - NL / 2);
+      gableRoof(B, roofM, NW + 0.9, NL + 0.8, rise + 0.45, 0, NH - 0.05, -1 - NL / 2 - 0.4);
+      B.box(trim, NW + 0.1, 0.2, NL + 0.1, 0, NH - 0.25, -1);
+      [1, -1].forEach(sx => {
+        B.push(sx * NW / 2, 0, -1, sx * PI / 2);
+        for (let k = 0; k < 5; k++) {
+          const z = -NL / 2 + 2.4 + k * 3.8, g = stained[(k + (sx > 0 ? 0 : 1)) % 3];
+          B.geo(new THREE.ShapeGeometry(pointedShape(1.1, 2.2, 0.95), 10), g, z, 1.6, 0.03);
+          const ring = pointedShape(1.4, 2.2, 1.1); ring.holes.push(pointedShape(1.1, 2.2, 0.95));
+          B.extrude(trim, ring, 0.1, z, 1.45, 0.0);
+          B.box(trim, 0.05, 2.9, 0.08, z, 1.6, 0.04);
+          B.box(trim, 1.6, 0.1, 0.18, z, 1.45, 0.09);
+        }
+        B.pop();
+      });
+      // the tower
+      const TS = 3.8, tz = -1 + NL / 2 + TS / 2 - 0.3, T1 = 12.4, T2 = 15.4;
+      B.box(F.concrete(), TS + 0.4, 0.6, TS + 0.4, 0, 0, tz);
+      B.box(wall, TS, T1 - 0.6, TS, 0, 0.6, tz);
+      B.box(trim, TS + 0.3, 0.3, TS + 0.3, 0, T1, tz);
+      B.box(wall, TS - 0.3, T2 - T1 - 0.3, TS - 0.3, 0, T1 + 0.3, tz);
+      B.box(trim, TS + 0.2, 0.35, TS + 0.2, 0, T2, tz);
+      B.push(0, 0, tz, 0);
+      eachFace(B, TS - 0.3, TS - 0.3, () => {
+        B.geo(new THREE.ShapeGeometry(pointedShape(1.3, 1.5, 0.75), 10), mat('belfry', { color: 0x0e0c0b, roughness: 1 }), 0, T1 + 0.7, 0.02);
+        const ring = pointedShape(1.6, 1.5, 0.9); ring.holes.push(pointedShape(1.3, 1.5, 0.75)); B.extrude(trim, ring, 0.1, 0, T1 + 0.55, 0);
+        for (let k = 0; k < 5; k++) B.boxc(trim, 1.25, 0.05, 0.25, 0, T1 + 0.95 + k * 0.33, 0.05, 0.6, 0, 0);
+      });
+      B.pop();
+      B.geo(new THREE.CylinderGeometry(0.02, 2.2, 8.4, 8), spireM, 0, T2 + 0.35 + 4.2, tz, 0, PI / 8, 0);
+      const cm = F.gold();
+      B.box(cm, 0.12, 1.5, 0.12, 0, T2 + 8.5, tz); B.box(cm, 0.8, 0.12, 0.12, 0, T2 + 9.45, tz);
+      // the front: pointed double doors, a rose window, steps
+      B.push(0, 0, tz + TS / 2, 0);
+      B.geo(new THREE.ShapeGeometry(pointedShape(1.9, 2.4, 0.9), 10), mat('doorshadow', { color: 0x17130f, roughness: 0.9 }), 0, 0.6, 0.01);
+      doors(B, 0, 0.6, 1.8, 2.35, { frame: trim, glazed: false, mat: mat('reddoor', { color: pick(r, [0x7a2320, 0x3f2a1c, 0x2a3f5a]), roughness: 0.45 }) });
+      const dr = pointedShape(2.3, 2.4, 1.1); dr.holes.push(pointedShape(1.9, 2.4, 0.9)); B.extrude(trim, dr, 0.14, 0, 0.6, 0);
+      B.geo(new THREE.CircleGeometry(0.6, 24), stained[1], 0, 6.2, 0.03);
+      B.geo(new THREE.TorusGeometry(0.66, 0.1, 6, 24), trim, 0, 6.2, 0.05);
+      stairs(B, F.concrete(), 3.2, 0.6, 0.05, { rail: F.black() });
+      B.pop(); B.pop();
+      return B.flush(G);
     },
   });
 }

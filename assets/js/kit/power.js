@@ -569,8 +569,8 @@ export function install(K, THREE, TXT) {
       return [x, y + 0.06 + 0.3 * s, z];
     }
     const g = tpl('pin' + s, () => {
-      const P = [[0, 0], [0.03, 0], [0.035, 0.02], [0.09, 0.045], [0.088, 0.058], [0.05, 0.07], [0.07, 0.1], [0.068, 0.112],
-                 [0.045, 0.125], [0.058, 0.15], [0.055, 0.162], [0.04, 0.172], [0.042, 0.19], [0.03, 0.2], [0, 0.2]];
+      const P = [[0, 0], [0.034, 0], [0.04, 0.03], [0.058, 0.05], [0.056, 0.06], [0.044, 0.068], [0.072, 0.095], [0.07, 0.106],
+                 [0.048, 0.114], [0.092, 0.14], [0.09, 0.152], [0.05, 0.162], [0.045, 0.176], [0.036, 0.182], [0.042, 0.19], [0.03, 0.2], [0, 0.2]];
       return new THREE.LatheGeometry(P.map(p => new THREE.Vector2(p[0] * s, p[1] * s)), 16);
     });
     b.geo(kind === 'porcelain' ? M.porc() : M.porcGrey(), g, V3(x, y + 0.04, z));
@@ -718,7 +718,7 @@ export function install(K, THREE, TXT) {
   /* ========================================================================== utility pole */
   K.define('utility_pole', {
     size: [2.6, 11.2, 4.6],
-    options: { transformer: 'pole mount can (true)', streetlight: 'cobra head on a davit (false)', guy: 'down guy with guard (true)',
+    options: { transformer: 'pole mount can (true)', streetlight: 'cobra head on a davit (false)', guy: 'down guy with guard (true)', guyDir: 'guy runs to -z (-1) or +z (1)',
                insulators: 'porcelain | polymer (seeded)', height: 'metres above ground (10.7, a 40 ft class 3 pole)' },
     note: 'Three phase distribution: treated pine pole, 8 ft crossarm on flat braces, two crossarm pins and a pole top pin, neutral on a spool, cutout and arrester feeding a 25 to 50 kVA can.',
     make(o, r) {
@@ -759,16 +759,16 @@ export function install(K, THREE, TXT) {
         b.geo(can, new THREE.SphereGeometry(rc + 0.01, 28, 6, 0, Math.PI * 2, 0, 0.5), V3(0, yc + 0.84, zc));
         [0.2, 0.6].forEach((yy) => b.geo(can, new THREE.CylinderGeometry(rc + 0.008, rc + 0.008, 0.03, 28), V3(0, yc + yy, zc)));
         b.box(can, 0.2, 0.22, 0.14, 0.18, yc + 0.72, zc + 0.18, 0.7);               // LV bushing boss
-        const hvTop = post(b, M.porcGrey(), 0, yc + 1.03, zc, 0.28, 0.03, 0.055, 0.06);
+        const hvTop = post(b, M.porcGrey(), 0, yc + 1.03, zc, 0.3, 0.028, 0.045, 0.06);
         [-0.1, 0, 0.1].forEach((dx) => post(b, M.porcGrey(), rc * 0.7 + dx * 0.3, yc + 0.6 + dx, zc + rc * 0.75, 0.1, 0.02, 0.035, 0.04));
         b.box(M.paint(0xe8e2cf, 0.5), 0.12, 0.08, 0.01, 0, yc + 0.35, zc + rc + 0.005);  // kVA stencil plate
         // cutout on the crossarm end, arrester beside it, leads to the bushing
         const cx = 0.78, cy = ya - 0.12;
         b.box(hw, 0.05, 0.05, 0.22, cx, cy, az + 0.12);
         _q.setFromAxisAngle(V3(1, 0, 0), 0.32);
-        b.geo(M.porcGrey(), postGeo(0.36, 0.03, 0.055, 0.055), V3(cx, cy - 0.28, az + 0.25), _q.clone());
+        b.geo(M.porcGrey(), postGeo(0.36, 0.028, 0.042, 0.055), V3(cx, cy - 0.28, az + 0.25), _q.clone());
         b.bar(M.paint(0x3b3632, 0.6), [cx + 0.07, cy - 0.3, az + 0.24], [cx + 0.07, cy + 0.04, az + 0.35], 0.014, 8);  // fuse tube
-        post(b, M.polymer(), cx - 0.3, ya - 0.3, az + 0.14, 0.24, 0.028, 0.05, 0.05);
+        post(b, M.polymer(), cx - 0.3, ya - 0.3, az + 0.14, 0.3, 0.026, 0.042, 0.05);
         b.cable(hw, [1.07, ya + 0.25, az], [cx + 0.02, cy + 0.08, az + 0.33], 0.1, 0.005, 8, 5);
         b.cable(hw, [cx + 0.02, cy - 0.3, az + 0.24], hvTop, 0.25, 0.005, 12, 5);
         b.cable(M.black(), [rc * 0.7, yc + 0.7, zc + rc * 0.8], [0.05, yn, rn + 0.12], 0.15, 0.007, 10, 5);   // secondary to the neutral
@@ -785,10 +785,11 @@ export function install(K, THREE, TXT) {
         b.geo(M.black(), new THREE.CylinderGeometry(0.035, 0.035, 0.05, 12), V3(hx + 0.1, ys + 0.55, 0));
       }
       if (o.guy !== false) {
-        const top = [0, H - 0.6, -rad(H - 0.6) - 0.02], anc = [0, 0.25, -4.3];
-        b.box(hw, 0.06, 0.12, 0.06, 0, H - 0.6, -rad(H - 0.6) - 0.02);
+        const gd = o.guyDir === 1 ? 1 : -1;
+        const top = [0, H - 0.6, gd * (rad(H - 0.6) + 0.02)], anc = [0, 0.25, gd * 4.3];
+        b.box(hw, 0.06, 0.12, 0.06, 0, H - 0.6, gd * (rad(H - 0.6) + 0.02));
         b.bar(hw, top, anc, 0.0048, 5);
-        b.bar(hw, anc, [0, -0.2, -4.45], 0.014, 6);                              // anchor rod eye
+        b.bar(hw, anc, [0, -0.2, gd * 4.45], 0.014, 6);                              // anchor rod eye
         const d = V3(anc[0] - top[0], anc[1] - top[1], anc[2] - top[2]).normalize(), L = 2.5 / Math.abs(d.y);
         b.bar(M.paint(0xe8c21a, 0.45), anc, [anc[0] - d.x * L, anc[1] - d.y * L, anc[2] - d.z * L], 0.025, 10);  // guy guard
         const gi = L3(top, anc, 0.22);
@@ -818,8 +819,14 @@ export function install(K, THREE, TXT) {
       const places = o.structures || Array.from({ length: n + 1 }, (_, i) => [0, (i - n / 2) * span, 0]);
       const so = { seed: o.seed, leads: 0.001 };
       ['voltage', 'insulator', 'insulators', 'height', 'material', 'circuits', 'transformer', 'streetlight', 'guy'].forEach((k) => { if (o[k] != null) so[k] = o[k]; });
-      const made = places.map(([x, z, ry]) => {
-        const t = K.make(type, so); t.position.set(x, 0, z); t.rotation.y = ry || 0; t.updateMatrix(); g.add(t); return t;
+      const made = places.map(([x, z, ry], i) => {
+        let so2 = so;
+        if (type === 'utility_pole') {             // guys only at the dead ends, a can on every other pole
+          so2 = Object.assign({}, so, { seed: (o.seed || 1) * 13 + i });
+          if (o.guy == null) { so2.guy = i === 0 || i === places.length - 1; so2.guyDir = i === 0 ? -1 : 1; }
+          if (o.transformer == null) so2.transformer = i % 2 === 1;
+        }
+        const t = K.make(type, so2); t.position.set(x, 0, z); t.rotation.y = ry || 0; t.updateMatrix(); g.add(t); return t;
       });
       const b = new Bld(), cm = M.conductor(), sm = M.shieldw(), hw = M.galvDark();
       const W = (t, p, dx, dy) => V3(p.x + (dx || 0), p.y + (dy || 0), p.z).applyMatrix4(t.matrix);
@@ -885,7 +892,7 @@ export function install(K, THREE, TXT) {
     if (LINK) return LINK;
     const N = 128, c = document.createElement('canvas'); c.width = c.height = N;
     const x = c.getContext('2d'); x.fillStyle = '#000'; x.fillRect(0, 0, N, N);
-    x.strokeStyle = '#fff'; x.lineWidth = 5;
+    x.strokeStyle = '#fff'; x.lineWidth = 9;
     for (let k = -1; k <= 1; k++) { x.beginPath(); x.moveTo(k * N, 0); x.lineTo(k * N + N, N); x.stroke(); x.beginPath(); x.moveTo(k * N + N, 0); x.lineTo(k * N, N); x.stroke(); }
     const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
     t.repeat.set(1, 1);
@@ -1173,7 +1180,7 @@ export function install(K, THREE, TXT) {
         const bend = 2.2 * s * s, ct = Math.cos(-tw), st = Math.sin(-tw);
         for (let k = 0; k < NA; k++) {
           const th = (k / NA) * Math.PI * 2;
-          const cx = Math.cos(th) * rootR, cz = Math.sin(th) * rootR;
+          const cx = -Math.cos(th) * rootR + 0.2 * rootR, cz = -Math.sin(th) * rootR;
           const xc = (1 + Math.cos(th)) / 2, up = Math.sin(th) >= 0 ? 1 : -1;      // xc 0 at LE (th = pi)
           const yt = 5 * t * (0.2969 * Math.sqrt(xc) - 0.126 * xc - 0.3516 * xc * xc + 0.2843 * xc ** 3 - 0.1036 * xc ** 4);
           const m = 0.025, p = 0.4, yc = xc < p ? m / (p * p) * (2 * p * xc - xc * xc) : m / ((1 - p) ** 2) * (1 - 2 * p + 2 * p * xc - xc * xc);
@@ -1383,10 +1390,10 @@ export function install(K, THREE, TXT) {
   }
   K.define('battery_storage', {
     size: [66, 14, 42],
-    options: { rows: 'rows of containers (2)', cols: 'containers per row, in pairs with a PCS skid between (6)', gsu: 'main step up transformer and dead end (true)' },
+    options: { rows: 'rows of containers (3)', cols: 'containers per row, in pairs with a PCS skid between (4)', gsu: 'main step up transformer and dead end (true)' },
     note: 'Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer.',
     make(o, r) {
-      const g = new THREE.Group(), b = new Bld(), rows = o.rows || 2, cols = o.cols || 6;
+      const g = new THREE.Group(), b = new Bld(), rows = o.rows || 3, cols = o.cols || 4;
       const ribs = kmat('pw_cont', { color: 0xffffff, roughness: 0.5, metalness: 0.15, map: K.tex('corrugated', { color: '#e8e9e4' }) });
       ribs.userData.metres = 3.3;
       const pairs = Math.ceil(cols / 2), pairW = 2 * 12.19 + 1.2 + 7.4, rowP = 2.44 + 7.5;
@@ -1410,6 +1417,271 @@ export function install(K, THREE, TXT) {
       }
       // cable trench along each row
       zs.forEach((z) => b.box(M.concrete(), W, 0.12, 0.8, 0, 0.06, z + 2.44 / 2 + 1.2));
+      b.build(g);
+      return g;
+    },
+  });
+
+  /* ===================================================================== thermal plant parts */
+  /* a box of acoustic enclosure panels: vertical seams, a roof lip, doors on +z */
+  function enclosure(b, x0, x1, z, w, h, color, o) {
+    o = o || {};
+    const mat = M.paint(color, 0.55), seam = M.paint(0x000000, 0.9), L = x1 - x0, xc = (x0 + x1) / 2;
+    b.geo(mat, rbox(L, h, w, 0.04), V3(xc, 0.3 + h / 2, z));
+    b.box(mat, L + 0.2, 0.15, w + 0.2, xc, 0.3 + h + 0.07, z);
+    const n = Math.round(L / 1.2);
+    for (let i = 1; i < n; i++) [-1, 1].forEach((s) => b.box(seam, 0.02, h - 0.1, 0.004, x0 + i * L / n, 0.3 + h / 2, z + s * (w / 2 + 0.002)));
+    (o.doors || []).forEach((dx) => {
+      b.box(M.paint(color, 0.5), 1.0, 2.1, 0.05, xc + dx, 0.3 + 1.05, z + w / 2 + 0.03);
+      b.box(M.alu(), 0.12, 0.03, 0.05, xc + dx + 0.35, 0.3 + 1.05, z + w / 2 + 0.07);
+      b.box(M.paint(0x3a3a3a, 0.5), 0.3, 0.15, 0.15, xc + dx, 0.3 + 2.4, z + w / 2 + 0.08);
+    });
+    (o.fans || []).forEach((dx) => { b.geo(M.paint(0x8a8d8c, 0.5), new THREE.CylinderGeometry(0.55, 0.6, 0.9, 20), V3(xc + dx, 0.3 + h + 0.55, z));
+      b.box(M.black(), 1.0, 0.02, 0.05, xc + dx, 0.3 + h + 1.0, z); });
+  }
+  /* louvered face: horizontal slats on a rectangle, facing +z or -z */
+  function louvres(b, mat, xc, y0, z, w, h, s, pitch) {
+    const n = Math.floor(h / (pitch || 0.35));
+    for (let k = 0; k < n; k++) {
+      const q = new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), s * 0.6);
+      b.geo(mat, tpl('slat', () => new THREE.BoxGeometry(1, 1, 1)), V3(xc, y0 + (k + 0.5) * h / n, z + s * 0.12), q, V3(w, 0.02, 0.32));
+    }
+  }
+  /* inlet filter house: a box on columns, weather hoods over every filter face */
+  function filterHouse(b, xc, zc, w, d, h, yb, color) {
+    const mat = M.paint(color, 0.5), st = M.paint(0x7c7f80, 0.5);
+    b.box(mat, w, h, d, xc, yb + h / 2, zc);
+    [-1, 1].forEach((s) => {
+      const rowsN = Math.max(4, Math.round(h / 0.95));
+      for (let k = 0; k < rowsN; k++) {
+        const y = yb + (k + 0.8) * h / rowsN;
+        const q = new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), s * 0.55);
+        b.geo(mat, tpl('hood', () => new THREE.BoxGeometry(1, 1, 1)), V3(xc, y, zc + s * (d / 2 + 0.3)), q, V3(w - 0.2, 0.04, 0.75));
+        [-1, 1].forEach((e) => b.box(mat, 0.04, 0.55, 0.6, xc + e * (w / 2 - 0.12), y - 0.25, zc + s * (d / 2 + 0.3)));
+        b.box(M.paint(0x3c3f41, 0.8), w - 0.3, h / rowsN - 0.25, 0.02, xc, y - h / rowsN * 0.45, zc + s * (d / 2 + 0.01));
+      }
+    });
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => {
+      b.beam(st, [xc + a * (w / 2 - 0.3), 0.3, zc + c * (d / 2 - 0.3)], [xc + a * (w / 2 - 0.3), yb, zc + c * (d / 2 - 0.3)], 0.35, 0.35);
+      pier(b, xc + a * (w / 2 - 0.3), zc + c * (d / 2 - 0.3), 0.4, 0.3);
+    });
+    [-1, 1].forEach((c) => b.beam(st, [xc - w / 2 + 0.3, yb * 0.5, zc + c * (d / 2 - 0.3)], [xc + w / 2 - 0.3, yb * 0.5, zc + c * (d / 2 - 0.3)], 0.25, 0.25));
+    // access stair up the side and a platform rail
+    b.box(M.galv(0), w, 0.05, 1.2, xc, yb - 0.02, zc + d / 2 + 1.0);
+    for (let x = xc - w / 2; x <= xc + w / 2 + 0.01; x += 1.5) b.bar(M.paint(0xd6b02a, 0.5), [x, yb, zc + d / 2 + 1.55], [x, yb + 1.07, zc + d / 2 + 1.55], 0.022, 6);
+    b.bar(M.paint(0xd6b02a, 0.5), [xc - w / 2, yb + 1.07, zc + d / 2 + 1.55], [xc + w / 2, yb + 1.07, zc + d / 2 + 1.55], 0.025, 6);
+  }
+  /* a stack: a steel cylinder, a top lip, a CEMS platform with handrail and a caged ladder */
+  function stack(b, x, z, R, H, color, platY) {
+    const mat = M.paint(color, 0.5), rail = M.paint(0xd6b02a, 0.5);
+    b.geo(M.concrete(), new THREE.CylinderGeometry(R + 0.8, R + 0.9, 0.6, 32), V3(x, 0.1, z));
+    b.geo(mat, new THREE.CylinderGeometry(R, R * 1.04, H, 40, 1, true), V3(x, 0.4 + H / 2, z));
+    b.geo(mat, new THREE.CylinderGeometry(R + 0.12, R + 0.12, 0.5, 40, 1, true), V3(x, 0.4 + H - 0.25, z));
+    b.geo(M.paint(0x2a2826, 0.9), new THREE.CircleGeometry(R, 32).rotateX(-Math.PI / 2), V3(x, 0.4 + H - 0.4, z));
+    [H * 0.35, H * 0.7].forEach((yy) => b.geo(mat, new THREE.CylinderGeometry(R + 0.06, R + 0.06, 0.2, 40, 1, true), V3(x, yy, z)));
+    (Array.isArray(platY) ? platY : [platY]).forEach((py) => {
+      b.geo(M.galv(0), new THREE.RingGeometry(R, R + 1.3, 40, 1).rotateX(-Math.PI / 2), V3(x, py, z));
+      b.geo(M.galv(0), new THREE.RingGeometry(R, R + 1.3, 40, 1).rotateX(Math.PI / 2), V3(x, py - 0.02, z));
+      for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2; b.bar(rail, [x + Math.cos(a) * (R + 1.25), py, z + Math.sin(a) * (R + 1.25)], [x + Math.cos(a) * (R + 1.25), py + 1.07, z + Math.sin(a) * (R + 1.25)], 0.022, 5); }
+      b.geo(rail, new THREE.TorusGeometry(R + 1.25, 0.025, 5, 48).rotateX(Math.PI / 2), V3(x, py + 1.07, z));
+      b.geo(rail, new THREE.TorusGeometry(R + 1.25, 0.02, 5, 48).rotateX(Math.PI / 2), V3(x, py + 0.55, z));
+      for (let k = 0; k < 4; k++) { const a = k / 4 * Math.PI * 2 + 0.4; b.geo(M.paint(0x6e7070, 0.5), tpl('port', () => new THREE.CylinderGeometry(0.1, 0.1, 0.4, 10)), V3(x + Math.cos(a) * (R + 0.15), py + 0.9, z + Math.sin(a) * (R + 0.15)), new THREE.Quaternion().setFromUnitVectors(Y, V3(Math.cos(a), 0, Math.sin(a)))); }
+    });
+    const lx = x + R + 0.35;
+    [-0.22, 0.22].forEach((dz) => b.bar(M.galv(0), [lx, 2.5, z + dz], [lx, 0.4 + H - 0.5, z + dz], 0.025, 6));
+    for (let yy = 2.8; yy < H; yy += 0.3) b.bar(M.galv(0), [lx, yy, z - 0.22], [lx, yy, z + 0.22], 0.012, 5);
+    for (let yy = 4.5; yy < H; yy += 1.2) b.geo(M.galv(0), tpl('cage', () => new THREE.TorusGeometry(0.38, 0.015, 4, 16, Math.PI)), V3(lx, yy, z), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2).premultiply(new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2)));
+  }
+  function finFan(b, x, z, n) {
+    const st = M.galv(0), body = M.paint(0x9a9d9b, 0.5);
+    b.box(body, 3.2 * n, 1.2, 3.2, x, 3.2, z);
+    for (let i = 0; i < n; i++) {
+      const fx = x - 1.6 * n + 1.6 + i * 3.2;
+      b.geo(body, new THREE.CylinderGeometry(1.35, 1.35, 0.6, 28, 1, true), V3(fx, 4.7, z));
+      b.box(M.black(), 2.4, 0.02, 0.05, fx, 4.9, z); b.box(M.black(), 0.05, 0.02, 2.4, fx, 4.9, z);
+    }
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => b.beam(st, [x + a * (1.6 * n - 0.2), 0.3, z + c * 1.4], [x + a * (1.6 * n - 0.2), 3.2, z + c * 1.4], 0.2, 0.2));
+  }
+  function pipe(b, pts, r, mat) {
+    for (let i = 0; i < pts.length - 1; i++) b.bar(mat, pts[i], pts[i + 1], r, 12);
+    for (let i = 1; i < pts.length - 1; i++) b.geo(mat, tpl('elb' + r, () => new THREE.SphereGeometry(r, 12, 8)), V3(pts[i][0], pts[i][1], pts[i][2]));
+  }
+
+  /* ======================================================================== gas peaker */
+  function peakerUnit(b, z0, r) {
+    const beige = 0xd3d4cf, grey = 0x8f9496;
+    b.box(M.concrete(), 44, 0.3, 14, 1, 0, z0);
+    enclosure(b, -17, -7.5, z0, 4.2, 4.4, beige, { doors: [-2], fans: [1.5] });               // generator
+    enclosure(b, -7.5, 6, z0, 4.8, 5.4, beige, { doors: [-3, 3], fans: [-2, 2.5] });          // turbine package
+    filterHouse(b, -6.5, z0, 7.4, 6.4, 5.6, 8.6, beige);
+    // inlet plenum duct down to the package and the silencer
+    b.box(M.paint(beige, 0.5), 2.8, 2.9, 3.2, -6.5, 5.7 + 1.45, z0);
+    // exhaust: diffuser transition, SCR and CO catalyst housing, tempering air fans, stack
+    const g = M.paint(grey, 0.5);
+    b.geo(g, new THREE.CylinderGeometry(1.6, 1.2, 3, 24), V3(7.5, 3.2, z0), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+    b.box(g, 4, 6.8, 5.2, 11, 1.2 + 3.4, z0);
+    b.box(g, 10, 7.6, 6, 18, 1.2 + 3.8, z0);
+    for (let x = 13.5; x <= 22.5; x += 1.5) [-1, 1].forEach((s) => b.box(g, 0.14, 7.6, 0.14, x, 1.2 + 3.8, z0 + s * 3.07));       // stiffeners
+    [2.2, 5, 7.8].forEach((y) => [-1, 1].forEach((s) => b.box(g, 10, 0.18, 0.18, 18, 1.2 + y, z0 + s * 3.1)));
+    for (let x = 13.5; x <= 22.5; x += 3) [-1, 1].forEach((s) => b.beam(M.paint(0x6f7273, 0.5), [x, 0.3, z0 + s * 2.8], [x, 1.2, z0 + s * 2.8], 0.3, 0.3));
+    b.box(M.galv(0), 10, 0.05, 1.2, 18, 1.2 + 7.6 + 0.02, z0 + 3.6);
+    [0, 1].forEach((k) => { b.geo(M.paint(0x3d6e8a, 0.5), new THREE.CylinderGeometry(0.8, 0.8, 1.0, 24), V3(12 + k * 3, 1.3, z0 + 4.6), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      b.box(M.paint(0x3d6e8a, 0.5), 0.9, 0.8, 1.0, 12 + k * 3 + 1.1, 1.0, z0 + 4.6); });
+    b.box(g, 4, 5, 4.4, 24.5, 1.2 + 2.5, z0);
+    stack(b, 27.5, z0, 1.9, 30, 0x8d9090, [19]);
+    // fin fan lube cooler, fuel gas skid, pipes
+    finFan(b, -12, z0 + 6.2, 2);
+    b.box(M.concrete(), 5, 0.3, 3, 2, 0, z0 + 7);
+    b.box(M.paint(0xd4b73a, 0.5), 4.5, 0.2, 2.5, 2, 0.3, z0 + 7);
+    pipe(b, [[0.2, 0.6, z0 + 7], [0.2, 1.4, z0 + 7], [0.2, 1.4, z0 + 2.6], [0.2, 4.2, z0 + 2.6]], 0.14, M.paint(0xd4b73a, 0.5));
+    [[1.5, 1.2], [3.5, 1.0]].forEach(([x, h]) => b.geo(M.paint(0xd4b73a, 0.5), new THREE.CylinderGeometry(0.35, 0.35, h, 16), V3(x, 0.5 + h / 2, z0 + 7)));
+  }
+  K.define('gas_peaker', {
+    size: [48, 32, 22],
+    options: { units: '1 | 2 (1)', transformer: 'generator step up transformer (true)' },
+    note: 'A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ladder, lube oil fin fan, fuel gas skid, step up transformer.',
+    make(o, r) {
+      const g = new THREE.Group(), b = new Bld(), n = +o.units === 2 ? 2 : 1;
+      for (let i = 0; i < n; i++) peakerUnit(b, (i - (n - 1) / 2) * 20, r);
+      if (o.transformer !== false) powerTransformer(b, -14, (n - 1) * 10 + 10.5, 0.55, { color: 0x8f9594 });
+      b.build(g);
+      return g;
+    },
+  });
+
+  /* ======================================================================= combined cycle */
+  function hrsg(b, x0, z0, r) {
+    const L = 30, W = 11, H = 27, casing = M.paint(0x7f8b93, 0.55), steel = M.paint(0x6a6d6e, 0.5), rail = M.paint(0xd6b02a, 0.5);
+    const xc = x0 + L / 2;
+    b.box(M.concrete(), L + 2, 0.4, W + 2, xc, 0, z0);
+    b.box(casing, L, H, W, xc, 0.4 + H / 2, z0);
+    // buckstays around the casing, vertical columns
+    for (let y = 2.5; y < H; y += 2.6) {
+      [-1, 1].forEach((s) => b.box(steel, L + 0.3, 0.35, 0.3, xc, y, z0 + s * (W / 2 + 0.15)));
+    }
+    for (let x = x0; x <= x0 + L + 0.01; x += 3.75) [-1, 1].forEach((s) => b.box(steel, 0.45, H + 0.4, 0.45, x, 0.4 + H / 2, z0 + s * (W / 2 + 0.2)));
+    // steam drums on the roof, across the unit, with their supports and risers
+    [[x0 + 6, 1.0, 12], [x0 + 15, 0.8, 11], [x0 + 23, 0.7, 10]].forEach(([dx, R, dl]) => {
+      b.geo(M.paint(0x777a7b, 0.5), new THREE.CylinderGeometry(R, R, dl, 28), V3(dx, 0.4 + H + R + 1.0, z0), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+      [-1, 1].forEach((e) => b.geo(M.paint(0x777a7b, 0.5), new THREE.SphereGeometry(R, 20, 8, 0, Math.PI * 2, 0, Math.PI / 2), V3(dx, 0.4 + H + R + 1.0, z0 + e * dl / 2), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), e * Math.PI / 2)));
+      [-0.3, 0.3].forEach((f) => b.box(steel, 0.4, 1.0, 0.4, dx, 0.4 + H + 0.5, z0 + f * dl));
+      for (let k = -2; k <= 2; k++) b.bar(M.paint(0x8a8d8c, 0.5), [dx + 0.5, 0.4 + H, z0 + k * 1.8], [dx + 0.5, 0.4 + H + 1.0 + R, z0 + k * 1.8], 0.16, 10);
+    });
+    // roof deck rail, stair tower on +z with landings every 3 m
+    b.box(M.galv(0), L, 0.05, W, xc, 0.4 + H + 0.03, z0);
+    for (let x = x0; x <= x0 + L; x += 2) [-1, 1].forEach((s) => b.bar(rail, [x, 0.4 + H, z0 + s * W / 2], [x, 0.4 + H + 1.07, z0 + s * W / 2], 0.022, 5));
+    [-1, 1].forEach((s) => b.bar(rail, [x0, 0.4 + H + 1.07, z0 + s * W / 2], [x0 + L, 0.4 + H + 1.07, z0 + s * W / 2], 0.025, 6));
+    const sx = x0 + L - 4, sz = z0 + W / 2 + 3;
+    truss(b, M.galv(0), sq(1.8, 0.4).map(p => [p[0] + sx, p[1], p[2] + sz]), sq(1.8, H + 0.4).map(p => [p[0] + sx, p[1], p[2] + sz]), 9, 0.2, 0.1, { endA: true, endB: true });
+    for (let y = 3.4; y < H; y += 3) {
+      b.box(M.galv(0), 3.8, 0.05, 3.8, sx, y, sz);
+      b.beam(M.galv(0), [sx - 1.6, y, sz - 1.2], [sx + 1.6, y + 3, sz - 1.2], 0.9, 0.05, [0, 0, 1]);
+      b.bar(rail, [sx - 1.8, y + 1.07, sz + 1.8], [sx + 1.8, y + 1.07, sz + 1.8], 0.025, 6);
+      b.box(M.galv(0), 2, 0.05, 1.2, sx, y, z0 + W / 2 + 0.8);
+    }
+    // external downcomers and feed piping
+    [[x0 + 4, 0.3], [x0 + 12, 0.25], [x0 + 20, 0.22]].forEach(([px, pr]) => pipe(b, [[px, 1.4, z0 + W / 2 + 0.8], [px, H - 1, z0 + W / 2 + 0.8], [px, H + 1.2, z0 + 2]], pr, M.paint(0x9b9e9e, 0.45)));
+    // outlet duct and the stack
+    b.box(casing, 4, 8, 7, x0 + L + 2, 0.4 + H - 6, z0);
+    stack(b, x0 + L + 7, z0, 3.3, 50, 0x8d9090, [30, 44]);
+    b.box(casing, 3.6, 7, 6, x0 + L + 4.6, 0.4 + H - 6.5, z0);
+    return { inlet: x0 };
+  }
+  function gtTrain(b, z0, r) {
+    const beige = 0xc9c2ad;
+    b.box(M.concrete(), 48, 0.35, 16, -32, 0, z0);
+    enclosure(b, -56, -42, z0, 6.4, 7, beige, { doors: [-3, 3], fans: [0] });            // generator
+    enclosure(b, -42, -18, z0, 8.4, 8.4, beige, { doors: [-8, 0, 7], fans: [-6, 0, 6] });   // gas turbine
+    filterHouse(b, -36, z0, 13, 12, 10, 14, beige);
+    b.box(M.paint(beige, 0.5), 4.2, 5.6, 5, -36, 8.7 + 2.8, z0);                         // inlet duct
+    // exhaust diffuser: widening from the turbine to the HRSG inlet
+    const d = M.paint(0x8e9391, 0.55);
+    const geo = new THREE.CylinderGeometry(1, 1, 1, 4, 1, false).toNonIndexed(); geo.computeVertexNormals();
+    const shape = [[-18, 2.2, 3.4, 3.4], [-12, 3.0, 8, 6], [-6, 0.4, 27, 11]];
+    for (let i = 0; i < shape.length - 1; i++) {
+      const [xa, ya, ha, wa] = shape[i], [xb, yb, hb, wb] = shape[i + 1];
+      const pts = [[xa, ya, -wa / 2], [xa, ya + ha, -wa / 2], [xa, ya + ha, wa / 2], [xa, ya, wa / 2], [xb, yb, -wb / 2], [xb, yb + hb, -wb / 2], [xb, yb + hb, wb / 2], [xb, yb, wb / 2]];
+      const fz = [[0, 1, 5, 4], [1, 2, 6, 5], [2, 3, 7, 6], [3, 0, 4, 7]], P = [];
+      fz.forEach(([a, c, e, f]) => { const A = pts[a], C = pts[c], E = pts[e], F = pts[f]; P.push(...A, ...E, ...C, ...A, ...F, ...E); });
+      const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); gg.computeVertexNormals();
+      b.geo(d, gg, V3(0, 0, z0));
+    }
+    for (let x = -11; x < -6; x += 1.8) b.box(M.paint(0x6a6d6e, 0.5), 0.3, 0.3, 8 + (x + 12) * 0.5, x, 1.2, z0);
+    finFan(b, -48, z0 + 8.5, 3);
+  }
+  function coolingTower(b, x, z, n) {
+    const casing = M.paint(0x8b959b, 0.6), deck = M.paint(0x7a8186, 0.6), slat = M.paint(0x5d676d, 0.7), cell = 14, H = 11;
+    const L = n * cell;
+    b.box(M.concrete(), L + 2, 1.2, cell + 3, x, 0, z);                                        // basin
+    b.box(casing, L, H - 4.2, cell, x, 5.4 + (H - 5.4) / 2 - 0.3, z);                          // fill casing above the louvres
+    [-1, 1].forEach((s) => louvres(b, slat, x, 1.2, z + s * (cell / 2 - 0.1), L, 4.2, s, 0.3));
+    for (let i = 0; i <= n; i++) b.box(casing, 0.3, 4.2, cell, x - L / 2 + i * cell, 1.2 + 2.1, z);  // partition walls between cells
+    b.box(deck, L + 0.4, 0.3, cell + 0.4, x, H, z);
+    for (let i = 0; i < n; i++) {
+      const cx = x - L / 2 + cell / 2 + i * cell;
+      const fs = new THREE.LatheGeometry([[4.4, 0], [4.25, 1.2], [4.3, 2.8], [4.7, 4.0], [4.6, 4.0], [4.15, 2.8], [4.1, 1.2], [4.3, 0]].map(p => new THREE.Vector2(p[0], p[1])), 48);
+      b.geo(casing, fs, V3(cx, H + 0.15, z));
+      b.geo(M.black(), new THREE.CircleGeometry(4.2, 36).rotateX(-Math.PI / 2), V3(cx, H + 1.6, z));
+      for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4 + i; b.beam(M.paint(0x2e3337, 0.6), [cx, H + 1.8, z], [cx + Math.cos(a) * 4.0, H + 1.8, z + Math.sin(a) * 4.0], 0.5, 0.05, [0, 1, 0]); }
+      b.geo(M.paint(0x3a3f43, 0.6), new THREE.CylinderGeometry(0.5, 0.5, 0.6, 16), V3(cx, H + 1.9, z));
+    }
+    // stair up the end and the deck rail
+    b.box(M.galv(0), 1.2, 0.05, cell, x + L / 2 + 1.2, H, z);
+    for (let y = 0; y < H; y += 2.2) b.beam(M.galv(0), [x + L / 2 + 1.2, y, z - cell / 2 + (y / H) * cell], [x + L / 2 + 1.2, y + 2.2, z - cell / 2 + ((y + 2.2) / H) * cell], 0.9, 0.05, [1, 0, 0]);
+    for (let xx = x - L / 2; xx <= x + L / 2; xx += 2) [-1, 1].forEach((s) => b.bar(M.paint(0xd6b02a, 0.5), [xx, H + 0.15, z + s * (cell / 2 + 0.1)], [xx, H + 1.2, z + s * (cell / 2 + 0.1)], 0.022, 5));
+  }
+  function acc(b, x, z, nx, nz) {
+    const cell = 12, H = 24, st = M.paint(0x8e9391, 0.55), L = nx * cell, D = nz * cell;
+    for (let i = 0; i <= nx; i += 1) for (let j = 0; j <= nz; j += 1) {
+      const cx = x - L / 2 + i * cell, cz = z - D / 2 + j * cell;
+      b.bar(M.concrete(), [cx, 0, cz], [cx, H, cz], 0.6, 12);
+    }
+    b.box(st, L + 1, 1.8, D + 1, x, H + 0.9, z);
+    for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) {
+      const cx = x - L / 2 + cell / 2 + i * cell, cz = z - D / 2 + cell / 2 + j * cell;
+      b.geo(st, new THREE.CylinderGeometry(4.9, 4.9, 1.2, 36, 1, true), V3(cx, H - 0.4, cz));
+    }
+    // A-frame bundles along z with a steam duct along the ridge, windwall around
+    for (let i = 0; i < nx; i++) {
+      const cx = x - L / 2 + cell / 2 + i * cell;
+      [-1, 1].forEach((s) => { const q = new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), s * 0.52);
+        b.geo(M.paint(0x6c7275, 0.6), tpl('abund', () => new THREE.BoxGeometry(1, 1, 1)), V3(cx + s * 2.7, H + 1.8 + 4.6, z), q, V3(0.4, 10.5, D)); });
+      b.geo(M.paint(0x9a9d9c, 0.5), new THREE.CylinderGeometry(0.9, 0.9, D + 2, 20), V3(cx, H + 1.8 + 9.3, z), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
+    }
+    [-1, 1].forEach((s) => b.box(M.paint(0x8b959b, 0.6), L + 1, 10, 0.2, x, H + 1.8 + 5, z + s * (D / 2 + 0.5)));
+    [-1, 1].forEach((s) => b.box(M.paint(0x8b959b, 0.6), 0.2, 10, D + 1, x + s * (L / 2 + 0.5), H + 1.8 + 5, z));
+  }
+  K.define('power_plant', {
+    size: [120, 58, 120],
+    options: { units: 'gas turbine and HRSG trains, 1 | 2 (2)', cooling: 'tower | acc (tower)' },
+    note: 'A combined cycle block: F class gas turbines with elevated inlet filter houses, exhaust diffusers into heat recovery steam generators with buckstays, drums, stair towers and 50 m stacks, a steam turbine hall, mechanical draft cooling tower or air cooled condenser, step up transformers, demin water tank.',
+    make(o, r) {
+      const g = new THREE.Group(), b = new Bld(), n = +o.units === 1 ? 1 : 2, pitch = 30;
+      const zs = Array.from({ length: n }, (_, i) => (i - (n - 1) / 2) * pitch);
+      zs.forEach((z) => { gtTrain(b, z, r); hrsg(b, -6, z, r); powerTransformer(b, -62, z + 4, 0.85, {}); b.box(M.concrete(), 0.35, 9, 10, -67.5, 0.2, z + 4); });
+      // steam turbine hall behind the trains
+      const zh = zs[0] - 34, wall = kmat('pw_hall', { color: 0xffffff, roughness: 0.6, metalness: 0.2, map: K.tex('corrugated', { color: '#cfcbc0' }) });
+      wall.userData.metres = 2.4;
+      b.box(M.concrete(), 48, 0.4, 26, -26, 0, zh);
+      b.box(wall, 46, 24, 24, -26, 0.4 + 12, zh);
+      b.box(M.paint(0x8a8578, 0.55), 46.6, 0.6, 24.6, -26, 24.6, zh);
+      for (let i = 0; i < 6; i++) b.geo(M.paint(0x9a9d9c, 0.5), rbox(3, 1.2, 1.6, 0.1), V3(-46 + i * 8, 25.5, zh));
+      b.box(M.paint(0x7c7a72, 0.5), 6, 8, 0.1, -12, 0.4 + 4, zh + 12.05);                         // roll up door
+      for (let k = 0; k < 20; k++) b.box(M.paint(0x6c6a63, 0.5), 6, 0.03, 0.02, -12, 0.6 + k * 0.4, zh + 12.12);
+      [-40, -26].forEach((x) => { b.box(M.paint(0x505254, 0.5), 5, 3, 0.08, x, 16, zh + 12.05); for (let k = 0; k < 10; k++) b.box(M.black(), 4.8, 0.04, 0.05, x, 14.6 + k * 0.3, zh + 12.1); });
+      b.box(M.paint(0x8a8578, 0.5), 1.0, 2.1, 0.06, -34, 0.4 + 1.05, zh + 12.04);
+      // steam and condensate lines from the HRSGs to the hall
+      zs.forEach((z) => pipe(b, [[4, 29, z + 3], [4, 32, z + 3], [4, 32, zh + 8], [-8, 32, zh + 8], [-8, 20, zh + 8]], 0.35, M.paint(0xa3a6a5, 0.45)));
+      // cooling
+      if (o.cooling === 'acc') acc(b, -20, zs[n - 1] + 42, 3, 2);
+      else coolingTower(b, -20, zs[n - 1] + 36, 5);
+      // demin and raw water tanks
+      [[34, zh + 2, 7, 12, 0xe8e8e4], [34, zh + 22, 5, 9, 0xd9d6ce]].forEach(([x, z, R, H, c]) => {
+        b.geo(M.paint(c, 0.45), new THREE.CylinderGeometry(R, R, H, 48), V3(x, 0.3 + H / 2, z));
+        b.geo(M.paint(c, 0.45), new THREE.CylinderGeometry(0.4, R, 1.0, 48), V3(x, 0.3 + H + 0.5, z));
+        b.geo(M.concrete(), new THREE.CylinderGeometry(R + 0.4, R + 0.4, 0.4, 48), V3(x, 0.1, z));
+        for (let y = 1; y < H; y += 0.6) b.bar(M.galv(0), [x + R + 0.1, y, z], [x + R + 0.1, y, z + 0.5], 0.015, 5);
+      });
       b.build(g);
       return g;
     },

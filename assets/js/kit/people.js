@@ -478,9 +478,9 @@ export function install(K, THREE, TXT) {
       } else if (pose === 'hands_on_hips') {
         for (const s of [1, -1]) arm[s] = { u: n3(s * 0.62, -1, -0.28), f: n3(-s * 0.55, -0.62, 0.22), hand: 'hip' };
       } else if (pose === 'look_up') {
-        headPitch = -0.55;
+        headPitch = -0.5;
         const s = r() < 0.5 ? 1 : -1;
-        arm[s] = { u: n3(s * 0.25, -0.35, 0.85), f: n3(-s * 0.35, 0.95, 0.15), hand: 'shade' };
+        if (r() < 0.6) arm[s] = { u: n3(s * 0.55, 0.15, 0.55), f: n3(-s * 0.75, 0.45, -0.1), hand: 'shade' };
       }
       // legs: FK, then lift so the lower ankle sits at ankle height
       const ankleH = 0.075 * k;
@@ -517,7 +517,7 @@ export function install(K, THREE, TXT) {
         const a = lower[i - 1], b = lower[i], t = clamp01((yf - a[0]) / (b[0] - a[0])); return a.map((v, j) => lerp(v, b[j], t)); };
       upper.forEach((row, i) => {
         if (row[0] > 0.63) return;
-        const lo = lowAt(row[0]), m = tucked && i === 0 ? 0.001 : 0.006;
+        const lo = lowAt(row[0]), m = tucked && i === 0 ? 0.001 : 0.01;
         row[1] = Math.max(row[1], (lo[1] * hw + m) / wk(i)); row[2] = Math.max(row[2], lo[2] + m); row[3] = Math.max(row[3], lo[3] + m);
       });
       const torsoLower = lower.map((row) => ring(row, hw));
@@ -744,8 +744,8 @@ export function install(K, THREE, TXT) {
           { p: [s * 0.03 * k, Yl(0.842), -0.01 * k], rx: 0.07 * k, ry: 0.028 * k },
           { p: [s * 0.1 * k, Yl(0.826), -0.007 * k], rx: 0.085 * k, ry: 0.04 * k },
           { p: [S0.x * 0.93, S0.y + 0.022 * k, -0.005 * k], rx: 0.075 * k, ry: 0.048 * k },
-          { p: S0.clone().addScaledVector(Ud, 0.05 * k).add(V3(s * 0.008 * k, 0, 0)).toArray(), rx: 0.062 * k * bw, ry: 0.058 * k }],
-        { seg: 20, per: 4, ref: [0, 0, 1], capStart: 'dome', domeK: 0.6, capEnd: "dome" });
+          { p: S0.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.05 * k * bw, ry: 0.05 * k }],
+        { seg: 20, per: 4, ref: [0, 0, 1], capStart: 'dome', domeK: 0.6 });
         G.add(new THREE.Mesh(yoke, cap));
       }
 
@@ -822,10 +822,10 @@ export function install(K, THREE, TXT) {
   /* ---- a crowd ------------------------------------------------------------------------- */
   K.define('crowd', {
     size: [8, 1.8, 5],
-    options: { seed: 1, n: 12, detail: 'auto', area: [8, 5], roles: ['resident'], poses: ['stand', 'stand', 'walk', 'look_up', 'hands_on_hips'], face: null },
+    options: { seed: 1, n: 12, detail: 'auto', area: [8, 5], roles: ['resident'], poses: ['stand', 'stand', 'stand', 'walk', 'walk', 'hands_on_hips', 'look_up'], face: null },
     note: 'N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z.',
     make(o, r) {
-      const n = o.n || 12, area = o.area || [8, 5], roles = o.roles || ['resident'], poses = o.poses || ['stand', 'walk', 'look_up', 'hands_on_hips'];
+      const n = o.n || 12, area = o.area || [8, 5], roles = o.roles || ['resident'], poses = o.poses || ['stand', 'stand', 'stand', 'walk', 'walk', 'hands_on_hips', 'look_up'];
       const G = new THREE.Group(), placed = [];
       for (let i = 0; i < n; i++) {
         let x = 0, z = 0, tries = 0;

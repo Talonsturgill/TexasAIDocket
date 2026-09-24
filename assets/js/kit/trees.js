@@ -120,8 +120,8 @@ export function install(K, THREE, TXT) {
     return mat('leaf|' + name, () => {
       const t = texture('leaf|' + name, 1024, 1024, (x, W, H, r) => paintSprays(x, W, H, r, spec));
       t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping;
-      const m = new THREE.MeshStandardMaterial({ map: t, alphaTest: spec.alphaTest || 0.42, side: THREE.DoubleSide, roughness: spec.rough || 0.62,
-        metalness: 0, color: 0xffffff });
+      const m = new THREE.MeshStandardMaterial({ map: t, alphaTest: spec.alphaTest || 0.42, side: THREE.DoubleSide, roughness: spec.rough || 0.8,
+        metalness: 0, color: 0xffffff, envMapIntensity: 0.55 });
       return oneFace(m);
     });
   }
@@ -322,7 +322,7 @@ export function install(K, THREE, TXT) {
       const radial = rad > 0.25 ? 14 : rad > 0.1 ? 10 : rad > 0.04 ? 7 : rad > 0.018 ? 5 : 4;
       if (lvl === 0 && S.flare) {
         // root flare: fatten the first metre and add buttress roots running into the ground
-        for (let i = 0; i < pts.length; i++) { const h = pts[i].y; radii[i] *= 1 + S.flare * Math.exp(-h * 3.2); }
+        for (let i = 0; i < pts.length; i++) { const h = Math.max(0, pts[i].y); radii[i] *= 1 + S.flare * Math.exp(-h * 4.5); }
       }
       taperTube(pts, radii, radial, wood); tris += (pts.length - 1) * radial * 2;
       const at = (t) => { const f = t * (pts.length - 1), i = Math.min(pts.length - 2, Math.floor(f)), k = f - i;
@@ -396,6 +396,23 @@ export function install(K, THREE, TXT) {
   function makeTree(S, r, spec) {
     const g = new THREE.Group();
     const res = grow(S, r);
+    /* THE CROWN ENVELOPE: a half-ellipsoid (centre [0, y0, 0], radii rx, ry, rz). Clusters outside
+     * are drawn back onto it so the outline is the species' own, smooth dome or oval; clusters
+     * under `base` are dropped so the understory is open and the limbs show; `hollow` thins the
+     * deep interior, which nobody sees and every ray pays for. */
+    if (S.envelope) {
+      const E = S.envelope, keep = [];
+      for (const c of res.clusters) {
+        let dx = (c[0] - (E.x || 0)) / E.rx, dy = (c[1] - E.y0) / E.ry, dz = (c[2] - (E.z || 0)) / E.rz;
+        if (dy < 0 && E.flatBottom) dy *= E.flatBottom;
+        let d = Math.hypot(dx, dy, dz);
+        if (d > 1) { const k = (0.94 + r() * 0.08) / d; c[0] = (E.x || 0) + (c[0] - (E.x || 0)) * k; c[1] = E.y0 + (c[1] - E.y0) * k; c[2] = (E.z || 0) + (c[2] - (E.z || 0)) * k; d = 1; }
+        if (c[1] < (E.base != null ? E.base : -1e9)) continue;
+        if (E.hollow && d < E.hollow && r() < 0.7) continue;
+        keep.push(c);
+      }
+      res.clusters = keep;
+    }
     const wood = woodMesh(res.wood, barkMat(spec.bark));
     g.add(wood);
     const woodTris = res.wood.idx.length / 3;
@@ -416,23 +433,25 @@ export function install(K, THREE, TXT) {
     note: 'The Texas live oak: a short massive trunk with a root flare, four to six great limbs that leave low and run out nearly level, sinuous and dipping, secondary branches rising off their backs, and a broad low dome of small dark glossy leaf clusters with depth and sky gaps.',
     make(o, r) {
       const H = opt(o, 'height', 9), SP = opt(o, 'spread', 18), k = SP / 18, kh = H / 9;
-      const trunkH = 1.6 + r() * 1.0, nLimbs = 4 + Math.floor(r() * 3);
-      const trunks = [{ at: [0, 0, 0], dir: [(r() - 0.5) * 0.2, 1, (r() - 0.5) * 0.2], len: trunkH * kh, rad: 0.45 * Math.max(0.6, k), az: r() * 6.3 }];
+      const trunkH = (1.9 + r() * 0.7) * Math.min(1.2, kh), nLimbs = 5 + Math.floor(r() * 3);
+      const trunks = [{ at: [0, -0.15, 0], dir: [(r() - 0.5) * 0.3, 1, (r() - 0.5) * 0.3], len: trunkH + 0.15, rad: 0.46 * Math.max(0.6, k), az: r() * 6.3 }];
       const S = {
-        trunks, flare: 0.9, floor: 0.4, minRad: 0.012,
+        trunks, flare: 0.8, floor: 1.9 * kh, minRad: 0.012,
         levels: [
-          { step: 0.5, wander: 0.08, up: 0.05, taper: 0.8 },
-          // the great limbs: leave the top of the trunk at a shallow rise, run out, dip
-          { n: nLimbs, t0: 0.72, t1: 1.0, angle: 1.05, angleJit: 0.35, azStep: 6.283 / nLimbs, lenK: 3.6 * k / (trunkH * kh / 2), radK: 0.62, shorten: 0,
-            step: 0.6, wander: 0.22, up: 0.035, droop: 0.12, spread: 0.06, taper: 0.28, taperPow: 0.8 },
-          // branches off the limbs, rising and fanning
-          { n: 7, t0: 0.18, t1: 0.95, angle: 0.8, angleJit: 0.5, lenK: 0.55, radK: 0.55, shorten: 0.5, step: 0.45, wander: 0.28, up: 0.1, droop: 0.02, spread: 0.05, taper: 0.3 },
+          { step: 0.5, wander: 0.1, up: 0.04, taper: 0.72 },
+          // the great limbs: leave the top of the trunk low, sweep out nearly level, sag, then lift
+          { n: nLimbs, t0: 0.62, t1: 1.0, angle: 1.2, angleJit: 0.3, azStep: 6.283 / nLimbs, lenK: 8.8 * k / (trunkH + 0.3), radK: 0.62, shorten: 0,
+            step: 0.55, wander: 0.24, up: 0.045, droop: 0.1, spread: 0.1, taper: 0.22, taperPow: 0.7 },
+          // branches off the backs of the limbs, rising into the dome
+          { n: 9, t0: 0.12, t1: 0.98, angle: 0.8, angleJit: 0.5, lenK: 0.36, radK: 0.5, shorten: 0.35, step: 0.4, wander: 0.3, up: 0.14, droop: 0.0, spread: 0.04, taper: 0.3 },
           // twigs
-          { n: 4, t0: 0.3, t1: 1.0, angle: 0.75, angleJit: 0.5, lenK: 0.45, radK: 0.5, shorten: 0.3, step: 0.4, wander: 0.35, up: 0.08, taper: 0.35 },
+          { n: 4, t0: 0.25, t1: 1.0, angle: 0.8, angleJit: 0.5, lenK: 0.5, radK: 0.5, shorten: 0.3, step: 0.35, wander: 0.4, up: 0.06, taper: 0.35 },
         ],
-        leaves: { per: 2, from: 0.45, size: [0.75 * Math.sqrt(k), 1.15 * Math.sqrt(k)], lift: 0.15 },
+        leaves: { per: 3, from: 0.2, size: [0.45 * Math.sqrt(k), 0.72 * Math.sqrt(k)], lift: 0.12 },
+        // a broad low dome: twice as wide as it is tall, its skirt at the height the limbs sag to
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.9 + r() * 0.2), y0: 2.6 * kh, ry: H - 2.6 * kh, base: 2.3 * kh + trunkH * 0.3, hollow: 0.55 },
       };
-      const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xffffff, 0xeef4e0, 0xf6f0d6, 0xdde8cc], fol: { squash: 0.8 } });
+      const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xfaf0d0, 0xe8e0b8, 0xfff4d8, 0xdcd8b0], fol: { squash: 0.8 } });
       return g;
     },
   });
