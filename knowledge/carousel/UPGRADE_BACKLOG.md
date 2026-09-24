@@ -4203,3 +4203,124 @@ Two smaller wants that survive from the first version:
   `crawl_boundary.forbidden()` before a scout is handed a URL.
 - **A boundary row should expire**, the way `docket_staleness`'s unreachable carve-out does, so a
   host that lifts a disallow is re-measured rather than refused forever on a stale reading.
+
+---
+
+## 2026-09-24, carousel no. 33, the upgrade phase. One upgrade, and a correction to two entries above
+
+The deck was held at 6.418 against the 7.01 floor after five rounds. Three of its four hard fails
+were the same shape. A figure or a universal the run inferred was printed as though the source
+said it. One of the three was reachable by a gate this lane owns, and that one shipped as
+`74ec7fcc`. See `ledger/carousel/upgrades.json`. The rest are below, each with the reason it is
+not built here.
+
+### 1. `reverify.py` DOES NOT CONSULT `robots.txt`, THIRD RUN IN A ROW, AND IT WAS NEVER A MAINTAINER'S FIX
+
+Entry 9 (2026-09-21) called this `upgrade` lane. Entry 5 (2026-09-23) and this run's own run
+record called it a maintainer's fix. **Both are wrong, and the second one is GATE_LESSONS 71.**
+`scripts/site/reverify.py` and `scripts/shared/**` are `daily` in `ownership.yaml`. The run that
+fetched four disallowed pages on 2026-09-24 owned the file that should have stopped it, and it
+wrote the fix up for somebody else. Honouring a host's `robots.txt` does not edit the crawl
+boundary. The registry stays `human` and nothing here asks to change that. It is the fetcher
+obeying the host, and the fetcher is the run's own code.
+
+**The exact failure case, measured 2026-09-24 against the live file.** `public.destinyhosted.com`
+serves 25 bytes, `User-agent: * Disallow: /`, with no newline. Python's `urllib.robotparser`
+returns `can_fetch() == True` for both `ClaudeBot` and `*` on it. **A standards-conformant parser
+does not rescue it either.** RFC 9309 section 2.2 puts an `EOL` between lines, so the file is one
+`user-agent` line whose value is `* Disallow: /`. Section 2.3.1.5 says "Crawlers MUST use the
+parseable rules", and there are none. Only a reader that fails closed gets it right, which is the
+direction `crawl_boundary.py` already states: over-refusing is the only way a boundary may be
+wrong.
+
+**The second trap is in the run's scratch reader** (`out/2026-09-24/tmp/verify.py`, line 14). An
+HTML body served for `robots.txt` was replaced with the empty string, and an empty file permits
+everything. RFC 9309 section 2.3.1.4 says an unreachable file means complete disallow. A 200 that
+carries a block page is not a robots file and not a 4xx.
+
+**What the fix is, and it is the daily lane's to make.** One function in `scripts/shared/`, called
+by `reverify.fetch` before any request. It splits a line wherever a directive keyword follows a
+value (`user-agent`, `allow`, `disallow`, `sitemap`, `crawl-delay`). It treats a non-empty file
+with no parseable rule, an HTML body and a 5xx as a disallow. Its self-test is the 25 bytes above
+as the file itself. A second case is the 202 byte `taylortx.new.swagit.com` file, where every line
+is a comment, so it must come back PERMISSIVE. Without that case a fail-closed reader could refuse
+everything and still pass.
+
+**A MEASUREMENT THAT CORRECTS THE RUN RECORD.** The run record and the field log both say that
+`taylortx.new.swagit.com` disallows this fetcher. Its `robots.txt`, fetched 2026-09-24, is 202
+bytes and every line is a comment, so it disallows nothing. The destinyhosted fetches were a
+violation. The swagit fetch was not one by that file. It should still be checked against the
+registry. Correcting the field log is an append in the daily lane.
+
+### 2. `reverify.py --apply` WRITES `ledger/docket.json` AT INDENT 2
+
+`scripts/site/reverify.py` line 797 writes `json.dumps(record, indent=2, ...)`. The canonical
+form is indent 1, which is what `docket_build.py` line 1849 writes. So every `--apply` rewrites
+every line of the record, and this run put it back by hand. The fix is one character in the daily
+lane. The test worth adding with it is a round trip: `--apply` over a record with nothing to stamp
+must leave `ledger/docket.json` byte for byte unchanged. That fails on the current code, and it
+catches any future writer drifting from the canonical form, not only this one.
+
+### 3. A DECIBEL BAR GATE WAS DESIGNED AND NOT BUILT, and the reason is the part worth keeping
+
+Frame 7 took four encodings and every one of the three bar encodings drew a margin the draft does
+not give. The obvious gate is lexical. A figure whose `figures.json` key names a logarithmic unit
+(`_db`, `dnl`, `sel`) must not reach a width or a height. **It catches rounds 1 and 5 and misses
+round 4**, because `compute.py` derived a unitless energy ratio, `energy_cap_vs_threshold`, and
+the bar read that. A gate that catches two of three encodings of the one deck it was fitted to is
+GATE_LESSONS 16 and 77. Only round 4's source survives (`out/2026-09-24/tmp/build_slides.pre_f6.py`),
+so it could not be replayed against all three either.
+
+What would generalise is a contract rather than a keyword. A frame that draws two or more figures
+at one scale is asserting a relation between them, and `figure_bearing`'s `data_in_art` could
+require `compares: [a, b]` with `relation_from: cNN`, a claim whose own quote carries both
+numerals. At the render, a frame where two figure values reach geometry sinks with no such
+declaration is the finding. That is upgrade lane and a day's work. It needs fixtures from more
+than one deck before it is trusted.
+
+**A smaller defect the same frame shows.** Frame 7's dossier contradicts itself as committed.
+`composition.structure` and `art.technique` still say "two bars from zero in one hue", and
+`acceptance` says "no bar drawn". `panel_ready.check_plan_matches` and `plan_render_check` both
+passed it. A dossier whose acceptance list refuses what its own art field declares is a plan
+nobody re-read after the repair.
+
+### 4. SKY BANDING ON FRAME 3, flagged by the craft judge in every round
+
+The engine is `assets/js/txthree.js` and `txpost.js`, which are `human` lane. Frame 3 ships as a
+PNG, so the banding is not a lossy codec artifact. It is in the render or the grade. The usual
+cure is dither before 8-bit quantisation in the output pass. **This phase did not establish a
+banding measurement.** A quick row-step count on the sky region did not separate frame 3 from
+frame 1, and a gate built on a proxy that has not been shown to separate the defect is entry 77.
+Recorded so a maintainer at the engine knows the judges asked five times.
+
+### 5. `quantifier_check --self-test` joins the list of self-tests CI never runs
+
+This extends the proposal at the `panel_ready.py --self-test` paragraph above. `guards.yml` names
+neither file's self-test. The gate itself is wired: `shipped_check` runs it on the newest deck,
+and `panel_ready` now runs it before the judges. The assertions proving it can still go red run
+only when someone runs them by hand. The proposal is two lines in `.github/workflows/guards.yml`,
+`human` lane.
+
+### 6. GATE_LESSONS ENTRY OWED, drafted here because `knowledge/shared/**` is `human`
+
+#### (unnumbered) The gate said every published surface, and the surface written in long prose was not on its list
+
+`quantifier_check`'s docstring says it reads "EVERY PUBLISHED SURFACE AT ONCE, from one list, and
+the list is the point". The list held the frames, the caption and the first comment. The web
+edition, `ledger/articles/<date>.json`, is published at `/articles/<date>/`. It is the longest
+prose this project writes, and it was not on the list. On 2026-09-24 a round 2 integrity judge
+hard failed it for "A person enters in one sentence". The fetched draft names an operator or a
+Remote Pilot in Command in eight sentences. The run record's own gate table printed the gate as
+ABSENT, because no step before the panel ran it at all.
+
+The universal was invisible for a second reason, and the second reason is the one that
+generalises. It carried no set noun, no source word and no plural. It was a COUNT OF ONE, which
+`aggregate_check` sets aside as a pronoun on purpose. "In one sentence" is still a figure printed
+about a document, and a figure is recomputed from committed inputs. So its declaration is a sweep
+of the fetched text, and the gate runs the sweep.
+
+**What to check instead.** When a gate's docstring claims a whole class of surfaces, list the
+surfaces the product publishes and diff that list against the gate's. Do it again each time a
+surface is added. A gate that claims every surface and reads three is worse than one that names
+its three, because the claim is what stops the next person looking. This is the shape drafted the day
+before as "The rule had a gate, and the gate was pointed at one of the two surfaces", one gate over.

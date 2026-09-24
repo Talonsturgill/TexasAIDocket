@@ -2151,4 +2151,61 @@
  ],
  "lane": "upgrade."
 }
+,"2026-09-24 upgrade": {
+ "run": "carousel no. 33, the FAA's draft environmental assessment of Zipline drone delivery over five Texas metros. Held at 6.418 against the 7.01 floor after five rounds, not merged by the run",
+ "actor": "upgrade",
+ "branch": "claude/daily-2026-09-24",
+ "upgrades": [
+  {
+   "what": "quantifier_check reads the web edition (ledger/articles/<date>.json, claim spans stripped as article_check strips them) and treats an exclusive count over a document ('in one sentence', 'only once') as a universal whose declaration must carry a sweep of the fetched text, which the gate re-runs. panel_ready runs the gate as a group before any judge is spawned",
+   "why": "Round 2's integrity judge hard failed the web edition for 'A person enters in one sentence' (ledger/articles/2026-09-24.json as committed in 3dcc68ea). Swept with the new sweep(), the run's own fetched draft names an operator or a Remote Pilot in Command in eight sentences. No gate could see it, for three separate reasons. quantifier_check's docstring said it read every published surface and its list held three, without the web edition. The sentence carried no set noun, no source word and no plural, so neither UNIVERSAL nor aggregate_check's count shape matched. And no pre-panel step ran quantifier_check at all, so the run record printed its row as ABSENT. The same survey found prose universals in the shipped 2026-09-19 and 2026-09-21 editions that no gate had read",
+   "files": [
+    "scripts/carousel/quantifier_check.py",
+    "scripts/carousel/panel_ready.py"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "the count an exclusive phrase asserts": "exactly one, and only forms that assert one are matched, so no count is parsed out of prose",
+    "zero matches in shipped work": "measured once, 2026-09-24, over 3,537 strings: every frame text node, caption, first comment and span-stripped web edition string of every run under runs/carousel/. The measurement is recorded in the file with its date and is not re-derived, so it can't become a ratchet",
+    "the sentence split": "a full stop, question mark or exclamation followed by whitespace and a capital, digit, quote or bracket. Crude and stated as crude. It can only over-count when a term appears twice inside one sentence broken by an abbreviation, which makes it refuse rather than pass"
+   },
+   "verification": "quantifier_check --self-test (17 new cases) and panel_ready --self-test (3 new cases, one of them end to end through run() with the smallest deck every other group reads as clean) both exit 0. The real defect paragraph goes red and the paragraph the run repaired it to in 58767a5c is clean. The real 2026-09-21 span universal ('there is a human in the loop for all actions', a source's words) is not reported, and the run's own prose universal from the same edition is. Replayed on the live run with the edition as committed in 3dcc68ea it raises exactly one finding, the exclusive count. Six mutants were watched go red: web edition dropped from surfaces(), EXCLUSIVE never matching, the sweep trusted instead of run, claim spans left in, an unreadable edition returning empty, and the panel_ready group unwired from run(). The first build of the EXCLUSIVE mutant added a never-matching alternative instead of replacing the pattern and stayed green, and it was rebuilt before it counted. On today's run both gates exit 0 by exit code, quantifier_check reading 90 strings where it read 70. shipped_check gains two non-fatal notes on older decks (2026-09-19, 2026-09-21) and no new fatal finding. Its exit 1 and its self-test's exit 1 are unchanged, and both are the held deck (completion, shipped fresh, and no measurements.json). With this phase's change reverted the self-test fails on the same case. gate_wiring 0, gate_wiring --self-test 0, port_audit --only wiring 0",
+   "revert": "git revert 74ec7fcc",
+   "how_i_would_know_this_was_wrong": "A run that has to reword a correct sentence around EXCLUSIVE, for example one that swept honestly, found one sentence, and still could not clear it because the fetched text lives in out/ and CI can't re-derive it. That is intended: archive the text with the run. If runs start pointing `swept.text` at scratch and the newest deck goes red in CI every time, the fix is an archived-sources convention in the daily lane, never a softer check here. The second sign is panel_ready going red on a web edition universal a judge would never have raised, which would show that UNIVERSAL's noun list, carried over unchanged, is too loose for long prose"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "reverify.fetch asks a fail-closed robots reader in scripts/shared before any request. The reader splits a line where a directive keyword follows a value, and treats an HTML body, a 5xx and a non-empty file with no parseable rule as a disallow. Its self-test cases are the live 25 byte `User-agent: * Disallow: /` file, which must refuse, and the 202 byte all-comment swagit file, which must permit",
+   "owner": "daily",
+   "why": "Third run in a row: logged 2026-09-21, again 2026-09-23, and on 2026-09-24 four disallowed pages were fetched. Earlier entries called it upgrade lane and then a maintainer's fix, and both were wrong. scripts/site/** and scripts/shared/** are daily, so the run that tripped it owns the fix. urllib.robotparser permits the one-line file, and so does a strict RFC 9309 reading, so only a fail-closed reader gets it right. UPGRADE_BACKLOG 2026-09-24 item 1"
+  },
+  {
+   "what": "reverify.py line 797 writes ledger/docket.json at indent 1, the form docket_build.py line 1849 writes, pinned by a round trip test in which --apply with nothing to stamp leaves the file byte for byte unchanged",
+   "owner": "daily",
+   "why": "This run's --apply rewrote every line of the record at indent 2, and the run put it back by hand"
+  },
+  {
+   "what": "The field log records that taylortx.new.swagit.com/robots.txt, fetched 2026-09-24, is 202 bytes of comment lines and disallows nothing",
+   "owner": "daily",
+   "why": "The run record and the field log both say the host disallows this fetcher. A wrong measurement in the field log is what the next run inherits"
+  },
+  {
+   "what": "guards.yml runs `quantifier_check.py --self-test` and `panel_ready.py --self-test`",
+   "owner": "human",
+   "why": "Both gates are wired and neither self-test is in CI, so the cases proving they can still go red run only by hand. This extends the existing backlog proposal at the panel_ready paragraph"
+  },
+  {
+   "what": "A GATE_LESSONS entry, 'The gate said every published surface, and the surface written in long prose was not on its list', drafted in UPGRADE_BACKLOG 2026-09-24 item 6 for a maintainer to number",
+   "owner": "human",
+   "why": "knowledge/shared/** is human lane, and the brief says a gate change belongs in that file"
+  },
+  {
+   "what": "Dither before 8-bit quantisation in the txthree/txpost output pass, for the sky banding the craft judge flagged on frame 3 in all five rounds",
+   "owner": "human",
+   "why": "assets/** is human lane. Frame 3 is a PNG, so the banding is not a codec artifact. No measurement separating it was established, so no gate is proposed"
+  }
+ ],
+ "considered_and_not_built": "A gate refusing a bar whose length comes from a decibel figure. A lexical form catches frame 7's rounds 1 and 5 and misses round 4, whose bar read a unitless energy ratio compute.py derived. Only round 4's source survives to replay. A contract form, `compares` plus `relation_from` in data_in_art, is written up in UPGRADE_BACKLOG 2026-09-24 item 3 for a day with fixtures from more than one deck",
+ "lane": "upgrade. Two scripts, one backlog section and this entry. Nothing under .claude/, nothing the daily lane owns"
+}
 }
