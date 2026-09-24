@@ -573,18 +573,18 @@ export function init(THREE) {
      * patched once per base, so the same paint on a dock and on a crate weathers at each foot. */
     const made = new Map();
     const isStd = (m) => m && m.isMeshStandardMaterial;
-    function patch(mat, base) {
-      const k = mat.uuid + '|' + base.toFixed(3);
+    function patch(mat, base, mot) {
+      const k = mat.uuid + '|' + base.toFixed(3) + '|' + mot.toFixed(3);
       if (made.has(k)) return made.get(k);
       let m = mat;
       if (mat.userData.txWeathered) {
-        if (mat.userData.txBaseY === base) { made.set(k, mat); return mat; }
+        if (mat.userData.txBaseY === base && mat.userData.txMottle === mot) { made.set(k, mat); return mat; }
         m = mat.clone(); m.userData = Object.assign({}, m.userData, { txWeathered: false });
       }
-      m.userData.txWeathered = true; m.userData.txBaseY = base;
+      m.userData.txWeathered = true; m.userData.txBaseY = base; m.userData.txMottle = mot;
       m.onBeforeCompile = (sh) => {
         sh.uniforms.uGrime = { value: grime }; sh.uniforms.uGrimeH = { value: height };
-        sh.uniforms.uMottle = { value: mottle }; sh.uniforms.uBaseY = { value: m.userData.txBaseY };
+        sh.uniforms.uMottle = { value: m.userData.txMottle }; sh.uniforms.uBaseY = { value: m.userData.txBaseY };
         sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vTxW;')
           .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvTxW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
         sh.fragmentShader = sh.fragmentShader.replace('#include <common>', `#include <common>
@@ -609,6 +609,13 @@ export function init(THREE) {
       const box = new THREE.Box3().setFromObject(root);
       if (box.isEmpty()) continue;
       const base = box.min.y;
+      /* LARGE SURFACES MOTTLE LESS (2026-09-24). No. 33's roof, a dark slab 20 m across, read as
+       * blotchy contour bands under the same 0.6 m mottle a crate wears as use. The judges called
+       * it posterized. So the mottle falls with the object's size: full on a thing a person could
+       * lift, about a third on a building. */
+      const sz = new THREE.Vector3(); box.getSize(sz);
+      const span = Math.max(sz.x, sz.y, sz.z);
+      const mot = mottle * (span > 12 ? 0.3 : span > 5 ? 0.55 : 1);
       root.traverse((m) => {
         if (!m.isMesh || m.isInstancedMesh || skip.has(m)) return;
         // GROUNDS ARE TAGGED, NEVER GUESSED. TXT.ground marks its plane. A rotated plane is not
@@ -618,8 +625,8 @@ export function init(THREE) {
         if (m.userData.txGround) return;
         const gp = m.geometry && m.geometry.type === 'PlaneGeometry' ? m.geometry.parameters : null;
         if (gp && gp.width >= 40 && gp.height >= 40) return;
-        if (Array.isArray(m.material)) m.material = m.material.map(x => isStd(x) ? patch(x, base) : x);
-        else if (isStd(m.material)) m.material = patch(m.material, base);
+        if (Array.isArray(m.material)) m.material = m.material.map(x => isStd(x) ? patch(x, base, mot) : x);
+        else if (isStd(m.material)) m.material = patch(m.material, base, mot);
       });
     }
   };
@@ -656,9 +663,12 @@ export function init(THREE) {
       if (uSunDisc > 0.0) col += uSunColor * uSunDisc * smoothstep(0.99985, 0.99993, cs);
       if (uClouds > 0.0 && h > 0.0) {
         vec2 uv = d.xz / (h + 0.08);
-        float n = fbm(uv * vec2(0.55, 1.7) + uSeed * 0.013);
-        float w = fbm(uv * 0.35 + 7.3);
-        float c = smoothstep(0.5, 0.82, n * 0.75 + w * 0.45) * uClouds * smoothstep(0.0, 0.1, h);
+        // SOFT EDGES AND LESS STREAK (2026-09-24): a 0.5 to 0.82 step over noise stretched 3 to 1
+        // cut the clouds into contour bands that no. 33's judges read as a posterized sky.
+        vec2 wq = uv * 0.4 + vec2(fbm(uv * 0.23 + 3.1), fbm(uv * 0.23 + 8.4)) * 1.6;
+        float n = fbm(wq * vec2(0.8, 1.25) + uSeed * 0.013);
+        float w = fbm(uv * 0.3 + 7.3);
+        float c = smoothstep(0.38, 0.95, n * 0.75 + w * 0.45) * uClouds * smoothstep(0.0, 0.12, h);
         vec3 lit = mix(uHaze * 0.9, uSunColor * 1.2, pow(toward, 2.0) * 0.6 + 0.4 * pow(max(cs, 0.0), 8.0));
         col = mix(col, lit, c * 0.7);
       }
@@ -851,6 +861,17 @@ export function init(THREE) {
       map: T.map, roughnessMap: T.roughnessMap, bumpMap: T.bumpMap,
       bumpScale: o.bumpScale != null ? o.bumpScale : T.S.bump, roughness: 1, metalness: 0,
       vertexColors: true, envMapIntensity: o.envMapIntensity != null ? o.envMapIntensity : 0.6 });
+    /* THE BUMP FADES WITH DISTANCE (2026-09-24). At a grazing angle the fine tooth aliases into
+     * thin horizontal stripes, which no. 33's judges read as busy, streaked dirt behind the fence.
+     * Relief belongs where a reader can see relief, so the bump fades out between about 18 and
+     * 90 m from the camera and the colour map carries the distance. */
+    mat.onBeforeCompile = (sh) => {
+      sh.fragmentShader = sh.fragmentShader
+        .replace('#include <bumpmap_pars_fragment>',
+          'float txBumpS;\n' + THREE.ShaderChunk.bumpmap_pars_fragment.split('bumpScale *').join('txBumpS *'))
+        .replace('#include <normal_fragment_begin>',
+          'txBumpS = bumpScale * (1.0 - smoothstep(18.0, 90.0, length(vViewPosition)));\n#include <normal_fragment_begin>');
+    };
     const g = new THREE.Mesh(geo, mat);
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
     g.receiveShadow = true; g.userData.txGround = true; R.scene.add(g);
