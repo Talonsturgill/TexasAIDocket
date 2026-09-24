@@ -56,7 +56,7 @@ export function initKit(THREE, TXT) {
   K.make = function (name, opts) {
     const spec = K.registry[name];
     if (!spec) throw new Error('txkit: no model "' + name + '". K.list() names them all');
-    const o = Object.assign({ seed: 1 }, opts || {});
+    const o = Object.assign({ seed: 1 }, spec.options || {}, opts || {});   // `options` are the defaults
     const g = spec.make(o, K.rng(o.seed * 7919 + name.length * 131));
     g.userData.kit = name;
     return g;

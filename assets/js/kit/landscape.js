@@ -548,8 +548,12 @@ export function install(K, THREE, TXT) {
     groups.forEach((G) => { if (G.list.length) { const im = instanced(G.geo, mat, G.list, G.cols); im.castShadow = false; parent.add(im); } });
   }
   // gravel and cobble: smooth small lumps, instanced
-  function stones(rng, spots, key, colors, parent, detail) {
-    const geo = lump(Math.floor(rng() * 1e5), detail == null ? 1 : detail, 1, 0.55, 0.8, 0.5);
+  function stones(rng, spots, key, colors, parent, angular) {
+    let geo;
+    if (angular) { geo = new THREE.IcosahedronGeometry(1, 0); const p = geo.attributes.position, n = noise2(Math.floor(rng() * 1e5));
+      for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), z = p.getZ(i), k = 0.7 + n(x * 2 + 4, y * 2 + z * 2 + 4) * 0.6; p.setXYZ(i, x * k, y * k * 0.6, z * k * 0.85); }
+      geo.computeVertexNormals(); }
+    else geo = lump(Math.floor(rng() * 1e5), 1, 1, 0.55, 0.8, 0.5);
     const m = M('stone-' + key, { color: 0xffffff, roughness: 0.85 });
     const list = [], cs = [];
     spots.forEach((s) => { const k = s[3] || 0.1; list.push({ x: s[0], y: s[1] + k * 0.12, z: s[2], ry: rng() * TAU, rx: (rng() - 0.5) * 0.4, sx: k * (0.8 + rng() * 0.5), sy: k, sz: k * (0.7 + rng() * 0.5) });
@@ -563,8 +567,8 @@ export function install(K, THREE, TXT) {
       pixelPaint(x, N, (i, j) => { const u = i / N, v = j / N;
         const k = 0.93 + (n1(u * 32, v * 32) - 0.5) * 0.12 + (n2(u * 128, v * 128) - 0.5) * 0.1; const g = 240 * k; return [g, g * 0.985, g * 0.96]; });
       for (let i = 0; i < 2600; i++) {                       // pebbles: light tops, dark undersides
-        const px = r() * N, py = r() * N, s = 1 + r() * 3.2, d = r() < 0.5;
-        x.fillStyle = d ? 'rgba(60,50,40,' + (0.25 + r() * 0.3) + ')' : 'rgba(255,250,240,' + (0.25 + r() * 0.35) + ')';
+        const px = r() * N, py = r() * N, s = 0.7 + r() * 2.2, d = r() < 0.4;
+        x.fillStyle = d ? 'rgba(90,78,62,' + (0.12 + r() * 0.2) + ')' : 'rgba(255,252,244,' + (0.25 + r() * 0.35) + ')';
         x.beginPath(); x.ellipse(px, py, s, s * (0.6 + r() * 0.4), r() * 3, 0, TAU); x.fill();
       }
     });
@@ -659,7 +663,7 @@ export function install(K, THREE, TXT) {
       const cCap = col(pal.cap), cFace = col(pal.face), cSoft = col(pal.soft), cTal = col(pal.talus), cFoot = col(pal.foot), cTop = col(0x8c8458), tmp = new THREE.Color();
       for (let i = 0; i < NT; i++) {
         const th = i / NT * TAU, c = Math.cos(th), s = Math.sin(th), Rr = rimR(th);
-        const gul = Math.pow(Math.abs(nG(th * 26, 1.5) * 2 - 1), 0.6);   // 0 in a gully, 1 on a spur
+        const gul = Math.pow(Math.abs(fbm(nG, th * 9 + fbm(nA, th * 3, 2, 2) * 3, 1.5, 3) * 2 - 1), 0.55);   // 0 in a gully, 1 on a spur
         for (let k = 0; k < rows; k++) {
           const P = prof[k]; let rad, y;
           if (P.top != null) { rad = Rr * P.top; y = H + (fbm(nB, c * P.top * 3, s * P.top * 3, 3) - 0.5) * H * 0.04 + 0.3 * (1 - P.top); }
@@ -773,10 +777,10 @@ export function install(K, THREE, TXT) {
   };
   K.define('city_skyline', {
     size: [2400, 300, 1400],
-    options: { city: 'dallas', dusk: false, lit: 0.45, aerial: 0.00016, lowrise: true },
+    options: { city: 'dallas', dusk: false, lit: 0.3, aerial: 0.00011, lowrise: true },
     note: 'A far skyline for dallas, houston, austin or san_antonio: massed towers with each city\'s broad character (Dallas: a mixed cluster and a ball topped observation tower; Houston: the tallest, densest dark glass; Austin: slender residential glass and a domed capitol; San Antonio: low masonry and a needle tower). dusk lights windows and aviation beacons. Place 2 to 10 km away and raise R.camera.far past it; aerial is its own haze rate per metre. Blank facades, no logos.',
     make(o, r) {
-      o = Object.assign({ city: 'dallas', dusk: false, lit: 0.45, aerial: 0.00016, lowrise: true }, o);
+      o = Object.assign({ city: 'dallas', dusk: false, lit: 0.3, aerial: 0.00011, lowrise: true }, o);
       const C = CITY[o.city] || CITY.dallas, g = new THREE.Group();
       const byMat = new Map();
       const add = (geo, style) => { if (!byMat.has(style)) byMat.set(style, []); byMat.get(style).push(geo); };
@@ -874,7 +878,7 @@ export function install(K, THREE, TXT) {
         else {
           const glassy = style === 'glass' || style === 'dark';
           m = farMat('sky-' + style + '-' + lit, { color: 0xffffff, map: facadeTex(style), roughness: glassy ? 0.18 : 0.85, metalness: glassy ? 0.55 : 0,
-            envMapIntensity: glassy ? 1.4 : 0.8, emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? litTex(style, lit) : null, emissiveIntensity: lit ? 1.6 : 0 }, rate, cap);
+            envMapIntensity: glassy ? 1.4 : 0.8, emissive: lit ? 0xffffff : 0x000000, emissiveMap: lit ? litTex(style, lit) : null, emissiveIntensity: lit ? 1.2 : 0 }, rate, cap);
         }
         g.add(new THREE.Mesh(geo, m));
       });
@@ -929,7 +933,7 @@ export function install(K, THREE, TXT) {
       const g = new THREE.Group(), L = o.length, W = o.width, V = o.verge, seed = 5000 + o.seed * 13;
       const n1 = noise2(seed), n2 = noise2(seed + 1);
       const centre = (t) => [o.curve * L * 0.25 * (1 - Math.pow(2 * t - 1, 2)) - o.curve * L * 0.125 + (n1(t * 4, 2) - 0.5) * 0.6, L / 2 - t * L];
-      const cRoad = col(0xd9ccad), cTrack = col(0xe6dcc2), cLoose = col(0xc9b995), cVerge = col(0x8a8250), cEdge = col(0x857d4c), cMid = col(0x9d9464);
+      const cRoad = col(0xebe2ca), cTrack = col(0xf4eddb), cLoose = col(0xddd1b3), cVerge = col(0x8a8250), cEdge = col(0x857d4c), cMid = col(0x9d9464);
       const prof = [];
       const S = [-W / 2 - V, -W / 2 - V * 0.6, -W / 2 - V * 0.3, -W / 2 - 0.35, -W / 2 - 0.1];
       S.forEach((s) => prof.push({ s }));
@@ -946,7 +950,7 @@ export function install(K, THREE, TXT) {
           mix3(P.c, P.c, cLoose, smooth(W / 2 - 0.5, W / 2, a));
         } else {
           const e = (a - W / 2) / V;
-          P.h = e < 0.12 ? 0.1 : lerp(0.08, -0.06, smooth(0.1, 1, e));   // the grader berm, then the verge
+          P.h = e < 0.1 ? 0.1 : lerp(0.08, -0.08, smooth(0.08, 0.4, e));   // the grader berm, then down under the ground
           P.c = new THREE.Color(); mix3(P.c, cLoose, cVerge, smooth(0.03, 0.2, e)); mix3(P.c, P.c, cEdge, smooth(0.5, 1, e));
         }
       });
@@ -963,18 +967,18 @@ export function install(K, THREE, TXT) {
       const mesh = new THREE.Mesh(geo, m); mesh.userData.txGround = true; g.add(mesh);
       // tufts on the verges and the centre strip, loose stones on the berms
       const tufts = [], rocks = [];
-      for (let i = 0; i < L * 9; i++) {
+      for (let i = 0; i < L * 18; i++) {
         const t = r(), c = centre(t), c2 = centre(Math.min(1, t + 0.01)), tx = c2[0] - c[0], tz = c2[1] - c[1], l = Math.hypot(tx, tz), nx = tz / l, nz = -tx / l;
         const side = r() < 0.5 ? -1 : 1;
         let s, k;
         const pick = r();
-        if (pick < 0.62) { s = side * (W / 2 + 0.25 + Math.pow(r(), 0.7) * V * 0.95); k = 0.7 + r() * 0.8; }
+        if (pick < 0.7) { s = side * (W / 2 + 0.2 + Math.pow(r(), 0.8) * V * 1.2); k = 0.7 + r() * 0.8; }
         else if (pick < 0.8 && o.centerGrass) { s = (r() - 0.5) * 0.45; k = 0.35 + r() * 0.35; }
         else { s = side * (W / 2 - 0.1 + r() * 0.45); rocks.push([c[0] + nx * s, 0.08, c[1] + nz * s, 0.03 + Math.pow(r(), 3) * 0.14]); continue; }
         tufts.push([c[0] + nx * s, 0.02, c[1] + nz * s, k]);
       }
       tuftField(r, tufts, { key: 'verge', blades: 16, height: 0.55, spread: 0.14, width: 0.011, lean: 0.4, colors: [0x5d5a38, 0x9c9160, 0xc9b98a] }, g);
-      stones(r, rocks, 'caliche', [0xd8cfb8, 0xc4b89c, 0xe2dccb, 0xb0a48a], g);
+      stones(r, rocks, 'caliche', [0xe8e2d2, 0xd6cdb6, 0xf0ebe0, 0xc4b99e], g, true);
       return g;
     },
   });
@@ -1011,7 +1015,7 @@ export function install(K, THREE, TXT) {
       });
       // ---- pavement: one slab, wheel paths darker by vertex colour, shoulders a lighter older mix
       const concrete = o.surface === 'concrete';
-      const base = concrete ? col(0xb4b0a6) : col(0x55565a), shoulder = concrete ? col(0xa9a59b) : col(0x6a6a6a), polish = concrete ? col(0x9f9b92) : col(0x3f4043);
+      const base = concrete ? col(0xd2cec4) : col(0x78777a), shoulder = concrete ? col(0xc6c1b6) : col(0x8b8987), polish = concrete ? col(0xb8b3a8) : col(0x5d5d60);
       const pprof = [];
       const xs = []; for (let k = 0; k <= 80; k++) xs.push(-half + 2 * half * k / 80);
       xs.forEach((s) => {
@@ -1135,7 +1139,7 @@ export function install(K, THREE, TXT) {
           }
         });
         // approaches: MSE panel walls on fill, falling to grade
-        const ramp = 55, wallM = M('hw-mse', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.9 });
+        const ramp = 55, wallM = M('hw-mse', { color: 0xffffff, map: K.tex('concrete', { color: '#c9c3b8' }), roughness: 0.9 });
         [-1, 1].forEach((sd) => {
           const x0 = sd * dspan, x1 = sd * (dspan + ramp);
           const shape = new THREE.Shape([new THREE.Vector2(0, -0.2), new THREE.Vector2(ramp, -0.2), new THREE.Vector2(ramp, 0.0), new THREE.Vector2(0, deckTop - 0.02)]);
@@ -1166,7 +1170,7 @@ export function install(K, THREE, TXT) {
       const depth = level - bedAt(p.getX(i), p.getZ(i));
       const a = smooth(-0.02, 0.35, depth);
       mix3(c, sh, deep, smooth(0.0, 0.6, depth));
-      C[i * 4] = c.r; C[i * 4 + 1] = c.g; C[i * 4 + 2] = c.b; C[i * 4 + 3] = depth < -0.05 ? 0 : 0.35 + 0.6 * a;
+      C[i * 4] = c.r; C[i * 4 + 1] = c.g; C[i * 4 + 2] = c.b; C[i * 4 + 3] = depth < -0.05 ? 0 : 0.18 + 0.74 * a;
     }
     geo.setAttribute('color', new THREE.BufferAttribute(C, 4));
     const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / 6, uv.getY(i) * d / 6);
@@ -1205,7 +1209,7 @@ export function install(K, THREE, TXT) {
       };
       const geo = heightfield(W, L, Math.round(W * 4), Math.round(L * 4), bedAt);
       const P = geo.attributes.position, N = geo.attributes.normal, C = new Float32Array(P.count * 3);
-      const cRock = col(0xcfc3a3), cRockD = col(0xa99c7f), cGrav = col(0xb6a78a), cBankRock = col(0xc2b494), cGrass = col(0x7f7a45), cGrass2 = col(0x9a8f58), cEdge = col(0x857d4c), cMud = col(0x7a6a52), tmp = new THREE.Color();
+      const cRock = col(0xe4dccb), cRockD = col(0xc8bfac), cGrav = col(0xcfc8b8), cBankRock = col(0xd6cdb8), cGrass = col(0x7f7a45), cGrass2 = col(0x9a8f58), cEdge = col(0x857d4c), cMud = col(0x7a6a52), tmp = new THREE.Color();
       const levelW = o.water === 'full' ? 0.62 : o.water === 'shallow' ? 0.42 : -1;
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i), slope = 1 - N.getY(i), s = Math.abs(x - cx(z)), H = hw(z);
@@ -1218,11 +1222,11 @@ export function install(K, THREE, TXT) {
         C[i * 3] = tmp.r; C[i * 3 + 1] = tmp.g; C[i * 3 + 2] = tmp.b;
       }
       geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
-      const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * W / 3, uv.getY(i) * L / 3);
-      const bm = new THREE.Mesh(geo, M('creek-bed', { color: 0xffffff, vertexColors: true, map: detailTex('rock'), roughness: 0.9 }));
+      const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * W / 2.5, uv.getY(i) * L / 2.5);
+      const bm = new THREE.Mesh(geo, M('creek-bed', { color: 0xffffff, vertexColors: true, map: limeTex(), roughness: 0.88 }));
       bm.userData.txGround = true; g.add(bm);
       // limestone slabs and ledge blocks, laid flat, a few tipped
-      const lt = K.tex('limestone', { color: '#d2c6a8' }), lm = M('creek-slab', { color: 0xf3eee4, roughness: 0.88, map: lt });
+      const lm = M('creek-slab', { color: 0xffffff, roughness: 0.86, map: limeTex() });
       const sg = (() => { const b = new THREE.BoxGeometry(1, 1, 1, 4, 1, 4), p = b.attributes.position, n = noise2(seed + 9);
         for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), z = p.getZ(i), k = 0.8 + n(x * 3 + 5, z * 3 + 5) * 0.4; p.setXYZ(i, x * k, y, z * k); }
         const q = b.toNonIndexed(); q.computeVertexNormals(); return K.uvBox(q, 1); })();
@@ -1238,9 +1242,9 @@ export function install(K, THREE, TXT) {
       const gr = [];
       for (let i = 0; i < 2200; i++) {
         const z = (r() - 0.5) * L, H = hw(z), s = (r() < 0.5 ? -1 : 1) * (H * (0.55 + r() * 0.6)), x = cx(z) + s;
-        gr.push([x, bedAt(x, z) - 0.02, z, 0.025 + Math.pow(r(), 3) * 0.16]);
+        gr.push([x, bedAt(x, z) - 0.015, z, 0.02 + Math.pow(r(), 3.5) * 0.12]);
       }
-      stones(r, gr, 'creek', [0xcfc6b2, 0xb3a894, 0xe0d8c6, 0x9d927e, 0xc9b99a], g);
+      stones(r, gr, 'creek', [0xd8d4ca, 0xc2bdb1, 0xe6e2d8, 0xaca699, 0xcfc8b6], g);
       // bank grass: tall along the top, thinning at the edge
       const tf = [];
       for (let i = 0; i < W * L * 1.8; i++) {
@@ -1252,7 +1256,7 @@ export function install(K, THREE, TXT) {
       tuftField(r, tf, { key: 'bank', blades: 16, height: 0.6, spread: 0.15, width: 0.011, lean: 0.35, colors: [0x4f5231, 0x8a8a4e, 0xbcae78] }, g);
       if (levelW > 0) {
         // water only over the channel: a sheet following the meander (as wide as the model, alpha 0 on the banks)
-        g.add(waterSheet(W - 1, L - 0.5, Math.round(W * 1.5), Math.round(L * 1.5), levelW, bedAt, 0x2f4a3c, 0x9aa88a, 'creek'));
+        g.add(waterSheet(W - 1, L - 0.5, Math.round(W * 1.5), Math.round(L * 1.5), levelW, bedAt, 0x1d3a34, 0x5f7a6a, 'creek'));
       }
       g.userData.heightAt = bedAt;
       return g;
@@ -1295,7 +1299,7 @@ export function install(K, THREE, TXT) {
       const P = geo.attributes.position; for (let i = 0; i < P.count; i++) P.setY(i, hAt(P.getX(i), P.getZ(i)));
       geo.computeVertexNormals();
       const N = geo.attributes.normal, C = new Float32Array(P.count * 3), tmp = new THREE.Color();
-      const cBed = col(0x7c6b52), cMud = col(0xc9b89a), cCrack = col(0xb2a080), cRock = col(0xb9ab8e), cGrass = col(0x827c46), cGrass2 = col(0x9b9157), cEdge = col(0x857d4c), cWet = col(0x6b5d48);
+      const cBed = col(0x6f6553), cMud = col(0xd3c9b2), cCrack = col(0xbdb39c), cRock = col(0xc7bfae), cGrass = col(0x827c46), cGrass2 = col(0x9b9157), cEdge = col(0x857d4c), cWet = col(0x6b5d48);
       for (let i = 0; i < P.count; i++) {
         const x = P.getX(i), z = P.getZ(i), y = P.getY(i), u = shore(x) - z, sl = 1 - N.getY(i);
         if (u < 0) tmp.copy(cBed);
@@ -1314,8 +1318,8 @@ export function install(K, THREE, TXT) {
       // rock riprap and cobbles along the drawdown band
       const rk = [];
       for (let i = 0; i < W * 5; i++) { const x = (r() - 0.5) * W * 0.95, u = r() * (o.drawdown * 6 + 3) - 1, z = shore(x) - u;
-        if (o.ramp && Math.abs(x - rampX) < 6) continue; rk.push([x, hAt(x, z) - 0.03, z, 0.05 + Math.pow(r(), 2.5) * 0.45]); }
-      stones(r, rk, 'shore', [0xb8ab90, 0xa3977e, 0xcdbfa2, 0x8f8470], g);
+        if (o.ramp && Math.abs(x - rampX) < 6) continue; rk.push([x, hAt(x, z) - 0.03, z, 0.04 + Math.pow(r(), 3) * 0.35]); }
+      stones(r, rk, 'shore', [0xc9c3b4, 0xb2ab9b, 0xdad4c6, 0x9d9687], g, true);
       // grass on the land above the band
       const tf = [];
       for (let i = 0; i < 3200; i++) { const x = (r() - 0.5) * W * 0.6 + (r() < 0.5 ? 0 : (r() - 0.5) * W * 0.4), z = -r() * D * 0.7, u = shore(x) - z;
@@ -1369,47 +1373,48 @@ export function install(K, THREE, TXT) {
     for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) * s * 1.05, p.getY(i) * s * 0.78, p.getZ(i) * s * 0.92);
     return smoothNormals(g);
   }
+  // a puff of lint: two octahedra turned 45 degrees and merged, smoothed round (16 triangles)
+  function puff(rng, s) {
+    const a = boll(rng, s), b = boll(rng, s * 0.9); b.rotateY(Math.PI / 4); b.rotateX(0.5);
+    return mergeGeos([a, b]);
+  }
   function cottonPlant(rng, growth) {
-    const parts = [], H = lerp(0.18, 1.0, clamp(growth / 0.8, 0, 1)) * (0.85 + rng() * 0.3);
-    const open = growth >= 0.88, green = growth < 0.88;
-    const stemC = open ? 0x5a4432 : 0x5f6e3a;
-    parts.push(stem(H, 0.012, 0.005, stemC, 4));
-    const branches = Math.round(lerp(2, 5, clamp(growth, 0, 1)));
+    const parts = [], H = lerp(0.2, 0.95, clamp(growth / 0.8, 0, 1)) * (0.85 + rng() * 0.3);
+    const open = growth >= 0.88;
+    const stemC = open ? 0x4a3a2c : 0x5d6b38;
+    parts.push(stem(H, 0.011, 0.005, stemC, 4));
+    const branches = open ? 5 : Math.round(lerp(2, 6, clamp(growth / 0.8, 0, 1)));
     for (let b = 0; b < branches; b++) {
-      const y = H * (0.2 + 0.7 * b / branches), a = rng() * TAU, len = (H - y) * 0.5 + 0.12, th = 0.7 + rng() * 0.4;
+      const y = H * (0.18 + 0.72 * b / branches), a = b * 2.4 + rng() * 0.8, len = (H - y) * 0.55 + 0.1, th = 0.75 + rng() * 0.35;
       const br = stem(len, 0.006, 0.003, stemC, 3); br.rotateZ(-th); br.rotateY(a); br.translate(0, y, 0); parts.push(br);
-      const tip = [Math.cos(a) * Math.sin(th) * len, y + Math.cos(th) * len, -Math.sin(a) * Math.sin(th) * len];
-      if (green) {
-        for (let k = 0; k < 2; k++) { const lf = leafStrip(0.09 + rng() * 0.05, 0.045, 0.3, 1.2, 2, 0x3f5a2a, 0x5b7a36); place(lf, tip[0] * (0.6 + k * 0.4), tip[1], tip[2] * (0.6 + k * 0.4), rng() * TAU, -0.3); parts.push(lf); }
-        if (growth > 0.6 && rng() < 0.4) parts.push(place(blob(rng, 0.025, rng() < 0.5 ? 0xf2e9c8 : 0xd98ca8, 0), tip[0], tip[1] + 0.02, tip[2]));
+      const at = (f) => [Math.cos(a) * Math.sin(th) * len * f, y + Math.cos(th) * len * f, -Math.sin(a) * Math.sin(th) * len * f];
+      if (open) {
+        [0.55, 1.0].forEach((f) => { const t = at(f), s = 0.03 + rng() * 0.012;
+          parts.push(place(paintGeo(puff(rng, s), rng() < 0.15 ? 0xe6dccb : 0xf6f4ee), t[0], t[1] + s * 0.5, t[2], rng() * TAU));
+          parts.push(place(paintGeo(new THREE.OctahedronGeometry(s * 0.6, 0), 0x3a2c20), t[0], t[1] - s * 0.1, t[2])); });
+        if (rng() < 0.45) { const t = at(0.4), lf = leafStrip(0.06, 0.03, -0.3, 1, 2, 0x4a3524, 0x6b4c30); place(lf, t[0], t[1], t[2], rng() * TAU, -1.0); parts.push(lf); }
       } else {
-        for (let k = 0; k < 2; k++) { const s = 0.035 + rng() * 0.02;
-          parts.push(place(paintGeo(boll(rng, s), 0xf4f1ea), tip[0] * (0.55 + k * 0.45), tip[1] + s * 0.4 - k * 0.03, tip[2] * (0.55 + k * 0.45)));
-          parts.push(place(paintGeo(new THREE.OctahedronGeometry(s * 0.55, 0), 0x3b2c20), tip[0] * (0.55 + k * 0.45), tip[1] - s * 0.3 - k * 0.03, tip[2] * (0.55 + k * 0.45))); }
-        if (rng() < 0.5) { const lf = leafStrip(0.07, 0.035, 0.1, 2, 2, 0x6b4f33, 0x8a6a45); place(lf, tip[0] * 0.5, y, tip[2] * 0.5, rng() * TAU, -0.8); parts.push(lf); }
+        for (let k = 0; k < 2; k++) { const t = at(0.5 + k * 0.5), lf = leafStrip(0.1 + rng() * 0.04, 0.06, 0.25, 1.2, 2, 0x3b5527, 0x5b7a36); place(lf, t[0], t[1], t[2], rng() * TAU, 0.15 - rng() * 0.4); parts.push(lf); }
+        if (growth > 0.6 && rng() < 0.45) { const t = at(0.8); parts.push(place(paintGeo(new THREE.OctahedronGeometry(0.022, 0), rng() < 0.6 ? 0xf1e7c2 : 0xd98ca8), t[0], t[1] + 0.03, t[2])); }
       }
     }
-    if (green) for (let k = 0; k < 4; k++) { const lf = leafStrip(0.1 + rng() * 0.04, 0.05, 0.35, 1.3, 2, 0x3b5527, 0x587733); place(lf, 0, H * (0.75 + rng() * 0.25), 0, rng() * TAU, -0.2); parts.push(lf); }
-    else parts.push(place(paintGeo(boll(rng, 0.04), 0xf6f3ec), 0, H + 0.02, 0));
+    if (!open) for (let k = 0; k < 4; k++) { const lf = leafStrip(0.1 + rng() * 0.04, 0.06, 0.3, 1.3, 2, 0x3b5527, 0x587733); place(lf, 0, H * (0.8 + rng() * 0.2), 0, rng() * TAU, -0.1); parts.push(lf); }
+    else parts.push(place(paintGeo(puff(rng, 0.035), 0xf6f3ec), 0, H + 0.02, 0));
     return mergeGeos(parts);
   }
   function sorghumPlant(rng, growth) {
-    const parts = [], H = lerp(0.3, 1.35, clamp(growth / 0.7, 0, 1)) * (0.9 + rng() * 0.2);
+    const parts = [], H = lerp(0.3, 1.25, clamp(growth / 0.7, 0, 1)) * (0.9 + rng() * 0.2);
     const ripe = growth >= 0.85, headed = growth >= 0.6;
-    parts.push(stem(H, 0.013, 0.008, ripe ? 0x8a8a4a : 0x5c7a38, 4));
-    const leaves = 5;
-    for (let k = 0; k < leaves; k++) {
-      const y = H * (0.12 + 0.72 * k / leaves), dry = ripe && k < 2;
-      const lf = leafStrip(0.42 + rng() * 0.2 - k * 0.03, 0.035, 0.55, 1.5, 3, dry ? 0x9a8a5a : 0x46652d, dry ? 0xb8a36c : (ripe ? 0x7f8a45 : 0x6a8c3c));
-      place(lf, 0, y, 0, k * 2.4 + rng() * 0.6, 0.1); parts.push(lf);
+    parts.push(stem(H, 0.012, 0.008, ripe ? 0x7d7c46 : 0x587536, 5));
+    for (let k = 0; k < 7; k++) {
+      const y = H * (0.08 + 0.78 * k / 7), dry = ripe && k < 2;
+      const lf = leafStrip(0.5 + rng() * 0.2 - k * 0.03, 0.045, 0.7, 1.55, 3, dry ? 0x8f8055 : 0x3f5f29, dry ? 0xb4a16c : (ripe ? 0x7c8a46 : 0x68893c));
+      place(lf, 0, y, 0, k * 2.4 + rng() * 0.7, 0.25 + rng() * 0.25); parts.push(lf);
     }
     if (headed) {
-      const hc = ripe ? [0x8e3f24, 0xa4552c, 0x7a3a22, 0xb06a34][Math.floor(rng() * 4)] : 0x8fa05a;
-      const hd = new THREE.LatheGeometry([[0, 0], [0.028, 0.02], [0.042, 0.08], [0.036, 0.16], [0.02, 0.21], [0, 0.23]].map((q) => new THREE.Vector2(q[0], q[1])), 7).toNonIndexed();
-      const nh = noise2(Math.floor(rng() * 1e4)), p = hd.attributes.position;
-      for (let i = 0; i < p.count; i++) { const k = 0.8 + nh(p.getX(i) * 60 + 7, p.getY(i) * 60 + p.getZ(i) * 60) * 0.5; p.setX(i, p.getX(i) * k); p.setZ(i, p.getZ(i) * k); }
-      hd.computeVertexNormals();
-      parts.push(place(paintGeo(hd, hc), 0, H, 0, 0, (rng() - 0.5) * 0.3));
+      const hc = ripe ? [0x7c3822, 0x8f4526, 0x6e3220, 0x9a5230][Math.floor(rng() * 4)] : 0x8fa05a;
+      const hd = lump(Math.floor(rng() * 1e5), 1, 0.042, 0.11, 0.042, 0.7); hd.translate(0, 0.1, 0);
+      parts.push(place(paintGeo(hd, hc), 0, H, 0, rng() * TAU, (rng() - 0.5) * 0.35));
     }
     return mergeGeos(parts);
   }
@@ -1418,11 +1423,11 @@ export function install(K, THREE, TXT) {
    * crop_rows: a field block of cotton or sorghum on bedded rows
    * ====================================================================================== */
   K.define('crop_rows', {
-    size: [24, 1.4, 36],
-    options: { crop: 'cotton', growth: 1, width: 24, length: 36, row: 1.02, soil: 0x8a5d40 },
+    size: [20, 1.4, 30],
+    options: { crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40 },
     note: 'A field block of bedded rows running along z, 40 inch rows on South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green with flowers, 1 defoliated with open white bolls) or sorghum (growth 1 ripe rust heads). The block edge feathers into TXT.ground over a turn row.',
     make(o, r) {
-      o = Object.assign({ crop: 'cotton', growth: 1, width: 24, length: 36, row: 1.02, soil: 0x8a5d40 }, o);
+      o = Object.assign({ crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40 }, o);
       const g = new THREE.Group(), W = o.width, L = o.length, sp = o.row, seed = 9000 + o.seed * 3;
       const nS = noise2(seed), rows = Math.floor(W / sp), x0 = -(rows - 1) * sp / 2;
       const bedAt = (x, z) => {
@@ -1445,7 +1450,7 @@ export function install(K, THREE, TXT) {
       const soil = new THREE.Mesh(geo, M('crop-soil', { color: 0xffffff, vertexColors: true, map: detailTex('soil'), roughness: 0.96 }));
       soil.userData.txGround = true; g.add(soil);
       // the plants: a few variants, instanced down every row, with gaps where a seed failed
-      const variants = [], VN = 4, step = o.crop === 'sorghum' ? 0.2 : 0.3;
+      const variants = [], VN = 4, step = o.crop === 'sorghum' ? 0.2 : 0.33;
       for (let v = 0; v < VN; v++) variants.push({ geo: o.crop === 'sorghum' ? sorghumPlant(r, o.growth) : cottonPlant(r, o.growth), list: [], cols: [] });
       for (let k = 0; k < rows; k++) {
         const x = x0 + k * sp;
@@ -1479,12 +1484,12 @@ export function install(K, THREE, TXT) {
       const st = stem(h * 0.55, 0.004, 0.003, 0x4f6a30, 3); st.rotateZ(lean * Math.cos(a)); st.rotateX(lean * Math.sin(a)); st.translate(bx, 0, bz); parts.push(st);
       const tx = bx + Math.sin(lean * Math.cos(a)) * -h * 0.55, tz = bz + Math.sin(lean * Math.sin(a)) * h * 0.55, ty = h * 0.53;
       const spikeH = h * 0.5, fl = kind === 'bluebonnet' ? [0x2d3f9a, 0x3a4fb4, 0x4a5cc4] : [0xd8431e, 0xe2582a, 0xc93a1c];
-      const prof = kind === 'bluebonnet' ? [[0, 0], [0.028, 0.02], [0.03, 0.3], [0.022, 0.65], [0.012, 0.9], [0, 1]] : [[0, 0], [0.03, 0.05], [0.034, 0.45], [0.028, 0.8], [0, 1]];
-      const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1] * spikeH)), 6).toNonIndexed();
+      const prof = kind === 'bluebonnet' ? [[0, 0], [0.022, 0.02], [0.026, 0.15], [0.025, 0.32], [0.022, 0.5], [0.017, 0.68], [0.011, 0.84], [0.004, 0.96], [0, 1]] : [[0, 0], [0.016, 0.05], [0.028, 0.3], [0.032, 0.55], [0.026, 0.8], [0.012, 0.95], [0, 1]];
+      const lg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1] * spikeH)), 8).toNonIndexed();
       const p = lg.attributes.position, cc = new Float32Array(p.count * 3), cA = col(fl[Math.floor(rng() * 3)]), cW = col(0xf4f2ea), cG = col(0x6f8a3a), c = new THREE.Color();
       const nf = noise2(Math.floor(rng() * 1e4));
       for (let i = 0; i < p.count; i++) {
-        const t = p.getY(i) / spikeH, k = 1 + (nf(p.getX(i) * 90 + t * 20, p.getZ(i) * 90) - 0.5) * 0.9;
+        const t = p.getY(i) / spikeH, k = 1 + (nf(p.getX(i) * 160 + t * 40, p.getZ(i) * 160 + t * 13) - 0.5) * 1.1;
         p.setX(i, p.getX(i) * k); p.setZ(i, p.getZ(i) * k);
         if (kind === 'bluebonnet') { mix3(c, cA, cW, smooth(0.72, 0.84, t)); if (t > 0.93) mix3(c, c, cG, 0.4); }
         else { mix3(c, cG, cA, smooth(0.0, 0.3, t)); }

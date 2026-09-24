@@ -335,12 +335,12 @@ export function install(K, THREE, TXT) {
         // buttress roots: short tapering tubes leaving the trunk foot and diving under the grade
         const nr = S.roots, r0 = rad * (1 + (S.flare || 0));
         for (let i = 0; i < nr; i++) {
-          const a = (i + r() * 0.5) / nr * 6.283, dx = Math.cos(a), dz = Math.sin(a), L = r0 * (1.6 + r() * 1.4);
+          const a = (i + r() * 0.5) / nr * 6.283, dx = Math.cos(a), dz = Math.sin(a), L = r0 * (0.9 + r() * 0.8);
           const rp = [], rr = [];
           for (let k = 0; k <= 5; k++) {
             const t = k / 5;
-            rp.push(new V3(p0.x + dx * (r0 * 0.3 + L * t), 0.02 + r0 * 0.9 * Math.pow(1 - t, 1.6) - 0.12 * t, p0.z + dz * (r0 * 0.3 + L * t)));
-            rr.push(r0 * 0.5 * (1 - 0.8 * t));
+            rp.push(new V3(p0.x + dx * (r0 * 0.2 + L * t), r0 * 0.55 * Math.pow(1 - t, 1.3) - 0.1 * t, p0.z + dz * (r0 * 0.2 + L * t)));
+            rr.push(r0 * 0.42 * (1 - 0.55 * t));
           }
           taperTube(rp, rr, 8, wood); tris += 5 * 16;
         }
@@ -446,7 +446,7 @@ export function install(K, THREE, TXT) {
   /* =======================================================================================
    * live_oak — Quercus virginiana (fusiformis in the Hill Country)
    * ===================================================================================== */
-  const OAK_LEAF = { shape: 'ellipse', leaf: [34, 16], colors: ['#27361c', '#3d5226', '#52682f'], twig: '#3a3027', twigW: 4, density: 5, angle: 0.8, gloss: true, branchy: 2 };
+  const OAK_LEAF = { shape: 'ellipse', leaf: [21, 10], colors: ['#27361c', '#3d5226', '#52682f'], twig: '#3a3027', twigW: 3, density: 9, angle: 0.8, gloss: true, branchy: 2 };
   K.define('live_oak', {
     size: [18, 9, 18],
     options: { height: 'metres (9)', spread: 'metres across the crown (18)' },
