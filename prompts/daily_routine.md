@@ -982,7 +982,8 @@ It holds three things and nothing else:
 1. **One light and the world it belongs to**, an azimuth and an elevation, stated in the header
    in words a frame author can check a drawing against ("the key is upper right and every cast runs
    to the lower left"), not only as numbers, and ONE `TXT.worlds` preset (or a tuned copy of one)
-   whose elevation range the declared light sits inside. The chassis never paints its own sky,
+   whose elevation range the declared light sits inside, declared as `sky` in the same
+   `TXDECK.declare`. Frames read it with `TXT.deckWorld()`, and `TXT.sky` refuses any other. The chassis never paints its own sky,
    writes its own ground texture or develops a frame through a second tone curve. The engine
    carries all three, and a second copy is how they drift.
 2. **One material vocabulary**, the ramp and the primitives this deck's world is made of.

@@ -687,10 +687,11 @@ THE ENGINE, so no run has to remember them.
 ### What a frame stands in now
 
 ```js
-const W = TXT.worlds.goldenHour;           // the deck's ONE world, chosen in the chassis
+// the chassis, once: TXDECK.declare({ ..., light:{ az:-62, el:8 }, sky:'goldenHour' })
+const W = TXT.deckWorld();                 // the deck's ONE world, resolved from the declaration
 const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure, tone:W.tone, fov:36 });
 TXT.frame(R, { from:[x, 1.6, z], look:[0, 2, 0] });
-TXT.sky(R, W);                             // dome, IBL rendered FROM it, fog in its horizon hue
+TXT.sky(R);                                // dome, IBL rendered FROM it, fog in its horizon hue
 TXT.deckRig(R, W.rig, { target:[0,0,0], distance:80 });    // the sun IS the declared light
 TXT.ground(R, { surface:'caliche', size:900 });            // caliche, dirt, asphalt, concrete, grass
 TXT.scatter(R, { kind:'grass', count:6000, area:[...], avoid:[[...the pad...]] });
@@ -714,8 +715,10 @@ const shot = await TXT.snapshot(R);
 | `overcast` | no disc, everything soft and honest | 35 to 60 | procedure, a filing, a waiting room | dark |
 | `stormFront` | a bruised sky and one shaft of sun | 6 to 16 | risk, a warning, a deadline | light |
 
-   The chassis declares the light with an elevation in its world's range. To tune a world, copy
-   it and change the copy (`Object.assign({}, TXT.worlds.goldenHour, { haze: 0xd8b48e })`).
+   The chassis declares the light with an elevation in its world's range, and the world itself
+   as `sky` in the same `TXDECK.declare`: a preset name, or `{ preset:'goldenHour', haze:0xd8b48e }`
+   to tune one. Frames read it with `TXT.deckWorld()`, and `TXT.sky` THROWS when a frame hands it
+   a different world, the way `TXT.deckRig` reads the light rather than trusting a frame's copy.
    Never edit `TXT.worlds`, which every future deck stands on.
 2. **The sun is the deck's light.** `TXT.sky` puts the sun's glow where `TXDECK.declare` says,
    so the glow, the key, the cast shadows and the warm side of every object agree on all nine
@@ -870,11 +873,11 @@ reproduced, because a signature in this file is an invitation to call it.
 import * as THREE from '@@ASSETS@@/js/three.module.min.js';
 import { init } from '@@ASSETS@@/js/txthree.js';
 const TXT = init(THREE);
-const W = TXT.worlds.goldenHour;                           // the deck's ONE world, from the chassis
+const W = TXT.deckWorld();                                 // the deck's ONE world, from the chassis
 const R = TXT.setup(glCanvas, { w:1080, h:1350, fog:[W.haze, W.fogDensity],
                                 exposure:W.exposure, tone:W.tone, fov:36 });
 TXT.frame(R, { from:[7, 1.6, 9], look:[0, 1.8, 0] });
-TXT.sky(R, W);                                             // sky + IBL from it + fog in its hue
+TXT.sky(R);                                                // sky + IBL from it + fog in its hue
 TXT.deckRig(R, W.rig, { target:[0, 0, 0], distance:60 }); // the sun IS the declared light
 TXT.ground(R, { surface:'caliche', size:900 });            // the object stands ON something
 const hero = buildHero(THREE, TXT);                        // the deck's one object, from the chassis

@@ -16,8 +16,8 @@ def page(n, az, el, world, note, dark_ink=False, lamp=False):
     load = ('<script>window.__decl = TXDECK.declare; TXDECK.declare = function () { return null; };</script>\n'
             '<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>\n'
             '<script>TXDECK.declare = window.__decl;\n'
-            'TXDECK.declare({ world: "proof-%s", light: { az: %s, el: %s }, ground: "#1c2436", material: "#C9C4B6", '
-            'accent: "#E0A33F", grade: %s });</script>' % (world, az, el, GRADE))
+            'TXDECK.declare({ world: "proof-%s", light: { az: %s, el: %s }, sky: "%s", ground: "#1c2436", '
+            'material: "#C9C4B6", accent: "#E0A33F", grade: %s });</script>' % (world, az, el, world, GRADE))
     h = src.replace('<script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>', load)
     if dark_ink:
         h = h.replace("</style>", "  .hook, .dek { color:#15181d !important; } .tx-site { color:#3a3f47 !important; }\n</style>", 1)
@@ -25,10 +25,10 @@ def page(n, az, el, world, note, dark_ink=False, lamp=False):
     a = h.index("  /* THE COUNT, FROM figures.json"); b = h.index("  const cx = Y.develop(")
     scene = ("""  /* %s */
   const UNITS = 40;
-  const W = TXT.worlds.%s;
+  const W = TXT.deckWorld();                /* the chassis declared sky: %s */
   const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 38 });
   TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.45, -2.2] });   // no. 32's camera, exactly
-  TXT.sky(R, W);
+  TXT.sky(R);
   const rig = JSON.parse(JSON.stringify(W.rig)); rig.key.shadowSize = 34; rig.key.mapSize = 4096;
   TXT.deckRig(R, rig, { target: [-3, 0, -14], distance: 120, shadowFar: 320 });
   TXT.ground(R, { surface: 'caliche', size: 900, tile: 5 });

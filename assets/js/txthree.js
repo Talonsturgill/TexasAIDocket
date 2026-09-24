@@ -422,7 +422,8 @@ export function init(THREE) {
    *
    * USAGE, the whole stage in five calls (the depth gate reads frame, ground, deckRig, add):
    *
-   *   const W = TXT.worlds.goldenHour;                       // or blueHour, highNoon, ...
+   *   // the chassis, once:  TXDECK.declare({ ..., light:{az:-62, el:8}, sky:'goldenHour' })
+   *   const W = TXT.deckWorld();                             // the deck's one world, resolved
    *   const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure,
    *                             tone:W.tone, fov:38 });
    *   TXT.frame(R, { from:[-14, 1.6, 22], look:[0, 3, 0] });
@@ -452,15 +453,18 @@ export function init(THREE) {
       r ^= r + Math.imul(r ^ (r >>> 7), 61 | r); return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
     };
   };
-  function valueNoise(seed, size) {
-    // a tileable lattice of values, bilinear-smoothed on read: noise(x, y) with x, y in lattice units
-    const R0 = TXT.rng(seed), n = size, lat = new Float32Array(n * n);
-    for (let i = 0; i < n * n; i++) lat[i] = R0();
+  function valueNoise(seed, nx, ny) {
+    // a tileable lattice of values, bilinear-smoothed on read: noise(x, y) with x, y in lattice
+    // units, periodic at nx across and ny down. Sample exactly one period across a texture and it
+    // tiles; a stretched sample over part of a period leaves a seam at every repeat (Codex, #353).
+    ny = ny || nx;
+    const R0 = TXT.rng(seed), lat = new Float32Array(nx * ny);
+    for (let i = 0; i < nx * ny; i++) lat[i] = R0();
     return function (x, y) {
       const xi = Math.floor(x), yi = Math.floor(y), fx = x - xi, fy = y - yi;
       const sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
-      const x0 = ((xi % n) + n) % n, y0 = ((yi % n) + n) % n, x1 = (x0 + 1) % n, y1 = (y0 + 1) % n;
-      const a = lat[y0 * n + x0], b = lat[y0 * n + x1], c = lat[y1 * n + x0], d = lat[y1 * n + x1];
+      const x0 = ((xi % nx) + nx) % nx, y0 = ((yi % ny) + ny) % ny, x1 = (x0 + 1) % nx, y1 = (y0 + 1) % ny;
+      const a = lat[y0 * nx + x0], b = lat[y0 * nx + x1], c = lat[y1 * nx + x0], d = lat[y1 * nx + x1];
       return (a + (b - a) * sx) + ((c + (d - c) * sx) - (a + (b - a) * sx)) * sy;
     };
   }
@@ -554,7 +558,13 @@ export function init(THREE) {
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mat of mats) {
         if (!mat || !mat.isMeshStandardMaterial || seen.has(mat) || mat.map || mat.userData.txWeathered) continue;
-        if (m.geometry && m.geometry.type === 'PlaneGeometry' && m.rotation.x !== 0) continue;  // grounds
+        // GROUNDS ARE TAGGED, NEVER GUESSED. TXT.ground marks its plane. A rotated plane is not
+        // terrain on that evidence alone (a tilted solar panel is a subject and weathers, Codex,
+        // #353), so the only other plane skipped is one of ground size, 40 m or more both ways,
+        // which is how a chassis-built pad is recognised. Anything else goes in `skip`.
+        if (m.userData.txGround) continue;
+        const gp = m.geometry && m.geometry.type === 'PlaneGeometry' ? m.geometry.parameters : null;
+        if (gp && gp.width >= 40 && gp.height >= 40) continue;
         seen.add(mat); mat.userData.txWeathered = true;
         mat.onBeforeCompile = (sh) => {
           sh.uniforms.uGrime = { value: grime }; sh.uniforms.uGrimeH = { value: height };
@@ -647,11 +657,45 @@ export function init(THREE) {
     });
   }
 
+  /* ONE DECK, ONE WORLD, bound the way TXT.deckRig binds the light (2026-09-24, Codex on #353).
+   * The chassis names the world ONCE in TXDECK.declare as `sky`: a preset name ('goldenHour') or
+   * an object ({ preset:'goldenHour', haze:0xd8b48e }). TXT.deckWorld() returns it resolved, and
+   * TXT.sky THROWS when a frame hands it a different world, so nine frames can't stand under two
+   * skies. A deck that declares no sky may still pass a world to TXT.sky, as before. */
+  const WORLD_KEYS = ['zenith', 'horizon', 'haze', 'ground', 'sun', 'sunDisc', 'glow', 'horizonGlow',
+    'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed'];
+  const worldKey = (W) => JSON.stringify(WORLD_KEYS.map(k => (W[k] === undefined ? null : W[k])));
+  function declaredWorld() {
+    const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
+    let D = null;
+    try { if (TXD && TXD.deck) D = TXD.deck().sky; } catch (e) { D = null; }
+    if (D == null) return null;
+    const name = typeof D === 'string' ? D : (D.preset || 'goldenHour');
+    if (!TXT.worlds[name]) throw new Error("TXDECK.declare sky names no world '" + name + "'. The worlds are " +
+      Object.keys(TXT.worlds).join(', '));
+    return typeof D === 'string' ? Object.assign({}, TXT.worlds[name]) : Object.assign({}, TXT.worlds[name], D);
+  }
+  TXT.deckWorld = function () {
+    const D = declaredWorld();
+    if (!D) throw new Error("TXT.deckWorld: the chassis declares no sky. Add sky:'goldenHour' (or another " +
+      "TXT.worlds name) to its TXDECK.declare, once, for the whole deck");
+    return D;
+  };
+
   /* TXT.sky(R, world) — the dome, the IBL from it, and the fog in its horizon's hue.
-   * world: a TXT.worlds preset, or a copy of one with fields changed. Call once per frame, in
-   * any order relative to TXT.frame (the dome follows the camera). Returns the dome. */
+   * world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). Without a
+   * declaration, a TXT.worlds preset or a copy of one. Call once per frame, in any order
+   * relative to TXT.frame (the dome follows the camera). Returns the dome. */
   TXT.sky = function (R, W, o) {
-    W = Object.assign({}, TXT.worlds.goldenHour, W || {});
+    const D = declaredWorld();
+    if (D) {
+      if (W && worldKey(Object.assign({}, TXT.worlds.goldenHour, W)) !== worldKey(D))
+        throw new Error("TXT.sky: this frame asked for a world the chassis did not declare. One deck, one " +
+          "world: call TXT.sky(R) or TXT.sky(R, TXT.deckWorld())");
+      W = D;
+    } else {
+      W = Object.assign({}, TXT.worlds.goldenHour, W || {});
+    }
     o = o || {};
     const sunDir = TXT.sunDir(W);
     const dome = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), skyMaterial(W, sunDir, false));
@@ -695,7 +739,9 @@ export function init(THREE) {
   function surfaceTextures(o, renderer) {
     const S = Object.assign({}, SURFACES[o.surface] || SURFACES.caliche);
     const N = 1024, seed = o.seed || 20260924;
-    const nz = valueNoise(seed, 64), nz2 = valueNoise(seed + 17, 256), R0 = TXT.rng(seed + 3);
+    // grass streaks along x with 90 cells across and 256 down, each one whole period, so it tiles
+    const FX = S.streak ? 90 : 256;
+    const nz = valueNoise(seed, 64), nz2 = valueNoise(seed + 17, FX, 256), R0 = TXT.rng(seed + 3);
     const base = new THREE.Color(o.color != null ? o.color : S.base);
     const cMap = document.createElement('canvas'); cMap.width = cMap.height = N;
     const cRgh = document.createElement('canvas'); cRgh.width = cRgh.height = N;
@@ -707,7 +753,7 @@ export function init(THREE) {
       for (let x = 0; x < N; x++) {
         const u = x / N, v = y / N;
         const m = fbm(nz, u * 64, v * 64, 5);                 // mottling, tileable at 64
-        const f = nz2(u * 256 * (S.streak ? 0.35 : 1), v * 256);  // fine tooth
+        const f = nz2(u * FX, v * 256);                       // fine tooth, one period each way
         let t = (m - 0.5) * 2 * S.var + (f - 0.5) * 0.10;
         const p = (y * N + x) * 4;
         let r = bs.r * (1 + t), g = bs.g * (1 + t), b = bs.b * (1 + t * 0.9);
@@ -717,7 +763,7 @@ export function init(THREE) {
           r += k * 0.5; g += k * 0.5; b += k * 0.5; bump += 0.35;
         }
         if (S.joints || o.joints) {                           // saw-cut joints in a slab
-          const J = N / (o.joints || S.joints);
+          const J = N / Math.max(1, Math.round(o.joints || S.joints));   // whole joints per tile
           const jx = Math.min(x % J, J - (x % J)), jy = Math.min(y % J, J - (y % J));
           if (jx < 1.6 || jy < 1.6) { r *= 0.62; g *= 0.62; b *= 0.62; bump -= 0.4; }
         }
@@ -744,7 +790,7 @@ export function init(THREE) {
   const _flatGround = TXT.ground;
   TXT.ground = function (R, o) {
     o = o || {};
-    if (!o.surface) return _flatGround(R, o);
+    if (!o.surface) { const f = _flatGround(R, o); f.userData.txGround = true; return f; }
     const size = o.size || 900, tile = o.tile || 6;
     const T = surfaceTextures(o, R.renderer);
     [T.map, T.roughnessMap, T.bumpMap].forEach(t => t.repeat.set(size / tile, size / tile));
@@ -763,7 +809,7 @@ export function init(THREE) {
       vertexColors: true, envMapIntensity: o.envMapIntensity != null ? o.envMapIntensity : 0.6 });
     const g = new THREE.Mesh(geo, mat);
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
-    g.receiveShadow = true; R.scene.add(g);
+    g.receiveShadow = true; g.userData.txGround = true; R.scene.add(g);
     return g;
   };
 

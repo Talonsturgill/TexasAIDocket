@@ -35,7 +35,7 @@
 <script>window.__decl = TXDECK.declare; TXDECK.declare = function () { return null; };</script>
 <script src="@@ASSETS@@/js/deck/2026-09-23-gensetyard.js"></script>
 <script>TXDECK.declare = window.__decl;
-TXDECK.declare({ world: "proof-blueHour", light: { az: -60, el: 35 }, ground: "#1c2436", material: "#C9C4B6", accent: "#E0A33F", grade: { exposure: 0.0, saturation: 1.06, contrast: 1.08, filmic: true, lift: [0.010, 0.012, 0.020], gain: [1.03, 1.0, 0.97], vignette: 0.22, bloom: { threshold: 0.78, strength: 0.26, radius: 12 }, grain: { amount: 0.018, size: 2, seed: 20260924 }, aberration: 0, dither: true, sharpen: 0.22 } });</script>
+TXDECK.declare({ world: "proof-blueHour", light: { az: -60, el: 35 }, sky: "blueHour", ground: "#1c2436", material: "#C9C4B6", accent: "#E0A33F", grade: { exposure: 0.0, saturation: 1.06, contrast: 1.08, filmic: true, lift: [0.010, 0.012, 0.020], gain: [1.03, 1.0, 0.97], vignette: 0.22, bloom: { threshold: 0.78, strength: 0.26, radius: 12 }, grain: { amount: 0.018, size: 2, seed: 20260924 }, aberration: 0, dither: true, sharpen: 0.22 } });</script>
 <script src="@@ASSETS@@/js/txlayout.js"></script>
 <script type="module">
 import * as THREE from '@@ASSETS@@/js/three.module.min.js';
@@ -53,10 +53,10 @@ window.renderReady = (async () => {
 
   /* BLUE HOUR, lamps on */
   const UNITS = 40;
-  const W = TXT.worlds.blueHour;
+  const W = TXT.deckWorld();                /* the chassis declared sky: blueHour */
   const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 38 });
   TXT.frame(R, { fov: 38, from: [-17.5, 2.4, 10.5], look: [-3.0, 1.45, -2.2] });   // no. 32's camera, exactly
-  TXT.sky(R, W);
+  TXT.sky(R);
   const rig = JSON.parse(JSON.stringify(W.rig)); rig.key.shadowSize = 34; rig.key.mapSize = 4096;
   TXT.deckRig(R, rig, { target: [-3, 0, -14], distance: 120, shadowFar: 320 });
   TXT.ground(R, { surface: 'caliche', size: 900, tile: 5 });

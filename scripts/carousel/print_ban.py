@@ -97,8 +97,15 @@ RENDERED_FLOOR = 6
 # judged on it. From the day after, five of nine frames stand in a world.
 WORLD_SINCE = "2026-09-23"
 WORLD_FLOOR = 5
-WORLD = re.compile(r"\.sky\s*\(")
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
+# THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
+# `Y.sky(THREE, R)`, a dome of near black it painted itself, and a pattern that matched `.sky(` on
+# any object would have counted that deck as standing in a world. So a frame is in a world when
+# it calls `sky(` ON THE NAME IT BOUND TO txthree.js, found the way depth_floor finds its bench.
+GPU_BIND = re.compile(r"(?:(?:var|let|const)\s+)?([A-Za-z_$][\w$]*)\s*=\s*\(\s*await\s+import\s*\("
+                      r"[^)]*txthree\.js[^)]*\)\s*\)\s*\.init\s*\(")
+GPU_STATIC = re.compile(r"import\s*\{\s*init(?:\s+as\s+([A-Za-z_$][\w$]*))?\s*\}\s*from\s*"
+                        r"['\"][^'\"]*txthree\.js['\"]")
 
 # What a print looks like in code. Scanned with comments stripped, because a chassis that
 # explains why it no longer prints must be allowed to say the word.
@@ -144,9 +151,26 @@ def is_rendered(src: str) -> bool:
     return all(rx.search(body) for rx in RENDERED)
 
 
+def bench_names(body: str) -> set[str]:
+    """Every name this frame bound to the txthree.js bench, in the dynamic or the static form."""
+    names = {m.group(1) for m in GPU_BIND.finditer(body)}
+    for m in GPU_STATIC.finditer(body):
+        fn = m.group(1) or "init"
+        names |= set(re.findall(r"(?:var|let|const)\s+([A-Za-z_$][\w$]*)\s*=\s*" + re.escape(fn)
+                                + r"\s*\(", body))
+    return names
+
+
 def in_world(src: str) -> bool:
-    """Rendered AND standing in a world: the frame itself calls the sky, not a comment about it."""
-    return is_rendered(src) and WORLD.search(strip_comments(src)) is not None
+    """Rendered AND standing in the engine's world: the bench's own sky, called in code."""
+    if not is_rendered(src):
+        return False
+    body = strip_comments(src)
+    names = bench_names(body)
+    if not names:
+        return False
+    alt = "|".join(re.escape(n) for n in sorted(names))
+    return re.search(r"(?<![\w$.])(?:" + alt + r")\.sky\s*\(", body) is not None
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:
@@ -316,6 +340,16 @@ def self_test() -> int:
         ok("...but does not stand in a world", not in_world(void))
         ok("the sky in a comment is not a sky",
            not in_world(void.replace("</script>", "/* X.sky(R, W) */</script>")))
+        ok("a CHASSIS helper's sky is not the engine's world (no. 32's Y.sky)",
+           not in_world(void.replace("</script>", "Y.sky(THREE, R);</script>")))
+        ok("...nor is a sky on some other object with the bench's name as a suffix",
+           not in_world(void.replace("</script>", "MAX.sky(R);</script>")))
+        static = ("<script type=\"module\">import * as THREE from '@@ASSETS@@/js/three.module.min.js';"
+                  "import { init } from '@@ASSETS@@/js/txthree.js';const TXT = init(THREE);"
+                  "TXT.sky(R);const s = await TXT.snapshot(R);</script>")
+        ok("the static import form, the one frames write, stands in a world", in_world(static), static)
+        ok("...and an aliased init does too",
+           in_world(static.replace("import { init }", "import { init as boot }").replace("= init(", "= boot(")))
         voids = root / "voids"
         (voids / "slides").mkdir(parents=True)
         for i in range(1, 10):

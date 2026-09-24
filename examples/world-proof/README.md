@@ -23,10 +23,11 @@ engine alone, which is the only honest way to show what the engine changed.
 ## The world in five calls
 
 ```js
-const W = TXT.worlds.goldenHour;            // or blueHour, nightSodium, highNoon, overcast, stormFront
+// the chassis, once: TXDECK.declare({ ..., light:{ az:-40, el:10 }, sky:'goldenHour' })
+const W = TXT.deckWorld();                  // goldenHour, blueHour, nightSodium, highNoon, overcast, stormFront
 const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure, tone:W.tone, fov:38 });
 TXT.frame(R, { from:[-17.5, 2.0, 10.5], look:[-3, 2.3, -2.2] });
-TXT.sky(R, W);                              // the dome, IBL rendered FROM it, fog in its horizon hue
+TXT.sky(R);                                 // the dome, IBL rendered FROM it, fog in its horizon hue
 TXT.deckRig(R, W.rig, { target:[-3,0,-14], distance:120 });   // the sun IS the deck's declared light
 TXT.ground(R, { surface:'caliche', size:900, tile:5 });       // caliche, dirt, asphalt, concrete, grass
 TXT.scatter(R, { kind:'grass', count:7000, area:[-120,-280,90,40], avoid:[[-26,-200,14,30]] });
