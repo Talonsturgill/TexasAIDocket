@@ -54,7 +54,7 @@ export function install(K, THREE, TXT) {
 
   /* ---- bark: one painter, species by parameter. 512 px covers 1 m around x 1 m up ------- */
   const BARKS = {
-    oak:     { base: '#4f4a44', dark: '#1f1c19', light: '#7c766c', kind: 'block' },   // live oak: dark, blocky furrows
+    oak:     { base: '#4a4540', dark: '#141210', light: '#8a8278', kind: 'block' },   // live oak: dark, blocky furrows
     mesquite:{ base: '#3e342c', dark: '#171210', light: '#6a5a4a', kind: 'shag' },    // near black, shaggy strips
     elm:     { base: '#6c6760', dark: '#2e2b27', light: '#9a948a', kind: 'scale' },   // grey, scaly
     juniper: { base: '#6d5e50', dark: '#2e241d', light: '#a08c78', kind: 'shred' },   // shredding reddish grey strips
@@ -76,29 +76,35 @@ export function install(K, THREE, TXT) {
     const lum = (k) => (bump ? [255 * k, 255 * k, 255 * k] : null);
     x.fillStyle = bump ? '#606060' : css(base); x.fillRect(0, 0, W, H);
     const wrapRect = (px, py, w, h, style) => { x.fillStyle = style; for (const ox of [-W, 0, W]) for (const oy of [-H, 0, H]) x.fillRect(px + ox, py + oy, w, h); };
-    if (B.kind === 'block' || B.kind === 'scale') {
-      // plates between furrows: columns of blocks, offset, with dark cracks
-      const cols = B.kind === 'block' ? 9 : 13;
-      for (let c = 0; c < cols; c++) {
-        let y = -r() * 60;
-        const cx = c * W / cols;
-        while (y < H) {
-          const h = (B.kind === 'block' ? 40 : 24) + r() * (B.kind === 'block' ? 70 : 40), w = W / cols * (0.7 + r() * 0.25);
-          const c1 = mix(base, r() < 0.5 ? light : dark, r() * 0.45);
-          wrapRect(cx + (r() - 0.5) * 6, y, w, h - 5, bump ? P(lum(0.55 + r() * 0.35)) : css(c1));
-          y += h;
+    if (B.kind === 'block' || B.kind === 'scale' || B.kind === 'shag' || B.kind === 'shred') {
+      /* a furrow field, per pixel: ridges run up the stem (warped so they wander and merge),
+       * broken across by cracks at a per-ridge rhythm. Tileable: integer counts, periodic warps. */
+      const P0 = { block: [11, [5, 9], 0.22, 0.09], scale: [15, [9, 15], 0.18, 0.07], shag: [18, [1, 3], 0.35, 0.05], shred: [22, [1, 2], 0.5, 0.03] }[B.kind];
+      const nR = P0[0], cr = [], ph = [];
+      for (let i = 0; i < nR; i++) { cr.push(P0[1][0] + Math.floor(r() * (P0[1][1] - P0[1][0] + 1))); ph.push(r()); }
+      const wp = [r() * 6.28, r() * 6.28, r() * 6.28], im = x.createImageData(W, H), d = im.data;
+      const ss = (e0, e1, v) => { const t = Math.max(0, Math.min(1, (v - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+      for (let yy = 0; yy < H; yy++) {
+        const fy = yy / H;
+        for (let xx = 0; xx < W; xx++) {
+          const fx = xx / W;
+          const u = fx * nR + P0[2] * (Math.sin(fy * 6.283 * 2 + wp[0] + fx * 6.283 * 3) + 0.5 * Math.sin(fy * 6.283 * 5 + wp[1] + fx * 6.283 * 7));
+          const cell = ((Math.floor(u) % nR) + nR) % nR, f = u - Math.floor(u);
+          const ridge = ss(0, 0.28, f) * ss(1, 0.72, f);
+          const v = fy * cr[cell] + ph[cell] + 0.15 * Math.sin(fx * 6.283 * 2 + wp[2]), g = v - Math.floor(v);
+          const crack = ss(0, P0[3], g) * ss(1, 1 - P0[3], g);
+          let val = ridge * (0.35 + 0.65 * crack);
+          val *= 0.82 + 0.18 * Math.sin(cell * 12.9 + ph[cell] * 20);
+          const i4 = (yy * W + xx) * 4;
+          if (bump) { const q = 20 + val * 220; d[i4] = d[i4 + 1] = d[i4 + 2] = q; }
+          else {
+            const c = val < 0.5 ? mix(dark, base, val * 2) : mix(base, light, (val - 0.5) * 2 * 0.8);
+            d[i4] = c[0]; d[i4 + 1] = c[1]; d[i4 + 2] = c[2];
+          }
+          d[i4 + 3] = 255;
         }
       }
-      for (let c = 0; c <= cols; c++) {
-        const cx = c * W / cols; x.strokeStyle = bump ? '#000' : css(dark); x.lineWidth = B.kind === 'block' ? 7 : 4;
-        for (const ox of [-W, 0, W]) { x.beginPath(); x.moveTo(cx + ox, 0); for (let y = 0; y <= H; y += 32) x.lineTo(cx + ox + (r() - 0.5) * 12, y); x.stroke(); }
-      }
-    } else if (B.kind === 'shag' || B.kind === 'shred') {
-      for (let i = 0; i < 160; i++) {
-        const px = r() * W, w = 3 + r() * (B.kind === 'shag' ? 10 : 14), c1 = mix(base, r() < 0.5 ? light : dark, r() * 0.7);
-        x.strokeStyle = bump ? P(lum(0.3 + r() * 0.6)) : css(c1); x.lineWidth = w;
-        for (const ox of [-W, 0, W]) { x.beginPath(); x.moveTo(px + ox, -10); x.bezierCurveTo(px + ox + (r() - 0.5) * 30, H / 3, px + ox + (r() - 0.5) * 30, 2 * H / 3, px + ox + (r() - 0.5) * 10, H + 10); x.stroke(); }
-      }
+      x.putImageData(im, 0, 0);
     } else if (B.kind === 'mottle') {
       for (let i = 0; i < 90; i++) {
         const px = r() * W, py = r() * H, rw = 10 + r() * 50, rh = 20 + r() * 90, c1 = mix(base, r() < 0.5 ? light : dark, 0.3 + r() * 0.6);
@@ -325,6 +331,20 @@ export function install(K, THREE, TXT) {
         for (let i = 0; i < pts.length; i++) { const h = Math.max(0, pts[i].y); radii[i] *= 1 + S.flare * Math.exp(-h * 4.5); }
       }
       taperTube(pts, radii, radial, wood); tris += (pts.length - 1) * radial * 2;
+      if (lvl === 0 && S.roots) {
+        // buttress roots: short tapering tubes leaving the trunk foot and diving under the grade
+        const nr = S.roots, r0 = rad * (1 + (S.flare || 0));
+        for (let i = 0; i < nr; i++) {
+          const a = (i + r() * 0.5) / nr * 6.283, dx = Math.cos(a), dz = Math.sin(a), L = r0 * (1.6 + r() * 1.4);
+          const rp = [], rr = [];
+          for (let k = 0; k <= 5; k++) {
+            const t = k / 5;
+            rp.push(new V3(p0.x + dx * (r0 * 0.3 + L * t), 0.02 + r0 * 0.9 * Math.pow(1 - t, 1.6) - 0.12 * t, p0.z + dz * (r0 * 0.3 + L * t)));
+            rr.push(r0 * 0.5 * (1 - 0.8 * t));
+          }
+          taperTube(rp, rr, 8, wood); tris += 5 * 16;
+        }
+      }
       const at = (t) => { const f = t * (pts.length - 1), i = Math.min(pts.length - 2, Math.floor(f)), k = f - i;
         return [pts[i].clone().lerp(pts[i + 1], k), pts[i + 1].clone().sub(pts[i]).normalize(), radii[i] + (radii[i + 1] - radii[i]) * k]; };
       if (lvl + 1 < S.levels.length) {
@@ -436,7 +456,7 @@ export function install(K, THREE, TXT) {
       const trunkH = (1.9 + r() * 0.7) * Math.min(1.2, kh), nLimbs = 5 + Math.floor(r() * 3);
       const trunks = [{ at: [0, -0.15, 0], dir: [(r() - 0.5) * 0.3, 1, (r() - 0.5) * 0.3], len: trunkH + 0.15, rad: 0.46 * Math.max(0.6, k), az: r() * 6.3 }];
       const S = {
-        trunks, flare: 0.8, floor: 1.9 * kh, minRad: 0.012,
+        trunks, flare: 0.45, roots: 6, floor: 1.9 * kh, minRad: 0.012,
         levels: [
           { step: 0.5, wander: 0.1, up: 0.04, taper: 0.72 },
           // the great limbs: leave the top of the trunk low, sweep out nearly level, sag, then lift

@@ -18,6 +18,23 @@
  * that places them far must raise R.camera.far (and call updateProjectionMatrix) past them.
  */
 export function install(K, THREE, TXT) {
+  /* ---- materials, cached here by KEY ALONE. K.mat keys by JSON.stringify(params), and a params
+   * object holding a texture serialises that texture's whole canvas to a PNG data URL on every call,
+   * which cost tens of milliseconds a call. Every key below is unique to its parameters. */
+  const MC = new Map();
+  function M(key, P, phys) {
+    if (!MC.has(key)) { const Q = Object.assign({ roughness: 0.8, metalness: 0 }, P); MC.set(key, phys ? new THREE.MeshPhysicalMaterial(Q) : new THREE.MeshStandardMaterial(Q)); }
+    return MC.get(key);
+  }
+  // cast concrete, pale and new enough to read as concrete under a warm sun, mapped in metres
+  const concM = () => M('conc-pale', { color: 0xffffff, map: K.tex('concrete', { color: '#cfcac0' }), roughness: 0.9 });
+  // K.box, then texture coordinates in metres whenever the material carries a map
+  function box(w, h, d, mat, x, y0, z, r, parent) {
+    const m = K.box(w, h, d, mat, x, y0, z, r, parent);
+    if (mat && mat.map) K.uvBox(m.geometry, mat.map.userData.metres || 3);
+    return m;
+  }
+
   /* ---- local helpers ------------------------------------------------------------------- */
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -224,11 +241,92 @@ export function install(K, THREE, TXT) {
   function waterMat(key, tint, opts) {
     opts = opts || {};
     const nm = waveNormalTex();
-    const m = K.mat('water-' + key, { color: tint, roughness: opts.rough != null ? opts.rough : 0.06, metalness: 0,
+    const m = M('water-' + key, { color: tint, roughness: opts.rough != null ? opts.rough : 0.06, metalness: 0,
       ior: 1.333, specularIntensity: 1, clearcoat: 0.6, clearcoatRoughness: 0.08, envMapIntensity: 1.35,
       normalMap: nm, normalScale: new THREE.Vector2(opts.wave || 0.35, opts.wave || 0.35),
       transparent: !!opts.alpha, vertexColors: !!opts.alpha, depthWrite: !opts.alpha }, true);
     return m;
+  }
+
+
+  /* ---- foliage cards: the leafy silhouette a lump can't give -------------------------------
+   * A crown is a dozen alpha tested cards scattered through an ellipsoid, each lit by a normal that
+   * points out from the crown's centre, so the mass shades like a volume while its edge breaks up
+   * into leaves. A dark core behind them stops the sky showing through. */
+  function leafTex(kind) {
+    return canvasTex('leaves-' + kind, 256, (x, N, r) => {
+      x.clearRect(0, 0, N, N);
+      const pal = kind === 'juniper' ? [[38, 52, 40], [48, 64, 46], [60, 78, 54], [72, 90, 62]]
+        : kind === 'mesquite' ? [[70, 88, 52], [88, 104, 60], [104, 118, 70], [60, 76, 46]]
+        : [[46, 60, 34], [60, 76, 40], [76, 92, 50], [92, 106, 60]];
+      const n = kind === 'juniper' ? 1400 : 900;
+      for (let i = 0; i < n; i++) {
+        const a = r() * TAU, d = Math.sqrt(r()) * N * 0.47 * (0.75 + 0.25 * Math.sin(a * 5 + 1.3)), px = N / 2 + Math.cos(a) * d, py = N / 2 + Math.sin(a) * d;
+        const c = pal[Math.min(3, Math.floor(r() * 3 + (1 - py / N) * 1.4))], k = 0.8 + r() * 0.35;
+        x.fillStyle = 'rgb(' + Math.round(c[0] * k) + ',' + Math.round(c[1] * k) + ',' + Math.round(c[2] * k) + ')';
+        x.beginPath();
+        if (kind === 'juniper') x.ellipse(px, py, 2 + r() * 3, 1.5 + r() * 2.5, r() * 3, 0, TAU);
+        else x.ellipse(px, py, 3 + r() * 4, 1.6 + r() * 2, r() * 3, 0, TAU);
+        x.fill();
+      }
+      // a few twigs
+      x.strokeStyle = 'rgba(40,32,24,0.7)'; x.lineWidth = 1.5;
+      for (let i = 0; i < 6; i++) { x.beginPath(); x.moveTo(N / 2, N / 2); x.lineTo(N / 2 + (r() - 0.5) * N * 0.7, N / 2 + (r() - 0.5) * N * 0.7); x.stroke(); }
+    });
+  }
+  function leafMat(kind) {
+    const m = M('leafcard-' + kind, { color: 0xffffff, map: leafTex(kind), alphaTest: 0.5, roughness: 0.88, vertexColors: true, side: THREE.DoubleSide });
+    if (!m.userData.fol) {
+      m.userData.fol = true;
+      const chunk = THREE.ShaderChunk.normal_fragment_begin.replace('normal *= faceDirection;', '');
+      m.onBeforeCompile = (sh) => { sh.fragmentShader = sh.fragmentShader.replace('#include <normal_fragment_begin>', chunk); };
+      m.customProgramCacheKey = () => 'foliage-noflip';
+    }
+    return m;
+  }
+  // crown geometry: `cards` quads in an ellipsoid of radii rx, ry, rz centred at cy, plus a core
+  function crownGeo(rng, o) {
+    const P = [], Nn = [], U = [], C = [], v = new THREE.Vector3(), q = new THREE.Quaternion(), e = new THREE.Euler();
+    const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]];
+    const pushV = (x, y, z, u, w) => {
+      P.push(x, y, z); U.push(u, w);
+      const nx = x / o.rx, ny = (y - o.cy) / o.ry + 0.35, nz = z / o.rz; v.set(nx, ny, nz).normalize(); Nn.push(v.x, v.y, v.z);
+      const k = lerp(o.ao || 0.5, 1.08, smooth(o.cy - o.ry, o.cy + o.ry, y)); C.push(k, k, k);
+    };
+    for (let i = 0; i < o.cards; i++) {
+      let cx, cy, cz; do { cx = rng() * 2 - 1; cy = rng() * 2 - 1; cz = rng() * 2 - 1; } while (cx * cx + cy * cy + cz * cz > 1);
+      cx *= o.rx * 0.62; cy = o.cy + cy * o.ry * 0.62; cz *= o.rz * 0.62;
+      const sz = (o.rx + o.ry + o.rz) / 3 * (0.95 + rng() * 0.5);
+      e.set(rng() * TAU, rng() * TAU, rng() * TAU); q.setFromEuler(e);
+      corners.forEach((c) => { v.set(c[0] * sz, c[1] * sz, 0).applyQuaternion(q); pushV(cx + v.x, cy + v.y, cz + v.z, c[0] + 0.5, c[1] + 0.5); });
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(Nn, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2)); g.setAttribute('color', new THREE.Float32BufferAttribute(C, 3));
+    return g;
+  }
+  // a dark core so a crown never shows sky through its middle; with a trunk when asked
+  function coreGeo(seed, o) {
+    const parts = [];
+    const c = lump(seed, 0, o.rx * 0.62, o.ry * 0.55, o.rz * 0.62, 0.5); c.translate(0, o.cy, 0); parts.push(c);
+    if (o.trunk) { const t = new THREE.CylinderGeometry(o.trunk * 0.7, o.trunk, o.cy, 6, 1, true).toNonIndexed(); t.translate(0, o.cy / 2, 0); parts.push(t); }
+    const g = mergeGeos(parts), p = g.attributes.position, C = new Float32Array(p.count * 3);
+    for (let i = 0; i < p.count; i++) { const k = p.getY(i) < o.cy - o.ry * 0.5 ? 0.55 : 0.8; C[i * 3] = k; C[i * 3 + 1] = k; C[i * 3 + 2] = k; }
+    g.setAttribute('color', new THREE.BufferAttribute(C, 3));
+    return g;
+  }
+  // natural limestone: pale, pitted, with dark lichen and fine bedding; 2 m a tile
+  function limeTex() {
+    return canvasTex('lime-natural', 512, (x, N, r) => {
+      const n1 = tileNoise(701, 8), n2 = tileNoise(703, 32), n3 = tileNoise(709, 128), nb = tileNoise2(711, 4, 24);
+      pixelPaint(x, N, (i, j) => { const u = i / N, v = j / N;
+        let k = 0.9 + (n1(u * 8, v * 8) - 0.5) * 0.2 + (n2(u * 32, v * 32) - 0.5) * 0.12 + (n3(u * 128, v * 128) - 0.5) * 0.12;
+        k -= (nb(u * 4, v * 24) - 0.5) * 0.12;                                      // bedding
+        let rr = 226 * k, gg = 218 * k, bb = 196 * k;
+        const li = n2(u * 32 + 7, v * 32 + 3); if (li > 0.7) { const t = (li - 0.7) * 2.5; rr -= 70 * t; gg -= 66 * t; bb -= 60 * t; }   // lichen
+        return [rr, gg, bb]; });
+      for (let i = 0; i < 900; i++) { x.fillStyle = 'rgba(70,60,48,' + (0.2 + r() * 0.35) + ')'; x.beginPath(); x.arc(r() * N, r() * N, 0.8 + r() * 2.6, 0, TAU); x.fill(); }   // solution pits
+    });
   }
 
   /* ======================================================================================
@@ -294,7 +392,7 @@ export function install(K, THREE, TXT) {
       }
       geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
       const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * S / 7, uv.getY(i) * S / 7);
-      const tm = K.mat('hct-ground', { color: 0xffffff, roughness: 0.97, vertexColors: true, map: detailTex('grass'), envMapIntensity: 0.5 });
+      const tm = M('hct-ground', { color: 0xffffff, roughness: 0.97, vertexColors: true, map: detailTex('grass'), envMapIntensity: 0.5 });
       const ground = new THREE.Mesh(geo, tm); ground.receiveShadow = true; g.add(ground);
 
       // sample helpers
@@ -312,11 +410,10 @@ export function install(K, THREE, TXT) {
             p.setXYZ(i, x * (1 + (n(y * 3, z * 5) - 0.5) * 0.25), y * k, z * k);
           }
           const g2 = b.toNonIndexed(); g2.computeVertexNormals(); K.uvBox(g2, 1);
-          const u2 = g2.attributes.uv; for (let i = 0; i < u2.count; i++) u2.setXY(i, u2.getX(i) * 0.45, u2.getY(i) * 2.2);   // ashlar stretched into bedding
+          const u2 = g2.attributes.uv; for (let i = 0; i < u2.count; i++) u2.setXY(i, u2.getX(i) * 0.5, u2.getY(i) * 0.5);
           return g2;
         })();
-        const lt = K.tex('limestone', { color: '#cfc2a4' });
-        const lm = K.mat('hct-ledge', { color: 0xf1ebdf, roughness: 0.9, map: lt });
+        const lm = M('hct-ledge', { color: 0xffffff, roughness: 0.9, map: limeTex() });
         const list = [], cols = [], want = Math.round(170 * (S / 800) * (S / 800) * (o.relief / 60));
         let tries = 0;
         while (list.length < Math.min(want, 900) && tries < want * 60) {
@@ -335,23 +432,15 @@ export function install(K, THREE, TXT) {
 
       // trees: Ashe juniper singly and in brakes on slopes, live oak mottes on the flats
       if (o.trees > 0) {
-        const ao = (geo, lo) => { const p = geo.attributes.position, c = new Float32Array(p.count * 3); geo.computeBoundingBox();
-          const y0 = geo.boundingBox.min.y, y1 = geo.boundingBox.max.y;
-          for (let i = 0; i < p.count; i++) { const k = lerp(lo, 1.05, smooth(y0, y1, p.getY(i))); c[i * 3] = c[i * 3 + 1] = c[i * 3 + 2] = k; }
-          geo.setAttribute('color', new THREE.BufferAttribute(c, 3)); return geo; };
-        const jGeo = ao(roughLump(seed + 3, 1, 1.25, 1, 0.75), 0.45);
-        const oakParts = [];
-        for (let k = 0; k < 4; k++) {
-          const a = k * 1.9 + 0.4, rr = k ? 1.1 + (k % 2) * 0.4 : 0;
-          const L = roughLump(seed + 10 + k, 1.35, 0.72, 1.3, 0.6);
-          L.translate(Math.cos(a) * rr, 1.2 + (k % 2) * 0.35, Math.sin(a) * rr); oakParts.push(L);
-        }
-        const tr = new THREE.CylinderGeometry(0.16, 0.24, 1.4, 5, 1, true).toNonIndexed(); tr.translate(0, 0.35, 0);
-        const oakGeo = ao(mergeGeos(oakParts.concat([tr])), 0.4);
-        const fm = K.mat('hct-foliage', { color: 0xffffff, roughness: 0.93, vertexColors: true });
-        const jl = [], jc = [], ol = [], oc = [];
-        const area = S * S, nJ = Math.round(Math.min(1800, area / 300) * o.trees), nO = Math.round(Math.min(290, area / 2000) * o.trees);
-        const jCols = [0x2f3a27, 0x36422b, 0x3b4630, 0x2c3526].map(col), oCols = [0x46532e, 0x4f5b33, 0x55603a, 0x424e2c].map(col);
+        // shapes for a tree ONE unit tall; the instance scale is its height in metres
+        const J = { rx: 0.34, ry: 0.5, rz: 0.34, cy: 0.52, cards: 12, ao: 0.45 }, O = { rx: 0.62, ry: 0.3, rz: 0.62, cy: 0.66, cards: 22, ao: 0.4 };
+        const B = { rx: 0.6, ry: 0.42, rz: 0.6, cy: 0.42, cards: 5, ao: 0.55 };
+        const jCard = crownGeo(r, J), oCard = crownGeo(r, O), bCard = crownGeo(r, B);
+        const jCore = coreGeo(seed + 3, Object.assign({ trunk: 0.03 }, J)), oCore = coreGeo(seed + 4, Object.assign({ trunk: 0.045 }, O));
+        const coreM = M('hct-core', { color: 0x2a3322, roughness: 0.95, vertexColors: true });
+        const jl = [], jc = [], ol = [], oc = [], bl = [], bc = [];
+        const area = S * S, nJ = Math.round(Math.min(2600, area / 220) * o.trees), nO = Math.round(Math.min(360, area / 1700) * o.trees), nB = Math.round(Math.min(5000, area / 110) * o.trees);
+        const tint = (k) => new THREE.Color(0.86 + r() * 0.2, 0.86 + r() * 0.2, 0.84 + r() * 0.16).multiplyScalar(k);
         const nBr = noise2(seed + 8);
         let tries = 0;
         while (jl.length < nJ && tries < nJ * 30) {
@@ -361,24 +450,40 @@ export function install(K, THREE, TXT) {
           const sl = slopeAt(x, z).s;
           if (sl > 0.45) continue;
           const brake = smooth(0.46, 0.66, fbm(nBr, x / 45 + 30, z / 45, 3));
-          const p = 0.08 + brake * 0.9 + smooth(0.05, 0.25, sl) * 0.35;
+          const p = 0.06 + brake * 0.9 + smooth(0.05, 0.25, sl) * 0.3;
           if (r() > p) continue;
-          const s = 1.6 + r() * 1.8;
-          jl.push({ x, y: H.y - 0.3 + s * 0.9, z, ry: r() * TAU, sx: s * (0.8 + r() * 0.4), sy: s * (0.9 + r() * 0.5), sz: s * (0.8 + r() * 0.4) });
-          jc.push(jCols[Math.floor(r() * jCols.length)].clone().multiplyScalar(0.85 + r() * 0.3));
+          const h = 3.5 + r() * 3.5;
+          jl.push({ x, y: H.y - 0.15, z, ry: r() * TAU, sx: h * (0.8 + r() * 0.5), sy: h, sz: h * (0.8 + r() * 0.5) });
+          jc.push(tint(0.9 + r() * 0.2));
         }
         tries = 0;
         while (ol.length < nO && tries < nO * 40) {
           tries++;
           const x = (r() - 0.5) * S, z = (r() - 0.5) * S, H = hAt(x, z);
-          if (H.m < 0.12) continue;
-          if (slopeAt(x, z).s > 0.14) continue;
-          const s = 2.4 + r() * 3.2;
-          ol.push({ x, y: H.y - 0.2, z, ry: r() * TAU, sx: s * (0.9 + r() * 0.3), sy: s * (0.8 + r() * 0.35), sz: s * (0.9 + r() * 0.3) });
-          oc.push(oCols[Math.floor(r() * oCols.length)].clone().multiplyScalar(0.85 + r() * 0.3));
+          if (H.m < 0.12 || slopeAt(x, z).s > 0.14) continue;
+          const h = 7 + r() * 5;
+          // a motte: two to four oaks grown together
+          const n = 2 + Math.floor(r() * 3);
+          for (let k = 0; k < n && ol.length < nO * 3; k++) {
+            const xx = x + (r() - 0.5) * h * 1.2, zz = z + (r() - 0.5) * h * 1.2, hh = h * (0.75 + r() * 0.35);
+            ol.push({ x: xx, y: hAt(xx, zz).y - 0.15, z: zz, ry: r() * TAU, sx: hh * (0.9 + r() * 0.3), sy: hh, sz: hh * (0.9 + r() * 0.3) });
+            oc.push(tint(0.95 + r() * 0.2));
+          }
         }
-        if (jl.length) g.add(instanced(jGeo, fm, jl, jc));
-        if (ol.length) g.add(instanced(oakGeo, fm, ol, oc));
+        tries = 0;
+        while (bl.length < nB && tries < nB * 6) {           // understory: agarita, young cedar, mesquite
+          tries++;
+          const x = (r() - 0.5) * S, z = (r() - 0.5) * S, H = hAt(x, z);
+          if (H.m < 0.2 || slopeAt(x, z).s > 0.5) continue;
+          const h = 0.9 + r() * 1.6;
+          bl.push({ x, y: H.y - 0.1, z, ry: r() * TAU, sx: h * (0.9 + r() * 0.6), sy: h, sz: h * (0.9 + r() * 0.6) });
+          bc.push(tint(0.8 + r() * 0.3));
+        }
+        const add2 = (card, core, mat, list, cols) => { if (!list.length) return;
+          g.add(instanced(card, mat, list, cols)); if (core) g.add(instanced(core, coreM, list, cols)); };
+        add2(jCard, jCore, leafMat('juniper'), jl, jc);
+        add2(oCard, oCore, leafMat('oak'), ol, oc);
+        add2(bCard, null, leafMat('mesquite'), bl, bc);
       }
       g.userData.heightAt = (x, z) => Hf(x, z).y;   // callers can seat things on it
       return g;
@@ -389,7 +494,7 @@ export function install(K, THREE, TXT) {
   // A blade is a thin double sided card. Three flips a back face's normal, so a blade seen from
   // behind goes black. Foliage takes its light from its up-tilted normal on either face instead.
   function foliageMat(key, params) {
-    const m = K.mat('fol-' + key, Object.assign({ color: 0xffffff, roughness: 0.9, vertexColors: true, side: THREE.DoubleSide }, params || {}));
+    const m = M('fol-' + key, Object.assign({ color: 0xffffff, roughness: 0.9, vertexColors: true, side: THREE.DoubleSide }, params || {}));
     if (!m.userData.fol) {
       m.userData.fol = true;
       const chunk = THREE.ShaderChunk.normal_fragment_begin.replace('normal *= faceDirection;', '');
@@ -445,7 +550,7 @@ export function install(K, THREE, TXT) {
   // gravel and cobble: smooth small lumps, instanced
   function stones(rng, spots, key, colors, parent, detail) {
     const geo = lump(Math.floor(rng() * 1e5), detail == null ? 1 : detail, 1, 0.55, 0.8, 0.5);
-    const m = K.mat('stone-' + key, { color: 0xffffff, roughness: 0.85 });
+    const m = M('stone-' + key, { color: 0xffffff, roughness: 0.85 });
     const list = [], cs = [];
     spots.forEach((s) => { const k = s[3] || 0.1; list.push({ x: s[0], y: s[1] + k * 0.12, z: s[2], ry: rng() * TAU, rx: (rng() - 0.5) * 0.4, sx: k * (0.8 + rng() * 0.5), sy: k, sz: k * (0.7 + rng() * 0.5) });
       cs.push(col(colors[Math.floor(rng() * colors.length)]).multiplyScalar(0.85 + rng() * 0.3)); });
@@ -854,7 +959,7 @@ export function install(K, THREE, TXT) {
         return endFade < 0.01 ? Math.min(h, -0.02) : h;
       });
       const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / 2.2, uv.getY(i) / 2.2);
-      const m = K.mat('caliche-road', { color: 0xffffff, vertexColors: true, map: gravelTex(), roughness: 0.93 });
+      const m = M('caliche-road', { color: 0xffffff, vertexColors: true, map: gravelTex(), roughness: 0.93 });
       const mesh = new THREE.Mesh(geo, m); mesh.userData.txGround = true; g.add(mesh);
       // tufts on the verges and the centre strip, loose stones on the berms
       const tufts = [], rocks = [];
@@ -902,7 +1007,7 @@ export function install(K, THREE, TXT) {
       [eprof.slice(0, 5), eprof.slice(5)].forEach((pr) => {
         const geo = ribbon(straight, L, Math.round(L / 2), pr, (P, t, arc, x, z) => P.h + (Math.abs(P.s) > half + 0.7 ? (nE(x * 0.4, z * 0.4) - 0.5) * 0.12 : 0));
         const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / 7, uv.getY(i) / 7);
-        const m = new THREE.Mesh(geo, K.mat('hw-slope', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.97 })); m.userData.txGround = true; g.add(m);
+        const m = new THREE.Mesh(geo, M('hw-slope', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.97 })); m.userData.txGround = true; g.add(m);
       });
       // ---- pavement: one slab, wheel paths darker by vertex colour, shoulders a lighter older mix
       const concrete = o.surface === 'concrete';
@@ -919,17 +1024,17 @@ export function install(K, THREE, TXT) {
       });
       const pg = ribbon(straight, L, 3, pprof);
       const puv = pg.attributes.uv; for (let i = 0; i < puv.count; i++) puv.setXY(i, puv.getX(i) / 4, puv.getY(i) / 4);
-      const pm = K.mat('hw-pave-' + o.surface, { color: 0xffffff, vertexColors: true, map: concrete ? K.tex('concrete') : asphaltTex(), roughness: concrete ? 0.82 : 0.88 });
+      const pm = M('hw-pave-' + o.surface, { color: 0xffffff, vertexColors: true, map: concrete ? K.tex('concrete') : asphaltTex(), roughness: concrete ? 0.82 : 0.88 });
       const pave = new THREE.Mesh(pg, pm); g.add(pave);
       // pavement edge: the slab has a face down to the slope
       [-1, 1].forEach((sd) => { const e = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.3, L), pm); e.position.set(sd * (half - 0.1), E - 0.14, 0); g.add(e); });
       // ---- markings
-      const white = K.mat('hw-white', { color: 0xe9e7df, roughness: 0.55 }), yellow = K.mat('hw-yellow', { color: 0xe0a82a, roughness: 0.55 });
+      const white = M('hw-white', { color: 0xe9e7df, roughness: 0.55 }), yellow = M('hw-yellow', { color: 0xe0a82a, roughness: 0.55 });
       const lines = [], ylines = [];
       [-1, 1].forEach((sd) => {
         const inner = sd * (MED / 2 + SI), outer = sd * (MED / 2 + SI + o.lanes * LW);
-        ylines.push(K.box(0.15, 0.006, L, yellow, inner, E + 0.02, 0));
-        lines.push(K.box(0.2, 0.006, L, white, outer, E + 0.02, 0));
+        ylines.push(box(0.15, 0.006, L, yellow, inner, E + 0.02, 0));
+        lines.push(box(0.2, 0.006, L, white, outer, E + 0.02, 0));
       });
       g.add(K.merge(lines, white)); g.add(K.merge(ylines, yellow));
       const dash = [], dashGeo = new THREE.BoxGeometry(0.15, 0.006, 3.05);
@@ -937,19 +1042,19 @@ export function install(K, THREE, TXT) {
         for (let z = -L / 2 + 2; z < L / 2 - 1.5; z += 12.19) dash.push({ x, y: E + 0.023, z: z + 1.5 }); } });
       g.add(instanced(dashGeo, white, dash));
       // rumble strips: milled grooves across the shoulders
-      const rum = [], rg = new THREE.BoxGeometry(0.4, 0.004, 0.18), rm = K.mat('hw-rumble', { color: concrete ? 0x807c74 : 0x2b2b2e, roughness: 0.95 });
+      const rum = [], rg = new THREE.BoxGeometry(0.4, 0.004, 0.18), rm = M('hw-rumble', { color: concrete ? 0x807c74 : 0x2b2b2e, roughness: 0.95 });
       [-1, 1].forEach((sd) => { const x = sd * (MED / 2 + SI + o.lanes * LW + 0.45); for (let z = -L / 2 + 0.3; z < L / 2; z += 0.3) rum.push({ x, y: E + 0.021, z }); });
       g.add(instanced(rg, rm, rum));
       // ---- F-shape median barrier, 0.81 m, cast in place, with a joint every 6 m and reflectors
       const bh = 0.81, fs = [[-0.305, 0], [-0.305, 0.075], [-0.21, 0.33], [-0.09, bh - 0.02], [-0.07, bh], [0.07, bh], [0.09, bh - 0.02], [0.21, 0.33], [0.305, 0.075], [0.305, 0]];
       const bgeo = new THREE.ExtrudeGeometry(new THREE.Shape(fs.map((p) => new THREE.Vector2(p[0], p[1]))), { depth: L, bevelEnabled: false, curveSegments: 1 });
       bgeo.translate(0, 0, -L / 2); bgeo.translate(0, E, 0); bgeo.computeVertexNormals(); K.uvBox(bgeo, 3);
-      const bar = new THREE.Mesh(bgeo, K.finish.concrete()); g.add(bar);
+      const bar = new THREE.Mesh(bgeo, concM()); g.add(bar);
       const joints = []; for (let z = -L / 2 + 6; z < L / 2; z += 6) joints.push({ x: 0, y: E, z });
       const jg = new THREE.ExtrudeGeometry(new THREE.Shape(fs.map((p) => new THREE.Vector2(p[0] * 1.01, p[1] * 0.999))), { depth: 0.012, bevelEnabled: false });
-      g.add(instanced(jg, K.mat('hw-joint', { color: 0x4d4b47, roughness: 0.9 }), joints));
+      g.add(instanced(jg, M('hw-joint', { color: 0x4d4b47, roughness: 0.9 }), joints));
       const refl = []; for (let z = -L / 2 + 3; z < L / 2; z += 12) refl.push({ x: 0, y: E + bh, z });
-      g.add(instanced(new THREE.BoxGeometry(0.1, 0.07, 0.03).translate(0, 0.035, 0), K.mat('hw-refl', { color: 0xe0a82a, roughness: 0.3, emissive: 0x402a00 }), refl));
+      g.add(instanced(new THREE.BoxGeometry(0.1, 0.07, 0.03).translate(0, 0.035, 0), M('hw-refl', { color: 0xe0a82a, roughness: 0.3, emissive: 0x402a00 }), refl));
 
       // ---- overhead sign gantry over the right carriageway
       if (o.gantry) {
@@ -958,7 +1063,7 @@ export function install(K, THREE, TXT) {
         const truss = new THREE.Group();
         // columns: four chord box trusses on concrete footings
         [x0, x1].forEach((cx) => {
-          K.box(1.1, 0.6, 1.1, K.finish.concrete(), cx, E - 0.3, gz, 0.03, truss);
+          box(1.1, 0.6, 1.1, concM(), cx, E - 0.3, gz, 0.03, truss);
           const cs = 0.3, parts = [];
           for (const dx of [-cs, cs]) for (const dz of [-cs, cs]) parts.push(K.bar([cx + dx, E + 0.3, gz + dz], [cx + dx, H + 0.9, gz + dz], 0.06, steel, 8));
           for (let y = E + 0.5; y < H + 0.8; y += 0.8) {
@@ -967,7 +1072,7 @@ export function install(K, THREE, TXT) {
             parts.push(K.bar([cx - cs, y, gz - cs], [cx - cs, y + 0.8, gz + cs], 0.022, steel, 5));
             parts.push(K.bar([cx + cs, y, gz - cs], [cx + cs, y + 0.8, gz + cs], 0.022, steel, 5));
           }
-          const bp = K.box(0.9, 0.04, 0.9, steel, cx, E + 0.3, gz); parts.push(bp);
+          const bp = box(0.9, 0.04, 0.9, steel, cx, E + 0.3, gz); parts.push(bp);
           truss.add(K.merge(parts, steel));
         });
         // the horizontal: a box truss 1.2 m deep, 1.4 m tall, with a Warren lacing on every face
@@ -984,18 +1089,18 @@ export function install(K, THREE, TXT) {
         }
         truss.add(K.merge(parts, steel));
         // blank guide sign panels: green retroreflective face, white border, aluminium backs, a catwalk below
-        const green = K.mat('hw-sign', { color: 0x0f5c34, roughness: 0.4, metalness: 0.05 }), border = K.mat('hw-signb', { color: 0xecefea, roughness: 0.4 });
-        const alu = K.mat('hw-alu', { color: 0xb4b8bb, metalness: 0.7, roughness: 0.45 });
+        const green = M('hw-sign', { color: 0x0f5c34, roughness: 0.4, metalness: 0.05 }), border = M('hw-signb', { color: 0xecefea, roughness: 0.4 });
+        const alu = M('hw-alu', { color: 0xb4b8bb, metalness: 0.7, roughness: 0.45 });
         const panels = [{ w: 5.2, h: 3.3, cx: x0 + span * 0.33 }, { w: 4.2, h: 3.0, cx: x0 + span * 0.76 }];
         panels.forEach((P) => {
           const y0 = tb - 0.25 - (3.3 - P.h) * 0.2;
-          K.box(P.w, P.h, 0.06, alu, P.cx, y0 - 0.2, gz + td + 0.12, 0.01, truss);
-          K.box(P.w - 0.02, P.h - 0.02, 0.02, border, P.cx, y0 - 0.19, gz + td + 0.16, 0, truss);
-          K.box(P.w - 0.16, P.h - 0.16, 0.02, green, P.cx, y0 - 0.12, gz + td + 0.172, 0, truss);
-          for (let k = 0; k < 3; k++) K.box(0.08, P.h + 0.3, 0.08, alu, P.cx - P.w * 0.4 + k * P.w * 0.4, y0 - 0.35, gz + td + 0.05, 0, truss);   // vertical hangers
+          box(P.w, P.h, 0.06, alu, P.cx, y0 - 0.2, gz + td + 0.12, 0.01, truss);
+          box(P.w - 0.02, P.h - 0.02, 0.02, border, P.cx, y0 - 0.19, gz + td + 0.16, 0, truss);
+          box(P.w - 0.16, P.h - 0.16, 0.02, green, P.cx, y0 - 0.12, gz + td + 0.172, 0, truss);
+          for (let k = 0; k < 3; k++) box(0.08, P.h + 0.3, 0.08, alu, P.cx - P.w * 0.4 + k * P.w * 0.4, y0 - 0.35, gz + td + 0.05, 0, truss);   // vertical hangers
         });
-        const grate = K.mat('hw-grate', { color: 0x8c9092, metalness: 0.6, roughness: 0.6 });
-        K.box(span - 0.4, 0.05, 0.9, grate, (x0 + x1) / 2, tb - 0.75, gz + td + 0.6, 0, truss);
+        const grate = M('hw-grate', { color: 0x8c9092, metalness: 0.6, roughness: 0.6 });
+        box(span - 0.4, 0.05, 0.9, grate, (x0 + x1) / 2, tb - 0.75, gz + td + 0.6, 0, truss);
         const cr = []; for (let x = x0 + 0.4; x < x1 - 0.2; x += 1.5) cr.push(K.bar([x, tb - 0.7, gz + td + 1.05], [x, tb + 0.3, gz + td + 1.05], 0.02, steel, 5));
         cr.push(K.bar([x0 + 0.2, tb + 0.3, gz + td + 1.05], [x1 - 0.2, tb + 0.3, gz + td + 1.05], 0.025, steel, 6)); truss.add(K.merge(cr, steel));
         g.add(truss);
@@ -1004,16 +1109,16 @@ export function install(K, THREE, TXT) {
       // ---- overpass: a crossing bridge on bents, with MSE walled approaches
       if (o.overpass) {
         const oz = L * 0.2, DW = 12.8, clear = 5.2, deckY = E + clear, gd = 1.4;      // girder depth
-        const conc = K.finish.concrete(), dspan = half + 8, bridge = new THREE.Group();
+        const conc = concM(), dspan = half + 8, bridge = new THREE.Group();
         const deckTop = deckY + gd + 0.22;
         // deck slab and parapets (a TxDOT style slotted concrete rail)
-        K.box(dspan * 2, 0.22, DW, conc, 0, deckY + gd, oz, 0.02, bridge);
+        box(dspan * 2, 0.22, DW, conc, 0, deckY + gd, oz, 0.02, bridge);
         [-1, 1].forEach((sd) => {
-          K.box(dspan * 2, 0.2, 0.45, conc, 0, deckTop, oz + sd * (DW / 2 - 0.22), 0.02, bridge);
-          K.box(dspan * 2, 0.3, 0.3, conc, 0, deckTop + 0.55, oz + sd * (DW / 2 - 0.2), 0.04, bridge);
-          const posts = []; for (let x = -dspan + 1; x < dspan; x += 2.4) posts.push(K.box(0.9, 0.36, 0.3, conc, x, deckTop + 0.2, oz + sd * (DW / 2 - 0.2)));
+          box(dspan * 2, 0.2, 0.45, conc, 0, deckTop, oz + sd * (DW / 2 - 0.22), 0.02, bridge);
+          box(dspan * 2, 0.3, 0.3, conc, 0, deckTop + 0.55, oz + sd * (DW / 2 - 0.2), 0.04, bridge);
+          const posts = []; for (let x = -dspan + 1; x < dspan; x += 2.4) posts.push(box(0.9, 0.36, 0.3, conc, x, deckTop + 0.2, oz + sd * (DW / 2 - 0.2)));
           bridge.add(K.merge(posts, conc));
-          K.box(dspan * 2, gd * 0.9, 0.3, conc, 0, deckY + 0.1, oz + sd * (DW / 2 - 0.15), 0.03, bridge);   // fascia
+          box(dspan * 2, gd * 0.9, 0.3, conc, 0, deckY + 0.1, oz + sd * (DW / 2 - 0.15), 0.03, bridge);   // fascia
         });
         // precast girders: bulb tee section extruded along x
         const gsec = [[-0.35, 0], [0.35, 0], [0.35, 0.18], [0.1, 0.3], [0.1, gd - 0.18], [0.55, gd - 0.1], [0.55, gd], [-0.55, gd], [-0.55, gd - 0.1], [-0.1, gd - 0.18], [-0.1, 0.3], [-0.35, 0.18]];
@@ -1023,14 +1128,14 @@ export function install(K, THREE, TXT) {
         bridge.add(K.merge(gl, conc));
         // bents: three round columns under a bent cap, at the median and beyond each shoulder
         [0, -(half + 2.5), half + 2.5].forEach((bx) => {
-          K.box(1.3, 1.2, DW - 1, conc, bx, deckY - 1.2, oz, 0.05, bridge);
+          box(1.3, 1.2, DW - 1, conc, bx, deckY - 1.2, oz, 0.05, bridge);
           for (let k = -1; k <= 1; k++) {
             const yb = bx === 0 ? E + 0.81 : 0, c = new THREE.Mesh(K.uvBox(new THREE.CylinderGeometry(0.46, 0.46, deckY - 1.2 - yb, 28), 3), conc);
             c.position.set(bx, yb + (deckY - 1.2 - yb) / 2, oz + k * (DW / 2 - 2)); bridge.add(c);
           }
         });
         // approaches: MSE panel walls on fill, falling to grade
-        const ramp = 55, wallM = K.mat('hw-mse', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.9 });
+        const ramp = 55, wallM = M('hw-mse', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.9 });
         [-1, 1].forEach((sd) => {
           const x0 = sd * dspan, x1 = sd * (dspan + ramp);
           const shape = new THREE.Shape([new THREE.Vector2(0, -0.2), new THREE.Vector2(ramp, -0.2), new THREE.Vector2(ramp, 0.0), new THREE.Vector2(0, deckTop - 0.02)]);
@@ -1039,13 +1144,13 @@ export function install(K, THREE, TXT) {
           fg.translate(0, 0, oz); fg.computeVertexNormals(); K.uvBox(fg, 1.5);
           bridge.add(new THREE.Mesh(fg, wallM));
           // the road on top: asphalt skin and a coping
-          const top = new THREE.Mesh(new THREE.BoxGeometry(ramp, 0.08, DW - 0.6), K.mat('hw-pave-asphalt', { color: 0xffffff, vertexColors: false, map: asphaltTex(), roughness: 0.88 }));
+          const top = new THREE.Mesh(new THREE.BoxGeometry(ramp, 0.08, DW - 0.6), M('hw-ramp-asphalt', { color: 0xffffff, vertexColors: false, map: asphaltTex(), roughness: 0.88 }));
           top.position.set((x0 + x1) / 2, deckTop / 2 + 0.04, oz);
           top.rotation.z = sd > 0 ? -Math.atan2(deckTop, ramp) : Math.atan2(deckTop, ramp); top.scale.x = Math.hypot(ramp, deckTop) / ramp;
           bridge.add(top);
         });
         // the road across the deck
-        const dtop = new THREE.Mesh(new THREE.BoxGeometry(dspan * 2, 0.06, DW - 0.9), K.mat('hw-pave-asphalt', { color: 0xffffff, vertexColors: false, map: asphaltTex(), roughness: 0.88 }));
+        const dtop = new THREE.Mesh(new THREE.BoxGeometry(dspan * 2, 0.06, DW - 0.9), M('hw-ramp-asphalt', { color: 0xffffff, vertexColors: false, map: asphaltTex(), roughness: 0.88 }));
         dtop.position.set(0, deckTop + 0.03, oz); bridge.add(dtop);
         g.add(bridge);
       }
@@ -1114,10 +1219,10 @@ export function install(K, THREE, TXT) {
       }
       geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
       const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * W / 3, uv.getY(i) * L / 3);
-      const bm = new THREE.Mesh(geo, K.mat('creek-bed', { color: 0xffffff, vertexColors: true, map: detailTex('rock'), roughness: 0.9 }));
+      const bm = new THREE.Mesh(geo, M('creek-bed', { color: 0xffffff, vertexColors: true, map: detailTex('rock'), roughness: 0.9 }));
       bm.userData.txGround = true; g.add(bm);
       // limestone slabs and ledge blocks, laid flat, a few tipped
-      const lt = K.tex('limestone', { color: '#d2c6a8' }), lm = K.mat('creek-slab', { color: 0xf3eee4, roughness: 0.88, map: lt });
+      const lt = K.tex('limestone', { color: '#d2c6a8' }), lm = M('creek-slab', { color: 0xf3eee4, roughness: 0.88, map: lt });
       const sg = (() => { const b = new THREE.BoxGeometry(1, 1, 1, 4, 1, 4), p = b.attributes.position, n = noise2(seed + 9);
         for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i), z = p.getZ(i), k = 0.8 + n(x * 3 + 5, z * 3 + 5) * 0.4; p.setXYZ(i, x * k, y, z * k); }
         const q = b.toNonIndexed(); q.computeVertexNormals(); return K.uvBox(q, 1); })();
@@ -1201,7 +1306,7 @@ export function install(K, THREE, TXT) {
       }
       geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
       const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * W / 4, uv.getY(i) * (z1 - z0) / 4);
-      const land = new THREE.Mesh(geo, K.mat('res-land', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.95 }));
+      const land = new THREE.Mesh(geo, M('res-land', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.95 }));
       land.userData.txGround = true; g.add(land);
       // the water: a wide plane, alpha only where it thins over the drawdown
       const WD = o.water;
@@ -1218,19 +1323,19 @@ export function install(K, THREE, TXT) {
       tuftField(r, tf, { key: 'shore', blades: 14, height: 0.5, spread: 0.14, width: 0.011, lean: 0.35, colors: [0x4f5231, 0x8a8a4e, 0xbcae78] }, g);
       if (o.ramp) {
         const zs = shore(rampX), rl = 24, rw = 4.6, top = hAt(rampX, zs - 10);
-        const ang = Math.atan2(top - (level - 1.2), rl), conc = K.mat('res-ramp', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.85 });
+        const ang = Math.atan2(top - (level - 1.2), rl), conc = M('res-ramp', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.85 });
         const rampG = new THREE.Group();
-        const slab = K.box(rw, 0.25, rl, conc, 0, -0.25, 0, 0.03); rampG.add(slab);
+        const slab = box(rw, 0.25, rl, conc, 0, -0.25, 0, 0.03); rampG.add(slab);
         const grooves = []; for (let k = 0; k < rl / 0.3; k++) grooves.push({ x: 0, y: 0.002, z: -rl / 2 + 0.15 + k * 0.3 });
-        rampG.add(instanced(new THREE.BoxGeometry(rw - 0.2, 0.012, 0.05), K.mat('res-groove', { color: 0x6f6b64, roughness: 0.95 }), grooves));
-        [-1, 1].forEach((sd) => rampG.add(K.box(0.25, 0.22, rl, conc, sd * (rw / 2 + 0.12), -0.05, 0, 0.03)));
+        rampG.add(instanced(new THREE.BoxGeometry(rw - 0.2, 0.012, 0.05), M('res-groove', { color: 0x6f6b64, roughness: 0.95 }), grooves));
+        [-1, 1].forEach((sd) => rampG.add(box(0.25, 0.22, rl, conc, sd * (rw / 2 + 0.12), -0.05, 0, 0.03)));
         rampG.rotation.x = ang; rampG.position.set(rampX, (top + level - 1.2) / 2 + 0.03, zs - 10 + rl / 2);
         g.add(rampG);
         // a parking apron at the head and two courtesy dock posts
-        const ap = K.box(12, 0.2, 7, conc, rampX, top - 0.15, zs - 10 - 3.5, 0.03); g.add(ap);
-        const post = K.mat('res-post', { color: 0x6b5b48, roughness: 0.85, map: K.tex('wood', { color: '#7a6248' }) });
+        const ap = box(12, 0.2, 7, conc, rampX, top - 0.15, zs - 10 - 3.5, 0.03); g.add(ap);
+        const post = M('res-post', { color: 0x6b5b48, roughness: 0.85, map: K.tex('wood', { color: '#7a6248' }) });
         for (let k = 0; k < 3; k++) { K.cyl(0.13, 0.13, 2.6, post, rampX + rw / 2 + 1.1, level - 1, zs - 2 + k * 3.2, 12, g); }
-        const dock = K.box(1.4, 0.12, 9, K.mat('res-dock', { color: 0xffffff, map: K.tex('wood', { color: '#8a7358' }), roughness: 0.8 }), rampX + rw / 2 + 1.4, level + 0.45, zs + 1.2, 0, g);
+        const dock = box(1.4, 0.12, 9, M('res-dock', { color: 0xffffff, map: K.tex('wood', { color: '#8a7358' }), roughness: 0.8 }), rampX + rw / 2 + 1.4, level + 0.45, zs + 1.2, 0, g);
       }
       g.userData.heightAt = hAt;
       return g;
@@ -1337,7 +1442,7 @@ export function install(K, THREE, TXT) {
       }
       geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
       const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (W + 2) / 2, uv.getY(i) * (L + 2) / 2);
-      const soil = new THREE.Mesh(geo, K.mat('crop-soil', { color: 0xffffff, vertexColors: true, map: detailTex('soil'), roughness: 0.96 }));
+      const soil = new THREE.Mesh(geo, M('crop-soil', { color: 0xffffff, vertexColors: true, map: detailTex('soil'), roughness: 0.96 }));
       soil.userData.txGround = true; g.add(soil);
       // the plants: a few variants, instanced down every row, with gaps where a seed failed
       const variants = [], VN = 4, step = o.crop === 'sorghum' ? 0.2 : 0.3;
@@ -1453,7 +1558,7 @@ export function install(K, THREE, TXT) {
       o = Object.assign({ bins: 5, rows: 2, height: 36, diameter: 7.3, headhouse: true, steelBins: 2, shed: true }, o);
       const g = new THREE.Group(), n = o.bins, rows = o.rows, H = o.height * (0.95 + r() * 0.1), Dm = o.diameter, R = Dm / 2, wall = 0.2;
       const tint = ['#d9d6ce', '#d2cdc2', '#dcd8cf', '#c9c3b7'][Math.floor(r() * 4)];
-      const cm = K.mat('ge-conc' + tint, { color: tint, roughness: 0.9, map: slipformTex() });
+      const cm = M('ge-conc' + tint, { color: tint, roughness: 0.9, map: slipformTex() });
       const len = n * Dm, x0 = -len / 2 + R;
       const binParts = [];
       const cylUV = (geo, rad, h) => { const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * TAU * rad / 6, uv.getY(i) * h / 6); return geo; };
@@ -1464,17 +1569,17 @@ export function install(K, THREE, TXT) {
       g.add(K.merge(binParts, cm));
       // bin roofs: a flat deck over the whole block, with its parapet and a hatch on each bin
       const deckW = len, deckD = rows * Dm;
-      K.box(deckW, 0.35, deckD - Dm + 2 * R * 0.7, cm, 0, H - 0.35, 0, 0.02, g);
+      box(deckW, 0.35, deckD - Dm + 2 * R * 0.7, cm, 0, H - 0.35, 0, 0.02, g);
       const caps = []; for (let j = 0; j < rows; j++) for (let i = 0; i < n; i++) {
         const cap = new THREE.Mesh(new THREE.CylinderGeometry(R + 0.02, R + 0.02, 0.4, 48), cm); cap.position.set(x0 + i * Dm, H - 0.2, (j - (rows - 1) / 2) * Dm); caps.push(cap);
-        const hatch = K.box(0.9, 0.3, 0.9, K.finish.steelPaint(0x6f7479), x0 + i * Dm + R * 0.4, H, (j - (rows - 1) / 2) * Dm - R * 0.3, 0.02); g.add(hatch);
+        const hatch = box(0.9, 0.3, 0.9, K.finish.steelPaint(0x6f7479), x0 + i * Dm + R * 0.4, H, (j - (rows - 1) / 2) * Dm - R * 0.3, 0.02); g.add(hatch);
       }
       g.add(K.merge(caps, cm));
       // gallery: a long corrugated box along the top carrying the belt, on a steel frame
-      const corr = K.mat('ge-corr', { color: 0xffffff, map: K.tex('corrugated', { color: '#b7bcbd' }), metalness: 0.55, roughness: 0.5 });
+      const corr = M('ge-corr', { color: 0xffffff, map: K.tex('corrugated', { color: '#b7bcbd' }), metalness: 0.55, roughness: 0.5 });
       const gal = new THREE.Mesh(K.uvBox(new THREE.BoxGeometry(len + 1, 2.8, 3.2), 1), corr); gal.position.set(0, H + 1.4, 0); g.add(gal);
-      K.box(len + 1.4, 0.2, 3.6, K.finish.steelPaint(0x5b6064), 0, H + 2.8, 0, 0.02, g);
-      const gw = []; for (let x = -len / 2 + 2; x < len / 2; x += 3) gw.push(K.box(0.9, 0.5, 0.05, K.finish.glass(0x2a3238), x, H + 1.6, 1.62));
+      box(len + 1.4, 0.2, 3.6, K.finish.steelPaint(0x5b6064), 0, H + 2.8, 0, 0.02, g);
+      const gw = []; for (let x = -len / 2 + 2; x < len / 2; x += 3) gw.push(box(0.9, 0.5, 0.05, K.finish.glass(0x2a3238), x, H + 1.6, 1.62));
       g.add(K.merge(gw, K.finish.glass(0x2a3238)));
       // railing along the deck edges
       const rail = K.finish.galvanized(), rp = [];
@@ -1486,12 +1591,12 @@ export function install(K, THREE, TXT) {
       if (o.headhouse) {
         const hw = Dm * 1.25, hd = deckD * 0.8, hh = H * 0.55, hx = len / 2 - Dm * 0.9, top = H + hh;
         const hm = new THREE.Mesh(K.uvBox(new THREE.BoxGeometry(hw, hh + 1, hd), 6), cm); hm.position.set(hx, H - 1 + (hh + 1) / 2, 0); g.add(hm);
-        K.box(hw + 0.5, 0.6, hd + 0.5, cm, hx, top, 0, 0.05, g);
-        K.box(hw * 0.5, 3.2, hd * 0.45, corr, hx - hw * 0.1, top + 0.6, 0, 0.02, g);            // the head pulley house
-        const frame = K.mat('ge-frame', { color: 0x3c3f41, metalness: 0.4, roughness: 0.6 }), glz = K.finish.glass(0x2d3a40), fr = [], gz = [];
+        box(hw + 0.5, 0.6, hd + 0.5, cm, hx, top, 0, 0.05, g);
+        box(hw * 0.5, 3.2, hd * 0.45, corr, hx - hw * 0.1, top + 0.6, 0, 0.02, g);            // the head pulley house
+        const frame = M('ge-frame', { color: 0x3c3f41, metalness: 0.4, roughness: 0.6 }), glz = K.finish.glass(0x2d3a40), fr = [], gz = [];
         for (let y = H + 3; y < top - 2; y += 4.2) for (const fx of [-hw * 0.25, hw * 0.25]) {
-          fr.push(K.box(1.1, 1.3, 0.12, frame, hx + fx, y, hd / 2 + 0.02)); gz.push(K.box(0.9, 1.1, 0.06, glz, hx + fx, y + 0.1, hd / 2 + 0.07));
-          fr.push(K.box(1.2, 0.1, 0.25, cm, hx + fx, y - 0.1, hd / 2 + 0.1));                          // sill
+          fr.push(box(1.1, 1.3, 0.12, frame, hx + fx, y, hd / 2 + 0.02)); gz.push(box(0.9, 1.1, 0.06, glz, hx + fx, y + 0.1, hd / 2 + 0.07));
+          fr.push(box(1.2, 0.1, 0.25, cm, hx + fx, y - 0.1, hd / 2 + 0.1));                          // sill
         }
         g.add(K.merge(fr, frame)); g.add(K.merge(gz, glz));
         // the load out spout: a steel pipe falling from the headhouse to the track side
@@ -1510,27 +1615,27 @@ export function install(K, THREE, TXT) {
       // the driveway shed: a steel frame lean to over the truck dump on the front
       if (o.shed) {
         const sx = -len * 0.1, sw = 9, sd = 7, sh = 6, frame = K.finish.steelPaint(0x6a6f72), sp = [];
-        for (const dx of [-sw / 2, sw / 2]) for (const dz of [0.5, sd]) sp.push(K.box(0.3, sh, 0.3, frame, sx + dx, 0, deckD / 2 + dz));
+        for (const dx of [-sw / 2, sw / 2]) for (const dz of [0.5, sd]) sp.push(box(0.3, sh, 0.3, frame, sx + dx, 0, deckD / 2 + dz));
         g.add(K.merge(sp, frame));
         const roof = new THREE.Mesh(K.uvBox(new THREE.BoxGeometry(sw + 1.2, 0.1, sd + 1), 1), corr);
         roof.position.set(sx, sh + 0.35, deckD / 2 + sd / 2 + 0.3); roof.rotation.x = -0.08; g.add(roof);
-        K.box(sw - 0.5, 0.08, sd - 0.4, K.mat('ge-grate', { color: 0x34373a, metalness: 0.6, roughness: 0.7 }), sx, 0.02, deckD / 2 + sd / 2 + 0.3, 0, g);  // the dump grate
-        K.box(sw + 4, 0.15, sd + 6, K.finish.concrete(), sx, 0, deckD / 2 + sd / 2 + 1.5, 0.03, g);                              // the apron
-        const dw = K.box(3.2, 4.2, 0.1, K.mat('ge-door', { color: 0xffffff, map: K.tex('corrugated', { color: '#8f9496' }), metalness: 0.5, roughness: 0.55 }), sx, 0, deckD / 2 + 0.05, 0, g);
+        box(sw - 0.5, 0.08, sd - 0.4, M('ge-grate', { color: 0x34373a, metalness: 0.6, roughness: 0.7 }), sx, 0.02, deckD / 2 + sd / 2 + 0.3, 0, g);  // the dump grate
+        box(sw + 4, 0.15, sd + 6, concM(), sx, 0, deckD / 2 + sd / 2 + 1.5, 0.03, g);                              // the apron
+        const dw = box(3.2, 4.2, 0.1, M('ge-door', { color: 0xffffff, map: K.tex('corrugated', { color: '#8f9496' }), metalness: 0.5, roughness: 0.55 }), sx, 0, deckD / 2 + 0.05, 0, g);
       }
       // corrugated steel bins with cone roofs, beside
       for (let k = 0; k < o.steelBins; k++) {
         const br = 5.5 + r() * 1.5, bh = 14 + r() * 4, bx = -len / 2 - br - 2.5 - k * (2 * br + 1.5), bz = (r() - 0.5) * 3;
-        const sm = K.mat('ge-steel', { color: 0xffffff, map: K.tex('corrugated', { color: '#c4c8c9' }), metalness: 0.7, roughness: 0.38 });
+        const sm = M('ge-steel', { color: 0xffffff, map: K.tex('corrugated', { color: '#c4c8c9' }), metalness: 0.7, roughness: 0.38 });
         const body = new THREE.Mesh(new THREE.CylinderGeometry(br, br, bh, 64, 1, true), sm);
         const uv = body.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getY(i) * bh * 1.3, uv.getX(i) * TAU * br / 8);  // ribs run round the bin
         body.position.set(bx, bh / 2, bz); g.add(body);
-        const cone = new THREE.Mesh(new THREE.ConeGeometry(br + 0.3, br * 0.62, 64, 1, true), K.mat('ge-roof', { color: 0xc9cdce, metalness: 0.75, roughness: 0.35 }));
+        const cone = new THREE.Mesh(new THREE.ConeGeometry(br + 0.3, br * 0.62, 64, 1, true), M('ge-roof', { color: 0xc9cdce, metalness: 0.75, roughness: 0.35 }));
         cone.position.set(bx, bh + br * 0.31, bz); g.add(cone);
         K.cyl(0.5, 0.6, 0.8, K.finish.steelPaint(0x9ca1a3), bx, bh + br * 0.6, bz, 16, g);
-        K.cyl(br + 0.35, br + 0.35, 0.5, K.finish.concrete(), bx, 0, bz, 64, g);
+        K.cyl(br + 0.35, br + 0.35, 0.5, concM(), bx, 0, bz, 64, g);
         // stiffeners
-        const st = []; for (let a = 0; a < 16; a++) { const t = a / 16 * TAU; st.push(K.box(0.12, bh, 0.08, sm, bx + Math.cos(t) * (br + 0.03), 0, bz + Math.sin(t) * (br + 0.03))); st[st.length - 1].rotation.y = -t; }
+        const st = []; for (let a = 0; a < 16; a++) { const t = a / 16 * TAU; st.push(box(0.12, bh, 0.08, sm, bx + Math.cos(t) * (br + 0.03), 0, bz + Math.sin(t) * (br + 0.03))); st[st.length - 1].rotation.y = -t; }
         g.add(K.merge(st, K.finish.galvanized()));
       }
       return g;

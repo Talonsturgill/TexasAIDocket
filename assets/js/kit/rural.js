@@ -36,7 +36,7 @@ export function install(K, THREE, TXT) {
   function paintSpangle(x, W, H, r, o) {
     x.fillStyle = o.base || '#a9adb0'; x.fillRect(0, 0, W, H);
     for (let i = 0; i < 260; i++) {
-      const cx = r() * W, cy = r() * H, rr = 8 + r() * 30, k = 0.86 + r() * 0.24;
+      const cx = r() * W, cy = r() * H, rr = 8 + r() * 30, k = 0.95 + r() * 0.1;
       x.fillStyle = rgb(o.base || '#a9adb0', k);
       x.beginPath(); const n = 5 + Math.floor(r() * 4);
       for (let j = 0; j < n; j++) { const a = j / n * TAU + r() * 0.5, q = rr * (0.6 + r() * 0.5); x.lineTo(cx + Math.cos(a) * q, cy + Math.sin(a) * q); }
@@ -44,10 +44,10 @@ export function install(K, THREE, TXT) {
     }
     if (o.streaks) for (let i = 0; i < 40; i++) {
       const sx = r() * W, len = H * (0.1 + r() * 0.5), g = x.createLinearGradient(0, H - len, 0, H);
-      g.addColorStop(0, 'rgba(90,70,50,0)'); g.addColorStop(1, 'rgba(90,70,50,' + (0.08 + r() * 0.15) + ')');
+      g.addColorStop(0, 'rgba(90,70,50,0)'); g.addColorStop(1, 'rgba(90,70,50,' + (0.04 + r() * 0.07) + ')');
       x.fillStyle = g; x.fillRect(sx, H - len, 2 + r() * 6, len);
     }
-    for (let i = 0; i < 50; i++) { x.fillStyle = 'rgba(235,235,225,' + (0.05 + r() * 0.1) + ')'; x.beginPath(); x.arc(r() * W, r() * H, 3 + r() * 16, 0, TAU); x.fill(); }
+    for (let i = 0; i < 30; i++) { x.fillStyle = 'rgba(235,235,225,' + (0.03 + r() * 0.05) + ')'; x.beginPath(); x.arc(r() * W, r() * H, 3 + r() * 16, 0, TAU); x.fill(); }
   }
   function paintNoise(x, W, H, r, o) {
     x.fillStyle = o.base || '#808080'; x.fillRect(0, 0, W, H);
@@ -203,10 +203,10 @@ export function install(K, THREE, TXT) {
   function surfaceNets(sdf, lo, hi, h) {
     const nx = Math.ceil((hi[0] - lo[0]) / h) + 1, ny = Math.ceil((hi[1] - lo[1]) / h) + 1, nz = Math.ceil((hi[2] - lo[2]) / h) + 1;
     const val = new Float32Array(nx * ny * nz), I = (i, j, k) => i + nx * (j + ny * k);
-    const B = 6, rad = B * h * 0.87;
+    const B = 4, rad = B * h * 0.87;
     for (let bk = 0; bk < nz; bk += B) for (let bj = 0; bj < ny; bj += B) for (let bi = 0; bi < nx; bi += B) {
       const cx = lo[0] + (bi + B / 2) * h, cy = lo[1] + (bj + B / 2) * h, cz = lo[2] + (bk + B / 2) * h;
-      const dc = sdf(cx, cy, cz), skip = Math.abs(dc) > rad * 1.6 + 2 * h;
+      const dc = sdf(cx, cy, cz), skip = Math.abs(dc) > rad * 1.25 + h;
       for (let k = bk; k < Math.min(nz, bk + B); k++) for (let j = bj; j < Math.min(ny, bj + B); j++) for (let i = bi; i < Math.min(nx, bi + B); i++)
         val[I(i, j, k)] = skip ? dc : sdf(lo[0] + i * h, lo[1] + j * h, lo[2] + k * h);
     }
@@ -236,16 +236,15 @@ export function install(K, THREE, TXT) {
       if (k < nz - 1 && i > 0 && j > 0 && i < nx - 1 && j < ny - 1) { const v1 = val[I(i, j, k + 1)] < 0; if (v0 !== v1) quad(cell[C(i - 1, j - 1, k)], cell[C(i, j - 1, k)], cell[C(i, j, k)], cell[C(i - 1, j, k)], v1); }
     }
     // project onto the surface, normals from the field gradient
-    const e = h * 0.5, nor = new Float32Array(verts.length);
+    const e = h * 0.35, nor = new Float32Array(verts.length);
     for (let v = 0; v < verts.length; v += 3) {
-      let x = verts[v], y = verts[v + 1], z = verts[v + 2], gx = 0, gy = 0, gz = 0;
-      for (let it = 0; it < 2; it++) {
-        const d = sdf(x, y, z);
-        gx = sdf(x + e, y, z) - sdf(x - e, y, z); gy = sdf(x, y + e, z) - sdf(x, y - e, z); gz = sdf(x, y, z + e) - sdf(x, y, z - e);
-        const gl = Math.hypot(gx, gy, gz) || 1; gx /= gl; gy /= gl; gz /= gl;
-        if (it === 0) { const s = Math.max(-h, Math.min(h, d)); x -= gx * s; y -= gy * s; z -= gz * s; }
-      }
-      verts[v] = x; verts[v + 1] = y; verts[v + 2] = z; nor[v] = gx; nor[v + 1] = gy; nor[v + 2] = gz;
+      let x = verts[v], y = verts[v + 1], z = verts[v + 2];
+      // tetrahedral gradient: four samples give the value and the gradient together
+      const a = sdf(x + e, y - e, z - e), b = sdf(x - e, y - e, z + e), c = sdf(x - e, y + e, z - e), d4 = sdf(x + e, y + e, z + e);
+      let gx = a - b - c + d4, gy = -a - b + c + d4, gz = -a + b - c + d4;
+      const gl = Math.sqrt(gx * gx + gy * gy + gz * gz) || 1; gx /= gl; gy /= gl; gz /= gl;
+      const d = Math.max(-h, Math.min(h, (a + b + c + d4) / 4));
+      verts[v] = x - gx * d; verts[v + 1] = y - gy * d; verts[v + 2] = z - gz * d; nor[v] = gx; nor[v + 1] = gy; nor[v + 2] = gz;
     }
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
@@ -291,7 +290,7 @@ export function install(K, THREE, TXT) {
       R([s * hx, 0.11, hz + 0.07], [s * hx, 0.05, hz + 0.11], 0.048 * lr, 0.04 * lr, 0.02);    // pastern
     });
     // head frame: poll, axis a down the face, w out of the face
-    const pitch = LH ? 1.0 : 1.02, HL = LH ? 0.56 : 0.5;
+    const pitch = LH ? 1.0 : 1.05, HL = LH ? 0.54 : 0.46;
     const poll = [0, H - 0.02, Lz + 0.34];
     const ax = [0, -Math.sin(pitch), Math.cos(pitch)], aw = [0, Math.cos(pitch), Math.sin(pitch)];
     const at = (u, w, x) => [x || 0, poll[1] + ax[1] * u + aw[1] * w, poll[2] + ax[2] * u + aw[2] * w];
@@ -302,9 +301,9 @@ export function install(K, THREE, TXT) {
     const hw = LH ? 0.9 : 1;
     HE(0.02, -0.04, 0.11 * hw, 0.06, 0.08, 0.04);                   // poll
     HE(0.12, -0.03, 0.125 * hw, 0.12, 0.1, 0.05);                   // cranium, eye sockets
-    HE(0.3 * HL / 0.5, -0.005, 0.085 * hw, 0.2 * HL / 0.5, 0.07, 0.06);   // face
+    HE(0.3 * HL / 0.5, -0.005, 0.095 * hw, 0.2 * HL / 0.5, 0.07, 0.06);   // face
     HE(0.27 * HL / 0.5, -0.1, 0.085 * hw, 0.17 * HL / 0.5, 0.065, 0.06);  // cheeks, jaw
-    HE(HL - 0.05, -0.03, 0.082 * hw, 0.065, 0.08, 0.05);            // muzzle
+    HE(HL - 0.05, -0.035, 0.095 * hw, 0.07, 0.085, 0.05);           // muzzle
     R(at(HL - 0.12, -0.12), at(HL - 0.04, -0.1), 0.045, 0.04, 0.04); // chin
     R([0, H - 0.1, -Lz - 0.03], [0, H - 0.22, -Lz - 0.1], 0.045, 0.032, 0.05);                 // tail head
     if (!LH) E([0, B - 0.02, -Lz + 0.36], [0.1, 0.08, 0.12], 0.07);                             // udder
@@ -331,15 +330,15 @@ export function install(K, THREE, TXT) {
         return Math.hypot(px - a[0] - bx * t, py - a[1] - by * t, pz - a[2] - bz * t); };
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-        const n1 = nz(x * 9, y * 9, z * 9), n2 = nz(x * 2.2 + 11, y * 2.2, z * 2.2);
+        const n1 = nz(x * 9, y * 9, z * 9) * 0.7 + nz(x * 23, y * 23, z * 23) * 0.3, n2 = nz(x * 2.2 + 11, y * 2.2, z * 2.2), n3 = nz(x * 60, y * 60, z * 60);
         let w = 0;
         if (coat === 'hereford') {
           c.copy(red).multiplyScalar(0.88 + n1 * 0.22);
-          const head = smooth01(S.Lz + 0.25, S.Lz + 0.32, z + (n1 - 0.5) * 0.06);
-          const crest = 1 - smooth01(0.08, 0.12, segDist(x, y, z, S.at(0.0, 0.0), [0, S.H + 0.02, S.Lz - 0.25]) + (n1 - 0.5) * 0.04);
-          const under = (1 - smooth01(S.B + 0.02, S.B + 0.1, y + (n1 - 0.5) * 0.08)) * smooth01(S.B - 0.16, S.B - 0.1, y) * smooth01(-S.Lz + 0.05, -S.Lz + 0.2, z) * (1 - smooth01(0.3, 0.42, Math.abs(y - 0.4) < 1 ? 1 - y : 0));
+          const head = smooth01(S.Lz + 0.27, S.Lz + 0.3, z + (n1 - 0.5) * 0.08);
+          const crest = 1 - smooth01(0.09, 0.105, segDist(x, y, z, S.at(0.0, 0.0), [0, S.H + 0.02, S.Lz - 0.25]) + (n1 - 0.5) * 0.04);
+          const under = (1 - smooth01(S.B + 0.05, S.B + 0.08, y + (n1 - 0.5) * 0.1)) * smooth01(S.B - 0.16, S.B - 0.1, y) * smooth01(-S.Lz + 0.05, -S.Lz + 0.2, z) * (1 - smooth01(0.3, 0.42, Math.abs(y - 0.4) < 1 ? 1 - y : 0));
           const brisket = smooth01(S.Lz - 0.3, S.Lz - 0.15, z) * (1 - smooth01(S.B + 0.3, S.B + 0.4, y)) * (1 - smooth01(0.1, 0.18, Math.abs(x)));
-          const socks = 1 - smooth01(0.3, 0.4, y + (n1 - 0.5) * 0.08);
+          const socks = 1 - smooth01(0.34, 0.37, y + (n1 - 0.5) * 0.1);
           w = Math.max(head, crest, under * (y > 0.45 ? 1 : 0), brisket, socks);
           // red eye patches
           if (head > 0) { const ey = S.at(0.13, 0.02); const ep = Math.hypot(Math.abs(x) - 0.12, y - ey[1], z - ey[2]); w *= smooth01(0.03, 0.06, ep + (n1 - 0.5) * 0.03); }
@@ -347,7 +346,7 @@ export function install(K, THREE, TXT) {
         } else {
           const base = coat === 'dun' ? dun : coat === 'brindle' ? brown : coat === 'speckle' ? white : red;
           c.copy(base).multiplyScalar(0.86 + n1 * 0.24);
-          if (coat === 'paint') { const p = smooth01(0.5, 0.56, n2 + (n1 - 0.5) * 0.1); c.lerp(white, p); if (r() < 0) c.set(0); }
+          if (coat === 'paint') { const p = smooth01(0.52, 0.55, n2 + (n1 - 0.5) * 0.12); c.lerp(white, p); if (r() < 0) c.set(0); }
           if (coat === 'speckle') { const p = smooth01(0.55, 0.6, n2); c.lerp(patch, p); const sp = nz(x * 40, y * 40, z * 40); if (sp > 0.72) c.lerp(patch, 0.8); }
           if (coat === 'brindle') { const st = nz(x * 3, y * 26, z * 3); c.lerp(black, smooth01(0.45, 0.6, st) * 0.8); }
           if (coat === 'red') { const p = smooth01(0.6, 0.64, n2); c.lerp(white, p * (y < S.B + 0.15 ? 1 : 0.4)); }
@@ -358,6 +357,7 @@ export function install(K, THREE, TXT) {
         c.lerp(nose, (1 - smooth01(0.045, 0.075, dm)) * 0.85);
         // hooves region below the pasterns, darker points
         if (y < 0.08) c.lerp(black, 0.3);
+        c.multiplyScalar(0.94 + n3 * 0.12);
         col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
       }
       geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
@@ -366,7 +366,9 @@ export function install(K, THREE, TXT) {
       g.add(new THREE.Mesh(geo, hide));
       // find the surface along a ray (for eyes, ears, horn roots)
       const onSurface = (from, dir) => { const p = new V3(...from), d = new V3(...dir).normalize();
-        for (let i = 0; i < 80; i++) { const s = sdf(p.x, p.y, p.z); if (Math.abs(s) < 0.001) break; p.addScaledVector(d, Math.max(-0.02, Math.min(0.02, s))); }
+        let sd = sdf(p.x, p.y, p.z), n = 0;
+        while (sd < 0 && n++ < 200) { p.addScaledVector(d, Math.max(0.002, -sd)); sd = sdf(p.x, p.y, p.z); }
+        for (let i = 0; i < 12; i++) { p.addScaledVector(d, -sd); sd = sdf(p.x, p.y, p.z); }
         return p; };
       // eyes
       const eyeM = mat('eye', { color: 0x0c0806, roughness: 0.08, metalness: 0.1 }, false);
@@ -567,7 +569,7 @@ export function install(K, THREE, TXT) {
       const chime = new THREE.Mesh(new THREE.TorusGeometry(R + 0.004, 0.018, 8, 160), galv); chime.rotation.x = Math.PI / 2; chime.position.y = 0.02; chime.scale.z = 1.3; g.add(chime);
       const bottom = new THREE.Mesh(new THREE.CircleGeometry(R, 96), mat('tankBottom', { color: 0x5d5f55, roughness: 0.9 })); bottom.rotation.x = -Math.PI / 2; bottom.position.y = 0.03; g.add(bottom);
       const wl = 0.03 + (H - 0.06) * (o.water != null ? o.water : 0.8);
-      const water = new THREE.Mesh(new THREE.CircleGeometry(R - 0.005, 96), mat('stockWater', { color: 0x2a3a2c, roughness: 0.04, metalness: 0.0, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.2 }, true));
+      const water = new THREE.Mesh(new THREE.CircleGeometry(R - 0.005, 96), mat('stockWater', { color: 0x31402c, roughness: 0.12, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.08, envMapIntensity: 0.6 }, true));
       water.rotation.x = -Math.PI / 2; water.position.y = wl; g.add(water);
       // algae line inside the wall
       const alg = new THREE.Mesh(new THREE.CylinderGeometry(R - 0.004, R - 0.004, 0.07, 128, 1, true), mat('algae', { color: 0x3e4a2a, roughness: 0.9, side: THREE.BackSide }));
@@ -677,7 +679,7 @@ export function install(K, THREE, TXT) {
           const uva = geo.attributes.uv; for (let k = 0; k < uva.count; k++) { const u = uva.getX(k); uva.setX(k, uva.getY(k)); uva.setY(k, u); }
           const m = new THREE.Mesh(geo, roofM);
           const cx = (x0 + x1) / 2 + (i === 0 ? ov / 2 * Math.cos(ang) : 0), cy = (y0 + y1) / 2 - (i === 0 ? ov / 2 * Math.sin(ang) : 0);
-          m.position.set(s * cx + s * Math.sin(ang) * t * 0.5, cy + Math.cos(ang) * t * 0.5 + 0.02, 0); m.rotation.z = s * ang; g.add(m);
+          m.position.set(s * cx + s * Math.sin(ang) * t * 0.5, cy + Math.cos(ang) * t * 0.5 + 0.02, 0); m.rotation.z = -s * ang; g.add(m);
           // rake trim along both gables
           for (const sz of [-1, 1]) { const rk = new THREE.Mesh(new THREE.BoxGeometry(len, 0.2, 0.05), trimM); rk.position.set(m.position.x, m.position.y - 0.05, sz * (L / 2 + ov + 0.02)); rk.rotation.z = m.rotation.z; g.add(rk); }
         }
@@ -685,8 +687,8 @@ export function install(K, THREE, TXT) {
         const ex = W / 2 + ov * Math.cos(Math.atan2(prof[1][1] - prof[0][1], prof[0][0] - prof[1][0]));
         box(0.05, 0.16, L + 2 * ov, trimM, s * (ex + 0.02), He - ov * Math.sin(Math.atan2(prof[1][1] - prof[0][1], prof[0][0] - prof[1][0])) - 0.08, 0, g);
       }
-      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, L + 2 * ov, 12, 1, false, 0, Math.PI), trimM);
-      cap.rotation.x = Math.PI / 2; cap.rotation.y = Math.PI / 2; cap.scale.set(1, 1, 0.5); cap.position.set(0, ridge + 0.08, 0); g.add(cap);
+      const capA = Math.atan2(prof[prof.length - 1][1] - prof[prof.length - 2][1], prof[prof.length - 2][0]);
+      for (const s of [-1, 1]) { const cp = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.02, L + 2 * ov), trimM); cp.position.set(s * 0.14, ridge + t + 0.03 - 0.14 * Math.tan(capA), 0); cp.rotation.z = -s * capA; g.add(cp); }
       // sliding doors on a track
       const track = box(doorW * 2 + 0.4, 0.14, 0.1, trimM, 0, doorH + 0.12, L / 2 + 0.12, g); void track;
       const doorM = wood ? wallM : mat('barnDoor' + wallCol, { color: 0xffffff, roughness: 0.5, metalness: 0.35, map: ltex('rpanel', paintRPanel, { color: hex(wallCol) }) });
@@ -800,14 +802,14 @@ export function install(K, THREE, TXT) {
         x.strokeStyle = rgb(base, 0.72 + r() * 0.5); x.lineWidth = pitch * (0.3 + r() * 0.5);
         x.beginPath(); x.moveTo(0, yy); x.lineTo(W, yy + dir * pitch); x.stroke();
       }
-      for (let k = 0; k < 2500; k++) { x.strokeStyle = rgb(base, 0.6 + r() * 0.65); x.lineWidth = 1 + r() * 1.5; const px = r() * W, py = y0 + r() * span, l = 6 + r() * 20;
+      for (let k = 0; k < 1200; k++) { x.strokeStyle = rgb(base, 0.6 + r() * 0.65); x.lineWidth = 1 + r() * 1.5; const px = r() * W, py = y0 + r() * span, l = 6 + r() * 20;
         x.beginPath(); x.moveTo(px, py); x.lineTo(px + l, py + (r() - 0.5) * 4); x.stroke(); }
     }
     // the rolled side: strands around the circumference, weathered outer colour
     const s0 = Y(sideB), s1 = Y(sideA);
     x.fillStyle = outer; x.fillRect(0, s0, W, s1 - s0);
-    for (let k = 0; k < 7000; k++) { x.strokeStyle = rgb(outer, 0.62 + r() * 0.7); x.lineWidth = 0.8 + r() * 1.8; const px = r() * W, py = s0 + r() * (s1 - s0), l = 10 + r() * 50;
-      x.beginPath(); x.moveTo(px, py); x.quadraticCurveTo(px + l / 2, py + (r() - 0.5) * 6, px + l, py + (r() - 0.5) * 5); x.stroke(); }
+    for (let k = 0; k < 3500; k++) { x.strokeStyle = rgb(outer, 0.62 + r() * 0.7); x.lineWidth = 0.8 + r() * 1.8; const px = r() * W, py = s0 + r() * (s1 - s0), l = 10 + r() * 50;
+      x.beginPath(); x.moveTo(px, py); x.lineTo(px + l, py + (r() - 0.5) * 5); x.stroke(); }
     if (o.wrap === 'net') {
       x.strokeStyle = 'rgba(245,245,240,0.35)'; x.lineWidth = 1;
       for (let i = -H; i < W; i += 14) { x.beginPath(); x.moveTo(i, s0); x.lineTo(i + (s1 - s0), s1); x.stroke(); x.beginPath(); x.moveTo(i + (s1 - s0), s0); x.lineTo(i, s1); x.stroke(); }
@@ -903,7 +905,7 @@ export function install(K, THREE, TXT) {
       const { geo, len } = baleGeometry(R, Wd, 0.1, 72, 31 + (o.seed || 1), true);
       // two materials by arc length: film on the side and shoulders, cotton on the faces
       const f = (R - 0.1) / len;
-      const cotM = mat('cottonFace', { color: 0xffffff, roughness: 1, map: ltex('cotton', paintCotton, { rings: true }) });
+      const cotM = mat('cottonFace', { color: 0xffffff, roughness: 1, emissive: 0x2a2826, map: ltex('cotton', paintCotton, { rings: true }) });
       const wrapM = mat('wrap' + hex, { color: 0xffffff, roughness: 0.32, clearcoat: 0.6, clearcoatRoughness: 0.3, map: ltex('wrap', paintWrap, { color: hex }) }, true);
       // split the index by uv.y: faces (v < f*0.92 or v > 1 - f*0.92) get cotton
       const idx = geo.index.array, uvA = geo.attributes.uv, A = [], B = [];

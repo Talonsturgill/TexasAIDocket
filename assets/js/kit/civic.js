@@ -13,10 +13,12 @@ export function install(K, THREE, TXT) {
 
   // K.make merges only { seed: 1 } under the caller's options, so each model's own defaults are
   // merged here: every option has a default and K.make(name) always works.
-  function def(name, spec) {
+  // (K.define is wrapped only while this file installs, and restored at the end of install.)
+  const coreDefine = K.define;
+  K.define = function (name, spec) {
     const make = spec.make, defaults = spec.options || {};
-    K.define(name, Object.assign({}, spec, { make(o, r) { return make(Object.assign({}, defaults, o), r); } }));
-  }
+    return coreDefine.call(K, name, Object.assign({}, spec, { make(o, r) { return make(Object.assign({}, defaults, o), r); } }));
+  };
 
   /* ================================ materials ================================ */
   const MC = new Map();
@@ -87,19 +89,19 @@ export function install(K, THREE, TXT) {
   }
   // asphalt: aggregate, a few tar snakes (crack seal), 4 m tile
   function asphaltTex(tone) {
-    return ctex('asph|' + tone, 1024, 1024, (x, W, H) => {
+    return ctex('asph|' + tone, 512, 512, (x, W, H) => {
       const r = hash(4242);
       x.fillStyle = rgb(tone, 1); x.fillRect(0, 0, W, H);
-      for (let i = 0; i < 60000; i++) { const g = 40 + r() * 120; x.fillStyle = 'rgba(' + g + ',' + g + ',' + (g - 4) + ',' + (0.1 + r() * 0.25) + ')'; x.fillRect(r() * W, r() * H, 1 + r() * 2.5, 1 + r() * 2.5); }
+      for (let i = 0; i < 16000; i++) { const g = 40 + r() * 120; x.fillStyle = 'rgba(' + g + ',' + g + ',' + (g - 4) + ',' + (0.1 + r() * 0.25) + ')'; x.fillRect(r() * W, r() * H, 1 + r() * 2.5, 1 + r() * 2.5); }
       for (let i = 0; i < 14; i++) {  // big soft patches: oil, patching, sun bleach
-        const gx = r() * W, gy = r() * H, rad = 60 + r() * 220, gr = x.createRadialGradient(gx, gy, 0, gx, gy, rad);
+        const gx = r() * W, gy = r() * H, rad = 30 + r() * 110, gr = x.createRadialGradient(gx, gy, 0, gx, gy, rad);
         const dark = r() < 0.6; gr.addColorStop(0, dark ? 'rgba(10,10,12,0.16)' : 'rgba(200,200,195,0.08)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
         x.fillStyle = gr; x.fillRect(0, 0, W, H);
       }
       x.strokeStyle = 'rgba(12,12,14,0.85)'; x.lineCap = 'round';
       for (let i = 0; i < 5; i++) {       // tar snakes: the Texas crack seal
-        x.lineWidth = 5 + r() * 5; let px = r() * W, py = r() * H; x.beginPath(); x.moveTo(px, py);
-        for (let k = 0; k < 10; k++) { px += (r() - 0.5) * 160; py += (r() - 0.3) * 90; x.lineTo(px, py); }
+        x.lineWidth = 3 + r() * 3; let px = r() * W, py = r() * H; x.beginPath(); x.moveTo(px, py);
+        for (let k = 0; k < 10; k++) { px += (r() - 0.5) * 80; py += (r() - 0.3) * 45; x.lineTo(px, py); }
         x.stroke();
       }
       speckle(x, W, H, r, 0.08);
@@ -606,8 +608,8 @@ export function install(K, THREE, TXT) {
     B.cyl(mat('photocell', { color: 0x2b2e33, roughness: 0.4 }), 0.045, 0.045, 0.07, 0.3, 0.12, 0, 12); // photocell
   }
 
-  def('streetlight', {
-    size: [0.7, 10.2, 3.0],
+  K.define('streetlight', {
+    size: [0.7, 9.1, 3.2],
     options: { height: 9.1, reach: 2.4, finish: 'galvanized' },
     note: 'TxDOT cobra head on a davit arm: tapered galvanized pole on a breakaway base at the origin, the arm reaching +z',
     make(o, r) {
@@ -650,8 +652,8 @@ export function install(K, THREE, TXT) {
     B.cyl(housing, 0.035, 0.035, 0.2, x, y - 0.1, z, 10);
   }
 
-  def('traffic_signal', {
-    size: [12.3, 10.5, 1.2],
+  K.define('traffic_signal', {
+    size: [12.7, 10.4, 1.2],
     options: { arm: 12, heads: 3, finish: 'auto', luminaire: true, lit: 'auto' },
     note: 'Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole',
     make(o, r) {
@@ -727,8 +729,8 @@ export function install(K, THREE, TXT) {
     }, 1);
   }
 
-  def('stop_sign', {
-    size: [0.9, 3.3, 0.3],
+  K.define('stop_sign', {
+    size: [1.2, 3.5, 1.2],
     options: { blades: true, size: 0.762, post: 'square' },
     note: 'R1-1 stop sign, 30 in, bottom at 7 ft on a perforated square post; optional blank street blades on top',
     make(o, r) {
@@ -782,15 +784,15 @@ export function install(K, THREE, TXT) {
     B.pop();
   }
 
-  def('bench', {
-    size: [1.8, 0.86, 0.66],
+  K.define('bench', {
+    size: [1.8, 0.86, 0.64],
     options: { length: 1.8 },
     note: 'Park bench: cast iron ends, five seat slats and three back slats in stained hardwood',
     make(o, r) { const G = new THREE.Group(), B = Builder(); bench(B, r, 0, 0, 0, o.length); return B.flush(G); },
   });
 
-  def('bus_stop', {
-    size: [5.2, 2.8, 2.2],
+  K.define('bus_stop', {
+    size: [5.6, 3.3, 2.5],
     options: { length: 4.0, finish: 'auto' },
     note: 'Transit shelter: dark bronze frame, glass back and one end, sloped roof, bench, stop sign pole with a blank panel',
     make(o, r) {
@@ -826,8 +828,8 @@ export function install(K, THREE, TXT) {
     },
   });
 
-  def('flagpole', {
-    size: [2.4, 10.4, 0.9],
+  K.define('flagpole', {
+    size: [2.2, 9.5, 0.9],
     options: { height: 9.1, flags: ['texas'], flag: 0 },
     note: 'Satin aluminium flagpole, gold ball, halyard; flags as colour and geometry. flags: ["us","texas"] flies both on one pole',
     make(o, r) {
@@ -837,8 +839,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ the road ================================ */
-  def('road', {
-    size: [30, 0.2, 18.6],
+  K.define('road', {
+    size: [30, 0.21, 14.1],
     options: { length: 30, lanes: 2, oneWay: false, sidewalk: true, parkway: 1.2 },
     note: 'Road segment along x: asphalt lanes (3.6 m) with MUTCD markings, curb and gutter, parkway, sidewalks',
     make(o, r) {
@@ -948,8 +950,8 @@ export function install(K, THREE, TXT) {
   }
 
   /* ================================ county courthouse ================================ */
-  def('county_courthouse', {
-    size: [50, 42, 50],
+  K.define('county_courthouse', {
+    size: [52.6, 43.4, 52.6],
     options: { style: 'auto', storeys: 3, square: true },
     note: 'Texas county courthouse on its square: raised granite base, 2 to 3 storeys, central clock tower; style "classical" (porticos, dome) or "romanesque" (arched entries, turrets, pyramidal tower)',
     make(o, r) {
@@ -1216,8 +1218,8 @@ export function install(K, THREE, TXT) {
     B.extrude(F.gold(), st, 0.06, 0.52, y0 + 4.62, 0.0);
   }
 
-  def('capitol', {
-    size: [174, 92.2, 96],
+  K.define('capitol', {
+    size: [176, 92.3, 92],
     options: {},
     note: 'The Texas State Capitol, Austin: Sunset Red granite, 172 m long, the dome to the Goddess at 92 m. Origin at the rotunda; the south front faces +z',
     make(o, r) {
@@ -1323,8 +1325,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ city hall ================================ */
-  def('city_hall', {
-    size: [46, 19, 34],
+  K.define('city_hall', {
+    size: [46, 20.2, 34.7],
     options: { floors: 4 },
     note: 'A modern Texas city hall: a limestone office block with deep-set windows and sunshades, a glazed council chamber under a thin cantilevered roof, a plaza with three flags',
     make(o, r) {
@@ -1375,8 +1377,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ school ================================ */
-  def('school', {
-    size: [60, 12.5, 26],
+  K.define('school', {
+    size: [57, 11.1, 28.1],
     options: { length: 56, brick: 'auto' },
     note: 'A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway, an entry vestibule and a flagpole flying the US and Texas flags',
     make(o, r) {
@@ -1427,8 +1429,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ hospital ================================ */
-  def('hospital', {
-    size: [62, 40, 46],
+  K.define('hospital', {
+    size: [62, 43.5, 45.5],
     options: { floors: 7 },
     note: 'A Texas regional hospital: a precast patient tower with ribbon windows over a two storey podium, a glazed lobby under a porte-cochere, a blank red emergency sign, a rooftop helipad',
     make(o, r) {
@@ -1495,8 +1497,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ strip mall ================================ */
-  def('strip_mall', {
-    size: [66, 9, 32],
+  K.define('strip_mall', {
+    size: [66, 10.9, 34.4],
     options: { units: 8, parking: true },
     note: 'A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row',
     make(o, r) {
@@ -1556,8 +1558,8 @@ export function install(K, THREE, TXT) {
     });
     B.pop();
   }
-  def('gas_station', {
-    size: [30, 7.5, 36],
+  K.define('gas_station', {
+    size: [30, 7.1, 36],
     options: { islands: 2 },
     note: 'A Texas fuel station: a canopy with a banded fascia over pump islands, dispensers with hoses, bollards, a convenience store with storefront glazing and a blank sign, a blank price pylon',
     make(o, r) {
@@ -1613,8 +1615,8 @@ export function install(K, THREE, TXT) {
   });
 
   /* ================================ small town church ================================ */
-  def('church', {
-    size: [11, 25, 26],
+  K.define('church', {
+    size: [9.9, 25.4, 25.2],
     options: { finish: 'auto' },
     note: 'A small town Texas church: gabled nave, pointed lancet windows, a front bell tower with louvred belfry and octagonal spire; finish "frame" (white clapboard), "brick" or "stone"',
     make(o, r) {
@@ -1675,4 +1677,5 @@ export function install(K, THREE, TXT) {
       return B.flush(G);
     },
   });
+  K.define = coreDefine;
 }

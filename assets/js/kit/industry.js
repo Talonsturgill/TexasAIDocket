@@ -1343,7 +1343,7 @@ function installBig(K, THREE, TXT, H) {
       for (const cx of [0, w * 0.5, w]) {                      // back (wrapping at the seam) and front
         let tw = 0;
         if (name) tw = strokeText(x, name, cx + (star ? 60 : 0), h * 0.5, h * 0.44, inkS, 1.35);
-        if (star) { starPath(x, cx + (name ? 60 - tw / 2 - 75 : 0), h * 0.5, h * 0.3); x.fillStyle = inkS; x.fill(); }
+        if (star) { starPath(x, cx + (name ? 60 - tw / 2 - 125 : 0), h * 0.5, h * 0.3); x.fillStyle = inkS; x.fill(); }
       }
     });
   }
