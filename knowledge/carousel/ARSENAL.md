@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 23 |
 | world presets | 6 |
-| kit models | 88 in 10 families |
+| kit models | 95 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 63 |
 | record and site tools the routine names | 20 |
@@ -31,7 +31,9 @@
 | costs | `render.py` |
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `gridwatch_page.py`, `house_style_check.py`, `waterwatch_page.py` |
 | context | `arsenal.py`, `dossier_check.py` |
-| 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py` |
+| state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py` |
+| 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
+| 1 | `instincts.py` |
 | 2 | `docket_build.py`, `docket_staleness.py` |
 | 3 | `places.py`, `reverify.py`, `site_build.py` |
 | 5 | `docket_build.py`, `docket_ingest.py`, `site_build.py` |
@@ -49,10 +51,11 @@
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `qa.py` |
 | 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `run_complete.py` |
-| 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
-| 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py` |
-| 18 | `guards_local.py`, `merge_ready.py` |
-| 19 | `email_check.py`, `gmail_draft.py`, `prompt_audit.py` |
+| 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
+| 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
+| 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
+| 19 | `email_check.py`, `gate_status.py`, `gmail_draft.py`, `prompt_audit.py` |
+| failure | `push.sh` |
 
 ## THE ENGINE, `assets/js/txthree.js`
 
@@ -113,7 +116,7 @@ const shot = await TXT.snapshot(R);
 | `overcast` | a lid of cloud: no disc, shadows gone soft, colour honest and quiet |
 | `stormFront` | a West Texas squall line: a bruised sky, one shaft of low sun under it |
 
-**Ground surfaces** (`TXT.ground(R, { surface })`): `caliche`, `dirt`, `asphalt`, `concrete`, `grass`.
+**Ground surfaces** (`TXT.ground(R, { surface })`): `caliche`, `dirt`, `asphalt`, `concrete`, `grass`, `lawn`.
 
 **Scatter kinds** (`TXT.scatter(R, { kind })`): `grass`, `rock`, `scrub`.
 
@@ -171,13 +174,20 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `two_story_house` | 19 x 9.2 x 11 | brick, siding, roof, trim, door, garage | Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right\|left\|none. |
 | `yard` | 8 x 0.12 x 6 | size, dryness, edge, budget | Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). |
 
-### trees (1)
+### trees (8)
 
 `assets/js/kit/trees.js`, The trees of a Texas frame: the live oak, the mesquite, the cedar elm, the Ashe juniper, the pecan, the crape myrtle, a clipped shrub or hedge, and the Washingtonia palm.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
+| `ashe_juniper` | 5 x 6 x 5 | height, spread | Options: height m, spread m. |
+| `cedar_elm` | 9 x 12 x 9 | height, spread | Options: height m, spread m. |
+| `crape_myrtle` | 4.5 x 5.5 x 4.5 | height, spread, bloom, stems | Options: height m, spread m, bloom pink\|white\|red\|lavender (or false for none), stems (null = seeded 4 to 6). |
 | `live_oak` | 18 x 9 x 18 | height, spread | Options: height m, spread m across the crown. |
+| `mesquite` | 8 x 6 x 8 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
+| `palm` | 5 x 16 x 5 | height, skirt, lean | Options: height m, skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). |
+| `pecan` | 16 x 22 x 16 | height, spread | Options: height m, spread m. |
+| `shrub` | 3 x 1.2 x 0.9 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
 
 ### vehicles (7)
 
@@ -371,17 +381,17 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/contact_trace.py` | an address a reader could write to, that no source in the run carries. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/copy_sync_check.py` | does the record still say what the deck says? | --date --out --self-test | CI self-test, shipped | 12, 12b |
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
-| `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | 10.5, 11 |
+| `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
 | `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
 | `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --self-test | CI self-test | 8 |
-| `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | artwork, 10.5 |
+| `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
-| `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | artwork, 10.5 |
-| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 15 |
+| `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
+| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 15, 19 |
 | `scripts/carousel/gate_wiring.py` | a gate that nothing runs is a gate that is red, and nobody finds out. | --self-test | shipped |  |
 | `scripts/carousel/gmail_draft.py` | build the run's email payload. | --run --n --title --score --threshold --slides --ref --caption-file --comment-file --gates-file --degraded-file --upgrades-file --notes-file --out --self-test | CI self-test | 19 |
-| `scripts/carousel/instincts.py` | the machine's craft memory, where confidence is earned rather than claimed. | --ledger --add --id --instinct --evidence --confirm --contradict --date --top --prune --validate --self-test | CI | 9, 17 |
+| `scripts/carousel/instincts.py` | the machine's craft memory, where confidence is earned rather than claimed. | --ledger --add --id --instinct --evidence --confirm --contradict --date --top --prune --validate --self-test | CI | 1, 9, 17 |
 | `scripts/carousel/label_guard.py` | Every label a frame prints beside a claim id has to be words that claim says. | --self-test | gate table, shipped |  |
 | `scripts/carousel/layout_check.py` | Is there an IMAGE on this frame, and did the deck turn the page? | --run-dir --date --require --self-test --prose | CI, shipped | 9, artwork, 11, 12, 12b |
 | `scripts/carousel/ledger_check.py` | the variety ledgers are DERIVED, so they are re-derived and compared. | --date --ledger-dir --self-test --derive | shipped |  |
@@ -389,9 +399,9 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test | 15 |
-| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | 14b, 15 |
+| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
-| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | artwork, 10.5, 11 |
+| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11 |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |
 | `scripts/carousel/run_complete.py` | the run is not done until the deck ships. | --date --run-dir --all --self-test | CI self-test, gate table, shipped | 15 |
 | `scripts/carousel/scene_bounds.py` | the subject the plan named, and whether the camera put it in the frame. | --date --run --all --self-test | shipped |  |
@@ -412,8 +422,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/ownership_check.py` | refuse a write that crosses an automation's lane. | --actor --print-actor --gitdir --diff --diff-per-commit --staged --files --branch --map --self-test | CI | 0, 16 |
 | `scripts/shared/places.py` | the canonical Texas place record, and the resolver that reads it. | --from --out <text> --self-test | CI | 3 |
 | `scripts/shared/port_audit.py` | is the port actually done, and is what we moved actually wired up? | --root --only --summary --reconcile --self-test | CI | 16 |
-| `scripts/shared/prompt_audit.py` | did this run stop and wait for a human, and on exactly which call. | --json --self-test | CI self-test | 17, 19 |
-| `scripts/shared/push.sh` | push a branch and answer, once, whether the remote now has it. |  |  |  |
+| `scripts/shared/prompt_audit.py` | did this run stop and wait for a human, and on exactly which call. | --json --self-test | CI self-test | 0, 17, 19 |
+| `scripts/shared/push.sh` | push a branch and answer, once, whether the remote now has it. |  |  | 16, 17, 18, failure |
 | `scripts/shared/release_shape.py` | prove every deployment reaches Pages through full guards. | --self-test | CI |  |
 | `scripts/shared/reservoirs.py` | where each Texas reservoir actually is, committed once and never guessed. | <command> --self-test | CI |  |
 | `scripts/shared/routine_claims.py` | the routine's claims about published copy, checked against the copy. | --self-test | CI | 7 |
