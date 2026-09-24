@@ -1725,7 +1725,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -1798,6 +1798,11 @@
      "date": "2026-09-19",
      "note": "The comment window is still shut and the agency has published no next step out of it.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The comment window remains closed. The proposal still reads as the record took it and no next step has been published out of it.",
+     "checked": true
     }
    ]
   },
@@ -1855,7 +1860,7 @@
      "fetched": "2026-09-11"
     }
    ],
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
    "history": [
@@ -1920,6 +1925,11 @@
     {
      "date": "2026-09-19",
      "note": "Still shut, and the survey office has announced no decision on whether the questions about artificial intelligence go into the survey.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The survey's comment window is still closed. The notice proposing questions about artificial intelligence still reads as the record took it.",
      "checked": true
     }
    ]
@@ -2543,7 +2553,7 @@
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-18",
@@ -2607,6 +2617,11 @@
     {
      "date": "2026-09-19",
      "note": "The city's notice of the amended agreement is still not posted. The council's own video index still carries the item on the August 13th consent agenda and no outcome has been published either way. What the council did with it is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The notice is still gone from the address it was posted to, and the city has since taken down its economic development notices page as well. The city's council meeting pages and archive carry no record of what the council decided.",
      "checked": true
     }
    ]
@@ -3279,7 +3294,7 @@
     }
    ],
    "id": "tx-2026-0032",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-18",
@@ -3338,6 +3353,11 @@
     {
      "date": "2026-09-19",
      "note": "The commission's refusal stands and the permit has not come back to it in another form.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Reporting of the commission's vote against the permit still reads as the record took it. No new application for the site has surfaced.",
      "checked": true
     }
    ]
@@ -4024,7 +4044,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-18",
@@ -4083,6 +4103,11 @@
     {
      "date": "2026-09-19",
      "note": "The city still has no moratorium, and the permanent rules the council asked its staff for have not come back to it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Laredo still has no moratorium. The permanent rules the council asked its staff to write have not come back before it.",
      "checked": true
     }
    ]
@@ -6864,7 +6889,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -6929,6 +6954,11 @@
     {
      "date": "2026-09-19",
      "note": "The canceled public meeting has not been rescheduled, and the agency still says it will be, so the date a resident would have to show up on is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The notice canceling the Carson County public meeting still reads as before. A new date has not been confirmed.",
      "checked": true
     }
    ]
@@ -7642,7 +7672,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -7697,6 +7727,11 @@
     {
      "date": "2026-09-19",
      "note": "The applications are still posted as pending with their public notices published, which is the point at which a neighbor can still ask for a contested hearing.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The applications are still posted as pending with their public notices, which is the stage at which a neighbor can still ask for a contested hearing.",
      "checked": true
     }
    ]
@@ -10074,7 +10109,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -10138,6 +10173,11 @@
     {
      "date": "2026-09-19",
      "note": "The committee has published no report out of the August hearing on driverless deployment. Its own archive still lists the sitting, and what the posted notice said about the charge is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The committee has still published no report from its August hearing on driverless deployment.",
      "checked": true
     }
    ]
@@ -17003,8 +17043,20 @@
      "date": "2026-09-19",
      "note": "The temporary moratorium is still before the commission, whose own staff told it the code has no rules for these buildings.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Where the temporary moratorium stands before the commission is unconfirmed this run. The city's own notice could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.brownsvilletx.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.brownsvilletx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
@@ -17838,8 +17890,20 @@
      "date": "2026-09-19",
      "note": "The council has taken no action on the petition, so the moratorium it asks for is still nobody's proposal.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Whether the council has acted on the petition is unconfirmed this run. The city's own agenda could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.mylubbock.us"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.mylubbock.us answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "The grid operator sets an October 6th workshop on how it would curtail a large load under Senate Bill 6",
