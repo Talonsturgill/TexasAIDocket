@@ -1,0 +1,141 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3739,
+        0.4958,
+        0.7831
+      ],
+      "band_ratio": 1.3946
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3403,
+        0.479,
+        0.7371
+      ],
+      "band_ratio": 1.3941
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.09) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.09) beneath 'c17 TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3109,
+        0.3739,
+        0.9228
+      ],
+      "band_ratio": 1.6673
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.834,
+        0.9412,
+        0.8327
+      ],
+      "band_ratio": 0.9597
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3676,
+        0.7311,
+        0.7739
+      ],
+      "band_ratio": 1.2264
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "a drawn rule crosses the glyph band of 'Across Amarillo, Austin, El Paso, Housto' (canvas edge .pixels at 82,288 891x1) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "busy art under text (bg edge density 0.04) beneath 'c7 c24 c34 TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'HOUSTON' at 55,777 111x31 (margin 80px)"
+      ],
+      "bands": [
+        0.395,
+        0.4286,
+        0.9779
+      ],
+      "band_ratio": 1.5833
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4685,
+        0.5042,
+        0.761
+      ],
+      "band_ratio": 1.2982
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'Draft Environmental Assessment for Zipli' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'International Inc. Proposed Drone Packag' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Delivery Operations in Multiple Texas' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Metropolitan Areas' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'September 2026' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Zipline prepared this draft' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'environmental assessment (draft' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'EA) under the supervision of the' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Table 2.2-1. Maximum Number of Zipline C' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Deliveries per Day by Metro Area' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Area (square' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'miles)' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Zipline' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Chargers' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Dropboxes' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Maximum' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Deliveries per' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Transits per' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Houston' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'San Antonio' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Austin' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Amarillo' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'El Paso' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Total' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'Noise exposure estimates are provided fo' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '2 UA (P2 Zip) based on sound level testi' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'by Zipline (2025, 2026).' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "bands": [
+        0.3971,
+        0.4937,
+        0.6599
+      ],
+      "band_ratio": 1.2609
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.395,
+        0.4433,
+        0.8493
+      ],
+      "band_ratio": 1.4756
+    }
+  ],
+  "fails": 0,
+  "warns": 32,
+  "verdict": "WARN"
+}

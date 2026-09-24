@@ -1,0 +1,58 @@
+{
+ "lens": "integrity",
+ "round": 5,
+ "weighted_score": 6.126,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "why": "Contact sheet: every frame is rendered in one golden-hour world. Frames 1, 3, 7 and 9 read as places with a sky and a horizon. Frame 6 is a caliche plain with rows of masts that look like board-game pegs. Frame 4 is a flat top-down lawn with the pod as a white ball. Frame 5's Charger is one mast with one dock at shoulder height, which is not the draft's tower of twelve docks (lines 397 to 406), even though that frame's kicker says 'Illustrated to the draft's dimensions'. The frames are competent and look CG. Several fail the showstopper test, so this sits at the cap."
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "why": "One light, one grass ground, and the pod and its line carried from frame 1 to frame 7. The shut gate on frame 1 opens on frame 9. Value band ratios run 0.96 to 1.67 in machine_qa.json with no big strobe. Frame 6's peg field and frame 8's clipboard sit slightly outside the world."
+  },
+  "claim_integrity": {
+   "score": 5.0,
+   "weight": 0.2,
+   "why": "Every numeral traces. I checked 330, 75, 63, 7.8, 8, 220, 4,400, 220,000, 36, 400, 59.7, 63.5, 65 and 11th against c7, c11, c13, c14, c19, c21, c34, c37 and c38 and against compute.py's asserts. I also checked frame 8's canvas table, title and headings against zipline_ea.txt lines 1 to 5 and 316 to 337. All quotes match the fetched text. Frame 7 misstates the draft's noise finding, and I have listed that under hard_fails. It is a claim stretched past its source by what it chose to show and what it left out."
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "why": "It names the body, the applicant, all five metros, the October 11th deadline and the comment address with its subject line (frame 9, c3). The reader has a concrete question to send. The noise stake is the one most residents care about, and frame 7 gets it backwards against the draft. The deck also never says that the FAA page lists Zipline's Dallas-Fort Worth FONSI (December 23rd, 2025) and Wing's Houston FONSI (August 13th, 2026), which is context a Houston reader needs."
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "It moves in order: the pod, the height, the judging, the exception on frame 4, scale, the ceiling, noise, provenance, then the door. Frame 4's turn works. Frame 6 and frame 8 cover the same Table 2.2-1 twice, so one of them could be cut."
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "Clean and attributed ('the draft says' on almost every frame), with no colons or dashes. It reads flat and procedural ('It judges the yard', 'Its own words'), and nothing in it is regionally specific beyond the list of metro names."
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "Drone delivery is new in the 30-day window. The nearest entries in topics.json are no. 18 (Austin parks drones) and no. 20 (Cybercab), and neither is a repeat. The render look, the golden-hour yard and the document-on-a-table frame are familiar from no. 32 and earlier decks."
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, on frame 7 (out/2026-09-24/slides/slide-07.html). The kicker reads 'The draft's noise finding' and the hook reads 'At the draft's own line'. Under them sit two bars of equal length: 'DELIVERY NOISE AT 400 A DAY, AT MOST DNL 59.7 dB' and 'ADDED NOISE THAT LIFTS 63.5 TO 65 dB, DNL 59.7 dB'. The dek says the draft 'caps delivery noise at DNL 59.7 dB at any point'. build_slides.py line 390 states the intended reading: 'the two bars ... come out equal, which is the finding: no margin'. The draft does not find that. The same sentence the frame quotes (c21, zipline_ea.txt lines 2013 to 2016) puts the maximum at 'no more than DNL 58.1 dB at any distance from a delivery point', and line 2013 says that maximum occurs 50 feet away. The appendix gives the same answer: Table 13's peak delivery-cycle SEL of 79.9 dBA, Table 14's 580 DNL-equivalent deliveries and equation (2) give 79.9 + 10log10(580) - 49.4 = 58.1. Table 17 puts the 59.7 contour at '<50' feet at 400 a day. So on the draft's own numbers the margin is 1.6 dB, not zero. The frame keeps the looser bound and drops the draft's own estimate. It also leaves out the draft's conclusion (c26: 'the proposed action would not have a significant noise impact'). 'Caps' turns an estimate into a limit, although the draft says delivery points 'would not have setback distances' (lines 2010 to 2011). The frame also never says that existing aviation noise is 'well below' 65 except near airports (lines 1889 to 1892). A reader leaves believing the draft puts delivery noise at its own significance line, and the run's own claim c21 refutes that."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 7 on what the draft actually found. Set the delivery maximum it computes (DNL 58.1 dB at any distance from a delivery point, c21) against its 59.7 dB threshold (c35), print its conclusion that there is no significant noise impact (c26), and replace 'caps' with 'estimates', so the one frame about the stake residents care about most reports the draft's finding instead of a bound picked to show no margin.",
+ "other_findings": [
+  "Web edition, ledger/articles/2026-09-24.json, 'Noise' section: 'Its own arithmetic puts the cap at that line rather than under it' credits the draft with the run's inference and calls an estimate a cap again. It is less misleading than frame 7 because the same paragraph carries 58.1 and the next one carries c26. It should still say plainly that the draft's estimate is 58.1, under the line.",
+  "Record tx-2026-0186 has three untraced statements. The summary sentences 'At each stop a pod lowers on a line and evaluates the drop spot automatically' and 'Approving the change to the company's air carrier operating approvals is the federal action under review' match no claim among its 14. Both are true against zipline_ea.txt lines 563 to 566 and 20 to 22, but neither c17 nor the OpSpecs sentence was admitted to the record. notes_for_editor and history say the draft was 'prepared by the applicant' and the record carries no c6-equivalent claim. notes_for_editor also states the county-total discrepancy twice.",
+  "Record tx-2026-0186 claim c12's text now reads 'does not exceed the threshold it uses'. That is accurate and consistent with the draft. It contradicts the deck's frame 7 framing, so the record and the deck now tell a reader two different things about the noise finding.",
+  "Frame 5 kicker 'Illustrated to the draft's dimensions': the aircraft uses figures.json dimensions. The Charger is a single mast with one dock at shoulder height, and the draft describes 'vertical towers' of twelve docks (lines 397 to 406, c34). The kicker covers more than the frame honours.",
+  "Frame 2 label 'THE POD, ABOUT 75 SECONDS': 75 seconds is the aircraft's hover time (c19, line 569), not a property of the pod. It is loose but not false.",
+  "Frame 8 hook 'Zipline prepared it' is the document's wording (c6). c6's own note says every Appendix C preparer is at ICF. The dek's ICF clause (c36) covers only the noise report, so the hook still leans further than the note allows.",
+  "tx-2026-0187 (PUCT SB 6 rule): the title's 'keeps $50,000 per megawatt' implies the proposal carried that amount, and no claim shows the proposal's figure. The 'filed on September 18th, 2026' date reaches the record only through source_title strings, not a quoted claim. I could not check this item's PDFs against fetched text because they are not among this run's tmp artifacts.",
+  "Machine QA is clean: 0 fails and 32 warns in out/2026-09-24/render/machine_qa.json. Frame 6's rule crossing the dek could not be measured and 'HOUSTON' sits outside the safe zone. Frame 8's table ships as a raster invisible to copy_sync, so its numerals are covered only by build_slides.py quoting c7 and c27, which I checked by hand and found exact.",
+  "Caption and first comment pass on every string and numeral: 330 and 75 from c19, October 11th from c2, no colons, no first person, no years in the post body. The first comment's c-id lists match the claims each source carries."
+ ]
+}

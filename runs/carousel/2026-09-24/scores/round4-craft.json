@@ -1,0 +1,55 @@
+{
+ "lens": "craft",
+ "round": 4,
+ "weighted_score": 7.074,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.7,
+   "weight": 0.22,
+   "why": "Frame by frame, with the type covered. Frame 2 (7.0) is the best in the deck: an aerial suburb in golden haze with long shadows, trees and fences, reading as a place at an hour. Frame 9 (7.0) has the sun in frame at about el 9, which agrees with the storyboard's az -58 el 9. It also has a silhouetted fence, the open gate and a lit path to the box. Frame 8 (6.3) is a legible document staged on the patio. The rest are clearly CG. Frame 1, the cover (5.5): the hero pod is about 5 percent of the frame, hanging on a glowing cyan shaft that reads as a tractor beam. The house is a box with no windows and a faceted low-poly tree blob is cropped at the left. Frame 3 (6.0): the close crop of the pod works, but the sky has visible contour banding (upper right) and the roof has blotchy dark mottling. Frame 4 (5.5): the grass is star-shaped sprites and the step and patio are flat untextured mauve slabs. Frame 5 (5.5): capsule mannequin, bricks roughly twice true course height next to the figure, a dark shadow smear across the airframe, and a dock that is a plain beige box. Frame 7 (5.5): the house has pure black rectangles for windows, the figure is a capsule mannequin, and the type sits over dirt texture (machine_qa warns 'busy art under text'). Frame 6 (4.0) FAILS showstopper question 1. Its horizon sits behind the dek at about 21 percent, the lower 45 percent is an empty brown plane, and the five mast blocks own about 12 percent of the frame, under the 30 percent primary image floor. Austin's block reads differently from Amarillo and El Paso although all three are 30. HOUSTON and EL PASO sit outside the safe zone (machine_qa). That frame triggers the cap at 6. The per-frame mean of about 5.8 sits under it anyway."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "Clearly one world. A cedar fence runs through frames 1, 3, 7, 8 and 9, the cyan line motif appears on 1, 2, 3 and 7, and the camera move (street, corner, pod height, straight down, table, into the sun) is real and named in the storyboard. Two frames sit outside it. Frame 5 is a brick strip centre and frame 6 is a brown void with no fence, house or sky visible under the type. The filmstrip also jumps in value and hue. Frame 4's bright tan lawn sits between the navy of 3 and the brick red of 5, and the sky drifts from saturated blue (3) to grey-tan haze (2) to mauve-grey (9). The declared value arc, 'lit faces 1 to 5', is not visible: the fences on 1 and 3 are in shade. panel_ready's arc check passed, but the eye sees more than one seam."
+  },
+  "claim_integrity": {
+   "score": 8.2,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces to a claim. On frame 8's canvas page the table values, including 9,932, 17,584 and 660,000, are verbatim in c7's quote, and '(2025, 2026)' is in c27. Frame 7's 59.7 and 65 bars come from c21, c20 and c35, the energy ratio is computed, and a line says so. Frame 2 discloses that the aircraft is drawn larger than it is, and frame 8's dek discloses that the page is a collage. The 'no figure for how often' absence matches the rejected note on 'only'. One soft point: frame 8's page carries the draft's title block and 'September 2026' as if it were one page of the draft. The dek discloses the collage, but a reader will read it as a page."
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "why": "Names the body (FAA), the applicant, the five metros, the AI step (c17 and c18), the unknown (how often an operator is sent an image), the deadline (October 11th) and the exact address with its subject line on frame 9. A reader knows what to do. The stake stays procedural: nothing says what a yard owner experiences."
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 build tightly to the turn on 4, 'When it can't tell'. Frames 5 to 8 then become a catalogue of the draft (weight, chargers, noise, authorship) that drifts from the operator question, and 5 and 6 are cuttable against the thesis. The close on 9 lands and returns to the question."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Clean, careful and correctly attributed, but 'the draft says' or 'the draft' drives nearly every dek (frames 3, 4, 5, 6, 7, 8, 9), so it reads like a careful clerk. Texas shows up only as 'a Texas yard' and the city list, and the storyboard's San Antonio and Bexar specificity never reaches the copy."
+  },
+  "variety": {
+   "score": 7.4,
+   "weight": 0.1,
+   "why": "A sharp break from no. 32's dark void and industrial render: an outdoor residential world, a sky, a sun and a warm palette. The familiar move is frame 6, an array of repeated units on a ground plane seen from above at an angle, which echoes no. 32's frames 4 and 5 (tiles and generator grid)."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Build the backyard kit once in the chassis at real detail, meaning windowed, trimmed and weathered houses in place of windowless boxes and black holes, posed TXFIG people in place of capsule mannequins, and blade grass in place of star sprites, then restage frame 6's 220 masts on that same lot at a standing eye with the fence and roofs on a horizon at one third, so no frame reads as a primitive on a brown floor.",
+ "other_findings": [
+  "Frame 6 still fails the showstopper test after its round 4 rebuild. The 'golden hour lot from the sun's side' in the brief is not visible because the dek covers the sky, and the lower 45 percent of the frame is featureless ground.",
+  "Frame 6: the Austin block, seen head on at the centre of a wide lens, shows dark vertical shadow bars behind a shallow front and reads differently from Amarillo and El Paso, which carry the same count of 30.",
+  "Frame 3: sky banding and blotchy roof shading are visible at full size. Check the VSM settings and the grade's dither on the roof material.",
+  "Frame 5: the sky glow sits on the right horizon but the cast shadows run right and back, so light from front-left and a glow at back-right disagree within the frame.",
+  "Frame 1: the winch line's glow halo makes it read as a light beam rather than a line at feed size. Frames 2 and 7 show the same halo.",
+  "Frame 8: the 27 canvas raster text warnings are expected for a DOCUMENT frame and the copy note acknowledges them. Those strings are invisible to copy_sync and to numeral_lint's DOM pass, so their traceability depends only on build_slides.py quoting c7 and c27 verbatim, which I confirmed against claims.json.",
+  "Frames 2 and 7 put the horizon near the middle (about 0.46 on frame 2), against the 'horizon on a third' rule.",
+  "No hard fail found from the craft lens. Ship false is a threshold dissent: 7.074 against the 8.0 bar."
+ ]
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- 2026-09-24, frame 8 of 9. Archetype DOCUMENT. RENDERED through txthree.js in the deck's
+     declared goldenHour world. WHO PREPARED IT. The draft lying on a cedar patio table in raking light, its prepared by line and a table of maximums on the page, the line crossing overhead. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#131A24; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.03em; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.024em; color:#F4F1EA; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,14,26,0.35); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#F2F4F6; z-index:10;
+          text-shadow:0 0 5px rgba(8,14,26,0.8), 0 1px 14px rgba(8,14,26,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6EBEF;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,14,26,0.85), 0 1px 14px rgba(8,14,26,0.6); }
+  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:800px; }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:230px; z-index:5; background:linear-gradient(0deg, rgba(12,20,34,0.50) 0%, rgba(12,20,34,0.40) 55%, rgba(12,20,34,0) 100%); }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:700px; z-index:5; background:linear-gradient(180deg, rgba(12,20,34,0.5) 0%, rgba(12,20,34,0.46) 68%, rgba(12,20,34,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Zipline prepared it</h1>
+<p class="dek" data-follow="24">The draft says Zipline prepared it under FAA supervision. Its noise figures rest on testing Zipline collected, in a report ICF prepared for the FAA. The page sets passages from across the draft side by side.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-24-droneline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const FIG = {"_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.", "metros": {"Houston": {"area_sq_mi": 9932, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "San Antonio": {"area_sq_mi": 3326, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "Austin": {"area_sq_mi": 2498, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "Amarillo": {"area_sq_mi": 1199, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "El Paso": {"area_sq_mi": 629, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}}, "total": {"area_sq_mi": 17584, "chargers": 220, "dropboxes": 4400, "deliveries_max": 220000, "transits_max": 660000, "from": ["c7"], "basis": "the draft's maximum"}, "transits_per_delivery": {"value": 3, "word": "three", "from": ["c8"]}, "per_charger_max": {"value": 1000, "from": ["c24"]}, "cruise": {"feet": 330, "metres": 100.584, "from": ["c11"], "rounding": "feet times 0.3048, three decimals, geometry only"}, "aircraft": {"span_ft": 7.8, "height_ft": 1.8, "length_ft": 8, "span_m": 2.377, "height_m": 0.549, "length_m": 2.438, "propellers": 5, "weight_lb": 63, "payload_lb": 8, "from": ["c13", "c14"], "basis": "approximately, as the draft says"}, "delivery_hover": {"seconds": 75, "feet": 330, "from": ["c19"]}, "day": {"hours": 24, "day_pct": 95, "night_pct": 5, "from": ["c9", "c10"]}, "noise": {"threshold_dnl_db": 65, "significant_step_db": 1.5, "delivery_dnl_db_any_distance": 58.1, "delivery_dnl_db_cap": 59.7, "at_deliveries_per_location": 400, "screening_dnl_db": 59.7, "lift_existing_dnl_db": 63.5, "lift_added_dnl_db": 59.7, "from": ["c20", "c21", "c26", "c35", "c37"]}, "charger_docks": {"max": 72, "typical": 36, "from": ["c32"], "basis": "a Charger is a site of docks, not one mast"}, "charger_towers": {"docks": 36, "towers_word": "three", "from": ["c34"]}, "dropbox_setback": {"feet": 50, "metres": 15.24, "load_per_day": 300, "from": ["c22"]}, "chargers": {"houston": 65, "san_antonio": 65, "austin": 30, "amarillo": 30, "el_paso": 30, "from": ["c7"]}, "deliveries": {"houston": 65000, "san_antonio": 65000, "austin": 30000, "amarillo": 30000, "el_paso": 30000, "from": ["c7"], "basis": "the draft's maximum per day"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Its own words", counter: "08 / 09", src: "c6 c7 c27 c36   TEXAS AI DOCKET", ink: '#E6EBEF' });
+  TX.fitText(document.getElementById("hook"), { min: 76, max: 100, maxLines: 1 });
+  LINE.follow();
+  const TXT = init(THREE), L = LINE, gl = L.glCanvas();
+  const W = TXT.deckWorld();
+  const M = L.mats(TXT, THREE);
+
+  /* THE PAGE, drawn on a canvas in the deck's own type and laid on the table as a texture. Its
+   * five rules are the metros' maximum deliveries from figures.json, at one scale. */
+  const pc = document.createElement('canvas'); pc.width = 1700; pc.height = 2200;
+  const g = pc.getContext('2d');
+  g.fillStyle = '#EFE9DD'; g.fillRect(0, 0, 1700, 2200);
+  g.fillStyle = '#1D232B'; g.font = '600 64px Manrope'; g.textBaseline = 'top';
+  const wrap = (txt, x, y, w, lh, font) => { g.font = font; let line = '', yy = y; for (const w0 of txt.split(' ')) { const t = line ? line + ' ' + w0 : w0; if (g.measureText(t).width > w && line) { g.fillText(line, x, yy); line = w0; yy += lh; } else line = t; } g.fillText(line, x, yy); return yy + lh; };
+  let y = wrap('Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas', 150, 170, 1400, 84, '700 66px Manrope');
+  y = wrap('September 2026', 150, y + 20, 1400, 60, '500 44px Manrope');
+  g.fillRect(150, y + 40, 1400, 6);
+  y = wrap('Zipline prepared this draft environmental assessment (draft EA) under the supervision of the FAA', 150, y + 100, 1400, 104, '700 84px Manrope');
+  g.fillRect(150, y + 60, 1400, 3);
+  /* TABLE 2.2-1 AS THE DRAFT PRINTS IT, row by row from figures.json, which compute.py extracts from
+   * c7's own quote, so the page carries the draft's numbers and no chart the draft does not draw */
+  y = wrap('Table 2.2-1. Maximum Number of Zipline Chargers, Dropboxes, and Deliveries per Day by Metro Area', 150, y + 100, 1400, 54, '700 44px Manrope');
+  { const heads = ['Area (square miles)', 'Zipline Chargers', 'Zipline Dropboxes', 'Maximum Deliveries per Day', 'Maximum Transits per Day'];
+    g.font = '600 28px Manrope'; let x = 470, hy = y + 30, deep = 0;
+    for (const h of heads) { const words = h.split(' '); let line = '', ly = hy, lines = 0;
+      for (const w0 of words) { const t = line ? line + ' ' + w0 : w0; if (g.measureText(t).width > 196 && line) { g.fillText(line, x + 200 - g.measureText(line).width, ly); line = w0; ly += 32; lines++; } else line = t; }
+      g.fillText(line, x + 200 - g.measureText(line).width, ly); deep = Math.max(deep, lines + 1); x += 216; }
+    y = hy + deep * 32; }
+  const fmt = (v) => v.toLocaleString('en-US');
+  const rows = [['Houston', FIG.metros['Houston']], ['San Antonio', FIG.metros['San Antonio']], ['Austin', FIG.metros['Austin']], ['Amarillo', FIG.metros['Amarillo']], ['El Paso', FIG.metros['El Paso']], ['Total', FIG.total]];
+  y += 30;
+  for (const [n, r] of rows) { g.font = (n === 'Total' ? '700' : '500') + ' 42px Manrope'; g.fillText(n, 150, y); let x = 470;
+    for (const k of ['area_sq_mi', 'chargers', 'dropboxes', 'deliveries_max', 'transits_max']) { const t = fmt(r[k]); g.fillText(t, x + 200 - g.measureText(t).width, y); x += 216; } y += 72; }
+  g.fillRect(150, y + 20, 1400, 6);
+  y = wrap('Noise exposure estimates are provided for the Platform 2 UA (P2 Zip) based on sound level testing data collected by Zipline (2025, 2026).', 150, y + 90, 1400, 68, '600 52px Manrope');
+  const tex = new THREE.CanvasTexture(pc); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  /* THE DRAFT PROPPED ON ITS CLIPBOARD ON THE PATIO TABLE, square to a low camera, so the page
+   * reads and the yard, the back fence, the neighbour's roof and the low sky stand behind it */
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 1.2], exposure: W.exposure * 1.25, tone: W.tone, fov: 44 });
+  TXT.frame(R, { from: [0.05, 1.12, 1.35], look: [0.0, 1.13, 0.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0.8, 0], distance: 40, shadowFar: 120 });
+  TXT.ground(R, { surface: 'grass', size: 500, tile: 3, seed: 18 });
+  /* the cedar table, boards with gaps */
+  const cedar = L.cedarMat(THREE);
+  for (let i = 0; i < 15; i++) { const b = TXT.roundedBox(0.13, 0.04, 1.02, 0.008, cedar); b.position.set(-1.05 + i * 0.15, 0.74, 0.09); TXT.add(R, b); }
+  for (const x of [-1.05, 1.05]) for (const z of [0.52, -0.34]) { const leg = TXT.roundedBox(0.08, 0.72, 0.08, 0.01, M.fence); leg.position.set(x, 0.36, z); TXT.add(R, leg); }
+  const lean = new THREE.Group();
+  const board = TXT.roundedBox(0.47, 0.62, 0.012, 0.006, M.fence); board.position.set(0, 0.31, -0.008); lean.add(board);
+  const clip = TXT.roundedBox(0.12, 0.035, 0.02, 0.006, M.galv); clip.position.set(0, 0.6, 0.006); lean.add(clip);
+  const page = new THREE.Mesh(new THREE.PlaneGeometry(0.4318, 0.5588), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.88 }));
+  page.position.set(0, 0.29, 0.0005); lean.add(page);
+  lean.rotation.x = -0.42; lean.position.set(0, 0.76, 0.12); TXT.add(R, lean);
+  page.castShadow = false;
+  /* what it leans on: a closed binder lying behind it */
+  const binder = TXT.roundedBox(0.32, 0.07, 0.4, 0.01, M.cloth[0]); binder.position.set(0.02, 0.795, -0.2); TXT.add(R, binder); TXT.contact(R, binder, { opacity: 0.6 });
+  const mug = TXT.lathe([[0.001, 0], [0.045, 0], [0.047, 0.1], [0.043, 0.1], [0.041, 0.006], [0.001, 0.006]], M.trimWhite, { segments: 40 }); mug.position.set(0.42, 0.76, 0.3); TXT.add(R, mug); TXT.contact(R, mug, { opacity: 0.7 });
+  /* the yard behind: the back fence, the neighbour's roof over it */
+  TXT.add(R, L.fence(THREE, TXT, M, [-30, -12], [30, -12]));
+  const nb = L.house(THREE, TXT, M, { w: 16, d: 11, seed: 9, rise: 2.0 }); nb.position.set(-5, 0, -26); nb.rotation.y = Math.PI; TXT.add(R, nb);
+  const nb2 = L.house(THREE, TXT, M, { w: 15, d: 11, seed: 10, rise: 1.8 }); nb2.position.set(14, 0, -30); nb2.rotation.y = Math.PI; TXT.add(R, nb2);
+  TXT.weather(R, { skip: [page] });
+  const cx = L.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

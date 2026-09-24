@@ -1,0 +1,212 @@
+{
+ "date": "2026-09-24",
+ "carousel_no": 33,
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. One set of words is NOT in the DOM and this file can't see it: frame 8's page is drawn on a canvas and laid into the render as a texture, so its title block, the prepared by sentence (c6), the Table 2.2-1 with its title and headings (c7) and the noise testing sentence (c27) are pixels, not text nodes. They are quoted verbatim from claims.json in build_slides.py, which is where to check them.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "FAA draft, open for comment",
+   "headline": "The pod checks the spot",
+   "claims": [
+    "c1",
+    "c2",
+    "c11",
+    "c17",
+    "c19",
+    "c31"
+   ],
+   "cite": "c1 c2 c11 c17 c19 c31 TEXAS AI DOCKET",
+   "body": "Zipline wants FAA approval to fly delivery drones over Houston, San Antonio, Austin, Amarillo and El Paso. The FAA takes comment until October 11th.",
+   "strings": [
+    "texasaidocket.com",
+    "The pod checks the spot",
+    "Zipline wants FAA approval to fly delivery drones over Houston, San Antonio, Austin, Amarillo and El Paso. The FAA takes comment until October 11th.",
+    "FAA draft, open for comment",
+    "01 / 09",
+    "c1 c2 c11 c17 c19 c31 TEXAS AI DOCKET"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The whole height, one block",
+   "headline": "It holds at 330 feet",
+   "claims": [
+    "c11",
+    "c19",
+    "c17"
+   ],
+   "cite": "c11 c17 c19 TEXAS AI DOCKET",
+   "body": "The pod goes down on a line and back up while the aircraft hovers, for about 75 seconds. The aircraft, the pod and the line are drawn larger than they are.",
+   "strings": [
+    "texasaidocket.com",
+    "It holds at 330 feet",
+    "330",
+    "The pod goes down on a line and back up while the aircraft hovers, for about 75 seconds. The aircraft, the pod and the line are drawn larger than they are.",
+    "330 FT",
+    "THE POD, ABOUT 75 SECONDS",
+    "The whole height, one block",
+    "02 / 09",
+    "c11 c17 c19 TEXAS AI DOCKET"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "What the draft describes",
+   "headline": "It judges the yard",
+   "claims": [
+    "c17"
+   ],
+   "cite": "c17 TEXAS AI DOCKET",
+   "body": "On the way down the pod steers itself sideways and evaluates the spot. If the spot is clear, it keeps descending.",
+   "strings": [
+    "texasaidocket.com",
+    "It judges the yard",
+    "On the way down the pod steers itself sideways and evaluates the spot. If the spot is clear, it keeps descending.",
+    "What the draft describes",
+    "03 / 09",
+    "c17 TEXAS AI DOCKET"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The operator step",
+   "headline": "When it can't tell",
+   "claims": [
+    "c18"
+   ],
+   "cite": "c18 TEXAS AI DOCKET",
+   "body": "If the pod can't identify the target and judge it, the draft says an image goes to an operator for real-time evaluation. The draft gives no figure for how often.",
+   "strings": [
+    "texasaidocket.com",
+    "When it can't tell",
+    "If the pod can't identify the target and judge it, the draft says an image goes to an operator for real-time evaluation. The draft gives no figure for how often.",
+    "The operator step",
+    "04 / 09",
+    "c18 TEXAS AI DOCKET"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Illustrated to the draft's dimensions",
+   "headline": "About 63 pounds, fully loaded",
+   "claims": [
+    "c12",
+    "c13",
+    "c14",
+    "c30"
+   ],
+   "cite": "c12 c13 c14 c30 TEXAS AI DOCKET",
+   "body": "The draft gives a wingspan of about 7.8 feet, a length of about 8 feet and a maximum payload of 8 pounds. It calls the aircraft highly automated.",
+   "strings": [
+    "texasaidocket.com",
+    "About 63 pounds, fully loaded",
+    "63",
+    "The draft gives a wingspan of about 7.8 feet, a length of about 8 feet and a maximum payload of 8 pounds. It calls the aircraft highly automated.",
+    "Illustrated to the draft's dimensions",
+    "05 / 09",
+    "c12 c13 c14 c30 TEXAS AI DOCKET"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The draft's maximum, not flights flown",
+   "headline": "Up to 220 Chargers",
+   "claims": [
+    "c7",
+    "c24",
+    "c34"
+   ],
+   "cite": "c7 c24 c34 TEXAS AI DOCKET",
+   "body": "Across Amarillo, Austin, El Paso, Houston and San Antonio the draft caps the proposal at 4,400 Dropboxes and 220,000 deliveries a day. Each mast stands for one Charger, which the draft says would typically be 36 docks in three towers of twelve.",
+   "strings": [
+    "texasaidocket.com",
+    "Up to 220 Chargers",
+    "220",
+    "Across Amarillo, Austin, El Paso, Houston and San Antonio the draft caps the proposal at 4,400 Dropboxes and 220,000 deliveries a day. Each mast stands for one Charger, which the draft says would typically be 36 docks in three towers of twelve.",
+    "The draft's maximum, not flights flown",
+    "06 / 09",
+    "c7 c24 c34 TEXAS AI DOCKET",
+    "HOUSTON",
+    "SAN ANTONIO",
+    "AUSTIN",
+    "AMARILLO",
+    "EL PASO"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The draft's noise finding",
+   "headline": "It finds no significant impact",
+   "claims": [
+    "c21",
+    "c26",
+    "c29",
+    "c35"
+   ],
+   "cite": "c21 c26 c29 c35 TEXAS AI DOCKET",
+   "body": "The draft ties 400 deliveries a day to places like a large apartment complex. At that rate it estimates delivery noise at no more than DNL 58.1 dB at any distance from a delivery point. It calls 59.7 dB the line below which a rise of 1.5 dB or more can't be significant.",
+   "strings": [
+    "texasaidocket.com",
+    "It finds no significant impact",
+    "The draft ties 400 deliveries a day to places like a large apartment complex. At that rate it estimates delivery noise at no more than DNL 58.1 dB at any distance from a delivery point. It calls 59.7 dB the line below which a rise of 1.5 dB or more can't be significant.",
+    "THE DRAFT'S ESTIMATE, DNL 58.1 dB",
+    "ITS SCREENING LINE, DNL 59.7 dB",
+    "The draft's noise finding",
+    "07 / 09",
+    "c21 c26 c29 c35 TEXAS AI DOCKET"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Its own words",
+   "headline": "Zipline prepared it",
+   "claims": [
+    "c6",
+    "c27",
+    "c7",
+    "c36"
+   ],
+   "cite": "c6 c7 c27 c36 TEXAS AI DOCKET",
+   "body": "The draft says Zipline prepared it under FAA supervision. Its noise figures rest on testing Zipline collected, in a report ICF prepared for the FAA. The page sets passages from across the draft side by side.",
+   "strings": [
+    "texasaidocket.com",
+    "Zipline prepared it",
+    "The draft says Zipline prepared it under FAA supervision. Its noise figures rest on testing Zipline collected, in a report ICF prepared for the FAA. The page sets passages from across the draft side by side.",
+    "Its own words",
+    "08 / 09",
+    "c6 c7 c27 c36 TEXAS AI DOCKET"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Public comment",
+   "headline": "Comments close October 11th",
+   "claims": [
+    "c2",
+    "c3",
+    "c18"
+   ],
+   "cite": "c2 c3 c18 TEXAS AI DOCKET",
+   "body": "The draft gives no figure for how often an operator is sent an image. Email 9-FAA-Drone-Environmental@faa.gov and name the Zipline Texas Draft EA in the subject line.",
+   "strings": [
+    "texasaidocket.com",
+    "Comments close October 11th",
+    "11th",
+    "The draft gives no figure for how often an operator is sent an image. Email 9-FAA-Drone-Environmental@faa.gov and name the Zipline Texas Draft EA in the subject line.",
+    "9-FAA-Drone-Environmental@faa.gov",
+    "Public comment",
+    "09 / 09",
+    "c2 c3 c18 TEXAS AI DOCKET"
+   ]
+  }
+ }
+}

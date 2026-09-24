@@ -1,0 +1,53 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "weighted_score": 6.87,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.3,
+   "weight": 0.22,
+   "why": "The showstopper cap applies, so this criterion can't go above 6. Frames 4, 6 and 8 fail question 3 outright: none has a sky, a horizon or haze. Frame 6 is a flat brown top-down field of 'F'-shaped mast glyphs on dark pads. The masts stick out past the top edges of their pads, and the 'drive aisle' is just a darker stripe. It reads as an infographic, not a place. Frame 4 is straight down with no hero. The grass scatter reads as confetti stars on an ochre texture, and the 'back step and patio' are flat mauve slabs, where the dossier promised a broom-finish concrete step. On frame 8, the fence 'close behind the table' fills the top 45% as giant planks that splay outward at both edges (wide-angle distortion). The hook sits on the stripes, the cup is a clean untextured cylinder, and the page's Table 2.2-1 has no column headers, so 9,932 / 65 / 1,300 / 65,000 / 195,000 are unlabelled. The frames that do stand in a place still read as CG. Frames 1 and 7 have windowless or black-hole-window box houses. Frames 5 and 7 use capsule mannequins with no face or hands. On frame 5 the bricks are about twice the width of the figure's head, so the wall that should work as a scale ruler breaks the scale instead. The dossier asked for buff block and the render is red brick. Frame 3 has visible posterization contours in the upper-right sky and blotchy mottling across the roof. Per frame: 6, 7, 5.5, 4.5, 5, 3.5, 5, 5.5, 6.5, a mean of 5.39. Frame 2 is the one frame a designer would ask about: a hazy aerial of the block with long shadows and a readable 330 ft leader. Frame 9's into-the-sun open gate is the best idea in the deck, but its sun is a white disc with a soft halo in a flat mauve sky, and the promised rim light on the fence isn't there. The fence is a pure silhouette."
+  },
+  "deck_coherence": {
+   "score": 6.3,
+   "weight": 0.12,
+   "why": "It clearly tries to be one world, and mostly is. The cedar fence recurs on frames 1, 3, 4, 7, 8 and 9. Straw grass and a blue-to-gold dusk sky recur. The cyan line motif really does change state across 1, 2, 3 and 7 and is gone on 9, and the shut-to-open gate pays off. Frame 6 sits completely outside the deck: no sky, no light direction, a flat brown field with no grade, and a 432 px reader sees a different product. Frame 4 is nearly abstract and shares only the fence. The hero isn't held as one object in one material. It's a black X silhouette on frame 2, an off-white capsule on frames 1, 3 and 7, and a long white cigar under a black slab arm on frame 5, and nothing ties those together at feed size. The two people (frames 5 and 7) are different mannequins. That's more than 'one frame slightly outside', so it sits under 7."
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces: 330 (c11/c19), 75 (c19), 63/8/7.8/8 (c13, c14), 220/4,400/220,000 and all table cells (c7, verbatim, and the rows sum), 36 (c32), 400/58.1 (c21, c29), 65 (c20), October 11th (c2), and the address (c3). The mast counts per block match 30/30/30/65/65. There are two encoding stretches, neither a hard fail. First, frame 7 draws DNL bars from zero at one linear scale. The 58.1 bar is 89% of the 65 bar, which visually says 'almost at the line' on a log metric, where 7 dB is roughly a fifth of the sound energy. Second, 'FAA TEST APPLIES AT DNL 65 dB AND ABOVE' compresses c20's test, which is a 1.5 dB increase at or into 65. The frame 8 table carries c7's numbers with none of the column meanings the claim's own note records (area in square miles, chargers, dropboxes, deliveries, transits)."
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "why": "It names the body (FAA), the applicant (Zipline), the five metros, the deadline (October 11th) and the exact action: the email and the subject line on frame 9. The caption also gives a sharp, answerable question for a commenter to ask: will the final say how often an operator is sent an image? No county is named. That's defensible given the rejected county count, but a Texan in Bexar or Harris isn't told they are inside it. The privacy stake of an image of a yard going to an operator is implied, never stated."
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 build the mechanism cleanly (hold, lower, judge, escalate). Frames 5 and 6, weight and charger count, are a sideways detour into spec-sheet facts that interrupt the pod thread before the noise and authorship turn. Frame 8 ('Zipline prepared it') is the real turn. The close lands on an actionable ask with the gate open. Frame 5 is the most cuttable frame."
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "It's clean and scrupulously attributed ('the draft says' on frames 4, 7, 8 and 9), with no first person and no colons. It's also flat and procedural. 'Up to 220 Chargers', with the capital C, is the applicant's product vocabulary set as a headline. The caption's 'The deck walks from a back yard to the draft's own pages.' is a machine describing its own structure. Regional specificity stops at 'a Texas yard'."
+  },
+  "variety": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "This is the first golden-hour exterior render in the window, and its palette (blue zenith, cedar, straw) is clearly distinct from no. 32's near-black genset yard at a median L* of 6.9. Three moves carry over from no. 32 and earlier: the capsule person at 1.70 m, the parallel-camera count frame, and the document-on-a-surface frame, which is at least the fifth deck in the window to do it. The kicker-top-left, counter-top-right, Fraunces-hook skeleton is unchanged on all nine frames."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Build the recurring set pieces to photographic fidelity in the chassis before any frame is composed: houses with glazed windows, eaves and trim, a proper modelled figure instead of capsules, brick and boards at true scale with grain. Then require every frame, including the count and the document, to keep a sky or horizon band in the declared world, e.g. frame 6 shot from high on a long lens with the golden-hour horizon across its top and frame 8 with the yard and sky beyond the table rather than a wall of planks.",
+ "other_findings": [
+  "Weighted 6.87 is under the 8.0 bar. This refusal is on the number, not a fault. Even setting the showstopper cap aside, this is an acceptable deck with one genuinely good frame (2), not a good deck.",
+  "Frame 3 has banding and mottle in the sky and on the roof (visible contour steps in the upper-right sky, blotches across the roof plane). Look at it at full size before calling the world 'graded'.",
+  "Frame 7's headline and dek sit on a smeared, noisy brown ground texture below the fence. The type reads, but not in 'quiet the picture made'. The horizon between the houses is an empty plane running into haze, a small void.",
+  "Frame 1 cites c19 in its source line, but its dossier's claims list omits c19. That's a harmless plan and render mismatch.",
+  "copy.json's note says frame 8's page carries c5 as well as c27, but the render shows only c6, the table and c27.",
+  "Frame 9's parcel shadow sits below the box, detached, rather than reading as a contact. There's no dark core where the box meets the grass."
+ ]
+}

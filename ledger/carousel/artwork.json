@@ -2163,6 +2163,58 @@
     "nearest_dE76_in_last_six": 16.95,
     "note": "Measured against the two of the last six shipped decks that record a ground hex, 2026-09-20's #2E2016 at 16.95 and 2026-09-21's #222E16 at 24.16. The other four record none, so the window this comparison can fill is two decks and is named as such."
    }
+  },
+  {
+   "date": "2026-09-24",
+   "carousel_no": 33,
+   "written_from": "render_report.json, layout_check's own accent measurement, deck_coherence's value track off the nine rendered PNGs at 432 px, and the gate suite by exit code, all after the round 5 hard fail repair.",
+   "register": "RENDERED, NOT PRINTED. One golden-hour neighbourhood modelled in assets/js/deck/2026-09-24-droneline.js and rendered through txthree.js on all nine frames: the delivery aircraft built from figures.json's span, length and height, the pod lathed and hung on a winch line in the one accent, cedar fences, ranch houses and live oaks, one key light at azimuth -58 and elevation 9 read by TXT.deckRig, TXT.sky goldenHour, VSM shadows and one grade. The accent #8FE0F0 is the winch line alone, unlit and outside the tone map.",
+   "structural_laws": [
+    "A CAMERA IS SOLVED, NEVER GUESSED. Every frame whose subject had to land on a third or clear the type was placed with a projection solver against the frame's own camera, and the solved numbers are written in the scene comment.",
+    "A WASH OVER THE SKY DIMS THE ACCENT. A 0.54 alpha wash over a sky drops a line drawn in the accent out of its own colour, so frames 1, 2 and 7 open a narrow feathered gap in the wash along the line. A wide gap reads as a searchlight, so the gap is the line's width plus a feather.",
+    "A QUANTITY IS NEVER DRAWN FROM ZERO IN DECIBELS. Frame 7 went through three encodings and two hard fails before it printed the draft's own figures as text. A DNL comparison drawn as bars asserts a margin, and every bar tried asserted one the draft does not give.",
+    "A GRID NEEDS MASS AT THUMB SIZE. The piece count gate measures separate masses against the frame's own ground, so thin masts on a plain are one piece. Each metro's masts stand on a pad, five wide, so a block reads as one lot and its depth carries its count."
+   ],
+   "techniques": [
+    "physically based rendering through txthree.js on all nine frames in one goldenHour world",
+    "a winch line drawn in the one accent from the pod to figures.json cruise.metres on frames 1, 2, 3, 4 and 7",
+    "a document drawn on a canvas in the deck's own type, Table 2.2-1 set from figures.json, propped on a clipboard square to a low camera",
+    "the aircraft drawn to the draft's dimensions and hung under its dock by the fin, as c30 describes",
+    "a count of 220 masts in five pads from one front line under the low sun, perspective from the sun's side",
+    "into-the-sun close with the wash opened around the sun disc"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     26.4,
+     37.3,
+     32.8,
+     30.6,
+     29.2,
+     33.5,
+     31.7,
+     37.2,
+     25.8
+    ],
+    "deck_median_L": 31.7,
+    "max_adjacent_delta": 11.4,
+    "note": "Measured by deck_coherence at 432 px off the final renders. Mean adjacent jump 5.27 L*, spread 11.6."
+   },
+   "accent": {
+    "hex": "#8FE0F0",
+    "name": "lit winch line",
+    "frames_above_floor": [
+     1,
+     2,
+     4,
+     7
+    ],
+    "note": "layout_check measured the accent on 1, 2, 4 and 7 and at 0.0005 on 3, where the line is thin and far. It is the line and nothing else."
+   },
+   "ground": {
+    "hex": "#131A24",
+    "nearest_dE76_in_last_six": 5.53,
+    "note": "Measured against the last six entries that record a ground hex: 2026-09-20 #2E2016 at 18.65, 2026-09-21 #222E16 at 25.49, 2026-09-23 #0D1117 at 5.53."
+   }
   }
  ]
 }

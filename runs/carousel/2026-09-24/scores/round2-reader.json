@@ -1,0 +1,55 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "weighted_score": 6.874,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.8,
+   "weight": 0.22,
+   "why": "The showstopper cap applies. Frame 6 is a flat brown plate of ladder glyphs with no sky, horizon or hour, and it is a place only by name. Frame 8's top half is a wall of brown slats with no sky, and the paper and the cup read as CG. At 432 px frame 4 reads as a diagonal rail across a noise texture with a dark triangle and two lavender slabs in the corner. The step and patio that should make it a yard read as UI boxes, so the deck's one AI moment has no picture a reader can decode. Frame 5's aircraft reads as a flat white blade hanging off a T-shaped post, beside a mannequin-like figure. Frames 1, 2 and 9 do work as places at an hour. Frame 2 is a lit neighbourhood with the line falling the whole height, and frame 9 has an open gate into the sun with a parcel's long shadow. Frame 1's glowing cyan line reads as a tractor beam more than a tether."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "One golden-hour neighbourhood, one fence and one line motif run through frames 1, 2, 3, 7 and 9, and the open gate on 9 pays off the shut gate on 1. Frame 6 sits entirely outside that world as a parallel-camera brown plate. Frame 4 is the brightest frame in the deck (machine_qa bands 0.834/0.941/0.941) between 3 and 5, which sit near 0.31 to 0.37 at the top, so the value jumps in and out. panel_ready.txt line 1 says the storyboard declares no value arc the gate can read. Clearly one deck, with two frames outside it."
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "why": "Every slide numeral traces. 330 and 75 (c11, c19), 63, 7.8 and 8 (c13, c14), 220, 4,400, 220,000 and 36 (c7, c32), and 400, 58.1 and 65 (c21, c20). I checked frame 8's table rows against c7 at full resolution and they match. The fact check's refusals hold: no 'only', no 74.1, and an absence stated as an absence. Deductions. (1) The caption's 'every substantive comment gets a response in the final version' rests on c5, and c5 is missing from the first comment's id list (first_comment.txt line 4). (2) Frame 8 says 'Zipline prepared it' and 'Its own words' but leaves out that the same sentence footnotes 42 U.S.C. 4336a(f), the statute that provides for applicant-prepared EAs. It also omits that the listed preparers are at ICF. Framed alone, it leans toward a conflict story the record does not make. (3) Frame 8's 'page' is a composite of the title, section 1.1, Table 2.2-1 without its column headers, and an Appendix D sentence, set as one sheet. A reader will take it as a facsimile. (4) Frame 7 draws decibels as linear bars from zero, so 58.1 looks like 89 percent of the line. It also uses the delivery-only 58.1 and drops c21's own 59.7 'at any point'."
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "why": "The reader can act. Frame 9 gives the date, the exact address and the subject line, and it gives a specific question to ask (how often an operator is sent an image). Frames 1 to 4 make the mechanism concrete: 330 feet, a pod on a line over a yard, an image to an operator. It names the FAA, Zipline and all five metros. What a Texan does not learn: whether a Charger could go up near them, whether their part of a metro is in (frame 8's 9,932 square miles has no column label, and nothing at feed size is legible), and what happens after the EA. The caption never says 'environmental assessment'. It says 'The draft says Zipline prepared it' before 'the draft' has been introduced."
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 build well, from yard to height to pod to operator, and the close lands on action. Frames 5 and 6 are a spec-sheet detour (weight, then Charger count) between the operator step and the noise finding. Frame 6 is the most cuttable frame. Its dek is 38 words and its row order (Austin, Amarillo, El Paso) contradicts the dek's (Amarillo, Austin, El Paso). The authorship turn on frame 8 arrives late and without context, so it lands as an insinuation more than a turn."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Clean, and it follows the house rules. 'The draft' carries almost every sentence. Frame 7's dek uses it twice plus 'It finds', frame 4 twice, frame 9 once, and the caption three times. The hooks 'The pod checks the spot' (1) and 'It judges the yard' (3) say the same thing twice. 'The deck walks from a back yard to the draft's own pages' is meta filler in the caption. The only Texas texture is the phrase 'a Texas yard'. The storyboard's San Antonio block and live oaks never reach the copy, and #SanAntonio is the only city tag, with nothing on the slides to explain it."
+  },
+  "variety": {
+   "score": 7.3,
+   "weight": 0.1,
+   "why": "No drone, FAA or NEPA topic in the 30-day window of ledger/carousel/topics.json. This is the first federal environmental assessment as an instrument, and the first suburban-backyard world. The familiar move is that the deck again turns and closes on a printed absence ('gives no figure for how often', frames 4 and 9 and the caption's last line), the habit that decks 11, 14, 15, 16, 23 and 28 each asked the next run to break. Here it is at least tied to an action."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 4 as a legible pod's-eye view: straight down along the lit line to the pod hanging over a recognisable yard with the step and a parcel target in the light. Also rebuild frame 6's count as instanced Chargers on a real lot under the deck's golden-hour sky. Those two frames, with frame 8's skyless slat wall, are what cap artwork at 6, and frame 4 is where the deck's one AI claim currently shows the reader nothing.",
+ "other_findings": [
+  "Threshold dissent, not a fault. 6.874 is under the 8.0 bar with no hard fail found. This is an acceptable deck at best, not a good one.",
+  "c5 (the FAA notice's promise to respond to every substantive comment) backs a caption sentence and is missing from out/2026-09-24/first_comment.txt line 4. The sources block should list every claim the caption rests on.",
+  "Frame 8 needs one clause of context. The draft cites 42 U.S.C. 4336a(f) for applicant preparation, and the claims note says the listed preparers are at ICF. Without it, 'Zipline prepared it' plus 'testing Zipline collected' implies self-dealing the record does not establish.",
+  "Frame 8's composite page drops Table 2.2-1's column headers, so its numbers mean nothing to a reader. The page is also canvas raster text that numeral_lint and copy_sync can't read (machine_qa.json, 16 warns on slide-08).",
+  "Frame 7 plots dB, a logarithmic unit, as linear bars from zero. That understates the margin and invites reading 58.1 as 'nearly at the line'. It also prints the delivery-only 58.1 and drops c21's own 'would not exceed DNL 59.7 dB at any point'.",
+  "Frame 1's dek says 'a Texas yard' and cites c1 c2 c11 c17 c19. c31, the residential-yard claim, exists but is cited on no frame.",
+  "Frame 6: the 'SAN ANTONIO' and 'HOUSTON' labels sit on the footer line at thumb size. The kicker contrast warn is at exactly 4.5.",
+  "Machine QA has 0 fails and 21 warns. No numeral without a claim was found on any of the nine frames, in the caption or in the first comment. No topic repeat in the window."
+ ]
+}

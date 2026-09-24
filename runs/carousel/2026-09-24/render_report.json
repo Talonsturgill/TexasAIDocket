@@ -1,0 +1,2458 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The pod checks the spot",
+          "x": 80,
+          "y": 150,
+          "w": 640,
+          "h": 201,
+          "font_px": 107,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              349,
+              132
+            ],
+            [
+              80,
+              235,
+              640,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Zipline wants FAA approval to fly delivery drones over Houston, San Antonio, Austin, Amarillo and El Paso. The FAA takes comment until October 11th.",
+          "x": 82,
+          "y": 377,
+          "w": 640,
+          "h": 162,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              377,
+              637,
+              40
+            ],
+            [
+              82,
+              418,
+              630,
+              40
+            ],
+            [
+              82,
+              458,
+              610,
+              40
+            ],
+            [
+              82,
+              499,
+              59,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FAA draft, open for comment",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c11 c17 c19 c31 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 595,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              595,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 640,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1110,
+          "w": 1080,
+          "h": 240,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10280,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 95.7,
+          "variance": 2540.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It holds at 330 feet",
+          "x": 80,
+          "y": 150,
+          "w": 410,
+          "h": 152,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              310,
+              98
+            ],
+            [
+              221,
+              215,
+              129,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "330",
+          "x": 80,
+          "y": 208,
+          "w": 141,
+          "h": 109,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              208,
+              141,
+              109
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The pod goes down on a line and back up while the aircraft hovers, for about 75 seconds. The aircraft, the pod and the line are drawn larger than they are.",
+          "x": 82,
+          "y": 328,
+          "w": 540,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              328,
+              519,
+              41
+            ],
+            [
+              82,
+              370,
+              513,
+              41
+            ],
+            [
+              82,
+              412,
+              509,
+              41
+            ],
+            [
+              82,
+              454,
+              527,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "330 FT",
+          "x": 851,
+          "y": 244,
+          "w": 95,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(233, 238, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              851,
+              244,
+              95,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE POD, ABOUT 75 SECONDS",
+          "x": 354,
+          "y": 1174,
+          "w": 396,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(233, 238, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              354,
+              1174,
+              396,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The whole height, one block",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c17 c19 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 860,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1030,
+          "w": 1080,
+          "h": 320,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15903,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 129.3,
+          "variance": 3386.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It judges the yard",
+          "x": 80,
+          "y": 150,
+          "w": 620,
+          "h": 206,
+          "font_px": 109.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              528,
+              135
+            ],
+            [
+              80,
+              236,
+              200,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On the way down the pod steers itself sideways and evaluates the spot. If the spot is clear, it keeps descending.",
+          "x": 82,
+          "y": 382,
+          "w": 560,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              382,
+              517,
+              41
+            ],
+            [
+              82,
+              424,
+              532,
+              41
+            ],
+            [
+              82,
+              466,
+              461,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the draft describes",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c17 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 820,
+          "h": 720,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10903,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 98.7,
+          "variance": 1943
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "When it can't tell",
+          "x": 80,
+          "y": 150,
+          "w": 700,
+          "h": 206,
+          "font_px": 109.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              562,
+              135
+            ],
+            [
+              80,
+              236,
+              137,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "If the pod can't identify the target and judge it, the draft says an image goes to an operator for real-time evaluation. The draft gives no figure for how often.",
+          "x": 82,
+          "y": 382,
+          "w": 600,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              382,
+              520,
+              41
+            ],
+            [
+              82,
+              424,
+              588,
+              41
+            ],
+            [
+              82,
+              466,
+              587,
+              41
+            ],
+            [
+              82,
+              508,
+              399,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The operator step",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 900,
+          "h": 560,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1150,
+          "w": 1080,
+          "h": 200,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9396,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 84.2,
+          "variance": 959
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 63 pounds, fully loaded",
+          "x": 80,
+          "y": 150,
+          "w": 690,
+          "h": 149,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              204,
+              96
+            ],
+            [
+              374,
+              140,
+              259,
+              96
+            ],
+            [
+              80,
+              213,
+              358,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "63",
+          "x": 284,
+          "y": 133,
+          "w": 90,
+          "h": 106,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              133,
+              90,
+              106
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The draft gives a wingspan of about 7.8 feet, a length of about 8 feet and a maximum payload of 8 pounds. It calls the aircraft highly automated.",
+          "x": 82,
+          "y": 325,
+          "w": 580,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              325,
+              534,
+              41
+            ],
+            [
+              82,
+              367,
+              473,
+              41
+            ],
+            [
+              82,
+              409,
+              571,
+              41
+            ],
+            [
+              82,
+              451,
+              356,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Illustrated to the draft's dimensions",
+          "x": 80,
+          "y": 80,
+          "w": 613,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              613,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c13 c14 c30 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 640,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1110,
+          "w": 1080,
+          "h": 240,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9600,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 105.5,
+          "variance": 2156.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Up to 220 Chargers",
+          "x": 80,
+          "y": 150,
+          "w": 860,
+          "h": 83,
+          "font_px": 86,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              191,
+              106
+            ],
+            [
+              425,
+              139,
+              336,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "220",
+          "x": 271,
+          "y": 131,
+          "w": 154,
+          "h": 118,
+          "font_px": 86,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              271,
+              131,
+              154,
+              118
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "Across Amarillo, Austin, El Paso, Houston and San Antonio the draft caps the proposal at 4,400 Dropboxes and 220,000 deliveries a day. Each mast stands for one Charger, which the draft says would typically be 36 docks in three towers of twelve.",
+          "x": 82,
+          "y": 257,
+          "w": 910,
+          "h": 151,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              257,
+              891,
+              37
+            ],
+            [
+              82,
+              295,
+              901,
+              37
+            ],
+            [
+              82,
+              332,
+              889,
+              37
+            ],
+            [
+              82,
+              370,
+              311,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The draft's maximum, not flights flown",
+          "x": 80,
+          "y": 80,
+          "w": 629,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              629,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c24 c34 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HOUSTON",
+          "x": 55,
+          "y": 777,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 244)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              55,
+              777,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAN ANTONIO",
+          "x": 186,
+          "y": 790,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 244)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              186,
+              790,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUSTIN",
+          "x": 430,
+          "y": 803,
+          "w": 95,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 244)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              430,
+              803,
+              95,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AMARILLO",
+          "x": 629,
+          "y": 817,
+          "w": 127,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 244)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              629,
+              817,
+              127,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EL PASO",
+          "x": 862,
+          "y": 831,
+          "w": 111,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 244)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              862,
+              831,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 640,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9012,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 101.3,
+          "variance": 1961.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It finds no significant impact",
+          "x": 80,
+          "y": 790,
+          "w": 900,
+          "h": 67,
+          "font_px": 71.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              779,
+              854,
+              88
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The draft ties 400 deliveries a day to places like a large apartment complex. At that rate it estimates delivery noise at no more than DNL 58.1 dB at any distance from a delivery point. It calls 59.7 dB the line below which a rise of 1.5 dB or more can't be significant.",
+          "x": 82,
+          "y": 875,
+          "w": 910,
+          "h": 151,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              875,
+              806,
+              37
+            ],
+            [
+              82,
+              913,
+              894,
+              37
+            ],
+            [
+              82,
+              951,
+              849,
+              37
+            ],
+            [
+              82,
+              989,
+              601,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE DRAFT'S ESTIMATE, DNL 58.1 dB",
+          "x": 82,
+          "y": 1104,
+          "w": 916,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 230, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1104,
+              515,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ITS SCREENING LINE, DNL 59.7 dB",
+          "x": 82,
+          "y": 1141,
+          "w": 916,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 230, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1141,
+              484,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The draft's noise finding",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c21 c26 c29 c35 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 300,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10010,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 86.4,
+          "variance": 2502.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Zipline prepared it",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 94,
+          "font_px": 99.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              729,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The draft says Zipline prepared it under FAA supervision. Its noise figures rest on testing Zipline collected, in a report ICF prepared for the FAA. The page sets passages from across the draft side by side.",
+          "x": 82,
+          "y": 268,
+          "w": 800,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              268,
+              772,
+              41
+            ],
+            [
+              82,
+              310,
+              723,
+              41
+            ],
+            [
+              82,
+              352,
+              774,
+              41
+            ],
+            [
+              82,
+              394,
+              464,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Its own words",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7 c27 c36 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 466,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              466,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "Draft Environmental Assessment for Zipline",
+          "fn": "fillText",
+          "font": "bold 66px Manrope"
+        },
+        {
+          "text": "International Inc. Proposed Drone Package",
+          "fn": "fillText",
+          "font": "bold 66px Manrope"
+        },
+        {
+          "text": "Delivery Operations in Multiple Texas",
+          "fn": "fillText",
+          "font": "bold 66px Manrope"
+        },
+        {
+          "text": "Metropolitan Areas",
+          "fn": "fillText",
+          "font": "bold 66px Manrope"
+        },
+        {
+          "text": "September 2026",
+          "fn": "fillText",
+          "font": "500 44px Manrope"
+        },
+        {
+          "text": "Zipline prepared this draft",
+          "fn": "fillText",
+          "font": "bold 84px Manrope"
+        },
+        {
+          "text": "environmental assessment (draft",
+          "fn": "fillText",
+          "font": "bold 84px Manrope"
+        },
+        {
+          "text": "EA) under the supervision of the",
+          "fn": "fillText",
+          "font": "bold 84px Manrope"
+        },
+        {
+          "text": "FAA",
+          "fn": "fillText",
+          "font": "bold 84px Manrope"
+        },
+        {
+          "text": "Table 2.2-1. Maximum Number of Zipline Chargers, Dropboxes, and",
+          "fn": "fillText",
+          "font": "bold 44px Manrope"
+        },
+        {
+          "text": "Deliveries per Day by Metro Area",
+          "fn": "fillText",
+          "font": "bold 44px Manrope"
+        },
+        {
+          "text": "Area (square",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "miles)",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Zipline",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Chargers",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Dropboxes",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Maximum",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Deliveries per",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Day",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Transits per",
+          "fn": "fillText",
+          "font": "600 28px Manrope"
+        },
+        {
+          "text": "Houston",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "9,932",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "65",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "1,300",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "65,000",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "195,000",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "San Antonio",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "3,326",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "Austin",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "2,498",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "30",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "600",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "30,000",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "90,000",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "Amarillo",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "1,199",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "El Paso",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "629",
+          "fn": "fillText",
+          "font": "500 42px Manrope"
+        },
+        {
+          "text": "Total",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "17,584",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "220",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "4,400",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "220,000",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "660,000",
+          "fn": "fillText",
+          "font": "bold 42px Manrope"
+        },
+        {
+          "text": "Noise exposure estimates are provided for the Platform",
+          "fn": "fillText",
+          "font": "600 52px Manrope"
+        },
+        {
+          "text": "2 UA (P2 Zip) based on sound level testing data collected",
+          "fn": "fillText",
+          "font": "600 52px Manrope"
+        },
+        {
+          "text": "by Zipline (2025, 2026).",
+          "fn": "fillText",
+          "font": "600 52px Manrope"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 700,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1120,
+          "w": 1080,
+          "h": 230,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10928,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 125.5,
+          "variance": 3720.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Comments close October 11th",
+          "x": 80,
+          "y": 150,
+          "w": 640,
+          "h": 152,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              524,
+              98
+            ],
+            [
+              80,
+              215,
+              274,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "11th",
+          "x": 354,
+          "y": 208,
+          "w": 149,
+          "h": 109,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(244, 241, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              354,
+              208,
+              149,
+              109
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The draft gives no figure for how often an operator is sent an image. Email 9-FAA-Drone-Environmental@faa.gov and name the Zipline Texas Draft EA in the subject line.",
+          "x": 82,
+          "y": 324,
+          "w": 650,
+          "h": 157,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              324,
+              644,
+              38
+            ],
+            [
+              82,
+              364,
+              288,
+              38
+            ],
+            [
+              569,
+              403,
+              132,
+              38
+            ],
+            [
+              82,
+              442,
+              567,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "9-FAA-Drone-Environmental@faa.gov",
+          "x": 82,
+          "y": 403,
+          "w": 487,
+          "h": 38,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(242, 244, 246)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              403,
+              487,
+              38
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "Public comment",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c18 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 235, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 880,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1110,
+          "w": 1080,
+          "h": 240,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9380,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 97,
+          "variance": 5846.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

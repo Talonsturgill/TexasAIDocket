@@ -1,0 +1,59 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "weighted_score": 6.47,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "why": "I looked at every thumb at 432 px. Frames 1, 3, 7 and 9 read as one yard at golden hour. Frame 9 is the best in the deck: an open gate, the sun through it, a parcel with a long shadow. Frame 3's cropped pod is a real close-up. Four frames fail the showstopper test, which caps each at 6. Frame 6 is a flat brown field of icon-like towers with no sky, no ground and no light. The dossier asked for 'charger towers on one caliche lot... the far haze and sky', and none of that was built. Frame 5 is a drone on a T-post in an empty pebble plain next to a faceless mannequin. It reads as an object in a void, not the 'concrete pad behind a strip centre' the dossier describes. Frame 4 is a tilted slab of grass cut by a diagonal rail with grey boxes in the bottom right. A feed reader can't tell it is a yard seen from above, let alone the operator's image. On frame 8 the upper half behind the hook is a brown smear that reads as mud, not a lawn in haze. Across the deck the fences look like plastic, the grass like cards and the people like mannequins. Nobody would mistake it for a photograph. The winch line also renders as a thick glowing cyan beam. On frame 2 it blooms wide at mid-height, and on frame 1 it reads as a searchlight or an abduction beam, not a line."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "On the filmstrip, one yard, one low sun and the line motif (frames 1, 2, 3, 7) hold together, and the gate closed on 1 and open on 9 is a real device. Frame 6 falls out of the world completely: a flat brown graphic, band ratio 0.99 in machine_qa, with no sky. Frame 5 moves to a separate desert plain. Frame 4's overhead abstraction gives the reader no way to tie it back to the yard. That makes three of nine frames a reader would not place in the same deck, more than the single outlier the 7 band allows. panel_ready's first line also reports that the storyboard 'declares no value arc this gate can read', even though the storyboard names VALUE_ARC as a continuity device."
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "why": "Every slide numeral traces: 330 (c11), 75 (c19), 63, 8, 7.8 (c13, c14), 220, 4,400, 220,000 (c7), 400, 58.1, 65 (c20, c21), October 11th (c2). The copy respects the refusals: no 'only', no 74.1, and every count is labelled a maximum. It loses points in three places. (1) caption.txt line 9 says 'The FAA's comment address is in the first comment.' first_comment.txt contains no email address, only two source URLs and claim ids (see hard_fails). (2) Frame 8 carries the kicker 'ITS OWN WORDS' over a page whose layout and bar chart the deck invented. It joins quotes from Section 1.1, Table 2.2-1 and Appendix D as if they were one page, and a reader has no way to know it is not a facsimile, because the dossier's 'not a facsimile' note appears nowhere on the frame. (3) Frame 7 draws the dB bars from zero, so 58.1 looks like 89 percent of 65. On a logarithmic metric that is a real misreading of loudness, and c20's test, a 1.5 dB increase at DNL 65 or above, is flattened to 'starts at DNL 65'."
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "why": "This is the strongest part of the deck for a reader. Frame 9 names the body (FAA), the deadline (October 11th), the exact address (9-FAA-Drone-Environmental@faa.gov) and the subject line. The caption supplies a concrete question to ask: how often an operator is sent an image. A reader can act. What costs points: the cover says only 'a Texas yard', and the five metros first appear on frame 6. A reader in Houston or El Paso can't learn from the first three thumbs that this is about their city. Nothing is placed below the metro level. Frame 9's dek sets the missing figure and the email side by side without saying why they belong together, so the frame itself never states the ask."
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 build well: it hovers, it judges, and when it can't tell, a person looks. Frame 8's 'Zipline prepared it' is a real turn that changes how the noise finding on 7 reads. It comes after 7, which is right, but it lands late. Frames 5 and 6 slow the deck after the frame 4 turn: aircraft specs, then a count, with 'Up to 220 Chargers' never saying what a Charger is. The close lands. The cover headline 'The pod checks the spot' is cryptic to someone who doesn't yet know what a pod is."
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "The copy is clean and restrained, and it never sensationalises. Some lines read as a machine narrating its own layout: 'Drawn together here to be counted' (frame 6), 'The aircraft, the pod and the line are drawn larger than they are' (frame 2), 'The deck walks from a back yard to the draft's own pages' (caption line 7). The caption's closing question, 'If somebody asks by October 11th, will that version say how often an operator is sent an image?', is stilted. Jargon a reader gets no help with: 'DNL' (frame 7), 'Chargers' (frame 6), and the frame 2 leader 'THE POD, ABOUT 75 SECONDS'. The only Texas specificity is the five city names. The copy has no regional texture, and the 'north San Antonio backyard' in the storyboard never reaches the reader."
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "The subject is new. topics.json has no drone or FAA deck in the 30-day window, and dedupe is clean. The residential-yard world with the mute world law echoes no. 31 (Dallas yards, 2026-09-21). The page-lying-on-a-surface DOCUMENT frame is a recurring move (nos. 24, 28, 30 all built document frames). The cover opens on an object, not an absence, which several ledger notes asked for. I did not audit the full artwork.json window, so this score is less certain than the others."
+  }
+ },
+ "hard_fails": [
+  "Unverified fact presented as verified, in published copy. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt contains no comment address. It has a sources line, the FAA NEPA page URL and the EA PDF URL. 9-FAA-Drone-Environmental@faa.gov is not in it. No claim backs the caption's sentence, and the run's own artifact contradicts it. A reader who follows the pointer finds no address. The lenient reading, that 'address' means the FAA web page, does not hold: that page is a program page, not a place to submit a comment. It clears if the first comment carries the c3 address or the caption sentence is cut."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put the c3 email address into first_comment.txt so the caption's promise is true, then spend the round rebuilding frames 4, 5, 6 and 8 as the same golden-hour yard world their dossiers describe (the Charger count as real towers on a lot under the goldenHour sky, the aircraft on a concrete pad, an overhead yard with the fence corner and step readable, and a lawn instead of mud behind the page), because those four frames are where a feed reader stops recognising a place and the deck loses its art and coherence points.",
+ "other_findings": [
+  "Cover (frame 1) names no city and no company. The five metros first appear on frame 6 and Zipline first appears on frame 8, so the biggest local hook is buried behind five swipes.",
+  "The winch line renders as a thick glowing cyan beam with bloom. On frames 1 and 2 it reads as a searchlight or tractor beam, not a line, even though the storyboard calls it 'a thin line'.",
+  "Frame 8's five black rules under 'Maximum deliveries per day' read at feed size as redaction bars, which implies the FAA withheld figures the draft actually prints (c7).",
+  "Frame 7 never defines 'DNL', and the zero-based dB bars make 58.1 look nearly at the threshold. The dossier's own risk note, 'reads flat', does not address a lay reader reading dB linearly.",
+  "Frame 6's 'Up to 220 Chargers' uses the draft's capitalised term with no gloss. The dek glosses dropboxes as 'pickup dropboxes' but never says what a Charger is.",
+  "Frame 2's leader 'THE POD, ABOUT 75 SECONDS' does not parse on first read. The 75 seconds is the hover duration, not a property of the pod.",
+  "Frame 2's dossier puts 'a person stands beside the pod at the foot of the line', and no person is visible at thumb size, so the scale device it promises is missing.",
+  "Caption hashtags name one metro of five (#SanAntonio) and leave out the other four cities.",
+  "Frame 1's footer cites c19, but copy.json's S1 claims list omits c19. Cosmetic, but the two disagree.",
+  "machine_qa.json reports 0 fails and 20 warns. 17 are frame 8's canvas raster text, so the draft's own sentences on that page are invisible to accessibility and to copy_sync."
+ ]
+}

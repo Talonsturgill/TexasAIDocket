@@ -1,0 +1,56 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "weighted_score": 6.79,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.7,
+   "weight": 0.22,
+   "why": "THE SHOWSTOPPER TEST caps this criterion at 6, and frame 6 fails its first question outright. That frame is a flat brown field with five dark pads of mast pictographs. It has no sky, no horizon and no hour, and at 432 px the masts read as stacks of 'F' glyphs rather than towers. The unexplained horizontal band across its middle (the drive aisle) reads as a render seam. Frame 4 is borderline. It is a straight-down lawn of asterisk-shaped sprite grass with no hero in it. The 'back step with broom finish' promised in the dossier renders as two flat mauve slabs, and at feed size the frame reads as a diagonal texture. Frame 8's top half is a wall of fence planks at arm's length, so there is no sky, no room and no time of day. The fluted 'cedar' slats look like corrugated metal and the handleless cup reads as CG. Below the cap, CG tells run through the deck. Frames 5 and 7 carry capsule mannequins with no hands. In frame 5 the airframe appears to pass through the dock post, and the bricks are about 2.5x true course height against the person's head, which undermines a frame whose whole job is true scale. The houses on frames 1 and 7 are featureless boxes with black-hole windows. Frame 3's sky has visible posterization contours around the dek and across the roof. Frame 2 has a hard horizontal edge where the sky meets a flat tan 'haze' plane at about y 920 of 2000 (display scale), so it reads as a painted backdrop. Frames 2 and 9 are genuinely good. Frame 2 is an aerial suburb receding in haze. Frame 9 is into the sun with light spilling through the open gate and the parcel's shadow reaching the lens. Those two keep the score above 5."
+  },
+  "deck_coherence": {
+   "score": 6.4,
+   "weight": 0.12,
+   "why": "One world holds on most frames: goldenHour, one declared light, and the sun on frame 9 sits about 9 degrees up, which matches the declared el 9. The cyan winch line on 1, 2, 3 and 7 is a real motif-evolution device, and the camera move from street to aerial to pod height to straight down is real. The value track stays mid to dark with no strobe. Two frames sit outside the world, though. Frame 6 is a flat chart on brown with a different visual language, and frame 8 is a closed plank wall. The hero is absent from 4, 6, 8 and 9, so it is carried on fewer than half the frames. The frame 1 to 9 gate callback is weak because the shut gate on frame 1 (a slightly darker fence panel at about x 320 to 455) can't be read as a gate. The line's wide bloom halo reads as a light beam more than a winch line on frames 1, 2 and 7. That is below the rubric's 7 ('one frame that sits slightly outside')."
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "why": "Every dek numeral I checked traces. 330 (c11, c19), 75 (c19), 63, 8, 7.8 and 8 (c13, c14), 220, 4,400 and 220,000 (c7), 59.7, 1.5 and 65 (c20, c21, c35), and the frame 8 table values match c7's quote exactly. Frame 7's bars measure about 400/1357 = 0.295 of full length, consistent with the stated 0.2951 energy ratio. The scale disclosures are honest: frame 2's 'drawn larger than they are' and frame 5's 'Illustrated to the draft's dimensions'. The nits are all on frame 6 and frame 8. Frame 6's dek says 'pickup dropboxes' where c7 says Dropboxes. Frame 8's page carries canvas-raster text that machine_qa says is invisible to the DOM gates, including Table 2.2-1's title words, which are in no claim's quote, 'September 2026', which lives only in source_title metadata, and '2.2-1', which lives only in c7's location field."
+  },
+  "story_and_stakes": {
+   "score": 7.3,
+   "weight": 0.16,
+   "why": "It names the body (FAA), the five metros, the deadline (October 11th) and the exact comment address with its subject line on frame 9, so a reader knows what to do. The stake it turns on, how often an operator is sent an image of your yard, is concrete but never tells the reader why it matters to them (privacy is implied, not said). No county is named, and the noise and authorship frames widen the story rather than deepen it."
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Frame 1 'The pod checks the spot' and frame 3 'It judges the yard' make the same point twice. The real turn is frame 4 (the operator step), but frames 5 to 8 then drift through specs, counts, noise and authorship before frame 9 picks the operator thread back up. The close lands with a concrete action."
+  },
+  "voice": {
+   "score": 6.9,
+   "weight": 0.1,
+   "why": "Clean, attributed and unhyped ('Zipline prepared it', 'The draft gives no figure for how often'). It is flat, and almost nothing is regionally specific beyond 'a Texas yard' and the metro names. The caption's closing question 'If somebody asks by October 11th, will the final version say...' is contorted. Frame 9's dek leaves 'line.' as a one-word widow."
+  },
+  "variety": {
+   "score": 7.3,
+   "weight": 0.1,
+   "why": "It is the first sky-lit golden-hour render after no. 32's near-black gen-set yard and a string of printed night decks, so the palette and register are clearly new. Several moves are familiar from no. 32 or house habit: the capsule person, the parallel-camera count grid, the document lying on a surface, and the same kicker, hook, dek and furniture type skeleton on all nine frames."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 6 as a long-lens render of real Charger towers standing on a caliche lot under the deck's goldenHour sky with a horizon on the top third, and give frames 4 and 8 a place a reader can name (a horizon or a lit interior), because those three frames are where the deck stops being a photograph and the showstopper cap binds the whole art score.",
+ "other_findings": [
+  "Frame 2's dossier promises 'a person stands beside the pod at the foot of the line' so 330 feet reads against a human. No person is in the render, and the pod's leader and 'THE POD, ABOUT 75 SECONDS' crowd the footer line.",
+  "Across the deck the display hooks are set with such tight word spacing that 'It holds at' and 'Under the FAA's line' nearly close up at 432 px.",
+  "Frame 8's hook and dek sit directly on the dark vertical gaps between fence planks, which is busy ground under display type that machine_qa did not flag.",
+  "Frame 3 shows color quantization or banding in the sky and on the roof plane. Of everything wrong with that frame, this is the one a designer notices first.",
+  "Frame 5's light reads from front-left (casts run right and back) while the warm horizon glow sits at frame right. This needs checking against the declared az -58.",
+  "machine_qa slide-06 warns that a drawn rule crosses the dek glyph band and 'COULD NOT BE MEASURED'. It is not visible at the display scale I read, so a pixel check at full resolution is still owed.",
+  "Caption hashtag #SanAntonio narrows a five-metro story to one city without saying why.",
+  "This is a threshold dissent, not a fault: 6.79 is under the 8.0 bar. A deck at this score is acceptable at best, and frames 2 and 9 show the standard the other seven did not reach.",
+  "Artifacts read: /home/user/TexasAIDocket/out/2026-09-24/render/slide-01.png to slide-09.png, /home/user/TexasAIDocket/out/2026-09-24/final/contact_sheet.png, /home/user/TexasAIDocket/out/2026-09-24/storyboard.md, /home/user/TexasAIDocket/out/2026-09-24/claims.json, /home/user/TexasAIDocket/out/2026-09-24/caption.txt, /home/user/TexasAIDocket/out/2026-09-24/render/machine_qa.json, /home/user/TexasAIDocket/out/2026-09-24/tmp/panel_ready.txt, /home/user/TexasAIDocket/ledger/carousel/artwork.json"
+ ]
+}

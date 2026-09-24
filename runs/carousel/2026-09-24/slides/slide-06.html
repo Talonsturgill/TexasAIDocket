@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- 2026-09-24, frame 6 of 9. Archetype GRID. RENDERED through txthree.js in the deck's
+     declared goldenHour world. THE CEILING, COUNTED. The draft's maximum of charger towers gathered on one lot to be counted, five blocks for five metros, every count from figures.json. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#131A24; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.03em; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.024em; color:#F4F1EA; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,14,26,0.35); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#F2F4F6; z-index:10;
+          text-shadow:0 0 5px rgba(8,14,26,0.8), 0 1px 14px rgba(8,14,26,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6EBEF;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,14,26,0.85), 0 1px 14px rgba(8,14,26,0.6); }
+  .hook { left:80px; top:150px; width:860px; } .dek { left:82px; width:910px; font-size:27px; }
+  .metro { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em; color:#EEF1F4; z-index:11; transform:translateX(-50%); white-space:nowrap; text-shadow:0 1px 8px rgba(8,14,26,0.6); }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:640px; z-index:5; background:linear-gradient(180deg, rgba(12,20,34,0.54) 0%, rgba(12,20,34,0.52) 70%, rgba(12,20,34,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Up to <span class='num'>220</span> Chargers</h1>
+<p class="dek" data-follow="24">Across Amarillo, Austin, El Paso, Houston and San Antonio the draft caps the proposal at 4,400 Dropboxes and 220,000 deliveries a day. Each mast stands for one Charger, which the draft says would typically be 36 docks in three towers of twelve.</p>
+<div class="haze" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-24-droneline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const FIG = {"_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.", "metros": {"Houston": {"area_sq_mi": 9932, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "San Antonio": {"area_sq_mi": 3326, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "Austin": {"area_sq_mi": 2498, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "Amarillo": {"area_sq_mi": 1199, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "El Paso": {"area_sq_mi": 629, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}}, "total": {"area_sq_mi": 17584, "chargers": 220, "dropboxes": 4400, "deliveries_max": 220000, "transits_max": 660000, "from": ["c7"], "basis": "the draft's maximum"}, "transits_per_delivery": {"value": 3, "word": "three", "from": ["c8"]}, "per_charger_max": {"value": 1000, "from": ["c24"]}, "cruise": {"feet": 330, "metres": 100.584, "from": ["c11"], "rounding": "feet times 0.3048, three decimals, geometry only"}, "aircraft": {"span_ft": 7.8, "height_ft": 1.8, "length_ft": 8, "span_m": 2.377, "height_m": 0.549, "length_m": 2.438, "propellers": 5, "weight_lb": 63, "payload_lb": 8, "from": ["c13", "c14"], "basis": "approximately, as the draft says"}, "delivery_hover": {"seconds": 75, "feet": 330, "from": ["c19"]}, "day": {"hours": 24, "day_pct": 95, "night_pct": 5, "from": ["c9", "c10"]}, "noise": {"threshold_dnl_db": 65, "significant_step_db": 1.5, "delivery_dnl_db_any_distance": 58.1, "delivery_dnl_db_cap": 59.7, "at_deliveries_per_location": 400, "screening_dnl_db": 59.7, "lift_existing_dnl_db": 63.5, "lift_added_dnl_db": 59.7, "from": ["c20", "c21", "c26", "c35", "c37"]}, "charger_docks": {"max": 72, "typical": 36, "from": ["c32"], "basis": "a Charger is a site of docks, not one mast"}, "charger_towers": {"docks": 36, "towers_word": "three", "from": ["c34"]}, "dropbox_setback": {"feet": 50, "metres": 15.24, "load_per_day": 300, "from": ["c22"]}, "chargers": {"houston": 65, "san_antonio": 65, "austin": 30, "amarillo": 30, "el_paso": 30, "from": ["c7"]}, "deliveries": {"houston": 65000, "san_antonio": 65000, "austin": 30000, "amarillo": 30000, "el_paso": 30000, "from": ["c7"], "basis": "the draft's maximum per day"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "The draft's maximum, not flights flown", counter: "06 / 09", src: "c7 c24 c34   TEXAS AI DOCKET", ink: '#E6EBEF' });
+  TX.fitText(document.getElementById("hook"), { min: 86, max: 112, maxLines: 1 });
+  LINE.follow();
+  const TXT = init(THREE), L = LINE, gl = L.glCanvas();
+  const W = TXT.deckWorld();
+  const M = L.mats(TXT, THREE);
+
+  /* THE COUNT, FROM figures.json: one mast per Charger the draft allows, per metro, every block
+   * five masts wide so its DEPTH is its count, all five in one rank starting at one front line. The lot is turned
+   * to face the declared sun and the camera stands 440 m off on the sun's side with a long lens,
+   * which keeps every block at one scale (near parallel) while the horizon and the low sky stay in
+   * the frame. At nine degrees each mast's long shadow falls behind it. */
+  const blocks = [['HOUSTON', FIG.chargers.houston], ['SAN ANTONIO', FIG.chargers.san_antonio], ['AUSTIN', FIG.chargers.austin], ['AMARILLO', FIG.chargers.amarillo], ['EL PASO', FIG.chargers.el_paso]];
+  const total = blocks.reduce((a, b) => a + b[1], 0);
+  if (total !== FIG.total.chargers) throw new Error('blocks do not sum to the draft total');
+  const yaw = TXDECK.deck().light.az * Math.PI / 180;
+  const lot = new THREE.Group(); lot.rotation.y = yaw;
+  const toW = (x, y, z) => { const v = new THREE.Vector3(x, y, z).applyAxisAngle(new THREE.Vector3(0, 1, 0), yaw); return [v.x, v.y, v.z]; };
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.12], exposure: W.exposure, tone: W.tone, fov: 50 });
+  TXT.frame(R, { from: toW(26, 50, 124), look: toW(0, 0, -30) });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: toW(0, 0, -6), distance: 300, shadowFar: 800 });
+  TXT.ground(R, { surface: 'caliche', size: 6000, tile: 5, seed: 16 });
+  const cols = 5, pitch = 2.7, gap = 6;
+  const mastG = new THREE.BoxGeometry(0.6, 4.6, 0.6), armG = new THREE.BoxGeometry(0.9, 0.3, 0.3), baseG = new THREE.BoxGeometry(1.2, 0.3, 1.2), dockG = new THREE.BoxGeometry(0.6, 0.34, 0.6);
+  const width = blocks.length * cols * pitch + (blocks.length - 1) * gap;
+  let x0 = -width / 2;
+  const labels = [];
+  blocks.forEach(([name, n]) => {
+    const rowsN = Math.ceil(n / cols);
+    for (let i = 0; i < n; i++) {
+      const c = i % cols, r = Math.floor(i / cols);
+      const g = new THREE.Group();
+      const m = new THREE.Mesh(mastG, M.galv); m.position.y = 2.3; g.add(m);
+      /* one arm to one side with one dock, the charger of frame 5, never a cross */
+      const a = new THREE.Mesh(armG, M.galv); a.position.set(0.45, 4.3, 0); g.add(a);
+      const bs = new THREE.Mesh(baseG, M.concrete); bs.position.y = 0.15; g.add(bs);
+      const d = new THREE.Mesh(dockG, M.trim); d.position.set(0.9, 4.1, 0); g.add(d);
+      g.position.set(x0 + c * pitch + pitch / 2, 0, -r * pitch); lot.add(g);
+    }
+    /* each metro's masts stand on their own asphalt pad */
+    const pad = TXT.roundedBox(cols * pitch + 2, 0.3, rowsN * pitch + 2, 0.05, M.asphalt); pad.position.set(x0 + cols * pitch / 2, 0.15, -(rowsN - 1) * pitch / 2); lot.add(pad);
+    labels.push([name, x0 + cols * pitch / 2, 4]);
+    x0 += cols * pitch + gap;
+  });
+  TXT.add(R, lot);
+  TXT.weather(R, {});
+  const cx = L.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  for (const [name, x, z] of labels) {
+    const q = L.project(THREE, R, toW(x, 0, z));
+    const d = document.createElement('div'); d.className = 'metro'; d.textContent = name;
+    d.style.left = Math.max(110, Math.min(970, q[0])) + 'px'; d.style.top = (q[1] + 16) + 'px'; document.body.appendChild(d);
+  }
+
+  return true;
+})();
+</script>
+</body>
+</html>

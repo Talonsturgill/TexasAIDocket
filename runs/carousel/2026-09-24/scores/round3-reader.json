@@ -1,0 +1,53 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "weighted_score": 6.63,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.8,
+   "weight": 0.22,
+   "why": "Six frames pass the place-and-hour test at 432 px. Frame 2 is the best: a suburb in haze with the lit line running the whole 330 ft, and it reads in one glance. Frames 1, 3 and 9 also stand in a golden-hour world with the light coming from one consistent direction. Two frames fail the showstopper test. Frame 4, the deck's turn, is a top-down shot of tan grass, a diagonal fence rail, a dark green band and a mauve slab in the bottom right. It has no pod, no line and no sky, and I could not name the subject even at full resolution. Frame 6 is a flat brown parallel-camera chart. At feed size the masts read as rows of 'F' tally marks, not Chargers, and the top rows stick out past their dark lots. Frame 5's person and frame 7's man at the fence are capsule mannequins and look CG. That is two frames capped at 6 and a person that reads as a dummy, so the score is below 6."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "The contact sheet reads as one backyard at golden hour. The wood fence recurs on frames 1, 3, 4, 7, 8 and 9, and the cyan winch line carries through 1, 2, 3 and 7. Frame 6 breaks the filmstrip: a flat light-brown chart with no sky, ground or light, between the dark-sky frames 5 and 7 (machine_qa bands 0.78/0.63/0.76 against 0.34 to 0.77 on 5). Frame 4's overhead green and tan also sits outside. The storyboard says the line hangs 'into the pod's own view (4)' and 'crosses the page (8)', but it is visible on neither frame, so the motif stops working exactly where it was meant to carry the turn."
+  },
+  "claim_integrity": {
+   "score": 7.3,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces: 330 (c11), 75 (c19), 63, 7.8, 8 and 8 (c13, c14), 220, 4,400 and 220,000 (c7), 36 and twelve (c34), 400 (c29), 59.7 (c21, c35), 1.5 and 65 (c20), October 11th (c2), and the address (c3). The 0.2951 energy ratio behind frame 7's bars is correct, and the bars measure about 107 px to 365 px at thumb size, which matches. Attribution is disciplined, and 'only' never appears, which honours the rejected list. Three stretches remain. (1) Frame 8's page is a montage of three passages from different parts of the draft (title block, c6 at lines 175 to 176, Table 2.2-1 at 316 to 337, c27 from Appendix D at 2611) set out as a single facsimile page under 'ITS OWN WORDS'. A reader will take it for a real page. (2) Frame 8's headline and dek build a self-assessment reading. They leave out what c6's note and c27's note record: the preparers are at ICF, the noise report was 'PREPARED BY: ICF' for the FAA, and the method 'was approved by the FAA'. (3) Frame 7 dropped round 2's 'homes would get far fewer' half of c29. It now pairs the 400-a-day figure with a picture of a single-family house and a man in its yard, so the image says the opposite of the caveat."
+  },
+  "story_and_stakes": {
+   "score": 7.4,
+   "weight": 0.16,
+   "why": "A Texan comes away knowing the body (FAA), the applicant (Zipline), the five metros (frame 6 dek, caption), the mechanism (frames 1 to 4), the open question (no figure for how often an operator is sent an image, frames 4 and 9), the deadline, and the exact email and subject line (frame 9). That is a real next step. It falls short of 9 in three ways. No county is named. The caption never says in plain words that this is a public comment period on a draft environmental assessment ('The draft says Zipline prepared it' comes before any draft has been introduced). And with c5 cut, the reader is never told the final version must answer substantive comments, so the closing question has no stated lever behind it. The stakes a resident would feel first, 24/7 operations with about 5% of flights between 10 pm and 7 am (c9, c10), are verified and appear on no frame."
+  },
+  "sequence_and_momentum": {
+   "score": 6.6,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 build cleanly: descend, hold, judge, can't tell. Frame 4 is the turn, and its art fails to carry it. Frames 5 (aircraft dimensions), 6 (Charger count) and 7 (noise) then leave the operator question for three frames of spec sheet. Frame 5 especially belongs before frame 2, or could be cut. Frame 8 is a second, stronger turn ('Zipline prepared it') and arrives late. Frame 9 lands by returning to the operator question and giving the address, which is a good close. The cover headline 'The pod checks the spot' is abstract until the reader has read the dek."
+  },
+  "voice": {
+   "score": 6.4,
+   "weight": 0.1,
+   "why": "Clean, on register, no house-rule breaks that I could find. It is flat and legalistic, though. 'The draft' or 'the draft says' carries almost every dek: 4 (twice), 5, 6 (twice), 7, 8 and 9. Nothing sounds like a person from San Antonio or Houston. The caption closer 'If somebody asks by October 11th, will the final version say how often an operator is sent an image?' is oblique and awkward. The hashtags '#FAA #SanAntonio #Zipline' pick one of five metros, which a reader in Houston (equal cap, 65 Chargers) will notice."
+  },
+  "variety": {
+   "score": 6.3,
+   "weight": 0.1,
+   "why": "A new topic: no drone-delivery deck in the 30-day window, and no. 18's Austin park-drone ban is a different decision. Golden hour is a real palette break from no. 32's dark genset yard. Structurally, though, it repeats three of no. 32's recorded moves the next day: a capsule person as a scale ruler (frames 5 and 7 here, 'a person modelled in capsules at 1.70 m' there), a parallel camera for a quantity comparison (frame 6 here, 'the share, the forty' there), and a rendered page with projected type on a surface (frame 8 here, 'type projected onto a rendered page' there). It looks like last deck's grammar with a new subject."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 4, the deck's turn, as the pod's downward image with the pod's own lit line and shadow on a readable yard, and have the dek say this is the kind of image the draft says goes to an operator: right now the one frame carrying the story's open question is an unreadable field of grass and a slab, and no reader can tell it is meant to be the operator's view.",
+ "other_findings": [
+  "No hard fail found. All numerals trace to a claim or to compute.py. machine_qa.json reports 0 fails (32 warns, 26 of them frame 8's canvas-raster page text). The topic is clean against topics.json. Sources are same-day curl copies after a WebFetch 403, and claims.json records that openly.",
+  "The score is under the 8.0 bar with no hard fail, so ship: false is a threshold dissent, not a fault. At 6.63 this deck is below acceptable, not merely acceptable.",
+  "Frame 1's blue winch line reads at thumb size as a sci-fi light beam or laser, not a line. Frame 2's dek admits the line is drawn wider than it is, but frame 1, the only frame most feed readers see, does not say so.",
+  "Frame 7 labels its bars 'BAR LENGTH IS SOUND ENERGY, NOT DECIBELS'. It is honest, but a feed reader won't parse it, and energy scaling makes 59.7 look about a third of the way to the line, which dramatises the margin in the draft's favour.",
+  "Frame 6 machine_qa warns that a drawn rule crosses the dek's glyph band and couldn't be measured, and the kicker's worst-point contrast sits at 4.5. By eye the flat brown frame is legible but has the weakest type-on-art seating in the deck.",
+  "The storyboard says frame 7 'attributes the no significant impact conclusion to the draft (c26)', but c26 is no longer cited on frame 7 or anywhere in first_comment.txt. Either the plan or the frame is stale."
+ ]
+}

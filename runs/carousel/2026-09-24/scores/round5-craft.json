@@ -1,0 +1,54 @@
+{
+ "lens": "craft",
+ "round": 5,
+ "weighted_score": 6.868,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.6,
+   "weight": 0.22,
+   "why": "THE SHOWSTOPPER TEST caps this criterion at 6, and frame 6 is the frame that trips it. Its masts stand on a flat brown plane. The 'horizon' is a dark band at about y 425 of 2000 that runs through the dek (machine_qa warns that a drawn rule crosses the dek's glyph band and 'COULD NOT BE MEASURED'), the bottom 40 percent of the frame is empty ground, and there is no hero object and no place. Under the cap, most frames still read as CG primitives. Frame 5 has a capsule mannequin with no face, bricks that look like toy blocks, and a dock built from plain boxes, with smeared shadow blotches on the fuselage. Frame 3's sky and roof are visibly posterized into blotchy contour bands at full resolution, which is a render defect and not a grade. Frame 7's hero pod is a speck about 30 px tall at 1600, the dek sits on busy mottled dirt against doctrine rule 8 ('never over scatter'), and its two equal bars are flat web UI rectangles. Frame 1's house is a windowless slab under a black roof. Its live oak is a faceted low-poly blob, the kind the doctrine names as a 'game asset'. The pod hangs in the sky with no shadow on the lawn, even though the storyboard says the low sun's shadows are what make the pod's position 'readable in one glance'. Frame 4 at 432 px reads as a white ball on a sandy texture next to a flat pink slab, with the accent line leaving like a laser. What earns points: frame 9, with its open gate, the light path through it and the parcel's cast toward the camera, is the one frame that reads as a photograph of a place at an hour. Frame 2's aerial block with haze and the line at one scale is a real image, though the sky meets a flat fog band in a hard straight seam at about y 920. Frame 8's document is large, lit, legible, and set in a place."
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "why": "It clearly reads as one deck. Frames 1, 3, 7, 8 and 9 share cedar fence, straw grass, a blue-grey sky and one grade. The winch line in comal_lit on frames 1, 2, 3, 4 and 7 does real work as the motif, and the camera move the storyboard declares (street, block corner, pod height, straight down, dock, lot, fence, table, into the sun) is visible on the contact sheet. The value track holds by eye, with no strobe, and panel_ready passes it. Frame 6 sits well outside: a different ground (a featureless brown plane with no fence, lawn or house), no hero and no line. Frame 4's overhead olive-and-pink field is also foreign to the rest. The hero is missing on 6 and 8, so 'one hero object carried through' holds on six frames of nine. The mauve-grey murk in frame 9's sky and frame 1's horizon is the 'mauve smog' defect ILLUSTRATION_SYSTEM.md names under 'What still fails'. So this is a 7 with two frames outside it, which puts it under 7."
+  },
+  "claim_integrity": {
+   "score": 7.3,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces. Frame 8's whole Table 2.2-1 (9,932 through 660,000) is verbatim in c7's quote, 'September 2026' is in the source title, and the Platform 2 footnote is c27. Frame 6's 220, 4,400, 220,000 and 36 come from c7 and c34, frame 7's 400, 59.7, 63.5 and 65 from c29, c21, c37 and c38, and frame 9's address from c3. The sources are primary. The deduction is frame 7's dek, which says 'At that rate it CAPS delivery noise at DNL 59.7 dB at any point'. c21's quote is a modelled finding ('would not exceed DNL 59.7 dB at any point'), not a limit the draft imposes. Round 5 corrected the permanent record to 'does not exceed' and left the slide saying 'caps', so the record and the deck now disagree on the same claim. That is a stretch, and I am not calling it a fabrication. Both sources returned WebFetch 403 and were verified against same-day curl copies, which is disclosed in claims.json."
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "why": "It names the body (the FAA), the applicant, all five metros (cover dek), the deadline (October 11th, frames 1 and 9), the address and the subject line (frame 9), and a concrete question to ask ('how often an operator is sent an image', frame 9 and the caption). The authorship point on frame 8, drawn from the draft's own words, gives a Texan a real reason to comment. It names no county, which the fact check deliberately refused, and the stake stays procedural rather than landing on a street a reader lives on."
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "The cover through frame 4 builds the mechanism well: the pod, the height, the yard judged, then the operator step and the gap in the draft, which is the turn. Frames 5 and 6 are spec sheet interruptions (weight and wingspan, then counts) that stall the momentum right after that turn. Frame 7 is the densest frame in the deck, with a hook, a three-sentence dek and two bar labels. The close lands. Frame 9's open gate as the comment window is the best image-to-argument fit in the deck."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "It is clean and on register, with no colons, dashes or first person, and it attributes carefully ('The draft says', 'The draft gives no figure for how often'). It is also flat and a little bureaucratic: 'The page sets passages from across the draft side by side' (frame 8) and 'It says 59.7 is the least added noise that lifts an area from 63.5 to 65 dB, a rise it counts as significant' (frame 7) read as an analyst's summary. The mute world law strips all Texas specificity from the art, and the storyboard's 'north San Antonio backyard' reaches the reader nowhere."
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "It is distinct from the printed decks of 09-19 to 09-21, and only the second rendered deck. Several familiar moves come back, though. It returns to a residential block (09-21 was an Oak Cliff block on St. Augustine), it reuses no. 32's 'person modelled in capsules at 1.70 m', it has another DOCUMENT frame on a board, and it repeats the pattern of a count frame on a bare plane. The palette of dusk blue-grey over warm cedar and straw is new to the last six."
+  }
+ },
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build the deck's world to the engine's own standard before any frame (a real lawn instead of sparse spikes on dirt, houses with windows and TXT.weather grime, a figure that is not a capsule, a sky that is not posterized), then stage frame 6's count inside that same neighbourhood with a horizon on a third instead of on a bare brown plane, because frame 6 alone triggers the showstopper cap and every other frame reads as untextured CG primitives.",
+ "other_findings": [
+  "SHIP IS TRUE ONLY UNDER THE ROUND CAP. 6.868 is 1.13 under the 8.0 bar. That is an acceptable deck, not a good one, and the email and run record must say so.",
+  "Frame 3 (/home/user/TexasAIDocket/out/2026-09-24/render/slide-03.png): the sky and roof show heavy posterization and contour banding, which you can see at full size and which shows as streaks even on the contact sheet. Lower-intensity banding appears in frame 4's patio slab and frame 6's sky. This looks like an 8-bit sky texture or a quantizing step in the engine. It is worth a backlog proposal against txthree.js, because it will recur on every goldenHour deck.",
+  "Frame 6: machine_qa warns 'HOUSTON' is outside the 80 px safe zone at x 55. The Austin block throws disconnected dark shadow strips past its pad that the other four blocks do not show, so at feed size it reads as a glitch. At 432 px the masts do not read as Chargers.",
+  "Frame 7: 'caps' in the dek contradicts round 5's own correction of tx-2026-0186 to 'does not exceed'. That is a one-word fix and it should have gone in with the record change.",
+  "Frame 1: the storyboard dossier describes 'the pod hanging about two metres over the grass', but the render puts it in the sky above the neighbour's roof, with no cast shadow to place it. panel_ready's 'every dossier describes the frame the run made' passed this.",
+  "Frame 8: 27 canvas fillText warnings. The document's type ships as a bitmap in the vector PDF. That is acceptable for a drawn page, but the frame's whole argument ('Its own words') is invisible to copy_sync and screen readers.",
+  "Frame 9's sky is the mauve-grey mix ILLUSTRATION_SYSTEM.md already names as a known failure ('came out as mauve smog'), and its sun is an oversized soft bloom disc rather than a sun."
+ ]
+}

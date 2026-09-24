@@ -1,0 +1,109 @@
+{
+ "weighted_score": 6.57,
+ "judges": [
+  6.41,
+  6.918,
+  6.47
+ ],
+ "spread": 0.508,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "judges": [
+    5.5,
+    5.5,
+    5.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.2,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.8,
+    6.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.9,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.2,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "A false statement of fact in the caption, which the rubric treats as an unverified fact presented as verified. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt has 6 lines: a sources header, two source titles with claim ids, and two URLs. 9-FAA-Drone-Environmental@faa.gov does not appear in it, and neither does the mailing address. The caption itself also leaves the address out, so the post's call to action points readers somewhere that has nothing to act on.",
+  "Unverified fact presented as verified, in published copy. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt contains no comment address. It has a sources line, the FAA NEPA page URL and the EA PDF URL. 9-FAA-Drone-Environmental@faa.gov is not in it. No claim backs the caption's sentence, and the run's own artifact contradicts it. A reader who follows the pointer finds no address. The lenient reading, that 'address' means the FAA web page, does not hold: that page is a program page, not a place to submit a comment. It clears if the first comment carries the c3 address or the caption sentence is cut."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "A false statement of fact in the caption, which the rubric treats as an unverified fact presented as verified. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt has 6 lines: a sources header, two source titles with claim ids, and two URLs. 9-FAA-Drone-Environmental@faa.gov does not appear in it, and neither does the mailing address. The caption itself also leaves the address out, so the post's call to action points readers somewhere that has nothing to act on."
+  },
+  {
+   "judge": 3,
+   "fail": "Unverified fact presented as verified, in published copy. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt contains no comment address. It has a sources line, the FAA NEPA page URL and the EA PDF URL. 9-FAA-Drone-Environmental@faa.gov is not in it. No claim backs the caption's sentence, and the run's own artifact contradicts it. A reader who follows the pointer finds no address. The lenient reading, that 'address' means the FAA web page, does not hold: that page is a program page, not a place to submit a comment. It clears if the first comment carries the c3 address or the caption sentence is cut."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.918 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.918,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.918 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1
+}

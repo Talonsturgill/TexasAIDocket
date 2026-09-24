@@ -1,0 +1,180 @@
+{
+ "_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.",
+ "metros": {
+  "Houston": {
+   "area_sq_mi": 9932,
+   "chargers": 65,
+   "dropboxes": 1300,
+   "deliveries_max": 65000,
+   "transits_max": 195000,
+   "from": [
+    "c7"
+   ]
+  },
+  "San Antonio": {
+   "area_sq_mi": 3326,
+   "chargers": 65,
+   "dropboxes": 1300,
+   "deliveries_max": 65000,
+   "transits_max": 195000,
+   "from": [
+    "c7"
+   ]
+  },
+  "Austin": {
+   "area_sq_mi": 2498,
+   "chargers": 30,
+   "dropboxes": 600,
+   "deliveries_max": 30000,
+   "transits_max": 90000,
+   "from": [
+    "c7"
+   ]
+  },
+  "Amarillo": {
+   "area_sq_mi": 1199,
+   "chargers": 30,
+   "dropboxes": 600,
+   "deliveries_max": 30000,
+   "transits_max": 90000,
+   "from": [
+    "c7"
+   ]
+  },
+  "El Paso": {
+   "area_sq_mi": 629,
+   "chargers": 30,
+   "dropboxes": 600,
+   "deliveries_max": 30000,
+   "transits_max": 90000,
+   "from": [
+    "c7"
+   ]
+  }
+ },
+ "total": {
+  "area_sq_mi": 17584,
+  "chargers": 220,
+  "dropboxes": 4400,
+  "deliveries_max": 220000,
+  "transits_max": 660000,
+  "from": [
+   "c7"
+  ],
+  "basis": "the draft's maximum"
+ },
+ "transits_per_delivery": {
+  "value": 3,
+  "word": "three",
+  "from": [
+   "c8"
+  ]
+ },
+ "per_charger_max": {
+  "value": 1000,
+  "from": [
+   "c24"
+  ]
+ },
+ "cruise": {
+  "feet": 330,
+  "metres": 100.584,
+  "from": [
+   "c11"
+  ],
+  "rounding": "feet times 0.3048, three decimals, geometry only"
+ },
+ "aircraft": {
+  "span_ft": 7.8,
+  "height_ft": 1.8,
+  "length_ft": 8,
+  "span_m": 2.377,
+  "height_m": 0.549,
+  "length_m": 2.438,
+  "propellers": 5,
+  "weight_lb": 63,
+  "payload_lb": 8,
+  "from": [
+   "c13",
+   "c14"
+  ],
+  "basis": "approximately, as the draft says"
+ },
+ "delivery_hover": {
+  "seconds": 75,
+  "feet": 330,
+  "from": [
+   "c19"
+  ]
+ },
+ "day": {
+  "hours": 24,
+  "day_pct": 95,
+  "night_pct": 5,
+  "from": [
+   "c9",
+   "c10"
+  ]
+ },
+ "noise": {
+  "threshold_dnl_db": 65,
+  "significant_step_db": 1.5,
+  "delivery_dnl_db_any_distance": 58.1,
+  "delivery_dnl_db_cap": 59.7,
+  "at_deliveries_per_location": 400,
+  "screening_dnl_db": 59.7,
+  "lift_existing_dnl_db": 63.5,
+  "lift_added_dnl_db": 59.7,
+  "from": [
+   "c20",
+   "c21",
+   "c26",
+   "c35",
+   "c37"
+  ]
+ },
+ "charger_docks": {
+  "max": 72,
+  "typical": 36,
+  "from": [
+   "c32"
+  ],
+  "basis": "a Charger is a site of docks, not one mast"
+ },
+ "charger_towers": {
+  "docks": 36,
+  "towers_word": "three",
+  "from": [
+   "c34"
+  ]
+ },
+ "dropbox_setback": {
+  "feet": 50,
+  "metres": 15.24,
+  "load_per_day": 300,
+  "from": [
+   "c22"
+  ]
+ },
+ "chargers": {
+  "houston": 65,
+  "san_antonio": 65,
+  "austin": 30,
+  "amarillo": 30,
+  "el_paso": 30,
+  "from": [
+   "c7"
+  ]
+ },
+ "deliveries": {
+  "houston": 65000,
+  "san_antonio": 65000,
+  "austin": 30000,
+  "amarillo": 30000,
+  "el_paso": 30000,
+  "from": [
+   "c7"
+  ],
+  "basis": "the draft's maximum per day"
+ }
+}
