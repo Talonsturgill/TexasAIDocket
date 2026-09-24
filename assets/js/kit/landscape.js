@@ -403,7 +403,7 @@ export function install(K, THREE, TXT) {
       // limestone ledges: slabs laid along the contour on the risers, half buried
       if (o.ledges) {
         const slabGeo = (() => {
-          const b = new THREE.BoxGeometry(1, 1, 1, 6, 2, 3), p = b.attributes.position, n = noise2(seed + 55);
+          const b = new THREE.BoxGeometry(1, 1, 1, 4, 1, 2), p = b.attributes.position, n = noise2(seed + 55);
           for (let i = 0; i < p.count; i++) {
             const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
             const k = 1 + (n(x * 4 + 3, z * 4 + y * 2) - 0.5) * 0.35;
@@ -416,7 +416,7 @@ export function install(K, THREE, TXT) {
         const lm = M('hct-ledge', { color: 0xffffff, roughness: 0.9, map: limeTex() });
         const list = [], cols = [], want = Math.round(170 * (S / 800) * (S / 800) * (o.relief / 60));
         let tries = 0;
-        while (list.length < Math.min(want, 900) && tries < want * 60) {
+        while (list.length < Math.min(want, 600) && tries < want * 60) {
           tries++;
           const x = (r() - 0.5) * S * 0.92, z = (r() - 0.5) * S * 0.92, H = hAt(x, z);
           if (H.m < 0.6) continue;
@@ -618,7 +618,7 @@ export function install(K, THREE, TXT) {
       const n1 = tileNoise2(601, 4, 48), n2 = tileNoise(603, 64), n3 = tileNoise2(607, 96, 6);
       pixelPaint(x, N, (i, j) => { const u = i / N, v = j / N;
         let k = 0.86 + (n1(u * 4, v * 48) - 0.5) * 0.28 + (n2(u * 64, v * 64) - 0.5) * 0.14;
-        const jt = n3(u * 96, v * 6); if (jt > 0.72) k *= 1 - (jt - 0.72) * 1.2;      // joints
+        const jt = n3(u * 96, v * 6); if (jt > 0.76) k *= 1 - (jt - 0.76) * 0.7;      // joints
         const g = 245 * k; return [g, g * 0.97, g * 0.93]; });
     });
   }
@@ -681,7 +681,7 @@ export function install(K, THREE, TXT) {
           else if (P.band === 2) mix3(tmp, cFace, cSoft, (P.h > 0 ? (h1 - P.h) / (capT * 0.9) : 1));
           else { const t = (h2 - P.h) / h2; mix3(tmp, cSoft, cTal, smooth(0, 0.35, t)); mix3(tmp, tmp, cFoot, smooth(0.6, 1, t)); tmp.multiplyScalar(0.88 + gul * 0.18); }
           colr[q] = tmp.r; colr[q + 1] = tmp.g; colr[q + 2] = tmp.b;
-          uv[(i * rows + k) * 2] = th * Rr / 24; uv[(i * rows + k) * 2 + 1] = y / 24;
+          uv[(i * rows + k) * 2] = th * Rr / 70; uv[(i * rows + k) * 2 + 1] = y / 24;
         }
       }
       const idx = [];
@@ -1378,20 +1378,25 @@ export function install(K, THREE, TXT) {
     const a = boll(rng, s), b = boll(rng, s * 0.9); b.rotateY(Math.PI / 4); b.rotateX(0.5);
     return mergeGeos([a, b]);
   }
+  // a lock of lint: a smoothed octahedron, white above, the brown bur showing underneath
+  function lintGeo(rng, s) {
+    const g = boll(rng, s), p = g.attributes.position, C = new Float32Array(p.count * 3), w = col(rng() < 0.2 ? 0xe9e1d2 : 0xf7f5ef), b = col(0x4a3828);
+    for (let i = 0; i < p.count; i++) { const c = p.getY(i) < -s * 0.3 ? b : w; C[i * 3] = c.r; C[i * 3 + 1] = c.g; C[i * 3 + 2] = c.b; }
+    g.setAttribute('color', new THREE.BufferAttribute(C, 3)); return g;
+  }
   function cottonPlant(rng, growth) {
     const parts = [], H = lerp(0.2, 0.95, clamp(growth / 0.8, 0, 1)) * (0.85 + rng() * 0.3);
     const open = growth >= 0.88;
     const stemC = open ? 0x4a3a2c : 0x5d6b38;
     parts.push(stem(H, 0.011, 0.005, stemC, 4));
-    const branches = open ? 5 : Math.round(lerp(2, 6, clamp(growth / 0.8, 0, 1)));
+    const branches = open ? 6 : Math.round(lerp(2, 6, clamp(growth / 0.8, 0, 1)));
     for (let b = 0; b < branches; b++) {
       const y = H * (0.18 + 0.72 * b / branches), a = b * 2.4 + rng() * 0.8, len = (H - y) * 0.55 + 0.1, th = 0.75 + rng() * 0.35;
       const br = stem(len, 0.006, 0.003, stemC, 3); br.rotateZ(-th); br.rotateY(a); br.translate(0, y, 0); parts.push(br);
       const at = (f) => [Math.cos(a) * Math.sin(th) * len * f, y + Math.cos(th) * len * f, -Math.sin(a) * Math.sin(th) * len * f];
       if (open) {
-        [0.55, 1.0].forEach((f) => { const t = at(f), s = 0.03 + rng() * 0.012;
-          parts.push(place(paintGeo(puff(rng, s), rng() < 0.15 ? 0xe6dccb : 0xf6f4ee), t[0], t[1] + s * 0.5, t[2], rng() * TAU));
-          parts.push(place(paintGeo(new THREE.OctahedronGeometry(s * 0.6, 0), 0x3a2c20), t[0], t[1] - s * 0.1, t[2])); });
+        [0.4, 0.72, 1.0].forEach((f) => { const t = at(f), s = 0.04 + rng() * 0.018;
+          parts.push(place(lintGeo(rng, s), t[0], t[1] + s * 0.4, t[2], rng() * TAU)); });
         if (rng() < 0.45) { const t = at(0.4), lf = leafStrip(0.06, 0.03, -0.3, 1, 2, 0x4a3524, 0x6b4c30); place(lf, t[0], t[1], t[2], rng() * TAU, -1.0); parts.push(lf); }
       } else {
         for (let k = 0; k < 2; k++) { const t = at(0.5 + k * 0.5), lf = leafStrip(0.1 + rng() * 0.04, 0.06, 0.25, 1.2, 2, 0x3b5527, 0x5b7a36); place(lf, t[0], t[1], t[2], rng() * TAU, 0.15 - rng() * 0.4); parts.push(lf); }
@@ -1399,21 +1404,21 @@ export function install(K, THREE, TXT) {
       }
     }
     if (!open) for (let k = 0; k < 4; k++) { const lf = leafStrip(0.1 + rng() * 0.04, 0.06, 0.3, 1.3, 2, 0x3b5527, 0x587733); place(lf, 0, H * (0.8 + rng() * 0.2), 0, rng() * TAU, -0.1); parts.push(lf); }
-    else parts.push(place(paintGeo(puff(rng, 0.035), 0xf6f3ec), 0, H + 0.02, 0));
+    else parts.push(place(lintGeo(rng, 0.045), 0, H + 0.02, 0));
     return mergeGeos(parts);
   }
   function sorghumPlant(rng, growth) {
-    const parts = [], H = lerp(0.3, 1.25, clamp(growth / 0.7, 0, 1)) * (0.9 + rng() * 0.2);
+    const parts = [], H = lerp(0.3, 1.2, clamp(growth / 0.7, 0, 1)) * (0.78 + rng() * 0.4);
     const ripe = growth >= 0.85, headed = growth >= 0.6;
-    parts.push(stem(H, 0.012, 0.008, ripe ? 0x7d7c46 : 0x587536, 5));
+    parts.push(stem(H, 0.011, 0.007, ripe ? 0x5f6a3a : 0x4f6c32, 5));
     for (let k = 0; k < 7; k++) {
       const y = H * (0.08 + 0.78 * k / 7), dry = ripe && k < 2;
-      const lf = leafStrip(0.5 + rng() * 0.2 - k * 0.03, 0.045, 0.7, 1.55, 3, dry ? 0x8f8055 : 0x3f5f29, dry ? 0xb4a16c : (ripe ? 0x7c8a46 : 0x68893c));
+      const lf = leafStrip(0.55 + rng() * 0.2 - k * 0.03, 0.055, 0.8, 1.5, 3, dry ? 0x8f8055 : 0x3f5f29, dry ? 0xb4a16c : (ripe ? 0x7c8a46 : 0x68893c));
       place(lf, 0, y, 0, k * 2.4 + rng() * 0.7, 0.25 + rng() * 0.25); parts.push(lf);
     }
     if (headed) {
-      const hc = ripe ? [0x7c3822, 0x8f4526, 0x6e3220, 0x9a5230][Math.floor(rng() * 4)] : 0x8fa05a;
-      const hd = lump(Math.floor(rng() * 1e5), 1, 0.042, 0.11, 0.042, 0.7); hd.translate(0, 0.1, 0);
+      const hc = ripe ? [0x6a2c1c, 0x7a331f, 0x5e2a1b, 0x844024][Math.floor(rng() * 4)] : 0x8fa05a;
+      const hd = lump(Math.floor(rng() * 1e5), 1, 0.034, 0.085, 0.034, 0.8); hd.translate(0, 0.08, 0);
       parts.push(place(paintGeo(hd, hc), 0, H, 0, rng() * TAU, (rng() - 0.5) * 0.35));
     }
     return mergeGeos(parts);
@@ -1495,7 +1500,7 @@ export function install(K, THREE, TXT) {
         else { mix3(c, cG, cA, smooth(0.0, 0.3, t)); }
         cc[i * 3] = c.r; cc[i * 3 + 1] = c.g; cc[i * 3 + 2] = c.b;
       }
-      lg.setAttribute('color', new THREE.BufferAttribute(cc, 3)); lg.computeVertexNormals(); lg.translate(tx, ty, tz); parts.push(lg);
+      lg.setAttribute('color', new THREE.BufferAttribute(cc, 3)); smoothNormals(lg); lg.translate(tx, ty, tz); parts.push(lg);
     }
     for (let k = 0; k < 5; k++) { const lf = leafStrip(0.07 + rng() * 0.04, 0.02, 0.25, 1.4, 2, 0x3d5a28, 0x5e7d38); place(lf, 0, 0.01, 0, rng() * TAU, -0.2); parts.push(lf); }
     return mergeGeos(parts);

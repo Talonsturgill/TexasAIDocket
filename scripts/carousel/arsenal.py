@@ -648,7 +648,9 @@ def phases_naming(routine: str, sections, needle: str) -> list[str]:
     got: list[str] = []
     stem = needle.rsplit(".", 1)[0]
     # `scripts/carousel/x.py`, `x.py`, or the bare name in backticks (`layout_check --require`)
-    rx = re.compile(r"(?<![\w])" + re.escape(needle) + r"(?![\w])|`" + re.escape(stem) + r"[` ]")
+    # A bare one-word name (`sky`, `og`) is ordinary vocabulary, so it counts only with a flag.
+    bare = r"|`" + re.escape(stem) + (r"[` ]" if "_" in stem else r" --")
+    rx = re.compile(r"(?<![\w])" + re.escape(needle) + r"(?![\w])" + bare)
     for i, line in enumerate(routine.split("\n"), 1):
         if rx.search(line):
             lab = section_of(sections, i)

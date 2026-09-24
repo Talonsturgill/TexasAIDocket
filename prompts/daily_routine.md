@@ -184,6 +184,13 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
 - `out/<date>/run_state.json` if it exists — **the durable plan across contexts, and the only
   one.** This run writes no worklog and creates no other plan file. See RUN STATE below.
+- `knowledge/carousel/ARSENAL.md`, **everything this run has, on one page.** Every engine call
+  with its signature, every world, every kit model with its size and options, every library,
+  every gate and tool with its flags and the phase that runs it, every agent and service. It is
+  generated from the sources by `scripts/carousel/arsenal.py`, so it is current rather than
+  remembered. **Look a thing up there before you conclude it does not exist, and before you
+  build it.** If `python3 scripts/carousel/arsenal.py --check` exits non-zero at wake, run it
+  without the flag before you read the page, and commit the result in Phase 17.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
@@ -891,10 +898,22 @@ surface, what a frame is made of, and a technique is chosen because this claim w
 `why_this_technique` in the dossier is where that is argued. A cartographic claim wants
 cartography. A claim about a quantity over time does not become one by being drawn on a map.
 
+**THEN PLAN FROM THE ARSENAL, BEFORE ANYTHING IS MODELLED.** `knowledge/carousel/ARSENAL.md`
+lists what this machine already has: every `TXT` engine call and world, and THE KIT, true scale
+Texas models of people, houses, trees, vehicles, the grid, industry, civic buildings, rooms, the
+ranch and the land, each with its size and options. Hand its KIT and ENGINE sections to every
+director with the brief. **A model the kit has is never rebuilt from primitives.** A capsule
+person, a box house or a blob of an oak when `person`, `ranch_house` and `live_oak` exist is the
+defect that page exists to end, and it is graded as one. **A model the kit lacks is built into
+the kit, not the deck**: once, as a kit model under the kit's own conventions (Phase 10.5 says
+where), never as geometry written into one frame.
+
 Spawn 3 `carousel-treatment-director` agents in parallel, each with a different creative lens and
 the variety ledger's exclusions. **Each pitches nine SUBJECTS and nine LAYOUTS before it pitches
-a surface**, and names its objects from the catalogue or says in metres what it will draw
-instead. Synthesise: pick one, graft the best of the others, and write the reason down.
+a surface**, and names every object by its kit model and options from `ARSENAL.md`
+(`K.make('pump_jack', { crank: 40 })`), or, only for a thing the kit does not have, says in metres
+what it will build instead. Synthesise: pick one, graft the best of the others, and write the
+reason down.
 
 **The rotation is checked before a dossier exists.** Write the nine layouts as a list and run it
 through the table in Node:
@@ -986,7 +1005,8 @@ It holds three things and nothing else:
    `TXDECK.declare`. Frames read it with `TXT.deckWorld()`, and `TXT.sky` refuses any other. The chassis never paints its own sky,
    writes its own ground texture or develops a frame through a second tone curve. The engine
    carries all three, and a second copy is how they drift.
-2. **One material vocabulary**, the ramp and the primitives this deck's world is made of.
+2. **One material vocabulary**, the ramp and the primitives this deck's world is made of, and
+   the deck's hero named as a kit model from `ARSENAL.md`.
 3. **One way of seating type**, which is `TXDECK.lineBoxes` plus `reserveMask` and is never a
    plate.
 
@@ -997,6 +1017,18 @@ grade. That is the only declaration in the deck, so nine frames **can't** hold n
 furniture. A shared draw-the-whole-slide is a template, `deck_chassis.py` refuses one by name,
 and the per frame composition is this machine's whole strength. The chassis hands a frame
 primitives. The frame decides what to build from them.
+
+**THE THINGS IN THE WORLD COME FROM THE KIT.** Choose every model and every engine call from
+`knowledge/carousel/ARSENAL.md` before a line of geometry is written: `K.make` for anything the
+kit lists, `TXT.sky`, `TXT.ground`, `TXT.scatter`, `TXT.contact`, `TXT.weather` and
+`TXT.interior` for the world around it. **A model the kit has is never rebuilt from primitives.**
+**A model it lacks is built into the kit, not the deck**, and because `assets/js/kit/**` is
+`human` lane in `ownership.yaml`, the chassis is where this run builds it: once, as an
+`install(K, THREE, TXT)` function calling `K.define(name, { size, options, note, make })` under
+the conventions in the header of `assets/js/txkit.js` (metres, y up, origin on the ground, front
+on +z, `K.box`, `K.mat` and `K.tex` rather than raw primitives). Each frame calls it once after
+`initKit` and then uses `K.make(name)` like any kit model, so it is shaped to be lifted into
+`assets/js/kit/` unchanged. Phase 17 proposes that lift.
 
 **Then render ONE probe frame against it before writing the other eight**, because a chassis
 that is wrong is wrong nine times and finding that out on frame nine costs the run. **Probe an
@@ -1038,8 +1070,11 @@ not edit the workshop.
 ## PHASE 11 — ART BUILD
 
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
-dossiers, every one of them loading the chassis Phase 10.5 wrote. **The order of work is the
-craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules from it bind here:**
+dossiers, every one of them loading the chassis Phase 10.5 wrote. **Every engine call, kit model
+and library a frame uses is looked up in `knowledge/carousel/ARSENAL.md` first**, with its
+signature and options, because a wrong option name is silently a default. **The order of work is
+the craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules from it bind
+here:**
 
 1. **Frames 7, 8 and 9 are built first.** Every judged deck was thinnest where the argument
    lands, because the budget ran out there. The close, then the turn, then the open.
@@ -1057,9 +1092,13 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules fro
 5. **No plate, ever.** Type sits in a reserve the art left. If the type needs a box to be
    readable, the art under it was drawn without knowing where the type goes, and the fix is the
    art. A wash under 0.55 alpha is atmosphere and is allowed. `deck_chassis.py` measures it.
-6. **A slab is never a subject.** A thing not in the catalogue is drawn in metres from parts
-   with `TXSCENE.sprite`, and goes in `knowledge/carousel/UPGRADE_BACKLOG.md` as a proposal for
-   the catalogue. The bench serves the chassis, never the other way round.
+6. **A slab is never a subject, and a kit model is never rebuilt.** Every standing thing in a
+   rendered frame comes from `K.make` with a model `ARSENAL.md` lists, placed with `TXT.add` and
+   seated with `TXT.contact`. A thing the kit lacks is the chassis's kit model from Phase 10.5,
+   never geometry written into one frame, and it goes in `knowledge/carousel/UPGRADE_BACKLOG.md`
+   as a proposal to lift it into `assets/js/kit/`. `TXSCENE.sprite` and the `TXOBJ` catalogue
+   are for the rare frame that is not rendered. The bench serves the chassis, never the other way
+   round.
 7. **None of the model's own defaults without a reason.** Asked for design work without
    direction, the model this routine runs on falls back on a few default styles, and a general
    "avoid a generic look" only swaps one for another. `ILLUSTRATION_SYSTEM.md` names them for
@@ -1626,6 +1665,23 @@ That stamp swap is not ceremony. Before the merge, this phase could not reach th
 because the carousel actor simply did not own it. Now that one actor runs both surfaces, the only
 thing standing between a self-editing phase and `ledger/docket.json` is a narrower lane, so it gets
 one. **An upgrade needing a file outside that lane is written down as a proposal and stopped.**
+
+**THE ARSENAL IS REBUILT WHENEVER THE MACHINE CHANGED, AND THE CHEAP WAY TO KNOW IS TO REBUILD
+IT.** Run it on every run, in this phase, after the upgrade work and before its commit:
+
+```
+python3 scripts/carousel/arsenal.py
+python3 scripts/carousel/arsenal.py --check
+```
+
+It reads the engine, the kit, the libraries, every gate and tool, the agents, the doctrine and
+this file, and it takes a few seconds. When nothing changed it writes the same bytes and there is
+nothing to commit. When anything changed, a gate added, a doctrine file written, or engine and kit
+work brought in from `main` by Phase 16, `knowledge/carousel/ARSENAL.md` moves and goes into the
+`upgrade` commit. **It is generated and never hand-edited.** A stale arsenal is how the next run
+fails to find the thing this one built. A model the chassis had to build because the kit lacked
+it is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in the same commit, as a proposal to
+lift it into `assets/js/kit/<family>.js`, which only a maintainer can make.
 
 **A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
 worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch

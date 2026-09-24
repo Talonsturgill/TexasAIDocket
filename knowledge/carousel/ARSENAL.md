@@ -19,7 +19,7 @@
 | kit models | 88 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 63 |
-| record and site tools the routine names | 22 |
+| record and site tools the routine names | 20 |
 | agents | 10 |
 | knowledge files | 41 |
 | examples | 6 |
@@ -30,18 +30,18 @@
 |---|---|
 | costs | `render.py` |
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `gridwatch_page.py`, `house_style_check.py`, `waterwatch_page.py` |
-| context | `dossier_check.py` |
+| context | `arsenal.py`, `dossier_check.py` |
 | 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py` |
 | 2 | `docket_build.py`, `docket_staleness.py` |
 | 3 | `places.py`, `reverify.py`, `site_build.py` |
 | 5 | `docket_build.py`, `docket_ingest.py`, `site_build.py` |
 | 6 | `claims_check.py` |
-| 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `lastmod.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
+| 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
 | 8 | `dedupe_check.py` |
 | 9 | `instincts.py`, `layout_check.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py` |
 | 10 | `caption_check.py` |
-| 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py`, `sky.py` |
+| 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `layout_check.py`, `noun_trace.py`, `plan_render_check.py`, `texan_check.py` |
@@ -50,7 +50,7 @@
 | 14b | `panel_ready.py`, `qa.py` |
 | 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
-| 17 | `instincts.py`, `prompt_audit.py` |
+| 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py` |
 | 18 | `guards_local.py`, `merge_ready.py` |
 | 19 | `email_check.py`, `gmail_draft.py`, `prompt_audit.py` |
 
@@ -199,17 +199,17 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
-| `battery_storage` | 66 x 14 x 42 | rows, cols, gsu | Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer. |
-| `gas_peaker` | 48 x 32 x 22 | units, transformer | A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ... |
-| `h_frame` | 9.8 x 23.5 x 1.4 | material, height, voltage | Two pole H-frame: poles 5.5 m apart, double timber crossarm, timber X brace, three phases horizontal (centre and outboard), static wire on each pole top. |
-| `monopole_138` | 9.2 x 30.5 x 2.2 | circuits, insulators, finish, height | Tubular 12 sided tapered steel pole on an anchor bolt pier, curved davit arms, 138 kV polymer strings, shield wire peak. userData.attach/.shield. |
-| `power_line` | 15.2 x 49.5 x 660 | structure, voltage, spans, span, sag, structures, insulator | Structures along z with every conductor and shield wire strung as a sagging span between the attach points each structure publishes; bundles get spacers every 70 m. |
-| `power_plant` | 120 x 58 x 120 | units, cooling | A combined cycle block: F class gas turbines with elevated inlet filter houses, exhaust diffusers into heat recovery steam generators with buckstays, drums, stair towers and 50 m stacks, a steam turbine hall, mechanical draft cooling tower or air cooled ... |
-| `solar_array` | 42 x 3.4 x 26 | rows, cols, tilt, pitch | Single axis trackers, one module in portrait (1P): 2.28 x 1.13 m bifacial modules on a square torque tube 2.1 m up, W6 piles every 7 m, slew drive at mid row, controller and combiner. |
-| `substation` | 58 x 22 x 76 | size, kv, leads | A fenced ERCOT yard on a crushed rock pad: dead end gantries, vertical break disconnects, SF6 dead tank breakers, autotransformers with radiators and conservators, a 138 kV low side, lightning masts, control house. |
-| `transmission_tower` | 15.2 x 49.5 x 9.3 | voltage, insulator, height, leads | Self supporting galvanized lattice. 345 kV: double circuit, vertical phases, twin bundle, about 49 m. 138 kV: double circuit about 32 m. 765 kV: single circuit horizontal, 6 bundle V strings. userData.attach and .shield give wire points. |
-| `utility_pole` | 2.6 x 11.2 x 4.6 | transformer, streetlight, guy, guyDir, insulators, height | Three phase distribution: treated pine pole, 8 ft crossarm on flat braces, two crossarm pins and a pole top pin, neutral on a spool, cutout and arrester feeding a 25 to 50 kVA can. |
-| `wind_turbine` | 121 x 150 x 14 | rotor, hub, diameter, yaw | A 2.5 to 3 MW class machine: 90 m tapered tubular steel tower with flanges and a base door, nacelle with cooler, met mast and obstruction light, spinner, three twisted and tapered airfoil blades with prebend, 5 degree shaft tilt, pad mount transformer. |
+| `battery_storage` | 66 x 14 x 42 | rows, cols, gsu | OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. |
+| `gas_peaker` | 48 x 32 x 22 | units, transformer | OPTIONS units 1 \| 2; transformer adds the generator step up. |
+| `h_frame` | 9.8 x 23.5 x 1.4 | material, height, voltage | OPTIONS material wood \| steel (weathering steel tubes); height m above ground; voltage 69 \| 138. |
+| `monopole_138` | 9.2 x 30.5 x 2.2 | circuits, insulators, finish, height | OPTIONS circuits 1 \| 2; insulators suspension \| post (braced horizontal line post); finish galvanized \| weathering (null = seeded); height m above ground. |
+| `power_line` | 15.2 x 49.5 x 660 | structure, spans, span, sag, structures | OPTIONS structure transmission_tower \| monopole_138 \| h_frame \| utility_pole; spans; span m (null = typical: 330, 200, 230, 45); sag m at mid span (null = about span x 0.034); structures [[x, z, rotY], ...] places them yourself and the wires follow; voltage ... |
+| `power_plant` | 120 x 58 x 120 | units, cooling | OPTIONS units 1 \| 2 gas turbine and HRSG trains; cooling tower (mechanical draft) \| acc (air cooled condenser). |
+| `solar_array` | 42 x 3.4 x 26 | rows, cols, tilt, pitch | OPTIONS rows (trackers); cols (modules per row); tilt deg, positive faces +z, trackers run about plus or minus 60; pitch m row spacing. |
+| `substation` | 58 x 22 x 76 | size, kv, leads | OPTIONS size small \| large (2 or 3 transformer bays); kv high side 345 \| 138; leads draws the incoming and outgoing line stubs. |
+| `transmission_tower` | 15.2 x 49.5 x 9.3 | voltage, insulator, height, leads | OPTIONS voltage 138 \| 345 \| 765; insulator glass \| porcelain \| polymer (null = seeded); height is a body extension factor; leads = metres of sagging conductor shown each side. |
+| `utility_pole` | 2.6 x 11.2 x 4.6 | transformer, streetlight, guy, guyDir, insulators, height | OPTIONS transformer (pole mount can), streetlight (cobra head on a davit), guy (down guy with yellow guard), guyDir -1 = anchor toward -z, 1 = +z; insulators porcelain \| polymer (null = seeded); height m above ground (10.7 is a 40 ft class 3 pole). |
+| `wind_turbine` | 121 x 150 x 14 | rotor, hub, diameter, yaw | OPTIONS rotor angle deg (0 = a blade straight up); hub height m; diameter m; yaw deg (0 = rotor faces +z). |
 
 ### industry (11)
 
@@ -361,7 +361,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 |---|---|---|---|---|
 | `scripts/carousel/absence_check.py` | an absence must be scoped to a document that was fetched. | --date --run --all --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/aggregate_check.py` | re-derive every number a slide invents by adding other numbers up. | --date --out --self-test | CI self-test, shipped | 12, 13 |
-| `scripts/carousel/arsenal.py` | writes knowledge/carousel/ARSENAL.md, the inventory of everything a run has. | --check --stdout --self-test |  |  |
+| `scripts/carousel/arsenal.py` | writes knowledge/carousel/ARSENAL.md, the inventory of everything a run has. | --check --stdout --self-test |  | context, 17 |
 | `scripts/carousel/bespoke_check.py` | prove the deck is nine drawings and not one drawing nine times. | --slides-dir --self-test | CI | nonnegotiables, 11 |
 | `scripts/carousel/bleed_witness.py` | a declared bleed has to be drawn, and the drawing is in the slide's source. | --run-dir --date --run --all --self-test | shipped |  |
 | `scripts/carousel/caption_check.py` | the house rules, enforced on published copy rather than remembered. | --file --text --json --self-test | CI self-test, gate table | nonnegotiables, 10 |
@@ -435,7 +435,6 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/site/gridwatch_page.py` | the Texas Grid Watch, rendered from the record and nothing else. |  | CI | nonnegotiables, 7 |
 | `scripts/site/house_style_check.py` | the house rules, checked against the site that actually shipped. | --docs --self-test | CI | nonnegotiables, 16 |
 | `scripts/site/indexnow.py` | tell the engines a page changed, instead of waiting to be crawled. | --self-test --dry-run --since --host --strict | CI self-test | 7 |
-| `scripts/site/lastmod.py` | the date a page's content is current to, for the footer and the sitemap. | --self-test | CI self-test | 7 |
 | `scripts/site/media_check.py` | every image the published site points at actually exists. | --site --self-test | CI | 7, 16 |
 | `scripts/site/og.py` | the card a shared link becomes. | --self-test --write | CI self-test | 7 |
 | `scripts/site/reverify.py` | the re-check is a DIFF, and only the exceptions are worth a model. | --today --apply --check-notes --self-test | CI | 3 |
@@ -444,7 +443,6 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/site/seo_check.py` | the record is findable, proved against the built site. | --site --self-test | CI | 7, 16 |
 | `scripts/site/site_build.py` | the published site, generated from the ledgers. | --out --today --self-test | CI | 3, 5, 7, 16 |
 | `scripts/site/site_fresh_check.py` | prove the published site is exactly what the ledgers produce. | --today --docs --self-test | CI | 7, 16 |
-| `scripts/site/sky.py` | the atmosphere the site sits under, and the mark in it. | --self-test --svg | CI self-test | 10.5 |
 | `scripts/site/truetype.py` | glyph outlines out of the committed fonts, so text can be drawn from the format up. | --self-test | CI self-test | 7 |
 | `scripts/site/waterwatch_page.py` | Texas reservoir storage, rendered from the record and nothing else. |  | CI | nonnegotiables, 7 |
 | `scripts/gridwatch/gridwatch_pagecheck.py` | the daily once over of the published Grid Watch page. | --today --page --self-test | CI | 7 |

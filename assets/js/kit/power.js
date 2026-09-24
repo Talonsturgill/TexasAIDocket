@@ -98,7 +98,7 @@ export function install(K, THREE, TXT) {
     /* sagging cable a->b, sag metres at mid span, radius r */
     cable(mat, a, b, sag, r, seg, radial) {
       const A = arr(a), B = arr(b), n = seg || 24, pts = [];
-      if (!(A.distanceTo(B) > 1e-3)) { console.warn('power.js cable: degenerate', JSON.stringify([a, b])); return; }
+      if (!(A.distanceTo(B) > 1e-3)) return;                 // a zero length span has no curve
       for (let i = 0; i <= n; i++) {
         const t = i / n; pts.push(V3(A.x + (B.x - A.x) * t, A.y + (B.y - A.y) * t - sag * 4 * t * (1 - t), A.z + (B.z - A.z) * t));
       }
