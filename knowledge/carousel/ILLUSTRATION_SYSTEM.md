@@ -758,10 +758,13 @@ the number no. 32 scored, and the reason it scored it.
 ### The gate
 
 `print_ban.py` counts frames that stand in a world, meaning rendered AND calling `TXT.sky` in the
-frame's own code: at least five of nine from 2026-09-24, and the probe frame one of one. Five
-rather than nine because an interior is a real frame. The other four may be rooms, desks or
-documents, lit with `TXT.environment` and a rig on a floor with tooth
-(`TXT.ground({ surface:'concrete' })`), and never a flat colour.
+frame's own code, on the render context the frame keeps, before the snapshot it keeps: at least
+five of nine from 2026-09-24, and the probe frame one of one. Five rather than nine because an
+interior is a real frame. The other four may be rooms, desks or documents, and **every one of them
+stands in a room `TXT.interior` built**: a floor with tooth, walls that take the shadows, a lit
+window, the studio environment and the deck's rig. A rendered frame that calls neither `TXT.sky`
+nor `TXT.interior` before its kept snapshot FAILS the run and is named, because a floor, a plane
+and a background colour are exactly the void no. 32 shipped.
 
 ### What this does NOT say
 

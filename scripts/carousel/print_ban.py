@@ -161,8 +161,13 @@ def bench_names(body: str) -> set[str]:
     return names
 
 
-def in_world(src: str) -> bool:
-    """Rendered AND standing in the engine's world: the bench's own sky, called in code."""
+def _placed(src: str, method: str) -> bool:
+    """Rendered, and the bench's `method(` call precedes the kept snapshot ON THE SAME CONTEXT.
+
+    The kept snapshot is the bench's last. Any `method(` call before it on the same render context
+    counts, not only the first, so a frame that renders a preview context and then a final one,
+    each with its own sky, is judged by the final one (Codex, #353).
+    """
     if not is_rendered(src):
         return False
     body = strip_comments(src)
@@ -170,21 +175,27 @@ def in_world(src: str) -> bool:
     if not names:
         return False
     alt = "|".join(re.escape(n) for n in sorted(names))
-    sky = re.search(r"(?<![\w$.])(?:" + alt + r")\.sky\s*\(", body)
-    if sky is None:
-        return False
-    # BEFORE THE KEPT SNAPSHOT (Codex, #353). A sky called after the snapshot is not in the
-    # pixels that ship. The kept frame is the last snapshot in the source, which is how every
-    # frame here is written, so the sky must come before it.
     # THE BENCH'S OWN SNAPSHOT (Codex, #353). `helper.snapshot(R)` after the sky is not the render.
     shots = list(re.finditer(r"(?<![\w$.])(?:" + alt + r")\.snapshot\s*\(\s*([A-Za-z_$][\w$]*)?", body))
-    if not shots or sky.start() >= shots[-1].start():
+    if not shots or not shots[-1].group(1):
         return False
-    # THE SAME RENDER CONTEXT (Codex, #353). A sky on one context and the kept snapshot of another
-    # leaves the kept pixels in a void. Both first arguments must name the same context.
-    sky_ctx = re.match(r"\s*([A-Za-z_$][\w$]*)", body[sky.end():])
-    kept_ctx = shots[-1].group(1)
-    return bool(sky_ctx and kept_ctx and sky_ctx.group(1) == kept_ctx)
+    kept = shots[-1]
+    # THE SAME RENDER CONTEXT (Codex, #353). A call on one context and the kept snapshot of another
+    # leaves the kept pixels in a void.
+    for m in re.finditer(r"(?<![\w$.])(?:" + alt + r")\." + re.escape(method) + r"\s*\(\s*([A-Za-z_$][\w$]*)", body):
+        if m.start() < kept.start() and m.group(1) == kept.group(1):
+            return True
+    return False
+
+
+def in_world(src: str) -> bool:
+    """Rendered AND standing in the engine's world: the bench's own sky, before the kept render."""
+    return _placed(src, "sky")
+
+
+def in_room(src: str) -> bool:
+    """Rendered AND standing in a room the bench built: TXT.interior, before the kept render."""
+    return _placed(src, "interior")
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:
@@ -223,12 +234,14 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
     if not files:
         return [f"{slides_dir} holds no slide-*.html, so there is nothing to check. A gate that "
                 f"cannot find its subject does not report clean"]
-    out, rendered, worlds, chassis = [], 0, 0, set()
+    out, rendered, worlds, chassis, voids = [], 0, 0, set(), []
     for f in files:
         src = f.read_text(encoding="utf-8", errors="replace")
         out += scan_source(f.name, src)
         if is_rendered(src):
             rendered += 1
+            if not (in_world(src) or in_room(src)):
+                voids.append(f.name)
         if in_world(src):
             worlds += 1
         chassis.update(CHASSIS_REF.findall(strip_comments(src)))
@@ -252,6 +265,14 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"object in a void, the finding under thirty two decks. Five calls build the "
                    f"world: TXT.sky, TXT.deckRig, TXT.ground with a surface, TXT.contact, "
                    f"TXT.weather. See examples/world-proof/")
+    # EVERY RENDERED FRAME STANDS SOMEWHERE (Codex, #353, and the owner's "every single slide").
+    # Five of nine in the world, and the rest in a room the bench built, never in a flat colour:
+    # a floor, a plane and a background colour are exactly the void no. 32 shipped.
+    if not (dated and run_dir.name <= WORLD_SINCE) and voids:
+        out.append(f"{', '.join(voids)} render{'s' if len(voids) == 1 else ''} a subject that stands in "
+                   f"neither the world (TXT.sky) nor a room (TXT.interior), before the kept snapshot. "
+                   f"An interior is a room built as geometry, never a flat background colour behind "
+                   f"an object, which is the void every rendered frame of no. 32 shipped in")
     return out
 
 
@@ -375,12 +396,17 @@ def self_test() -> int:
                                        "const s = await TXT.snapshot(R);helper.snapshot(R);")
                         .replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                  "const s = await TXT.snapshot(R);TXT.sky(R);helper.snapshot(R);")))
+        ok("a preview context then a final one, each with its own sky, is judged by the FINAL one",
+           in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                   "TXT.sky(pv);await TXT.snapshot(pv);TXT.sky(fin);const s = await TXT.snapshot(fin);")))
         ok("...but the same context under any name is",
            in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                    "TXT.sky(scene1);const s = await TXT.snapshot(scene1);")))
         ok("...but a sky before the LAST snapshot is, when a frame renders twice",
            in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
                                    "await TXT.snapshot(R);TXT.sky(R);const s = await TXT.snapshot(R);")))
+        room = void.replace("const s=await X.snapshot(R);", "X.interior(R, {});const s=await X.snapshot(R);")
+        ok("a room the bench built stands in a place", in_room(room) and not in_world(room), room)
         voids = root / "voids"
         (voids / "slides").mkdir(parents=True)
         for i in range(1, 10):
@@ -389,9 +415,19 @@ def self_test() -> int:
         ok("nine renders in a void are CAUGHT", any("0 of 9 frames stand in a world" in g for g in got), got)
         for i in range(1, 6):
             (voids / "slides" / f"slide-0{i}.html").write_text(rendered)
-        ok("five worlds and four interiors meet the floor", check_run(voids, chassis_root=a) == [],
+        for i in range(6, 10):
+            (voids / "slides" / f"slide-0{i}.html").write_text(room)
+        ok("five worlds and four ROOMS meet the floor", check_run(voids, chassis_root=a) == [],
            check_run(voids, chassis_root=a))
-        (voids / "slides" / "slide-05.html").write_text(void)
+        (voids / "slides" / "slide-09.html").write_text(void)
+        got = check_run(voids, chassis_root=a)
+        ok("five worlds, three rooms and one render in a VOID is CAUGHT, and named",
+           any("slide-09.html" in g and "neither the world" in g for g in got), got)
+        (voids / "slides" / "slide-09.html").write_text("<canvas></canvas><script>drawTheMap()</script>")
+        ok("...while a frame that is not rendered at all is print_ban's other rule, not this one",
+           not any("neither the world" in g for g in check_run(voids, chassis_root=a)))
+        (voids / "slides" / "slide-09.html").write_text(room)
+        (voids / "slides" / "slide-05.html").write_text(room)
         got = check_run(voids, chassis_root=a)
         ok("four worlds of nine is under it", any("4 of 9 frames stand in a world" in g for g in got), got)
         hist = root / "2026-09-23"

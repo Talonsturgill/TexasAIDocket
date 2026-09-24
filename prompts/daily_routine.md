@@ -1070,10 +1070,11 @@ craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Eight rules fro
 8. **Every rendered frame stands in a place, and passes THE SHOWSTOPPER TEST before type.**
    An EXTERIOR frame, at least five of nine, stands in the deck's world: `TXT.sky` before the
    snapshot, a `TXT.ground` surface, scatter kept off the type with `avoid`. An INTERIOR frame, a
-   hearing room, an office or a document on a desk, has no sky and never fakes one. It is a room
-   built as geometry (a floor through `TXT.ground({ surface:'concrete' })` or a `TXT.roundedBox`
-   slab, walls where the camera sees them), lit by `TXT.environment` and the deck's rig, and never
-   a flat background colour. Both get `TXT.contact` under every standing thing, `TXT.weather`
+   hearing room, an office or a document on a desk, has no sky and never fakes one. It stands in a
+   room `TXT.interior` builds (a floor with tooth, walls that take the shadows, a lit window, the
+   studio environment), lit by the deck's rig, and never a flat background colour. `print_ban.py`
+   fails a rendered frame that calls neither `TXT.sky` nor `TXT.interior` before its kept
+   snapshot. Both get `TXT.contact` under every standing thing, `TXT.weather`
    before the snapshot and a manufactured edge through `TXT.roundedBox`. Then cover the type and
    read the frame at 432 px: a photograph of a place, one thing to look at, weight where things
    touch the ground, and outdoors a horizon on a third. A frame that fails that is not finished,

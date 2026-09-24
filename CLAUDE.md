@@ -330,7 +330,8 @@ because the engine gave a frame a flat background colour, hard shadows (`PCFSoft
 world: `TXT.sky` (a real sky, IBL rendered from it, haze in its horizon hue), `TXT.ground` surfaces,
 `TXT.scatter`, `TXT.contact`, `TXT.weather`, `TXT.roundedBox`, VSM shadows and one tone curve.
 `examples/world-proof/compare.webp` is no. 32's own model and camera before and after.
-`print_ban.py` counts frames that call `TXT.sky`, five of nine, and THE SHOWSTOPPER TEST in
+`print_ban.py` counts frames that call `TXT.sky`, five of nine, and fails any rendered frame that
+stands in neither that world nor a room built by `TXT.interior`. THE SHOWSTOPPER TEST in
 `ILLUSTRATION_SYSTEM.md` caps artwork craft at 6 for a frame that does not read as a photograph
 of a place at a time of day.
 

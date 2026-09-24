@@ -269,7 +269,8 @@ chassis writes its own sky, ground texture or develop step again.
 | `TXT.sky(R, W?)` | the dome (gradient, haze band, sun glow and disc at the DECLARED light, cloud streaks, stars), the IBL rendered from that same sky, and the fog retinted to its horizon. Omit `W` to use the declared sky. THROWS if `W` differs from it, and throws in a declared deck whose chassis declares no sky. A standalone scene with no `TXDECK.declare` may pass any world, with `sunAt:{az, el}` for its sun. Follows the camera, call in any order |
 | `TXT.ground(R, {surface, size, tile, seed, joints})` | `caliche`, `dirt`, `asphalt`, `concrete`, `grass`: seeded map, roughness and bump, with macro variation so the tile never shows. No `surface` is the old flat plane |
 | `TXT.scatter(R, {kind, count, area, avoid, seed, scale})` | `grass`, `scrub`, `rock`, instanced and seeded, denser near the camera, so call it AFTER `TXT.frame`. `avoid` rectangles in world metres keep a pad bare and the type's reserve calm |
-| `TXT.contact(R, obj, {opacity})` | the soft dark core where a standing thing meets the ground, sized to its footprint and turned with it |
+| `TXT.interior(R, {w, d, h, floor, wall, window, ceiling})` | a ROOM for a frame with no sky: a `TXT.ground` floor with tooth, back and side walls that take shadows, a skirting board, a lit window (`left`, `right`, `back`, or `null`), the studio environment when no world lit the frame, and a background from the wall colour. Centred on x = 0, back wall at z = -d/2. A hearing room, an office, a desk |
+| `TXT.contact(R, obj, {opacity, y})` | the soft dark core where a standing thing meets the ground, sized to its footprint and turned with it. It goes on the surface the thing stands on: a `TXT.ground` at any height that passes through it or lies within 25 cm under it, else its own base (a dock, a slab, a desk). `y` overrides |
 | `TXT.roundedBox(w, h, d, r, mat)` | a box whose edges catch a highlight. r 0.02 to 0.06 m for plate steel |
 | `TXT.weather(R, {grime, height, mottle})` | patches every standard material once: darker toward the ground, mottled paint and roughness, in world space |
 | `TXT.snapshot(R)` | as before, and it marks the page so `TXDECK.finish` skips its own filmic curve on an already tone mapped frame |
@@ -280,7 +281,9 @@ shadow map and 9.3 s at 4096, grade 1.2 s, against render.py's 30 s wait.
 
 `examples/world-proof/` renders no. 32's own model and camera in four worlds beside the frame that
 shipped. `print_ban.py` counts frames that call `TXT.sky`: five of nine from 2026-09-24, and the
-probe frame one of one. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, THE WORLD, is the doctrine.
+probe frame one of one. Every other rendered frame calls `TXT.interior`, and a rendered frame that
+calls neither before its kept snapshot fails the run. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
+THE WORLD, is the doctrine.
 
 `TXGeo` uses the same Albers equal-area conic the website's map builder uses, so a slide and
 the site agree about where places are. `tests/txgeo.mjs` asserts that, and asserts the map is

@@ -564,7 +564,8 @@ export function init(THREE) {
    * snapshot. The ground, the sky and the scatter are skipped. Deterministic. */
   TXT.weather = function (R, o) {
     o = o || {};
-    const grime = o.grime != null ? o.grime : 0.45, height = o.height || 0.9, mottle = o.mottle != null ? o.mottle : 0.22;
+    // softer since the first interior render: 0.45 read as stains on dark wood, 0.32 reads as use
+    const grime = o.grime != null ? o.grime : 0.32, height = o.height || 0.9, mottle = o.mottle != null ? o.mottle : 0.18;
     const skip = new Set(o.skip || []);
     /* FROM EACH OBJECT'S OWN BASE (Codex, #353). Grime used to be measured from world y = 0, so a
      * crate on a 1.2 m dock had none at its foot and a ground below zero darkened everything.
@@ -594,7 +595,7 @@ export function init(THREE) {
                        mix(mix(txH(i + vec3(0,0,1)), txH(i + vec3(1,0,1)), f.x), mix(txH(i + vec3(0,1,1)), txH(i + vec3(1,1,1)), f.x), f.y), f.z); }`)
           .replace('#include <color_fragment>', `#include <color_fragment>
             float txm = txN(vTxW * 1.7) * 0.6 + txN(vTxW * 7.0) * 0.4;
-            float txg = (1.0 - smoothstep(0.0, uGrimeH, vTxW.y - uBaseY)) * uGrime * (0.65 + 0.7 * txN(vTxW * vec3(3.0, 0.6, 3.0)));
+            float txg = (1.0 - smoothstep(0.0, uGrimeH, vTxW.y - uBaseY)) * uGrime * (0.8 + 0.4 * txN(vTxW * vec3(3.0, 0.6, 3.0)));
             diffuseColor.rgb *= (1.0 - txg) * (1.0 - uMottle * 0.35 * (txm - 0.5));`)
           .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
             roughnessFactor = clamp(roughnessFactor + uMottle * 0.5 * (txN(vTxW * 2.3) - 0.5) + txg * 0.25, 0.04, 1.0);`);
@@ -881,12 +882,23 @@ export function init(THREE) {
     obj.quaternion.copy(q); obj.position.copy(p); obj.updateMatrixWorld(true);
     const size = new THREE.Vector3(); box.getSize(size);
     const ctr = new THREE.Vector3(); box.getCenter(ctr);
-    /* WHERE IT STANDS (Codex, #353). On a loading dock, a slab or a desk the contact belongs at
-     * the object's own base, or it sits under the support and never shows. Only a base clearly
-     * off the ground moves it, over 25 cm, because a model whose lowest vertex is a few
-     * centimetres up would otherwise grow a dark ring floating above the ground. `o.y` wins. */
+    /* WHERE IT STANDS (Codex, #353, twice). The contact goes on the surface the object stands
+     * on. A ground TXT.ground laid (tagged, at any height, a sunken yard at y = -2 included) that
+     * passes through the object or lies within 25 cm under its base IS that surface: a model a few
+     * centimetres up keeps its contact on the ground instead of growing a ring in the air, and one
+     * sunk into its ground keeps it where it meets the ground instead of burying it. A base with
+     * no such ground stands on a support, a dock, a slab or a desk, and the contact goes at the
+     * base. With no tagged ground at all, y = 0 is the ground. `o.y` wins. */
     const wb = new THREE.Box3().setFromObject(obj);
-    const y = (o.y != null ? o.y : (wb.min.y > 0.25 ? wb.min.y : 0)) + 0.004;
+    let y = o.y;
+    if (y == null) {
+      const grounds = [], v = new THREE.Vector3();
+      R.scene.traverse((m) => { if (m.userData && m.userData.txGround) grounds.push(m.getWorldPosition(v).y); });
+      if (!grounds.length) grounds.push(0);
+      const under = grounds.filter((gy) => gy >= wb.min.y - 0.25 && gy < wb.max.y);
+      y = under.length ? Math.max(...under) : wb.min.y;
+    }
+    y += 0.004;
     const layers = o.layers || [{ spread: 0.10, opacity: 0.62 }, { spread: 0.55, opacity: 0.30 }];
     const made = [];
     for (const L of layers) {
@@ -904,6 +916,48 @@ export function init(THREE) {
       R.scene.add(m); made.push(m);
     }
     return made;
+  };
+
+  /* ---- the room: an interior is a place too (2026-09-24) ---------------------------------
+   * TXT.interior(R, { w:12, d:10, h:4.2, floor:'concrete', wall:0xb9b3a7, window:'left',
+   *                   ceiling:false, light:0.55 })
+   * A hearing room, an office or a desk is a real frame with no sky, and before this it had nothing
+   * to stand in but a flat colour, which is the void the world was built to end. This builds a
+   * floor with tooth, a back wall and two side walls (the camera side open), an optional ceiling,
+   * a lit window on one wall, and the studio environment for the light a room holds. The walls
+   * RECEIVE shadows and cast none, so the deck's key reads as light through the window. The room
+   * is centred on x = 0, its back wall at z = -d/2. Put the subject inside it. print_ban counts a
+   * frame that calls this, before its kept snapshot, as standing in a place. */
+  TXT.interior = function (R, o) {
+    o = o || {};
+    const w = o.w || 12, d = o.d || 10, h = o.h || 4.2, t = 0.2;
+    const room = new THREE.Group();
+    TXT.ground(R, { surface: o.floor || 'concrete', size: Math.max(w, d) * 3, tile: o.tile || 3, joints: o.joints });
+    const wall = new THREE.MeshStandardMaterial({ color: o.wall != null ? o.wall : 0xb9b3a7, roughness: 0.93, metalness: 0 });
+    const skirt = new THREE.MeshStandardMaterial({ color: o.trim != null ? o.trim : 0x4a4640, roughness: 0.7, metalness: 0.05 });
+    const back = TXT.roundedBox(w + t, h, t, 0.02, wall); back.position.set(0, h / 2, -d / 2);
+    const left = TXT.roundedBox(t, h, d, 0.02, wall); left.position.set(-w / 2, h / 2, 0);
+    const right = TXT.roundedBox(t, h, d, 0.02, wall); right.position.set(w / 2, h / 2, 0);
+    room.add(back, left, right);
+    const sb = TXT.roundedBox(w, 0.12, 0.03, 0.005, skirt); sb.position.set(0, 0.06, -d / 2 + t / 2 + 0.015); room.add(sb);
+    if (o.ceiling) { const c = TXT.roundedBox(w + t, t, d, 0.02, wall); c.position.set(0, h + t / 2, 0); room.add(c); }
+    if (o.window !== null) {
+      const side = o.window || 'left', ww = o.windowW || Math.min(3.2, d * 0.4), wh = o.windowH || Math.min(2.2, h * 0.55);
+      const pane = new THREE.Mesh(new THREE.PlaneGeometry(ww, wh),
+        new THREE.MeshBasicMaterial({ color: o.windowColor != null ? o.windowColor : 0xfff0d6, toneMapped: true }));
+      pane.material.color.multiplyScalar(o.windowI != null ? o.windowI : 2.2);
+      const y = h * 0.55;
+      if (side === 'back') pane.position.set(-w * 0.2, y, -d / 2 + t / 2 + 0.01);
+      else { pane.rotation.y = side === 'left' ? Math.PI / 2 : -Math.PI / 2;
+             pane.position.set((side === 'left' ? -1 : 1) * (w / 2 - t / 2 - 0.01), y, -d * 0.1); }
+      room.add(pane);
+    }
+    room.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = true; } });
+    R.scene.add(room);
+    if (!R.world) TXT.environment(R, { intensity: o.light != null ? o.light : 0.55 });
+    if (!R.scene.background) R.scene.background = new THREE.Color(o.wall != null ? o.wall : 0xb9b3a7).multiplyScalar(0.25);
+    R.room = room;
+    return room;
   };
 
   /* ---- rounded box: edges that catch a highlight -----------------------------------------
