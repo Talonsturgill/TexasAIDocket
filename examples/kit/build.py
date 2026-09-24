@@ -39,7 +39,8 @@ window.renderReady = (async () => {
   const gl = document.createElement('canvas'); gl.width = 2160; gl.height = 2700;
   const W = TXT.deckWorld();
   const FOV = __FOV__;
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.35], exposure: W.exposure, tone: W.tone, fov: FOV });
+  const FOGK = 1;
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.35 * FOGK], exposure: W.exposure, tone: W.tone, fov: FOV });
   const specs = __SPECS__;                         // [[name, opts], ...]
   const made = [], stats = [];
   let x = 0;
@@ -65,6 +66,8 @@ window.renderReady = (async () => {
   const c = new THREE.Vector3(), s = new THREE.Vector3(); all.getCenter(c); all.getSize(s);
   const rad = Math.max(s.x, s.y * 1.25, s.z) * 0.62 + 0.5;
   const dist = rad / Math.tan(FOV * Math.PI / 360) * __DIST__;
+  // a wide scene sits far from the camera, so the proof's haze thins with distance to keep it legible
+  if (R.scene.fog && R.scene.fog.density) R.scene.fog.density *= Math.min(1, 45 / dist);
   const dir = new THREE.Vector3(__DIR__).normalize();
   const from = c.clone().add(dir.multiplyScalar(dist)); from.y = Math.max(from.y, 1.6);
   TXT.frame(R, { from: [from.x, from.y, from.z], look: [c.x, c.y * 0.9, c.z] });

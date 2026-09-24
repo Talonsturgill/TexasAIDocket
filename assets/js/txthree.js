@@ -788,7 +788,9 @@ export function init(THREE) {
     dirt:     { base: 0x8a5f43, var: 0.20, speck: 0.07, speckTone: -0.25, rough: 0.95, bump: 0.8, streak: 0 },
     asphalt:  { base: 0x3a3b3e, var: 0.10, speck: 0.22, speckTone: 0.35, rough: 0.78, bump: 0.45, streak: 0 },
     concrete: { base: 0x9d9a94, var: 0.08, speck: 0.05, speckTone: -0.18, rough: 0.86, bump: 0.25, streak: 0, joints: 4 },
-    grass:    { base: 0x857d4c, var: 0.24, speck: 0.12, speckTone: 0.22, rough: 0.97, bump: 0.9, streak: 0.5 },
+    // grass read as brown dirt at golden hour (2026-09-24); now a green going to straw, and a lawn
+    grass:    { base: 0x6d7a3c, var: 0.22, speck: 0.12, speckTone: 0.18, rough: 0.97, bump: 0.9, streak: 0.5 },
+    lawn:     { base: 0x4f6b2c, var: 0.16, speck: 0.10, speckTone: 0.16, rough: 0.96, bump: 0.7, streak: 0.5 },
   };
   function surfaceTextures(o, renderer) {
     const S = Object.assign({}, SURFACES[o.surface] || SURFACES.caliche);

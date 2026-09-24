@@ -389,7 +389,8 @@ export function install(K, THREE, TXT) {
       Mx.compose(p, q, sc); im.setMatrixAt(i, Mx);
       const hy = size.y > 0.01 ? (y - box.min.y) / size.y : 1;
       const rad = Math.hypot(x - ctr.x, z - ctr.z) / (Math.max(size.x, size.z) / 2 + 1e-3);
-      const ao = Math.min(1, 0.35 + 0.45 * hy + 0.35 * rad);
+      let ao = Math.min(1, 0.35 + 0.45 * hy + 0.35 * rad);
+      if (list[i][5] != null) ao *= 0.72 + 0.28 * Math.max(0, Math.min(1, (list[i][5] + 0.3) * 1.4));
       const base = cols[Math.floor(r() * cols.length)].clone().lerp(cols[Math.floor(r() * cols.length)], r());
       const j = (0.86 + r() * 0.28) * (o.aoMin != null ? o.aoMin + (1 - o.aoMin) * ao : 0.42 + 0.58 * ao);
       c.copy(base).multiplyScalar(j); im.setColorAt(i, c);
@@ -432,12 +433,13 @@ export function install(K, THREE, TXT) {
         const u = r() * 2 - 1, th = r() * 6.283, sq = Math.sqrt(1 - u * u);
         const v = new V3(sq * Math.cos(th), u, sq * Math.sin(th));
         if (v.y < -(Sh.skirt || 0.2)) continue;
-        if (clump(v) < (Sh.gaps || -1)) continue;
-        const dd = 1 - r() * (Sh.thick || 0.25);
+        const cv = clump(v);
+        if (cv < (Sh.gaps || -1)) continue;
+        const dd = (1 - r() * (Sh.thick || 0.25)) * (1 + (Sh.lobe || 0) * cv);
         const x = (E.x || 0) + v.x * E.rx * dd, z = (E.z || 0) + v.z * E.rz * dd;
         const y = E.y0 + v.y * (v.y < 0 ? E.ry * (Sh.below || 0.35) : E.ry) * dd;
         const sz = Sh.size[0] + r() * (Sh.size[1] - Sh.size[0]);
-        res.clusters.push([x, y, z, sz, 1]); added++;
+        res.clusters.push([x, y, z, sz, 1, cv]); added++;
       }
     }
     if (S.envelope) {
@@ -489,8 +491,8 @@ export function install(K, THREE, TXT) {
         ],
         leaves: { per: 3, from: 0.2, size: [0.45 * Math.sqrt(k), 0.72 * Math.sqrt(k)], lift: 0.12 },
         // a broad low dome: twice as wide as it is tall, its skirt at the height the limbs sag to
-        envelope: { rx: SP / 2, rz: SP / 2 * (0.88 + r() * 0.2), y0: 3.0 * kh, ry: H - 3.0 * kh, base: 1.9 * kh, hollow: 0.5 },
-        shell: { n: 1100, size: [0.62 * Math.sqrt(k), 0.95 * Math.sqrt(k)], thick: 0.22, skirt: 0.35, below: 0.9, gaps: -0.3 },
+        envelope: { rx: SP / 2, rz: SP / 2 * (0.88 + r() * 0.2), y0: 3.4 * kh, ry: H - 3.4 * kh, base: 2.1 * kh, hollow: 0.5, flatBottom: 3 },
+        shell: { n: 1150, size: [0.62 * Math.sqrt(k), 0.95 * Math.sqrt(k)], thick: 0.22, skirt: 0.4, below: 0.3, gaps: -0.05, lobe: 0.22 },
       };
       const g = makeTree(S, r, { bark: 'oak', leafKey: 'oak', leaf: OAK_LEAF, cards: 11, colors: [0xfff0c8, 0xeee0b0, 0xfff6d4, 0xe2d8a8], fol: { squash: 0.8 } });
       return g;

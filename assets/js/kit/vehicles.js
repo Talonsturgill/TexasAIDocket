@@ -88,7 +88,7 @@ export function install(K, THREE, TXT) {
     const fn = new Float32Array(n * 3), A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3();
     for (let f = 0; f < n; f++) {
       A.fromBufferAttribute(p, f * 3); B.fromBufferAttribute(p, f * 3 + 1); C.fromBufferAttribute(p, f * 3 + 2);
-      const nn = C.sub(B).cross(A.sub(B)).negate(); const l = nn.length() || 1; fn[f * 3] = nn.x / l; fn[f * 3 + 1] = nn.y / l; fn[f * 3 + 2] = nn.z / l;
+      const nn = C.sub(B).cross(A.sub(B)); const l = nn.length() || 1; fn[f * 3] = nn.x / l; fn[f * 3 + 1] = nn.y / l; fn[f * 3 + 2] = nn.z / l;
     }
     const key = (i) => Math.round(p.getX(i) * 1e4) + ',' + Math.round(p.getY(i) * 1e4) + ',' + Math.round(p.getZ(i) * 1e4);
     const map = new Map();

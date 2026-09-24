@@ -1358,7 +1358,7 @@ export function install(K, THREE, TXT) {
       const bx = 13, bz = 4, BW = 16, BD = 12, BH = 9.5;
       B.push(bx, 0.3, bz, 0);
       B.box(mat('chfloor', { color: 0x3a3632, roughness: 0.8 }), BW - 0.2, BH, BD - 0.2, 0, 0, 0);
-      eachFace(B, BW, BD, (fi, Fw) => { curtain(B, -Fw / 2, Fw / 2, 0, BH, 1.6, F.alum(), F.tintGlass(), 3); });
+      eachFace(B, BW, BD, (fi, Fw) => { curtain(B, -Fw / 2, Fw / 2, 0, BH, 1.6, F.alum(), F.glass2(), 3); });
       B.box(lime, BW + 6, 0.6, BD + 7, -1, BH, 2.5);
       B.box(metal, BW + 6.1, 0.12, BD + 7.1, -1, BH + 0.6, 2.5);
       [[-9, 8.5], [-2, 8.5], [5, 8.5]].forEach(([x, z]) => B.cyl(metal, 0.16, 0.16, BH, x, 0, z, 16));

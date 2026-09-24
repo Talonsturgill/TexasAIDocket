@@ -322,7 +322,7 @@ export function install(K, THREE, TXT) {
       // coat
       const nz = makeNoise((o.seed || 1) * 17 + 3), pos = geo.attributes.position, col = new Float32Array(pos.count * 3);
       let coat = o.coat && o.coat !== 'auto' ? o.coat : (LH ? ['paint', 'red', 'speckle', 'brindle', 'dun', 'paint'][Math.floor(r() * 6)] : 'hereford');
-      const red = new THREE.Color(LH ? 0x8b3a1c : 0x7a2c14), white = new THREE.Color(0xe9e2d4), black = new THREE.Color(0x1f1a17);
+      const red = new THREE.Color(LH ? 0x8b3a1c : 0x8c3a1c), white = new THREE.Color(0xe9e2d4), black = new THREE.Color(0x1f1a17);
       const dun = new THREE.Color(0xb89a6c), brown = new THREE.Color(0x4a2b1a), nose = new THREE.Color(LH ? 0x2b2522 : 0xc28a7d);
       const patch = new THREE.Color(r() < 0.5 ? 0x8a3a1c : 0x221c19);
       const c = new THREE.Color();

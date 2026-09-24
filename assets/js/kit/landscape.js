@@ -259,14 +259,14 @@ export function install(K, THREE, TXT) {
       const pal = kind === 'juniper' ? [[38, 52, 40], [48, 64, 46], [60, 78, 54], [72, 90, 62]]
         : kind === 'mesquite' ? [[70, 88, 52], [88, 104, 60], [104, 118, 70], [60, 76, 46]]
         : [[46, 60, 34], [60, 76, 40], [76, 92, 50], [92, 106, 60]];
-      const n = kind === 'juniper' ? 1400 : 900;
+      const n = kind === 'juniper' ? 3600 : 2600;
       for (let i = 0; i < n; i++) {
-        const a = r() * TAU, d = Math.sqrt(r()) * N * 0.47 * (0.75 + 0.25 * Math.sin(a * 5 + 1.3)), px = N / 2 + Math.cos(a) * d, py = N / 2 + Math.sin(a) * d;
+        const a = r() * TAU, d = Math.pow(r(), 0.7) * N * 0.46 * (0.78 + 0.22 * Math.sin(a * 5 + 1.3)), px = N / 2 + Math.cos(a) * d, py = N / 2 + Math.sin(a) * d;
         const c = pal[Math.min(3, Math.floor(r() * 3 + (1 - py / N) * 1.4))], k = 0.8 + r() * 0.35;
         x.fillStyle = 'rgb(' + Math.round(c[0] * k) + ',' + Math.round(c[1] * k) + ',' + Math.round(c[2] * k) + ')';
         x.beginPath();
-        if (kind === 'juniper') x.ellipse(px, py, 2 + r() * 3, 1.5 + r() * 2.5, r() * 3, 0, TAU);
-        else x.ellipse(px, py, 3 + r() * 4, 1.6 + r() * 2, r() * 3, 0, TAU);
+        if (kind === 'juniper') x.ellipse(px, py, 2.5 + r() * 3.5, 1.8 + r() * 2.5, r() * 3, 0, TAU);
+        else x.ellipse(px, py, 3.5 + r() * 4.5, 2 + r() * 2.2, r() * 3, 0, TAU);
         x.fill();
       }
       // a few twigs
@@ -308,7 +308,7 @@ export function install(K, THREE, TXT) {
   // a dark core so a crown never shows sky through its middle; with a trunk when asked
   function coreGeo(seed, o) {
     const parts = [];
-    const c = lump(seed, 0, o.rx * 0.62, o.ry * 0.55, o.rz * 0.62, 0.5); c.translate(0, o.cy, 0); parts.push(c);
+    const k = o.k || 0.62, c = lump(seed, o.detail || 0, o.rx * k, o.ry * k * 0.9, o.rz * k, 0.5); c.translate(0, o.cy, 0); parts.push(c);
     if (o.trunk) { const t = new THREE.CylinderGeometry(o.trunk * 0.7, o.trunk, o.cy, 6, 1, true).toNonIndexed(); t.translate(0, o.cy / 2, 0); parts.push(t); }
     const g = mergeGeos(parts), p = g.attributes.position, C = new Float32Array(p.count * 3);
     for (let i = 0; i < p.count; i++) { const k = p.getY(i) < o.cy - o.ry * 0.5 ? 0.55 : 0.8; C[i * 3] = k; C[i * 3 + 1] = k; C[i * 3 + 2] = k; }
@@ -381,8 +381,8 @@ export function install(K, THREE, TXT) {
         mix3(tmp, flats[0], flats[1], smooth(0.3, 0.7, pn));
         mix3(tmp, tmp, flats[2], smooth(0.55, 0.8, fbm(nQ, x / 25, z / 25, 2)) * 0.6);
         mix3(tmp, tmp, cS, smooth(0.03, 0.12, slope));
-        const brake = smooth(0.52, 0.66, fbm(nQ, x / 45 + 30, z / 45, 3)) * smooth(0.02, 0.08, slope);
-        mix3(tmp, tmp, cB, brake * 0.85);
+        const brake = smooth(0.46, 0.66, fbm(nQ, x / 45 + 30, z / 45, 3)) * (0.45 + 0.55 * smooth(0.02, 0.08, slope));
+        mix3(tmp, tmp, cB, brake);
         mix3(tmp, tmp, cR, smooth(0.2, 0.42, slope) * 0.9);            // exposed limestone on risers
         // a touch lighter on crests, darker in hollows
         const kk = 0.92 + 0.16 * smooth(0, o.relief, y);
@@ -422,10 +422,10 @@ export function install(K, THREE, TXT) {
           if (H.m < 0.6) continue;
           const sl = slopeAt(x, z);
           if (sl.s < 0.28) continue;
-          const len = 4 + r() * 9, ht = 1.0 + r() * 1.6, dp = 2 + r() * 2.5;
-          list.push({ x, y: H.y - ht * 0.2, z, ry: Math.atan2(sl.gx, sl.gz) + Math.PI / 2 + (r() - 0.5) * 0.3,
+          const len = 6 + r() * 12, ht = 0.6 + r() * 0.9, dp = 1.5 + r() * 2;
+          list.push({ x, y: H.y - ht * 0.45, z, ry: Math.atan2(sl.gx, sl.gz) + Math.PI / 2 + (r() - 0.5) * 0.3,
             sx: len, sy: ht, sz: dp });
-          cols.push(new THREE.Color().setScalar(0.85 + r() * 0.25));
+          cols.push(new THREE.Color().setScalar(0.7 + r() * 0.2));
         }
         if (list.length) g.add(instanced(slabGeo, lm, list, cols));
       }
@@ -433,11 +433,11 @@ export function install(K, THREE, TXT) {
       // trees: Ashe juniper singly and in brakes on slopes, live oak mottes on the flats
       if (o.trees > 0) {
         // shapes for a tree ONE unit tall; the instance scale is its height in metres
-        const J = { rx: 0.34, ry: 0.5, rz: 0.34, cy: 0.52, cards: 12, ao: 0.45 }, O = { rx: 0.62, ry: 0.3, rz: 0.62, cy: 0.66, cards: 22, ao: 0.4 };
+        const J = { rx: 0.32, ry: 0.5, rz: 0.32, cy: 0.5, cards: 18, ao: 0.4 }, O = { rx: 0.62, ry: 0.3, rz: 0.62, cy: 0.66, cards: 26, ao: 0.4 };
         const B = { rx: 0.6, ry: 0.42, rz: 0.6, cy: 0.42, cards: 5, ao: 0.55 };
         const jCard = crownGeo(r, J), oCard = crownGeo(r, O), bCard = crownGeo(r, B);
-        const jCore = coreGeo(seed + 3, Object.assign({ trunk: 0.03 }, J)), oCore = coreGeo(seed + 4, Object.assign({ trunk: 0.045 }, O));
-        const coreM = M('hct-core', { color: 0x2a3322, roughness: 0.95, vertexColors: true });
+        const oCore = coreGeo(seed + 4, Object.assign({ trunk: 0.045, detail: 1, k: 0.5 }, O));
+        const coreM = M('hct-core', { color: 0x3a4a2c, roughness: 0.95, vertexColors: true });
         const jl = [], jc = [], ol = [], oc = [], bl = [], bc = [];
         const area = S * S, nJ = Math.round(Math.min(2600, area / 220) * o.trees), nO = Math.round(Math.min(360, area / 1700) * o.trees), nB = Math.round(Math.min(5000, area / 110) * o.trees);
         const tint = (k) => new THREE.Color(0.86 + r() * 0.2, 0.86 + r() * 0.2, 0.84 + r() * 0.16).multiplyScalar(k);
@@ -450,7 +450,7 @@ export function install(K, THREE, TXT) {
           const sl = slopeAt(x, z).s;
           if (sl > 0.45) continue;
           const brake = smooth(0.46, 0.66, fbm(nBr, x / 45 + 30, z / 45, 3));
-          const p = 0.06 + brake * 0.9 + smooth(0.05, 0.25, sl) * 0.3;
+          const p = 0.1 + brake * 0.95 + smooth(0.05, 0.25, sl) * 0.35;
           if (r() > p) continue;
           const h = 3.5 + r() * 3.5;
           jl.push({ x, y: H.y - 0.15, z, ry: r() * TAU, sx: h * (0.8 + r() * 0.5), sy: h, sz: h * (0.8 + r() * 0.5) });
@@ -481,7 +481,7 @@ export function install(K, THREE, TXT) {
         }
         const add2 = (card, core, mat, list, cols) => { if (!list.length) return;
           g.add(instanced(card, mat, list, cols)); if (core) g.add(instanced(core, coreM, list, cols)); };
-        add2(jCard, jCore, leafMat('juniper'), jl, jc);
+        add2(jCard, null, leafMat('juniper'), jl, jc);
         add2(oCard, oCore, leafMat('oak'), ol, oc);
         add2(bCard, null, leafMat('mesquite'), bl, bc);
       }
