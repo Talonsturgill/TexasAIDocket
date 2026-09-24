@@ -71,7 +71,10 @@ export function initKit(THREE, TXT) {
   /* ---- materials, cached by key --------------------------------------------------------- */
   const MATS = new Map();
   K.mat = function (key, params, physical) {
-    const k = key + '|' + JSON.stringify(params || {});
+    // textures and colours by identity, never by value: serialising a texture's image cost about
+    // a second per textured material (power builder, 2026-09-24)
+    const k = key + '|' + JSON.stringify(params || {}, (n, v) => (v && v.isTexture ? 'tex:' + v.uuid
+      : v && v.isColor ? 'col:' + v.getHexString() : v));
     if (!MATS.has(k)) {
       const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
       MATS.set(k, physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P));

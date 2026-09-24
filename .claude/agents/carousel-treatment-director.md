@@ -109,6 +109,15 @@ mid-century Texas oil two-colour graphics, mission-control telemetry.
 **BE HONEST ABOUT RISK.** A treatment with no risks listed is a treatment nobody thought hard
 about.
 
+**Read `knowledge/carousel/ARSENAL.md` before pitching, THE KIT and THE ENGINE first.** Every
+subject you pitch names the kit model and options it is made from (`K.make('ranch_house',
+{ material: 'limestone', seed: 3 })`) and the engine calls that seat it (`TXT.sky`, `TXT.ground`
+with a surface, `TXT.contact`, `TXT.weather`, or `TXT.interior` for a room). A thing the kit has is
+never pitched as primitives: a capsule person, a box house or a blob tree, when the kit lists
+`person`, `ranch_house` and `live_oak`, means the arsenal was not read. For a thing the kit lacks,
+give its size in metres and the parts it is built from, marked NEW KIT MODEL, so the chassis
+registers it with `K.define` and every frame calls `K.make`.
+
 **Read `knowledge/carousel/TECHNIQUE_LIBRARY.md` before pitching.** Name techniques from it, and name them because the claim wants them rather than because they impress. Each entry records how that technique FAILS, and the failure is what your treatment has to have a plan for: that plan becomes an acceptance item in the dossier, which is what the pixel critic grades against.
 
 Two entries are worth reading even when you are not using them. **A bar is never a dial**, because a dial implies a red zone and a red zone is a verdict this project's data cannot carry. **County shapes are never invented**, because the real boundaries are committed in `assets/geo/` and a Texan spots a wrong county instantly.
