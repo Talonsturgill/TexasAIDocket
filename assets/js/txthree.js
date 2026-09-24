@@ -115,6 +115,10 @@ export function init(THREE) {
   // intensity scales scene.environmentIntensity (r163+) or panel brightness.
   TXT.environment = function (R, opts) {
     opts = opts || {};
+    /* A WORLD'S SKY ALREADY LIT THIS FRAME (2026-09-24). TXT.sky renders the IBL from the same sky
+     * the frame shows, so a studio environment called after it by habit would swap the orange
+     * horizon in every reflection for a grey room. `force:true` overrides, for an interior. */
+    if (R.world && !opts.force) return R.scene.environment;
     const env = new THREE.Scene();
     const room = new THREE.Mesh(
       new THREE.BoxGeometry(20, 14, 20),
@@ -426,12 +430,18 @@ export function init(THREE) {
    *   TXT.deckRig(R, W.rig, { target:[0,0,0], distance:60 });   // the sun IS the deck's light
    *   TXT.ground(R, { surface:'caliche', size:900 });
    *   TXT.scatter(R, { kind:'grass', count:2600, area:[-60,-80,60,30], avoid:[[-8,-6,8,6]] });
+   *                                                         // after TXT.frame: it thins with distance
+   *                                                         // from wherever the camera is at the call
    *   const hero = TXT.add(R, myObject);  TXT.contact(R, hero);
    *   const shot = await TXT.snapshot(R);
    *
    * The sun sits where TXDECK.declare's light says, so the glow in the sky, the key light, the
    * cast shadows and the warm side of every object agree by construction on all nine frames.
    * Choose the declared elevation to suit the world: golden hour wants el 4 to 14, noon 55+.
+   *
+   * COST, measured 2026-09-24 in this container on no. 32's forty set yard: building the world
+   * takes 0.4 s, the snapshot 6.2 s at the rig's default 2048 shadow map and 9.3 s at 4096, the
+   * grade 1.2 s. render.py waits 30 s. Ask for rig.key.mapSize 4096 only for a close hero.
    * ====================================================================================== */
 
   /* ---- seeded helpers (deterministic, never Math.random) ------------------------------- */

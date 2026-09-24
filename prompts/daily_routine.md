@@ -998,7 +998,9 @@ and the per frame composition is this machine's whole strength. The chassis hand
 primitives. The frame decides what to build from them.
 
 **Then render ONE probe frame against it before writing the other eight**, because a chassis
-that is wrong is wrong nine times and finding that out on frame nine costs the run.
+that is wrong is wrong nine times and finding that out on frame nine costs the run. **Probe an
+EXTERIOR frame**, one that stands in the deck's world, because the probe is where the world is
+checked: `print_ban.py` asks the probe for `TXT.sky`, one of one.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render --only 1

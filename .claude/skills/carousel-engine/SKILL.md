@@ -267,11 +267,15 @@ chassis writes its own sky, ground texture or develop step again.
 | `TXT.setup(c, {fog:[hex, density], tone, exposure})` | a two element fog is exponential haze. `tone` is `aces` (default), `agx` or `neutral`. VSM shadows by default, `shadows:'pcfsoft'` for the old ones. far is 1000 |
 | `TXT.sky(R, W)` | the dome (gradient, haze band, sun glow and disc at the DECLARED light, cloud streaks, stars), the IBL rendered from that same sky, and the fog retinted to its horizon. Follows the camera, call in any order |
 | `TXT.ground(R, {surface, size, tile, seed, joints})` | `caliche`, `dirt`, `asphalt`, `concrete`, `grass`: seeded map, roughness and bump, with macro variation so the tile never shows. No `surface` is the old flat plane |
-| `TXT.scatter(R, {kind, count, area, avoid, seed, scale})` | `grass`, `scrub`, `rock`, instanced and seeded, denser near the camera. `avoid` rectangles in world metres keep a pad bare and the type's reserve calm |
+| `TXT.scatter(R, {kind, count, area, avoid, seed, scale})` | `grass`, `scrub`, `rock`, instanced and seeded, denser near the camera, so call it AFTER `TXT.frame`. `avoid` rectangles in world metres keep a pad bare and the type's reserve calm |
 | `TXT.contact(R, obj, {opacity})` | the soft dark core where a standing thing meets the ground, sized to its footprint and turned with it |
 | `TXT.roundedBox(w, h, d, r, mat)` | a box whose edges catch a highlight. r 0.02 to 0.06 m for plate steel |
 | `TXT.weather(R, {grime, height, mottle})` | patches every standard material once: darker toward the ground, mottled paint and roughness, in world space |
 | `TXT.snapshot(R)` | as before, and it marks the page so `TXDECK.finish` skips its own filmic curve on an already tone mapped frame |
+
+`TXT.environment` does nothing after `TXT.sky` unless passed `force:true`, because the sky already
+lit the frame. Cost on no. 32's forty set yard: world 0.4 s, snapshot 6.2 s at the default 2048
+shadow map and 9.3 s at 4096, grade 1.2 s, against render.py's 30 s wait.
 
 `examples/world-proof/` renders no. 32's own model and camera in four worlds beside the frame that
 shipped. `print_ban.py` counts frames that call `TXT.sky`: five of nine from 2026-09-24, and the
