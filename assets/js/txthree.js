@@ -565,7 +565,9 @@ export function init(THREE) {
       if (!m.isMesh || m.isInstancedMesh || skip.has(m)) return;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mat of mats) {
-        if (!mat || !mat.isMeshStandardMaterial || seen.has(mat) || mat.map || mat.userData.txWeathered) continue;
+        // A textured facade or enclosure weathers too. Grounds are TAGGED now, so a map is no
+        // longer how one is told apart (Codex, #353). The grime multiplies the mapped colour.
+        if (!mat || !mat.isMeshStandardMaterial || seen.has(mat) || mat.userData.txWeathered) continue;
         // GROUNDS ARE TAGGED, NEVER GUESSED. TXT.ground marks its plane. A rotated plane is not
         // terrain on that evidence alone (a tilted solar panel is a subject and weathers, Codex,
         // #353), so the only other plane skipped is one of ground size, 40 m or more both ways,
@@ -855,7 +857,12 @@ export function init(THREE) {
     obj.quaternion.copy(q); obj.position.copy(p); obj.updateMatrixWorld(true);
     const size = new THREE.Vector3(); box.getSize(size);
     const ctr = new THREE.Vector3(); box.getCenter(ctr);
-    const y = (o.y != null ? o.y : 0) + 0.004;
+    /* WHERE IT STANDS (Codex, #353). On a loading dock, a slab or a desk the contact belongs at
+     * the object's own base, or it sits under the support and never shows. Only a base clearly
+     * off the ground moves it, over 25 cm, because a model whose lowest vertex is a few
+     * centimetres up would otherwise grow a dark ring floating above the ground. `o.y` wins. */
+    const wb = new THREE.Box3().setFromObject(obj);
+    const y = (o.y != null ? o.y : (wb.min.y > 0.25 ? wb.min.y : 0)) + 0.004;
     const layers = o.layers || [{ spread: 0.10, opacity: 0.62 }, { spread: 0.55, opacity: 0.30 }];
     const made = [];
     for (const L of layers) {

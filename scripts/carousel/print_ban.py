@@ -170,7 +170,14 @@ def in_world(src: str) -> bool:
     if not names:
         return False
     alt = "|".join(re.escape(n) for n in sorted(names))
-    return re.search(r"(?<![\w$.])(?:" + alt + r")\.sky\s*\(", body) is not None
+    sky = re.search(r"(?<![\w$.])(?:" + alt + r")\.sky\s*\(", body)
+    if sky is None:
+        return False
+    # BEFORE THE KEPT SNAPSHOT (Codex, #353). A sky called after the snapshot is not in the
+    # pixels that ship. The kept frame is the last snapshot in the source, which is how every
+    # frame here is written, so the sky must come before it.
+    shots = [m.start() for m in re.finditer(r"\.snapshot\s*\(", body)]
+    return bool(shots) and sky.start() < shots[-1]
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:
@@ -350,6 +357,12 @@ def self_test() -> int:
         ok("the static import form, the one frames write, stands in a world", in_world(static), static)
         ok("...and an aliased init does too",
            in_world(static.replace("import { init }", "import { init as boot }").replace("= init(", "= boot(")))
+        ok("a sky called AFTER the snapshot is not in the pixels that ship",
+           not in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                       "const s = await TXT.snapshot(R);TXT.sky(R);")))
+        ok("...but a sky before the LAST snapshot is, when a frame renders twice",
+           in_world(static.replace("TXT.sky(R);const s = await TXT.snapshot(R);",
+                                   "await TXT.snapshot(R);TXT.sky(R);const s = await TXT.snapshot(R);")))
         voids = root / "voids"
         (voids / "slides").mkdir(parents=True)
         for i in range(1, 10):
