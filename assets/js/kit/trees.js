@@ -727,51 +727,49 @@ export function install(K, THREE, TXT) {
   /* =======================================================================================
    * palm — Washingtonia robusta, the Mexican fan palm of the Valley and Houston
    * ===================================================================================== */
-  function fanTexture(dead) {
-    return texture('fan|' + (dead ? 1 : 0), 1024, 512, (x, W, H, r) => {
-      // polar leaf unrolled: u = around the fan (0..1), v = out from the hastula (0 at bottom row)
+  /* one segment strap: u across (0..1), v from the hastula (0) to the tip (1); a midrib, darker
+   * margins, the tip cut to a point with alpha */
+  function strapTexture(dead) {
+    return texture('strap|' + (dead ? 1 : 0), 64, 512, (x, W, H, r) => {
       x.clearRect(0, 0, W, H);
-      const n = 40, c0 = dead ? [118, 92, 60] : [84, 112, 44], c1 = dead ? [160, 128, 86] : [124, 150, 66];
-      for (let i = 0; i < n; i++) {
-        const u0 = i / n * W, u1 = (i + 1) / n * W, cc = mix(c0, c1, r());
-        const split = 0.3 + r() * 0.12, tip = 0.92 + r() * 0.08;
-        // a segment: solid to the split, then a tapering, slightly ragged strap
-        const g = x.createLinearGradient(u0, 0, u1, 0);
-        g.addColorStop(0, css(cc, 0.78)); g.addColorStop(0.5, css(cc, 1.08)); g.addColorStop(1, css(cc, 0.78));
-        x.fillStyle = g; x.beginPath();
-        x.moveTo(u0, H); x.lineTo(u1, H);
-        x.lineTo(u1, H * (1 - split)); x.lineTo((u0 + u1) / 2 + (u1 - u0) * 0.08, H * (1 - tip)); x.lineTo(u0 + (u1 - u0) * 0.1, H * (1 - split));
-        x.closePath(); x.fill();
-        // filaments hanging from the splits (robusta has few; a young leaf has more)
-        if (r() < 0.08) { x.strokeStyle = css(cc, 0.9, 0.9); x.lineWidth = 1.5; x.beginPath(); x.moveTo(u1, H * (1 - split)); x.lineTo(u1 + (r() - 0.5) * 8, H * (1 - split - 0.25)); x.stroke(); }
-        if (dead) { for (let k = 0; k < 6; k++) { x.fillStyle = 'rgba(60,40,20,0.25)'; x.fillRect(u0 + r() * (u1 - u0), H * r(), 2, 10 + r() * 30); } }
-      }
-      grain(x, W, H, 0.25);
+      const c0 = dead ? [110, 84, 54] : [74, 104, 40], c1 = dead ? [158, 124, 80] : [120, 148, 62];
+      const g = x.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, css(c0)); g.addColorStop(0.45, css(c1)); g.addColorStop(0.5, css(mix(c1, [210, 200, 150], 0.35)));
+      g.addColorStop(0.55, css(c1)); g.addColorStop(1, css(c0));
+      x.fillStyle = g; x.beginPath(); x.moveTo(0, H); x.lineTo(W, H); x.lineTo(W, H * 0.22); x.lineTo(W * 0.55, 0); x.lineTo(W * 0.45, 0); x.lineTo(0, H * 0.22); x.closePath(); x.fill();
+      if (dead) for (let k = 0; k < 30; k++) { x.fillStyle = 'rgba(50,34,18,0.3)'; x.fillRect(r() * W, r() * H, 2, 8 + r() * 30); }
+      for (let k = 0; k < 20; k++) { x.fillStyle = 'rgba(0,0,0,0.08)'; x.fillRect(0, r() * H, W, 1); }
     });
   }
-  // one fan leaf, along +x from the origin (the hastula), lying roughly in the xz plane, pleated
-  function fanGeo(segs, rings, R, spread, fold, droop) {
-    const P = [], U = [], idx = [];
-    const cols = segs * 2;
-    for (let j = 0; j <= rings; j++) for (let i = 0; i <= cols; i++) {
-      const t = i / cols, a = -spread + t * 2 * spread, rr = (j / rings) * R;
-      const f = (i % 2 ? 1 : -1) * fold * (j / rings);
-      // costapalmate: the midrib runs a third into the blade, so the blade arches along it
-      const x = Math.cos(a) * rr, z = Math.sin(a) * rr;
-      const y = f - droop * Math.pow(j / rings, 2.6) * (0.55 + 0.45 * Math.abs(Math.sin(a))) + 0.14 * R * (1 - Math.abs(a) / spread) * (j / rings);
-      P.push(x, y, z); U.push(t, j / rings);
-    }
-    for (let j = 0; j < rings; j++) for (let i = 0; i < cols; i++) {
-      const a = j * (cols + 1) + i, b = a + cols + 1;
-      idx.push(a, a + 1, b, a + 1, b + 1, b);
+  /* one fan leaf, along +x from the origin (the hastula), face up: `segs` V-folded straps round
+   * `spread` radians each side, joined to `split` of the radius, then free, narrowing and drooping
+   * each by its own amount. Costapalmate: the costa lifts the middle of the blade. */
+  function fanGeo(segs, rings, R, spread, split, droop, seed) {
+    const r = K.rng(seed), P = [], U = [], idx = [];
+    for (let sI = 0; sI < segs; sI++) {
+      const a0 = -spread + (sI / segs) * 2 * spread, a1 = -spread + ((sI + 1) / segs) * 2 * spread, am = (a0 + a1) / 2;
+      const own = 0.5 + r() * 0.9, base = P.length / 3;
+      for (let j = 0; j <= rings; j++) {
+        const t = j / rings, rr = t * R, free = Math.max(0, (t - split) / (1 - split));
+        const narrow = 1 - 0.55 * free, half = (a1 - a0) / 2 * narrow;
+        const lift = 0.16 * R * (1 - Math.abs(am) / spread) * t;
+        const dy = -droop * Math.pow(t, 2.4) * (0.5 + 0.5 * Math.abs(Math.sin(am))) - droop * 0.9 * Math.pow(free, 1.6) * own;
+        const fold = 0.035 * R * Math.min(1, t * 3) * (1 - 0.5 * free);
+        for (const [k, a, ly] of [[0, am - half, 0], [0.5, am, fold], [1, am + half, 0]]) {
+          P.push(Math.cos(a) * rr, lift + dy + ly, Math.sin(a) * rr); U.push(k, t);
+        }
+      }
+      for (let j = 0; j < rings; j++) for (let k = 0; k < 2; k++) {
+        const q = base + j * 3 + k, w = q + 3;
+        idx.push(q, w, q + 1, q + 1, w, w + 1);
+      }
     }
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2));
     g.setIndex(idx); g.computeVertexNormals();
-    // lit as a sheet facing up: blend the pleat normals toward +y so the fold reads but never flips
     const n = g.attributes.normal;
-    for (let i = 0; i < n.count; i++) { const v = new V3(n.getX(i), Math.abs(n.getY(i)) + 0.8, n.getZ(i)).normalize(); n.setXYZ(i, v.x, v.y, v.z); }
+    for (let i = 0; i < n.count; i++) { const v = new V3(n.getX(i), Math.abs(n.getY(i)) + 0.7, n.getZ(i)).normalize(); n.setXYZ(i, v.x, v.y, v.z); }
     return g;
   }
   K.define('palm', {
@@ -796,10 +794,10 @@ export function install(K, THREE, TXT) {
       // the boot: a knot of old leaf bases at the head
       const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.22, 1.1, 14), mat('palmboot', () => new THREE.MeshStandardMaterial({ color: 0x6e5a40, roughness: 0.95, map: TEXC.get('bark|palm') || null })));
       boot.position.copy(top).add(new V3(0, 0.2, 0)); g.add(boot);
-      const green = mat('frond', () => oneFace(new THREE.MeshStandardMaterial({ map: fanTexture(false), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.82, envMapIntensity: 0.35 })));
-      const brown = mat('frond-dead', () => oneFace(new THREE.MeshStandardMaterial({ map: fanTexture(true), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.9 })));
+      const green = mat('frond', () => oneFace(new THREE.MeshStandardMaterial({ map: strapTexture(false), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.8, envMapIntensity: 0.35 })));
+      const brown = mat('frond-dead', () => oneFace(new THREE.MeshStandardMaterial({ map: strapTexture(true), alphaTest: 0.4, side: THREE.DoubleSide, roughness: 0.92, envMapIntensity: 0.3 })));
       const petM = mat('petiole', () => new THREE.MeshStandardMaterial({ color: 0x8a8a5a, roughness: 0.7 }));
-      const fan = fanGeo(20, 7, 1.0, 1.75, 0.07, 0.5), dead = fanGeo(8, 3, 0.85, 1.4, 0.05, 0.12);
+      const fan = fanGeo(34, 5, 1.05, 1.7, 0.42, 0.32, 71), dead = fanGeo(14, 3, 0.9, 1.2, 0.3, 0.12, 73);
       const pet = new THREE.CylinderGeometry(0.018, 0.035, 1, 6); pet.translate(0, 0.5, 0); pet.rotateZ(-Math.PI / 2);   // along +x, length 1
       const live = 22 + Math.floor(r() * 6), deadN = opt(o, 'skirt', true) ? 46 : 8;
       const imF = new THREE.InstancedMesh(fan, green, live), imP = new THREE.InstancedMesh(pet, petM, live);
