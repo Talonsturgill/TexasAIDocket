@@ -198,7 +198,10 @@ def _check_ladder(run_dir: Path, d: dict) -> list[str]:
                    + "; ".join(str(h)[:120] for h in hard))
     ov = d.get("owner_override") or {}
     if got is not None and not hard and not (ov.get("instruction") and ov.get("date")):
-        need = rung(n)
+        # THE RUNG THE DECK WAS JUDGED AGAINST, when panel.py recorded it (Codex, #357). A later
+        # change to the ladder or the cap must not unpublish or rewrite a deck already shipped,
+        # the same rule `bar_for_run` keeps for the threshold. None recorded means the cap.
+        need = d["rung"] if "rung" in d else rung(n)
         if need is not None and float(got) < need:
             bad.append(f"{name}: KEEP EDITING. {got} after {n if n is not None else 'an unknown number of'} "
                        f"round(s) is under this round's rung of {need}. A low score is a work "
@@ -660,6 +663,13 @@ def self_test() -> int:
         (run_d / "score.json").write_text(json.dumps({"weighted_score": 6.0, "rounds": 2, "hard_fails": [],
                                                        "owner_override": {"instruction": "ship it", "date": lf}}))
         ok("an owner override still ends the search under the rung", check(run_d, float(top), cap5) == [])
+        (run_d / "score.json").write_text(json.dumps({"weighted_score": low, "rounds": cap5 - 1, "hard_fails": [],
+                                                       "rung": round(low - 0.5, 2)}))
+        ok("a RECORDED rung wins over the live rubric, so a later ladder cannot unpublish a deck",
+           check(run_d, float(top), cap5) == [], str(check(run_d, float(top), cap5)))
+        (run_d / "score.json").write_text(json.dumps({"weighted_score": 5.0, "rounds": cap5, "hard_fails": [],
+                                                       "rung": None}))
+        ok("...and a recorded cap completion stays one", check(run_d, float(top), cap5) == [])
         before = Path(td) / "2026-09-23"                        # the day before: the old rules hold
         before.mkdir()
         (before / "score.json").write_text(json.dumps({"weighted_score": 6.0, "rounds": 2, "ship": False,
@@ -707,7 +717,7 @@ def main() -> int:
         return 1
     # NAME WHICH PATH EACH UNDER-THE-BAR RUN TOOK. There are two now, and reporting an owner's
     # instruction as "on the round cap" is the summary line telling a reader the wrong reason.
-    on_cap, by_owner = [], []
+    on_cap, by_owner, on_rung = [], [], []
     for d in dirs:
         sp = d / "score.json"
         if not sp.exists():
@@ -717,10 +727,18 @@ def main() -> int:
         if sc is None or float(sc) >= bar:
             continue
         ov = sd.get("owner_override") or {}
-        (by_owner if (ov.get("instruction") and ov.get("date")) else on_cap).append(d.name)
+        if ov.get("instruction") and ov.get("date"):
+            by_owner.append(d.name)
+        elif on_ladder(d) and (sd["rung"] if "rung" in sd else rung(rounds_of(sd))) is not None:
+            on_rung.append(d.name)      # cleared a lower rung before the cap, not the cap
+        else:
+            on_cap.append(d.name)
     parts = []
     if on_cap:
         parts.append(f"{len(on_cap)} under the bar on the {cap} round cap ({', '.join(on_cap)})")
+    if on_rung:
+        parts.append(f"{len(on_rung)} under the top bar on a lower rung of the ladder "
+                     f"({', '.join(on_rung)})")
     if by_owner:
         parts.append(f"{len(by_owner)} under the bar on the owner's instruction "
                      f"({', '.join(by_owner)})")
