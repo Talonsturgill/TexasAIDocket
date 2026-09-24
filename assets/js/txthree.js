@@ -295,13 +295,6 @@ export function init(THREE) {
   TXT.snapshot = async function (R, o) {
     o = o || {};
     R.renderer.render(R.scene, R.camera);
-    /* THE FRAME IS ALREADY TONE MAPPED, and TXDECK.finish reads this so it does not map it
-     * again. Carousel no. 32 ran ACES here and a second ACES curve in the grade, which caps
-     * white near 231 of 255 and lifts the mids: the murk measured, not a taste. */
-    if (R.renderer.toneMapping !== THREE.NoToneMapping && typeof window !== 'undefined') {
-      window.TXT_TONEMAPPED = true;
-      try { R.renderer.domElement.setAttribute('data-tonemapped', '1'); } catch (e) {}
-    }
     await new Promise(r => requestAnimationFrame(() => r()));
     let ok = true, variance = -1, litCount = -1;
     try {
@@ -338,6 +331,15 @@ export function init(THREE) {
         : Math.max(48, Math.round(sampled * 0.0008));
       ok = meanVarOK || lit >= LIT_MIN;
     } catch (e) { /* readPixels unavailable: trust the render */ }
+    /* THE FRAME IS ALREADY TONE MAPPED, and TXDECK.finish reads this so it does not map it
+     * again. Carousel no. 32 ran ACES here and a second ACES curve in the grade, which caps
+     * white near 231 of 255 and lifts the mids: the murk measured, not a taste. Marked ONLY
+     * when the render is good and kept, because a frame that falls back to a canvas design
+     * after a black render still wants the grade's own curve (Codex, #353). */
+    if (ok && R.renderer.toneMapping !== THREE.NoToneMapping && typeof window !== 'undefined') {
+      window.TXT_TONEMAPPED = true;
+      try { R.renderer.domElement.setAttribute('data-tonemapped', '1'); } catch (e) {}
+    }
     return { ok, variance, litCount };
   };
 
@@ -480,7 +482,13 @@ export function init(THREE) {
     const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
     let L = null;
     try { if (TXD && TXD.deck) L = TXD.deck().light; } catch (e) { L = null; }
-    const s = L || o.sun || { az: -35, el: 9 };
+    // WITHOUT A DECK, a direction from `sunAt` ({az, el}) or else the middle of the world's own el
+    // range. Never `o.sun`: in every preset that is the sun's COLOUR, a number, and reading az and
+    // el off a number gave a NaN sun (Codex, #353).
+    const range = Array.isArray(o.el) ? o.el : null;
+    const fb = (o.sunAt && typeof o.sunAt.az === 'number' && typeof o.sunAt.el === 'number') ? o.sunAt
+      : { az: -35, el: range ? (range[0] + range[1]) / 2 : 9 };
+    const s = L || fb;
     // At night the deck's light is a LAMP above the pad, not the sun, so a world may set skyEl:
     // the glow sits on the deck light's azimuth at that elevation (below the horizon at night).
     const a = s.az * Math.PI / 180, e = (o.skyEl != null ? o.skyEl : s.el) * Math.PI / 180;
@@ -665,6 +673,10 @@ export function init(THREE) {
   const WORLD_KEYS = ['zenith', 'horizon', 'haze', 'ground', 'sun', 'sunDisc', 'glow', 'horizonGlow',
     'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed'];
   const worldKey = (W) => JSON.stringify(WORLD_KEYS.map(k => (W[k] === undefined ? null : W[k])));
+  function deckDeclared() {
+    const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
+    try { return !!(TXD && TXD.deck && TXD.deck()); } catch (e) { return false; }
+  }
   function declaredWorld() {
     const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
     let D = null;
@@ -693,6 +705,11 @@ export function init(THREE) {
         throw new Error("TXT.sky: this frame asked for a world the chassis did not declare. One deck, one " +
           "world: call TXT.sky(R) or TXT.sky(R, TXT.deckWorld())");
       W = D;
+    } else if (deckDeclared()) {
+      // A DECK WITH NO DECLARED SKY is how five frames end up under five worlds (Codex, #353). A
+      // standalone scene, with no TXDECK declaration at all, may still pass its own world.
+      throw new Error("TXT.sky: this deck's chassis declares no sky. Add sky:'goldenHour' (or another " +
+        "TXT.worlds name) to its TXDECK.declare, once, so every frame stands in one world");
     } else {
       W = Object.assign({}, TXT.worlds.goldenHour, W || {});
     }
