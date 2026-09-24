@@ -166,6 +166,14 @@ export function install(K, THREE, TXT) {
       return out;
     };
     f.info = info; f.len = cum[n]; f.cum = cum; f.S = S;
+    { // a bounding sphere, so a caller can skip the tube when it can't win
+      let mn = [1e9, 1e9, 1e9], mx = [-1e9, -1e9, -1e9], rm = 0;
+      pts.forEach((p) => { for (let j = 0; j < 3; j++) { mn[j] = Math.min(mn[j], p[j]); mx[j] = Math.max(mx[j], p[j]); } });
+      rad.forEach((v) => { rm = Math.max(rm, v); });
+      const cx = (mn[0] + mx[0]) / 2, cy = (mn[1] + mx[1]) / 2, cz = (mn[2] + mx[2]) / 2;
+      const R0 = Math.hypot(mx[0] - cx, mx[1] - cy, mx[2] - cz) + rm + 0.012;
+      f.lb = (x, y, z) => Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy) + (z - cz) * (z - cz)) - R0;
+    }
     f.at = (along) => {       // the point and direction at an arc length
       let i = 0; while (i < n - 1 && cum[i + 1] < along) i++;
       const s = S[i], t = clamp01((along - cum[i]) / s.l);
@@ -173,49 +181,53 @@ export function install(K, THREE, TXT) {
     };
     return f;
   }
-  function sdfMesh(f, box, h, U) {
-    const C = 4, pad = 2 * h;
+  function sdfMesh(f0, box, h, U) {
+    let NEV = 0; const f = globalThis.__PDBG ? (x, y, z) => { NEV++; return f0(x, y, z); } : f0;
+    const T0 = performance.now(); let T1 = 0, T2 = 0;
+    const C = 8, pad = 2 * h;
     const x0 = box[0] - pad, y0 = box[1] - pad, z0 = box[2] - pad;
     const cnt = (a, b) => Math.ceil((b - a + 2 * pad) / (h * C)) * C + 1;
     const NX = cnt(box[0], box[3]), NY = cnt(box[1], box[4]), NZ = cnt(box[2], box[5]);
     const SY = NX, SZ = NX * NY, N = NX * NY * NZ;
     const val = new Float32Array(N).fill(NaN);
     const ev = (i, j, k) => { const q = i + j * SY + k * SZ; let v = val[q]; if (v !== v) { v = f(x0 + i * h, y0 + j * h, z0 + k * h); val[q] = v; } return v; };
-    const band = C * h * 1.8, blocks = [];
-    for (let k = 0; k + C < NZ; k += C) for (let j = 0; j + C < NY; j += C) for (let i = 0; i + C < NX; i += C) {
+    // hierarchical narrow band: a block is split only while the surface can pass through it
+    const cells = [];
+    const refine = (i, j, k, s) => {
+      if (s === 1) { cells.push(i, j, k); return; }
       let near = false, pos = false, neg = false;
+      const band = s * h * (s <= 2 ? 0.92 : 1.1);
       for (let c = 0; c < 8; c++) {
-        const v = ev(i + (c & 1) * C, j + ((c >> 1) & 1) * C, k + ((c >> 2) & 1) * C);
+        const v = ev(i + (c & 1) * s, j + ((c >> 1) & 1) * s, k + ((c >> 2) & 1) * s);
         if (v < band && v > -band) near = true;
         if (v > 0) pos = true; else neg = true;
       }
-      if (near || (pos && neg)) blocks.push(i, j, k);
-    }
-    for (let b = 0; b < blocks.length; b += 3)
-      for (let k = blocks[b + 2]; k <= blocks[b + 2] + C; k++) for (let j = blocks[b + 1]; j <= blocks[b + 1] + C; j++)
-        for (let i = blocks[b]; i <= blocks[b] + C; i++) ev(i, j, k);
+      if (!near && !(pos && neg)) return;
+      const t = s >> 1;
+      for (let c = 0; c < 8; c++) refine(i + (c & 1) * t, j + ((c >> 1) & 1) * t, k + ((c >> 2) & 1) * t, t);
+    };
+    for (let k = 0; k + C < NZ; k += C) for (let j = 0; j + C < NY; j += C) for (let i = 0; i + C < NX; i += C) refine(i, j, k, C);
+    const nBand = NEV; T1 = performance.now();
     const OFF = [0, 1, SY, 1 + SY, SZ, 1 + SZ, SY + SZ, 1 + SY + SZ];
     const EA = [0, 2, 4, 6, 0, 1, 4, 5, 0, 1, 2, 3], EB = [1, 3, 5, 7, 2, 3, 6, 7, 4, 5, 6, 7];
     const cid = new Int32Array(N).fill(-1), P = [], cellQ = [], cv = new Float64Array(8);
-    for (let b = 0; b < blocks.length; b += 3) {
-      const bi = blocks[b], bj = blocks[b + 1], bk = blocks[b + 2];
-      for (let k = bk; k < bk + C; k++) for (let j = bj; j < bj + C; j++) for (let i = bi; i < bi + C; i++) {
-        const q = i + j * SY + k * SZ;
-        let mask = 0;
-        for (let c = 0; c < 8; c++) { const v = val[q + OFF[c]]; cv[c] = v; if (v < 0) mask |= 1 << c; }
-        if (mask === 0 || mask === 255) continue;
-        let sx = 0, sy = 0, sz = 0, m = 0;
-        for (let e = 0; e < 12; e++) {
-          const a = EA[e], bb = EB[e];
-          if (((mask >> a) & 1) === ((mask >> bb) & 1)) continue;
-          const t = cv[a] / (cv[a] - cv[bb]);
-          sx += (a & 1) + (((bb & 1) - (a & 1)) * t); sy += ((a >> 1) & 1) + ((((bb >> 1) & 1) - ((a >> 1) & 1)) * t);
-          sz += ((a >> 2) & 1) + ((((bb >> 2) & 1) - ((a >> 2) & 1)) * t); m++;
-        }
-        cid[q] = P.length / 3;
-        P.push(x0 + (i + sx / m) * h, y0 + (j + sy / m) * h, z0 + (k + sz / m) * h);
-        cellQ.push(q, i, j, k);
+    for (let n = 0; n < cells.length; n += 3) {
+      const i = cells[n], j = cells[n + 1], k = cells[n + 2];
+      const q = i + j * SY + k * SZ;
+      let mask = 0;
+      for (let c = 0; c < 8; c++) { const v = ev(i + (c & 1), j + ((c >> 1) & 1), k + ((c >> 2) & 1)); cv[c] = v; if (v < 0) mask |= 1 << c; }
+      if (mask === 0 || mask === 255) continue;
+      let sx = 0, sy = 0, sz = 0, m = 0;
+      for (let e = 0; e < 12; e++) {
+        const a = EA[e], bb = EB[e];
+        if (((mask >> a) & 1) === ((mask >> bb) & 1)) continue;
+        const t = cv[a] / (cv[a] - cv[bb]);
+        sx += (a & 1) + (((bb & 1) - (a & 1)) * t); sy += ((a >> 1) & 1) + ((((bb >> 1) & 1) - ((a >> 1) & 1)) * t);
+        sz += ((a >> 2) & 1) + ((((bb >> 2) & 1) - ((a >> 2) & 1)) * t); m++;
       }
+      cid[q] = P.length / 3;
+      P.push(x0 + (i + sx / m) * h, y0 + (j + sy / m) * h, z0 + (k + sz / m) * h);
+      cellQ.push(q, i, j, k);
     }
     const AX = [1, SY, SZ], quads = [];
     for (let c = 0; c < cellQ.length; c += 4) {
@@ -235,18 +247,27 @@ export function install(K, THREE, TXT) {
     for (let v = 0; v < nv; v++) {
       let x = P[v * 3], y = P[v * 3 + 1], z = P[v * 3 + 2];
       let gx = 0, gy = 0, gz = 1;
-      for (let it = 0; it < 2; it++) {
-        const d = f(x, y, z);
-        gx = (f(x + e, y, z) - f(x - e, y, z)); gy = (f(x, y + e, z) - f(x, y - e, z)); gz = (f(x, y, z + e) - f(x, y, z - e));
-        const gl = Math.sqrt(gx * gx + gy * gy + gz * gz) / (2 * e);
+      for (let it = 0; it < 1; it++) {
+        const a = f(x + e, y - e, z - e), b = f(x - e, y - e, z + e), c = f(x - e, y + e, z - e), dd = f(x + e, y + e, z + e);
+        const d = (a + b + c + dd) / 4;
+        gx = a - b - c + dd; gy = -a - b + c + dd; gz = -a + b - c + dd;
+        const gl = Math.sqrt(gx * gx + gy * gy + gz * gz) / (4 * e);
         if (gl < 1e-6) break;
-        gx /= 2 * e * gl; gy /= 2 * e * gl; gz /= 2 * e * gl;
+        gx /= 4 * e * gl; gy /= 4 * e * gl; gz /= 4 * e * gl;
         const st = Math.max(-h * 0.6, Math.min(h * 0.6, d / gl));
         x -= gx * st; y -= gy * st; z -= gz * st;
+        if (Math.abs(d) < h * 0.08) break;
       }
       P[v * 3] = x; P[v * 3 + 1] = y; P[v * 3 + 2] = z; NR[v * 3] = gx; NR[v * 3 + 1] = gy; NR[v * 3 + 2] = gz;
     }
+    const nProj = NEV; T2 = performance.now();
     const pos = [], nor = [], uv = [], tmp = [0, 0, 0];
+    const VR = new Int8Array(nv), VU = new Float32Array(nv * 2);
+    let PER = 0;
+    if (U) for (let v = 0; v < nv; v++) {
+      const reg = U.region(P[v * 3], P[v * 3 + 1], P[v * 3 + 2]); VR[v] = reg;
+      U.uv(P[v * 3], P[v * 3 + 1], P[v * 3 + 2], reg, tmp); VU[v * 2] = tmp[0]; VU[v * 2 + 1] = tmp[1]; PER = tmp[2];
+    }
     const tri = (a, b, c) => {
       const ax = P[a * 3], ay = P[a * 3 + 1], az = P[a * 3 + 2];
       const ux = P[b * 3] - ax, uy = P[b * 3 + 1] - ay, uz = P[b * 3 + 2] - az, wx = P[c * 3] - ax, wy = P[c * 3 + 1] - ay, wz = P[c * 3 + 2] - az;
@@ -254,12 +275,14 @@ export function install(K, THREE, TXT) {
       if (fx * fx + fy * fy + fz * fz < 1e-14) return;
       const sn = fx * (NR[a * 3] + NR[b * 3] + NR[c * 3]) + fy * (NR[a * 3 + 1] + NR[b * 3 + 1] + NR[c * 3 + 1]) + fz * (NR[a * 3 + 2] + NR[b * 3 + 2] + NR[c * 3 + 2]);
       const ids = sn < 0 ? [a, c, b] : [a, b, c];
-      const reg = U ? U.region((ax + P[b * 3] + P[c * 3]) / 3, (ay + P[b * 3 + 1] + P[c * 3 + 1]) / 3, (az + P[b * 3 + 2] + P[c * 3 + 2]) / 3) : 0;
+      const reg = VR[a] === VR[b] || VR[a] === VR[c] ? VR[a] : VR[b];
       const us = [];
       let per = 0;
       for (const id of ids) {
         pos.push(P[id * 3], P[id * 3 + 1], P[id * 3 + 2]); nor.push(NR[id * 3], NR[id * 3 + 1], NR[id * 3 + 2]);
-        if (U) { U.uv(P[id * 3], P[id * 3 + 1], P[id * 3 + 2], reg, tmp); us.push(tmp[0], tmp[1]); per = tmp[2]; } else us.push(0, 0);
+        if (!U) { us.push(0, 0); continue; }
+        if (VR[id] === reg) { us.push(VU[id * 2], VU[id * 2 + 1]); per = PER; }
+        else { U.uv(P[id * 3], P[id * 3 + 1], P[id * 3 + 2], reg, tmp); us.push(tmp[0], tmp[1]); per = tmp[2]; }
       }
       if (per > 0) {                      // unwrap a cylindrical seam inside one triangle
         const lo = Math.min(us[0], us[2], us[4]), hi = Math.max(us[0], us[2], us[4]);
@@ -273,6 +296,7 @@ export function install(K, THREE, TXT) {
       const dbd = (P[b * 3] - P[d * 3]) ** 2 + (P[b * 3 + 1] - P[d * 3 + 1]) ** 2 + (P[b * 3 + 2] - P[d * 3 + 2]) ** 2;
       if (dac < dbd) { tri(a, b, c); tri(a, c, d); } else { tri(a, b, d); tri(b, c, d); }
     }
+    if (globalThis.__PDBG) globalThis.__PDBG.push({ sdf: [nBand, nProj - nBand, nv, Math.round(T1 - T0), Math.round(T2 - T1), Math.round(performance.now() - T2)] });
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     g.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
@@ -308,13 +332,13 @@ export function install(K, THREE, TXT) {
       x.fillStyle = '#ffffff'; x.fillRect(0, 0, N, N);
       for (let i = 0; i < 700; i++) {
         const px = r() * N, w = 0.5 + r() * 1.5, v = r();
-        x.fillStyle = v < 0.7 ? 'rgba(0,0,0,' + (0.08 + r() * 0.22) + ')' : 'rgba(255,255,255,' + (0.05 + r() * 0.12) + ')';
+        x.fillStyle = v < 0.7 ? 'rgba(0,0,0,' + (0.03 + r() * 0.08) + ')' : 'rgba(255,255,255,' + (0.02 + r() * 0.05) + ')';
         x.fillRect(px, 0, w, N); x.fillRect(px - N, 0, w, N);
       }
     }
     const t = new THREE.CanvasTexture(cv);
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-    const rep = kind === 'plaid' ? 1 / 0.16 : kind === 'denim' ? 1 / 0.05 : kind === 'strands' ? 1 / 0.03 : 1 / 0.04;
+    const rep = kind === 'plaid' ? 1 / 0.16 : kind === 'denim' ? 1 / 0.05 : kind === 'strands' ? 1 / 0.06 : 1 / 0.04;
     t.repeat.set(rep, kind === 'strands' ? 1 / 0.2 : rep);
     CT.set(key, t);
     return t;
@@ -324,7 +348,7 @@ export function install(K, THREE, TXT) {
   const NT = new Map();
   function normTex(kind) {
     if (NT.has(kind)) return NT.get(kind);
-    const N = 256, r = K.rng(kind === 'crumple' ? 811 : 977), Hf = new Float32Array(N * N);
+    const N = 192, r = K.rng(kind === 'crumple' ? 811 : 977), Hf = new Float32Array(N * N);
     const waves = [];
     if (kind === 'crumple') {
       for (let i = 0; i < 26; i++) {
@@ -350,13 +374,13 @@ export function install(K, THREE, TXT) {
     x.putImageData(img, 0, 0);
     const t = new THREE.CanvasTexture(cv);
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
-    if (kind === 'crumple') t.repeat.set(1 / 0.34, 1 / 0.34); else t.repeat.set(1 / 0.03, 1 / 0.2);
+    if (kind === 'crumple') t.repeat.set(1 / 0.5, 1 / 0.5); else t.repeat.set(1 / 0.06, 1 / 0.2);
     NT.set(kind, t);
     return t;
   }
   function cloth(kind, color, extra) {
     extra = extra || {};
-    const nm = normTex('crumple'), ns = (s) => ({ normalMap: nm, normalScale: new THREE.Vector2(s, s) });
+    const nm = normTex('crumple'), ns = (s) => ({ normalMap: nm, normalScale: new THREE.Vector2(s * 0.3, s * 0.3) });
     if (kind === 'denim') return K.mat('p-denim', Object.assign({ color: 0xffffff, roughness: 0.9, map: clothTex('denim', color, 0, 0), sheen: 0.35, sheenColor: 0x8899bb, sheenRoughness: 0.7 }, ns(0.5)), true);
     if (kind === 'plaid') return K.mat('p-plaid', Object.assign({ color: 0xffffff, roughness: 0.88, map: clothTex('plaid', color, extra.b, extra.c), sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.8 }, ns(0.45)), true);
     if (kind === 'suit') return K.mat('p-suit', Object.assign({ color, roughness: 0.6, sheen: 0.5, sheenColor: 0x9a9a9a, sheenRoughness: 0.5 }, ns(0.22)), true);
@@ -380,7 +404,7 @@ export function install(K, THREE, TXT) {
   function headShape(ux, uy, uz, W, Hh, D, fem) {
     let x = Math.sign(ux) * Math.pow(Math.abs(ux), 0.9), y = uy, z = Math.sign(uz) * Math.pow(Math.abs(uz), 0.9);
     // jaw and chin taper, the jaw angle squarer on a man
-    if (y < 0.05) { const t = (0.05 - y) / 1.05; x *= 1 - (fem ? 0.5 : 0.4) * Math.pow(t, fem ? 1.4 : 1.7); }
+    if (y < 0.05) { const t = (0.05 - y) / 1.05; x *= 1 - (fem ? 0.42 : 0.3) * Math.pow(t, fem ? 1.5 : 1.9); }
     // no skull behind the jaw: the neck is there
     if (z < 0 && y < -0.15) z *= 1 - 0.55 * smooth((-y - 0.15) / 0.7);
     // forehead slopes back a little, face plane flattens, temples dip
@@ -428,7 +452,7 @@ export function install(K, THREE, TXT) {
   function headGeo(W, Hh, D, fem) {
     const key = [W, Hh, D, fem, LOW].map((v) => (typeof v === 'number' ? v.toFixed(4) : v)).join('|');
     if (HEADS.has(key)) return HEADS.get(key);
-    const NLON = LOW ? 24 : 84, NLAT = LOW ? 18 : 64;
+    const NLON = LOW ? 24 : 72, NLAT = LOW ? 18 : 56;
     const lon = warp(NLON, -Math.PI, Math.PI, (a) => 1 + 1.7 * Math.exp(-Math.pow(a / 0.85, 2)));
     const lat = warp(NLAT, 0, Math.PI, (t) => 1 + 1.6 * Math.exp(-Math.pow((t - 1.75) / 0.5, 2)));
     const pos = [], uv = [], dirs = [], idx = [];
@@ -496,18 +520,18 @@ export function install(K, THREE, TXT) {
     return (ux, uy, uz) => {
       const az = Math.abs(Math.atan2(ux, uz));
       const m = uy - lineAt(tab, az);                 // > 0 inside the hair
-      const top = smooth((uy + 0.1) / 0.9), front = smooth(uz / 0.6) * smooth((uy - 0.2) / 0.5);
+      const top = smooth((uy - 0.2) / 0.65), front = smooth(uz / 0.6) * smooth((uy - 0.3) / 0.4), crown = smooth((uy + 0.2) / 0.7);
       let T;
       switch (style) {
         case 'buzz': T = 0.0032; break;
         case 'tight': T = 0.004 + 0.002 * top; break;
-        case 'side': T = 0.006 + 0.022 * top + 0.006 * front - 0.006 * g2(ux - 0.38, uy - 0.62, 0.05, 0.4) * smooth(uz / 0.3 + 0.3); break;
-        case 'curly': T = 0.009 + 0.018 * top + 0.0035 * (Math.sin(ux * 31 + ph) * Math.sin(uy * 29 + ph * 2) + Math.sin(uz * 27 + uy * 13 + ph * 3)); break;
+        case 'side': T = 0.0045 + 0.004 * crown + 0.02 * top + 0.009 * front - 0.007 * g2(ux - 0.4, uy - 0.62, 0.045, 0.4) * smooth(uz / 0.3 + 0.3) + 0.004 * top * smooth(-ux / 0.4); break;
+        case 'curly': T = 0.006 + 0.005 * crown + 0.016 * top + 0.003 * (Math.sin(ux * 31 + ph) * Math.sin(uy * 29 + ph * 2) + Math.sin(uz * 27 + uy * 13 + ph * 3)); break;
         case 'recede': T = 0.004 + 0.004 * top; break;
         case 'bun': T = 0.004 + 0.004 * top; break;
-        case 'long': case 'bob': T = 0.007 + 0.014 * top + 0.004 * front; break;
-        case 'curlyLong': T = 0.012 + 0.02 * top + 0.004 * (Math.sin(ux * 27 + ph) * Math.sin(uy * 25 + ph * 2) + Math.sin(uz * 23 + ph * 3)); break;
-        default: T = 0.005 + 0.016 * top + 0.007 * front;      // crop
+        case 'long': case 'bob': T = 0.007 + 0.004 * crown + 0.01 * top + 0.004 * front; break;
+        case 'curlyLong': T = 0.012 + 0.016 * top + 0.004 * (Math.sin(ux * 27 + ph) * Math.sin(uy * 25 + ph * 2) + Math.sin(uz * 23 + ph * 3)); break;
+        default: T = 0.004 + 0.004 * crown + 0.014 * top + 0.008 * front;      // crop
       }
       T *= k;
       // a continuous taper through the hairline, so the edge is cut by interpolation, not by the grid
@@ -519,22 +543,24 @@ export function install(K, THREE, TXT) {
    * head, open at the face, its lower edge layered. Rows run down, columns around. */
   function curtainGeo(W, Hh, D, k, len, curly, ph) {
     const NU = LOW ? 14 : 44, NV = LOW ? 6 : 22, th = (curly ? 0.03 : 0.018) * k;
-    const yTop = 0.15 * Hh, pos = [], uv = [], idx = [];
+    const yTop = 0.05 * Hh, pos = [], uv = [], idx = [];
     const a0 = 1.0, a1 = Math.PI * 2 - 1.0;                      // around the back
     const R = (a, y, s) => {                                      // outer radius factor
       const fl = smooth((-y) / (Hh * 1.2));
-      return 1.06 + 0.12 * fl + (curly ? 0.1 : 0) * fl + s * 0.012 * Math.sin(a * 23 + ph) + (curly ? 0.04 * Math.sin(a * 11 + y * 60 + ph) : 0);
+      return 1.05 + 0.1 * fl + (curly ? 0.1 : 0) * fl + s * 0.012 * Math.sin(a * 23 + ph) + (curly ? 0.04 * Math.sin(a * 11 + y * 60 + ph) : 0);
     };
     const bot = (a) => -len * Hh + 0.035 * k * Math.sin(a * 5 + ph) + 0.02 * k * Math.sin(a * 13 + ph * 2) - 0.04 * k * Math.cos(a - Math.PI) * (len > 1.3 ? 1 : 0);
-    const put = (a, y, inner) => {
-      const rr = R(a, y, 1) - (inner ? th / (W * 1.1) : 0);
+    const put = (a, y, inner, v) => {
+      const edge = smooth((a - a0) / 0.5) * smooth((a1 - a) / 0.5);
+      const tt = th * (0.15 + 0.85 * edge) * (1 - 0.55 * v);
+      const rr = R(a, y, 1) - (1 - edge) * 0.06 - (inner ? tt / (W * 1.1) : 0);
       const x = Math.sin(a) * W * rr, z = Math.cos(a) * D * rr * 0.97 - 0.1 * D * smooth(-y / Hh);
       pos.push(x, y, z); uv.push(a * 0.09, y);
     };
     for (let side = 0; side < 2; side++)
       for (let v = 0; v <= NV; v++) for (let u = 0; u <= NU; u++) {
         const a = lerp(a0, a1, u / NU), y = lerp(yTop, bot(a), v / NV);
-        put(a, y, side === 1);
+        put(a, y, side === 1, v / NV);
       }
     const Wd = NU + 1, off = (NV + 1) * Wd;
     for (let v = 0; v < NV; v++) for (let u = 0; u < NU; u++) {
@@ -575,13 +601,13 @@ export function install(K, THREE, TXT) {
         { seg: 12, capEnd: 'dome', ref: [1, 0, 0] }), mat));
     }
     for (let f = 0; f < (LOW ? 0 : 4); f++) {
-      const zz = (0.03 - f * 0.02) * k * (B / (0.084 * k));
+      const zz = (0.029 - f * 0.0195) * k * (B / (0.084 * k));
       const len = fl[f] * k;
       // at rest the fingers curl more toward the little finger: a relaxed hand, not a paddle
       const curl = pose === 'point' ? (f === 0 ? 0.05 : 1.45) : pose === 'fist' ? 1.4 : 0.62 + f * 0.13;
       const ctrl = [];
       let px = -s * 0.006 * k, py = -L + 0.004 * k, a = 0.08;
-      const rad = (0.0098 - f * 0.0006) * k;
+      const rad = (0.0104 - f * 0.0006) * k;
       ctrl.push({ p: [px, py + 0.01 * k, zz], rx: rad * 1.05, ry: rad * 0.9 });
       const segs = [0.45, 0.31, 0.24];
       for (let j = 1; j <= 3; j++) {
@@ -658,7 +684,7 @@ export function install(K, THREE, TXT) {
       const t = lerp(0.03, 0.975, i / NT), top = hAt(t), yc = soleT + (top - soleT) * 0.42;
       ctrl.push({ p: [0, yc, z0 + t * L], rx: wAt(t) * 0.97, ry: top - yc, ryn: yc - soleT + 0.006 * k });
     }
-    const up = loft(ctrl, { seg: LOW ? 10 : 22, per: LOW ? 1 : 2, n: 2.25, ref: [1, 0, 0], capStart: 'dome', capEnd: 'dome', domeK: 0.35, floor: soleT * 0.8 });
+    const up = loft(ctrl, { seg: LOW ? 10 : 16, per: LOW ? 1 : 2, n: 2.25, ref: [1, 0, 0], capStart: 'dome', capEnd: 'dome', domeK: 0.35, floor: soleT * 0.8 });
     g.add(new THREE.Mesh(bend(up), upper));
     // the collar and shaft around the ankle
     const shaftH = western ? 0.24 : boot || work ? 0.15 : 0.09;
@@ -673,12 +699,12 @@ export function install(K, THREE, TXT) {
       const t0 = dress ? 0.4 : 0.34, t1 = dress ? 0.58 : 0.62, nb = dress ? 4 : 6;
       const slope = (t) => Math.atan2(hAt(t + 0.02) - hAt(t - 0.02), 0.04 * L);
       const tm = (t0 + t1) / 2;
-      const tongue = TXT.roundedBox(wAt(tm) * 0.95, 0.006 * k, (t1 - t0) * L * 1.15, 0.0025 * k, upper);
+      const tongue = new THREE.Mesh(new THREE.BoxGeometry(wAt(tm) * 0.95, 0.006 * k, (t1 - t0) * L * 1.15), upper);
       tongue.position.set(0, hAt(tm) + 0.001 * k + (heelH ? heelH * (1 - smooth((tm - 0.28) / 0.42)) : 0), z0 + tm * L); tongue.rotation.x = -slope(tm); g.add(tongue);
       for (let b = 0; b < nb; b++) {
         const t = lerp(t0, t1, b / (nb - 1)), zz = z0 + t * L;
         const lift = heelH ? heelH * (1 - smooth((zz - (z0 + L * 0.28)) / (L * 0.42))) : 0;
-        const bar = TXT.roundedBox(wAt(t) * 1.25, 0.0032 * k, 0.0065 * k, 0.0015 * k, lace);
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(wAt(t) * 1.25, 0.0032 * k, 0.0065 * k), lace);
         bar.position.set(0, hAt(t) + 0.0045 * k + lift, zz); bar.rotation.x = -slope(t); bar.rotation.y = (b % 2 ? 1 : -1) * 0.18; g.add(bar);
       }
     }
@@ -892,7 +918,7 @@ export function install(K, THREE, TXT) {
                    [0.735, 0.165 * mk, 0.121 + (fem ? 0.024 : 0) + bk * 0.3, 0.104, 0.006],
                    [0.775, 0.166 * mk, 0.112 + (fem ? 0.01 : 0), 0.105, 0.004],
                    [0.8, (jacket ? 0.165 : 0.158), 0.095, 0.099, 0.002], [0.817, 0.138, 0.079, 0.087, -0.002], [0.832, 0.11, 0.066, 0.072, -0.006],
-                   [0.845, 0.085, 0.057, 0.062, -0.009], [0.857, 0.068, 0.052, 0.054, -0.011]];
+                   [0.845, 0.09, 0.064, 0.07, -0.01], [0.857, 0.078, 0.063, 0.068, -0.012]];
     for (let i = 1; i < upper.length; i++) if (upper[i][0] <= upper[i - 1][0]) upper[i][0] = upper[i - 1][0] + 0.012;
     const ring = (row, wk, extra) => ({ p: [0, Yl(row[0]), row[4] * k], rx: row[1] * k * wk + (extra || 0), ry: row[2] * k + (extra || 0), ryn: row[3] * k + (extra || 0) });
     const wk = (i) => (i <= 3 ? lerp(hw, bw, i / 3) : bw);
@@ -968,7 +994,7 @@ export function install(K, THREE, TXT) {
         if (dk > -0.08 * k && dk < 0.08 * k) fold += 0.0026 * k * Math.exp(-Math.pow(dk / (0.045 * k), 2)) * Math.max(0, -I.c) * Math.sin(dk * 170 / k + I.s * 1.5 + ph[1]);
         if (de < 0.13 * k) fold += 0.0038 * k * (1 - de / (0.13 * k)) * (0.6 + 0.4 * I.c) * Math.sin(de * 150 / k + I.s * 1.2 + ph[2]);
         if (jeans && I.along < 0.2 * k && I.c > 0) fold += 0.0014 * k * I.c * Math.sin((I.along + I.s * 0.05) * 160 / k) * (1 - I.along / (0.2 * k));
-        d -= fold + 0.0012 * k * noise(x, y, z, 32);
+        d -= fold + 0.0009 * k * noise(x, y, z, 13);
         // hem: a plane, lower at the back
         d = Math.max(d, (x - hemP[0]) * tilt.x + (y - hemP[1]) * tilt.y + (z - hemP[2]) * tilt.z);
         return d;
@@ -977,9 +1003,10 @@ export function install(K, THREE, TXT) {
     }
     const crotchY = Yl(0.5);
     const trouserF = (x, y, z) => {
-      let d = seatRaw(x, y, z) - 0.0008 * k * noise(x, y, z, 30);
+      let d = seatRaw(x, y, z) - 0.0006 * k * noise(x, y, z, 12);
       const ks = 0.04 * k * smooth((y - crotchY) / (0.06 * k));
-      d = smin(d, smin(leg[1].trF(x, y, z), leg[-1].trF(x, y, z), 0.008 * k), ks);
+      const a = leg[1].trTube.lb(x, y, z) < d + ks ? leg[1].trF(x, y, z) : 1, b = leg[-1].trTube.lb(x, y, z) < d + ks ? leg[-1].trF(x, y, z) : 1;
+      d = smin(d, smin(a, b, 0.008 * k), ks);
       return Math.max(d, y - waistTop);
     };
 
@@ -1005,8 +1032,8 @@ export function install(K, THREE, TXT) {
       }
       const side = smooth((Math.abs(x) / (0.16 * k) - 0.62) / 0.3);
       const yw = Yl(0.63);
-      if (Math.abs(yy - yw) < 0.07 * k) fold += fa * 0.0018 * k * side * (1 - Math.abs(yy - yw) / (0.07 * k)) * Math.sin((yy - yw) * 190 / k + ph[2]);
-      fold += fa * 0.0014 * k * noise(x, yy, zz, 26);
+      if (Math.abs(yy - yw) < 0.09 * k) fold += fa * 0.0016 * k * side * Math.exp(-Math.pow((yy - yw) / (0.035 * k), 2)) * Math.sin((yy - yw) * 150 / k + ph[2]);
+      fold += fa * 0.0011 * k * noise(x, yy, zz, 11);
       d -= fold;
       // the hem, with a little life in it
       const hem = hemAbs + (tucked ? 0 : 0.003 * k * Math.sin(x * 40 + ph[3]));
@@ -1031,7 +1058,7 @@ export function install(K, THREE, TXT) {
       }
       S0[s] = S; Ecl[s] = E; Wrl[s] = Wr;
       const nb = leanV(V3(s * 0.045 * k, Yl(0.84), -0.016 * k));
-      traps.push(tube([nb.toArray(), [S.x - s * 0.025 * k, S.y + 0.018 * k, S.z - 0.006 * k]], [0.029 * k, (jacket ? 0.046 : 0.041) * k * bw], {}));
+      traps.push(tube([nb.toArray(), [S.x - s * 0.03 * k, S.y + 0.012 * k, S.z - 0.006 * k]], [0.03 * k, (jacket ? 0.045 : 0.041) * k * bw], {}));
     }
     const A_UD = {}, A_FD = {};
     const cover = jacket || sleeves === 'long' ? 1 : sleeves === 'rolled' ? 0.55 : 0.3;
@@ -1045,9 +1072,9 @@ export function install(K, THREE, TXT) {
       if (bend < 0.05) inner = V3(0, 0, 1).sub(Ud.clone().multiplyScalar(Ud.z)); inner.normalize();
       const ease = (jacket ? 0.011 : cover < 1 ? 0.01 : 0.008) * k;
       const m1 = 1 + 0.14 * mass;
-      const start = S.clone().addScaledVector(Ud, -0.016 * k);
+      const start = S.clone().addScaledVector(Ud, -0.026 * k);
       const f = tube([start.toArray(), S.clone().lerp(E, 0.42).toArray(), E.toArray(), E.clone().lerp(Wr, 0.3).toArray(), Wr.toArray()],
-        [0.052 * k * bw * m1 + ease, 0.045 * k * m1 + ease, 0.037 * k * m1 + ease, 0.039 * k * m1 + ease, 0.027 * k + ease], { ref: inner.toArray(), k: 0.014 * k });
+        [0.049 * k * bw * m1 + ease * 0.7, 0.045 * k * m1 + ease, 0.037 * k * m1 + ease, 0.039 * k * m1 + ease, 0.027 * k + ease], { ref: inner.toArray(), k: 0.014 * k });
       const tot = f.len, elbowA = f.cum[2];
       const cutA = cover >= 1 ? tot - (jacket ? 0.026 : 0.012) * k : 0.016 * k + (upperArm + foreArm) * cover;
       const cp = f.at(cutA);
@@ -1061,34 +1088,35 @@ export function install(K, THREE, TXT) {
         if (cover >= 1 && dc < 0.1 * k) fold += 0.0022 * k * (1 - dc / (0.1 * k)) * Math.sin(dc * 150 / k + I.s * 1.1 + ph[3]);
         if (cover < 1 && dc < 0.07 * k) fold += (sleeves === 'rolled' ? 0.006 : 0.004) * k * smooth(1 - dc / (0.05 * k));   // the opening flares, the roll thickens
         if (I.along > 0.01 * k && I.along < 0.03 * k) fold -= 0.0011 * k * Math.exp(-Math.pow((I.along - 0.02 * k) / (0.004 * k), 2));   // shoulder seam
-        d -= fold + 0.0012 * k * noise(x, y, z, 28);
+        d -= fold + 0.0009 * k * noise(x, y, z, 12);
         return Math.max(d, (x - cp.p[0]) * cp.d[0] + (y - cp.p[1]) * cp.d[1] + (z - cp.p[2]) * cp.d[2]);
       };
       sleeveF[s].tube = f;
     }
     const armpitY = Math.min(S0[1].y, S0[-1].y) - 0.065 * k;
-    const neckC = leanV(V3(0, Yl(0.85), -0.012 * k)), neckR = 0.052 * k * (fem ? 0.87 : 1) * (1 + 0.1 * mass);
+    const neckC = leanV(V3(0, Yl(0.85), -0.012 * k)), neckR = 0.058 * k * (fem ? 0.86 : 1) * (1 + 0.1 * mass);
     const clrLo = hemAbs - 0.005 * k, clrHi = Math.max(hemAbs + 0.1 * k, Yl(0.63));
-    const clr = 0.009 * k;
+    const clr = 0.011 * k;
     const shirtF = (x, y, z) => {
       let d = torsoF(x, y, z);
-      d = smin(d, traps[0](x, y, z), 0.035 * k); d = smin(d, traps[1](x, y, z), 0.035 * k);
+      for (const t of traps) if (t.lb(x, y, z) < d + 0.035 * k) d = smin(d, t(x, y, z), 0.035 * k);
       const ka = 0.032 * k * smooth((y - armpitY) / (0.07 * k));
-      d = smin(d, sleeveF[1](x, y, z), ka); d = smin(d, sleeveF[-1](x, y, z), ka);
-      if (y > clrLo && y < clrHi) d = Math.min(d, Math.max(trouserF(x, y, z) - clr, hemAbs - y));
+      if (sleeveF[1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[1](x, y, z), ka);
+      if (sleeveF[-1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[-1](x, y, z), ka);
+      if (y > clrLo && y < clrHi) d = Math.min(d, Math.max(seatRaw(x, y, z) - clr, hemAbs - y, y - clrHi));
       // the neck opening and the top
       const nz = z - (neckC.z + (y - neckC.y) * 0.08);
-      const hole = Math.max(ell2(x, nz, neckR + 0.005 * k, neckR * 0.98 + 0.005 * k), Yl(0.83) - y);
+      const hole = Math.max(ell2(x, nz, neckR + 0.004 * k, neckR * 0.96 + 0.004 * k), Yl(0.83) - y);
       d = Math.max(d, -hole, y - shirtTop);
       return d;
     };
 
     /* Mesh both garments. UVs are cylindrical in metres: the torso around the body, each sleeve
      * and trouser leg around its own axis, so a plaid meets itself at a seam, as cloth does. */
-    const hG = LOW ? 0.026 * k : 0.0105 * k;
+    const hG = LOW ? 0.028 * k : 0.0135 * k;
     const cyl = (f, R, x, y, z, out) => { f(x, y, z); const I = f.info; out[0] = Math.atan2(I.s, I.c) * R; out[1] = I.along; out[2] = Math.PI * 2 * R; };
     const shirtU = {
-      region: (x, y, z) => { const t = torsoF(x, y, z), a = sleeveF[1](x, y, z), b = sleeveF[-1](x, y, z); return t <= a && t <= b ? 0 : a < b ? 1 : -1; },
+      region: (x, y, z) => { const t = torsoF(x, y, z), a = sleeveF[1].tube.lb(x, y, z) < t ? sleeveF[1](x, y, z) : 1, b = sleeveF[-1].tube.lb(x, y, z) < t ? sleeveF[-1](x, y, z) : 1; return t <= a && t <= b ? 0 : a < b ? 1 : -1; },
       uv: (x, y, z, reg, out) => {
         if (reg === 0) { out[0] = Math.atan2(x, z) * 0.15; out[1] = y; out[2] = Math.PI * 2 * 0.15; }
         else cyl(sleeveF[reg].tube, 0.05, x, y, z, out);
@@ -1113,7 +1141,7 @@ export function install(K, THREE, TXT) {
     grow(V3(0, waistTop, 0), 0.19 * k);
     bb.max.y = waistTop + 0.01 * k;
     tick('preTrousers');
-    G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG, trU), trouserM));
+    G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.12, trU), trouserM));
 
     tick('postTrousers');
     const body = new THREE.Group();
@@ -1179,6 +1207,20 @@ export function install(K, THREE, TXT) {
       const tw2 = (yf) => yf > 0.835 ? 0.011 * k : lerp(0.03, 0.009, (yf - 0.7) / 0.135) * k;
       const tys = ys.filter((y) => y >= 0.7).concat([0.69]);
       body.add(strip(tys.map((y) => [y, -tw2(y) * (y < 0.7 ? 0.1 : 1), tw2(y) * (y < 0.7 ? 0.1 : 1), 0.0055 * k]), tieM));
+      const bandG = (y0, y1, rx, rz, zc, a0, a1, th) => {      // a partial collar band, a0..a1 around from the front
+        const NA = 28, pos = [], idx = [];
+        for (let side = 0; side < 2; side++) for (let j = 0; j <= 1; j++) for (let i = 0; i <= NA; i++) {
+          const a = lerp(a0, a1, i / NA), o = side ? -th : 0, yy = lerp(y0, y1 + 0.012 * k * Math.pow(Math.sin(a / 2), 2), j);
+          pos.push(Math.sin(a) * (rx + o), yy, zc + Math.cos(a) * (rz + o));
+        }
+        const Wd = NA + 1;
+        for (let side = 0; side < 2; side++) for (let i = 0; i < NA; i++) { const a = side * 2 * Wd + i, b = a + Wd; if (side) idx.push(a, a + 1, b, b, a + 1, b + 1); else idx.push(a, b, a + 1, b, b + 1, a + 1); }
+        for (let i = 0; i < NA; i++) { const a = Wd + i, b = 3 * Wd + i; idx.push(a, b, a + 1, b, b + 1, a + 1); }     // the top edge
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+        return g;
+      };
+      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.872), neckR + 0.0045 * k, neckR * 0.97 + 0.0045 * k, -0.012 * k, -2.6, 2.6, 0.003 * k), K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
+      body.add(new THREE.Mesh(bandG(Yl(0.838), Yl(0.862), neckR + 0.011 * k, neckR * 0.97 + 0.011 * k, -0.012 * k, -2.3, 2.3, 0.005 * k), shirtM));
       const knot = TXT.roundedBox(0.024 * k, 0.02 * k, 0.012 * k, 0.005 * k, tieM);
       knot.position.set(0, Yl(0.846), frontZ(0.846) + 0.004 * k); body.add(knot);
       const lap = K.mat('p-lapel', { color: new THREE.Color(shirtM.color).multiplyScalar(0.8).getHex(), roughness: 0.5, side: THREE.DoubleSide });
@@ -1355,7 +1397,7 @@ export function install(K, THREE, TXT) {
         for (let i = 0; i <= 8; i++) {
           const t = i / 8, ux = lerp(0.1, 0.6, t), uy = 0.185 + 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.25)) - 0.03 * t;
           const q = surf(s * ux, uy);
-          pts.push({ p: [q[0], q[1], q[2] + 0.0012 * k], rx: 0.0016 * k, ry: lerp(fem ? 0.0035 : 0.0048, 0.0014, t) * k });
+          pts.push({ p: [q[0], q[1], q[2] + 0.0012 * k], rx: 0.0014 * k, ry: lerp(fem ? 0.003 : 0.004, 0.0012, t) * k });
         }
         head.add(new THREE.Mesh(loft(pts, { seg: 8, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), browM));
       }

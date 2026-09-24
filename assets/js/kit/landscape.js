@@ -335,7 +335,7 @@ export function install(K, THREE, TXT) {
   const SEASON = {
     // flat: three grass fields mixed by noise; dry: sun cured patches; swale: the greener hollows;
     // thin: the grey, rock strewn soil of the slopes; duff: the dark litter under a brake or motte
-    summer: { flat: [0x9a9570, 0x828463, 0xada07a], dry: 0xb9aa82, swale: 0x66703f, thin: 0x9a9380, duff: 0x55503c, brake: 0x5a5e44, rock: 0xbcb7aa },
+    summer: { flat: [0x919266, 0x7d8456, 0xa39d70], dry: 0xb8a878, swale: 0x66703f, thin: 0x9a9380, duff: 0x55503c, brake: 0x5a5e44, rock: 0xbcb7aa },
     spring: { flat: [0x7a8a48, 0x6c7d40, 0x8e9656], dry: 0xa39c62, swale: 0x4f6630, thin: 0x8c866a, duff: 0x4a4632, brake: 0x3e4d2e, rock: 0xbdb6a4 },
     winter: { flat: [0xa89a74, 0x98906c, 0xb4a782], dry: 0xbfae84, swale: 0x7a7656, thin: 0x9c937a, duff: 0x55503c, brake: 0x46503a, rock: 0xc0b9a8 },
   };
@@ -397,11 +397,67 @@ export function install(K, THREE, TXT) {
    * kit/trees.js: a few seeded variants are grown ONCE per kit and cached, then instanced.
    *   L0  the whole tree, every cluster and all its wood (the nearest two or three);
    *   L1  its clusters thinned on a grid and each grown to cover its cell, the twigs dropped;
-   *   L2  the same on a coarse grid (a dozen clusters), a live oak keeping its trunk and great
-   *       limbs, so a far motte is still a broad, flat bottomed, broken crown and never a blob.
-   *       (A smooth shrink wrapped hull was tried for L2 and read as a pillow; it is not coming back.)
+   *   L2  a billboard of three crossed cards baked from the same tree (see bakeImpostor).
    * A triangle budget decides how far out each level reaches. Without kit/trees.js installed, the
    * old card crowns are drawn instead. */
+  /* ---- far trees: billboards BAKED FROM THE KIT'S OWN TREE (2026-09-24, second pass). Three
+   * crossed cards, six triangles, carrying a picture of the very variant drawn near: the tree is
+   * rendered once, unlit (albedo and its canopy occlusion only), side on and orthographic, by a
+   * small offscreen renderer that is then released. Each card is lit by a normal pointing out
+   * from the crown's centre, so the scene's sun shades it as a volume. Three cheaper tries came
+   * first and are recorded so nobody makes them again: leaf clusters thinned to a coarse grid
+   * read as shredded flat cards, a smooth hull over the clusters read as a pillow, and a crown
+   * painted in canvas blobs read as a sponge cut out of cardboard. */
+  function bakeImpostor(src, W, H, px) {
+    const w = px, h = Math.max(64, Math.round(px * H / W / 32) * 32);
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    let ren = null;
+    try {
+      ren = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true, premultipliedAlpha: false, preserveDrawingBuffer: true });
+      ren.setPixelRatio(1); ren.setSize(w, h, false);
+      ren.outputColorSpace = THREE.SRGBColorSpace; ren.toneMapping = THREE.NoToneMapping; ren.setClearColor(0x2a3320, 0);
+      const sc = new THREE.Scene(), swap = [], basic = new Map();
+      src.traverse((m) => { if (!m.isMesh) return; const s = m.material;
+        if (!basic.has(s)) basic.set(s, new THREE.MeshBasicMaterial({ map: s.map || null, color: s.color ? s.color.clone() : 0xffffff, alphaTest: s.alphaTest || 0, side: s.side, vertexColors: !!s.vertexColors }));
+        swap.push([m, s]); m.material = basic.get(s); });
+      const par = src.parent; sc.add(src);
+      const cam = new THREE.OrthographicCamera(-W / 2, W / 2, H, 0, -200, 200); cam.position.set(0, 0, 50); cam.lookAt(0, 0, 0);
+      ren.render(sc, cam);
+      sc.remove(src); if (par) par.add(src);
+      swap.forEach(([m, s]) => { m.material = s; }); basic.forEach((b) => b.dispose());
+      const out = document.createElement('canvas'); out.width = w; out.height = h; out.getContext('2d').drawImage(cv, 0, 0);
+      const t = new THREE.CanvasTexture(out); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+      return t;
+    } catch (e) { return null; }
+    finally { if (ren) { ren.dispose(); if (ren.forceContextLoss) ren.forceContextLoss(); } }
+  }
+  function impostorMat(key, tex) {
+    const m = M('hct-imp-' + key, { color: 0xffffff, map: tex, alphaTest: 0.5, roughness: 0.9, side: THREE.DoubleSide });
+    if (!m.userData.fol) {
+      m.userData.fol = true;
+      const chunk = THREE.ShaderChunk.normal_fragment_begin.replace('normal *= faceDirection;', '');
+      m.onBeforeCompile = (sh) => { sh.fragmentShader = sh.fragmentShader.replace('#include <normal_fragment_begin>', chunk); };
+      m.customProgramCacheKey = () => 'foliage-noflip';
+    }
+    return m;
+  }
+  // three crossed cards of width W and height H standing on y = 0; uv rectangle [u0, v0, u1, v1]
+  function impostorGeo(W, H, uvr, cy) {
+    const P = [], Nn = [], U = [], v = new THREE.Vector3();
+    for (let k = 0; k < 3; k++) {
+      const a = k * Math.PI / 3, ca = Math.cos(a), sa = Math.sin(a);
+      const pts = [[-0.5, 0], [0.5, 0], [0.5, 1], [-0.5, 0], [0.5, 1], [-0.5, 1]];
+      pts.forEach(([s, t]) => {
+        const x = s * W * ca, z = s * W * sa, y = t * H;
+        P.push(x, y, z); U.push(uvr[0] + (s + 0.5) * (uvr[2] - uvr[0]), uvr[1] + t * (uvr[3] - uvr[1]));
+        v.set(x / (W * 0.5), (y - cy) / (H * 0.5) + 0.45, z / (W * 0.5)).normalize(); Nn.push(v.x, v.y, v.z);
+      });
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(Nn, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(U, 2));
+    return g;
+  }
   const TREEKIT = new Map();
   function treeKit(name, seed, spec) {
     const key = name + '|' + seed;
@@ -450,15 +506,17 @@ export function install(K, THREE, TXT) {
     const L0 = woods.map((w) => ({ geo: w.geometry, mat: w.material, locals: [w.matrixWorld.clone()], cols: null }))
       .concat(fols.map((f) => { const L = cl.filter((c) => c.f === f); return { geo: f.geometry, mat: f.material, locals: L.map((c) => c.M), cols: L.map((c) => c.c) }; }));
     const L1 = thinWood(spec.wood1).concat(thinFol(spec.cell1, 1.05));
-    const L2 = (spec.wood2 ? thinWood(spec.wood2) : []).concat(thinFol(spec.cell2, 1.12));
+    const sb = new THREE.Box3().setFromObject(src), W = Math.max(sb.max.x - sb.min.x, sb.max.z - sb.min.z) * 1.02, Ht = sb.max.y + 0.1;
+    const tex = bakeImpostor(src, W, Ht, spec.px);
+    const L2 = tex ? [{ geo: impostorGeo(W, Ht, [0, 0, 1, 1], Ht * spec.cy), mat: impostorMat(key, tex), locals: [I.clone()], cols: null }] : L1;
     const cost = (L) => L.reduce((s, p) => s + triOf(p.geo) * p.locals.length, 0);
     const kit = { lods: [L0, L1, L2], cost: [cost(L0), cost(L1), cost(L2)], height: box.max.y, width: Math.max(size.x, size.z) };
     TREEKIT.set(key, kit);
     return kit;
   }
   const TREESPEC = {
-    live_oak: { cell1: 1.7, cell2: 5.5, wood1: 0.05, wood2: 0.12 },
-    ashe_juniper: { cell1: 0.95, cell2: 2.6, wood1: 0.035, wood2: 0 },
+    live_oak: { cell1: 1.7, wood1: 0.05, px: 512, cy: 0.62 },
+    ashe_juniper: { cell1: 0.95, wood1: 0.035, px: 256, cy: 0.45 },
   };
   // Place trees: list of {sp, v, x, y, z, ry, sx, sy, sz, tint, d}; returns the triangles spent.
   function plantTrees(g, trees, budget) {
@@ -469,7 +527,9 @@ export function install(K, THREE, TXT) {
     let far = 0; trees.forEach((t) => { far += kits[t.sp][t.v].cost[2]; });
     // too many trees for the budget even far: thin the farthest half first, evenly
     let i = trees.length - 1; const rr = TXT.rng(trees.length * 17 + 3);
-    while (far > budget * 0.9 && i > trees.length * 0.2) { if (rr() < 0.5) { far -= kits[trees[i].sp][trees[i].v].cost[2]; trees[i].drop = true; } i--; }
+    for (let pass = 0; pass < 6 && far > budget * 0.9; pass++)
+      for (i = trees.length - 1; i > trees.length * 0.2 && far > budget * 0.9; i--)
+        if (!trees[i].drop && rr() < 0.5) { far -= kits[trees[i].sp][trees[i].v].cost[2]; trees[i].drop = true; }
     let spent = 0, n0 = 0;
     const Mp = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new THREE.Vector3(), p = new THREE.Vector3();
     for (const t of trees) {
@@ -478,7 +538,8 @@ export function install(K, THREE, TXT) {
       let L = t.d < t.r0 && n0 < 3 ? 0 : t.d < t.r1 ? 1 : 2;
       while (L < 2 && spent + kit.cost[L] + far > budget) L++;
       if (L === 0) n0++;
-      spent += kit.cost[L];
+      spent += kit.cost[L]; g.userData.treeStats = g.userData.treeStats || { lod: [0, 0, 0], cost: {} };
+      g.userData.treeStats.lod[L]++; g.userData.treeStats.cost[t.sp] = kit.cost;
       e.set(0, t.ry, 0); q.setFromEuler(e); s.set(t.sx, t.sy, t.sz); p.set(t.x, t.y, t.z); Mp.compose(p, q, s);
       kit.lods[L].forEach((part) => {
         if (!out.has(part)) out.set(part, { part, M: [], C: [] });
@@ -593,7 +654,7 @@ export function install(K, THREE, TXT) {
       const tint = (k) => new THREE.Color(0.9 + r() * 0.16, 0.9 + r() * 0.16, 0.88 + r() * 0.14).multiplyScalar(k);
       if (o.trees > 0) {
         const area = S * S, r0 = 45, r1 = o.detail || 280;
-        const nJ = Math.round(Math.min(1100, area / 480) * o.trees), nO = Math.round(Math.min(70, area / 8000) * o.trees), nY = Math.round(Math.min(700, area / 900) * o.trees);
+        const nJ = Math.round(Math.min(1800, area / 320) * o.trees), nO = Math.round(Math.min(110, area / 5200) * o.trees), nY = Math.round(Math.min(700, area / 900) * o.trees);
         const clear = (x, z) => dNear(x, z) < 7;   // never a tree on the viewer's own spot
         let tries = 0, cJ = 0;
         while (cJ < nJ && tries < nJ * 40) {                    // Ashe juniper: singly and in brakes
@@ -691,7 +752,7 @@ export function install(K, THREE, TXT) {
         const base = [col(0xc4bda9), col(0xb2ac9c), col(0xcfc6b0), col(0xa9a495)], cc = new THREE.Color();
         let nPts = 0;
         // trace every level first: the sample spacing is set so the ledges take at most a fifth of the budget
-        const traced = []; let Lsum = 0;
+        const traced = [], apron = []; let Lsum = 0;
         levels.forEach((lev, li) => traceContours(Y, NV, cell, S, lev, keepCell).forEach((chain, ci) => {
           if (chain.length < 3) return; traced.push([li, ci, chain]);
           for (let k = 1; k < chain.length; k++) Lsum += Math.hypot(chain[k][0] - chain[k - 1][0], chain[k][1] - chain[k - 1][1]); }));
@@ -736,6 +797,7 @@ export function install(K, THREE, TXT) {
                   cc.copy(tone).multiplyScalar(k3); Cc.push(cc.r, cc.g, cc.b);
                 });
                 nPts += prof.length;
+                if (h > 0.3) apron.push([x + dx * (0.8 + h), z + dz * (0.8 + h), 1.2 + 1.6 * h]);
                 if (h > 0.5 && r() < 0.45 * o.rocks) {        // talus: blocks fallen from the lip
                   const off = 0.5 + r() * 2.6;
                   const k = 0.12 + r() * 0.3 * h; stoneSpots.push([x + dx * off, hAt(x + dx * off, z + dz * off).y - k * 0.45, z + dz * off, k]);
@@ -750,6 +812,18 @@ export function install(K, THREE, TXT) {
             });
           }
         });
+        // the apron of weathered rock and thin soil under each ledge, paler and greyer, on the ground colour
+        const cAp = col(pal.thin).lerp(col(pal.rock), 0.45);
+        apron.forEach(([ax, az, rad]) => {
+          const i0 = Math.max(0, Math.floor((ax - rad + S / 2) / cell)), i1 = Math.min(seg, Math.ceil((ax + rad + S / 2) / cell));
+          const j0 = Math.max(0, Math.floor((az - rad + S / 2) / cell)), j1 = Math.min(seg, Math.ceil((az + rad + S / 2) / cell));
+          for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+            const d = Math.hypot(-S / 2 + i * cell - ax, -S / 2 + j * cell - az) / rad; if (d >= 1) continue;
+            const k = (1 - smooth(0.3, 1, d)) * 0.55, q = (j * NV + i) * 3;
+            C[q] += (cAp.r - C[q]) * k; C[q + 1] += (cAp.g - C[q + 1]) * k; C[q + 2] += (cAp.b - C[q + 2]) * k;
+          }
+        });
+        geo.attributes.color.needsUpdate = true;
         if (Ix.length) {
           const lg = new THREE.BufferGeometry();
           lg.setAttribute('position', new THREE.Float32BufferAttribute(Pp, 3)); lg.setAttribute('color', new THREE.Float32BufferAttribute(Cc, 3));
@@ -761,7 +835,7 @@ export function install(K, THREE, TXT) {
       }
       // loose rock on the thin soil of the slopes, gathered toward the viewer where it can be seen
       if (o.rocks > 0) {
-        const want = Math.round(2600 * o.rocks); let tries = 0, n = 0;
+        const want = Math.round(1600 * o.rocks); let tries = 0, n = 0;
         while (n < want && tries < want * 30) {
           tries++;
           const d = Math.pow(r(), 1.8) * S * 0.7, a = r() * TAU, x = near[0] + Math.cos(a) * d, z = near[1] + Math.sin(a) * d;

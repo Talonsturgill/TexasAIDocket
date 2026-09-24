@@ -337,9 +337,9 @@ export function install(K, THREE, TXT) {
   function cattleSpec(breed, sex) {
     const LH = breed === 'longhorn', bull = sex === 'bull', cow = sex === 'cow';
     const S = LH
-      ? { H: 1.42, B: 0.76, W: 0.235, Lf: 0.62, Lr: -0.84, HL: 0.56, pitch: 0.98, hw: 0.88, th: 0.8, knee: 0.47, hock: 0.57, rump: 0.1, lr: 0.9, bk: 0.8 }
-      : { H: 1.3, B: 0.6, W: 0.3, Lf: 0.66, Lr: -0.8, HL: 0.5, pitch: 0.95, hw: 1, th: 1, knee: 0.41, hock: 0.5, rump: 0.03, lr: 1, bk: 1 };
-    if (bull) { S.H += 0.05; S.W += 0.025; S.hw *= 1.1; S.B -= 0.02; }
+      ? { H: 1.42, B: 0.8, W: 0.225, Lf: 0.6, Lr: -0.8, hs: 1.04, HL: 0.58, pitch: 1.0, hw: 0.86, th: 0.7, knee: 0.47, hock: 0.57, rump: 0.14, lr: 0.92, bk: 0.75, pd: 0.8, drop: 0.16 }
+      : { H: 1.3, B: 0.6, W: 0.3, Lf: 0.62, Lr: -0.72, hs: 1.12, HL: 0.5, pitch: 0.95, hw: 1, th: 1, knee: 0.41, hock: 0.5, rump: 0.03, lr: 1.06, bk: 1, pd: 1, drop: 0.2 };
+    if (bull) { S.H += 0.05; S.W += 0.025; S.hw *= 1.06; S.hs *= 1.06; S.B -= 0.02; }
     if (sex === 'steer' && !LH) { S.W += 0.01; }
     const { H, B, W, Lf, Lr, HL, hw, lr } = S, s = HL / 0.5;
     const P = [];
@@ -350,44 +350,47 @@ export function install(K, THREE, TXT) {
     const Z = [0, 0, 1], Y = [0, 1, 0];
     /* barrel: deep, rectangular, level topped, with a round paunch under the ribs */
     T([0, (H + B) / 2, Lr + 0.3], Z, Y, Lf - 0.08 - (Lr + 0.3), [W, (H - B) / 2], [W * 0.94, (H - B) / 2 - 0.01], 0, 0.005, 0.2, 0);
-    E([0, B + 0.25, -0.08], [W * 1.04, 0.28, 0.5], 0.2);
+    E([0, B + 0.25 * S.pd + 0.02 * (1 - S.pd), -0.08], [W * 1.04, 0.28 * S.pd, 0.5], 0.2);
     /* hindquarter: a box whose floor is the flank rising to the stifle, the round down the thigh */
     T([0, H - 0.23, Lr], Z, Y, 0.52, [W * 0.8, 0.21], [W * 0.95, 0.23], -S.rump, 0, 0.15, 0.16);
     for (const q of [-1, 1]) {
       E([q * W * 0.6, B + 0.3, Lr + 0.2], [0.14 * S.th + 0.03, 0.34, 0.24], 0.14);                  // round, thigh
-      E([q * (W - 0.01), H - 0.035, Lr + 0.37], [0.075, 0.05, 0.07], 0.05);                         // hooks
+      E([q * (W - 0.03), H - 0.06, Lr + 0.36], [0.06, 0.045, 0.06], 0.06);                          // hooks
       E([q * 0.1, H - 0.1 - S.rump, Lr - 0.02], [0.05, 0.05, 0.05], 0.05);                          // pins
-      E([q * (W - 0.07), H - 0.34, Lf - 0.2], [0.1, 0.34, 0.2], 0.12, -0.38);                        // shoulder blade
+      E([q * (W - 0.07), H - 0.4, Lf - 0.2], [0.1, 0.34, 0.2], 0.12, -0.38);                         // shoulder blade
       E([q * (W - 0.05), B + 0.32, Lf - 0.03], [0.08, 0.09, 0.08], 0.08);                           // point of shoulder
     }
     R([0, H - 0.02 - S.rump * 0.5, Lr + 0.12], [0, H - 0.1 - S.rump, Lr - 0.07], 0.07, 0.05, 0.06);   // tailhead
-    E([0, H - 0.05, Lf - 0.28], [0.13, 0.07, 0.2], 0.1);                                                // withers
-    E([0, B + 0.12, Lf - 0.04], [0.17 * S.bk, 0.18, 0.2], 0.14);                                       // brisket
+    E([0, H - 0.07, Lf - 0.3], [0.12, 0.06, 0.2], 0.1);                                                 // withers
+    E([0, B + 0.06, Lf + 0.02], [0.16 * S.bk, 0.16, 0.18 * S.bk], 0.12);                               // brisket, forward and low
     /* head frame: poll, a down the face, w out of the face */
-    const poll = [0, H - (LH ? 0.07 : 0.1), Lf + 0.42];
+    const poll = [0, H - S.drop, Lf + 0.42], hs = S.hs;
     const ax = [0, -Math.sin(S.pitch), Math.cos(S.pitch)], aw = [0, Math.cos(S.pitch), Math.sin(S.pitch)];
-    const at = (u, w, x) => [x || 0, poll[1] + ax[1] * u + aw[1] * w, poll[2] + ax[2] * u + aw[2] * w];
-    const HT = (u0, u1, s0, s1, c0, c1, rr, k, sub, x) => T(at(u0, 0, x), ax, aw, u1 - u0, s0, s1, c0, c1, rr, k, sub);
-    const HE = (u, w, x, r, k, sub) => P.push({ t: 'e', c: at(u, w, x), r: [r[0], r[1], r[2]], ay: ax, az: aw, k: k || 0, sub: !!sub });
+    // head units: everything in the head frame is scaled by hs, so one number sizes the whole head
+    const at = (u, w, x) => [(x || 0) * hs, poll[1] + (ax[1] * u + aw[1] * w) * hs, poll[2] + (ax[2] * u + aw[2] * w) * hs];
+    const HT = (u0, u1, s0, s1, c0, c1, rr, k, sub, x) => T(at(u0, 0, x), ax, aw, (u1 - u0) * hs, [s0[0] * hs, s0[1] * hs], [s1[0] * hs, s1[1] * hs], c0 * hs, c1 * hs, rr * hs, k * hs, sub);
+    const HE = (u, w, x, r, k, sub) => P.push({ t: 'e', c: at(u, w, x), r: [r[0] * hs, r[1] * hs, r[2] * hs], ay: ax, az: aw, k: (k || 0) * hs, sub: !!sub });
     /* neck: thick, carried forward, a throat under it and a dewlap to the brisket */
-    const nb = [0, H - 0.24, Lf - 0.25], na = at(0.1, -0.16);
+    const nb = [0, H - 0.31, Lf - 0.25], na = at(0.1, -0.16);
     R(nb, na, bull ? 0.33 : 0.3, LH ? 0.15 : 0.165, 0.1);
     R([0, B + 0.3, Lf + 0.05], at(0.24, -0.2), 0.13, 0.08, 0.1);
-    E([0, B + 0.22, Lf + 0.12], [LH ? 0.04 : 0.05, LH ? 0.15 : 0.2, 0.1], 0.09, 0.5);                  // dewlap
+    { const th = at(0.3, -0.2), mid = [0, (th[1] + B + 0.1) / 2, (th[2] + Lf + 0.12) / 2];              // dewlap, throat to brisket
+      E(mid, [LH ? 0.035 : 0.045, Math.hypot(th[1] - B - 0.1, th[2] - Lf - 0.12) / 2 + 0.03, LH ? 0.07 : 0.1], 0.08, -Math.atan2(th[2] - Lf - 0.12, th[1] - B - 0.1)); }
     if (bull) E([0, H + 0.02, Lf - 0.02], [0.15, 0.13, 0.3], 0.14, -0.3);                              // crest
-    /* skull and face: a wedge, flat in front */
-    HT(-0.03, 0.26, [0.125 * hw, 0.08], [0.11 * hw, 0.07], -0.08, -0.07, 0.05, 0.03);                     // forehead, cranium
-    HT(0.2, 0.44 * s, [0.1 * hw, 0.055], [0.082 * hw, 0.05], -0.055, -0.05, 0.04, 0.05);                   // nasal bridge
-    HT(0.1, 0.42 * s, [0.1 * hw, 0.08], [0.075 * hw, 0.05], -0.17, -0.12, 0.045, 0.06);                    // jaw
-    HT(0.4 * s, 0.51 * s, [0.1 * hw, 0.07], [0.1 * hw, 0.068], -0.075, -0.075, 0.045, 0.05);             // muzzle, wide and square
-    HE(0.47 * s, -0.15, 0, [0.06, 0.05, 0.03], 0.03);                                                       // chin, lower lip
-    HE(-0.02, -0.06, 0, LH ? [0.125 * hw, 0.045, 0.06] : [0.1, 0.05, 0.07], 0.04);                          // poll
+    /* skull and face: a wedge, flat in front. Widest across the eye sockets, narrowing down the
+       face, then flaring again into the square muzzle */
+    HT(-0.03, 0.19, [0.105 * hw, 0.08], [0.12 * hw, 0.075], -0.08, -0.075, 0.045, 0.03);                  // forehead, poll to orbits
+    HT(0.15, 0.44 * s, [0.105 * hw, 0.06], [0.072 * hw, 0.05], -0.06, -0.05, 0.035, 0.05);                 // face, nasal bridge
+    HT(0.08, 0.42 * s, [0.085 * hw, 0.085], [0.058 * hw, 0.045], -0.175, -0.115, 0.04, 0.06);              // jaw
+    HT(0.405 * s, 0.515 * s, [0.094 * hw, 0.068], [0.096 * hw, 0.066], -0.075, -0.075, 0.042, 0.045);     // muzzle, wide and square
+    HE(0.475 * s, -0.148, 0, [0.055, 0.045, 0.028], 0.03);                                                  // chin, lower lip
+    HE(-0.025, -0.06, 0, LH ? [0.12 * hw, 0.045, 0.06] : [0.095, 0.05, 0.068], 0.04);                       // poll
     for (const q of [-1, 1]) {
-      HE(0.2, -0.16, q * 0.085 * hw, [0.04, 0.09, 0.07], 0.04);                                             // cheek
-      HE(0.12, -0.035, q * 0.1 * hw, [0.045, 0.035, 0.035], 0.03);                                          // brow ridge
-      HE(0.165, -0.075, q * 0.1 * hw, [0.035, 0.035, 0.03], 0.02);                                          // eye, lids
-      HE(0.49 * s, -0.03, q * 0.058 * hw, [0.035, 0.035, 0.03], 0.025);                                     // nostril flare
-      HE(0.515 * s, -0.04, q * 0.056 * hw, [0.016, 0.03, 0.022], 0.012, true);                              // nostril
+      HE(0.2, -0.165, q * 0.07 * hw, [0.035, 0.1, 0.07], 0.04);                                             // cheek, the big chewing muscle
+      HE(0.13, -0.03, q * 0.108 * hw, [0.04, 0.035, 0.032], 0.025);                                         // brow ridge
+      HE(0.175, -0.07, q * 0.105 * hw, [0.035, 0.036, 0.032], 0.02);                                        // eye socket, lids
+      HE(0.49 * s, -0.03, q * 0.055 * hw, [0.034, 0.035, 0.03], 0.022);                                     // nostril flare
+      HE(0.518 * s, -0.04, q * 0.054 * hw, [0.015, 0.03, 0.021], 0.01, true);                               // nostril
     }
     /* legs: the knee and hock heights set the stance */
     const fx = Math.max(0.16, W * 0.63), hx = Math.max(0.15, W * 0.6), fz = Lf - 0.1, hz = Lr + 0.05, kn = S.knee, hk = S.hock;
@@ -406,7 +409,6 @@ export function install(K, THREE, TXT) {
       R([q * hx, hk - 0.02, hz], [q * hx, 0.125, hz + 0.05], 0.044 * lr, 0.038 * lr, 0.02);                 // cannon
       E([q * hx, 0.115, hz + 0.05], [0.048 * lr, 0.045, 0.052 * lr], 0.02);                                 // fetlock
       R([q * hx, 0.11, hz + 0.055], [q * hx, 0.055, hz + 0.085], 0.04 * lr, 0.043 * lr, 0.015);            // pastern
-      E([q * (W + 0.05), H - 0.2, Lr + 0.52], [0.07, 0.12, 0.1], 0.08, 0, true);                           // hollow of the flank
     }
     /* sex */
     if (cow) E([0, B + 0.02, Lr + 0.34], LH ? [0.08, 0.06, 0.09] : [0.1, 0.07, 0.11], 0.07);                 // udder, small: beef
@@ -416,7 +418,7 @@ export function install(K, THREE, TXT) {
     return S;
   }
   // head coordinates of a point: u down the face, w out of it
-  const headUW = (S, x, y, z) => { const qy = y - S.poll[1], qz = z - S.poll[2]; return [qy * S.ax[1] + qz * S.ax[2], qy * S.aw[1] + qz * S.aw[2]]; };
+  const headUW = (S, x, y, z) => { const qy = y - S.poll[1], qz = z - S.poll[2]; return [(qy * S.ax[1] + qz * S.ax[2]) / S.hs, (qy * S.aw[1] + qz * S.aw[2]) / S.hs]; };
   const CATTLE_MESH = new Map(), CATTLE_H = 0.015;
   function cattleMesh(breed, sex) {
     const key = breed + '|' + sex;
@@ -432,7 +434,7 @@ export function install(K, THREE, TXT) {
         const [u, w] = headUW(S, p.getX(i), p.getY(i), p.getZ(i));
         if (u > 0.16 || u < -0.1 || w < -0.05) continue;
         const k = (1 - smooth01(0.06, 0.16, u)) * smooth01(-0.1, -0.04, u) * smooth01(-0.05, -0.015, w);
-        const x = p.getX(i), y = p.getY(i), z = p.getZ(i), d = (nz(x * 70, y * 70, z * 70) - 0.45) * 0.009 * k;
+        const x = p.getX(i), y = p.getY(i), z = p.getZ(i), d = (nz(x * 110, y * 110, z * 110) - 0.45) * 0.006 * k;
         p.setXYZ(i, x + n.getX(i) * d, y + n.getY(i) * d, z + n.getZ(i) * d);
       }
     }
@@ -521,11 +523,11 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       const nz = makeNoise((o.seed || 1) * 17 + 3), pos = geo.attributes.position, col = new Float32Array(pos.count * 3), wet = new Float32Array(pos.count);
       const coats = ['paint', 'red', 'speckle', 'brindle', 'dun', 'paint'];
       const coat = !LH ? 'hereford' : (o.coat && o.coat !== 'auto' && coats.includes(o.coat) ? o.coat : coats[Math.floor(r() * 6)]);
-      const redHex = LH ? [0x8b3a1c, 0x7a2f16, 0x93481f][Math.floor(r() * 3)] : [0x8c3719, 0x96401c, 0x7e3016][Math.floor(r() * 3)];
+      const redHex = LH ? [0x8b3a1c, 0x7a2f16, 0x93481f][Math.floor(r() * 3)] : [0x742812, 0x7e2e15, 0x6a2410][Math.floor(r() * 3)];
       const red = new THREE.Color(redHex), white = new THREE.Color(0xe6ddcc), black = new THREE.Color(0x1d1815);
       const dun = new THREE.Color(0xb3915f), brown = new THREE.Color(0x4a2b1a), dirt = new THREE.Color(0x7d6a52);
       const noseLH = coat === 'paint' || coat === 'speckle' ? 0x9c6a62 : 0x2b2522;
-      const nose = new THREE.Color(LH ? noseLH : 0xa3645c), nostril = new THREE.Color(0x2a1714);
+      const nose = new THREE.Color(LH ? noseLH : 0x8f625c), nostril = new THREE.Color(0x2a1714);
       const patch = new THREE.Color(r() < 0.55 ? redHex : 0x231c19);
       const redEyes = !LH && r() < 0.45;
       const c = new THREE.Color(), tmp = new THREE.Color();
@@ -535,14 +537,14 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       // the plane behind the jaw where a white face ends, slanting back down the throat
       const nd = [S.na[0] - S.nb[0], S.na[1] - S.nb[1], S.na[2] - S.nb[2]], nl = Math.hypot(...nd); nd[0] /= nl; nd[1] /= nl; nd[2] /= nl;
       const crestA = S.at(-0.03, -0.06), crestB = [0, S.H + 0.01, S.Lf - 0.34];
-      const eyeUW = [0.165, -0.075];
+      const eyeUW = [0.175, -0.07];
       const edge = 0.012;                                            // a colour border is a hair line, not an airbrush
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), ny = base.attributes.normal.getY(i);
         const n1 = nz(x * 9, y * 9, z * 9) * 0.55 + nz(x * 26, y * 26, z * 26) * 0.3 + nz(x * 70, y * 70, z * 70) * 0.15;
         const n2 = nz(x * 2.2 + 11, y * 2.2, z * 2.2) * 0.75 + nz(x * 11 + 5, y * 11, z * 11) * 0.25, n3 = nz(x * 60, y * 60, z * 60);
         const rag = (n1 - 0.5) * 0.09;
-        const [hu, hw2] = headUW(S, x, y, z);
+        const [hu, hw2] = headUW(S, x, y, z), hx = x / S.hs;
         const inHead = z > S.Lf + 0.1 && hu > -0.12;
         let w = 0;
         if (coat === 'hereford') {
@@ -557,7 +559,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
           const chest = (1 - smooth01(0.11 - edge, 0.11 + edge, Math.abs(x) + rag)) * smooth01(S.Lf - 0.35, S.Lf - 0.2, z) * (1 - smooth01(S.B + 0.42, S.B + 0.46, y + rag));
           const socks = 1 - smooth01(S.knee + 0.04 - edge, S.knee + 0.04 + edge, y + rag * 1.4);
           w = Math.max(face, crest * topSide, under, chest, socks);
-          if (redEyes && inHead) { const ep = Math.hypot(Math.abs(x) - 0.1 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]);
+          if (redEyes && inHead) { const ep = Math.hypot(Math.abs(hx) - 0.105 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]);
             w *= smooth01(0.045 - edge, 0.045 + edge, ep + rag * 0.6); }
           tmp.copy(white).multiplyScalar(0.9 + n1 * 0.12);
           c.lerp(tmp, w);
@@ -581,13 +583,13 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
         if (inHead && hu > 0.4 * S.s) {
           const pad = smooth01(0.455 * S.s, 0.475 * S.s, hu + (n3 - 0.5) * 0.01) * smooth01(-0.105, -0.085, hw2);
           c.lerp(tmp.copy(nose).multiplyScalar(0.9 + n3 * 0.2), pad); wt = pad;
-          const hole = 1 - smooth01(0.012, 0.03, Math.hypot(Math.abs(x) - 0.056 * S.hw, (hu - 0.515 * S.s) * 0.8, hw2 + 0.04));
+          const hole = 1 - smooth01(0.012, 0.03, Math.hypot(Math.abs(hx) - 0.054 * S.hw, (hu - 0.518 * S.s) * 0.8, hw2 + 0.04));
           c.lerp(nostril, hole * 0.9);
           const mouth = 1 - smooth01(0.004, 0.012, Math.abs(hw2 + 0.122));
           c.lerp(nostril, mouth * smooth01(0.4 * S.s, 0.44 * S.s, hu) * 0.6);
         }
         // the eye rim
-        if (inHead) { const er = Math.hypot(Math.abs(x) - 0.1 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]); c.lerp(black, (1 - smooth01(0.028, 0.04, er)) * 0.7); }
+        if (inHead) { const er = Math.hypot(Math.abs(hx) - 0.105 * S.hw, hu - eyeUW[0], hw2 - eyeUW[1]); c.lerp(black, (1 - smooth01(0.028, 0.04, er)) * 0.7); }
         // the udder and sheath are bare and pink
         if (sex === 'cow' && y < S.B + 0.05 && Math.abs(z - (S.Lr + 0.34)) < 0.14 && Math.abs(x) < 0.12) c.lerp(tmp.set(0xc99c8c), (1 - smooth01(S.B - 0.02, S.B + 0.05, y)) * 0.8);
         if (y < 0.075) c.lerp(black, 0.35);
@@ -605,23 +607,26 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
         for (let i = 0; i < 12; i++) { p.addScaledVector(d, -sd); sd = sdf(p.x, p.y, p.z); }
         return p; };
       /* eyes: dark, wet, set in the lids under the brow */
+      const lidM = mat('cattleLid', { color: 0x2a1c16, roughness: 0.7 });
       const eyeM = mat('cattleEye', { color: 0x140c08, roughness: 0.05, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.03 }, true);
       for (const q of [-1, 1]) {
-        const c0 = S.at(eyeUW[0], eyeUW[1], q * 0.06 * S.hw), p = onSurface(c0, [q, 0, 0]);
-        const e = new THREE.Mesh(new THREE.SphereGeometry(0.021, 18, 12), eyeM);
-        e.scale.set(0.8, 0.85, 1.05); e.position.copy(p).add(new V3(-q * 0.011, 0.002, 0)); g.add(e);
+        const c0 = S.at(eyeUW[0], eyeUW[1], q * 0.06 * S.hw), p = onSurface(c0, [q, 0, 0.15]);
+        const e = new THREE.Mesh(new THREE.SphereGeometry(0.024 * S.hs, 20, 14), eyeM);
+        e.scale.set(0.75, 0.82, 1.1); e.position.copy(p).add(new V3(-q * 0.012, 0.001, 0)); g.add(e);
+        const lid = new THREE.Mesh(new THREE.TorusGeometry(0.022 * S.hs, 0.0065 * S.hs, 8, 24), lidM);
+        lid.scale.set(1.12, 0.9, 1); lid.position.copy(e.position).add(new V3(q * 0.004, 0, 0)); lid.rotation.set(0, q * (Math.PI / 2 - 0.2), 0); g.add(lid);
       }
       /* ears: cupped leaves set level off the side of the poll, behind the horns */
       // the cup's inside is the geometry's front face
       const earOut = mat('cattleEar' + coat + redHex, { color: LH ? (coat === 'dun' ? 0x9c7f58 : coat === 'speckle' ? 0xcfc6b6 : coat === 'brindle' ? 0x3d2618 : redHex) : redHex, roughness: 0.85, sheen: 0.3, sheenRoughness: 0.6, sheenColor: 0xcdb89a, side: THREE.BackSide }, true);
-      const earIn = mat('cattleEarIn' + breed, { color: LH ? 0x8a6a5c : 0xd8cfc0, roughness: 0.95, side: THREE.FrontSide });
+      const earIn = mat('cattleEarIn' + breed, { color: LH ? 0x8a6a5c : 0xc7a799, roughness: 0.95, sheen: 0.6, sheenRoughness: 0.5, sheenColor: 0xe8dccb, side: THREE.FrontSide }, true);
       const eg = earGeometry(LH ? 0.2 : 0.19, LH ? 0.065 : 0.07);
       for (const q of [-1, 1]) {
-        const root = onSurface(S.at(0.05, -0.1, q * 0.04), [q, 0.15, -0.1]);
+        const root = onSurface(S.at(0.07, -0.125, q * 0.04), [q, 0, -0.15]);
         // level and out to the side, the opening forward, the tip drooping a little and swept back
         const side = new THREE.Group(); side.position.copy(root).add(new V3(-q * 0.015, 0, 0)); side.scale.x = q; g.add(side);
         for (const m2 of [earOut, earIn]) {
-          const ear = new THREE.Mesh(eg, m2); ear.rotation.order = 'YZX'; ear.rotation.set(Math.PI / 2 - 0.25, 0.32, -0.3); side.add(ear);
+          const ear = new THREE.Mesh(eg, m2); ear.rotation.order = 'YZX'; ear.rotation.set(Math.PI / 2 - 0.1, 0.35, -0.42); side.add(ear);
         }
       }
       /* horns */
