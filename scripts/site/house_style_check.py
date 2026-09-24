@@ -310,6 +310,10 @@ _CITED = {
     # The Texas Water Development Board's own address, printed on the reservoir data it
     # publishes and carried onto the water page with the figures.
     "Customer_Service@twdb.texas.gov",
+    # The FAA's public comment address for the Zipline Texas Draft EA, printed in the draft as
+    # the one way to comment on it. The 2026-09-24 edition reports that comment period, so the
+    # address is the fact the story turns on, carried in the FAA's own quoted words.
+    "9-FAA-Drone-Environmental@faa.gov",
 }
 
 
