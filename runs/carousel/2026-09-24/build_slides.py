@@ -380,7 +380,11 @@ FRAMES[7] = dict(
   .bar { height:16px; background:#C9D2DA; margin:0 0 10px 0; }
   .bl { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; color:#E2E6EA; margin:0 0 6px 0; }""",
     hmin=60, hmax=72, hlines=1, follow=18,
-    extra='<div class="haze" data-decorative></div><div class="bars" id="bars"></div>',
+    # THE LABELS ARE WRITTEN INTO THE SOURCE, not built by a JS template, so the shipped HTML
+    # carries the literal string copy.json says it prints and shipped_check can find it.
+    extra=('<div class="haze" data-decorative></div><div class="bars" id="bars">'
+           f'<div class="bl">THE DRAFT\'S ESTIMATE, DNL {FIG["noise"]["delivery_dnl_db_any_distance"]} dB</div>'
+           f'<div class="bl">ITS SCREENING LINE, DNL {FIG["noise"]["screening_dnl_db"]} dB</div></div>'),
     scene="""
   /* THE BARS, FROM figures.json, from zero at one scale: the draft's delivery figure against the
    * FAA's threshold. One hue, no zone, a bar and never a dial. */
@@ -388,9 +392,6 @@ FRAMES[7] = dict(
    * zero, or scaled by energy, makes a claim about the margin that the draft does not make. The
    * frame prints the draft's estimate and its screening line, both from figures.json, and says
    * what the draft concluded. */
-  const box = document.getElementById('bars');
-  for (const t of [`THE DRAFT'S ESTIMATE, DNL ${FIG.noise.delivery_dnl_db_any_distance} dB`, `ITS SCREENING LINE, DNL ${FIG.noise.screening_dnl_db} dB`]) {
-    const l = document.createElement('div'); l.className = 'bl'; l.textContent = t; box.appendChild(l); }
   /* THE YARD NEXT DOOR. The camera stands in the shade of the neighbour's own house, so the
    * lower half of the frame is shaded lawn and the type sits on it. */
   const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 38 });

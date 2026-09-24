@@ -32,7 +32,7 @@
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">It finds no significant impact</h1>
 <p class="dek" data-follow="18">The draft ties 400 deliveries a day to places like a large apartment complex. At that rate it estimates delivery noise at no more than DNL 58.1 dB at any distance from a delivery point. It calls 59.7 dB the line below which a rise of 1.5 dB or more can't be significant.</p>
-<div class="haze" data-decorative></div><div class="bars" id="bars"></div>
+<div class="haze" data-decorative></div><div class="bars" id="bars"><div class="bl">THE DRAFT'S ESTIMATE, DNL 58.1 dB</div><div class="bl">ITS SCREENING LINE, DNL 59.7 dB</div></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -59,9 +59,6 @@ window.renderReady = (async () => {
    * zero, or scaled by energy, makes a claim about the margin that the draft does not make. The
    * frame prints the draft's estimate and its screening line, both from figures.json, and says
    * what the draft concluded. */
-  const box = document.getElementById('bars');
-  for (const t of [`THE DRAFT'S ESTIMATE, DNL ${FIG.noise.delivery_dnl_db_any_distance} dB`, `ITS SCREENING LINE, DNL ${FIG.noise.screening_dnl_db} dB`]) {
-    const l = document.createElement('div'); l.className = 'bl'; l.textContent = t; box.appendChild(l); }
   /* THE YARD NEXT DOOR. The camera stands in the shade of the neighbour's own house, so the
    * lower half of the frame is shaded lawn and the type sits on it. */
   const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 38 });
