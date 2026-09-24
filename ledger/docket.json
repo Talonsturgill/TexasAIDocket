@@ -15013,12 +15013,8 @@
     },
     {
      "date": "2026-09-24",
-     "note": "Checked and unchanged. Still open, with no dated movement.",
+     "note": "The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.",
      "checked": true
-    },
-    {
-     "date": "2026-09-24",
-     "note": "The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself."
     }
    ]
   },
@@ -20961,12 +20957,17 @@
     "metro": "Austin-Round Rock-San Marcos, TX",
     "on_ercot": true
    },
-   "status": "pending",
+   "status": "decided",
    "key_dates": [
     {
      "date": "2026-09-01",
      "kind": "hearing",
      "note": "Commissioners Court meeting the item was set for"
+    },
+    {
+     "date": "2026-09-15",
+     "kind": "decided",
+     "note": "Court moved the money set aside for a possible Axon contract, according to local reporting. The county's minutes of the vote are not yet published"
     }
    ],
    "public_access": {
@@ -22689,6 +22690,33 @@
      "source_type": "primary_official",
      "fetched": "2026-09-24",
      "id": "tx-2026-0186-c14"
+    },
+    {
+     "text": "Zipline is seeking to amend its air carrier operations specifications and other FAA approvals to begin delivery in the Texas metros.",
+     "verbatim_quote": "Zipline is seeking to amend its air carrier Operation Specifications (OpSpecs) and other FAA approvals necessary to begin commercial drone package delivery operations in multiple Texas metro areas.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c15"
+    },
+    {
+     "text": "At a delivery the pod is winched down to the ground at the delivery point.",
+     "verbatim_quote": "Droid is winched down to the ground at the delivery point",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c16"
+    },
+    {
+     "text": "The pod automatically controls its position and evaluates the delivery location.",
+     "verbatim_quote": "The pod is released from the Zipline UA and lowered to the ground via the winch line. During pod descent, the pod automatically controls its position laterally and evaluates the delivery location. If the delivery location is clear, the pod would continue to descend and deliver the payload at the delivery target.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c17"
     }
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
@@ -22702,7 +22730,7 @@
    ]
   },
   {
-   "title": "PUCT adopts the SB 6 large load interconnection rule, keeps $50,000 per megawatt of security and drops the interconnection fee",
+   "title": "PUCT adopts the SB 6 large load interconnection rule, requires $50,000 per megawatt of security and drops the interconnection fee",
    "summary": "The Public Utility Commission of Texas adopted new 16 TAC §25.194, the large load interconnection standards Senate Bill 6 required. Before a large load can be included in an ERCOT interconnection study, the customer must sign an intermediate agreement, make certain disclosures and post financial security of $50,000 per megawatt. The rule reaches new interconnections of 75 megawatts or more. The commission removed the interconnection fee its proposal carried, and says the financial security that remains protects against stranded infrastructure costs rather than being a fee. The order was filed on September 18th, 2026 and the Texas Register receipt gives an effective date of October 8th, 2026.",
    "topic": "power-and-the-grid",
    "decider": {
@@ -22798,6 +22826,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-24",
      "id": "tx-2026-0187-c7"
+    },
+    {
+     "text": "The order was filed on September 18th, 2026.",
+     "verbatim_quote": "Filed Date - 2026-09-18 01:19:42 PM",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c8"
     }
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",

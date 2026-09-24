@@ -1673,3 +1673,14 @@ parser, and it is a fix for a maintainer, since the boundary is not this run's t
 403 to WebFetch.** Every claim in the day's deck was matched against the curl copy. The page's own
 title is "Public Involvement and Environmental Review for Drone Operations", and the record carried
 a different title until this run corrected it.
+
+**Correction to the entry above, same day.** It named four violating fetches on two hosts. There
+were three, all on `public.destinyhosted.com`. The retro fetched `taylortx.new.swagit.com/robots.txt`
+the same day and read 202 bytes of comment lines that disallow nothing. A later fetch from the run
+container got a 403 page, which is a block and not a disallow. So the `/videos/396213` fetch was
+not a robots violation. The entry also called the fix a maintainer's, and that was wrong.
+`scripts/site/reverify.py` and `scripts/shared/**` are `daily` lane, and `reverify.py` has no robots
+reader at all, so each run improvises one. This is the third run in a row to trip on it. The reader
+it needs refuses on anything it can't parse, because `urllib.robotparser` and a strict RFC 9309
+reading both allow the single-line `User-agent: * Disallow: /`. The proposal is in
+`knowledge/carousel/UPGRADE_BACKLOG.md`.

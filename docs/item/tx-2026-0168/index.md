@@ -7,7 +7,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 - Where: Hays
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
-- Status: pending
+- Status: decided
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=135
 
@@ -16,6 +16,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 ## Dates
 
 - 2026-09-01 · hearing: Commissioners Court meeting the item was set for
+- 2026-09-15 · decided: Court moved the money set aside for a possible Axon contract, according to local reporting. The county's minutes of the vote are not yet published
 
 ## How this decision moved
 

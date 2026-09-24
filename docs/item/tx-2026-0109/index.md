@@ -36,7 +36,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The hearing on artificial intelligence and the Texas workforce is still set for its new date, and the cancellation has not been repeated.
 - 2026-09-20 · The committee's hearing on artificial intelligence and the Texas workforce still stands at the reset date. Nothing on the Senate's own meetings listing has moved it a second time.
 - 2026-09-21 · The interim charge on AI and the Texas workforce is still live and the committee has posted no replacement date for the hearing it called off. A reader watching for a rescheduled notice has nothing new to watch yet.
-- 2026-09-24 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-24 · The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.
 
 ## Evidence

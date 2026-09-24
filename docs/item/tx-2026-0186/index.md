@@ -123,3 +123,21 @@ Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_
 
 Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf
 
+### Zipline is seeking to amend its air carrier operations specifications and other FAA approvals to begin delivery in the Texas metros.
+
+> Zipline is seeking to amend its air carrier Operation Specifications (OpSpecs) and other FAA approvals necessary to begin commercial drone package delivery operations in multiple Texas metro areas.
+
+Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf
+
+### At a delivery the pod is winched down to the ground at the delivery point.
+
+> Droid is winched down to the ground at the delivery point
+
+Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf
+
+### The pod automatically controls its position and evaluates the delivery location.
+
+> The pod is released from the Zipline UA and lowered to the ground via the winch line. During pod descent, the pod automatically controls its position laterally and evaluates the delivery location. If the delivery location is clear, the pod would continue to descend and deliver the payload at the delivery target.
+
+Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf
+

@@ -1,4 +1,4 @@
-# PUCT adopts the SB 6 large load interconnection rule, keeps $50,000 per megawatt of security and drops the interconnection fee
+# PUCT adopts the SB 6 large load interconnection rule, requires $50,000 per megawatt of security and drops the interconnection fee
 
 The Public Utility Commission of Texas adopted new 16 TAC §25.194, the large load interconnection standards Senate Bill 6 required. Before a large load can be included in an ERCOT interconnection study, the customer must sign an intermediate agreement, make certain disclosures and post financial security of $50,000 per megawatt. The rule reaches new interconnections of 75 megawatts or more. The commission removed the interconnection fee its proposal carried, and says the financial security that remains protects against stranded infrastructure costs rather than being a fee. The order was filed on September 18th, 2026 and the Texas Register receipt gives an effective date of October 8th, 2026.
 
@@ -67,4 +67,10 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/58481_218
 > Effective Date: 10/08/2026
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/58481_219_1684678.PDF
+
+### The order was filed on September 18th, 2026.
+
+> Filed Date - 2026-09-18 01:19:42 PM
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF
 

@@ -50,13 +50,20 @@ recomputed here.
 
 ## THE MOST SERIOUS THING THIS RUN DID IS A ROBOTS VIOLATION
 
-During re-verification the run fetched three agenda pages on `public.destinyhosted.com` and one
-video page on `taylortx.new.swagit.com`. Both hosts disallow this fetcher. The run's robots reader
-parsed a robots.txt served as a single line with no newlines as empty and treated it as
-permissive. The bodies were deleted, nothing from them stamps a record or backs a claim, and
-tx-2026-0168 to 0170 stay on their existing robots boundary. The single-line case belongs in the
-fetcher's parser. The field log records it, and it is a maintainer's fix, because the crawl
-boundary is not this run's to edit.
+During re-verification the run fetched three agenda pages on `public.destinyhosted.com`, a host
+whose robots file disallows this fetcher. The run's robots reader parsed a robots.txt served as a
+single line with no newlines as empty and treated it as permissive. The bodies were deleted,
+nothing from them stamps a record or backs a claim, and tx-2026-0168 to 0170 stay on their
+existing robots boundary.
+
+An earlier draft of this record named a fourth fetch, a video page on `taylortx.new.swagit.com`,
+as a violation too. The retro read that host's robots.txt and it disallows nothing, so that line
+was wrong and is withdrawn.
+
+The fix belongs to the daily lane, which owns `reverify.py` and `scripts/shared/**`. An earlier
+draft called it a maintainer's fix, and that was wrong too. `reverify.py` has no robots reader, so
+every run improvises one, and this is the third run in a row to trip on it. The proposal is in
+`knowledge/carousel/UPGRADE_BACKLOG.md`.
 
 ## What the deck is
 
@@ -122,12 +129,13 @@ craft card named that fix.
   web edition was verified by `tests/test_article_edition.py` and the record gates only.
   `docs/articles/2026-09-24/` is not built, for the same reason.
 - `reverify.py --apply` wrote `ledger/docket.json` at indent 2, and the run rewrote it at the
-  canonical indent 1 by hand. That is a machine bug for the upgrade lane.
+  canonical indent 1 by hand. Line 797 writes `indent=2` where `docket_build.py` writes 1. It is a
+  daily lane fix, left for the next run.
 
 ## Prompt audit
 
-`prompt_audit.py`, interim reading at Phase 17: 1668 tool calls measured, none waited on a human.
-Phase 19 takes the reading that counts.
+`prompt_audit.py`, final reading before the email: 1861 tool calls measured, none waited on a
+human.
 
 ## Gate status
 
@@ -139,10 +147,10 @@ Phase 19 takes the reading that counts.
 | qa             | WARN   | 0 fail(s), 32 warn(s) |
 | aggregates     | PASS   | 10 declaration(s), 12 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.58 MB, vector |
-| score          | FAIL   | 6.418, hard fail: An unverified fact presented as verified, on frame 7 (out/2026-09-24/slides/slide-07.html). The kicker reads 'The draft's noise finding' and the hook reads 'At the draft's own line'. Under them sit two bars of equal length: 'DELIVERY NOISE AT 400 A DAY, AT MOST DNL 59.7 dB' and 'ADDED NOISE THAT LIFTS 63.5 TO 65 dB, DNL 59.7 dB'. The dek says the draft 'caps delivery noise at DNL 59.7 dB at any point'. build_slides.py line 390 states the intended reading: 'the two bars ... come out equal, which is the finding: no margin'. The draft does not find that. The same sentence the frame quotes (c21, zipline_ea.txt lines 2013 to 2016) puts the maximum at 'no more than DNL 58.1 dB at any distance from a delivery point', and line 2013 says that maximum occurs 50 feet away. The appendix gives the same answer: Table 13's peak delivery-cycle SEL of 79.9 dBA, Table 14's 580 DNL-equivalent deliveries and equation (2) give 79.9 + 10log10(580) - 49.4 = 58.1. Table 17 puts the 59.7 contour at '<50' feet at 400 a day. So on the draft's own numbers the margin is 1.6 dB, not zero. The frame keeps the looser bound and drops the draft's own estimate. It also leaves out the draft's conclusion (c26: 'the proposed action would not have a significant noise impact'). 'Caps' turns an estimate into a limit, although the draft says delivery points 'would not have setback distances' (lines 2010 to 2011). The frame also never says that existing aviation noise is 'well below' 65 except near airports (lines 1889 to 1892). A reader leaves believing the draft puts delivery noise at its own significance line, and the run's own claim c21 refutes that. |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| score          | WARN   | 6.418 against 8.0 target; 5 round(s), cap 5; not a ship failure |
+| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 90 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 33,846 chars planned |
 | caption        | PASS   | 125 words |
 | craft floor    | PASS   | 9 frame(s), median 2502, floor 450 |

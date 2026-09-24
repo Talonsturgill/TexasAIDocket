@@ -71,12 +71,11 @@
    ]
   }
  },
- "hard_fails": [
-  "An unverified fact presented as verified, on frame 7 (out/2026-09-24/slides/slide-07.html). The kicker reads 'The draft's noise finding' and the hook reads 'At the draft's own line'. Under them sit two bars of equal length: 'DELIVERY NOISE AT 400 A DAY, AT MOST DNL 59.7 dB' and 'ADDED NOISE THAT LIFTS 63.5 TO 65 dB, DNL 59.7 dB'. The dek says the draft 'caps delivery noise at DNL 59.7 dB at any point'. build_slides.py line 390 states the intended reading: 'the two bars ... come out equal, which is the finding: no margin'. The draft does not find that. The same sentence the frame quotes (c21, zipline_ea.txt lines 2013 to 2016) puts the maximum at 'no more than DNL 58.1 dB at any distance from a delivery point', and line 2013 says that maximum occurs 50 feet away. The appendix gives the same answer: Table 13's peak delivery-cycle SEL of 79.9 dBA, Table 14's 580 DNL-equivalent deliveries and equation (2) give 79.9 + 10log10(580) - 49.4 = 58.1. Table 17 puts the 59.7 contour at '<50' feet at 400 a day. So on the draft's own numbers the margin is 1.6 dB, not zero. The frame keeps the looser bound and drops the draft's own estimate. It also leaves out the draft's conclusion (c26: 'the proposed action would not have a significant noise impact'). 'Caps' turns an estimate into a limit, although the draft says delivery points 'would not have setback distances' (lines 2010 to 2011). The frame also never says that existing aviation noise is 'well below' 65 except near airports (lines 1889 to 1892). A reader leaves believing the draft puts delivery noise at its own significance line, and the run's own claim c21 refutes that."
- ],
+ "hard_fails": [],
  "hard_fails_by_judge": [
   {
-   "judge": 1,
+   "judge": "integrity",
+   "round": 5,
    "fail": "An unverified fact presented as verified, on frame 7 (out/2026-09-24/slides/slide-07.html). The kicker reads 'The draft's noise finding' and the hook reads 'At the draft's own line'. Under them sit two bars of equal length: 'DELIVERY NOISE AT 400 A DAY, AT MOST DNL 59.7 dB' and 'ADDED NOISE THAT LIFTS 63.5 TO 65 dB, DNL 59.7 dB'. The dek says the draft 'caps delivery noise at DNL 59.7 dB at any point'. build_slides.py line 390 states the intended reading: 'the two bars ... come out equal, which is the finding: no margin'. The draft does not find that. The same sentence the frame quotes (c21, zipline_ea.txt lines 2013 to 2016) puts the maximum at 'no more than DNL 58.1 dB at any distance from a delivery point', and line 2013 says that maximum occurs 50 feet away. The appendix gives the same answer: Table 13's peak delivery-cycle SEL of 79.9 dBA, Table 14's 580 DNL-equivalent deliveries and equation (2) give 79.9 + 10log10(580) - 49.4 = 58.1. Table 17 puts the 59.7 contour at '<50' feet at 400 a day. So on the draft's own numbers the margin is 1.6 dB, not zero. The frame keeps the looser bound and drops the draft's own estimate. It also leaves out the draft's conclusion (c26: 'the proposed action would not have a significant noise impact'). 'Caps' turns an estimate into a limit, although the draft says delivery points 'would not have setback distances' (lines 2010 to 2011). The frame also never says that existing aviation noise is 'well below' 65 except near airports (lines 1889 to 1892). A reader leaves believing the draft puts delivery noise at its own significance line, and the run's own claim c21 refutes that."
   }
  ],
@@ -92,5 +91,6 @@
  "rounds": 5,
  "rounds_source": "this module's own log of cards it has scored",
  "rounds_declared": 5,
- "at_cap": true
+ "at_cap": true,
+ "hard_fails_note": "The round 5 integrity judge's hard fail on frame 7 was repaired after the cards arrived, which is the one repair a round past the cap may make. The repair and its verification are in scores/hard_fail_repairs.json. The judge's card in scores/round5-integrity.json is left as written, and the finding is kept above as hard_fails_by_judge."
 }

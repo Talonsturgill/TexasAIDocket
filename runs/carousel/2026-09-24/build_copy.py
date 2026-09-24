@@ -6,8 +6,11 @@ copy_sync_check compare the plan against itself, which is the check's whole defe
 """
 import json, re
 from pathlib import Path
-run = Path('out/2026-09-24')
-rep = json.loads((run/'render/render_report.json').read_text())
+# Paths resolve from this file, so the archived copy under runs/ rebuilds from the files
+# committed beside it, and the working copy under out/ from its render/ directory.
+run = Path(__file__).resolve().parent
+_rep = run/'render_report.json' if (run/'render_report.json').exists() else run/'render'/'render_report.json'
+rep = json.loads(_rep.read_text())
 sb  = (run/'storyboard.md').read_text()
 
 claims = {}
