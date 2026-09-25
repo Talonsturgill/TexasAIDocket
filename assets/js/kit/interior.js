@@ -393,7 +393,7 @@ export function install(K, THREE, TXT) {
 
   /* ================================================================================== DAIS */
   K.define('hearing_dais', {
-    size: [8.4, 1.6, 3.2],
+    size: [10.5, 1.6, 4],
     options: { seats: 5, curve: 7, wood: 0x6b4426, carpet: 0x3b3f47, chairs: true, mics: true, plates: true, steps: true },
     note: 'Commissioners court or council dais: a raised millwork bench, concave toward the audience (curve = front radius in metres, 0 = straight), raised panel modesty front with pilasters, a transaction ledge with blank brass nameplates, gooseneck microphones and high back leather chairs on a carpeted riser. seats 3 to 9.',
     make(o, r) {

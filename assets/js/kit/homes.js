@@ -1295,7 +1295,7 @@ export function install(K, THREE, TXT) {
       const T1 = (x, y, z, parent) => {
         const w = 0.165, h = 0.2, L = 0.48, rr = w / 2, hb = h - rr;
         bx(B, boxM, w, hb, L, x, y, z);
-        const top = new THREE.CylinderGeometry(rr, rr, L, 20, 1, false, 0, Math.PI); top.rotateX(Math.PI / 2); top.rotateZ(Math.PI / 2 * 0);
+        const top = new THREE.CylinderGeometry(rr, rr, L, 20, 1, false, 0, Math.PI); top.rotateX(Math.PI / 2);
         top.rotateZ(Math.PI / 2); top.translate(x, y + hb, z); B.add(boxM, top);
         // the door, slightly proud, with a pull
         const door = new THREE.Shape(); door.moveTo(-w / 2 - 0.004, 0); door.lineTo(w / 2 + 0.004, 0); door.lineTo(w / 2 + 0.004, hb);

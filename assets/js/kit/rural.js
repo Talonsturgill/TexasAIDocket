@@ -741,7 +741,8 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
     parent.add(g); return g;
   }
   K.define('windmill', {
-    size: [3.2, 12.5, 3.2],
+    anchor: 'base',
+    size: [4.2, 11.8, 4.3],
     options: { tower: 10, wheel: 2.44, yaw: 0.6, platform: true, ladder: true, pipe: true },
     note: 'Aermotor style water pumping windmill: four post galvanized angle lattice tower with girts and rod cross bracing on concrete footings, wooden platform, side ladder, pump rod down the centre to a pump stand with a discharge pipe, a geared head with its domed hood, an 18 sail wheel (wheel = diameter in metres, 8 ft default) on two rings, and a long tail vane. yaw turns the head.',
     make(o, r) {
@@ -910,7 +911,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
     }
   }
   K.define('barn', {
-    size: [13.5, 8.2, 19.5],
+    size: [16.9, 6.7, 18.8],
     options: { style: 'gable', material: 'metal', color: null, roof: null, trim: null, w: 12, l: 18, open: true, leanTo: true },
     note: 'A Texas barn, gable end forward (+z): style gable | gambrel, material metal (R panel steel with a wainscot, trim, standing ridge cap, an open side shed on steel posts) or wood (red board and batten, white trim, X braced doors, hayloft door with a hay hood, a louvered cupola). Big sliding doors on a track, one pulled open onto a dark interior; framed glazed windows.',
     make(o, r) {
@@ -1110,7 +1111,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
     }
   }
   K.define('hay_bale', {
-    size: [5.2, 2.6, 3.4],
+    size: [3.1, 3.1, 7.1],
     options: { count: 6, layout: 'auto', age: 'auto', wrap: 'net', d: 1.52, w: 1.52 },
     note: 'Round hay bales (5 x 5 ft default), instanced: lumpy rolled sides with net wrap or twine, spiral faces, a flattened contact patch where each sits. layout row | pyramid | scatter (auto: pyramid at 5 and more); age fresh | weathered (grey outer, gold faces).',
     make(o, r) {
@@ -1236,7 +1237,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       g.addColorStop(0, 'rgba(110,80,50,' + (0.08 + r() * 0.12) + ')'); g.addColorStop(1, 'rgba(110,80,50,0)'); x.fillStyle = g; x.fillRect(sx, 8, 3 + r() * 4, len); }
   }
   K.define('grain_bin', {
-    size: [8.6, 10.2, 8.6],
+    size: [8.1, 9.2, 8.8],
     options: { d: 7.3, rings: 8, fan: true, ladder: true },
     note: 'Corrugated steel grain bin (24 ft default, rings of 32 in): horizontal corrugation in the silhouette, sheet laps and bolt rows, a 30 degree roof with standing ribs, a peak collar and cap, roof vents, an eave lip, a caged side ladder with a roof ladder to the peak, an entry door, an aeration fan with its transition, on a concrete pad.',
     make(o, r) {
@@ -1270,8 +1271,8 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       // roof vents
       for (let k = 0; k < 4; k++) {
         const a = k / 4 * TAU + 0.4, rr = R * 0.6, y = He + (R + 0.12 - rr) * Math.tan(ang) + 0.05;
-        const v = new THREE.Group(); v.position.set(Math.cos(a) * rr, y, Math.sin(a) * rr); v.rotation.y = -a + Math.PI / 2; v.rotation.x = 0; g.add(v);
-        const hood = rbox(0.5, 0.28, 0.45, 0.03, galv, 0, -0.02, 0, v, 2); hood.rotation.x = -ang * 0; void hood;
+        const v = new THREE.Group(); v.position.set(Math.cos(a) * rr, y, Math.sin(a) * rr); v.rotation.order = 'YXZ'; v.rotation.y = -a + Math.PI / 2; v.rotation.x = ang; g.add(v);   // yaw to face out, then pitch down the roof
+        const hood = rbox(0.5, 0.28, 0.45, 0.03, galv, 0, -0.02, 0, v, 2); void hood;
         box(0.44, 0.14, 0.02, M.black(), 0, 0.02, 0.23, v);
       }
       // side ladder with cage, roof ladder to the peak
@@ -1312,7 +1313,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
 
   /* ============================================================================ RANCH GATE */
   K.define('ranch_gate', {
-    size: [5.4, 1.9, 0.4],
+    size: [13.9, 1.8, 0.2],
     options: { w: 3.66, rails: 5, finish: 'galvanized', color: 0x2f4a3a, open: 0, fence: true },
     note: 'Pipe rail ranch gate (12 ft default) closed across the opening: galvanized tube frame, five rails spaced tighter at the bottom, a diagonal brace, welded joints, hung on pin hinges from a painted oilfield pipe post with a domed cap; latch post with a chain latch; H braces and barbed wire running off both sides. finish galvanized | painted (color). open swings it in degrees.',
     make(o, r) {
@@ -1373,7 +1374,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
 
   /* ========================================================================== CATTLE GUARD */
   K.define('cattle_guard', {
-    size: [7.4, 1.4, 4.9],
+    size: [7.9, 1.4, 5.5],
     options: { w: 4.9, l: 2.13, finish: 'pipe', color: 0xd6a820, wings: true },
     note: 'A ranch road cattle guard, road running along z: steel pipe rails across the road on I beam stringers over a dark pit, concrete grade beams at both approaches with caliche ramps, and pipe wings flaring up at each end to the fence line. finish pipe (bare, weathered) | galvanized | painted (color).',
     make(o, r) {

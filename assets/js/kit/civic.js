@@ -609,6 +609,7 @@ export function install(K, THREE, TXT) {
   }
 
   K.define('streetlight', {
+    anchor: 'base',
     size: [0.7, 9.1, 3.2],
     options: { height: 9.1, reach: 2.4, finish: 'galvanized' },
     note: 'TxDOT cobra head on a davit arm: tapered galvanized pole on a breakaway base at the origin, the arm reaching +z',
@@ -653,6 +654,7 @@ export function install(K, THREE, TXT) {
   }
 
   K.define('traffic_signal', {
+    anchor: 'base',
     size: [12.7, 10.4, 1.2],
     options: { arm: 12, heads: 3, finish: 'auto', luminaire: true, lit: 'auto' },
     note: 'Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole',
@@ -731,7 +733,7 @@ export function install(K, THREE, TXT) {
 
   K.define('stop_sign', {
     size: [1.2, 3.5, 1.2],
-    options: { blades: true, size: 0.762, post: 'square' },
+    options: { blades: true, size: 0.762 },
     note: 'R1-1 stop sign, 30 in, bottom at 7 ft on a perforated square post; optional blank street blades on top',
     make(o, r) {
       const G = new THREE.Group(), B = Builder(), s = o.size, by = 2.13;
@@ -829,6 +831,7 @@ export function install(K, THREE, TXT) {
   });
 
   K.define('flagpole', {
+    anchor: 'base',
     size: [2.2, 9.5, 0.9],
     options: { height: 9.1, flags: ['texas'], flag: 0 },
     note: 'Satin aluminium flagpole, gold ball, halyard; flags as colour and geometry. flags: ["us","texas"] flies both on one pole',
@@ -951,7 +954,7 @@ export function install(K, THREE, TXT) {
 
   /* ================================ county courthouse ================================ */
   K.define('county_courthouse', {
-    size: [52.6, 43.4, 52.6],
+    size: [52.6, 36.8, 52.6],
     options: { style: 'auto', storeys: 3, square: true },
     note: 'Texas county courthouse on its square: raised granite base, 2 to 3 storeys, central clock tower; style "classical" (porticos, dome) or "romanesque" (arched entries, turrets, pyramidal tower)',
     make(o, r) {

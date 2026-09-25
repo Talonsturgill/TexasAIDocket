@@ -1488,7 +1488,7 @@ export function install(K, THREE, TXT) {
   }
   /* ---- a crowd ------------------------------------------------------------------------- */
   K.define('crowd', {
-    size: [8, 1.8, 5],
+    size: [7.5, 1.9, 4.2],
     options: { seed: 1, n: 12, detail: 'auto', area: [8, 5], roles: ['resident'], poses: ['stand', 'stand', 'stand', 'walk', 'walk', 'hands_on_hips', 'look_up'], face: null },
     note: 'N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z.',
     make(o, r) {

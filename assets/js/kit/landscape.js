@@ -567,7 +567,7 @@ export function install(K, THREE, TXT) {
     out.forEach(({ part, M: Ms, C }) => {
       const im = new THREE.InstancedMesh(part.geo, part.mat, Ms.length);
       Ms.forEach((m, k) => im.setMatrixAt(k, m));
-      if (part.cols || part.mat.vertexColors || true) C.forEach((c, k) => im.setColorAt(k, c));
+      C.forEach((c, k) => im.setColorAt(k, c));
       im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
       im.castShadow = true; im.receiveShadow = !part.bb; im.frustumCulled = false;
       if (part.bb) im.customDepthMaterial = part.mat.userData.depth;
@@ -1023,7 +1023,7 @@ export function install(K, THREE, TXT) {
    * mesa: a West Texas mesa or butte, caprock over a talus apron
    * ====================================================================================== */
   K.define('mesa', {
-    size: [900, 90, 700],
+    size: [1187.9, 94.1, 994.1],
     options: { kind: 'mesa', width: 500, height: 90, cap: 0.16, rock: 'red', aerial: 0.00022, scrub: 1 },
     note: 'A caprock mesa (or kind:"butte") with a vertical cap ledge, a soft slope under it and a gullied talus apron that meets the ground. Far distance: 1 to 8 km. aerial is its own haze rate per metre (0 = use the scene fog). rock: red (Permian, Caprock Canyons) or tan (Trans-Pecos).',
     make(o, r) {
@@ -1172,7 +1172,7 @@ export function install(K, THREE, TXT) {
     san_antonio: { n: 20, h: [35, 150], rad: 420, styles: ['stone', 'brick', 'glass', 'white'], tops: ['flat', 'stepped', 'pent', 'pyramid'], mark: 'needle', lowrise: 200 },
   };
   K.define('city_skyline', {
-    size: [2400, 300, 1400],
+    size: [2215.8, 294, 1174.1],
     options: { city: 'dallas', dusk: false, lit: 0.3, aerial: 0.00011, lowrise: true },
     note: 'A far skyline for dallas, houston, austin or san_antonio: massed towers with each city\'s broad character (Dallas: a mixed cluster and a ball topped observation tower; Houston: the tallest, densest dark glass; Austin: slender residential glass and a domed capitol; San Antonio: low masonry and a needle tower). dusk lights windows and aviation beacons. Place 2 to 10 km away and raise R.camera.far past it; aerial is its own haze rate per metre. Blank facades, no logos.',
     make(o, r) {
@@ -1321,7 +1321,7 @@ export function install(K, THREE, TXT) {
    * caliche_road: a pale unpaved ranch road
    * ====================================================================================== */
   K.define('caliche_road', {
-    size: [9, 0.3, 60],
+    size: [14.7, 1.1, 62.8],
     options: { length: 60, width: 4.2, curve: 0.25, centerGrass: true, verge: 2.6, ground: 0x6d7a3c },
     note: 'A pale caliche ranch road running along z: a crowned bed, two packed wheel tracks, a weedy centre strip, graded berms of loose gravel and grass verges that sink into TXT.ground. curve bows it sideways (fraction of length/4).',
     make(o, r) {
@@ -1383,7 +1383,7 @@ export function install(K, THREE, TXT) {
    * highway: a divided Texas highway segment
    * ====================================================================================== */
   K.define('highway', {
-    size: [40, 1, 80],
+    size: [34.7, 9.5, 80],
     options: { length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6, ground: 0x6d7a3c },
     note: 'A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an overhead truss with blank green panels over the right carriageway; overpass adds a crossing bridge on round columns and bent caps with MSE walled approaches.',
     make(o, r) {
@@ -1580,7 +1580,7 @@ export function install(K, THREE, TXT) {
    * creek: a Hill Country creek between low banks, limestone bedrock, gravel bars
    * ====================================================================================== */
   K.define('creek', {
-    size: [30, 2, 40],
+    size: [30.2, 3.6, 41],
     options: { length: 40, width: 30, bed: 9, bank: 1.8, water: 'shallow', ground: 0x6d7a3c },
     note: 'A Hill Country creek running along z: flat limestone bedrock with stepped ledges and potholes, gravel bars, slabs, grassy banks that rise 1 to 2.5 m and sink back into TXT.ground at the sides. water: dry, shallow (clear pools over the rock) or full. Built above grade, since nothing can be cut into the ground plane.',
     make(o, r) {
@@ -1663,7 +1663,7 @@ export function install(K, THREE, TXT) {
    * reservoir_shore: a Texas lake shore, water toward +z, land rising behind
    * ====================================================================================== */
   K.define('reservoir_shore', {
-    size: [300, 4, 260],
+    size: [300, 6, 260],
     options: { width: 300, water: 200, land: 60, bluff: 3.5, drawdown: 1.2, ramp: true, ground: 0x6d7a3c },
     note: 'A reservoir shore: land at -z rising to a low bluff and sinking back into TXT.ground, a pale drawdown band of cracked mud and rock (the bathtub ring of a Texas lake in drought), and a wide reflective water plane toward +z with waves. ramp adds a grooved concrete boat ramp with curbs running into the water. The water surface stands at y = 0.35.',
     make(o, r) {
@@ -2019,7 +2019,7 @@ export function install(K, THREE, TXT) {
    * crop_rows: a field block of cotton or sorghum on bedded rows
    * ====================================================================================== */
   K.define('crop_rows', {
-    size: [20, 1.4, 30],
+    size: [26.1, 1.3, 40.2],
     options: { crop: 'cotton', growth: 1, width: 20, length: 30, row: 1.02, soil: 0x8a5d40, ground: 0x6d7a3c, near: null, budget: 400000, verge: true },
     note: 'A field block of bedded rows running along z, 40 inch rows on raised beds of South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green and leafy with flowers and a few open bolls, 1 defoliated at harvest: knee to waist high, bushy dark brown plants with lumpy open bolls, rows closing into a white flecked brown carpet) or sorghum (growth 1 ripe rust heads). width x length is the planted block; round it a packed turn row (5 m at the ends, 3 m at the sides) and a grassy verge melting into TXT.ground (`ground` is that plane\'s colour; verge:false leaves bare soil). `near` [x, z] in model space is where the viewer stands (default: the middle of the front, +z, edge): whole plants gather there, simpler plants further off, and past the triangle `budget` each row is its canopy alone, which is how a field reads at a distance anyway.',
     make(o, r) {
@@ -2349,9 +2349,6 @@ export function install(K, THREE, TXT) {
         const st = []; for (let a = 0; a < 16; a++) { const t = a / 16 * TAU; st.push(box(0.12, bh, 0.08, sm, bx + Math.cos(t) * (br + 0.03), 0, bz + Math.sin(t) * (br + 0.03))); st[st.length - 1].rotation.y = -t; }
         g.add(K.merge(st, K.finish.galvanized()));
       }
-      // the steel bins sit off one end, so the finished footprint is centred on the origin
-      const bb = new THREE.Box3().setFromObject(g), cx = (bb.min.x + bb.max.x) / 2;
-      g.children.forEach((c) => { c.position.x -= cx; });
       return g;
     },
   });

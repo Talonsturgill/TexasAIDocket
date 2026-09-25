@@ -652,7 +652,7 @@ export function install(K, THREE, TXT) {
       cbox(dw - 0.02, dh - 0.02, 0.02, skin, x, y0 + dh / 2, z - sz * 0.002, parent);
       cbox(dw - 0.02, 0.01, 0.025, hole(), x, y0 + 0.005, z, parent);
       if (!low) {
-        for (const hy of [0.25, dh / 2, dh - 0.25]) cyl(0.02, 0.02, 0.14, chrome(), x - sz * dw / 2 * 0 - dw / 2 + 0.02, y0 + hy - 0.07, z + sz * 0.02, 8, parent);
+        for (const hy of [0.25, dh / 2, dh - 0.25]) cyl(0.02, 0.02, 0.14, chrome(), x - dw / 2 + 0.02, y0 + hy - 0.07, z + sz * 0.02, 8, parent);
         cbox(0.05, 0.16, 0.03, chrome(), x + dw / 2 - 0.12, y0 + 1.05, z + sz * 0.025, parent);
         cbox(0.13, 0.03, 0.03, chrome(), x + dw / 2 - 0.17, y0 + 1.0, z + sz * 0.045, parent);
         // an upper vent on the door, and a warning placard

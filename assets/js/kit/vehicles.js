@@ -808,7 +808,7 @@ export function install(K, THREE, TXT) {
    * insulated articulating boom and a fibreglass bucket. About 9.6 x 2.5 x 3.6 m stowed.
    * ========================================================================================= */
   K.define('utility_bucket_truck', {
-    size: [2.9, 3.6, 9.6],
+    size: [3, 3, 9.8],
     options: { seed: 1, boom: 0, swing: 0, color: 0xf0f0ec, lettering: null },
     note: 'Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). Outriggers go down when raised.',
     make(o, r) {

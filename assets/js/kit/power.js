@@ -595,7 +595,7 @@ export function install(K, THREE, TXT) {
 
   /* ========================================================================== monopole 138 */
   K.define('monopole_138', {
-    size: [9.2, 30.5, 2.2],
+    size: [7.9, 29, 1.9],
     options: { circuits: 2, insulators: 'suspension', finish: null, height: 27 },
     note: 'OPTIONS circuits 1 | 2; insulators suspension | post (braced horizontal line post); finish galvanized | weathering (null = seeded); height m above ground. Tubular 12 sided tapered steel pole on an anchor bolt pier, curved davit arms, 138 kV polymer strings, shield wire peak. userData.attach/.shield.',
     make(o, r) {
@@ -672,7 +672,7 @@ export function install(K, THREE, TXT) {
 
   /* =============================================================================== H-frame */
   K.define('h_frame', {
-    size: [9.8, 23.5, 1.4],
+    size: [9.2, 21.1, 1.8],
     options: { material: 'wood', height: 21, voltage: 138 },
     note: 'OPTIONS material wood | steel (weathering steel tubes); height m above ground; voltage 69 | 138. Two pole H-frame: poles 5.5 m apart, double timber crossarm, timber X brace, three phases horizontal (centre and outboard), static wire on each pole top.',
     make(o, r) {
@@ -721,7 +721,8 @@ export function install(K, THREE, TXT) {
 
   /* ========================================================================== utility pole */
   K.define('utility_pole', {
-    size: [2.6, 11.2, 4.6],
+    anchor: 'base',
+    size: [2.4, 11.3, 5.4],
     options: { transformer: true, streetlight: false, guy: true, guyDir: -1, insulators: null, height: 10.7 },
     note: 'OPTIONS transformer (pole mount can), streetlight (cobra head on a davit), guy (down guy with yellow guard), guyDir -1 = anchor toward -z, 1 = +z; insulators porcelain | polymer (null = seeded); height m above ground (10.7 is a 40 ft class 3 pole). Three phase distribution: treated pine pole, 8 ft crossarm on flat braces, two crossarm pins and a pole top pin, neutral on a spool, cutout and arrester feeding a 25 to 50 kVA can.',
     make(o, r) {
@@ -812,7 +813,9 @@ export function install(K, THREE, TXT) {
   const LINE = { transmission_tower: [330, 0.034], monopole_138: [200, 0.03], h_frame: [230, 0.032], utility_pole: [45, 0.02] };
   K.define('power_line', {
     size: [15.2, 49.5, 660],
-    options: { structure: 'transmission_tower', spans: 2, span: null, sag: null, structures: null },
+    options: { structure: 'transmission_tower', spans: 2, span: null, sag: null, structures: null,
+      voltage: null, insulator: null, insulators: null, height: null, material: null, circuits: null,
+      transformer: null, streetlight: null, guy: null },
     note: 'OPTIONS structure transmission_tower | monopole_138 | h_frame | utility_pole; spans; span m (null = typical: 330, 200, 230, 45); sag m at mid span (null = about span x 0.034); structures [[x, z, rotY], ...] places them yourself and the wires follow; voltage, insulator, insulators, height, material, circuits, transformer, streetlight, guy pass through to the structure. Structures along z with every conductor and shield wire strung as a sagging span between the attach points each structure publishes; bundles get spacers every 70 m.',
     make(o, r) {
       const g = new THREE.Group(), type = o.structure || 'transmission_tower', D = LINE[type] || LINE.transmission_tower;
@@ -1103,7 +1106,7 @@ export function install(K, THREE, TXT) {
 
   /* ============================================================================ substation */
   K.define('substation', {
-    size: [58, 22, 76],
+    size: [56, 23.5, 97.2],
     options: { size: 'small', kv: 345, leads: true },
     note: 'OPTIONS size small | large (2 or 3 transformer bays); kv high side 345 | 138; leads draws the incoming and outgoing line stubs. A fenced ERCOT yard on a crushed rock pad: dead end gantries, vertical break disconnects, SF6 dead tank breakers, autotransformers with radiators and conservators, a 138 kV low side, lightning masts, control house. Lines enter from -z.',
     make(o, r) {
@@ -1204,7 +1207,8 @@ export function install(K, THREE, TXT) {
     });
   }
   K.define('wind_turbine', {
-    size: [121, 150, 14],
+    anchor: 'base',
+    size: [106, 150.2, 21.4],
     options: { rotor: 0, hub: 90, diameter: 120, yaw: 0 },
     note: 'OPTIONS rotor angle deg (0 = a blade straight up); hub height m; diameter m; yaw deg (0 = rotor faces +z). A 2.5 to 3 MW class machine: 90 m tapered tubular steel tower with flanges and a base door, nacelle with cooler, met mast and obstruction light, spinner, three twisted and tapered airfoil blades with prebend, 5 degree shaft tilt, pad mount transformer.',
     make(o, r) {
@@ -1289,7 +1293,7 @@ export function install(K, THREE, TXT) {
     CELLS = t; return t;
   }
   K.define('solar_array', {
-    size: [42, 3.4, 26],
+    size: [43.2, 2.7, 25.4],
     options: { rows: 5, cols: 36, tilt: 20, pitch: 5.8 },
     note: 'OPTIONS rows (trackers); cols (modules per row); tilt deg, positive faces +z, trackers run about plus or minus 60; pitch m row spacing. Single axis trackers, one module in portrait (1P): 2.28 x 1.13 m bifacial modules on a square torque tube 2.1 m up, W6 piles every 7 m, slew drive at mid row, controller and combiner. Tubes run along x.',
     make(o, r) {
@@ -1391,7 +1395,7 @@ export function install(K, THREE, TXT) {
     b.box(M.paint(0xe6b422, 0.5), 0.3, 0.2, 0.01, x + 1.95, 1.8, z + 1.105);
   }
   K.define('battery_storage', {
-    size: [66, 14, 42],
+    size: [88, 14.8, 44.1],
     options: { rows: 3, cols: 4, gsu: true },
     note: 'OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. Containerised BESS on a fenced crushed rock pad: 40 ft battery enclosures with side cabinet doors, HVAC units and hazard placards, inverter and MV transformer skids between pairs, a main step up transformer.',
     make(o, r) {
@@ -1539,7 +1543,7 @@ export function install(K, THREE, TXT) {
     [[1.5, 1.2], [3.5, 1.0]].forEach(([x, h]) => b.geo(M.paint(0xd4b73a, 0.5), new THREE.CylinderGeometry(0.35, 0.35, h, 16), V3(x, 0.5 + h / 2, z0 + 7)));
   }
   K.define('gas_peaker', {
-    size: [48, 32, 22],
+    size: [51.7, 30.7, 19.7],
     options: { units: 1, transformer: true },
     note: 'OPTIONS units 1 | 2; transformer adds the generator step up. A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ladder, lube oil fin fan, fuel gas skid, step up transformer.',
     make(o, r) {
@@ -1654,13 +1658,13 @@ export function install(K, THREE, TXT) {
     [-1, 1].forEach((s) => b.box(M.paint(0x8b959b, 0.6), 0.2, 10, D + 1, x + s * (L / 2 + 0.5), H + 1.8 + 5, z));
   }
   K.define('power_plant', {
-    size: [120, 58, 120],
+    size: [109.1, 51, 121.5],
     options: { units: 2, cooling: 'tower' },
     note: 'OPTIONS units 1 | 2 gas turbine and HRSG trains; cooling tower (mechanical draft) | acc (air cooled condenser). A combined cycle block: F class gas turbines with elevated inlet filter houses, exhaust diffusers into heat recovery steam generators with buckstays, drums, stair towers and 50 m stacks, a steam turbine hall, mechanical draft cooling tower or air cooled condenser, step up transformers, demin water tank.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), n = +o.units === 1 ? 1 : 2, pitch = 30;
       const zs = Array.from({ length: n }, (_, i) => (i - (n - 1) / 2) * pitch);
-      zs.forEach((z) => { gtTrain(b, z, r); hrsg(b, -6, z, r); powerTransformer(b, -62, z + 4, 0.85, {}); b.box(M.concrete(), 0.35, 9, 10, -67.5, 0.2, z + 4); });
+      zs.forEach((z) => { gtTrain(b, z, r); hrsg(b, -6, z, r); powerTransformer(b, -62, z + 4, 0.85, {}); b.box(M.concrete(), 0.35, 9, 10, -67.5, 0.2 + 9 / 2, z + 4); });
       // steam turbine hall behind the trains
       const zh = zs[0] - 34, wall = kmat('pw_hall', { color: 0xffffff, roughness: 0.6, metalness: 0.2, map: K.tex('corrugated', { color: '#cfcbc0' }) });
       wall.userData.metres = 2.4;

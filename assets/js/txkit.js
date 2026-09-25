@@ -17,6 +17,9 @@
  *
  * CONVENTIONS, every model, no exceptions:
  *   - METRES, y up, origin at the centre of the footprint ON THE GROUND (y = 0 is the base).
+ *     K.make centres it, so a builder need not. Two exceptions keep their own origin: a spec
+ *     declaring anchor: 'base' (a pole or mast, anchored at its foot), and a model publishing
+ *     coordinates in userData (heightAt, attach). examples/kit/sizes.py measures all of this.
  *   - The model's FRONT faces +z. A person faces +z, a house's front door is on +z.
  *   - `seed` varies it deterministically: a row of houses is a row of different houses, and the
  *     same row next render. Every option has a default, so K.make(name) always works.
@@ -58,6 +61,15 @@ export function initKit(THREE, TXT) {
     if (!spec) throw new Error('txkit: no model "' + name + '". K.list() names them all');
     const o = Object.assign({ seed: 1 }, spec.options || {}, opts || {});   // `options` are the defaults
     const g = spec.make(o, K.rng(o.seed * 7919 + name.length * 131));
+    // THE FOOTPRINT IS CENTRED HERE, not in each builder, because builders that add a lean-to, a
+    // yard or a row of bins off one side kept forgetting to. Two kinds keep their own origin: a
+    // model declared anchor 'base' (a pole, mast or tower whose arm overhangs), and one that
+    // publishes coordinates (heightAt, attach points), which a shift would silently invalidate.
+    if (g.isGroup && spec.anchor !== 'base' && !g.userData.heightAt && !g.userData.attach) {
+      const bb = new THREE.Box3().setFromObject(g);
+      const cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
+      if (Math.abs(cx) > 0.01 || Math.abs(cz) > 0.01) g.children.forEach((c) => { c.position.x -= cx; c.position.z -= cz; });
+    }
     g.userData.kit = name;
     return g;
   };
@@ -78,7 +90,7 @@ export function initKit(THREE, TXT) {
     for (const [n, v] of Object.entries(params || {})) {
       norm[n] = v && v.isTexture ? 'tex:' + v.uuid : v && v.isColor ? 'col:' + v.getHexString() : v;
     }
-    const k = key + '|' + JSON.stringify(norm);
+    const k = key + '|' + (physical ? 'physical' : 'standard') + '|' + JSON.stringify(norm);
     if (!MATS.has(k)) {
       const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
       MATS.set(k, physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P));
