@@ -68,11 +68,15 @@ export function initKit(THREE, TXT) {
     // publishes coordinates (heightAt, attach points), which a shift would silently invalidate,
     // and one built at coordinates the caller gave it (userData.keepOrigin, as power_line sets
     // when it is handed `structures`).
+    const bb = new THREE.Box3().setFromObject(g);
     if (g.isGroup && spec.anchor !== 'base' && !g.userData.keepOrigin && !g.userData.heightAt && !g.userData.attach) {
-      const bb = new THREE.Box3().setFromObject(g);
       const cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
       if (Math.abs(cx) > 0.01 || Math.abs(cz) > 0.01) g.children.forEach((c) => { c.position.x -= cx; c.position.z -= cz; });
     }
+    // THE EXACT SIZE OF THIS INSTANCE, which is what placement code reads. The declared `size` is
+    // an envelope sampled over seeds by examples/kit/sizes.py, and no sample can bound every seed.
+    const sz = bb.getSize(new THREE.Vector3());
+    g.userData.size = [sz.x, sz.y, sz.z].map((v) => +v.toFixed(2));
     g.userData.kit = name;
     return g;
   };
@@ -110,7 +114,7 @@ export function initKit(THREE, TXT) {
   K.finish = {
     galvanized: () => K.mat('galv', { color: 0xa9adb0, metalness: 0.85, roughness: 0.42 }),
     steelPaint: (c) => K.mat('steelp', { color: c != null ? c : 0x8d9196, metalness: 0.35, roughness: 0.55 }),
-    concrete:   () => K.mat('conc', { color: 0xa39f97, roughness: 0.92, map: K.tex('concrete') }),
+    concrete:   () => K.mat('conc', { color: 0xffffff, roughness: 0.92, map: K.tex('concrete') }),   // the map carries the tint
     asphalt:    () => K.mat('asph', { color: 0x3b3c3e, roughness: 0.9 }),
     rubber:     () => K.mat('rubber', { color: 0x1c1c1e, roughness: 0.75 }),
     chrome:     () => K.mat('chrome', { color: 0xdfe3e6, metalness: 1, roughness: 0.12 }),

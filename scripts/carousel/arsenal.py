@@ -989,7 +989,10 @@ def build(root: Path = REPO_ROOT) -> str:
         L += [kit["header"], ""]
     L += ["`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then "
           "`const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. "
-          "Metres, y up, origin at the footprint centre on the ground, front faces +z. Proof pages: "
+          "Metres, y up, origin at the footprint centre on the ground, front faces +z. The size "
+          "column is an ENVELOPE sampled over sixteen seeds by `examples/kit/sizes.py`, not a bound "
+          "on every seed: to place a built model exactly, read its own `m.userData.size`, which "
+          "`K.make` measures on every call. Proof pages: "
           "`python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.", ""]
     if kit["helpers"]:
         L += ["**Builder helpers**, for new geometry made the kit's way:", ""]

@@ -128,7 +128,7 @@ const shot = await TXT.snapshot(R);
 
 THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
-`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then `const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. Metres, y up, origin at the footprint centre on the ground, front faces +z. Proof pages: `python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.
+`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then `const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. Metres, y up, origin at the footprint centre on the ground, front faces +z. The size column is an ENVELOPE sampled over sixteen seeds by `examples/kit/sizes.py`, not a bound on every seed: to place a built model exactly, read its own `m.userData.size`, which `K.make` measures on every call. Proof pages: `python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.
 
 **Builder helpers**, for new geometry made the kit's way:
 
@@ -192,11 +192,11 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
-| `ashe_juniper` | 6.6 x 6.8 x 6.4 | height, spread | Options: height m, spread m. |
-| `cedar_elm` | 10.5 x 12.5 x 10 | height, spread | Options: height m, spread m. |
+| `ashe_juniper` | 7.1 x 7 x 7.5 | height, spread | Options: height m, spread m. |
+| `cedar_elm` | 11.2 x 12.9 x 12.7 | height, spread | Options: height m, spread m. |
 | `crape_myrtle` | 6 x 6 x 5.5 | height, spread, bloom, stems | Options: height m, spread m, bloom pink\|white\|red\|lavender (or false for none), stems (null = seeded 4 to 6). |
 | `live_oak` | 20.5 x 10 x 21 | height, spread | Options: height m, spread m across the crown. |
-| `mesquite` | 9.8 x 6.6 x 9.6 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
+| `mesquite` | 9.8 x 6.6 x 10.7 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
 | `palm` | 4.9 x 18.3 x 5 | height, skirt, lean | Options: height m (the trunk; the crown stands about 2 m above it), skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). |
 | `pecan` | 22.4 x 23.1 x 21.3 | height, spread | Options: height m, spread m. |
 | `shrub` | 3.4 x 1.4 x 1.3 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
@@ -306,7 +306,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `grain_bin` | 8.1 x 9.2 x 8.8 | d, rings, fan, ladder | Corrugated steel grain bin (24 ft default, rings of 32 in): horizontal corrugation in the silhouette, sheet laps and bolt rows, a 30 degree roof with standing ribs, a peak collar and cap, roof vents, an eave lip, a caged side ladder with a roof ladder to the ... |
 | `hay_bale` | 3.1 x 3.1 x 7.1 | count, layout, age, wrap, d, w | Round hay bales (5 x 5 ft default), instanced: lumpy rolled sides with net wrap or twine, spiral faces, a flattened contact patch where each sits. layout row \| pyramid \| scatter (auto: pyramid at 5 and more); age fresh \| weathered (grey outer, gold faces). |
 | `ranch_gate` | 13.9 x 1.8 x 0.2 | w, rails, finish, color, open, fence | Pipe rail ranch gate (12 ft default) closed across the opening: galvanized tube frame, five rails spaced tighter at the bottom, a diagonal brace, welded joints, hung on pin hinges from a painted oilfield pipe post with a domed cap; latch post with a chain ... |
-| `stock_tank` | 3.1 x 0.66 x 3.1 | d, h, water, inlet | Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill ... |
+| `stock_tank` | 3.7 x 0.8 x 3.5 | d, h, water, inlet | Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill ... |
 | `windmill` | 4.2 x 11.8 x 4.3 | tower, wheel, yaw, platform, ladder, pipe | Aermotor style water pumping windmill: four post galvanized angle lattice tower with girts and rod cross bracing on concrete footings, wooden platform, side ladder, pump rod down the centre to a pump stand with a discharge pipe, a geared head with its domed ... |
 
 ### landscape (10)

@@ -845,7 +845,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
 
   /* ============================================================================ STOCK TANK */
   K.define('stock_tank', {
-    size: [3.1, 0.66, 3.1],
+    size: [3.7, 0.8, 3.5],
     options: { d: 3.05, h: 0.61, water: 0.8, inlet: true },
     note: 'Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill fraction.',
     make(o, r) {
@@ -1192,7 +1192,11 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
         g.add(new THREE.Mesh(tg, tarpM));
         const rope = mat('rope', { color: 0xd8d2c0, roughness: 0.9 });
         for (let k = 0; k < 7; k++) { const z = -L / 2 + 0.6 + k * (L - 1.2) / 6; const pr = prof.map((p) => [p.x * 1.01, p.y + 0.01, z]); tube(pr, 0.008, rope, 40, 5, g); }
-        return centre(g);
+        if (n === 1) return centre(g);
+        // `count` lays modules side by side in a row, as it does for round ones
+        const row = new THREE.Group();
+        for (let i = 0; i < n; i++) { const c = i === 0 ? g : g.clone(); c.position.x = (i - (n - 1) / 2) * (W + 0.8); row.add(c); }
+        return centre(row);
       }
       const R = 1.145, Wd = 2.44;
       const { geo, len } = baleGeometry(R, Wd, 0.1, 72, 31 + (o.seed || 1), true);

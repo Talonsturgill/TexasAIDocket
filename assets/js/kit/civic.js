@@ -53,7 +53,9 @@ export function install(K, THREE, TXT) {
     CT.set(key, t);
     return t;
   }
-  function cmat(key, tex, rough, extra) {
+  function cmat(key0, tex, rough, extra) {
+    // keyed on the texture and every parameter: a church roof is picked per seed under one name
+    const key = K.matKey(key0, Object.assign({ map: tex, roughness: rough }, extra || {}));
     if (!MC.has(key)) {
       const m = new THREE.MeshStandardMaterial(Object.assign({ color: 0xffffff, roughness: rough, metalness: 0, map: tex }, extra || {}));
       m.userData.uvm = tex.userData.metres;

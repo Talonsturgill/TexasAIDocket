@@ -68,8 +68,12 @@ window.renderReady = (async () => {
   }
   const all = new THREE.Box3(); made.forEach(g => all.expandByObject(g)); if (who) all.expandByObject(who);
   const c = new THREE.Vector3(), s = new THREE.Vector3(); all.getCenter(c); all.getSize(s);
-  const rad = Math.max(s.x, s.y * 1.25, s.z) * 0.62 + 0.5;
-  const dist = rad / Math.tan(FOV * Math.PI / 360) * __DIST__;
+  // A BOUNDING SPHERE against the NARROWER field of view. A three-quarter camera projects both
+  // x and z into screen width, so framing on the largest single axis clipped the corners of a
+  // square footprint, and the frame is portrait, so its horizontal field is the narrower one.
+  const rad = 0.5 * Math.hypot(s.x, s.y, s.z) + 0.5;
+  const vHalf = FOV * Math.PI / 360, hHalf = Math.atan(Math.tan(vHalf) * 1080 / 1350);
+  const dist = rad / Math.sin(Math.min(vHalf, hHalf)) * __DIST__;
   // a wide scene sits far from the camera, so the proof's haze thins with distance to keep it legible
   if (R.scene.fog && R.scene.fog.density) R.scene.fog.density *= Math.min(1, 45 / dist);
   const dir = new THREE.Vector3(__DIR__).normalize();
@@ -102,7 +106,7 @@ def family_names(family: str) -> list[str]:
     return re.findall(r"K\.define\(\s*['\"]([a-z0-9_]+)['\"]", src)
 
 
-def page(specs, *, person=True, world="goldenHour", fov=34, dist=1.25, direction=(0.55, 0.32, 1.0),
+def page(specs, *, person=True, world="goldenHour", fov=34, dist=1.05, direction=(0.55, 0.32, 1.0),
          surface="grass", az=-40, el=18) -> str:
     return (PAGE.replace("__SPECS__", json.dumps(specs)).replace("__PERSON__", "true" if person else "false")
             .replace("__WORLD__", world).replace("__FOV__", str(fov)).replace("__DIST__", str(dist))
@@ -128,7 +132,7 @@ def main() -> int:
         old.unlink()
     pages = [page([[n, {"seed": i + 1}] for i, n in enumerate(names)], world=a.world, surface=a.surface)]
     for i, n in enumerate(names):
-        pages.append(page([[n, {"seed": 1}]], world=a.world, surface=a.surface, dist=1.05))
+        pages.append(page([[n, {"seed": 1}]], world=a.world, surface=a.surface, dist=1.0))
     for i, html in enumerate(pages, 1):
         (out / f"slide-{i:02d}.html").write_text(html, encoding="utf-8")
     print(f"{len(pages)} page(s): slide-01 is the lineup of {len(names)}, then one hero each: {', '.join(names)}")

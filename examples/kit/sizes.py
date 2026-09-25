@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Every kit model's DECLARED size against the largest size it MEASURES across five seeds.
+"""Every kit model's DECLARED size against the largest size it MEASURES across sixteen seeds.
 
     python3 examples/kit/sizes.py --out out/kit/sizes
     python3 examples/kit/sizes.py --out out/kit/sizes --fix      # rewrite the declared sizes
@@ -28,7 +28,11 @@ RENDER = REPO / ".claude" / "skills" / "carousel-engine" / "render.py"
 # of the LARGEST of these seeds. A declared size true of seed 1 alone was wrong for a courthouse
 # at seed 2 by 6.6 m (Codex on #359), so the size bounds the seeded variation a deck will call.
 TOL_FRAC, TOL_M, CENTRE_FRAC = 0.10, 0.5, 0.05
-SEEDS = [1, 2, 3, 4, 5]
+# Eight in a row and eight spread across the range, because a generator's rare branches live at
+# seeds nobody picks by hand (a cedar elm at seed 197 was 26 percent deeper than seeds 1 to 5).
+# A sample is still a sample: it bounds these seeds and no others, which is why K.make stamps
+# every built model with its own exact userData.size and the arsenal tells placement to read it.
+SEEDS = [1, 2, 3, 4, 5, 6, 7, 8, 37, 97, 197, 311, 503, 997, 2027, 4099]
 
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><style>
 html,body{margin:0;width:1080px;height:1350px;background:#000}</style></head><body>
@@ -42,17 +46,20 @@ window.renderReady = (async () => {
     const spec = K.registry[name];
     try {
       // every seed a caller is likely to pass: the declared size has to bound all of them
-      const mx = [0, 0, 0], off = [0, 0]; let anchored = spec.anchor === 'base';
+      const mx = [0, 0, 0], off = [0, 0]; let anchored = spec.anchor === 'base', stamp = true;
       for (const seed of __SEEDS__) {
         const g = K.make(name, { seed });
         const bb = new THREE.Box3().setFromObject(g), sz = new THREE.Vector3(); bb.getSize(sz);
         [sz.x, sz.y, sz.z].forEach((v, i) => { mx[i] = Math.max(mx[i], v); });
+        // the exact size K.make stamps on the instance must be the instance's own bounds
+        const us = g.userData.size || [];
+        stamp = stamp && us.length === 3 && [sz.x, sz.y, sz.z].every((v, i) => Math.abs(v - us[i]) < 0.02);
         const c = [(bb.min.x + bb.max.x) / 2, (bb.min.z + bb.max.z) / 2];
         c.forEach((v, i) => { if (Math.abs(v) > Math.abs(off[i])) off[i] = v; });
         anchored = anchored || !!g.userData.heightAt || !!g.userData.attach || !!g.userData.keepOrigin;
       }
       out.push({ name, declared: spec.size || null, measured: mx.map(v => +v.toFixed(2)),
-        centre: off.map(v => +v.toFixed(2)), anchored });
+        centre: off.map(v => +v.toFixed(2)), anchored, stamp });
     } catch (e) { out.push({ name, error: String(e) }); }
   }
   console.error('KIT_SIZES ' + JSON.stringify(out));
@@ -89,6 +96,8 @@ def measure(out: Path) -> list:
 def judge(row: dict) -> list:
     if "error" in row:
         return [f"did not build: {row['error']}"]
+    if not row.get("stamp", False):
+        return ["the built model's userData.size is missing or is not its own bounds"]
     d, m, c = row["declared"], row["measured"], row["centre"]
     bad = []
     if not d:

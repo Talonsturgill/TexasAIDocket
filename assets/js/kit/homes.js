@@ -263,7 +263,8 @@ export function install(K, THREE, TXT) {
   function mat(key, make) { if (!MC.has(key)) MC.set(key, make()); return MC.get(key); }
   const std = (key, p) => mat(K.matKey(key, p), () => new THREE.MeshStandardMaterial(Object.assign({ roughness: 0.8, metalness: 0 }, p)));
   function texMat(T, key, extra) {
-    return mat('tm|' + key, () => new THREE.MeshStandardMaterial(Object.assign({
+    // keyed on the textures and extras too: a gable's siding is picked per seed under one label
+    return mat(K.matKey('tm|' + key, Object.assign({ map: T.map, bumpMap: T.bump }, extra || {})), () => new THREE.MeshStandardMaterial(Object.assign({
       color: 0xffffff, map: T.map, bumpMap: T.bump, bumpScale: 1.6, roughness: 0.88, metalness: 0 }, extra || {})));
   }
   const paint = (c, rough) => std('paint|' + c + '|' + (rough || 0.55), { color: c, roughness: rough || 0.55 });

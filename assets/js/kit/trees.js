@@ -516,7 +516,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const MESQ_LEAF = { shape: 'pinnate', leaf: [70, 5], leaflets: 13, colors: ['#4f6a30', '#6a8640', '#869f52'], twig: '#2e241c', twigW: 3, density: 2, angle: 1.0, branchy: 2, alphaTest: 0.35 };
   K.define('mesquite', {
-    size: [9.8, 6.6, 9.6],
+    size: [9.8, 6.6, 10.7],
     options: { height: 6, spread: 8, stems: null },
     note: 'Options: height m, spread m, stems (null = seeded 2 or 3). Honey mesquite: two or three thin, twisting, near-black stems leaning out from one base, zigzag branches arching over, and a flat, airy, feathery umbrella of lime-green bipinnate leaves with the sky and the limbs showing through.',
     make(o, r) {
@@ -547,7 +547,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const ELM_LEAF = { shape: 'ellipse', leaf: [17, 10], colors: ['#3a5528', '#50702f', '#678a3c'], twig: '#3b322a', twigW: 2.5, density: 9, angle: 1.1, serrate: true, branchy: 3 };
   K.define('cedar_elm', {
-    size: [10.5, 12.5, 10],
+    size: [11.2, 12.9, 12.7],
     options: { height: 12, spread: 9 },
     note: 'Options: height m, spread m. Cedar elm: a straight grey scaly trunk, ascending limbs, slightly weeping outer twigs and an upright oval crown of small, rough, dark leaves, a little open, the commonest native street elm in Texas.',
     make(o, r) {
@@ -575,7 +575,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const JUN_LEAF = { shape: 'scale', leaf: [38, 7], colors: ['#2c3c2a', '#3b4f34', '#4d633f'], twig: '#4a3a2e', twigW: 3, density: 5, angle: 0.7, berries: '#7c8fb0', branchy: 3, alphaTest: 0.4 };
   K.define('ashe_juniper', {
-    size: [6.6, 6.8, 6.4],
+    size: [7.1, 7, 7.5],
     options: { height: 6, spread: 5 },
     note: 'Options: height m, spread m. Ashe juniper, the Hill Country cedar: several shaggy, shredding, reddish-grey stems from the ground, a dense irregular rounded-conical crown of dark blue-green scale foliage in ropey sprays carried nearly to the ground, a few frosted blue berries.',
     make(o, r) {
