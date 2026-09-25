@@ -731,6 +731,17 @@ export function assemble(pack, turns, env, order) {
   const reranked = Array.isArray(order) && order.length
     ? order.filter((id) => known.has(id) && byId.has(id))
     : null;
+  // AN ORDER THAT NAMES NOTHING RETRIEVAL CHOSE IS NO ORDER AT ALL, so the question gets the
+  // narrow retrieval it would have had without one. Falling through to the WIDE candidates left
+  // the character cap to decide how many of twenty were sent, and on the 2026-09-24 record that
+  // sent seven where the same question with no order sent six.
+  if (wide.top && !(reranked && reranked.length)) {
+    picked = pickItems(query, items);
+    if (!picked.chosen.length && latest && latest !== query) {
+      const retry = pickItems(latest, items);
+      if (retry.chosen.length) picked = retry;
+    }
+  }
   // RERANK TWENTY, SEND THE USUAL NUMBER. The wide candidate set exists so the reranker has
   // something to choose FROM, and sending all of it would be paying for fourteen extra bodies
   // to get a better order on six. The character cap below would not have caught this on its
