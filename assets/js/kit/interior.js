@@ -898,7 +898,6 @@ export function install(K, THREE, TXT) {
     body.geometry.rotateY(Math.PI / 2); body.geometry.rotateX(Math.PI / 2); body.geometry.translate(-0.025, -0.006, 0);
     body.position.set(0, -0.006, -0.279 / 2 + 0.006); clip.add(body);
     for (const s of [-1, 1]) {
-      const pts = []; for (let i = 0; i <= 16; i++) { const a = i / 16 * Math.PI; pts.push([s * (0.017 * Math.cos(a) * 0.0 + 0.0), 0.0, 0]); }
       tube([[s * 0.02, 0.006, -0.279 / 2], [s * 0.02, 0.012, -0.279 / 2 + 0.03], [0, 0.013, -0.279 / 2 + 0.045], [-s * 0.02, 0.012, -0.279 / 2 + 0.03], [-s * 0.02, 0.006, -0.279 / 2]].map((p) => [p[0] * 0.9, p[1] + (s > 0 ? 0.001 : 0), p[2]]),
         0.0011, M.chrome(), 32, 6, clip);
     }

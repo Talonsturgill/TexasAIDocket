@@ -1136,7 +1136,7 @@ function installBig(K, THREE, TXT, H) {
       for (let x = yx0; x <= yx1; x += 9) { bar([x, 0.1, zb1 + 2.4], [x, 6.4, zb1 + 2.4], 0.1, tray, root, 8); sbar([x, 6.4, zb1 + 2.4], [x, 6.4, zb1 + 0.05], 0.18, 0.18, tray, root); }
       for (const s of [-1, 1]) sbar([yx0, 6.5, zb1 + 2.4 + s * 0.45], [yx1, 6.5, zb1 + 2.4 + s * 0.45], 0.05, 0.15, tray, root);
       tbox(yx1 - yx0, 0.05, 0.9, tray, (yx0 + yx1) / 2, 6.4, zb1 + 2.4, root);
-      for (let i = 0; i < 18; i++) { const x = yx0 + 0.3; bar([yx0 - 1.2 + i * 0.0, 0.1, zb1 + 12], [yx0 - 1.2, 1.0, zb1 + 12], 0.1, paint(0xd8b24a, 0.5, 0.2), root, 10); break; }
+      bar([yx0 - 1.2, 0.1, zb1 + 12], [yx0 - 1.2, 1.0, zb1 + 12], 0.1, paint(0xd8b24a, 0.5, 0.2), root, 10);   // one bollard at the yard's corner
       for (let x = yx0 - 1.5; x < yx1 + 2; x += 3.5) cyl(0.11, 0.11, 1.1, paint(0xd8b24a, 0.5, 0.2), x, 0, zb1 + yardD + 0.3, 12, root);
       // bulk fuel: two double wall horizontal tanks on saddles, a containment curb, a stair
       for (let t = 0; t < 2; t++) {
