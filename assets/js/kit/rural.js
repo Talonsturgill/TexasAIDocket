@@ -863,10 +863,11 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       const bottom = new THREE.Mesh(new THREE.CircleGeometry(R, 96), mat('tankBottom', { color: 0x5d5f55, roughness: 0.9 })); bottom.rotation.x = -Math.PI / 2; bottom.position.y = 0.03; g.add(bottom);
       const wl = 0.03 + (H - 0.06) * (o.water != null ? o.water : 0.8);
       const water = new THREE.Mesh(new THREE.CircleGeometry(R - 0.005, 96), mat('stockWater', { color: 0x31402c, roughness: 0.12, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.08, envMapIntensity: 0.6 }, true));
-      water.rotation.x = -Math.PI / 2; water.position.y = wl; g.add(water);
-      // algae line inside the wall
+      water.rotation.x = -Math.PI / 2; water.position.y = wl;
+      // algae line inside the wall. An empty tank (water: 0) carries neither: its surface would sit on the bottom
       const alg = new THREE.Mesh(new THREE.CylinderGeometry(R - 0.004, R - 0.004, 0.07, 128, 1, true), mat('algae', { color: 0x3e4a2a, roughness: 0.9, side: THREE.BackSide }));
-      alg.position.y = wl + 0.02; g.add(alg);
+      alg.position.y = wl + 0.02;
+      if (o.water !== 0) { g.add(water); g.add(alg); }
       if (o.inlet !== false) {
         const a = -0.7 + (r() - 0.5) * 0.4, px = Math.cos(a) * R, pz = Math.sin(a) * R;
         const out = new V3(px, 0, pz).normalize();

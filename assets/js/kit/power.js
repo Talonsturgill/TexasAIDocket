@@ -1317,10 +1317,11 @@ export function install(K, THREE, TXT) {
       });
       const Lrow = cols * (mw + gap) + 0.8, list = [];
       const zs = Array.from({ length: rows }, (_, j) => (j - (rows - 1) / 2) * pitch);
+      // the drive sits in a 0.8 m gap after the left block. An odd count puts the extra module on the right
+      const nL = Math.floor(cols / 2), xd = -Lrow / 2 + nL * (mw + gap) + 0.4;
       zs.forEach((z) => {
         for (let i = 0; i < cols; i++) {
-          // the 0.8 m drive gap splits evenly, half to each side of the centred drive
-          const x = -Lrow / 2 + 0.4 + (i + 0.5) * (mw + gap) + (i >= cols / 2 ? 0.4 : -0.4);
+          const x = -Lrow / 2 + (i + 0.5) * (mw + gap) + (i >= nL ? 0.8 : 0);
           list.push([x, yT, z]);
         }
         // torque tube (square, turned with the modules), piles, bearings, drive
@@ -1333,9 +1334,9 @@ export function install(K, THREE, TXT) {
           b.box(M.galvDark(), 0.12, 0.26, 0.26, px, yT - 0.05, z);                                        // bearing housing
           b.geo(M.concrete(), tpl('pilecol', () => new THREE.CylinderGeometry(0.2, 0.22, 0.12, 12)), V3(px, 0.02, z));
         }
-        b.geo(M.paint(0x5d6166, 0.5), new THREE.CylinderGeometry(0.26, 0.26, 0.2, 20), V3(0, yT, z), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
-        b.box(M.paint(0x43474b, 0.5), 0.25, 0.22, 0.3, 0.2, yT - 0.3, z + 0.1);                             // slew drive motor
-        b.box(pile, 0.14, yT - 0.2, 0.14, 0, (yT - 0.2) / 2, z);
+        b.geo(M.paint(0x5d6166, 0.5), new THREE.CylinderGeometry(0.26, 0.26, 0.2, 20), V3(xd, yT, z), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+        b.box(M.paint(0x43474b, 0.5), 0.25, 0.22, 0.3, xd + 0.2, yT - 0.3, z + 0.1);                             // slew drive motor
+        b.box(pile, 0.14, yT - 0.2, 0.14, xd, (yT - 0.2) / 2, z);
         // row controller with its own small panel, combiner box at the east end
         b.box(M.paint(0xd8d8d2, 0.5), 0.35, 0.45, 0.18, Lrow / 2 - 0.9, 1.1, z + 0.2);
         b.box(M.paint(0x1d2330, 0.3), 0.4, 0.02, 0.3, Lrow / 2 - 0.9, 1.45, z + 0.25);
