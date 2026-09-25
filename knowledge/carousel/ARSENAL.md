@@ -138,6 +138,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `K.make(name, opts)` |  |
 | `K.list()` |  |
 | `K.rng(seed)` |  |
+| `K.matKey(key, params, physical)` | THE ONE CACHE KEY every material cache in the kit uses: name, class and every parameter. |
 | `K.mat(key, params, physical)` |  |
 | `K.tex(name, opts)` |  |
 | `K.uvBox(geo, metres)` | Box-project UVs in METRES so a texture's tile covers its real size on any face. |
@@ -166,7 +167,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
-| `crowd` | 7.5 x 1.9 x 4.2 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z. |
+| `crowd` | 8 x 1.9 x 5.3 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z. |
 | `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up; toward -1\|1 for point; hat auto\|none\|cap\|cowboy\|hard; build auto\|male\|female. |
 
 ### homes (9)
@@ -181,7 +182,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `mailbox` | 0.7 x 1.45 x 0.7 | style, color, brick | Options (null = seeded choice): style post\|brick, color (box colour), brick (column colour). |
 | `mobile_home` | 23.5 x 4 x 8.7 | style, color, trim | Options (null = seeded choice): style modern\|vintage, color (siding), trim (the vintage accent band). |
 | `privacy_fence` | 12 x 1.9 x 0.15 | length, height, gate, weathered | Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). |
-| `ranch_house` | 23.5 x 5.5 x 11.5 | material, color, brick, roof, trim, door, garage, chimney, gable, shutters | Options (null = seeded choice): material brick\|limestone\|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right\|left\|none, chimney bool, gable (front gable over the garage) bool, shutters hex ... |
+| `ranch_house` | 23.9 x 7 x 12.3 | material, color, brick, roof, trim, door, garage, chimney, gable, shutters | Options (null = seeded choice): material brick\|limestone\|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right\|left\|none, chimney bool, gable (front gable over the garage) bool, shutters hex ... |
 | `two_story_house` | 20 x 9.1 x 12.1 | brick, siding, roof, trim, door, garage | Options (null = seeded choice): brick (front brick colour), siding (side and back colour), roof, trim, door, garage right\|left\|none. |
 | `yard` | 8 x 0.1 x 6 | size, dryness, edge, budget | Options: size m (a number or [w, d]), dryness 0..1 watered green to Texas-August straw, edge (a mown edge) bool, budget (triangles for the blades). |
 
@@ -195,9 +196,9 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `cedar_elm` | 10.5 x 12.5 x 10 | height, spread | Options: height m, spread m. |
 | `crape_myrtle` | 6 x 6 x 5.5 | height, spread, bloom, stems | Options: height m, spread m, bloom pink\|white\|red\|lavender (or false for none), stems (null = seeded 4 to 6). |
 | `live_oak` | 20.5 x 10 x 21 | height, spread | Options: height m, spread m across the crown. |
-| `mesquite` | 9.3 x 6.6 x 8.5 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
+| `mesquite` | 9.8 x 6.6 x 9.6 | height, spread, stems | Options: height m, spread m, stems (null = seeded 2 or 3). |
 | `palm` | 4.9 x 18.3 x 5 | height, skirt, lean | Options: height m (the trunk; the crown stands about 2 m above it), skirt (the petticoat of dead fronds) bool, lean radians (null = seeded). |
-| `pecan` | 21 x 22 x 19 | height, spread | Options: height m, spread m. |
+| `pecan` | 22.4 x 23.1 x 21.3 | height, spread | Options: height m, spread m. |
 | `shrub` | 3.4 x 1.4 x 1.3 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
 
 ### vehicles (7)
@@ -261,7 +262,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `capitol` | 176 x 92.3 x 92 |  | The Texas State Capitol, Austin: Sunset Red granite, 172 m long, the dome to the Goddess at 92 m. |
 | `church` | 9.9 x 25.4 x 25.2 | finish | A small town Texas church: gabled nave, pointed lancet windows, a front bell tower with louvred belfry and octagonal spire; finish "frame" (white clapboard), "brick" or "stone" |
 | `city_hall` | 46 x 20.2 x 34.7 | floors | A modern Texas city hall: a limestone office block with deep-set windows and sunshades, a glazed council chamber under a thin cantilevered roof, a plaza with three flags |
-| `county_courthouse` | 52.6 x 36.8 x 52.6 | style, storeys, square | Texas county courthouse on its square: raised granite base, 2 to 3 storeys, central clock tower; style "classical" (porticos, dome) or "romanesque" (arched entries, turrets, pyramidal tower) |
+| `county_courthouse` | 55 x 43.4 x 55 | style, storeys, square | Texas county courthouse on its square: raised granite base, 2 to 3 storeys, central clock tower; style "classical" (porticos, dome) or "romanesque" (arched entries, turrets, pyramidal tower) |
 | `flagpole` | 2.2 x 9.5 x 0.9 | height, flags, flag | Satin aluminium flagpole, gold ball, halyard; flags as colour and geometry. flags: ["us","texas"] flies both on one pole |
 | `gas_station` | 30 x 7.1 x 36 | islands | A Texas fuel station: a canopy with a banded fascia over pump islands, dispensers with hoses, bollards, a convenience store with storefront glazing and a blank sign, a blank price pylon |
 | `hospital` | 62 x 43.5 x 45.5 | floors | A Texas regional hospital: a precast patient tower with ribbon windows over a two storey podium, a glazed lobby under a porte-cochere, a blank red emergency sign, a rooftop helipad |

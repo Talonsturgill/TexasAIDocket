@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Every kit model's DECLARED size against the size it MEASURES at its defaults.
+"""Every kit model's DECLARED size against the largest size it MEASURES across five seeds.
 
     python3 examples/kit/sizes.py --out out/kit/sizes
     python3 examples/kit/sizes.py --out out/kit/sizes --fix      # rewrite the declared sizes
@@ -24,8 +24,11 @@ REPO = Path(__file__).resolve().parents[2]
 KIT = REPO / "assets" / "js" / "kit"
 RENDER = REPO / ".claude" / "skills" / "carousel-engine" / "render.py"
 
-# within 10 percent or 0.5 m on each axis, whichever is looser, and centred within 5 percent
+# within 10 percent or 0.5 m on each axis, whichever is looser, and centred within 5 percent,
+# of the LARGEST of these seeds. A declared size true of seed 1 alone was wrong for a courthouse
+# at seed 2 by 6.6 m (Codex on #359), so the size bounds the seeded variation a deck will call.
 TOL_FRAC, TOL_M, CENTRE_FRAC = 0.10, 0.5, 0.05
+SEEDS = [1, 2, 3, 4, 5]
 
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><style>
 html,body{margin:0;width:1080px;height:1350px;background:#000}</style></head><body>
@@ -38,11 +41,18 @@ window.renderReady = (async () => {
   for (const name of __NAMES__) {
     const spec = K.registry[name];
     try {
-      const g = K.make(name, { seed: 1 });
-      const bb = new THREE.Box3().setFromObject(g), sz = new THREE.Vector3(); bb.getSize(sz);
-      out.push({ name, declared: spec.size || null, measured: [sz.x, sz.y, sz.z].map(v => +v.toFixed(2)),
-        centre: [(bb.min.x + bb.max.x) / 2, (bb.min.z + bb.max.z) / 2].map(v => +v.toFixed(2)),
-        anchored: spec.anchor === 'base' || !!g.userData.heightAt || !!g.userData.attach });
+      // every seed a caller is likely to pass: the declared size has to bound all of them
+      const mx = [0, 0, 0], off = [0, 0]; let anchored = spec.anchor === 'base';
+      for (const seed of __SEEDS__) {
+        const g = K.make(name, { seed });
+        const bb = new THREE.Box3().setFromObject(g), sz = new THREE.Vector3(); bb.getSize(sz);
+        [sz.x, sz.y, sz.z].forEach((v, i) => { mx[i] = Math.max(mx[i], v); });
+        const c = [(bb.min.x + bb.max.x) / 2, (bb.min.z + bb.max.z) / 2];
+        c.forEach((v, i) => { if (Math.abs(v) > Math.abs(off[i])) off[i] = v; });
+        anchored = anchored || !!g.userData.heightAt || !!g.userData.attach || !!g.userData.keepOrigin;
+      }
+      out.push({ name, declared: spec.size || null, measured: mx.map(v => +v.toFixed(2)),
+        centre: off.map(v => +v.toFixed(2)), anchored });
     } catch (e) { out.push({ name, error: String(e) }); }
   }
   console.error('KIT_SIZES ' + JSON.stringify(out));
@@ -64,7 +74,7 @@ def measure(out: Path) -> list:
         old.unlink()
     for i, (fam, names) in enumerate(families().items(), 1):
         if names:
-            (slides / f"slide-{i:02d}.html").write_text(PAGE.replace("__NAMES__", json.dumps(names)), encoding="utf-8")
+            (slides / f"slide-{i:02d}.html").write_text(PAGE.replace("__NAMES__", json.dumps(names)).replace("__SEEDS__", json.dumps(SEEDS)), encoding="utf-8")
     subprocess.run([sys.executable, str(RENDER), "--slides-dir", str(slides), "--out-dir", str(out / "render")],
                    check=True, stdout=subprocess.DEVNULL)
     report = json.loads((out / "render" / "render_report.json").read_text(encoding="utf-8"))

@@ -22,7 +22,8 @@ export function install(K, THREE, TXT) {
    * object holding a texture serialises that texture's whole canvas to a PNG data URL on every call,
    * which cost tens of milliseconds a call. Every key below is unique to its parameters. */
   const MC = new Map();
-  function M(key, P, phys) {
+  function M(key0, P, phys) {
+    const key = K.matKey(key0, P, phys);
     if (!MC.has(key)) { const Q = Object.assign({ roughness: 0.8, metalness: 0 }, P); MC.set(key, phys ? new THREE.MeshPhysicalMaterial(Q) : new THREE.MeshStandardMaterial(Q)); }
     return MC.get(key);
   }
@@ -999,7 +1000,7 @@ export function install(K, THREE, TXT) {
   /* ---- far materials: own aerial haze, never grimed by TXT.weather ---------------------- */
   const FARM = new Map();
   function farMat(key, params, rate, cap, physical) {
-    const k = key + '|' + rate + '|' + cap;
+    const k = K.matKey(key, params, physical) + '|' + rate + '|' + cap;
     if (FARM.has(k)) return FARM.get(k);
     const P = Object.assign({ roughness: 0.9, metalness: 0 }, params);
     const m = physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P);

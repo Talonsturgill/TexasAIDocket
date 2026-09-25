@@ -22,7 +22,8 @@ export function install(K, THREE, TXT) {
 
   /* ================================ materials ================================ */
   const MC = new Map();
-  function mat(key, P, phys) {
+  function mat(key0, P, phys) {
+    const key = K.matKey(key0, P, phys);
     if (!MC.has(key)) {
       const p = Object.assign({ roughness: 0.8, metalness: 0 }, P);
       MC.set(key, phys ? new THREE.MeshPhysicalMaterial(p) : new THREE.MeshStandardMaterial(p));
@@ -954,7 +955,7 @@ export function install(K, THREE, TXT) {
 
   /* ================================ county courthouse ================================ */
   K.define('county_courthouse', {
-    size: [52.6, 36.8, 52.6],
+    size: [55, 43.4, 55],
     options: { style: 'auto', storeys: 3, square: true },
     note: 'Texas county courthouse on its square: raised granite base, 2 to 3 storeys, central clock tower; style "classical" (porticos, dome) or "romanesque" (arched entries, turrets, pyramidal tower)',
     make(o, r) {

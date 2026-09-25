@@ -27,7 +27,7 @@ export function install(K, THREE, TXT) {
   const MAT = new Map();
   function lmat(key, make) { if (!MAT.has(key)) MAT.set(key, make()); return MAT.get(key); }
   function std(key, p) {
-    return lmat('s|' + key, () => new THREE.MeshStandardMaterial(Object.assign({ roughness: 0.8, metalness: 0 }, p)));
+    return lmat(K.matKey('s|' + key, p), () => new THREE.MeshStandardMaterial(Object.assign({ roughness: 0.8, metalness: 0 }, p)));
   }
   const hex = (c) => (c >>> 0).toString(16);
   const paint = (c, rough, metal) => std('paint' + hex(c) + '|' + (rough || 0.5) + '|' + (metal != null ? metal : 0.3),
@@ -1351,7 +1351,7 @@ function installBig(K, THREE, TXT, H) {
   const TX_COLOURS = [0xe9eae6, 0xdfe7ec, 0xd9e3e8, 0xefe9da, 0xc9dbe6];
   K.define('water_tower', {
     size: [18.8, 41.2, 21.4],
-    options: { style: 'legs', name: 'TEXAS', star: true, color: null, ink: 0x1e3a6b, antennas: true },
+    options: { style: 'legs', name: 'TEXAS', star: true, color: null, ink: 0x1e3a6b, antennas: null },
     note: 'Texas elevated water tank, 45 m. style "legs" (spheroid on six legs, balcony, riser) or "pedestal" (fluted column and bowl). name paints the town band front and back ("" for none), star adds a lone star.',
     make(o, r) {
       const root = new THREE.Group();
@@ -1428,7 +1428,9 @@ function installBig(K, THREE, TXT, H) {
         cyl(0.5, 0.5, 0.8, pm, 0, yT + shellH + 2.1, 0, 16, root);
       }
       // antennas: sector panels on a ring near the top, cable runs
-      if (o.antennas && r() < 0.8) {
+      // true always carries them, false never, null (the default) is the seeded 4 in 5 it always was
+      const roll = o.antennas === false ? 1 : r();
+      if (o.antennas === true || (o.antennas == null && roll < 0.8)) {
         const ay = legs ? yT + shellH + 0.6 : yT + shellH + 0.2, aR = legs ? R - 0.6 : R - 1.2;
         for (let i = 0; i < 9; i++) {
           const a = (Math.floor(i / 3) * TAU / 3) + (i % 3 - 1) * 0.12 + 0.5;

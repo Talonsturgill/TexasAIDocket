@@ -516,7 +516,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const MESQ_LEAF = { shape: 'pinnate', leaf: [70, 5], leaflets: 13, colors: ['#4f6a30', '#6a8640', '#869f52'], twig: '#2e241c', twigW: 3, density: 2, angle: 1.0, branchy: 2, alphaTest: 0.35 };
   K.define('mesquite', {
-    size: [9.3, 6.6, 8.5],
+    size: [9.8, 6.6, 9.6],
     options: { height: 6, spread: 8, stems: null },
     note: 'Options: height m, spread m, stems (null = seeded 2 or 3). Honey mesquite: two or three thin, twisting, near-black stems leaning out from one base, zigzag branches arching over, and a flat, airy, feathery umbrella of lime-green bipinnate leaves with the sky and the limbs showing through.',
     make(o, r) {
@@ -607,7 +607,7 @@ export function install(K, THREE, TXT) {
    * ===================================================================================== */
   const PECAN_LEAF = { shape: 'pinnate', leaf: [120, 13], leaflets: 6, colors: ['#4c6a2a', '#668a34', '#84a444'], twig: '#3e3428', twigW: 3, density: 2, angle: 0.8, branchy: 2, alphaTest: 0.4 };
   K.define('pecan', {
-    size: [21, 22, 19],
+    size: [22.4, 23.1, 21.3],
     options: { height: 22, spread: 18 },
     note: 'Options: height m, spread m. The pecan, Texas state tree: a tall, straight, grey, scaly trunk clear for five or six metres, big ascending scaffold limbs, and a high, open, rounded-oval crown of long compound yellow-green leaves.',
     make(o, r) {

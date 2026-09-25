@@ -11,7 +11,8 @@ export function install(K, THREE, TXT) {
 
   /* ---- local materials and textures (cached here, keyed by our own strings) ---------------- */
   const MATS = new Map();
-  function mat(key, params, physical) {
+  function mat(key0, params, physical) {
+    const key = K.matKey(key0, params, physical);
     if (MATS.has(key)) return MATS.get(key);
     const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
     const m = physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P);

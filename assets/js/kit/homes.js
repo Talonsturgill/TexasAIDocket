@@ -261,7 +261,7 @@ export function install(K, THREE, TXT) {
    * ------------------------------------------------------------------------------------- */
   const MC = new Map();
   function mat(key, make) { if (!MC.has(key)) MC.set(key, make()); return MC.get(key); }
-  const std = (key, p) => mat(key, () => new THREE.MeshStandardMaterial(Object.assign({ roughness: 0.8, metalness: 0 }, p)));
+  const std = (key, p) => mat(K.matKey(key, p), () => new THREE.MeshStandardMaterial(Object.assign({ roughness: 0.8, metalness: 0 }, p)));
   function texMat(T, key, extra) {
     return mat('tm|' + key, () => new THREE.MeshStandardMaterial(Object.assign({
       color: 0xffffff, map: T.map, bumpMap: T.bump, bumpScale: 1.6, roughness: 0.88, metalness: 0 }, extra || {})));
@@ -705,7 +705,7 @@ export function install(K, THREE, TXT) {
    * ranch_house
    * ===================================================================================== */
   K.define('ranch_house', {
-    size: [23.5, 5.5, 11.5],
+    size: [23.9, 7, 12.3],
     options: { material: null, color: null, brick: null, roof: null, trim: null, door: null, garage: 'right', chimney: null, gable: null, shutters: 'seeded' },
     note: 'Options (null = seeded choice): material brick|limestone|siding, color (wall colour, hex number or string; `brick` is an alias), roof (shingle colour), trim, door, garage right|left|none, chimney bool, gable (front gable over the garage) bool, shutters hex, null for none, seeded to choose. The Texas one-storey ranch: slab, brick/limestone/siding walls with real openings, single-hung windows with sills, a recessed front porch, a two-car garage with a sectional door, a hip roof with overhang, fascia, soffit, gutters and downspouts.',
     make(o, r) {

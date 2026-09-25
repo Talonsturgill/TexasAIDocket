@@ -159,7 +159,7 @@ export function install(K, THREE, TXT) {
    * a textured material costs a PNG encode on every lookup. This cache keys a texture by uuid. */
   const KM = new Map();
   function kmat(key, params, physical) {
-    const k = key + '|' + Object.entries(params || {}).map(([n, v]) => n + ':' + (v && v.isTexture ? v.uuid : v)).join(',') + (physical ? 'p' : '');
+    const k = K.matKey(key, params, physical);
     if (!KM.has(k)) {
       const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
       KM.set(k, physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P));
@@ -864,6 +864,7 @@ export function install(K, THREE, TXT) {
       }
       b.build(g);
       g.children.forEach((c) => { if (c.isMesh) c.castShadow = true; });
+      if (o.structures) g.userData.keepOrigin = true;        // the caller placed them; K.make must not move them
       return g;
     },
   });
