@@ -489,15 +489,15 @@ The mechanism, measured on 2026-08-30 after eleven days of wrong guesses:
 **SUPERSEDED IN PART, 2026-09-25.** The second and third bullets are wrong for a cloud run, and
 Anthropic's documentation says so in as many words: cloud sessions "don't honor
 `defaultMode: "bypassPermissions"` or `"dontAsk"` from your settings files", user settings
-included. The SessionStart hook still writes the file and it changes nothing. The paragraph
-directly below points at "the environment's own permission configuration", and a routine has no
-such setting: the routines page says "there is no permission-mode picker". The account, with the
-quotes and where they came from, is the last section before the routines' model heading.
+included. The SessionStart hook still writes the file and it changes nothing. The account, with
+the quotes and where they came from, is the last section before the routines' model heading.
 
-If a prompt still stops a run after this, **the remaining lever is the environment's own
-permission configuration in the Claude Code web UI**, which no file in a repository or a
-container can set. Say so plainly in the email rather than writing a sixth fix into a config that
-cannot carry one.
+**If a prompt still stops a run, there is no setting left to reach for.** Until 2026-09-25 this
+paragraph named "the environment's own permission configuration in the Claude Code web UI" as the
+remaining lever, and a routine has no such setting: the routines page says "there is no
+permission-mode picker". Find the call that asked with `prompt_audit.py`, remove the run's
+dependency on it the way the protected-path account below does, and say so plainly in the email.
+A sixth fix written into a config that cannot carry one is still the wrong answer.
 
 ### A SESSION CAN SEE THAT IT PROMPTED, and this paragraph used to say it could not (2026-09-02)
 

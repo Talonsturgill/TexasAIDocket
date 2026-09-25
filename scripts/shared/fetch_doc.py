@@ -18,9 +18,11 @@ download into `out/<date>/tmp/src/`, inside the working tree, and the text besid
     python3 scripts/shared/fetch_doc.py <url> --name txdmv_sb2807 --chars 8000
     python3 scripts/shared/fetch_doc.py --self-test
 
-It writes `<name>.<ext>` (the bytes exactly as served), `<name>.txt` (the text) and
+It writes `<name>.<ext>` (the bytes exactly as served, `<name>.source.txt` for plain text so the
+bytes and the text never share a path), `<name>.txt` (the text, always UTF-8) and
 `<name>.meta.json` (the url, the final url after redirects, the status, the content type, the
 size, the sha256 and the fetch time), then prints where they are and the opening of the text.
+`--date` is a calendar date and the scratch directory is checked to sit under `out/`.
 
 IT ASKS THE CRAWL BOUNDARY FIRST, AND ON EVERY REDIRECT. `scripts/shared/crawl_boundary.py` reads
 the boundary `knowledge/shared/SOURCES_REGISTRY.md` states, and a url it refuses is never
@@ -75,6 +77,10 @@ _WS = re.compile(r"[ \t\f\v]+")
 _BLANKS = re.compile(r"\n\s*\n+")
 _CHARSET = re.compile(r"charset\s*=\s*['\"]?([A-Za-z0-9._:-]+)", re.I)
 _XML_ENC = re.compile(r"<\?xml[^>]*\bencoding\s*=\s*['\"]([A-Za-z0-9._:-]+)", re.I)
+# UTF-32 first, because its little endian mark begins with UTF-16's.
+_BOMS = ((codecs.BOM_UTF32_LE, "utf-32-le"), (codecs.BOM_UTF32_BE, "utf-32-be"),
+         (codecs.BOM_UTF8, "utf-8"), (codecs.BOM_UTF16_LE, "utf-16-le"),
+         (codecs.BOM_UTF16_BE, "utf-16-be"))
 
 
 class Refused(Exception):
@@ -136,6 +142,12 @@ def decode(body: bytes, content_type: str, sniff: bool) -> str:
     """Bytes to text in the charset the server declared, then the one the document declares,
     then UTF-8. Decoding everything as UTF-8 turned a windows-1252 page's quotation marks into
     replacement characters, which is a quote this project would then have misquoted."""
+    # A BYTE ORDER MARK OUTRANKS EVERY DECLARATION, which is the order the encoding standard
+    # gives. UTF-16 XML read as ASCII hides its own `encoding=` behind NUL bytes, so without this
+    # it fell through to UTF-8 and came out mangled with an exit of 0 (Codex, PR 361).
+    for bom, codec in _BOMS:
+        if body.startswith(bom):
+            return body[len(bom):].decode(codec.replace("-sig", ""), "replace")
     m = _CHARSET.search(content_type or "")
     if not m and sniff:
         head = body[:4096].decode("ascii", "replace")
@@ -145,8 +157,6 @@ def decode(body: bytes, content_type: str, sniff: bool) -> str:
         codecs.lookup(name)
     except LookupError:
         name = "utf-8"
-    if name.lower().replace("_", "-") in ("utf-8", "utf8") and body[:3] == codecs.BOM_UTF8:
-        name = "utf-8-sig"
     return body.decode(name, "replace")
 
 
@@ -235,36 +245,45 @@ def fetch_doc(url: str, out_dir: Path, name: str | None = None, opener=None,
         return REFUSED, {"url": url, "status": f"it ended at {final}: {why}"}
 
     body, ctype = got["body"], got["content_type"]
+    # THE MEDIA TYPE, WITHOUT ITS PARAMETERS. `application/ld+json; charset=utf-8` failed a
+    # suffix test on the whole header and was saved as an unreadable .bin (Codex, PR 361).
+    mt = ctype.split(";", 1)[0].strip().lower()
     out_dir = out_dir.resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     name = safe_name(name) if name else slug(url)
     pages, real = None, 0
-    if is_pdf(body, ctype):
+    if is_pdf(body, mt):
         ext = ".pdf"
         try:
             text, pages, real = pdf_text(body)
         except Exception as e:  # noqa: BLE001  a damaged PDF is still a saved PDF
             text, pages = "", 0
             got["status"] = f"{got['status']}, the PDF could not be parsed: {type(e).__name__}"
-    elif "html" in ctype.lower() or body.lstrip()[:15].lower().startswith((b"<!doctype", b"<html")):
+    elif "html" in mt or body.lstrip()[:15].lower().startswith((b"<!doctype", b"<html")):
         ext, text = ".html", html_text(decode(body, ctype, sniff=True))
         real = len(text.strip())
-    elif ctype.lower().startswith(("text/", "application/json", "application/xml")) \
-            or ctype.lower().endswith(("+xml", "+json")):
-        ext = ".json" if "json" in ctype.lower() else (".xml" if "xml" in ctype.lower() else ".txt")
-        text = decode(body, ctype, sniff="xml" in ctype.lower())
+    elif mt.startswith("text/") or mt in ("application/json", "application/xml") \
+            or mt.endswith(("+xml", "+json")):
+        # THE SOURCE BYTES NEVER SHARE A NAME WITH THE TEXT. A text/plain source saved as
+        # `<name>.txt` was left undecoded at the path reported as its text, so a windows-1252
+        # file broke the first UTF-8 read of it (Codex, PR 361).
+        sub = mt.split("/", 1)[-1]
+        ext = (".json" if sub.endswith("json") else ".xml" if sub.endswith("xml")
+               else ".source.txt" if sub in ("plain", "") else f".{safe_name(sub)}")
+        text = decode(body, ctype, sniff=sub.endswith("xml"))
         real = len(text.strip())
     else:
         ext, text = ".bin", ""
     raw_path = out_dir / f"{name}{ext}"
     txt_path = out_dir / f"{name}.txt"
     meta_path = out_dir / f"{name}.meta.json"
+    if len({raw_path, txt_path, meta_path}) != 3:
+        raise SystemExit(f"fetch_doc: {name} would write two artifacts to one path")
     for p in (raw_path, txt_path, meta_path):
         if p.resolve().parent != out_dir:
             raise SystemExit(f"fetch_doc: refusing to write {p}, which is outside {out_dir}")
     raw_path.write_bytes(body)
-    if raw_path != txt_path:
-        txt_path.write_text(text, encoding="utf-8")
+    txt_path.write_text(text, encoding="utf-8")
     meta = {
         "url": url,
         "final_url": final,
@@ -289,8 +308,25 @@ def _rel(p: str) -> str:
         return p
 
 
+def iso_date(value: str) -> str:
+    """`--date` is a calendar date and nothing else. `--date ../../escape` built a scratch path
+    outside the repository before any other check ran (Codex, PR 361)."""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value or ""):
+        raise argparse.ArgumentTypeError(f"--date must be YYYY-MM-DD, got {value!r}")
+    _dt.date.fromisoformat(value)
+    return value
+
+
+def scratch_dir(date: str) -> Path:
+    root = (REPO_ROOT / "out").resolve()
+    d = (root / iso_date(date) / "tmp" / "src").resolve()
+    if root not in d.parents:
+        raise SystemExit(f"fetch_doc: refusing scratch directory {d}, which is outside {root}")
+    return d
+
+
 def main_fetch(a) -> int:
-    out_dir = REPO_ROOT / "out" / (a.date or run_date()) / "tmp" / "src"
+    out_dir = scratch_dir(a.date or run_date())
     code, rep = fetch_doc(a.url, out_dir, a.name)
     if code == REFUSED:
         print(f"fetch_doc: REFUSED {a.url}. {rep['status']} Nothing was requested or saved. Find "
@@ -392,6 +428,11 @@ def self_test() -> int:
         "https://x.gov/meta1252": (f"<html><head><meta charset=\"windows-1252\"></head><body>{quote}"
                                    "</body></html>".encode("cp1252"), "text/html"),
         "https://x.gov/data.json": (b'{"docket": "58482"}', "application/json"),
+        "https://x.gov/plain1252": (quote.encode("cp1252"), "text/plain; charset=windows-1252"),
+        "https://x.gov/utf16.xml": (codecs.BOM_UTF16_LE + f'<?xml version="1.0" encoding="UTF-16"?>'
+                                    f"<r>{quote}</r>".encode("utf-16-le"), "application/xml"),
+        "https://x.gov/ld": (b'{"@context": "https://schema.org", "name": "Docket"}',
+                             "application/ld+json; charset=utf-8"),
         "https://x.gov/moved": (b"%PDF-1.4 whatever", "application/pdf",
                                 "https://capitol.texas.gov/tlodocs/89R/x.pdf"),
     }
@@ -408,6 +449,12 @@ def self_test() -> int:
         ok(code == REFUSED and len(calls) == n, "a /tlodocs/ url is refused and never requested")
         code, rep = fetch_doc("https://CAPITOL.texas.gov/TLODOCS/x.pdf", d, opener=op, boundary=boundary)
         ok(code == REFUSED, "and so is the same path in capitals")
+        n = len(calls)
+        code, rep = fetch_doc("http://capitol.texas.gov./TLODOCS/x.pdf", d, opener=op, boundary=boundary)
+        ok(code == REFUSED and len(calls) == n, "and so is the host spelled with its trailing dot")
+        code, rep = fetch_doc("https://capitol.texas.gov/Committees/../%74lodocs/x.pdf", d, opener=op,
+                              boundary=boundary)
+        ok(code == REFUSED and len(calls) == n, "and a path that only reaches it once decoded")
         code, rep = fetch_doc("https://x.gov/moved", d, opener=op, boundary=boundary)
         ok(code == REFUSED and not list(d.glob("moved*")),
            "a response that ended inside the boundary is refused and nothing is kept")
@@ -475,6 +522,16 @@ def self_test() -> int:
         ok(raw == b'{"docket": "58482"}' and hashlib.sha256(raw).hexdigest() == rep["sha256"],
            "a JSON document keeps its own bytes, and its metadata goes beside it")
 
+        code, rep = fetch_doc("https://x.gov/plain1252", d, opener=op, boundary=boundary)
+        ok(code == OK and Path(rep["saved"]).read_bytes() == quote.encode("cp1252")
+           and Path(rep["text"]).read_text(encoding="utf-8") == quote,
+           "plain text keeps its source bytes apart from its decoded text")
+        code, rep = fetch_doc("https://x.gov/utf16.xml", d, opener=op, boundary=boundary)
+        ok(code == OK and quote in rep["_text"], "UTF-16 XML is read through its byte order mark")
+        code, rep = fetch_doc("https://x.gov/ld", d, opener=op, boundary=boundary)
+        ok(code == OK and rep["saved"].endswith(".json") and "Docket" in rep["_text"],
+           "a +json type with a charset parameter is read as JSON, not saved as .bin")
+
         code, rep = fetch_doc("https://x.gov/missing", d, opener=op, boundary=boundary)
         ok(code == UNREACHABLE and rep["status"] == 404, "a 404 exits 1 and saves nothing")
         ok(not list(d.glob("missing*")), "nothing is written for a page that did not answer")
@@ -489,6 +546,16 @@ def self_test() -> int:
         a, b = slug("https://x.gov/a/index.html"), slug("https://y.gov/b/index.html")
         ok(a != b and a.startswith("index_"), "two documents with the same name do not collide")
 
+    print("the scratch directory stays under out/")
+    for bad in ("../../escape", "/tmp/escape", "2026-13-40", "2026-09-25/../..", ""):
+        try:
+            scratch_dir(bad)
+            ok(False, f"--date {bad!r} is refused")
+        except (argparse.ArgumentTypeError, ValueError, SystemExit):
+            ok(True, f"--date {bad!r} is refused")
+    good = scratch_dir("2026-09-25")
+    ok((REPO_ROOT / "out").resolve() in good.parents, "--date 2026-09-25 lands under out/")
+
     ua = user_agent()
     ok(site() in ua and "github.io" not in ua, f"the User-Agent carries brand.yaml's site ({site()})")
     print(f"fetch_doc self-test: {'FAILED, ' + str(len(fails)) + ' check(s)' if fails else 'all checks passed'}")
@@ -499,7 +566,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     ap.add_argument("url", nargs="?")
     ap.add_argument("--name", help="file name stem, default derived from the url")
-    ap.add_argument("--date", help="run date for out/<date>/tmp/src, default from the branch")
+    ap.add_argument("--date", type=iso_date,
+                    help="run date for out/<date>/tmp/src, YYYY-MM-DD, default from the branch")
     ap.add_argument("--chars", type=int, default=4000, help="how much text to print")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()

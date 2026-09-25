@@ -59,10 +59,11 @@ TWO READINGS THE REGISTRY HAS ALREADY SETTLED AND THIS FILE INHERITS.
 from __future__ import annotations
 
 import argparse
+import posixpath
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REGISTRY = REPO_ROOT / "knowledge" / "shared" / "SOURCES_REGISTRY.md"
@@ -202,8 +203,36 @@ def rules(text: str | None = None) -> list[dict]:
 
 def _host_of(url: str) -> str:
     parts = urlsplit(url if "//" in url else "//" + url)
-    host = (parts.hostname or "").lower()
+    # A TRAILING DOT IS THE SAME HOST. `capitol.texas.gov.` is the fully qualified spelling of
+    # `capitol.texas.gov` and DNS answers both with the same server, so a rule matched against
+    # the raw spelling was walked around by one character. Codex found it on PR 361.
+    host = (parts.hostname or "").lower().rstrip(".")
     return host[4:] if host.startswith("www.") else host
+
+
+def _path_of(url: str) -> str:
+    """The path a server would serve, which is the only spelling a path rule may be judged on.
+
+    A rule compared against the raw spelling can be walked around by spelling the same path
+    another way, and every one of these reached `/tlodocs/` on 2026-09-25 while the checker said
+    no rule matched: `/%74lodocs/`, `/Committees/../tlodocs/`, `//tlodocs/`. So the path is
+    percent-decoded until it stops changing, backslashes become slashes (an IIS host treats them
+    as one), repeated slashes fold, dot segments resolve, and case folds. Each of those can only
+    make the checker refuse MORE, which is the one direction a boundary may err in.
+    """
+    raw = urlsplit(url if "//" in url else "//" + url).path or "/"
+    p = raw
+    for _ in range(3):
+        nxt = unquote(p)
+        if nxt == p:
+            break
+        p = nxt
+    p = re.sub(r"/+", "/", p.replace("\\", "/"))
+    trailing = p.endswith("/")
+    p = posixpath.normpath("/" + p.lstrip("/"))
+    if trailing and not p.endswith("/"):
+        p += "/"
+    return p.lower()
 
 
 def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
@@ -216,7 +245,7 @@ def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
     host = _host_of(url)
     if not host:
         return None
-    path = (urlsplit(url if "//" in url else "//" + url).path or "/").lower()
+    path = _path_of(url)
     for row in b:
         r = row["host"]
         if host != r and not host.endswith("." + r):
@@ -250,6 +279,16 @@ def self_test() -> int:
        bool(forbidden("https://capitol.texas.gov/tlodocs/BillAnalysis.pdf", b)))
     ok("...and in the upper case the registry writes it in",
        bool(forbidden("https://capitol.texas.gov/TLODOCS/BillAnalysis.pdf", b)))
+    # THE SAME PATH SPELLED ANOTHER WAY, and every one of these came back permitted on
+    # 2026-09-25 until the host and the path were normalised the way a server reads them.
+    for u in ("http://capitol.texas.gov./TLODOCS/x", "https://capitol.texas.gov/%74lodocs/x.pdf",
+              "https://capitol.texas.gov/%2574lodocs/x.pdf",
+              "https://capitol.texas.gov/Committees/../tlodocs/x.pdf",
+              "https://capitol.texas.gov//tlodocs/x.pdf", "https://capitol.texas.gov/\\tlodocs/x.pdf",
+              "https://capitol.texas.gov/./tlodocs/x.pdf", "http://lrl.texas.gov./x"):
+        ok(f"...and spelled {u} it is still refused", bool(forbidden(u, b)))
+    ok("...while a path that merely passes through `..` to an allowed page stays allowed",
+       forbidden("https://capitol.texas.gov/Committees/x/../MeetingsUpcoming.aspx", b) is None)
     ok("...and the reason names the registry rather than this file",
        "SOURCES_REGISTRY" in (forbidden("https://capitol.texas.gov/TLODOCS/x", b) or ""))
     # AND THE SUBSTITUTE THE REGISTRY VERIFIED IS NOT REFUSED. A boundary checker that refuses
