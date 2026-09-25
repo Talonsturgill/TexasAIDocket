@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · San Angelo's cap on data center cooling water is still in force, and the city still publishes the ordinance behind it.
 - 2026-09-16 · San Angelo's cap on data center cooling water is still the ordinance the council passed, and the city's own data center page still points at it. Nothing has amended the cap.
 - 2026-09-19 · The cap on cooling water is still the city's ordinance and the council has not revisited it.
+- 2026-09-24 · The cap on cooling water is unconfirmed this run. The city's own data center page and the ordinance posted beside it could not be read again.
 
 ## Evidence
 

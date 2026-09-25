@@ -1,0 +1,111 @@
+{
+ "weighted_score": 6.798,
+ "judges": [
+  6.09,
+  6.87,
+  6.874
+ ],
+ "spread": 0.784,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "judges": [
+    5.5,
+    5.3,
+    5.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.3,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.8,
+    7.2
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.8,
+    7.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    7.2
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    7.3
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, in ledger/articles/2026-09-24.json, sections[0].paragraphs[2], which carries claim c18: 'A person enters in one sentence.' The source refutes it. out/2026-09-24/tmp/zipline_ea.txt lines 477 to 478: 'Deconfliction occurs even if the Remote Pilot in Command loses communication with Zipline UAs.' Lines 494 to 495: 'the Remote Pilot in Command has the ability to command flight termination'. Lines 2076 to 2077: 'from the time the customer approves the delivery'. The fact check only established that the image-to-operator sentence is absent from section 2.2.4.6 (claims.json, rejected[2]). It never established that a person appears in the draft only once, and the web edition publishes that wider universal under a claim that does not carry it."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified, in ledger/articles/2026-09-24.json, sections[0].paragraphs[2], which carries claim c18: 'A person enters in one sentence.' The source refutes it. out/2026-09-24/tmp/zipline_ea.txt lines 477 to 478: 'Deconfliction occurs even if the Remote Pilot in Command loses communication with Zipline UAs.' Lines 494 to 495: 'the Remote Pilot in Command has the ability to command flight termination'. Lines 2076 to 2077: 'from the time the customer approves the delivery'. The fact check only established that the image-to-operator sentence is absent from section 2.2.4.6 (claims.json, rejected[2]). It never established that a person appears in the draft only once, and the web edition publishes that wider universal under a claim that does not carry it."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.87 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.874 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.87,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.87 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.874,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.874 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 0.78, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2
+}

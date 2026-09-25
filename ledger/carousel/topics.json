@@ -993,6 +993,39 @@
     "engine air permitting"
    ],
    "angle_note": "THIS IS THE THIRD DECK IN TEN DAYS BUILT ON A GOVERNOR'S OFFICE DIRECTIVE TO A STATE AGENCY ABOUT DATA CENTERS, after no. 24 on September 14th and no. 29 on September 19th, and dedupe_check returned LIKELY REPEAT at 0.72 against no. 29. The override is recorded in SELECTION.md with its reasons: a different agency, a different instrument, a different docket item and an argument that is different in kind. One round 1 scorer called it a hard fail anyway and stated the counter-argument themselves, which is the honest way to disagree and is why it is written here rather than left in a scoring card. THE NEXT RUN SHOULD TREAT A FOURTH GOVERNOR DIRECTIVE AS A REPEAT WHATEVER THE KEYWORDS SAY. The entry also shipped without a `keywords` array on its first write, which is one of the three fields dedupe_check compares, so the run made itself harder for the next run to see in the run where it sat closest to a repeat it has been. That is the fifth instrument repeat this ledger records in capitals."
+  },
+  {
+   "date": "2026-09-24",
+   "carousel_no": 33,
+   "docket_item": "tx-2026-0186",
+   "instrument": "The FAA's draft environmental assessment of Zipline's proposed drone package delivery in five Texas metros, read from the PDF linked on the FAA's public review page, and that page itself. Both were fetched with curl after WebFetch returned 403, and every quote was matched against the fetched text.",
+   "topic": "The FAA takes comment until October 11th on a draft environmental assessment of Zipline flying delivery drones over Houston, San Antonio, Austin, Amarillo and El Paso. The aircraft holds at 330 feet while a pod on a line comes down and evaluates the spot itself. When the pod can't identify the target, an image goes to an operator, and the draft gives no figure for how often. The draft says Zipline prepared it under FAA supervision, and its noise report was prepared by ICF for the FAA.",
+   "angle": "the pod that judges a yard on its own, the one sentence where an image goes to a person, and the draft's silence on how often that happens",
+   "entities": [
+    "FAA",
+    "Zipline",
+    "ICF"
+   ],
+   "places": [
+    "Houston",
+    "San Antonio",
+    "Austin",
+    "Amarillo",
+    "El Paso"
+   ],
+   "what_was_refused": "Any rate or share of operator review, since the draft gives none and the fact check refused 'only'. The 74.1 dBA hover figure, which the fact check found quoted against the wrong label. Any county count, because the Section 106 letter's list and its stated total disagree. Any noise margin the draft does not state: frame 7 went through two hard fails before it printed the draft's own estimate, its screening line and its conclusion as text.",
+   "keywords": [
+    "drone delivery",
+    "Zipline",
+    "FAA draft environmental assessment",
+    "NEPA comment period",
+    "winch pod",
+    "operator review",
+    "DNL noise",
+    "Chargers",
+    "Dropboxes"
+   ],
+   "angle_note": "Two late findings belong to the next run that touches this record. The draft names a Remote Pilot in Command who can terminate a flight, so no surface may say a person enters in one sentence. A typical Charger is 36 docks in three towers of twelve, so one mast is a symbol and must be called one."
   }
  ]
 }

@@ -11,7 +11,7 @@ Guadalupe County Sheriff Joshua Ray asked the Commissioners Court for permission
 - Public access: Public meeting
 - Take part: https://www.guadalupetx.gov/page/commcourt.agendas
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Guadalupe County's end of the Flock contract still stands. The sheriff's stated reason is still the vandalism of the cameras rather than a change of view about what they do.
 - 2026-09-16 · The county's Flock contract is still terminated and the sheriff's office has not sought a replacement. The termination is still the last action on the record.
 - 2026-09-19 · The county is still out of the license plate reader contract the court voted to end.
+- 2026-09-24 · The county remains out of the plate reader contract its court voted to end.
 
 ## Evidence
 

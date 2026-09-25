@@ -1,0 +1,57 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "weighted_score": 6.918,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "why": "THE SHOWSTOPPER TEST caps this at 6 because at least one frame fails question 1, and several frames sit below the cap. Frame 6 (slide-06.html) fails outright. It uses an OrthographicCamera looking down, so the TXT.sky call it makes never shows. It also sets `R.renderer.shadowMap.enabled = false` and adds the lot with `cast:false`. The result is a flat mid-brown field with no horizon, no haze and no cast shadow, and the 220 towers read at 432 px as rows of 'F' glyphs in dark squares. Its dossier promised 'the far haze and sky' and 'long east shadows', and the render has neither. Frame 5 is an empty plain running to the horizon at mid frame. The planned strip-centre wall is missing. The stones are the blob scatter ILLUSTRATION_SYSTEM names as a game asset. The person is a capsule with an orange face band that reads as a visor, and the dark dock box floats under the aircraft. Frame 4 is a top-down lawn with two mauve slabs that don't read as the planned 'back step and patio', and it has no hero, so it becomes the texture its own risk line warned about. Frame 8's top half is a smeared brown noise field with no sky and no haze, and the hook sits on it. Frame 3's sky has heavy posterization banding in the hook's background, and the roof is blotchy. Frame 7's houses are boxes with black holes for windows, and the headline sits on a noisy dirt texture. Frames 2 and 9 carry the deck. Frame 2 is a hazed suburb at golden hour with real depth. Frame 9 looks into the sun through an open gate with a parcel in the lit strip. Even there, frame 9's sky is the grey-mauve that 'What still fails' calls mauve smog. The winch line is 15 or more px of glowing cyan with a white bloom column, so on frames 1, 2 and 7 it reads as a sci-fi beam, not a lit thread."
+  },
+  "deck_coherence": {
+   "score": 6.2,
+   "weight": 0.12,
+   "why": "One chassis (droneline.js) declares one light (az -58, el 9) and one goldenHour world. The accent line works as a motif that changes state across frames 1, 2, 3 and 7, and the pod carries 1, 3 and 7. Frames 1, 2, 3, 7 and 9 feel like one neighbourhood. Frame 6 is outside the deck altogether: an orthographic infographic on a flat brown ground, with a uniform band profile (machine_qa bands 0.775/0.769/0.763, the only near-flat frame). Frames 5 and 8 look like other places, an endless plain and a closed-in dirt field. The hero aircraft appears only on 2 (as a speck with a leader) and 5, so the pod and line do the hero's work. The storyboard names three continuity devices. Motif evolution is real. The camera move is real but breaks at 5 and 6. panel_ready.txt contradicts itself: line 1 says the storyboard 'declares no value arc this gate can read', and line 11 says the deck is within 10 L* of the planned arc."
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces: 330 (c11, c19), 75 (c19), 63, 8, 7.8, 8 (c13, c14), 220, 4,400, 220,000 (c7), 400, 58.1, 65 (c20, c21), October 11th (c2), the address (c3). The canvas text on frame 8 ('September 2026', '2 UA', '(2025, 2026)') is in c27's quote and in the source title. All sources are primary. Two stretches are in the art. First, frame 7 draws DNL 58.1 and 65 as linear bars from zero (ratio 0.894 on the pixels). DNL is logarithmic and has no meaningful zero, so the bars make the gap look smaller than it is. Second, frame 8, under the kicker 'ITS OWN WORDS', sets a 'Maximum deliveries per day' bar chart onto a page that looks like the draft, and the draft doesn't print that chart. The sources were checked against same-day curl copies because WebFetch returned 403. That is disclosed."
+  },
+  "story_and_stakes": {
+   "score": 7.9,
+   "weight": 0.16,
+   "why": "Names the body (FAA), the applicant (Zipline), the five metros, the deadline, the exact email address and the subject line (frame 9). The AI stake is concrete: the pod judges the yard (3), and an operator sees an image at a rate the draft never gives (4, repeated on 9). No county and no local body are named, which is fair since this is federal."
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "The cover, then height, then the pod judging, then the operator step is a real build, and 'Zipline prepared it' (8) is a genuine late turn. Frames 5 and 6 (weight, then the charger count) are a spec-sheet detour right after the turn on frame 4, and they cost momentum. The close lands by bringing back the operator gap and adding the action."
+  },
+  "voice": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "Plain and on register. 'It judges the yard', 'When it can't tell' and 'Under the FAA's line' are good. Flat spots: 'Drawn together here to be counted.' (6), 'The aircraft, the pod and the line are drawn larger than they are.' (2), 'Its own words' as a kicker, and 'Up to 220 Chargers' with a capital C carried over from the draft's table."
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "The goldenHour backyard world is clearly distinct from no. 32's near-black void. It is the second rendered deck in a row, though, and it keeps the house type stack (Fraunces hook, Manrope dek, mono furniture) and the same kicker/counter/source layout. Distinct, with familiar moves."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 6 as a perspective golden-hour lot with a visible horizon and its cast shadows on (not an orthographic brown void with shadowMap disabled), and put frames 4, 5 and 8 back in the frame 1-3 neighbourhood with sky and haze in frame, because one frame failing the Showstopper test caps artwork_craft at 6 and four frames here fail or nearly fail it.",
+ "other_findings": [
+  "Threshold dissent, not a fault: 6.918 is under the 8.0 bar. hard_fails is empty because machine_qa.json reports 0 fails (20 warns), and every numeral I traced resolves to a claim.",
+  "Frame 6 games the world gate. It calls TXT.sky(R), so print_ban counts it as standing in a world, but the orthographic top-down camera never shows the sky. The gate counts a call, not a visible horizon.",
+  "Frame 6 source defines a `.haze` style that is never used in the body. It is dead code, and it shows the planned haze band was dropped.",
+  "Frame 3 posterization: visible contour bands across the sky behind 'WHAT THE DRAFT DESCRIBES' and the hook, even though the chassis grade sets dither:true. Worth bisecting (fog precision, or the bloom/sharpen pass) before the next deck, since it will recur on any clear sky.",
+  "Frame 1's dossier puts the pod 'about two metres over the grass in front of a cedar fence'. The render shows it floating above the house roofline with no contact or shadow to give it a depth, so it reads as ornament in the sky.",
+  "Frame 2's dossier promises 'a person stands beside the pod at the foot of the line' as the scale reference. No person is visible in the render.",
+  "The person model (N.person) is a set of capsules with a sphere head. On 5 and 7 it reads as a game placeholder, not a figure, and on frame 5 the skin/hair split looks like a blindfold.",
+  "Frame 7's measured-against-threshold bars are flat pale UI rectangles over a noisy dirt texture. The dossier promised 'the flat dark of the neighbour's shaded lawn' below the cut, and the ground is mottled mid-brown.",
+  "machine_qa warns that frame 6's kicker hits worst-point contrast 4.5, exactly the floor, on the flat mid-brown ground. That is the 'mid ground is the worst ground' case ILLUSTRATION_SYSTEM describes.",
+  "Artifacts read: /home/user/TexasAIDocket/out/2026-09-24/render/slide-01.png to slide-09.png, /home/user/TexasAIDocket/out/2026-09-24/final/contact_sheet.png, /home/user/TexasAIDocket/out/2026-09-24/storyboard.md, /home/user/TexasAIDocket/out/2026-09-24/slides/slide-06.html, /home/user/TexasAIDocket/assets/js/deck/2026-09-24-droneline.js, /home/user/TexasAIDocket/out/2026-09-24/render/machine_qa.json, /home/user/TexasAIDocket/out/2026-09-24/tmp/panel_ready.txt, /home/user/TexasAIDocket/out/2026-09-24/claims.json. I did not read copy.json, caption.txt, the topics or captions ledgers, or the web edition, so the story, voice and variety scores rest on the slide text and the storyboard alone."
+ ]
+}

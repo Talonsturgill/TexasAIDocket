@@ -1,15 +1,15 @@
-# Senate Economic Development cancels its September 3rd hearing on AI and the Texas workforce and resets for September 22nd
+# Senate Economic Development holds its reset hearing on AI and the Texas workforce on September 22nd
 
-The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The hearing the committee had set for Thursday, September 3rd, 2026 is canceled. The Legislature's own upcoming meetings listing now carries the committee for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol and marks it a public hearing. Angela Paxton chairs the committee and Kevin Sparks is vice chair.
+The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The hearing the committee had set for Thursday, September 3rd, 2026 is canceled. The committee reset it for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol as a public hearing. A witness has published testimony saying it was presented to the committee that day. The committee has published no report or recommendation from it. Angela Paxton chairs the committee and Kevin Sparks is vice chair.
 
 - Topic: state-policy
 - Decided by: Texas Senate Committee on Economic Development (legislature)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-09-21
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The hearing on artificial intelligence and the Texas workforce is still set for its new date, and the cancellation has not been repeated.
 - 2026-09-20 · The committee's hearing on artificial intelligence and the Texas workforce still stands at the reset date. Nothing on the Senate's own meetings listing has moved it a second time.
 - 2026-09-21 · The interim charge on AI and the Texas workforce is still live and the committee has posted no replacement date for the hearing it called off. A reader watching for a rescheduled notice has nothing new to watch yet.
+- 2026-09-24 · The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.
 
 ## Evidence
 
@@ -82,4 +83,10 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 > Tuesday, September 22, 2026 9:00 AM Economic Development
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+
+### A witness's own published testimony says it was presented to the committee on the reset date.
+
+> A version of the following testimony was presented to the Texas Senate Committee on Economic Development on September 22, 2026.
+
+Source (primary_corporate): https://reason.org/testimony/preparing-the-texas-workforce-for-artificial-intelligence/
 

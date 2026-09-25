@@ -384,6 +384,31 @@ def check_contacts(base: Path) -> list[str]:
     return m.problems(base) or []
 
 
+def check_quantifiers(base: Path, articles: Path | None = None) -> list[str]:
+    """EVERY UNIVERSAL ON EVERY PUBLISHED SURFACE NAMES ITS SET, THE WEB EDITION INCLUDED.
+
+    WIRED HERE ON 2026-09-24 AND THIS IS THE PHASE THAT EARNS IT. `quantifier_check` has been a
+    CURRENT gate in `shipped_check` since 2026-09-03, which is to say it ran in CI after a deck was
+    finished and never before a panel. Carousel no. 33's run record printed its row as ABSENT, and
+    its round 2 integrity judge hard failed the web edition for "A person enters in one sentence",
+    an exclusive count the fetched draft refutes in seven other sentences. Three model calls and a
+    scoring round were spent being told what a sweep of the fetched text says for nothing.
+
+    `ledger=None`, deliberately. The gate's third rule compares the caption ledger's stored first
+    line with the shipped caption, and the ledger is written at ship, after the panel. That is
+    `shipped_check`'s question to ask. What belongs here is only what a judge would otherwise find.
+
+    A FAILURE TO LOAD IS A FINDING, for the reason `check_bleed_witness` gives above.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import quantifier_check as m
+    except Exception as exc:                                         # noqa: BLE001
+        return [f"quantifier_check could not be loaded, so no universal on any surface was read: "
+                f"{exc}"]
+    return m.check(base, ledger=None, articles=articles)
+
+
 # ------------------------------------------------------------------ the value arc
 
 # THE PARSE RULE, STATED, because a gate that mis-parses its own input invents failures and they
@@ -755,7 +780,7 @@ def check_value_arc(base: Path) -> list:
 
 # ------------------------------------------------------------------ driver
 
-def run(date: str, out_root: Path | None = None) -> int:
+def run(date: str, out_root: Path | None = None, articles: Path | None = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
     rp = base / "render" / "render_report.json"
     qp = base / "render" / "machine_qa.json"
@@ -776,6 +801,8 @@ def run(date: str, out_root: Path | None = None) -> int:
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
         ("every bleed a dossier declares is one the frame draws", check_bleed_witness(base)),
         ("every published address traces to a claim", check_contacts(base)),
+        ("every universal on every published surface, the web edition included, names its set",
+         check_quantifiers(base, articles)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
          f"planned value arc", check_value_arc(base)),
     ]
@@ -1184,6 +1211,46 @@ def self_test() -> int:
             {"slides": [{"file": "slide-02.html", "text_nodes": [
                 {"text": "www.ercot.com/services"}]}]}), encoding="utf-8")
         ok("...and the host a cited claim carries is clean", not check_contacts(_b))
+
+    # THE CHECK WIRED IN ON 2026-09-24, replayed END TO END through `run()`, because a function
+    # this file defines and never calls is GATE_LESSONS 14: a self-test is not wiring. The deck is
+    # the smallest one every other group reads as clean, so the only thing that can change the exit
+    # code between the two runs is the web edition. The sentence is carousel no. 33's own, from
+    # `ledger/articles/2026-09-24.json` as committed in 3dcc68ea, which reached a round 2 judge.
+    import io as _io
+    import contextlib as _cl
+    with _tf.TemporaryDirectory() as _t:
+        _root = Path(_t)
+        _q = _root / "2026-09-24"
+        (_q / "render").mkdir(parents=True)
+        (_q / "slides").mkdir()
+        (_q / "render" / "render_report.json").write_text(json.dumps({"slides": [
+            {"file": "slide-01.html", "text_nodes": [{"text": "The pod picks the spot",
+                                                      "font_px": 40}]}]}), encoding="utf-8")
+        (_q / "slides" / "slide-01.html").write_text(
+            "<html><body><h1>The pod picks the spot</h1></body></html>", encoding="utf-8")
+        (_q / "storyboard.md").write_text("```yaml\nslide: 1\nlayout: FULL_BLEED\n```\n",
+                                          encoding="utf-8")
+        _arts = _root / "articles"
+        _arts.mkdir()
+
+        def _edition(para):
+            (_arts / "2026-09-24.json").write_text(json.dumps({"sections": [{"paragraphs": [
+                {"text": para, "claims": ["c18"]}]}]}), encoding="utf-8")
+
+        def _run():
+            with _cl.redirect_stdout(_io.StringIO()), _cl.redirect_stderr(_io.StringIO()):
+                return run("2026-09-24", out_root=_root, articles=_arts)
+
+        _edition("People appear elsewhere in the draft too.")
+        ok("the smallest clean deck, with the repaired web edition, is ready to be scored",
+           _run() == 0, "some other group is red on the fixture, so this case proves nothing")
+        _edition("A person enters in one sentence.")
+        ok("carousel no. 33's 'A person enters in one sentence' in the web edition stops the "
+           "panel", _run() == 1, "the deck reached the judges")
+        ok("...and the finding names the web edition and the exclusive count",
+           any("web edition" in p and "exclusive count" in p
+               for p in check_quantifiers(_q, _arts)), str(check_quantifiers(_q, _arts)))
 
     src = Path(__file__).read_text(encoding="utf-8")
     # BUILT FROM PARTS, because a literal needle in this file matches ITSELF and the assertion

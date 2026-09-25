@@ -1027,7 +1027,9 @@
       "learned": "2026-09-20",
       "instinct": "Give a repair that makes a claim STRONGER the same scrutiny as a brand new claim, because the pressure to fix a real defect is exactly what smuggles an overreach past you.",
       "evidence": "2026-09-20, carousel 30. Three judges read frame 6 as a stacked bar chart and the anti partition argument was resting on 13px of smudged type, so round 3 promoted it to the 80px hook. It came out as 'None of these is a share of another', which is FALSE: two of the three counts are strict subsets of the first and this run's own figures.json says so under a key named small_systems_of_all. The run conflated 'the three do not PARTITION' (true) with 'none is CONTAINED in another' (false). Round 3's integrity judge refused the deck on it. The repair was correct in intent and the sentence it produced was a bigger claim than the one it replaced.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-24"
+      ],
       "contradicted": []
     },
     {
@@ -1051,6 +1053,22 @@
       "learned": "2026-09-20",
       "instinct": "A declaration file written by the same run in the same hour as the sentence it certifies is documentation, not verification, so make it name the exact proposition and check that against the sentence's words.",
       "evidence": "2026-09-20, carousel 30. quantifiers.json was written to name the set behind frame 6's universal and marked it 'verified'. Its verified field argued that the three counts do not PARTITION a whole, which is true, while the frame asserted that none is a SHARE of another, which is false. Two different propositions, one file, same author, same hour, and the file read as a check on the sentence while defending a different claim. An outside judge caught it in one pass.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-decibel-bar-asserts-a-margin",
+      "learned": "2026-09-24",
+      "instinct": "Never draw two decibel figures as bars; print the source's own estimate, its own line and its own conclusion as text, because every bar encoding asserts a margin and only the source's arithmetic decides what the margin is.",
+      "evidence": "2026-09-24 frame 7 went through three encodings. Linear bars from zero, energy bars against DNL 65 and equal bars against the 63.5 to 65 lift each drew a margin the draft does not state, and the last two each drew a hard fail from the integrity judge.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "sweep-the-noun-before-an-absence",
+      "learned": "2026-09-24",
+      "instinct": "Before writing that a document mentions something once, rarely or never, search the whole fetched text for the noun and cite or reject every hit.",
+      "evidence": "2026-09-24 web edition said a person enters the draft in one sentence; the integrity judge found the Remote Pilot in Command and the approving customer in the same draft, a hard fail a text search would have caught.",
       "confirmed": [],
       "contradicted": []
     }

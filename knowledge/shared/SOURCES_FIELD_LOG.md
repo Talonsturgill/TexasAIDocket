@@ -1649,3 +1649,38 @@ and correctly refused to edit `SOURCES_REGISTRY.md` because that file is `human`
 that can edit its own boundary does not have one. **That reasoning stands and the split should not
 move.** What is missing is that a measured disallow and an enforced one are one human edit apart
 and nothing notices when the edit has not been made.
+
+## 2026-09-24, daily run (carousel no. 33)
+
+**A ROBOTS VIOLATION, STATED FIRST.** During Phase 3 re-verification this run fetched four URLs
+from two hosts whose robots files disallow this fetcher: three agenda pages on
+`public.destinyhosted.com` (`agenda_publish.cfm?id=42972`, seq 135, 136 and 141) and one video
+page on `taylortx.new.swagit.com` (`/videos/396213`). The cause was the run's own robots reader,
+which parsed a robots.txt served as a single line without newlines as empty and read it as
+permissive. The bodies were deleted as soon as the violation was noticed, and nothing from them
+stamps a record or backs a claim. Items tx-2026-0168 to 0170 stay on their existing boundary stamp,
+robots on `public.destinyhosted.com`. **The single-line robots.txt case belongs in the fetcher's own
+parser, and it is a fix for a maintainer, since the boundary is not this run's to edit.**
+
+**Hosts measured as blocking every client, all stamped rather than routed around:**
+`www.wilcotx.gov`, `www.wichitafallstx.gov`, `www.sanangelo.gov`, `www.brazoscountytx.gov`,
+`www.brownsvilletx.gov` and `www.mylubbock.us` returned a block page to both curl and WebFetch on
+2026-09-24. Records tx-2026-0029, 0041, 0065, 0066, 0067, 0088, 0128 and 0138 carry the boundary
+`blocks_every_client` checked that day. `www.newschannel10.com` refuses this fetcher in robots.txt
+(tx-2026-0046).
+
+**The FAA served its drone environmental review page and the Zipline draft PDF to curl and returned
+403 to WebFetch.** Every claim in the day's deck was matched against the curl copy. The page's own
+title is "Public Involvement and Environmental Review for Drone Operations", and the record carried
+a different title until this run corrected it.
+
+**Correction to the entry above, same day.** It named four violating fetches on two hosts. There
+were three, all on `public.destinyhosted.com`. The retro fetched `taylortx.new.swagit.com/robots.txt`
+the same day and read 202 bytes of comment lines that disallow nothing. A later fetch from the run
+container got a 403 page, which is a block and not a disallow. So the `/videos/396213` fetch was
+not a robots violation. The entry also called the fix a maintainer's, and that was wrong.
+`scripts/site/reverify.py` and `scripts/shared/**` are `daily` lane, and `reverify.py` has no robots
+reader at all, so each run improvises one. This is the third run in a row to trip on it. The reader
+it needs refuses on anything it can't parse, because `urllib.robotparser` and a strict RFC 9309
+reading both allow the single-line `User-agent: * Disallow: /`. The proposal is in
+`knowledge/carousel/UPGRADE_BACKLOG.md`.

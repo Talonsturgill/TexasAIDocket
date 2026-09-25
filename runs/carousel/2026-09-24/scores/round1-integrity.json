@@ -1,0 +1,58 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "weighted_score": 6.41,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "why": "Frame 5 fails the showstopper test: a pill-shaped person and a charger mast on gravel, with nothing behind them but an empty horizon (slide-05.png). Frame 6 has no sky and no place at all. It is an orthographic count of towers on a flat brown plane. The top half of frame 8 is an unfocused lawn with nothing in it. Frame 4 is mostly flat grass. Frames 1, 3, 7 and 9 do stand in a golden-hour world. Because at least two frames are objects in a void, the rubric caps this criterion at 6."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "One sun and one suburban world run through frames 1-4 and 7-9. The pod-on-a-line motif and the gate that is shut on frame 1 and open on frame 9 are real continuity devices. Frame 6 drops the world for a flat brown board, and frame 5 is blue dusk in a void, so two frames sit outside the deck. The first line of panel_ready.txt says the storyboard 'declares no value arc this gate can read', and its last check says the deck is 'within one Munsell step of its own planned value arc'. The two lines contradict each other."
+  },
+  "claim_integrity": {
+   "score": 6.0,
+   "weight": 0.2,
+   "why": "The numeral trail is excellent. Every figure (330, 75, 63, 7.8, 8, 220, 4,400, 220,000, 400, 58.1, 65) is pulled by compute.py from a quote. I checked c1-c6, c11, c17-c21, c26 and the notice's email line against faa_nepa.txt and zipline_ea.txt and they are verbatim. The rendered text on frame 8's page is verbatim c6 and c27. Against that: (1) the caption tells readers the comment address is in the first comment, and it is not there (the hard fail below). (2) Frame 7 puts '400 deliveries a day to one spot' in a single-family back yard next door. The draft, at lines 2008-2009, says 400 'represents delivery locations such as a large apartment complex' and that deliveries to single-family homes 'would be much lower'. The deck leaves that out. (3) Frame 7 draws decibels as linear bars starting from zero, and its headline 'Under the FAA's line' / 'test starts at DNL 65' reduces c20's 1.5 dB increase test to a ceiling. (4) Frame 8 is kickered 'Its own words' but shows a page the deck made up, with a 'Maximum deliveries per day' bar chart the draft does not contain. (5) Caption line 3 states 'Zipline prepared the draft...' as flat fact without 'the draft says'. c6's note warns against implying Zipline wrote it, since Appendix C lists only ICF preparers. (6) 'Texas yard' on slide 1 and 'the yard' on slide 3 are supported by the draft at line 562 ('such as a residential yard'), but no claim in claims.json carries the word."
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "why": "The deck names the body (FAA), the applicant, all five metros, the October 11th deadline and, on slide 9, the actual email address plus the subject line to use. That is a concrete next step. It names no county, even though c25 carries them. The caption's call to action sends the reader to a first comment that does not have the address, which undercuts the one instruction the post exists to give."
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "The order is cover, height, the pod judging the yard, then the turn at frame 4 (the operator step), then size, ceiling, noise, who prepared it, and how to comment. The turn is declared and it lands. Frames 5 and 6 are a specification detour between the turn and the noise finding and could be cut. Slides 4 and 9 and the caption all say the draft gives no figure for how often, which is the same absence three times."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "The voice is restrained and accurate, and it attributes carefully ('the draft says', 'the draft describes'). Some lines sound machine-made: 'Drawn together here to be counted.' (slide 6) and 'The deck walks from a back yard to the draft's own pages.' (caption). Apart from the metro names there is no regional texture."
+  },
+  "variety": {
+   "score": 7.2,
+   "weight": 0.1,
+   "why": "This is the first federal NEPA draft EA and the first drone subject in topics.json, and the closest items in the window (no. 20 Cybercab, no. 5 driverless) are a different instrument. The document-on-a-surface frame (8) is a familiar move from nos. 24, 28 and 30."
+  }
+ },
+ "hard_fails": [
+  "A false statement of fact in the caption, which the rubric treats as an unverified fact presented as verified. out/2026-09-24/caption.txt line 9 says 'The FAA's comment address is in the first comment.' out/2026-09-24/first_comment.txt has 6 lines: a sources header, two source titles with claim ids, and two URLs. 9-FAA-Drone-Environmental@faa.gov does not appear in it, and neither does the mailing address. The caption itself also leaves the address out, so the post's call to action points readers somewhere that has nothing to act on."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Make the caption's pointer true by putting 9-FAA-Drone-Environmental@faa.gov, the 'Zipline Texas Draft EA' subject line and the Suite 802W mail address (c3 and its note) into first_comment.txt, then make caption_check fail any caption that says something is 'in the first comment' when that string is not actually there.",
+ "other_findings": [
+  "Frame 5 is kickered 'Illustrated to the draft's dimensions' but draws the aircraft sitting on top of the dock. The draft says at lines 575-576 that 'The Zipline UA then attaches to the dock from below using its docking fin'. The same frame also invents the airframe's configuration, which the web edition admits ('illustrative') and the frame does not.",
+  "Frame 7 draws the pod at 1.6 times its size (build_slides.py pod.scale.setScalar(1.6)) with no scale note. Frame 2 does disclose its enlargement.",
+  "ledger/docket.json tx-2026-0186 has geography.on_ercot set to false, but Houston, Austin and San Antonio are ERCOT metros (only El Paso and Amarillo are not). A mixed case should be null.",
+  "The same record lists 40 counties with 'Atacosta' and 'Roberston' silently corrected to Atascosa and Robertson. claims.json rejected any county count ('the discrepancy with 41 should be reported as a discrepancy, never repaired'), and a 40-item array publishes that count by implication.",
+  "The tx-2026-0186 summary says 'The draft allows for up to 220 chargers'. A draft assesses, it does not allow. The deck's own wording ('caps the proposal') is closer.",
+  "first_comment.txt lists claim ids for each source and leaves out c5, which the caption uses ('every substantive comment gets a response').",
+  "Frame 8's verbatim quotes exist only as canvas pixels (machine_qa warns 17 times). I checked them by hand against build_slides.py lines 441-452 and they match c6 and c27, but no copy gate can see them.",
+  "The 'no figure for how often' absence claim rests on one fact-checker's reading of a document over 7,000 lines long. It is plausible, it is not carried as a claim, and it appears on 3 surfaces.",
+  "At 6.41 this deck is well under the 8.0 bar even with the hard fail cleared. It is not an acceptable deck yet, and most of the shortfall is in frames 5, 6 and 8."
+ ]
+}

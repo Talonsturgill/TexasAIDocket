@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The RELLIS abatement is still assigned to the new owner, and the county's own notice still names the assignee.
 - 2026-09-16 · The RELLIS abatement is still assigned to its new holder and the county's posting still reads as it did. Nothing has been brought back to the court.
 - 2026-09-19 · The assignment of the abatement stands as the court made it.
+- 2026-09-24 · The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again.
 
 ## Evidence
 

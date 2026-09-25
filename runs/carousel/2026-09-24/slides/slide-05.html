@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- 2026-09-24, frame 5 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's
+     declared goldenHour world. THE SIZE OF IT. The aircraft on a charger dock behind a strip centre, built to the draft's dimensions from figures.json, a person beside it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#131A24; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.03em; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.024em; color:#F4F1EA; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,14,26,0.35); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#F2F4F6; z-index:10;
+          text-shadow:0 0 5px rgba(8,14,26,0.8), 0 1px 14px rgba(8,14,26,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6EBEF;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,14,26,0.85), 0 1px 14px rgba(8,14,26,0.6); }
+  .hook { left:80px; top:150px; width:690px; } .dek { left:82px; width:580px; }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:640px; z-index:5; background:linear-gradient(180deg, rgba(12,20,34,0.54) 0%, rgba(12,20,34,0.52) 68%, rgba(12,20,34,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:240px; z-index:5; background:linear-gradient(0deg, rgba(12,20,34,0.50) 0%, rgba(12,20,34,0.40) 55%, rgba(12,20,34,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About <span class='num'>63</span> pounds, fully loaded</h1>
+<p class="dek" data-follow="26">The draft gives a wingspan of about 7.8 feet, a length of about 8 feet and a maximum payload of 8 pounds. It calls the aircraft highly automated.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-24-droneline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const FIG = {"_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.", "metros": {"Houston": {"area_sq_mi": 9932, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "San Antonio": {"area_sq_mi": 3326, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "Austin": {"area_sq_mi": 2498, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "Amarillo": {"area_sq_mi": 1199, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "El Paso": {"area_sq_mi": 629, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}}, "total": {"area_sq_mi": 17584, "chargers": 220, "dropboxes": 4400, "deliveries_max": 220000, "transits_max": 660000, "from": ["c7"], "basis": "the draft's maximum"}, "transits_per_delivery": {"value": 3, "word": "three", "from": ["c8"]}, "per_charger_max": {"value": 1000, "from": ["c24"]}, "cruise": {"feet": 330, "metres": 100.584, "from": ["c11"], "rounding": "feet times 0.3048, three decimals, geometry only"}, "aircraft": {"span_ft": 7.8, "height_ft": 1.8, "length_ft": 8, "span_m": 2.377, "height_m": 0.549, "length_m": 2.438, "propellers": 5, "weight_lb": 63, "payload_lb": 8, "from": ["c13", "c14"], "basis": "approximately, as the draft says"}, "delivery_hover": {"seconds": 75, "feet": 330, "from": ["c19"]}, "day": {"hours": 24, "day_pct": 95, "night_pct": 5, "from": ["c9", "c10"]}, "noise": {"threshold_dnl_db": 65, "significant_step_db": 1.5, "delivery_dnl_db_any_distance": 58.1, "delivery_dnl_db_cap": 59.7, "at_deliveries_per_location": 400, "screening_dnl_db": 59.7, "lift_existing_dnl_db": 63.5, "lift_added_dnl_db": 59.7, "from": ["c20", "c21", "c26", "c35", "c37"]}, "charger_docks": {"max": 72, "typical": 36, "from": ["c32"], "basis": "a Charger is a site of docks, not one mast"}, "charger_towers": {"docks": 36, "towers_word": "three", "from": ["c34"]}, "dropbox_setback": {"feet": 50, "metres": 15.24, "load_per_day": 300, "from": ["c22"]}, "chargers": {"houston": 65, "san_antonio": 65, "austin": 30, "amarillo": 30, "el_paso": 30, "from": ["c7"]}, "deliveries": {"houston": 65000, "san_antonio": 65000, "austin": 30000, "amarillo": 30000, "el_paso": 30000, "from": ["c7"], "basis": "the draft's maximum per day"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Illustrated to the draft's dimensions", counter: "05 / 09", src: "c12 c13 c14 c30   TEXAS AI DOCKET", ink: '#E6EBEF' });
+  TX.fitText(document.getElementById("hook"), { min: 78, max: 100, maxLines: 2 });
+  LINE.follow();
+  const TXT = init(THREE), L = LINE, gl = L.glCanvas();
+  const W = TXT.deckWorld();
+  const M = L.mats(TXT, THREE);
+
+  /* THE SIZE, FROM figures.json: span, length and height set the model; the person is 1.7 m. */
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure * 0.9, tone: W.tone, fov: 32 });
+  /* solved: pulled back so the person's feet, the charger's base and the aircraft on its dock
+   * all stand on the one pad in frame, the person a pace off the wingtip at the same depth */
+  TXT.frame(R, { from: [-6.5, 1.4, 8.5], look: [0.0, 1.6, -0.5] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 70, shadowFar: 200 });
+  TXT.ground(R, { surface: 'concrete', size: 700, tile: 4, joints: true, seed: 15 });
+  /* the strip centre's blank back wall, running off the left */
+  const back = new THREE.Group();
+  const wall = TXT.roundedBox(60, 4.2, 1.0, 0.04, L.brickMat(THREE, 60, 4.2)); wall.position.set(0, 2.1, 0); back.add(wall);
+  for (let i = 0; i < 7; i++) { const x = -26 + i * 8.6;
+    const door = TXT.roundedBox(1.1, 2.3, 0.08, 0.01, M.kiosk); door.position.set(x, 1.15, 0.52); back.add(door);
+    const lamp = TXT.roundedBox(0.3, 0.2, 0.25, 0.02, M.windowLit); lamp.position.set(x, 2.9, 0.6); back.add(lamp);
+    const pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 4.2, 8), M.galv); pipe.position.set(x + 2.6, 2.1, 0.6); back.add(pipe);
+    const ac = TXT.roundedBox(1.8, 1.0, 1.4, 0.04, M.galv); ac.position.set(x + 1.4, 4.95, -0.4); back.add(ac); }
+  const bin = TXT.roundedBox(2.0, 1.4, 1.4, 0.04, M.cloth[2]); bin.position.set(9, 0.7, 1.8); back.add(bin);
+  back.position.set(8, 0, -44); back.rotation.y = -0.3; TXT.add(R, back);
+  const coping = TXT.roundedBox(60.4, 0.3, 1.2, 0.03, M.trimWhite); coping.position.set(8, 4.3, -44); coping.rotation.y = -0.3; TXT.add(R, coping);
+  /* the charger: a mast with a dock at shoulder height, the aircraft sitting on it */
+  const mast = TXT.roundedBox(0.34, 2.6, 0.34, 0.012, M.galv); mast.position.set(1.5, 1.3, -0.6); mast.rotation.y = 0.55; TXT.add(R, mast); TXT.contact(R, mast);
+  const arm = TXT.roundedBox(1.6, 0.12, 0.2, 0.02, M.galv); arm.position.set(0.7, 1.72, -0.4); TXT.add(R, arm);
+  const dock = TXT.roundedBox(0.9, 0.16, 0.7, 0.04, M.trim); dock.position.set(0.1, 1.72, -0.2); TXT.add(R, dock);
+  const zip = L.zip(THREE, TXT, M, { span: FIG.aircraft.span_m, length: FIG.aircraft.length_m, height: FIG.aircraft.height_m, mode: 'hover' });
+  /* the draft: the aircraft attaches to the dock from below using its docking fin (c30) */
+  zip.position.set(0.1, 1.64 - FIG.aircraft.height_m * 0.5, -0.2); zip.rotation.y = 0.55; TXT.add(R, zip);
+  const who = L.person(THREE, M, { seed: 0 }); who.position.set(-1.0, 0, -0.9); who.rotation.y = 0.9; TXT.add(R, who); TXT.contact(R, who, { opacity: 0.8 });
+  const base = TXT.roundedBox(1.2, 0.2, 1.2, 0.03, M.concrete); base.position.set(1.5, 0.1, -0.6); TXT.add(R, base);
+  /* grit and gravel on the pad, and a painted stall line, so the ground under the type has tooth */
+  TXT.scatter(R, { kind: 'rock', count: 500, area: [-8, -6, 8, 8], seed: 21, scale: [0.006, 0.02], nearRadius: 9 });
+  const stripe = TXT.roundedBox(0.12, 0.012, 9, 0.004, M.trimWhite); stripe.position.set(-3.2, 0.006, 2.5); stripe.rotation.y = 0.35; TXT.add(R, stripe, { cast: false });
+  TXT.weather(R, {});
+  const cx = L.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ ERCOT issued a market notice telling each Interconnecting Distribution Service P
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Admitted to the record. The grid operator has told providers which large loads sit on the provisional Batch Zero list. Every placement on it carries a condition that can still take the load off. The notice names no load and gives no total.
 - 2026-09-16 · The grid operator's notice telling providers which loads are provisionally in the first batch still stands as issued. The classifications it announced are still conditional.
 - 2026-09-19 · The provisional placements stand and the conditions attached to them are unchanged.
+- 2026-09-24 · The provisional Batch Zero placements and the conditions attached to them are unchanged.
 
 ## Evidence
 

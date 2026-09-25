@@ -1,0 +1,56 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "weighted_score": 6.8,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.8,
+   "weight": 0.22,
+   "why": "Frame 2 is strong: a whole block, the line falling from the aircraft to one yard, the scale disclosed in the dek. Several frames fail the showstopper test, which caps this criterion at 6. Frame 6 is an orthographic brown lot with no sky and no horizon. Frame 4 is a lawn seen straight down. In frame 8 a blank fence wall fills the top 45 percent. The people on frames 5 and 7 are capsule mannequins, and the houses and fence on frame 7 are flat untextured low-poly. The type sits in quiet the renders actually have, and the grade is consistent."
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "why": "One low golden hour, and a real motif in the line crossing frames 1, 2, 3 and 7. The shut gate on frame 1 opens on frame 9. Frame 6 (flat, parallel camera, no sky) and frame 4 (top-down) sit outside the world. panel_ready.txt contradicts itself: line 1 says the storyboard declares no value arc the gate can read, and line 11 says the deck is within one Munsell step of its planned arc."
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "why": "Every DOM string traces to a claim, and every numeral traces to figures.json, which compute.py extracts from the quotes. I checked c29 to c35 against zipline_ea.txt lines 167-169, 403-404, 494-495, 561-562, 575-576, 1981-1983 and 2007-2017, and all are verbatim. The energy ratio 10^((59.7-65)/10) = 0.2951 is correct. The table title and headings on frame 8's canvas match lines 316-331. There are four stretches, none a hard fail. (1) Frame 7's bar label reads 'NEVER ABOVE DNL 59.7 dB AT ANY POINT, THE DRAFT SAYS'. The draft's sentence is conditional on 'a rate of 400 average daily deliveries per day' (line 2014), and the draft itself puts 59.7 dB within 170 feet of a Charger at maximum operations (line 2026). The word 'NEVER' turns that into a universal, and only the dek restores the condition. (2) Frame 8 sets words from four places in the draft (the cover title, section 1.1, Table 2.2-1 and the Appendix D noise report) onto one sheet shown as the document, under the kicker 'Its own words'. Under the headline 'Zipline prepared it', no surface mentions that Appendix C lists ICF as every preparer and that the noise report says 'PREPARED FOR: Federal Aviation Administration', which c6's own note warned about. (3) Frame 5 draws the Charger as one mast with one dock. c34, cited on frame 6, says a typical Charger is 36 docks in three towers of twelve. (4) Record tx-2026-0186's summary says 'At each stop a pod lowers on a line and identifies the drop spot on its own', and its next sentence contradicts that universal. The item's own claims carry no winch-line quote. The frame 8 canvas text is invisible to numeral_lint and copy_sync (machine_qa warns 27 times), so I traced those numerals by hand: 2.2-1, the table figures, 'September 2026' and '(2025, 2026)' all trace to c7, c27 or the source title."
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "why": "Names the body (FAA), the applicant, the five metros, the deadline (October 11th, c2) and the exact address with its subject-line instruction on frame 9 (c3). A reader knows what to do. It names no county on any frame, and no frame places it in a city."
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "Frames 1 to 4 move well from the height to the pod's judgement to the operator exception. Frames 5 and 6, the aircraft's size and the count of Chargers, are a detour from that thread. The turn is frame 8's preparer, and the close lands on the address."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Clean and on register ('The pod checks the spot', 'It judges the yard'). The caption's paragraph 2 says 'The draft says Zipline prepared it' before any draft has been introduced. #SanAntonio is chosen over Houston with no stated reason. Otherwise it reads a little flat."
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "New instrument (a federal NEPA draft) and a new subject, and no repeat inside the window (checked topics.json from August 25th to September 23rd). No. 18's Austin drone clause is a different mechanism. The deck still closes on an absence, on frame 9 and in the caption's last line ('gives no figure for how often'), which the ledger's angle_notes on decks 11, 14, 15, 23 and 28 each asked the next run to stop doing."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 4, 6 and 8 as sky-lit places with a horizon, drawing the Charger on frames 5 and 6 as the draft's twelve-dock towers (c34) so the art stops contradicting its own dek, and restore the '400 deliveries a day' condition inside frame 7's bar label instead of 'NEVER'.",
+ "other_findings": [
+  "Frame 7's label 'NEVER ABOVE DNL 59.7 dB AT ANY POINT, THE DRAFT SAYS' drops c21's condition ('At a rate of 400 average daily deliveries per day'). The draft's line 2026 puts DNL 59.7 at 170 feet from a Charger at 1,000 operations a day, so the level is higher closer in and the universal fails outside the delivery scope. The dek scopes it, and that is why this is not a hard fail.",
+  "Frame 8's page is a composite of four locations in the draft and never says so. The words are verbatim, but the sheet is not a page that exists.",
+  "The c6 note says every preparer in Appendix C is at ICF and the noise report was prepared by ICF for the FAA. The deck, caption and web edition never name ICF, while frame 8's headline is 'Zipline prepared it'. The attribution is accurate, but it leans.",
+  "Web edition, 'Noise, as the draft measures it': the c35 link anchor carries 'cannot' in unquoted running prose. It is verbatim source text, but the page gives no quote marks to show it.",
+  "Record tx-2026-0186's summary sentence 'Approving the change to the company's air carrier operating approvals is the federal action under review' is supported by zipline_ea.txt lines 20-23 but carried by none of the item's 14 claims.",
+  "Record tx-2026-0187's title says the commission 'keeps $50,000 per megawatt', which asserts the proposal carried the same amount. No claim establishes that. The September 18th filing date appears only in a source_title, never in a verbatim quote. I had no fetched copy of the PUCT order to check either.",
+  "The absence 'The draft gives no figure for how often' (frames 4 and 9, caption, web edition) matches what I read: section 2.2.4 (lines 459-577), section 3.7.2 (lines 2048-2100) and the Appendix E letter (lines 4419-4530) carry no rate. I did not read all 7,000+ lines of the draft.",
+  "Machine QA has 0 fails and 32 warns. Frame 6 has a worst-point contrast of exactly 4.5 on the kicker, and a rule on frame 6 could not be measured.",
+  "At 432 px the Fraunces '330' on frame 2 and '63' on frame 5 read as '550' and '65' on the contact sheet. They are correct at full size, so this is a problem of what a reader in the feed receives, not a claims fault."
+ ]
+}
