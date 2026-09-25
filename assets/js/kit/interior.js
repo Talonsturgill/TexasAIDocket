@@ -1061,7 +1061,7 @@ export function install(K, THREE, TXT) {
       tube([[0, top + 0.02, 0], [cx * 2 + dx, top - 0.1, cz * 2], [cx * 3 + dx, top - len * 0.6, cz * 3], [cx * 3 + dx * 1.2, top - len, cz * 3]], 0.004, cordM, 32, 6, g);
       const ts = lathe([[0, 0], [0.012, 0.005], [0.02, 0.03], [0.024, 0.09], [0.028, 0.12], [0, 0.12]], mat('tassel', { color: 0xd8b060, roughness: 0.7, metalness: 0.2 }), 24, null);
       ts.rotation.x = Math.PI; ts.position.set(cx * 3 + dx * 1.2, top - len + 0.005, cz * 3); g.add(ts);
-      lathe([[0, 0], [0.012, 0.0], [0.016, 0.02], [0.01, 0.035], [0, 0.035]], brass, 20, null).position.set(cx * 3 + dx * 1.2, top - len - 0.02, cz * 3);
+      lathe([[0, 0], [0.012, 0.0], [0.016, 0.02], [0.01, 0.035], [0, 0.035]], brass, 20, g).position.set(cx * 3 + dx * 1.2, top - len - 0.02, cz * 3);
     }
     return g;
   }
