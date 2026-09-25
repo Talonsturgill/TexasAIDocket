@@ -196,12 +196,13 @@ public fact stand for another day, on a page whose entire promise is that it doe
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
 - **A PDF, or any document you need the text of: `python3 scripts/shared/fetch_doc.py <url>`.**
   It downloads into `out/<date>/tmp/src/`, writes the text beside the file, and prints the
-  opening. Exit 0 means there is text, 1 means the page did not answer, and 2 means the file holds
-  no text, usually a scan, which the Read tool can still look at. **Never copy a file that
-  WebFetch saved out of the `~/.claude/` directory.** That directory is a protected path, and on
-  September 25th that one copy raised a permission dialog at 06:53 UTC and stopped the run for
-  the day. A Texas Legislature PDF extracts its non-breaking spaces as the letter A, so take a
-  verbatim quote from the same bill's HTML text instead.
+  opening. Exit 0 means there is text, 1 means the page did not answer, 2 means the file holds
+  no text, usually a scan, which the Read tool can still look at, and 3 means the crawl boundary
+  refused it. It asks `crawl_boundary.py` before every request and on every redirect, so a url
+  the registry puts off limits, `capitol.texas.gov/tlodocs/` among them, is never requested.
+  **Never copy a file that WebFetch saved out of the `~/.claude/` directory.** That directory is
+  a protected path, and on September 25th that one copy raised a permission dialog at 06:53 UTC
+  and stopped the run for the day.
 - `knowledge/shared/GATE_LESSONS.md` — how this machine has lied to itself before. Read it before
   you trust a green gate.
 - `knowledge/shared/TEXAS_GOVERNMENT.md` — who decides what, and where a decision actually gets

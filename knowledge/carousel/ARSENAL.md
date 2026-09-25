@@ -30,7 +30,7 @@
 |---|---|
 | costs | `render.py` |
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `gridwatch_page.py`, `house_style_check.py`, `waterwatch_page.py` |
-| context | `arsenal.py`, `dossier_check.py`, `fetch_doc.py` |
+| context | `arsenal.py`, `crawl_boundary.py`, `dossier_check.py`, `fetch_doc.py` |
 | state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py` |
 | 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
 | 1 | `instincts.py` |
@@ -423,7 +423,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
 | `scripts/shared/actor_stamp_shape.py` | no instruction file may tell a session to WRITE the actor stamp. | --root --self-test | CI |  |
-| `scripts/shared/crawl_boundary.py` | ask the registry whether a url is inside the boundary, once, in one place. | <url> --list --self-test | shipped |  |
+| `scripts/shared/crawl_boundary.py` | ask the registry whether a url is inside the boundary, once, in one place. | <url> --list --self-test | shipped | context |
 | `scripts/shared/dependency_shape.py` | prove every install uses the committed dependency locks. | --self-test | CI |  |
 | `scripts/shared/fetch_doc.py` | fetch a web document into the run's own scratch and read its text. | <url> --name --date --chars --self-test | CI self-test | context |
 | `scripts/shared/gen_port_manifest.py` | enumerate every file in the sibling machines and route it. | --out --refresh |  |  |

@@ -489,8 +489,10 @@ The mechanism, measured on 2026-08-30 after eleven days of wrong guesses:
 **SUPERSEDED IN PART, 2026-09-25.** The second and third bullets are wrong for a cloud run, and
 Anthropic's documentation says so in as many words: cloud sessions "don't honor
 `defaultMode: "bypassPermissions"` or `"dontAsk"` from your settings files", user settings
-included. The SessionStart hook still writes the file and it changes nothing. The account, with
-the quotes and where they came from, is the last section before the routines' model heading.
+included. The SessionStart hook still writes the file and it changes nothing. The paragraph
+directly below points at "the environment's own permission configuration", and a routine has no
+such setting: the routines page says "there is no permission-mode picker". The account, with the
+quotes and where they came from, is the last section before the routines' model heading.
 
 If a prompt still stops a run after this, **the remaining lever is the environment's own
 permission configuration in the Claude Code web UI**, which no file in a repository or a
@@ -688,6 +690,18 @@ in `.claude/settings.json` was otherwise carrying the run. What is actually true
   second half of why this recurred five times: each run verified its own fix, honestly, and was
   wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
 
+**SUPERSEDED IN PART, 2026-09-25.** The second and third bullets, and the "not established"
+paragraph under them, no longer describe a cloud run, and each is answered by something measured.
+**The path DOES matter:** Anthropic's documentation says a cloud session pre-approves ordinary
+file edits inside the working tree and prompts on a protected path, and the runs of September
+21st, 23rd and 24th made 1,571, 2,841 and 1,861 tool calls, ordinary working-tree writes among
+them, and `prompt_audit.py` found none that waited. The 2026-08-30 probe that
+saw an ordinary working-tree write prompt is a reading of the runner as it was that day and is not
+repeated since. **A session CAN see that it prompted:** `prompt_audit.py` reads the wait off the
+debug log, as the 2026-09-02 section above says. The protected-path account in "A run never stops
+to ask about permissions" is the current one. The lesson this section draws, remove the
+dependency rather than reword the rule, stands unchanged.
+
 **WHAT IS NOT ESTABLISHED, and do not write it down as though it were.** Whether EVERY write
 prompts, or only the first of its kind in a session, or only until a human approves one. Runs have
 shipped here with hundreds of writes, so it is plainly not true that each one stops the run. The
@@ -724,9 +738,10 @@ ever committed, and it is inside the tree, which is the whole point.
 
 This is not tidiness. The Bash sandbox and the permission mode are two different mechanisms, and
 knowing that is worth an afternoon. `.claude/settings.json` has set `bypassPermissions` since
-2026-08-11 and it is correct. A SANDBOXED command that writes outside the working tree still
-cannot complete, and the tool then stops and asks to re-run it unsandboxed, which is a prompt the
-permission mode does not reach. An unattended run has nobody to answer it.
+2026-08-11, and a cloud session ignores it (the protected-path account under "A run never stops
+to ask about permissions" has the documentation). A SANDBOXED command that writes outside the
+working tree still cannot complete, and the tool then stops and asks to re-run it unsandboxed,
+which is a prompt the permission mode does not reach. An unattended run has nobody to answer it.
 
 On 2026-08-20 the owner was interrupted twice by exactly this, on a run whose permissions had been
 right for nine days, and the session went looking at the permission mode first because that is
