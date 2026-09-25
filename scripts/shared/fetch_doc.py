@@ -147,7 +147,7 @@ def decode(body: bytes, content_type: str, sniff: bool) -> str:
     # it fell through to UTF-8 and came out mangled with an exit of 0 (Codex, PR 361).
     for bom, codec in _BOMS:
         if body.startswith(bom):
-            return body[len(bom):].decode(codec.replace("-sig", ""), "replace")
+            return body[len(bom):].decode(codec, "replace")
     m = _CHARSET.search(content_type or "")
     if not m and sniff:
         head = body[:4096].decode("ascii", "replace")
@@ -274,6 +274,10 @@ def fetch_doc(url: str, out_dir: Path, name: str | None = None, opener=None,
         real = len(text.strip())
     else:
         ext, text = ".bin", ""
+    # A SUBTYPE THAT LANDS ON ONE OF OUR OWN NAMES keeps its bytes under `.source`, so a server
+    # sending `text/txt` saves a document rather than tripping the collision check below.
+    if ext in (".txt", ".meta.json"):
+        ext = ".source" + ext
     raw_path = out_dir / f"{name}{ext}"
     txt_path = out_dir / f"{name}.txt"
     meta_path = out_dir / f"{name}.meta.json"
@@ -433,6 +437,7 @@ def self_test() -> int:
                                     f"<r>{quote}</r>".encode("utf-16-le"), "application/xml"),
         "https://x.gov/ld": (b'{"@context": "https://schema.org", "name": "Docket"}',
                              "application/ld+json; charset=utf-8"),
+        "https://x.gov/odd": (b"served as text/txt", "text/txt"),
         "https://x.gov/moved": (b"%PDF-1.4 whatever", "application/pdf",
                                 "https://capitol.texas.gov/tlodocs/89R/x.pdf"),
     }
@@ -531,6 +536,9 @@ def self_test() -> int:
         code, rep = fetch_doc("https://x.gov/ld", d, opener=op, boundary=boundary)
         ok(code == OK and rep["saved"].endswith(".json") and "Docket" in rep["_text"],
            "a +json type with a charset parameter is read as JSON, not saved as .bin")
+        code, rep = fetch_doc("https://x.gov/odd", d, opener=op, boundary=boundary)
+        ok(code == OK and rep["saved"].endswith(".source.txt") and rep["saved"] != rep["text"],
+           "a subtype that lands on the text file's own name keeps its bytes apart, not a crash")
 
         code, rep = fetch_doc("https://x.gov/missing", d, opener=op, boundary=boundary)
         ok(code == UNREACHABLE and rep["status"] == 404, "a 404 exits 1 and saves nothing")
