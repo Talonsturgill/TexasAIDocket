@@ -148,6 +148,17 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `K.cable(a, b, sag, r, mat, parent)` | A hanging cable between two points with sag (catenary approximated by a parabola). |
 | `K.instances(geo, mat, list, parent)` | Instanced copies of one geometry at [x,y,z,rotY,scale] entries. |
 | `K.merge(meshes, mat)` | Merge meshes that share ONE material into a single mesh (fewer draw calls). |
+| `K.finish.galvanized()` | a named finish in the K.finish namespace |
+| `K.finish.steelPaint(c)` | a named finish in the K.finish namespace |
+| `K.finish.concrete()` | a named finish in the K.finish namespace |
+| `K.finish.asphalt()` | a named finish in the K.finish namespace |
+| `K.finish.rubber()` | a named finish in the K.finish namespace |
+| `K.finish.chrome()` | a named finish in the K.finish namespace |
+| `K.finish.glass(tint)` | a named finish in the K.finish namespace |
+| `K.finish.lamp(c, i)` | a named finish in the K.finish namespace |
+| `K.finish.porcelain()` | a named finish in the K.finish namespace |
+| `K.loft(ctrl, o)` | installed by kit/people.js |
+| `K.sdfMesh(f, box, h, U)` | installed by kit/people.js |
 
 ### people (2)
 

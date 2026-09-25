@@ -61,8 +61,9 @@ window.renderReady = (async () => {
     who = K.registry.person ? K.make('person', { seed: 5 }) :
       new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 1.3, 6, 12), new THREE.MeshStandardMaterial({ color: 0x3c4a5c, roughness: 0.8 }));
     if (!K.registry.person) who.position.y = 0.875;
-    const first = new THREE.Box3().setFromObject(made[0]);
-    who.position.x = first.min.x - 1.4; who.position.z = first.max.z - 0.6;
+    // every model in a lineup may have been left to its own hero page, and then the person stands alone
+    const first = made.length ? new THREE.Box3().setFromObject(made[0]) : null;
+    who.position.x = first ? first.min.x - 1.4 : 0; who.position.z = first ? first.max.z - 0.6 : 0;
     TXT.add(R, who);
   }
   const all = new THREE.Box3(); made.forEach(g => all.expandByObject(g)); if (who) all.expandByObject(who);

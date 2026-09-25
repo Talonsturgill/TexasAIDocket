@@ -351,6 +351,7 @@ export function install(K, THREE, TXT) {
     const { parts, keep } = collect(root), out = new THREE.Group();
     emit(parts, out);
     keep.forEach((o) => { o.updateMatrixWorld(true); o.matrixWorld.decompose(o.position, o.quaternion, o.scale); out.add(o); });
+    Object.assign(out.userData, root.userData);        // a builder's published API (tick, attach) survives baking
     return out;
   }
   // stamp copies of a template group's parts at [x, y, z, rotY] placements into a parts list
@@ -1153,7 +1154,7 @@ function installBig(K, THREE, TXT, H) {
       // a guard booth at the gate
       const gx = L / 2 - 12, gz = zb1 + yardD + frontM - 3;
       tbox(3, 2.8, 2.4, paint(col, 0.5, 0.3), gx + 9, 0, gz - 2, root, 0, 0.03);
-      for (const s of [-1, 1]) wallPlane(2.2, 1.2, glass(), gx + 9 + s * 0.0, 1.1, gz - 2 + 1.21, 0, root);
+      wallPlane(2.2, 1.2, glass(), gx + 9, 1.1, gz - 2 + 1.21, 0, root);
       tbox(3.4, 0.2, 2.8, paint(accent, 0.45, 0.4), gx + 9, 2.8, gz - 2, root);
       // light poles along the yard
       for (let x = yx0 + 10; x < yx1; x += 36) {

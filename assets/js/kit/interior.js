@@ -616,7 +616,13 @@ export function install(K, THREE, TXT) {
     make(o, r) {
       const rows = Math.max(1, o.rows || 3), per = Math.max(1, o.perRow || 8), aisle = o.aisle !== false;
       const g = new THREE.Group(), pitch = 0.56, rowP = 0.95;
-      const xs = []; for (let i = 0; i < per; i++) xs.push((i - (per - 1) / 2) * pitch + (aisle ? Math.sign(i - (per - 1) / 2) * 0.45 : 0));
+      // with an aisle, the chairs split into two blocks either side of it, the extra one of an odd row on the right
+      const xs = [];
+      if (aisle) {
+        const nl = Math.floor(per / 2), nr = per - nl;
+        for (let i = 0; i < nl; i++) xs.push(-0.45 - (nl - 1 - i) * pitch - pitch / 2);
+        for (let i = 0; i < nr; i++) xs.push(0.45 + i * pitch + pitch / 2);
+      } else for (let i = 0; i < per; i++) xs.push((i - (per - 1) / 2) * pitch);
       if (o.type === 'pews') {
         const wood = M.veneer(o.wood != null ? o.wood : 0x6b4426);
         const lenSide = (per / (aisle ? 2 : 1)) * pitch;

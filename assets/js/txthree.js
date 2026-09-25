@@ -577,12 +577,20 @@ export function init(THREE) {
       const k = mat.uuid + '|' + base.toFixed(3) + '|' + mot.toFixed(3);
       if (made.has(k)) return made.get(k);
       let m = mat;
+      // A MATERIAL'S OWN SHADER HOOK RUNS FIRST. Kit models inject hair normals, wet noses and
+      // one-sided foliage in onBeforeCompile, and replacing it here erased them in every
+      // weathered frame. The hook is kept the first time a material is weathered.
+      const own = mat.userData.txWeathered ? mat.userData.txOwnHook : mat.onBeforeCompile;
+      const ownKeyFn = mat.userData.txWeathered ? mat.userData.txOwnKey : mat.customProgramCacheKey;
       if (mat.userData.txWeathered) {
         if (mat.userData.txBaseY === base && mat.userData.txMottle === mot) { made.set(k, mat); return mat; }
         m = mat.clone(); m.userData = Object.assign({}, m.userData, { txWeathered: false });
       }
       m.userData.txWeathered = true; m.userData.txBaseY = base; m.userData.txMottle = mot;
-      m.onBeforeCompile = (sh) => {
+      m.userData.txOwnHook = own; m.userData.txOwnKey = ownKeyFn;
+      m.customProgramCacheKey = () => ownKeyFn.call(m) + '|txw';
+      m.onBeforeCompile = (sh, renderer) => {
+        if (typeof own === 'function' && own !== THREE.Material.prototype.onBeforeCompile) own.call(m, sh, renderer);
         sh.uniforms.uGrime = { value: grime }; sh.uniforms.uGrimeH = { value: height };
         sh.uniforms.uMottle = { value: m.userData.txMottle }; sh.uniforms.uBaseY = { value: m.userData.txBaseY };
         sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vTxW;')

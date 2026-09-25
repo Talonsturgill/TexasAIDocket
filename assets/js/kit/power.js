@@ -819,7 +819,7 @@ export function install(K, THREE, TXT) {
     note: 'OPTIONS structure transmission_tower | monopole_138 | h_frame | utility_pole; spans; span m (null = typical: 330, 200, 230, 45); sag m at mid span (null = about span x 0.034); structures [[x, z, rotY], ...] places them yourself and the wires follow; voltage, insulator, insulators, height, material, circuits, transformer, streetlight, guy pass through to the structure. Structures along z with every conductor and shield wire strung as a sagging span between the attach points each structure publishes; bundles get spacers every 70 m.',
     make(o, r) {
       const g = new THREE.Group(), type = o.structure || 'transmission_tower', D = LINE[type] || LINE.transmission_tower;
-      const span = o.span || D[0], n = o.spans || 2, sag = o.sag != null ? o.sag : span * D[1];
+      const span = o.span || D[0], n = o.spans || 2;
       const places = o.structures || Array.from({ length: n + 1 }, (_, i) => [0, (i - n / 2) * span, 0]);
       const so = { seed: o.seed, leads: 0.001 };
       ['voltage', 'insulator', 'insulators', 'height', 'material', 'circuits', 'transformer', 'streetlight', 'guy'].forEach((k) => { if (o[k] != null) so[k] = o[k]; });
@@ -836,6 +836,8 @@ export function install(K, THREE, TXT) {
       const W = (t, p, dx, dy) => V3(p.x + (dx || 0), p.y + (dy || 0), p.z).applyMatrix4(t.matrix);
       for (let i = 0; i < made.length - 1; i++) {
         const A = made[i], B = made[i + 1], la = A.userData.attach || [], lb = B.userData.attach || [];
+        // sag follows THIS span's length, so custom or unequal structures string physically
+        const sag = o.sag != null ? o.sag : A.position.distanceTo(B.position) * D[1];
         const segs = Math.max(24, Math.min(64, Math.round(A.position.distanceTo(B.position) / 6)));
         const rc = (A.userData.kv || 0) >= 138 ? 0.0145 : 0.0085;
         la.forEach((pa, k) => {

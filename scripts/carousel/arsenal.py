@@ -403,6 +403,42 @@ def parse_kit_family(src: str) -> tuple[list[dict], int]:
     return models, dynamic
 
 
+def kit_helpers(src: str, fam_srcs: dict) -> list[dict]:
+    """Every public K.* helper a chassis can call.
+
+    Three shapes, because a helper table missing one of them tells a chassis the primitive does
+    not exist and it reimplements it: `K.x = function (...)` in txkit.js, the members of an
+    object namespace such as `K.finish = { name: (args) => ... }`, and helpers a family module
+    installs (`K.loft = K.loft || loft;` in people.js), signed from that module's own function.
+    """
+    lines = src.split("\n")
+    helpers = []
+    for idx, line in enumerate(lines):
+        m = re.match(r"^\s*K\.(\w+)\s*=\s*function\s*\(([^)]*)\)", line)
+        if m:
+            doc = comment_above(lines, idx)
+            helpers.append({"sig": clean(f"K.{m.group(1)}({m.group(2).strip()})"),
+                            "doc": first_sentence(doc, 160) if doc else ""})
+    for ns in re.finditer(r"^\s*K\.(\w+)\s*=\s*\{", src, re.M):
+        body = object_after(src[ns.start():], r"K\.%s\s*=" % ns.group(1))
+        for name, val, _ in top_level_entries(body or ""):
+            am = re.match(r"\s*\(([^)]*)\)\s*=>", val)
+            if am:
+                helpers.append({"sig": clean(f"K.{ns.group(1)}.{name}({am.group(1).strip()})"),
+                                "doc": f"a named finish in the K.{ns.group(1)} namespace"})
+    for fam, fsrc in fam_srcs.items():
+        flines = fsrc.split("\n")
+        for m in re.finditer(r"^\s*K\.(\w+)\s*=\s*K\.\1\s*\|\|\s*(\w+)\s*;", fsrc, re.M):
+            fn = re.search(r"^\s*function\s+%s\s*\(([^)]*)\)" % m.group(2), fsrc, re.M)
+            args = fn.group(1).strip() if fn else ""
+            doc = ""
+            if fn:
+                doc = comment_above(flines, fsrc[:fn.start()].count("\n") + (1 if fsrc[fn.start()] == "\n" else 0))
+            helpers.append({"sig": clean(f"K.{m.group(1)}({args})"),
+                            "doc": clean(f"installed by kit/{fam}.js" + (". " + first_sentence(doc, 140) if doc else ""))})
+    return helpers
+
+
 def parse_kit(root: Path) -> dict:
     kit_js = root / "assets/js/txkit.js"
     if not kit_js.exists():
@@ -412,14 +448,9 @@ def parse_kit(root: Path) -> dict:
     hm = re.match(r"\s*/\*(.*?)\*/", src, re.S)
     if hm:
         header = first_sentence(strip_name_prefix(re.sub(r"^\s*\*\s?", "", hm.group(1), flags=re.M)))
-    lines = src.split("\n")
-    helpers = []
-    for idx, line in enumerate(lines):
-        m = re.match(r"^\s*K\.(\w+)\s*=\s*function\s*\(([^)]*)\)", line)
-        if m:
-            doc = comment_above(lines, idx)
-            helpers.append({"sig": clean(f"K.{m.group(1)}({m.group(2).strip()})"),
-                            "doc": first_sentence(doc, 160) if doc else ""})
+    fam_srcs = {p.stem: p.read_text(encoding="utf-8", errors="replace")
+                for p in sorted((root / "assets/js/kit").glob("*.js"))}
+    helpers = kit_helpers(src, fam_srcs)
     order = []
     fam = object_after(src, r"const\s+FAMILIES\s*=")
     if fam is not None:
@@ -1183,6 +1214,12 @@ def self_test() -> int:
        silo.get("note") == "A grain silo with a {braced} note, and a comma.", silo.get("note"))
     ok("kit: a computed-name definition is counted rather than silently missed", dynamic == 1,
        dynamic)
+
+    hs = [h["sig"] for h in kit_helpers(
+        "  K.box = function (w, h, d) {\n  };\n  K.finish = {\n    galvanized: () => 1,\n    steelPaint: (c) => 2,\n  };\n",
+        {"people": "  /* tube through sections */\n  function loft(ctrl, o) {\n  }\n  K.loft = K.loft || loft;\n"})]
+    ok("kit helpers: direct, namespace members and family-installed are all listed",
+       hs == ["K.box(w, h, d)", "K.finish.galvanized()", "K.finish.steelPaint(c)", "K.loft(ctrl, o)"], hs)
 
     tool_flags = cli_flags(FIX_TOOL)
     ok("tools: argparse flags, the long form preferred, positionals shown in brackets",
