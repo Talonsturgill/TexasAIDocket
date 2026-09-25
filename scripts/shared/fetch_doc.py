@@ -39,7 +39,8 @@ EXIT CODES, read by exit code and never by the last line
   1  not fetched: an HTTP error, a refused connection, a timeout, or a file over the size cap
   2  fetched, and no text came out of it. A scanned PDF is the usual case, and so is a PDF whose
      every page failed to extract. The bytes are saved, so the Read tool can look at the pages.
-  3  refused by the crawl boundary, before any request, or on a redirect into it. Nothing saved.
+  3  refused by the crawl boundary, before any request, or on a redirect into it, or not an http
+     or https url at all. Nothing requested, nothing saved.
 
 A CLAIM STILL TRACES TO THE SOURCE URL, NEVER TO THIS FILE. `out/` is scratch and dies with the
 container. The saved copy is for reading and quoting, and the claims file cites the url.
@@ -206,9 +207,9 @@ class _BoundaryRedirects(urllib.request.HTTPRedirectHandler):
 
 def fetch(url: str, boundary: list[dict], opener=None) -> dict:
     """{state, status, final_url, content_type, body}. Never raises for a network failure."""
-    req = urllib.request.Request(url, headers={"User-Agent": user_agent(), "Accept": "*/*"})
     op = opener or urllib.request.build_opener(_BoundaryRedirects(boundary)).open
     try:
+        req = urllib.request.Request(url, headers={"User-Agent": user_agent(), "Accept": "*/*"})
         with op(req, timeout=TIMEOUT) as r:
             body = r.read(MAX_BYTES + 1)
             if len(body) > MAX_BYTES:
@@ -236,6 +237,15 @@ def fetch_doc(url: str, out_dir: Path, name: str | None = None, opener=None,
     why = crawl_boundary.forbidden(url, b)
     if why:
         return REFUSED, {"url": url, "status": why}
+    # THE WEB AND NOTHING ELSE. urllib also opens `file://`, `ftp://` and `data:`, and a crawl
+    # boundary judged on a host means nothing for a url that has none.
+    try:
+        scheme = urllib.parse.urlsplit(url.strip()).scheme.lower()
+    except ValueError:
+        scheme = ""
+    if scheme not in ("http", "https"):
+        return REFUSED, {"url": url, "status": "only an http or https url is fetched here, and a "
+                                               "url without one has no host to judge"}
     got = fetch(url, b, opener)
     if got["state"] != OK:
         return got["state"], {"url": url, "status": got["status"]}
@@ -460,6 +470,12 @@ def self_test() -> int:
         code, rep = fetch_doc("https://capitol.texas.gov/Committees/../%74lodocs/x.pdf", d, opener=op,
                               boundary=boundary)
         ok(code == REFUSED and len(calls) == n, "and a path that only reaches it once decoded")
+        for u in ("file:///etc/hostname", "data:text/plain,hello", "example.org/x.pdf",
+                  "https://[::1/x.pdf", "https://capitol.texas.gov／tlodocs/x.pdf"):
+            n = len(calls)
+            code, rep = fetch_doc(u, d, opener=op, boundary=boundary)
+            ok(code == REFUSED and len(calls) == n,
+               f"{u!r} is refused with a reason rather than opened or crashed on")
         code, rep = fetch_doc("https://x.gov/moved", d, opener=op, boundary=boundary)
         ok(code == REFUSED and not list(d.glob("moved*")),
            "a response that ended inside the boundary is refused and nothing is kept")

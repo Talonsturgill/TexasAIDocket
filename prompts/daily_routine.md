@@ -198,8 +198,9 @@ public fact stand for another day, on a page whose entire promise is that it doe
   It downloads into `out/<date>/tmp/src/`, writes the text beside the file, and prints the
   opening. Exit 0 means there is text, 1 means the page did not answer, 2 means the file holds
   no text, usually a scan, which the Read tool can still look at, and 3 means the crawl boundary
-  refused it. It asks `crawl_boundary.py` before every request and on every redirect, so a url
-  the registry puts off limits, `capitol.texas.gov/tlodocs/` among them, is never requested.
+  refused it or it was not an http url. It asks `crawl_boundary.py` before every request and on
+  every redirect, so a url the registry puts off limits, `capitol.texas.gov/tlodocs/` among them,
+  is never requested.
   **Never copy a file that WebFetch saved out of the `~/.claude/` directory.** That directory is
   a protected path, and on September 25th that one copy raised a permission dialog at 06:53 UTC
   and stopped the run for the day.
