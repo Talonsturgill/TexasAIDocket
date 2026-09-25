@@ -207,32 +207,47 @@ def _host_of(url: str) -> str:
     # `capitol.texas.gov` and DNS answers both with the same server, so a rule matched against
     # the raw spelling was walked around by one character. Codex found it on PR 361.
     host = (parts.hostname or "").lower().rstrip(".")
+    # AND A UNICODE SPELLING IS THE SAME HOST. `capitol\u3002texas.gov`, with an ideographic full
+    # stop, reaches the real server because urllib IDNA-encodes the name before it connects, and
+    # the encoding turns U+3002, U+FF0E and U+FF61 into dots and folds full width letters. So the
+    # rule is judged on the encoded name too. Found by review on PR 361.
+    try:
+        host = host.encode("idna").decode("ascii").lower().rstrip(".")
+    except UnicodeError:
+        pass  # a name IDNA can't encode is a name urllib can't connect to either
     return host[4:] if host.startswith("www.") else host
 
 
-def _path_of(url: str) -> str:
-    """The path a server would serve, which is the only spelling a path rule may be judged on.
+def _paths_of(url: str) -> set[str]:
+    """Every path a server might serve for this url. A rule refuses the url if ANY of them is
+    under it.
 
-    A rule compared against the raw spelling can be walked around by spelling the same path
-    another way, and every one of these reached `/tlodocs/` on 2026-09-25 while the checker said
-    no rule matched: `/%74lodocs/`, `/Committees/../tlodocs/`, `//tlodocs/`. So the path is
-    percent-decoded until it stops changing, backslashes become slashes (an IIS host treats them
-    as one), repeated slashes fold, dot segments resolve, and case folds. Each of those can only
-    make the checker refuse MORE, which is the one direction a boundary may err in.
+    One normalised reading was the first fix and it was wrong both ways. Compared raw, the
+    boundary was walked around by `/%74lodocs/`, `/Committees/../tlodocs/` and `//tlodocs/`.
+    Decoded three times and then resolved, it was walked around the other way by
+    `/tlodocs/%252e%252e/../x`, which a server decodes ONCE, keeping `%2e%2e` as a directory
+    name that the `..` then removes, so it serves `/tlodocs/x`, while three decodes turned it into
+    `/x`. And `/tlodocs/.` resolved to `/tlodocs`, which no longer started with `/tlodocs/`.
+
+    A checker cannot know which reading a given server takes, so it takes all of them: the raw
+    path, and the path decoded zero to three times, each with backslashes and repeated slashes
+    folded and dot segments resolved. Refusing when any one matches can only refuse MORE than any
+    single reading, which is the one direction a boundary may err in.
     """
-    raw = urlsplit(url if "//" in url else "//" + url).path or "/"
+    raw = (urlsplit(url if "//" in url else "//" + url).path or "/").lower()
+    out = {raw}
     p = raw
-    for _ in range(3):
+    for _ in range(4):
+        q = re.sub(r"/+", "/", p.replace("\\", "/"))
+        resolved = posixpath.normpath("/" + q.lstrip("/"))
+        out.add(q)
+        out.add(resolved)
+        out.add(resolved + "/")  # `/tlodocs/.` and `/tlodocs` both name the directory
         nxt = unquote(p)
         if nxt == p:
             break
         p = nxt
-    p = re.sub(r"/+", "/", p.replace("\\", "/"))
-    trailing = p.endswith("/")
-    p = posixpath.normpath("/" + p.lstrip("/"))
-    if trailing and not p.endswith("/"):
-        p += "/"
-    return p.lower()
+    return out
 
 
 def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
@@ -245,7 +260,7 @@ def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
     host = _host_of(url)
     if not host:
         return None
-    path = _path_of(url)
+    paths = _paths_of(url)
     for row in b:
         r = row["host"]
         if host != r and not host.endswith("." + r):
@@ -254,7 +269,7 @@ def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
             return (f"{r} is off limits to this project, whole host. "
                     f"SOURCES_REGISTRY.md: {row['why']}")
         for p in row["paths"]:
-            if path.startswith(p):
+            if any(c.startswith(p) for c in paths):
                 return (f"{r}{p} is a disallowed path on an allowed host. "
                         f"SOURCES_REGISTRY.md: {row['why']}")
     return None
@@ -285,10 +300,17 @@ def self_test() -> int:
               "https://capitol.texas.gov/%2574lodocs/x.pdf",
               "https://capitol.texas.gov/Committees/../tlodocs/x.pdf",
               "https://capitol.texas.gov//tlodocs/x.pdf", "https://capitol.texas.gov/\\tlodocs/x.pdf",
-              "https://capitol.texas.gov/./tlodocs/x.pdf", "http://lrl.texas.gov./x"):
+              "https://capitol.texas.gov/./tlodocs/x.pdf", "http://lrl.texas.gov./x",
+              # and the three a review found in the first normalisation, 2026-09-25
+              "https://capitol.texas.gov/tlodocs/%252e%252e/../89R/x.pdf",
+              "https://capitol.texas.gov/tlodocs/.", "https://capitol.texas.gov/TLODOCS",
+              "https://capitol\u3002texas.gov/tlodocs/x.pdf", "https://lrl\uff0etexas.gov/x",
+              "https://\uff43apitol.texas.gov/tlodocs/x.pdf"):
         ok(f"...and spelled {u} it is still refused", bool(forbidden(u, b)))
     ok("...while a path that merely passes through `..` to an allowed page stays allowed",
        forbidden("https://capitol.texas.gov/Committees/x/../MeetingsUpcoming.aspx", b) is None)
+    ok("...and a path that only shares the rule's first letters is not refused",
+       forbidden("https://capitol.texas.gov/tlodocsarchive/x", b) is None)
     ok("...and the reason names the registry rather than this file",
        "SOURCES_REGISTRY" in (forbidden("https://capitol.texas.gov/TLODOCS/x", b) or ""))
     # AND THE SUBSTITUTE THE REGISTRY VERIFIED IS NOT REFUSED. A boundary checker that refuses
