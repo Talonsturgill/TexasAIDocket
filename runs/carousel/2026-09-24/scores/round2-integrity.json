@@ -1,0 +1,60 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "weighted_score": 6.09,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "why": "Contact sheet, out/2026-09-24/final/contact_sheet.png. Frame 6 has no sky and no horizon: a flat brown field of tower blocks. The storyboard's reason is doctrine, but the showstopper test still caps any frame that is not a place at an hour at 6. Frame 5's person is a blocky mannequin, and the aircraft on its T-bar reads as a toy at thumb size. Frame 2's neighbourhood is rows of identical boxes. Frame 8 (slide-08.png) is the best-finished frame: a real page on cedar boards in raking light. Frames 1, 3 and 9 do stand in a golden-hour world, and frame 9's sun through the open gate is the strongest image in the deck."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "One yard, one golden-hour light, the cyan line as motif on frames 1, 2, 3 and 7, and the shut gate on frame 1 opens on frame 9. Those are two continuity devices that work. Frame 6 is the brown parallel-camera lot, which sits outside the world, and frame 4's flat green top-down breaks the value track. panel_ready.txt line 1 says the storyboard declares no value arc the gate could read, so the value-arc claim was compared against nothing."
+  },
+  "claim_integrity": {
+   "score": 4.5,
+   "weight": 0.2,
+   "why": "Every numeral on the frames, in the caption and in the web edition traces to compute.py and figures.json (330, 75, 63, 7.8, 8, 220, 4,400, 220,000, 36, 400, 58.1, 65, 95%, and the Table 2.2-1 rows on frame 8's canvas). That part is clean. The prose is where it breaks. (1) The web edition's line 'A person enters in one sentence' is refuted by the draft itself: zipline_ea.txt lines 477 to 478 and 494 to 495 name the Remote Pilot in Command, who can command flight termination, and lines 2076 to 2077 have the customer approving the delivery. (2) Frame 7 sets 58.1 against 65. The draft's own screening line is 59.7 ('the DNL threshold below which increases of 1.5 dB or more in aviation noise cannot result in significant impacts', lines 1981 to 1984), and the same c21 sentence says delivery noise 'would not exceed DNL 59.7 dB at any point'. So the frame shows a wider margin than the draft's own method does. (3) Frame 8 is titled 'Its own words' but prints Table 2.2-1 with no column headers and without the table's title word 'Maximum' (line 316), so thirty unlabeled numbers read as the draft's words. (4) Web edition intro: 'it says who drafted it'. c6's note and the storyboard both say copy must say prepared and never imply Zipline wrote it, because Appendix C lists preparers at ICF. (5) Web edition dek 'a draft that would let Zipline fly' and heading 'What the draft allows'. This round the run corrected exactly that wording in the record ('assesses' rather than 'allows') and left it here. Lines 236 to 237 put the authorizing act in the FAA's OpSpecs decision, not in the draft."
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "why": "It names the body (FAA), the applicant, the five metros, the deadline (October 11th on frames 1 and 9 and in the caption) and the exact address and subject line on frame 9. A reader knows what to do. The stake it builds is that a machine judges your yard and a person sees an image only when it can't tell. That framing leaves out the Remote Pilot in Command the draft describes in section 2.2.4, so the concrete stake rests on an incomplete picture. No county is named. San Antonio appears only as a hashtag."
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "Cover to height to pod to operator to aircraft to count to noise to authorship to comment reads in order, and frame 8's authorship is a real turn. Frames 5 and 6 are the most cuttable: the aircraft's size and a lot of towers carry no step in the argument about who judges the yard."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Mostly clean and attributed ('the draft says' throughout, and the caption closes on a real question). There are some stiff patches: frame 6's 'pickup dropboxes' puts a house noun in front of the draft's own capitalized term. Frame 2's kicker 'The whole height, one block' sits over a picture of many blocks. Frame 7's dek stacks three 'the draft' clauses in a row. I found no house-rule breach in caption.txt or first_comment.txt."
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "topics.json has no drone, FAA or aviation deck in the window. The nearest is no. 18 (Austin barring AI camera and drone purchases), which differs in mechanism and decider, so there is no repeat. The instrument, an agency filing read in its own words, and the rendered golden-hour suburban world are both familiar moves from nos. 31 and 32."
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, in ledger/articles/2026-09-24.json, sections[0].paragraphs[2], which carries claim c18: 'A person enters in one sentence.' The source refutes it. out/2026-09-24/tmp/zipline_ea.txt lines 477 to 478: 'Deconfliction occurs even if the Remote Pilot in Command loses communication with Zipline UAs.' Lines 494 to 495: 'the Remote Pilot in Command has the ability to command flight termination'. Lines 2076 to 2077: 'from the time the customer approves the delivery'. The fact check only established that the image-to-operator sentence is absent from section 2.2.4.6 (claims.json, rejected[2]). It never established that a person appears in the draft only once, and the web edition publishes that wider universal under a claim that does not carry it."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Before writing any sentence that says what the draft does not contain or how rarely something appears in it, search the full zipline_ea.txt for the noun (operator, pilot, person, customer) and either cite or reject every hit; that one sweep would have caught the web edition's 'one sentence' universal and would have put the Remote Pilot in Command into the deck's own 'the pod decides' thesis.",
+ "other_findings": [
+  "Frame 7 (slide-07.html) compares the lower of c21's two figures (58.1, 'at any distance from a delivery point') with 65. It drops the higher figure (59.7, 'at any point'), which is also the draft's own screening line at zipline_ea.txt lines 1981 to 1984. Every string is true on its own and the arrangement still overstates the margin. Either show 59.7 against 59.7 as the draft does, or add the 59.7 cap as a third bar.",
+  "Frame 8's canvas (build_slides.py lines 453 to 458) sets Table 2.2-1 with no column headers and without its title 'Maximum Number of Zipline Chargers, Dropboxes, and Deliveries per Day by Metro Area'. On the one frame that says 'Its own words', the ceiling qualifier the storyboard calls a law ('EVERY COUNT IS A MAXIMUM') is missing.",
+  "Frame 6's dek says 'Each mast stands for one Charger'. The draft says a typical Charger is 36 docks 'arranged in three towers of twelve docks each' (zipline_ea.txt lines 403 to 404). Frame 5 draws a Charger as one mast with one dock, and frame 6 counts 220 single-dock masts. The dek discloses the symbol, but the picture shows a third of the towers and one thirty-sixth of the docks the draft describes.",
+  "Web edition: the dek 'a draft that would let Zipline fly' and the heading 'What the draft allows' repeat the wording this round removed from tx-2026-0186's summary. The intro 'it says who drafted it' goes against c6's note.",
+  "Web edition paragraph claims arrays leave out claims their own text cites inline: c32 in sections[1].paragraphs[0] and c29 in sections[2].paragraphs[0].",
+  "first_comment.txt lists no c5, but the caption's 'The FAA's notice says every substantive comment gets a response in the final version' rests on c5. The PDF is listed, so the source is present and only the claim id is missing.",
+  "Record tx-2026-0186 summary: 'The draft finds no significant noise impact at the setbacks it describes.' zipline_ea.txt lines 2010 to 2011 say delivery points 'would not have setback distances', so the delivery half of that finding does not rest on setbacks.",
+  "Record tx-2026-0186 geography lists 40 counties with the letter's 'Atacosta' and 'Roberston' silently corrected. notes_for_editor discloses it, but the published list implies a count of 40 against the letter's own 41 (line 7394), and the fact check said to report that discrepancy and never repair it.",
+  "claims.json c31 gives its location as 'Appendix, line 4514'. The quoted sentence is also in the body at zipline_ea.txt lines 561 to 562 (section 2.2.4.6). Frame 1's 'Texas yard' leans on c31, which is not on its source line.",
+  "copy.json's _note says frame 8's canvas carries c5's sentence. build_slides.py draws only c6, the table and c27, so that metadata is stale.",
+  "Two things the round 2 brief promised do hold: c29, c30 and c32 match zipline_ea.txt verbatim (lines 2007 to 2010, 575 to 576 and 168 to 169, with only curly quotes normalized in c32), and frame 9 carries the address the caption points to."
+ ]
+}

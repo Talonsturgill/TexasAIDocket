@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- 2026-09-24, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's
+     declared goldenHour world. THE DOOR. Low on the lawn looking toward the sun, the gate standing open with light across the grass, a parcel in the foreground, the aircraft small and climbing away. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#131A24; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.03em; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.024em; color:#F4F1EA; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,14,26,0.35); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#F2F4F6; z-index:10;
+          text-shadow:0 0 5px rgba(8,14,26,0.8), 0 1px 14px rgba(8,14,26,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6EBEF;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,14,26,0.85), 0 1px 14px rgba(8,14,26,0.6); }
+  .hook { left:80px; top:150px; width:640px; } .dek { left:82px; width:650px; font-size:28px; }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:240px; z-index:5; background:linear-gradient(0deg, rgba(12,20,34,0.54) 0%, rgba(12,20,34,0.5) 60%, rgba(12,20,34,0) 100%); }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:880px; z-index:5; background:linear-gradient(180deg, rgba(12,20,34,0.54) 0%, rgba(12,20,34,0.54) 74%, rgba(12,20,34,0) 100%); -webkit-mask-image:radial-gradient(circle at 870px 474px, transparent 0px, transparent 24px, #000 175px); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Comments close October <span class='num'>11th</span></h1>
+<p class="dek" data-follow="22">The draft gives no figure for how often an operator is sent an image. Email <span style='white-space:nowrap'>9-FAA-Drone-Environmental@faa.gov</span> and name the Zipline Texas Draft EA in the subject line.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-24-droneline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const FIG = {"_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.", "metros": {"Houston": {"area_sq_mi": 9932, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "San Antonio": {"area_sq_mi": 3326, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "Austin": {"area_sq_mi": 2498, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "Amarillo": {"area_sq_mi": 1199, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "El Paso": {"area_sq_mi": 629, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}}, "total": {"area_sq_mi": 17584, "chargers": 220, "dropboxes": 4400, "deliveries_max": 220000, "transits_max": 660000, "from": ["c7"], "basis": "the draft's maximum"}, "transits_per_delivery": {"value": 3, "word": "three", "from": ["c8"]}, "per_charger_max": {"value": 1000, "from": ["c24"]}, "cruise": {"feet": 330, "metres": 100.584, "from": ["c11"], "rounding": "feet times 0.3048, three decimals, geometry only"}, "aircraft": {"span_ft": 7.8, "height_ft": 1.8, "length_ft": 8, "span_m": 2.377, "height_m": 0.549, "length_m": 2.438, "propellers": 5, "weight_lb": 63, "payload_lb": 8, "from": ["c13", "c14"], "basis": "approximately, as the draft says"}, "delivery_hover": {"seconds": 75, "feet": 330, "from": ["c19"]}, "day": {"hours": 24, "day_pct": 95, "night_pct": 5, "from": ["c9", "c10"]}, "noise": {"threshold_dnl_db": 65, "significant_step_db": 1.5, "delivery_dnl_db_any_distance": 58.1, "delivery_dnl_db_cap": 59.7, "at_deliveries_per_location": 400, "screening_dnl_db": 59.7, "lift_existing_dnl_db": 63.5, "lift_added_dnl_db": 59.7, "from": ["c20", "c21", "c26", "c35", "c37"]}, "charger_docks": {"max": 72, "typical": 36, "from": ["c32"], "basis": "a Charger is a site of docks, not one mast"}, "charger_towers": {"docks": 36, "towers_word": "three", "from": ["c34"]}, "dropbox_setback": {"feet": 50, "metres": 15.24, "load_per_day": 300, "from": ["c22"]}, "chargers": {"houston": 65, "san_antonio": 65, "austin": 30, "amarillo": 30, "el_paso": 30, "from": ["c7"]}, "deliveries": {"houston": 65000, "san_antonio": 65000, "austin": 30000, "amarillo": 30000, "el_paso": 30000, "from": ["c7"], "basis": "the draft's maximum per day"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Public comment", counter: "09 / 09", src: "c2 c3 c18   TEXAS AI DOCKET", ink: '#E6EBEF' });
+  TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 2 });
+  LINE.follow();
+  const TXT = init(THREE), L = LINE, gl = L.glCanvas();
+  const W = TXT.deckWorld();
+  const M = L.mats(TXT, THREE);
+
+  /* INTO THE SUN THROUGH THE GATE. The camera looks a few degrees left of the declared sun's
+   * bearing, so the sun sits right of centre, and the open gate in the rear fence is set on
+   * the sun's own bearing, so the low light comes through the gap. The aircraft has gone. */
+  const sunB = -58 * Math.PI / 180, lookB = sunB + 9 * Math.PI / 180;
+  const s = new THREE.Vector3(Math.sin(sunB), 0, Math.cos(sunB)), sr = new THREE.Vector3(-s.z, 0, s.x);
+  const S = (a, s0) => [s.x * a + sr.x * s0, s.z * a + sr.z * s0];
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure * 0.7, tone: W.tone, fov: 36 });
+  TXT.frame(R, { from: [0, 0.75, 0], look: [Math.sin(lookB) * 100, 7, Math.cos(lookB) * 100] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [s.x * 10, 0, s.z * 10], distance: 90, shadowFar: 240 });
+  TXT.ground(R, { surface: 'grass', size: 900, tile: 4, seed: 19 });
+  /* the rear fence across the view at 16 m, the gate gap on the sun's own bearing */
+  const yaw = Math.atan2(s.x, s.z);
+  const g0 = S(16, -30), g1 = S(16, -0.6), g2 = S(16, 0.6), g3 = S(16, 24);
+  TXT.add(R, L.fence(THREE, TXT, M, g0, g1)); TXT.add(R, L.fence(THREE, TXT, M, g2, g3));
+  const gate = TXT.roundedBox(1.0, 1.8, 0.05, 0.01, M.fence); const gp = S(15.5, 0.62); gate.position.set(gp[0], 0.92, gp[1]); gate.rotation.y = yaw + 1.2; TXT.add(R, gate);
+  /* the parcel on the grass, whole, its long shadow reaching back toward the lens */
+  const box = TXT.roundedBox(0.36, 0.24, 0.3, 0.012, M.package); const bp = S(4.6, -0.2); box.position.set(bp[0], 0.12, bp[1]); box.rotation.y = 0.4; TXT.add(R, box); TXT.contact(R, box);
+  const tape = TXT.roundedBox(0.37, 0.245, 0.05, 0.004, M.trimWhite); tape.position.set(bp[0], 0.12, bp[1]); tape.rotation.y = 0.4; TXT.add(R, tape);
+  const turf = TXT.scatter(R, { kind: 'grass', count: 6000, area: [-16, -16, 16, 16], seed: 9, scale: [0.12, 0.36], nearRadius: 8 });
+  /* the neighbours' houses beyond the fence, off the sun's bearing so the light still comes through the gate */
+  [[36, -16, 4], [40, 13, 5]].forEach(([a, s0, sd]) => { const h = L.house(THREE, TXT, M, { w: 16, d: 11, seed: sd, rise: 2.0 }); const hp = S(a, s0); h.position.set(hp[0], 0, hp[1]); h.rotation.y = yaw + Math.PI; TXT.add(R, h); });
+  TXT.weather(R, {});
+  const cx = L.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx, { bloom: { threshold: 0.7, strength: 0.34, radius: 20 } });
+
+  return true;
+})();
+</script>
+</body>
+</html>

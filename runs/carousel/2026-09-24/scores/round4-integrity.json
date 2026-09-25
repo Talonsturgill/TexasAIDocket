@@ -1,0 +1,61 @@
+{
+ "lens": "integrity",
+ "round": 4,
+ "weighted_score": 6.24,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "why": "Frames 1, 2, 3, 7 and 9 have a real sky and a low sun, and frame 9's open gate into the sun is the best image in the deck. The rest read as CG. The people on frames 5 and 7 are block mannequins. The houses are extruded boxes. Frame 5's charger is a single mast with one dock beside a flat brick slab. Frame 6 fails THE SHOWSTOPPER TEST, which caps this criterion at 6. The five blocks of masts sit on a brown gradient with no readable horizon, so it is objects in a void. The depth that round 4 says carries the count does not read at 432 px either: the Houston block looks about the size of the Amarillo block, and the Austin block renders with dark masts unlike the other four."
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "why": "One golden-hour light, one neighbourhood and one cyan line motif carry frames 1, 2, 3, 4 and 7, and frame 9 pays the motif off (line gone, gate open). panel_ready reports the value arc within one Munsell step. Frame 6's brown lot and frame 5's strip-centre pad sit outside the world, and frame 8's clipboard close-up is a third register."
+  },
+  "claim_integrity": {
+   "score": 5.0,
+   "weight": 0.2,
+   "why": "Every numeral traces. 330, 75, 63, 7.8, 8, 220, 4,400, 220,000, 36, 400, 59.7, 1.5, 65 and 11th are all in figures.json, pulled from the claim quotes by compute.py. Frame 8's canvas table matches Table 2.2-1 at zipline_ea.txt lines 316 to 337, including the title and the column headings. The c6, c17, c18, c19, c29, c30, c31, c34, c35 and c36 quotes all match the source. The spine fails anyway. Frame 7 draws the draft's delivery cap at 0.2951 of the FAA test under the headline 'Under the FAA's line'. The draft's own section 3.6.1 (lines 1866 to 1870) says 59.7 dB of added noise is exactly what raises an area from 63.5 to 65, and the cap is 'would not exceed DNL 59.7'. So the draft's own arithmetic leaves no margin where the frame shows one of about 70 percent. The same stretch appears in record claim tx-2026-0186-c12, which says 'stays under the threshold it uses'. This is a claim that stretches its source, on the frame the deck calls its noise finding."
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "why": "The body (FAA), the applicant, the five metros, the deadline (October 11th), the email address and the subject line are all on frame 9, and the caption points to them. The operator question is a real, answerable ask for a commenter. The misframed noise frame weakens the one stake a homeowner feels most, and no county is named."
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "The cover's yard, then height, then the pod judging, then the operator exception (frame 4) builds well. 'Zipline prepared it' on frame 8 is a genuine late turn. Frame 5 (size) and frame 6 (count) slow the middle, and frame 6 is the one a reader would cut."
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "why": "Clean and on register. 'The pod checks the spot', 'When it can't tell' and 'It judges the yard' are plain and good. It is attribution-heavy ('the draft says' four times across frames 4, 8 and 9 and the caption) and has almost no Texas texture beyond the metro list. 'A Texas yard' is doing all the regional work."
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "why": "topics.json has no drone or Zipline item in the 30-day window. Carousel no. 18 (Austin barring AI drones and cameras in parks) is the nearest neighbour and is a different decision. It is the first deck built as one rendered neighbourhood. The familiar moves are the document-on-a-table frame (8) and the bars-under-the-cut frame (7), both in recent decks."
+  }
+ },
+ "hard_fails": [
+  "AN UNVERIFIED FACT PRESENTED AS VERIFIED, frame 7 (out/2026-09-24/build_slides.py FRAMES[7], rendered as slide-07). The frame puts 'AT 400 A DAY, NO MORE THAN DNL 59.7 dB AT ANY POINT' at 0.2951 of the length of 'FAA TEST, A 1.5 dB RISE AT DNL 65 dB OR ABOVE', under the headline 'Under the FAA's line'. A reader takes from it that the draft's delivery noise sits at under a third of the FAA's significance test. The draft says the opposite. zipline_ea.txt lines 1866 to 1870: 'For an increase of 1.5 dB or more to occur from an existing DNL of 63.5 dB, the added noise on its own must be at least a DNL 59.7 dB (i.e., 59.7 dB + 63.5 dB = 65 dB)'. The cap is 'would not exceed DNL 59.7 dB at any point' (c21), so the draft's own arithmetic puts the cap AT its screening line with no margin. The same frame's dek quotes c35 saying 59.7 is that line, so the frame contradicts itself. Three defects compound. (1) The bar compares the project's added noise (59.7) with a total exposure level (65), a category error the draft never makes. (2) The long bar's label says 'A 1.5 dB RISE', but its length is the energy of DNL 65 total, not of a 1.5 dB rise. By the draft's own subtract-3.8 rule, the added noise for a 1.5 dB rise at 65 is 61.2 dB, about 0.42 of 65's energy. (3) The label truncates c20 before its second branch ('or that will be exposed to DNL values at or above 65 dB due to an increase of DNL 1.5 dB or greater'), and that branch is where 59.7 comes from. Every numeral traces. The meaning the computed bar lengths assert does not. The storyboard's own acceptance line for frame 7 says 59.7 'is also the draft's own screening line', so the plan knew."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 7 around the draft's own comparison: set the delivery cap (DNL 59.7) against the added noise the draft says would push an area from 63.5 to 65 (also 59.7, lines 1866 to 1870), label the FAA test with both of c20's branches, and replace 'Under the FAA's line' with a headline saying the cap sits at the draft's screening line and no higher. Carry the same correction into record claim tx-2026-0186-c12 ('stays under') and the web edition's truncated c20 anchor.",
+ "other_findings": [
+  "Record tx-2026-0186 claim c12 reads 'The draft finds delivery noise stays under the threshold it uses', but the quote says 'would not exceed DNL 59.7 dB', and 59.7 is the threshold it uses. 'Not exceed' allows equality, so 'stays under' overstates it. This is the same defect as frame 7, in the permanent record.",
+  "Web edition ledger/articles/2026-09-24.json, section 'Noise, as the draft measures it': the c20 anchor ends at 'exposed to noise at or above DNL 65 dB' and drops the 63.5-to-65 branch that produces 59.7. The paragraph then quotes c35 correctly, so it is less misleading there than on frame 7, but it is the same truncation.",
+  "Record tx-2026-0186 summary: 'At each stop a pod lowers on a line and evaluates the drop spot automatically' is supported by the deck's c17, but none of the item's own 14 claims carries the winch line or the pod's lateral evaluation. Only c11 (the operator sentence) implies it. The house rule says every fact traces to a claim.",
+  "Record tx-2026-0186 c1 and c2 give the FAA page's source_title as 'FAA, NEPA and Drones, Environmental Documents for Public Review'. claims.json and first_comment.txt give the same URL as 'FAA, Public Involvement and Environmental Review for Drone Operations'. One of these titles is wrong, and faa_nepa.txt could not be read here to settle which.",
+  "Record tx-2026-0187 (PUCT 25.194): 'The order was filed on September 18th, 2026' and key_date 2026-09-18 appear only in a source_title the run wrote. No verbatim_quote in the item carries the filing date.",
+  "Record tx-2026-0186 counties: the list is the Section 106 APE list (lines 7381 to 7385), which includes a 3-mile night-visibility buffer ('all or portions'). Filing all 40 as the item's geography is wider than 'the counties the metro areas reach into', which is how c13's text describes it. The spelling repairs (Atascosa, Robertson) are disclosed. The 41-versus-list discrepancy at line 7394 is real and is reported rather than repaired, which is correct.",
+  "Frame 5 draws a Charger as one mast with one dock at shoulder height, with a person a pace from the docked aircraft. The draft describes towers of twelve docks (c34) and says 'Docks are built to separate operations from nearby non-participating people' (line 511). The kicker covers the aircraft's dimensions, not the dock. Frame 6's dek discloses its masts as symbols. Frame 5 discloses nothing.",
+  "Frame 6: 'pickup dropboxes' traces to line 166 ('Dropboxes (i.e., pick up kiosks)'), which is not in any claim cited on the frame (c7, c24, c34). It is minor but untraced. machine_qa also puts HOUSTON (x 55) and EL PASO outside the 80 px safe zone.",
+  "Absence check. 'The draft gives no figure for how often' (frames 4 and 9, caption, web edition) was spot-verified against sections 2.2.4.4, 2.2.4.6 and 3.7.2, Appendix D 2.1.4 and the Appendix E delivery narrative (lines 4500 to 4523). None gives a rate. The document was not read end to end, so this rests partly on the fact-checker's rejected note.",
+  "Web edition dek: 'a pod on a line judges the drop spot itself' is supported by c17 ('automatically ... evaluates the delivery location'). It is the phrasing the round 4 record fix moved away from, so the two surfaces now describe the same mechanism differently.",
+  "The caption, first comment, frames 1 to 4, 8 and 9, and the Table 2.2-1 reproduction on frame 8 were checked string by string against claims.json and zipline_ea.txt and found clean. compute.py's table-sum, transit and per-Charger assertions hold against lines 332 to 337.",
+  "machine_qa.json: 0 fails and 33 warns, 27 of them frame 8's canvas-raster text, which copy.json's _note discloses. No gate hard fail was found. panel_ready is green."
+ ]
+}

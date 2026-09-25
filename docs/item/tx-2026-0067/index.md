@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · San Angelo's reporting rules for coolant discharged into the city system are still in force as adopted.
 - 2026-09-16 · The reporting rules for coolant discharged into the San Angelo sewer are still in force as written. No variance or amendment has been posted.
 - 2026-09-19 · The reporting rules for coolant going into the city sewer are unchanged.
+- 2026-09-24 · The reporting rules for coolant sent into the city sewer are unconfirmed this run. The ordinance on the city's own site could not be read again.
 
 ## Evidence
 

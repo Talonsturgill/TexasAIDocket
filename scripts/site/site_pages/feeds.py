@@ -908,6 +908,15 @@ def _item_numerals(it: dict, today: str) -> set:
     if nxt:
         a.add((_dt.date.fromisoformat(nxt) - t).days)
 
+    # THE COUNTY OVERFLOW IN THE "WHERE IN TEXAS" ANSWER, "Armstrong ... Counties and 36 more".
+    # `schema.qa_pairs` names four counties and counts the rest, and `schema.authorised_numerals`
+    # already sanctions that count, but only the questions hub was handed that set. The item page
+    # passed on luck until September 24th, 2026, when an unrelated record edit took 36 out of the
+    # site-wide set. Same subtraction as the sentence, from the same sorted list.
+    nc = len(schema._counties(it))
+    if nc > 4:
+        a.add(nc - 4)
+
     # THE MOVEMENT LOG, and this is a carve-out rather than an oversight. `docket_build`'s
     # numeral gate excludes history notes for a structural reason, and the site layer has to
     # make the same exclusion or the record passes and the page it produces fails. A movement

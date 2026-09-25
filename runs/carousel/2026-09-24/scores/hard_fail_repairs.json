@@ -1,0 +1,18 @@
+{
+ "date": "2026-09-24",
+ "round": 5,
+ "_note": "Round 5 is the rubric's cap, so there is no round 6. The judges' cards are left exactly as written. This file records what was done about the hard fail the round 5 integrity card raised after the cards arrived, and how the repair was verified. score.json is the round 5 panel as the judges read it and still carries that hard fail.",
+ "policy": "Past the cap a round may repair a hard fail and nothing else. The deck's median, 6.418, is under the 7.01 ratchet floor, so it does not ship on the run's own authority whatever is repaired. The repair is made so that the deck is clean if the owner chooses to spend the threshold.",
+ "hard_fails": [
+  {
+   "raised_by": [
+    "round5-integrity",
+    "round4-integrity"
+   ],
+   "surface": "slide-07 and ledger/articles/2026-09-24.json",
+   "was": "Round 4: bars scaled by energy set the draft's 59.7 dB cap under the FAA's 65, showing a margin the draft's arithmetic does not give. Round 5: two equal bars, 59.7 against the added noise that lifts 63.5 to 65, showing no margin, while the draft's own estimate is 58.1, under its 59.7 line.",
+   "now": "No bars. The frame prints the draft's estimate (DNL 58.1 dB at any distance from a delivery point, c21) and its screening line (DNL 59.7 dB, c35) as text from figures.json, calls 58.1 an estimate, and the hook states the draft's conclusion, 'It finds no significant impact' (c26). The web edition says the estimate for the delivery point, 58.1, sits under that line.",
+   "verified": "qa, layout_check, figure_bearing, copy_sync, plan_render, aggregate_check, claims_check and panel_ready all exit 0 on the repaired render."
+  }
+ ]
+}

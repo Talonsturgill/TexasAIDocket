@@ -1,0 +1,107 @@
+{
+ "date": "2026-09-24",
+ "_note": "aggregates.json for 2026-09-24. Every figure the detector reads as a count is declared with\nthe claim it was READ from. This deck computes no count by addition: every one of these is the\ndraft's own printed figure, quoted, and the only arithmetic in the deck (the table's totals, the\nthree transits, the per Charger cap) is ASSERTED in compute.py against the draft rather than\npublished as a new number.",
+ "aggregates": [
+  {
+   "phrase": "75 seconds",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 75,
+   "quoted_from": "c19",
+   "quote": "(approximately 75 seconds)",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "75 seconds",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 75,
+   "quoted_from": "c19",
+   "quote": "(approximately 75 seconds)",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "63 pounds",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 63,
+   "quoted_from": "c13",
+   "quote": "weighs approximately 63 pounds",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "8 pounds",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c13",
+   "quote": "maximum payload weight of 8 pounds",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "220 Chargers",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 220,
+   "quoted_from": "c7",
+   "quote": "Total 17,584 220 4,400 220,000 660,000",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "4,400 Dropboxes",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 4400,
+   "quoted_from": "c7",
+   "quote": "Total 17,584 220 4,400 220,000 660,000",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "220,000 deliveries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 220000,
+   "quoted_from": "c7",
+   "quote": "Total 17,584 220 4,400 220,000 660,000",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "400 deliveries",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 400,
+   "quoted_from": "c21",
+   "quote": "At a rate of 400 average daily deliveries per day",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "36 docks",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 36,
+   "quoted_from": "c32",
+   "quote": "most Chargers would have around 36 docks",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "three towers",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c34",
+   "quote": "arranged in three towers of twelve docks each",
+   "note": "the draft's own printed figure, quoted; compute.py asserts the table's arithmetic rather than publishing a new number"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c4"
+   ],
+   "note": "the FAA's review page (c1) and the draft EA itself (c4), the two documents every printed claim id resolves to"
+  }
+ ]
+}

@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-23",
+  "generated": "2026-09-24",
   "gates": [
    "claims",
    "cross references",
@@ -750,7 +750,7 @@
      "retrieved_at": "2026-09-12"
     }
    ],
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -817,6 +817,11 @@
     {
      "date": "2026-09-19",
      "note": "The line is still approved on the terms the commission set. The docket goes on taking filings after the decision, so every count of them here is true of the day it was read rather than of today.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The commission's order approving the line still stands on its original terms. The docket keeps taking filings after the order, so any count of them belongs to the day it is read.",
      "checked": true
     }
    ]
@@ -2076,7 +2081,7 @@
      "fetched": "2026-09-17"
     }
    ],
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -2201,6 +2206,11 @@
     {
      "date": "2026-09-21",
      "note": "The feed answered and is still publishing the commission's open meetings with the room named on each one. A workshop has appeared on it since the last check, set for the week after this one and marked open to the public. The comment deadline the record already carries is still listed."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The feed has rolled past the mid September entries the record quoted, which is what a live calendar does. It still lists the October 15th comment deadline for Project 59086 and still marks each open meeting open to the public.",
+     "checked": true
     }
    ]
   },
@@ -2686,7 +2696,7 @@
     }
    ],
    "id": "tx-2026-0028",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -2741,6 +2751,11 @@
     {
      "date": "2026-09-19",
      "note": "The emergency review period the court adopted is still the county's standing answer to a high water use development.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The emergency review period is still in place as the court adopted it.",
      "checked": true
     }
    ]
@@ -2923,8 +2938,20 @@
      "date": "2026-09-19",
      "note": "The abatement for the Georgetown server service center is still in force on the terms the court granted.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Whether the Georgetown abatement still stands on the court's terms is unconfirmed this run. The county's own notice is the record's source for it and could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.wilcotx.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.wilcotx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "Austin City Council adopted Ordinance 20260423-029 creating City Code Chapter 2-19 on surveillance technology",
@@ -3427,7 +3454,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -3482,6 +3509,11 @@
     {
      "date": "2026-09-19",
      "note": "The framework still makes a hyperscale project wait for a special permit, and the council has not amended it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "El Paso's framework is still in force and still requires a special permit before a hyperscale project can proceed.",
      "checked": true
     }
    ]
@@ -3868,7 +3900,7 @@
     }
    ],
    "id": "tx-2026-0036",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -3916,6 +3948,11 @@
     {
      "date": "2026-09-19",
      "note": "The county is still out of the license plate reader contract the court voted to end.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The county remains out of the plate reader contract its court voted to end.",
      "checked": true
     }
    ]
@@ -4322,7 +4359,7 @@
     }
    ],
    "id": "tx-2026-0039",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -4377,6 +4414,11 @@
     {
      "date": "2026-09-19",
      "note": "The scholarship award to the El Paso campus stands as it was made.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The El Paso campus is still named among the scholarship awards as the foundation made them.",
      "checked": true
     }
    ]
@@ -4664,8 +4706,20 @@
      "date": "2026-09-19",
      "note": "The conditional use permit is still granted and the commission has taken nothing further on the site.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Whether the conditional use permit still stands is unconfirmed this run. The city's agenda center could not be read again, and the reporting on the vote sits on newsroom sites whose exclusion files refuse the reader that checks it."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.wichitafallstx.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.wichitafallstx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "Young County Commissioners Court receives the Project Saltworks tax abatement application and ratifies a developer funded escrow for consultants",
@@ -5039,7 +5093,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -5094,6 +5148,11 @@
     {
      "date": "2026-09-19",
      "note": "The county's request for authority over data center development still stands with the Legislature, and nothing has been filed in answer to it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The county's own court page still posts the agenda and video of the session where the resolution was adopted. The request to the Legislature has drawn no answer on the record.",
      "checked": true
     }
    ]
@@ -5401,8 +5460,20 @@
      "date": "2026-09-19",
      "note": "The phased abatement agreement is still in force on the terms the court approved.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Whether the phased abatement is still in force on the court's terms is unconfirmed this run. The report it is read from sits on a newsroom site whose exclusion file refuses the reader that checks it."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.newschannel10.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-09-24",
+    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, measured 2026-09-24. www.sec.gov answered 403. Nothing was routed around."
+   }
   },
   {
    "title": "Amarillo City Council authorizes a twenty year water supply agreement selling city water to Fermi America's Project Matador",
@@ -6225,7 +6296,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -6280,6 +6351,11 @@
     {
      "date": "2026-09-19",
      "note": "The conditions the court named are unchanged, and they are still a resolution rather than anything a developer has to meet.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Brazoria County's conditions remain a resolution rather than a requirement any developer has to meet.",
      "checked": true
     }
    ]
@@ -6485,7 +6561,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -6540,6 +6616,11 @@
     {
      "date": "2026-09-19",
      "note": "The consulting services are still on the purchasing catalog under the same contract, so any member government can still buy from it without running its own procurement.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The consulting services are still on the purchasing catalog under the same contract, open to any member government.",
      "checked": true
     }
    ]
@@ -6766,7 +6847,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-19",
@@ -6828,6 +6909,11 @@
     {
      "date": "2026-09-19",
      "note": "The denial stands. The state water plan still carries no separate demand category for data centers.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The board's denial stands. The state water plan still has no demand category of its own for data centers.",
      "checked": true
     }
    ]
@@ -8066,8 +8152,20 @@
      "date": "2026-09-19",
      "note": "The cap on cooling water is still the city's ordinance and the council has not revisited it.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The cap on cooling water is unconfirmed this run. The city's own data center page and the ordinance posted beside it could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.sanangelo.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "San Angelo writes data centers into its zoning code and makes them a conditional use only",
@@ -8241,8 +8339,20 @@
      "date": "2026-09-19",
      "note": "A data center is still a conditional use in the city's zoning code rather than a permitted one, so each one still goes before the commission.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Whether a data center is still a conditional use only in San Angelo's zoning code is unconfirmed this run. The city's own copy of the ordinance could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.sanangelo.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "San Angelo sets reporting rules for data center coolant discharged into the city sewer",
@@ -8397,8 +8507,20 @@
      "date": "2026-09-19",
      "note": "The reporting rules for coolant going into the city sewer are unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The reporting rules for coolant sent into the city sewer are unconfirmed this run. The ordinance on the city's own site could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.sanangelo.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "title": "Reeves County Emergency Services District No. 2 takes up a Chapter 312 abatement for a gas plant built to run data centers",
@@ -9916,7 +10038,7 @@
      "retrieved_at": "2026-09-12"
     }
    ],
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -9975,6 +10097,11 @@
     {
      "date": "2026-09-19",
      "note": "The second line is still approved as the commission ordered it. The docket goes on taking filings, so each count of them belongs to the day it was read.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The second line's approval stands as the commission ordered it. Filings keep arriving in the docket without reopening the order.",
      "checked": true
     }
    ]
@@ -11348,7 +11475,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -11429,6 +11556,11 @@
     {
      "date": "2026-09-21",
      "note": "The award record still describes the same arrangement. A model proposes the numerical algorithm and a proof decides whether it survives, and the grant stands as the foundation posted it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The award still pairs a model that proposes numerical algorithms with a proof checker that decides which of them stand. The foundation's record of it has not moved.",
      "checked": true
     }
    ]
@@ -13382,8 +13514,20 @@
      "date": "2026-09-19",
      "note": "The assignment of the abatement stands as the court made it.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.brazoscountytx.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-09-24",
+    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+   }
   },
   {
    "id": "tx-2026-0089",
@@ -14680,8 +14824,8 @@
    ]
   },
   {
-   "title": "Senate Economic Development cancels its September 3rd hearing on AI and the Texas workforce and resets for September 22nd",
-   "summary": "The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The hearing the committee had set for Thursday, September 3rd, 2026 is canceled. The Legislature's own upcoming meetings listing now carries the committee for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol and marks it a public hearing. Angela Paxton chairs the committee and Kevin Sparks is vice chair.",
+   "title": "Senate Economic Development holds its reset hearing on AI and the Texas workforce on September 22nd",
+   "summary": "The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The hearing the committee had set for Thursday, September 3rd, 2026 is canceled. The committee reset it for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol as a public hearing. A witness has published testimony saying it was presented to the committee that day. The committee has published no report or recommendation from it. Angela Paxton chairs the committee and Kevin Sparks is vice chair.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Senate Committee on Economic Development",
@@ -14693,7 +14837,7 @@
     "metro": null,
     "on_ercot": false
    },
-   "status": "open",
+   "status": "pending",
    "key_dates": [
     {
      "date": "2026-09-03",
@@ -14709,7 +14853,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The September 3rd hearing is canceled and the Legislature's listing says so on its own row. The committee is now set for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol in Austin, and the listing marks it a public hearing. The committee's page names Angela Paxton as chair and gives the committee's telephone number and its office in the Sam Houston Building.",
+    "how": "The September 3rd hearing was canceled and the reset hearing was held on Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol in Austin. What comes next is the committee's interim report on the charge. The committee's page names Angela Paxton as chair and gives the committee's telephone number and its office in the Sam Houston Building.",
     "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
     "closes": null
    },
@@ -14778,10 +14922,19 @@
      "source_type": "primary_official",
      "id": "tx-2026-0109-c8",
      "fetched": "2026-09-02"
+    },
+    {
+     "text": "A witness's own published testimony says it was presented to the committee on the reset date.",
+     "verbatim_quote": "A version of the following testimony was presented to the Texas Senate Committee on Economic Development on September 22, 2026.",
+     "source_url": "https://reason.org/testimony/preparing-the-texas-workforce-for-artificial-intelligence/",
+     "source_title": "Reason Foundation, Preparing the Texas workforce for artificial intelligence (testimony)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0109-c9"
     }
    ],
    "id": "tx-2026-0109",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-08-29",
@@ -14856,6 +15009,11 @@
     {
      "date": "2026-09-21",
      "note": "The interim charge on AI and the Texas workforce is still live and the committee has posted no replacement date for the hearing it called off. A reader watching for a rescheduled notice has nothing new to watch yet.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.",
      "checked": true
     }
    ]
@@ -16917,7 +17075,7 @@
     }
    ],
    "id": "tx-2026-0125",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-07",
@@ -16946,6 +17104,11 @@
     {
      "date": "2026-09-23",
      "note": "Whether the decommission notice still reads as it did is unconfirmed this run. The queues are still dated to close on October 1st on the record as it stands."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The decommission notice still dates the end of the queues to October 1st, now a week away. Nothing posted since pushes it back.",
+     "checked": true
     }
    ]
   },
@@ -17168,7 +17331,7 @@
     }
    ],
    "id": "tx-2026-0129",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-08",
@@ -17192,6 +17355,11 @@
     {
      "date": "2026-09-19",
      "note": "The city manager is still barred from buying a park camera or drone that depends on artificial intelligence. The progress update the resolution asks that officer for has not been published.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The resolution still bars the city manager from buying a park camera or drone that depends on artificial intelligence. The progress update it asks for has not been published.",
      "checked": true
     }
    ],
@@ -18949,7 +19117,7 @@
    "confidence": "high",
    "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
    "id": "tx-2026-0142",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-11",
@@ -18972,6 +19140,11 @@
     {
      "date": "2026-09-19",
      "note": "The course is still adopted for final reading and the published text still names a machine among the things a student is expected to do.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The adopted course text still names artificial intelligence tools among what a student is expected to understand about money.",
      "checked": true
     }
    ]
@@ -19011,7 +19184,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
@@ -19042,6 +19215,11 @@
     {
      "date": "2026-09-21",
      "note": "Both plate reader items still stand approved as revised. The text of the floor amendments is still unpublished, so what the council changed before it voted stays off the public record.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Both plate reader items remain approved as revised. The floor amendments are still unpublished, so what the council changed before voting is still not on the public record.",
      "checked": true
     }
    ],
@@ -19138,7 +19316,7 @@
     "closes": null
    },
    "id": "tx-2026-0148",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
    "history": [
@@ -19160,6 +19338,11 @@
     {
      "date": "2026-09-21",
      "note": "The department's list of mining proving ground projects still carries the Navasota site, and the university project attached to it is described the same way. Nothing has been added about when the test pit gets built.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The department still lists the Navasota proving ground with the same university partner attached. No construction date for the test pit has appeared.",
      "checked": true
     }
    ],
@@ -19217,7 +19400,7 @@
     "closes": null
    },
    "id": "tx-2026-0149",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "confidence": "high",
    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
@@ -19239,6 +19422,11 @@
     {
      "date": "2026-09-21",
      "note": "The award still sits in the division that obligated it and its abstract still describes digital twins of small water systems. Neither the scope nor the recipient has moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The award to the engineering station is unchanged in scope and in recipient. Its abstract still describes digital twins of small community water systems.",
      "checked": true
     }
    ],
@@ -19568,7 +19756,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0152",
-   "last_verified": "2026-09-19",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-13",
@@ -19582,6 +19770,11 @@
     {
      "date": "2026-09-19",
      "note": "The provisional placements stand and the conditions attached to them are unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The provisional Batch Zero placements and the conditions attached to them are unchanged.",
      "checked": true
     }
    ]
@@ -19694,7 +19887,7 @@
     }
    ],
    "id": "tx-2026-0156",
-   "last_verified": "2026-09-20",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-14",
@@ -19707,6 +19900,11 @@
     {
      "date": "2026-09-20",
      "note": "The grid operator's user guide for the Verification RFI still carries the same rules for answering it. The notarized attestation, the response window and the transmission service provider's sole authority to submit all read as the record has them.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The user guide for the questionnaire still requires the notarized attestation and still leaves submission to the transmission service provider alone.",
      "checked": true
     }
    ]
@@ -19807,7 +20005,7 @@
     }
    ],
    "id": "tx-2026-0157",
-   "last_verified": "2026-09-20",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-14",
@@ -19820,6 +20018,11 @@
     {
      "date": "2026-09-20",
      "note": "The developer's account of what the Batch Zero list did to its five Texas projects still reads as the record took it. The project that came back in a different class than it was filed in is still described that way.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The developer's account to its shareholders of what Batch Zero did to its Texas projects reads as before. The project placed in a different class than it filed in is still described that way.",
      "checked": true
     }
    ]
@@ -20002,7 +20205,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-15",
@@ -20015,6 +20218,11 @@
     {
      "date": "2026-09-21",
      "note": "The rule on dynamic model quality is still with the commission rather than in force. The market rules page shows it pending and names the board's recommendation to approve as the last action taken. The Public Utility Commission of Texas is named as the body that takes it next. The presentation the risk list comes from still reads as the record holds it. That goes down to the ramp limit the draft rule will recommend and the modeling work the grid operator is doing with Texas A&M."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The board materials describing generator fatigue from AI training loads still read as the record took them.",
+     "checked": true
     }
    ]
   },
@@ -20080,7 +20288,7 @@
     }
    ],
    "id": "tx-2026-0160",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-15",
@@ -20094,6 +20302,11 @@
     {
      "date": "2026-09-21",
      "note": "The practice is still described as working toward one ambient listening platform rather than as having chosen one. No platform has been named and no adoption date has been set.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The physician group is still described as moving toward a single ambient documentation platform. It has named none and set no date.",
      "checked": true
     }
    ]
@@ -20169,7 +20382,7 @@
     }
    ],
    "id": "tx-2026-0161",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-15",
@@ -20183,6 +20396,11 @@
     {
      "date": "2026-09-21",
      "note": "The university's account still describes a tutor built to withhold the answer, and the federal award behind it is unchanged. The design choice that makes it unusual is still the one the account leads with.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The tutor is still described as built to hold back the answer, and the federal award behind it is unchanged.",
      "checked": true
     }
    ]
@@ -20551,7 +20769,7 @@
     }
    ],
    "id": "tx-2026-0165",
-   "last_verified": "2026-09-20",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-17",
@@ -20560,6 +20778,11 @@
     {
      "date": "2026-09-20",
      "note": "The university's announcement of the gift and of the college named for the donors still reads as the record took it. The endowments the gift creates are described as they were.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The gift and the college named for its donors still read as the university announced them.",
      "checked": true
     }
    ]
@@ -20695,7 +20918,7 @@
     }
    ],
    "id": "tx-2026-0166",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-18",
@@ -20710,12 +20933,17 @@
      "date": "2026-09-21",
      "note": "The registry entry still shows the trial recruiting at the three Texas campuses, under the same sponsor and by the same method of holding a phone against the abdomen.",
      "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The trial is still listed as recruiting at the same Texas campuses. A phone held against the abdomen is still the method under test.",
+     "checked": true
     }
    ]
   },
   {
    "title": "Hays County posts the sheriff's promise not to switch on AI report writing without coming back to the court",
-   "summary": "The Hays County Commissioners Court agenda for September 1st, 2026 carried an item acknowledging that the Hays County Sheriff's Office had committed not to activate or implement Axon Draft One. The agenda describes that product as a report writing feature inside a vendor platform. The commitment reaches any new AI based feature the same platform may later offer under the related contract. What makes the item unusual is the condition rather than the refusal. Operational use requires returning to this court for approval, so the decision stays with the elected body rather than with the office holding the contract. The vendor's own product page describes the feature as drafting a report narrative from body worn camera audio. That page says an officer has to review and approve one before it can be submitted. The county's own Court Minutes archive for 2026 carries nothing later than July 28th, so the disposition is not on the public record today.",
+   "summary": "The Hays County Commissioners Court agenda for September 1st, 2026 carried an item acknowledging that the Hays County Sheriff's Office had committed not to activate or implement Axon Draft One. The agenda describes that product as a report writing feature inside a vendor platform. The commitment reaches any new AI based feature the same platform may later offer under the related contract. What makes the item unusual is the condition rather than the refusal. Operational use requires returning to this court for approval, so the decision stays with the elected body rather than with the office holding the contract. The vendor's own product page describes the feature as drafting a report narrative from body worn camera audio. That page says an officer has to review and approve one before it can be submitted. Local reporting says the court voted three to two on September 15th to move the money it had set aside for a possible Axon contract. The money went to two more corrections officer positions. The county's own minutes of that vote are not yet published.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "Hays County Commissioners Court",
@@ -20729,12 +20957,17 @@
     "metro": "Austin-Round Rock-San Marcos, TX",
     "on_ercot": true
    },
-   "status": "pending",
+   "status": "decided",
    "key_dates": [
     {
      "date": "2026-09-01",
      "kind": "hearing",
      "note": "Commissioners Court meeting the item was set for"
+    },
+    {
+     "date": "2026-09-15",
+     "kind": "decided",
+     "note": "Court moved the money set aside for a possible Axon contract, according to local reporting. The county's minutes of the vote are not yet published"
     }
    ],
    "public_access": {
@@ -20807,6 +21040,24 @@
      "source_type": "primary_official",
      "fetched": "2026-09-18",
      "id": "tx-2026-0168-c7"
+    },
+    {
+     "text": "The court voted to move the money it had set aside for an Axon contract into jail staffing.",
+     "verbatim_quote": "In a 3-2 vote on Sept. 15, the court approved a motion to reallocate the determined funding for a future Axon contract, requesting the funds be used to pay for two additional corrections officers in the Hays County Sheriff’s Office.",
+     "source_url": "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/",
+     "source_title": "Community Impact, Hays County commissioners reallocate funds away from potential Axon AI contract",
+     "source_type": "journalism",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0168-c8"
+    },
+    {
+     "text": "Local reporting says the court will no longer consider the contract.",
+     "verbatim_quote": "The court will no longer consider a future 10-year, $4.5 million contract with the company.",
+     "source_url": "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/",
+     "source_title": "Community Impact, Hays County commissioners reallocate funds away from potential Axon AI contract",
+     "source_type": "journalism",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0168-c9"
     }
    ],
    "history": [
@@ -20825,6 +21076,10 @@
     {
      "date": "2026-09-23",
      "note": "The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The court moved the money it had set aside for a possible Axon contract into two corrections officer positions on September 15th. Local reporting puts the vote at three to two. The sheriff's commitment not to switch on the report writing feature now sits beside a budget with nothing in it for the contract. The county's own minutes of the vote are not yet published."
     }
    ],
    "last_verified": "2026-09-18",
@@ -20834,8 +21089,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-23",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-24",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
    }
   },
   {
@@ -20950,8 +21205,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-23",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-24",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
    }
   },
   {
@@ -21057,8 +21312,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-23",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-23. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-24",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
    }
   },
   {
@@ -21466,7 +21721,7 @@
     }
    ],
    "id": "tx-2026-0167",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-18",
@@ -21475,6 +21730,11 @@
     {
      "date": "2026-09-21",
      "note": "The university's account of the flood node still reads as the record holds it. The model still runs on the device rather than somewhere a network has to reach, which is the whole point of the design.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The flood sensor is still described as running its model on the device itself. No network has to reach it for the model to work.",
      "checked": true
     }
    ]
@@ -21696,7 +21956,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-09-23",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-20",
@@ -21706,6 +21966,11 @@
     {
      "date": "2026-09-23",
      "note": "Texas Southern still leads its regional node in the network.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-24",
+     "note": "Texas Southern is still the lead institution for its regional node, and the award record shows no change to the network around it.",
      "checked": true
     }
    ]
@@ -22033,11 +22298,16 @@
     }
    ],
    "id": "tx-2026-0180",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-21",
      "note": "Admitted on the city's own notice, which gives both the direction and the date the department stopped. What happens to the images already collected is not stated anywhere the city has published."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The city's notice still says the department stopped using the cameras and the city stopped paying for them. What becomes of images already collected is still unstated.",
+     "checked": true
     }
    ]
   },
@@ -22111,11 +22381,16 @@
     }
    ],
    "id": "tx-2026-0181",
-   "last_verified": "2026-09-21",
+   "last_verified": "2026-09-24",
    "history": [
     {
      "date": "2026-09-21",
      "note": "Admitted on the company's own announcement. Nothing here has been through a regulator and the producer has an equity stake in the vendor whose system it is buying. Every claim about the system's results is a claim by a party with an interest in it. Nothing reaches an engineer on the company's own timeline until about day 90."
+    },
+    {
+     "date": "2026-09-24",
+     "note": "The producer's announcement still commits its Ward County operations to a vendor it holds a stake in. Every claim about results is still the company's own.",
+     "checked": true
     }
    ]
   },
@@ -22212,6 +22487,363 @@
     {
      "date": "2026-09-23",
      "note": "The Governor's own site refuses the automated fetcher in its exclusion file, so the directive is cited through the Texas Tribune, CBS News Texas and Troutman Pepper Locke instead. Three conditions the release set out and its closing line on incentives are not carried, since none of those three reproduces them."
+    }
+   ]
+  },
+  {
+   "title": "FAA takes comment until October 11th on letting Zipline fly drone deliveries around the clock over five Texas metros",
+   "summary": "The Federal Aviation Administration has published a draft environmental assessment of Zipline International's request to begin commercial drone package delivery in Amarillo, Austin, El Paso, Houston and San Antonio. Approving the change to the company's air carrier operating approvals is the federal action under review. The draft assesses up to 220 chargers, 4,400 pickup dropboxes and 220,000 deliveries a day across the five areas, flown around the clock at about 330 feet above the ground. Routes are generated by software. At each stop a pod lowers on a line and evaluates the drop spot automatically. When the pod can't identify the target and judge the spot itself, an image is sent to an operator. The draft finds no significant noise impact. Comments are open until October 11th, 2026.",
+   "topic": "defense-and-federal",
+   "decider": {
+    "name": "Federal Aviation Administration",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Armstrong",
+     "Atascosa",
+     "Austin",
+     "Bandera",
+     "Bastrop",
+     "Bexar",
+     "Blanco",
+     "Brazoria",
+     "Brazos",
+     "Burleson",
+     "Burnet",
+     "Caldwell",
+     "Carson",
+     "Chambers",
+     "Colorado",
+     "Comal",
+     "El Paso",
+     "Fort Bend",
+     "Galveston",
+     "Grimes",
+     "Guadalupe",
+     "Harris",
+     "Hays",
+     "Kendall",
+     "Kerr",
+     "Liberty",
+     "Matagorda",
+     "Medina",
+     "Montgomery",
+     "Potter",
+     "Randall",
+     "Robertson",
+     "San Jacinto",
+     "Travis",
+     "Waller",
+     "Walker",
+     "Washington",
+     "Wharton",
+     "Williamson",
+     "Wilson"
+    ],
+    "on_ercot": null
+   },
+   "status": "open",
+   "key_dates": [
+    {
+     "date": "2026-09-11",
+     "kind": "comment_opens",
+     "note": "Draft environmental assessment made available for public review"
+    },
+    {
+     "date": "2026-10-11",
+     "kind": "comment_closes",
+     "note": "Public comment period on the draft closes"
+    }
+   ],
+   "public_access": {
+    "room": "open_comment",
+    "how": "Anyone can comment on the draft by email until October 11th, 2026, naming the Zipline Texas Draft EA in the subject line. The address is on the agency's drone environmental review page. Written comments can also go by mail to the agency's environmental office in Washington. The draft and its noise study are posted on the agency's drone environmental review page, and every substantive comment is to be answered in the final assessment.",
+    "url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones",
+    "closes": "2026-10-11"
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "Zipline is asking the FAA for approval to begin commercial delivery in five Texas metro areas.",
+     "verbatim_quote": "Zipline International Inc. (Zipline) is seeking FAA approval to begin commercial package delivery operations in five Texas metropolitan areas: Amarillo, Austin, El Paso, Houston, and San Antonio.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones",
+     "source_title": "FAA, Public Involvement and Environmental Review for Drone Operations",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c1"
+    },
+    {
+     "text": "The agency's page sets the comment deadline.",
+     "verbatim_quote": "Please review the Draft EA and submit your comments by October 11, 2026.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones",
+     "source_title": "FAA, Public Involvement and Environmental Review for Drone Operations",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c2"
+    },
+    {
+     "text": "The draft was opened for a thirty day review.",
+     "verbatim_quote": "The Draft EA will be available for a 30-day public review beginning on Friday, September 11, 2026.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c3"
+    },
+    {
+     "text": "Comments go to the agency by email.",
+     "verbatim_quote": "Comments on the Draft EA may be submitted electronically",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c4"
+    },
+    {
+     "text": "Every substantive comment is to be answered in the final assessment.",
+     "verbatim_quote": "All substantive comments received will be responded to in the final EA.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c5"
+    },
+    {
+     "text": "The draft's table gives the maximum chargers, dropboxes, deliveries and transits per day in each metro and in total.",
+     "verbatim_quote": "Houston 9,932 65 1,300 65,000 195,000 San Antonio 3,326 65 1,300 65,000 195,000 Austin 2,498 30 600 30,000 90,000 Amarillo 1,199 30 600 30,000 90,000 El Paso 629 30 600 30,000 90,000 Total 17,584 220 4,400 220,000 660,000",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c6"
+    },
+    {
+     "text": "Operations would run all day, every day.",
+     "verbatim_quote": "Zipline is proposing to conduct operations 24 hours a day, 7 days per week, including holidays",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c7"
+    },
+    {
+     "text": "The aircraft cruises at 330 feet above ground level.",
+     "verbatim_quote": "Zipline UAs would generally be operated at an altitude of 330 feet above ground level (AGL) while en route to and from Charger, Dropbox, and delivery locations.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c8"
+    },
+    {
+     "text": "The aircraft is described as highly automated.",
+     "verbatim_quote": "The Zipline UA is a highly automated, electrically powered vertical takeoff and landing aircraft capable of hover and forward flight",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c9"
+    },
+    {
+     "text": "Routes are generated by software.",
+     "verbatim_quote": "Routes are generated by software that takes into consideration factors including weather risk, wind direction, and population density.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c10"
+    },
+    {
+     "text": "The pod identifies the delivery target itself, and an image goes to an operator when it can't.",
+     "verbatim_quote": "If the pod is unable to automatically identify the delivery target and evaluate its suitability, an image is sent to an operator for real-time evaluation.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c11"
+    },
+    {
+     "text": "The draft finds delivery noise does not exceed the threshold it uses.",
+     "verbatim_quote": "At a rate of 400 average daily deliveries per day, the maximum noise exposure would be no more than DNL 58.1 dB at any distance from a delivery point and would not exceed DNL 59.7 dB at any point.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c12"
+    },
+    {
+     "text": "The draft names the counties the five metro areas reach into.",
+     "verbatim_quote": "These metro areas include portions of Armstrong, Atacosta, Austin, Bandera, Bastrop, Bexar, Blanco, Brazoria, Brazos, Burleson, Burnet, Caldwell, Carson, Chambers, Colorado, Comal, El Paso, Fort Bend, Galveston, Grimes, Guadalupe, Harris, Hays, Kendall, Kerr, Liberty, Matagorda, Medina, Montgomery, Potter, Randall, Roberston, San Jacinto, Travis, Waller, Walker, Washington, Wharton, Williamson, and Wilson Counties.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c13"
+    },
+    {
+     "text": "The draft concludes the operations would not have a significant noise impact.",
+     "verbatim_quote": "Based on the noise analysis, and the above project restrictions, the proposed action would not have a significant noise impact.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c14"
+    },
+    {
+     "text": "Zipline is seeking to amend its air carrier operations specifications and other FAA approvals to begin delivery in the Texas metros.",
+     "verbatim_quote": "Zipline is seeking to amend its air carrier Operation Specifications (OpSpecs) and other FAA approvals necessary to begin commercial drone package delivery operations in multiple Texas metro areas.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c15"
+    },
+    {
+     "text": "At a delivery the pod is winched down to the ground at the delivery point.",
+     "verbatim_quote": "Droid is winched down to the ground at the delivery point",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c16"
+    },
+    {
+     "text": "The pod automatically controls its position and evaluates the delivery location.",
+     "verbatim_quote": "The pod is released from the Zipline UA and lowered to the ground via the winch line. During pod descent, the pod automatically controls its position laterally and evaluates the delivery location. If the delivery location is clear, the pod would continue to descend and deliver the payload at the delivery target.",
+     "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
+     "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0186-c17"
+    }
+   ],
+   "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
+   "id": "tx-2026-0186",
+   "last_verified": "2026-09-24",
+   "history": [
+    {
+     "date": "2026-09-24",
+     "note": "Admitted on the agency's own draft and its own review page, with the comment window open. The draft was prepared by the applicant under the agency's supervision, and the operating approvals it assesses have not been granted."
+    }
+   ]
+  },
+  {
+   "title": "PUCT adopts the SB 6 large load interconnection rule, requires $50,000 per megawatt of security and drops the interconnection fee",
+   "summary": "The Public Utility Commission of Texas adopted new 16 TAC §25.194, the large load interconnection standards Senate Bill 6 required. Before a large load can be included in an ERCOT interconnection study, the customer must sign an intermediate agreement, make certain disclosures and post financial security of $50,000 per megawatt. The rule reaches new interconnections of 75 megawatts or more. The commission removed the interconnection fee its proposal carried, and says the financial security that remains protects against stranded infrastructure costs rather than being a fee. The order was filed on September 18th, 2026 and the Texas Register receipt gives an effective date of October 8th, 2026.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Public Utility Commission of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-18",
+     "kind": "ordered",
+     "note": "Order adopting new 16 TAC §25.194 filed"
+    },
+    {
+     "date": "2026-10-08",
+     "kind": "effective",
+     "note": "Effective date given on the Texas Register acknowledgement"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The rule is adopted and the comment stage is over. The order, all of the comments filed against the proposal and the commission's response to each are public in Project 58481 on the commission's filing system.",
+    "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58481&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The filing index lists the adoption order.",
+     "verbatim_quote": "ORDER ADOPTING NEW 16 TAC §25.194",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58481&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange, Project 58481 filings",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c1"
+    },
+    {
+     "text": "The rule implements the statute SB 6 enacted.",
+     "verbatim_quote": "The new rule implements Public Utility Regulatory Act (PURA) §37.0561 as enacted by Senate Bill (SB) 6 during the Texas 89th Regular Legislative Session.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c2"
+    },
+    {
+     "text": "Before an interconnection study, a large load must sign an intermediate agreement, disclose and post security.",
+     "verbatim_quote": "The new rule requires a large load customer, before the large load customer can be included in an ERCOT interconnection study, to execute an intermediate agreement, provide certain disclosures, and post financial security in the amount $50,000 per megawatt (MW).",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c3"
+    },
+    {
+     "text": "The rule applies to new interconnections at or above 75 megawatts.",
+     "verbatim_quote": "(1) a new interconnection that is equal to or exceeds 75 megawatts (MW)",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c4"
+    },
+    {
+     "text": "The commission removed the interconnection fee.",
+     "verbatim_quote": "EDF's recommendation with respect to the interconnection fee is moot because the commission modifies the adopted rule to remove the interconnection fee.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c5"
+    },
+    {
+     "text": "The commission says the security that remains is not a fee.",
+     "verbatim_quote": "Financial security remains a requirement to protect against stranded infrastructure costs and is not a \"fee.\"",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c6"
+    },
+    {
+     "text": "The Texas Register receipt gives the effective date.",
+     "verbatim_quote": "Effective Date: 10/08/2026",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_219_1684678.PDF",
+     "source_title": "PUCT Project 58481, Texas Register acknowledgement of receipt",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c7"
+    },
+    {
+     "text": "The order was filed on September 18th, 2026.",
+     "verbatim_quote": "Filed Date - 2026-09-18 01:19:42 PM",
+     "source_url": "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF",
+     "source_title": "PUCT Project 58481, Order Adopting New 16 TAC §25.194, filed September 18th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-24",
+     "id": "tx-2026-0187-c8"
+    }
+   ],
+   "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
+   "id": "tx-2026-0187",
+   "last_verified": "2026-09-24",
+   "history": [
+    {
+     "date": "2026-09-24",
+     "note": "Admitted on the commission's own adoption order and the Texas Register receipt. The rule is adopted and takes effect on the date that receipt gives."
     }
    ]
   }

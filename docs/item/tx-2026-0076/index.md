@@ -15,7 +15,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf
 
-- Last checked: 2026-09-19
+- Last checked: 2026-09-24
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · The route the commission approved for the second line is unchanged, and the filing index is still taking filings on it.
 - 2026-09-16 · The second Oncor docket is live and its case style still names the Longshore Switch to Drill Hole Switch line across its ten west Texas counties. No order disposing of it has appeared.
 - 2026-09-19 · The second line is still approved as the commission ordered it. The docket goes on taking filings, so each count of them belongs to the day it was read.
+- 2026-09-24 · The second line's approval stands as the commission ordered it. Filings keep arriving in the docket without reopening the order.
 
 ## Evidence
 

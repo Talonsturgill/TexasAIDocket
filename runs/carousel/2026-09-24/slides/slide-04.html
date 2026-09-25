@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-09-24, frame 4 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's
+     declared goldenHour world. THE EXCEPTION. The yard straight down from a few metres up, the kind of image the draft says goes to an operator. No reticle, no interface, because the draft describes none. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#131A24; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.03em; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.024em; color:#F4F1EA; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,14,26,0.35); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#F2F4F6; z-index:10;
+          text-shadow:0 0 5px rgba(8,14,26,0.8), 0 1px 14px rgba(8,14,26,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6EBEF;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,14,26,0.85), 0 1px 14px rgba(8,14,26,0.6); }
+  .hook { left:80px; top:150px; width:700px; } .dek { left:82px; width:600px; }
+  .haze { position:absolute; left:0; top:0; width:900px; height:560px; z-index:5; background:linear-gradient(180deg, rgba(12,20,34,0.50) 0%, rgba(12,20,34,0.46) 68%, rgba(12,20,34,0) 100%); -webkit-mask-image:linear-gradient(90deg, #000 72%, transparent 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:200px; z-index:5; background:linear-gradient(0deg, rgba(12,20,34,0.54) 0%, rgba(12,20,34,0.5) 55%, rgba(12,20,34,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">When it can't tell</h1>
+<p class="dek" data-follow="26">If the pod can't identify the target and judge it, the draft says an image goes to an operator for real-time evaluation. The draft gives no figure for how often.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-24-droneline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+const FIG = {"_note": "Every value is extracted from a claim's quote by compute.py, run at build time. Per day values are MAXIMUMS the draft assesses, never deliveries flown. Metre values are geometry only and are never printed; a reader sees the draft's own units.", "metros": {"Houston": {"area_sq_mi": 9932, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "San Antonio": {"area_sq_mi": 3326, "chargers": 65, "dropboxes": 1300, "deliveries_max": 65000, "transits_max": 195000, "from": ["c7"]}, "Austin": {"area_sq_mi": 2498, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "Amarillo": {"area_sq_mi": 1199, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}, "El Paso": {"area_sq_mi": 629, "chargers": 30, "dropboxes": 600, "deliveries_max": 30000, "transits_max": 90000, "from": ["c7"]}}, "total": {"area_sq_mi": 17584, "chargers": 220, "dropboxes": 4400, "deliveries_max": 220000, "transits_max": 660000, "from": ["c7"], "basis": "the draft's maximum"}, "transits_per_delivery": {"value": 3, "word": "three", "from": ["c8"]}, "per_charger_max": {"value": 1000, "from": ["c24"]}, "cruise": {"feet": 330, "metres": 100.584, "from": ["c11"], "rounding": "feet times 0.3048, three decimals, geometry only"}, "aircraft": {"span_ft": 7.8, "height_ft": 1.8, "length_ft": 8, "span_m": 2.377, "height_m": 0.549, "length_m": 2.438, "propellers": 5, "weight_lb": 63, "payload_lb": 8, "from": ["c13", "c14"], "basis": "approximately, as the draft says"}, "delivery_hover": {"seconds": 75, "feet": 330, "from": ["c19"]}, "day": {"hours": 24, "day_pct": 95, "night_pct": 5, "from": ["c9", "c10"]}, "noise": {"threshold_dnl_db": 65, "significant_step_db": 1.5, "delivery_dnl_db_any_distance": 58.1, "delivery_dnl_db_cap": 59.7, "at_deliveries_per_location": 400, "screening_dnl_db": 59.7, "lift_existing_dnl_db": 63.5, "lift_added_dnl_db": 59.7, "from": ["c20", "c21", "c26", "c35", "c37"]}, "charger_docks": {"max": 72, "typical": 36, "from": ["c32"], "basis": "a Charger is a site of docks, not one mast"}, "charger_towers": {"docks": 36, "towers_word": "three", "from": ["c34"]}, "dropbox_setback": {"feet": 50, "metres": 15.24, "load_per_day": 300, "from": ["c22"]}, "chargers": {"houston": 65, "san_antonio": 65, "austin": 30, "amarillo": 30, "el_paso": 30, "from": ["c7"]}, "deliveries": {"houston": 65000, "san_antonio": 65000, "austin": 30000, "amarillo": 30000, "el_paso": 30000, "from": ["c7"], "basis": "the draft's maximum per day"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "The operator step", counter: "04 / 09", src: "c18   TEXAS AI DOCKET", ink: '#E6EBEF' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 110, maxLines: 2 });
+  LINE.follow();
+  const TXT = init(THREE), L = LINE, gl = L.glCanvas();
+  const W = TXT.deckWorld();
+  const M = L.mats(TXT, THREE);
+
+  /* STRAIGHT DOWN from about the height the pod is released at over a yard, looking at the lawn
+   * where it would land. The fence's long evening shadow lies across the top, where the type is. */
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.4], exposure: W.exposure * 3.1, tone: W.tone, fov: 52 });
+  R.camera.up.set(0, 0, -1);
+  TXT.frame(R, { from: [0.4, 7.4, 0.6], look: [0.4, 0, 0.61] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 60, shadowFar: 160 });
+  TXT.ground(R, { surface: 'grass', size: 300, tile: 2.2, seed: 14 });
+  /* the rear fence runs across the top of the view and throws its shadow over the lawn, a side
+   * fence comes in from the left, the back step and patio at the bottom */
+  TXT.add(R, L.fence(THREE, TXT, M, [-9, 2.4], [9, -1.6]));
+  TXT.add(R, L.fence(THREE, TXT, M, [3.4, -0.2], [9, 8]));
+  const patio = TXT.roundedBox(6.5, 0.12, 2.6, 0.02, M.concrete); patio.position.set(3.6, 0.06, 3.8); TXT.add(R, patio);
+  const step = TXT.roundedBox(2.2, 0.2, 0.7, 0.02, M.concrete); step.position.set(3.0, 0.16, 2.4); TXT.add(R, step);
+  /* THE POD, seen from above as it comes down over the lawn it is judging, its line rising back
+   * toward the aircraft and its own long shadow on the grass */
+  const pod = L.pod(THREE, TXT, M, {}); pod.position.set(1.25, 2.6, 1.3); pod.rotation.y = 0.7; TXT.add(R, pod);
+  TXT.add(R, L.line(THREE, M, [1.25, 2.86, 1.3], [1.25, 90, 1.3], 0.012), { cast: false });
+  const turf = TXT.scatter(R, { kind: 'grass', count: 1400, area: [-4, -3.4, 5, 3.4], avoid: [[-4, -3.6, 2.6, 0.2]], seed: 6, scale: [0.2, 0.45], near: false, clumping: 0.6 });
+  TXT.weather(R, {});
+  const cx = L.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

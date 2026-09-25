@@ -1,0 +1,53 @@
+{
+ "lens": "reader",
+ "round": 4,
+ "weighted_score": 6.642,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.8,
+   "weight": 0.22,
+   "why": "Frame 6 fails the showstopper test at 432 px. Five black pads of pin-like masts sit on an empty brown plain. The haze band is hidden behind the dek, and the bottom 40 percent of the render (y 1250 to 1800 of 2000 displayed) is bare ground. That caps this criterion at 6. Frame 4 is a flat top-down lawn with starburst grass sprites. The pod reads as a white ball with a cyan cue stick, and nothing tells a reader that this is the image an operator would be sent, which is what the storyboard says it is. Frame 5's figure is a mannequin beside a beige slab. Frames 1, 2 and 9 do stand in a place at an hour. Frame 2's subdivision under the lit line and frame 9's open gate with the box in the low sun are the strongest in the deck."
+  },
+  "deck_coherence": {
+   "score": 6.3,
+   "weight": 0.12,
+   "why": "Golden hour and the cyan winch line hold across 1, 2, 3, 7 and 9, and the line changes state as it should. Frame 4 breaks the value track. Its machine_qa bands are 0.83/0.94/0.83, against 0.31 to 0.47 top bands on 3 and 5, so the strip strobes light at 4. Frame 6 is an unlit brown plain and does not look like the backyard world on either side of it. Frame 5 moves to a cool strip-centre wall. That is two frames clearly outside and one borderline."
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "why": "Every numeral I checked traces to a primary quote. That includes the frame 8 table rows, which match the c7 quote cell for cell, 59.7 (c21, c35), 400 (c29), 36 and twelve (c34), and 63, 7.8 and 8 (c13, c14). There are stretches, though none is a hard fail. Frame 7 says 'homes would get far fewer', but c29 says 'single family homes', and an apartment complex is also homes. Frame 4 drops the source's 'automatically'. Frame 6 draws Austin's 30 Chargers from dead-on, so its back rows hide behind the front five as dark ghosts. At feed size, Austin reads as clearly fewer than Amarillo's and El Paso's 30, a visual misstatement of equal values. Frame 8's flat headline 'Zipline prepared it' under 'ITS OWN WORDS' invites a 'graded its own homework' reading. The c6 note shows the draft cites a statute for that arrangement (42 U.S.C. 4336a(f)), and no frame says so."
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "why": "The deck names the body (FAA), the deadline (October 11th on 1 and 9) and the exact action: frame 9 gives the email address and the subject line. That is a real next step. But the cover names neither Zipline nor a city. 'The pod checks the spot' plus 'a Texas yard' does not tell a Houston or El Paso scroller that this is their city. The five metros first appear in frame 6's dek, and Zipline first appears in a headline on frame 8. The comment the deck steers toward (how often an operator gets an image) is narrow. The draft's 24/7 operations and night share (c9, c10 are verified and unused) are what a household under the route would ask about. No county is named."
+  },
+  "sequence_and_momentum": {
+   "score": 6.4,
+   "weight": 0.1,
+   "why": "Read as headlines, 1 'The pod checks the spot' and 3 'It judges the yard' are the same beat twice. Frame 5 '63 pounds, fully loaded' is a spec-sheet aside between the operator beat and the scale beat. The turn, 8 'Zipline prepared it', arrives at frame 8 of 9 without saying why it matters. The close lands well: date, address, a gate opening on a delivered box."
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "why": "Clean and plain: 'When it can't tell' and 'It holds at 330 feet'. The caption is disciplined and attributes everything ('The draft says...'). It is also flat and rarely regional. The only Texas texture is 'a Texas yard', and the caption opener 'A pod comes down 330 feet on a line.' has no pull. On register, a little flat."
+  },
+  "variety": {
+   "score": 7.3,
+   "weight": 0.1,
+   "why": "Nothing in topics.json covers drone delivery or a NEPA draft EA, so both the subject and the instrument are new to the window. The nearest neighbour is no. 18, the Austin parks drone clause, and that is different in kind. The familiar moves are the comment-window close (as in no. 6) and an absence at the spine's end ('gives no figure for how often' on 4, 9 and the caption close), which the ledger has asked runs to stop leaning on since no. 11."
+  }
+ },
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the cover dek to name Zipline and the five metros ('Zipline wants FAA approval to fly deliveries over Houston, San Antonio, Austin, Amarillo and El Paso. The FAA takes comment until October 11th.'), because the one frame every scroller sees now tells a Texan neither whose aircraft it is nor that it is their city.",
+ "other_findings": [
+  "Frame 6: a single centred perspective camera makes Austin's block (30) read as far fewer than Amarillo's and El Paso's (also 30). The round 4 change meant to make depth carry the count did so for the outer blocks and broke it for the middle one. Raise and centre the camera, or give each block the same view angle.",
+  "Frame 4's concept (this top-down view IS the image sent to an operator) is invisible to a reader. No line of copy or visual cue says so, so the frame reads as a ball on a lawn.",
+  "storyboard.md still says the line is on frames 1, 2, 3 and 7 and that frame 4 'sees' no line. Frame 4 now draws it (round 4 change). The dossier's continuity paragraph is stale even though panel_ready reports that every dossier describes the frame made.",
+  "Frame 8's kicker 'ITS OWN WORDS' sits over a page the dek admits is composited from passages across the draft. That is disclosed, but a reader seeing the clipboard at feed size takes it as one real page.",
+  "machine_qa: 0 fails. The 27 canvas raster text warnings on frame 8 mean its table and quotes are invisible to numeral_lint and copy_sync. I checked them by eye against the c7 and c6 and c27 quotes and they match.",
+  "No hard fail found. ship is false because my weighted score, 6.642, is under the 8.0 bar. This is a threshold dissent, not a fault."
+ ]
+}
