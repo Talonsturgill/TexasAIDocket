@@ -1490,7 +1490,7 @@ export function install(K, THREE, TXT) {
   K.define('crowd', {
     size: [8, 1.9, 5.3],
     options: { seed: 1, n: 12, detail: 'auto', area: [8, 5], roles: ['resident'], poses: ['stand', 'stand', 'stand', 'walk', 'walk', 'hands_on_hips', 'look_up'], face: null },
-    note: 'N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, else roughly +z.',
+    note: 'N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, in the frame of the crowd itself (kept in place, not recentred), else roughly +z.',
     make(o, r) {
       const n = o.n || 12, area = o.area || [8, 5], roles = o.roles || ['resident'], poses = o.poses || ['stand', 'stand', 'stand', 'walk', 'walk', 'hands_on_hips', 'look_up'];
       const G = new THREE.Group(), placed = [];
@@ -1504,6 +1504,8 @@ export function install(K, THREE, TXT) {
         p.rotation.y = o.face ? Math.atan2(o.face[0] - x, o.face[1] - z) + (r() - 0.5) * 0.4 : (r() - 0.5) * 0.9;
         G.add(p);
       }
+      // `face` is a point in the crowd's own frame, so K.make must not recentre the frame under it
+      if (o.face) G.userData.keepOrigin = true;
       return G;
     },
   });

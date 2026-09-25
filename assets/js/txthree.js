@@ -907,6 +907,12 @@ export function init(THREE) {
   }
   TXT.contact = function (R, obj, o) {
     o = o || {};
+    // A GROUND IS NOT AN OBJECT STANDING ON ONE. Terrain, a creek bed or a shoreline (tagged
+    // txGround, or publishing heightAt) would get a flat black plane the size of its whole
+    // footprint. The kit's terrain said "never call TXT.contact" in prose; this makes it true.
+    let ground = !!(obj.userData && obj.userData.heightAt);
+    obj.traverse((c) => { if (c.userData && c.userData.txGround) ground = true; });
+    if (ground) return [];
     const q = obj.quaternion.clone(), p = obj.position.clone();
     obj.quaternion.identity(); obj.position.set(0, 0, 0); obj.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(obj);

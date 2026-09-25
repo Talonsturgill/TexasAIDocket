@@ -801,7 +801,7 @@ export function install(K, THREE, TXT) {
       const petM = mat('petiole', () => new THREE.MeshStandardMaterial({ color: 0x8a8a5a, roughness: 0.7 }));
       const fan = fanGeo(32, 5, 1.12, 1.7, 0.42, 0.34, 71), dead = fanGeo(14, 3, 0.9, 1.2, 0.3, 0.12, 73);
       const pet = new THREE.CylinderGeometry(0.018, 0.035, 1, 6); pet.translate(0, 0.5, 0); pet.rotateZ(-Math.PI / 2);   // along +x, length 1
-      const live = 30 + Math.floor(r() * 5), deadN = opt(o, 'skirt', true) ? 46 : 8;
+      const live = 30 + Math.floor(r() * 5), deadN = opt(o, 'skirt', true) ? 46 : 0;   // false means no petticoat at all
       const imF = new THREE.InstancedMesh(fan, green, live), imP = new THREE.InstancedMesh(pet, petM, live);
       const imD = new THREE.InstancedMesh(dead, brown, deadN);
       const Mx = new THREE.Matrix4(), M2 = new THREE.Matrix4(), q = new THREE.Quaternion(), c = new THREE.Color();
@@ -832,7 +832,7 @@ export function install(K, THREE, TXT) {
         Mx.compose(base, q, new V3(s * 1.1, s, s * 0.8)); imD.setMatrixAt(i, Mx);
         c.setRGB(0.8 + r() * 0.3, 0.75 + r() * 0.3, 0.7 + r() * 0.25); imD.setColorAt(i, c);
       }
-      [imF, imP, imD].forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; g.add(m); });
+      [imF, imP, imD].filter((m) => m.count > 0).forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; g.add(m); });
       return g;
     },
   });
