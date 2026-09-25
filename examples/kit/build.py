@@ -74,6 +74,8 @@ window.renderReady = (async () => {
   const dir = new THREE.Vector3(__DIR__).normalize();
   const from = c.clone().add(dir.multiplyScalar(dist)); from.y = Math.max(from.y, 1.6);
   TXT.frame(R, { from: [from.x, from.y, from.z], look: [c.x, c.y * 0.9, c.z] });
+  // the engine's far plane is 1 km, and a model hundreds of metres long is framed from further away
+  R.camera.far = Math.max(R.camera.far, dist + rad * 4); R.camera.updateProjectionMatrix();
   TXT.sky(R);
   const rig = JSON.parse(JSON.stringify(W.rig)); rig.key.shadowSize = Math.max(12, rad * 2.2); rig.key.mapSize = 2048;
   TXT.deckRig(R, rig, { target: [c.x, 0, c.z], distance: Math.max(80, rad * 4), shadowFar: Math.max(200, rad * 10) });

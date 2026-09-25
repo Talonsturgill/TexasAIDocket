@@ -459,6 +459,7 @@ export function install(K, THREE, TXT) {
    * in the window on a V string, the outer phases hang off the bridge ends, six conductor bundles. */
   function horizontal765(o, r) {
     const g = new THREE.Group(), b = new Bld(), steel = M.galv(r()), hw = M.galvDark();
+    const kind = o.insulator || 'glass';                       // 765 kV V strings are glass unless asked
     const hs = o.height || 1;
     const yW = 22 * hs, yB = yW + 12.5, base = 5.2, waist = 1.6, pierH = 0.6;
     const ph = 14.6, Lb = ph + 3.6, str = 5.8;
@@ -492,7 +493,7 @@ export function install(K, THREE, TXT) {
       const foot = [px, yB - str * 0.92, 0];
       [-1, 1].forEach((s) => {
         const top = [px + s * 3.0, yB, 0];
-        vString(b, top, foot, hw);
+        vString(b, top, foot, hw, kind);
       });
       b.box(hw, 1.2, 0.08, 0.12, px, foot[1] - 0.05, 0);
       const ring = tpl('ring765', () => new THREE.TorusGeometry(0.62, 0.035, 8, 36));
@@ -516,14 +517,16 @@ export function install(K, THREE, TXT) {
     g.userData.attach = attach; g.userData.shield = shield; g.userData.kv = 765;
     return g;
   }
-  function vString(b, top, foot, hw) {
+  function vString(b, top, foot, hw, kind) {
     const d = V3(foot[0] - top[0], foot[1] - top[1], 0), len = d.length(); d.normalize();
-    const n = Math.floor((len - 0.8) / 0.146);
-    _q.setFromUnitVectors(Y, d.clone().negate());
-    for (let i = 0; i < n; i++) {
-      const p = V3(top[0], top[1], 0).add(d.clone().multiplyScalar(0.45 + i * 0.146));
-      const q = new THREE.Quaternion().setFromUnitVectors(Y, d.clone().negate());
-      b.geo(M.glass(), discGeo(), p, q);
+    const q = new THREE.Quaternion().setFromUnitVectors(Y, d.clone().negate());
+    if (kind === 'polymer') {
+      // the rod's lathe runs up +Y, which q turns to point back up the leg, so it is seated at the foot end
+      const L = len - 0.8;
+      b.geo(M.polymer(), polymerGeo(L, 0.085, 0.075), V3(top[0] + d.x * (0.45 + L), top[1] + d.y * (0.45 + L), 0), q);
+    } else {
+      const n = Math.floor((len - 0.8) / 0.146), mat = kind === 'porcelain' ? M.porc() : M.glass();
+      for (let i = 0; i < n; i++) b.geo(mat, discGeo(), V3(top[0], top[1], 0).add(d.clone().multiplyScalar(0.45 + i * 0.146)), q);
     }
     b.bar(hw, top, [top[0] + d.x * 0.45, top[1] + d.y * 0.45, 0], 0.02, 6);
     b.bar(hw, [foot[0] - d.x * 0.35, foot[1] - d.y * 0.35, 0], foot, 0.02, 6);
@@ -1147,7 +1150,7 @@ export function install(K, THREE, TXT) {
         for (let k = 0; k < 50; k += 1.5) b.box(M.black(), 0.9, 0.005, 0.02, xb + ps * 1.8, 0.175, -28 + k);
       });
       // firewalls between adjacent transformers
-      for (let i = 0; i < nb - 1; i++) b.box(M.concrete(), 0.35, 8.5, 9, (xs[i] + xs[i + 1]) / 2, 0.2, zT);
+      for (let i = 0; i < nb - 1; i++) b.box(M.concrete(), 0.35, 8.5, 9, (xs[i] + xs[i + 1]) / 2, 0.2 + 8.5 / 2, zT);
       // lightning masts at the corners, light poles
       [[X0 + 2, Z0 + 2], [X1 - 2, Z0 + 2], [X0 + 2, zT - 4], [X1 - 2, zT - 4]].forEach(([mx, mz]) => mast(b, mx, mz, 21));
       [[X0 + 2.5, Z1 - 3], [X1 - 2.5, 0]].forEach(([lx, lz]) => {

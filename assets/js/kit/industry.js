@@ -1105,7 +1105,7 @@ function installBig(K, THREE, TXT, H) {
         const z = zc - (rows - 1) * 10.5 / 2 + j * 10.5;
         for (let i = 0; i < per; i++) {
           const x = -L / 2 + 7 + (i + 0.5) * (L - 14) / per;
-          if (x > L / 2 - 40 && j === rows - 1 && false) continue;
+          if (x > L / 2 - 40 && j === rows - 1) continue;
           places.push([x, Hroof + 0.05, z, 0]);
         }
         // walkway pads between the rows, and a pipe rack feeding them
@@ -1448,7 +1448,7 @@ function installBig(K, THREE, TXT, H) {
    * ==================================================================================== */
   K.define('pump_jack', {
     size: [12, 7.4, 3],
-    options: { crank: 40, color: null, head: null, guard: null, motor: 'electric' },
+    options: { crank: 40, color: null, head: null, guard: null },
     note: 'Conventional beam pumping unit, true linkage: crank (degrees) poses crank, pitmans, beam, horsehead, bridle and polished rod together. Well on +x, prime mover on -x, side profile faces +z.',
     make(o, r) {
       const root = new THREE.Group();

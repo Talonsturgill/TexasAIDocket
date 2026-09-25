@@ -2349,6 +2349,9 @@ export function install(K, THREE, TXT) {
         const st = []; for (let a = 0; a < 16; a++) { const t = a / 16 * TAU; st.push(box(0.12, bh, 0.08, sm, bx + Math.cos(t) * (br + 0.03), 0, bz + Math.sin(t) * (br + 0.03))); st[st.length - 1].rotation.y = -t; }
         g.add(K.merge(st, K.finish.galvanized()));
       }
+      // the steel bins sit off one end, so the finished footprint is centred on the origin
+      const bb = new THREE.Box3().setFromObject(g), cx = (bb.min.x + bb.max.x) / 2;
+      g.children.forEach((c) => { c.position.x -= cx; });
       return g;
     },
   });
