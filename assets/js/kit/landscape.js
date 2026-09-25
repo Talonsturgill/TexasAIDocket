@@ -2262,7 +2262,7 @@ export function install(K, THREE, TXT) {
    * grain_elevator: a Panhandle concrete slip form elevator with its headhouse
    * ====================================================================================== */
   K.define('grain_elevator', {
-    size: [46, 58, 22],
+    size: [70.7, 61.2, 26.7],                              // measured at the defaults, steel bins included
     options: { bins: 5, rows: 2, height: 36, diameter: 7.3, headhouse: true, steelBins: 2, shed: true },
     note: 'A concrete slip form country elevator as on the Panhandle horizon: a double row of cylindrical bins with their interstices, a tall headhouse over the leg with small framed windows, a corrugated gallery along the bin tops, a caged ladder, a truck driveway shed with the dump, and corrugated steel bins with cone roofs beside it. Pale concrete with lift lines and rain streaks. Front (+z) is the driveway side.',
     make(o, r) {
