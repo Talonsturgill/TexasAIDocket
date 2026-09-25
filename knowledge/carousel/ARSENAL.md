@@ -128,7 +128,7 @@ const shot = await TXT.snapshot(R);
 
 THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
-`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then `const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. Metres, y up, origin at the footprint centre on the ground, front faces +z. Proof pages: `python3 examples/kit/build.py --family <family>`.
+`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then `const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. Metres, y up, origin at the footprint centre on the ground, front faces +z. Proof pages: `python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.
 
 **Builder helpers**, for new geometry made the kit's way:
 
@@ -398,7 +398,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
-| `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test | 15 |
+| `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
 | `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11 |
@@ -544,7 +544,7 @@ Measurements and plumbing, never a subject or a palette to copy.
 |---|---|---|
 | `examples/demo-deck/` |  | slides |
 | `examples/figure-bearing/` | Emit the three frames of the FIGURE BEARING reference. | contact_sheet.webp, slide-01.webp, slide-02.webp, slide-03.webp, build.py, figures.json, slides, storyboard.md |
-| `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | build.py |
+| `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
 | `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, into-the-sun.webp, build.py, slides |

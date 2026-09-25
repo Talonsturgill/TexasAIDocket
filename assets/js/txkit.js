@@ -72,9 +72,13 @@ export function initKit(THREE, TXT) {
   const MATS = new Map();
   K.mat = function (key, params, physical) {
     // textures and colours by identity, never by value: serialising a texture's image cost about
-    // a second per textured material (power builder, 2026-09-24)
-    const k = key + '|' + JSON.stringify(params || {}, (n, v) => (v && v.isTexture ? 'tex:' + v.uuid
-      : v && v.isColor ? 'col:' + v.getHexString() : v));
+    // a second per textured material (power builder, 2026-09-24). Normalised BEFORE stringify,
+    // because JSON.stringify calls a texture's own toJSON before any replacer sees it.
+    const norm = {};
+    for (const [n, v] of Object.entries(params || {})) {
+      norm[n] = v && v.isTexture ? 'tex:' + v.uuid : v && v.isColor ? 'col:' + v.getHexString() : v;
+    }
+    const k = key + '|' + JSON.stringify(norm);
     if (!MATS.has(k)) {
       const P = Object.assign({ roughness: 0.8, metalness: 0 }, params || {});
       MATS.set(k, physical ? new THREE.MeshPhysicalMaterial(P) : new THREE.MeshStandardMaterial(P));

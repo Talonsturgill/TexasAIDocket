@@ -1309,8 +1309,9 @@ export function install(K, THREE, TXT) {
       const zs = Array.from({ length: rows }, (_, j) => (j - (rows - 1) / 2) * pitch);
       zs.forEach((z) => {
         for (let i = 0; i < cols; i++) {
-          let x = -Lrow / 2 + 0.4 + (i + 0.5) * (mw + gap); if (i >= cols / 2) x += 0.8 - 0.4 * 0; else x -= 0;
-          list.push([x - 0.4 + (i >= cols / 2 ? 0.4 : 0), yT, z]);
+          // the 0.8 m drive gap splits evenly, half to each side of the centred drive
+          const x = -Lrow / 2 + 0.4 + (i + 0.5) * (mw + gap) + (i >= cols / 2 ? 0.4 : -0.4);
+          list.push([x, yT, z]);
         }
         // torque tube (square, turned with the modules), piles, bearings, drive
         b.beam(tube, [-Lrow / 2, yT, z], [Lrow / 2, yT, z], 0.13, 0.13, [0, Math.cos(tilt), Math.sin(tilt)]);

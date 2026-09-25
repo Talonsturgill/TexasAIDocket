@@ -48,7 +48,10 @@ window.renderReady = (async () => {
     const tb = performance.now();
     const g = K.make(name, opts || {});
     const bb = new THREE.Box3().setFromObject(g), sz = new THREE.Vector3(); bb.getSize(sz);
-    g.position.x = x + sz.x / 2 - (bb.min.x + bb.max.x) / 2 * 0; x += sz.x + Math.max(1.2, sz.x * 0.25);
+    // a run hundreds of metres long (a power line) pushes a lineup's camera so far back that the
+    // haze swallows every model, so a lineup leaves it to its own hero page
+    if (specs.length > 1 && Math.max(sz.x, sz.z) > 300) { stats.push({ name, skipped: 'too long for a lineup' }); continue; }
+    g.position.x = x + sz.x / 2 - (bb.min.x + bb.max.x) / 2; x += sz.x + Math.max(1.2, sz.x * 0.25);
     made.push(g); stats.push({ name, ms: Math.round(performance.now() - tb), size: [sz.x, sz.y, sz.z].map(v => +v.toFixed(2)) });
   }
   const off = x / 2; made.forEach(g => { g.position.x -= off; TXT.add(R, g); });

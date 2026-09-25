@@ -959,7 +959,7 @@ def build(root: Path = REPO_ROOT) -> str:
     L += ["`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then "
           "`const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. "
           "Metres, y up, origin at the footprint centre on the ground, front faces +z. Proof pages: "
-          "`python3 examples/kit/build.py --family <family>`.", ""]
+          "`python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.", ""]
     if kit["helpers"]:
         L += ["**Builder helpers**, for new geometry made the kit's way:", ""]
         L += table(["helper", "note"], [[code(h["sig"]), h["doc"]] for h in kit["helpers"]]) + [""]
