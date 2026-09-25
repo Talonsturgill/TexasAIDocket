@@ -151,7 +151,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 
 ### people (2)
 
-`assets/js/kit/people.js`, `person` is the scale reference every frame uses.
+`assets/js/kit/people.js`, `person` is the scale reference every frame uses: an articulated adult on a posed skeleton.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
@@ -306,7 +306,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `caliche_road` | 9 x 0.3 x 60 | length, width, curve, centerGrass, verge, ground | A pale caliche ranch road running along z: a crowned bed, two packed wheel tracks, a weedy centre strip, graded berms of loose gravel and grass verges that sink into TXT.ground. curve bows it sideways (fraction of length/4). |
 | `city_skyline` | 2400 x 300 x 1400 | city, dusk, lit, aerial, lowrise | A far skyline for dallas, houston, austin or san_antonio: massed towers with each city's broad character (Dallas: a mixed cluster and a ball topped observation tower; Houston: the tallest, densest dark glass; Austin: slender residential glass and a domed ... |
 | `creek` | 30 x 2 x 40 | length, width, bed, bank, water, ground | A Hill Country creek running along z: flat limestone bedrock with stepped ledges and potholes, gravel bars, slabs, grassy banks that rise 1 to 2.5 m and sink back into TXT.ground at the sides. water: dry, shallow (clear pools over the rock) or full. |
-| `crop_rows` | 20 x 1.4 x 30 | crop, growth, width, length, row, soil, ground | A field block of bedded rows running along z, 40 inch rows on South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green with flowers, 1 defoliated with open white bolls) or sorghum (growth 1 ripe rust heads). |
+| `crop_rows` | 20 x 1.4 x 30 | crop, growth, width, length, row, soil, ground, near, budget, verge | A field block of bedded rows running along z, 40 inch rows on raised beds of South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green and leafy with flowers and a few open bolls, 1 defoliated at harvest: knee to waist high, bushy dark brown plants ... |
 | `grain_elevator` | 46 x 58 x 22 | bins, rows, height, diameter, headhouse, steelBins, shed | A concrete slip form country elevator as on the Panhandle horizon: a double row of cylindrical bins with their interstices, a tall headhouse over the leg with small framed windows, a corrugated gallery along the bin tops, a caged ladder, a truck driveway shed ... |
 | `highway` | 40 x 1 x 80 | length, lanes, surface, gantry, overpass, embank, ground | A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an ... |
 | `hill_country_terrain` | 800 x 60 x 800 | size, relief, ledges, trees, season, segments, ground, rim, near, budget, rocks | Central Texas Hill Country: rolling stair-stepped limestone hills, thin broken limestone ledges along the contours with talus below, Ashe juniper brakes and live oak mottes (the kit's own trees.js models, three levels of detail), grass by slope and hollow ... |

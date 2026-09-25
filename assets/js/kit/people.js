@@ -1,11 +1,23 @@
 /* kit/people.js, see assets/js/txkit.js for the conventions.
  *
- * `person` is the scale reference every frame uses. It is an articulated adult built from
- * lofted cross sections along a posed skeleton (no capsules): a sculpted head with face
- * planes, neck, torso shaped ring by ring, arms with elbows and hands with fingers, legs with
- * knees, and shoes. Clothing is its own shaped shell over the body. Everything is in metres,
- * the person stands on y = 0 and faces +z. Their LEFT is +x.
+ * `person` is the scale reference every frame uses: an articulated adult on a posed skeleton.
+ * Everything is in metres, the person stands on y = 0 and faces +z. Their LEFT is +x.
  *
+ *   GARMENTS are signed distance fields meshed by surface nets (sdfMesh). The shirt or jacket
+ *   is ONE field: the torso table, both trapezius slopes and both sleeves blended with a
+ *   smooth minimum, so cloth runs from the collar over the shoulder into the sleeve with no
+ *   shell, shelf or armpit notch. The trousers are the seat and both legs as one field. Hems
+ *   are plane cuts; elbow, knee, ankle-break, waist and blousing folds are displacements of
+ *   the field, so they exist as geometry and shade from the field's own gradient.
+ *   HEAD is a sphere sculpted into skull, brow, sockets, nose, lips and chin, sampled densely
+ *   where the face is, with a vertex tint (warm cheeks and nose, darker sockets, beard shadow).
+ *   Eyes have sclera, iris, pupil, lids, a lash line; brows follow the ridge.
+ *   HAIR is a shell grown off the scalp by a per-style thickness (crop, side part, curly,
+ *   buzz, receding, bald; long, bob, bun, curly long) plus a hanging curtain for long styles.
+ *   SHOES are a last-shaped upper on a sole with thickness, toe spring, heel and laces.
+ *   Build varies by seed from slim to heavy (belly, thighs, arms, neck, face).
+ *
+ * detail 'low' (crowds) keeps the same construction on coarser grids with simpler eyes/hands.
  * `crowd` scatters N seeded people over an area.
  */
 export function install(K, THREE, TXT) {
@@ -124,6 +136,7 @@ export function install(K, THREE, TXT) {
     const h = Math.max(k - Math.abs(a - b), 0) / k;
     return (a < b ? a : b) - h * h * k * 0.25;
   };
+  const smax = (a, b, k) => -smin(-a, -b, k);
   function ell2(x, z, a, c) {            // approximate signed distance to an ellipse
     const qx = x / a, qz = z / c, k0 = Math.sqrt(qx * qx + qz * qz);
     if (k0 < 1e-6) return -Math.min(a, c);
@@ -181,9 +194,7 @@ export function install(K, THREE, TXT) {
     };
     return f;
   }
-  function sdfMesh(f0, box, h, U) {
-    let NEV = 0; const f = globalThis.__PDBG ? (x, y, z) => { NEV++; return f0(x, y, z); } : f0;
-    const T0 = performance.now(); let T1 = 0, T2 = 0;
+  function sdfMesh(f, box, h, U) {
     const C = 8, pad = 2 * h;
     const x0 = box[0] - pad, y0 = box[1] - pad, z0 = box[2] - pad;
     const cnt = (a, b) => Math.ceil((b - a + 2 * pad) / (h * C)) * C + 1;
@@ -207,7 +218,6 @@ export function install(K, THREE, TXT) {
       for (let c = 0; c < 8; c++) refine(i + (c & 1) * t, j + ((c >> 1) & 1) * t, k + ((c >> 2) & 1) * t, t);
     };
     for (let k = 0; k + C < NZ; k += C) for (let j = 0; j + C < NY; j += C) for (let i = 0; i + C < NX; i += C) refine(i, j, k, C);
-    const nBand = NEV; T1 = performance.now();
     const OFF = [0, 1, SY, 1 + SY, SZ, 1 + SZ, SY + SZ, 1 + SY + SZ];
     const EA = [0, 2, 4, 6, 0, 1, 4, 5, 0, 1, 2, 3], EB = [1, 3, 5, 7, 2, 3, 6, 7, 4, 5, 6, 7];
     const cid = new Int32Array(N).fill(-1), P = [], cellQ = [], cv = new Float64Array(8);
@@ -260,7 +270,6 @@ export function install(K, THREE, TXT) {
       }
       P[v * 3] = x; P[v * 3 + 1] = y; P[v * 3 + 2] = z; NR[v * 3] = gx; NR[v * 3 + 1] = gy; NR[v * 3 + 2] = gz;
     }
-    const nProj = NEV; T2 = performance.now();
     const pos = [], nor = [], uv = [], tmp = [0, 0, 0];
     const VR = new Int8Array(nv), VU = new Float32Array(nv * 2);
     let PER = 0;
@@ -296,7 +305,6 @@ export function install(K, THREE, TXT) {
       const dbd = (P[b * 3] - P[d * 3]) ** 2 + (P[b * 3 + 1] - P[d * 3 + 1]) ** 2 + (P[b * 3 + 2] - P[d * 3 + 2]) ** 2;
       if (dac < dbd) { tri(a, b, c); tri(a, c, d); } else { tri(a, b, d); tri(b, c, d); }
     }
-    if (globalThis.__PDBG) globalThis.__PDBG.push({ sdf: [nBand, nProj - nBand, nv, Math.round(T1 - T0), Math.round(T2 - T1), Math.round(performance.now() - T2)] });
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     g.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
@@ -330,8 +338,8 @@ export function install(K, THREE, TXT) {
       for (let i = 0; i < N; i += 2) { x.fillStyle = 'rgba(0,0,0,' + (0.02 + r() * 0.04) + ')'; x.fillRect(0, i, N, 1); x.fillRect(i, 0, 1, N); }
     } else if (kind === 'strands') {        // hair albedo: fine streaks along v
       x.fillStyle = '#ffffff'; x.fillRect(0, 0, N, N);
-      for (let i = 0; i < 700; i++) {
-        const px = r() * N, w = 0.5 + r() * 1.5, v = r();
+      for (let i = 0; i < 260; i++) {
+        const px = r() * N, w = 1 + r() * 3, v = r();
         x.fillStyle = v < 0.7 ? 'rgba(0,0,0,' + (0.03 + r() * 0.08) + ')' : 'rgba(255,255,255,' + (0.02 + r() * 0.05) + ')';
         x.fillRect(px, 0, w, N); x.fillRect(px - N, 0, w, N);
       }
@@ -339,7 +347,7 @@ export function install(K, THREE, TXT) {
     const t = new THREE.CanvasTexture(cv);
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
     const rep = kind === 'plaid' ? 1 / 0.16 : kind === 'denim' ? 1 / 0.05 : kind === 'strands' ? 1 / 0.06 : 1 / 0.04;
-    t.repeat.set(rep, kind === 'strands' ? 1 / 0.2 : rep);
+    if (kind === 'strands') t.repeat.set(5, 1.5); else t.repeat.set(rep, rep);
     CT.set(key, t);
     return t;
   }
@@ -356,7 +364,7 @@ export function install(K, THREE, TXT) {
         waves.push([fx, fy, r() * 6.283, 1 / Math.pow(Math.hypot(fx, fy), 1.1)]);
       }
     } else {
-      for (let i = 0; i < 40; i++) waves.push([Math.round(20 + r() * 90), Math.round((r() - 0.5) * 3), r() * 6.283, 0.6 + r() * 0.4]);
+      for (let i = 0; i < 30; i++) waves.push([Math.round(8 + r() * 30), Math.round((r() - 0.5) * 3), r() * 6.283, 0.6 + r() * 0.4]);
     }
     for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
       let s = 0;
@@ -374,7 +382,7 @@ export function install(K, THREE, TXT) {
     x.putImageData(img, 0, 0);
     const t = new THREE.CanvasTexture(cv);
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
-    if (kind === 'crumple') t.repeat.set(1 / 0.5, 1 / 0.5); else t.repeat.set(1 / 0.06, 1 / 0.2);
+    if (kind === 'crumple') t.repeat.set(1 / 0.5, 1 / 0.5); else t.repeat.set(5, 1.5);
     NT.set(kind, t);
     return t;
   }
@@ -404,7 +412,7 @@ export function install(K, THREE, TXT) {
   function headShape(ux, uy, uz, W, Hh, D, fem) {
     let x = Math.sign(ux) * Math.pow(Math.abs(ux), 0.9), y = uy, z = Math.sign(uz) * Math.pow(Math.abs(uz), 0.9);
     // jaw and chin taper, the jaw angle squarer on a man
-    if (y < 0.05) { const t = (0.05 - y) / 1.05; x *= 1 - (fem ? 0.42 : 0.3) * Math.pow(t, fem ? 1.5 : 1.9); }
+    if (y < -0.05) { const t = (-0.05 - y) / 0.95; x *= 1 - (fem ? 0.27 : 0.19) * Math.pow(t, fem ? 1.6 : 2.0); }
     // no skull behind the jaw: the neck is there
     if (z < 0 && y < -0.15) z *= 1 - 0.55 * smooth((-y - 0.15) / 0.7);
     // forehead slopes back a little, face plane flattens, temples dip
@@ -417,18 +425,18 @@ export function install(K, THREE, TXT) {
       dz += (fem ? 0.045 : 0.07) * g2(ax, uy - 0.2, 0.55, 0.075) * (ax < 0.62 ? 1 : 0.4);    // brow ridge
       dz -= 0.02 * g2(ux, uy - 0.1, 0.06, 0.05);                                          // nose root
       dz -= 0.115 * g2(ax - 0.33, uy - 0.06, 0.15, 0.1);                                   // eye sockets
-      const tn = clamp01((0.1 - uy) / 0.4), below = uy < -0.3 ? Math.exp(-Math.pow((uy + 0.3) / 0.05, 2)) : 1;
-      dz += (fem ? 0.22 : 0.25) * tn * below * g2(ux, 0, 0.065 + 0.05 * tn, 1);             // bridge to tip
-      dz += 0.035 * g2(ux, uy + 0.27, 0.07, 0.05);                                         // tip
-      dz += 0.05 * g2(ax - 0.1, uy + 0.3, 0.045, 0.045);                                   // alae
-      dz -= 0.035 * g2(ax - 0.05, uy + 0.345, 0.025, 0.02);                                // nostrils
+      const tn = Math.pow(clamp01((0.08 - uy) / 0.38), 1.3), below = uy < -0.3 ? Math.exp(-Math.pow((uy + 0.3) / 0.075, 2)) : 1;
+      dz += (fem ? 0.18 : 0.21) * tn * below * g2(ux, 0, 0.06 + 0.045 * tn, 1);             // bridge to tip
+      dz += 0.03 * g2(ux, uy + 0.27, 0.065, 0.05);                                         // tip
+      dz += 0.035 * g2(ax - 0.09, uy + 0.3, 0.04, 0.04);                                    // alae
+      dz -= 0.012 * g2(ax - 0.05, uy + 0.34, 0.022, 0.018);                                // nostrils
       dz -= 0.012 * g2(ux, uy + 0.41, 0.025, 0.04);                                        // philtrum
       dz += 0.05 * g2(ux, uy + 0.465, 0.19, 0.035);                                        // upper lip
       dz -= 0.03 * g2(ux, uy + 0.515, 0.2, 0.013);                                         // mouth line
       dz += (fem ? 0.05 : 0.042) * g2(ux, uy + 0.56, 0.16, 0.035);                         // lower lip
       dz -= 0.022 * g2(ax - 0.22, uy + 0.515, 0.04, 0.04);                                 // mouth corners
       dz -= 0.025 * g2(ux, uy + 0.655, 0.16, 0.035);                                       // under the lip
-      dz += 0.07 * g2(ux, uy + 0.82, 0.22, 0.12);                                          // chin
+      dz += 0.06 * g2(ux, uy + 0.82, 0.3, 0.13);                                           // chin
       dz += 0.045 * g2(ax - 0.55, uy + 0.05, 0.16, 0.12);                                  // cheekbones
       dz -= 0.018 * g2(ax - 0.5, uy + 0.35, 0.12, 0.14);                                   // under the cheekbone
       pz += D * dz * fz;
@@ -448,18 +456,31 @@ export function install(K, THREE, TXT) {
     }
     return out;
   }
+  /* Skin is not one colour: warmer over the cheeks, nose, ears and lips, a little darker in the
+   * sockets and, on a man, a faint beard shadow. Multiplied into the face material. */
+  function faceTint(ux, uy, uz, fem) {
+    const ax = Math.abs(ux), f = smooth((uz + 0.1) / 0.5);
+    let r = 1, g = 1, b = 1;
+    const warm = 0.1 * g2(ax - 0.45, uy + 0.2, 0.2, 0.18) + 0.08 * g2(ux, uy + 0.22, 0.09, 0.12) + 0.05 * g2(ux, uy - 0.35, 0.3, 0.15);
+    g -= warm * 0.9 * f; b -= warm * 1.1 * f;
+    const sock = 0.1 * g2(ax - 0.33, uy - 0.08, 0.13, 0.08) * f;
+    r -= sock * 0.9; g -= sock; b -= sock * 0.8;
+    if (!fem) { const beard = 0.08 * smooth((-uy - 0.35) / 0.2) * smooth((uz + 0.35) / 0.3) * (1 - 0.8 * g2(ux, uy + 0.52, 0.2, 0.06)); r -= beard; g -= beard; b -= beard * 0.8; }
+    const fade = smooth((uy + 0.95) / 0.2);               // back to exactly the body skin at the neck
+    return [lerp(1, r, fade), lerp(1, g, fade), lerp(1, b, fade)];
+  }
   const HEADS = new Map();
   function headGeo(W, Hh, D, fem) {
     const key = [W, Hh, D, fem, LOW].map((v) => (typeof v === 'number' ? v.toFixed(4) : v)).join('|');
     if (HEADS.has(key)) return HEADS.get(key);
-    const NLON = LOW ? 24 : 72, NLAT = LOW ? 18 : 56;
+    const NLON = LOW ? 24 : 62, NLAT = LOW ? 18 : 50;
     const lon = warp(NLON, -Math.PI, Math.PI, (a) => 1 + 1.7 * Math.exp(-Math.pow(a / 0.85, 2)));
-    const lat = warp(NLAT, 0, Math.PI, (t) => 1 + 1.6 * Math.exp(-Math.pow((t - 1.75) / 0.5, 2)));
-    const pos = [], uv = [], dirs = [], idx = [];
+    const lat = warp(NLAT, 0, Math.PI, (t) => 1 + 1.5 * Math.exp(-Math.pow((t - 1.75) / 0.5, 2)) + 0.9 * Math.exp(-Math.pow((t - 1.05) / 0.28, 2)));
+    const pos = [], uv = [], dirs = [], idx = [], col = [];
     for (let i = 0; i <= NLAT; i++) for (let j = 0; j <= NLON; j++) {
       const th = lat[i], ph = lon[j];
       const ux = Math.sin(th) * Math.sin(ph), uy = Math.cos(th), uz = Math.sin(th) * Math.cos(ph);
-      pos.push(...headShape(ux, uy, uz, W, Hh, D, fem)); dirs.push(ux, uy, uz); uv.push(j / NLON, i / NLAT);
+      pos.push(...headShape(ux, uy, uz, W, Hh, D, fem)); dirs.push(ux, uy, uz); uv.push(j / NLON, i / NLAT); col.push(...faceTint(ux, uy, uz, fem));
     }
     const Wd = NLON + 1;
     for (let i = 0; i < NLAT; i++) for (let j = 0; j < NLON; j++) {
@@ -470,6 +491,7 @@ export function install(K, THREE, TXT) {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
     g.setIndex(idx);
     g.computeVertexNormals();
     const nor = g.attributes.normal;
@@ -506,8 +528,8 @@ export function install(K, THREE, TXT) {
   /* Hair styles as thickness over the scalp. The hairline is a table over the azimuth from the
    * face (0) to the nape (pi): forehead, temples, sideburn, over the ear, the nape. */
   const LINES = {
-    short: [[0, 0.5], [0.45, 0.44], [0.8, 0.28], [1.0, 0.05], [1.15, -0.14], [1.3, -0.12], [1.42, 0.12], [1.75, 0.14], [2.1, -0.2], [2.5, -0.45], [3.2, -0.5]],
-    long:  [[0, 0.52], [0.45, 0.45], [0.8, 0.3], [0.98, -0.1], [1.15, -0.9], [3.2, -0.9]],
+    short: [[0, 0.6], [0.45, 0.53], [0.8, 0.34], [1.0, 0.05], [1.15, -0.14], [1.3, -0.12], [1.42, 0.12], [1.75, 0.14], [2.1, -0.2], [2.5, -0.45], [3.2, -0.5]],
+    long:  [[0, 0.58], [0.45, 0.5], [0.8, 0.32], [0.95, -0.2], [1.1, -0.75], [1.4, -0.95], [3.2, -0.95]],
     recede:[[0, 0.72], [0.3, 0.7], [0.6, 0.55], [0.9, 0.2], [1.15, -0.12], [1.3, -0.12], [1.42, 0.12], [1.75, 0.14], [2.1, -0.2], [2.5, -0.45], [3.2, -0.5]],
   };
   const lineAt = (tab, a) => {
@@ -520,7 +542,7 @@ export function install(K, THREE, TXT) {
     return (ux, uy, uz) => {
       const az = Math.abs(Math.atan2(ux, uz));
       const m = uy - lineAt(tab, az);                 // > 0 inside the hair
-      const top = smooth((uy - 0.2) / 0.65), front = smooth(uz / 0.6) * smooth((uy - 0.3) / 0.4), crown = smooth((uy + 0.2) / 0.7);
+      const top = smooth((uy - 0.35) / 0.55) * (1 - 0.35 * smooth((Math.abs(ux) - 0.5) / 0.4)), front = smooth(uz / 0.6) * smooth((uy - 0.35) / 0.35), crown = smooth((uy + 0.2) / 0.7);
       let T;
       switch (style) {
         case 'buzz': T = 0.0032; break;
@@ -536,15 +558,15 @@ export function install(K, THREE, TXT) {
       T *= k;
       // a continuous taper through the hairline, so the edge is cut by interpolation, not by the grid
       if (m < -0.06) return -0.002;
-      return lerp(-0.002, T + 0.0006 * Math.sin(ux * 90 + uy * 40 + ph), smooth((m + 0.02) / 0.12));
+      return lerp(-0.002, T + 0.0006 * Math.sin(ux * 90 + uy * 40 + ph), smooth((m + 0.02) / (uz > 0.3 ? 0.22 : 0.12)));
     };
   }
   /* Hair that falls below the skull: a thick curved slab around the back and sides of the
    * head, open at the face, its lower edge layered. Rows run down, columns around. */
   function curtainGeo(W, Hh, D, k, len, curly, ph) {
-    const NU = LOW ? 14 : 44, NV = LOW ? 6 : 22, th = (curly ? 0.03 : 0.018) * k;
+    const NU = LOW ? 14 : 44, NV = LOW ? 6 : 22, th = (curly ? 0.034 : 0.024) * k;
     const yTop = 0.05 * Hh, pos = [], uv = [], idx = [];
-    const a0 = 1.0, a1 = Math.PI * 2 - 1.0;                      // around the back
+    const a0 = 1.4, a1 = Math.PI * 2 - 1.4;                      // around the back
     const R = (a, y, s) => {                                      // outer radius factor
       const fl = smooth((-y) / (Hh * 1.2));
       return 1.05 + 0.1 * fl + (curly ? 0.1 : 0) * fl + s * 0.012 * Math.sin(a * 23 + ph) + (curly ? 0.04 * Math.sin(a * 11 + y * 60 + ph) : 0);
@@ -552,10 +574,10 @@ export function install(K, THREE, TXT) {
     const bot = (a) => -len * Hh + 0.035 * k * Math.sin(a * 5 + ph) + 0.02 * k * Math.sin(a * 13 + ph * 2) - 0.04 * k * Math.cos(a - Math.PI) * (len > 1.3 ? 1 : 0);
     const put = (a, y, inner, v) => {
       const edge = smooth((a - a0) / 0.5) * smooth((a1 - a) / 0.5);
-      const tt = th * (0.15 + 0.85 * edge) * (1 - 0.55 * v);
-      const rr = R(a, y, 1) - (1 - edge) * 0.06 - (inner ? tt / (W * 1.1) : 0);
+      const tt = th * (0.55 + 0.45 * edge) * (1 - 0.45 * v);
+      const rr = R(a, y, 1) - (1 - edge) * 0.03 - (inner ? tt / (W * 1.1) : 0);
       const x = Math.sin(a) * W * rr, z = Math.cos(a) * D * rr * 0.97 - 0.1 * D * smooth(-y / Hh);
-      pos.push(x, y, z); uv.push(a * 0.09, y);
+      pos.push(x, y, z); uv.push(a / (Math.PI * 2), -y / 0.25);
     };
     for (let side = 0; side < 2; side++)
       for (let v = 0; v <= NV; v++) for (let u = 0; u <= NU; u++) {
@@ -616,7 +638,7 @@ export function install(K, THREE, TXT) {
         py -= Math.cos(a) * seg; px += -s * Math.sin(a) * seg;
         ctrl.push({ p: [px, py, zz * (1 - j * 0.06)], rx: rad * (1 - j * 0.1), ry: rad * 0.85 * (1 - j * 0.1) });
       }
-      g.add(new THREE.Mesh(loft(ctrl, { seg: 8, per: 2, capStart: 'flat', capEnd: 'dome', ref: [0, 0, 1] }), mat));
+      g.add(new THREE.Mesh(loft(ctrl, { seg: 7, per: 2, capStart: 'flat', capEnd: 'dome', ref: [0, 0, 1] }), mat));
     }
     // thumb from the heel of the palm, forward and down, resting along the index finger
     const th = [[-s * 0.004, -0.02, 0.028], [-s * 0.012, -0.045, 0.05], [-s * 0.022, -0.07, 0.058], [-s * 0.032, -0.088, 0.056]]
@@ -658,12 +680,12 @@ export function install(K, THREE, TXT) {
     };
     // the sole: a sampled outline, extruded, a welt wider than the upper
     const welt = (sneaker ? 0.003 : work || dress ? 0.004 : 0.002) * k;
-    const so = new THREE.Shape(), NS = LOW ? 10 : 26;
+    const so = new THREE.Shape(), NS = LOW ? 8 : 18;
     for (let i = 0; i <= NS; i++) { const t = 0.5 - 0.5 * Math.cos(Math.PI * i / NS); const x = wAt(t) + welt, z = z0 + t * L; if (i === 0) so.moveTo(x, -z); else so.lineTo(x, -z); }
     for (let i = NS - 1; i > 0; i--) { const t = 0.5 - 0.5 * Math.cos(Math.PI * i / NS); so.lineTo(-(wAt(t) + welt), -(z0 + t * L)); }
     so.closePath();
     const mkSole = (y0, th, mat) => {
-      const sg = new THREE.ExtrudeGeometry(so, { depth: th, bevelEnabled: true, bevelThickness: Math.min(0.003 * k, th * 0.3), bevelSize: 0.0025 * k, bevelSegments: LOW ? 1 : 2, curveSegments: 4 });
+      const sg = new THREE.ExtrudeGeometry(so, { depth: th, bevelEnabled: true, bevelThickness: Math.min(0.003 * k, th * 0.3), bevelSize: 0.0025 * k, bevelSegments: 1, curveSegments: 4 });
       sg.rotateX(-Math.PI / 2); sg.translate(0, y0 + Math.min(0.003 * k, th * 0.3), 0);
       g.add(new THREE.Mesh(bend(sg), mat));
     };
@@ -679,7 +701,7 @@ export function install(K, THREE, TXT) {
     }
     // the upper
     const ctrl = [];
-    const NT = LOW ? 6 : 12;
+    const NT = LOW ? 6 : 10;
     for (let i = 0; i <= NT; i++) {
       const t = lerp(0.03, 0.975, i / NT), top = hAt(t), yc = soleT + (top - soleT) * 0.42;
       ctrl.push({ p: [0, yc, z0 + t * L], rx: wAt(t) * 0.97, ry: top - yc, ryn: yc - soleT + 0.006 * k });
@@ -792,14 +814,16 @@ export function install(K, THREE, TXT) {
         return g;
       });
       const hasUV = parts.every((g) => g.attributes.uv);
+      const hasC = mat.vertexColors && parts.every((g) => g.attributes.color);
       let total = 0; parts.forEach((g) => { total += g.attributes.position.count; });
-      const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3), uv = hasUV ? new Float32Array(total * 2) : null;
+      const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3), uv = hasUV ? new Float32Array(total * 2) : null, col = hasC ? new Float32Array(total * 3) : null;
       let o = 0;
       parts.forEach((g) => { pos.set(g.attributes.position.array, o * 3); nor.set(g.attributes.normal.array, o * 3);
-        if (uv) uv.set(g.attributes.uv.array, o * 2); o += g.attributes.position.count; g.dispose(); });
+        if (uv) uv.set(g.attributes.uv.array, o * 2); if (col) col.set(g.attributes.color.array, o * 3); o += g.attributes.position.count; g.dispose(); });
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
       if (uv) geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+      if (col) geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
       out.add(new THREE.Mesh(geo, mat));
     }
     return out;
@@ -816,10 +840,7 @@ export function install(K, THREE, TXT) {
       try { return makePerson(o, r); } finally { LOW = false; }
     },
   });
-  let DBG_T = {};
-  const tick = (n) => { if (globalThis.__PDBG) DBG_T[n] = +(performance.now()).toFixed(1); };
   function makePerson(o, r) {
-    DBG_T = {}; tick('start');
     const role = o.role || 'resident', pose = o.pose || 'stand';
     const fem = o.build === 'female' ? true : o.build === 'male' ? false : r() < 0.4;
     const H = o.height || (fem ? lerp(1.6, 1.76, r()) : lerp(1.68, 1.9, r()));
@@ -833,10 +854,11 @@ export function install(K, THREE, TXT) {
 
     // palette by seed and role
     const skinC = o.skin != null ? (o.skin < 20 ? SKIN[o.skin | 0] : o.skin) : pick(r, SKIN);
-    const skin = K.mat('p-skin', { color: skinC, roughness: 0.52, sheen: 0.35, sheenColor: 0xffc9aa, sheenRoughness: 0.55, clearcoat: 0.08, clearcoatRoughness: 0.45 }, true);
+    const skin = K.mat('p-skin', { color: skinC, roughness: 0.6, sheen: 0.25, sheenColor: 0xff9f86, sheenRoughness: 0.5, clearcoat: 0.04, clearcoatRoughness: 0.5 }, true);
     const hairC = pick(r, HAIR);
-    const hairM = K.mat('p-hair', { color: new THREE.Color(hairC).multiplyScalar(1.25).getHex(), roughness: 0.5, map: clothTex('strands', 0, 0, 0),
-      normalMap: normTex('strands'), normalScale: new THREE.Vector2(0.6, 0.6), sheen: 0.9, sheenColor: 0xfff4e6, sheenRoughness: 0.35 }, true);
+    const hairM = K.mat('p-hair', { color: new THREE.Color(hairC).multiplyScalar(1.12).getHex(), roughness: 0.55, map: clothTex('strands', 0, 0, 0),
+      sheen: 0.55, sheenColor: 0xfff1e0, sheenRoughness: 0.45 }, true);
+    const faceM = K.mat('p-face', { color: skinC, roughness: 0.6, sheen: 0.25, sheenColor: 0xff9f86, sheenRoughness: 0.5, clearcoat: 0.04, clearcoatRoughness: 0.5, vertexColors: true }, true);
     let shirtKind = 'tee', shirtM, trouserM, jacket = false, sleeves = 'long', tie = null, jeans = false;
     const sroll = r();
     if (role === 'official') {
@@ -907,6 +929,7 @@ export function install(K, THREE, TXT) {
 
     /* TORSO TABLES: rows [yFrac, halfW, front, back, zc]. The shirt table is the garment surface. */
     const bk = belly * k, mk = 1 + 0.06 * mass;
+    const neckR = 0.058 * k * (fem ? 0.86 : 1) * (1 + 0.1 * mass), nr = neckR / k;
     const lower = [[0.495, 0.09, 0.03, 0.07, -0.014], [0.515, 0.156, 0.06, 0.108, -0.008], [0.54, 0.168, 0.085, 0.116, -0.004],
                    [0.578, 0.163, 0.098 + bk * 0.6, 0.104, 0], [0.61, 0.157, 0.102 + bk, 0.094, 0.002]];
     const hemY = jacket ? 0.47 : shirtKind === 'plaid' || shirtKind === 'button' || shirtKind === 'work' ? (r() < 0.5 ? 0.6 : 0.555) : 0.55;
@@ -918,7 +941,7 @@ export function install(K, THREE, TXT) {
                    [0.735, 0.165 * mk, 0.121 + (fem ? 0.024 : 0) + bk * 0.3, 0.104, 0.006],
                    [0.775, 0.166 * mk, 0.112 + (fem ? 0.01 : 0), 0.105, 0.004],
                    [0.8, (jacket ? 0.165 : 0.158), 0.095, 0.099, 0.002], [0.817, 0.138, 0.079, 0.087, -0.002], [0.832, 0.11, 0.066, 0.072, -0.006],
-                   [0.845, 0.09, 0.064, 0.07, -0.01], [0.857, 0.078, 0.063, 0.068, -0.012]];
+                   [0.845, nr + 0.03, nr + 0.018, nr + 0.022, -0.01], [0.857, nr + 0.017, nr + 0.014, nr + 0.018, -0.012]];
     for (let i = 1; i < upper.length; i++) if (upper[i][0] <= upper[i - 1][0]) upper[i][0] = upper[i - 1][0] + 0.012;
     const ring = (row, wk, extra) => ({ p: [0, Yl(row[0]), row[4] * k], rx: row[1] * k * wk + (extra || 0), ry: row[2] * k + (extra || 0), ryn: row[3] * k + (extra || 0) });
     const wk = (i) => (i <= 3 ? lerp(hw, bw, i / 3) : bw);
@@ -1028,7 +1051,7 @@ export function install(K, THREE, TXT) {
       }
       if (tucked && u > 0.012 * k && u < 0.09 * k) {         // blousing above the belt
         const th = Math.atan2(x, zz), b = Math.sin(Math.PI * (u - 0.012 * k) / (0.078 * k));
-        fold += b * (0.004 * k + 0.0025 * k * Math.sin(th * 11 + ph[1]));
+        fold += b * (0.0028 * k + 0.0014 * k * Math.sin(th * 7 + ph[1]));
       }
       const side = smooth((Math.abs(x) / (0.16 * k) - 0.62) / 0.3);
       const yw = Yl(0.63);
@@ -1036,7 +1059,7 @@ export function install(K, THREE, TXT) {
       fold += fa * 0.0011 * k * noise(x, yy, zz, 11);
       d -= fold;
       // the hem, with a little life in it
-      const hem = hemAbs + (tucked ? 0 : 0.003 * k * Math.sin(x * 40 + ph[3]));
+      const hem = hemAbs + (tucked ? 0 : 0.0025 * k * Math.sin(Math.atan2(x, zz) * 3 + ph[3]));
       return Math.max(d, hem - yy);
     };
     const S0 = {}, Ecl = {}, Wrl = {};
@@ -1058,7 +1081,7 @@ export function install(K, THREE, TXT) {
       }
       S0[s] = S; Ecl[s] = E; Wrl[s] = Wr;
       const nb = leanV(V3(s * 0.045 * k, Yl(0.84), -0.016 * k));
-      traps.push(tube([nb.toArray(), [S.x - s * 0.03 * k, S.y + 0.012 * k, S.z - 0.006 * k]], [0.03 * k, (jacket ? 0.045 : 0.041) * k * bw], {}));
+      traps.push(tube([nb.toArray(), [S.x - s * 0.03 * k, S.y + 0.012 * k, S.z - 0.006 * k]], [0.03 * k, (jacket ? 0.04 : 0.037) * k * bw], {}));
     }
     const A_UD = {}, A_FD = {};
     const cover = jacket || sleeves === 'long' ? 1 : sleeves === 'rolled' ? 0.55 : 0.3;
@@ -1072,9 +1095,9 @@ export function install(K, THREE, TXT) {
       if (bend < 0.05) inner = V3(0, 0, 1).sub(Ud.clone().multiplyScalar(Ud.z)); inner.normalize();
       const ease = (jacket ? 0.011 : cover < 1 ? 0.01 : 0.008) * k;
       const m1 = 1 + 0.14 * mass;
-      const start = S.clone().addScaledVector(Ud, -0.026 * k);
+      const start = S.clone().add(V3(-s * 0.024 * k, -0.004 * k, 0));
       const f = tube([start.toArray(), S.clone().lerp(E, 0.42).toArray(), E.toArray(), E.clone().lerp(Wr, 0.3).toArray(), Wr.toArray()],
-        [0.049 * k * bw * m1 + ease * 0.7, 0.045 * k * m1 + ease, 0.037 * k * m1 + ease, 0.039 * k * m1 + ease, 0.027 * k + ease], { ref: inner.toArray(), k: 0.014 * k });
+        [0.043 * k * bw * m1 + ease * 0.6, 0.045 * k * m1 + ease, 0.037 * k * m1 + ease, 0.039 * k * m1 + ease, 0.027 * k + ease], { ref: inner.toArray(), k: 0.014 * k });
       const tot = f.len, elbowA = f.cum[2];
       const cutA = cover >= 1 ? tot - (jacket ? 0.026 : 0.012) * k : 0.016 * k + (upperArm + foreArm) * cover;
       const cp = f.at(cutA);
@@ -1094,26 +1117,32 @@ export function install(K, THREE, TXT) {
       sleeveF[s].tube = f;
     }
     const armpitY = Math.min(S0[1].y, S0[-1].y) - 0.065 * k;
-    const neckC = leanV(V3(0, Yl(0.85), -0.012 * k)), neckR = 0.058 * k * (fem ? 0.86 : 1) * (1 + 0.1 * mass);
+    const neckC = leanV(V3(0, Yl(0.85), -0.012 * k));
     const clrLo = hemAbs - 0.005 * k, clrHi = Math.max(hemAbs + 0.1 * k, Yl(0.63));
-    const clr = 0.011 * k;
+    const clr = 0.011 * k, vY0 = Yl(0.69);
     const shirtF = (x, y, z) => {
       let d = torsoF(x, y, z);
       for (const t of traps) if (t.lb(x, y, z) < d + 0.035 * k) d = smin(d, t(x, y, z), 0.035 * k);
-      const ka = 0.032 * k * smooth((y - armpitY) / (0.07 * k));
+      const ka = 0.024 * k * smooth((y - armpitY) / (0.07 * k));
       if (sleeveF[1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[1](x, y, z), ka);
       if (sleeveF[-1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[-1](x, y, z), ka);
-      if (y > clrLo && y < clrHi) d = Math.min(d, Math.max(seatRaw(x, y, z) - clr, hemAbs - y, y - clrHi));
+      if (!tucked && y > clrLo && y < clrHi) d = Math.min(d, Math.max(trouserF(x, y, z) - clr, hemAbs - y, y - clrHi));
       // the neck opening and the top
       const nz = z - (neckC.z + (y - neckC.y) * 0.08);
       const hole = Math.max(ell2(x, nz, neckR + 0.004 * k, neckR * 0.96 + 0.004 * k), Yl(0.83) - y);
-      d = Math.max(d, -hole, y - shirtTop);
+      d = Math.max(smax(d, -hole, 0.006 * k), y - shirtTop);
+      if (jacket && y > vY0) {            // the jacket opens in a V down to the button
+        let yy = y, zz = z;
+        if (torsoLean) { const dy = y - pivY; yy = pivY + dy * cl + z * sl; zz = -dy * sl + z * cl; }
+        const vw = 0.056 * k * clamp01((yy - vY0) / (Yl(0.85) - vY0));
+        d = Math.max(d, -Math.max(Math.abs(x) - vw, 0.01 * k - zz));
+      }
       return d;
     };
 
     /* Mesh both garments. UVs are cylindrical in metres: the torso around the body, each sleeve
      * and trouser leg around its own axis, so a plaid meets itself at a seam, as cloth does. */
-    const hG = LOW ? 0.028 * k : 0.0135 * k;
+    const hG = LOW ? 0.03 * k : 0.0158 * k;
     const cyl = (f, R, x, y, z, out) => { f(x, y, z); const I = f.info; out[0] = Math.atan2(I.s, I.c) * R; out[1] = I.along; out[2] = Math.PI * 2 * R; };
     const shirtU = {
       region: (x, y, z) => { const t = torsoF(x, y, z), a = sleeveF[1].tube.lb(x, y, z) < t ? sleeveF[1](x, y, z) : 1, b = sleeveF[-1].tube.lb(x, y, z) < t ? sleeveF[-1](x, y, z) : 1; return t <= a && t <= b ? 0 : a < b ? 1 : -1; },
@@ -1127,7 +1156,6 @@ export function install(K, THREE, TXT) {
     grow(V3(0, hemAbs, 0), 0.2 * k); grow(V3(0, shirtTop, 0), 0.2 * k);
     for (const s of [1, -1]) { grow(S0[s], 0.1 * k); grow(Ecl[s], 0.07 * k); if (cover >= 0.9) grow(Wrl[s], 0.06 * k); }
     bb.min.y = Math.max(bb.min.y, hemAbs - 0.02 * k); bb.max.y = Math.min(bb.max.y, shirtTop + 0.01 * k);
-    tick('preShirt');
     G.add(new THREE.Mesh(sdfMesh(shirtF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG, shirtU), shirtM));
     const trU = {
       region: (x, y, z) => { const a = leg[1].trF(x, y, z), b = leg[-1].trF(x, y, z), c = seatRaw(x, y, z); return c < a && c < b ? 0 : a < b ? 1 : -1; },
@@ -1140,11 +1168,24 @@ export function install(K, THREE, TXT) {
     for (const s of [1, -1]) { grow(leg[s].hip, 0.13 * k); grow(leg[s].knee, 0.09 * k); grow(leg[s].ankle, 0.1 * k); }
     grow(V3(0, waistTop, 0), 0.19 * k);
     bb.max.y = waistTop + 0.01 * k;
-    tick('preTrousers');
-    G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.12, trU), trouserM));
+    G.add(new THREE.Mesh(sdfMesh(trouserF, [bb.min.x, bb.min.y, bb.min.z, bb.max.x, bb.max.y, bb.max.z], hG * 1.14, trU), trouserM));
 
-    tick('postTrousers');
     const body = new THREE.Group();
+    const bandG = (y0, y1, rx, rz, zc, a0, a1, th, flare) => {      // a partial collar band, a0..a1 around from the front
+        const NA = 28, pos = [], idx = [];
+        for (let side = 0; side < 2; side++) for (let j = 0; j <= 1; j++) for (let i = 0; i <= NA; i++) {
+          const a = lerp(a0, a1, i / NA), o = side ? -th : 0, yy = lerp(y0, y1 + 0.012 * k * Math.pow(Math.sin(a / 2), 2) - 0.01 * k * Math.pow(Math.cos(a / 2), 2), j);
+          const fl = (flare || 0) * (1 - j); pos.push(Math.sin(a) * (rx + o + fl), yy, zc + Math.cos(a) * (rz + o + fl));
+        }
+        const Wd = NA + 1;
+        for (let side = 0; side < 2; side++) for (let i = 0; i < NA; i++) { const a = side * 2 * Wd + i, b = a + Wd; if (side) idx.push(a, a + 1, b, b, a + 1, b + 1); else idx.push(a, b, a + 1, b, b + 1, a + 1); }
+        for (let i = 0; i < NA; i++) { const a = Wd + i, b = 3 * Wd + i; idx.push(a, b, a + 1, b, b + 1, a + 1); }     // the top edge
+        // both windings: a thin band is seen from outside and inside, and neither side may cull
+        const n0 = idx.length, nv0 = pos.length / 3; pos.push(...pos);
+        for (let q = 0; q < n0; q += 3) idx.push(idx[q] + nv0, idx[q + 2] + nv0, idx[q + 1] + nv0);
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+        return g;
+      };
     // belt with a buckle when the shirt is tucked
     if (!jacket && tucked) {
       const beltY = 0.598;
@@ -1152,18 +1193,17 @@ export function install(K, THREE, TXT) {
         { seg: 32, per: 2, n: 2.3, capStart: 'flat', capEnd: 'flat' }), K.mat('p-belt', { color: 0x2b1c12, roughness: 0.5, clearcoat: 0.2 }, true));
       body.add(belt);
       const bz = (0.103 + bk + 0.008) * k;
-      const buckle = TXT.roundedBox(0.06 * k * (role === 'resident' && shoeStyle === 'western' ? 1.3 : 1), 0.042 * k, 0.008 * k, 0.004 * k, K.finish.chrome());
+      const buckle = LOW ? new THREE.Mesh(new THREE.BoxGeometry(0.06 * k, 0.042 * k, 0.008 * k), K.finish.chrome()) : TXT.roundedBox(0.06 * k * (role === 'resident' && shoeStyle === 'western' ? 1.3 : 1), 0.042 * k, 0.008 * k, 0.004 * k, K.finish.chrome());
       buckle.position.set(0, Yl(beltY), bz); body.add(buckle);
     }
     // collar, placket and buttons for button shirts, the V and tie for a suit
     if (shirtKind === 'plaid' || shirtKind === 'button' || shirtKind === 'work' || shirtKind === 'polo') {
-      const col = new THREE.Mesh(loft([
-        { p: [0, Yl(0.848), -0.01 * k], rx: 0.068 * k, ry: 0.062 * k }, { p: [0, Yl(0.868), -0.014 * k], rx: 0.063 * k, ry: 0.058 * k }],
-      { seg: 28, per: 2 }), shirtM);
-      body.add(col);
+      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.866), neckR + 0.006 * k, neckR * 0.97 + 0.006 * k, -0.012 * k, 0.3, Math.PI * 2 - 0.3, 0.003 * k), shirtM));
+      // the fall of the collar: a band folded over the stand, flaring at the back and sides
+      body.add(new THREE.Mesh(bandG(Yl(0.843), Yl(0.869), neckR + 0.012 * k, neckR * 0.97 + 0.012 * k, -0.012 * k, 0.55, Math.PI * 2 - 0.55, 0.003 * k, 0.019 * k), shirtM));
       for (const s of [1, -1]) {        // collar points folded down on the chest
-        const pt = TXT.extrude([[0, 0], [s * 0.05 * k, -0.006 * k], [s * 0.024 * k, -0.056 * k]], 0.0035 * k, shirtM, { bevel: false });
-        pt.position.set(s * 0.012 * k, Yl(0.856), frontZ(0.836) - 0.004 * k); pt.rotation.x = -0.42; body.add(pt);
+        const pt = TXT.extrude([[0, 0], [s * 0.04 * k, -0.004 * k], [s * 0.024 * k, -0.042 * k], [s * 0.004 * k, -0.011 * k]], 0.003 * k, shirtM, { bevel: false });
+        pt.position.set(s * 0.01 * k, Yl(0.862), frontZ(0.84) - 0.001 * k); pt.rotation.set(-0.5, s * 0.25, 0); body.add(pt);
       }
       const btnM = K.mat('p-btn', { color: 0xe9e4d8, roughness: 0.3 });
       for (let b = 0; b < (shirtKind === 'polo' ? 2 : 6); b++) {
@@ -1179,9 +1219,9 @@ export function install(K, THREE, TXT) {
         const pk = TXT.roundedBox(0.075 * k, 0.014 * k, 0.008 * k, 0.003 * k, shirtM);
         pk.position.set(s * 0.085 * k, Yl(0.755), frontZ(0.755) + 0.0005 * k); body.add(pk);
       }
-    } else if (shirtKind === 'tee') {
-      const neck = new THREE.Mesh(new THREE.TorusGeometry(0.066 * k, 0.0055 * k, 6, 32), shirtM);
-      neck.rotation.x = Math.PI / 2 - 0.25; neck.scale.set(1, 0.85, 1); neck.position.set(0, Yl(0.853), 0.004 * k); body.add(neck);
+    } else if (shirtKind === 'tee' && !jacket) {
+      const neck = new THREE.Mesh(new THREE.TorusGeometry(1, 0.07, 6, 36), shirtM);
+      neck.rotation.x = Math.PI / 2 - 0.2; neck.scale.set(neckR + 0.006 * k, neckR * 0.97 + 0.006 * k, 0.065 * k); neck.position.set(0, Yl(0.853), -0.006 * k); body.add(neck);
     }
     if (jacket) {
       /* the shirt V, the tie and the lapels follow the jacket's front surface row by row */
@@ -1207,20 +1247,8 @@ export function install(K, THREE, TXT) {
       const tw2 = (yf) => yf > 0.835 ? 0.011 * k : lerp(0.03, 0.009, (yf - 0.7) / 0.135) * k;
       const tys = ys.filter((y) => y >= 0.7).concat([0.69]);
       body.add(strip(tys.map((y) => [y, -tw2(y) * (y < 0.7 ? 0.1 : 1), tw2(y) * (y < 0.7 ? 0.1 : 1), 0.0055 * k]), tieM));
-      const bandG = (y0, y1, rx, rz, zc, a0, a1, th) => {      // a partial collar band, a0..a1 around from the front
-        const NA = 28, pos = [], idx = [];
-        for (let side = 0; side < 2; side++) for (let j = 0; j <= 1; j++) for (let i = 0; i <= NA; i++) {
-          const a = lerp(a0, a1, i / NA), o = side ? -th : 0, yy = lerp(y0, y1 + 0.012 * k * Math.pow(Math.sin(a / 2), 2), j);
-          pos.push(Math.sin(a) * (rx + o), yy, zc + Math.cos(a) * (rz + o));
-        }
-        const Wd = NA + 1;
-        for (let side = 0; side < 2; side++) for (let i = 0; i < NA; i++) { const a = side * 2 * Wd + i, b = a + Wd; if (side) idx.push(a, a + 1, b, b, a + 1, b + 1); else idx.push(a, b, a + 1, b, b + 1, a + 1); }
-        for (let i = 0; i < NA; i++) { const a = Wd + i, b = 3 * Wd + i; idx.push(a, b, a + 1, b, b + 1, a + 1); }     // the top edge
-        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
-        return g;
-      };
-      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.872), neckR + 0.0045 * k, neckR * 0.97 + 0.0045 * k, -0.012 * k, -2.6, 2.6, 0.003 * k), K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
-      body.add(new THREE.Mesh(bandG(Yl(0.838), Yl(0.862), neckR + 0.011 * k, neckR * 0.97 + 0.011 * k, -0.012 * k, -2.3, 2.3, 0.005 * k), shirtM));
+      body.add(new THREE.Mesh(bandG(Yl(0.846), Yl(0.872), neckR + 0.0045 * k, neckR * 0.97 + 0.0045 * k, -0.012 * k, 0.1, Math.PI * 2 - 0.1, 0.003 * k), K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
+      body.add(new THREE.Mesh(bandG(Yl(0.838), Yl(0.862), neckR + 0.011 * k, neckR * 0.97 + 0.011 * k, -0.012 * k, 0.8, Math.PI * 2 - 0.8, 0.005 * k), shirtM));
       const knot = TXT.roundedBox(0.024 * k, 0.02 * k, 0.012 * k, 0.005 * k, tieM);
       knot.position.set(0, Yl(0.846), frontZ(0.846) + 0.004 * k); body.add(knot);
       const lap = K.mat('p-lapel', { color: new THREE.Color(shirtM.color).multiplyScalar(0.8).getHex(), roughness: 0.5, side: THREE.DoubleSide });
@@ -1278,21 +1306,21 @@ export function install(K, THREE, TXT) {
       const at = (a, b, t) => a.clone().lerp(b, t).toArray();
       const m1 = 1 + 0.14 * mass;
       const armPts = [
-        { p: S.clone().addScaledVector(Ud, -0.012 * k).toArray(), rx: 0.048 * k * bw * m1, ry: 0.052 * k * m1 },
-        { p: at(S, E, 0.3), rx: 0.045 * k * m1, ry: 0.048 * k * m1 },
+        { p: S.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.034 * k * m1, ry: 0.036 * k * m1 },
+        { p: at(S, E, 0.3), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
         { p: at(S, E, 0.72), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
         { p: E.toArray(), rx: 0.035 * k * m1, ry: 0.037 * k * m1 },
         { p: at(E, Wr, 0.25), rx: 0.039 * k * m1, ry: 0.036 * k * m1 },
         { p: at(E, Wr, 0.7), rx: 0.031 * k, ry: 0.027 * k },
         { p: Wr.toArray(), rx: 0.026 * k, ry: 0.019 * k }];
-      if (cover < 1) G.add(new THREE.Mesh(loft(armPts, { seg: LOW ? 10 : 18, per: 4, ref: [0, 0, 1], capStart: 'dome', domeK: 0.55, capEnd: 'flat' }), skin));
+      if (cover < 1) G.add(new THREE.Mesh(loft(armPts, { seg: LOW ? 8 : 14, per: 3, ref: [0, 0, 1], capStart: 'flat', capEnd: 'flat' }), skin));
       else G.add(new THREE.Mesh(loft(armPts.slice(-2), { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' }), skin));   // the wrist
       if (jacket) {     // white shirt cuff shows past the jacket sleeve
         const c = loft([{ p: Wr.clone().addScaledVector(Fd, -0.03 * k).toArray(), rx: 0.031 * k, ry: 0.028 * k }, { p: Wr.clone().addScaledVector(Fd, -0.002 * k).toArray(), rx: 0.03 * k, ry: 0.027 * k }], { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' });
         G.add(new THREE.Mesh(c, K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
       }
       const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' ? 'fist' : 'relax';
-      const hnd = hand(k * (fem ? 0.92 : 1) * (1 + 0.05 * mass), s, skin, hp);
+      const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp);
       hnd.quaternion.copy(new THREE.Quaternion().setFromUnitVectors(V3(0, -1, 0), Fd));
       if (A.hand === 'point') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * Math.PI / 2 + s * 0.2));
       if (A.hand === 'hip') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * 0.3));
@@ -1302,10 +1330,9 @@ export function install(K, THREE, TXT) {
       G.add(hnd);
     }
 
-    tick('preHead');
     /* NECK and HEAD */
     const Hh = 0.117 * k * (fem ? 0.97 : 1), Wd = 0.074 * k * (fem ? 0.95 : 1) * lerp(0.96, 1.05, r()) * (1 + 0.05 * mass), D = 0.098 * k * (fem ? 0.97 : 1);
-    const headC = leanV(V3(0, H + lift - Hh, 0.004 * k));
+    const headC = leanV(V3(0, H + lift - Hh - 0.01 * k, 0.004 * k));
     const neckTop = headC.clone().add(V3(0, -Hh * 0.45, -0.022 * k));
     const nb0 = leanV(V3(0, Yl(0.835), -0.012 * k)), nb1 = leanV(V3(0, Yl(0.862), -0.012 * k));
     const neck = loft([{ p: nb0.toArray(), rx: neckR * 1.12, ry: neckR * 1.08 },
@@ -1317,7 +1344,7 @@ export function install(K, THREE, TXT) {
     head.position.copy(headC).sub(neckTop); pivot.add(head);
     pivot.rotation.set(headPitch + torsoLean, headYaw, 0, 'YXZ');
     const hg = headGeo(Wd, Hh, D, fem);
-    head.add(new THREE.Mesh(hg, skin));
+    head.add(new THREE.Mesh(hg, LOW ? skin : faceM));
     const surf = (ux, uy) => headShape(ux, uy, Math.sqrt(Math.max(0, 1 - ux * ux - uy * uy)), Wd, Hh, D, fem);
     const hatKind = o.hat && o.hat !== 'auto' ? o.hat
       : role === 'worker' ? 'hard'
@@ -1331,18 +1358,18 @@ export function install(K, THREE, TXT) {
     const longHair = style === 'long' || style === 'bob' || style === 'curlyLong';
     // ears, under long hair they are not built at all
     if (!longHair) for (const s of [1, -1]) {
-      const ear = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 8 : 16, LOW ? 6 : 12), skin);
-      ear.scale.set(0.0085 * k, 0.03 * k, 0.019 * k); ear.position.set(s * Wd * 0.95, -Hh * 0.08, -D * 0.1); ear.rotation.set(-0.15, s * 0.45, 0);
+      const ear = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 6 : 12, LOW ? 4 : 9), skin);
+      ear.scale.set(0.008 * k, 0.028 * k, 0.018 * k); ear.position.set(s * Wd * 0.93, -Hh * 0.08, -D * 0.1); ear.rotation.set(-0.15, s * 0.22, 0);
       head.add(ear);
       if (!LOW) {
         const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.22, 6, 18, Math.PI * 1.45), skin);
-        rim.scale.set(0.017 * k, 0.027 * k, 0.017 * k); rim.position.set(s * (Wd * 0.95 + 0.005 * k), -Hh * 0.06, -D * 0.1);
-        rim.rotation.set(0, s * Math.PI / 2 + s * 0.45, -Math.PI * 0.2); head.add(rim);
+        rim.scale.set(0.016 * k, 0.025 * k, 0.016 * k); rim.position.set(s * (Wd * 0.93 + 0.004 * k), -Hh * 0.06, -D * 0.1);
+        rim.rotation.set(0, s * Math.PI / 2 + s * 0.22, -Math.PI * 0.2); head.add(rim);
       }
     }
     // eyes: sclera, iris and pupil caps, lids that give the almond, a lash line, brows
     const irisC = pick(r, [0x2a1a10, 0x3b2615, 0x4a3520, 0x2f3b45, 0x3b4a2c, 0x5a6a78]);
-    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).multiplyScalar(0.85).getHex(), roughness: 0.8 });
+    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(skinC), 0.35).getHex(), roughness: 0.85 });
     if (LOW) {
       for (const s of [1, -1]) {
         const p = surf(s * 0.33, 0.07);
@@ -1359,16 +1386,16 @@ export function install(K, THREE, TXT) {
         const p = surf(s * 0.33, 0.065);
         const C = V3(p[0] - s * 0.001 * k, p[1], p[2] - 0.64 * R);
         const eye = new THREE.Group(); eye.position.copy(C); eye.rotation.y = s * 0.1; head.add(eye);
-        eye.add(new THREE.Mesh(new THREE.SphereGeometry(R, 20, 14), sclera));
-        const ir = new THREE.SphereGeometry(R * 1.004, 20, 4, 0, Math.PI * 2, 0, 0.5); ir.rotateX(Math.PI / 2);
+        eye.add(new THREE.Mesh(new THREE.SphereGeometry(R, 16, 10), sclera));
+        const ir = new THREE.SphereGeometry(R * 1.004, 20, 4, 0, Math.PI * 2, 0, 0.45); ir.rotateX(Math.PI / 2);
         const ei = new THREE.Mesh(ir, iris); ei.rotation.y = -s * 0.1; eye.add(ei);
         const pu = new THREE.SphereGeometry(R * 1.007, 14, 2, 0, Math.PI * 2, 0, 0.2); pu.rotateX(Math.PI / 2);
         const ep = new THREE.Mesh(pu, pupil); ep.rotation.y = -s * 0.1; eye.add(ep);
         // lids: two sheets on a sphere just over the eyeball, meeting at the corners
-        const aM = 1.12, up = (a) => { const t = Math.abs(a + s * 0.12) / aM; return t >= 1 ? 0 : 0.4 * Math.pow(Math.cos(t * Math.PI / 2), 0.75) + 0.02; };
-        const dn = (a) => { const t = Math.abs(a - s * 0.1) / aM; return t >= 1 ? 0 : -(0.27 * Math.pow(Math.cos(t * Math.PI / 2), 0.9) + 0.02); };
+        const aM = 1.12, up = (a) => { const t = Math.abs(a + s * 0.12) / aM; return t >= 1 ? 0 : 0.36 * Math.pow(Math.cos(t * Math.PI / 2), 0.65) + 0.02; };
+        const dn = (a) => { const t = Math.abs(a - s * 0.1) / aM; return t >= 1 ? 0 : -(0.33 * Math.pow(Math.cos(t * Math.PI / 2), 0.85) + 0.02); };
         const sheet = (edge, far, rr) => {
-          const NA = 18, NB = 5, pos = [], idx = [];
+          const NA = 16, NB = 4, pos = [], idx = [];
           for (let j = 0; j <= NB; j++) for (let i = 0; i <= NA; i++) {
             const a = lerp(-1.35, 1.35, i / NA), be = lerp(edge(Math.max(-aM, Math.min(aM, a))), far, Math.pow(j / NB, 1.4)), rad = R * (rr + 0.05 * (1 - j / NB) * (Math.abs(a) < aM ? 1 : 0));
             pos.push(rad * Math.cos(be) * Math.sin(a), rad * Math.sin(be), rad * Math.cos(be) * Math.cos(a));
@@ -1385,7 +1412,7 @@ export function install(K, THREE, TXT) {
           const pts = [];
           for (let i = 0; i <= 12; i++) { const a = lerp(-aM * 0.97, aM * 0.97, i / 12), be = edge(a); const q = R * rr;
             pts.push({ p: [q * Math.cos(be) * Math.sin(a), q * Math.sin(be) + fwd, q * Math.cos(be) * Math.cos(a)], rx: rad * Math.sin(Math.PI * (0.08 + 0.84 * i / 12)), ry: rad * Math.sin(Math.PI * (0.08 + 0.84 * i / 12)) }); }
-          return new THREE.Mesh(loft(pts, { seg: 6, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), mat);
+          return new THREE.Mesh(loft(pts, { seg: 5, per: 1, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), mat);
         };
         eye.add(margin(up, 1.14, 0.0016 * k, skin, 0));
         eye.add(margin(up, 1.17, 0.00075 * k, lashM, 0.0004 * k));
@@ -1397,12 +1424,12 @@ export function install(K, THREE, TXT) {
         for (let i = 0; i <= 8; i++) {
           const t = i / 8, ux = lerp(0.1, 0.6, t), uy = 0.185 + 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.25)) - 0.03 * t;
           const q = surf(s * ux, uy);
-          pts.push({ p: [q[0], q[1], q[2] + 0.0012 * k], rx: 0.0014 * k, ry: lerp(fem ? 0.003 : 0.004, 0.0012, t) * k });
+          pts.push({ p: [q[0], q[1], q[2] + 0.0012 * k], rx: 0.0011 * k, ry: lerp(fem ? 0.0026 : 0.0034, 0.001, t) * k });
         }
         head.add(new THREE.Mesh(loft(pts, { seg: 8, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), browM));
       }
       // lips: a patch that lies on the sculpted mouth, a shade deeper than the skin
-      const lipC = new THREE.Color(skinC).multiplyScalar(0.84).lerp(new THREE.Color(0x9a4a48), fem ? 0.3 : 0.14);
+      const lipC = new THREE.Color(skinC).multiplyScalar(0.84).lerp(new THREE.Color(0x9a5450), fem ? 0.2 : 0.1);
       const lipM = K.mat('p-lip-' + lipC.getHexString(), { color: lipC.getHex(), roughness: 0.4, clearcoat: 0.3, clearcoatRoughness: 0.3 }, true);
       const topL = (x) => -0.445 - 0.06 * Math.pow(Math.abs(x) / 0.21, 2) + 0.008 * Math.exp(-Math.pow((Math.abs(x) - 0.055) / 0.03, 2));
       const botL = (x) => -0.595 + 0.075 * Math.pow(Math.abs(x) / 0.21, 2);
@@ -1415,10 +1442,11 @@ export function install(K, THREE, TXT) {
       const lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3)); lg.setIndex(li); lg.computeVertexNormals();
       head.add(new THREE.Mesh(lg, lipM));
     }
-    tick('preHair');
     // hair
     if (style !== 'bald') {
-      head.add(new THREE.Mesh(shellGeo(hg, hairThickness(style, k, ph[0])), hairM));
+      const hT = hairThickness(style, k, ph[0]), hatted = hatKind !== 'none';
+      // under a hat the crown is pressed flat, so no hair can come through the hat
+      head.add(new THREE.Mesh(shellGeo(hg, hatted ? (ux, uy, uz) => Math.min(hT(ux, uy, uz), lerp(0.009, 0.0035, smooth((uy - 0.1) / 0.3)) * k) : hT), hairM));
       if (longHair) head.add(new THREE.Mesh(curtainGeo(Wd, Hh, D, k, style === 'bob' ? 0.95 : 1.75 + 0.35 * r(), style === 'curlyLong', ph[1]), hairM));
       if (style === 'bun') {
         const bun = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 10 : 20, LOW ? 8 : 14), hairM);
@@ -1451,16 +1479,9 @@ export function install(K, THREE, TXT) {
         : K.mat('p-hat', { color: hatC, roughness: hatKind === 'cowboy' && (hatC === 0xd9c69a || hatC === 0xe0d2a8) ? 0.85 : 0.75 });
       head.add(hat(hatKind, Wd * 1.03, D * 1.03, Hh * (hatKind === 'cowboy' ? 0.36 : hatKind === 'cap' ? 0.32 : 0.36), hm, r));
     }
-    tick('end');
     // the body pieces lean with the torso, about the hips
     const bodyPivot = new THREE.Group(); bodyPivot.position.y = pivY; body.position.y = -pivY;
     bodyPivot.add(body); bodyPivot.rotation.x = torsoLean; G.add(bodyPivot);
-    if (globalThis.__PDBG) {
-      const rows = [];
-      G.traverse((m) => { if (m.isMesh) { const g = m.geometry; rows.push([m.material.color ? m.material.color.getHexString() : '?', g.index ? g.index.count / 3 : g.attributes.position.count / 3]); } });
-      const by = {}; rows.forEach(([c, n]) => { by[c] = (by[c] || 0) + n; });
-      globalThis.__PDBG.push({ by, T: DBG_T });
-    }
     const M = mergeByMaterial(G);
     M.userData.height = H; M.userData.role = role; M.userData.pose = pose;
     return M;
