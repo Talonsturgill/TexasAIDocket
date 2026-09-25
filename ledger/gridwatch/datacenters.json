@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-24",
+ "read": "2026-09-25",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "352b222157637252",
+ "digest": "e61f9463873c8845",
  "facilities": [
   {
    "name": "NADC",
@@ -2073,6 +2073,19 @@
    ]
   },
   {
+   "name": "Borden County Data Center Phase 2",
+   "effective": "2026-07-31",
+   "owners": [
+    "BDC Building 2, LLC"
+   ],
+   "occupants": [
+    "Borden County DC, LLC"
+   ],
+   "operators": [
+    "Borden County DC, LLC"
+   ]
+  },
+  {
    "name": "Flamingo",
    "effective": "2026-08-10",
    "owners": [
@@ -2206,7 +2219,7 @@
    ]
   },
   {
-   "name": "Terisys Thompson",
+   "name": "Terisys Thompsons",
    "effective": "2026-09-15",
    "owners": [
     "Terisys LLC"
