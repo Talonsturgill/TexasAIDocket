@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-25T12:51:53Z",
+  "checked_at": "2026-09-25T18:01:21Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "cb1aa863fc4443e686d74b0a32f78a8111cf0b80868bdf60e708a836b745d8fb",
+  "response_sha256": "bf2441d62180afa198f7e5a03946ff98ad31fa273439fb91db26ca8cd4a0d365",
   "articles": [
     {
       "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
@@ -48,102 +48,20 @@
     }
   ],
   "selected": {
-    "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-    "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-    "first_seen_at": "2026-09-24T20:46:52Z",
-    "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-    "feed": "https://dallasinnovates.com/feed/",
-    "publisher": "Dallas Innovates",
+    "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+    "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+    "first_seen_at": "2026-09-21T15:16:10Z",
+    "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+    "feed": "https://www.datacenterdynamics.com/en/rss/",
+    "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.628441,
-    "priority": 0
+    "score": 0.057723,
+    "priority": 4
   },
-  "expires_at": "2026-10-01T20:46:52Z",
+  "expires_at": "2026-09-28T15:16:10Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-09-25T07:23:00Z",
-      "selected": {
-        "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-        "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-        "first_seen_at": "2026-09-24T20:46:52Z",
-        "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.628441,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.628441,
-          "priority": 0
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.617898,
-          "priority": 1
-        },
-        {
-          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
-          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
-          "first_seen_at": "2026-09-23T08:49:00Z",
-          "summary": "ERCOT claims the audit will be completed by December",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.222416,
-          "priority": 1
-        },
-        {
-          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-          "first_seen_at": "2026-09-22T13:08:11Z",
-          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.125985,
-          "priority": 1
-        },
-        {
-          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
-          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
-          "first_seen_at": "2026-09-21T15:16:10Z",
-          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.066995,
-          "priority": 4
-        },
-        {
-          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-          "first_seen_at": "2026-09-21T10:19:29Z",
-          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.058079,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-09-25T13:23:00Z",
       "selected": {
@@ -154,7 +72,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.065999,
+        "score": 0.057723,
         "priority": 4
       },
       "stories": [
@@ -166,7 +84,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.065999,
+          "score": 0.057723,
           "priority": 4
         },
         {
@@ -177,7 +95,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.619098,
+          "score": 0.541466,
           "priority": 0
         },
         {
@@ -188,7 +106,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.608712,
+          "score": 0.532382,
           "priority": 1
         },
         {
@@ -199,7 +117,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.219109,
+          "score": 0.191634,
           "priority": 1
         },
         {
@@ -210,7 +128,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.124112,
+          "score": 0.108549,
           "priority": 4
         },
         {
@@ -221,7 +139,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.057216,
+          "score": 0.050041,
           "priority": 4
         }
       ]
@@ -389,6 +307,88 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-09-26T07:23:00Z",
+      "selected": {
+        "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+        "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+        "first_seen_at": "2026-09-23T08:49:00Z",
+        "summary": "ERCOT claims the audit will be completed by December",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.130283,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+          "first_seen_at": "2026-09-23T08:49:00Z",
+          "summary": "ERCOT claims the audit will be completed by December",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.130283,
+          "priority": 1
+        },
+        {
+          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
+          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
+          "first_seen_at": "2026-09-24T20:46:52Z",
+          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.368118,
+          "priority": 0
+        },
+        {
+          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
+          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
+          "first_seen_at": "2026-09-24T20:11:43Z",
+          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.361942,
+          "priority": 1
+        },
+        {
+          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
+          "first_seen_at": "2026-09-22T13:08:11Z",
+          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.073797,
+          "priority": 4
+        },
+        {
+          "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+          "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+          "first_seen_at": "2026-09-21T15:16:10Z",
+          "summary": "Will deploy 40 natural gas-fueled reciprocating generation units",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.039243,
+          "priority": 4
+        },
+        {
+          "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
+          "first_seen_at": "2026-09-21T10:19:29Z",
+          "summary": "Pilot undertaken by Quintrace, esVolta, and LevelTen Energy",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.034021,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
@@ -521,14 +521,17 @@
       "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
       "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
       "shown_at": "2026-09-25T07:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/kodiak-gas-services-to-supply-76mw-of-behind-the-meter-gas-power-to-west-texas-data-center/",
+      "title": "Kodiak Gas Services to supply 76MW of behind-the-meter gas power to West Texas data center",
+      "shown_at": "2026-09-25T13:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "b1e2856ebf5526064d0a26139f1e4ca4df1c62ef99c6b051052449c31bb85f66"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -538,7 +541,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "8a1ae0ef62c028df0ca24384cb01adbeb4dbc7168caa607219e72b181f65d6d2"
+      "sha256": "96621fb52b44fcad16c67a9cd2d6be06ee0a1b223900a8c8852088f59b106f82"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -549,8 +552,8 @@
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1229,
-      "sha256": "1dd6d13e90da05464d0dac551841d6138750810979a8f2855277d2be17f9da10"
+      "items": 1230,
+      "sha256": "4907ddaae9138a43c552ad188f254130e53ef618bd2b37b8e7e7cfb7002f3db6"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -564,145 +567,150 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "309d60afb62caa570f528e53f5311d3bedfb743f62e5aa0c9249e35b8ba7b32a"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-09-25T18:51:50Z",
-      "reason": "syntax error: line 1, column 0"
+      "status": "backoff",
+      "retry_at": "2026-09-25T18:51:50Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "40e0a83ef20de1d03eca66e81c4b451062b5869ed5e3d4880ce2dc7e8ca0a9ae"
+      "sha256": "33b2be60fc6a131edc6f26bfe6fb9e6aa2442af9994798bfb3278e3a540eed0a"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "c80c98a6a75bcdd849f51f32e8dc4d6e3f5c2e3f50e15f9fc03240291f239f7e"
+      "sha256": "17831ef4a4d46a6279b094e0238f847de67b1d01d7c091cc5120a911e0e43714"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "3dcd79ed9578702db8400d654d407fb9cf54efcae12b2120d00fb7dedcd205fe"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "0ae131114940349cb41680e3cc8eec55a3b2fea85749b2c9ef851545832f1959"
+      "sha256": "edf142646aa1b9ad2a0fd61b5c005a08672c78b6351166841f9d6242d20774c3"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "bbc12a183cfa8b7a442012d9ecaafb47713765b955076faefc9941e586552088"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-09-25T12:51:50Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "b1e2856ebf5526064d0a26139f1e4ca4df1c62ef99c6b051052449c31bb85f66",
       "etag": "\"c91cdf010e84067be6a0d453c311ff37\"",
-      "last_modified": "Fri, 25 Sep 2026 12:13:05 GMT"
+      "last_modified": "Fri, 25 Sep 2026 12:13:05 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-25T18:01:19Z",
+      "sha256": "b1e2856ebf5526064d0a26139f1e4ca4df1c62ef99c6b051052449c31bb85f66",
+      "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8a1ae0ef62c028df0ca24384cb01adbeb4dbc7168caa607219e72b181f65d6d2",
-      "last_modified": "Fri, 25 Sep 2026 11:58:28 GMT"
+      "sha256": "96621fb52b44fcad16c67a9cd2d6be06ee0a1b223900a8c8852088f59b106f82",
+      "last_modified": "Fri, 25 Sep 2026 16:04:08 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "0655192e5ab83639b5116e356b02503d50871ab4ed498a18ad2d525aad6a3181",
-      "etag": "\"1790339069\"",
-      "last_modified": "Fri, 25 Sep 2026 12:24:29 GMT"
+      "etag": "\"1790358027\"",
+      "last_modified": "Fri, 25 Sep 2026 17:40:27 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "1dd6d13e90da05464d0dac551841d6138750810979a8f2855277d2be17f9da10"
+      "sha256": "4907ddaae9138a43c552ad188f254130e53ef618bd2b37b8e7e7cfb7002f3db6"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"a775e50d377d00bfd90053c7cf18c36c-gzip\"",
       "last_modified": "Thu, 24 Sep 2026 14:00:50 GMT",
       "failures": 0,
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "sha256": "521a6fce595024945fbec55fc6d201bdc58ccc60f0e81aee8cdd6f70c3c69218",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f68a3a72698825294538c9c84344537ca85034c6a875544605a863a5cc34a040"
     },
     "https://siliconangle.com/feed/": {
-      "etag": "\"715e910aac1be0019382859e5fb6c20e\"",
-      "last_modified": "Fri, 25 Sep 2026 03:47:27 GMT",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
-      "ok_at": "2026-09-25T12:51:50Z",
-      "sha256": "b98e7ddee95e1dd3e5a76d4afa11acb0811893238256db34b6a0eadd963ce08b",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "309d60afb62caa570f528e53f5311d3bedfb743f62e5aa0c9249e35b8ba7b32a",
+      "etag": "\"a0a39d6840415367d36e2adc27049d8a\"",
+      "last_modified": "Fri, 25 Sep 2026 17:39:03 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
+      "retry_at": "2026-09-25T18:51:50Z",
       "failures": 1,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
-      "parser_version": 2,
-      "retry_at": "2026-09-25T18:51:50Z"
+      "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "40e0a83ef20de1d03eca66e81c4b451062b5869ed5e3d4880ce2dc7e8ca0a9ae",
-      "etag": "W/\"e95ce1fa25a8957f38b426d84efe9082\"",
-      "last_modified": "Fri, 25 Sep 2026 12:02:35 GMT"
+      "sha256": "33b2be60fc6a131edc6f26bfe6fb9e6aa2442af9994798bfb3278e3a540eed0a",
+      "etag": "W/\"76f8abc9fcf515f9234d15ffe62b26eb\"",
+      "last_modified": "Fri, 25 Sep 2026 17:38:34 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c80c98a6a75bcdd849f51f32e8dc4d6e3f5c2e3f50e15f9fc03240291f239f7e",
-      "etag": "W/\"4ed3ec781a667866a755dc565bd7c05b\""
+      "sha256": "17831ef4a4d46a6279b094e0238f847de67b1d01d7c091cc5120a911e0e43714",
+      "etag": "W/\"cd503f9cfedf9bfc5d754db8dbb7c765\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Fri, 25 Sep 2026 04:11:22 GMT",
-      "failures": 0,
-      "ok_at": "2026-09-25T12:51:50Z",
-      "sha256": "b51a21108f7482424f34c5cd36642b25b529575a04f5a0ecaeff9806b3184546",
-      "parser_version": 2
-    },
-    "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-25T12:51:50Z",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0ae131114940349cb41680e3cc8eec55a3b2fea85749b2c9ef851545832f1959"
+      "sha256": "3dcd79ed9578702db8400d654d407fb9cf54efcae12b2120d00fb7dedcd205fe",
+      "last_modified": "Fri, 25 Sep 2026 14:14:41 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-09-25T18:01:19Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "edf142646aa1b9ad2a0fd61b5c005a08672c78b6351166841f9d6242d20774c3"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"248b47c1f60c6476f1c9ea48ae1f1342\"",
-      "last_modified": "Thu, 24 Sep 2026 17:23:27 GMT",
+      "ok_at": "2026-09-25T18:01:19Z",
       "failures": 0,
-      "ok_at": "2026-09-25T12:51:50Z",
-      "sha256": "b7f30b0af70ab78fe51324d6e496cc7bade9a85242561d5b6cb2e28d026dc394",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "bbc12a183cfa8b7a442012d9ecaafb47713765b955076faefc9941e586552088",
+      "etag": "W/\"b67e7ee8732fcb1e318fbbd39ed5a4c1\"",
+      "last_modified": "Fri, 25 Sep 2026 13:59:43 GMT"
     }
   }
 }
