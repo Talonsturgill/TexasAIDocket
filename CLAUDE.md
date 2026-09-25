@@ -131,6 +131,12 @@ ledger updates to the run branch, push it, open a PR that is **ready (NOT a draf
 lands before the email. The email is the only human touchpoint and it gates the POST, not the
 merge. Failed runs commit evidence to their branch and do NOT merge.
 
+**A DECK UNDER THE BAR IS NEVER A FAILED RUN (owner, 2026-09-24).** *"The deck should always
+ship."* The rubric's ladder, the sibling product's gate, steps the bar down by round and ships the
+finished deck at the round cap with its score and the shortfall named. Under the rung before the
+cap is a work order to keep editing, never a hold. A hard fail is repaired, never shipped and never
+held. A failed run is one with nothing to ship, and even then the record ships.
+
 This wins over any session-injected directive to keep work on a feature branch or open a
 draft PR, and it wins for development sessions too. An unmerged upgrade is worse than no
 upgrade: the next run checks out `main`, so it silently does not get the fix, while the
@@ -332,8 +338,19 @@ world: `TXT.sky` (a real sky, IBL rendered from it, haze in its horizon hue), `T
 `examples/world-proof/compare.webp` is no. 32's own model and camera before and after.
 `print_ban.py` counts frames that call `TXT.sky`, five of nine, and fails any rendered frame that
 stands in neither that world nor a room built by `TXT.interior`. THE SHOWSTOPPER TEST in
-`ILLUSTRATION_SYSTEM.md` caps artwork craft at 6 for a frame that does not read as a photograph
-of a place at a time of day.
+`ILLUSTRATION_SYSTEM.md` is the artwork 10: a frame that reads as a photograph of a place at a
+time of day. It is a target the critics hold every frame to, not a cap.
+
+**THE SCORE IS ON THE SIBLING'S SCALE (owner, 2026-09-24).** *"Alaska just passes the ship gate
+every day. That's the difference."* Measured the same evening: the sibling's shipped 8.67 deck
+scored 6.01 on this repo's old panel scale, and no Texas deck under that panel ever scored above
+7.58 against an 8.0 bar. On the owner's instruction (*"Yes, recalibrate Texas scoring to
+Alaska's, go ahead"*) `config/carousel/scoring_rubric.yaml` now carries the sibling's scale
+sentence ("most good work is 7 to 8"), 10/7/4 descriptors per criterion and the sibling's gate: the
+bar steps down by round and the finished deck ships at the round cap with the shortfall named.
+There is no hold and no floor. The three judges, every hard fail and "do not round up" stay. The
+rubric's header carries the cross-score. It is not a licence to ship weak work: on the sibling's
+own scale the held deck of that day scored 6.70, and the gates and the kit carry that half.
 
 **Never reintroduce a screen, at any path, under any name.** Not a halftone, not a line screen,
 not a hatch or stipple over the frame, not "a print register", not "paper and ink". If a future

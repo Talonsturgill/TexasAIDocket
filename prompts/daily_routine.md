@@ -1351,6 +1351,16 @@ check on a deck the run already believes is finished.
 
 ### THE ROUND RULE, and it is the most expensive habit this routine has
 
+**THE LADDER, the sibling's gate (owner, 2026-09-24).** The rubric's `ladder` sets the bar each
+round must clear, stepping DOWN with the rounds of work the deck has had, and at `max_rounds` the
+finished deck ships whatever it scored, with the shortfall named in the email and the run record.
+There is no hold and no floor. `panel.py` writes `ship`, `rung` and, under the rung, a
+`work_order`: **under the rung means KEEP EDITING**, the judges' named defects, then re-render and
+re-score. In the owner's words: *"The deck should always ship"* and *"there's never a reason to
+stop editing it to actually just meet the standard."* A deck under the bar is never a failed run.
+The scale itself is the sibling's since the same day ("most good work is 7 to 8"), and the rubric's
+header carries the measurement that moved it.
+
 `config/carousel/scoring_rubric.yaml` sets `max_rounds`. **Past that cap, a round may repair a
 HARD FAIL and nothing else.** Not a craft note, not a one-sentence fix, not a judge's taste. A
 hard fail is a claim about a promise this product made in public and it stops the deck at any
@@ -1420,7 +1430,7 @@ said. Two judges failing to notice something is not evidence it did not happen.
 
 **A NUMBER OVER THE BAR IS NOT DONE.** Twice on 2026-08-19 the deck cleared 7.0 and did not
 ship, at 7.14 and at 7.44, because all three judges named a defect the previous round's own fix
-had created. `run_complete.py` enforces the floor. Only the panel can tell you the deck is
+had created. `run_complete.py` enforces the ladder. Only the panel can tell you the deck is
 finished.
 
 If `score.json` carries a `note` about spread, the judges disagree by more than 0.75 and the
