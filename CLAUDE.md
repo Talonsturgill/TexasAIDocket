@@ -486,6 +486,12 @@ The mechanism, measured on 2026-08-30 after eleven days of wrong guesses:
   `ownership.yaml`, and must not weaken it: the only thing standing between the self-editing
   retro phase and `ledger/docket.json` is that map.
 
+**SUPERSEDED IN PART, 2026-09-25.** The second and third bullets are wrong for a cloud run, and
+Anthropic's documentation says so in as many words: cloud sessions "don't honor
+`defaultMode: "bypassPermissions"` or `"dontAsk"` from your settings files", user settings
+included. The SessionStart hook still writes the file and it changes nothing. The account, with
+the quotes and where they came from, is the last section before the routines' model heading.
+
 If a prompt still stops a run after this, **the remaining lever is the environment's own
 permission configuration in the Claude Code web UI**, which no file in a repository or a
 container can set. Say so plainly in the email rather than writing a sixth fix into a config that
@@ -559,6 +565,55 @@ forward.
 to `.claude/settings.local.json`, which `.gitignore` excludes and which dies with the container.
 So the owner tapping approve fixes that one run and no future one. That is why the count reached
 six before anybody found it.
+
+### The sensitive file that stopped 2026-09-25 was in the HOME directory, and the docs say which paths prompt
+
+On September 25th the run stopped at 06:53 UTC, 38 minutes in, and waited on one dialog for the
+rest of the day. The owner's screenshot of it, with the ids shortened:
+
+    Claude requested permissions to edit /root/.claude/projects/-home-user-TexasAIDocket/
+    <session>/tool-results/webfetch-<id>.pdf which is a sensitive file.
+
+    cp /root/.claude/projects/.../tool-results/webfetch-<id>.pdf out/2026-09-25/tmp/src/sb2807_le.pdf
+      && python3 -c "... pypdf ..."
+
+WebFetch saves a binary result such as a PDF under `~/.claude/projects/<project>/tool-results/`,
+and the run copied it out to extract the text. **The dialog named the SOURCE of the copy as the
+file being edited.** Nothing in the routine said how to read a PDF, so the run improvised, and the
+improvisation went through the one directory it must never touch. `scripts/shared/fetch_doc.py` is
+the route now, and the routine names it in its list of context files.
+
+**What Anthropic's documentation says, read on 2026-09-25 rather than inferred.** The pages are
+`code.claude.com/docs/en/permission-modes`, `/permissions`, `/hooks` and `/routines`.
+
+- **Protected paths.** "Writes to a small set of paths are never auto-approved, except in
+  `bypassPermissions` mode." The directories are `.git`, `.config/git`, `.vscode`, `.idea`,
+  `.husky`, `.cargo`, `.devcontainer`, `.yarn`, `.mvn` and `.claude` (except `.claude/worktrees`),
+  wherever they sit. The files include `.gitconfig`, `.gitmodules`, the shell rc files, `.envrc`,
+  `.npmrc`, `.mcp.json` and `.claude.json`. In `default` and `acceptEdits` mode such a write is
+  "Prompted", and "`permissions.allow` rules in settings files do not pre-approve protected-path
+  writes."
+- **A cloud session cannot be in bypass mode.** Cloud sessions offer "Accept edits, Plan, and
+  Auto ... Bypass permissions isn't available", and settings files cannot change that. The
+  dialog above is the proof on this repo, because in bypass mode that write would have gone
+  through.
+- **A routine has no mode picker at all.** The routines page says a routine runs "all without
+  stopping for approval apart from some artifact actions". The 2026-09-25 run stopped on a
+  protected-path write, so that sentence does not hold for one. That is a report for Anthropic,
+  not something to route around here.
+- **Ordinary file edits are pre-approved, inside the working tree.** "Cloud sessions pre-approve
+  file edits regardless of mode", and that approval "applies only to paths inside your working
+  directory or `additionalDirectories`. Paths outside that scope, writes to protected paths ...
+  still prompt." So for FILE WRITES the question five fixes chased has an answer: a protected
+  path prompts and so does a path outside the tree, which is what "Scratch never leaves the
+  working tree" was already guarding. Other dialogs remain possible and are NOT ruled out by
+  this: a tool no allow rule covers, a command asking to leave the sandbox, a connector tool an
+  organisation set to ask.
+
+**The rule that follows is short.** A run never names a file inside a `.claude` or `.git`
+directory, the repository's or the home directory's, as the thing to write, copy, move or edit, by
+any tool. Git's own commands are fine, because `git commit` and `git checkout` name no such path.
+Reading those files is fine, and so is running a script that lives there.
 
 ## The routines' model, and what it changed here (2026-09-23)
 

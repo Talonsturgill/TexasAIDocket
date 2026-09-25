@@ -18,7 +18,7 @@
 | world presets | 6 |
 | kit models | 95 in 10 families |
 | asset libraries | 21 |
-| carousel and shared tools | 63 |
+| carousel and shared tools | 64 |
 | record and site tools the routine names | 20 |
 | agents | 10 |
 | knowledge files | 41 |
@@ -30,7 +30,7 @@
 |---|---|
 | costs | `render.py` |
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `gridwatch_page.py`, `house_style_check.py`, `waterwatch_page.py` |
-| context | `arsenal.py`, `dossier_check.py` |
+| context | `arsenal.py`, `dossier_check.py`, `fetch_doc.py` |
 | state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py` |
 | 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
 | 1 | `instincts.py` |
@@ -425,6 +425,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/actor_stamp_shape.py` | no instruction file may tell a session to WRITE the actor stamp. | --root --self-test | CI |  |
 | `scripts/shared/crawl_boundary.py` | ask the registry whether a url is inside the boundary, once, in one place. | <url> --list --self-test | shipped |  |
 | `scripts/shared/dependency_shape.py` | prove every install uses the committed dependency locks. | --self-test | CI |  |
+| `scripts/shared/fetch_doc.py` | fetch a web document into the run's own scratch and read its text. | <url> --name --date --chars --self-test | CI self-test | context |
 | `scripts/shared/gen_port_manifest.py` | enumerate every file in the sibling machines and route it. | --out --refresh |  |  |
 | `scripts/shared/guards_local.py` | run what CI runs, here, before pushing. | --fast --only --list --strict --verdict --self-test | CI self-test | 0, 18 |
 | `scripts/shared/guards_shape.py` | the guard workflow's own wiring, checked rather than remembered. | --self-test | CI |  |
