@@ -278,6 +278,14 @@ top of the run record.
    fine, since `git commit` and `git checkout` name no such path. Reading those files is fine,
    and so is running a script that lives there. `prompt_audit.py` in Phases 17 and 19 still
    measures whether anything waited.
+
+   **AND A DIALOG IS NOW ANSWERED FOR YOU (September 26th).** The no-stall hook,
+   `.claude/hooks/no_stall.py`, denies every permission dialog in this run the moment it appears,
+   so nothing waits for nobody. A tool result saying the no-stall hook refused a call means that
+   call needed a person. Do not retry it. Take the route its message names, note the refusal in
+   the run record, and carry on. The one dialog it can't answer is a sandboxed command's network
+   request, so keep network use to the fetchers the routine names. CLAUDE.md has the account
+   under "THE NO-STALL HOOK".
 3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
 4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.
@@ -1643,6 +1651,11 @@ call and the command that asked, with the arguments withheld. **Put that in the 
 because an unattended run that stalls for hours looks from the inside exactly like an unattended
 run that did not.
 
+The report ends with the no-stall hook's section: whether it was armed, every call it refused and
+any dialog it couldn't answer. A refusal cost no time and still goes in the run record, because it
+names a call the run should stop making. `NOT ARMED IN AN UNATTENDED RUN` means nothing guarded
+this run, and it goes at the top of the run record.
+
 **THIS READING IS INTERIM AND THE RUN RECORD MUST SAY SO.** Everything after this line can still
 prompt, and most of what a run does that a human would want to know about is after this line. The
 upgrade worker runs, files are committed and pushed, the pull request is checked and merged, and
@@ -1890,7 +1903,8 @@ python3 scripts/shared/prompt_audit.py
 This is the LAST thing a run does before the email, so it is the only reading that covers the
 whole run. Exit 1 means a call waited on a human and the report names it. **Say so in `--notes`,
 naming the tool and how long it waited.** Exit 1 with UNMEASURED means the debug log could not be
-parsed, which is not a clean result and is worth a line of its own.
+parsed, which is not a clean result and is worth a line of its own. **Copy the no-stall hook's
+section into `--notes` as it prints**: armed or not, and each call it refused.
 
 It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
 **prove it is postable before you draft it**, by exit code:

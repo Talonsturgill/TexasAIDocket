@@ -30,6 +30,11 @@
     "own fix, honestly, and was wrong. A run record claiming 'no prompt' is unevidenced. No run",
     "can know.",
     "",
+    "SUPERSEDED IN PART, 2026-09-25. The three paragraphs above describe the runner as it was",
+    "measured on 2026-08-30. For a cloud run the path DOES matter, because Anthropic documents which",
+    "writes prompt, and a session CAN see that it prompted, with scripts/shared/prompt_audit.py.",
+    "CLAUDE.md has both, under 'A run never stops to ask about permissions'.",
+    "",
     "WHAT ACTUALLY FIXED IT, and the shape of the fix is the part worth keeping. The routine used",
     "to declare its lane by writing `.git/ACTOR` at Phase 0 and twice more around the retro. Five",
     "fixes were tried and every one of them aimed at HOW that file was written: an allow list of",
@@ -79,7 +84,17 @@
     "per token. Raise it on evidence, never on a hunch. Unlike the permission grant above, this key",
     "is not a privilege, so a cloned repository may set it and the resolver in the CLI honours it.",
     "The Bash tool and every hook see the level as $CLAUDE_EFFORT, and the routine records it in",
-    "run_state.json at wake, so every run says whether this line took."
+    "run_state.json at wake, so every run says whether this line took.",
+    "",
+    "THE NO-STALL HOOK, 2026-09-26, and it is the one thing in this file that keeps an unattended",
+    "run moving. The owner approved it that morning: 'Yes, write the no-stall hook under .claude/'.",
+    "`hooks` below runs .claude/hooks/no_stall.py on five events. In an unattended run it answers",
+    "every permission dialog with a denial and the route that needs no approval, refuses a",
+    "protected-path write, a question and plan mode before they are asked, and declines a",
+    "connector's form. It never approves anything, so it is not a grant, and a cloned repository",
+    "may ship it. In a person's session it prints nothing. The one dialog it can't answer is a",
+    "sandboxed command's network request, which Claude Code runs no hook for, and it logs that one.",
+    "Its self-test fails CI if a registration below goes missing. CLAUDE.md has the account."
   ],
   "effortLevel": "high",
   "permissions": {
@@ -151,6 +166,62 @@
           {
             "type": "command",
             "command": "python3 -c \"import json,os,pathlib; d=pathlib.Path(os.path.expanduser('~/.claude')); d.mkdir(parents=True,exist_ok=True); f=d/'settings.json'; cur=json.loads(f.read_text()) if f.exists() else {}; p=cur.setdefault('permissions',{}); p['defaultMode']='bypassPermissions'; p.setdefault('additionalDirectories',['/tmp/claude-0','/mnt/user-data']); f.write_text(json.dumps(cur,indent=2))\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/no_stall.py\" session-start",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/no_stall.py\" permission-request",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|AskUserQuestion|EnterPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/no_stall.py\" pre-tool-use",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Elicitation": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/no_stall.py\" elicitation",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog|elicitation_url_dialog|agent_needs_input",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/no_stall.py\" notification",
+            "timeout": 10
           }
         ]
       }
