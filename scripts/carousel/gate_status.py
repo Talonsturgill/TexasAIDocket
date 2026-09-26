@@ -422,8 +422,22 @@ def _render(r, d: Path | None = None, drawn: float = 0.0) -> Row:
     return Row("render", FAIL if bad else (WARN if warns else PASS), ", ".join(bits))
 
 
+# THE ENGINE'S CLEAN VERDICT IS NOT A WARNING (2026-09-26, Codex on PR 369). txthree.js prints a
+# verdict on every snapshot of a frame that stands in the world or a room, a clean one included, so
+# print_ban can tell a frame that passed from one whose check never ran. qa.py files every console
+# line as a warn, which would turn this row WARN on every deck. So the clean verdict is not counted
+# here, and a NO SKY or NO ROOM line still is.
+VERDICT_WARN = re.compile(r"^console error: TXT: (?:SKY|ROOM) IN FRAME\b")
+
+
 def _qa(q) -> Row:
-    f, w = int(q.get("fails") or 0), int(q.get("warns") or 0)
+    f = int(q.get("fails") or 0)
+    slides = q.get("slides")
+    if isinstance(slides, list) and slides and all(isinstance(s, dict) and isinstance(s.get("warns"), list)
+                                                   for s in slides):
+        w = sum(1 for s in slides for x in s["warns"] if not VERDICT_WARN.match(str(x)))
+    else:
+        w = int(q.get("warns") or 0)
     if not f and not w:
         n = len(q.get("slides") or [])
         return Row("qa", PASS, f"{n} slide(s), zero fails, zero warns")
@@ -982,6 +996,22 @@ def self_test() -> int:
     ok("a receipt from before the split reads as render occurrences, not declarations",
        "5 numeric phrase(s) in the render" in legacy.detail and "declaration" not in legacy.detail,
        legacy.detail)
+
+    # THE ENGINE'S CLEAN VERDICT IS NOT A WARNING, and a no-sky line still is (PR 369).
+    _clean = "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+    _room = "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+    _void = "console error: TXT: NO SKY IN FRAME [r1]. This frame calls TXT.sky and its camera shows none"
+    ok("a deck whose only warns are the engine's clean verdicts reads PASS",
+       _qa({"fails": 0, "warns": 2, "slides": [{"file": "slide-01.html", "fails": [], "warns": [_clean]},
+                                               {"file": "slide-02.html", "fails": [], "warns": [_room]}]}
+           ).status == PASS)
+    ok("...while a no-sky line is still a warn",
+       _qa({"fails": 0, "warns": 2, "slides": [{"file": "slide-01.html", "fails": [], "warns": [_clean]},
+                                               {"file": "slide-02.html", "fails": [], "warns": [_void]}]}
+           ).status == WARN)
+    ok("...and so is any other warn beside a verdict",
+       _qa({"fails": 0, "warns": 2, "slides": [{"file": "slide-01.html", "fails": [],
+                                                "warns": [_clean, "tiny-text: 'a' (20px)"]}]}).status == WARN)
 
     if failures:
         print(f"\ngate_status self-test: {failures} FAILED", file=sys.stderr)
