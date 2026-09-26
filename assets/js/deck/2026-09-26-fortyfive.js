@@ -222,8 +222,10 @@
     [-0.05, 0.02].forEach(function (x) {
       var con = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.03, 16), M.arm); con.rotation.x = Math.PI / 2; con.position.set(x, 0.035, -0.095); g.add(con);
     });
-    var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.004, 16, 10), M.recLamp); lamp.position.set(0.075, 0.045, 0.081); g.add(lamp);
-    var halo = new THREE.PointLight(N.ACCENT, 0.35, 0.6, 2); halo.position.set(0.075, 0.05, 0.1); g.add(halo);
+    var lamp = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.006, 20), M.recLamp); lamp.rotation.x = Math.PI / 2; lamp.position.set(0.075, 0.042, 0.082); g.add(lamp);
+    var halo = new THREE.PointLight(N.ACCENT, 0.5, 0.8, 2); halo.position.set(0.075, 0.045, 0.12); g.add(halo);
+    /* the mounting plate it is bolted through, against the wall behind it */
+    var plate = TXT.roundedBox(0.36, 0.2, 0.012, 0.004, M.arm); plate.position.set(0, 0.05, -0.088); g.add(plate);
     var cable = TXT.tube([[-0.05, 0.035, -0.11], [-0.05, 0.03, -0.2], [-0.03, -0.08, -0.26], [0.0, -0.4, -0.27]], 0.006, M.dash);
     g.add(cable);
     g.userData.lamp = [0.075, 0.045, 0.081];

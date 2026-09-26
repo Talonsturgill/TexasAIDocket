@@ -1,0 +1,669 @@
+# Storyboard, 2026-09-26
+# "Nobody at the wheel"
+
+## The story, and what the fact check did to it
+
+Texas has required a state authorization for commercial driverless vehicles since May 28th, 2026
+(c1), and the record admitted it today as tx-2026-0188. On the Dallas to Houston lane, Kodiak says
+it will launch "unsupervised long-haul driverless service" by the end of 2026 (c22), its deliveries
+from its Lancaster hub to Houston run "without human intervention" (c23), and "the safety observer
+never touched the wheel, including on surface streets" (c24). Aurora's release said investor day attendees "will have the opportunity to ride" its trucks "without
+a person behind the wheel" on a segment of its Dallas-to-Houston route (c28) and says it is "fully allocated to
+exit the year with 200 driverless trucks in operation" (c29).
+
+The authorization is six acknowledged statements (c5 to c10) and a certified first responder plan
+(c11). "No fees are required" and authorizations "do not expire" (c12). The department acts when an
+operation "has resulted, or is likely to result, in serious bodily injury" (c13) and is "unlikely to
+take administrative enforcement action" below that (c14). The City of Dallas asked the department to
+require crash history (c18). The department answered that the statute does "not allow" it (c19).
+
+**WHAT THE FACT CHECK CHANGED.**
+- **"Unsupervised", never "observer-free".** Kodiak's word (c22). The deck never says when the
+  observer leaves, because the release gives no date.
+- **The 80 percent is Waabi's own loads**, not corridor freight, and the deck does not use it.
+- **219 and 240 are two companies' figures for one corridor** and are never reconciled, averaged or
+  differenced. The deck draws Kodiak's 219 (c25) on the map frame and names Waabi's 240 (c33) in text
+  only, attributed.
+- **Aurora's release gives no count running now.** The 20 is Breitbart's, citing a CNBC ride (c34),
+  and the frame that uses it says so. The 200 is an allocation, not trucks running.
+- **No fetched record shows which companies hold an authorization.** No frame implies that any of
+  the three does.
+- **The recorder and the cab are drawn to illustrate.** c6 says only that the vehicle is "equipped
+  with a required recording device". The sensor kit is no one company's hardware.
+
+## Why this treatment, and what was grafted
+
+Three directors pitched: THE EMPTY SEAT, THE PERMISSION and THE LANE. The deck is THE EMPTY SEAT's
+spine, because every claim in this story is about a person who is not there, and the truck is the
+one object every absence is shaped around: the driver gone (c28), the observer's hands off the wheel
+(c24), the state at arm's length (c19, c14).
+
+- From THE LANE: the blue hour world and its reason (glass goes dark from outside, a lit cab shows
+  its empty seat from inside), the MAP of the lane with Kodiak's 219 as a scale bar, and the close
+  at the Houston end with the authorization's run drawn as a bar that becomes a hairline.
+- From THE PERMISSION: the recorder as the accent and the counter-image frame, and the six
+  acknowledgements drawn as six rows on a sheet lying on the empty seat.
+- From THE EMPTY SEAT: the Permian 35 and the 200 on one scale, the cab from its own dash, and the
+  review clock as one painted stripe on a truck court.
+- Refused: "observer-free", any claim of who holds an authorization, a painted clay "plan" fleet
+  (clean clay is a named failure), a seated kit person (the kit has no sit pose, so the observer is
+  cropped to hands in a lap).
+
+## The world, and the laws that hold it
+
+**INTERSTATE 45 AT BLUE HOUR IN LATE SEPTEMBER.** The chassis is
+`assets/js/deck/2026-09-26-fortyfive.js` and every frame loads it. It declares `sky: 'blueHour'` and
+one light at azimuth -160, elevation 32, the high-mast lamps' key inside the preset's lamp range of
+25 to 45. Why this light: freight that runs without a driver runs at the hour nobody is watching,
+and blue hour is the one hour a truck is known by its lamps rather than its driver. From outside the
+cab glass mirrors the sky, which is the question the rule leaves open. From inside, the dash lights
+an empty seat. Marker lamps and sensor bands glow under the bloom knee, and only the recorder's
+lamp clears it.
+
+**ONE HERO OBJECT.** The kit's `semi_truck` (Class 8 long-hood sleeper and 53 ft van), unbranded,
+carrying the chassis's sensor kit, and the chassis's CAB set for every frame inside it. The cab and
+the sensors are illustrative and a frame that shows them close says so.
+
+**THE RECORDER LAMP IS THE MOTIF AND THE ACCENT.** `#E0956A`, dusk_gold from config/brand.yaml,
+worn by the recording device's 6 mm status lamp and one tick on the sheet, frames 3, 6 and 7. The
+amber marker lamps stay yellower (`#FFB547`) and under 1.0 so nothing competes.
+
+**THE MUTE WORLD LAW.** No logo, no fleet name, no readable plate, no real hub. The truck court and
+the yards stand for a kind of place.
+
+## Palette
+
+| token | hex | where |
+|---|---|---|
+| `ground` | `#151D33` | the DOM body behind the render |
+| `accent` | `#E0956A` | the recorder lamp (3, 7), the recording device tick (6) |
+| `hook` | `#F3F1EC` | the hook on every frame, on the sky or the dark cab |
+| `dek` | `#E3E7EE` | the dek on every frame |
+| `rule` | `#C8D1DC` | the site line, the source line and the counter |
+
+The world's own colours are lit materials: pale continuously reinforced concrete lanes, black
+Blackland clay verges, September straw, cedar elm olive, a white fleet tractor, blue hour cobalt
+with an amber seam in the west. Frame 4 alone stands on Permian caliche because its claim is there.
+
+## The continuity devices
+
+    CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
+
+1. **Motif evolution, the empty seat and the record.** The seat is seen empty through the glass
+   (1), empty beside the observer's hands with the recorder lamp lit behind it (3), empty 35 times
+   (4), empty in 20 rigs among 200 stalls (5), holding the state's paper (6), with the recorder over
+   it (7), rolling down the review stripe (8) and passing under a Texan (9).
+2. **Camera move.** Outside the cab (1), above the state (2), inside the cab (3), up high over two
+   yards at one scale (4, 5), back inside at the seat (6) and the bulkhead (7), out onto a court (8),
+   and up on an overpass rail (9).
+3. **Value arc.** One world, and the camera turns steadily away from the amber seam toward the
+   deeper blue, so the ground steps down from frame 1 to the Houston end and never back up.
+
+## The rotation
+
+    FULL_BLEED  MAP  CLOSE_CROP  GRID  GRID  DOCUMENT  CLOSE_CROP  DIAGRAM  SPLIT_HORIZON
+
+`TXLAYOUT.check` returns an empty list. Seven distinct, no TYPE_AS_OBJECT, FULL_BLEED and CLOSE_CROP
+three between them, eight frames bleeding an edge.
+
+---
+
+```yaml
+slide: 1
+layout: FULL_BLEED
+primary_image:
+  subject: "a white Class 8 tractor with a 53 ft van coming toward the camera in the right lane of I-45 at blue hour, sensor pods on its mirror arms, headlamps on, the dark windshield mirroring the sky, the concrete lanes and a Blackland verge running off the bottom"
+  rect: [0, 560, 1080, 790]
+  bleeds: [left, right, bottom]
+accent: none
+job: >
+  Stop the scroll on a truck a Texan has passed a thousand times, and make the one wrong thing about
+  it the question the deck answers, before a word of policy.
+
+claims: [c22, c28]
+numerals:
+  - value_from: c22   # 2026, the end of 2026 target
+
+
+depth:
+  eye: 0.8
+  horizon: 760
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, AERIAL, OCCLUSION, CAST_SHADOW, FORM_SHADING]
+  subject_at: {X: 0, Z: 0}
+
+composition:
+  structure: >
+    A low three quarter front camera on the right shoulder puts the tractor's grille and pods on the
+    right third, the van running off the left edge behind it, and the lanes converging to the amber
+    seam on the left. The type sits in the deep blue sky above the horizon.
+  bands: >
+    Top third, the blue hour sky deepening to cobalt with the hook and the dek. Middle third, the
+    amber seam on the horizon, the lit cab front with its sensor pods and the dark windshield, the
+    fencerow in haze. Bottom third, the pale concrete lanes with skip lines modeled by the lamps, the
+    rumble strip and the Blackland verge with straw grass lit from the side, the tyres and their
+    contact shadows.
+  focal: "the lit grille and the dark windshield above it, the one place a driver should be"
+
+art:
+  technique: "physically based render through txthree.js in the declared blueHour world, the kit highway and semi_truck, scatter kept off the type, contact and weather, bloom on lamps only"
+  why_this_technique: >
+    The claim is a real vehicle on a real road. Only a render at true size, lit like the hour it
+    runs, makes the dark windshield read as a question rather than a design choice.
+  palette: "cobalt zenith, amber seam, white tractor paint, black glass, pale concrete, Blackland black verge, straw grass"
+  value_structure: >
+    Lightest is the amber seam and the headlamps. Darkest is the windshield and the verge in the
+    lower corners. The hook sits on the mid blue sky. Frame median L* planned at 30.
+  motion: "from the hook down to the windshield, then along the lane to the seam"
+
+type:
+  kicker: "Interstate 45, Dallas to Houston"
+  hook: "Nobody at the wheel"
+  dek: "Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026. Aurora said investor day guests could ride part of its route with nobody behind the wheel."
+
+acceptance:
+  - "the frame reads \"Nobody at the wheel\""
+  - "the tractor's front and both mirror sensor pods are visible and the van runs off the left edge"
+  - "the headlamps bloom and no painted surface does"
+  - "no grass blade, lamp or truck edge crosses the hook or the dek"
+  - "no logo, fleet name or legible plate appears anywhere on the truck"
+
+risks:
+  - "the windshield must stay dark from outside, the deck's point, and frame 3 answers it from inside"
+```
+
+```yaml
+slide: 2
+layout: MAP
+primary_image:
+  subject: "Texas's 254 counties in the Albers projection, dark, with Dallas County and Harris County lit, Lancaster and Houston marked, a dashed line between them, and a scale bar at Kodiak's 219 miles computed through the projection"
+  rect: [0, 470, 1080, 880]
+  bleeds: [left, right, bottom]
+accent: none
+job: >
+  Make the lane a place with a length, in the company's own number, so the reader knows the size of
+  the road the rest of the deck is on.
+
+claims: [c23, c25, c33]
+numerals:
+  - value_from: c25   # 219 miles
+  - value_from: c33   # 240, Waabi's figure, text only
+
+data_in_art:
+  figure: kodiak_lane_miles
+  drives: the scale bar's length in px, computed from the projection's own scale at the corridor's latitude
+
+composition:
+  structure: >
+    The state fills the lower two thirds, cropped so the east half of Texas sits large. The two
+    endpoint counties glow and a dashed line joins Lancaster to Houston. The scale bar lies along the
+    Gulf coast below it with its own mono label, and the type sits in the dark above the Panhandle.
+  bands: >
+    Top third, the hook and the dek over the dark field above the state. Middle third, North and
+    Central Texas with Dallas County lit, the Lancaster mark and the dashed line starting south.
+    Bottom third, the line reaching the lit Harris County and the Houston mark, and the scale bar
+    drawn as a modeled steel ruler with a shaded edge above the Gulf.
+  focal: "the dashed line between the two lit counties"
+
+art:
+  technique: "cartography from assets/geo through TXGeo, the county mesh shaded by a low raking light, the scale bar and marks in mono"
+  why_this_technique: >
+    The claim is a distance between two named places. A map is the only picture of that, and the
+    projection is what makes the scale bar a measurement rather than a decoration.
+  palette: "near black blue field, slate county fills, the two endpoint counties in a lit steel blue, pale county lines, the bar in the rule colour"
+  value_structure: >
+    Lightest is the two lit counties and the scale bar. Darkest is the field around the state.
+    Frame median L* planned at 22.
+  motion: "from the hook to Lancaster, down the dashed line to Houston, to the bar"
+
+type:
+  kicker: "The lane"
+  hook: "219 miles of I-45"
+  dek: "That is Kodiak's figure for the lane from its Lancaster hub to Houston. Waabi, which hauls the same corridor, calls it roughly 240."
+
+acceptance:
+  - "the frame reads \"219 miles of I-45\""
+  - "Dallas County and Harris County are the only lit counties"
+  - "the scale bar is labelled with Kodiak's 219 miles and its length is computed from the projection"
+  - "the dashed line is labelled as a straight line between the two places, not the road"
+  - "no numeral 240 is drawn in the art, only in the dek"
+
+risks:
+  - "a straight line between the endpoints is shorter than the road, and the label says so"
+```
+
+```yaml
+slide: 3
+layout: CLOSE_CROP
+primary_image:
+  subject: "inside the cab from the sleeper opening: the empty driver's seat and the wheel on the right, the observer's hands resting in their lap at the left edge, the dash glowing, the recorder's lamp lit on the bulkhead, and I-45 running south through the windshield at blue hour"
+  rect: [0, 420, 1080, 930]
+  bleeds: [left, right, bottom]
+accent: "#E0956A"
+job: >
+  Answer the cover from inside. There is somebody aboard, and nobody is driving.
+
+claims: [c23, c24]
+numerals: []
+
+depth:
+  eye: 2.8
+  horizon: 610
+  cues: [LINEAR_PERSPECTIVE, OCCLUSION, RELATIVE_SIZE, AERIAL, FORM_SHADING]
+  subject_at: {X: 0.55, Z: -0.2}
+
+composition:
+  structure: >
+    The camera sits between the seats looking forward and a little right, so the empty driver's seat
+    and the wheel take the right half and the lane runs to its vanishing point through the glass in
+    the upper middle. The observer's hands rest at the left edge. The type sits on the dark cab roof
+    liner at the top.
+  bands: >
+    Top third, the headliner in shadow with the hook and the dek. Middle third, the windshield with
+    the lanes, a truck's tail lamps ahead and the amber seam, the wheel's dark ring against it.
+    Bottom third, the dash top, the driver's seat cushion and bolster modeled by the dome light, the
+    pedals, and the observer's hands resting in a lap at the left edge.
+  focal: "the empty seat and the wheel against the lit lane"
+
+art:
+  technique: "physically based render of the chassis cab set with the kit highway outside, the world's sky through the glass, dome light and dash emissive"
+  why_this_technique: >
+    The claim is a behaviour, hands that never touched the wheel. It can only be shown as a real
+    seat, a real wheel and hands somewhere else, at the size a person knows.
+  palette: "dark vinyl, charcoal dash, warm dome pool, cool blue glass, amber seam, pale concrete"
+  value_structure: >
+    Lightest is the lane and seam through the glass. Darkest is the headliner behind the type.
+    Frame median L* planned at 26.
+  motion: "from the hook down to the wheel, out through the glass to the lane"
+
+type:
+  kicker: "Inside the cab"
+  hook: "Hands off the wheel"
+  dek: "Kodiak's trucks still carry a safety observer. On its runs from Lancaster to Houston, the company says, the observer never touched the wheel."
+
+acceptance:
+  - "the frame reads \"Hands off the wheel\""
+  - "the driver's seat is empty and no hand touches the wheel"
+  - "the recorder's lamp is the only point of #E0956A on the frame"
+  - "the lane and the seam are visible through the windshield"
+
+risks:
+  - "the observer is a standing kit figure cropped to the hands, and must not read as a mannequin"
+```
+
+```yaml
+slide: 4
+layout: GRID
+primary_image:
+  subject: "thirty five white bobtail tractors with sensor pods parked seven across and five deep on a pale caliche pad in the Permian at blue hour, seen from a long lens high above, every cab empty, mesquite at the pad's edge"
+  rect: [0, 470, 1080, 880]
+  bleeds: [left, right, bottom]
+accent: none
+job: >
+  Show that the end state already exists in Texas, counted one truck per truck, in the company's
+  own number.
+
+claims: [c27]
+numerals:
+  - value_from: c27   # 35 trucks
+
+data_in_art:
+  figure: permian_trucks
+  drives: mark count, 35 rendered tractors read from figures.json
+
+depth:
+  eye: 180
+  horizon: 440
+  cues: [RELATIVE_SIZE, CAST_SHADOW, FORM_SHADING, AERIAL, TEXTURE_GRADIENT]
+  subject_at: {X: 0, Z: 0}
+
+composition:
+  structure: >
+    A long lens from high above flattens the block of tractors to one size. The rows fill the lower
+    two thirds, running off the sides, and the horizon with a pump jack sits high under the type.
+  bands: >
+    Top third, the blue sky with the hook and the dek over a thin caliche horizon and a small pump
+    jack. Middle third, the first rows of tractors, each a white roof and hood casting a soft shadow.
+    Bottom third, the nearest rows on the pale caliche pad with tyre tracks, mesquite scrub and
+    grass at the pad edge, each tractor's contact shadow dark on the caliche.
+  focal: "the block of thirty five white cabs"
+
+art:
+  technique: "physically based render, the chassis truck instanced as a bobtail thirty five times, caliche ground, scrub scatter off the pad"
+  why_this_technique: >
+    A count of machines wants the machines, each countable, at one scale. The render makes each one a
+    truck a reader recognises rather than a mark.
+  palette: "white tractor paint, pale caliche, mesquite olive, cobalt sky, amber seam"
+  value_structure: >
+    Lightest is the white cab roofs and the caliche. Darkest is the shadows between the rows. Frame
+    median L* planned at 40.
+  motion: "from the hook down into the rows"
+
+type:
+  kicker: "The Permian Basin"
+  hook: "35 already run with nobody in the cab"
+  dek: "Kodiak says 35 of its driverless trucks were hauling commercially in the Permian Basin with no humans in the cab at the end of the second quarter."
+
+acceptance:
+  - "the frame reads \"35 already run with nobody in the cab\""
+  - "exactly 35 tractors are rendered and each reads as a separate truck at 432 px"
+  - "no grass or scrub crosses the hook or the dek"
+
+risks:
+  - "the only frame off the corridor, argued as the same seat on the other Texas"
+```
+
+```yaml
+slide: 5
+layout: GRID
+primary_image:
+  subject: "a concrete truck yard seen straight down from a long lens: 200 painted stalls in ten rows of twenty, twenty white rigs backed into the nearest row, the rest empty under yard mast lamps"
+  rect: [0, 470, 1080, 880]
+  bleeds: [left, right, bottom]
+accent: none
+job: >
+  Put Aurora's year end number and the reported number running now on one scale, each named for the
+  set it counts.
+
+claims: [c29, c34]
+numerals:
+  - value_from: c29   # 200
+  - value_from: c34   # 20
+
+data_in_art:
+  figure: aurora_trucks_year_end
+  drives: painted stall count, 200, and the occupied stall count from aurora_trucks_now_reported, 20
+
+depth:
+  eye: 300
+  horizon: 0
+  cues: [RELATIVE_SIZE, CAST_SHADOW, FORM_SHADING, TEXTURE_GRADIENT]
+  subject_at: {X: 0, Z: 0}
+
+composition:
+  structure: >
+    Straight down, the yard is a page of stalls. The twenty rigs fill the nearest row at the bottom,
+    the empty stalls stack up the frame, and the type sits on the dark concrete at the top.
+  bands: >
+    Top third, dark concrete under the hook and the dek, the far stall rows fading. Middle third,
+    rows of empty painted stalls lit in pools by the mast lamps. Bottom third, the twenty white rigs
+    backed into their stalls, white roofs and vans with modeled form and soft contact shadows on
+    the lamp lit concrete, and the painted stall stripes catching the light between them.
+  focal: "the one row of twenty rigs against a field of empty stalls"
+
+art:
+  technique: "physically based render from a long lens overhead, instanced stall stripes as their own lower roughness material, the chassis truck twenty times, mast lamps"
+  why_this_technique: >
+    Two counts at one scale, one of them a plan and one a report, need the plan drawn as places and
+    the report drawn as trucks, so neither is mistaken for the other.
+  palette: "grey concrete, white stall paint, white rigs, warm mast pools, blue shadow"
+  value_structure: >
+    Lightest is the rig roofs and the lamp pools. Darkest is the concrete at the top behind the
+    type. Frame median L* planned at 28.
+  motion: "from the hook down the empty stalls to the row of rigs"
+
+type:
+  kicker: "Aurora's year"
+  hook: "200 places, 20 trucks"
+  dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart, citing a CNBC ride, puts the fleet running now at 20."
+
+acceptance:
+  - "the frame reads \"200 places, 20 trucks\""
+  - "exactly 200 stalls are painted and exactly 20 are occupied"
+  - "the dek attributes the 20 to Breitbart citing CNBC"
+
+risks:
+  - "the yard is an illustration for counting and is not Aurora's real yard"
+```
+
+```yaml
+slide: 6
+layout: DOCUMENT
+primary_image:
+  subject: "the empty driver's seat seen from over the wheel, a letter sheet lying on the cushion with six ruled rows and six tick boxes, the second tick in dusk gold, the dome light pooling on it, the windshield's blue at the top edge"
+  rect: [0, 420, 1080, 930]
+  bleeds: [left, right, bottom]
+accent: "#E0956A"
+job: >
+  Show how little paper the permission is. Six statements on a page that lies where a driver would
+  sit, no fee and no expiry.
+
+claims: [c1, c5, c6, c7, c8, c9, c10, c12]
+numerals:
+  - value_from: c1    # May 28th, 2026
+  - computed_by: "out/2026-09-26/compute.py, the count of acknowledgements c5 to c10"
+
+data_in_art:
+  figure: acknowledgements
+  drives: the ruled row count and tick count on the sheet, six, with no seventh line
+
+depth:
+  eye: 2.9
+  horizon: 120
+  cues: [OCCLUSION, FORM_SHADING, CAST_SHADOW, RELATIVE_SIZE]
+  subject_at: {X: 0.55, Z: 0.2}
+
+composition:
+  structure: >
+    Looking down past the wheel rim onto the seat cushion, the sheet lies on it slightly turned. The
+    six rows and ticks are geometry on the page. The type sits on the dark headliner and windshield
+    band at the top.
+  bands: >
+    Top third, the windshield's deep blue and the dark header behind the hook and the dek. Middle
+    third, the wheel rim cropped across and the sheet's top rows. Bottom third, the sheet's lower
+    rows with their tick boxes on the dark vinyl cushion, the bolster modeled by the dome light and
+    the seat belt buckle in shadow.
+  focal: "the sheet on the seat and its second tick"
+
+art:
+  technique: "physically based render inside the chassis cab set, the sheet as a bent plane with ruled geometry and extruded ticks, dome light pool"
+  why_this_technique: >
+    The claim is the size of a permission. A page on the seat a driver would use is the size of it,
+    in the place it replaces a person.
+  palette: "dark vinyl, white sheet, charcoal rules, dusk gold tick, warm dome pool"
+  value_structure: >
+    Lightest is the sheet. Darkest is the headliner behind the type. Frame median L* planned at 24.
+  motion: "from the hook down to the sheet, row by row"
+
+type:
+  kicker: "The permission"
+  hook: "Six statements and no fee"
+  dek: "Since May 28th a company running vehicles with no driver needs a state authorization. It acknowledges six statements and pays nothing, and the authorization does not expire."
+
+acceptance:
+  - "the frame reads \"Six statements and no fee\""
+  - "the sheet carries exactly six ruled rows and six ticks"
+  - "the second tick, the recording device row, is the only #E0956A on the frame"
+  - "the driver's seat is empty"
+
+risks:
+  - "no row text is legible in the art, so no statement is paraphrased on the page"
+```
+
+```yaml
+slide: 7
+layout: CLOSE_CROP
+primary_image:
+  subject: "the recording device bolted to the sleeper bulkhead behind the empty driver's headrest, its finned housing lit by the dome, a black cable running down, its one dusk gold status lamp blooming, and the windshield's blue behind"
+  rect: [0, 420, 1080, 930]
+  bleeds: [left, right, bottom]
+accent: "#E0956A"
+job: >
+  The turn. The truck must carry a recorder, and the state that authorizes it can't require its
+  crash history.
+
+claims: [c6, c18, c19]
+numerals:
+  - value_from: c19   # 545.453 and 545.456, the sections, text only
+
+depth:
+  eye: 2.6
+  horizon: 520
+  cues: [OCCLUSION, FORM_SHADING, CAST_SHADOW, AERIAL]
+  subject_at: {X: 0, Z: 0.9}
+
+composition:
+  structure: >
+    A detail camera a third of a metre from the housing puts the recorder on the lower right third,
+    the dark headrest cropping the left, the cable running off the bottom. The type sits on the dark
+    bulkhead above it.
+  bands: >
+    Top third, the dark bulkhead and curtain behind the hook and the dek. Middle third, the headrest
+    edge and the recorder's fins catching the dome light. Bottom third, the housing's front with its
+    lit lamp, the two connectors and the cable running into shadow across the carpeted wall.
+  focal: "the lit status lamp on the housing"
+
+art:
+  technique: "physically based render at detail scale inside the chassis cab set, emissive driven bloom on the lamp only"
+  why_this_technique: >
+    The counter-image is one physical thing, the record, and one refusal. A close render of the thing
+    with its lamp on is the record present in the truck.
+  palette: "brushed aluminium, charcoal carpet, dusk gold lamp, cool blue window light"
+  value_structure: >
+    Lightest is the lamp and the fin highlights. Darkest is the bulkhead behind the type. Frame median
+    L* planned at 20.
+  motion: "from the hook down to the lamp"
+
+type:
+  kicker: "What the state can't ask for"
+  hook: "It carries a recorder"
+  dek: "The truck must be equipped with a recording device. Dallas asked the state to require crash history too. The department said the statute does not allow it."
+
+acceptance:
+  - "the frame reads \"It carries a recorder\""
+  - "the recorder's lamp is the only #E0956A on the frame and it blooms"
+  - "the recorder is labelled drawn to illustrate in the source line"
+
+risks:
+  - "the recorder's form and place are illustrative, since c6 gives neither"
+```
+
+```yaml
+slide: 8
+layout: DIAGRAM
+primary_image:
+  subject: "a concrete truck court at blue hour from a high oblique, a white rig at the dock, and one painted stripe running across the court in three segments of 10, 10 and 60 metres at one metre per day, with mono labels on leaders"
+  rect: [0, 470, 1080, 880]
+  bleeds: [left, right, bottom]
+accent: none
+job: >
+  Draw when the state steps in and how long an operator can be kept off the road, as a length a
+  reader can pace.
+
+claims: [c13, c15, c16, c17]
+numerals:
+  - value_from: c15   # 10 days
+  - value_from: c16   # 10 and 60 days
+  - computed_by: "out/2026-09-26/compute.py, soah.longest_path_days, 10 plus 10 plus 60"
+
+data_in_art:
+  figure: soah.longest_path_days
+  drives: the stripe's total length in metres at one metre per day, split into soah.request_days, soah.file_days and soah.hearing_days segments
+
+depth:
+  eye: 24
+  horizon: 430
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, FORM_SHADING, TEXTURE_GRADIENT]
+  subject_at: {X: 0, Z: 0}
+
+composition:
+  structure: >
+    A high oblique down the court lays the stripe left to right across the lower middle, its three
+    segments separated by gaps, the rig at the dock at its day zero end. Mono labels on DOM leaders
+    sit above the stripe. The type sits in the sky over the warehouse roofline.
+  bands: >
+    Top third, the blue hour sky with the hook and the dek above the warehouse roofline. Middle
+    third, the dock face with its doors and the rig backed in, lamps pooling on the concrete. Bottom
+    third, the painted stripe segments on the tined concrete with shadowed joints, the rig's long
+    cast shadow reaching across them, the court's wheel marks and oil stains modeled by the lamps.
+  focal: "the long third segment of the stripe"
+
+art:
+  technique: "physically based render of the kit warehouse and chassis truck on concrete, the stripe as its own lower roughness material, DOM SVG leaders"
+  why_this_technique: >
+    A sequence of durations is a quantity and wants one scale. Painting it at one metre per day on
+    the ground the truck stands on makes the days a length the truck would drive.
+  palette: "grey concrete, white stripe, white rig, warm mast pools, blue sky"
+  value_structure: >
+    Lightest is the stripe and the rig. Darkest is the dock doors. Frame median L* planned at 30.
+  motion: "from the hook down to the rig, along the stripe to its end"
+
+type:
+  kicker: "When the state steps in"
+  hook: "The line is serious bodily injury"
+  dek: "The department acts when an operation has caused or is likely to cause serious bodily injury. An operator then has 10 days to ask for a hearing, and if it isn't held in time the authorization is reinstated."
+
+acceptance:
+  - "the frame reads \"The line is serious bodily injury\""
+  - "the stripe's segments measure 10, 10 and 60 metres in the scene, from figures.json"
+  - "every leader ends on the stripe segment it labels"
+
+risks:
+  - "the stripe is drawn at one metre per day and the labels say so, so it is not a real marking"
+```
+
+```yaml
+slide: 9
+layout: SPLIT_HORIZON
+primary_image:
+  subject: "a Texan at an overpass rail over I-45 at the deepest blue of the hour, the white rig passing south beneath with its tail lamps lit, the lanes running to Houston's glow on the horizon; below the cut, one bar from May 28th to today becoming a hairline to the edge"
+  rect: [0, 360, 1080, 990]
+  bleeds: [left, right, top]
+accent: none
+job: >
+  Close on the one person in the deck with a way in, and on the authorization's own run, which has
+  no end date.
+
+claims: [c1, c12, c36, c37]
+numerals:
+  - value_from: c1    # May 28th
+  - computed_by: "out/2026-09-26/compute.py, days_enforceable_to_run"
+
+data_in_art:
+  figure: days_enforceable_to_run
+  drives: the bar's length in px at the frame's day scale, followed by a hairline to the right edge
+
+depth:
+  eye: 8.6
+  horizon: 520
+  cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, AERIAL, OCCLUSION, CAST_SHADOW]
+  subject_at: {X: -1, Z: 30}
+
+composition:
+  structure: >
+    The upper sixty percent is the render from behind the Texan on the overpass, the rig below
+    heading away down the lanes toward the glow. Below the cut, on the dark ground band, the bar runs
+    from its May 28th tick to a today tick and continues as a hairline. The hook and dek sit in the
+    band under the bar.
+  bands: >
+    Top third, the deep blue sky and the far glow of Houston on the horizon over the lanes. Middle
+    third, the Texan's shoulder and the rail at the left, the rig's van roof and tail lamps below,
+    streetlights along the ramp. Bottom third, the overpass deck's concrete parapet in the foreground
+    modeled by the streetlight, falling into the dark band that carries the bar, its ticks and the
+    hook and dek.
+  focal: "the rig's tail lamps heading away under the Texan's gaze"
+
+art:
+  technique: "physically based render in the blueHour world with the kit highway, overpass, person and chassis truck; a DOM SVG bar below the cut"
+  why_this_technique: >
+    The close is a person and a duration. The render gives the person and the truck their sizes, and
+    the bar puts the only open-ended number in the story on a scale.
+  palette: "deepest cobalt, warm city glow, red tail lamps, pale lanes, the rule colour for the bar"
+  value_structure: >
+    Lightest is the city glow and the tail lamps. Darkest is the band below the cut. Frame median
+    L* planned at 18.
+  motion: "from the Texan's shoulder down to the tail lamps, then down to the bar and the dek"
+
+type:
+  kicker: "If you see one"
+  hook: "A way in"
+  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death goes to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement checks authorizations there too."
+
+acceptance:
+  - "the frame reads \"A way in\""
+  - "the bar starts at a tick labelled May 28th and ends at a tick labelled today, and a hairline runs on to the right edge"
+  - "the Texan stands at the rail and the rig passes beneath"
+  - "no tail lamp or streetlight crosses the hook, the dek or the bar labels"
+
+risks:
+  - "the day scale is stated on the bar so the length reads as days"
+```
