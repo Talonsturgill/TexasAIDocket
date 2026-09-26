@@ -87,7 +87,14 @@ KINDS = (("email address", EMAIL), ("host", HOST), ("telephone number", PHONE))
 # WHY THIS CAN'T LET A WRONG ADDRESS THROUGH. Trimming only makes a token SHORTER, and a token is
 # still held to the claims afterwards. A path that differs from the source anywhere but its
 # trailing punctuation is still a finding. The self-test proves that case goes red.
-GFM_TRAILING = "?!.,:*_~"
+#
+# EXCEPT THAT A SHORTER TOKEN CAN MATCH A CLAIM IT SHOULDN'T, SO THE LIST IS NARROWER THAN GFM'S.
+# `*`, `_` and `~` are GFM's because a Markdown autolink can sit inside emphasis. A slide is not
+# Markdown, and all three are valid last characters of a url path, so trimming them let a
+# published `example.gov/report_` clear against a claim for `example.gov/report`, a wrong address
+# passing as a sourced one (Codex, PR 365). Only sentence punctuation is trimmed, the characters
+# no path this project cites ends with.
+GFM_TRAILING = "?!.,:"
 
 
 def trim_trailing(tok: str) -> str:
@@ -314,6 +321,13 @@ def self_test() -> int:
         d = tx_deck(Path(t) / "fake", ["Write to complaints.txdmv.gov/av.", "texasaidocket.com"])
         ok("an invented host ending a sentence is still CAUGHT",
            any("complaints.txdmv.gov/av" in x for x in check(d)), str(check(d)))
+        # A PATH CHARACTER IS NOT PUNCTUATION. `_`, `*` and `~` can end a real path, so a frame
+        # printing the claim's address with one of them added is a DIFFERENT address (Codex, PR 365).
+        for tail in ("_", "*", "~"):
+            d = tx_deck(Path(t) / f"tail{ord(tail)}",
+                        [f"Its address txmccs.txdmv.gov/truckstop{tail}", "texasaidocket.com"])
+            ok(f"the claim's address with a trailing {tail!r} is CAUGHT, not trimmed to match",
+               any(f"truckstop{tail}" in x for x in check(d)), str(check(d)))
     ok("a bracket the path itself opened is KEPT, since it is part of the address",
        trim_trailing("en.wikipedia.org/wiki/SB_(Texas))") == "en.wikipedia.org/wiki/SB_(Texas)",
        trim_trailing("en.wikipedia.org/wiki/SB_(Texas))"))
