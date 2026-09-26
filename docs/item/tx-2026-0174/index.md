@@ -11,7 +11,7 @@ The El Paso City Council passed two directions to the city manager on September 
 - Public access: Public meeting
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-20 · Admitted to the record. The council's own agenda carries both directions and records both as passed. The removal order and the contract bar are on the city's published legislative record rather than in an account of the meeting.
 - 2026-09-23 · El Paso's order still stands, and the city manager is still barred from signing another one.
+- 2026-09-26 · El Paso's order still stands. The plate readers are to come down and the city manager may not sign another.
 
 ## Evidence
 

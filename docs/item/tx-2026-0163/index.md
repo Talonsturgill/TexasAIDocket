@@ -11,7 +11,7 @@ The National Science Foundation has made a Science and Technology Center award t
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-17 · Admitted to the record. The federal award record carries the dates, the awardee and the abstract that commits the work to occupied buildings rather than to a laboratory. The award clock started this month and nothing is deployed.
 - 2026-09-20 · The federal award record for the UT Austin center on robots and the people around them still carries the same awardee, the same principal investigator and the same term. Nothing about the award has moved.
 - 2026-09-23 · The Austin center is still funded to put assistive robots into rooms people actually live in.
+- 2026-09-26 · The Austin center is still funded to place assistive robots in occupied homes, workplaces and care facilities.
 
 ## Evidence
 

@@ -12,7 +12,7 @@ The Office of Defects Investigation at the National Highway Traffic Safety Admin
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The federal defect evaluation opened after the Dallas and Austin crashes is still open. No finding and no closure notice has been published.
 - 2026-09-19 · Checked and unchanged. Still unknown, with no dated movement.
 - 2026-09-23 · The federal evaluation is still open and has produced no finding.
+- 2026-09-26 · The federal defect evaluation into the driverless system is still open, with no finding.
 
 ## Evidence
 

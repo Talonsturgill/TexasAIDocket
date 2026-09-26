@@ -11,7 +11,7 @@ The University of Texas at San Antonio published on September 8th, 2026 that it 
 - Public access: Write to the decider
 - Take part: https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-18 · Re-verified against the university's own account and two quotes were added, the off-grid description and the definition of the compression method that lets the model run on a microcontroller. This decision was also admitted a second time on the same day. That duplicate came off the same article reached over http rather than https, and it was removed before it reached the record. A code review caught it. Nothing in the admission phase did, because the dedupe compares entities and keywords rather than normalized source URLs.
 - 2026-09-19 · The sensor stands as built, running its model on the chip rather than sending readings away to be judged. This decision was admitted a second time again today, off the same article over http rather than https, and the duplicate was removed before it reached the record. A code review caught it, twice now, and the admission phase caught it neither time. The dedupe compares entities and keywords and never a normalized source URL, so one article at two schemes reads as two decisions. The fix is a normalized URL check in the admission phase.
 - 2026-09-23 · The San Antonio flood sensor still runs its model on the chip, which is what lets it work where there is no network.
+- 2026-09-26 · The San Antonio flood sensor still runs its model on the chip, which is what lets it work without a network.
 
 ## Evidence
 

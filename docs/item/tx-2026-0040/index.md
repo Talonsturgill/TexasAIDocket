@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved $25 million in Permanen
 - Public access: Public meeting
 - Take part: https://advancing.utsystem.edu/board-of-regents/meetings/board-meeting-2026-05-20
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The regents' money for San Pedro II is still committed and the building is still the home of UTSA's computing college. No later item has reopened the authorization.
 - 2026-09-19 · The money to finish the building is still committed and the college it is for has not changed its plans.
 - 2026-09-23 · The building money for the San Antonio college is still committed.
+- 2026-09-26 · The regents' commitment to finish the San Antonio building for the college still stands.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 15th, 2026 carried an i
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=136
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · Whether the court bought the minutes product, and whether it waived the requirement for three quotes, is still unconfirmed. The agenda entry the request was read from sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer.
 - 2026-09-23 · Whether the clerk's minute writing purchase went through as the agenda proposed is unconfirmed this run, and no vote is on the record either way.
 - 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
+- 2026-09-26 · The clerk's request to buy software that writes the court's minutes is still pending, with no disposition posted.
 
 ## Evidence
 

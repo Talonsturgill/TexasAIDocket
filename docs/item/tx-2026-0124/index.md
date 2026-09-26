@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The award to the Houston led magnets team still stands as made, and both universities still describe it the same way. Nothing has been revised.
 - 2026-09-19 · The award stands as the energy department's research arm announced it.
 - 2026-09-23 · The three year award to the Houston led coalition still stands with the same partners.
+- 2026-09-26 · The University of Houston's own account of the award still reads as it did. The partner university's account could not be read again, so its part is unconfirmed this run.
 
 ## Evidence
 

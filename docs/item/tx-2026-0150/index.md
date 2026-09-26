@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The finding that imaging artificial intelligence has largely skipped children is still published as written. No correction has appeared against it.
 - 2026-09-19 · The finding stands as published, and nothing has been announced to close the gap it names in imaging for children.
 - 2026-09-23 · The finding that imaging tools have largely skipped children still stands as published.
+- 2026-09-26 · The published finding that imaging AI has largely skipped children still stands.
 
 ## Evidence
 

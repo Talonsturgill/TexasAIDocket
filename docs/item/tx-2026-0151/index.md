@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The MRI model still scored lower on patients it was not built on, and the authors' own reading of that result is unchanged. Nothing has been retracted.
 - 2026-09-19 · The result stands as published, and the model has not been reported as refitted to the patients it scored lower on.
 - 2026-09-23 · The model still scored lower on the patients it was not built on, which is what the paper reported.
+- 2026-09-26 · The paper still reports the model scoring lower on the patients it was not built on.
 
 ## Evidence
 

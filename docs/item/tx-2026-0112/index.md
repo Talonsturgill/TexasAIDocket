@@ -1,6 +1,6 @@
 # Utility commission approves a 765 kilovolt line from Somervell County to Howard County
 
-The Public Utility Commission of Texas approved an amendment to Oncor's certificate of convenience and necessity for a new 765 kilovolt transmission line. The company's own project page records the decision as approved on August 28th, 2026. The line runs from a proposed switch about 3 miles north of Glen Rose in Somervell County to an existing switch about 4.5 miles west of Forsan in Howard County. Oncor filed the application on February 19th, 2026 under Docket No. 59315. It states the route will run approximately 235 to 270 miles depending on the route chosen, and is planned for completion in 2028. It is a voltage class new to the Texas grid.
+The Public Utility Commission of Texas approved an amendment to Oncor's certificate of convenience and necessity for a new 765 kilovolt transmission line. The company's own project page records the decision as approved on August 28th, 2026. The line runs from a proposed switch about 3 miles north of Glen Rose in Somervell County to an existing switch about 4.5 miles west of Forsan in Howard County. Oncor filed the application on February 19th, 2026 under Docket No. 59315. It states the route will run approximately 235 to 270 miles depending on the route chosen, and is planned for completion in 2029. It is a voltage class new to the Texas grid.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
 - Public access: Closed
 - Take part: https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The approved line from Somervell County to Howard County is still approved, and the utility's own project page still describes it the same way. No rehearing has been granted.
 - 2026-09-19 · The approval stands and the commission has taken nothing further on the route.
 - 2026-09-23 · The approved route from Somervell County to Howard County is unchanged, and the company's own project page still records the approval.
+- 2026-09-26 · The approval stands, and Oncor's own project page now plans the line for completion in 2029. The same page said 2028 when this line was admitted. Nothing on the page says why the year moved.
 
 ## Evidence
 
@@ -49,9 +50,9 @@ Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/ab
 
 Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
-### The route runs approximately 235 to 270 miles and is planned for completion in 2028.
+### The route runs approximately 235 to 270 miles and is planned for completion in 2029.
 
-> The proposed transmission line project will be approximately 235-270 miles long depending on the route if approved by the Public Utility Commission of Texas ("PUCT"). The Proposed Transmission Line Project is currently planned for completion in 2028.
+> The proposed transmission line project will be approximately 235-270 miles long depending on the route if approved by the Public Utility Commission of Texas (“PUCT”). The Proposed Transmission Line Project is currently planned for completion in 2029.
 
 Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
