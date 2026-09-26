@@ -284,7 +284,9 @@ export function init(THREE) {
     const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
     if (camera.isOrthographicCamera) return fwd.y < -1e-3 ? 0 : fwd.y > 1e-3 ? 1 : 0.5;
     const pitch = Math.asin(Math.max(-1, Math.min(1, fwd.y)));
-    const half = THREE.MathUtils.degToRad((camera.fov || 50) / 2) / (camera.zoom || 1);
+    // the field three.js actually projects, 2 atan(tan(fov / 2) / zoom): dividing the angle by the
+    // zoom overstated a zoomed-out camera's field and found sky it doesn't show (Codex, PR 369)
+    const half = THREE.MathUtils.degToRad((camera.getEffectiveFOV ? camera.getEffectiveFOV() : (camera.fov || 50)) / 2);
     if (Math.abs(pitch) >= Math.PI / 2 - 1e-4) return pitch < 0 ? 0 : 1;
     const y = Math.tan(-pitch) / Math.tan(half);            // the horizon's height in NDC
     return y >= 1 ? 0 : y <= -1 ? 1 : (1 - y) / 2;
@@ -301,6 +303,28 @@ export function init(THREE) {
     const hit = [];
     R.scene.traverse((m) => { if (m.isMesh && m.visible && !(m.userData && m.userData.txSky)) hit.push(m); });
     try { return rc.intersectObjects(hit, false).length > 0; } catch (e) { return false; }
+  };
+  /* TXT.inRoom(R) — true when the camera stands inside the room TXT.interior built, or looks down
+   * into it. A room answers the showstopper test's question 3 only for a camera that shows it, so
+   * a camera moved outside it, a room taken out of the scene before the snapshot, or a room left
+   * standing in the distance is not an interior shot (Codex, PR 369: the first cut exempted any
+   * frame that had called TXT.interior at all). The room's walls give its bounds, with a margin of
+   * about one wall's thickness, and the look point is where the camera's own ray meets its floor. */
+  TXT.inRoom = function (R) {
+    const room = R.room;
+    if (!room || !room.isObject3D || !room.parent || !room.visible) return false;
+    const box = new THREE.Box3().setFromObject(room);
+    if (box.isEmpty()) return false;
+    const floorY = box.min.y;
+    box.expandByScalar(0.25);
+    const cam = R.camera.position;
+    if (box.containsPoint(cam)) return true;
+    const fwd = new THREE.Vector3(); R.camera.getWorldDirection(fwd);
+    if (fwd.y > -1e-6) return false;
+    const t = (floorY - cam.y) / fwd.y;
+    if (!(t > 0)) return false;
+    const p = cam.clone().addScaledVector(fwd, t);
+    return p.x >= box.min.x && p.x <= box.max.x && p.z >= box.min.z && p.z <= box.max.z;
   };
   // Read by scripts/carousel/print_ban.py off the render report. Keep the two in step.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
@@ -330,12 +354,13 @@ export function init(THREE) {
      * print_ban counted the call. This counts what the camera shows, and the render report carries
      * it to print_ban before a panel sits. Measured on the shipped decks: no. 33's frame 4 and no.
      * 34's frames 4 and 5 print it, and no. 34's page on the cab seat does not. */
-    // A ROOM IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3, and a desk or a
-    // document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM, The gate).
-    if (R.world && !R._txRoom && o.skyCheck !== false && typeof console !== 'undefined') {
+    // A ROOM THE CAMERA SHOWS IS EXEMPT: "a sky or a deliberate interior" is the test's own question
+    // 3, and a desk or a document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM,
+    // The gate). TXT.inRoom asks whether this camera stands in that room or looks into it.
+    if (R.world && o.skyCheck !== false && typeof console !== 'undefined') {
       const sky = TXT.skyInFrame(R.camera);
       if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
-      if (sky <= 0 && !TXT.enclosed(R)) console.error(TXT.NO_SKY + '. This frame calls TXT.sky and its camera shows none of ' +
+      if (sky <= 0 && !TXT.enclosed(R) && !TXT.inRoom(R)) console.error(TXT.NO_SKY + '. This frame calls TXT.sky and its camera shows none of ' +
         'it (pitched below the horizon or looking straight down), with nothing overhead. A reader sees ' +
         'objects in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
         'frame, or stand it inside something built (a room with TXT.interior, a cab, a canopy)');
@@ -1136,7 +1161,6 @@ export function init(THREE) {
    * frame that calls this, before its kept snapshot, as standing in a place. */
   TXT.interior = function (R, o) {
     o = o || {};
-    R._txRoom = true;   // a deliberate interior answers the showstopper test without a sky in frame
     const w = o.w || 12, d = o.d || 10, h = o.h || 4.2, t = 0.2;
     const room = new THREE.Group();
     TXT.ground(R, { surface: o.floor || 'concrete', size: Math.max(w, d) * 3, tile: o.tile || 3, joints: o.joints });

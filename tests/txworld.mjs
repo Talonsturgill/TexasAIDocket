@@ -124,8 +124,33 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const orig3 = console.error; console.error = (...a) => { orthoErrors.push(String(a[0])); orig3.apply(console, a); };
   await TXT.snapshot(Ro);
   console.error = orig3;
+  // a 50 degree camera zoomed out to 0.5 and pitched 45 degrees down: three.js projects a field of
+  // 2 atan(tan(25) / 0.5), about 86 degrees, so no sky reaches the frame. Dividing the angle by the
+  // zoom made it 100 degrees and found sky (Codex, PR 369).
+  const Rz = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 50 });
+  TXT.frame(Rz, { from: [0, 30, 0], look: [0, 0, -30] });
+  TXT.sky(Rz, W);
+  TXT.rig(Rz, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+  TXT.ground(Rz, { surface: 'caliche', size: 900, tile: 5 });
+  Rz.camera.zoom = 0.5; Rz.camera.updateProjectionMatrix();
+  const zoomErrors = [];
+  const orig4 = console.error; console.error = (...a) => { zoomErrors.push(String(a[0])); orig4.apply(console, a); };
+  await TXT.snapshot(Rz);
+  console.error = orig4;
+  // a room built with TXT.interior and a camera that has left it, looking straight down at the
+  // ground 40 m away: the room is in the scene and not in the frame, so it exempts nothing
+  // (Codex, PR 369: the first cut exempted any frame that had called TXT.interior).
+  const Rx = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
+  TXT.frame(Rx, { from: [40, 30, 40], look: [40, 0, 40.01] });
+  TXT.sky(Rx, W); TXT.interior(Rx, {});
+  TXT.rig(Rx, { key: Object.assign({}, W.rig.key, { pos: [42, 40, 42] }), ambient: W.rig.ambient });
+  const outsideErrors = [];
+  const orig5 = console.error; console.error = (...a) => { outsideErrors.push(String(a[0])); orig5.apply(console, a); };
+  await TXT.snapshot(Rx);
+  console.error = orig5;
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
-           orthoSky: TXT.skyInFrame(oc), orthoErrors };
+           orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
+           outsideErrors };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -170,6 +195,14 @@ check('an orthographic camera pitched 5 degrees down shows no sky, and says so',
       g.result.orthoSky === 0 && Array.isArray(g.result.orthoErrors) &&
       g.result.orthoErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify({ orthoSky: g.result.orthoSky, orthoErrors: g.result.orthoErrors }));
+check('a camera zoomed out to 0.5 and pitched 45 degrees down shows no sky, and says so',
+      g.result.zoomSky === 0 && Array.isArray(g.result.zoomErrors) &&
+      g.result.zoomErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ zoomSky: g.result.zoomSky, zoomErrors: g.result.zoomErrors }));
+check('a room the camera has left exempts nothing: looking down 40 m away IS flagged',
+      Array.isArray(g.result.outsideErrors) &&
+      g.result.outsideErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.outsideErrors));
 check('a deliberate interior looked down on is a room, and is NOT flagged',
       Array.isArray(g.result.roomErrors) && !g.result.roomErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.roomErrors));

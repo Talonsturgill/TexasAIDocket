@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 25 |
+| engine calls (`TXT.*`) | 26 |
 | world presets | 6 |
 | kit models | 95 in 10 families |
 | asset libraries | 21 |
@@ -91,6 +91,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.fitHeight(group, worldHeight)` | Raises the rendered-hero floor for a single foreground object that must read as a SILHOUETTE against a darker background (the backlit-machine case). |
 | `TXT.frame(R, o)` |  |
 | `TXT.ground(R, { surface:'caliche'\|'dirt'\|'asphalt'\|'concrete'\|'grass', tile:8, size:900, color, seed, joints })` | a seeded, tileable surface map + roughness + bump, and slow macro variation in vertex colour so the tile never shows. (defined twice, the later one wins) |
+| `TXT.inRoom(R)` | true when the camera stands inside the room TXT.interior built, or looks down into it. |
 | `TXT.interior(R, { w:12, d:10, h:4.2, floor:'concrete', wall:0xb9b3a7, window:'left', ceiling:false, light:0.55 })` | A hearing room, an office or a desk is a real frame with no sky, and before this it had nothing to stand in but a flat colour, which is the void the world was built to end. |
 | `TXT.lathe(profile, mat, o)` | Lathe from a 2D profile (array of [x,y]), vessels, turbines, valves. |
 | `TXT.objectHero(R, group, o)` |  |

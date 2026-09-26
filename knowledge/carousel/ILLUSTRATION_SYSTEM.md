@@ -981,10 +981,11 @@ which is the finding the judges made in words and the number that says the gate 
   34's frames 4 and 5 looked down on two truck yards, and a judge called frame 4 dark ground without
   a horizon. `TXT.snapshot` now measures the horizon against the camera, and `print_ban.py` fails
   the frame off the render report on the probe. A camera with something built overhead within 12 m
-  (a room, a cab roof, a canopy) is inside, and looking down is an interior shot. Measured through
-  the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5 fail, and no. 34's
-  page on the cab seat passes. Keep the horizon in frame, or stand the camera inside something
-  built. (2026-09-26)
+  (a room, a cab roof, a canopy) is inside, and looking down is an interior shot. So is a camera
+  standing in a `TXT.interior` room or looking down into it, and a room the camera has left exempts
+  nothing. Measured through the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4
+  and 5 fail, and no. 34's page on the cab seat passes. Keep the horizon in frame, or stand the
+  camera inside something built. (2026-09-26)
 - **A horizon hidden behind the type.** No. 33's frame 6 as shipped does show sky, the top fifth of
   the frame behind the type, and was still failed in its last two rounds, because the horizon ran
   behind the dek and the lower 40 to 45 percent was empty ground. The no-sky check passes it and
