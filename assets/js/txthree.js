@@ -333,22 +333,24 @@ export function init(THREE) {
       return CM.getTransfer(tex.colorSpace) === THREE.SRGBTransfer;
     return tex.colorSpace === THREE.SRGBColorSpace;
   };
-  const sampled = (tex) => {
-    const img = tex.image;
-    if (!img || tex.isCompressedTexture || tex.isRenderTargetTexture) return null;
+  const UNLOADED = [THREE.UnsignedShortType, THREE.UnsignedIntType, THREE.ByteType, THREE.ShortType, THREE.IntType];
+  // One image as the shader samples it, the green and the alpha of every texel, or null when it can't
+  // be read. Decoded into a copy, so data changed in place without needsUpdate reads as the GPU still
+  // shows it.
+  const readImage = (tex, img) => {
+    if (!img) return null;
     const w = img.width || img.videoWidth, h = img.height || img.videoHeight;
     const lanes = tex.format === THREE.RGBAFormat ? 4 : tex.format === THREE.RGFormat ? 2 : tex.format === THREE.RedFormat ? 1 : 0;
     if (!lanes || !(w > 0) || !(h > 0)) return null;
-    const unloaded = [THREE.UnsignedShortType, THREE.UnsignedIntType, THREE.ByteType, THREE.ShortType, THREE.IntType];
-    if (unloaded.includes(tex.type)) return { w, h, at: () => [0, 0, 0, 1] };
+    const n = w * h, G = new Float32Array(n), A = new Float32Array(n);
+    if (UNLOADED.includes(tex.type)) { A.fill(1); return { w, h, g: G, a: A }; }   // never uploaded
     let d, stride, lane;
     if (img.data) {
-      const a = img.data;
-      const fits = (tex.type === THREE.UnsignedByteType && (a instanceof Uint8Array || a instanceof Uint8ClampedArray)) ||
-        (tex.type === THREE.HalfFloatType && a instanceof Uint16Array) || (tex.type === THREE.FloatType && a instanceof Float32Array);
-      if (!fits || a.length < w * h * lanes) return null;
-      // a copy, so data changed in place without needsUpdate reads as the GPU still shows it
-      d = a.slice(0, w * h * lanes); stride = lanes;
+      const arr = img.data;
+      const fits = (tex.type === THREE.UnsignedByteType && (arr instanceof Uint8Array || arr instanceof Uint8ClampedArray)) ||
+        (tex.type === THREE.HalfFloatType && arr instanceof Uint16Array) || (tex.type === THREE.FloatType && arr instanceof Float32Array);
+      if (!fits || arr.length < n * lanes) return null;
+      d = arr; stride = lanes;
       lane = tex.type === THREE.HalfFloatType ? (v) => THREE.DataUtils.fromHalfFloat(v)
         : tex.type === THREE.FloatType ? (v) => v : (v) => v / 255;
     } else if (typeof document !== 'undefined' &&
@@ -359,13 +361,13 @@ export function init(THREE) {
     } else return null;
     const premul = !!tex.premultiplyAlpha && lanes === 4;
     const decode = lanes === 4 && tex.type === THREE.UnsignedByteType && srgbTexture(tex);
-    return { w, h, at: (i) => {
-      const o = i * stride, c = [0, 0, 0, 1];
-      for (let k = 0; k < lanes; k++) c[k] = lane(d[o + k]);
-      if (premul) { c[0] *= c[3]; c[1] *= c[3]; c[2] *= c[3]; }
-      if (decode) { c[0] = toLinear(c[0]); c[1] = toLinear(c[1]); c[2] = toLinear(c[2]); }
-      return c;
-    } };
+    for (let i = 0; i < n; i++) {
+      const o = i * stride, a = lanes === 4 ? lane(d[o + 3]) : 1;
+      let g = lanes >= 2 ? lane(d[o + 1]) : 0;
+      if (premul) g *= a;
+      G[i] = decode ? toLinear(g) : g; A[i] = a;
+    }
+    return { w, h, g: G, a: A };
   };
   // A MINIFIED TEXTURE IS READ AT ITS MIP LEVEL (Codex, PR 369). The GPU samples through the texture's
   // own filters, and a texture seen from far enough through a mip level. The kit's perforated steel,
@@ -375,15 +377,29 @@ export function init(THREE) {
   // orthographic pixel's size), stretched by the angle the view meets the surface at, counted in the
   // triangle's own texels through the texture's transform. The level follows the rule of
   // EXT_texture_filter_anisotropic at the texture's anisotropy, and the filters are the texture's:
-  // nearest or bilinear within a level, nearest or linear between levels, over a chain that averages
-  // each level's 2 by 2 blocks the way generateMipmap does. A hit around the camera and out of the
-  // frame is read at the footprint it would have in view.
-  const levelsOf = (t) => {
-    if (t.levels) return t.levels;
-    const n0 = t.w * t.h, L0 = { w: t.w, h: t.h, g: new Float32Array(n0), a: new Float32Array(n0) };
-    for (let i = 0; i < n0; i++) { const c = t.at(i); L0.g[i] = c[1]; L0.a[i] = c[3]; }
-    const out = [L0];
-    for (let p = L0; p.w > 1 || p.h > 1;) {
+  // nearest or bilinear within a level, nearest or linear between levels. The levels are the ones the
+  // GPU holds: a chain the texture supplies in `mipmaps`, which three.js uploads in place of its
+  // image (Codex, PR 369), or else one averaged in 2 by 2 blocks the way generateMipmap builds it. A
+  // hit around the camera and out of the frame is read at the footprint it would have in view.
+  const texels = new WeakMap();
+  const levelsFor = (tex) => {
+    let e = texels.get(tex);
+    if (e && e.v === tex.version) return e;
+    e = { v: tex.version, levels: null, supplied: false, built: false };
+    try {
+      if (!tex.isCompressedTexture && !tex.isRenderTargetTexture) {
+        const mips = Array.isArray(tex.mipmaps) && tex.mipmaps.length ? tex.mipmaps : null;
+        const got = (mips || [tex.image]).map((img) => readImage(tex, img));
+        if (got.every(Boolean)) { e.levels = got; e.supplied = !!mips; }
+      }
+    } catch (err) { e.levels = null; }
+    texels.set(tex, e);
+    return e;
+  };
+  const builtLevels = (e) => {
+    if (e.built) return e.levels;
+    const out = [e.levels[0]];
+    for (let p = out[0]; p.w > 1 || p.h > 1;) {
       const w = Math.max(1, p.w >> 1), h = Math.max(1, p.h >> 1);
       const q = { w, h, g: new Float32Array(w * h), a: new Float32Array(w * h) };
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
@@ -396,7 +412,8 @@ export function init(THREE) {
       }
       out.push(q); p = q;
     }
-    return (t.levels = out);
+    e.levels = out; e.built = true;
+    return out;
   };
   const wrapIndex = (i, n, mode) => {
     if (mode === THREE.RepeatWrapping) return ((i % n) + n) % n;
@@ -415,10 +432,11 @@ export function init(THREE) {
     const mix = (i) => (s00[i] * (1 - fx) + s10[i] * fx) * (1 - fy) + (s01[i] * (1 - fx) + s11[i] * fx) * fy;
     return [mix(0), mix(1)];
   };
-  const filtered = (t, tex, q, lod) => {
-    const levels = levelsOf(t);
+  const filtered = (e, tex, q, lod) => {
     const mipmapped = tex.minFilter !== THREE.NearestFilter && tex.minFilter !== THREE.LinearFilter;
-    const top = mipmapped && tex.generateMipmaps !== false ? levels.length - 1 : 0;
+    let levels = e.levels, top = 0;
+    if (mipmapped && e.supplied) top = levels.length - 1;
+    else if (mipmapped && tex.generateMipmaps !== false) { levels = builtLevels(e); top = levels.length - 1; }
     const magnified = !(lod > 0), f = magnified ? tex.magFilter : tex.minFilter;
     const linear = f === THREE.LinearFilter || f === THREE.LinearMipmapNearestFilter || f === THREE.LinearMipmapLinearFilter;
     if (magnified || top === 0) return sampleLevel(levels[0], q, linear, tex);
@@ -441,10 +459,12 @@ export function init(THREE) {
   const lodM = new THREE.Matrix4(), lodI = new THREE.Matrix4(), lodA = new THREE.Vector3(), lodB = new THREE.Vector3();
   const lodC = new THREE.Vector3(), lodN = new THREE.Vector3(), lodE = new THREE.Vector3(), lodD = new THREE.Vector3();
   const lodUa = new THREE.Vector2(), lodUb = new THREE.Vector2(), lodUc = new THREE.Vector2(), lodS = new THREE.Vector2();
-  const lodOf = (h, R, tex, t) => {
+  // The triangle a hit lies on, in the world, and the footprint one pixel of this frame has there:
+  // its span across and the cosine of the angle the view meets the surface at. `m` carries the
+  // geometry's own frame into the world, through the instance's matrix when there is one.
+  const footprintAt = (h, R) => {
     const cam = R.camera, obj = h.object, g = obj.geometry, f = h.face;
-    const uvs = g && g.attributes && g.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
-    if (!cam || !f || !uvs || !g.attributes.position) return 0;
+    if (!cam || !f || !g || !g.attributes || !g.attributes.position) return null;
     lodM.copy(obj.matrixWorld);
     if (obj.isInstancedMesh && h.instanceId != null) { obj.getMatrixAt(h.instanceId, lodI); lodM.multiply(lodI); }
     const P = g.attributes.position;
@@ -453,15 +473,9 @@ export function init(THREE) {
     lodC.fromBufferAttribute(P, f.c).applyMatrix4(lodM);
     lodN.subVectors(lodB, lodA).cross(lodE.subVectors(lodC, lodA));
     const world = lodN.length();
-    lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
-    lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
-    lodUc.fromBufferAttribute(uvs, f.c).applyMatrix3(tex.matrix);
-    const texels = Math.abs((lodUb.x - lodUa.x) * (lodUc.y - lodUa.y) - (lodUc.x - lodUa.x) * (lodUb.y - lodUa.y)) * t.w * t.h;
-    if (!(world > 1e-12) || !(texels > 0)) return 0;
-    const density = Math.sqrt(texels / world);                  // texels per metre on this triangle
     const tall = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
       ? R.renderer.getDrawingBufferSize(lodS).y : 0;
-    if (!(tall > 0)) return 0;
+    if (!(world > 1e-12) || !(tall > 0)) return null;
     lodE.setFromMatrixPosition(cam.matrixWorld);
     let across;
     if (cam.isOrthographicCamera) {
@@ -470,40 +484,53 @@ export function init(THREE) {
     } else {
       lodD.subVectors(h.point, lodE);
       const dist = lodD.length();
-      if (!(dist > 0)) return 0;
+      if (!(dist > 0)) return null;
       lodD.divideScalar(dist);
       across = dist * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
     }
     const cos = Math.max(Math.abs(lodD.dot(lodN.divideScalar(world))), 1e-3);
-    const pMin = across * density, pMax = pMin / cos;
+    return { across, cos, world, m: lodM.clone() };
+  };
+  const lodOf = (h, R, tex, L0) => {
+    const fp = footprintAt(h, R), f = h.face;
+    const uvs = h.object.geometry.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
+    if (!fp || !uvs) return 0;
+    lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
+    lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
+    lodUc.fromBufferAttribute(uvs, f.c).applyMatrix3(tex.matrix);
+    const texels = Math.abs((lodUb.x - lodUa.x) * (lodUc.y - lodUa.y) - (lodUc.x - lodUa.x) * (lodUb.y - lodUa.y)) * L0.w * L0.h;
+    if (!(texels > 0)) return 0;
+    const pMin = fp.across * Math.sqrt(texels / fp.world), pMax = pMin / fp.cos;   // texels per pixel
     const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
     return Math.log2(pMax / n);
   };
-  const texels = new WeakMap();
   const texelAt = (tex, uv, h, R) => {
     if (!tex || !uv) return null;
-    let e = texels.get(tex);
-    if (!e || e.v !== tex.version) {
-      let t = null;
-      try { t = sampled(tex); } catch (err) { t = null; }
-      e = { v: tex.version, t };
-      texels.set(tex, e);
-    }
-    const t = e.t;
-    if (!t) return null;
+    const e = levelsFor(tex);
+    if (!e.levels) return null;
     if (tex.matrixAutoUpdate) tex.updateMatrix();
     const q = tex.transformUv(uv.clone());
-    const s = filtered(t, tex, q, h && R ? lodOf(h, R, tex, t) : 0);
+    const s = filtered(e, tex, q, h && R ? lodOf(h, R, tex, e.levels[0]) : 0);
     return { g: s[0], a: s[1] };
+  };
+  // THE UV CHANNEL THE MATERIAL SAMPLES (Codex, PR 369): a texture on channel 2 or 3 reads the
+  // geometry's uv2 or uv3, interpolated at the hit, which the raycaster doesn't report.
+  const uvOf = (h, tex) => {
+    const ch = tex.channel || 0;
+    if (ch === 0) return h.uv;
+    if (ch === 1) return h.uv1;
+    const g = h.object.geometry, attr = g && g.attributes && g.attributes['uv' + ch], f = h.face, b = h.barycoord;
+    if (!attr || !f || !b) return undefined;
+    return new THREE.Vector2(attr.getX(f.a) * b.x + attr.getX(f.b) * b.y + attr.getX(f.c) * b.z,
+                             attr.getY(f.a) * b.x + attr.getY(f.b) * b.y + attr.getY(f.c) * b.z);
   };
   // The fragment's alpha as three.js computes it: opacity, times the map's alpha, times the alphaMap's
   // green, times the vertex alpha when the material reads RGBA vertex colours (Codex, PR 369: the
   // kit's waterSheet does), interpolated at the hit through its barycentric coordinates.
   const alphaAt = (h, mat, R) => {
-    const uvOf = (tex) => (tex.channel === 1 ? h.uv1 : h.uv);
     let a = mat.opacity != null ? mat.opacity : 1;
-    if (mat.map) { const t = texelAt(mat.map, uvOf(mat.map), h, R); if (!t) return null; a *= t.a; }
-    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(mat.alphaMap), h, R); if (!t) return null; a *= t.g; }
+    if (mat.map) { const t = texelAt(mat.map, uvOf(h, mat.map), h, R); if (!t) return null; a *= t.a; }
+    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(h, mat.alphaMap), h, R); if (!t) return null; a *= t.g; }
     const col = mat.vertexColors && h.object.geometry && h.object.geometry.attributes.color;
     if (col && col.itemSize === 4) {
       const f = h.face, b = h.barycoord;
@@ -529,6 +556,43 @@ export function init(THREE) {
     if (mat.alphaTest > 0 && a < mat.alphaTest) return 0;
     if (hashed) return Math.min(1, Math.max(0, a));
     return mat.transparent && !(a > 0.001) ? 0 : 1;
+  };
+  // AN ALPHA HASH IS SHARED WHERE SURFACES COINCIDE (Codex, PR 369). three.js hashes the fragment's
+  // position in the geometry's own frame, before any instance matrix, over cells a twentieth of the
+  // pixel's reach there (ALPHA_HASH_SCALE 0.05) at two power-of-two scales. So hashed surfaces at the
+  // same local point, stacked copies or instances with matching local coordinates, discard the same
+  // fragments: eight coincident planes at 0.2 draw a fifth of the frame, not 83 percent. Hashed hits
+  // along a ray in the same finer cell are one layer, at the highest chance among them, and the rest
+  // count as independent draws.
+  const lodL = new THREE.Vector3(), lodV = new THREE.Matrix4();
+  const hashKey = (h, R) => {
+    const fp = footprintAt(h, R);
+    if (!fp) return null;
+    const reach = fp.across / fp.cos / (fp.m.getMaxScaleOnAxis() || 1);
+    if (!(reach > 0)) return null;
+    lodL.copy(h.point).applyMatrix4(lodV.copy(fp.m).invert());
+    const fine = Math.pow(2, Math.ceil(Math.log2(1 / (0.05 * reach))));
+    return fine + ':' + Math.floor(fine * lodL.x) + ',' + Math.floor(fine * lodL.y) + ',' + Math.floor(fine * lodL.z);
+  };
+  // The layers a ray passes, nearest first, each with the chance it draws (or hides the sky): an
+  // opaque one ends the ray, and coincident hashed ones merge.
+  const layersAlong = (hits, R, chance) => {
+    const out = [], shared = new Map();
+    for (const h of hits) {
+      const p = chance(h, R);
+      if (!(p > 0)) continue;
+      if (p < 1 && slotOf(h).alphaHash) {
+        const k = hashKey(h, R), same = k !== null ? shared.get(k) : null;
+        if (same) { if (p > same.p) { same.p = p; same.h = h; } continue; }
+        const layer = { p, h };
+        if (k !== null) shared.set(k, layer);
+        out.push(layer);
+        continue;
+      }
+      out.push({ p, h });
+      if (p >= 1) break;
+    }
+    return out;
   };
   // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
   const drawable = (R) => {
@@ -583,7 +647,7 @@ export function init(THREE) {
         const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
         rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
         let open = 1;                              // the chance nothing along this ray draws
-        for (const h of rc.intersectObjects(hit, false)) { open *= 1 - drawChance(h, R); if (!(open > 0)) break; }
+        for (const L of layersAlong(rc.intersectObjects(hit, false), R, drawChance)) open *= 1 - L.p;
         covered += 1 - open;
       }
     } catch (e) { return 0; }
@@ -639,13 +703,10 @@ export function init(THREE) {
       // the chance that the first thing drawn along this ray is the room, hit by hit
       let open = 1, room = 0;
       try {
-        for (const h of rc.intersectObjects(all, false)) {
-          if (!depthOk(h.point)) continue;
-          const p = drawChance(h, R);
-          if (!(p > 0)) continue;
-          if (own.has(h.object) || inside(h.point)) room += open * p;
-          open *= 1 - p;
-          if (!(open > 0)) break;
+        const hs = rc.intersectObjects(all, false).filter((h) => depthOk(h.point));
+        for (const L of layersAlong(hs, R, drawChance)) {
+          if (own.has(L.h.object) || inside(L.h.point)) room += open * L.p;
+          open *= 1 - L.p;
         }
       } catch (e) { room = 0; }
       seen += room;
@@ -711,12 +772,11 @@ export function init(THREE) {
       let open = 1;
       if (hits && hits.length) {
         rc.set(o, dir);
-        for (const h of castAll(rc, hits)) {
+        const hs = castAll(rc, hits).filter((h) => {
           const z = at.copy(h.point).sub(eye).dot(fwd);        // clipped at near and far: not drawn
-          if (z < camera.near || z > camera.far) continue;
-          open *= 1 - solidChance(h, R);
-          if (!(open > 0)) break;
-        }
+          return z >= camera.near && z <= camera.far;
+        });
+        for (const L of layersAlong(hs, R, solidChance)) open *= 1 - L.p;
       }
       shown += open;
       if (first && shown >= 1) return shown / all;

@@ -559,8 +559,9 @@ const FILTERED = `async (T, TXT, cv) => {
   const gr = new T.WebGLRenderer({ canvas: gcv, preserveDrawingBuffer: true, antialias: false });
   gr.setClearColor(0xff0000, 1);
   const gcam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10); gcam.position.z = 2;
-  const drawnShare = (mat) => {
-    const s = new T.Scene(); s.add(new T.Mesh(new T.PlaneGeometry(2, 2), mat));
+  const drawnShare = (mat, copies = 1, geo) => {
+    const s = new T.Scene();
+    for (let i = 0; i < copies; i++) s.add(new T.Mesh(geo || new T.PlaneGeometry(2, 2), i ? mat.clone() : mat));
     gr.render(s, gcam);
     const gl = gr.getContext(), px = new Uint8Array(128 * 128 * 4);
     gl.readPixels(0, 0, 128, 128, gl.RGBA, gl.UNSIGNED_BYTE, px);
@@ -610,7 +611,74 @@ const FILTERED = `async (T, TXT, cv) => {
     return { errors, sky: TXT.skyInFrame(Rp.camera, Rp), gpuSky: n / (Wd * Hd) };
   };
   const perfFar = await perfWall(40), perfNear = await perfWall(2);
-  return { hash02, hash095, perfFar, perfNear };
+  // EIGHT COINCIDENT ALPHA-HASHED SHELTERS at 0.2: three.js hashes the same local points alike, so
+  // they discard the same fragments and draw a fifth, where independent draws would make 83 percent
+  const stacked = await (async () => {
+    const make = () => new T.MeshStandardMaterial({ color: 0x333333, alphaHash: true, opacity: 0.2 });
+    const Rh = world(40);
+    TXT.frame(Rh, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rh, [4, 8, 4]);
+    for (let i = 0; i < 8; i++) Rh.scene.add(shelter(make()));
+    const errors = await capture(() => TXT.snapshot(Rh));
+    return { errors, cover: cover(Rh), gpu: drawnShare(make(), 8) };
+  })();
+  // A SUPPLIED MIP CHAIN: level 0 clear, every smaller level solid, as three.js uploads it in place
+  // of the image. Near, the wall is magnified onto level 0 and the sky shows through. Far, it is
+  // minified onto the solid levels and hides the sky.
+  const mipped = () => {
+    const mips = [];
+    for (let n = 128, i = 0; n >= 1; n >>= 1, i++) {
+      const d = new Uint8Array(n * n * 4);
+      for (let k = 0; k < n * n; k++) { d[k * 4] = d[k * 4 + 1] = d[k * 4 + 2] = 90; d[k * 4 + 3] = i ? 255 : 0; }
+      mips.push({ data: d, width: n, height: n });
+    }
+    const t = new T.DataTexture(mips[0].data, 128, 128, T.RGBAFormat, T.UnsignedByteType);
+    t.mipmaps = mips; t.generateMipmaps = false;
+    t.minFilter = T.NearestMipmapNearestFilter; t.magFilter = T.NearestFilter;
+    t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(1000, 1000); t.needsUpdate = true;
+    return t;
+  };
+  const mipWall = async (dist) => {
+    const Rm = world(40);
+    TXT.frame(Rm, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rm, W);
+    TXT.rig(Rm, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rm, { surface: 'caliche', size: 900, tile: 5 });
+    const wall = new T.Mesh(new T.PlaneGeometry(400, 400), new T.MeshStandardMaterial({ color: 0xffffff, alphaTest: 0.5, map: mipped() }));
+    wall.position.set(0, 0, -dist); Rm.scene.add(wall);
+    const errors = await capture(() => TXT.snapshot(Rm));
+    const gl = Rm.renderer.getContext(), Wd = gl.drawingBufferWidth, Hd = gl.drawingBufferHeight;
+    const read = () => { Rm.renderer.render(Rm.scene, Rm.camera); const b = new Uint8Array(Wd * Hd * 4); gl.readPixels(0, 0, Wd, Hd, gl.RGBA, gl.UNSIGNED_BYTE, b); return b; };
+    const shown = read(); dome.visible = false; const hidden = read(); dome.visible = true; read();
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rm.camera, Rm), gpuSky: n / (Wd * Hd) };
+  };
+  const mipFar = await mipWall(40), mipNear = await mipWall(2);
+  // AN ALPHAMAP ON UV CHANNEL 2: its uv2 points at a solid texel and its uv at a clear one, so the
+  // GPU draws the shelter solid. Read through uv it would be clear.
+  const channel = async (ch) => {
+    const tex = new T.DataTexture(new Uint8Array([255, 0, 255, 255, 255, 255, 255, 255]), 2, 1, T.RGBAFormat, T.UnsignedByteType);
+    tex.channel = ch; tex.needsUpdate = true;
+    const geo = (g) => {
+      const n = g.attributes.uv.count, uv = g.attributes.uv;
+      for (let i = 0; i < n; i++) uv.setXY(i, 0.25, 0.5);
+      g.setAttribute('uv2', new T.BufferAttribute(new Float32Array(n * 2).map((_, k) => (k % 2 ? 0.5 : 0.75)), 2));
+      return g;
+    };
+    const make = () => new T.MeshStandardMaterial({ color: 0x333333, alphaMap: tex, alphaTest: 0.5 });
+    const S = new T.Group(), m = make();
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(geo(new T.BoxGeometry(w, h, d)), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    const Rc = world(40);
+    TXT.frame(Rc, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rc, [4, 8, 4]);
+    Rc.scene.add(S);
+    const errors = await capture(() => TXT.snapshot(Rc));
+    return { errors, cover: cover(Rc), gpu: drawnShare(make(), 1, geo(new T.PlaneGeometry(2, 2))) };
+  };
+  const uv2 = await channel(2), uv0 = await channel(0);
+  return { hash02, hash095, perfFar, perfNear, stacked, mipFar, mipNear, uv2, uv0 };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -867,6 +935,30 @@ check('the filtered page renders with no page error and no scene error',
         `${(pn.sky || 0).toFixed(3)}, and the frame shows its sky`,
         pn.gpuSky > 0.05 && pn.sky > 0.05 && Array.isArray(pn.errors) && pn.errors.length === 1 &&
         pn.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(pn));
+}
+
+{
+  // COINCIDENT HASHED SURFACES share their discards (Codex, PR 369), a SUPPLIED MIP CHAIN is the one
+  // the GPU samples (Codex, PR 369), and a texture on UV CHANNEL 2 reads uv2 (Codex, PR 369).
+  const st = f.result.stacked || {}, mf = f.result.mipFar || {}, mn = f.result.mipNear || {};
+  const u2 = f.result.uv2 || {}, u0 = f.result.uv0 || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  check(`eight coincident alpha-hashed shelters at 0.2: the GPU draws ${(st.gpu || 0).toFixed(2)} of them, they cover ` +
+        `${(st.cover || 0).toFixed(2)}, and looking down inside them IS flagged`,
+        Math.abs(st.gpu - 0.2) < 0.06 && Math.abs(st.cover - 0.2) < 0.06 && flagged(st), JSON.stringify(st));
+  check(`a wall whose supplied mip chain is clear at level 0 and solid below: at 40 m the pixels show ` +
+        `${(mf.gpuSky || 0).toFixed(4)} sky, the engine reads ${mf.sky}, and the frame IS flagged`,
+        mf.gpuSky < 0.001 && mf.sky === 0 && flagged(mf), JSON.stringify(mf));
+  check(`...while at 2 m it is magnified onto the clear level: the pixels show ${(mn.gpuSky || 0).toFixed(3)} sky, ` +
+        `the engine reads ${(mn.sky || 0).toFixed(3)}, and the frame shows its sky`,
+        mn.gpuSky > 0.3 && mn.sky > 0.3 && Array.isArray(mn.errors) && mn.errors.length === 1 &&
+        mn.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(mn));
+  check(`an alphaMap on UV channel 2 reads uv2: the GPU draws ${u2.gpu ? 'it' : 'none of it'}, and the shelter covers ` +
+        `${(u2.cover || 0).toFixed(2)}, an interior`,
+        u2.gpu === 1 && u2.cover >= 0.8 && !flagged(u2), JSON.stringify(u2));
+  check(`...while the same alphaMap on channel 0 reads uv's clear texel: the GPU draws ${(u0.gpu || 0).toFixed(2)} of it, ` +
+        `it covers ${(u0.cover || 0).toFixed(2)}, and the frame IS flagged`,
+        u0.gpu === 0 && u0.cover === 0 && flagged(u0), JSON.stringify(u0));
 }
 
 await browser.close();
