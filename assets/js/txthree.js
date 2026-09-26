@@ -650,7 +650,7 @@ export function init(THREE) {
   const SKY_FRAG = `
     varying vec3 vDir;
     uniform vec3 uZenith, uHorizon, uHaze, uGround, uSunDir, uSunColor;
-    uniform float uSunDisc, uGlow, uHorizonGlow, uSpan, uClouds, uStars, uSeed, uEnv, uFogMatch, uCamY, uFogD, uFogNear, uFogFar;
+    uniform float uSunDisc, uGlow, uHorizonGlow, uSpan, uClouds, uStars, uSeed, uEnv, uFogMatch, uCamY, uFogD, uFogNear, uFogFar, uFade;
     float h12(vec2 p) { vec3 q = fract(vec3(p.xyx) * 0.1031 + uSeed * 0.0001); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
     float h13(vec3 p) { p = fract(p * 0.1031 + uSeed * 0.0001); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
     float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
@@ -707,6 +707,8 @@ export function init(THREE) {
         else if (uFogMatch > 0.5) {
           float dist = uCamY / max(-h, 1e-4);
           float f = uFogD > 0.0 ? 1.0 - exp(-uFogD * uFogD * dist * dist) : smoothstep(uFogNear, uFogFar, dist);
+          // the same grazing fade TX_GROUND gives the plane, so both sides of its edge agree (Codex, #368)
+          if (uFade > 0.0) f = max(f, 1.0 - smoothstep(0.0, uFade, -h));
           col = mix(uGround, horizonSky(d, sd), f);
         } else col = mix(uHaze, uGround, clamp(-h * 5.0, 0.0, 1.0));
       }
@@ -729,6 +731,7 @@ export function init(THREE) {
         uClouds: { value: W.clouds || 0 }, uStars: { value: W.stars || 0 },
         uSeed: { value: (W.seed || 20260924) % 9973 }, uEnv: { value: forEnv ? 1 : 0 }, uFogMatch: { value: 0 },
         uCamY: { value: 2 }, uFogD: { value: 0 }, uFogNear: { value: 0 }, uFogFar: { value: 1 },
+        uFade: { value: W.horizonFade != null ? W.horizonFade : 0.025 },
       },
       vertexShader: SKY_VERT, fragmentShader: SKY_FRAG,
       side: THREE.BackSide, depthWrite: false, fog: false,
@@ -759,7 +762,10 @@ export function init(THREE) {
    * keeps the flat fog, and so does `tintFog:false`. The IBL is untouched, so lighting is too. */
   function installSkyFog(W, sunDir) {
     const C = THREE.ShaderChunk;
-    const base = TXT._fogBase || (TXT._fogBase = { pv: C.fog_pars_vertex, v: C.fog_vertex,
+    // THE PRISTINE CHUNKS LIVE ON THE SHARED ShaderChunk, not on this TXT: a second init(THREE) in
+    // the same page would otherwise take the patched chunks as its base and declare everything
+    // twice, and every fogged shader after it would fail to compile (Codex, #368).
+    const base = C.__txFogBase || (C.__txFogBase = { pv: C.fog_pars_vertex, v: C.fog_vertex,
       pf: C.fog_pars_fragment, f: C.fog_fragment });
     const v3 = (c) => { const k = new THREE.Color(c); return 'vec3(' + [k.r, k.g, k.b].map(x => x.toFixed(6)).join(', ') + ')'; };
     const n = (x) => Number(x || 0).toFixed(6);
@@ -792,6 +798,9 @@ export function init(THREE) {
       return f;
     #endif
   }
+  // A hook that replaces fog_fragment with its own mix toward fogColor (the kit's aerial() haze on
+  // far landforms and skylines) still lands on the sky's colour, and the uniform is left unread.
+  #define fogColor txSkyFog()
 #endif
 `;
     C.fog_fragment = `
