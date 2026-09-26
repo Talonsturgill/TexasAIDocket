@@ -2628,15 +2628,27 @@ def self_test() -> int:
     ship_extra = [dossier_block, _ch, _wh]
 
     head = index_headroom(items, p["generated"], ship_extra)
-    # THE ALARM IS ON THE RUNG WHERE THE GUARANTEE MOVES, NOT ON THE FIRST ONE. Reaching rung 2,
-    # `full` at 0, is the designed state the header above describes: the oldest settled lines are
-    # cut to a title and an id, and nothing breaks. This check read `full > 0` until 2026-09-26,
-    # so admitting tx-2026-0188 put CI red on a record doing exactly what it was built to do, and
-    # the day's deck could not merge. `index_headroom` names the middle rung as the one a person
-    # should be told about, so the red line is `named`, where a decision would stop being listed.
+    # THE ALARM IS ON THE RUNG WHERE THE GUARANTEE MOVES, NOT ON THE FIRST ONE. Reaching rung 2 is
+    # the designed state the header above describes: the oldest settled lines are cut to a title
+    # and an id, and nothing breaks. This check read `full > 0` until 2026-09-26, so admitting
+    # tx-2026-0188 put CI red on a record doing exactly what it was built to do, and the day's deck
+    # could not merge. `index_headroom` names the middle rung as the one a person should be told
+    # about, so the red line is `named`, where a decision would stop being listed.
+    #
+    # AND `full` IS NOT GATED AT ALL, NOT EVEN AT ZERO. The first fix read `full >= 0`, which let
+    # the record stand on the boundary and failed the moment a line actually shortened, because
+    # `last_true` returns -1 for a rung already spent. One more admission would have turned the
+    # next run red for the same designed behaviour (Codex, PR 365). The second check below stands
+    # the record ON the shortening rung and requires it green.
+    def _rung_ok(h):
+        return h["named"] > 0 and h["named"] >= h["full"]
+
     check("the build publishes how far each rung is, measured against the index it ships",
-          head["full"] >= 0 and head["named"] > 0 and head["named"] >= head["full"],
-          f'{head["full"]} at full lines, {head["named"]} before one goes unnamed')
+          _rung_ok(head), f'{head["full"]} at full lines, {head["named"]} before one goes unnamed')
+    on_rung_2 = index_headroom(_grown(max(head["full"] + 1, 1)), p["generated"], ship_extra)
+    check("and a record already standing on the shortening rung is green, not red",
+          on_rung_2["full"] < 0 and _rung_ok(on_rung_2),
+          f'{on_rung_2["full"]} at full lines, {on_rung_2["named"]} before one goes unnamed')
     check("and the horizon in the pack is the one measured with the rolled families in it",
           p["index_headroom"] == head, f'{p["index_headroom"]} against {head}')
     check("and a rate to read it by, measured off the record rather than assumed",
