@@ -10,7 +10,7 @@ The House Committee on State Affairs met on August 19th, 2026 on a charge coveri
 - Comment closes: 2026-08-20
 - Take part: https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · Both House committees have now held the sittings the notices set, on data centers and on artificial intelligence in health care. Neither has published a report out of them.
 - 2026-09-19 · Both hearings were held and neither committee has published a report out of them. What the posted notice for that week said about the charges is unconfirmed.
 - 2026-09-23 · Both committees have now heard their subject and neither has published a recommendation.
+- 2026-09-26 · The comment window closed on August 20th. Both committees have heard their subjects and neither has published a recommendation.
 
 ## Evidence
 

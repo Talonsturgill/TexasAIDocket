@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The School of Computing approved by the regents still stands as approved, uniting the four disciplines the item names. No later regental action has reopened it.
 - 2026-09-19 · The new school stands as the regents approved it, drawing the four existing units together.
 - 2026-09-23 · The School of Computing still stands as the regents approved it.
+- 2026-09-26 · The regents' approval of the School of Computing still stands, with the same four disciplines under one roof.
 
 ## Evidence
 

@@ -1,0 +1,136 @@
+<!doctype html>
+<!-- 2026-09-26, frame 8 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's
+     declared blueHour world. WHEN THE STATE STEPS IN. A truck court at dusk, a rig at the dock, and
+     one painted stripe across the court at one metre per day: the review windows, 10, 10 and 60. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#151D33; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,12,24,0.4); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
+          text-shadow:0 0 5px rgba(8,12,24,0.8), 0 1px 14px rgba(8,12,24,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
+  .hook { left:80px; top:150px; width:920px; } .dek { left:82px; width:860px; font-size:29px; }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:12; overflow:visible; }
+  .lab { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; fill:#E3E7EE; stroke:#101726; stroke-width:6px; paint-order:stroke; stroke-linejoin:round; }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:640px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.58) 0%, rgba(10,14,28,0.55) 80%, rgba(10,14,28,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:220px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.4) 55%, rgba(10,14,28,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The line is serious bodily injury</h1>
+<p class="dek" data-follow="26">The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local law enforcement.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<svg id="lead" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-26-fortyfive.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"soah": {"request_days": 10, "file_days": 10, "hearing_days": 60, "longest_path_days": 80, "from": ["c15", "c16"], "rounding": "sum of the three windows, the longest a review can run before the hearing must be held"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "When the state steps in", counter: "08 / 09", src: "c13 to c17 c38   DRAWN TO SCALE", ink: '#C8D1DC' });
+  TX.fitText(document.getElementById("hook"), { min: 80, max: 108, maxLines: 2 });
+  FORTYFIVE.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
+  const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.4], exposure: W.exposure + 0.4, tone: W.tone, fov: 46 });
+
+  /* THE COURT. A tilt wall warehouse with its dock face on +z at z -34, a concrete court in front,
+   * one rig backed to the dock. The stripe runs along x across the court at A QUARTER METRE PER DAY, its
+   * three segments set by figures.json and nothing typed: request, file, hearing. A quarter metre
+   * per day, so the whole review lies across the court beside the rig. */
+  const DAY = 0.25;
+  const segs = [FIG.soah.request_days, FIG.soah.file_days, FIG.soah.hearing_days];
+  const total = FIG.soah.longest_path_days * DAY;
+  const GAP = 0.35, X0 = -10, ZS = -1.2;
+  /* an open court under the sky, lamps along its edge, so the type stands in the blue hour rather than on a building */
+
+  TXT.frame(R, { from: [X0 + total / 2, 9, 34], look: [X0 + total / 2, 7.3, -15] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [X0 + 10, 0, 0], distance: 80, shadowFar: 200 });
+  TXT.ground(R, { surface: 'asphalt', size: 12000, seed: 12 });   /* one surface under the rig and the stripe */
+
+  const t = F.truck(THREE, TXT, K, M, { lit: true, seed: 3 });
+  t.rotation.y = Math.PI / 2; t.position.set(X0 + total / 2 + 0.6, 0, -22);
+  TXT.add(R, t); TXT.contact(R, t);
+  const t2 = F.truck(THREE, TXT, K, M, { seed: 8, lidar: false, color: 0x2a3440 });
+  t2.position.set(X0 + total + 14, 0, -24 + t2.userData.size[2] / 2 + 0.4); TXT.add(R, t2); TXT.contact(R, t2);
+
+  /* the stripe: painted, lower roughness than the concrete, sitting a millimetre over it */
+  const paint = TXT.mat.clay(0xe9e6de, { roughness: 0.55, metalness: 0 });
+  const tick = TXT.mat.clay(0xe9e6de, { roughness: 0.55, metalness: 0 });
+  let x = X0; const mids = [];
+  segs.forEach((d, i) => {
+    const L = d * DAY;                       /* every segment exactly its days at the scale; the breaks sit between them */
+    const s = new THREE.Mesh(new THREE.BoxGeometry(L, 0.012, 1.3), paint);
+    s.position.set(x + L / 2, 0.008, ZS); s.receiveShadow = true; R.scene.add(s);
+    mids.push([x + L / 2, 0, ZS]); x += d * DAY + GAP;
+  });
+  [X0, X0 + total + GAP * (segs.length - 1)].forEach((xx) => { const k = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.012, 3.0), tick); k.position.set(xx, 0.008, ZS); R.scene.add(k); });
+
+  /* mast lamps along the court edge, the key's motivation */
+  /* the court's own wear in the near field: oil stains, tyre polish, and painted bay lines running
+   * toward the camera, so the ground under the stripe is a surface and not a colour */
+  const stain = new THREE.MeshStandardMaterial({ color: 0x0b0c0f, roughness: 0.25, transparent: true, opacity: 0.5, depthWrite: false });
+  let sd = 9; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 180; i++) { const d = new THREE.Mesh(new THREE.CircleGeometry(0.25 + rnd() * 0.8, 16), stain); d.rotation.x = -Math.PI / 2; d.scale.set(1, 1 + rnd() * 1.5, 1); d.position.set(X0 - 14 + rnd() * (total + 30), 0.011, -8 + rnd() * 26); R.scene.add(d); }
+  const bay = TXT.mat.clay(0xcfd2d4, { roughness: 0.45 });
+  for (let k = -3; k <= 8; k++) { const ln = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.01, 14), bay); ln.position.set(X0 + k * 4.2, 0.006, 11); ln.receiveShadow = true; R.scene.add(ln); }
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+
+  /* LEADERS, each ending ON the segment it names, projected through this camera */
+  const svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg';
+  const names = ['10 DAYS TO APPEAL A DECISION', 'STATE FILES IN 10 DAYS', 'HEARING WITHIN 60 DAYS'];
+  const endLab = 'REINSTATED IF NOT HELD';
+  const at = mids.map((m) => F.project(THREE, R, m));
+  const endPt = F.project(THREE, R, [X0 + total + GAP * (segs.length - 1), 0, ZS]);
+  const leaders = [];
+  const base = Math.min(...at.map((p) => p[1])) - 84;
+  const below = Math.max(...at.map((p) => p[1])) + 104;
+  const rows = [below + 44, below, below];   /* under the stripe, clear of the rig */   /* the first label a row higher, so the three read left to right above the stripe */
+  at.forEach((p, i) => {
+    const ly = rows[i];
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', `M ${p[0]} ${ly - 30} L ${p[0]} ${p[1] + 12}`);
+    path.setAttribute('stroke', '#E3E7EE'); path.setAttribute('stroke-width', '2'); path.setAttribute('fill', 'none'); svg.appendChild(path);
+    const tx = document.createElementNS(NS, 'text'); tx.setAttribute('class', 'lab');
+    tx.setAttribute('x', i === 2 ? Math.min(endPt[0] - 6, 1000) : Math.max(p[0] - 8, 82)); tx.setAttribute('y', ly);
+    tx.setAttribute('text-anchor', i === 2 ? 'end' : 'start');
+    tx.textContent = names[i]; svg.appendChild(tx);
+    const tip = p[1] + 12;
+    leaders.push({ target: 'the ' + names[i].toLowerCase() + ' segment', at: [p[0], tip], to: [p[0], tip] });
+  });
+  const e = document.createElementNS(NS, 'text'); e.setAttribute('class', 'lab'); e.setAttribute('text-anchor', 'end');
+  e.setAttribute('x', Math.min(endPt[0] + 60, 1000)); e.setAttribute('y', endPt[1] - 44); e.textContent = endLab; svg.appendChild(e);
+  const el = document.createElementNS(NS, 'path');
+  el.setAttribute('d', `M ${endPt[0]} ${endPt[1] - 36} L ${endPt[0]} ${endPt[1] - 14}`);
+  el.setAttribute('stroke', '#E3E7EE'); el.setAttribute('stroke-width', '2'); el.setAttribute('fill', 'none'); svg.appendChild(el);
+  leaders.push({ target: 'the end tick, where the review runs out', at: [endPt[0], endPt[1] - 14], to: [endPt[0], endPt[1] - 14] });
+  window.__txLeaders = leaders;
+  return true;
+})();
+</script>
+</body>
+</html>

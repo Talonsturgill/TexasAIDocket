@@ -299,6 +299,36 @@ def g_numerals(d: Path):
     return probs
 
 
+_SCRIPT = re.compile(r"<script\b[^>]*>(.*?)</script\s*>", re.S | re.I)
+_HTML_COMMENT = re.compile(r"<!--.*?-->", re.S)
+_JS_BLOCK_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+
+
+def _display_source(body: str) -> str:
+    """The text a frame's source can DISPLAY: its markup's text, then its scripts' code.
+
+    A FRAME'S SCRIPT IS NOT MARKUP (2026-09-26, carousel no. 34). This used to be one tag strip,
+    `<[^>]+>`, over the whole file. A frame that sets its labels from JavaScript carries both a
+    `<` (a loop's `i < 4`) and a `>` (an arrow's `=>`), and the strip read everything between them
+    as one tag and deleted it. Six labels on frames 8 and 9 that were plainly string literals in
+    the source were reported missing, and CI went red on a correct deck.
+
+    So a script's body is lifted out BEFORE the tag strip and kept whole, since its string
+    literals are what the frame displays. Only its block comments are removed. HTML comments go
+    too. Neither is displayed, and a comment quoting the copy of a deck that was replaced is exactly
+    the stale artifact this gate exists to catch. `//` line comments are left alone, because
+    stripping them by regular expression would cut every `https://` in a string, and a gate that
+    mis-parses its own input invents failures (GATE_LESSONS 27).
+
+    Every step before the old flattening is unchanged in order: tags out, THEN entities decoded,
+    THEN whitespace collapsed, for the reason written in `g_shipped_fresh`.
+    """
+    scripts = [_JS_BLOCK_COMMENT.sub(" ", m.group(1)) for m in _SCRIPT.finditer(body)]
+    markup = _HTML_COMMENT.sub(" ", _SCRIPT.sub(" ", body))
+    text = html.unescape(re.sub(r"<[^>]+>", " ", markup))
+    return re.sub(r"\s+", " ", text + " \n " + " \n ".join(scripts))
+
+
 def g_shipped_fresh(d: Path):
     """Every artifact in a shipped run must describe the deck beside it.
 
@@ -356,7 +386,8 @@ def g_shipped_fresh(d: Path):
             # delete it, so a frame that legitimately displays angle brackets would lose them.
             # Decode AFTER the tags are gone and BEFORE the whitespace collapse: U+00A0 is matched
             # by `\s` in str mode, so the collapse does the rest.
-            flat = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))
+            # 2026-09-26: scripts are lifted out before the strip. See `_display_source`.
+            flat = _display_source(body)
             for want in (blk.get("strings") or []):
                 probe = re.sub(r"\s+", " ", str(want)).strip()
                 if len(probe) >= 12 and probe not in flat:
@@ -1389,6 +1420,57 @@ def self_test() -> int:
             "<p>the tag &lt;section&gt; is shown to the reader</p>", encoding="utf-8")
         ok("...and an escaped angle bracket a frame DISPLAYS is not eaten as a tag",
            not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
+
+    # ---- A FRAME'S SCRIPT IS NOT MARKUP, AND THE TAG STRIP ATE IT. 2026-09-26 ----------------
+    #
+    # The real artifact, replayed: carousel no. 34's frame 8 sets its timeline labels from a
+    # JavaScript array, `const names = ['10 DAYS TO APPEAL A DECISION', ...]`, and its script
+    # also carries `for (let i = 0; i < 4; i++)` and `(p) => ...`. The tag strip `<[^>]+>` read
+    # from that `<` to the arrow's `>` as one tag and deleted every literal in between, so six
+    # strings on frames 8 and 9 that are plainly in the source were reported missing and CI's
+    # `shipped_check` step went red on a correct deck.
+    #
+    # The adversarial half. Reading script text must not become a way to pass, so a string that
+    # sits only in a script's block comment, or only in an HTML comment, still fails. Measured
+    # on 2026-09-26 by mutation: remove `_display_source`'s comment strips and the second
+    # assertion goes red, search the raw file instead of lifting the scripts and the second and
+    # third both do, and go back to the one-regex strip and the first one does.
+    with _tempfile.TemporaryDirectory() as _t:
+        _d = Path(_t) / "2026-09-26"
+        (_d / "slides").mkdir(parents=True)
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S8": {
+            "n": 8, "strings": ["10 DAYS TO APPEAL A DECISION"]}}}), encoding="utf-8")
+        _frame8 = ('<h1>The line is serious bodily injury</h1>\n<script>\n'
+                   'for (let i = 0; i < 4; i++) { ticks.push(i); }\n'
+                   "const names = ['10 DAYS TO APPEAL A DECISION', 'STATE FILES IN 10 DAYS'];\n"
+                   'names.forEach((n, i) => label(n, i));\n</script>\n')
+        (_d / "slides" / "slide-08.html").write_text(_frame8, encoding="utf-8")
+        ok("a label a frame's script sets as a string literal is found, past a `<` and a `=>`",
+           not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
+        (_d / "slides" / "slide-08.html").write_text(
+            _frame8.replace("'10 DAYS TO APPEAL A DECISION', ", "")
+            .replace("<script>\n", "<script>\n/* was '10 DAYS TO APPEAL A DECISION' */\n"),
+            encoding="utf-8")
+        ok("...and a string only a script COMMENT carries still fails",
+           bool(g_shipped_fresh(_d)),
+           "reading script text became a way to pass on a comment, which is a loosening")
+        (_d / "slides" / "slide-08.html").write_text(
+            "<!-- 10 DAYS TO APPEAL A DECISION -->\n" +
+            _frame8.replace("'10 DAYS TO APPEAL A DECISION', ", ""), encoding="utf-8")
+        ok("...and a string only an HTML COMMENT carries still fails",
+           bool(g_shipped_fresh(_d)),
+           "an HTML comment reads as display copy, which is a loosening")
+        # A NUMERAL COMPOSED AT RUNTIME IS NOT A STRING THE SOURCE CARRIES. Frame 2 of the same
+        # deck builds `miles + " MILES, KODIAK'S FIGURE"`. That stays a finding on purpose: the
+        # gate can't tell a fresh 219 from a stale 240 it can't see, and accepting the fragments
+        # would pass exactly the refuted-count deck it exists for.
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S2": {
+            "n": 2, "strings": ["219 MILES, KODIAK'S FIGURE"]}}}), encoding="utf-8")
+        (_d / "slides" / "slide-02.html").write_text(
+            '<script>const miles = FIG.v; txt(0, 0, miles + " MILES, KODIAK\'S FIGURE");</script>',
+            encoding="utf-8")
+        ok("...and a label composed from a variable is still NOT found in the source",
+           bool(g_shipped_fresh(_d)), "fragments of a composed string are being accepted")
 
     # ---- THE CRAWL BOUNDARY ADAPTER HAS TO BITE, 2026-09-19 ---------------------------------
     #

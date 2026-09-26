@@ -1,0 +1,115 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "No frame passes the showstopper test. Ground plane ends in a flat blue band on 1, 3, 4, 8, 9; no amber seam; hero reads navy not white; frame 3 seat a capsule and a stray rod; frame 5 fog hides most of the 200 places; frame 6 slab seat and misplaced gold tick with row 2 box empty; frame 8 ground seam and busy doors behind type; frame 9 procedural skyline, low-poly Texan, no rail. Frame 7 is a real detail render, frame 1 has contact and trees, frame 4 countable with consistent casts."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One blue hour world, one truck, one grade, a legible camera move. Frame 2 flat cartography outside the world, interiors 3, 6, 7 share no material with exteriors, empty seat motif asserted more than seen."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. Frame 6 dek drops 'commercially'; frame 6 art shows one box empty; frame 8 picture illustrates the review clock not the threshold. No fabrication."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Clear what, who, where and what to do. The September 25th lane announcement is on no slide; frame 5 adds little to the state story."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe, 3 answers it, the turn at 6 and 7, 9 closes on an action. 4 and 5 make the same point; 2 is context."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Plain good hooks and specific Texas nouns. Frame 5's sourcing sentence, frame 9's 36 word run on, the caption's line about the artefact."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "New subject, but count grids repeat no. 33's pad move, a vehicle hero mirrors no. 33, ground hex near no. 33's."
+  }
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frame": 6,
+   "defect": "gold tick oversized and on row 1, row 2 box empty, reads five of six",
+   "fix": "gold tick inside row 2 box at the same size, lit geometry"
+  },
+  {
+   "rank": 2,
+   "frames": [
+    1,
+    3,
+    4,
+    8,
+    9
+   ],
+   "defect": "ground plane ends in a flat blue band that reads as sea, no amber seam",
+   "fix": "extend ground past the far plane or a terrain skirt; fog in the horizon hue; amber seam at the key azimuth"
+  },
+  {
+   "rank": 3,
+   "frames": [
+    3,
+    6
+   ],
+   "defect": "cab interior primitives",
+   "fix": "model one seat and dash in the chassis cab set, delete the rod"
+  },
+  {
+   "rank": 4,
+   "frame": 5,
+   "defect": "fog hides 16 of 20 rows",
+   "fix": "all rows in frame, fog 1.0"
+  },
+  {
+   "rank": 5,
+   "frame": 9,
+   "defect": "floating skyline, low-poly Texan, no rail, hairline through arm",
+   "fix": "parapet and rail, crop to shoulder, hazed skyline, stop the hairline at the silhouette"
+  },
+  {
+   "rank": 6,
+   "frame": 8,
+   "defect": "ground seam, doors behind type, hook does not match drawing",
+   "fix": "one court surface, sky behind type, retitle or move the threshold"
+  },
+  {
+   "rank": 7,
+   "frames": [
+    1,
+    4,
+    5,
+    8
+   ],
+   "defect": "hero navy not white",
+   "fix": "white paint, real headlamp bloom"
+  },
+  {
+   "rank": 8,
+   "frame": 2,
+   "defect": "flat map outside the rendered world",
+   "fix": "render the county mesh under the key"
+  }
+ ]
+}

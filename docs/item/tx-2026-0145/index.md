@@ -8,9 +8,9 @@ The National Telecommunications and Information Administration submitted its Int
 - Status: open
 - Public access: Comment window open
 - Comment closes: 2026-11-09
-- Take part: https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
+- Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18303/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The household internet survey question on measuring artificial intelligence use is still open for comment until November 9th. Nothing has been withdrawn.
 - 2026-09-19 · The window is still open and the notice still gives November 9th as the last day a comment is sure to be read.
 - 2026-09-23 · The survey office is still asking whether the household internet survey should start measuring artificial intelligence, and the window still closes November 9th.
+- 2026-09-26 · The survey office is still taking comment through November 9th on whether its household internet survey should start asking about artificial intelligence. Both questions about AI use are still in the notice.
 
 ## Evidence
 
@@ -35,17 +36,17 @@ Every fact above rests on one of these. The words are the source's own.
 
 > To ensure consideration, comments regarding this proposed information collection must be received on or before November 9, 2026.
 
-Source (primary_official): https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18303.htm
 
 ### The agency puts the question to the public in as many words.
 
 > Is there a need for more data around artificial intelligence (AI)?
 
-Source (primary_official): https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18303.htm
 
 ### The agency names the areas it is asking whether to measure.
 
 > Are there particular areas that need more data, such as AI use at work or home, or attitudes towards AI?
 
-Source (primary_official): https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-09-09/html/2026-18303.htm
 

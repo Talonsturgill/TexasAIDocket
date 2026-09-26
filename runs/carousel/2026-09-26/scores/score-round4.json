@@ -1,0 +1,86 @@
+{
+ "weighted_score": 6.8,
+ "judges": [
+  6.7,
+  6.74,
+  6.848
+ ],
+ "spread": 0.148,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    5.7,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "judges": [
+    6.7,
+    7.2,
+    7.2
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.3,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "rounds_derived": 4,
+ "rounds": 4,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 4,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.8 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored"
+}

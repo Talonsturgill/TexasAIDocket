@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=135
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The sheriff's undertaking not to switch the report writing tool on is unconfirmed this run, and the agenda item recording it is the only place the record has it.
 - 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
 - 2026-09-24 · The court moved the money it had set aside for a possible Axon contract into two corrections officer positions on September 15th. Local reporting puts the vote at three to two. The sheriff's commitment not to switch on the report writing feature now sits beside a budget with nothing in it for the contract. The county's own minutes of the vote are not yet published.
+- 2026-09-26 · The sheriff's promise to come back to the court before switching on report writing is still what the county has posted.
 
 ## Evidence
 

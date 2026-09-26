@@ -1,0 +1,146 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "State policy",
+ "dek": {
+  "text": "Two companies are moving toward driverless freight between Dallas and Houston. The state permission they need carries no fee, does not expire and can't require crash history.",
+  "claims": [
+   "c22",
+   "c28",
+   "c12",
+   "c19"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "Kodiak AI has announced [its plans to launch unsupervised long-haul driverless service on the Dallas-Houston freight lane by the end of 2026](c22). It says it [now consistently completes deliveries between its Lancaster, Texas, hub and its launch destination in Houston without human intervention](c23). A safety observer still rides along, and the company says [the safety observer never touched the wheel, including on surface streets](c24).",
+   "claims": [
+    "c22",
+    "c23",
+    "c24"
+   ]
+  },
+  {
+   "text": "Aurora's release for its investor day in Dallas described rides on part of the same route. [Attendees will have the opportunity to ride in Aurora Driver-powered trucks, without a person behind the wheel](c28). Aurora says it is [fully allocated to exit the year with 200 driverless trucks in operation](c29). Those figures are the companies' own statements, not an agency's findings.",
+   "claims": [
+    "c28",
+    "c29"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the state asks for",
+   "paragraphs": [
+    {
+     "text": "Texas has required a permission for this since May 28th, 2026. The Texas Department of Motor Vehicles says companies operating automated vehicles commercially [are required to maintain an active authorization with TxDMV](c1). Commercial activity means moving [property or passengers in furtherance of a commercial enterprise on Texas roads without a human driver](c3).",
+     "claims": [
+      "c1",
+      "c3"
+     ]
+    },
+    {
+     "text": "The application is a set of acknowledgements. The first says the truck is [Capable of operating in compliance with applicable traffic and motor vehicle laws of this state](c5). The next says it is [Equipped with a required recording device](c6), and that its driving system is [in compliance with applicable federal law](c7). The company also affirms the truck is [Capable of achieving a minimal risk condition](c8) if that system fails. It affirms the truck is [Registered and titled in accordance with the laws of this state](c9) and insured. It also certifies that the Department of Public Safety has a plan for how emergency responders [should interact with the automated motor vehicle](c11).",
+     "claims": [
+      "c5",
+      "c6",
+      "c7",
+      "c8",
+      "c9",
+      "c10",
+      "c11"
+     ]
+    },
+    {
+     "text": "The department states the terms plainly. [No fees are required for an authorization to operate automated vehicles. Authorizations do not expire and are valid until revoked by the department.](c12)",
+     "claims": [
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the department can't require",
+   "paragraphs": [
+    {
+     "text": "When the department wrote its rules, the City of Dallas asked for more. [The City of Dallas encourages the department to require robust safety documentation, including crash history and proof of community stakeholder coordination, and to make information about approved operators publicly accessible.](c18)",
+     "claims": [
+      "c18"
+     ]
+    },
+    {
+     "text": "The department answered that the law gave it no room. It wrote that [Transportation Code, § 545.453 and § 545.456 do not allow the department to require authorization holders to submit crash history or proof of community stakeholder coordination](c19). Whether it publishes information about operators, it said, [is based on statutory confidentiality requirements in Government Code, Chapter 552](c20). So a truck has to carry a recorder, and the department that authorizes it can't require the operator to hand over its crash history.",
+     "claims": [
+      "c19",
+      "c20",
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "When the state steps in",
+   "paragraphs": [
+    {
+     "text": "The department sets its line at serious harm. [The operation of an automated motor vehicle is considered to endanger the public](c13) when it has caused or is likely to cause serious bodily injury. Below that line the department says so directly. [The department is unlikely to take administrative enforcement action](c14) in those cases.",
+     "claims": [
+      "c13",
+      "c14"
+     ]
+    },
+    {
+     "text": "Once it acts, the operator has a path back. [An authorization holder has 10 days to request that a final decision be reviewed by the State Office of Administrative Hearings (SOAH).](c15) The department then files within {{number:c16}} days and [the hearing must be held within 60 days of the request filed by the department](c16). [If the hearing is not held within the required time, then the authorization is immediately reinstated.](c17)",
+     "claims": [
+      "c15",
+      "c16",
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What a Texan can do",
+   "paragraphs": [
+    {
+     "text": "A concern about a driverless truck operating in a way that could cause serious bodily injury or death can be sent for review to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The same site is where law enforcement can verify whether a vehicle or its operator holds an authorization. Roadside enforcement stays with DPS and local law enforcement, as it does for any vehicle.",
+     "claims": [
+      "c36",
+      "c37",
+      "c38"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What this edition does not establish",
+   "paragraphs": [
+    {
+     "text": "It does not establish which companies hold an authorization today, because the department's lookup was not read. The count of trucks now on the road comes only from Breitbart's account of a CNBC ride, which puts Aurora at [20 driverless trucks now](c34). Kodiak and Waabi give different lengths for the same corridor, [219 miles apart along Interstate 45](c25) and [roughly 240 miles](c33), and this edition does not choose between them. The sensor kit and the cab in the visual edition are illustrative and are not any one company's hardware.",
+     "claims": [
+      "c34",
+      "c25",
+      "c33"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0188",
+   "label": "The state authorization for commercial driverless vehicles"
+  },
+  {
+   "id": "tx-2026-0077",
+   "label": "Senate Transportation's hearing on driverless deployment"
+  },
+  {
+   "id": "tx-2026-0140",
+   "label": "Federal regulators audit how Tesla certified the Cybercab"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ The Corpus Christi City Council passed a motion on July 21st, 2026 as agenda ite
 - Public access: Public meeting
 - Take part: https://www.corpuschristitx.gov/our-government/agendas-and-minutes/
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · Corpus Christi's direction to write a prohibition into its zoning is still direction rather than an ordinance. Staff has brought nothing back.
 - 2026-09-19 · The direction to staff stands. The zoning amendment it asked for has not yet come back to the council for a vote.
 - 2026-09-23 · The direction to staff still stands, and the zoning amendment it asked for still has not come back to the council.
+- 2026-09-26 · The council's direction to staff still stands. The zoning amendment and the moratorium proposal it asked for have not come back to the council.
 
 ## Evidence
 

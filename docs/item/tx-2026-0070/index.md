@@ -11,7 +11,7 @@ The Tom Green County Commissioners Court voted not to pursue a temporary morator
 - Public access: Public meeting
 - Take part: https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The Tom Green County court still declines to impose the Precinct 4 moratorium. The refusal stands and nothing has been refiled.
 - 2026-09-19 · The court still has no moratorium in that precinct, and nothing has come back to it.
 - 2026-09-23 · Tom Green County has not returned to the moratorium it declined.
+- 2026-09-26 · Tom Green County has not returned to the Precinct 4 moratorium it declined.
 
 ## Evidence
 

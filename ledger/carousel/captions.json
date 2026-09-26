@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the quiet decision",
   "the before and after",
   "the two things",
   "the plain question",
-  "the number that is wrong"
+  "the number that is wrong",
+  "the object"
  ],
  "entries": [
   {
@@ -579,15 +579,34 @@
    "critic_note": "The caption room's winner opened on the object and closed on the operator question. Across five scoring rounds the judges cut two sentences from it: 'The FAA's comment address is in the first comment', which was false because the sources block carries no address and links are barred from the body, and 'The deck walks from a back yard to the draft's own pages', which narrated the deck. It now introduces the draft environmental assessment as open for comment, attributes Zipline's preparation to the draft, points at the last slide for the address and closes on whether the final version will say how often an operator is sent an image.",
    "ending_note": "Closes on what happens next, the October 11th close and the final version, with the date stated in the sentence before the question.",
    "move_note": "Opening move 'the object' from CAPTION_CRAFT: the pod on its line, then out to the five metros. #SanAntonio was dropped for #Texas after two judges noted it named one metro of five."
+  },
+  {
+   "date": "2026-09-26",
+   "carousel_no": 34,
+   "opening_move": "the who",
+   "structure": "Ladder",
+   "closing_move": "Point at the record, plainly, without a call to action",
+   "first_line": "TxDMV told Dallas it can't require crash history from driverless truck operators.",
+   "words": 134,
+   "commas": 1,
+   "commas_per_100w": 0.75,
+   "chars": 880,
+   "hashtags": [
+    "#TxDMV",
+    "#Interstate45",
+    "#CityOfDallas"
+   ],
+   "critic_note": "The critic chose B. After the panel's first round the closing question 'Can the driver in the next lane?' was replaced because two judges read it as insinuating the public can't check an authorization when the lookup was never read, and the line narrating the deck was cut.",
+   "move_note": "Opens on who answered whom, the DMV and Dallas. Each paragraph adds one rung, the answer, the permission, the companies, the line, and the close points at the record in the interrogative form brand.yaml requires."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Question and answer",
-  "Two columns"
+  "Two columns",
+  "Zoom out"
  ],
  "closing_moves_recent": [
-  "Ask the one question the decision leaves open."
+  "Name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,2352 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nobody at the wheel",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 247,
+          "font_px": 131.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              130,
+              743,
+              163
+            ],
+            [
+              80,
+              254,
+              322,
+              163
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026. Aurora said investor day guests could ride part of its route with nobody behind the wheel.",
+          "x": 82,
+          "y": 425,
+          "w": 900,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              425,
+              832,
+              41
+            ],
+            [
+              82,
+              467,
+              891,
+              41
+            ],
+            [
+              82,
+              509,
+              783,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Interstate 45, Dallas to Houston",
+          "x": 80,
+          "y": 80,
+          "w": 530,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              530,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c22 c25 c28 ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 620,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1130,
+          "w": 1080,
+          "h": 220,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23623,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 86.8,
+          "variance": 1723.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "219 miles, Kodiak says",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 91,
+          "font_px": 97,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              900,
+              120
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That is Kodiak's figure for the Dallas-Fort Worth and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240.",
+          "x": 82,
+          "y": 269,
+          "w": 840,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              269,
+              826,
+              41
+            ],
+            [
+              82,
+              311,
+              795,
+              41
+            ],
+            [
+              82,
+              353,
+              323,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DALLAS COUNTY",
+          "x": 602,
+          "y": 608,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              602,
+              608,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HARRIS COUNTY",
+          "x": 456,
+          "y": 1064,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              456,
+              1064,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "219 MILES, KODIAK'S FIGURE",
+          "x": 82,
+          "y": 1166,
+          "w": 406,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1166,
+              406,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The lane",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c25 c32 c33",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 620,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1130,
+          "w": 1080,
+          "h": 220,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3501,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.8,
+          "variance": 710.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Hands off the wheel",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 232,
+          "font_px": 123.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              675,
+              152
+            ],
+            [
+              80,
+              248,
+              302,
+              152
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel.",
+          "x": 82,
+          "y": 410,
+          "w": 800,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              410,
+              683,
+              41
+            ],
+            [
+              82,
+              452,
+              737,
+              41
+            ],
+            [
+              82,
+              494,
+              267,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Inside the cab",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c23 c24 ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 322,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              322,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 600,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1030,
+          "w": 1080,
+          "h": 320,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13071,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 64.3,
+          "variance": 2741.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "35 already ran with nobody in the cab",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 103.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              822,
+              127
+            ],
+            [
+              80,
+              232,
+              736,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Kodiak says 35 driverless trucks were running commercially in its Permian Basin industrial deployment with no humans in the cab at the end of the second quarter.",
+          "x": 82,
+          "y": 371,
+          "w": 820,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              809,
+              41
+            ],
+            [
+              82,
+              413,
+              798,
+              41
+            ],
+            [
+              82,
+              455,
+              592,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Permian Basin",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 TRUCKS ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 620,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16312,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 88.3,
+          "variance": 1231.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "200 by year end, 20 reported",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 232,
+          "font_px": 123.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              850,
+              152
+            ],
+            [
+              80,
+              248,
+              621,
+              152
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. In a story built on a CNBC ride Breitbart puts the fleet running now at 20.",
+          "x": 82,
+          "y": 408,
+          "w": 820,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              408,
+              710,
+              41
+            ],
+            [
+              82,
+              450,
+              774,
+              41
+            ],
+            [
+              82,
+              492,
+              449,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Aurora's year",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c29 c34 YARD ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 620,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11932,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 65.8,
+          "variance": 1655.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Six conditions and no fee",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 225,
+          "font_px": 119.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              894,
+              147
+            ],
+            [
+              80,
+              244,
+              289,
+              147
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Since May 28th a commercial driverless operator needs a TxDMV authorization. It is free, it does not expire, and it rests on a statement with six conditions and a responder plan.",
+          "x": 82,
+          "y": 403,
+          "w": 910,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              403,
+              881,
+              41
+            ],
+            [
+              82,
+              445,
+              794,
+              41
+            ],
+            [
+              82,
+              487,
+              711,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The permission",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c5 to c12 ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 660,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1110,
+          "w": 1080,
+          "h": 240,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13462,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 80,
+          "variance": 4344
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Dallas asked for crash history",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 232,
+          "font_px": 123.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              814,
+              152
+            ],
+            [
+              80,
+              248,
+              662,
+              152
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The department said Transportation Code \u00a7 545.453 and \u00a7 545.456 do not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements.",
+          "x": 82,
+          "y": 410,
+          "w": 800,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              410,
+              777,
+              41
+            ],
+            [
+              82,
+              452,
+              728,
+              41
+            ],
+            [
+              82,
+              494,
+              715,
+              41
+            ],
+            [
+              82,
+              536,
+              434,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the department can't require",
+          "x": 80,
+          "y": 80,
+          "w": 546,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              546,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c18 c19 ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 600,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1030,
+          "w": 1080,
+          "h": 320,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12465,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 89.9,
+          "variance": 1963.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The line is serious bodily injury",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 202,
+          "font_px": 107.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              784,
+              132
+            ],
+            [
+              80,
+              235,
+              561,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local law enforcement.",
+          "x": 82,
+          "y": 378,
+          "w": 860,
+          "h": 162,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              378,
+              842,
+              40
+            ],
+            [
+              82,
+              419,
+              787,
+              40
+            ],
+            [
+              82,
+              459,
+              845,
+              40
+            ],
+            [
+              82,
+              500,
+              742,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "10 DAYS TO APPEAL A DECISION",
+          "x": 140,
+          "y": 1147,
+          "w": 437,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              140,
+              1147,
+              437,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STATE FILES IN 10 DAYS",
+          "x": 268,
+          "y": 1103,
+          "w": 343,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              1103,
+              343,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HEARING WITHIN 60 DAYS",
+          "x": 657,
+          "y": 1103,
+          "w": 343,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              657,
+              1103,
+              343,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "REINSTATED IF NOT HELD",
+          "x": 657,
+          "y": 955,
+          "w": 343,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              657,
+              955,
+              343,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "When the state steps in",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 to c17 c38 DRAWN TO SCALE",
+          "x": 80,
+          "y": 1234,
+          "w": 466,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              466,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 640,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1130,
+          "w": 1080,
+          "h": 220,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9430,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 80.2,
+          "variance": 2884.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where to report one",
+          "x": 80,
+          "y": 936,
+          "w": 920,
+          "h": 84,
+          "font_px": 89.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 241, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              922,
+              743,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations.",
+          "x": 82,
+          "y": 1038,
+          "w": 760,
+          "h": 141,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1037,
+              728,
+              36
+            ],
+            [
+              82,
+              1072,
+              680,
+              36
+            ],
+            [
+              82,
+              1108,
+              746,
+              36
+            ],
+            [
+              82,
+              1143,
+              667,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MAY 28TH",
+          "x": 82,
+          "y": 806,
+          "w": 125,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              806,
+              125,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TODAY",
+          "x": 527,
+          "y": 806,
+          "w": 78,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              527,
+              806,
+              78,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UNTIL REVOKED",
+          "x": 622,
+          "y": 888,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              622,
+              888,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A TICK A WEEK",
+          "x": 92,
+          "y": 888,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              92,
+              888,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "If one could hurt someone",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c12 c36 c37 ILLUSTRATIVE",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 200,
+          "by": "haze",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 750,
+          "w": 1080,
+          "h": 600,
+          "by": "floor",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 82,
+          "y": 855,
+          "w": 484,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 109.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 137.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 165.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 193.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 221.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 249.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 277.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 305.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 333.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 361.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 389.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 417.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 445.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 473.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 501.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 529.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 557.3,
+          "y": 855,
+          "w": 1.5,
+          "h": 14,
+          "by": "rect",
+          "color": "rgb(21, 29, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 566,
+          "y": 861,
+          "w": 270,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(200, 209, 220)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 81,
+          "y": 842,
+          "w": 2,
+          "h": 40,
+          "by": "rect",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 565,
+          "y": 842,
+          "w": 2,
+          "h": 40,
+          "by": "rect",
+          "color": "rgb(227, 231, 238)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15701,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 66.7,
+          "variance": 1278.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

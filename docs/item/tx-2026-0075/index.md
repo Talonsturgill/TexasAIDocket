@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The Pflugerville charter amendments are still set for the November ballot, the artificial intelligence section among them. The ballot language has not been altered.
 - 2026-09-19 · The comment window is still open, closing November 3rd.
 - 2026-09-23 · Pflugerville's charter question on the city's own use of artificial intelligence is still set for the ballot.
+- 2026-09-26 · The comment window is still open, closing November 3rd. Pflugerville's charter section on the city's own use of artificial intelligence is still on that ballot.
 
 ## Evidence
 

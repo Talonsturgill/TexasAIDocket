@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The special election on whether police may keep plate reader cameras is still ordered for November, and the ordinance calling it still reads as adopted. The ballot proposition has not been altered.
 - 2026-09-19 · The special election is still called for November 3rd and the order calling it is unchanged.
 - 2026-09-23 · The November 3rd special election is still called, and the question on the ballot is still whether the police may keep using the cameras.
+- 2026-09-26 · The November 3rd special election is still ordered, and the ballot still asks whether police may keep the fixed plate reader cameras.
 
 ## Evidence
 

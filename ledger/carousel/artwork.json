@@ -2215,6 +2215,55 @@
     "nearest_dE76_in_last_six": 5.53,
     "note": "Measured against the last six entries that record a ground hex: 2026-09-20 #2E2016 at 18.65, 2026-09-21 #222E16 at 25.49, 2026-09-23 #0D1117 at 5.53."
    }
+  },
+  {
+   "date": "2026-09-26",
+   "carousel_no": 34,
+   "written_from": "deck_coherence's value track at 432 px and layout_check's accent measurement, both run by this script off the final renders, and the gate suite by exit code.",
+   "register": "RENDERED, NOT PRINTED. One blue hour world on Interstate 45 declared once in assets/js/deck/2026-09-26-fortyfive.js: blueHour tuned so the haze is the horizon's cool blue rather than the preset's peach, one key at azimuth -160 elevation 32, a chassis tractor with mirror sensor pods, a cab set built once and mirrored for the forward view, and the recorder lamp the one accent #E0956A.",
+   "structural_laws": [
+    "A PEACH HAZE OVER A BLUE GROUND GRADES EVERY FRAME MAUVE. All five round 1 critics named it. The fix was one tuned world in the chassis, haze and horizon in the same cool blue and the preset's horizon glow cut, and it moved nine frames at once.",
+    "THE SHADOW CAMERA IS NINE METRES UNLESS A FRAME SAYS OTHERWISE. A yard of thirty five trucks lost four rows of shadows until the rig's key carried shadowSize for the frame.",
+    "A CAMERA INSIDE A SET CAN SIT BEHIND ITS OWN WALL. Pulling the cab camera back half a metre put it behind the bunk curtain and the frame came back black. Measure the set before moving a camera in it.",
+    "A GROUND PLANE THAT ENDS SHORT OF THE HORIZON SHOWS AS A SEA. At twelve kilometres the ground runs into its own haze."
+   ],
+   "techniques": [
+    "one cab interior set built once in the chassis and shot three ways: forward through the windshield, down onto the seat, and at the bulkhead",
+    "a truck yard of painted places in rows receding to the haze with the reported count parked in the nearest rows",
+    "a review timeline painted on a truck court at a stated meters per day, each segment exactly its days, with leaders projected through the frame's own camera",
+    "a bar of days from May 28th to the run date with a hairline running on to the edge for an authorization that does not expire"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     22.5,
+     14.3,
+     13.9,
+     28.7,
+     18.1,
+     15.6,
+     26.6,
+     16.7,
+     21.9
+    ],
+    "deck_median_L": 18.1,
+    "max_adjacent_delta": 14.8,
+    "mean_adjacent_delta": 7.83,
+    "note": "Measured by deck_coherence at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "recorder lamp",
+    "frames_above_floor": [
+     3,
+     6,
+     7
+    ],
+    "note": "The recorder's status lamp on 3 and 7, and on 6 the pen and the recording device row's tick."
+   },
+   "ground": {
+    "hex": "#151D33",
+    "note": "The deck's declared ground. The craft judge measured it close to no. 33's #131A24."
+   }
   }
  ]
 }

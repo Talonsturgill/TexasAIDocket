@@ -4324,3 +4324,179 @@ surfaces the product publishes and diff that list against the gate's. Do it agai
 surface is added. A gate that claims every surface and reads three is worse than one that names
 its three, because the claim is what stops the next person looking. This is the shape drafted the day
 before as "The rule had a gate, and the gate was pointed at one of the two surfaces", one gate over.
+
+## 2026-09-26, carousel no. 34, the upgrade phase. Two upgrades, four proposals
+
+The deck shipped at the round cap at 6.826. The artwork criterion stayed between 5.4 and 6.0 for
+all five rounds, and every judge named the same three things in every round. Two defects were in
+gates this lane owns, and both are fixed. `contact_trace` read a sentence's full stop as part of
+a url. `shipped_check`'s freshness gate deleted the string literals in a frame's script, which put
+CI's `shipped_check` step red on this deck. See `ledger/carousel/upgrades.json`, 2026-09-26. The
+rest are below, each with the reason it is not built here.
+
+### 1. KIT LIFT: A MODELLED TRUCK CAB INTERIOR, THE SENSOR POD TRACTOR AND THE RECORDER
+
+**What the judges asked for, every round.** On frames 3, 6 and 7 the cab interior reads as
+primitives: a torus wheel, slab seats, capsule forms, and a finned box against a blurred panel.
+The craft judge's round 5 card ranks it first, "primitive cab interior", with the fix "one
+modelled cab set". The run record calls it the single largest lever on the artwork score.
+
+**What the chassis had to build because the kit lacks it.** All three are in
+`assets/js/deck/2026-09-26-fortyfive.js`:
+
+- `N.truck` (from line 123). The kit's `semi_truck` with an autonomy retrofit on top: a pod on
+  each mirror arm, a roof bar with cameras and a lidar puck, lit headlamps with real spot lights,
+  and amber markers. It is marked ILLUSTRATIVE, since no company publishes a drawing to check.
+- `N.cab` (from line 179). A cab set, because the kit's tractor is a solid body and its glass
+  can't show a seat. It has a windshield frame, doors, a bunk curtain, a dash with a cluster, two
+  pleated seats with bolsters and headrests, a raked wheel on its column, pedals, a dome lamp and
+  a seated observer made by lowering a standing kit person.
+- `N.recorder` (from line 256). The recording device, drawn to illustrate.
+
+**The proposal.** Lift a `semi_cab_interior` into `assets/js/kit/vehicles.js` or `interior.js`.
+It should share the exterior `semi_truck`'s dimensions, so the same tractor can be shot outside
+and inside. Build the wheel as a real rim with spokes and a hub, not a torus. Give the seats a
+cushion with rounded edges from `TXT.roundedBox`, not slabs. Add a dash with vents and gauge
+bezels, and a seated pose in `people.js`, because lowering a standing figure through the seat is
+what the craft judge read as a mannequin. The sensor pod retrofit belongs as an option on
+`semi_truck` (`{ autonomy: true }`). The recorder belongs in `interior.js` beside `monitor` and
+`laptop`. **This is a maintainer's lift**, because `assets/js/kit/**` is not `upgrade` lane. The
+three factories above are working references with their dimensions written in, so the lift
+starts from something that already rendered in nine frames.
+
+### 2. THE HORIZON STEP, MEASURED ON THE SHIPPED FRAMES, AND WHERE IN THE ENGINE IT COMES FROM
+
+Every judge named a band where the ground meets the fog. It read as sea on frames 1, 3 and 9 and
+as a slab seam on 4, 5 and 8. **Measured 2026-09-26 on the shipped webp files at 2160 by 2700**,
+Rec. 709 luma of one pixel column, sampled every 16 rows:
+
+- Frame 3, column 1080. The sky rises to 204 at row 1603. In the next 32 rows the ground below
+  it drops to 142 and then 106. That frame uses the full declared fog density.
+- Frame 8, column 240. The sky rises to 177 at row 1267, and the ground drops to 120, 96 and 78
+  over the next 48 rows. That frame set its fog to 0.4 of the declared density.
+
+**The reason in the engine, by reading `assets/js/txthree.js`.** `TXT.sky` sets the fog to
+`W.haze`, one constant colour. `SKY_FRAG` paints the sky just above the horizon as
+`mix(horizon, haze, 0.8)` plus `sun * horizonGlow * toward^3`. That second term depends on
+direction. So a fully fogged ground can only ever reach `haze`, and the sky just above it is
+brighter by the glow term wherever the camera looks toward the sun. The step is built into the
+design. For this deck's tuned world, in linear light, the luminance ratio of the sky at the
+horizon to the fog is 0.91 facing away from the sun and 1.12 facing it. For the stock `blueHour`
+preset the same ratio runs from 0.90 to 2.29. Any frame that sits short of full fog adds to that,
+since a partly fogged ground is darker still.
+
+**The standard fix, from the frontier scan.** Give the fog the sky's own colour in the view
+direction, so a fully hazed ground comes out as exactly the sky behind it. The three.js forum's
+answer is to run the sky function inside the fog chunk (`onBeforeCompile` on the ground's
+material, or `ShaderChunk.fog_fragment`) and compute the fog colour per fragment from the view
+direction (discourse.threejs.org/t/matching-fog-color-with-the-sky-shader/52018). **This is a
+maintainer's change**, since `txthree.js` is not `upgrade` lane.
+
+**The gate that could follow, and why it is not built here.** The measurement above needs the
+horizon row, and only the frame's camera knows it. A pixel proxy that guesses the row from the
+steepest gradient is the kind of craft signal GATE_LESSONS 77 warns about. Once the engine
+publishes each frame's camera, as in item 3, `depth_floor` or a sibling can sample the luma a
+few rows above and below the true horizon row and fail a step over the WCAG 3.0 to 1 non-text
+contrast ratio. That is an external number, and a seam a reader reads as an edge is exactly the
+non-text contrast that standard measures.
+
+### 3. THE DECLARED KEY BACKLIT THE HERO FOR THREE ROUNDS, AND NO GATE CAN SEE A CAMERA
+
+The chassis declared its key at azimuth -160. On frames 1, 4, 5 and 8 that lit the white tractor
+from behind, and all three judges named the navy hero for three rounds before it moved to 25. The
+run added the instinct `relight-the-hero-before-the-frames`. On 2026-09-24 the judges named a
+related fault on frame 5: casts ran right and back while the warm horizon glow sat at frame
+right. That makes two decks in a row where the key's direction and the camera disagreed.
+
+**Why this lane can't build the check.** It needs each frame's camera position and target beside
+the declared light, and neither is written anywhere a gate can read. The camera is a local
+variable inside each frame's module. The deck's light is on `window.TXDECK`, but nothing records
+the camera. Parsing camera calls out of free JavaScript is GATE_LESSONS 27's mis-parse waiting
+to happen.
+
+**The proposal, in two halves, both a maintainer's.** First, `TXT.frame` (in `txthree.js`)
+should publish `{from, look, fov}` to `window.__txCamera`, and the render harness should copy it
+into `render_report.json` per slide. Second, with that in place, a check in `deck_chassis.py`
+(upgrade lane) takes the angle between the key's azimuth and the camera's azimuth as seen from the
+look point. It flags any frame where that angle exceeds 90 degrees, meaning the lit side faces
+away from the camera, unless the dossier declares the frame a silhouette or a rim-lit shot. The
+90 is not tuned: it is the point where the lit hemisphere leaves the camera's side. Three-point
+lighting practice puts the key 15 to 70 degrees off the camera axis, most often 45
+(videomaker.com, three-point lighting). Its self-test replays the -160 declaration against frame
+1's camera.
+
+### 4. `reverify.py`, TWICE MORE, AND BOTH ARE THE DAILY LANE'S
+
+Both of these are in `ownership.yaml` as `daily`, so the run that hit them owns the fix. That is
+GATE_LESSONS 71, and the 2026-09-24 section above says the same.
+
+- **Indent 2, second run in a row.** Item 2 of the 2026-09-24 section above named line 797
+  (`json.dumps(record, indent=2, ...)`). The file is unchanged, and this run hit it again. The
+  canonical form is `indent=1, ensure_ascii=False`, which `docket_build.py` line 1849 writes. The
+  test is still the round trip: `--apply` over a record with nothing to stamp must leave
+  `ledger/docket.json` byte for byte unchanged.
+- **A bot challenge read as a missing page.** `federalregister.gov`'s full text endpoint answered
+  with a redirect to a bot challenge. `reverify.fetch` followed it, got a 200 page without the
+  quote, and reported the claim MISSING. The run moved tx-2026-0144 and 0145 to govinfo.gov to get
+  around it. A redirect that ends on a different host, or on a challenge page, is a page that did
+  not answer. It is UNREACHABLE (line 27's definition), not a page where the quote is gone. The
+  self-test case is a fake server that redirects the claim's url to `/challenge` and serves a 200
+  there. It must come back UNREACHABLE, and today it comes back MISSING.
+
+### 5. GATE_LESSONS ENTRY OWED, drafted here because `knowledge/shared/**` is `human`
+
+#### (unnumbered) A tokenizer took the sentence's full stop, and the run reworded the frame around it
+
+`contact_trace.py`'s host pattern takes a path up to the next whitespace or quote. On 2026-09-26
+frame 9 said "Its address txmccs.txdmv.gov/truckstop.", the token came out with the full stop on
+it, and no claim carries a url ending in a full stop. The gate reported an address that TxDMV
+itself publishes (claim c36) as one the run had invented. The run reworded the frame so the url
+was followed by a space, and the gate went green. **That fixed the frame and left the gate
+wrong.** It would have fired again the next time a url ended a sentence, and the reword is
+GATE_LESSONS 24's shape: a workaround that ends up defended as correct.
+
+**What to check instead.** When a gate extracts a token from prose, take the boundary rule from
+a published grammar rather than a regular expression's default. The GitHub Flavored Markdown
+spec's extended autolink rules say exactly which trailing punctuation is not part of a url, and
+that is now the rule. When a run rewords correct copy to satisfy a gate, write down the reword as
+a defect in the gate, in the same run.
+
+**A looseness in the same gate, found while fixing it and NOT fixed here, so the bound holds.**
+A token passes when it is a SUBSTRING of the claims text. So a truncated address passes whenever
+it is a prefix of a cited one: `txmccs.txdmv.gov/truck` would pass against
+`https://txmccs.txdmv.gov/truckstop`. The fix is to require the match to end at a boundary in the
+claims text: the end, whitespace, a quote, `/`, `?` or `#`. It needs its own corpus sweep before
+it can be trusted, and it is a separate behaviour, so it is a separate upgrade.
+
+#### (unnumbered) A tag strip deleted a frame's labels, and the gate called the correct source stale
+
+`shipped_check`'s freshness gate flattened each slide's source with one regular expression,
+`<[^>]+>`, and then looked for every display string `copy.json` records. Carousel no. 34's frames
+8 and 9 set their labels from JavaScript, and their scripts carry a `<` in a loop condition and a
+`>` in an arrow function. The strip read everything between the two as one tag. It deleted six
+string literals that are plainly in the source, and it reported that "the shipped source is not
+the deck beside it". CI's `shipped_check` step would have gone red on a correct deck. This is
+GATE_LESSONS 27's shape, a gate mis-parsing its own input and inventing a convincing failure. The
+2026-09-19 `&nbsp;` repair to the same line was the same shape one character class over.
+
+**What to check instead.** When a gate reads a file with more than one language in it, split the
+languages before applying either one's grammar. Then prove the split can't become a way to pass:
+a string that sits only in a comment must still fail. The old strip let that through by accident,
+and the new code refuses it.
+
+### 6. TWO CI REDS ON THIS RUN THAT ARE THE DAILY LANE'S, found while verifying the upgrades
+
+Both still stand after this phase's changes. Both are artifacts under `runs/carousel/2026-09-26/`,
+which is `daily` lane.
+
+- **`shipped_check` (the CI step): frame 2's scale label is composed at runtime.**
+  `slides/slide-02.html` line 110 builds `miles + " MILES, KODIAK'S FIGURE"`, and `copy.json`
+  records "219 MILES, KODIAK'S FIGURE". The gate can't tell a fresh 219 from a stale 240 it can't
+  see, so it stays a finding on purpose, and the self-test pins that. The frame's own `h1` on line
+  34 already carries its figure written into the source. If the scale label is written the same
+  way, the gate reads it.
+- **`shipped_check --self-test` (the CI step): the newest deck has no `measurements.json`.**
+  The self-test asserts that every registered gate reaches the newest deck, and `measured figures`
+  returns not applicable without that file. This is red at HEAD, before this phase changed
+  anything. `runs/carousel/2026-09-24/measure.py` computes the file from the shipped frames and
+  is the pattern to follow.

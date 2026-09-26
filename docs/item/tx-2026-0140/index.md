@@ -11,7 +11,7 @@ The National Highway Traffic Safety Administration opened Audit Query AQ26002 on
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The audit of how the Cybercab was certified is still open, and commercial deployment in Austin is still running while it is. Neither has changed.
 - 2026-09-19 · The audit of how the vehicle was certified is still open, and the deployment it began beside is still running.
 - 2026-09-23 · The federal audit of how that vehicle was certified is still open.
+- 2026-09-26 · The federal audit of how the Cybercab was certified is still open.
 
 ## Evidence
 

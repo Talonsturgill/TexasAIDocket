@@ -11,7 +11,7 @@ The San Marcos City Council voted on June 16th, 2026 to define data centers in t
 - Public access: Write to the decider
 - Take part: https://www.sanmarcostx.gov/2859/Code-Updates
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The San Marcos definition still stands and data centers are still ineligible across the city under it. The narrow margin has not been revisited.
 - 2026-09-19 · Data centers are still defined in the land development code and still ineligible across the city.
 - 2026-09-23 · San Marcos still has a definition of a data center in its land code and still allows one nowhere.
+- 2026-09-26 · San Marcos still defines a data center in its land development code and still permits one in no district.
 
 ## Evidence
 

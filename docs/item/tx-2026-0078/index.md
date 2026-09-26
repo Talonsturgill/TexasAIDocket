@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The committee has sat twice more this week, on September 14th and September 15th, and its own meeting archive lists both. What it took up at either sitting is not yet on the record here. The committee has still published no report out of the August hearing on data centers and the transmission lines.
 - 2026-09-19 · The August 19th hearing is still on the committee's own archive and sits below the September 14th and September 15th sittings. The record's reading of that page was written to span the page heading and the first meeting row, so the two newer sittings broke it. The reading now names the August date alone. Nothing about the hearing changed. The committee has still published no report out of it.
 - 2026-09-23 · The state affairs hearing has been held and nothing has been published out of it.
+- 2026-09-26 · The State Affairs hearing on data centers and the new transmission lines has been held, and nothing has been published from it.
 
 ## Evidence
 

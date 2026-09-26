@@ -1,0 +1,214 @@
+{
+ "date": "2026-09-26",
+ "carousel_no": 34,
+ "document_title": "Nobody at the wheel on Interstate 45",
+ "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. The sheet on frame 6 is drawn on a canvas as unlabelled rows and ticks, one per acknowledgement, and carries no words.",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Interstate 45, Dallas to Houston",
+   "headline": "Nobody at the wheel",
+   "claims": [
+    "c22",
+    "c25",
+    "c28"
+   ],
+   "cite": "c22 c25 c28 ILLUSTRATIVE",
+   "body": "Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026. Aurora said investor day guests could ride part of its route with nobody behind the wheel.",
+   "strings": [
+    "texasaidocket.com",
+    "Nobody at the wheel",
+    "Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026. Aurora said investor day guests could ride part of its route with nobody behind the wheel.",
+    "Interstate 45, Dallas to Houston",
+    "01 / 09",
+    "c22 c25 c28 ILLUSTRATIVE"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The lane",
+   "headline": "219 miles, Kodiak says",
+   "claims": [
+    "c25",
+    "c32",
+    "c33"
+   ],
+   "cite": "c25 c32 c33",
+   "body": "That is Kodiak's figure for the Dallas-Fort Worth and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240.",
+   "strings": [
+    "texasaidocket.com",
+    "219 miles, Kodiak says",
+    "That is Kodiak's figure for the Dallas-Fort Worth and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240.",
+    "DALLAS COUNTY",
+    "HARRIS COUNTY",
+    "219 MILES, KODIAK'S FIGURE",
+    "The lane",
+    "02 / 09",
+    "c25 c32 c33"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Inside the cab",
+   "headline": "Hands off the wheel",
+   "claims": [
+    "c23",
+    "c24"
+   ],
+   "cite": "c23 c24 ILLUSTRATIVE",
+   "body": "A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel.",
+   "strings": [
+    "texasaidocket.com",
+    "Hands off the wheel",
+    "A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel.",
+    "Inside the cab",
+    "03 / 09",
+    "c23 c24 ILLUSTRATIVE"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The Permian Basin",
+   "headline": "35 already ran with nobody in the cab",
+   "claims": [
+    "c27"
+   ],
+   "cite": "c27 TRUCKS ILLUSTRATIVE",
+   "body": "Kodiak says 35 driverless trucks were running commercially in its Permian Basin industrial deployment with no humans in the cab at the end of the second quarter.",
+   "strings": [
+    "texasaidocket.com",
+    "35 already ran with nobody in the cab",
+    "Kodiak says 35 driverless trucks were running commercially in its Permian Basin industrial deployment with no humans in the cab at the end of the second quarter.",
+    "The Permian Basin",
+    "04 / 09",
+    "c27 TRUCKS ILLUSTRATIVE"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Aurora's year",
+   "headline": "200 by year end, 20 reported",
+   "claims": [
+    "c29",
+    "c34"
+   ],
+   "cite": "c29 c34 YARD ILLUSTRATIVE",
+   "body": "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. In a story built on a CNBC ride Breitbart puts the fleet running now at 20.",
+   "strings": [
+    "texasaidocket.com",
+    "200 by year end, 20 reported",
+    "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. In a story built on a CNBC ride Breitbart puts the fleet running now at 20.",
+    "Aurora's year",
+    "05 / 09",
+    "c29 c34 YARD ILLUSTRATIVE"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The permission",
+   "headline": "Six conditions and no fee",
+   "claims": [
+    "c1",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c12"
+   ],
+   "cite": "c1 c5 to c12 ILLUSTRATIVE",
+   "body": "Since May 28th a commercial driverless operator needs a TxDMV authorization. It is free, it does not expire, and it rests on a statement with six conditions and a responder plan.",
+   "strings": [
+    "texasaidocket.com",
+    "Six conditions and no fee",
+    "Since May 28th a commercial driverless operator needs a TxDMV authorization. It is free, it does not expire, and it rests on a statement with six conditions and a responder plan.",
+    "The permission",
+    "06 / 09",
+    "c1 c5 to c12 ILLUSTRATIVE"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "What the department can't require",
+   "headline": "Dallas asked for crash history",
+   "claims": [
+    "c6",
+    "c18",
+    "c19"
+   ],
+   "cite": "c6 c18 c19 ILLUSTRATIVE",
+   "body": "The department said Transportation Code § 545.453 and § 545.456 do not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements.",
+   "strings": [
+    "texasaidocket.com",
+    "Dallas asked for crash history",
+    "The department said Transportation Code § 545.453 and § 545.456 do not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements.",
+    "What the department can't require",
+    "07 / 09",
+    "c6 c18 c19 ILLUSTRATIVE"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "When the state steps in",
+   "headline": "The line is serious bodily injury",
+   "claims": [
+    "c13",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c38"
+   ],
+   "cite": "c13 to c17 c38 DRAWN TO SCALE",
+   "body": "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local law enforcement.",
+   "strings": [
+    "texasaidocket.com",
+    "The line is serious bodily injury",
+    "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local law enforcement.",
+    "10 DAYS TO APPEAL A DECISION",
+    "STATE FILES IN 10 DAYS",
+    "HEARING WITHIN 60 DAYS",
+    "REINSTATED IF NOT HELD",
+    "When the state steps in",
+    "08 / 09",
+    "c13 to c17 c38 DRAWN TO SCALE"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "If one could hurt someone",
+   "headline": "Where to report one",
+   "claims": [
+    "c1",
+    "c12",
+    "c36",
+    "c37"
+   ],
+   "cite": "c1 c12 c36 c37 ILLUSTRATIVE",
+   "body": "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations.",
+   "strings": [
+    "texasaidocket.com",
+    "Where to report one",
+    "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations.",
+    "MAY 28TH",
+    "TODAY",
+    "UNTIL REVOKED",
+    "A TICK A WEEK",
+    "If one could hurt someone",
+    "09 / 09",
+    "c1 c12 c36 c37 ILLUSTRATIVE"
+   ]
+  }
+ }
+}

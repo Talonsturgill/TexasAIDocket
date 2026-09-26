@@ -1,0 +1,94 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "weighted_score": 6.848,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "2, 4, 5",
+   "defect": "four frames of company claims before the news",
+   "fix": "cut 2, merge 4 and 5"
+  },
+  {
+   "rank": 2,
+   "frames": "3, 9, 8, 5",
+   "defect": "primitives and void staging, stripes through labels on 8, band on 5",
+   "fix": "model or crop, sink skyline, clear labels"
+  },
+  {
+   "rank": 3,
+   "frames": "7",
+   "defect": "who Dallas is and where it asked",
+   "fix": "'The City of Dallas asked in rulemaking comments'"
+  },
+  {
+   "rank": 4,
+   "frames": "caption",
+   "defect": "preview never says driverless truck; no address",
+   "fix": "say driverless trucks in line 1"
+  },
+  {
+   "rank": 5,
+   "frames": "8",
+   "defect": "decision unnamed",
+   "fix": "c15 wording"
+  },
+  {
+   "rank": 6,
+   "frames": "9",
+   "defect": "bar competes; kicker broader than c36",
+   "fix": "scope the kicker"
+  },
+  {
+   "rank": 7,
+   "frames": "5",
+   "defect": "'It cites a CNBC ride.'",
+   "fix": "fold it in"
+  },
+  {
+   "rank": 8,
+   "frames": "caption",
+   "defect": "'certified responder plan' overstates c11",
+   "fix": "reword"
+  }
+ ]
+}

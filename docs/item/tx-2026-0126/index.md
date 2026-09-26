@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs posted notice that 
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The Senate hearing on data center cooling water and what local water providers are told is still on the calendar as set. Nothing has been posted to move it.
 - 2026-09-19 · The hearing on cooling water is still set, and whether a local water provider is told what a data center will draw is still the open question in it.
 - 2026-09-23 · The senate committee's water hearing is still the only scheduled place that question gets asked.
+- 2026-09-26 · The Senate committee's hearing on data center cooling water is still where that question is scheduled to be asked.
 
 ## Evidence
 

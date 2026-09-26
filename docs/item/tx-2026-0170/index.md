@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 8th, 2026 carried an it
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=141
 
-- Last checked: 2026-09-18
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · Whether the county adopted a policy on AI in surveillance is still unconfirmed, and the policy text is still not attached to anything public. The agenda entry sits on a vendor portal whose exclusion file refuses every client, and the county's own minutes archive would not answer.
 - 2026-09-23 · Whether the county adopted the surveillance policy statement its agenda contemplated is unconfirmed this run.
 - 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
+- 2026-09-26 · Hays County's policy on artificial intelligence in surveillance is still pending, with no disposition posted.
 
 ## Evidence
 

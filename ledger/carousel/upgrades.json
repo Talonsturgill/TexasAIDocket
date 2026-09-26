@@ -2208,4 +2208,83 @@
  "considered_and_not_built": "A gate refusing a bar whose length comes from a decibel figure. A lexical form catches frame 7's rounds 1 and 5 and misses round 4, whose bar read a unitless energy ratio compute.py derived. Only round 4's source survives to replay. A contract form, `compares` plus `relation_from` in data_in_art, is written up in UPGRADE_BACKLOG 2026-09-24 item 3 for a day with fixtures from more than one deck",
  "lane": "upgrade. Two scripts, one backlog section and this entry. Nothing under .claude/, nothing the daily lane owns"
 }
+,
+"2026-09-26 upgrade": {
+ "run": "carousel no. 34, driverless Class 8 freight on Interstate 45 and the TxDMV authorization it runs under (tx-2026-0188). Shipped at the round cap at 6.826 after five rounds, artwork between 5.4 and 6.0 in every round",
+ "actor": "upgrade",
+ "branch": "claude/daily-2026-09-26",
+ "upgrades": [
+  {
+   "what": "contact_trace's host tokens drop the sentence punctuation after a url before they are held to the claims, by the GitHub Flavored Markdown spec's extended autolink rule: a trailing ? ! . , : * _ ~ is not part of the address, and a trailing ) goes only while closing brackets outnumber opening ones",
+   "why": "This run's frame 9 said 'Its address txmccs.txdmv.gov/truckstop.' and claim c36 quotes TxDMV giving https://txmccs.txdmv.gov/truckstop. The host pattern's path part took the full stop, so a true address was reported as an invented one on a fail-level gate. The run reworded the frame so a space followed the url, which fixed the frame and left the gate wrong. That is GATE_LESSONS 24, a workaround that ends up defended. The run record names the checker as where the fix belongs",
+   "files": [
+    "scripts/carousel/contact_trace.py"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "the trailing punctuation set": "GitHub Flavored Markdown spec, extended autolink path validation, examples 624 and 625, read 2026-09-26 at https://github.github.com/gfm/ and quoted in the file",
+    "the bracket rule": "the same spec section: a trailing ) is dropped only while the token holds more closing than opening brackets"
+   },
+   "verification": "contact_trace --self-test exits 0 with 22 ok lines, 8 of them new. Replayed first: with trim_trailing stubbed to the identity, meaning the old tokenizer, the self-test exits 1 with 7 failures, among them the frame 9 line as first written and its comma, bracket and question mark siblings. Each is reported exactly as the run saw it ('the host \"txmccs.txdmv.gov/truckstop.\" is published and appears in no claim'). The gate still goes red through the same punctuation: a different path ending a sentence ('truckstops.') and an invented host ending one ('complaints.txdmv.gov/av.') are both findings, and the first is reported without its stop. Two mutants went red. With the bracket rule removed, 2 cases fail. With an over-trim that cuts back to the parent path, 4 cases fail, among them both 'still CAUGHT' cases, so a trim that loosens the gate is caught by its own test. On the shipped corpus, contact_trace --all exits 0, and the old and new code give identical tokens (735) and identical findings (0) on every deck that carries a claims file. So the change moves no shipped verdict and fixes only the case that bit",
+   "revert": "the upgrade commit on claude/daily-2026-09-26 that touches scripts/carousel/contact_trace.py (git revert <that sha>)",
+   "how_i_would_know_this_was_wrong": "A published address that differs from its source only by a trailing character in the GFM set, for example a source url that really does end in an underscore or a tilde, would now pass without that character. The claim match would still catch any other difference. If a judge or a reader ever finds a url on a frame that is missing its last character against a claim that carries it, this trim is why. The substring looseness in UPGRADE_BACKLOG 2026-09-26 item 5, where a truncated url passes as a prefix of a cited one, was already there before this change and is not made worse by it: trimming only shortens a token that must still appear in the claims"
+  },
+  {
+   "what": "shipped_check's freshness gate lifts each slide's <script> bodies out before its tag strip and keeps them, minus block comments, and drops HTML comments, so a label a frame sets as a JavaScript string literal is read as the source carrying it",
+   "why": "On this run's deck the one-regex strip `<[^>]+>` read from a loop's `i < 4` to an arrow's `=>` as one tag and deleted the literals between. Six labels on frames 8 and 9 that are in the source verbatim ('10 DAYS TO APPEAL A DECISION', 'UNTIL REVOKED' and four more) were reported as the shipped source not being the deck beside it. CI runs `shipped_check.py` with no arguments over the newest deck, so its step was red on this branch. GATE_LESSONS 27: a gate mis-parsing its own input invents a convincing failure",
+   "files": [
+    "scripts/carousel/shipped_check.py"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "none": "the change adds no threshold. The gate's existing 12 character floor on a probe is untouched"
+   },
+   "verification": "shipped_check --self-test gains 4 cases. Under the code at HEAD the replay (frame 8's array literal behind a `<` and a `=>`) fails, and so does the comment case: the old strip already let a string that sits only in a script comment pass, and the new code refuses it. With the fix, all 4 pass. Two mutants were run. Removing the comment strips turns the script comment case red. Searching the raw file instead of lifting the scripts turns both comment cases red. So widening the haystack is caught by the gate's own test. On this deck, strings missing drop from 7 to 1, and 'shipped fresh' from 3 problems to 1. The one left is frame 2's runtime-composed '219 MILES, KODIAK'S FIGURE'. That stays a finding on purpose, pinned by a self-test case, because accepting the fragments of a composed string would pass the refuted-count deck this gate was written for. On every other shipped deck the old and new parsers give identical results (0 misses). gate_wiring exits 0. The self-test's one remaining failure, 'measured figures' not reaching the newest deck, fails identically at HEAD, and it is this run's missing measurements.json",
+   "revert": "the upgrade commit on claude/daily-2026-09-26 that touches scripts/carousel/shipped_check.py (git revert <that sha>)",
+   "how_i_would_know_this_was_wrong": "A stale slide source that still carries the current copy inside a script string, for example a leftover array nobody draws, would now pass where the old strip might have deleted it by accident. The old code already passed any script text outside a `<` to `>` span, comments included, so this is not new exposure, and the comment half is now tighter. A frame whose `//` line comment quotes the current copy would also pass. `//` is deliberately not stripped, because a regular expression can't tell it from the `//` in `https://` inside a string"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "Lift a modelled semi cab interior (a real wheel rim, cushioned seats, a dash with vents and bezels, and a seated pose in people.js), the autonomy sensor pod option on semi_truck, and the recorder into assets/js/kit/, from the working factories N.truck, N.cab and N.recorder in assets/js/deck/2026-09-26-fortyfive.js",
+   "owner": "human",
+   "why": "Every judge in all five rounds ranked the primitive cab interior on frames 3, 6 and 7 as the first artwork defect, and artwork never left 5.4 to 6.0. assets/js/kit/** is not upgrade lane. UPGRADE_BACKLOG 2026-09-26 item 1"
+  },
+  {
+   "what": "Give the fog the sky's colour in the view direction (run the sky function in the ground's fog chunk through onBeforeCompile) instead of the constant W.haze in TXT.sky",
+   "owner": "human",
+   "why": "Horizon seams on six of nine frames. Measured on the shipped frames: frame 3's luma steps from 204 (sky) to 106 (ground) within 32 rows, and frame 8's from 177 to 78 within 48 rows. In linear light the engine's sky at the horizon runs from 0.90 to 2.29 times the fog's luminance on the stock blueHour preset, because SKY_FRAG adds a glow term that depends on direction and the fog can't. assets/js/txthree.js is not upgrade lane. UPGRADE_BACKLOG 2026-09-26 item 2"
+  },
+  {
+   "what": "TXT.frame publishes {from, look, fov} to window.__txCamera and the render harness copies it into render_report.json per slide, so that deck_chassis can flag a frame where the declared key sits more than 90 degrees from the camera around the look point",
+   "owner": "human",
+   "why": "The key was declared at azimuth -160 and backlit the white hero on frames 1, 4, 5 and 8 for three rounds. The 2026-09-24 deck had a key and glow disagreement on frame 5. No gate can see a camera today. The engine and the harness (under .claude/skills/) are both out of reach, and the deck_chassis half is upgrade lane once the data exists. UPGRADE_BACKLOG 2026-09-26 item 3"
+  },
+  {
+   "what": "Write frame 2's scale label into slides/slide-02.html the way its h1 already carries its figure, so the source holds the string copy.json records",
+   "owner": "daily",
+   "why": "After this phase's fix it is the one 'shipped fresh' finding left on this deck, and it keeps CI's shipped_check step red. The gate is right not to accept a composed string. UPGRADE_BACKLOG 2026-09-26 item 6"
+  },
+  {
+   "what": "Write runs/carousel/2026-09-26/measurements.json from the shipped frames, as runs/carousel/2026-09-24/measure.py does",
+   "owner": "daily",
+   "why": "shipped_check --self-test is red at HEAD because 'measured figures' can't reach the newest deck without the file. CI runs that self-test. UPGRADE_BACKLOG 2026-09-26 item 6"
+  },
+  {
+   "what": "reverify.py line 797 writes ledger/docket.json at indent=1, ensure_ascii=False, pinned by a round trip test",
+   "owner": "daily",
+   "why": "Second run in a row. The 2026-09-24 entry proposed it, the file is unchanged, and this run's --apply rewrote the record at indent 2 again. scripts/site/** is daily, so the run owns it"
+  },
+  {
+   "what": "reverify.fetch treats a redirect that ends on another host or on a bot challenge page as UNREACHABLE, not MISSING, with a self-test that serves a 200 challenge page behind a redirect",
+   "owner": "daily",
+   "why": "federalregister.gov's full text endpoint redirected to a bot challenge, and reverify read the 200 challenge page as the quote having gone. The run moved tx-2026-0144 and 0145 to govinfo.gov to work around it. UPGRADE_BACKLOG 2026-09-26 item 4"
+  },
+  {
+   "what": "A GATE_LESSONS entry: a tokenizer took the sentence's full stop, and the run reworded the frame around the gate",
+   "owner": "human",
+   "why": "knowledge/shared/** is human lane, and the brief says a gate change belongs in that file. Drafted in UPGRADE_BACKLOG 2026-09-26 item 5"
+  }
+ ],
+ "considered_and_not_built": "Candidate 5, acceptance lists passing on blank frames. The instinct acceptance-items-need-a-floor was confirmed by the run, and UPGRADE_BACKLOG items 10 and 13 of 2026-09-21 already carry the harness that answers it. A second proposal would add nothing. A pixel gate for the horizon seam that guesses the horizon row from the steepest gradient was also considered and rejected. It is a proxy that no one has shown separates the defect, which is GATE_LESSONS 77, and the true row needs the camera from proposal 3. A second contact_trace behaviour, requiring the claim match to end at a boundary so a truncated url fails, was found and confirmed live while this fix was being made. It was left out to keep this upgrade to one behaviour, and is written up in UPGRADE_BACKLOG 2026-09-26 item 5",
+ "lane": "upgrade. Two scripts, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing the daily lane owns"
+}
 }

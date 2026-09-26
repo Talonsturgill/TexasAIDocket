@@ -1,0 +1,94 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "weighted_score": 6.74,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frame": "8",
+   "defect": "hook and picture differ, 10s lack a unit, reinstatement unexplained",
+   "fix": "'10 DAYS TO APPEAL', dek sentence on reinstatement"
+  },
+  {
+   "rank": 2,
+   "frame": "9, 3, 1",
+   "defect": "close frame primitives, capsule seat, sea band, navy hero",
+   "fix": "crop figure, haze skyline, model seat, extend ground"
+  },
+  {
+   "rank": 3,
+   "frame": "4, 5",
+   "defect": "two fleet frames delay the state story",
+   "fix": "merge or cut"
+  },
+  {
+   "rank": 4,
+   "frame": "5",
+   "defect": "hook states 20 flat",
+   "fix": "'200 by year end, 20 reported now'"
+  },
+  {
+   "rank": 5,
+   "frame": "7",
+   "defect": "statute unnamed",
+   "fix": "name SB 2807"
+  },
+  {
+   "rank": 6,
+   "frame": "4",
+   "defect": "dek drops 'industrial'",
+   "fix": "add it"
+  },
+  {
+   "rank": 7,
+   "frame": "9",
+   "defect": "dek run on",
+   "fix": "split"
+  },
+  {
+   "rank": 8,
+   "frame": "6",
+   "defect": "accent pencil",
+   "fix": "graphite"
+  }
+ ]
+}

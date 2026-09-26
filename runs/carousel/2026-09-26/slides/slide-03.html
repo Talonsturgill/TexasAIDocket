@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- 2026-09-26, frame 3 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's
+     declared blueHour world, inside the chassis cab set. INSIDE THE CAB. From the dash looking back:
+     the empty driver's seat and the wheel, the observer's hands in a lap on the passenger side, and
+     the recorder's lamp on the bulkhead between them. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#151D33; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,12,24,0.4); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
+          text-shadow:0 0 5px rgba(8,12,24,0.8), 0 1px 14px rgba(8,12,24,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
+  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:800px; font-size:30px; }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:600px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:320px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.54) 0%, rgba(10,14,28,0.54) 45%, rgba(10,14,28,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Hands off the wheel</h1>
+<p class="dek" data-follow="28">A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-26-fortyfive.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Inside the cab", counter: "03 / 09", src: "c23 c24   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TX.fitText(document.getElementById("hook"), { min: 92, max: 124, maxLines: 2 });
+  FORTYFIVE.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
+  const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.45, tone: W.tone, fov: 58 });
+
+  const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
+  const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
+  hw.position.set(0, 0, -200); TXT.add(R, hw);
+  /* the observer rides in the passenger seat; the kit has no seated pose, so a standing figure is
+   * lowered until its hips meet the cushion and the seat hides the rest, and the frame crops high */
+  M.screen.emissiveIntensity = 0.16;   /* the cluster is dimmed for night driving, never a white card */
+  const cab = F.cab(THREE, TXT, K, M, { dome: 3.6, observer: true, observerSeed: 5, domeLens: false });
+  /* the set is built with its wheel on +x; mirrored here so, facing forward, the driver's seat
+   * is on the left as it is on an American road */
+  cab.scale.x = -1; cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
+  cab.traverse((o) => { if (o.isMesh && o.material === M.screen) o.material = TXT.mat.plastic(0x0d1117, { roughness: 0.75 }); });
+  /* the recorder on the overhead console above the glass, facing back into the cab */
+  const rec = F.recorder(THREE, TXT, M);
+  rec.position.set(LANE + 0.5, FLOOR + 1.66, -0.45); TXT.add(R, rec);
+  /* the cable run is hidden in the console here, so no rod hangs across the glass */
+  rec.traverse((o) => { if (o.isMesh && o.geometry && o.geometry.type === 'TubeGeometry') o.visible = false; });
+  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.42, 0.42, 1); if (o.isPointLight) o.intensity *= 0.15; });
+
+  /* from the bunk, between the seats, looking forward through the glass at the lane ahead */
+  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.4, 1.24], look: [LANE + 0.02, FLOOR + 1.78, -2.5] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
+  TXT.ground(R, { surface: 'grass', size: 12000, seed: 9 });
+  TXT.weather(R, { skip: [cab] });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- 2026-09-26, frame 7 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's
+     declared blueHour world, inside the chassis cab set on a concrete I-45. THE TURN. The recording
+     device on the sleeper bulkhead, its one lamp in the accent, the driver's headrest at the edge. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#151D33; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,12,24,0.4); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
+          text-shadow:0 0 5px rgba(8,12,24,0.8), 0 1px 14px rgba(8,12,24,0.6); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
+  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:800px; font-size:30px; }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:600px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:320px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.54) 0%, rgba(10,14,28,0.54) 45%, rgba(10,14,28,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Dallas asked for crash history</h1>
+<p class="dek" data-follow="28">The department said Transportation Code §&nbsp;545.453 and §&nbsp;545.456 do not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements.</p>
+<div class="haze" data-decorative></div><div class="floor" data-decorative></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-26-fortyfive.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "What the department can't require", counter: "07 / 09", src: "c6 c18 c19   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TX.fitText(document.getElementById("hook"), { min: 92, max: 124, maxLines: 2 });
+  FORTYFIVE.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
+  const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.55, tone: W.tone, fov: 50 });
+
+  /* the cab set rides the right lane of the southbound carriageway, driving toward -z,
+   * so it sits on +x (a truck facing -z has +x on its right). Cab floor 1.25 m over the road. */
+  const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
+  const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
+  hw.position.set(0, 0, -200); TXT.add(R, hw);
+  const cab = F.cab(THREE, TXT, K, M, { dome: 3.8, domeLens: false, domeColor: 0xfff0dc });
+  cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
+
+  /* THE RECORDER on the bulkhead face, between the seats and just over the seat backs, facing the
+   * cab (the curtain's face is at cab z 1.275, so the housing's back sits there) */
+  M.recBody = TXT.mat.clay(0x2a2d31, { metalness: 0.55, roughness: 0.38 });   /* anodised charcoal, so the lamp is the light on it */
+  const rec = F.recorder(THREE, TXT, M);
+  rec.rotation.y = Math.PI;
+  const RX = LANE + 0.16, RY = FLOOR + 1.12, RZ = 1.18;
+  rec.position.set(RX, RY, RZ); TXT.add(R, rec);
+  /* the lower bulkhead faced in a painted steel kick panel behind the housing, bolted at its corners */
+  /* painted steel, worn: brushed grain, boot scuffs low down where legs swing past, road dust in the
+   * seam at the floor. Drawn once on a canvas at 2 mm a pixel, never a pattern that repeats */
+  const pc = document.createElement('canvas'); pc.width = 550; pc.height = 400;
+  const pg = pc.getContext('2d'); let ps = 11; const pr = () => (ps = (ps * 16807) % 2147483647) / 2147483647;
+  pg.fillStyle = '#3a3f46'; pg.fillRect(0, 0, 550, 400);
+  for (let i = 0; i < 1600; i++) { pg.fillStyle = pr() > 0.5 ? `rgba(255,255,255,${0.12 + pr() * 0.2})` : `rgba(0,0,0,${0.18 + pr() * 0.24})`; pg.fillRect(pr() * 550 - 40, pr() * 400, 30 + pr() * 220, 1 + (pr() > 0.8 ? 1 : 0)); }   /* brushed grain, in strokes of uneven length */
+  for (let i = 0; i < 40; i++) { const gx = pr() * 550, gy = pr() * 400, gr = 20 + pr() * 70; const gg = pg.createRadialGradient(gx, gy, 0, gx, gy, gr); gg.addColorStop(0, `rgba(${pr() > 0.5 ? '12,12,14' : '120,110,95'},${0.12 + pr() * 0.16})`); gg.addColorStop(1, 'rgba(0,0,0,0)'); pg.fillStyle = gg; pg.fillRect(gx - gr, gy - gr, gr * 2, gr * 2); }
+  for (let i = 0; i < 260; i++) { const x = pr() * 550, y = 60 + pr() * 340, w = 20 + pr() * 90; pg.fillStyle = `rgba(${pr() > 0.5 ? '205,200,190' : '10,12,14'},${0.08 + pr() * 0.14})`; pg.save(); pg.translate(x, y); pg.rotate((pr() - 0.5) * 0.5); pg.fillRect(-w / 2, -2, w, 3 + pr() * 4); pg.restore(); }
+  const dust = pg.createLinearGradient(0, 300, 0, 400); dust.addColorStop(0, 'rgba(150,140,120,0)'); dust.addColorStop(1, 'rgba(150,140,120,0.35)'); pg.fillStyle = dust; pg.fillRect(0, 300, 550, 100);
+  const ptex = new THREE.CanvasTexture(pc); ptex.colorSpace = THREE.SRGBColorSpace; ptex.anisotropy = 8;
+  const plate = TXT.roundedBox(1.1, 0.8, 0.012, 0.004, new THREE.MeshStandardMaterial({ map: ptex, metalness: 0.35, roughness: 0.55 }));
+  plate.position.set(LANE + 0.02, FLOOR + 0.84, 1.262); TXT.add(R, plate);
+  for (let k = 0; k <= 10; k++) for (const by of [-0.37, 0.37]) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.006, 12), M.arm); b.rotation.x = Math.PI / 2; b.position.set(LANE + 0.02 - 0.5 + k * 0.1, FLOOR + 0.84 + by, 1.254); R.scene.add(b); }
+  for (const bx of [-0.5, 0.5]) for (const by of [-0.35, 0.35]) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.006, 12), M.arm); b.rotation.x = Math.PI / 2; b.position.set(LANE + 0.02 + bx, FLOOR + 0.84 + by, 1.254); R.scene.add(b); }
+
+  /* from the passenger side of the dash looking back across the cab: the empty driver's seat back
+   * and headrest on the right, the bulkhead behind with the housing on it between the seats, and
+   * the driver's door window at the right edge letting the blue in */
+  TXT.frame(R, { from: [LANE - 0.02, FLOOR + 1.34, 0.35], look: [LANE + 0.14, FLOOR + 1.27, 1.25] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
+  TXT.ground(R, { surface: 'grass', size: 12000, seed: 9 });
+  TXT.weather(R, { skip: [cab] });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

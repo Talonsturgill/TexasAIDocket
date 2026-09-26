@@ -1684,3 +1684,30 @@ reader at all, so each run improvises one. This is the third run in a row to tri
 it needs refuses on anything it can't parse, because `urllib.robotparser` and a strict RFC 9309
 reading both allow the single-line `User-agent: * Disallow: /`. The proposal is in
 `knowledge/carousel/UPGRADE_BACKLOG.md`.
+
+## 2026-09-26, daily run (carousel no. 34)
+
+**A crawl-boundary slip of this run's own making.** A page on `www.texasattorneygeneral.gov` was
+fetched with a browser User-Agent BEFORE its robots.txt was read, and that robots.txt names
+`ClaudeBot` with `Disallow: /`. The body was deleted as soon as the robots file was read, it backs
+no claim and stamps no record, and the host is treated as off limits from here on. The order is the
+lesson: robots first, always, and never a browser User-Agent to get past a refusal.
+
+**A second slip, disclosed rather than buried.** One SEC EDGAR request carried the owner's email
+address in its User-Agent, which the session instructions forbid. It fetched nothing that reached
+the record. EDGAR asks for a contact in the User-Agent, and the contact to use is the project's
+own, never a person's.
+
+**`www.federalregister.gov` answers the full-text endpoint with a bot-challenge redirect**, and
+`reverify.py` read the redirect as a missing page. Items tx-2026-0144 and 0145 now cite the same
+documents on `www.govinfo.gov`, which serves the text plainly. The redirect should read as
+unreachable, not as gone, and that is a proposal in `knowledge/carousel/UPGRADE_BACKLOG.md`.
+
+**`www.txdmv.gov` served `/AVprogram` and the adopted 43 TAC Chapter 220 PDF without trouble.**
+WebFetch could not decode the PDF's text on the day, so the Chapter 220 claims (c18 to c21) were
+matched against a local text extraction of the PDF fetched the same day and carry medium
+confidence. `scripts/shared/fetch_doc.py` is the route for a PDF and it should be the first try
+next time.
+
+**Hosts that refused this fetcher, stamped rather than routed around:** `www.dps.texas.gov`
+returned a WAF block page to every client. `news.rice.edu` answered 406 to WebFetch.

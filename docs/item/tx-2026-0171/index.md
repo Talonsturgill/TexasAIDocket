@@ -9,7 +9,7 @@ The Office of the Governor issued a directive to the Texas Water Development Boa
 - Public access: Write to the decider
 - Take part: https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-19 · The directive is published and the board has not yet said how it will enforce. The date it has to report back on has not arrived.
 - 2026-09-23 · The water board is still enforcing the survey on the Governor's instruction, and the law behind it still has not changed.
+- 2026-09-26 · The water board is still enforcing the survey on the Governor's instruction, and the law behind it is unchanged.
 
 ## Evidence
 

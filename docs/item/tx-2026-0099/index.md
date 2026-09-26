@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The Army's funding of the Rice antenna research center still stands as awarded, and artificial intelligence is still one of the directions it names. Nothing has changed the award.
 - 2026-09-19 · The Army's award to the Houston campus is unchanged, and artificial intelligence is still one discipline inside the center rather than its subject.
 - 2026-09-23 · The Army's five year center at the Houston campus still stands, and artificial intelligence is still one discipline inside it rather than its subject.
+- 2026-09-26 · Whether the Army center at Rice still stands as announced is unconfirmed this run. The university's own account of the award could not be read again.
 
 ## Evidence
 

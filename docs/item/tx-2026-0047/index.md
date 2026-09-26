@@ -11,7 +11,7 @@ Amarillo City Council voted five to nothing on first reading to authorize a wate
 - Public access: Public meeting
 - Take part: https://www.amarillo.gov/fermi-project/
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · Amarillo's water supply agreement for Project Matador is still authorized for its full term. No amendment has been posted and the volumes have not been revisited.
 - 2026-09-19 · The water supply agreement stands, so city water is still contracted to the project for the term the council authorized.
 - 2026-09-23 · Amarillo is still under the twenty year water agreement it authorized.
+- 2026-09-26 · Amarillo's water supply agreement with Project Matador still stands on the term the council authorized.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ A small emergency services district in Pecos noticed a public hearing to accept 
 - Public access: Public meeting
 - Take part: https://rcesd.org/app/uploads/2026/02/RCESD2_Notice-of-Public-Hearing-Energy-Forge-One-2026-03-25.pdf
 
-- Last checked: 2026-09-23
+- Last checked: 2026-09-26
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The Reeves County abatement for the gas plant built to serve data centers is still before the emergency services district. No vote has been posted.
 - 2026-09-19 · The abatement for the gas plant is still before the district and no vote has been taken.
 - 2026-09-23 · The Reeves County abatement is still before the district and no vote has been taken.
+- 2026-09-26 · The Reeves County district still has the abatement for the gas plant before it and has taken no vote.
 
 ## Evidence
 

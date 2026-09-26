@@ -1,0 +1,112 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.7
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "weighted_score": 6.7,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "3",
+   "defect": "primitive cab, rod, capsules, bloom at 'never'",
+   "fix": "modelled cab, move console"
+  },
+  {
+   "rank": 2,
+   "frames": "4",
+   "defect": "dark trucks on dark ground, slab edge",
+   "fix": "pale caliche"
+  },
+  {
+   "rank": 3,
+   "frames": "5 and caption",
+   "defect": "20 rests on unattributed Breitbart sentence",
+   "fix": "one sentence attribution or Aurora filing"
+  },
+  {
+   "rank": 4,
+   "frames": "caption",
+   "defect": "scope of concerns, agency reading as law, certified plan",
+   "fix": "scope to c36, 'TxDMV told Dallas the statute does not allow it', reword plan"
+  },
+  {
+   "rank": 5,
+   "frames": "9",
+   "defect": "skyline, silhouette, kicker broad",
+   "fix": "'If one could hurt someone'"
+  },
+  {
+   "rank": 6,
+   "frames": "5",
+   "defect": "ghost rows",
+   "fix": "field below the dek"
+  },
+  {
+   "rank": 7,
+   "frames": "1, 3, 4, 5, 8",
+   "defect": "horizon bands, slab seams",
+   "fix": "extend ground"
+  },
+  {
+   "rank": 8,
+   "frames": "2",
+   "defect": "bar equals dot spacing",
+   "fix": "move bar off the dot axis"
+  },
+  {
+   "rank": 9,
+   "frames": "4, 5",
+   "defect": "two fleet frames",
+   "fix": "merge"
+  },
+  {
+   "rank": 10,
+   "frames": "7",
+   "defect": "orphaned section sign",
+   "fix": "non-breaking space"
+  },
+  {
+   "rank": 11,
+   "frames": "6",
+   "defect": "accent pencil",
+   "fix": "graphite"
+  }
+ ]
+}

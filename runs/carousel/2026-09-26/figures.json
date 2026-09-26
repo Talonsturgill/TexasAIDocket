@@ -1,0 +1,127 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py. Company figures are the company's own claims. Distances from two companies are never reconciled, averaged or differenced.",
+ "kodiak_lane_miles": {
+  "value": 219,
+  "from": [
+   "c25"
+  ],
+  "basis": "Kodiak's own figure"
+ },
+ "waabi_corridor_miles": {
+  "value": 240,
+  "from": [
+   "c33"
+  ],
+  "basis": "Waabi's own figure, roughly"
+ },
+ "aurora_trucks_year_end": {
+  "value": 200,
+  "from": [
+   "c29"
+  ],
+  "basis": "Aurora's allocation to exit 2026, not trucks now running"
+ },
+ "aurora_trucks_now_reported": {
+  "value": 20,
+  "from": [
+   "c34"
+  ],
+  "basis": "Breitbart, citing a CNBC ride. Secondary"
+ },
+ "aurora_driverless_miles": {
+  "value": 500000,
+  "from": [
+   "c30"
+  ],
+  "basis": "Aurora's own claim"
+ },
+ "aurora_2030_trucks": {
+  "value": 30000,
+  "from": [
+   "c31"
+  ],
+  "basis": "a target, more than"
+ },
+ "permian_trucks": {
+  "value": 35,
+  "from": [
+   "c27"
+  ],
+  "basis": "Kodiak's own figure, end of second quarter"
+ },
+ "waabi_growth_pct": {
+  "value": 80,
+  "from": [
+   "c32"
+  ],
+  "basis": "Waabi's own loads, more than"
+ },
+ "kodiak_since_year": {
+  "value": 2019,
+  "from": [
+   "c26"
+  ]
+ },
+ "acknowledgements": {
+  "value": 6,
+  "word": "six",
+  "from": [
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9",
+   "c10"
+  ],
+  "basis": "count of the numbered list the applicant acknowledges, one claim per item"
+ },
+ "soah": {
+  "request_days": 10,
+  "file_days": 10,
+  "hearing_days": 60,
+  "longest_path_days": 80,
+  "from": [
+   "c15",
+   "c16"
+  ],
+  "rounding": "sum of the three windows, the longest a review can run before the hearing must be held"
+ },
+ "enforceable": {
+  "iso": "2026-05-28",
+  "from": [
+   "c1"
+  ]
+ },
+ "rules_effective": {
+  "iso": "2026-02-27",
+  "from": [
+   "c2"
+  ]
+ },
+ "days_enforceable_to_run": {
+  "value": 121,
+  "from": [
+   "c1"
+  ],
+  "basis": "May 28th, 2026 to the run date September 26th, 2026"
+ },
+ "days_rules_to_enforceable": {
+  "value": 90,
+  "from": [
+   "c1",
+   "c2"
+  ],
+  "basis": "the gap the department describes as 90 days after the rules"
+ },
+ "fee_dollars": {
+  "value": 0,
+  "from": [
+   "c12"
+  ],
+  "basis": "No fees are required, quoted"
+ },
+ "geometry": {
+  "_note": "metres for the renderer, never printed",
+  "mile_m": 1609.344
+ }
+}

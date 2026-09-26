@@ -1,0 +1,100 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.81,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "1, 3, 5, 9",
+   "defect": "primitive hero and close",
+   "fix": "light the tractor white, model the cab, haze the skyline"
+  },
+  {
+   "rank": 2,
+   "frames": "5",
+   "defect": "visible ratio reads half full",
+   "fix": "all 200 stalls below the dek"
+  },
+  {
+   "rank": 3,
+   "frames": "6, 7, 8",
+   "defect": "TxDMV unnamed until 9, statute unnamed",
+   "fix": "name TxDMV on 6, SB 2807 on 7"
+  },
+  {
+   "rank": 4,
+   "frames": "4, 5",
+   "defect": "two fleet frames",
+   "fix": "merge"
+  },
+  {
+   "rank": 5,
+   "frames": "8",
+   "defect": "hook and picture differ",
+   "fix": "say what starts the clock"
+  },
+  {
+   "rank": 6,
+   "frames": "9",
+   "defect": "kicker and hook broader than c36",
+   "fix": "'If one could hurt someone'"
+  },
+  {
+   "rank": 7,
+   "frames": "caption",
+   "defect": "preview never says driverless truck",
+   "fix": "open with the truck and the refusal"
+  },
+  {
+   "rank": 8,
+   "frames": "2",
+   "defect": "219 vs 240 trivia, flat map",
+   "fix": "drop 240, render the mesh"
+  },
+  {
+   "rank": 9,
+   "frames": "5",
+   "defect": "'It cites a CNBC ride.' fragment",
+   "fix": "fold it in"
+  }
+ ]
+}
