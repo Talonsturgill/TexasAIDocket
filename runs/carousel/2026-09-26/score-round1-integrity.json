@@ -1,0 +1,101 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "1, 4, 5, 8 pass most of the showstopper test; primitive seat and dash on 3, low-poly Texan and block skyline on 9, frame 6 tick misregistered with row 2 empty, frame 2 flat cartography, frame 7 abstract box."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One world, one tractor, recorder lamp motif on 3, 6, 7, declared cut at 6; frame 2 and the interiors sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. Frame 5's 20 rests on a secondary relay; frame 7 kicker overstates c19 and 'still' implies a recorder link; frame 6 omits c11; frame 6 art shows row 2 unticked; frame 8 'drawn to scale' measured near 6.8 to 1; frame 2 'Dallas' for Dallas-Fort Worth."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and a real action with a verified URL; SOAH unnamed; lower-threshold route to DPS omitted."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 3 answers it, the turn at 6 and 7 works, close lands; 4 and 5 detours."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain Texan hooks and disciplined attribution; '200 places' noun, meta caption line, frame 9 run on."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Same story as no. 5 36 days back, outside the window; Dallas again 5 days after no. 31."
+  }
+ ],
+ "weighted_score": 6.71,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "slide": "06",
+   "defect": "gold tick floats over row 1, row 2 empty",
+   "fix": "seat the tick in row 2"
+  },
+  {
+   "rank": 2,
+   "slide": "07",
+   "defect": "kicker overstates c19, 'still' implies recorder link",
+   "fix": "kicker 'What the state can't require', drop 'still'"
+  },
+  {
+   "rank": 3,
+   "slide": "08",
+   "defect": "'drawn to scale' segments measure near 6.8 to 1",
+   "fix": "measure at full resolution and correct or drop the label"
+  },
+  {
+   "rank": 4,
+   "slide": "05",
+   "defect": "20 rests on a secondary relay, '200 places' invented noun, about 40 stalls legible",
+   "fix": "source from Aurora's filing or cut the 20"
+  },
+  {
+   "rank": 5,
+   "slide": "06",
+   "defect": "omits the DPS responder plan certification c11",
+   "fix": "add it or cite c11"
+  },
+  {
+   "rank": 6,
+   "slide": "03, 09",
+   "defect": "primitive models",
+   "fix": "crop the figure, model the seat"
+  },
+  {
+   "rank": 7,
+   "slide": "caption",
+   "defect": "closing question insinuates the public can't check",
+   "fix": "close on something the record carries"
+  },
+  {
+   "rank": 8,
+   "slide": "02",
+   "defect": "'Dallas' for Dallas-Fort Worth",
+   "fix": "write Dallas-Fort Worth"
+  }
+ ]
+}

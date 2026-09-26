@@ -70,7 +70,7 @@ window.renderReady = (async () => {
   /* the pad edge: scrub and mesquite, kept off the pad */
   TXT.scatter(R, { kind: 'scrub', count: 2200, area: [-90, -70, 90, 90], avoid: [[-26, -56, 26, 56]], seed: 7, scale: [0.18, 0.45] });
   for (let i = 0; i < 10; i++) { const side = i % 2 ? 1 : -1; const m = K.make('mesquite', { seed: 30 + i }); m.position.set(side * (32 + (i % 3) * 6), 0, 50 - Math.floor(i / 2) * 22); TXT.add(R, m); TXT.contact(R, m); }
-  const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(40, 0, -420); TXT.add(R, pj); TXT.contact(R, pj);
+  const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(40, 0, -30); TXT.add(R, pj); TXT.contact(R, pj);
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);

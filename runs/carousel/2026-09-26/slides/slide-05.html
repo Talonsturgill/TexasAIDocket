@@ -30,7 +30,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="haze" data-decorative></div>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">200 places, 20 trucks</h1>
+<h1 class="hook" id="hook">200 allocated, 20 running</h1>
 <p class="dek" data-follow="26">Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride.</p>
 
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -52,7 +52,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 1.8], exposure: W.exposure - 0.45, tone: W.tone, fov: 44 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 1.1], exposure: W.exposure - 0.45, tone: W.tone, fov: 44 });
 
   /* THE YARD. One painted tractor stall per truck in the allocation, read from figures.json, ten
    * across and twenty rows deep, every row with its own drive aisle. The two nearest rows hold one tractor

@@ -82,12 +82,12 @@ window.renderReady = (async () => {
   const tick = TXT.mat.clay(0xe9e6de, { roughness: 0.55, metalness: 0 });
   let x = X0; const mids = [];
   segs.forEach((d, i) => {
-    const L = d * DAY - (i < segs.length - 1 ? GAP : 0);
+    const L = d * DAY;                       /* every segment exactly its days at the scale; the breaks sit between them */
     const s = new THREE.Mesh(new THREE.BoxGeometry(L, 0.012, 1.3), paint);
     s.position.set(x + L / 2, 0.008, ZS); s.receiveShadow = true; R.scene.add(s);
-    mids.push([x + L / 2, 0, ZS]); x += d * DAY;
+    mids.push([x + L / 2, 0, ZS]); x += d * DAY + GAP;
   });
-  [X0, X0 + total].forEach((xx) => { const k = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.012, 3.0), tick); k.position.set(xx, 0.008, ZS); R.scene.add(k); });
+  [X0, X0 + total + GAP * (segs.length - 1)].forEach((xx) => { const k = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.012, 3.0), tick); k.position.set(xx, 0.008, ZS); R.scene.add(k); });
 
   /* mast lamps along the court edge, the key's motivation */
   [X0 - 6, X0 + total + 6].forEach((lx, i) => { const l = K.make('streetlight', { height: 15, reach: 2.4, seed: i }); l.position.set(lx, 0, ZS + 9); l.rotation.y = Math.PI; TXT.add(R, l); });
@@ -97,10 +97,10 @@ window.renderReady = (async () => {
 
   /* LEADERS, each ending ON the segment it names, projected through this camera */
   const svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg';
-  const names = ['10 DAYS TO ASK', 'STATE FILES IN 10', '60 DAYS TO HOLD THE HEARING'];
+  const names = ['OPERATOR APPEALS IN 10', 'STATE FILES IN 10', 'HEARING WITHIN 60 DAYS'];
   const endLab = 'REINSTATED IF NOT HELD';
   const at = mids.map((m) => F.project(THREE, R, m));
-  const endPt = F.project(THREE, R, [X0 + total, 0, ZS]);
+  const endPt = F.project(THREE, R, [X0 + total + GAP * (segs.length - 1), 0, ZS]);
   const leaders = [];
   const base = Math.min(...at.map((p) => p[1])) - 84;
   const below = Math.max(...at.map((p) => p[1])) + 104;

@@ -20,7 +20,7 @@
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
              white-space:nowrap; z-index:20; }
   .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
-  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:800px; font-size:30px; }
+  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:910px; font-size:30px; }
   .haze { position:absolute; left:0; top:0; width:1080px; height:600px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
   .floor { position:absolute; left:0; bottom:0; width:1080px; height:240px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.72) 0%, rgba(10,14,28,0.6) 55%, rgba(10,14,28,0) 100%); }
 </style>
@@ -29,7 +29,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Six statements and no fee</h1>
-<p class="dek" data-follow="28">Since May 28th a company running vehicles with no driver needs a state authorization. The company acknowledges six statements and pays nothing. The authorization does not expire.</p>
+<p class="dek" data-follow="28">Since May 28th a commercial driverless operator needs a state authorization. It acknowledges six statements, certifies a responder plan and pays nothing. The authorization does not expire.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -45,7 +45,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"acknowledgements": {"value": 6, "word": "six", "from": ["c5", "c6", "c7", "c8", "c9", "c10"], "basis": "count of the numbered list the applicant acknowledges, one claim per item"}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "The permission", counter: "06 / 09", src: "c1 c5 to c10 c12   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "The permission", counter: "06 / 09", src: "c1 c5 to c12   ILLUSTRATIVE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 88, max: 120, maxLines: 2 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
@@ -92,7 +92,6 @@ window.renderReady = (async () => {
   const accentInk = new THREE.MeshBasicMaterial({ color: F.ACCENT, toneMapped: false });
   for (let i = 0; i < N; i++) {
     const mk = TXT.extrude(tickShape, 0.0012, i === 1 ? accentInk : ink, { bevel: false });
-    if (i === 1) mk.scale.set(4.8, 4.8, 1);   /* the recording device row, ticked large in the one accent */
     const u = (78 + 26) / 864 * 0.216 - 0.108, v = 0.1395 - (top + i * rowH + 54) / 1116 * 0.279;
     const lx = u, lz = -v;                                                         /* sheet local, after the -90 degree tilt */
     const cs = Math.cos(A), sn = Math.sin(A);
@@ -101,6 +100,15 @@ window.renderReady = (async () => {
     mk.position.set(sx + lx * cs + lz * sn - (ccx * cs - ccy * sn), sy + 0.009, sz - lx * sn + lz * cs + (ccx * sn + ccy * cs));
     R.scene.add(mk);
   }
+
+  /* the pen that ticked them, dropped on the cushion beside the sheet, its barrel in the accent */
+  const pen = new THREE.Group();
+  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0066, 0.0066, 0.15, 20), accentInk); pen.add(barrel);
+  const tip = new THREE.Mesh(new THREE.ConeGeometry(0.0066, 0.02, 20), TXT.mat.steel({ roughness: 0.3 })); tip.position.y = -0.085; tip.rotation.x = Math.PI; pen.add(tip);
+  const clip = new THREE.Mesh(new THREE.BoxGeometry(0.0022, 0.045, 0.003), TXT.mat.steel({ roughness: 0.25 })); clip.position.set(0, 0.035, 0.0055); pen.add(clip);
+  pen.rotation.set(0, 0, Math.PI / 2); pen.rotateX(0.35);
+  pen.position.set(sx + 0.05, sy + 0.012, sz + 0.1); pen.castShadow = true; R.scene.add(pen);
+  pen.traverse((o) => { if (o.isMesh) o.castShadow = true; });
 
   /* from under the roof between the wheel and the seat, looking down onto the cushion */
   TXT.frame(R, { from: [LANE + seat[0] - 0.22, FLOOR + 1.78, seat[2] - 0.2], look: [sx + 0.03, sy + 0.14, sz + 0.1] });

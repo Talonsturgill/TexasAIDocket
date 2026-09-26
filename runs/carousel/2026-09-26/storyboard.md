@@ -226,7 +226,7 @@ art:
 type:
   kicker: "The lane"
   hook: "219 miles, Kodiak says"
-  dek: "That is Kodiak's figure for the Dallas and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240."
+  dek: "That is Kodiak's figure for the Dallas-Fort Worth and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240."
 
 acceptance:
   - "the frame reads \"219 miles, Kodiak says\""
@@ -411,11 +411,11 @@ art:
 
 type:
   kicker: "Aurora's year"
-  hook: "200 places, 20 trucks"
+  hook: "200 allocated, 20 running"
   dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride."
 
 acceptance:
-  - "the frame reads \"200 places, 20 trucks\""
+  - "the frame reads \"200 allocated, 20 running\""
   - "exactly 200 places are painted and exactly 20 hold a tractor, each cab readable at 432 px"
   - "the far rows fade into the haze before they reach the type"
   - "the dek attributes the 20 to Breitbart citing CNBC"
@@ -436,7 +436,7 @@ job: >
   Show how little paper the permission is. Six statements on a page that lies where a driver would
   sit, no fee and no expiry.
 
-claims: [c1, c5, c6, c7, c8, c9, c10, c12]
+claims: [c1, c5, c6, c7, c8, c9, c10, c11, c12]
 numerals:
   - value_from: c1    # May 28th, 2026
   - computed_by: "out/2026-09-26/compute.py, the count of acknowledgements c5 to c10"
@@ -476,7 +476,7 @@ art:
 type:
   kicker: "The permission"
   hook: "Six statements and no fee"
-  dek: "Since May 28th a company running vehicles with no driver needs a state authorization. The company acknowledges six statements and pays nothing. The authorization does not expire."
+  dek: "Since May 28th a commercial driverless operator needs a state authorization. It acknowledges six statements, certifies a responder plan and pays nothing. The authorization does not expire."
 
 acceptance:
   - "the frame reads \"Six statements and no fee\""
@@ -532,9 +532,9 @@ art:
   motion: "from the hook down to the lamp"
 
 type:
-  kicker: "What the state can't ask for"
+  kicker: "What the state can't require"
   hook: "Dallas asked for crash history"
-  dek: "The department said the statute does not allow it to require crash history from authorization holders. The truck must still be equipped with a recording device."
+  dek: "The department said the statute does not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements."
 
 acceptance:
   - "the frame reads \"Dallas asked for crash history\""
@@ -664,7 +664,7 @@ art:
 type:
   kicker: "If you see one"
   hook: "Where to report one"
-  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop and law enforcement can verify authorizations there too."
+  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop where law enforcement can also verify authorizations."
 
 acceptance:
   - "the frame reads \"Where to report one\""

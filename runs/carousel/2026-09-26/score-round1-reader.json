@@ -1,0 +1,113 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Rendered and mostly one world; frame 1 closest to the 10. Primitive models on 3, 7, 9; frame 4 dark ground without horizon; frame 6 tick off its row with box 2 empty."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck, recorder lamp motif on 3, 6, 7; frame 2 flat map and warm interiors sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. Frame 8 stripe labels have no subject and read as a complainant's window; caption close implies the public can't check while the lookup was not read; frame 6 drops 'commercially'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, when and a real next step; no lever named for who could change the statute."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover works; state story arrives only at 6 and 7 while the caption leads with it; frame 5 cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register with plain hooks; caption's line about the deck, cryptic '200 places', frame 9 run on."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Returns to carousel no. 5's subject 36 days back; county mesh map overused."
+  }
+ ],
+ "weighted_score": 6.5,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frame": "8",
+   "defect": "appeal timeline has no subject",
+   "fix": "relabel the first leader as the operator's appeal and say the stripe follows a suspension"
+  },
+  {
+   "rank": 2,
+   "frame": "caption",
+   "defect": "closing question implies the public can't check, lookup not read",
+   "fix": "close on the reporting address"
+  },
+  {
+   "rank": 3,
+   "frame": "order",
+   "defect": "state story buried behind company figures",
+   "fix": "move frame 6 earlier, cut 5"
+  },
+  {
+   "rank": 4,
+   "frame": "6",
+   "defect": "gold tick off its row, box 2 empty",
+   "fix": "seat the tick in box 2 at the same scale"
+  },
+  {
+   "rank": 5,
+   "frame": "3, 7, 9",
+   "defect": "primitive models",
+   "fix": "show the empty driver's seat, fix the figure"
+  },
+  {
+   "rank": 6,
+   "frame": "4",
+   "defect": "dark ground, no horizon, pump jack hidden",
+   "fix": "caliche albedo, horizon on the top third"
+  },
+  {
+   "rank": 7,
+   "frame": "7",
+   "defect": "statute unnamed",
+   "fix": "name SB 2807 and the Legislature"
+  },
+  {
+   "rank": 8,
+   "frame": "caption",
+   "defect": "'The deck starts on Interstate 45 and ends above it.'",
+   "fix": "cut it"
+  },
+  {
+   "rank": 9,
+   "frame": "5",
+   "defect": "200 places not legible",
+   "fix": "cut or pull back"
+  },
+  {
+   "rank": 10,
+   "frame": "9",
+   "defect": "dek run on",
+   "fix": "split into two sentences"
+  }
+ ]
+}
