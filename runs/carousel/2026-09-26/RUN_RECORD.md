@@ -82,6 +82,31 @@ enforcement left to DPS and local law enforcement, and where a concern goes.
 - It did not rebuild the cab as a modelled interior. That is the single largest lever on the
   artwork score and it is the next run's to pull, or a kit lift for a maintainer.
 
+## The retro
+
+- **Upgrades, committed under the `upgrade` lane.** `contact_trace.py` strips a sentence's trailing
+  punctuation from a url before matching it, by the GitHub Flavored Markdown rule, with a self-test
+  replaying frame 9's `txmccs.txdmv.gov/truckstop.`. `shipped_check.py`'s freshness gate keeps a
+  frame's script text instead of tag-stripping it away, which had erased six labels on frames 8
+  and 9. Both are logged in `ledger/carousel/upgrades.json`.
+- **Proposals for a maintainer** in `knowledge/carousel/UPGRADE_BACKLOG.md`: a modelled cab
+  interior, sensor-pod tractor and recorder for the kit; the fog taking the sky's colour in the view
+  direction in `txthree.js`, which is the horizon seam; a key-versus-camera check; and `reverify.py`.
+- **Two CI reds the retro named, fixed in the daily lane.** Frame 2's scale label is now a literal
+  in its source, and `measurements.json` is computed by `measure.py` from the shipped frames.
+- **Codex review on the pull request**, three findings, all fixed: tx-2026-0188's `on_ercot` is null
+  rather than false, its admission note describes company plans rather than freight running under
+  the authorization, and tx-2026-0138's participation route points at the pending hearings.
+
+## A FINDING FOR THE PUSH DEFECT IN CLAUDE.md
+
+`.githooks/post-commit` pushes every commit to origin in the background, four tries with backoff.
+`push.sh` then pushes the same ref a second time. That is two copies of one ref update, which is
+exactly the `cannot lock ref ... is at <new> but expected <old>` and `reference already exists`
+pattern CLAUDE.md records as unexplained, and "something above git runs the command twice" is the
+hook. This run saw `push.sh: treating this as success` on several pushes. It is a hypothesis with a
+mechanism rather than a measurement, and `CLAUDE.md` and `.githooks/` are a maintainer's to change.
+
 ## Prompt audit (interim)
 
 `prompt_audit.py` at the start of Phase 17 measured 1,415 tool calls and flagged 402 as having

@@ -107,7 +107,7 @@ window.renderReady = (async () => {
   const txt = (x, y, s, anchor) => { const e = document.createElementNS(NS, 'text'); e.setAttribute('class', 'lab'); e.setAttribute('x', x); e.setAttribute('y', y); if (anchor) e.setAttribute('text-anchor', anchor); e.textContent = s; svg.appendChild(e); return e; };
   txt(A[0] + 30, A[1] - 22, 'DALLAS COUNTY');
   txt(B[0] - 104, B[1] + 8, 'HARRIS COUNTY', 'end');
-  txt(bx, by + 40, miles + " MILES, KODIAK'S FIGURE");
+  txt(bx, by + 40, "219 MILES, KODIAK'S FIGURE");   /* the figure is c25's, and the bar's length above is computed from FIG */
   return true;
 })();
 </script>
