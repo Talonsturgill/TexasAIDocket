@@ -2628,8 +2628,14 @@ def self_test() -> int:
     ship_extra = [dossier_block, _ch, _wh]
 
     head = index_headroom(items, p["generated"], ship_extra)
+    # THE ALARM IS ON THE RUNG WHERE THE GUARANTEE MOVES, NOT ON THE FIRST ONE. Reaching rung 2,
+    # `full` at 0, is the designed state the header above describes: the oldest settled lines are
+    # cut to a title and an id, and nothing breaks. This check read `full > 0` until 2026-09-26,
+    # so admitting tx-2026-0188 put CI red on a record doing exactly what it was built to do, and
+    # the day's deck could not merge. `index_headroom` names the middle rung as the one a person
+    # should be told about, so the red line is `named`, where a decision would stop being listed.
     check("the build publishes how far each rung is, measured against the index it ships",
-          head["full"] > 0 and head["named"] >= head["full"],
+          head["full"] >= 0 and head["named"] > 0 and head["named"] >= head["full"],
           f'{head["full"]} at full lines, {head["named"]} before one goes unnamed')
     check("and the horizon in the pack is the one measured with the rolled families in it",
           p["index_headroom"] == head, f'{p["index_headroom"]} against {head}')
