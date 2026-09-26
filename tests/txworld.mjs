@@ -681,6 +681,80 @@ const FILTERED = `async (T, TXT, cv) => {
   return { hash02, hash095, perfFar, perfNear, stacked, mipFar, mipNear, uv2, uv0 };
 }`;
 
+// What a blend covers and what a sprite hides (Codex, PR 369): the fifth page.
+const BLENDED = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  // WHAT A BLEND COVERS ON THE GPU: a black plane in the material over red, where the red that is left
+  // is the share of the pixel the plane doesn't cover
+  const gcv = document.createElement('canvas'); gcv.width = gcv.height = 16;
+  const gr = new T.WebGLRenderer({ canvas: gcv, preserveDrawingBuffer: true, antialias: false });
+  gr.setClearColor(0xff0000, 1);
+  const gcam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10); gcam.position.z = 2;
+  const blendCover = (mat) => {
+    const s = new T.Scene(); s.add(new T.Mesh(new T.PlaneGeometry(4, 4), mat));
+    gr.render(s, gcam);
+    const gl = gr.getContext(), px = new Uint8Array(4);
+    gl.readPixels(8, 8, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    return 1 - px[0] / 255;
+  };
+  const veiled = async (opacity) => {
+    const make = () => new T.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity });
+    const Rv = world(40);
+    TXT.frame(Rv, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rv, [4, 8, 4]);
+    Rv.scene.add(shelter(make()));
+    const errors = await capture(() => TXT.snapshot(Rv));
+    return { errors, cover: cover(Rv), gpu: blendCover(make()) };
+  };
+  const veil001 = await veiled(0.01), veil09 = await veiled(0.9);
+  // A SPRITE ACROSS THE SKY: a camera at 2 m facing the horizon and a sprite 400 m across, 10 m out,
+  // in an opaque texture, then in a clear one
+  const card = (fill) => {
+    const c = document.createElement('canvas'); c.width = c.height = 8;
+    const x = c.getContext('2d'); x.clearRect(0, 0, 8, 8);
+    if (fill) { x.fillStyle = fill; x.fillRect(0, 0, 8, 8); }
+    return new T.CanvasTexture(c);
+  };
+  const sprited = async (fill) => {
+    const Rs = world(40);
+    TXT.frame(Rs, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rs, W);
+    TXT.rig(Rs, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rs, { surface: 'caliche', size: 900, tile: 5 });
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: card(fill) }));
+    sp.scale.set(400, 400, 1); sp.position.set(0, 2, -10); Rs.scene.add(sp);
+    const errors = await capture(() => TXT.snapshot(Rs));
+    const gl = Rs.renderer.getContext(), Wd = gl.drawingBufferWidth, Hd = gl.drawingBufferHeight;
+    const read = () => { Rs.renderer.render(Rs.scene, Rs.camera); const b = new Uint8Array(Wd * Hd * 4); gl.readPixels(0, 0, Wd, Hd, gl.RGBA, gl.UNSIGNED_BYTE, b); return b; };
+    const shown = read(); dome.visible = false; const hidden = read(); dome.visible = true; read();
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rs.camera, Rs), gpuSky: n / (Wd * Hd) };
+  };
+  const spriteSolid = await sprited('#555'), spriteClear = await sprited(null);
+  return { veil001, veil09, spriteSolid, spriteClear };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -959,6 +1033,30 @@ check('the filtered page renders with no page error and no scene error',
   check(`...while the same alphaMap on channel 0 reads uv's clear texel: the GPU draws ${(u0.gpu || 0).toFixed(2)} of it, ` +
         `it covers ${(u0.cover || 0).toFixed(2)}, and the frame IS flagged`,
         u0.gpu === 0 && u0.cover === 0 && flagged(u0), JSON.stringify(u0));
+}
+
+const bl = await run('blended', BLENDED);
+check('the blended page renders with no page error and no scene error',
+      !bl.result.error && bl.pageErrors.length === 0, JSON.stringify({ error: bl.result.error, page: bl.pageErrors }));
+{
+  // A BLENDED SHELL COVERS BY ITS ALPHA (Codex, PR 369), and A SPRITE HIDES WHAT IS BEHIND IT (Codex,
+  // PR 369). The first counted any shell above opacity 0.001 as a wall, and the second cast through
+  // every sprite.
+  const v1 = bl.result.veil001 || {}, v9 = bl.result.veil09 || {};
+  const ss = bl.result.spriteSolid || {}, sc = bl.result.spriteClear || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  check(`a shelter blended at opacity 0.01 covers ${(v1.gpu || 0).toFixed(3)} of a pixel on the GPU and ` +
+        `${(v1.cover || 0).toFixed(3)} of the sky above the camera, and looking down inside it IS flagged`,
+        Math.abs(v1.gpu - 0.01) < 0.01 && Math.abs(v1.cover - 0.01) < 0.01 && flagged(v1), JSON.stringify(v1));
+  check(`...while at 0.9 it covers ${(v9.gpu || 0).toFixed(2)} on the GPU and ${(v9.cover || 0).toFixed(2)} of the sky, an interior`,
+        Math.abs(v9.gpu - 0.9) < 0.02 && Math.abs(v9.cover - 0.9) < 0.02 && !flagged(v9), JSON.stringify(v9));
+  check(`an opaque sprite across the frame hides the sky: the pixels show ${(ss.gpuSky || 0).toFixed(4)} sky, ` +
+        `the engine reads ${ss.sky}, and the frame IS flagged`,
+        ss.gpuSky < 0.001 && ss.sky === 0 && flagged(ss), JSON.stringify(ss));
+  check(`...while a clear one doesn't: the pixels show ${(sc.gpuSky || 0).toFixed(3)} sky, the engine reads ` +
+        `${(sc.sky || 0).toFixed(3)}, and the frame shows its sky`,
+        sc.gpuSky > 0.3 && sc.sky > 0.3 && Array.isArray(sc.errors) && sc.errors.length === 1 &&
+        sc.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(sc));
 }
 
 await browser.close();
