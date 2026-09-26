@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 23 |
 | world presets | 6 |
-| kit models | 95 in 10 families |
+| kit models | 97 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 64 |
 | record and site tools the routine names | 20 |
@@ -201,17 +201,19 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `pecan` | 22.4 x 23.1 x 21.3 | height, spread | Options: height m, spread m. |
 | `shrub` | 3.4 x 1.4 x 1.3 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
 
-### vehicles (7)
+### vehicles (9)
 
 `assets/js/kit/vehicles.js`, Every vehicle is built the way a body shop would describe it: a SIDE PROFILE of the body, with the wheel arches cut into it, extruded across the width with rounded edges; a glass greenhouse with ...
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `delivery_van` | 2.5 x 2.72 x 5.98 | color, lettering | High-roof cargo van, 5.98 m, sliding side door, twin rear doors. |
+| `event_recorder` | 0.27 x 0.5 x 0.33 | lamp, lampColor, cable | Sealed fanless data recorder on a bolted flange: machined fins, two circular connectors with cables, a label and one status lamp. |
 | `pickup` | 2.4 x 1.96 x 5.89 | color, metallic, trim | Full-size crew-cab pickup (F-150 / Silverado class), 5.5 ft bed. trim chrome\|work\|dark; color hex for paint. |
 | `school_bus` | 2.9 x 3.2 x 11.2 | whiteRoof, stopArm, district | Type C school bus (conventional hood), 11.2 m, dual rear wheels, 11 windows a side, stop arm (stopArm:true deploys it). |
 | `sedan` | 2.05 x 1.44 x 4.88 | color, metallic | Mid-size four-door sedan, 4.88 m. |
-| `semi_truck` | 2.9 x 4.1 x 21.9 | color, trailer, trailerColor, lettering | Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. |
+| `semi_cab_interior` | 3.1 x 2.35 x 3.95 | hood, mirrors, curtain, lit, trim, seat, paint, peep | Class 8 conventional sleeper cab interior as a set to stand a camera in: hood through the windshield, binnacle with gauges, centre stack with the air brake valves, three spoke wheel, air ride seats, door panels, mirrors, overhead console, sleeper curtain. |
+| `semi_truck` | 2.9 x 4.1 x 21.9 | color, trailer, trailerColor, lettering, sensors, podColor | Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits ... |
 | `suv` | 2.4 x 1.93 x 5.35 | color, metallic, rack | Full-size SUV, 5.35 m, roof rails. |
 | `utility_bucket_truck` | 3 x 3 x 9.8 | boom, swing, color, lettering | Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). |
 
@@ -444,7 +446,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
 | `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table | costs, 10.5, 11 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -557,7 +559,7 @@ Measurements and plumbing, never a subject or a palette to copy.
 |---|---|---|
 | `examples/demo-deck/` |  | slides |
 | `examples/figure-bearing/` | Emit the three frames of the FIGURE BEARING reference. | contact_sheet.webp, slide-01.webp, slide-02.webp, slide-03.webp, build.py, figures.json, slides, storyboard.md |
-| `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | proof.webp, build.py |
+| `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | cab-proof.webp, proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
-| `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, into-the-sun.webp, build.py, slides |
+| `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, horizon.webp, into-the-sun.webp, build.py, slides |
