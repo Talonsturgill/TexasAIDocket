@@ -278,6 +278,31 @@ rules:
       run because a run that can't write its own chassis can't hold a deck together, and held
       to primitives by deck_chassis.py because a shared whole frame is a template.
 
+  # THE KIT, opened to `upgrade` on 2026-09-26 on the owner's explicit instruction ("do all 3",
+  # then "update those permissions").
+  #
+  # WHY. Every artwork shortfall the judges ranked first on carousels no. 33 and no. 34 was a
+  # model the kit lacked: a cab interior, a sensor pod tractor, a recorder, each built from
+  # primitives in a chassis against a deadline. The rule said a run builds the missing model in
+  # its chassis and Phase 17 PROPOSES lifting it into the kit, and the kit was `human`, so the
+  # proposal went into UPGRADE_BACKLOG.md and no maintainer session came to make it. Four repair
+  # rounds on no. 34 moved artwork 5.5 to 6.0, and the round 5 card ranked first the same
+  # primitive cab that round 1 did. A loop whose only exit is a person who never arrives is not
+  # a loop.
+  #
+  # So the retro lifts the model itself, and every later run inherits it. WHAT THIS DOES NOT
+  # WIDEN. `assets/js/txkit.js` (the registry and its conventions), `txthree.js` (the engine),
+  # txpost, txdeck, the fonts and the geodata all stay `human` under `assets/**` above. The
+  # daily lane still can't write here, so the phases that build and judge a deck can't edit the
+  # models mid run. A kit model has no path to the public record, and a broken one fails loudly
+  # in the next render and in `examples/kit/sizes.py`, never silently in a ledger.
+  - path: "assets/js/kit/**"
+    owner: upgrade
+    note: >
+      The kit's model families, one file per family. Owned by the retro so that a model a run
+      had to build in its chassis is lifted into the kit the same day, at the judges' named fix,
+      instead of waiting on a maintainer. The registry, the engine and the grade stay human.
+
   - path: "assets/geo/tx-reservoirs.json"
     owner: gridwatch
     note: >
