@@ -747,6 +747,9 @@ jobs:
       - name: Machine QA self-test (replayed against real captured renders)
         run: python3 .claude/skills/carousel-engine/qa.py --self-test
 
+      - name: Render self-test (a shader that fails to compile fails its slide)
+        run: python3 .claude/skills/carousel-engine/render.py --self-test
+
       - name: House style self-test (our prose is checked, a quote never is)
         run: python3 scripts/site/house_style_check.py --self-test
 

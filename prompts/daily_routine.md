@@ -1065,12 +1065,14 @@ primitives. The frame decides what to build from them.
 kit lists, `TXT.sky`, `TXT.ground`, `TXT.scatter`, `TXT.contact`, `TXT.weather` and
 `TXT.interior` for the world around it. **A model the kit has is never rebuilt from primitives.**
 **A model it lacks is built into the kit, not the deck**, and because `assets/js/kit/**` is
-`human` lane in `ownership.yaml`, the chassis is where this run builds it: once, as an
+`upgrade` lane in `ownership.yaml`, which the build phases can't write, the chassis is where this
+run builds it first: once, as an
 `install(K, THREE, TXT)` function calling `K.define(name, { size, options, note, make })` under
 the conventions in the header of `assets/js/txkit.js` (metres, y up, origin on the ground, front
 on +z, `K.box`, `K.mat` and `K.tex` rather than raw primitives). Each frame calls it once after
 `initKit` and then uses `K.make(name)` like any kit model, so it is shaped to be lifted into
-`assets/js/kit/` unchanged. Phase 17 proposes that lift.
+`assets/js/kit/` unchanged. **Phase 17 makes that lift the same day**, so the next run calls it
+with `K.make` and never builds it again.
 
 **Then render ONE probe frame against it before writing the other eight**, because a chassis
 that is wrong is wrong nine times and finding that out on frame nine costs the run. **Probe an
@@ -1137,8 +1139,7 @@ here:**
 6. **A slab is never a subject, and a kit model is never rebuilt.** Every standing thing in a
    rendered frame comes from `K.make` with a model `ARSENAL.md` lists, placed with `TXT.add` and
    seated with `TXT.contact`. A thing the kit lacks is the chassis's kit model from Phase 10.5,
-   never geometry written into one frame, and it goes in `knowledge/carousel/UPGRADE_BACKLOG.md`
-   as a proposal to lift it into `assets/js/kit/`. `TXSCENE.sprite` and the `TXOBJ` catalogue
+   never geometry written into one frame, and Phase 17 lifts it into `assets/js/kit/`. `TXSCENE.sprite` and the `TXOBJ` catalogue
    are for the rare frame that is not rendered. The bench serves the chassis, never the other way
    round.
 7. **None of the model's own defaults without a reason.** Asked for design work without
@@ -1764,8 +1765,25 @@ the next run's directors room. **Go back and confirm or contradict the instincts
 in Phase 9**, because an instinct nobody ever revisits is one that will sit in the prompt forever
 on the strength of the day it was written.
 
+**THE ARTWORK DEFECT COMES FIRST (owner, 2026-09-26).** Before any gate, checker or doctrine
+work, the phase reads the last round's craft card and takes its top ranked artwork defect. When
+the fix is a model, which it has been on every deck since the kit arrived, the phase lifts the
+chassis's model into `assets/js/kit/<family>.js` AT THE JUDGE'S NAMED FIX, not as the chassis
+shipped it, because the defect is the reason the model scored as it did and a lift of the same
+geometry changes nothing. It follows the conventions in the header of `assets/js/txkit.js`, proves
+the model with `examples/kit/build.py` rendered through the carousel engine, reads the proof at
+full size, and runs `examples/kit/sizes.py`. **This outranks every other upgrade.** Four repair
+rounds on no. 34 moved artwork 5.5 to 6.0 because every judge ranked the same kit gap first in
+round 1 and in round 5, the kit was out of every lane but `human`, and the backlog proposal waited
+for a maintainer who never came. The engine (`assets/js/txthree.js`) and the registry
+(`assets/js/txkit.js`) stay `human`, so a fix that needs either is a backlog proposal, and it goes
+at the top of the email under its own heading so it can't sink into the backlog again.
+
+The spawn prompt for the engineer carries this paragraph and the craft card's ranked defects
+verbatim, because the agent reads its own file first and that file predates this rule.
+
 **The machine.** Spawn 1 `carousel-upgrade-engineer`. Zero to three bounded, verified upgrades,
-logged to `ledger/carousel/upgrades.json`. **Commit that work with the narrower lane declared on
+the artwork lift first when there is one, logged to `ledger/carousel/upgrades.json`. **Commit that work with the narrower lane declared on
 the commit itself:**
 
 ```
@@ -1797,9 +1815,10 @@ nothing to commit. When anything changed, a gate added, a doctrine file written,
 work brought in from `main` by Phase 16, `knowledge/carousel/ARSENAL.md` moves and goes into the
 `upgrade` commit. **It is generated and never hand-edited.** A stale arsenal is how the next run
 fails to find the thing this one built. A model the chassis had to build because the kit lacked
-it is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in the same commit, as a proposal to
-lift it into `assets/js/kit/<family>.js`, which only a maintainer can make. So is every engine
-defect the round rule wrote into the run record, with its frames and its rounds.
+it is lifted into `assets/js/kit/<family>.js` in the same `upgrade` commit, which the section
+before this one makes the phase's first job. Every engine defect the round rule wrote into the run
+record, with its frames and its rounds, is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in
+that commit, because the engine stays `human` and only a maintainer can make that fix.
 
 **A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
 worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch

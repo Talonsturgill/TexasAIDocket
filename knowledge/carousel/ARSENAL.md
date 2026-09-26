@@ -450,7 +450,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
 | `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b, 15 |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11, 15 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 15 |
 
 **Record, site and instrument tools the routine names:**
 
