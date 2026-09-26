@@ -1,0 +1,131 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.4
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3
+  }
+ ],
+ "weighted_score": 6.614,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": [
+    3,
+    6,
+    7
+   ],
+   "defect": "primitive cab interior",
+   "fix": "one modelled cab set"
+  },
+  {
+   "rank": 2,
+   "frames": [
+    5,
+    8
+   ],
+   "defect": "objects in a dark gradient, hard band on 5, horizon seam on 8",
+   "fix": "ground and fog past the far plane"
+  },
+  {
+   "rank": 3,
+   "frames": [
+    5
+   ],
+   "defect": "far rows under the dek",
+   "fix": "last row dies in haze below the dek"
+  },
+  {
+   "rank": 4,
+   "frames": [
+    1,
+    3,
+    9
+   ],
+   "defect": "horizon seams",
+   "fix": "ground extension"
+  },
+  {
+   "rank": 5,
+   "frames": [
+    9
+   ],
+   "defect": "block skyline, mannequin, SPLIT_HORIZON cut not executed",
+   "fix": "haze, rail, execute the cut"
+  },
+  {
+   "rank": 6,
+   "frames": [
+    8
+   ],
+   "defect": "court lines through labels",
+   "fix": "move lines"
+  },
+  {
+   "rank": 7,
+   "frames": [
+    4
+   ],
+   "defect": "no horizon, mauve caliche",
+   "fix": "horizon and paler caliche"
+  },
+  {
+   "rank": 8,
+   "frames": [
+    6
+   ],
+   "defect": "rods cross type, accent pen",
+   "fix": "reframe, graphite"
+  },
+  {
+   "rank": 9,
+   "frames": [
+    1
+   ],
+   "defect": "low detail tractor, flat windshield",
+   "fix": "reflection, seams, bloom"
+  },
+  {
+   "rank": 10,
+   "frames": [
+    2
+   ],
+   "defect": "flat map",
+   "fix": "relief"
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "2, 4, 5, 7",
+   "defect": "company frames before the news",
+   "fix": "cut 2, merge 4 and 5, move Dallas forward"
+  },
+  {
+   "rank": 2,
+   "frames": "3, 6",
+   "defect": "primitive cab",
+   "fix": "modelled cab set"
+  },
+  {
+   "rank": 3,
+   "frames": "8",
+   "defect": "labels lack subject, stripes cross labels, dark plane",
+   "fix": "c15 terms, move stripes"
+  },
+  {
+   "rank": 4,
+   "frames": "7",
+   "defect": "City of Dallas and rulemaking unnamed on slide",
+   "fix": "say it in the dek"
+  },
+  {
+   "rank": 5,
+   "frames": "9",
+   "defect": "skyline, mannequin, bar unlabelled",
+   "fix": "haze, rail, label"
+  },
+  {
+   "rank": 6,
+   "frames": "5",
+   "defect": "band, ghost rows, hard dek line",
+   "fix": "ground extension, split sentence"
+  },
+  {
+   "rank": 7,
+   "frames": "caption",
+   "defect": "withholds the address",
+   "fix": "say it is on the last slide"
+  },
+  {
+   "rank": 8,
+   "frames": "2",
+   "defect": "bar equals dot spacing",
+   "fix": "rotate bar"
+  },
+  {
+   "rank": 9,
+   "frames": "6",
+   "defect": "accent pencil",
+   "fix": "graphite"
+  }
+ ]
+}

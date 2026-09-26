@@ -1,0 +1,106 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.8
+  }
+ ],
+ "weighted_score": 6.856,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "3, 6, 7",
+   "defect": "primitive cab interior",
+   "fix": "one modelled cab set"
+  },
+  {
+   "rank": 2,
+   "frames": "5 and caption",
+   "defect": "20 rests on an unattributed Breitbart sentence",
+   "fix": "Aurora filing"
+  },
+  {
+   "rank": 3,
+   "frames": "2",
+   "defect": "219 bar equals dot spacing",
+   "fix": "draw I-45 or a round-number scale"
+  },
+  {
+   "rank": 4,
+   "frames": "7",
+   "defect": "recorder beside crash history invites a link; City of Dallas unnamed",
+   "fix": "move the recorder line to 6, name the City"
+  },
+  {
+   "rank": 5,
+   "frames": "8",
+   "defect": "'APPEAL A DECISION' ambiguous",
+   "fix": "'10 DAYS TO ASK SOAH FOR REVIEW'"
+  },
+  {
+   "rank": 6,
+   "frames": "4, 5",
+   "defect": "two fleet frames",
+   "fix": "merge"
+  },
+  {
+   "rank": 7,
+   "frames": "5, 8, 4, 9",
+   "defect": "ghost rows, horizon seam, mauve ground, block skyline",
+   "fix": "haze and ground"
+  },
+  {
+   "rank": 8,
+   "frames": "9",
+   "defect": "TODAY frozen at run date",
+   "fix": "'SEPTEMBER 26TH'"
+  },
+  {
+   "rank": 9,
+   "frames": "6",
+   "defect": "rods behind dek, accent pencil",
+   "fix": "reframe, graphite"
+  },
+  {
+   "rank": 10,
+   "frames": "deck",
+   "defect": "same angle as carousel no. 5",
+   "fix": "compare angles at selection"
+  }
+ ]
+}
