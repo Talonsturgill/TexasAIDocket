@@ -292,9 +292,53 @@ export function init(THREE) {
   //      frame was wrongly judged dead, forcing the flat Canvas fallback).
   // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
   // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
+  /* TXT.skyInFrame(camera) — the share of the frame's height above the horizon, 0 to 1, from the
+   * camera's pitch and field of view (lookAt keeps roll at zero). 0 is a camera that shows no sky:
+   * pitched down past half its field of view, or orthographic and looking down. */
+  TXT.skyInFrame = function (camera) {
+    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
+    if (camera.isOrthographicCamera) return fwd.y < -0.2 ? 0 : 0.5;
+    const pitch = Math.asin(Math.max(-1, Math.min(1, fwd.y)));
+    const half = THREE.MathUtils.degToRad((camera.fov || 50) / 2) / (camera.zoom || 1);
+    if (Math.abs(pitch) >= Math.PI / 2 - 1e-4) return pitch < 0 ? 0 : 1;
+    const y = Math.tan(-pitch) / Math.tan(half);            // the horizon's height in NDC
+    return y >= 1 ? 0 : y <= -1 ? 1 : (1 - y) / 2;
+  };
+  /* TXT.enclosed(R) — true when something the frame built stands over the camera within `reach`
+   * metres: a cab roof, a ceiling, a canopy. A camera under a roof looking down is inside, and the
+   * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky. Measured with
+   * one ray straight up, never guessed from the source, so a chassis that builds its own cab needs no
+   * flag to say so (no. 34's frame 6, a page on the cab seat, is the case). The dome and the far
+   * field are the world, not a roof, and are never hit. */
+  TXT.enclosed = function (R, reach) {
+    const rc = new THREE.Raycaster(R.camera.position.clone(), new THREE.Vector3(0, 1, 0), 0.05, reach || 12);
+    rc.camera = R.camera;
+    const hit = [];
+    R.scene.traverse((m) => {
+      if (m.isMesh && m.visible && !(m.userData && (m.userData.txSky || m.userData.txFarField))) hit.push(m);
+    });
+    try { return rc.intersectObjects(hit, false).length > 0; } catch (e) { return false; }
+  };
+  // Read by scripts/carousel/print_ban.py off the render report. Keep the two in step.
+  TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
+
   TXT.snapshot = async function (R, o) {
     o = o || {};
     R.renderer.render(R.scene, R.camera);
+    /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 6 called TXT.sky and
+     * looked straight down through an orthographic camera, so every judge saw objects in a void and
+     * the showstopper test capped it in all five rounds. print_ban counted the call. This counts
+     * what the camera shows, and the render report carries it to print_ban before a panel sits. */
+    // A ROOM IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3, and a desk or a
+    // document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM, The gate).
+    if (R.world && !R._txRoom && o.skyCheck !== false && typeof console !== 'undefined') {
+      const sky = TXT.skyInFrame(R.camera);
+      if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
+      if (sky <= 0 && !TXT.enclosed(R)) console.error(TXT.NO_SKY + '. This frame calls TXT.sky and its camera shows none of ' +
+        'it (pitched below the horizon or looking straight down), with nothing overhead. A reader sees ' +
+        'objects in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
+        'frame, or stand it inside something built (a room with TXT.interior, a cab, a canopy)');
+    }
     await new Promise(r => requestAnimationFrame(() => r()));
     let ok = true, variance = -1, litCount = -1;
     try {
@@ -613,7 +657,7 @@ export function init(THREE) {
       return m;
     }
     for (const root of R.scene.children.slice()) {
-      if (skip.has(root) || root.userData.txGround || root.isLight || root.isInstancedMesh) continue;
+      if (skip.has(root) || root.userData.txGround || root.userData.txFarField || root.isLight || root.isInstancedMesh) continue;
       const box = new THREE.Box3().setFromObject(root);
       if (box.isEmpty()) continue;
       const base = box.min.y;
@@ -640,6 +684,23 @@ export function init(THREE) {
   };
 
   /* ---- the sky shader ------------------------------------------------------------------- */
+  /* THE CLEAR SKY IN ONE PLACE (2026-09-26). The dome draws it and, since this date, the fog on
+   * every material draws it too (see installSkyFog), so the two can't disagree about the colour of
+   * the horizon. h is clamped at the horizon: below it the sky is the horizon's own colour at that
+   * azimuth, glow toward the sun included. */
+  const SKY_CLEAR = `
+    vec3 txSkyClear(vec3 d, vec3 Z, vec3 Hz, vec3 Hs, vec3 sd, vec3 sc, float glow, float hglow, float span) {
+      float h = max(d.y, 0.0);
+      float cs = dot(d, sd);
+      vec2 dz = normalize(d.xz + vec2(1e-5)), sz = normalize(sd.xz + vec2(1e-5));
+      float toward = 0.5 + 0.5 * dot(dz, sz);                     // 1 on the sun's side
+      vec3 col = mix(Hz, Z, pow(clamp(h / span, 0.0, 1.0), 0.6));
+      col = mix(col, Hs, exp(-h * 22.0) * 0.8);                  // the haze band on the horizon
+      col += sc * hglow * pow(toward, 3.0) * exp(-h * 7.0);
+      col += sc * glow * (0.035 * pow(max(cs, 0.0), 3.0) + 0.30 * pow(max(cs, 0.0), 48.0)
+                          + 1.2 * pow(max(cs, 0.0), 900.0));
+      return col;
+    }`;
   const SKY_VERT = `
     varying vec3 vDir;
     void main() {
@@ -656,6 +717,7 @@ export function init(THREE) {
     float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
       return mix(mix(h12(i), h12(i + vec2(1.0, 0.0)), f.x), mix(h12(i + vec2(0.0, 1.0)), h12(i + vec2(1.0, 1.0)), f.x), f.y); }
     float fbm(vec2 p) { float s = 0.0, a = 0.5; for (int i = 0; i < 5; i++) { s += a * vnoise(p); p = p * 2.03 + 11.7; a *= 0.5; } return s; }
+    ${SKY_CLEAR}
     void main() {
       vec3 d = normalize(vDir);
       vec3 sd = normalize(uSunDir);
@@ -663,11 +725,7 @@ export function init(THREE) {
       float cs = dot(d, sd);
       vec2 dz = normalize(d.xz + vec2(1e-5)), sz = normalize(sd.xz + vec2(1e-5));
       float toward = 0.5 + 0.5 * dot(dz, sz);                     // 1 on the sun's side
-      vec3 col = mix(uHorizon, uZenith, pow(clamp(h / uSpan, 0.0, 1.0), 0.6));
-      col = mix(col, uHaze, exp(-max(h, 0.0) * 22.0) * 0.8);     // the haze band on the horizon
-      col += uSunColor * uHorizonGlow * pow(toward, 3.0) * exp(-abs(h) * 7.0);
-      col += uSunColor * uGlow * (0.035 * pow(max(cs, 0.0), 3.0) + 0.30 * pow(max(cs, 0.0), 48.0)
-                                  + 1.2 * pow(max(cs, 0.0), 900.0));
+      vec3 col = txSkyClear(d, uZenith, uHorizon, uHaze, sd, uSunColor, uGlow, uHorizonGlow, uSpan);
       if (uSunDisc > 0.0) col += uSunColor * uSunDisc * smoothstep(0.99985, 0.99993, cs);
       if (uClouds > 0.0 && h > 0.0) {
         vec2 uv = d.xz / (h + 0.08);
@@ -685,12 +743,87 @@ export function init(THREE) {
         float r = h13(cell);
         if (r > 0.9965) col += vec3(smoothstep(0.22, 0.0, length(f)) * (0.35 + 0.65 * fract(r * 173.0)) * uStars * smoothstep(0.04, 0.3, h));
       }
-      if (h < 0.0) col = mix(uEnv > 0.5 ? uGround : uHaze, uGround, clamp(-h * 5.0, 0.0, 1.0));
+      // BELOW THE HORIZON THE SKY CONTINUES IT (2026-09-26). This was flat uHaze, a colour the
+      // sky above never reaches, so wherever the world stopped short the dome showed a band.
+      if (h < 0.0) col = mix(uEnv > 0.5 ? uGround
+                               : txSkyClear(d, uZenith, uHorizon, uHaze, sd, uSunColor, uGlow, uHorizonGlow, uSpan),
+                             uGround, clamp(-h * 5.0, 0.0, 1.0));
       gl_FragColor = vec4(col, 1.0);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
       if (uEnv < 0.5) gl_FragColor.rgb += (h12(gl_FragCoord.xy) - 0.5) / 255.0;   // no banding
     }`;
+
+  /* THE FOG IS THE SKY'S OWN COLOUR (2026-09-26). three.js mixes fog in AFTER tone mapping, with a
+   * fog colour that is never tone mapped, while the dome the fogged ground meets IS tone mapped. So
+   * a fully fogged ground printed the raw haze: a flat strip about 40 levels darker than the sky
+   * right above it on carousel no. 34, with a hard top edge on the horizon. All three judges read
+   * it as sea in all five rounds, and "extend the ground" could never fix it, because the strip was
+   * the ground. The fog chunks are rewritten for this page's world: the fog colour is the clear sky
+   * in the fragment's own direction, horizon glow toward the sun included, put through the same
+   * tone curve and colour encoding as the dome, so a fogged ground dissolves into the sky with no
+   * line. The world is baked in as constants, because a chunk can't add uniforms to every
+   * material, and a page renders one world. Called by TXT.sky before anything compiles. */
+  function installSkyFog(W, sunDir) {
+    const c = (hex) => { const k = new THREE.Color(hex); return `vec3(${k.r.toFixed(6)}, ${k.g.toFixed(6)}, ${k.b.toFixed(6)})`; };
+    const f = (x) => Number(x).toFixed(6);
+    const s = sunDir.clone().normalize();
+    THREE.ShaderChunk.fog_pars_vertex = '#ifdef USE_FOG\n\tvarying float vFogDepth;\n\tvarying vec3 vTxFogDir;\n#endif';
+    // the view ray in world space: the transpose of the view rotation applied to the view position
+    THREE.ShaderChunk.fog_vertex = '#ifdef USE_FOG\n\tvFogDepth = - mvPosition.z;\n' +
+      '\tvTxFogDir = ( vec4( isOrthographic ? vec3( 0.0, 0.0, - 1.0 ) : mvPosition.xyz, 0.0 ) * viewMatrix ).xyz;\n#endif';
+    THREE.ShaderChunk.fog_pars_fragment = `#ifdef USE_FOG
+	uniform vec3 fogColor;
+	varying float vFogDepth;
+	varying vec3 vTxFogDir;
+	#ifdef FOG_EXP2
+		uniform float fogDensity;
+	#else
+		uniform float fogNear;
+		uniform float fogFar;
+	#endif
+	${SKY_CLEAR}
+	vec3 txFogSky( vec3 d ) {
+		return txSkyClear( d, ${c(W.zenith)}, ${c(W.horizon)}, ${c(W.haze)}, vec3( ${f(s.x)}, ${f(s.y)}, ${f(s.z)} ),
+			${c(W.sun)}, ${f(W.glow != null ? W.glow : 1)}, ${f(W.horizonGlow || 0)}, ${f(W.span || 0.45)} );
+	}
+	// the fog colour as this fragment writes it: the sky in its direction, tone mapped and encoded
+	// exactly as the dome is. Kit materials with their own haze (landscape.js aerial) mix toward it.
+	#define TX_SKY_FOG 1
+	vec3 txFogOut( vec3 v ) {
+		vec3 c = txFogSky( normalize( v + vec3( 0.0, 1e-6, 0.0 ) ) );
+		#if defined( TONE_MAPPING )
+			c = toneMapping( c );
+		#endif
+		return linearToOutputTexel( vec4( c, 1.0 ) ).rgb;
+	}
+#endif`;
+    THREE.ShaderChunk.fog_fragment = `#ifdef USE_FOG
+	#ifdef FOG_EXP2
+		float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );
+	#else
+		float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );
+	#endif
+	gl_FragColor.rgb = mix( gl_FragColor.rgb, txFogOut( vTxFogDir ), fogFactor );
+#endif`;
+  }
+
+  /* THE FAR FIELD TAKES THE LOOK OF WHATEVER GROUND THE FRAME BUILT, so where that ground ends the
+   * world goes on in the same surface rather than in a new colour. No bump (it is all distance) and
+   * no vertex colour (its geometry carries none, and a missing attribute reads as black). */
+  function styleFarField(R) {
+    const ff = R._txFarField, look = R._txGroundLook;
+    if (!ff || !look) return;
+    const m = look.material.clone();
+    m.depthWrite = false; m.bumpMap = null; m.vertexColors = false;
+    ff.material.dispose(); ff.material = m;
+    if (look.metresPerUV) {               // one UV unit spans the same metres as on the frame's ground
+      const r = ff.geometry.parameters.radius, uv = ff.geometry.attributes.uv, uv0 = ff.userData.uv0;
+      const k = (2 * r) / look.metresPerUV;  // always from the untouched UVs, so a second call can't compound
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, (uv0[2 * i] - 0.5) * k, (uv0[2 * i + 1] - 0.5) * k);
+      uv.needsUpdate = true;
+    }
+  }
 
   function skyMaterial(o, sunDir, forEnv) {
     const lin = (c) => new THREE.Color(c);
@@ -760,10 +893,17 @@ export function init(THREE) {
     }
     o = o || {};
     const sunDir = TXT.sunDir(W);
+    /* THE FAR PLANE LIES PAST THE FOG (2026-09-26). Frame 1 of no. 34 built a 12 km ground and the
+     * default 1 km far plane cut it off, so the sky showed through below the horizon. The camera
+     * now reaches the distance at which the fog has swallowed everything, and the fog is the sky. */
+    const fog = R.scene.fog;
+    const reach = fog ? (fog.isFogExp2 ? 3.2 / Math.max(fog.density, 1e-5) : fog.far * 1.1) : 0;
+    if (reach > R.camera.far) { R.camera.far = Math.min(reach, 60000); R.camera.updateProjectionMatrix(); }
+    if (fog && o.tintFog !== false) installSkyFog(W, sunDir);
     const dome = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), skyMaterial(W, sunDir, false));
     const far = R.camera.far * 0.92;
     dome.scale.setScalar(far);
-    dome.frustumCulled = false; dome.renderOrder = -1000;
+    dome.frustumCulled = false; dome.renderOrder = -1000; dome.userData.txSky = true;
     dome.onBeforeRender = function (r, s, cam) { dome.position.copy(cam.position); dome.updateMatrixWorld(); };
     dome.position.copy(R.camera.position);
     R.scene.add(dome);
@@ -780,8 +920,29 @@ export function init(THREE) {
       pm.dispose();
       e.geometry.dispose(); e.material.dispose();
     }
-    // fog in the horizon's own hue (DESIGN_DOCTRINE 4): the ground dissolves into the sky
+    // fog in the horizon's own hue (DESIGN_DOCTRINE 4): the ground dissolves into the sky. The colour
+    // is kept for anything that reads it, and installSkyFog is what the materials draw.
     if (R.scene.fog && o.tintFog !== false) R.scene.fog.color = new THREE.Color(W.haze);
+    /* THE WORLD REACHES THE HORIZON (2026-09-26). A frame's own ground stops somewhere, and past it
+     * the dome showed. The far field is a ground plane drawn right after the dome and writing no
+     * depth, so it lies behind everything and hides nothing: it only fills what no frame built, in
+     * the look of the frame's own ground once TXT.ground names one, and the fog carries it into the
+     * sky. It follows the camera, so its edge is always at the far plane. farField:false leaves it
+     * out, for a frame that is meant to hang over nothing. */
+    if (R.scene.fog && o.farField !== false && !R._txFarField) {
+      const geo = new THREE.CircleGeometry(R.camera.far * 0.9, 128);
+      const ff = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: W.ground, roughness: 1,
+        metalness: 0, depthWrite: false }));
+      ff.rotation.x = -Math.PI / 2; ff.position.y = o.groundY || 0;
+      ff.renderOrder = -999; ff.frustumCulled = false;
+      ff.userData.txFarField = true; ff.userData.uv0 = geo.attributes.uv.array.slice();
+      ff.onBeforeRender = function (r, sc, cam) {
+        ff.position.x = cam.position.x; ff.position.z = cam.position.z; ff.updateMatrixWorld();
+      };
+      R.scene.add(ff);
+      R._txFarField = ff;
+      styleFarField(R);
+    }
     R.world = W;
     return dome;
   };
@@ -854,7 +1015,11 @@ export function init(THREE) {
   const _flatGround = TXT.ground;
   TXT.ground = function (R, o) {
     o = o || {};
-    if (!o.surface) { const f = _flatGround(R, o); f.userData.txGround = true; return f; }
+    if (!o.surface) {
+      const f = _flatGround(R, o); f.userData.txGround = true;
+      reachGround(R, o.size || 60); R._txGroundLook = { material: f.material }; styleFarField(R);
+      return f;
+    }
     const size = o.size || 900, tile = o.tile || 6;
     const T = surfaceTextures(o, R.renderer);
     [T.map, T.roughnessMap, T.bumpMap].forEach(t => t.repeat.set(size / tile, size / tile));
@@ -885,8 +1050,15 @@ export function init(THREE) {
     const g = new THREE.Mesh(geo, mat);
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
     g.receiveShadow = true; g.userData.txGround = true; R.scene.add(g);
+    reachGround(R, size);
+    R._txGroundLook = { material: mat, metresPerUV: size }; styleFarField(R);
     return g;
   };
+  // A ground the camera can't reach the edge of is a ground clipped short of the horizon.
+  function reachGround(R, size) {
+    const want = Math.min(size * 0.75, 60000);
+    if (want > R.camera.far) { R.camera.far = want; R.camera.updateProjectionMatrix(); }
+  }
 
   /* ---- contact shadow: the dark core where a thing meets the ground ------------------------
    * A soft falloff sized to the object's own footprint and turned with it. Cast shadows say
@@ -967,6 +1139,7 @@ export function init(THREE) {
    * frame that calls this, before its kept snapshot, as standing in a place. */
   TXT.interior = function (R, o) {
     o = o || {};
+    R._txRoom = true;   // a deliberate interior answers the showstopper test without a sky in frame
     const w = o.w || 12, d = o.d || 10, h = o.h || 4.2, t = 0.2;
     const room = new THREE.Group();
     TXT.ground(R, { surface: o.floor || 'concrete', size: Math.max(w, d) * 3, tile: o.tile || 3, joints: o.joints });
