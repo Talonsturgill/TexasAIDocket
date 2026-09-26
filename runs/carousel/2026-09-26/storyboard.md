@@ -53,7 +53,7 @@ one object every absence is shaped around: the driver gone (c28), the observer's
 
 **INTERSTATE 45 AT BLUE HOUR IN LATE SEPTEMBER.** The chassis is
 `assets/js/deck/2026-09-26-fortyfive.js` and every frame loads it. It declares `sky: 'blueHour'` and
-one light at azimuth -160, elevation 32, the high-mast lamps' key inside the preset's lamp range of
+one light at azimuth 25, elevation 32, the high-mast lamps' key inside the preset's lamp range of
 25 to 45. Why this light: freight that runs without a driver runs at the hour nobody is watching,
 and blue hour is the one hour a truck is known by its lamps rather than its driver. From outside the
 cab glass mirrors the sky, which is the question the rule leaves open. From inside, the dash lights

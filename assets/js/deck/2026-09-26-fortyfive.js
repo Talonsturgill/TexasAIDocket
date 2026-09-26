@@ -31,7 +31,7 @@
    * deep blue, which is the deck's value arc. */
   TXDECK.declare({
     world: "fortyfive",
-    light: { az: -160, el: 32 },
+    light: { az: 25, el: 32 },   /* from the camera side of the lane, so the white fleet paint faces its key (round 3 panel) */
     /* blueHour, tuned once for the deck: the haze is the cool horizon blue rather than the preset's
      * peach, because a peach haze over a blue-grey ground grades every frame mauve (round 1 critics,
      * five of five). The amber stays in the sky's seam and the lamps, where it belongs. */
