@@ -326,25 +326,30 @@ export function init(THREE) {
   // A CUTOUT'S TEXEL DECIDES (Codex, PR 369). An alpha-tested or alpha-mapped material draws only
   // the texels that clear its alphaTest, and the kit builds leaf cards, perforated steel and mesh
   // panels that way, so a hit reads the texture at the hit's own uv: the map's alpha times the
-  // alphaMap's green, times the opacity, as three.js shades it. Each texture is read back once.
+  // alphaMap's green, times the opacity, as three.js shades it. Each texture is read back once per
+  // version, so a canvas redrawn with needsUpdate between a preview and the kept snapshot is read
+  // again, the way WebGL uploads it again (Codex, PR 369).
   const texels = new WeakMap();
   const texelAt = (tex, uv) => {
     if (!tex || !uv) return null;
-    let t = texels.get(tex);
-    if (t === undefined) {
-      t = null;
+    let e = texels.get(tex);
+    if (!e || e.v !== tex.version) {
+      let t = null;
       try {
         const img = tex.image;
         if (img && img.data && img.width && img.height) {
-          t = { w: img.width, h: img.height, d: img.data, ch: Math.round(img.data.length / (img.width * img.height)) };
+          // a copy, so data changed in place without needsUpdate reads as the GPU still shows it
+          t = { w: img.width, h: img.height, d: img.data.slice(), ch: Math.round(img.data.length / (img.width * img.height)) };
         } else if (img && img.width && img.height && typeof document !== 'undefined') {
           const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
           const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(img, 0, 0);
           t = { w: img.width, h: img.height, d: x.getImageData(0, 0, img.width, img.height).data, ch: 4 };
         }
-      } catch (e) { t = null; }
-      texels.set(tex, t);
+      } catch (err) { t = null; }
+      e = { v: tex.version, t };
+      texels.set(tex, e);
     }
+    const t = e.t;
     if (!t || !(t.ch >= 1)) return null;
     if (tex.matrixAutoUpdate) tex.updateMatrix();
     const q = tex.transformUv(uv.clone());
@@ -364,6 +369,9 @@ export function init(THREE) {
   const seenHit = (h, R) => {
     const mat = slotOf(h);
     if (!shows(mat) || clippedAway(h.point, mat, R.renderer)) return false;
+    // A WIREFRAME DRAWS ITS EDGES AND NOT ITS FACES, while a ray meets the faces (Codex, PR 369), so a
+    // wireframe box is no wall and no roof.
+    if (mat.wireframe) return false;
     if (!cutout(mat)) return true;
     const a = alphaAt(h, mat);
     if (a === null) return false;                 // a cutout whose texel can't be read is no wall

@@ -260,6 +260,45 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   TXT.rig(Rw, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
   Rw.scene.traverse((o) => o.layers.set(1)); Rw.room.traverse((o) => o.layers.set(0)); Rw.camera.layers.set(1);
   const wallErrors = await capture(() => TXT.snapshot(Rw));
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  const shelterCover = cover(Rr);
+  return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
+           crossErrors, domeErrors, glassErrors, optErrors, layerErrors, veilErrors, wallErrors,
+           shelterCover,
+           orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
+           outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
+           shown: TXT.SKY_SHOWN };
+}`;
+
+// What counts as inside, what a hit is, the rooms, the verdicts after the pixels: the second page,
+// so neither page runs near the harness's time limit on a slower CI runner.
+const ENCLOSURE = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  // A closed shelter around a camera at 1.6 m: a roof and four walls, 3 by 3 by 2.6 m. Covers all
+  // of the sky above the camera, where an interior covers 0.8 and a carport roof alone 0.59.
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => {
+    const Rn = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+    return Rn;
+  };
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
   // A ROOF, A LAMP, A ROOM FAR BELOW: SOMETHING BUILT IS NOT AN INTERIOR (Codex, PR 369). One ray
   // straight up took each of the first two for a roof, and the third was "looked into" from 300 m.
   // A carport roof alone, 3 by 3 m and 0.8 m over the camera, covers 0.59 of the sky above it.
@@ -268,7 +307,6 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const carport = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
   carport.position.set(0, 2.4, 0); Rc.scene.add(carport);
   const carportErrors = await capture(() => TXT.snapshot(Rc));
-  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
   const carportCover = cover(Rc);
   // a lamp head 5 m over the camera, straight up, where the old single ray met it
   const Rq = world(40);
@@ -346,15 +384,25 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const clearCut = await cutoutCase(new T.MeshStandardMaterial({ map: card(null), alphaTest: 0.5 }));
   const blackMask = await cutoutCase(new T.MeshStandardMaterial({ color: 0x333333, alphaMap: card('#000'), alphaTest: 0.5 }));
   const solidCut = await cutoutCase(new T.MeshStandardMaterial({ map: card('#555'), alphaTest: 0.5 }));
-  const shelterCover = cover(Rr);
-  return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
-           crossErrors, domeErrors, glassErrors, optErrors, layerErrors, veilErrors, wallErrors,
-           carportErrors, carportCover, lampErrors, farErrors, shelterCover,
+  // A WIREFRAME SHELTER (Codex, PR 369): its edges are drawn and its faces aren't, so it is no shelter
+  const wire = await cutoutCase(new T.MeshStandardMaterial({ color: 0x333333, wireframe: true }));
+  // A CUTOUT REDRAWN BETWEEN SNAPSHOTS (Codex, PR 369): an opaque texture for the preview, then the
+  // same canvas cleared with needsUpdate before the kept snapshot. The kept frame draws no shelter.
+  const redraw = await (async () => {
+    const tex = card('#555');
+    const Rc3 = world(40);
+    TXT.frame(Rc3, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rc3, [4, 8, 4]);
+    Rc3.scene.add(shelter(new T.MeshStandardMaterial({ map: tex, alphaTest: 0.5 })));
+    const errors = await capture(async () => {
+      await TXT.snapshot(Rc3);
+      tex.image.getContext('2d').clearRect(0, 0, 8, 8); tex.needsUpdate = true;
+      await TXT.snapshot(Rc3);
+    });
+    return { errors, cover: cover(Rc3) };
+  })();
+  return { carportErrors, carportCover, lampErrors, farErrors,
            slotErrors, slotCover, farPlaneErrors, clipErrors, roomOnlyErrors, roomHiddenErrors, roomFarErrors,
-           blackOk: blackShot && blackShot.ok, blackErrors, clearCut, blackMask, solidCut,
-           orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
-           outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
-           shown: TXT.SKY_SHOWN };
+           blackOk: blackShot && blackShot.ok, blackErrors, clearCut, blackMask, solidCut, wire, redraw };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -374,7 +422,7 @@ async function run(name, scene) {
   await page.goto(pathToFileURL(file).href, { waitUntil: 'load' });
   // != null, never !== null: before the module runs, __result is undefined, and a wait on !== null
   // passed at once on a slower browser and read nothing (found on the headless shell CI uses).
-  await page.waitForFunction(() => window.__result != null, null, { timeout: 120000 });
+  await page.waitForFunction(() => window.__result != null, null, { timeout: 300000 });
   const result = await page.evaluate(() => window.__result);
   await page.close();
   return { result, consoleErrors, pageErrors };
@@ -402,6 +450,9 @@ for (const [size, surface] of [[900, true], [12000, false]]) {
 }
 
 const g = await run('ground_only', GROUND_ONLY);
+const e = await run('enclosure', ENCLOSURE);
+check('the enclosure page renders with no page error and no scene error',
+      !e.result.error && e.pageErrors.length === 0, JSON.stringify({ error: e.result.error, page: e.pageErrors }));
 check('a camera looking straight down shows no sky', g.result.sky === 0, JSON.stringify(g.result));
 check('an orthographic camera pitched 5 degrees down shows no sky, and says so',
       g.result.orthoSky === 0 && Array.isArray(g.result.orthoErrors) &&
@@ -468,49 +519,55 @@ check(`a camera inside a shelter the frame built looks down from inside, and is 
       !g.result.roofErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify({ cover: g.result.shelterCover, errors: g.result.roofErrors }));
 check(`a carport roof alone is not an interior: looking down beneath it IS flagged ` +
-      `(it covers ${(g.result.carportCover || 0).toFixed(2)} of the sky above the camera)`,
-      g.result.carportCover < 0.8 && Array.isArray(g.result.carportErrors) &&
-      g.result.carportErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify({ cover: g.result.carportCover, errors: g.result.carportErrors }));
+      `(it covers ${(e.result.carportCover || 0).toFixed(2)} of the sky above the camera)`,
+      e.result.carportCover < 0.8 && Array.isArray(e.result.carportErrors) &&
+      e.result.carportErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ cover: e.result.carportCover, errors: e.result.carportErrors }));
 check('a lamp head straight over the camera is no roof: looking down beneath it IS flagged',
-      Array.isArray(g.result.lampErrors) && g.result.lampErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify(g.result.lampErrors));
+      Array.isArray(e.result.lampErrors) && e.result.lampErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(e.result.lampErrors));
 check(`a shelter whose boxes show one material slot in six is no shelter: the frame IS flagged ` +
-      `(it covers ${(g.result.slotCover || 0).toFixed(2)} of the sky above the camera)`,
-      g.result.slotCover < 0.8 && Array.isArray(g.result.slotErrors) &&
-      g.result.slotErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify({ cover: g.result.slotCover, errors: g.result.slotErrors }));
+      `(it covers ${(e.result.slotCover || 0).toFixed(2)} of the sky above the camera)`,
+      e.result.slotCover < 0.8 && Array.isArray(e.result.slotErrors) &&
+      e.result.slotErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ cover: e.result.slotCover, errors: e.result.slotErrors }));
 check('a shell 8 m out, past a 5 m far plane, is in no pixel and is no shelter: the frame IS flagged',
-      Array.isArray(g.result.farPlaneErrors) && g.result.farPlaneErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify(g.result.farPlaneErrors));
+      Array.isArray(e.result.farPlaneErrors) && e.result.farPlaneErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(e.result.farPlaneErrors));
 check('a shelter a clipping plane cuts away is no shelter: the frame IS flagged',
-      Array.isArray(g.result.clipErrors) && g.result.clipErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify(g.result.clipErrors));
+      Array.isArray(e.result.clipErrors) && e.result.clipErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(e.result.clipErrors));
 check('a frame that builds only a room and faces its back wall prints the room\'s clean verdict',
-      Array.isArray(g.result.roomOnlyErrors) && g.result.roomOnlyErrors.length === 1 &&
-      g.result.roomOnlyErrors[0].startsWith('TXT: ROOM IN FRAME'), JSON.stringify(g.result.roomOnlyErrors));
+      Array.isArray(e.result.roomOnlyErrors) && e.result.roomOnlyErrors.length === 1 &&
+      e.result.roomOnlyErrors[0].startsWith('TXT: ROOM IN FRAME'), JSON.stringify(e.result.roomOnlyErrors));
 check('...the same room hidden before the kept snapshot prints the no-room line',
-      Array.isArray(g.result.roomHiddenErrors) && g.result.roomHiddenErrors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')),
-      JSON.stringify(g.result.roomHiddenErrors));
+      Array.isArray(e.result.roomHiddenErrors) && e.result.roomHiddenErrors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')),
+      JSON.stringify(e.result.roomHiddenErrors));
 check('...and so does the room seen from 300 m straight above',
-      Array.isArray(g.result.roomFarErrors) && g.result.roomFarErrors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')),
-      JSON.stringify(g.result.roomFarErrors));
+      Array.isArray(e.result.roomFarErrors) && e.result.roomFarErrors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')),
+      JSON.stringify(e.result.roomFarErrors));
 check('a render that comes out black prints no render, never a clean verdict',
-      g.result.blackOk === false && Array.isArray(g.result.blackErrors) && g.result.blackErrors.length === 1 &&
-      g.result.blackErrors[0].startsWith('TXT: NO RENDER IN FRAME'),
-      JSON.stringify({ ok: g.result.blackOk, errors: g.result.blackErrors }));
+      e.result.blackOk === false && Array.isArray(e.result.blackErrors) && e.result.blackErrors.length === 1 &&
+      e.result.blackErrors[0].startsWith('TXT: NO RENDER IN FRAME'),
+      JSON.stringify({ ok: e.result.blackOk, errors: e.result.blackErrors }));
 {
-  const cc = g.result.clearCut || {}, bm = g.result.blackMask || {}, sc = g.result.solidCut || {};
+  const cc = e.result.clearCut || {}, bm = e.result.blackMask || {}, sc = e.result.solidCut || {};
   const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
   check(`a shelter of alpha-tested cutouts with a clear texture draws nothing and is no shelter ` +
         `(it covers ${cc.cover} of the sky above the camera)`, cc.cover === 0 && flagged(cc), JSON.stringify(cc));
   check(`...nor is one whose alphaMap is black (it covers ${bm.cover})`, bm.cover === 0 && flagged(bm), JSON.stringify(bm));
   check(`...while the same cutouts with an opaque texture are a shelter (they cover ${sc.cover})`,
         sc.cover >= 0.8 && !flagged(sc), JSON.stringify(sc));
+  const wf = e.result.wire || {}, rd = e.result.redraw || {};
+  check(`a wireframe shelter draws its edges and not its faces, and is no shelter (it covers ${wf.cover})`,
+        wf.cover === 0 && flagged(wf), JSON.stringify(wf));
+  check('a cutout cleared between the preview and the kept snapshot is no shelter in the kept frame',
+        Array.isArray(rd.errors) && rd.errors.length === 2 && rd.errors[0].startsWith('TXT: SKY IN FRAME') &&
+        rd.errors[1].startsWith('TXT: NO SKY IN FRAME') && rd.cover === 0, JSON.stringify(rd));
 }
 check('a room 300 m straight below the camera is no interior shot: the frame IS flagged',
-      Array.isArray(g.result.farErrors) && g.result.farErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify(g.result.farErrors));
+      Array.isArray(e.result.farErrors) && e.result.farErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(e.result.farErrors));
 check('...and the engine says so on the console, in the words print_ban reads',
       g.consoleErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')) && g.result.marker === 'TXT: NO SKY IN FRAME',
       JSON.stringify(g.consoleErrors));

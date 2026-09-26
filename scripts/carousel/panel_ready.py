@@ -183,7 +183,8 @@ def check_pointers(base: Path, report: dict) -> list[str]:
 
 
 def check_report_complete(base: Path, report: dict) -> list[str]:
-    """THE RENDER REPORT HOLDS A RECORD OF EVERY FRAME ON DISK (Codex, PR 369).
+    """THE RENDER REPORT AND THE RENDER DIRECTORY ARE THE DECK ON DISK, NO MORE AND NO LESS
+    (Codex, PR 369).
 
     Every group here that reads the render reads `render_report.json`, and a frame with no record in
     it is skipped by all of them in silence. It happens: when the report is unreadable, `render.py
@@ -191,15 +192,35 @@ def check_report_complete(base: Path, report: dict) -> list[str]:
     subset, so the sky, the occlusion, the exemptions and the contrast of the other eight frames go
     unread into a scoring round. `print_ban` compares the report with the slides, and it runs in
     Phase 12b, not before each round. This does the same comparison before each round.
+
+    The other direction matters as much. A frame a repair deleted or renamed keeps its record in the
+    report, which `render.py` merges into, and its PNG in `render/`, and `assemble.py` builds the
+    PDF from every `render/slide-*.png`. So a record or a PNG with no source in `slides/` is a frame
+    the panel would read and the PDF would ship that the deck no longer has.
     """
     listed = {str(rec["file"]) for rec in (report.get("slides") or [])
               if isinstance(rec, dict) and rec.get("file")}
-    missing = [f.name for f in sorted((base / "slides").glob("slide-*.html")) if f.name not in listed]
-    if not missing:
-        return []
-    return [f"the render report holds no record of {', '.join(missing)}, so every check here that "
-            f"reads the render skipped {'it' if len(missing) == 1 else 'them'}. Render the deck, run "
-            f"qa.py, then this again"]
+    on_disk = {f.name for f in (base / "slides").glob("slide-*.html")}
+    missing, stale = sorted(on_disk - listed), sorted(listed - on_disk)
+    orphans = sorted(p.name for p in (base / "render").glob("slide-*.png")
+                     if p.with_suffix(".html").name not in on_disk)
+    out = []
+    if missing:
+        out.append(f"the render report holds no record of {', '.join(missing)}, so every check here "
+                   f"that reads the render skipped {'it' if len(missing) == 1 else 'them'}. Render the "
+                   f"deck, run qa.py, then this again")
+    if stale:
+        out.append(f"the render report still holds {', '.join(stale)}, which "
+                   f"{'is' if len(stale) == 1 else 'are'} no longer in slides/, so the panel would read "
+                   f"a frame the deck doesn't have. Render the whole deck without --only, which writes "
+                   f"a fresh report, then qa.py, then this again")
+    if orphans:
+        out.append(f"render/ still holds {', '.join(orphans)} with no source in slides/, and "
+                   f"assemble.py builds the PDF from every render/slide-*.png, so the PDF would ship "
+                   f"{'it' if len(orphans) == 1 else 'them'}. Delete "
+                   f"{'it' if len(orphans) == 1 else 'them'} from out/<date>/render, assemble again, "
+                   f"then run this again")
+    return out
 
 
 def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
@@ -242,6 +263,16 @@ def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
         if name and name not in measured:
             problems.append(f"{name}: render/machine_qa.json has no record of it, so its contrast "
                             f"was never measured. {again}")
+    # A RECORD THAT CARRIES A FAIL IS NOT A CLEAN MEASUREMENT (Codex, PR 369). qa.py files "png
+    # missing" on the frame and skips the frame before it counts the deck's fails, so it exits 0 on
+    # a deck with a frame it never measured. Any fail on a frame's record stops the panel here,
+    # because Phase 11 ships no FAIL and a panel on one is a round spent twice.
+    for q in qa["slides"]:
+        if isinstance(q, dict) and q.get("fails"):
+            fails = [str(f) for f in q["fails"]]
+            problems.append(f"{q.get('file') or '?'}: machine QA failed it ({fails[0][:120]}"
+                            f"{f', and {len(fails) - 1} more' if len(fails) > 1 else ''}). Fix it, "
+                            f"render it, run qa.py, then this again")
     return qa, problems
 
 
@@ -1484,6 +1515,34 @@ def self_test() -> int:
         _extra.unlink()
         ok("...and without it the same deck is ready again", _run() == 0,
            str(check_report_complete(_q, _rep)))
+        # THE OTHER DIRECTION (Codex, PR 369): a record and a PNG for a frame a repair deleted.
+        _two = {"slides": list(_rep["slides"]) + [{"file": "slide-02.html", "text_nodes": []}]}
+        ok("a report record for a frame no longer in slides/ stops the panel, and is named",
+           any("still holds slide-02.html" in p for p in check_report_complete(_q, _two)),
+           str(check_report_complete(_q, _two)))
+        _orphan = _q / "render" / "slide-03.png"
+        try:
+            from PIL import Image as _Im
+            import numpy as _np
+            _Im.fromarray(_np.random.default_rng(3).integers(0, 256, (80, 64), dtype=_np.uint8)
+                          ).save(_orphan)
+        except ImportError:
+            _orphan.write_bytes(b"\x89PNG\r\n\x1a\n")
+        ok("a PNG in render/ with no source in slides/ stops the panel, because the PDF would ship it",
+           _run() == 1 and any("slide-03.png" in p and "assemble.py" in p
+                               for p in check_report_complete(_q, _rep)), str(check_report_complete(_q, _rep)))
+        _orphan.unlink()
+        # A QA RECORD THAT CARRIES A FAIL (Codex, PR 369): qa.py files "png missing" and exits 0.
+        _mqa.write_text(json.dumps({"slides": [{"file": "slide-01.html", "fails": ["png missing"],
+                                                "warns": []}]}), encoding="utf-8")
+        _t = _rpt.stat().st_mtime + 2
+        _os.utime(_mqa, (_t, _t))
+        ok("a machine QA record that failed its frame, png missing, stops the panel",
+           _run() == 1 and any("png missing" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        ok("...and with qa.py clean again, the same deck is ready", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
         _edition("A person enters in one sentence.")
         ok("carousel no. 33's 'A person enters in one sentence' in the web edition stops the "
            "panel", _run() == 1, "the deck reached the judges")
