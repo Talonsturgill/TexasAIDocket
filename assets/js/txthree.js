@@ -650,12 +650,22 @@ export function init(THREE) {
   const SKY_FRAG = `
     varying vec3 vDir;
     uniform vec3 uZenith, uHorizon, uHaze, uGround, uSunDir, uSunColor;
-    uniform float uSunDisc, uGlow, uHorizonGlow, uSpan, uClouds, uStars, uSeed, uEnv;
+    uniform float uSunDisc, uGlow, uHorizonGlow, uSpan, uClouds, uStars, uSeed, uEnv, uFogMatch, uCamY, uFogD, uFogNear, uFogFar, uFade;
     float h12(vec2 p) { vec3 q = fract(vec3(p.xyx) * 0.1031 + uSeed * 0.0001); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
     float h13(vec3 p) { p = fract(p * 0.1031 + uSeed * 0.0001); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
     float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
       return mix(mix(h12(i), h12(i + vec2(1.0, 0.0)), f.x), mix(h12(i + vec2(0.0, 1.0)), h12(i + vec2(1.0, 1.0)), f.x), f.y); }
     float fbm(vec2 p) { float s = 0.0, a = 0.5; for (int i = 0; i < 5; i++) { s += a * vnoise(p); p = p * 2.03 + 11.7; a *= 0.5; } return s; }
+    // THE SKY ON THE HORIZON LINE, in the direction d. Exactly what main() paints at h = 0 without
+    // the disc, so the dome below the line and the fogged ground (installSkyFog) both start from the
+    // colour the sky actually has right above them. See installSkyFog for the seam this closes.
+    vec3 horizonSky(vec3 d, vec3 sd) {
+      vec2 dz = normalize(d.xz + vec2(1e-5)), sz = normalize(sd.xz + vec2(1e-5));
+      float toward = 0.5 + 0.5 * dot(dz, sz);
+      float cs = max(dot(vec3(dz.x, 0.0, dz.y), sd), 0.0);
+      return mix(uHorizon, uHaze, 0.8) + uSunColor * uHorizonGlow * pow(toward, 3.0)
+        + uSunColor * uGlow * (0.035 * pow(cs, 3.0) + 0.30 * pow(cs, 48.0) + 1.2 * pow(cs, 900.0));
+    }
     void main() {
       vec3 d = normalize(vDir);
       vec3 sd = normalize(uSunDir);
@@ -685,7 +695,23 @@ export function init(THREE) {
         float r = h13(cell);
         if (r > 0.9965) col += vec3(smoothstep(0.22, 0.0, length(f)) * (0.35 + 0.65 * fract(r * 173.0)) * uStars * smoothstep(0.04, 0.3, h));
       }
-      if (h < 0.0) col = mix(uEnv > 0.5 ? uGround : uHaze, uGround, clamp(-h * 5.0, 0.0, 1.0));
+      // Below the line: the IBL wants the ground's colour. The visible dome shows wherever the
+      // ground plane stops, at its edge or at the far plane, and under a sky fog it stands in for
+      // the ground that WOULD be there: at the distance a ray this far below the line meets flat
+      // ground from the camera's height, fogged by the scene's own fog toward the horizon sky.
+      // At the far plane that is fully fogged, which is what closes the band no. 34 frame 5 had
+      // at its clip line (row 226). The old blend, still used without a sky fog, went toward
+      // uGround by angle alone and drew that band.
+      if (h < 0.0) {
+        if (uEnv > 0.5) col = uGround;
+        else if (uFogMatch > 0.5) {
+          float dist = uCamY / max(-h, 1e-4);
+          float f = uFogD > 0.0 ? 1.0 - exp(-uFogD * uFogD * dist * dist) : smoothstep(uFogNear, uFogFar, dist);
+          // the same grazing fade TX_GROUND gives the plane, so both sides of its edge agree (Codex, #368)
+          if (uFade > 0.0) f = max(f, 1.0 - smoothstep(0.0, uFade, -h));
+          col = mix(uGround, horizonSky(d, sd), f);
+        } else col = mix(uHaze, uGround, clamp(-h * 5.0, 0.0, 1.0));
+      }
       gl_FragColor = vec4(col, 1.0);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
@@ -703,11 +729,99 @@ export function init(THREE) {
         uSunDisc: { value: (W.sunDisc || 0) * (forEnv ? 3.0 : 1.0) }, uGlow: { value: W.glow != null ? W.glow : 1 },
         uHorizonGlow: { value: W.horizonGlow || 0 }, uSpan: { value: W.span || 0.45 },
         uClouds: { value: W.clouds || 0 }, uStars: { value: W.stars || 0 },
-        uSeed: { value: (W.seed || 20260924) % 9973 }, uEnv: { value: forEnv ? 1 : 0 },
+        uSeed: { value: (W.seed || 20260924) % 9973 }, uEnv: { value: forEnv ? 1 : 0 }, uFogMatch: { value: 0 },
+        uCamY: { value: 2 }, uFogD: { value: 0 }, uFogNear: { value: 0 }, uFogFar: { value: 1 },
+        uFade: { value: W.horizonFade != null ? W.horizonFade : 0.025 },
       },
       vertexShader: SKY_VERT, fragmentShader: SKY_FRAG,
       side: THREE.BackSide, depthWrite: false, fog: false,
     });
+  }
+
+  /* THE FOG IS THE SKY, 2026-09-26. The ground used to meet the sky in a hard band that the judges
+   * read as sea or as a slab seam on six frames of carousel no. 34, and named in every round of
+   * no. 33 and no. 34. Two faults stacked, measured on no. 34 frame 8 at column 1080: the sky just
+   * above the line was (191,189,212) and the first row of ground was (133,133,168), falling to 65
+   * within 60 rows.
+   *
+   *   1. THE FOG WAS ONE FLAT COLOUR, `W.haze`, while the sky over it carries the horizon mix and
+   *      the sun's glow, which change with direction. Fully fogged ground could only reach haze.
+   *   2. THE FOG WAS NEVER TONE MAPPED. three.js mixes fog in AFTER tone mapping and colour space,
+   *      so `fogColor` lands raw while the dome beside it is tone mapped at the frame's exposure.
+   *      A frame that raised its exposure (no. 34 frame 8 ran it at +0.4) widened the gap.
+   *
+   * So when a frame stands under TXT.sky, every fogged material mixes toward the sky's own colour
+   * on the horizon IN ITS VIEW DIRECTION, through the same tone curve and output transform the dome
+   * uses, and the ground (TX_GROUND, set by TXT.ground) goes all the way to that colour as its view
+   * ray grazes the line, over `horizonFade` radians (default 0.025, about 45 px at 2x and 40 deg).
+   * Ground that meets the sky meets it at the sky's value, and the line is a gradient.
+   *
+   * The world's constants are baked into the chunks as literals, because a slide is one page, one
+   * world and one render. A material compiled before TXT.sky keeps the old chunks, so call TXT.sky
+   * before the first render, which every frame already does. `skyFog:false` in TXT.sky's options
+   * keeps the flat fog, and so does `tintFog:false`. The IBL is untouched, so lighting is too. */
+  function installSkyFog(W, sunDir) {
+    const C = THREE.ShaderChunk;
+    // THE PRISTINE CHUNKS LIVE ON THE SHARED ShaderChunk, not on this TXT: a second init(THREE) in
+    // the same page would otherwise take the patched chunks as its base and declare everything
+    // twice, and every fogged shader after it would fail to compile (Codex, #368).
+    const base = C.__txFogBase || (C.__txFogBase = { pv: C.fog_pars_vertex, v: C.fog_vertex,
+      pf: C.fog_pars_fragment, f: C.fog_fragment });
+    const v3 = (c) => { const k = new THREE.Color(c); return 'vec3(' + [k.r, k.g, k.b].map(x => x.toFixed(6)).join(', ') + ')'; };
+    const n = (x) => Number(x || 0).toFixed(6);
+    const sd = sunDir.clone().normalize();
+    const fade = W.horizonFade != null ? W.horizonFade : 0.025;
+    C.fog_pars_vertex = base.pv + '\n#ifdef USE_FOG\n  varying vec3 vTxFogDir;\n#endif\n';
+    // row vector times the view matrix is its inverse rotation: the ray from the eye, in world space
+    C.fog_vertex = base.v + '\n#ifdef USE_FOG\n  vTxFogDir = (vec4(mvPosition.xyz, 0.0) * viewMatrix).xyz;\n#endif\n';
+    C.fog_pars_fragment = base.pf + `
+#ifdef USE_FOG
+  #define TX_SKY_FOG 1
+  varying vec3 vTxFogDir;
+  vec3 txSkyFog() {
+    vec3 d = normalize(vTxFogDir);
+    vec3 sd = vec3(${n(sd.x)}, ${n(sd.y)}, ${n(sd.z)});
+    vec2 dz = normalize(d.xz + vec2(1e-5)), sz = normalize(sd.xz + vec2(1e-5));
+    float toward = 0.5 + 0.5 * dot(dz, sz);
+    float cs = max(dot(vec3(dz.x, 0.0, dz.y), sd), 0.0);
+    vec3 c = mix(${v3(W.horizon)}, ${v3(W.haze)}, 0.8) + ${v3(W.sun)} * ${n(W.horizonGlow)} * pow(toward, 3.0)
+      + ${v3(W.sun)} * ${n(W.glow != null ? W.glow : 1)} * (0.035 * pow(cs, 3.0) + 0.30 * pow(cs, 48.0) + 1.2 * pow(cs, 900.0));
+    #if defined( TONE_MAPPING )
+      c = toneMapping(c);
+    #endif
+    return linearToOutputTexel(vec4(c, 1.0)).rgb;
+  }
+  float txGroundFade(float f) {
+    #ifdef TX_GROUND
+      return max(f, 1.0 - smoothstep(0.0, ${n(fade)}, -normalize(vTxFogDir).y));
+    #else
+      return f;
+    #endif
+  }
+  // A hook that replaces fog_fragment with its own mix toward fogColor (the kit's aerial() haze on
+  // far landforms and skylines) still lands on the sky's colour, and the uniform is left unread.
+  #define fogColor txSkyFog()
+#endif
+`;
+    C.fog_fragment = `
+#ifdef USE_FOG
+  #ifdef FOG_EXP2
+    float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );
+  #else
+    float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );
+  #endif
+  fogFactor = txGroundFade(fogFactor);
+  gl_FragColor.rgb = mix( gl_FragColor.rgb, txSkyFog(), fogFactor );
+#endif
+`;
+  }
+  // a ground plane fades into the horizon when the sky fog is installed (TXT.ground sets it)
+  function markGround(mesh) {
+    const m = mesh.material;
+    m.defines = Object.assign({}, m.defines, { TX_GROUND: '' });
+    m.needsUpdate = true;
+    mesh.userData.txGround = true;
+    return mesh;
   }
 
   /* ONE DECK, ONE WORLD, bound the way TXT.deckRig binds the light (2026-09-24, Codex on #353).
@@ -716,7 +830,7 @@ export function init(THREE) {
    * TXT.sky THROWS when a frame hands it a different world, so nine frames can't stand under two
    * skies. A deck that declares no sky may still pass a world to TXT.sky, as before. */
   const WORLD_KEYS = ['zenith', 'horizon', 'haze', 'ground', 'sun', 'sunDisc', 'glow', 'horizonGlow',
-    'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed'];
+    'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed', 'horizonFade'];
   const worldKey = (W) => JSON.stringify(WORLD_KEYS.map(k => (W[k] === undefined ? null : W[k])));
   function deckDeclared() {
     const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
@@ -764,7 +878,14 @@ export function init(THREE) {
     const far = R.camera.far * 0.92;
     dome.scale.setScalar(far);
     dome.frustumCulled = false; dome.renderOrder = -1000;
-    dome.onBeforeRender = function (r, s, cam) { dome.position.copy(cam.position); dome.updateMatrixWorld(); };
+    dome.onBeforeRender = function (r, s, cam) {
+      dome.position.copy(cam.position); dome.updateMatrixWorld();
+      // the dome's stand-in ground reads the fog as it is AT RENDER, since frames tune it after TXT.sky
+      const U = dome.material.uniforms, F = s.fog;
+      U.uCamY.value = Math.max(0.05, cam.position.y);
+      U.uFogD.value = F && F.isFogExp2 ? F.density : 0;
+      if (F && !F.isFogExp2) { U.uFogNear.value = F.near; U.uFogFar.value = F.far; }
+    };
     dome.position.copy(R.camera.position);
     R.scene.add(dome);
     R.scene.background = null;
@@ -781,7 +902,10 @@ export function init(THREE) {
       e.geometry.dispose(); e.material.dispose();
     }
     // fog in the horizon's own hue (DESIGN_DOCTRINE 4): the ground dissolves into the sky
-    if (R.scene.fog && o.tintFog !== false) R.scene.fog.color = new THREE.Color(W.haze);
+    if (R.scene.fog && o.tintFog !== false) {
+      R.scene.fog.color = new THREE.Color(W.haze);
+      if (o.skyFog !== false) { installSkyFog(W, sunDir); dome.material.uniforms.uFogMatch.value = 1; }
+    }
     R.world = W;
     return dome;
   };
@@ -854,7 +978,7 @@ export function init(THREE) {
   const _flatGround = TXT.ground;
   TXT.ground = function (R, o) {
     o = o || {};
-    if (!o.surface) { const f = _flatGround(R, o); f.userData.txGround = true; return f; }
+    if (!o.surface) return markGround(_flatGround(R, o));
     const size = o.size || 900, tile = o.tile || 6;
     const T = surfaceTextures(o, R.renderer);
     [T.map, T.roughnessMap, T.bumpMap].forEach(t => t.repeat.set(size / tile, size / tile));
@@ -884,7 +1008,7 @@ export function init(THREE) {
     };
     const g = new THREE.Mesh(geo, mat);
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
-    g.receiveShadow = true; g.userData.txGround = true; R.scene.add(g);
+    g.receiveShadow = true; markGround(g); R.scene.add(g);
     return g;
   };
 
