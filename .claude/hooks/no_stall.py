@@ -32,16 +32,17 @@ WHAT IT CAN'T DO. Claude Code runs no PermissionRequest hook for a sandboxed com
 request (hooks reference, "PermissionRequest"). That dialog can still wait. The Notification
 handler logs it, prompt_audit.py measures the wait, and the email names both.
 
-UNATTENDED MEANS ANY ONE OF THESE, checked in this order
+UNATTENDED OR NOT, decided by the first of these that answers
 
   TXDOCKET_UNATTENDED=1 or =0      forces the answer either way. For tests. It wins over all
-  CLAUDE_CODE_SESSION_ATTENDED=0   the host saying nobody is attending
-  the branch is `claude/daily-*`   the routine's own branch, from Phase 0 step 3 on
-  the session opened with the      the first line of prompts/ROUTINE_PROMPT.txt, which covers the
-    routine's trigger                minutes before that branch exists
+  CLAUDE_CODE_SESSION_ATTENDED=0   unattended, the host saying nobody is attending
+  the session opened with the      unattended. The first line of prompts/ROUTINE_PROMPT.txt, which
+    routine's trigger                the routine is stored opening with
+  CLAUDE_CODE_SESSION_ATTENDED=1   attended, the host saying a person is here
+  the branch is `claude/daily-*`   unattended. The routine's own branch, from Phase 0 step 3 on
 
-Nothing else is. A session on any other branch is attended, because denying a dialog a person is
-there to answer is the one way this file can make anything worse.
+Nothing else is unattended. A session on any other branch is attended, because denying a dialog a
+person is there to answer is the one way this file can make anything worse.
 
 IT FAILS OPEN. Unreadable input, a crash or a timeout prints nothing, and Claude Code then shows
 the dialog exactly as it did before this file existed (hooks reference, "Exit code output").
@@ -58,6 +59,7 @@ import datetime as _dt
 import json
 import os
 import re
+import shlex
 import sys
 from pathlib import Path
 
@@ -225,19 +227,33 @@ def opened_with_trigger(transcript: str) -> bool:
 
 
 def verdict(event: dict, env) -> tuple[bool, str]:
-    """(unattended, the signal that said so)."""
+    """(unattended, the signal that said so).
+
+    A HOST THAT SAYS A PERSON IS HERE OUTRANKS THE BRANCH (Codex, PR 362, second round). A
+    maintainer who opened a session on a checkout still sitting on a `claude/daily-` branch had
+    every dialog denied with `CLAUDE_CODE_SESSION_ATTENDED=1` set, because only the host's `0`
+    was read. The branch is a guess about who is there and the host's word is not.
+
+    THE ROUTINE'S OPENING SENTENCE OUTRANKS THE HOST'S `1`. The routine is stored opening with
+    that sentence, checked against the stored routine on 2026-09-26. What the host sets in a
+    scheduled session has never been read, so the report prints it (see `on_session_start`).
+    Until it has been read, a scheduled session is never disarmed by it.
+    """
     forced = str(env.get("TXDOCKET_UNATTENDED") or "").strip().lower()
     if forced in YES:
         return True, "TXDOCKET_UNATTENDED=1"
     if forced in NO:
         return False, "TXDOCKET_UNATTENDED=0"
-    if str(env.get("CLAUDE_CODE_SESSION_ATTENDED") or "").strip().lower() in NO:
+    attended = str(env.get("CLAUDE_CODE_SESSION_ATTENDED") or "").strip().lower()
+    if attended in NO:
         return True, "CLAUDE_CODE_SESSION_ATTENDED=0"
+    if opened_with_trigger(str(event.get("transcript_path") or "")):
+        return True, "the session opened with the routine's trigger"
+    if attended in YES:
+        return False, "CLAUDE_CODE_SESSION_ATTENDED=1"
     branch = git_branch(project_root(env))
     if branch.startswith(DAILY_PREFIX):
         return True, f"the routine's branch, {branch}"
-    if opened_with_trigger(str(event.get("transcript_path") or "")):
-        return True, "the session opened with the routine's trigger"
     return False, "no unattended signal"
 
 
@@ -312,26 +328,64 @@ def target_of(tool: str, tool_input, root: Path) -> str:
 
 ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=")
 
+# The tools whose second word is a SUBCOMMAND rather than an argument. `git push` says what was
+# refused and `git` alone doesn't. For any other command the second word is an argument, and an
+# argument can be a secret even when it is a plain lowercase word, a passphrase for one.
+SUBCOMMAND_TOOLS = frozenset({
+    "apt", "apt-get", "aws", "brew", "cargo", "docker", "gcloud", "gh", "git", "go", "kubectl",
+    "npm", "npx", "pip", "pip3", "pnpm", "systemctl", "uv", "yarn",
+})
+COMMAND_PARSE_CHARS = 8192
+
 
 def command_head(cmd: str) -> str:
     """A shell command's name, and its subcommand when it has one, with every argument withheld.
 
+    prompt_audit.py redacts a granted rule through this same function, so the two surfaces can't
+    drift into withholding different things.
+
     A LEADING ASSIGNMENT IS AN ARGUMENT, NOT A COMMAND. `TOKEN=secret curl ...` kept the token as
-    the "command", and this output feeds a committed run record (Codex, PR 362). Leading
-    assignments are dropped, and a first word that is quoted or still carries an `=` is withheld
-    rather than guessed at.
+    the "command", and this output feeds a committed run record (Codex, PR 362).
+
+    AND THE WORDS ARE THE SHELL'S WORDS, NOT THE SPACES'. Splitting on whitespace before dropping
+    the assignment turned `TOKEN='hunter 2' curl` into `2' curl`, half a credential in the log
+    (Codex, PR 362, second round). The command is split the way a shell splits it, so a quoted
+    value is one word however many spaces it holds. A command that doesn't parse, an unclosed
+    quote, is withheld whole rather than guessed at. So is a first word that still carries an `=`
+    or opens with a quote or an expansion.
     """
-    words = cmd.split()
-    while words and ASSIGNMENT.match(words[0]):
-        words = words[1:]
-    if not words:
-        return "(command withheld)" if cmd.strip() else ""
-    if "=" in words[0] or words[0][:1] in "\"'`$(":
+    if not cmd.strip():
+        return ""
+    # WORD BY WORD, OVER A BOUNDED PREFIX, AND NEVER THE WHOLE COMMAND. `shlex.split` is
+    # superlinear on a long quoted word, measured on 2026-09-26 at 180 ms for 100 KB and 24
+    # SECONDS for 1 MB. This hook has a ten second timeout and a timeout fails open, so a long
+    # `python3 -c` script would have put the dialog back in front of nobody. So the lexer reads
+    # only the words it keeps, out of the first COMMAND_PARSE_CHARS characters. A value the cut
+    # lands inside doesn't parse, and a command whose first word doesn't parse is withheld whole.
+    lex = shlex.shlex(cmd[:COMMAND_PARSE_CHARS], posix=True)
+    lex.whitespace_split = True
+    lex.commenters = ""
+    try:
+        word = lex.get_token()
+        while word is not None and ASSIGNMENT.match(word):
+            word = lex.get_token()
+    except ValueError:
+        return "(command withheld)"
+    if word is None:
+        return "(command withheld)"
+    if "=" in word or word[:1] in "\"'`$(":
         return "(command withheld) ..."
-    kept = words[:1]
-    if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
-        kept.append(words[1])
-    return " ".join(kept) + (" ..." if len(words) > len(kept) else "")
+    kept, more = [word], len(cmd) > COMMAND_PARSE_CHARS
+    try:
+        nxt = lex.get_token()
+        if nxt is not None:
+            more = True
+            if word in SUBCOMMAND_TOOLS and re.fullmatch(r"[a-z][a-z-]*", nxt):
+                kept.append(nxt)
+                more = lex.get_token() is not None or len(cmd) > COMMAND_PARSE_CHARS
+    except ValueError:
+        more = True  # what follows doesn't parse inside the prefix, and it is an argument anyway
+    return " ".join(kept) + (" ..." if more else "")
 
 
 def hint(tool: str, tool_input, root: Path) -> str:
@@ -445,6 +499,29 @@ def on_elicitation(event: dict, env) -> dict | None:
     return {"hookSpecificOutput": {"hookEventName": "Elicitation", "action": "decline"}}
 
 
+# A WAITING DIALOG IS KEPT AS A TOOL NAME AND NOTHING ELSE. A notification's message is free text:
+# a sign-in link with a signed token in it, or a subagent repeating what it was told. Cutting it at
+# 160 characters is not redacting it, and the report feeds a committed record (Codex, PR 362,
+# second round). The one thing worth keeping is which tool a permission dialog was for, and it is
+# kept only when the message names it in the harness's own words as a bare identifier.
+MARKER = re.compile(r"^tool [A-Za-z_][A-Za-z0-9_]{0,63}$")
+
+
+def notification_marker(kind: str, message) -> str:
+    if kind != "permission_prompt":
+        return ""
+    m = re.search(r"permission to use ([A-Za-z_][A-Za-z0-9_]{0,63})\b", str(message or ""))
+    return f"tool {m.group(1)}" if m else ""
+
+
+def host_attended(env) -> str:
+    """The host's own CLAUDE_CODE_SESSION_ATTENDED, as one of four words and never as raw text."""
+    if "CLAUDE_CODE_SESSION_ATTENDED" not in env:
+        return "unset"
+    v = str(env.get("CLAUDE_CODE_SESSION_ATTENDED") or "").strip().lower()
+    return "1" if v in YES else "0" if v in NO else "another value"
+
+
 def on_notification(event: dict, env) -> None:
     kind = str(event.get("notification_type") or "")
     if kind not in DIALOG_NOTIFICATIONS:
@@ -452,15 +529,18 @@ def on_notification(event: dict, env) -> None:
     unattended, because = verdict(event, env)
     if unattended:
         log(project_root(env), event, "waited", because, kind,
-            str(event.get("message") or "")[:160])
+            notification_marker(kind, event.get("message")))
     return None  # a Notification hook can't answer anything, it can only say what is waiting
 
 
 def on_session_start(event: dict, env) -> None:
     # Prints nothing: a SessionStart hook's stdout becomes context for the model.
+    #
+    # THE HOST'S ATTENDED VALUE IS RECORDED, because nobody has read it in a scheduled session and
+    # `verdict` orders its rules around that gap. The first run that reports it closes the gap.
     unattended, because = verdict(event, env)
     log(project_root(env), event, "armed", because, "", str(event.get("source") or ""),
-        unattended=unattended)
+        unattended=unattended, host_attended=host_attended(env))
     return None
 
 
@@ -524,10 +604,14 @@ def summary(root: Path | None = None, session: str | None = None) -> dict:
         return {"session": None, "armed": None, "armed_at": None, "refused": [], "waited": []}
     rows = records(root or HOOK_REPO, session)
     armed = [r for r in rows if r.get("decision") == "armed"]
+    first = armed[0] if armed else {}
     return {
         "session": session,
         "armed": bool(armed),
-        "armed_at": armed[0].get("at") if armed else None,
+        "armed_at": first.get("at"),
+        "armed_unattended": first.get("unattended"),
+        "armed_because": first.get("because"),
+        "host_attended": first.get("host_attended"),
         "refused": [r for r in rows if r.get("decision") in ("deny", "decline")],
         "waited": [r for r in rows if r.get("decision") == "waited"],
     }
@@ -538,7 +622,15 @@ def report_lines(s: dict) -> list[str]:
         return ["no-stall hook: no CLAUDE_CODE_SESSION_ID in this process, so no session's record "
                 "is reported. Run it from inside the session it is about"]
     if s.get("armed"):
-        lines = [f"no-stall hook: armed at {s.get('armed_at')}"]
+        # ARMED SAYS THE HOOK RAN, NOT THAT IT JUDGED THE RUN UNATTENDED. Both are printed, with
+        # the host's own attended value, so an email that says armed also says what armed meant.
+        judged = s.get("armed_unattended")
+        how = "unattended" if judged else "attended" if judged is not None else "unrecorded"
+        lines = [f"no-stall hook: armed at {s.get('armed_at')}",
+                 f"  at session start it judged the session {how} "
+                 f"({s.get('armed_because') or 'no reason recorded'}), and the host's "
+                 f"CLAUDE_CODE_SESSION_ATTENDED was {s.get('host_attended') or 'not recorded'}. "
+                 f"Every later call is judged again when it is made"]
     else:
         lines = ["no-stall hook: NOT ARMED in this session. The hooks in .claude/settings.json "
                  "did not run here, so a dialog could have waited"]
@@ -554,8 +646,11 @@ def report_lines(s: dict) -> list[str]:
     if waited:
         lines.append(f"  {len(waited)} dialog(s) it can't answer waited past six seconds:")
         for r in waited:
-            lines.append(f"    {r.get('at', '?')}  {r.get('tool', '?')}  "
-                         f"{r.get('target', '')}".rstrip())
+            # Only a well formed marker is printed, so a log written before the marker existed
+            # can't put a notification's message into the report either.
+            target = str(r.get("target") or "")
+            shown = target if MARKER.match(target) else ("(message withheld)" if target else "")
+            lines.append(f"    {r.get('at', '?')}  {r.get('tool', '?')}  {shown}".rstrip())
     return lines
 
 
@@ -618,6 +713,14 @@ def self_test() -> int:
            "the host's CLAUDE_CODE_SESSION_ATTENDED=0 is unattended")
         ok(not verdict({}, {**e_dev, "CLAUDE_CODE_SESSION_ATTENDED": "1"})[0],
            "...and =1 on a maintainer's branch stays attended")
+        ok(verdict({}, {**e_daily, "CLAUDE_CODE_SESSION_ATTENDED": "1"})
+           == (False, "CLAUDE_CODE_SESSION_ATTENDED=1"),
+           "=1 is attended even on the routine's branch, so a maintainer who opens a session "
+           "there keeps their dialogs (Codex, PR 362)")
+        ok(verdict({"transcript_path": t_routine},
+                   {**e_daily, "CLAUDE_CODE_SESSION_ATTENDED": "1"})[0],
+           "...and the routine's own opening sentence outranks =1, because what the host sets in "
+           "a scheduled session has never been read")
         ok(verdict({"transcript_path": t_routine}, e_dev)[0],
            "a session that opened with the routine's trigger is unattended before its branch exists")
         ok(not verdict({"transcript_path": t_person}, e_dev)[0],
@@ -715,11 +818,40 @@ def self_test() -> int:
         for cmd, want in [("TOKEN=hunter2 curl https://x.gov", "curl ..."),
                           ("A=1 B=2 git push origin x", "git push ..."),
                           ("TOKEN=hunter2", "(command withheld)"),
-                          ("\"$TOKEN\" x", "(command withheld) ..."), ("ls", "ls"), ("", "")]:
-            ok(command_head(cmd) == want, f"the command {cmd!r} is logged as {want!r}",
+                          ("\"$TOKEN\" x", "(command withheld) ..."), ("ls", "ls"), ("", ""),
+                          # Codex, PR 362, second round: a quoted value is ONE shell word.
+                          ("TOKEN='hunter 2' curl https://x.gov", "curl ..."),
+                          ("A=\"x y\" B='p q' git push origin x", "git push ..."),
+                          ("TOKEN='hunter 2 curl https://x.gov", "(command withheld)"),
+                          # A second word is kept only where it is a subcommand.
+                          ("git checkout main", "git checkout ..."),
+                          ("echo correct-horse-battery", "echo ..."),
+                          # A value longer than the parsed prefix is withheld, never cut open,
+                          # and a long script after its command still names the command.
+                          ("TOKEN='" + "x " * COMMAND_PARSE_CHARS + "' curl", "(command withheld)"),
+                          ("python3 -c '" + "print(1); " * 5000 + "'", "python3 ..."),
+                          ("git '" + "x" * 20000, "git ...")]:
+            ok(command_head(cmd) == want, f"the command {cmd[:60]!r} is logged as {want!r}",
                command_head(cmd))
+        # THE TIMEOUT. A whole-command `shlex.split` took 24 s on 1 MB, past the hook's ten.
+        import time as _time
+        started = _time.perf_counter()
+        for big in ("python3 -c '" + "print(1); " * 100_000 + "'",
+                    "TOKEN='" + "y" * 1_000_000 + "' curl"):
+            command_head(big)
+        took = _time.perf_counter() - started
+        ok(took < 1.0, f"two 1 MB commands are judged in {took:.3f} s, far inside the hook's "
+                       f"timeout, which fails open", took)
         on_permission_request(pr("Bash", {"command": "TOKEN=hunter2 curl -sS https://x.gov/?k=v"}),
                               e_daily)
+        on_permission_request(pr("Bash", {"command": "TOKEN='hunter 2' curl -sS https://x.gov"}),
+                              e_daily)
+        for kind, msg in (("permission_prompt", "Claude needs your permission to use Bash"),
+                          ("elicitation_url_dialog",
+                           "Sign in at https://auth.example.com/cb?code=SIGNEDVALUE"),
+                          ("agent_needs_input", "the subagent says the key is PRIVATEWORD")):
+            on_notification({"hook_event_name": "Notification", "notification_type": kind,
+                             "message": msg, "session_id": "sess-note"}, e_daily)
 
         print("and in an attended session, nothing")
         ok(on_permission_request(pr("Bash", {"command": sept25}), e_dev) is None,
@@ -744,6 +876,21 @@ def self_test() -> int:
            "a command's arguments never reach the log, since it feeds a committed record")
         ok("hunter2" not in text and "k=v" not in text and '"target": "curl ..."' in text,
            "...nor a leading assignment, which is where a token rides (Codex, PR 362)")
+        ok("hunter" not in text and "2'" not in text,
+           "...nor any piece of a QUOTED assignment (Codex, PR 362, second round)")
+        ok("SIGNEDVALUE" not in text and "auth.example" not in text
+           and "PRIVATEWORD" not in text,
+           "a notification's message never reaches the log, a signed link least of all "
+           "(Codex, PR 362, second round)")
+        noted = summary(daily, "sess-note")["waited"]
+        ok([r.get("target") for r in noted] == ["tool Bash", "", ""],
+           "...and a permission dialog keeps only the tool it was for",
+           [r.get("target") for r in noted])
+        old = {"armed": True, "armed_at": "x", "refused": [],
+               "waited": [{"at": "x", "tool": "elicitation_url_dialog",
+                           "target": "Sign in at https://auth.example.com/cb?code=OLDLOG"}]}
+        ok(not any("OLDLOG" in l for l in report_lines(old)),
+           "a message a log from before the marker kept is withheld from the report too")
         none = summary(daily, None)
         ok(none["armed"] is None and not none["refused"]
            and "CLAUDE_CODE_SESSION_ID" in report_lines(none)[0],
@@ -757,6 +904,10 @@ def self_test() -> int:
         lines = report_lines(s)
         ok(lines[0].startswith("no-stall hook: armed") and any("refused" in l for l in lines),
            "the report says so in words", lines[:3])
+        ok(any("judged the session unattended (the routine's branch" in l
+               and "CLAUDE_CODE_SESSION_ATTENDED was unset" in l for l in lines),
+           "...and says what armed MEANT: the verdict at session start and the host's own "
+           "attended value", lines[:3])
         ok(report_lines(summary(dev, "sess-9"))[0].startswith("no-stall hook: NOT ARMED"),
            "a session the hook never saw is reported NOT ARMED rather than clean")
 
