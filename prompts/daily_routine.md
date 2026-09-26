@@ -1343,6 +1343,7 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/print_ban.py --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
@@ -1458,19 +1459,23 @@ the `upgrade` commit, because that file is `upgrade` lane and the daily lane can
 `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
 before the first render, because a defect it names is a round spent twice.
 
-**Before every round, the first and every one after a repair, run `qa.py` and then
-`panel_ready.py` again, and spawn nothing while either is red.**
+**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py` and
+`panel_ready.py` again, and spawn nothing while any of them is red.**
 
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/print_ban.py --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
 A repair re-renders frames, and Phase 14b ran before any of them. A frame a repair turned toward
 the ground, or into a plate over a sentence, reaches three judges unless this runs first. `qa.py`
 comes first because the repair's `render.py --only` rewrote the frames and not the QA file, and
-`panel_ready` refuses a QA file older than the newest render (Codex, PR 369). Both take seconds,
-and a red one saves three model calls.
+`panel_ready` refuses a QA file older than the newest render (Codex, PR 369). `print_ban` runs
+because a repair can take a frame out of the world altogether, its `TXT.sky` or `TXT.interior`
+removed or moved after the kept snapshot, and `panel_ready` asks for a verdict only from a frame that
+still stands somewhere. `print_ban` asks every rendered frame to stand somewhere. All three take
+seconds, and a red one saves three model calls.
 
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a

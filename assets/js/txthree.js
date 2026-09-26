@@ -358,12 +358,20 @@ export function init(THREE) {
     const i = (py * t.w + px) * t.ch, sc = (t.d instanceof Float32Array) ? 1 : 255;
     return { g: t.d[i + Math.min(1, t.ch - 1)] / sc, a: t.ch >= 4 ? t.d[i + 3] / sc : 1 };
   };
-  const cutout = (mat) => !!mat && (mat.map || mat.alphaMap) && (mat.alphaTest > 0 || mat.transparent);
+  // The fragment's alpha as three.js computes it: opacity, times the map's alpha, times the alphaMap's
+  // green, times the vertex alpha when the material reads RGBA vertex colours (Codex, PR 369: the
+  // kit's waterSheet does), interpolated at the hit through its barycentric coordinates.
   const alphaAt = (h, mat) => {
     const uvOf = (tex) => (tex.channel === 1 ? h.uv1 : h.uv);
     let a = mat.opacity != null ? mat.opacity : 1;
     if (mat.map) { const t = texelAt(mat.map, uvOf(mat.map)); if (!t) return null; a *= t.a; }
     if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(mat.alphaMap)); if (!t) return null; a *= t.g; }
+    const col = mat.vertexColors && h.object.geometry && h.object.geometry.attributes.color;
+    if (col && col.itemSize === 4) {
+      const f = h.face, b = h.barycoord;
+      if (!f || !b) return null;
+      a *= col.getW(f.a) * b.x + col.getW(f.b) * b.y + col.getW(f.c) * b.z;
+    }
     return a;
   };
   const seenHit = (h, R) => {
@@ -372,7 +380,7 @@ export function init(THREE) {
     // A WIREFRAME DRAWS ITS EDGES AND NOT ITS FACES, while a ray meets the faces (Codex, PR 369), so a
     // wireframe box is no wall and no roof.
     if (mat.wireframe) return false;
-    if (!cutout(mat)) return true;
+    if (!(mat.alphaTest > 0 || mat.transparent)) return true;   // opaque: every fragment is drawn
     const a = alphaAt(h, mat);
     if (a === null) return false;                 // a cutout whose texel can't be read is no wall
     if (mat.alphaTest > 0 && a < mat.alphaTest) return false;

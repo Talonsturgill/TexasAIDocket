@@ -388,6 +388,22 @@ const ENCLOSURE = `async (T, TXT, cv) => {
   const wire = await cutoutCase(new T.MeshStandardMaterial({ color: 0x333333, wireframe: true }));
   // A CUTOUT REDRAWN BETWEEN SNAPSHOTS (Codex, PR 369): an opaque texture for the preview, then the
   // same canvas cleared with needsUpdate before the kept snapshot. The kept frame draws no shelter.
+  // A SHELTER WHOSE RGBA VERTEX COLOURS ARE CLEAR (Codex, PR 369): transparent, with every vertex's
+  // alpha at 0, so no fragment shows. The same shelter with alpha 1 is a shelter.
+  const tinted = async (alpha) => {
+    const hut = shelter(new T.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, transparent: true }));
+    hut.traverse((o) => {
+      if (!o.isMesh) return;
+      const n = o.geometry.attributes.position.count, c = new Float32Array(n * 4);
+      for (let i = 0; i < n; i++) { c[i * 4] = c[i * 4 + 1] = c[i * 4 + 2] = 0.3; c[i * 4 + 3] = alpha; }
+      o.geometry.setAttribute('color', new T.BufferAttribute(c, 4));
+    });
+    const Rt2 = world(40);
+    TXT.frame(Rt2, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rt2, [4, 8, 4]);
+    Rt2.scene.add(hut);
+    return { errors: await capture(() => TXT.snapshot(Rt2)), cover: cover(Rt2) };
+  };
+  const clearVerts = await tinted(0), solidVerts = await tinted(1);
   const redraw = await (async () => {
     const tex = card('#555');
     const Rc3 = world(40);
@@ -402,7 +418,8 @@ const ENCLOSURE = `async (T, TXT, cv) => {
   })();
   return { carportErrors, carportCover, lampErrors, farErrors,
            slotErrors, slotCover, farPlaneErrors, clipErrors, roomOnlyErrors, roomHiddenErrors, roomFarErrors,
-           blackOk: blackShot && blackShot.ok, blackErrors, clearCut, blackMask, solidCut, wire, redraw };
+           blackOk: blackShot && blackShot.ok, blackErrors, clearCut, blackMask, solidCut, wire, redraw,
+           clearVerts, solidVerts };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -559,6 +576,11 @@ check('a render that comes out black prints no render, never a clean verdict',
   check(`...while the same cutouts with an opaque texture are a shelter (they cover ${sc.cover})`,
         sc.cover >= 0.8 && !flagged(sc), JSON.stringify(sc));
   const wf = e.result.wire || {}, rd = e.result.redraw || {};
+  const cv2 = e.result.clearVerts || {}, sv2 = e.result.solidVerts || {};
+  check(`a transparent shelter whose vertex alpha is 0 shows nothing and is no shelter (it covers ${cv2.cover})`,
+        cv2.cover === 0 && flagged(cv2), JSON.stringify(cv2));
+  check(`...while the same shelter at vertex alpha 1 is one (it covers ${sv2.cover})`,
+        sv2.cover >= 0.8 && !flagged(sv2), JSON.stringify(sv2));
   check(`a wireframe shelter draws its edges and not its faces, and is no shelter (it covers ${wf.cover})`,
         wf.cover === 0 && flagged(wf), JSON.stringify(wf));
   check('a cutout cleared between the preview and the kept snapshot is no shelter in the kept frame',

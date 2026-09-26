@@ -49,8 +49,8 @@
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
-| 14b | `panel_ready.py`, `qa.py` |
-| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `qa.py`, `render.py`, `run_complete.py` |
+| 14b | `panel_ready.py`, `print_ban.py`, `qa.py` |
+| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
@@ -420,7 +420,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
 | `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 12b, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
-| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b |
+| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b, 14b, 15 |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |
 | `scripts/carousel/run_complete.py` | the run is not done until the deck ships. | --date --run-dir --all --self-test | CI self-test, gate table, shipped | 15 |
 | `scripts/carousel/scene_bounds.py` | the subject the plan named, and whether the camera put it in the frame. | --date --run --all --self-test | shipped |  |
