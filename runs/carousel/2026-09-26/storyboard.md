@@ -105,7 +105,7 @@ the companies' numbers live, and goes back into the dark cab to read the state's
 
 ## The rotation
 
-    FULL_BLEED  MAP  CLOSE_CROP  GRID  GRID  DOCUMENT  CLOSE_CROP  DIAGRAM  SPLIT_HORIZON
+    FULL_BLEED  MAP  CLOSE_CROP  FULL_BLEED  FULL_BLEED  DOCUMENT  CLOSE_CROP  DIAGRAM  SPLIT_HORIZON
 
 `TXLAYOUT.check` returns an empty list. Seven distinct, no TYPE_AS_OBJECT, FULL_BLEED and CLOSE_CROP
 three between them, eight frames bleeding an edge.
@@ -124,9 +124,10 @@ job: >
   Stop the scroll on a truck a Texan has passed a thousand times, and make the one wrong thing about
   it the question the deck answers, before a word of policy.
 
-claims: [c22, c28]
+claims: [c22, c25, c28]
 numerals:
   - value_from: c22   # 2026, the end of 2026 target
+  - value_from: c25   # 45, Interstate 45 in the kicker
 
 
 depth:
@@ -166,7 +167,8 @@ type:
 
 acceptance:
   - "the frame reads \"Nobody at the wheel\""
-  - "the tractor's front and both mirror sensor pods are visible and the van runs off the left edge"
+  - "the tractor's front and both mirror sensor pods are visible and the van runs back toward the left edge"
+  - "a fencerow of cedar elm and high-mast lamps stand beyond the lane under a blue sky"
   - "the headlamps bloom and no painted surface does"
   - "no grass blade, lamp or truck edge crosses the hook or the dek"
   - "no logo, fleet name or legible plate appears anywhere on the truck"
@@ -179,7 +181,7 @@ risks:
 slide: 2
 layout: MAP
 primary_image:
-  subject: "Texas's counties in the Albers projection under the type, Dallas County and Harris County lit and marked at their centroids, a dashed straight line between them labelled as not the road, and a scale bar at Kodiak's 219 miles computed through the projection"
+  subject: "Texas's counties in the Albers projection under the type, Dallas County and Harris County lit and marked at their centroids, no line joining them, and a scale bar at Kodiak's 219 miles computed through the projection"
   rect: [0, 440, 1080, 910]
   bleeds: [left, right, bottom]
 accent: none
@@ -187,7 +189,7 @@ job: >
   Make the lane a place with a length, in the company's own number, so the reader knows the size of
   the road the rest of the deck is on.
 
-claims: [c23, c25, c33]
+claims: [c25, c32, c33]
 numerals:
   - value_from: c25   # 219 miles
   - value_from: c33   # 240, Waabi's figure, text only
@@ -206,7 +208,7 @@ composition:
     Central Texas with Dallas County lit and marked, the dashed line starting south.
     Bottom third, the line reaching the lit Harris County and the Houston mark, and the scale bar
     at the lower left over South Texas counties shaded by the raking light.
-  focal: "the dashed line between the two lit counties"
+  focal: "the two lit counties and the scale bar"
 
 art:
   technique: "cartography from assets/geo through TXGeo, the county mesh shaded by a low raking light, the scale bar and marks in mono"
@@ -217,29 +219,29 @@ art:
   value_structure: >
     Lightest is the two lit counties and the scale bar. Darkest is the field around the state.
     Frame median L* planned at 22.
-  motion: "from the hook to Lancaster, down the dashed line to Houston, to the bar"
+  motion: "from the hook to Dallas County, down to Harris County, to the bar"
 
 type:
   kicker: "The lane"
   hook: "219 miles, Kodiak says"
-  dek: "That is Kodiak's figure for the lane from its Lancaster hub to Houston. Waabi, which hauls the same corridor, calls it roughly 240."
+  dek: "That is Kodiak's figure for the Dallas and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240."
 
 acceptance:
   - "the frame reads \"219 miles, Kodiak says\""
   - "Dallas County and Harris County are the only lit counties"
   - "the scale bar is labelled with Kodiak's 219 miles and its length is computed from the projection"
-  - "the dashed line is labelled as a straight line between the two places, not the road"
+  - "no drawn length joins the two counties, so no line can be read as either company's distance"
   - "no numeral 240 is drawn in the art, only in the dek"
 
 risks:
-  - "a straight line between the endpoints is shorter than the road, and the label says so"
+  - "a line between the endpoints would equal the bar and be read as the distance, so none is drawn"
 ```
 
 ```yaml
 slide: 3
 layout: CLOSE_CROP
 primary_image:
-  subject: "inside the cab from the top of the dash looking back: the empty driver's seat and the wheel's rim on the left, the recorder's lamp lit on the bulkhead between the seats, and the observer seated on the passenger side at the right"
+  subject: "inside the cab from the bunk looking forward through the windshield at blue hour: the empty driver's wheel on the left, the passenger seat back on the right with the observer hidden behind it, the recorder's lamp lit on the overhead console, and the lane running ahead to the horizon"
   rect: [0, 420, 1080, 660]
   bleeds: [left, right]
 accent: "#E0956A"
@@ -281,25 +283,25 @@ art:
 type:
   kicker: "Inside the cab"
   hook: "Hands off the wheel"
-  dek: "Kodiak's trucks still carry a safety observer. Kodiak says the observer never touched the wheel on its runs from Lancaster to Houston."
+  dek: "A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel."
 
 acceptance:
   - "the frame reads \"Hands off the wheel\""
   - "the driver's seat is empty and no hand touches the wheel"
   - "the recorder's lamp is the only point of #E0956A on the frame"
-  - "the observer sits in the passenger seat and the driver's seat is empty"
+  - "the windshield shows the blue hour sky and the lane ahead"
 
 risks:
-  - "the observer is a standing kit figure cropped to the hands, and must not read as a mannequin"
+  - "the observer is hidden by the passenger seat back, so no face or pose is invented"
 ```
 
 ```yaml
 slide: 4
-layout: GRID
+layout: FULL_BLEED
 primary_image:
-  subject: "thirty five white bobtail tractors with sensor pods parked seven across and five deep on a pale caliche pad in the Permian at blue hour, seen from a long lens high above, every cab empty, mesquite at the pad's edge"
-  rect: [40, 440, 1000, 800]
-  bleeds: []
+  subject: "thirty five white bobtail tractors with sensor pods parked seven across and five deep on a pale caliche pad in the Permian at blue hour, seen from a high oblique with the haze horizon at the top edge, every cab empty and casting its shadow, mesquite at the pad's edge"
+  rect: [0, 500, 1080, 850]
+  bleeds: [left, right, bottom]
 accent: none
 job: >
   Show that the end state already exists in Texas, counted one truck per truck, in the company's
@@ -343,11 +345,11 @@ art:
 
 type:
   kicker: "The Permian Basin"
-  hook: "35 already run with nobody in the cab"
-  dek: "Kodiak says 35 of its driverless trucks were hauling commercially in the Permian Basin with no humans in the cab at the end of the second quarter."
+  hook: "35 already ran with nobody in the cab"
+  dek: "Kodiak says 35 driverless trucks were running commercially in its Permian Basin deployment with no humans in the cab at the end of the second quarter."
 
 acceptance:
-  - "the frame reads \"35 already run with nobody in the cab\""
+  - "the frame reads \"35 already ran with nobody in the cab\""
   - "exactly 35 tractors are rendered and each reads as a separate truck at 432 px"
   - "no grass or scrub crosses the hook or the dek"
 
@@ -357,11 +359,11 @@ risks:
 
 ```yaml
 slide: 5
-layout: GRID
+layout: FULL_BLEED
 primary_image:
-  subject: "a truck yard seen straight down from a long lens: 200 pale painted places in five rows of forty on dark asphalt, twenty white tractors parked in the first places of the nearest row"
-  rect: [0, 500, 1080, 760]
-  bleeds: [left, right]
+  subject: "a truck yard at blue hour from a high oblique: 200 painted places in twenty rows of ten on dark asphalt receding to the haze, twenty tractors with lamps lit parked in the two nearest rows, oil stains under them, a mast lamp pooling at each side"
+  rect: [0, 560, 1080, 790]
+  bleeds: [left, right, bottom]
 accent: none
 job: >
   Put Aurora's year end number and the reported number running now on one scale, each named for the
@@ -377,15 +379,15 @@ data_in_art:
   drives: painted stall count, 200, and the occupied stall count from aurora_trucks_now_reported, 20
 
 depth:
-  eye: 640
+  eye: 40
   horizon: 0
   cues: [RELATIVE_SIZE, CAST_SHADOW, FORM_SHADING, TEXTURE_GRADIENT]
   subject_at: {X: 0, Z: 0}
 
 composition:
   structure: >
-    Straight down, the yard is a page of places. Five rows of forty cross the lower two thirds, the
-    twenty tractors sit in the first places of the nearest row, and the type sits on the asphalt above.
+    From above the near aisle, the yard is a field of places. Twenty rows of ten recede from the
+    lower third to the haze, the twenty tractors fill the two nearest rows, and the type sits on the far rows.
   bands: >
     Top third, dark asphalt under the hook and the dek. Middle third, rows of empty painted places,
     each a pale pad with its own edge, forty to a row. Bottom third, the nearest row with twenty
@@ -408,11 +410,11 @@ art:
 type:
   kicker: "Aurora's year"
   hook: "200 places, 20 trucks"
-  dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart, citing a CNBC ride, puts the fleet running now at 20."
+  dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride."
 
 acceptance:
   - "the frame reads \"200 places, 20 trucks\""
-  - "exactly 200 places are painted and exactly 20 hold a tractor"
+  - "exactly 200 places are painted and exactly 20 hold a tractor, each cab readable at 432 px"
   - "the dek attributes the 20 to Breitbart citing CNBC"
 
 risks:
@@ -471,7 +473,7 @@ art:
 type:
   kicker: "The permission"
   hook: "Six statements and no fee"
-  dek: "Since May 28th a company running vehicles with no driver needs a state authorization. It acknowledges six statements and pays nothing, and the authorization does not expire."
+  dek: "Since May 28th a company running vehicles with no driver needs a state authorization. The company acknowledges six statements and pays nothing. The authorization does not expire."
 
 acceptance:
   - "the frame reads \"Six statements and no fee\""
@@ -487,9 +489,9 @@ risks:
 slide: 7
 layout: CLOSE_CROP
 primary_image:
-  subject: "the recording device bolted to a tread plate kick panel on the sleeper bulkhead, its finned housing lit by the dome, its one dusk gold status lamp blooming, the bunk curtain above"
-  rect: [0, 560, 1080, 790]
-  bleeds: [left, right, bottom]
+  subject: "the recording device on a worn painted steel kick panel bolted to the sleeper bulkhead, its charcoal finned housing under a neutral dome light, its one dusk gold status lamp blooming, the seat backs either side"
+  rect: [160, 560, 760, 600]
+  bleeds: []
 accent: "#E0956A"
 job: >
   The turn. The truck must carry a recorder, and the state that authorizes it can't require its
@@ -507,7 +509,7 @@ depth:
 
 composition:
   structure: >
-    A detail camera between the seats a metre from the housing puts the recorder just under the
+    A detail camera between the seats a meter from the housing puts the recorder just under the
     middle, on a tread plate panel that runs off three edges. The type sits on the dark curtain above.
   bands: >
     Top third, the dark bulkhead and curtain behind the hook and the dek. Middle third, the
@@ -544,8 +546,8 @@ risks:
 slide: 8
 layout: DIAGRAM
 primary_image:
-  subject: "an asphalt truck court at blue hour from a high oblique, a white rig parked parallel to the dock, and one painted stripe across the court in three segments at a quarter metre per day, with mono labels on leaders"
-  rect: [0, 420, 1080, 660]
+  subject: "a concrete truck court at blue hour from a high oblique, a white rig parked parallel to the dock, and one painted stripe across the court in three segments at a quarter meter per day, with mono labels on leaders"
+  rect: [0, 540, 1080, 480]
   bleeds: [left, right]
 accent: none
 job: >
@@ -560,7 +562,7 @@ numerals:
 
 data_in_art:
   figure: soah.longest_path_days
-  drives: the stripe's total length in metres at a quarter metre per day, split into soah.request_days, soah.file_days and soah.hearing_days segments
+  drives: the stripe's total length in meters at a quarter meter per day, split into soah.request_days, soah.file_days and soah.hearing_days segments
 
 depth:
   eye: 24
@@ -593,15 +595,15 @@ art:
 type:
   kicker: "When the state steps in"
   hook: "The line is serious bodily injury"
-  dek: "The department acts when an operation has caused or is likely to cause serious bodily injury. An operator then has 10 days to ask for a hearing, and if it isn't held in time the authorization is reinstated."
+  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. After a final decision an operator has 10 days to ask for a hearing. If it isn't held in time the authorization is reinstated."
 
 acceptance:
   - "the frame reads \"The line is serious bodily injury\""
-  - "the stripe's three segments are set from figures.json soah at a quarter metre per day"
-  - "every leader ends on the stripe segment it labels"
+  - "the stripe's three segments are set from figures.json soah at a quarter meter per day"
+  - "every leader ends on the stripe segment it labels, and the end label says reinstatement happens only if the hearing is not held"
 
 risks:
-  - "the stripe is drawn at a quarter metre per day and the source line says so, so it is not a real marking"
+  - "the stripe is drawn at a quarter meter per day and the source line says it is drawn to scale, so it is not a real marking"
 ```
 
 ```yaml
@@ -659,7 +661,7 @@ art:
 type:
   kicker: "If you see one"
   hook: "A way in"
-  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death goes to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement checks authorizations there too."
+  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement can verify authorizations there too."
 
 acceptance:
   - "the frame reads \"A way in\""

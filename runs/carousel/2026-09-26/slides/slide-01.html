@@ -44,12 +44,12 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "Interstate 45, Dallas to Houston", counter: "01 / 09", src: "c22 c28   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "Interstate 45, Dallas to Houston", counter: "01 / 09", src: "c22 c25 c28   ILLUSTRATIVE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 96, max: 132, maxLines: 2 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 32 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 28 });
 
   /* THE ROAD. The kit's divided highway along z, concrete, the southbound carriageway on -x (a truck
    * heading +z drives on its right). Right lane centre at -(median/2 + inside shoulder + 1.5 lanes). */
@@ -57,8 +57,9 @@ window.renderReady = (async () => {
   const hw = K.make('highway', { length: 900, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
   hw.position.set(0, 0, -300); TXT.add(R, hw);
 
-  /* camera low on the outside shoulder, ahead of the truck, looking back up the lane at the cab */
-  TXT.frame(R, { from: [LANE_R - 4.2, ROAD_Y + 0.8, 17], look: [LANE_R + 0.9, ROAD_Y + 5.1, -6] });
+  /* camera on the shoulder embankment, ahead of the truck, looking back up the lane at the cab,
+   * level enough that the horizon sits near a third and the fencerow reads against the sky */
+  TXT.frame(R, { from: [LANE_R - 4.2, ROAD_Y + 3.0, 20], look: [LANE_R + 2.2, ROAD_Y + 3.7, -6] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE_R, 0, 0], distance: 90, shadowFar: 260 });
   TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });
@@ -71,12 +72,18 @@ window.renderReady = (async () => {
   const t2 = F.truck(THREE, TXT, K, M, { lit: true, seed: 6, lidar: false, color: 0x2a3440 });
   t2.position.set(LANE_R + 3.66, ROAD_Y, -150); TXT.add(R, t2);
 
-  /* the right of way: a fencerow of cedar elm beyond the Blackland verge, off the type */
+  /* the right of way: a fencerow of cedar elm beyond the far verge, off the type */
   for (let i = 0; i < 9; i++) {
     const tr = K.make('cedar_elm', { seed: 20 + i, height: 9 + (i % 3) * 2 });
-    tr.position.set(-34 - (i % 2) * 6, 0, -40 - i * 38); TXT.add(R, tr); TXT.contact(R, tr);
+    tr.position.set(19 + (i % 2) * 7, 0, -75 - i * 26); TXT.add(R, tr); TXT.contact(R, tr);
   }
-  TXT.scatter(R, { kind: 'grass', count: 9000, area: [-60, -260, -13.5, 30], seed: 5, scale: [0.2, 0.6] });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [13.5, -260, 60, 30], seed: 5, scale: [0.2, 0.6] });
+  /* high-mast lamps down the median, their heads just lit at the turn of the hour */
+  for (let i = 0; i < 5; i++) {
+    const z = -120 - i * 70, l = K.make('streetlight', { height: 12, reach: 3.2, seed: 40 + i });
+    l.position.set(0, ROAD_Y, z); l.rotation.y = -Math.PI / 2; TXT.add(R, l);
+    const pl = new THREE.PointLight(0xffd3a0, 260, 30, 2); pl.position.set(-3.0, ROAD_Y + 11.6, z); R.scene.add(pl);
+  }
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);

@@ -32,7 +32,12 @@
   TXDECK.declare({
     world: "fortyfive",
     light: { az: -160, el: 32 },
-    sky: "blueHour",
+    /* blueHour, tuned once for the deck: the haze is the cool horizon blue rather than the preset's
+     * peach, because a peach haze over a blue-grey ground grades every frame mauve (round 1 critics,
+     * five of five). The amber stays in the sky's seam and the lamps, where it belongs. */
+    sky: { preset: "blueHour", haze: 0x5d6f98, horizon: 0x5a74a6, fogDensity: 0.0045, glow: 0.2, horizonGlow: 0.12, sun: 0xffb48c,
+      rig: { key: { color: 0xf0c6a6, i: 1.0, radius: 10 }, rim: { color: 0x9ab8ff, i: 1.0, pos: [-8, 6, -8] },
+             fill: { color: 0x4c62a0, i: 0.55, pos: [-4, 4, 9] }, ambient: { color: 0x2a3456, i: 0.22 } } },
     ground: "#151D33",
     material: "#DADDE0",
     accent: "#E0956A",
@@ -66,11 +71,10 @@
     var x = c.getContext("2d"), s = 13;
     var r = function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
     x.fillStyle = "#3a3c42"; x.fillRect(0, 0, 256, 256);
-    for (var i = 0; i < 2600; i++) { var v = r(); x.fillStyle = v > 0.5 ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.2)"; x.fillRect(r() * 256, r() * 256, 1 + r() * 2, 1 + r() * 2); }
-    for (var k = 0; k < 3; k++) { var y = 42 + k * 86; x.fillStyle = "rgba(0,0,0,0.45)"; x.fillRect(0, y, 256, 5); x.fillStyle = "rgba(255,255,255,0.09)"; x.fillRect(0, y + 5, 256, 2);
-      for (var d = 0; d < 256; d += 8) { x.fillStyle = "rgba(210,205,196,0.18)"; x.fillRect(d, y - 4, 4, 1); x.fillRect(d, y + 10, 4, 1); } }
-    var tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(2, 2); tx.anisotropy = 8;
-    return new THREE.MeshStandardMaterial({ map: tx, roughness: 0.62, metalness: 0 });
+    for (var i = 0; i < 9000; i++) { var v = r(); x.fillStyle = v > 0.5 ? "rgba(255,255,255,0.035)" : "rgba(0,0,0,0.06)"; x.fillRect(r() * 256, r() * 256, 1, 1); }
+    for (var k = 0; k < 6; k++) { var y = 18 + k * 43; x.fillStyle = "rgba(0,0,0,0.38)"; x.fillRect(0, y, 256, 3); x.fillStyle = "rgba(255,255,255,0.06)"; x.fillRect(0, y + 3, 256, 1); }
+    var tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1, 1); tx.anisotropy = 8;
+    return new THREE.MeshStandardMaterial({ map: tx, roughness: 0.55, metalness: 0 });
   };
 
   /* BUNK CURTAIN CLOTH, vertical folds and a woven tooth. */
@@ -101,7 +105,7 @@
       seat: N.vinylMat(THREE, TXT),
       seatStitch: S(0x3c3f44, 0.0, 0.7),
       dash: S(0x1e2024, 0.1, 0.6),
-      wheel: S(0x17191c, 0.1, 0.5),
+      wheel: S(0x2a2a2e, 0.05, 0.6),
       screen: TXT.mat.emissive(0x9fc9e0, 0.9),
       cabGlow: TXT.mat.emissive(0xffd29a, 1.1),
       headLamp: TXT.mat.emissive(0xfff2dc, 5.0),
@@ -229,7 +233,7 @@
     var dome = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.02, 0.14), M.cabGlow); dome.position.set(0, H - 0.04, zf + 1.3);
     if (o.domeLens !== false) g.add(dome);   /* a frame looking up at the roof can keep the light and drop the lens */
     /* the light sits well under the roof so the roof above the type stays an even dark, not a hot pool */
-    var pl = new THREE.PointLight(0xffc98a, o.dome != null ? o.dome : 2.2, 4.0, 2); pl.position.set(0, H - 0.62, zf + 1.4); g.add(pl);
+    var pl = new THREE.PointLight(o.domeColor != null ? o.domeColor : 0xffc98a, o.dome != null ? o.dome : 2.2, 4.0, 2); pl.position.set(0, H - 0.62, zf + 1.4); g.add(pl);
     if (o.observer && K) {
       var p = K.make('person', { seed: o.observerSeed || 4, pose: 'stand', role: 'resident', hat: 'none' });
       /* the kit person stands; a seated observer is posed by lowering it so the hips meet the

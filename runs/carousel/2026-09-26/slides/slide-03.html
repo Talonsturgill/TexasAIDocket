@@ -30,7 +30,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Hands off the wheel</h1>
-<p class="dek" data-follow="28">Kodiak's trucks still carry a safety observer. Kodiak says the observer never touched the wheel on its runs from Lancaster to Houston.</p>
+<p class="dek" data-follow="28">A safety observer rides on Kodiak's deliveries from Lancaster to Houston. Kodiak says the observer never touched the wheel.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -50,21 +50,26 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.7, tone: W.tone, fov: 64 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.45, tone: W.tone, fov: 58 });
 
   const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
   const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
   hw.position.set(0, 0, -200); TXT.add(R, hw);
   /* the observer rides in the passenger seat; the kit has no seated pose, so a standing figure is
    * lowered until its hips meet the cushion and the seat hides the rest, and the frame crops high */
+  M.screen.emissiveIntensity = 0.16;   /* the cluster is dimmed for night driving, never a white card */
   const cab = F.cab(THREE, TXT, K, M, { dome: 3.6, observer: true, observerSeed: 5, domeLens: false });
-  cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
-  const rec = F.recorder(THREE, TXT, M); rec.rotation.y = Math.PI;
-  rec.position.set(LANE + 0.16, FLOOR + 1.12, 1.18); TXT.add(R, rec);
-  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.22, 0.22, 1); });   /* the lamp reads from across the cab */
+  /* the set is built with its wheel on +x; mirrored here so, facing forward, the driver's seat
+   * is on the left as it is on an American road */
+  cab.scale.x = -1; cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
+  cab.traverse((o) => { if (o.isMesh && o.material === M.screen) o.material = TXT.mat.plastic(0x0d1117, { roughness: 0.75 }); });
+  /* the recorder on the overhead console above the glass, facing back into the cab */
+  const rec = F.recorder(THREE, TXT, M);
+  rec.position.set(LANE + 0.38, FLOOR + 1.7, -0.45); TXT.add(R, rec);
+  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.34, 0.34, 1); if (o.isPointLight) o.intensity *= 0.15; });
 
-  /* from the top of the dash, looking back into the cab */
-  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.3, -0.8], look: [LANE - 0.26, FLOOR + 1.3, 1.2] });
+  /* from the bunk, between the seats, looking forward through the glass at the lane ahead */
+  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.5, 1.15], look: [LANE + 0.02, FLOOR + 1.85, -2.5] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
   TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });

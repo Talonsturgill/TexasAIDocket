@@ -32,7 +32,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">219 miles, Kodiak says</h1>
-<p class="dek" data-follow="28">That is Kodiak's figure for the lane from its Lancaster hub to Houston. Waabi, which hauls the same corridor, calls it roughly 240.</p>
+<p class="dek" data-follow="28">That is Kodiak's figure for the Dallas and Houston metros along Interstate 45. Waabi hauls the same corridor and calls it roughly 240.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <svg id="map" viewBox="0 0 1080 1350"></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -49,7 +49,7 @@
 const FIG = {"kodiak_lane_miles": {"value": 219, "from": ["c25"], "basis": "Kodiak's own figure"}, "geometry": {"_note": "metres for the renderer, never printed", "mile_m": 1609.344}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "The lane", counter: "02 / 09", src: "c23 c25 c33", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "The lane", counter: "02 / 09", src: "c25 c32 c33", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 96, max: 132, maxLines: 1 });
   FORTYFIVE.follow();
   /* XMLHttpRequest rather than fetch: a file:// fetch is refused by this renderer, and XHR is not */
@@ -77,16 +77,16 @@ window.renderReady = (async () => {
     const k = Math.max(0, Math.min(1, (1350 - c[1]) / 1350 * 0.6 + (1080 - c[0]) / 1080 * 0.4));
     const name = (f.properties && (f.properties.name || f.properties.NAME)) || "";
     cx.beginPath(); p2d(f);
-    cx.fillStyle = lit.has(name) ? "#8FA9CC" : d3.interpolateRgb("#232E47", "#33405E")(k);
+    cx.fillStyle = lit.has(name) ? "#8FA9CC" : d3.interpolateRgb("#1A233A", "#4A5A80")(k);
     cx.fill();
   });
-  cx.beginPath(); p2d(TXGeo.borders(topo)); cx.strokeStyle = "rgba(200,209,220,0.42)"; cx.lineWidth = 1.2; cx.stroke();
+  cx.beginPath(); p2d(TXGeo.borders(topo)); cx.strokeStyle = "rgba(200,209,220,0.22)"; cx.lineWidth = 1.2; cx.stroke();
   cx.beginPath(); p2d(state); cx.strokeStyle = "rgba(220,226,234,0.7)"; cx.lineWidth = 1.6; cx.stroke();
 
-  /* the two ends, at their counties' centroids, and a straight dashed line between them */
+  /* the two ends, at their counties' centroids. No line joins them: a drawn length between two
+   * dots would read as the distance, and neither company's figure is a straight line */
   const cf = (n) => counties.features.find((f) => ((f.properties && (f.properties.name || f.properties.NAME)) || "") === n);
   const A = proj(d3.geoCentroid(cf("Dallas"))), B = proj(d3.geoCentroid(cf("Harris")));
-  cx.setLineDash([10, 9]); cx.strokeStyle = "#E3E7EE"; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(A[0], A[1]); cx.lineTo(B[0], B[1]); cx.stroke(); cx.setLineDash([]);
   [A, B].forEach((p) => { cx.beginPath(); cx.arc(p[0], p[1], 7, 0, Math.PI * 2); cx.fillStyle = "#F3F1EC"; cx.fill(); });
 
   cx.restore();
@@ -107,9 +107,7 @@ window.renderReady = (async () => {
   const txt = (x, y, s, anchor) => { const e = document.createElementNS(NS, 'text'); e.setAttribute('class', 'lab'); e.setAttribute('x', x); e.setAttribute('y', y); if (anchor) e.setAttribute('text-anchor', anchor); e.textContent = s; svg.appendChild(e); return e; };
   txt(A[0] + 30, A[1] - 22, 'DALLAS COUNTY');
   txt(B[0] - 44, B[1] + 8, 'HARRIS COUNTY', 'end');
-  txt(bx, by + 40, miles + ' MILES, KODIAK');
-  txt((A[0] + B[0]) / 2 - 22, (A[1] + B[1]) / 2, 'STRAIGHT LINE', 'end');
-  txt((A[0] + B[0]) / 2 - 22, (A[1] + B[1]) / 2 + 30, 'NOT THE ROAD', 'end');
+  txt(bx, by + 40, miles + " MILES, KODIAK'S FIGURE");
   return true;
 })();
 </script>

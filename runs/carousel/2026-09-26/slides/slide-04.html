@@ -28,8 +28,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">35 already run with nobody in the cab</h1>
-<p class="dek" data-follow="26">Kodiak says 35 of its driverless trucks were hauling commercially in the Permian Basin with no humans in the cab at the end of the second quarter.</p>
+<h1 class="hook" id="hook">35 already ran with nobody in the cab</h1>
+<p class="dek" data-follow="26">Kodiak says 35 driverless trucks were running commercially in its Permian Basin deployment with no humans in the cab at the end of the second quarter.</p>
 
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -50,16 +50,16 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.35], exposure: W.exposure - 0.3, tone: W.tone, fov: 18.5 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.5], exposure: W.exposure - 0.15, tone: W.tone, fov: 30 });
 
   /* THE PAD. One rendered bobtail per truck Kodiak counts, the count read from figures.json, seven
    * across and as many rows deep as it takes. 8 m between centres across, 22 m between rows so no cast shadow reaches the next. */
   const N = FIG.permian_trucks.value, COLS = 7, ROWS = Math.ceil(N / COLS);
-  const DX = 8, DZ = 22;
-  TXT.frame(R, { from: [0, 118, 262], look: [0, 0, -30] });
+  const DX = 6, DZ = 22;
+  TXT.frame(R, { from: [0, 44, 140], look: [0, 0, -20] });
   TXT.sky(R);
-  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 140, shadowFar: 400 });
-  TXT.ground(R, { surface: 'caliche', size: 900, seed: 21 });
+  TXT.deckRig(R, Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { shadowSize: 60 }) }), { target: [0, 0, 0], distance: 160, shadowFar: 500 });
+  TXT.ground(R, { surface: 'caliche', size: 4000, seed: 21 });
   const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: false, seed: 3 });
   let n = 0;
   for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS && n < N; c++, n++) {
@@ -68,9 +68,9 @@ window.renderReady = (async () => {
     TXT.add(R, tr); TXT.contact(R, tr);
   }
   /* the pad edge: scrub and mesquite, kept off the pad */
-  TXT.scatter(R, { kind: 'scrub', count: 2600, area: [-120, -160, 120, 120], avoid: [[-22, -40, 22, 40]], seed: 7, scale: [0.4, 1.1] });
-  for (let i = 0; i < 10; i++) { const m = K.make('mesquite', { seed: 30 + i }); m.position.set(-60 + i * 13 + (i % 2) * 5, 0, -58 - (i % 3) * 9); TXT.add(R, m); TXT.contact(R, m); }
-  const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(46, 0, -150); TXT.add(R, pj); TXT.contact(R, pj);
+  TXT.scatter(R, { kind: 'scrub', count: 2200, area: [-90, -260, 90, 90], avoid: [[-26, -56, 26, 56]], seed: 7, scale: [0.18, 0.45] });
+  for (let i = 0; i < 10; i++) { const side = i % 2 ? 1 : -1; const m = K.make('mesquite', { seed: 30 + i }); m.position.set(side * (32 + (i % 3) * 6), 0, 50 - Math.floor(i / 2) * 22); TXT.add(R, m); TXT.contact(R, m); }
+  const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(40, 0, -420); TXT.add(R, pj); TXT.contact(R, pj);
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);

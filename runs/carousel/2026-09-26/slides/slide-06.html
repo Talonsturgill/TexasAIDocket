@@ -29,7 +29,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Six statements and no fee</h1>
-<p class="dek" data-follow="28">Since May 28th a company running vehicles with no driver needs a state authorization. It acknowledges six statements and pays nothing, and the authorization does not expire.</p>
+<p class="dek" data-follow="28">Since May 28th a company running vehicles with no driver needs a state authorization. The company acknowledges six statements and pays nothing. The authorization does not expire.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -50,12 +50,12 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.95, tone: W.tone, fov: 40 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.65, tone: W.tone, fov: 40 });
 
   const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
   const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
   hw.position.set(0, 0, -200); TXT.add(R, hw);
-  const cab = F.cab(THREE, TXT, K, M, { dome: 6.5 });
+  const cab = F.cab(THREE, TXT, K, M, { dome: 6.5, domeColor: 0xfff0dc });
   cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
   const seat = cab.userData.seat;                       /* [x, y, z] of the driver's cushion, cab local */
 
@@ -64,20 +64,17 @@ window.renderReady = (async () => {
   const N = FIG.acknowledgements.value;
   const c = document.createElement('canvas'); c.width = 864; c.height = 1116;
   const g = c.getContext('2d');
-  g.fillStyle = '#EDEBE5'; g.fillRect(0, 0, 864, 1116);
+  g.fillStyle = '#F2EEE6'; g.fillRect(0, 0, 864, 1116);
   g.fillStyle = '#2B2F36'; g.fillRect(70, 90, 724, 10);            /* the heavy rule under the head */
-  for (let k = 0; k < 5; k++) { g.fillStyle = 'rgba(60,66,76,0.55)'; g.fillRect(70, 40 + k * 0, 300 - k * 40, 0); }
-  g.fillStyle = 'rgba(60,66,76,0.6)'; g.fillRect(70, 52, 360, 16); g.fillRect(450, 52, 160, 16);
   const top = 150, rowH = 128;
   for (let i = 0; i < N; i++) {
     const y = top + i * rowH;
     g.strokeStyle = '#2B2F36'; g.lineWidth = 5; g.strokeRect(78, y + 28, 52, 52);   /* the tick box */
-    g.fillStyle = 'rgba(60,66,76,0.62)';                                         /* the statement, unreadable */
+    g.fillStyle = '#8A8C92';                                                     /* the statement, unreadable, cool grey so the one tick is the only warm mark */
     g.fillRect(160, y + 34, 560 - (i % 3) * 70, 14); g.fillRect(160, y + 62, 380 + (i % 2) * 120, 14);
     g.fillStyle = 'rgba(43,47,54,0.35)'; g.fillRect(70, y + rowH - 4, 724, 3);   /* hairline between rows */
   }
   g.fillStyle = '#2B2F36'; g.fillRect(70, top + N * rowH + 16, 724, 8);           /* the heavy rule after the six */
-  g.fillStyle = 'rgba(60,66,76,0.6)'; g.fillRect(70, top + N * rowH + 48, 620, 14); g.fillRect(70, top + N * rowH + 76, 440, 14);
   const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
   const geo = new THREE.PlaneGeometry(0.216, 0.279, 12, 16);
   const pos = geo.attributes.position;
@@ -95,7 +92,7 @@ window.renderReady = (async () => {
   const accentInk = new THREE.MeshBasicMaterial({ color: F.ACCENT, toneMapped: false });
   for (let i = 0; i < N; i++) {
     const mk = TXT.extrude(tickShape, 0.0012, i === 1 ? accentInk : ink, { bevel: false });
-    if (i === 1) mk.scale.set(2.2, 2.2, 1);
+    if (i === 1) mk.scale.set(4.2, 4.2, 1);
     const u = (78 + 26) / 864 * 0.216 - 0.108, v = 0.1395 - (top + i * rowH + 54) / 1116 * 0.279;
     const lx = u, lz = -v;                                                         /* sheet local, after the -90 degree tilt */
     const cs = Math.cos(A), sn = Math.sin(A);
@@ -106,7 +103,7 @@ window.renderReady = (async () => {
   }
 
   /* from under the roof between the wheel and the seat, looking down onto the cushion */
-  TXT.frame(R, { from: [LANE + seat[0] - 0.22, FLOOR + 1.78, seat[2] - 0.2], look: [sx + 0.03, sy, sz + 0.1] });
+  TXT.frame(R, { from: [LANE + seat[0] - 0.22, FLOOR + 1.78, seat[2] - 0.2], look: [sx + 0.03, sy + 0.14, sz + 0.1] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
   TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });

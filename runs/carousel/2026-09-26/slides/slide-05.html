@@ -16,7 +16,7 @@
           letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
           text-shadow:0 2px 18px rgba(8,12,24,0.4); }
   .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
-          text-shadow:0 0 2px rgba(8,12,24,0.6); }
+          text-shadow:0 0 3px rgba(8,12,24,0.75), 0 0 10px rgba(8,12,24,0.45); }
   .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
              white-space:nowrap; z-index:20; }
@@ -30,7 +30,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">200 places, 20 trucks</h1>
-<p class="dek" data-follow="26">Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart, citing a CNBC ride, puts the fleet running now at 20.</p>
+<p class="dek" data-follow="26">Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride.</p>
 
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -51,44 +51,57 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.3], exposure: W.exposure - 0.25, tone: W.tone, fov: 20 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.6], exposure: W.exposure - 0.2, tone: W.tone, fov: 44 });
 
-  /* THE YARD. One painted tractor stall per truck in the allocation, read from figures.json, forty
-   * across, every row with its own drive aisle. The first stalls of
-   * the nearest row hold one tractor each for the reported count. One scale for stalls and trucks. */
+  /* THE YARD. One painted tractor stall per truck in the allocation, read from figures.json, ten
+   * across and twenty rows deep, every row with its own drive aisle. The two nearest rows hold one tractor
+   * per stall for the reported count, noses out to the camera. One scale for stalls and trucks.
+   * A high oblique from the near aisle: the twenty cabs fill the lower third and the 180 empty
+   * stalls recede row by row toward the type and the horizon. */
   const STALLS = FIG.aurora_trucks_year_end.value, NOW = FIG.aurora_trucks_now_reported.value;
-  const ACROSS = 40, SW = 4.0, SL = 9.2, AISLE = 7;
+  const ACROSS = NOW / 2, SW = 4.2, SL = 9.6, AISLE = 8;
   const rows = Math.ceil(STALLS / ACROSS);
-  const rowZ = (r) => r * (SL + AISLE);          /* every row on its own aisle */
-  const depth = rowZ(rows - 1) + SL, width = ACROSS * SW;
-  const z0 = -depth / 2;
-  /* straight down from a long lens, one scale for places and trucks, the yard in the lower two thirds */
-  TXT.frame(R, { from: [0, 640, -36 + 0.01], look: [0, 0, -36] });
+  const rowZ = (r) => -r * (SL + AISLE);          /* row 0 nearest, rows recede to -z */
+  const width = ACROSS * SW, zNear = 0;
+  TXT.frame(R, { from: [0, 40, zNear + 50], look: [0, 0, zNear - 40] });
   TXT.sky(R);
-  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 200, shadowFar: 500 });
-  TXT.ground(R, { surface: 'asphalt', size: 900, seed: 17 });
+  TXT.deckRig(R, Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { shadowSize: 50 }) }), { target: [0, 0, -40], distance: 200, shadowFar: 600 });
+  TXT.ground(R, { surface: 'asphalt', size: 4000, seed: 17 });
 
-  /* each place a pale painted pad inset from its neighbours, one per truck in the allocation */
-  const paint = TXT.mat.clay(0xd9d4ca, { roughness: 0.5, emissive: 0x2a2a2a });
-  const padG = new THREE.BoxGeometry(SW - 0.7, 0.014, SL - 0.7);
-  const pads = new THREE.InstancedMesh(padG, paint, STALLS);
-  const mx = new THREE.Matrix4(); let placed = 0;
-  for (let r = 0; r < rows && placed < STALLS; r++) {
-    const zc = z0 + rowZ(r) + SL / 2;
-    for (let c = 0; c < ACROSS && placed < STALLS; c++, placed++) { mx.makeTranslation(-width / 2 + (c + 0.5) * SW, 0.008, zc); pads.setMatrixAt(placed, mx); }
+  /* each place painted: two worn white lines per stall and a stop bar, answering the light */
+  const paint = TXT.mat.clay(0xcfd2d4, { roughness: 0.42 });
+  const lineG = new THREE.BoxGeometry(0.15, 0.012, SL);
+  const barG = new THREE.BoxGeometry(width, 0.012, 0.2);
+  const lines = new THREE.InstancedMesh(lineG, paint, rows * (ACROSS + 1));
+  const mx = new THREE.Matrix4(); let k = 0, placed = 0;
+  for (let r = 0; r < rows; r++) {
+    const zc = rowZ(r) - SL / 2;
+    for (let c = 0; c <= ACROSS; c++) { mx.makeTranslation(-width / 2 + c * SW, 0.007, zc); lines.setMatrixAt(k++, mx); }
+    const bar = new THREE.Mesh(barG, paint); bar.position.set(0, 0.007, zc - SL / 2); bar.receiveShadow = true; R.scene.add(bar);
+    placed += Math.min(ACROSS, STALLS - r * ACROSS);
   }
-  pads.receiveShadow = true; R.scene.add(pads);
+  lines.receiveShadow = true; R.scene.add(lines);
   window.__stalls = placed;
 
-  /* the reported count, one tractor per stall along the nearest row, noses out to the aisle */
-  const nearRow = rows - 1, zc = z0 + rowZ(nearRow) + SL / 2;
-  const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: false, seed: 3 });
+  /* oil stains in the occupied stalls, tyre polish in the near aisle */
+  const stain = new THREE.MeshStandardMaterial({ color: 0x0b0c0f, roughness: 0.25, transparent: true, opacity: 0.55, depthWrite: false });
+  let sd = 5; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < NOW; i++) {
+    const d = new THREE.Mesh(new THREE.CircleGeometry(0.5 + rnd() * 0.5, 20), stain);
+    d.rotation.x = -Math.PI / 2; d.scale.set(1, 1.6, 1); d.position.set(-width / 2 + (i % ACROSS + 0.5) * SW + (rnd() - 0.5), 0.012, rowZ(Math.floor(i / ACROSS)) - SL * 0.55); R.scene.add(d);
+  }
+
+  /* the reported count, one lit tractor per stall along the nearest row, noses out to the aisle */
+  const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: true, seed: 3 });
   for (let i = 0; i < NOW; i++) {
     const tr = i === 0 ? base : base.clone(true);
-    tr.position.set(-width / 2 + (i + 0.5) * SW, 0, zc); TXT.add(R, tr); TXT.contact(R, tr);
+    tr.position.set(-width / 2 + (i % ACROSS + 0.5) * SW, 0, rowZ(Math.floor(i / ACROSS)) - SL / 2); TXT.add(R, tr); TXT.contact(R, tr);
   }
-  /* yard masts, the key's motivation */
-  [-width / 2 - 6, width / 2 + 6].forEach((x, i) => { const l = K.make('streetlight', { height: 15, seed: i }); l.position.set(x, 0, z0 - 8); TXT.add(R, l); });
+  /* yard masts down the aisles, their heads lit, a warm pool under each */
+  for (const r of [2]) for (const x of [-width / 2 - 5, width / 2 + 5]) {
+    const l = K.make('streetlight', { height: 15, seed: r }); l.position.set(x, 0, rowZ(r) + AISLE / 2); l.rotation.y = x < 0 ? Math.PI / 2 : -Math.PI / 2; TXT.add(R, l);
+    const pl = new THREE.PointLight(0xffc98a, 900, 60, 2); pl.position.set(x + (x < 0 ? 2.2 : -2.2), 14.6, rowZ(r) + AISLE / 2); R.scene.add(pl);
+  }
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);
