@@ -223,6 +223,58 @@ def check_report_complete(base: Path, report: dict) -> list[str]:
     return out
 
 
+# A slide's own chassis, the one file under assets/ a run may write (`assets/js/deck/**`, Phase 10.5).
+DECK_ASSET = re.compile(r"@@ASSETS@@/(js/deck/[^\"'?#\s)]+)")
+
+
+def check_renders_current(base: Path, assets: Path | None = None) -> list[str]:
+    """EVERY FRAME WAS RENDERED AFTER ITS LAST EDIT (Codex, PR 369).
+
+    `load_machine_qa` holds the QA file to the render, and nothing held the render to the source. A
+    repair edits `slides/slide-04.html`, and its `render.py --only` names another frame, or dies
+    before it reaches this one. The PNG and the report record are the frame from before the repair,
+    `qa.py` measures that PNG and writes a fresh file, the report's frame set still matches, and the
+    panel scores, and `assemble.py` ships, pixels the repair never touched.
+
+    So each PNG and the render report have to be no older than the frame's source: its own HTML,
+    and the deck chassis it loads from `assets/js/deck/`, the one place under `assets/` a run writes,
+    since a chassis edit restyles every frame that loads it. The engine is not held to this: a run
+    never writes it, and a merge that moves it lands after the panel. `render.py` records no hash, so
+    file times are the evidence, with `load_machine_qa`'s one second of slack. A frame with no PNG
+    is `qa.py`'s "png missing", which `load_machine_qa` already stops on.
+    """
+    assets = Path(assets or (REPO_ROOT / "assets"))
+    rdir = base / "render"
+    rp = rdir / "render_report.json"
+    reported = rp.stat().st_mtime if rp.exists() else None
+    out = []
+    for src in sorted((base / "slides").glob("slide-*.html")):
+        png = rdir / (src.stem + ".png")
+        if not png.exists():
+            continue
+        try:
+            html = src.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            html = ""
+        sources = [src] + [assets / rel for rel in sorted(set(DECK_ASSET.findall(html)))]
+        stamped = [(q.stat().st_mtime, q) for q in sources if q.exists()]
+        if not stamped:
+            continue
+        edited, newest = max(stamped)
+        shown = newest.name if newest == src else f"assets/{newest.relative_to(assets)}"
+        n = re.search(r"slide-0*(\d+)", src.name)
+        again = (f"Render it with render.py --only {n.group(1) if n else '?'}, run qa.py, then this "
+                 f"again")
+        if png.stat().st_mtime + 1.0 < edited:
+            out.append(f"render/{png.name} predates the last edit to {shown}, so the panel would "
+                       f"score, and assemble.py would ship, {src.name} as it was before that edit. "
+                       f"{again}")
+        elif reported is not None and reported + 1.0 < edited:
+            out.append(f"render/render_report.json predates the last edit to {shown}, so its record "
+                       f"of {src.name} describes the frame before that edit. {again}")
+    return out
+
+
 def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
     """MACHINE QA MEASURED THE FRAMES THAT ARE HERE NOW (Codex, PR 369).
 
@@ -922,7 +974,8 @@ def check_value_arc(base: Path) -> list:
 
 # ------------------------------------------------------------------ driver
 
-def run(date: str, out_root: Path | None = None, articles: Path | None = None) -> int:
+def run(date: str, out_root: Path | None = None, articles: Path | None = None,
+        assets: Path | None = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
     rp = base / "render" / "render_report.json"
     qp = base / "render" / "machine_qa.json"
@@ -931,10 +984,12 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         return 2
     report = json.loads(rp.read_text(encoding="utf-8"))
     qa, qa_problems = load_machine_qa(base, report)
+    current = check_renders_current(base, assets)
     floor = rubric_contrast_floor()
     # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED (GATE_LESSONS 37). Contrast read off a QA
-    # file that describes other frames, or no file, is not a reading of this deck.
-    contrast = (check_contrast(qa, floor) if not qa_problems else
+    # file that describes other frames, or no file, or frames from before the last edit, is not a
+    # reading of this deck.
+    contrast = (check_contrast(qa, floor) if not (qa_problems or current) else
                 [f"CANNOT RUN: {qp.relative_to(base)} is not a reading of these frames, see above"])
 
     groups = [
@@ -943,6 +998,7 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         ("every slide number in published copy resolves", check_pointers(base, report)),
         ("the render report holds a record of every frame on disk",
          check_report_complete(base, report)),
+        ("every frame was rendered after its last edit", current),
         ("machine QA measured the frames that are here now", qa_problems),
         (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
@@ -1453,9 +1509,18 @@ def self_test() -> int:
             (_arts / "2026-09-24.json").write_text(json.dumps({"sections": [{"paragraphs": [
                 {"text": para, "claims": ["c18"]}]}]}), encoding="utf-8")
 
+        _assets = _root / "assets"
+        (_assets / "js" / "deck").mkdir(parents=True)
+
+        def _printed():
+            buf = _io.StringIO()
+            with _cl.redirect_stdout(buf), _cl.redirect_stderr(_io.StringIO()):
+                code = run("2026-09-24", out_root=_root, articles=_arts, assets=_assets)
+            return buf.getvalue() + f"\nexit {code}"
+
         def _run():
             with _cl.redirect_stdout(_io.StringIO()), _cl.redirect_stderr(_io.StringIO()):
-                return run("2026-09-24", out_root=_root, articles=_arts)
+                return run("2026-09-24", out_root=_root, articles=_arts, assets=_assets)
 
         _edition("People appear elsewhere in the draft too.")
         ok("the smallest clean deck, with the repaired web edition, is ready to be scored",
@@ -1491,6 +1556,48 @@ def self_test() -> int:
         _qa_at(120)
         ok("...and qa.py run again after that frame clears it", _run() == 0,
            str(load_machine_qa(_q, _rep)[1]))
+        # A FRAME EDITED AFTER ITS RENDER (Codex, PR 369). The repair's render.py --only named another
+        # frame, so the PNG, its report record and the QA qa.py refreshed from that PNG all predate it.
+        _src = _q / "slides" / "slide-01.html"
+        _html = _src.read_text(encoding="utf-8")
+
+        def _at(path, t):
+            _os.utime(path, (t, t))
+
+        _edit = _png.stat().st_mtime + 30
+        _at(_src, _edit)
+        ok("a slide edited after its PNG stops the panel, and names the frame and the edit",
+           _run() == 1 and any("predates the last edit to slide-01.html" in p and "--only 1" in p
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        ok("...and its contrast is a check that CANNOT RUN, not a clean one",
+           "CANNOT RUN" in _printed(), "contrast read clean off pixels from before the edit")
+        # the chassis the frame loads, edited after the PNG, stales the frame the same way
+        _deck = _assets / "js" / "deck" / "2026-09-24-test.js"
+        _deck.write_text("window.DECK = 1;", encoding="utf-8")
+        _src.write_text(_html.replace("</body>", '<script src="@@ASSETS@@/js/deck/2026-09-24-test.js">'
+                                                 '</script></body>'), encoding="utf-8")
+        _at(_src, _png.stat().st_mtime - 30)
+        _at(_deck, _png.stat().st_mtime + 30)
+        ok("a deck chassis edited after a frame's PNG stops the panel, and names the chassis",
+           _run() == 1 and any("assets/js/deck/2026-09-24-test.js" in p
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        # a PNG rendered after the edit, and a report from before it: the crash after the screenshot
+        _at(_png, _deck.stat().st_mtime + 5)
+        _at(_rpt, _deck.stat().st_mtime - 5)
+        _qa_at(20)
+        ok("a render report older than the edit stops the panel even when the PNG is newer",
+           _run() == 1 and any(p.startswith("render/render_report.json predates")
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        _at(_rpt, _png.stat().st_mtime)
+        _qa_at(10)
+        ok("...and the frame rendered again, report and QA after it, is ready", _run() == 0,
+           str(check_renders_current(_q, _assets)) + str(load_machine_qa(_q, _rep)[1]))
+        _src.write_text(_html, encoding="utf-8")
+        _deck.unlink()
+        _at(_src, _png.stat().st_mtime - 30)
         _png.unlink()
         _qa_at(2, slides=())
         ok("machine QA with no record of a rendered frame never measured it",

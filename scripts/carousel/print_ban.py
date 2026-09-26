@@ -415,12 +415,13 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
         for name, v in verdicts.items():
             if v == "no sky":
                 out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the "
-                           f"horizon or looking straight down, and it stands inside nothing built, so "
-                           f"a reader sees objects in a void. Lift the camera until the horizon is in "
-                           f"frame, or stand it inside something built (the kit's semi_cab_interior, "
-                           f"or a TXT.interior room filling half the frame). A roof, a canopy or a "
-                           f"tree overhead is not an interior. No. 33's frame 4, a lawn seen straight "
-                           f"down, was named top-down in all five panel rounds")
+                           f"horizon, looking straight down or facing something solid built across all "
+                           f"of it, and it stands inside nothing built, so a reader sees objects in a "
+                           f"void. Lift the camera until the horizon is in frame, or stand it inside "
+                           f"something built (the kit's semi_cab_interior, or a TXT.interior room "
+                           f"filling half the frame). A roof, a canopy or a tree overhead is not an "
+                           f"interior. No. 33's frame 4, a lawn seen straight down, was named top-down "
+                           f"in all five panel rounds")
             elif v == "no room":
                 out.append(f"{name} builds a room with TXT.interior and its camera shows too little of "
                            f"it, and it stands inside nothing built, so a reader sees objects in a "

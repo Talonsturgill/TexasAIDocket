@@ -49,7 +49,7 @@
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
-| 14b | `panel_ready.py`, `print_ban.py`, `qa.py` |
+| 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
@@ -103,7 +103,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
-| `TXT.skyInFrame(camera)` | the share of the frame above the horizon, 0 to 1, measured on the camera's own frustum: a grid of rays through the image, corners included, unprojected through the projection the renderer uses, so zoom, a lens offset ... |
+| `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |
 | `await TXT.snapshot(R, o)` | Renders one still, waits a paint tick, then ASSERTS the frame is not black (research-documented headless failure modes: first-paint race and silent 2D fallback). |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
@@ -451,7 +451,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
 | `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 12b, 14b, 15 |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 15 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 14b, 15 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -507,7 +507,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
-| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 15 |
+| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 14b, 15 |
 | Node | TXLAYOUT.check before dossiers; the article edition suite | artwork, 14b, 16 |
 
 ## THE DOCTRINE, `knowledge/`

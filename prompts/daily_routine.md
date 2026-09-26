@@ -1352,6 +1352,12 @@ frame re-rendered since Phase 11 left that file describing a frame it replaced. 
 refuses a QA file older than the newest render, missing a frame or missing altogether, so a run
 that skips the first line gets a red second line rather than a reading of the old deck.
 
+**A frame edited after its render is not ready either.** `panel_ready` holds each PNG and the
+render report to the frame's own HTML and to the deck chassis it loads from `assets/js/deck/`. A
+repair whose `render.py --only` named the wrong frame, or died before reaching it, leaves the
+pixels from before the repair, and `qa.py` would measure those and call them fresh (Codex, PR
+369). Render the frame the message names, run `qa.py`, then this again.
+
 **Non-zero means the deck is not ready to be SCORED.** It does not mean the deck is unshippable.
 Fix the frame and run it again. Do not spawn a scorer while this is red.
 

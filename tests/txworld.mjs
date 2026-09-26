@@ -422,6 +422,113 @@ const ENCLOSURE = `async (T, TXT, cv) => {
            clearVerts, solidVerts };
 }`;
 
+// What the shader samples, the dome an orthographic camera reaches, the sky something solid hides,
+// and a room turned on its axis (Codex, PR 369): the third page, so no page nears the time limit.
+const SAMPLED = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  // WHAT THE GPU DRAWS: a plane in the material, over a red clear colour, on a context of its own.
+  // A pixel that stays red was discarded.
+  const gcv = document.createElement('canvas'); gcv.width = gcv.height = 16;
+  const gr = new T.WebGLRenderer({ canvas: gcv, preserveDrawingBuffer: true, antialias: false });
+  gr.setClearColor(0xff0000, 1);
+  const gcam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10); gcam.position.z = 2;
+  const draws = (mat) => {
+    const s = new T.Scene(); s.add(new T.Mesh(new T.PlaneGeometry(4, 4), mat));
+    gr.render(s, gcam);
+    const gl = gr.getContext(), px = new Uint8Array(4);
+    gl.readPixels(8, 8, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    return !(px[0] === 255 && px[1] === 0 && px[2] === 0);
+  };
+  const data = (Arr, type, fmt, lanes, vals, o) => {
+    const d = new Arr(16 * lanes);
+    for (let i = 0; i < 16; i++) for (let k = 0; k < lanes; k++) d[i * lanes + k] = vals[k];
+    const t = new T.DataTexture(d, 4, 4, fmt, type); Object.assign(t, o || {}); t.needsUpdate = true;
+    return t;
+  };
+  const H = T.DataUtils.toHalfFloat;
+  const mask = (t) => new T.MeshStandardMaterial({ color: 0x333333, alphaMap: t, alphaTest: 0.5 });
+  const TEXELS = {
+    half04:  () => mask(data(Uint16Array, T.HalfFloatType, T.RGBAFormat, 4, [H(0.4), H(0.4), H(0.4), H(1)])),
+    half06:  () => mask(data(Uint16Array, T.HalfFloatType, T.RGBAFormat, 4, [H(0.6), H(0.6), H(0.6), H(1)])),
+    u16mask: () => mask(data(Uint16Array, T.UnsignedShortType, T.RGBAFormat, 4, [40000, 40000, 40000, 65535])),
+    u16map:  () => new T.MeshStandardMaterial({ color: 0x333333, alphaTest: 0.5,
+                     map: data(Uint16Array, T.UnsignedShortType, T.RGBAFormat, 4, [100, 100, 100, 100]) }),
+    srgb180: () => mask(data(Uint8Array, T.UnsignedByteType, T.RGBAFormat, 4, [180, 180, 180, 255], { colorSpace: T.SRGBColorSpace })),
+    lin180:  () => mask(data(Uint8Array, T.UnsignedByteType, T.RGBAFormat, 4, [180, 180, 180, 255])),
+    red255:  () => mask(data(Uint8Array, T.UnsignedByteType, T.RedFormat, 1, [255])),
+  };
+  const texels = {};
+  for (const [k, make] of Object.entries(TEXELS)) {
+    const Rc = world(40);
+    TXT.frame(Rc, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rc, [4, 8, 4]);
+    Rc.scene.add(shelter(make()));
+    const errors = await capture(() => TXT.snapshot(Rc));
+    texels[k] = { errors, cover: cover(Rc), gpu: draws(make()) };
+  }
+  // AN ORTHOGRAPHIC FRUSTUM 200 m TALL, pitched 5 degrees down: its rays start across its whole near
+  // plane, and the upper rows start high enough to meet the dome above its horizon
+  const Ro = world(40);
+  TXT.frame(Ro, { from: [0, 30, 0], look: [0, 30, -100] }); dress(Ro, [20, 40, 20]);
+  const tall = new T.OrthographicCamera(-80, 80, 100, -100, 0.1, 2000);
+  tall.position.set(0, 30, 0); tall.lookAt(0, 30 - 100 * Math.tan(5 * Math.PI / 180), -100); tall.updateMatrixWorld();
+  Ro.camera = tall;
+  const tallErrors = await capture(() => TXT.snapshot(Ro));
+  const tallSky = TXT.skyInFrame(tall, Ro);
+  // A WALL ACROSS THE WHOLE SKY: a camera at 2 m facing the horizon and a solid wall 10 m ahead
+  // filling the frame. Then the same wall as half-opaque glass, and as a cutout that draws nothing,
+  // each of which the sky shows through.
+  const walled = async (mat) => {
+    const Rw = world(40);
+    TXT.frame(Rw, { from: [0, 2, 0], look: [0, 2, -100] }); dress(Rw, [20, 40, 20]);
+    const wall = new T.Mesh(new T.BoxGeometry(400, 400, 1), mat); wall.position.set(0, 0, -10); Rw.scene.add(wall);
+    const errors = await capture(() => TXT.snapshot(Rw));
+    return { errors, sky: TXT.skyInFrame(Rw.camera, Rw), cover: cover(Rw) };
+  };
+  const clear = () => { const c = document.createElement('canvas'); c.width = c.height = 8; return new T.CanvasTexture(c); };
+  const solidWall = await walled(new T.MeshStandardMaterial({ color: 0x555555 }));
+  const glassWall = await walled(new T.MeshStandardMaterial({ color: 0x555555, transparent: true, opacity: 0.5 }));
+  const cutWall = await walled(new T.MeshStandardMaterial({ map: clear(), alphaTest: 0.5 }));
+  // A ROOM TURNED 45 DEGREES and a camera 3 m over the ground in front of its open side, looking
+  // straight down: inside the room's world box, outside its floor, with no wall in the frame
+  const Rt = world(40);
+  TXT.frame(Rt, { from: [6.5, 3, 6.5], look: [6.5, 0, 6.49] });
+  TXT.sky(Rt, W); TXT.interior(Rt, {}); Rt.room.rotation.y = Math.PI / 4;
+  TXT.rig(Rt, { key: Object.assign({}, W.rig.key, { pos: [8, 8, 8] }), ambient: W.rig.ambient });
+  const turnedErrors = await capture(() => TXT.snapshot(Rt));
+  const turnedShare = TXT.roomShare(Rt);
+  // ...and the same turned room with only a room, the camera inside it facing its back wall
+  const th = Math.PI / 4, turn = (x, z) => [x * Math.cos(th) + z * Math.sin(th), -x * Math.sin(th) + z * Math.cos(th)];
+  const Ri = world(40);
+  const [cx, cz] = turn(0, 3), [bx, bz] = turn(0, -5);
+  TXT.frame(Ri, { from: [cx, 1.6, cz], look: [bx, 1.6, bz] });
+  TXT.interior(Ri, {}); Ri.room.rotation.y = th;
+  TXT.rig(Ri, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+  const turnedInErrors = await capture(() => TXT.snapshot(Ri));
+  const turnedInShare = TXT.roomShare(Ri);
+  return { texels, tallErrors, tallSky, solidWall, glassWall, cutWall,
+           turnedErrors, turnedShare, turnedInErrors, turnedInShare };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -593,6 +700,62 @@ check('a room 300 m straight below the camera is no interior shot: the frame IS 
 check('...and the engine says so on the console, in the words print_ban reads',
       g.consoleErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')) && g.result.marker === 'TXT: NO SKY IN FRAME',
       JSON.stringify(g.consoleErrors));
+
+const x = await run('sampled', SAMPLED);
+check('the sampled page renders with no page error and no scene error',
+      !x.result.error && x.pageErrors.length === 0, JSON.stringify({ error: x.result.error, page: x.pageErrors }));
+{
+  // Each cutout shelter is a shelter exactly when the GPU draws its material (Codex, PR 369). The
+  // first reader divided every stored value by 255, which read the half floats, the 16-bit textures
+  // three.js never uploads, the sRGB alphaMap and the red alphaMap all wrong.
+  const tx = x.result.texels || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  const says = {
+    half04: 'a half-float alphaMap at 0.4, under alphaTest 0.5',
+    half06: 'a half-float alphaMap at 0.6',
+    u16mask: 'a 16-bit alphaMap three.js never uploads, which samples a green of 0',
+    u16map: 'a 16-bit map three.js never uploads, which samples an alpha of 1 and draws black',
+    srgb180: 'an sRGB alphaMap whose green of 180 decodes to 0.46',
+    lin180: 'the same alphaMap read linear, 0.71',
+    red255: 'a red alphaMap, which samples a green of 0',
+  };
+  const expect = { half04: false, half06: true, u16mask: false, u16map: true, srgb180: false, lin180: true, red255: false };
+  for (const k of Object.keys(expect)) {
+    const r = tx[k] || {};
+    const wall = r.cover >= 0.8;
+    check(`${says[k]}: the GPU ${expect[k] ? 'draws it' : 'discards it'}, and the shelter ` +
+          `${expect[k] ? 'is one' : 'is none'} (it covers ${r.cover})`,
+          r.gpu === expect[k] && wall === expect[k] && flagged(r) === !expect[k], JSON.stringify(r));
+  }
+}
+check(`an orthographic frustum 200 m tall pitched 5 degrees down shows sky in its upper rows ` +
+      `(${(x.result.tallSky || 0).toFixed(3)} of the frame), and says so`,
+      x.result.tallSky > 0 && Array.isArray(x.result.tallErrors) && x.result.tallErrors.length === 1 &&
+      x.result.tallErrors[0].startsWith('TXT: SKY IN FRAME'),
+      JSON.stringify({ sky: x.result.tallSky, errors: x.result.tallErrors }));
+{
+  const sw = x.result.solidWall || {}, gw = x.result.glassWall || {}, cw = x.result.cutWall || {};
+  check(`a solid wall filling the frame hides the sky: facing the horizon behind it IS flagged ` +
+        `(sky ${sw.sky}, cover ${sw.cover})`,
+        sw.sky === 0 && Array.isArray(sw.errors) && sw.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+        JSON.stringify(sw));
+  check(`...while the sky shows through the same wall as half-opaque glass (sky ${gw.sky})`,
+        gw.sky > 0 && Array.isArray(gw.errors) && gw.errors.length === 1 && gw.errors[0].startsWith('TXT: SKY IN FRAME'),
+        JSON.stringify(gw));
+  check(`...and through it as a cutout that draws nothing (sky ${cw.sky})`,
+        cw.sky > 0 && Array.isArray(cw.errors) && cw.errors.length === 1 && cw.errors[0].startsWith('TXT: SKY IN FRAME'),
+        JSON.stringify(cw));
+}
+check(`a room turned 45 degrees is measured on its own floor: looking down on the ground in front of ` +
+      `its open side IS flagged (the room fills ${x.result.turnedShare} of the frame)`,
+      x.result.turnedShare < 0.5 && Array.isArray(x.result.turnedErrors) &&
+      x.result.turnedErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ share: x.result.turnedShare, errors: x.result.turnedErrors }));
+check(`...while the same turned room, from inside facing its back wall, is a room ` +
+      `(it fills ${x.result.turnedInShare} of the frame)`,
+      x.result.turnedInShare >= 0.5 && Array.isArray(x.result.turnedInErrors) && x.result.turnedInErrors.length === 1 &&
+      x.result.turnedInErrors[0].startsWith('TXT: ROOM IN FRAME'),
+      JSON.stringify({ share: x.result.turnedInShare, errors: x.result.turnedInErrors }));
 
 await browser.close();
 console.log(failures ? `\ntxworld: ${failures} FAILED` : '\ntxworld: all passed');
