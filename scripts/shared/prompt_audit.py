@@ -53,11 +53,14 @@ from __future__ import annotations
 
 import argparse
 import glob
+import importlib.util
 import json
+import os
 import re
 import sys
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
 LOG_GLOBS = ("/tmp/claude-code.log", "/tmp/claude-code-*.log")
 
 # A call that waited longer than this had a human in the loop. The measured populations are
@@ -95,6 +98,14 @@ def redact(rule: str) -> str:
     # admits `checkout` and `add` while rejecting a flag, a path and anything with a dot in it,
     # which is where an argument's secret would live.
     words = body.split()
+    # A LEADING ASSIGNMENT IS AN ARGUMENT TOO. `Bash(TOKEN=secret curl ...)` kept the token as the
+    # command word. Found by Codex on the no-stall hook's copy of this logic, PR 362.
+    while words and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", words[0]):
+        words = words[1:]
+    if not words:
+        return f"{m.group('tool')}((command withheld))"
+    if "=" in words[0] or words[0][:1] in "\"'`$(":
+        return f"{m.group('tool')}((command withheld) ...)"
     kept = words[:1]
     if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
         kept.append(words[1])
@@ -172,7 +183,41 @@ def scan() -> dict:
         total += got_total
     waited.sort(key=lambda row: row["ms"], reverse=True)
     return {"logs": read, "dispatches": total, "waited": waited,
-            "unassociated_rules": orphans, "measured": total > 0}
+            "unassociated_rules": orphans, "measured": total > 0,
+            "no_stall": no_stall_report()}
+
+
+def no_stall_report(root: Path = REPO_ROOT) -> dict:
+    """Whether the no-stall hook was armed in this session, and what it refused.
+
+    THE OTHER HALF OF THE QUESTION, since 2026-09-26. `.claude/hooks/no_stall.py` answers a dialog
+    the moment it appears, so a refused call never shows here as a WAIT. It is still a call the
+    run should stop making, and the email should name it. So this reads the hook's own log through
+    the hook's own module, and never a second parser of that format.
+
+    It changes no exit code. Exit 1 still means something WAITED. A hook that was not armed in an
+    unattended run is said loudly, because that is a run nothing was guarding.
+    """
+    hook = root / ".claude" / "hooks" / "no_stall.py"
+    if not hook.is_file():
+        return {"present": False,
+                "lines": ["no-stall hook: .claude/hooks/no_stall.py is missing, so nothing in this "
+                          "session answered a dialog"]}
+    try:
+        spec = importlib.util.spec_from_file_location("no_stall_hook", hook)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        summary = mod.summary(root, os.environ.get("CLAUDE_CODE_SESSION_ID") or None)
+        lines = mod.report_lines(summary)
+        unattended, because = mod.verdict({}, {**os.environ, "CLAUDE_PROJECT_DIR": str(root)})
+    except Exception as exc:  # noqa: BLE001  a broken hook module must not cost the audit
+        return {"present": True, "error": f"{type(exc).__name__}: {exc}",
+                "lines": [f"no-stall hook: its log could not be read ({type(exc).__name__})"]}
+    if unattended and summary.get("armed") is False:
+        lines.insert(0, f"no-stall hook: NOT ARMED IN AN UNATTENDED RUN ({because}). Nothing "
+                        f"guarded this run against a dialog. Say so in the run record and the "
+                        f"email.")
+    return {"present": True, "unattended": unattended, **summary, "lines": lines}
 
 
 def report(result: dict) -> int:
@@ -235,6 +280,9 @@ def self_test() -> int:
                    redact("Bash(cp .claude/WORKLOG.md out/tmp/x.md)") == "Bash(cp ...)"))
     checks.append(("...including anything that looks like a secret",
                    "hunter2" not in redact("Bash(curl -H 'Authorization: hunter2' https://x/y)")))
+    checks.append(("...and a leading assignment, which is where a token rides",
+                   redact("Bash(TOKEN=hunter2 curl https://x/y)") == "Bash(curl ...)"
+                   and redact("Bash(TOKEN=hunter2)") == "Bash((command withheld))"))
     checks.append(("a wildcard rule survives readably", redact("Bash(git checkout *)")
                    == "Bash(git checkout ...)"))
     checks.append(("a bare tool rule is untouched", redact("Write") == "Write"))
@@ -268,6 +316,17 @@ def self_test() -> int:
     checks.append(("...and zero dispatches reports UNMEASURED, exit 1, never clean",
                    unmeasured == 1))
 
+    # THE NO-STALL HOOK'S HALF. Missing is said, never read as clean.
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        missing = no_stall_report(Path(tmp))
+    checks.append(("a repository without the no-stall hook says it is missing",
+                   missing["present"] is False and "missing" in missing["lines"][0]))
+    here = no_stall_report()
+    checks.append(("...and this one reads the hook's own log through the hook's own module",
+                   here["present"] is True and "error" not in here
+                   and here["lines"][0].startswith("no-stall hook:")))
+
     ok = True
     for label, passed in checks:
         print(f"  {'ok  ' if passed else 'FAIL'}  {label}")
@@ -290,7 +349,10 @@ def main() -> int:
     if args.json:
         print(json.dumps(result, indent=2))
         return 0 if result["measured"] and not result["waited"] else 1
-    return report(result)
+    code = report(result)
+    print()
+    print("\n".join(result["no_stall"]["lines"]))
+    return code
 
 
 if __name__ == "__main__":

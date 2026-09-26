@@ -492,12 +492,14 @@ Anthropic's documentation says so in as many words: cloud sessions "don't honor
 included. The SessionStart hook still writes the file and it changes nothing. The account, with
 the quotes and where they came from, is the last section before the routines' model heading.
 
-**If a prompt still stops a run, there is no setting left to reach for.** Until 2026-09-25 this
+**A dialog no longer stops a run, because a hook answers it (2026-09-26).** Until 2026-09-25 this
 paragraph named "the environment's own permission configuration in the Claude Code web UI" as the
 remaining lever, and a routine has no such setting: the routines page says "there is no
-permission-mode picker". Find the call that asked with `prompt_audit.py`, remove the run's
-dependency on it the way the protected-path account below does, and say so plainly in the email.
-A sixth fix written into a config that cannot carry one is still the wrong answer.
+permission-mode picker". What a repository CAN ship is a hook, and the owner approved one. The
+account is "THE NO-STALL HOOK", the last section before the routines' model heading. When
+`prompt_audit.py` reports a refusal, remove the run's dependency on that call the way the
+protected-path account below does, and say so plainly in the email. A sixth fix written into a
+config that cannot carry one is still the wrong answer.
 
 ### A SESSION CAN SEE THAT IT PROMPTED, and this paragraph used to say it could not (2026-09-02)
 
@@ -616,6 +618,61 @@ the route now, and the routine names it in its list of context files.
 directory, the repository's or the home directory's, as the thing to write, copy, move or edit, by
 any tool. Git's own commands are fine, because `git commit` and `git checkout` name no such path.
 Reading those files is fine, and so is running a script that lives there.
+
+### THE NO-STALL HOOK, and why the next new reason won't stop a run either (2026-09-26)
+
+**The owner, verbatim:** *"i want you to really ban it from stopping to ask me, cause its not just
+this time, as i said, it happens nearly everyday, always for a different reason."* And, approving
+this: *"Yes, write the no-stall hook under .claude/"*.
+
+Every fix above removed one cause, and the next run found another. A rule tells the model what not
+to do and does nothing when the model does it anyway, and neither a cloud run nor a routine has a
+permission setting to change. What a repository CAN ship is a hook. Claude Code runs a
+`PermissionRequest` hook the moment it is about to show a dialog, and the hook's answer replaces
+the dialog.
+
+`.claude/hooks/no_stall.py`, which `.claude/settings.json` registers on five events, does this **in
+an unattended session only**:
+
+- **Every permission dialog is denied at once**, with a message naming the route that needs no
+  approval. The run carries on without that one call instead of waiting all day.
+- **A protected-path write, a question to the user and entering plan mode** are refused before the
+  harness would ask, and **a connector asking for input** is declined.
+- **It never approves anything.** It grants no permission the run did not already have, so it is
+  not the self-grant a cloned repository is forbidden, and its worst day is a refused call rather
+  than an unsafe one.
+
+**Unattended means** the branch is `claude/daily-*`, or the session opened with the first line of
+`prompts/ROUTINE_PROMPT.txt`, or the host sets `CLAUDE_CODE_SESSION_ATTENDED=0`.
+`TXDOCKET_UNATTENDED=1` or `=0` forces it for a test. Anything else is attended, and there the hook
+prints nothing, so a maintainer's session is exactly as it was. The prompt stored on the routine
+and `ROUTINE_PROMPT.txt` must keep opening with the same sentence, and the hook's self-test fails
+if the file's first line moves.
+
+**What it can't do.** Claude Code runs no `PermissionRequest` hook for a sandboxed command's
+network request, so that one dialog can still wait. The hook logs it once it has waited about six
+seconds, `prompt_audit.py` measures the wait, and the email names both.
+
+**How a run knows it worked.** Every refusal and every dialog still waiting goes to
+`out/no_stall/<date>.jsonl`, with a command's arguments withheld. `prompt_audit.py`, in Phases 17
+and 19, reads that log through the hook's own module and prints whether the hook was armed, what it
+refused and what still waited. `NOT ARMED IN AN UNATTENDED RUN` means nothing guarded the run, and
+it goes in the email. A refusal is not a stall, and it still goes in the run record, because it
+names a call the run should stop making.
+
+**It fails open.** A crash, a timeout or unreadable input prints nothing, and the dialog shows as it
+did before the hook existed. Its self-test proves that, proves every answer, and fails CI if
+`.claude/settings.json` stops registering it for an event it handles.
+
+**It is `human` lane and a protected path, on purpose.** No run, the self-editing retro included,
+can weaken its own guard. A change to it is a maintainer's, at a keyboard, answering the approval
+dialog.
+
+**What was not measured, stated so nobody inherits it as fact.** No second Claude Code process
+could run in the container where this was built, because the host supplies that session's
+credentials and nothing else holds any. So the hook was proven against Anthropic's documented
+schema, the published settings schema and its own process, never through a real dialog. The first
+scheduled run after it merged is the first real proof, and its email says `armed` or it doesn't.
 
 ## The routines' model, and what it changed here (2026-09-23)
 

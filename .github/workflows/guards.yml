@@ -154,6 +154,14 @@ jobs:
       - name: crawl_boundary self-test (prove it can go red)
         run: python3 scripts/shared/crawl_boundary.py --self-test
 
+      # THE NO-STALL HOOK, 2026-09-26. In an unattended run it denies every permission dialog at
+      # once, with the route that needs no approval, so a run never waits for nobody. It never
+      # approves anything. The self-test replays the 2026-09-25 dialog, proves an attended session
+      # is left alone and that the hook fails open, and fails if .claude/settings.json stops
+      # registering it, because a guard nothing runs is not a guard.
+      - name: No-stall hook self-test (prove it can go red, and that it is registered)
+        run: python3 .claude/hooks/no_stall.py --self-test
+
       # THE BRANCH BEING MERGEABLE, AND ONLY THE SELF-TEST CAN RUN HERE. The real check is
       # deliberately absent from this file and that is not an oversight: a `pull_request`
       # workflow runs against the pull request's MERGE REF, and GitHub cannot build one for a
