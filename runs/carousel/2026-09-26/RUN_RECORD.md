@@ -122,6 +122,21 @@ human was present and the run never stopped, so these read as decision latency r
 dialog anybody answered. The no-stall hook was armed at 06:15:58 UTC and refused nothing.
 **This reading is interim.** Phase 19 takes the reading that counts, just before the email.
 
+## Prompt audit (Phase 19, the reading that counts)
+
+`prompt_audit.py` just before the email measured 1,766 tool calls and flagged 515 as having waited
+on a decision. The longest wait was 10.8 seconds, the same call as the interim reading, and nothing
+waited longer since. No dialog was answered by anybody and the run never stopped. The no-stall hook
+was armed at 06:15:58 UTC and refused nothing.
+
+## The Gmail draft
+
+One draft was created for `docket@alaskaaihq.com` with the payload's body as `htmlBody`, and it was
+not sent. Reading it back with `get_draft` returned the body text intact, but an empty paragraph
+stood where the nine slide thumbnails were. Every thumbnail URL in the payload answers HTTP 200 on
+the run branch. This run can't tell whether the connector strips images from what it returns or
+whether the draft itself lost them. The owner should look for the deck when opening the draft.
+
 ## Gate status
 
 Written by `gate_status.py --sync` below. Not hand-written.
