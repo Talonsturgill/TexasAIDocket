@@ -367,8 +367,120 @@ export function init(THREE) {
       return c;
     } };
   };
+  // A MINIFIED TEXTURE IS READ AT ITS MIP LEVEL (Codex, PR 369). The GPU samples through the texture's
+  // own filters, and a texture seen from far enough through a mip level. The kit's perforated steel,
+  // 128 texels to 5 cm, averages there to an alpha of about 0.67 and clears its alphaTest everywhere,
+  // so at 40 m it draws as a solid sheet while its base texels are a third holes. A hit is read at
+  // the footprint it would have in this frame: one pixel's span at the hit's distance (an
+  // orthographic pixel's size), stretched by the angle the view meets the surface at, counted in the
+  // triangle's own texels through the texture's transform. The level follows the rule of
+  // EXT_texture_filter_anisotropic at the texture's anisotropy, and the filters are the texture's:
+  // nearest or bilinear within a level, nearest or linear between levels, over a chain that averages
+  // each level's 2 by 2 blocks the way generateMipmap does. A hit around the camera and out of the
+  // frame is read at the footprint it would have in view.
+  const levelsOf = (t) => {
+    if (t.levels) return t.levels;
+    const n0 = t.w * t.h, L0 = { w: t.w, h: t.h, g: new Float32Array(n0), a: new Float32Array(n0) };
+    for (let i = 0; i < n0; i++) { const c = t.at(i); L0.g[i] = c[1]; L0.a[i] = c[3]; }
+    const out = [L0];
+    for (let p = L0; p.w > 1 || p.h > 1;) {
+      const w = Math.max(1, p.w >> 1), h = Math.max(1, p.h >> 1);
+      const q = { w, h, g: new Float32Array(w * h), a: new Float32Array(w * h) };
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        let sg = 0, sa = 0;
+        for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++) {
+          const k = Math.min(p.h - 1, 2 * y + dy) * p.w + Math.min(p.w - 1, 2 * x + dx);
+          sg += p.g[k]; sa += p.a[k];
+        }
+        q.g[y * w + x] = sg / 4; q.a[y * w + x] = sa / 4;
+      }
+      out.push(q); p = q;
+    }
+    return (t.levels = out);
+  };
+  const wrapIndex = (i, n, mode) => {
+    if (mode === THREE.RepeatWrapping) return ((i % n) + n) % n;
+    if (mode === THREE.MirroredRepeatWrapping) { const m = ((i % (2 * n)) + 2 * n) % (2 * n); return m < n ? m : 2 * n - 1 - m; }
+    return Math.min(n - 1, Math.max(0, i));
+  };
+  const fetchTexel = (L, x, y, tex) => {
+    const k = wrapIndex(y, L.h, tex.wrapT) * L.w + wrapIndex(x, L.w, tex.wrapS);
+    return [L.g[k], L.a[k]];
+  };
+  const sampleLevel = (L, q, linear, tex) => {
+    if (!linear) return fetchTexel(L, Math.floor(q.x * L.w), Math.floor(q.y * L.h), tex);
+    const x = q.x * L.w - 0.5, y = q.y * L.h - 0.5, x0 = Math.floor(x), y0 = Math.floor(y), fx = x - x0, fy = y - y0;
+    const s00 = fetchTexel(L, x0, y0, tex), s10 = fetchTexel(L, x0 + 1, y0, tex);
+    const s01 = fetchTexel(L, x0, y0 + 1, tex), s11 = fetchTexel(L, x0 + 1, y0 + 1, tex);
+    const mix = (i) => (s00[i] * (1 - fx) + s10[i] * fx) * (1 - fy) + (s01[i] * (1 - fx) + s11[i] * fx) * fy;
+    return [mix(0), mix(1)];
+  };
+  const filtered = (t, tex, q, lod) => {
+    const levels = levelsOf(t);
+    const mipmapped = tex.minFilter !== THREE.NearestFilter && tex.minFilter !== THREE.LinearFilter;
+    const top = mipmapped && tex.generateMipmaps !== false ? levels.length - 1 : 0;
+    const magnified = !(lod > 0), f = magnified ? tex.magFilter : tex.minFilter;
+    const linear = f === THREE.LinearFilter || f === THREE.LinearMipmapNearestFilter || f === THREE.LinearMipmapLinearFilter;
+    if (magnified || top === 0) return sampleLevel(levels[0], q, linear, tex);
+    const l = Math.min(lod, top);
+    if (f === THREE.NearestMipmapNearestFilter || f === THREE.LinearMipmapNearestFilter)
+      return sampleLevel(levels[Math.min(top, Math.max(0, Math.ceil(l + 0.5) - 1))], q, linear, tex);
+    const k0 = Math.floor(l), k1 = Math.min(top, k0 + 1), fr = l - k0;
+    const s0 = sampleLevel(levels[k0], q, linear, tex), s1 = sampleLevel(levels[k1], q, linear, tex);
+    return [s0[0] * (1 - fr) + s1[0] * fr, s0[1] * (1 - fr) + s1[1] * fr];
+  };
+  // the anisotropy three.js sets on the texture: only for a trilinear minification, never under a
+  // nearest magnification, and never past what the context supports
+  const anisotropyOf = (tex, R) => {
+    if (!(tex.anisotropy > 1) || tex.magFilter === THREE.NearestFilter) return 1;
+    if (tex.minFilter !== THREE.NearestMipmapLinearFilter && tex.minFilter !== THREE.LinearMipmapLinearFilter) return 1;
+    const caps = R.renderer && R.renderer.capabilities;
+    const cap = caps && typeof caps.getMaxAnisotropy === 'function' ? caps.getMaxAnisotropy() : 1;
+    return Math.max(1, Math.min(tex.anisotropy, cap || 1));
+  };
+  const lodM = new THREE.Matrix4(), lodI = new THREE.Matrix4(), lodA = new THREE.Vector3(), lodB = new THREE.Vector3();
+  const lodC = new THREE.Vector3(), lodN = new THREE.Vector3(), lodE = new THREE.Vector3(), lodD = new THREE.Vector3();
+  const lodUa = new THREE.Vector2(), lodUb = new THREE.Vector2(), lodUc = new THREE.Vector2(), lodS = new THREE.Vector2();
+  const lodOf = (h, R, tex, t) => {
+    const cam = R.camera, obj = h.object, g = obj.geometry, f = h.face;
+    const uvs = g && g.attributes && g.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
+    if (!cam || !f || !uvs || !g.attributes.position) return 0;
+    lodM.copy(obj.matrixWorld);
+    if (obj.isInstancedMesh && h.instanceId != null) { obj.getMatrixAt(h.instanceId, lodI); lodM.multiply(lodI); }
+    const P = g.attributes.position;
+    lodA.fromBufferAttribute(P, f.a).applyMatrix4(lodM);
+    lodB.fromBufferAttribute(P, f.b).applyMatrix4(lodM);
+    lodC.fromBufferAttribute(P, f.c).applyMatrix4(lodM);
+    lodN.subVectors(lodB, lodA).cross(lodE.subVectors(lodC, lodA));
+    const world = lodN.length();
+    lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
+    lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
+    lodUc.fromBufferAttribute(uvs, f.c).applyMatrix3(tex.matrix);
+    const texels = Math.abs((lodUb.x - lodUa.x) * (lodUc.y - lodUa.y) - (lodUc.x - lodUa.x) * (lodUb.y - lodUa.y)) * t.w * t.h;
+    if (!(world > 1e-12) || !(texels > 0)) return 0;
+    const density = Math.sqrt(texels / world);                  // texels per metre on this triangle
+    const tall = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
+      ? R.renderer.getDrawingBufferSize(lodS).y : 0;
+    if (!(tall > 0)) return 0;
+    lodE.setFromMatrixPosition(cam.matrixWorld);
+    let across;
+    if (cam.isOrthographicCamera) {
+      across = (cam.top - cam.bottom) / (cam.zoom || 1) / tall;
+      cam.getWorldDirection(lodD);
+    } else {
+      lodD.subVectors(h.point, lodE);
+      const dist = lodD.length();
+      if (!(dist > 0)) return 0;
+      lodD.divideScalar(dist);
+      across = dist * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
+    }
+    const cos = Math.max(Math.abs(lodD.dot(lodN.divideScalar(world))), 1e-3);
+    const pMin = across * density, pMax = pMin / cos;
+    const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
+    return Math.log2(pMax / n);
+  };
   const texels = new WeakMap();
-  const texelAt = (tex, uv) => {
+  const texelAt = (tex, uv, h, R) => {
     if (!tex || !uv) return null;
     let e = texels.get(tex);
     if (!e || e.v !== tex.version) {
@@ -381,19 +493,17 @@ export function init(THREE) {
     if (!t) return null;
     if (tex.matrixAutoUpdate) tex.updateMatrix();
     const q = tex.transformUv(uv.clone());
-    const px = Math.min(t.w - 1, Math.max(0, Math.floor(q.x * t.w)));
-    const py = Math.min(t.h - 1, Math.max(0, Math.floor(q.y * t.h)));
-    const c = t.at(py * t.w + px);
-    return { g: c[1], a: c[3] };
+    const s = filtered(t, tex, q, h && R ? lodOf(h, R, tex, t) : 0);
+    return { g: s[0], a: s[1] };
   };
   // The fragment's alpha as three.js computes it: opacity, times the map's alpha, times the alphaMap's
   // green, times the vertex alpha when the material reads RGBA vertex colours (Codex, PR 369: the
   // kit's waterSheet does), interpolated at the hit through its barycentric coordinates.
-  const alphaAt = (h, mat) => {
+  const alphaAt = (h, mat, R) => {
     const uvOf = (tex) => (tex.channel === 1 ? h.uv1 : h.uv);
     let a = mat.opacity != null ? mat.opacity : 1;
-    if (mat.map) { const t = texelAt(mat.map, uvOf(mat.map)); if (!t) return null; a *= t.a; }
-    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(mat.alphaMap)); if (!t) return null; a *= t.g; }
+    if (mat.map) { const t = texelAt(mat.map, uvOf(mat.map), h, R); if (!t) return null; a *= t.a; }
+    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(mat.alphaMap), h, R); if (!t) return null; a *= t.g; }
     const col = mat.vertexColors && h.object.geometry && h.object.geometry.attributes.color;
     if (col && col.itemSize === 4) {
       const f = h.face, b = h.barycoord;
@@ -402,17 +512,23 @@ export function init(THREE) {
     }
     return a;
   };
-  const seenHit = (h, R) => {
+  // HOW LIKELY THE RENDERER DRAWS A HIT, 0 to 1. Its own material slot has to show, no clipping plane
+  // may cut the point away, and a wireframe draws its edges and not the faces a ray meets (Codex, PR
+  // 369). An opaque material draws every fragment. A cutout or a transparent one draws where its
+  // alpha clears the alphaTest and shows at all. AN ALPHA-HASHED ONE DRAWS AT RANDOM (Codex, PR 369):
+  // three.js discards a fragment whose alpha falls under a hashed threshold spread evenly from 0 to 1,
+  // so a fraction of the fragments equal to the alpha draws, and a shell at 0.2 is a fifth drawn. A
+  // measure counts such a hit by that chance, and a ray behind it by the rest.
+  const drawChance = (h, R) => {
     const mat = slotOf(h);
-    if (!shows(mat) || clippedAway(h.point, mat, R.renderer)) return false;
-    // A WIREFRAME DRAWS ITS EDGES AND NOT ITS FACES, while a ray meets the faces (Codex, PR 369), so a
-    // wireframe box is no wall and no roof.
-    if (mat.wireframe) return false;
-    if (!(mat.alphaTest > 0 || mat.transparent)) return true;   // opaque: every fragment is drawn
-    const a = alphaAt(h, mat);
-    if (a === null) return false;                 // a cutout whose texel can't be read is no wall
-    if (mat.alphaTest > 0 && a < mat.alphaTest) return false;
-    return !(mat.transparent && !(a > 0.001));
+    if (!shows(mat) || clippedAway(h.point, mat, R.renderer) || mat.wireframe) return 0;
+    const hashed = !!mat.alphaHash;
+    if (!(mat.alphaTest > 0 || mat.transparent || hashed)) return 1;
+    const a = alphaAt(h, mat, R);
+    if (a === null) return 0;                     // a cutout whose texel can't be read is no wall
+    if (mat.alphaTest > 0 && a < mat.alphaTest) return 0;
+    if (hashed) return Math.min(1, Math.max(0, a));
+    return mat.transparent && !(a > 0.001) ? 0 : 1;
   };
   // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
   const drawable = (R) => {
@@ -439,6 +555,8 @@ export function init(THREE) {
    * taken 300 m above it. ROOM_MIN is half the frame. Neither number is on TXT, so a frame can't
    * lower one. */
   const ENCLOSED_MIN = 0.8, ROOM_MIN = 0.5, HEMI_RAYS = 128;
+  // The sky grid: 25 by 25 rays, and a frame shows its sky when at least one ray's worth reaches it.
+  const SKY_GRID = 24, SKY_RAYS = (SKY_GRID + 1) * (SKY_GRID + 1);
   /* TXT.enclosure(R, reach) — the share of the sky above the camera that the frame built covers
    * within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by
    * solid angle, each asking whether it meets something the camera renders. That is a mesh drawn
@@ -464,7 +582,9 @@ export function init(THREE) {
       for (let i = 0; i < HEMI_RAYS; i++) {
         const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
         rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
-        if (rc.intersectObjects(hit, false).some((h) => seenHit(h, R))) covered++;
+        let open = 1;                              // the chance nothing along this ray draws
+        for (const h of rc.intersectObjects(hit, false)) { open *= 1 - drawChance(h, R); if (!(open > 0)) break; }
+        covered += 1 - open;
       }
     } catch (e) { return 0; }
     return covered / HEMI_RAYS;
@@ -516,28 +636,37 @@ export function init(THREE) {
     for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
       v.set(-1 + 2 * i / N, -1 + 2 * j / N);
       rc.setFromCamera(v, cam);
-      let first = null;
+      // the chance that the first thing drawn along this ray is the room, hit by hit
+      let open = 1, room = 0;
       try {
-        for (const h of rc.intersectObjects(all, false)) if (depthOk(h.point) && seenHit(h, R)) { first = h; break; }
-      } catch (e) { first = null; }
-      if (first && (own.has(first.object) || inside(first.point))) seen++;
+        for (const h of rc.intersectObjects(all, false)) {
+          if (!depthOk(h.point)) continue;
+          const p = drawChance(h, R);
+          if (!(p > 0)) continue;
+          if (own.has(h.object) || inside(h.point)) room += open * p;
+          open *= 1 - p;
+          if (!(open > 0)) break;
+        }
+      } catch (e) { room = 0; }
+      seen += room;
     }
     return seen / ((N + 1) * (N + 1));
   };
   /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame, so
    * one the camera has left or sees from far away is no room shot (Codex, PR 369). */
   TXT.inRoom = function (R) { return TXT.roomShare(R) >= ROOM_MIN; };
-  // A HIT THE SKY DOESN'T SHOW THROUGH: drawn there, blended as a solid and not transmissive. Glass,
-  // a veil at partial alpha or an additive glow lets the dome through, and the ray looks on past it.
-  const solidHit = (h, R) => {
-    if (!seenHit(h, R)) return false;
+  // THE CHANCE A HIT HIDES THE SKY: drawn there, blended as a solid and not transmissive. Glass, a
+  // veil at partial alpha or an additive glow lets the dome through, and the ray looks on past it.
+  const solidChance = (h, R) => {
+    const p = drawChance(h, R);
+    if (!(p > 0)) return 0;
     const mat = slotOf(h);
-    if (mat.transmission > 0) return false;
-    if (mat.blending === THREE.NoBlending) return true;
-    if (mat.blending !== THREE.NormalBlending) return false;
-    if (!mat.transparent) return true;
-    const a = alphaAt(h, mat);
-    return a !== null && a >= 0.999;
+    if (mat.transmission > 0) return 0;
+    if (mat.blending === THREE.NoBlending) return p;
+    if (mat.blending !== THREE.NormalBlending) return 0;
+    if (!mat.transparent) return p;
+    const a = alphaAt(h, mat, R);
+    return a !== null && a >= 0.999 ? p : 0;
   };
   // Every hit along a ray, nearest first, as Raycaster.intersectObjects gives them, except that a
   // mesh a ray can't be cast against hides nothing rather than ending the measurement.
@@ -565,7 +694,7 @@ export function init(THREE) {
     const o = new THREE.Vector3(), dir = new THREE.Vector3(), w = new THREE.Vector3(), q = new THREE.Vector3();
     const at = new THREE.Vector3(), rc = new THREE.Raycaster();
     rc.layers.mask = camera.layers.mask; rc.camera = camera;
-    const N = 24, all = (N + 1) * (N + 1);
+    const N = SKY_GRID, all = SKY_RAYS;
     let shown = 0;
     // from the top row down, so a frame with sky along its top answers on its first ray
     for (let j = N; j >= 0; j--) for (let i = 0; i <= N; i++) {
@@ -578,16 +707,19 @@ export function init(THREE) {
       if (!(disc >= 0)) continue;                  // an orthographic ray past the dome's rim meets none
       q.copy(dir).multiplyScalar(Math.sqrt(disc) - b).add(w);
       if (!(q.y > 1e-9 * rad)) continue;           // under the dome's horizon is its stand-in ground
+      // the chance this ray reaches the dome: nothing solid drawn in front of it, hit by hit
+      let open = 1;
       if (hits && hits.length) {
         rc.set(o, dir);
-        const hid = castAll(rc, hits).some((h) => {
+        for (const h of castAll(rc, hits)) {
           const z = at.copy(h.point).sub(eye).dot(fwd);        // clipped at near and far: not drawn
-          return z >= camera.near && z <= camera.far && solidHit(h, R);
-        });
-        if (hid) continue;
+          if (z < camera.near || z > camera.far) continue;
+          open *= 1 - solidChance(h, R);
+          if (!(open > 0)) break;
+        }
       }
-      shown++;
-      if (first) return shown / all;
+      shown += open;
+      if (first && shown >= 1) return shown / all;
     }
     return shown / all;
   };
@@ -602,7 +734,9 @@ export function init(THREE) {
    * rows, and reading its direction alone found none). Given R, the dome has to be drawn and a ray has
    * to reach it: the first solid thing the camera draws along it, inside its near and far, hides the
    * sky there, where glass, a veil or a glow doesn't (Codex, PR 369: a wall filling the frame read
-   * as sky). Without R it measures the dome TXT.sky builds for this camera, with nothing in front. */
+   * as sky). A cutout is read at the mip level this frame samples it at, and an alpha-hashed surface
+   * hides the sky by the chance it draws, so a ray counts for the share of it that gets through.
+   * Without R it measures the dome TXT.sky builds for this camera, with nothing in front. */
   TXT.skyInFrame = function (camera, R) { return skyShare(camera, R, false); };
   // Read by scripts/carousel/print_ban.py off the render report. Keep the four in step there.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
@@ -662,7 +796,7 @@ export function init(THREE) {
       // sky that something solid covers is not in the frame either. One visible ray is enough, so
       // this stops at the first.
       if (world) sky = skyShare(R.camera, R, true);
-      let shown = sky > 0;
+      let shown = sky * SKY_RAYS >= 1 - 1e-9;
       if (!shown) { cover = TXT.enclosure(R); shown = cover >= ENCLOSED_MIN; }
       if (!shown) { share = TXT.roomShare(R); shown = share >= ROOM_MIN; }
       place = { world, sky, cover, share, shown };

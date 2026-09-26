@@ -529,6 +529,90 @@ const SAMPLED = `async (T, TXT, cv) => {
            turnedErrors, turnedShare, turnedInErrors, turnedInShare };
 }`;
 
+// What the GPU filters and hashes (Codex, PR 369): the fourth page. A mipmapped cutout is read at
+// the level this frame samples it at, and an alpha-hashed surface counts by the share of it that draws.
+const FILTERED = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  // WHAT THE GPU DRAWS: the share of a plane in the material that isn't discarded, over red, on a
+  // 128 by 128 context of its own
+  const gcv = document.createElement('canvas'); gcv.width = gcv.height = 128;
+  const gr = new T.WebGLRenderer({ canvas: gcv, preserveDrawingBuffer: true, antialias: false });
+  gr.setClearColor(0xff0000, 1);
+  const gcam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10); gcam.position.z = 2;
+  const drawnShare = (mat) => {
+    const s = new T.Scene(); s.add(new T.Mesh(new T.PlaneGeometry(2, 2), mat));
+    gr.render(s, gcam);
+    const gl = gr.getContext(), px = new Uint8Array(128 * 128 * 4);
+    gl.readPixels(0, 0, 128, 128, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    let n = 0; for (let i = 0; i < px.length; i += 4) if (!(px[i] === 255 && px[i + 1] === 0 && px[i + 2] === 0)) n++;
+    return n / (128 * 128);
+  };
+  // AN ALPHA-HASHED SHELTER: opaque in three's terms, and a fraction of it equal to its alpha drawn
+  const hashed = async (opacity) => {
+    const make = () => new T.MeshStandardMaterial({ color: 0x333333, alphaHash: true, opacity });
+    const Rh = world(40);
+    TXT.frame(Rh, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rh, [4, 8, 4]);
+    Rh.scene.add(shelter(make()));
+    const errors = await capture(() => TXT.snapshot(Rh));
+    return { errors, cover: cover(Rh), gpu: drawnShare(make()) };
+  };
+  const hash02 = await hashed(0.2), hash095 = await hashed(0.95);
+  // THE KIT'S PERFORATED STEEL (industry.js), 128 texels to 5 cm with a third of it holes, as a wall
+  // across the whole frame of a camera facing the horizon, at 40 m and at 2 m
+  const perf = () => {
+    const c = document.createElement('canvas'); c.width = c.height = 128;
+    const x = c.getContext('2d'), TAU = Math.PI * 2;
+    x.fillStyle = '#1a1b1d'; x.fillRect(0, 0, 128, 128);
+    x.globalCompositeOperation = 'destination-out';
+    for (let j = 0; j < 8; j++) for (let i = 0; i < 8; i++) { x.beginPath(); x.arc(i * 16 + (j % 2) * 8 + 4, j * 16 + 8, 5.2, 0, TAU); x.fill(); }
+    const t = new T.CanvasTexture(c);
+    t.wrapS = t.wrapT = T.RepeatWrapping; t.colorSpace = T.SRGBColorSpace; t.anisotropy = 8;
+    t.repeat.set(400 / 0.05, 400 / 0.05);
+    return t;
+  };
+  // the sky the pixels show: those that change when the dome is hidden, and the engine's own verdict
+  const perfWall = async (dist) => {
+    const Rp = world(40);
+    TXT.frame(Rp, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rp, W);
+    TXT.rig(Rp, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rp, { surface: 'caliche', size: 900, tile: 5 });
+    const wall = new T.Mesh(new T.PlaneGeometry(400, 400), new T.MeshStandardMaterial({
+      color: 0xffffff, metalness: 0.5, roughness: 0.5, side: T.DoubleSide, alphaTest: 0.5, map: perf() }));
+    wall.position.set(0, 0, -dist); Rp.scene.add(wall);
+    const errors = await capture(() => TXT.snapshot(Rp));
+    const gl = Rp.renderer.getContext(), Wd = gl.drawingBufferWidth, Hd = gl.drawingBufferHeight;
+    const read = () => { Rp.renderer.render(Rp.scene, Rp.camera); const b = new Uint8Array(Wd * Hd * 4); gl.readPixels(0, 0, Wd, Hd, gl.RGBA, gl.UNSIGNED_BYTE, b); return b; };
+    const shown = read(); dome.visible = false; const hidden = read(); dome.visible = true; read();
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rp.camera, Rp), gpuSky: n / (Wd * Hd) };
+  };
+  const perfFar = await perfWall(40), perfNear = await perfWall(2);
+  return { hash02, hash095, perfFar, perfNear };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -756,6 +840,34 @@ check(`...while the same turned room, from inside facing its back wall, is a roo
       x.result.turnedInShare >= 0.5 && Array.isArray(x.result.turnedInErrors) && x.result.turnedInErrors.length === 1 &&
       x.result.turnedInErrors[0].startsWith('TXT: ROOM IN FRAME'),
       JSON.stringify({ share: x.result.turnedInShare, errors: x.result.turnedInErrors }));
+
+const f = await run('filtered', FILTERED);
+check('the filtered page renders with no page error and no scene error',
+      !f.result.error && f.pageErrors.length === 0, JSON.stringify({ error: f.result.error, page: f.pageErrors }));
+{
+  // AN ALPHA-HASHED SHELTER (Codex, PR 369) is drawn where its alpha clears three's hash threshold,
+  // so a fifth of one at opacity 0.2 draws. The first cut took it for opaque and every ray for covered.
+  const h2 = f.result.hash02 || {}, h9 = f.result.hash095 || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  check(`an alpha-hashed shelter at opacity 0.2: the GPU draws ${(h2.gpu || 0).toFixed(2)} of it, the shelter ` +
+        `covers ${(h2.cover || 0).toFixed(2)} of the sky above the camera, and looking down inside it IS flagged`,
+        Math.abs(h2.gpu - 0.2) < 0.06 && Math.abs(h2.cover - 0.2) < 0.06 && flagged(h2), JSON.stringify(h2));
+  check(`...while at opacity 0.95 the GPU draws ${(h9.gpu || 0).toFixed(2)} of it and it covers ` +
+        `${(h9.cover || 0).toFixed(2)}, an interior`,
+        Math.abs(h9.gpu - 0.95) < 0.06 && h9.cover >= 0.8 && !flagged(h9), JSON.stringify(h9));
+  // A MIPMAPPED CUTOUT (Codex, PR 369): the kit's perforated steel at 40 m draws as a solid sheet, no
+  // sky in its pixels, and at 2 m its holes show the sky. The first cut read the base texel at any
+  // distance and found sky through the far wall's holes.
+  const pf = f.result.perfFar || {}, pn = f.result.perfNear || {};
+  check(`the kit's perforated steel across the frame at 40 m: the pixels show ${(pf.gpuSky || 0).toFixed(4)} ` +
+        `sky, the engine reads ${pf.sky}, and the frame IS flagged`,
+        pf.gpuSky < 0.001 && pf.sky === 0 && Array.isArray(pf.errors) &&
+        pf.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')), JSON.stringify(pf));
+  check(`...while at 2 m its holes show ${(pn.gpuSky || 0).toFixed(3)} sky in the pixels, the engine reads ` +
+        `${(pn.sky || 0).toFixed(3)}, and the frame shows its sky`,
+        pn.gpuSky > 0.05 && pn.sky > 0.05 && Array.isArray(pn.errors) && pn.errors.length === 1 &&
+        pn.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(pn));
+}
 
 await browser.close();
 console.log(failures ? `\ntxworld: ${failures} FAILED` : '\ntxworld: all passed');
