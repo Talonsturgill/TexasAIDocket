@@ -34,12 +34,13 @@ handler logs it, prompt_audit.py measures the wait, and the email names both.
 
 UNATTENDED OR NOT, decided by the first of these that answers
 
-  TXDOCKET_UNATTENDED=1 or =0      forces the answer either way. For tests. It wins over all
+  TXDOCKET_UNATTENDED=1 or =0      forces the answer either way. For tests, and for a maintainer
+                                     on a daily checkout. It wins over all
   CLAUDE_CODE_SESSION_ATTENDED=0   unattended, the host saying nobody is attending
-  the session opened with the      unattended. The first line of prompts/ROUTINE_PROMPT.txt, which
-    routine's trigger                the routine is stored opening with
-  CLAUDE_CODE_SESSION_ATTENDED=1   attended, the host saying a person is here
   the branch is `claude/daily-*`   unattended. The routine's own branch, from Phase 0 step 3 on
+  the session opened with the      unattended. The first line of prompts/ROUTINE_PROMPT.txt, which
+    routine's trigger                covers the minutes before that branch exists
+  CLAUDE_CODE_SESSION_ATTENDED=1   attended, the host saying a person is here
 
 Nothing else is unattended. A session on any other branch is attended, because denying a dialog a
 person is there to answer is the one way this file can make anything worse.
@@ -56,6 +57,7 @@ protected path to the host, so no run, the self-editing retro included, can weak
 from __future__ import annotations
 
 import datetime as _dt
+import io
 import json
 import os
 import re
@@ -233,15 +235,13 @@ def opened_with_trigger(transcript: str) -> bool:
 def verdict(event: dict, env) -> tuple[bool, str]:
     """(unattended, the signal that said so).
 
-    A HOST THAT SAYS A PERSON IS HERE OUTRANKS THE BRANCH (Codex, PR 362, second round). A
-    maintainer who opened a session on a checkout still sitting on a `claude/daily-` branch had
-    every dialog denied with `CLAUDE_CODE_SESSION_ATTENDED=1` set, because only the host's `0`
-    was read. The branch is a guess about who is there and the host's word is not.
-
-    THE ROUTINE'S OPENING SENTENCE OUTRANKS THE HOST'S `1`. The routine is stored opening with
-    that sentence, checked against the stored routine on 2026-09-26. What the host sets in a
-    scheduled session has never been read, so the report prints it (see `on_session_start`).
-    Until it has been read, a scheduled session is never disarmed by it.
+    THE ROUTINE'S BRANCH OUTRANKS THE HOST'S `1`, AND THAT IS A DECISION ABOUT WHICH FAILURE IS
+    WORSE. For a day on PR 367 the host's `1` outranked the branch, so a maintainer on a leftover
+    `claude/daily-` checkout kept their dialogs (Codex, PR 362). Codex then showed the other side
+    (PR 367): a scheduled run carrying `1` whose opener can't be read would be judged attended on
+    every call, and its first dialog would wait all day. That is the stall this file exists to ban.
+    Nobody has read what the host sets in a scheduled session, so until a run reports it (see
+    `on_session_start`) the branch wins. A maintainer on a daily checkout sets TXDOCKET_UNATTENDED=0.
     """
     forced = str(env.get("TXDOCKET_UNATTENDED") or "").strip().lower()
     if forced in YES:
@@ -251,13 +251,13 @@ def verdict(event: dict, env) -> tuple[bool, str]:
     attended = str(env.get("CLAUDE_CODE_SESSION_ATTENDED") or "").strip().lower()
     if attended in NO:
         return True, "CLAUDE_CODE_SESSION_ATTENDED=0"
+    branch = git_branch(project_root(env))
+    if branch.startswith(DAILY_PREFIX):
+        return True, f"the routine's branch, {branch}"
     if opened_with_trigger(str(event.get("transcript_path") or "")):
         return True, "the session opened with the routine's trigger"
     if attended in YES:
         return False, "CLAUDE_CODE_SESSION_ATTENDED=1"
-    branch = git_branch(project_root(env))
-    if branch.startswith(DAILY_PREFIX):
-        return True, f"the routine's branch, {branch}"
     return False, "no unattended signal"
 
 
@@ -340,6 +340,7 @@ SUBCOMMAND_TOOLS = frozenset({
     "npm", "npx", "pip", "pip3", "pnpm", "systemctl", "uv", "yarn",
 })
 COMMAND_PARSE_CHARS = 8192
+QUOTED_SOURCE = re.compile(r"[\"'`\\$]")
 
 
 def command_head(cmd: str) -> str:
@@ -366,25 +367,37 @@ def command_head(cmd: str) -> str:
     # `python3 -c` script would have put the dialog back in front of nobody. So the lexer reads
     # only the words it keeps, out of the first COMMAND_PARSE_CHARS characters. A value the cut
     # lands inside doesn't parse, and a command whose first word doesn't parse is withheld whole.
-    lex = shlex.shlex(cmd[:COMMAND_PARSE_CHARS], posix=True)
+    # A QUOTED NAME IS WITHHELD, and the quote is read off the raw text. POSIX lexing strips it, so
+    # `'client secret' arg` came back as the word `client secret` and was logged (Codex, PR 367).
+    # Each token's own source text is sliced out of the stream, and a command or subcommand whose
+    # source carries a quote, an escape, a backtick or a `$` is withheld whatever it lexed to.
+    text = cmd[:COMMAND_PARSE_CHARS]
+    stream = io.StringIO(text)
+    lex = shlex.shlex(stream, posix=True)
     lex.whitespace_split = True
     lex.commenters = ""
+
+    def token():
+        at = stream.tell()
+        tok = lex.get_token()
+        return tok, text[at:stream.tell()]
     try:
-        word = lex.get_token()
+        word, raw = token()
         while word is not None and ASSIGNMENT.match(word):
-            word = lex.get_token()
+            word, raw = token()
     except ValueError:
         return "(command withheld)"
     if word is None:
         return "(command withheld)"
-    if "=" in word or word[:1] in "\"'`$(":
+    if "=" in word or word[:1] in "\"'`$(" or QUOTED_SOURCE.search(raw):
         return "(command withheld) ..."
     kept, more = [word], len(cmd) > COMMAND_PARSE_CHARS
     try:
-        nxt = lex.get_token()
+        nxt, raw = token()
         if nxt is not None:
             more = True
-            if word in SUBCOMMAND_TOOLS and re.fullmatch(r"[a-z][a-z-]*", nxt):
+            if (word in SUBCOMMAND_TOOLS and re.fullmatch(r"[a-z][a-z-]*", nxt)
+                    and not QUOTED_SOURCE.search(raw)):
                 kept.append(nxt)
                 more = lex.get_token() is not None or len(cmd) > COMMAND_PARSE_CHARS
     except ValueError:
@@ -454,6 +467,32 @@ def log(root: Path, event: dict, decision: str, because: str, tool: str, target:
 
 # ------------------------------------------------------------------ the handlers
 
+def _judged_mark(root: Path, session: str) -> Path:
+    return root / LOG_DIR / ("judged-" + re.sub(r"[^A-Za-z0-9_-]", "_", session)[:80] + ".json")
+
+
+def note_unattended(root: Path, event: dict, env) -> None:
+    """The first unattended verdict of a session, written once, so the report can tell a hook that
+    RAN from one that ever judged the run unattended (Codex, PR 367). An ordinary write is the call
+    every run makes, so it is where the evidence is taken. One stat per call once written, and an
+    attended session writes nothing at all."""
+    session = str(event.get("session_id") or "")
+    if not session:
+        return
+    mark = _judged_mark(root, session)
+    try:
+        if mark.exists():
+            return
+        unattended, because = verdict(event, env)
+        if not unattended:
+            return
+        mark.parent.mkdir(parents=True, exist_ok=True)
+        mark.write_text(json.dumps({"at": _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                    "because": because, "session": session}), encoding="utf-8")
+    except OSError:
+        pass  # evidence that can't be written never costs the run its answer
+
+
 def on_permission_request(event: dict, env) -> dict | None:
     unattended, because = verdict(event, env)
     if not unattended:
@@ -475,7 +514,8 @@ def on_pre_tool_use(event: dict, env) -> dict | None:
     if tool in FILE_TOOLS:
         path = ti.get(FILE_TOOLS[tool]) if isinstance(ti, dict) else None
         if not protected(path, root):
-            return None  # an ordinary write needs no verdict and gets no answer
+            note_unattended(root, event, env)  # evidence only: an ordinary write gets no answer
+            return None
         reason = f"{WHY} {hint(tool, ti, root)} {ROUTES}"
     elif tool == "AskUserQuestion":
         reason = f"{WHY} {ASK}"
@@ -545,6 +585,8 @@ def on_session_start(event: dict, env) -> None:
     unattended, because = verdict(event, env)
     log(project_root(env), event, "armed", because, "", str(event.get("source") or ""),
         unattended=unattended, host_attended=host_attended(env))
+    if unattended:
+        note_unattended(project_root(env), event, env)
     return None
 
 
@@ -605,10 +647,21 @@ def summary(root: Path | None = None, session: str | None = None) -> dict:
     run it never guarded (Codex, PR 362).
     """
     if not session:
-        return {"session": None, "armed": None, "armed_at": None, "refused": [], "waited": []}
+        return {"session": None, "armed": None, "armed_at": None, "judged_unattended": None,
+                "refused": [], "waited": []}
     rows = records(root or HOOK_REPO, session)
     armed = [r for r in rows if r.get("decision") == "armed"]
     first = armed[0] if armed else {}
+    refused = [r for r in rows if r.get("decision") in ("deny", "decline")]
+    judged = None
+    try:
+        mark = _judged_mark(root or HOOK_REPO, session)
+        if mark.is_file():
+            judged = json.loads(mark.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        judged = None
+    if not judged and refused:
+        judged = {"at": refused[0].get("at"), "because": refused[0].get("because")}
     return {
         "session": session,
         "armed": bool(armed),
@@ -616,7 +669,12 @@ def summary(root: Path | None = None, session: str | None = None) -> dict:
         "armed_unattended": first.get("unattended"),
         "armed_because": first.get("because"),
         "host_attended": first.get("host_attended"),
-        "refused": [r for r in rows if r.get("decision") in ("deny", "decline")],
+        # RAN IS NOT JUDGED (Codex, PR 367). An armed row says the hook ran. This says it ever
+        # answered for nobody, which is the only thing that keeps a dialog from waiting.
+        "judged_unattended": bool(judged) or first.get("unattended") is True,
+        "judged_at": (judged or {}).get("at") or (first.get("at") if first.get("unattended") else None),
+        "judged_because": (judged or {}).get("because") or (first.get("because") if first.get("unattended") else None),
+        "refused": refused,
         "waited": [r for r in rows if r.get("decision") == "waited"],
     }
 
@@ -635,6 +693,12 @@ def report_lines(s: dict) -> list[str]:
                  f"({s.get('armed_because') or 'no reason recorded'}), and the host's "
                  f"CLAUDE_CODE_SESSION_ATTENDED was {s.get('host_attended') or 'not recorded'}. "
                  f"Every later call is judged again when it is made"]
+        if s.get("judged_unattended"):
+            lines.append(f"  judged the session unattended from {s.get('judged_at') or '?'} "
+                         f"({s.get('judged_because') or 'no reason recorded'})")
+        else:
+            lines.append("  never judged this session unattended, so any dialog in it would have waited "
+                         "for a person")
     else:
         lines = ["no-stall hook: NOT ARMED in this session. The hooks in .claude/settings.json "
                  "did not run here, so a dialog could have waited"]
@@ -692,8 +756,8 @@ def self_test() -> int:
         return {"session_id": "sess-1", "transcript_path": tpath, "hook_event_name":
                 "PermissionRequest", "tool_name": tool, "tool_input": tool_input}
 
-    def pre(tool: str, tool_input: dict, tpath: str = "") -> dict:
-        return {"session_id": "sess-1", "transcript_path": tpath, "hook_event_name": "PreToolUse",
+    def pre(tool: str, tool_input: dict, tpath: str = "", session: str = "sess-1") -> dict:
+        return {"session_id": session, "transcript_path": tpath, "hook_event_name": "PreToolUse",
                 "tool_name": tool, "tool_input": tool_input, "tool_use_id": "toolu_x"}
 
     # THE COMMAND THAT STOPPED 2026-09-25, with a stand-in for what its arguments could carry.
@@ -718,13 +782,15 @@ def self_test() -> int:
         ok(not verdict({}, {**e_dev, "CLAUDE_CODE_SESSION_ATTENDED": "1"})[0],
            "...and =1 on a maintainer's branch stays attended")
         ok(verdict({}, {**e_daily, "CLAUDE_CODE_SESSION_ATTENDED": "1"})
-           == (False, "CLAUDE_CODE_SESSION_ATTENDED=1"),
-           "=1 is attended even on the routine's branch, so a maintainer who opens a session "
-           "there keeps their dialogs (Codex, PR 362)")
+           == (True, "the routine's branch, claude/daily-2026-09-26"),
+           "=1 does NOT disarm the routine's branch: a scheduled run carrying it with an unreadable "
+           "opener would otherwise be judged attended on every call and stall (Codex, PR 367)")
         ok(verdict({"transcript_path": t_routine},
-                   {**e_daily, "CLAUDE_CODE_SESSION_ATTENDED": "1"})[0],
-           "...and the routine's own opening sentence outranks =1, because what the host sets in "
-           "a scheduled session has never been read")
+                   {**e_dev, "CLAUDE_CODE_SESSION_ATTENDED": "1"})[0],
+           "...and off that branch the routine's own opening sentence outranks =1 too")
+        ok(verdict({"transcript_path": t_person},
+                   {**e_dev, "CLAUDE_CODE_SESSION_ATTENDED": "1"}) == (False, "CLAUDE_CODE_SESSION_ATTENDED=1"),
+           "...while a person's session with =1 is attended and says why")
         ok(verdict({"transcript_path": t_routine}, e_dev)[0],
            "a session that opened with the routine's trigger is unattended before its branch exists")
         ok(not verdict({"transcript_path": t_person}, e_dev)[0],
@@ -838,6 +904,11 @@ def self_test() -> int:
                           # A second word is kept only where it is a subcommand.
                           ("git checkout main", "git checkout ..."),
                           ("echo correct-horse-battery", "echo ..."),
+                          # Codex, PR 367: a QUOTED name is withheld, read off the raw text.
+                          ("'client secret' arg", "(command withheld) ..."),
+                          ('"client secret" arg', "(command withheld) ..."),
+                          ("cl\\ ient arg", "(command withheld) ..."),
+                          ("git 'push' origin x", "git ..."),
                           # A value longer than the parsed prefix is withheld, never cut open,
                           # and a long script after its command still names the command.
                           ("TOKEN='" + "x " * COMMAND_PARSE_CHARS + "' curl", "(command withheld)"),
@@ -903,6 +974,22 @@ def self_test() -> int:
                            "target": "Sign in at https://auth.example.com/cb?code=OLDLOG"}]}
         ok(not any("OLDLOG" in l for l in report_lines(old)),
            "a message a log from before the marker kept is withheld from the report too")
+
+        print("ran is not judged (Codex, PR 367)")
+        on_pre_tool_use(pre("Write", {"file_path": str(daily / "out" / "2026-09-26" / "x.txt")},
+                            session="sess-judge"), e_daily)
+        judged = summary(daily, "sess-judge")
+        ok(judged["judged_unattended"] and "routine's branch" in str(judged["judged_because"]),
+           "an ordinary write in an unattended run leaves evidence that the run was judged unattended",
+           judged)
+        on_pre_tool_use(pre("Write", {"file_path": str(dev / "src.py")}, session="sess-dev"), e_dev)
+        ok(not summary(dev, "sess-dev")["judged_unattended"] and not (dev / "out").exists(),
+           "...and an ordinary write in an attended session leaves none, not even a folder")
+        start_only = {"armed": True, "armed_at": "x", "armed_unattended": False,
+                      "armed_because": "no unattended signal", "judged_unattended": False,
+                      "refused": [], "waited": []}
+        ok(any("never judged this session unattended" in l for l in report_lines(start_only)),
+           "a hook that ran and never judged the session unattended says so rather than 'armed'")
         none = summary(daily, None)
         ok(none["armed"] is None and not none["refused"]
            and "CLAUDE_CODE_SESSION_ID" in report_lines(none)[0],

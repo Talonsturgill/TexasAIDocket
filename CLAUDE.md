@@ -642,15 +642,20 @@ an unattended session only**:
   not the self-grant a cloned repository is forbidden, and its worst day is a refused call rather
   than an unsafe one.
 
-**Unattended means** the host sets `CLAUDE_CODE_SESSION_ATTENDED=0`, or the session opened with the
-first line of `prompts/ROUTINE_PROMPT.txt`, or the branch is `claude/daily-*` and the host has not
-set `CLAUDE_CODE_SESSION_ATTENDED=1`. The host's `1` outranks the branch, so a maintainer who opens a
-session on a leftover daily checkout keeps their dialogs. It does not outrank the opening sentence,
-because nobody has read what the host sets in a scheduled session. `TXDOCKET_UNATTENDED=1` or `=0`
-forces it for a test. Anything else is attended, and there the hook prints nothing, so a
-maintainer's session is exactly as it was. The prompt stored on the routine and
-`ROUTINE_PROMPT.txt` must keep opening with the same sentence, which was checked against the
+**Unattended means** the host sets `CLAUDE_CODE_SESSION_ATTENDED=0`, or the branch is
+`claude/daily-*`, or the session opened with the first line of `prompts/ROUTINE_PROMPT.txt`.
+`TXDOCKET_UNATTENDED=1` or `=0` forces it either way. Anything else is attended, and there the hook
+prints nothing, so a maintainer's session is exactly as it was. The prompt stored on the routine
+and `ROUTINE_PROMPT.txt` must keep opening with the same sentence, which was checked against the
 stored routine on 2026-09-26, and the hook's self-test fails if the file's first line moves.
+
+**The host's `CLAUDE_CODE_SESSION_ATTENDED=1` does not outrank the routine's branch, and that is
+a choice between two failures.** For one day it did, so that a maintainer on a leftover daily
+checkout kept their dialogs. Codex then showed the other side on PR 367: a scheduled run carrying
+`1` whose opener can't be read would be judged attended on every call, and its first dialog would
+wait all day. That is the stall this hook exists to ban, and nobody has yet read what the host sets
+in a scheduled session. So the branch wins. A maintainer working on a daily checkout sets
+`TXDOCKET_UNATTENDED=0`.
 
 **What it can't do.** Claude Code runs no `PermissionRequest` hook for a sandboxed command's
 network request, so that one dialog can still wait. The hook logs it once it has waited about six
@@ -663,7 +668,10 @@ module and prints whether the hook was armed, how it judged the session when it 
 host's own `CLAUDE_CODE_SESSION_ATTENDED`, what it refused and what still waited. `prompt_audit`
 redacts a granted rule through the hook's own `command_head`, so the two can't withhold different
 things. `NOT ARMED IN AN UNATTENDED RUN` means nothing guarded the run, and it goes in the email.
-The host's `1` can't silence that line, because `prompt_audit` asks the question without it. A
+`RAN BUT NEVER JUDGED THIS RUN UNATTENDED` means the hook ran and answered nothing, because it
+judged every call attended, so it goes in the email too. The hook records the first unattended
+verdict of a session off the ordinary writes every run makes, since an armed row alone proves only
+that it ran (Codex, PR 367). A
 refusal is not a stall, and it still goes in the run record, because it names a call the run should
 stop making.
 

@@ -223,10 +223,9 @@ def no_stall_report(root: Path = REPO_ROOT) -> dict:
             raise RuntimeError(error)
         summary = mod.summary(root, os.environ.get("CLAUDE_CODE_SESSION_ID") or None)
         lines = mod.report_lines(summary)
-        # THE HOST'S `1` IS NOT ASKED HERE. The hook lets it outrank the routine's branch, so a
-        # maintainer on a leftover daily checkout keeps their dialogs (Codex, PR 362). This runs
-        # in Phases 17 and 19 of the routine itself, and asked with the `1` in it, a run that
-        # carried one would report nothing guarding it as nothing wrong. So it asks without it.
+        # THE HOST'S `1` IS NOT ASKED HERE. This runs in Phases 17 and 19 of the routine itself,
+        # and whether nobody attended the run is the question, which the host's `1` can't settle
+        # while nobody has read what a scheduled session carries (Codex, PR 362 and PR 367).
         env = {k: v for k, v in os.environ.items()
                if not (k == "CLAUDE_CODE_SESSION_ATTENDED" and str(v).strip().lower() in mod.YES)}
         unattended, because = mod.verdict({}, {**env, "CLAUDE_PROJECT_DIR": str(root)})
@@ -236,6 +235,12 @@ def no_stall_report(root: Path = REPO_ROOT) -> dict:
     if unattended and summary.get("armed") is False:
         lines.insert(0, f"no-stall hook: NOT ARMED IN AN UNATTENDED RUN ({because}). Nothing "
                         f"guarded this run against a dialog. Say so in the run record and the "
+                        f"email.")
+    elif unattended and summary.get("armed") and not summary.get("judged_unattended"):
+        # RAN IS NOT GUARDED (Codex, PR 367). An armed row proves the hook ran. A hook that judged
+        # every call attended answered nothing, and its dialogs would have waited all day.
+        lines.insert(0, f"no-stall hook: RAN BUT NEVER JUDGED THIS RUN UNATTENDED ({because}). Every "
+                        f"dialog would have waited for a person. Say so in the run record and the "
                         f"email.")
     return {"present": True, "unattended": unattended, **summary, "lines": lines}
 
@@ -382,11 +387,19 @@ def self_test() -> int:
         (fake / ".claude" / "hooks").mkdir(parents=True)
         shutil.copyfile(REPO_ROOT / ".claude" / "hooks" / "no_stall.py",
                         fake / ".claude" / "hooks" / "no_stall.py")
+        # and a session whose hook RAN, judged it attended at the start, and never judged it again
+        (fake / "out" / "no_stall").mkdir(parents=True)
+        (fake / "out" / "no_stall" / "2026-09-26.jsonl").write_text(json.dumps({
+            "at": "2026-09-26T06:15:58Z", "session": "sess-ran-attended", "event": "SessionStart",
+            "decision": "armed", "tool": "", "target": "startup", "because": "no unattended signal",
+            "unattended": False, "host_attended": "1"}) + "\n", encoding="utf-8")
         try:
             os.environ["CLAUDE_CODE_SESSION_ATTENDED"] = "1"
             os.environ["CLAUDE_CODE_SESSION_ID"] = "sess-the-hook-never-saw"
             os.environ.pop("TXDOCKET_UNATTENDED", None)
             carried = no_stall_report(fake)
+            os.environ["CLAUDE_CODE_SESSION_ID"] = "sess-ran-attended"
+            ran_only = no_stall_report(fake)
         finally:
             for k, v in saved_env.items():
                 if v is None:
@@ -395,6 +408,9 @@ def self_test() -> int:
                     os.environ[k] = v
     checks.append(("a routine run carrying the host's `1` is still reported NOT ARMED when "
                    "nothing guarded it", "NOT ARMED IN AN UNATTENDED RUN" in carried["lines"][0]))
+    checks.append(("and a hook that RAN but never judged the run unattended is not reported as armed "
+                   "and fine (Codex, PR 367)",
+                   "RAN BUT NEVER JUDGED THIS RUN UNATTENDED" in ran_only["lines"][0]))
 
     ok = True
     for label, passed in checks:
