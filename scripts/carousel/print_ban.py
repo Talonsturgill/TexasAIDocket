@@ -56,6 +56,12 @@ WHAT THIS CHECKS, three ways, because a ban that can be walked around is a sugge
               `TXT.sky`, the dome, the light and the haze a render needs to be a place. A render
               in a void is the defect the print was deleted for, in a new material.
 
+              AND each frame that stands in the world or a room SHOWS it, read off the verdict
+              `TXT.snapshot` prints into the render report: its sky, its room filling half the
+              frame, or the inside of something built. From the day after VERDICT_SINCE a frame
+              that stands somewhere and printed no verdict fails, because its pixels never went
+              through the snapshot.
+
   --self-test Every way each check can fail, replayed.
 
 THE WORLD, 2026-09-24. The owner, the next day: "the artwork hasnt hit the mark yet ever, and it
@@ -96,30 +102,45 @@ RENDERED_FLOOR = 6
 # THE WORLD. Decks on or before WORLD_SINCE were built before TXT.sky existed, so they are not
 # judged on it. From the day after, five of nine frames stand in a world.
 WORLD_SINCE = "2026-09-23"
-# What txthree.js prints when a frame calls TXT.sky and its camera shows none of it. It must equal
-# TXT.NO_SKY there, SKY_SHOWN must equal TXT.SKY_SHOWN, and the self-test reads the engine to hold
-# them in step.
-NO_SKY = "TXT: NO SKY IN FRAME"
-# The line a renderer prints when its kept snapshot shows the sky after a preview that didn't.
-SKY_SHOWN = "TXT: SKY IN FRAME"
-SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME)(?: \[r(\d+)\])?")
+# The verdicts txthree.js prints on every snapshot of a frame that stands in the world or in a room.
+# Each must equal its TXT constant there, and the self-test reads the engine to hold them in step.
+NO_SKY = "TXT: NO SKY IN FRAME"          # calls TXT.sky, and the camera shows none of it
+SKY_SHOWN = "TXT: SKY IN FRAME"          # shows its sky, or stands inside something built
+NO_ROOM = "TXT: NO ROOM IN FRAME"        # builds only a room, and shows too little of it
+ROOM_SHOWN = "TXT: ROOM IN FRAME"        # shows its room, or stands inside something built
+SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME|NO ROOM IN FRAME|ROOM IN FRAME)"
+                      r"(?: \[r(\d+)\])?")
+# THE VERDICT IS AFFIRMATIVE FROM THE DAY AFTER THIS (Codex, PR 369). Until 2026-09-26 the engine
+# printed only a no-sky line, so a clean frame and a frame whose check never ran looked the same. A
+# deck rendered after it carries a verdict on every frame that stands somewhere, and one without
+# is a frame that never went through the engine's snapshot. Shipped decks up to this date predate
+# it and are not judged on it.
+VERDICT_SINCE = "2026-09-26"
 
 
-def kept_no_sky(console_errors) -> bool:
-    """True when the LAST sky line on the page says its snapshot shows no sky.
+def place_verdict(console_errors):
+    """The page's LAST verdict: "no sky", "no room" or "shown", or None when it printed none.
 
     The kept snapshot is the page's last, the way this file's kept snapshot is the bench's last. A
     preview pointed at the ground and a kept frame that isn't, on the same renderer or another,
-    print a no-sky line and then a line withdrawing it, so the last line is the verdict (Codex, PR
-    369: reading each renderer's last line failed a page whose kept frame was on a second
-    renderer). Each line names its renderer, for a reader. It does not change the verdict.
+    print a no line and then a shown one, so the last line is the verdict (Codex, PR 369: reading
+    each renderer's last line failed a page whose kept frame was on a second renderer). Each line
+    names its renderer, for a reader. It does not change the verdict.
     """
-    verdict = False
+    verdict = None
     for e in console_errors or []:
         m = SKY_MARK.search(str(e))
         if m:
-            verdict = m.group(1) == "NO SKY IN FRAME"
+            g = m.group(1)
+            verdict = ("no sky" if g == "NO SKY IN FRAME" else
+                       "no room" if g == "NO ROOM IN FRAME" else "shown")
     return verdict
+
+
+def kept_no_sky(console_errors) -> bool:
+    """True when the page's last verdict says its kept snapshot shows no sky, or, for a frame that
+    builds only a room, too little of the room. Either is a void."""
+    return place_verdict(console_errors) in ("no sky", "no room")
 WORLD_FLOOR = 5
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 # THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
@@ -268,17 +289,16 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     then showed sky behind the type and failed for a horizon hidden behind the dek, which a count
     of sky in frame can't see.
     """
-    frames, _, _ = read_sky_report(run_dir)
-    return frames or []
+    verdicts, _ = read_sky_report(run_dir)
+    return [f for f, v in (verdicts or {}).items() if v in ("no sky", "no room")]
 
 
 def read_sky_report(run_dir: Path):
-    """(frames, why, listed): the frames whose kept snapshot shows no sky, "", and the names of every
-    frame the report holds a record for. Or None, why the report can't be read and an empty set, or
-    None, "" and an empty set when there is no report. A report that can't be read is not a clean
-    report, and neither is a missing one where one should exist: both used to read as no finding
-    at all (Codex, PR 369). `listed` is what lets the caller see a frame the report never measured,
-    which read as clean too."""
+    """(verdicts, why): every frame the report holds a record for, mapped to its page's last verdict
+    (None when it printed none), and "". Or None and why the report can't be read, or None and ""
+    when there is no report. A report that can't be read is not a clean report, and neither is a
+    missing one where one should exist: both used to read as no finding at all (Codex, PR 369). A
+    frame missing from the map is one the report never measured, which read as clean too."""
     import json
     for rel in ("render/render_report.json", "render_report.json"):
         rp = run_dir / rel
@@ -289,11 +309,10 @@ def read_sky_report(run_dir: Path):
                 if not isinstance(slides, list):
                     raise ValueError("no slides list")
             except (ValueError, AttributeError) as e:
-                return None, f"{rel} can't be read ({e})", set()
-            return ([str(rec.get("file") or "?") for rec in slides
-                     if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))], "",
-                    {str(rec["file"]) for rec in slides if isinstance(rec, dict) and rec.get("file")})
-    return None, "", set()
+                return None, f"{rel} can't be read ({e})"
+            return ({str(rec["file"]): place_verdict(rec.get("console_errors"))
+                     for rec in slides if isinstance(rec, dict) and rec.get("file")}, "")
+    return None, ""
 
 
 def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS,
@@ -303,7 +322,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
     if not files:
         return [f"{slides_dir} holds no slide-*.html, so there is nothing to check. A gate that "
                 f"cannot find its subject does not report clean"]
-    out, rendered, worlds, chassis, voids, world_names = [], 0, 0, set(), [], []
+    out, rendered, worlds, chassis, voids, world_names, room_names = [], 0, 0, set(), [], [], []
     for f in files:
         src = f.read_text(encoding="utf-8", errors="replace")
         out += scan_source(f.name, src)
@@ -314,6 +333,8 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
         if in_world(src):
             worlds += 1
             world_names.append(f.name)
+        elif in_room(src):
+            room_names.append(f.name)
         chassis.update(CHASSIS_REF.findall(strip_comments(src)))
     for rel in sorted(chassis):
         p = chassis_root / rel
@@ -343,40 +364,63 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"neither the world (TXT.sky) nor a room (TXT.interior), before the kept snapshot. "
                    f"An interior is a room built as geometry, never a flat background colour behind "
                    f"an object, which is the void every rendered frame of no. 32 shipped in")
-    if not (dated and run_dir.name <= WORLD_SINCE) and worlds:
-        frames, why, listed = read_sky_report(run_dir)
-        # A run directory is dated, and a dated run whose frames stand in the world has rendered them,
+    placed = world_names + room_names
+    if not (dated and run_dir.name <= WORLD_SINCE) and placed:
+        verdicts, why = read_sky_report(run_dir)
+        # A run directory is dated, and a dated run whose frames stand somewhere has rendered them,
         # so a report that is missing there, or one that can't be read anywhere, is a check that did
         # not run. An undated directory is a fixture or a one-off --run-dir, and missing is allowed.
-        if frames is None and (why or dated):
+        read = verdicts is not None
+        if not read and (why or dated):
             why = why or "there is no render report (render/render_report.json or render_report.json)"
             out.append(f"the camera check did not run: {why}. TXT.snapshot measures whether each frame "
-                       f"that calls TXT.sky shows any of it, and render.py keeps that in the report. "
-                       f"Render the frames and run this again")
+                       f"that stands in the world or a room shows it, and render.py keeps that in the "
+                       f"report. Render the frames and run this again")
+        verdicts = verdicts or {}
         # A FRAME THE REPORT NEVER MEASURED IS NOT A FRAME THAT PASSED (Codex, PR 369). The probe's
         # one-frame report, kept because the full render died before rewriting it, holds no line
         # for frames 2 to 9, and that absence read as clean. So every frame on disk must have a
-        # record. One that calls TXT.sky is named as a camera check that didn't run, and any other
-        # as a report that isn't a render of this deck.
-        unlisted = [f.name for f in files if f.name not in listed] if frames is not None else []
-        unmeasured = [n for n in unlisted if n in world_names]
-        undrawn = [n for n in unlisted if n not in world_names]
+        # record. One that stands somewhere is named as a camera check that didn't run, and any
+        # other as a report that isn't a render of this deck.
+        unlisted = [f.name for f in files if f.name not in verdicts] if read else []
+        unmeasured = [n for n in unlisted if n in placed]
+        undrawn = [n for n in unlisted if n not in placed]
         if unmeasured:
             out.append(f"the camera check did not run on {', '.join(unmeasured)}: the render report "
                        f"holds no record of {'it' if len(unmeasured) == 1 else 'them'}, so whether "
-                       f"{'its' if len(unmeasured) == 1 else 'their'} camera shows the sky was never "
-                       f"measured. Render {'it' if len(unmeasured) == 1 else 'them'} and run this again")
+                       f"{'its' if len(unmeasured) == 1 else 'their'} camera shows the place it "
+                       f"stands in was never measured. Render {'it' if len(unmeasured) == 1 else 'them'} "
+                       f"and run this again")
         if undrawn:
             out.append(f"the render report holds no record of {', '.join(undrawn)}, so it is not a "
                        f"render of the deck on disk. Render the deck and run this again")
-        for name in frames or []:
-            out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
-                       f"or looking straight down, and it stands inside nothing built, so a reader sees "
-                       f"objects in a void. Lift the camera until the horizon is in frame, or stand it "
-                       f"inside something built (the kit's semi_cab_interior, or a TXT.interior room "
-                       f"filling half the frame). A roof, a canopy or a tree overhead is not an interior. "
-                       f"No. 33's frame 4, a lawn seen straight down, was named top-down in all five "
-                       f"panel rounds")
+        # A FRAME THAT PRINTED NO VERDICT NEVER WENT THROUGH THE SNAPSHOT (Codex, PR 369). Every
+        # snapshot of a frame that stands somewhere prints one, so a frame whose source calls TXT.sky
+        # or TXT.interior and whose render printed none rendered some other way: a 2D fallback
+        # behind a branch, or a renderer called by hand. Decks up to VERDICT_SINCE predate it.
+        if dated and run_dir.name > VERDICT_SINCE:
+            silent = [n for n in placed if n in verdicts and verdicts[n] is None]
+            if silent:
+                out.append(f"the camera check did not run on {', '.join(silent)}: "
+                           f"{'its' if len(silent) == 1 else 'their'} source stands in the world or a "
+                           f"room and {'its' if len(silent) == 1 else 'their'} render printed no "
+                           f"verdict, so the kept pixels never went through TXT.snapshot. Render the "
+                           f"frame through TXT.snapshot, never a 2D fallback or a renderer called by "
+                           f"hand, and run this again")
+        for name, v in verdicts.items():
+            if v == "no sky":
+                out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the "
+                           f"horizon or looking straight down, and it stands inside nothing built, so "
+                           f"a reader sees objects in a void. Lift the camera until the horizon is in "
+                           f"frame, or stand it inside something built (the kit's semi_cab_interior, "
+                           f"or a TXT.interior room filling half the frame). A roof, a canopy or a "
+                           f"tree overhead is not an interior. No. 33's frame 4, a lawn seen straight "
+                           f"down, was named top-down in all five panel rounds")
+            elif v == "no room":
+                out.append(f"{name} builds a room with TXT.interior and its camera shows too little of "
+                           f"it, and it stands inside nothing built, so a reader sees objects in a "
+                           f"void. Point the camera into the room so it fills half the frame, or stand "
+                           f"it inside, and keep the room drawn")
     return out
 
 
@@ -552,18 +596,21 @@ def self_test() -> int:
            any("0 of 1 frames stand in a world" in g for g in check_run(probe, chassis_root=a)))
 
         # WHAT THE CAMERA SHOWS (2026-09-26): a frame that calls TXT.sky and looks straight down.
+        # From the day after VERDICT_SINCE every frame that stands somewhere carries a verdict, so a
+        # clean frame here carries the clean one the engine prints.
         import json as _json
+        CLEAN = [SKY_SHOWN + " [r1]. A verdict, not a defect: this snapshot shows its sky"]
         seen = root / "2026-09-27"
         (seen / "slides").mkdir(parents=True)
         (seen / "render").mkdir(parents=True)
         for i in range(1, 10):
             (seen / "slides" / f"slide-0{i}.html").write_text(rendered)
 
-        def report(errors_on_6):
+        def report(six):
             (seen / "render" / "render_report.json").write_text(_json.dumps({"slides": [
-                {"file": f"slide-0{i}.html", "console_errors": (errors_on_6 if i == 6 else [])}
+                {"file": f"slide-0{i}.html", "console_errors": (six if i == 6 else CLEAN)}
                 for i in range(1, 10)]}))
-        report([])
+        report(CLEAN)
         ok("nine frames whose cameras show their sky pass", check_run(seen, chassis_root=a) == [],
            check_run(seen, chassis_root=a))
         report([NO_SKY + ". This frame calls TXT.sky and its camera shows none of it"])
@@ -577,10 +624,10 @@ def self_test() -> int:
                no_sky_frames(seen))[2])() == ["slide-06.html"])
         root_report = seen / "render_report.json"
 
-        def at_root(errors_on_6):
+        def at_root(six, n=9):
             root_report.write_text(_json.dumps({"slides": [
-                {"file": f"slide-0{i}.html", "console_errors": (errors_on_6 if i == 6 else [])}
-                for i in range(1, 10)]}))
+                {"file": f"slide-0{i}.html", "console_errors": (six if i == 6 else CLEAN)}
+                for i in range(1, n + 1)]}))
         # THE PAGE'S KEPT SNAPSHOT DECIDES (Codex, PR 369): a preview pointed at the ground, then a
         # kept frame that isn't, withdraws the preview's line, on the same renderer or another.
         at_root([NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"])
@@ -592,6 +639,22 @@ def self_test() -> int:
         at_root([SKY_SHOWN + " [r1]. first", NO_SKY + " [r2]. the kept snapshot, at the ground"])
         ok("...while a kept snapshot at the ground stands, whichever renderer took it",
            no_sky_frames(seen) == ["slide-06.html"], no_sky_frames(seen))
+        # A FRAME THAT PRINTED NO VERDICT NEVER WENT THROUGH THE SNAPSHOT (Codex, PR 369): its
+        # TXT.sky and TXT.snapshot sat behind a branch that didn't run, and a 2D fallback drew it.
+        at_root([])
+        got = check_run(seen, chassis_root=a)
+        ok("a world frame whose render printed no verdict is CAUGHT, and named",
+           any("did not run on slide-06.html" in g and "printed no" in g for g in got), got)
+        ok("...while the clean verdict on the other eight is no finding",
+           not any(f"slide-0{i}.html" in g for g in got for i in (1, 2, 3, 4, 5, 7, 8, 9)), got)
+        on_the_day = root / VERDICT_SINCE
+        (on_the_day / "slides").mkdir(parents=True)
+        for i in range(1, 10):
+            (on_the_day / "slides" / f"slide-0{i}.html").write_text(rendered)
+        (on_the_day / "render_report.json").write_text(_json.dumps({"slides": [
+            {"file": f"slide-0{i}.html", "console_errors": []} for i in range(1, 10)]}))
+        ok("...and a deck dated VERDICT_SINCE, rendered before the engine printed one, is not judged "
+           "on it", check_run(on_the_day, chassis_root=a) == [], check_run(on_the_day, chassis_root=a))
         # A REPORT THAT CAN'T BE READ, OR ISN'T THERE, IS A CHECK THAT DID NOT RUN (Codex, PR 369).
         root_report.write_text('{"slides": [')
         ok("a report that can't be read is CAUGHT, never read as clean",
@@ -603,33 +666,54 @@ def self_test() -> int:
            not any("did not run" in g for g in check_run(three, chassis_root=a)), check_run(three, chassis_root=a))
         # A REPORT THAT OMITS A WORLD FRAME NEVER MEASURED IT (Codex, PR 369). Slide 1 alone, as a
         # probe leaves it, with nine world frames on disk: eight were never asked the question.
-        root_report.write_text(_json.dumps({"slides": [{"file": "slide-01.html", "console_errors": []}]}))
+        at_root(CLEAN, n=1)
         got = check_run(seen, chassis_root=a)
         ok("a report with no record of eight world frames is CAUGHT, and names the eight",
            any("did not run on slide-02.html" in g and "slide-09.html" in g and "slide-01.html" not in g
                for g in got), got)
-        at_root([])
+        at_root(CLEAN)
         ok("...and the same report with all nine records is clean", check_run(seen, chassis_root=a) == [],
            check_run(seen, chassis_root=a))
-        # ...and a frame that calls no TXT.sky, missing from the report, is named too: the report is
+        # ...and a frame that stands nowhere, missing from the report, is named too: the report is
         # not a render of this deck (Codex, PR 369: "fail on every omitted frame").
         plain = seen / "slides" / "slide-09.html"
         plain.write_text("<html><body><h1>The record, in one line</h1></body></html>")
-        root_report.write_text(_json.dumps({"slides": [{"file": f"slide-0{i}.html", "console_errors": []}
-                                                       for i in range(1, 9)]}))
+        at_root(CLEAN, n=8)
         got = check_run(seen, chassis_root=a)
-        ok("a report with no record of a frame that calls no TXT.sky is CAUGHT, and names it",
+        ok("a report with no record of a frame that stands nowhere is CAUGHT, and names it",
            any("no record of slide-09.html" in g and "not a render of the deck" in g for g in got)
            and not any("did not run on" in g for g in got), got)
-        at_root([])
+        at_root(CLEAN)
         ok("...and with its record, the eight worlds and the one plain frame are clean",
            check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
         plain.write_text(rendered)
+        # A FRAME THAT BUILDS ONLY A ROOM IS HELD TO ITS ROOM (Codex, PR 369): hidden, left behind,
+        # or seen from too far, it is a void, and the engine says so with its own verdict.
+        for i in range(6, 10):
+            (seen / "slides" / f"slide-0{i}.html").write_text(room)
+        ROOM_OK = [ROOM_SHOWN + " [r1]. A verdict, not a defect: this snapshot shows its room"]
+        root_report.write_text(_json.dumps({"slides": [
+            {"file": f"slide-0{i}.html", "console_errors": (CLEAN if i < 6 else ROOM_OK)}
+            for i in range(1, 10)]}))
+        ok("five worlds and four rooms whose cameras show them are clean",
+           check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
+        root_report.write_text(_json.dumps({"slides": [
+            {"file": f"slide-0{i}.html", "console_errors": (
+                CLEAN if i < 6 else [NO_ROOM + " [r1]. too little of the room"] if i == 7 else
+                [] if i == 8 else ROOM_OK)} for i in range(1, 10)]}))
+        got = check_run(seen, chassis_root=a)
+        ok("a room frame whose camera shows too little of its room is CAUGHT, and named",
+           any("slide-07.html" in g and "builds a room" in g for g in got), got)
+        ok("...and a room frame that printed no verdict is CAUGHT too",
+           any("did not run on slide-08.html" in g for g in got), got)
+        for i in range(6, 10):
+            (seen / "slides" / f"slide-0{i}.html").write_text(rendered)
         root_report.unlink()
         engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
-        ok("the engine prints the exact words this gate reads, the withdrawal included",
-           f"TXT.NO_SKY = '{NO_SKY}'" in engine and "console.error(TXT.NO_SKY" in engine
-           and f"TXT.SKY_SHOWN = '{SKY_SHOWN}'" in engine and "console.error(TXT.SKY_SHOWN" in engine)
+        ok("the engine prints the exact words this gate reads, all four verdicts",
+           all(f"TXT.{k} = '{v}'" in engine and f"console.error(TXT.{k}" in engine
+               for k, v in (("NO_SKY", NO_SKY), ("SKY_SHOWN", SKY_SHOWN), ("NO_ROOM", NO_ROOM),
+                            ("ROOM_SHOWN", ROOM_SHOWN))))
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())

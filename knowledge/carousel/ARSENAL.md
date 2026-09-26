@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 27 |
+| engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
 | kit models | 97 in 10 families |
 | asset libraries | 21 |
@@ -46,7 +46,7 @@
 | 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py` |
-| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `texan_check.py` |
+| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `qa.py` |
@@ -86,18 +86,19 @@ const shot = await TXT.snapshot(R);
 | `TXT.deckRig(R, spec, o)` | THE DECK'S LIGHT, READ FROM THE CHASSIS AND NEVER RESTATED (2026-09-23). |
 | `TXT.deckWorld()` |  |
 | `TXT.enclosed(R)` | true when the camera stands inside something the frame built: at least ENCLOSED_MIN of the sky above it is covered within `reach` metres. |
-| `TXT.enclosure(R, reach)` | the share of the sky above the camera that the frame built covers within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by solid angle, each asking whether it meets a mesh the ... |
+| `TXT.enclosure(R, reach)` | the share of the sky above the camera that the frame built covers within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by solid angle, each asking whether it meets something the ... |
 | `TXT.environment(R, opts)` | A tiny "photo studio" room rendered through PMREMGenerator: emissive panels give PBR materials real reflections without any texture files. intensity scales scene.environmentIntensity (r163+) or panel brightness. |
 | `TXT.extrude(outline, depth, mat, o)` | Extruded 2D shape (array of [x,y]), plaques, arrows, silhouettes with depth. |
 | `TXT.fitHeight(group, worldHeight)` | Raises the rendered-hero floor for a single foreground object that must read as a SILHOUETTE against a darker background (the backlit-machine case). |
 | `TXT.frame(R, o)` |  |
 | `TXT.ground(R, { surface:'caliche'\|'dirt'\|'asphalt'\|'concrete'\|'grass', tile:8, size:900, color, seed, joints })` | a seeded, tileable surface map + roughness + bump, and slow macro variation in vertex colour so the tile never shows. (defined twice, the later one wins) |
-| `TXT.inRoom(R)` | true when the room TXT.interior built fills at least ROOM_MIN of the frame. |
+| `TXT.inRoom(R)` | true when the room TXT.interior built fills at least ROOM_MIN of the frame, so one the camera has left or sees from far away is no room shot (Codex, PR 369). |
 | `TXT.interior(R, { w:12, d:10, h:4.2, floor:'concrete', wall:0xb9b3a7, window:'left', ceiling:false, light:0.55 })` | A hearing room, an office or a desk is a real frame with no sky, and before this it had nothing to stand in but a flat colour, which is the void the world was built to end. |
 | `TXT.lathe(profile, mat, o)` | Lathe from a 2D profile (array of [x,y]), vessels, turbines, valves. |
 | `TXT.objectHero(R, group, o)` |  |
 | `TXT.rig(R, spec)` | Illustration three-point: warm key with soft shadow, cool rim, low ambient. |
 | `TXT.rng(seed)` | seeded helpers (deterministic, never Math.random) |
+| `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each asking what it meets first among the things the camera draws, inside its near and far, and ... |
 | `TXT.roundedBox(w, h, d, r, material, { segments })` | centred on the origin, y up. |
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
@@ -406,7 +407,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
 | `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
-| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 15, 19 |
+| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 12b, 15, 19 |
 | `scripts/carousel/gate_wiring.py` | a gate that nothing runs is a gate that is red, and nobody finds out. | --self-test | shipped |  |
 | `scripts/carousel/gmail_draft.py` | build the run's email payload. | --run --n --title --score --threshold --slides --ref --caption-file --comment-file --gates-file --degraded-file --upgrades-file --notes-file --out --self-test | CI self-test | 19 |
 | `scripts/carousel/instincts.py` | the machine's craft memory, where confidence is earned rather than claimed. | --ledger --add --id --instinct --evidence --confirm --contradict --date --top --prune --validate --self-test | CI | 1, 9, 17 |
@@ -449,7 +450,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/sensitive_paths.py` | no instruction file may tell a session to WRITE under `.claude/`. | --self-test | CI |  |
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
-| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b, 15 |
+| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 12b, 14b, 15 |
 | `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 15 |
 
 **Record, site and instrument tools the routine names:**

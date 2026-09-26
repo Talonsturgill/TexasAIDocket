@@ -447,28 +447,49 @@ def check_contacts(base: Path) -> list[str]:
     return m.problems(base) or []
 
 
-def check_sky_in_frame(report: dict) -> list[str]:
-    """NO FRAME THAT CALLS TXT.sky POINTS ITS CAMERA WHERE THE SKY ISN'T.
+def check_sky_in_frame(report: dict, base: Path | None = None) -> list[str]:
+    """NO FRAME THAT STANDS SOMEWHERE POINTS ITS CAMERA WHERE THAT PLACE ISN'T.
 
-    WIRED HERE ON 2026-09-26. `TXT.snapshot` prints TXT.NO_SKY when a frame stands in the world
-    and its camera shows none of it while standing inside nothing built, and render.py keeps that
-    line in the report. print_ban reads it on the probe and in Phase 12b. This reads it before every
-    panel round, because a repair can turn a settled frame toward the ground and the next round's
-    judges would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and
-    no. 34's frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
+    WIRED HERE ON 2026-09-26. `TXT.snapshot` prints a verdict on every snapshot of a frame that
+    stands in the world or in a room, and render.py keeps it in the report. TXT.NO_SKY is a frame
+    that calls TXT.sky while its camera shows none of it and stands inside nothing built, and
+    TXT.NO_ROOM a frame that builds only a room and shows too little of it. print_ban reads the
+    verdicts on the probe and in Phase 12b. This reads them before every panel round, because a
+    repair can turn a settled frame toward the ground and the next round's judges would be the first
+    to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's frames 4 and 5
+    print NO_SKY, and a judge named no. 33's frame 4 top-down in all five rounds.
 
-    The reading is print_ban's own, the last line on the page, so a preview withdrawn by the kept
-    snapshot is clean here too and the two can't drift. An import that fails raises rather than
-    reading as clean.
+    Given the run directory, a frame whose source stands somewhere and whose render printed no
+    verdict at all is named too, on a run dated after print_ban's VERDICT_SINCE: its pixels never
+    went through the snapshot (Codex, PR 369). The reading is print_ban's own, the last verdict on
+    the page, so a preview withdrawn by the kept snapshot is clean here too and the two can't
+    drift. An import that fails raises rather than reading as clean.
     """
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from print_ban import kept_no_sky
-    return [f"{rec.get('file') or '?'} calls TXT.sky and its camera shows none of it, with nothing "
-            f"built around it. Lift the camera until the horizon is in frame, or stand it inside "
-            f"something built (the kit's semi_cab_interior, or a TXT.interior room filling half the "
-            f"frame). A roof, a canopy or a tree overhead is not an interior"
-            for rec in (report.get("slides") or [])
-            if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))]
+    from print_ban import place_verdict, in_world, in_room, VERDICT_SINCE, DATED
+    out, verdicts = [], {}
+    for rec in report.get("slides") or []:
+        if not isinstance(rec, dict):
+            continue
+        name, v = str(rec.get("file") or "?"), place_verdict(rec.get("console_errors"))
+        verdicts[name] = v
+        if v == "no sky":
+            out.append(f"{name} calls TXT.sky and its camera shows none of it, with nothing built "
+                       f"around it. Lift the camera until the horizon is in frame, or stand it inside "
+                       f"something built (the kit's semi_cab_interior, or a TXT.interior room filling "
+                       f"half the frame). A roof, a canopy or a tree overhead is not an interior")
+        elif v == "no room":
+            out.append(f"{name} builds a room with TXT.interior and its camera shows too little of it, "
+                       f"with nothing built around it. Point the camera into the room so it fills half "
+                       f"the frame, or stand it inside, and keep the room drawn")
+    if base is not None and DATED.match(base.name) and base.name > VERDICT_SINCE:
+        for f in sorted((base / "slides").glob("slide-*.html")):
+            src = f.read_text(encoding="utf-8", errors="replace")
+            if f.name in verdicts and verdicts[f.name] is None and (in_world(src) or in_room(src)):
+                out.append(f"{f.name} stands in the world or a room and its render printed no "
+                           f"verdict, so its pixels never went through TXT.snapshot. Render it "
+                           f"through TXT.snapshot, never a 2D fallback or a renderer called by hand")
+    return out
 
 
 def check_quantifiers(base: Path, articles: Path | None = None) -> list[str]:
@@ -895,8 +916,8 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
         ("every bleed a dossier declares is one the frame draws", check_bleed_witness(base)),
         ("every published address traces to a claim", check_contacts(base)),
-        ("every frame that stands in the world shows its sky, or stands inside something built",
-         check_sky_in_frame(report)),
+        ("every frame that stands somewhere shows it: its sky, its room, or the inside of "
+         "something built", check_sky_in_frame(report, base)),
         ("every universal on every published surface, the web edition included, names its set",
          check_quantifiers(base, articles)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
@@ -1286,9 +1307,36 @@ def self_test() -> int:
         ok("...and so is a preview at the ground withdrawn by the renderer's kept snapshot",
            check_sky_in_frame({"slides": [{"file": "slide-04.html", "console_errors": [
                NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"]}]}) == [])
+        from print_ban import NO_ROOM, ROOM_SHOWN, VERDICT_SINCE
+        ok("a frame that builds only a room and shows too little of it is CAUGHT, and named",
+           [p[:13] for p in check_sky_in_frame({"slides": [{"file": "slide-07.html", "console_errors": [
+               NO_ROOM + " [r1]. too little of the room"]}]})] == ["slide-07.html"])
+        # A FRAME THAT PRINTED NO VERDICT (Codex, PR 369), on a run dated after VERDICT_SINCE, whose
+        # source calls TXT.sky before its kept snapshot: its pixels never went through the snapshot.
+        with _tf.TemporaryDirectory() as _v:
+            _vb = Path(_v) / "2026-09-27"
+            (_vb / "slides").mkdir(parents=True)
+            (_vb / "slides" / "slide-02.html").write_text(
+                "<script type=\"module\">import * as THREE from '@@ASSETS@@/js/three.module.min.js';"
+                "import { init } from '@@ASSETS@@/js/txthree.js';const TXT = init(THREE);"
+                "const R = TXT.setup(cv);TXT.sky(R);const s = await TXT.snapshot(R);</script>",
+                encoding="utf-8")
+            _silent = {"slides": [{"file": "slide-02.html", "console_errors": []}]}
+            ok("a world frame whose render printed no verdict is CAUGHT before the panel",
+               any(p.startswith("slide-02.html") and "no verdict" in p
+                   for p in check_sky_in_frame(_silent, _vb)), str(check_sky_in_frame(_silent, _vb)))
+            ok("...and with the engine's clean verdict it is clean",
+               check_sky_in_frame({"slides": [{"file": "slide-02.html", "console_errors": [
+                   SKY_SHOWN + " [r1]. A verdict, not a defect"]}]}, _vb) == [])
+            _early = Path(_v) / VERDICT_SINCE
+            (_early / "slides").mkdir(parents=True)
+            (_early / "slides" / "slide-02.html").write_text(
+                (_vb / "slides" / "slide-02.html").read_text(encoding="utf-8"), encoding="utf-8")
+            ok("...while a run dated VERDICT_SINCE, before the engine printed one, is not judged on it",
+               check_sky_in_frame(_silent, _early) == [])
         # BUILT FROM PARTS, for the reason the flag check below gives: a literal needle matches itself.
-        ok("...and the group is in the list the run reads",
-           ("check_sky_in_frame" + "(report)") in Path(__file__).read_text(encoding="utf-8"))
+        ok("...and the group is in the list the run reads, with the run directory",
+           ("check_sky_in_frame" + "(report, base)") in Path(__file__).read_text(encoding="utf-8"))
 
         # THE CHECK WIRED IN ON 2026-09-17, replayed on carousel no. 27's own frame 4 numbers.
         # Without a storyboard this returns nothing, so the first assertion is that the check

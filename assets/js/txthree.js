@@ -306,6 +306,30 @@ export function init(THREE) {
   const onStage = (o, scene) => { for (let q = o; q; q = q.parent) { if (!q.visible) return false; if (q === scene) return true; } return false; };
   // ...and on a layer this camera renders, which the renderer checks as well (Codex, PR 369).
   const inView = (m, cam) => drawn(m) && m.layers.test(cam.layers);
+  // A HIT IS WHAT THE RENDERER DRAWS THERE (Codex, PR 369). Its own material slot has to show, so
+  // a box with one opaque slot and five invisible ones is one face and not a wall, and no clipping
+  // plane may cut the point away: the renderer's own, or the material's when local clipping is on.
+  const slotOf = (h) => {
+    const m = h.object.material;
+    return Array.isArray(m) ? m[(h.face && h.face.materialIndex) || 0] : m;
+  };
+  const clippedAway = (p, mat, renderer) => {
+    const g = renderer && renderer.clippingPlanes;
+    if (g && g.length && g.some((pl) => pl.distanceToPoint(p) < 0)) return true;
+    const l = renderer && renderer.localClippingEnabled && mat && mat.clippingPlanes;
+    if (l && l.length) {
+      const cut = l.map((pl) => pl.distanceToPoint(p) < 0);
+      return mat.clipIntersection ? cut.every(Boolean) : cut.some(Boolean);
+    }
+    return false;
+  };
+  const seenHit = (h, R) => { const mat = slotOf(h); return shows(mat) && !clippedAway(h.point, mat, R.renderer); };
+  // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
+  const drawable = (R) => {
+    const out = [];
+    R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) out.push(m); });
+    return out;
+  };
   /* INSIDE IS MEASURED AS A SHARE, NEVER AS ONE RAY (Codex, PR 369). A single ray straight up took
    * a street lamp for a roof, and a room counted as "looked into" from 300 m above it. The
    * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky, so both
@@ -326,18 +350,21 @@ export function init(THREE) {
   const ENCLOSED_MIN = 0.8, ROOM_MIN = 0.5, HEMI_RAYS = 128;
   /* TXT.enclosure(R, reach) — the share of the sky above the camera that the frame built covers
    * within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by
-   * solid angle, each asking whether it meets a mesh the camera renders, drawn and on its layers. A
-   * mesh keeps its own visible flag under a hidden parent, and traverseVisible skips it. The sky
-   * dome is the world, not a roof, and is never counted. A chassis that builds its own cab needs no
-   * flag to be measured. */
+   * solid angle, each asking whether it meets something the camera renders. That is a mesh drawn
+   * and on its layers, a hit whose own material slot shows and no clipping plane cuts away, and a
+   * distance inside the camera's own near and far, so geometry the far plane clips is no wall. A
+   * mesh keeps its own visible flag under a hidden parent, and traverseVisible skips it. A chassis
+   * that builds its own cab needs no flag to be measured. */
   TXT.enclosure = function (R, reach) {
-    R.camera.updateMatrixWorld();
-    const eye = new THREE.Vector3().setFromMatrixPosition(R.camera.matrixWorld);
-    const rc = new THREE.Raycaster(eye, new THREE.Vector3(0, 1, 0), 0.05, reach || 12);
-    rc.camera = R.camera;
-    rc.layers.mask = R.camera.layers.mask;       // only what this camera renders can cover it
-    const hit = [];
-    R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) hit.push(m); });
+    const cam = R.camera;
+    cam.updateMatrixWorld();
+    const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+    const near = Math.max(0.05, cam.near || 0), far = Math.min(reach || 12, cam.far || Infinity);
+    if (!(far > near)) return 0;
+    const rc = new THREE.Raycaster(eye, new THREE.Vector3(0, 1, 0), near, far);
+    rc.camera = cam;
+    rc.layers.mask = cam.layers.mask;            // only what this camera renders can cover it
+    const hit = drawable(R);
     if (!hit.length) return 0;
     const ga = Math.PI * (3 - Math.sqrt(5));
     let covered = 0;
@@ -345,7 +372,7 @@ export function init(THREE) {
       for (let i = 0; i < HEMI_RAYS; i++) {
         const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
         rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
-        if (rc.intersectObjects(hit, false).length) covered++;
+        if (rc.intersectObjects(hit, false).some((h) => seenHit(h, R))) covered++;
       }
     } catch (e) { return 0; }
     return covered / HEMI_RAYS;
@@ -353,50 +380,52 @@ export function init(THREE) {
   /* TXT.enclosed(R) — true when the camera stands inside something the frame built: at least
    * ENCLOSED_MIN of the sky above it is covered within `reach` metres. */
   TXT.enclosed = function (R, reach) { return TXT.enclosure(R, reach) >= ENCLOSED_MIN; };
-  // The share of the frame the room shows: the same grid of rays TXT.skyInFrame casts, through the
-  // camera's own projection, each meeting a wall or the floor between the walls.
-  const roomShare = (R, walls) => {
-    const cam = R.camera;
+  /* TXT.roomShare(R) — the share of the frame the room TXT.interior built fills: a 17 by 17 grid of
+   * rays through the camera's own projection, each asking what it meets first among the things the
+   * camera draws, inside its near and far, and counting it when that is one of the room's walls or a
+   * point between them, its floor or whatever stands on it (Codex, PR 369: the first cut counted a
+   * floor plane nobody had to render). Only walls the camera renders count, on stage, drawn and on
+   * its layers, so a room taken out of the scene, hidden, or on a layer the camera skips fills
+   * nothing. 0 when there is no room. */
+  TXT.roomShare = function (R) {
+    const room = R.room, cam = R.camera;
+    if (!room || !room.isObject3D || !onStage(room, R.scene)) return 0;
+    const walls = [];
+    room.traverseVisible((m) => { if (m.isMesh && inView(m, cam)) walls.push(m); });
+    if (!walls.length) return 0;                    // walls made invisible are no room
     cam.updateMatrixWorld();
     const box = new THREE.Box3();
     walls.forEach((w) => { w.updateWorldMatrix(true, false); box.expandByObject(w); });
     if (box.isEmpty()) return 0;
-    const floorY = box.min.y, rc = new THREE.Raycaster(), v = new THREE.Vector2(), q = new THREE.Vector3();
+    const own = new Set(walls), all = drawable(R);
+    const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+    const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
+    const rc = new THREE.Raycaster(), v = new THREE.Vector2(), d = new THREE.Vector3();
     rc.layers.mask = cam.layers.mask;
-    const N = 24;
+    const depthOk = (p) => { const z = d.copy(p).sub(eye).dot(fwd); return z >= cam.near && z <= cam.far; };
+    const inside = (p) => p.x >= box.min.x && p.x <= box.max.x && p.z >= box.min.z && p.z <= box.max.z &&
+      p.y >= box.min.y - 0.05 && p.y <= box.max.y + 0.05;
+    const N = 16;
     let seen = 0;
     for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
       v.set(-1 + 2 * i / N, -1 + 2 * j / N);
       rc.setFromCamera(v, cam);
-      let s = false;
-      try { s = rc.intersectObjects(walls, false).length > 0; } catch (e) { s = false; }
-      const o = rc.ray.origin, d = rc.ray.direction;
-      if (!s && d.y < -1e-9) {
-        const t = (floorY - o.y) / d.y;
-        if (t > 0) {
-          q.copy(o).addScaledVector(d, t);
-          s = q.x >= box.min.x && q.x <= box.max.x && q.z >= box.min.z && q.z <= box.max.z;
-        }
-      }
-      if (s) seen++;
+      let first = null;
+      try {
+        for (const h of rc.intersectObjects(all, false)) if (depthOk(h.point) && seenHit(h, R)) { first = h; break; }
+      } catch (e) { first = null; }
+      if (first && (own.has(first.object) || inside(first.point))) seen++;
     }
     return seen / ((N + 1) * (N + 1));
   };
-  /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame. Only
-   * walls the camera renders count, on stage, drawn and on its layers, so a room taken out of the
-   * scene, hidden, or on a layer the camera skips is no room, and neither is one the camera has left
-   * or sees from far away (Codex, PR 369). */
-  TXT.inRoom = function (R) {
-    const room = R.room;
-    if (!room || !room.isObject3D || !onStage(room, R.scene)) return false;
-    const walls = [];
-    room.traverseVisible((m) => { if (m.isMesh && inView(m, R.camera)) walls.push(m); });
-    if (!walls.length) return false;                // walls made invisible are no room
-    return roomShare(R, walls) >= ROOM_MIN;
-  };
-  // Read by scripts/carousel/print_ban.py off the render report. Keep the three in step.
+  /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame, so
+   * one the camera has left or sees from far away is no room shot (Codex, PR 369). */
+  TXT.inRoom = function (R) { return TXT.roomShare(R) >= ROOM_MIN; };
+  // Read by scripts/carousel/print_ban.py off the render report. Keep the four in step there.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
   TXT.SKY_SHOWN = 'TXT: SKY IN FRAME';
+  TXT.NO_ROOM = 'TXT: NO ROOM IN FRAME';
+  TXT.ROOM_SHOWN = 'TXT: ROOM IN FRAME';
 
   /* ---- render ------------------------------------------------------------ */
   // Renders one still, waits a paint tick, then ASSERTS the frame is not black
@@ -428,39 +457,55 @@ export function init(THREE) {
     // inside something built passes on TXT.enclosure's share, and a room TXT.interior built passes
     // when it fills half the frame (TXT.inRoom). Both are measured above, with the numbers.
     // THE PAGE'S LAST SNAPSHOT IS ITS VERDICT, as print_ban's kept snapshot is the bench's last on the
-    // page. A console line can't be unprinted, so each line names its renderer, and any later snapshot
-    // that isn't a no-sky frame, on any renderer, prints a line withdrawing the earlier one. print_ban
-    // reads the last line on the page (Codex, PR 369). There is no option to skip this: an opt-out on
-    // the kept snapshot passed every gate with the camera on the ground (Codex, PR 369).
-    if (typeof console !== 'undefined') {
-      let none = false, cover = 0;
-      if (R.world) {
+    // page. A console line can't be unprinted, so each line names its renderer, and the last line on
+    // the page is the verdict print_ban and panel_ready read (Codex, PR 369). There is no option to
+    // skip this: an opt-out on the kept snapshot passed every gate with the camera on the ground.
+    // EVERY SNAPSHOT OF A FRAME THAT STANDS SOMEWHERE PRINTS A VERDICT (Codex, PR 369), a clean one
+    // included, so a frame whose TXT.sky or TXT.interior never ran through this snapshot, a 2D
+    // fallback behind a branch, has no verdict and fails, rather than reading as clean. A frame that
+    // builds only a room is held to the room: it has to fill half the frame, or the camera has to
+    // stand inside something built. qa.py lists a clean verdict as a console warn, and gate_status
+    // doesn't count it.
+    if (typeof console !== 'undefined' && (R.world || R.room)) {
+      const world = !!R.world;
+      let sky = 0, cover = 0, share = 0;
+      if (world) {
         // a dome hidden or taken out before the snapshot leaves the cleared background, not the sky
         const dome = R._txDome, domeShown = !!dome && onStage(dome, R.scene) && inView(dome, R.camera);
-        const sky = domeShown ? TXT.skyInFrame(R.camera) : 0;
+        sky = domeShown ? TXT.skyInFrame(R.camera) : 0;
         if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
-        if (sky <= 0) {
-          cover = TXT.enclosure(R);
-          none = cover < ENCLOSED_MIN && !TXT.inRoom(R);
-        }
       }
+      let shown = sky > 0;
+      if (!shown) { cover = TXT.enclosure(R); shown = cover >= ENCLOSED_MIN; }
+      if (!shown) { share = TXT.roomShare(R); shown = share >= ROOM_MIN; }
       const page = (typeof window !== 'undefined') ? window : TXT;
       if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
-      const tag = ' [r' + R._txRid + ']';
-      if (none) {
+      const tag = ' [r' + R._txRid + ']', was = page.__txSky;
+      const pct = (x) => Math.round(x * 100);
+      if (!shown && world) {
         page.__txSky = 'none';
         console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
           'it (pitched below the horizon, looking straight down, or with the sky dome hidden), and it ' +
-          'stands inside nothing: what the frame built covers ' + Math.round(cover * 100) + ' percent of ' +
-          'the sky above the camera, where an interior covers ' + Math.round(ENCLOSED_MIN * 100) + '. A ' +
-          'reader sees objects in a void, and the showstopper test caps the frame. Lift the camera to ' +
-          'put the horizon in frame, or stand it inside something built (the kit\'s semi_cab_interior, ' +
-          'or a TXT.interior room filling half the frame). A roof, a canopy or a tree overhead is not ' +
-          'an interior');
-      } else if (page.__txSky === 'none') {
+          'stands inside nothing: what the frame built covers ' + pct(cover) + ' percent of the sky ' +
+          'above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A reader sees objects ' +
+          'in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
+          'frame, or stand it inside something built (the kit\'s semi_cab_interior, or a TXT.interior ' +
+          'room filling half the frame). A roof, a canopy or a tree overhead is not an interior');
+      } else if (!shown) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_ROOM + tag + '. This frame builds a room with TXT.interior and its kept ' +
+          'camera shows too little of it: the room fills ' + pct(share) + ' percent of the frame, where ' +
+          'a room shot fills ' + pct(ROOM_MIN) + ', and what the frame built covers ' + pct(cover) +
+          ' percent of the sky above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A ' +
+          'reader sees objects in a void. Point the camera into the room or stand it inside, and keep ' +
+          'the room drawn');
+      } else {
         page.__txSky = 'shown';
-        console.error(TXT.SKY_SHOWN + tag + '. The kept snapshot is not a frame without sky, so the ' +
-          'no-sky line above was a preview and is withdrawn');
+        const why = '. A verdict, not a defect: this snapshot ' + (sky > 0 ? 'shows its sky'
+          : cover >= ENCLOSED_MIN ? 'stands inside something built' : 'shows its room') +
+          (was === 'none' ? '. The line above was a preview and is withdrawn' : '');
+        if (world) console.error(TXT.SKY_SHOWN + tag + why);
+        else console.error(TXT.ROOM_SHOWN + tag + why);
       }
     }
     await new Promise(r => requestAnimationFrame(() => r()));

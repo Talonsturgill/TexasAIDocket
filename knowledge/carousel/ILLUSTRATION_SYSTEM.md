@@ -988,10 +988,12 @@ which is the finding the judges made in words and the number that says the gate 
   not an interior: the kit gas station's canopy covers 0.63, a carport roof 0.59, a pecan's crown
   0.25 and a streetlight's head 0.01, so looking down under any of them is still a frame of the
   ground. A `TXT.interior` room counts when its walls, or its floor between them, fill half the
-  frame, which a camera 300 m above it doesn't. Measured through the engine on the shipped decks:
-  no. 33's frame 4 and no. 34's frames 4 and 5 fail, and no. 34's page on the cab seat passes, its
-  cab covering 0.97. Keep the horizon in frame, or stand the camera inside something built.
-  (2026-09-26)
+  frame, which a camera 300 m above it doesn't, and a frame that builds only a room is held to the
+  same room. Every snapshot of a frame that stands somewhere prints its verdict into the render
+  report, and a frame with no verdict never went through `TXT.snapshot`. Measured through the
+  engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5 fail, and no. 34's page
+  on the cab seat passes, its cab covering 0.97. Keep the horizon in frame, or stand the camera
+  inside something built. (2026-09-26)
 - **A horizon hidden behind the type.** No. 33's frame 6 as shipped does show sky, the top fifth of
   the frame behind the type, and was still failed in its last two rounds, because the horizon ran
   behind the dek and the lower 40 to 45 percent was empty ground. The no-sky check passes it and

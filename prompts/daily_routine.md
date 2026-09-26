@@ -1266,6 +1266,11 @@ proves the deck: at least six frames rendered, five standing in the world, and n
 place a run asked, so a frame two to nine that looked straight at the ground reached the panel, and
 no. 33's frame 4 spent all five rounds there (Codex, PR 369). `panel_ready` asks the no-sky
 question again before every round, because a repair can turn a settled frame toward the ground.
+Every snapshot of a frame that stands in the world or a room prints a verdict into the render
+report: `TXT: SKY IN FRAME` or `TXT: ROOM IN FRAME` when it shows its place, `TXT: NO SKY IN FRAME`
+or `TXT: NO ROOM IN FRAME` when it doesn't. `qa.py` lists a clean verdict as a console warn and
+`gate_status` doesn't count it. A frame that stands somewhere and printed no verdict never went
+through `TXT.snapshot`, a 2D fallback behind a branch, and both gates fail it.
 
 **`layout_check` runs again here, on the frames the critics settled**, for the same reason
 `copy_sync_check` runs after every round: a repair pass edits frames, and a frame repaired into
