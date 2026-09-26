@@ -210,6 +210,20 @@ def opening_messages(transcript: str, want: int = 3, max_lines: int = 200,
     return out
 
 
+def opened_with_trigger(transcript: str) -> bool:
+    """True when the session's FIRST message begins with the routine's trigger sentence.
+
+    Only the opener, and only at its start. Matching the sentence anywhere in the first few
+    messages turned an attended session that quoted it while debugging the routine into an
+    unattended one, and from then on the person's own dialogs were denied (Codex, PR 362).
+    """
+    trigger = trigger_line()
+    opening = opening_messages(transcript, want=1)
+    if not trigger or not opening:
+        return False
+    return _norm(opening[0]).lstrip("\"'`> ").startswith(trigger)
+
+
 def verdict(event: dict, env) -> tuple[bool, str]:
     """(unattended, the signal that said so)."""
     forced = str(env.get("TXDOCKET_UNATTENDED") or "").strip().lower()
@@ -222,9 +236,7 @@ def verdict(event: dict, env) -> tuple[bool, str]:
     branch = git_branch(project_root(env))
     if branch.startswith(DAILY_PREFIX):
         return True, f"the routine's branch, {branch}"
-    trigger = trigger_line()
-    opening = opening_messages(str(event.get("transcript_path") or ""))
-    if trigger and any(trigger in _norm(text) for text in opening):
+    if opened_with_trigger(str(event.get("transcript_path") or "")):
         return True, "the session opened with the routine's trigger"
     return False, "no unattended signal"
 
@@ -291,15 +303,35 @@ def target_of(tool: str, tool_input, root: Path) -> str:
         return _short(str(tool_input.get(FILE_TOOLS[tool]) or ""), root)[:200]
     if tool == "Bash":
         cmd = str(tool_input.get("command") or "").strip()
-        words = cmd.split()
-        kept = words[:1]
-        if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
-            kept.append(words[1])
         names = sorted(d for d in (".claude", ".git")
                        if re.search(r"(^|[\s/'\"=])" + re.escape(d) + r"(/|\s|$|['\"])", cmd))
-        text = " ".join(kept) + (" ..." if len(words) > len(kept) else "")
+        text = command_head(cmd)
         return (text + (f" (names {', '.join(names)})" if names else ""))[:200]
     return ""
+
+
+ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=")
+
+
+def command_head(cmd: str) -> str:
+    """A shell command's name, and its subcommand when it has one, with every argument withheld.
+
+    A LEADING ASSIGNMENT IS AN ARGUMENT, NOT A COMMAND. `TOKEN=secret curl ...` kept the token as
+    the "command", and this output feeds a committed run record (Codex, PR 362). Leading
+    assignments are dropped, and a first word that is quoted or still carries an `=` is withheld
+    rather than guessed at.
+    """
+    words = cmd.split()
+    while words and ASSIGNMENT.match(words[0]):
+        words = words[1:]
+    if not words:
+        return "(command withheld)" if cmd.strip() else ""
+    if "=" in words[0] or words[0][:1] in "\"'`$(":
+        return "(command withheld) ..."
+    kept = words[:1]
+    if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
+        kept.append(words[1])
+    return " ".join(kept) + (" ..." if len(words) > len(kept) else "")
 
 
 def hint(tool: str, tool_input, root: Path) -> str:
@@ -482,6 +514,14 @@ def records(root: Path, session: str | None = None) -> list[dict]:
 
 
 def summary(root: Path | None = None, session: str | None = None) -> dict:
+    """What the hook logged for ONE session.
+
+    With no session id there is no answer to give, and it says so. Reading every session's rows
+    instead let an earlier session's `armed` stand in for this one, which is a guard claimed for a
+    run it never guarded (Codex, PR 362).
+    """
+    if not session:
+        return {"session": None, "armed": None, "armed_at": None, "refused": [], "waited": []}
     rows = records(root or HOOK_REPO, session)
     armed = [r for r in rows if r.get("decision") == "armed"]
     return {
@@ -494,6 +534,9 @@ def summary(root: Path | None = None, session: str | None = None) -> dict:
 
 
 def report_lines(s: dict) -> list[str]:
+    if s.get("armed") is None:
+        return ["no-stall hook: no CLAUDE_CODE_SESSION_ID in this process, so no session's record "
+                "is reported. Run it from inside the session it is about"]
     if s.get("armed"):
         lines = [f"no-stall hook: armed at {s.get('armed_at')}"]
     else:
@@ -536,12 +579,13 @@ def self_test() -> int:
         (r / ".git" / "HEAD").write_text(f"ref: refs/heads/{branch}\n", encoding="utf-8")
         return r
 
-    def transcript(base: Path, name: str, opener: str) -> str:
+    def transcript(base: Path, name: str, opener: str, *later: str) -> str:
         p = base / name
         rows = [{"type": "queue-operation", "operation": "enqueue"},
                 {"type": "user", "isMeta": True, "message": {"role": "user", "content": "meta"}},
                 {"type": "user", "message": {"role": "user", "content": opener}},
                 {"type": "assistant", "message": {"role": "assistant", "content": []}}]
+        rows += [{"type": "user", "message": {"role": "user", "content": t}} for t in later]
         p.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
         return str(p)
 
@@ -578,6 +622,12 @@ def self_test() -> int:
            "a session that opened with the routine's trigger is unattended before its branch exists")
         ok(not verdict({"transcript_path": t_person}, e_dev)[0],
            "a session a person opened is attended")
+        t_later = transcript(base, "later.jsonl", "help me debug the routine", TRIGGER_FALLBACK)
+        t_inline = transcript(base, "inline.jsonl", f"why does it say '{TRIGGER_FALLBACK}' first?")
+        ok(not verdict({"transcript_path": t_later}, e_dev)[0],
+           "a person who pastes the trigger in a LATER message stays attended (Codex, PR 362)")
+        ok(not verdict({"transcript_path": t_inline}, e_dev)[0],
+           "...and so does one who quotes it inside an opening question")
         ok(verdict({}, {**e_daily, "TXDOCKET_UNATTENDED": "0"}) == (False, "TXDOCKET_UNATTENDED=0"),
            "TXDOCKET_UNATTENDED=0 forces attended even on the routine's branch")
         ok(verdict({}, {**e_dev, "TXDOCKET_UNATTENDED": "1"})[0], "=1 forces unattended")
@@ -662,6 +712,15 @@ def self_test() -> int:
                              "session_id": "sess-1"}, e_daily) is None,
            "session start prints nothing, because its output would become context")
 
+        for cmd, want in [("TOKEN=hunter2 curl https://x.gov", "curl ..."),
+                          ("A=1 B=2 git push origin x", "git push ..."),
+                          ("TOKEN=hunter2", "(command withheld)"),
+                          ("\"$TOKEN\" x", "(command withheld) ..."), ("ls", "ls"), ("", "")]:
+            ok(command_head(cmd) == want, f"the command {cmd!r} is logged as {want!r}",
+               command_head(cmd))
+        on_permission_request(pr("Bash", {"command": "TOKEN=hunter2 curl -sS https://x.gov/?k=v"}),
+                              e_daily)
+
         print("and in an attended session, nothing")
         ok(on_permission_request(pr("Bash", {"command": sept25}), e_dev) is None,
            "a dialog in a maintainer's session is left for the person")
@@ -683,6 +742,14 @@ def self_test() -> int:
         text = logfile.read_text(encoding="utf-8") if logfile.is_file() else ""
         ok("SECRET" not in text and "webfetch-1" not in text,
            "a command's arguments never reach the log, since it feeds a committed record")
+        ok("hunter2" not in text and "k=v" not in text and '"target": "curl ..."' in text,
+           "...nor a leading assignment, which is where a token rides (Codex, PR 362)")
+        none = summary(daily, None)
+        ok(none["armed"] is None and not none["refused"]
+           and "CLAUDE_CODE_SESSION_ID" in report_lines(none)[0],
+           "with no session id nothing is claimed, not even armed (Codex, PR 362)", none)
+        ok(summary(daily, "sess-other")["armed"] is False,
+           "another session's armed record is not this session's")
         ok("cp ... (names .claude)" in text, "...while the command and what it named do", text)
         s = summary(daily, "sess-1")
         ok(s["armed"] and len(s["refused"]) >= 10 and len(s["waited"]) == 1,

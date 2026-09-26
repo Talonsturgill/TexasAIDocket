@@ -98,6 +98,14 @@ def redact(rule: str) -> str:
     # admits `checkout` and `add` while rejecting a flag, a path and anything with a dot in it,
     # which is where an argument's secret would live.
     words = body.split()
+    # A LEADING ASSIGNMENT IS AN ARGUMENT TOO. `Bash(TOKEN=secret curl ...)` kept the token as the
+    # command word. Found by Codex on the no-stall hook's copy of this logic, PR 362.
+    while words and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", words[0]):
+        words = words[1:]
+    if not words:
+        return f"{m.group('tool')}((command withheld))"
+    if "=" in words[0] or words[0][:1] in "\"'`$(":
+        return f"{m.group('tool')}((command withheld) ...)"
     kept = words[:1]
     if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
         kept.append(words[1])
@@ -205,7 +213,7 @@ def no_stall_report(root: Path = REPO_ROOT) -> dict:
     except Exception as exc:  # noqa: BLE001  a broken hook module must not cost the audit
         return {"present": True, "error": f"{type(exc).__name__}: {exc}",
                 "lines": [f"no-stall hook: its log could not be read ({type(exc).__name__})"]}
-    if unattended and not summary.get("armed"):
+    if unattended and summary.get("armed") is False:
         lines.insert(0, f"no-stall hook: NOT ARMED IN AN UNATTENDED RUN ({because}). Nothing "
                         f"guarded this run against a dialog. Say so in the run record and the "
                         f"email.")
@@ -272,6 +280,9 @@ def self_test() -> int:
                    redact("Bash(cp .claude/WORKLOG.md out/tmp/x.md)") == "Bash(cp ...)"))
     checks.append(("...including anything that looks like a secret",
                    "hunter2" not in redact("Bash(curl -H 'Authorization: hunter2' https://x/y)")))
+    checks.append(("...and a leading assignment, which is where a token rides",
+                   redact("Bash(TOKEN=hunter2 curl https://x/y)") == "Bash(curl ...)"
+                   and redact("Bash(TOKEN=hunter2)") == "Bash((command withheld))"))
     checks.append(("a wildcard rule survives readably", redact("Bash(git checkout *)")
                    == "Bash(git checkout ...)"))
     checks.append(("a bare tool rule is untouched", redact("Write") == "Write"))

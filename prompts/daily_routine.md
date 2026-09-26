@@ -1880,10 +1880,12 @@ file is on disk, escapes the copy so markup cannot break the mail, and puts the 
 Run it, do not reproduce it by hand:
 
 ```bash
-# gates, degraded and upgrades are small JSON files you write from this run's own results.
+# gates, degraded and upgrades are small JSON files you write from this run's own results, and
+# notes is a plain text file of the account of the day. All four live in out/<date>/tmp/.
 python3 scripts/carousel/gmail_draft.py --run <date> --n <N> --title "<title>" \
   --score <score> \
-  --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json>
+  --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json> \
+  --notes-file <notes.txt>
 ```
 
 `--n` is this deck's carousel number, one more than the newest `carousel_no` in
@@ -1892,6 +1894,10 @@ never recomputed. **Pass no `--threshold`**: the builder reads the bar from the 
 and a bar typed on a command line is the one number a run should never supply. `--gates-file` is
 a JSON object of gate name to result, taken from the block `gate_status.py --sync` wrote, never
 from memory. `--degraded-file` and `--upgrades-file` are JSON arrays, `[]` when there is nothing.
+**There is no `--notes` option, only `--notes-file`.** The account goes in a file and the file's
+path goes on the command line. The builder refuses an abbreviated option, because until
+2026-09-26 it read `--notes "..."` as a path that did not exist and mailed an empty account
+without a word.
 
 **FIRST, TAKE THE READING THAT COUNTS.** Phase 17's was interim and everything since then, the
 upgrade worker, the commits, the push, the merge, could have stopped the run:
@@ -1901,10 +1907,10 @@ python3 scripts/shared/prompt_audit.py
 ```
 
 This is the LAST thing a run does before the email, so it is the only reading that covers the
-whole run. Exit 1 means a call waited on a human and the report names it. **Say so in `--notes`,
-naming the tool and how long it waited.** Exit 1 with UNMEASURED means the debug log could not be
-parsed, which is not a clean result and is worth a line of its own. **Copy the no-stall hook's
-section into `--notes` as it prints**: armed or not, and each call it refused.
+whole run. Exit 1 means a call waited on a human and the report names it. **Say so in the notes
+file, naming the tool and how long it waited.** Exit 1 with UNMEASURED means the debug log could not
+be parsed, which is not a clean result and is worth a line of its own. **Copy the no-stall hook's
+section into the notes file as it prints**: armed or not, and each call it refused.
 
 It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
 **prove it is postable before you draft it**, by exit code:
@@ -1937,7 +1943,8 @@ burns a step rediscovering the address.
 The prose you DO write is the account of the day, and it goes in the fields the builder takes,
 not around them: the honest score, what the gates said, what degraded through `--degraded-file`,
 and the machine upgrades from Phase 17 through `--upgrades-file`. What the record did (verified,
-admitted, held, deferred) belongs in `--notes`. Everything a reader acts on, the builder places.
+admitted, held, deferred) belongs in the notes file. Everything a reader acts on, the builder
+places.
 
 **DRAFT ONLY. NEVER SEND.**
 

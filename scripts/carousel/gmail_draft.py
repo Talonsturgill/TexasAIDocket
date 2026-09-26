@@ -407,6 +407,18 @@ def self_test() -> int:
 
     ok("nothing in this file can send", "send" not in
        {n for n in dir(sys.modules[__name__]) if not n.startswith("_")})
+
+    # AN ABBREVIATED OPTION IS REFUSED, LOUDLY. argparse accepts any unique prefix by default, so
+    # `--notes "the account"` was read as `--notes-file` with a path that did not exist, and the
+    # email went out with an empty account and no error. The routine said `--notes` in three
+    # places until 2026-09-26 (Codex, PR 362).
+    # A run that does not exist, so a regression here fails on the missing caption and can never
+    # reach the line that writes a shipped run's gmail_payload.json.
+    import subprocess
+    run = subprocess.run([sys.executable, __file__, "--run", "1999-01-01", "--notes", "x"],
+                         capture_output=True, text=True, timeout=60)
+    ok("`--notes` is refused rather than read as a missing --notes-file",
+       run.returncode != 0 and "unrecognized arguments" in run.stderr, run.stderr[-200:])
     return _finish(failures)
 
 
@@ -430,7 +442,8 @@ def rubric_threshold() -> float:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    # allow_abbrev=False: see the last check in the self-test.
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], allow_abbrev=False)
     ap.add_argument("--run")
     ap.add_argument("--n", type=int, default=1)
     ap.add_argument("--title", default="")
