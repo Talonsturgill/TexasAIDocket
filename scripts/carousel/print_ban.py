@@ -351,16 +351,22 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
             out.append(f"the camera check did not run: {why}. TXT.snapshot measures whether each frame "
                        f"that calls TXT.sky shows any of it, and render.py keeps that in the report. "
                        f"Render the frames and run this again")
-        # A FRAME THE REPORT NEVER MEASURED IS NOT A FRAME THAT PASSED (Codex, PR 369). A report
-        # left from a probe, or rebuilt from a partial render, holds no line for a frame it never
-        # drew, and that absence read as clean. Only a frame that calls TXT.sky has a camera check
-        # to run, since everything else here reads the source, so those are the ones named.
-        unmeasured = [n for n in world_names if n not in listed] if frames is not None else []
+        # A FRAME THE REPORT NEVER MEASURED IS NOT A FRAME THAT PASSED (Codex, PR 369). The probe's
+        # one-frame report, kept because the full render died before rewriting it, holds no line
+        # for frames 2 to 9, and that absence read as clean. So every frame on disk must have a
+        # record. One that calls TXT.sky is named as a camera check that didn't run, and any other
+        # as a report that isn't a render of this deck.
+        unlisted = [f.name for f in files if f.name not in listed] if frames is not None else []
+        unmeasured = [n for n in unlisted if n in world_names]
+        undrawn = [n for n in unlisted if n not in world_names]
         if unmeasured:
             out.append(f"the camera check did not run on {', '.join(unmeasured)}: the render report "
                        f"holds no record of {'it' if len(unmeasured) == 1 else 'them'}, so whether "
                        f"{'its' if len(unmeasured) == 1 else 'their'} camera shows the sky was never "
                        f"measured. Render {'it' if len(unmeasured) == 1 else 'them'} and run this again")
+        if undrawn:
+            out.append(f"the render report holds no record of {', '.join(undrawn)}, so it is not a "
+                       f"render of the deck on disk. Render the deck and run this again")
         for name in frames or []:
             out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
                        f"or looking straight down with nothing built overhead, so a reader sees objects in "
@@ -601,6 +607,20 @@ def self_test() -> int:
         at_root([])
         ok("...and the same report with all nine records is clean", check_run(seen, chassis_root=a) == [],
            check_run(seen, chassis_root=a))
+        # ...and a frame that calls no TXT.sky, missing from the report, is named too: the report is
+        # not a render of this deck (Codex, PR 369: "fail on every omitted frame").
+        plain = seen / "slides" / "slide-09.html"
+        plain.write_text("<html><body><h1>The record, in one line</h1></body></html>")
+        root_report.write_text(_json.dumps({"slides": [{"file": f"slide-0{i}.html", "console_errors": []}
+                                                       for i in range(1, 9)]}))
+        got = check_run(seen, chassis_root=a)
+        ok("a report with no record of a frame that calls no TXT.sky is CAUGHT, and names it",
+           any("no record of slide-09.html" in g and "not a render of the deck" in g for g in got)
+           and not any("did not run on" in g for g in got), got)
+        at_root([])
+        ok("...and with its record, the eight worlds and the one plain frame are clean",
+           check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
+        plain.write_text(rendered)
         root_report.unlink()
         engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
         ok("the engine prints the exact words this gate reads, the withdrawal included",
