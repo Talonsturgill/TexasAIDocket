@@ -20,7 +20,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-26 · Admitted to the record. The authorization requirement has been enforceable since May 28th, and the lane between Dallas and Houston is where companies are now running freight under it.
+- 2026-09-26 · Admitted to the record. The authorization requirement has been enforceable since May 28th, and Kodiak and Aurora have each announced plans for driverless freight on the lane between Dallas and Houston.
 
 ## Evidence
 

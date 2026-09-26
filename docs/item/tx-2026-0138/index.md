@@ -9,7 +9,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
   - Lubbock, TX
 - Status: pending
 - Public access: Public meeting
-- Take part: https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225
+- Take part: https://www.mylubbock.us/AgendaCenter
 
 - Last checked: 2026-09-26
 
