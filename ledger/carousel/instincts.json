@@ -291,7 +291,8 @@
       "confirmed": [
         "2026-08-21",
         "2026-08-25",
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-26"
       ],
       "contradicted": []
     },
@@ -387,7 +388,8 @@
       "confirmed": [
         "2026-08-21",
         "2026-08-25",
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-26"
       ],
       "contradicted": []
     },
@@ -777,7 +779,8 @@
       "confirmed": [
         "2026-09-15",
         "2026-09-18",
-        "2026-09-20"
+        "2026-09-20",
+        "2026-09-26"
       ],
       "contradicted": []
     },
@@ -1069,6 +1072,22 @@
       "learned": "2026-09-24",
       "instinct": "Before writing that a document mentions something once, rarely or never, search the whole fetched text for the noun and cite or reject every hit.",
       "evidence": "2026-09-24 web edition said a person enters the draft in one sentence; the integrity judge found the Remote Pilot in Command and the approving customer in the same draft, a hard fail a text search would have caught.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "relight-the-hero-before-the-frames",
+      "learned": "2026-09-26",
+      "instinct": "Point the deck's one key at the side of the hero every camera sees, because a key behind the hero turns white paint dark on every exterior frame.",
+      "evidence": "Carousel no. 34 declared its key at azimuth -160, which backlit the white tractor on frames 1, 4, 5 and 8. All three judges named the navy hero for three rounds until the key moved to azimuth 25, and the move then re-opened qa and contrast faults on four frames in the last two rounds.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "match-the-fog-to-the-rendered-horizon",
+      "learned": "2026-09-26",
+      "instinct": "Set the world's haze from the horizon colour a probe frame actually renders, because a preset haze draws a hard sea band where ground meets sky.",
+      "evidence": "Carousel no. 34's blueHour haze read as a saturated band on frames 1, 3 and 9 through all five rounds, even after the ground plane ran to twelve kilometres. Sampling the rendered sky and setting the haze from it narrowed the band but came too late to clear it.",
       "confirmed": [],
       "contradicted": []
     }
