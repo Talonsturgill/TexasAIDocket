@@ -108,8 +108,10 @@ NO_SKY = "TXT: NO SKY IN FRAME"          # calls TXT.sky, and the camera shows n
 SKY_SHOWN = "TXT: SKY IN FRAME"          # shows its sky, or stands inside something built
 NO_ROOM = "TXT: NO ROOM IN FRAME"        # builds only a room, and shows too little of it
 ROOM_SHOWN = "TXT: ROOM IN FRAME"        # shows its room, or stands inside something built
-SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME|NO ROOM IN FRAME|ROOM IN FRAME)"
-                      r"(?: \[r(\d+)\])?")
+NO_RENDER = "TXT: NO RENDER IN FRAME"    # the render came out black, so the frame fell back
+SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME|NO ROOM IN FRAME|ROOM IN FRAME|"
+                      r"NO RENDER IN FRAME)(?: \[r(\d+)\])?")
+VOIDS = ("no sky", "no room", "no render")
 # THE VERDICT IS AFFIRMATIVE FROM THE DAY AFTER THIS (Codex, PR 369). Until 2026-09-26 the engine
 # printed only a no-sky line, so a clean frame and a frame whose check never ran looked the same. A
 # deck rendered after it carries a verdict on every frame that stands somewhere, and one without
@@ -119,7 +121,8 @@ VERDICT_SINCE = "2026-09-26"
 
 
 def place_verdict(console_errors):
-    """The page's LAST verdict: "no sky", "no room" or "shown", or None when it printed none.
+    """The page's LAST verdict: "no sky", "no room", "no render" or "shown", or None when it printed
+    none.
 
     The kept snapshot is the page's last, the way this file's kept snapshot is the bench's last. A
     preview pointed at the ground and a kept frame that isn't, on the same renderer or another,
@@ -133,14 +136,16 @@ def place_verdict(console_errors):
         if m:
             g = m.group(1)
             verdict = ("no sky" if g == "NO SKY IN FRAME" else
-                       "no room" if g == "NO ROOM IN FRAME" else "shown")
+                       "no room" if g == "NO ROOM IN FRAME" else
+                       "no render" if g == "NO RENDER IN FRAME" else "shown")
     return verdict
 
 
 def kept_no_sky(console_errors) -> bool:
     """True when the page's last verdict says its kept snapshot shows no sky, or, for a frame that
-    builds only a room, too little of the room. Either is a void."""
-    return place_verdict(console_errors) in ("no sky", "no room")
+    builds only a room, too little of the room, or that its render came out black and the frame fell
+    back to whatever it draws instead. Each is a void."""
+    return place_verdict(console_errors) in VOIDS
 WORLD_FLOOR = 5
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 # THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
@@ -282,7 +287,7 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     this reads them, so the finding lands on the probe frame and not on a panel round.
 
     Measured through the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5
-    fail, and no. 34's page on the cab seat passes, standing inside a cab that covers 0.97 of the
+    fail, and no. 34's page on the cab seat passes, standing inside a cab that covers 0.87 of the
     sky above its camera. A roof, a canopy or a tree is not an interior (TXT.enclosure's own
     measurements). No. 33's frame 6 passes as shipped. It looked
     down through an orthographic camera for three rounds, in a source the run never committed, and
@@ -290,7 +295,7 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     of sky in frame can't see.
     """
     verdicts, _ = read_sky_report(run_dir)
-    return [f for f, v in (verdicts or {}).items() if v in ("no sky", "no room")]
+    return [f for f, v in (verdicts or {}).items() if v in VOIDS]
 
 
 def read_sky_report(run_dir: Path):
@@ -421,6 +426,10 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                            f"it, and it stands inside nothing built, so a reader sees objects in a "
                            f"void. Point the camera into the room so it fills half the frame, or stand "
                            f"it inside, and keep the room drawn")
+            elif v == "no render":
+                out.append(f"{name}'s kept snapshot came out black or unreadable, so the frame fell "
+                           f"back to whatever it draws instead, and a 2D fallback stands nowhere. Fix "
+                           f"the render: qa.py's dead canvas and the render log say why (Codex, PR 369)")
     return out
 
 
@@ -710,10 +719,21 @@ def self_test() -> int:
             (seen / "slides" / f"slide-0{i}.html").write_text(rendered)
         root_report.unlink()
         engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
-        ok("the engine prints the exact words this gate reads, all four verdicts",
+        # A RENDER THAT CAME OUT BLACK IS A VOID, whatever the camera faced (Codex, PR 369): the frame
+        # fell back to a 2D design, and a clean verdict printed before the pixels were checked would
+        # have certified it.
+        at_root([NO_RENDER + " [r1]. its render came out black"])
+        got = check_run(seen, chassis_root=a)
+        ok("a frame whose kept render came out black is CAUGHT, and named",
+           any(g.startswith("slide-06.html") and "black" in g for g in got), got)
+        at_root([NO_RENDER + " [r1]. a black preview", SKY_SHOWN + " [r1]. the kept snapshot"])
+        ok("...while a black preview withdrawn by a good kept render is clean",
+           check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
+        root_report.unlink()
+        ok("the engine prints the exact words this gate reads, all five verdicts",
            all(f"TXT.{k} = '{v}'" in engine and f"console.error(TXT.{k}" in engine
                for k, v in (("NO_SKY", NO_SKY), ("SKY_SHOWN", SKY_SHOWN), ("NO_ROOM", NO_ROOM),
-                            ("ROOM_SHOWN", ROOM_SHOWN))))
+                            ("ROOM_SHOWN", ROOM_SHOWN), ("NO_RENDER", NO_RENDER))))
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())

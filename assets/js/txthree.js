@@ -323,7 +323,53 @@ export function init(THREE) {
     }
     return false;
   };
-  const seenHit = (h, R) => { const mat = slotOf(h); return shows(mat) && !clippedAway(h.point, mat, R.renderer); };
+  // A CUTOUT'S TEXEL DECIDES (Codex, PR 369). An alpha-tested or alpha-mapped material draws only
+  // the texels that clear its alphaTest, and the kit builds leaf cards, perforated steel and mesh
+  // panels that way, so a hit reads the texture at the hit's own uv: the map's alpha times the
+  // alphaMap's green, times the opacity, as three.js shades it. Each texture is read back once.
+  const texels = new WeakMap();
+  const texelAt = (tex, uv) => {
+    if (!tex || !uv) return null;
+    let t = texels.get(tex);
+    if (t === undefined) {
+      t = null;
+      try {
+        const img = tex.image;
+        if (img && img.data && img.width && img.height) {
+          t = { w: img.width, h: img.height, d: img.data, ch: Math.round(img.data.length / (img.width * img.height)) };
+        } else if (img && img.width && img.height && typeof document !== 'undefined') {
+          const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+          const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(img, 0, 0);
+          t = { w: img.width, h: img.height, d: x.getImageData(0, 0, img.width, img.height).data, ch: 4 };
+        }
+      } catch (e) { t = null; }
+      texels.set(tex, t);
+    }
+    if (!t || !(t.ch >= 1)) return null;
+    if (tex.matrixAutoUpdate) tex.updateMatrix();
+    const q = tex.transformUv(uv.clone());
+    const px = Math.min(t.w - 1, Math.max(0, Math.floor(q.x * t.w)));
+    const py = Math.min(t.h - 1, Math.max(0, Math.floor(q.y * t.h)));
+    const i = (py * t.w + px) * t.ch, sc = (t.d instanceof Float32Array) ? 1 : 255;
+    return { g: t.d[i + Math.min(1, t.ch - 1)] / sc, a: t.ch >= 4 ? t.d[i + 3] / sc : 1 };
+  };
+  const cutout = (mat) => !!mat && (mat.map || mat.alphaMap) && (mat.alphaTest > 0 || mat.transparent);
+  const alphaAt = (h, mat) => {
+    const uvOf = (tex) => (tex.channel === 1 ? h.uv1 : h.uv);
+    let a = mat.opacity != null ? mat.opacity : 1;
+    if (mat.map) { const t = texelAt(mat.map, uvOf(mat.map)); if (!t) return null; a *= t.a; }
+    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(mat.alphaMap)); if (!t) return null; a *= t.g; }
+    return a;
+  };
+  const seenHit = (h, R) => {
+    const mat = slotOf(h);
+    if (!shows(mat) || clippedAway(h.point, mat, R.renderer)) return false;
+    if (!cutout(mat)) return true;
+    const a = alphaAt(h, mat);
+    if (a === null) return false;                 // a cutout whose texel can't be read is no wall
+    if (mat.alphaTest > 0 && a < mat.alphaTest) return false;
+    return !(mat.transparent && !(a > 0.001));
+  };
   // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
   const drawable = (R) => {
     const out = [];
@@ -333,18 +379,19 @@ export function init(THREE) {
   /* INSIDE IS MEASURED AS A SHARE, NEVER AS ONE RAY (Codex, PR 369). A single ray straight up took
    * a street lamp for a roof, and a room counted as "looked into" from 300 m above it. The
    * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky, so both
-   * exemptions now ask how much of an interior there is. Measured on 2026-09-26 through this engine
-   * and the kit, as the share of the sky above the camera that the frame built covers within 12 m:
+   * exemptions now ask how much of an interior there is. Measured on 2026-09-26 through
+   * TXT.enclosure itself and the kit, as the share of the sky above the camera that the frame built
+   * covers within 12 m:
    *
    *   interiors   the kit's semi_cab_interior at the driver's eye 0.96, a TXT.interior room with a
-   *               ceiling 0.89, a closed shelter 1.0
-   *   open        the kit gas station's canopy 0.63, a carport roof 0.59, a pecan's crown 0.25, a
-   *               streetlight's head 0.01, a lamp 5 m up 0
+   *               ceiling 0.88, a closed shelter 1.0
+   *   open        the kit gas station's canopy 0.65, a carport roof 0.59, a pecan's crown 0.23, a
+   *               streetlight's head 0.02, a lamp 5 m up 0
    *
    * ENCLOSED_MIN sits in that gap, so a roof, a canopy or a tree over a camera looking down is still
    * a frame of the ground. TXT.interior builds no ceiling by default and scores 0.14 to 0.2 from
    * inside, so a room answers by what the frame shows instead: its walls, or its floor between
-   * them, fill 0.88 to 1.0 of a frame taken in it or looking into its open side, and 0.002 of one
+   * them, fill 0.88 to 1.0 of a frame taken in it or looking into its open side, and 0.003 of one
    * taken 300 m above it. ROOM_MIN is half the frame. Neither number is on TXT, so a frame can't
    * lower one. */
   const ENCLOSED_MIN = 0.8, ROOM_MIN = 0.5, HEMI_RAYS = 128;
@@ -357,6 +404,7 @@ export function init(THREE) {
    * that builds its own cab needs no flag to be measured. */
   TXT.enclosure = function (R, reach) {
     const cam = R.camera;
+    R.scene.updateMatrixWorld();                 // a caller need not have rendered first
     cam.updateMatrixWorld();
     const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
     const near = Math.max(0.05, cam.near || 0), far = Math.min(reach || 12, cam.far || Infinity);
@@ -393,6 +441,7 @@ export function init(THREE) {
     const walls = [];
     room.traverseVisible((m) => { if (m.isMesh && inView(m, cam)) walls.push(m); });
     if (!walls.length) return 0;                    // walls made invisible are no room
+    R.scene.updateMatrixWorld();                   // a caller need not have rendered first
     cam.updateMatrixWorld();
     const box = new THREE.Box3();
     walls.forEach((w) => { w.updateWorldMatrix(true, false); box.expandByObject(w); });
@@ -426,6 +475,7 @@ export function init(THREE) {
   TXT.SKY_SHOWN = 'TXT: SKY IN FRAME';
   TXT.NO_ROOM = 'TXT: NO ROOM IN FRAME';
   TXT.ROOM_SHOWN = 'TXT: ROOM IN FRAME';
+  TXT.NO_RENDER = 'TXT: NO RENDER IN FRAME';
 
   /* ---- render ------------------------------------------------------------ */
   // Renders one still, waits a paint tick, then ASSERTS the frame is not black
@@ -452,7 +502,7 @@ export function init(THREE) {
      * print_ban counted the call. This counts what the camera shows, and the render report carries
      * it to print_ban before a panel sits. Measured on the shipped decks: no. 33's frame 4 and no.
      * 34's frames 4 and 5 print it, each with 0 of the sky above its camera built over, and no. 34's
-     * page on the cab seat does not, its cab covering 0.97. */
+     * page on the cab seat does not, its cab covering 0.87. */
     // AN INTERIOR IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3. A camera
     // inside something built passes on TXT.enclosure's share, and a room TXT.interior built passes
     // when it fills half the frame (TXT.inRoom). Both are measured above, with the numbers.
@@ -466,6 +516,11 @@ export function init(THREE) {
     // builds only a room is held to the room: it has to fill half the frame, or the camera has to
     // stand inside something built. qa.py lists a clean verdict as a console warn, and gate_status
     // doesn't count it.
+    // MEASURED HERE, on the scene as rendered, and PRINTED BELOW, once the pixels are validated
+    // (Codex, PR 369): a render that comes out black returns ok false and the frame falls back to
+    // whatever it draws instead, so a clean verdict printed before that check would certify a 2D
+    // fallback. A failed render prints TXT.NO_RENDER.
+    let place = null;
     if (typeof console !== 'undefined' && (R.world || R.room)) {
       const world = !!R.world;
       let sky = 0, cover = 0, share = 0;
@@ -478,35 +533,7 @@ export function init(THREE) {
       let shown = sky > 0;
       if (!shown) { cover = TXT.enclosure(R); shown = cover >= ENCLOSED_MIN; }
       if (!shown) { share = TXT.roomShare(R); shown = share >= ROOM_MIN; }
-      const page = (typeof window !== 'undefined') ? window : TXT;
-      if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
-      const tag = ' [r' + R._txRid + ']', was = page.__txSky;
-      const pct = (x) => Math.round(x * 100);
-      if (!shown && world) {
-        page.__txSky = 'none';
-        console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
-          'it (pitched below the horizon, looking straight down, or with the sky dome hidden), and it ' +
-          'stands inside nothing: what the frame built covers ' + pct(cover) + ' percent of the sky ' +
-          'above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A reader sees objects ' +
-          'in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
-          'frame, or stand it inside something built (the kit\'s semi_cab_interior, or a TXT.interior ' +
-          'room filling half the frame). A roof, a canopy or a tree overhead is not an interior');
-      } else if (!shown) {
-        page.__txSky = 'none';
-        console.error(TXT.NO_ROOM + tag + '. This frame builds a room with TXT.interior and its kept ' +
-          'camera shows too little of it: the room fills ' + pct(share) + ' percent of the frame, where ' +
-          'a room shot fills ' + pct(ROOM_MIN) + ', and what the frame built covers ' + pct(cover) +
-          ' percent of the sky above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A ' +
-          'reader sees objects in a void. Point the camera into the room or stand it inside, and keep ' +
-          'the room drawn');
-      } else {
-        page.__txSky = 'shown';
-        const why = '. A verdict, not a defect: this snapshot ' + (sky > 0 ? 'shows its sky'
-          : cover >= ENCLOSED_MIN ? 'stands inside something built' : 'shows its room') +
-          (was === 'none' ? '. The line above was a preview and is withdrawn' : '');
-        if (world) console.error(TXT.SKY_SHOWN + tag + why);
-        else console.error(TXT.ROOM_SHOWN + tag + why);
-      }
+      place = { world, sky, cover, share, shown };
     }
     await new Promise(r => requestAnimationFrame(() => r()));
     let ok = true, variance = -1, litCount = -1;
@@ -544,6 +571,44 @@ export function init(THREE) {
         : Math.max(48, Math.round(sampled * 0.0008));
       ok = meanVarOK || lit >= LIT_MIN;
     } catch (e) { /* readPixels unavailable: trust the render */ }
+    if (place) {
+      const { world, sky, cover, share, shown } = place;
+      const page = (typeof window !== 'undefined') ? window : TXT;
+      if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
+      const tag = ' [r' + R._txRid + ']', was = page.__txSky;
+      const pct = (x) => Math.round(x * 100);
+      if (!ok) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_RENDER + tag + '. This frame stands in ' + (world ? 'the world' : 'a room') +
+          ' and its render came out black or unreadable, so TXT.snapshot returned ok false and the ' +
+          'frame falls back to whatever it draws instead. A 2D fallback stands nowhere, and the ' +
+          'showstopper test caps it. Fix the render: qa.py\'s dead canvas and the render log say why');
+      } else if (!shown && world) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
+          'it (pitched below the horizon, looking straight down, or with the sky dome hidden), and it ' +
+          'stands inside nothing: what the frame built covers ' + pct(cover) + ' percent of the sky ' +
+          'above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A reader sees objects ' +
+          'in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
+          'frame, or stand it inside something built (the kit\'s semi_cab_interior, or a TXT.interior ' +
+          'room filling half the frame). A roof, a canopy or a tree overhead is not an interior');
+      } else if (!shown) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_ROOM + tag + '. This frame builds a room with TXT.interior and its kept ' +
+          'camera shows too little of it: the room fills ' + pct(share) + ' percent of the frame, where ' +
+          'a room shot fills ' + pct(ROOM_MIN) + ', and what the frame built covers ' + pct(cover) +
+          ' percent of the sky above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A ' +
+          'reader sees objects in a void. Point the camera into the room or stand it inside, and keep ' +
+          'the room drawn');
+      } else {
+        page.__txSky = 'shown';
+        const why = '. A verdict, not a defect: this snapshot ' + (sky > 0 ? 'shows its sky'
+          : cover >= ENCLOSED_MIN ? 'stands inside something built' : 'shows its room') +
+          (was === 'none' ? '. The line above was a preview and is withdrawn' : '');
+        if (world) console.error(TXT.SKY_SHOWN + tag + why);
+        else console.error(TXT.ROOM_SHOWN + tag + why);
+      }
+    }
     /* THE FRAME IS ALREADY TONE MAPPED, and TXDECK.finish reads this so it does not map it
      * again. Carousel no. 32 ran ACES here and a second ACES curve in the grade, which caps
      * white near 231 of 255 and lifts the mids: the murk measured, not a taste. Marked ONLY

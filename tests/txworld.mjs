@@ -321,11 +321,37 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const roomHiddenErrors = await capture(() => TXT.snapshot(Rj));
   const Ro2 = roomOnly([0, 300, 0], [0, 0, -0.01]);
   const roomFarErrors = await capture(() => TXT.snapshot(Ro2));
+  // A RENDER THAT COMES OUT BLACK (Codex, PR 369): exposure 0 at the horizon. TXT.snapshot returns ok
+  // false and the frame would fall back to a 2D design, so the verdict is no render, never clean.
+  const Rb2 = world(40);
+  TXT.frame(Rb2, { from: [0, 2, 0], look: [0, 2, -100] }); dress(Rb2, [20, 40, 20]);
+  Rb2.renderer.toneMappingExposure = 0;
+  let blackShot = null;
+  const blackErrors = await capture(async () => { blackShot = await TXT.snapshot(Rb2); });
+  // A SHELTER OF CUTOUTS (Codex, PR 369): alpha-tested boxes whose texture is clear everywhere draw
+  // nothing, and neither do boxes whose alphaMap is black. The same boxes with an opaque texture are
+  // a shelter, which proves the test reads the texel and not only the material.
+  const card = (fill) => {
+    const c = document.createElement('canvas'); c.width = c.height = 8;
+    const x = c.getContext('2d'); x.clearRect(0, 0, 8, 8);
+    if (fill) { x.fillStyle = fill; x.fillRect(0, 0, 8, 8); }
+    return new T.CanvasTexture(c);
+  };
+  const cutoutCase = async (mat) => {
+    const Rc2 = world(40);
+    TXT.frame(Rc2, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rc2, [4, 8, 4]);
+    Rc2.scene.add(shelter(mat));
+    return { errors: await capture(() => TXT.snapshot(Rc2)), cover: cover(Rc2) };
+  };
+  const clearCut = await cutoutCase(new T.MeshStandardMaterial({ map: card(null), alphaTest: 0.5 }));
+  const blackMask = await cutoutCase(new T.MeshStandardMaterial({ color: 0x333333, alphaMap: card('#000'), alphaTest: 0.5 }));
+  const solidCut = await cutoutCase(new T.MeshStandardMaterial({ map: card('#555'), alphaTest: 0.5 }));
   const shelterCover = cover(Rr);
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
            crossErrors, domeErrors, glassErrors, optErrors, layerErrors, veilErrors, wallErrors,
            carportErrors, carportCover, lampErrors, farErrors, shelterCover,
            slotErrors, slotCover, farPlaneErrors, clipErrors, roomOnlyErrors, roomHiddenErrors, roomFarErrors,
+           blackOk: blackShot && blackShot.ok, blackErrors, clearCut, blackMask, solidCut,
            orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
            outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
            shown: TXT.SKY_SHOWN };
@@ -469,6 +495,19 @@ check('...the same room hidden before the kept snapshot prints the no-room line'
 check('...and so does the room seen from 300 m straight above',
       Array.isArray(g.result.roomFarErrors) && g.result.roomFarErrors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')),
       JSON.stringify(g.result.roomFarErrors));
+check('a render that comes out black prints no render, never a clean verdict',
+      g.result.blackOk === false && Array.isArray(g.result.blackErrors) && g.result.blackErrors.length === 1 &&
+      g.result.blackErrors[0].startsWith('TXT: NO RENDER IN FRAME'),
+      JSON.stringify({ ok: g.result.blackOk, errors: g.result.blackErrors }));
+{
+  const cc = g.result.clearCut || {}, bm = g.result.blackMask || {}, sc = g.result.solidCut || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  check(`a shelter of alpha-tested cutouts with a clear texture draws nothing and is no shelter ` +
+        `(it covers ${cc.cover} of the sky above the camera)`, cc.cover === 0 && flagged(cc), JSON.stringify(cc));
+  check(`...nor is one whose alphaMap is black (it covers ${bm.cover})`, bm.cover === 0 && flagged(bm), JSON.stringify(bm));
+  check(`...while the same cutouts with an opaque texture are a shelter (they cover ${sc.cover})`,
+        sc.cover >= 0.8 && !flagged(sc), JSON.stringify(sc));
+}
 check('a room 300 m straight below the camera is no interior shot: the frame IS flagged',
       Array.isArray(g.result.farErrors) && g.result.farErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.farErrors));

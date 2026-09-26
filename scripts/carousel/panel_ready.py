@@ -482,6 +482,9 @@ def check_sky_in_frame(report: dict, base: Path | None = None) -> list[str]:
             out.append(f"{name} builds a room with TXT.interior and its camera shows too little of it, "
                        f"with nothing built around it. Point the camera into the room so it fills half "
                        f"the frame, or stand it inside, and keep the room drawn")
+        elif v == "no render":
+            out.append(f"{name}'s kept snapshot came out black or unreadable, so the frame fell back to "
+                       f"whatever it draws instead, and a 2D fallback stands nowhere. Fix the render")
     if base is not None and DATED.match(base.name) and base.name > VERDICT_SINCE:
         for f in sorted((base / "slides").glob("slide-*.html")):
             src = f.read_text(encoding="utf-8", errors="replace")
@@ -1307,7 +1310,10 @@ def self_test() -> int:
         ok("...and so is a preview at the ground withdrawn by the renderer's kept snapshot",
            check_sky_in_frame({"slides": [{"file": "slide-04.html", "console_errors": [
                NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"]}]}) == [])
-        from print_ban import NO_ROOM, ROOM_SHOWN, VERDICT_SINCE
+        from print_ban import NO_ROOM, ROOM_SHOWN, VERDICT_SINCE, NO_RENDER
+        ok("a frame whose kept render came out black is CAUGHT before the panel, and named",
+           [p[:13] for p in check_sky_in_frame({"slides": [{"file": "slide-05.html", "console_errors": [
+               NO_RENDER + " [r1]. its render came out black"]}]})] == ["slide-05.html"])
         ok("a frame that builds only a room and shows too little of it is CAUGHT, and named",
            [p[:13] for p in check_sky_in_frame({"slides": [{"file": "slide-07.html", "console_errors": [
                NO_ROOM + " [r1]. too little of the room"]}]})] == ["slide-07.html"])
