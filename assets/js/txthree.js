@@ -492,6 +492,7 @@ export function init(THREE) {
     return { across, cos, world, m: lodM.clone() };
   };
   const lodOf = (h, R, tex, L0) => {
+    if (h.object.isSprite) return spriteLod(h, R, tex, L0);
     const fp = footprintAt(h, R), f = h.face;
     const uvs = h.object.geometry.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
     if (!fp || !uvs) return 0;
@@ -503,6 +504,21 @@ export function init(THREE) {
     const pMin = fp.across * Math.sqrt(texels / fp.world), pMax = pMin / fp.cos;   // texels per pixel
     const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
     return Math.log2(pMax / n);
+  };
+  // A sprite faces the camera, so its footprint is one pixel's span at its distance, over its own
+  // texels: the texture's size and repeat across the sprite's width and height in the world.
+  const spriteLod = (h, R, tex, L0) => {
+    const cam = R.camera, tall = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
+      ? R.renderer.getDrawingBufferSize(lodS).y : 0;
+    if (!cam || !(tall > 0)) return 0;
+    h.object.matrixWorld.decompose(lodA, new THREE.Quaternion(), lodB);
+    const e = tex.matrix.elements, repeat = Math.abs(e[0] * e[4] - e[3] * e[1]);
+    const world = Math.abs(lodB.x * lodB.y);
+    if (!(world > 0) || !(repeat > 0)) return 0;
+    const across = cam.isOrthographicCamera ? (cam.top - cam.bottom) / (cam.zoom || 1) / tall
+      : h.distance * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
+    const p = across * Math.sqrt(L0.w * L0.h * repeat / world);
+    return Math.log2(p);
   };
   const texelAt = (tex, uv, h, R) => {
     if (!tex || !uv) return null;
@@ -554,8 +570,14 @@ export function init(THREE) {
     const a = alphaAt(h, mat, R);
     if (a === null) return 0;                     // a cutout whose texel can't be read is no wall
     if (mat.alphaTest > 0 && a < mat.alphaTest) return 0;
-    if (hashed) return Math.min(1, Math.max(0, a));
-    return mat.transparent && !(a > 0.001) ? 0 : 1;
+    const drawnShare = hashed ? Math.min(1, Math.max(0, a)) : 1;
+    if (!mat.transparent) return drawnShare;
+    // A BLENDED SURFACE COVERS WHAT IS BEHIND IT BY ITS ALPHA (Codex, PR 369): a shell at opacity 0.01
+    // is drawn and is no wall. Normal blending lays it over what is behind at its alpha, and a blend
+    // that adds to or multiplies what is behind covers none of it.
+    if (mat.blending === THREE.NoBlending) return drawnShare;
+    if (mat.blending !== THREE.NormalBlending || !(a > 0.001)) return 0;
+    return drawnShare * Math.min(1, a);
   };
   // AN ALPHA HASH IS SHARED WHERE SURFACES COINCIDE (Codex, PR 369). three.js hashes the fragment's
   // position in the geometry's own frame, before any instance matrix, over cells a twentieth of the
@@ -594,10 +616,14 @@ export function init(THREE) {
     }
     return out;
   };
-  // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
-  const drawable = (R) => {
+  // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof. With
+  // `sprites`, the billboards too (Codex, PR 369): an opaque sprite across the frame hides the sky and
+  // the room behind it, though no camera stands inside one, so enclosure leaves them out.
+  const drawable = (R, sprites) => {
     const out = [];
-    R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) out.push(m); });
+    R.scene.traverseVisible((m) => {
+      if ((m.isMesh || (sprites && m.isSprite)) && drawn(m) && !(m.userData && m.userData.txSky)) out.push(m);
+    });
     return out;
   };
   /* INSIDE IS MEASURED AS A SHARE, NEVER AS ONE RAY (Codex, PR 369). A single ray straight up took
@@ -683,11 +709,11 @@ export function init(THREE) {
       if (bb && !bb.isEmpty()) box.union(part.copy(bb).applyMatrix4(rel.multiplyMatrices(toRoom, w.matrixWorld)));
     });
     if (box.isEmpty()) return 0;
-    const own = new Set(walls), all = drawable(R);
+    const own = new Set(walls), all = drawable(R, true);
     const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
     const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
     const rc = new THREE.Raycaster(), v = new THREE.Vector2(), d = new THREE.Vector3();
-    rc.layers.mask = cam.layers.mask;
+    rc.layers.mask = cam.layers.mask; rc.camera = cam;           // a sprite is cast against the camera
     const depthOk = (p) => { const z = d.copy(p).sub(eye).dot(fwd); return z >= cam.near && z <= cam.far; };
     const lp = new THREE.Vector3();
     const inside = (p) => {
@@ -716,19 +742,10 @@ export function init(THREE) {
   /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame, so
    * one the camera has left or sees from far away is no room shot (Codex, PR 369). */
   TXT.inRoom = function (R) { return TXT.roomShare(R) >= ROOM_MIN; };
-  // THE CHANCE A HIT HIDES THE SKY: drawn there, blended as a solid and not transmissive. Glass, a
-  // veil at partial alpha or an additive glow lets the dome through, and the ray looks on past it.
-  const solidChance = (h, R) => {
-    const p = drawChance(h, R);
-    if (!(p > 0)) return 0;
-    const mat = slotOf(h);
-    if (mat.transmission > 0) return 0;
-    if (mat.blending === THREE.NoBlending) return p;
-    if (mat.blending !== THREE.NormalBlending) return 0;
-    if (!mat.transparent) return p;
-    const a = alphaAt(h, mat, R);
-    return a !== null && a >= 0.999 ? p : 0;
-  };
+  // THE SHARE OF A PIXEL A HIT HIDES THE SKY IN: what it draws there, where a pane at alpha 0.5 hides
+  // half and lets half of the dome through, and none behind transmissive glass, which renders the sky
+  // through itself. An additive glow hides none of it.
+  const solidChance = (h, R) => (slotOf(h).transmission > 0 ? 0 : drawChance(h, R));
   // Every hit along a ray, nearest first, as Raycaster.intersectObjects gives them, except that a
   // mesh a ray can't be cast against hides nothing rather than ending the measurement.
   const castAll = (rc, meshes) => {
@@ -749,7 +766,7 @@ export function init(THREE) {
       R.scene.updateMatrixWorld();                 // a caller need not have rendered first
       c = new THREE.Vector3().setFromMatrixPosition(dome.matrixWorld);
       rad = dome.matrixWorld.getMaxScaleOnAxis();
-      hits = drawable(R);
+      hits = drawable(R, true);
     }
     const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
     const o = new THREE.Vector3(), dir = new THREE.Vector3(), w = new THREE.Vector3(), q = new THREE.Vector3();
