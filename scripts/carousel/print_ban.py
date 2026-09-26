@@ -97,8 +97,28 @@ RENDERED_FLOOR = 6
 # judged on it. From the day after, five of nine frames stand in a world.
 WORLD_SINCE = "2026-09-23"
 # What txthree.js prints when a frame calls TXT.sky and its camera shows none of it. It must equal
-# TXT.NO_SKY there, and the self-test reads the engine to hold the two in step.
+# TXT.NO_SKY there, SKY_SHOWN must equal TXT.SKY_SHOWN, and the self-test reads the engine to hold
+# them in step.
 NO_SKY = "TXT: NO SKY IN FRAME"
+# The line a renderer prints when its kept snapshot shows the sky after a preview that didn't.
+SKY_SHOWN = "TXT: SKY IN FRAME"
+SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME)(?: \[r(\d+)\])?")
+
+
+def kept_no_sky(console_errors) -> bool:
+    """True when the LAST sky line of any renderer on the page says it shows no sky.
+
+    The engine names its renderer on every line, and a renderer's last snapshot is its verdict,
+    the way this file's kept snapshot is the last on its context. A preview pointed at the ground
+    and a kept frame that shows the sky print a no-sky line and then a line withdrawing it (Codex,
+    PR 369). A line with no renderer named, as written before that, stands for renderer 0.
+    """
+    last = {}
+    for e in console_errors or []:
+        m = SKY_MARK.search(str(e))
+        if m:
+            last[m.group(2) or "0"] = m.group(1) == "NO SKY IN FRAME"
+    return any(last.values())
 WORLD_FLOOR = 5
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 # THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
@@ -245,17 +265,29 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     then showed sky behind the type and failed for a horizon hidden behind the dek, which a count
     of sky in frame can't see.
     """
+    frames, _ = read_sky_report(run_dir)
+    return frames or []
+
+
+def read_sky_report(run_dir: Path):
+    """(frames, why): the frames whose kept snapshot shows no sky and "", or None and why the report
+    can't be read, or None and "" when there is no report. A report that can't be read is not a
+    clean report, and neither is a missing one where one should exist: both used to read as no
+    finding at all (Codex, PR 369)."""
     import json
     for rel in ("render/render_report.json", "render_report.json"):
         rp = run_dir / rel
         if rp.is_file():
             try:
                 rep = json.loads(rp.read_text(encoding="utf-8"))
-            except ValueError:
-                return []
-            return [str(rec.get("file") or "?") for rec in (rep.get("slides") or [])
-                    if any(NO_SKY in str(e) for e in (rec.get("console_errors") or []))]
-    return []
+                slides = rep.get("slides")
+                if not isinstance(slides, list):
+                    raise ValueError("no slides list")
+            except (ValueError, AttributeError) as e:
+                return None, f"{rel} can't be read ({e})"
+            return [str(rec.get("file") or "?") for rec in slides
+                    if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))], ""
+    return None, ""
 
 
 def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS,
@@ -304,8 +336,17 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"neither the world (TXT.sky) nor a room (TXT.interior), before the kept snapshot. "
                    f"An interior is a room built as geometry, never a flat background colour behind "
                    f"an object, which is the void every rendered frame of no. 32 shipped in")
-    if not (dated and run_dir.name <= WORLD_SINCE):
-        for name in no_sky_frames(run_dir):
+    if not (dated and run_dir.name <= WORLD_SINCE) and worlds:
+        frames, why = read_sky_report(run_dir)
+        # A run directory is dated, and a dated run whose frames stand in the world has rendered them,
+        # so a report that is missing there, or one that can't be read anywhere, is a check that did
+        # not run. An undated directory is a fixture or a one-off --run-dir, and missing is allowed.
+        if frames is None and (why or dated):
+            why = why or "there is no render report (render/render_report.json or render_report.json)"
+            out.append(f"the camera check did not run: {why}. TXT.snapshot measures whether each frame "
+                       f"that calls TXT.sky shows any of it, and render.py keeps that in the report. "
+                       f"Render the frames and run this again")
+        for name in frames or []:
             out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
                        f"or looking straight down with nothing built overhead, so a reader sees objects in "
                        f"a void. Lift the camera until the horizon is in frame, or stand it inside something "
@@ -509,9 +550,36 @@ def self_test() -> int:
                (seen / "render" / "render_report.json").read_text()),
                (seen / "render" / "render_report.json").unlink(),
                no_sky_frames(seen))[2])() == ["slide-06.html"])
+        root_report = seen / "render_report.json"
+
+        def at_root(errors_on_6):
+            root_report.write_text(_json.dumps({"slides": [
+                {"file": f"slide-0{i}.html", "console_errors": (errors_on_6 if i == 6 else [])}
+                for i in range(1, 10)]}))
+        # THE KEPT SNAPSHOT DECIDES, per renderer (Codex, PR 369): a preview pointed at the ground,
+        # then a kept frame that shows the sky, withdraws the preview's line.
+        at_root([NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"])
+        ok("a preview's no-sky line, withdrawn by the same renderer's kept snapshot, is clean",
+           check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
+        at_root([NO_SKY + " [r1]. one renderer", SKY_SHOWN + " [r2]. another renderer"])
+        ok("...and another renderer's line withdraws nothing",
+           no_sky_frames(seen) == ["slide-06.html"], no_sky_frames(seen))
+        at_root([SKY_SHOWN + " [r1]. first", NO_SKY + " [r1]. a later snapshot at the ground"])
+        ok("...and a later snapshot at the ground stands", no_sky_frames(seen) == ["slide-06.html"],
+           no_sky_frames(seen))
+        # A REPORT THAT CAN'T BE READ, OR ISN'T THERE, IS A CHECK THAT DID NOT RUN (Codex, PR 369).
+        root_report.write_text('{"slides": [')
+        ok("a report that can't be read is CAUGHT, never read as clean",
+           any("did not run" in g for g in check_run(seen, chassis_root=a)), check_run(seen, chassis_root=a))
+        root_report.unlink()
+        ok("...and so is a dated run whose world frames have no report at all",
+           any("did not run" in g for g in check_run(seen, chassis_root=a)), check_run(seen, chassis_root=a))
+        ok("...while an undated fixture without one is not judged on it",
+           not any("did not run" in g for g in check_run(three, chassis_root=a)), check_run(three, chassis_root=a))
         engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
-        ok("the engine prints the exact words this gate reads",
-           f"TXT.NO_SKY = '{NO_SKY}'" in engine and "console.error(TXT.NO_SKY" in engine)
+        ok("the engine prints the exact words this gate reads, the withdrawal included",
+           f"TXT.NO_SKY = '{NO_SKY}'" in engine and "console.error(TXT.NO_SKY" in engine
+           and f"TXT.SKY_SHOWN = '{SKY_SHOWN}'" in engine and "console.error(TXT.SKY_SHOWN" in engine)
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())

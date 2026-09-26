@@ -148,9 +148,51 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const orig5 = console.error; console.error = (...a) => { outsideErrors.push(String(a[0])); orig5.apply(console, a); };
   await TXT.snapshot(Rx);
   console.error = orig5;
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => {
+    const Rn = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+    return Rn;
+  };
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  // a portrait camera rolled 90 degrees and pitched 18 down: its short side now runs vertically,
+  // half of 32.5 degrees, so every corner ray is under the horizon. Reading pitch alone found 0.054
+  // sky in it (Codex, PR 369).
+  const Rt = world(40);
+  Rt.camera.up.set(1, 0, 0);
+  TXT.frame(Rt, { from: [0, 30, 0], look: [0, 30 - 100 * Math.tan(18 * Math.PI / 180), -100] });
+  dress(Rt, [20, 40, 20]);
+  const rollErrors = await capture(() => TXT.snapshot(Rt));
+  // a roof whose parent group is hidden: the renderer draws neither, so it is no roof (Codex, PR 369)
+  const Rh = world(40);
+  TXT.frame(Rh, { from: [0, 1.6, 0], look: [0, 0, -0.01] });
+  dress(Rh, [4, 8, 4]);
+  const shed = new T.Group(); shed.visible = false;
+  const lid = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
+  lid.position.set(0, 2.4, 0); shed.add(lid); Rh.scene.add(shed);
+  const hiddenErrors = await capture(() => TXT.snapshot(Rh));
+  // a preview pointed at the ground, then the kept frame at the horizon, on the same renderer: its
+  // last snapshot is its verdict, so the kept one withdraws the preview's line (Codex, PR 369)
+  const Rp = world(40);
+  TXT.frame(Rp, { from: [0, 30, 0], look: [0, 0, -0.01] });
+  dress(Rp, [20, 40, 20]);
+  const previewErrors = await capture(async () => {
+    await TXT.snapshot(Rp);
+    TXT.frame(Rp, { from: [0, 2, 0], look: [0, 2, -100] });
+    await TXT.snapshot(Rp);
+  });
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
            orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
-           outsideErrors };
+           outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
+           shown: TXT.SKY_SHOWN };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -199,6 +241,22 @@ check('a camera zoomed out to 0.5 and pitched 45 degrees down shows no sky, and 
       g.result.zoomSky === 0 && Array.isArray(g.result.zoomErrors) &&
       g.result.zoomErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify({ zoomSky: g.result.zoomSky, zoomErrors: g.result.zoomErrors }));
+check('a portrait camera rolled 90 degrees and pitched 18 down shows no sky, and says so',
+      g.result.rollSky === 0 && Array.isArray(g.result.rollErrors) &&
+      g.result.rollErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ rollSky: g.result.rollSky, rollErrors: g.result.rollErrors }));
+check('a roof under a hidden parent is no roof: looking down beneath it IS flagged',
+      Array.isArray(g.result.hiddenErrors) &&
+      g.result.hiddenErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.hiddenErrors));
+{
+  const pe = Array.isArray(g.result.previewErrors) ? g.result.previewErrors : [];
+  const tag = (e) => (e.match(/\[r\d+\]/) || [''])[0];
+  check('a preview at the ground is withdrawn by the same renderer\'s kept snapshot at the horizon',
+        pe.length === 2 && pe[0].startsWith('TXT: NO SKY IN FRAME') && g.result.shown === 'TXT: SKY IN FRAME' &&
+        pe[1].startsWith('TXT: SKY IN FRAME') && tag(pe[0]) !== '' && tag(pe[0]) === tag(pe[1]),
+        JSON.stringify(pe));
+}
 check('a room the camera has left exempts nothing: looking down 40 m away IS flagged',
       Array.isArray(g.result.outsideErrors) &&
       g.result.outsideErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),

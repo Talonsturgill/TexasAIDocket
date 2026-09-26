@@ -1442,9 +1442,20 @@ recomposes the frame so the defect is not in it:**
 Say which one in the run record. When the judges name the same thing on frames built different
 ways, the defect is the engine's. Write it in the run record with the frames and the rounds, and
 recompose around it this run. Phase 17 carries it into `knowledge/carousel/UPGRADE_BACKLOG.md` in
-the `upgrade` commit, because that file is `upgrade` lane and the daily lane can't write it. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
-"What still fails" names the ones already met. Read it before the first render, because a defect it
-names is a round spent twice.
+the `upgrade` commit, because that file is `upgrade` lane and the daily lane can't write it.
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
+before the first render, because a defect it names is a round spent twice.
+
+**Before every round, the first and every one after a repair, run `panel_ready.py` again and spawn
+nothing while it is red.**
+
+```
+python3 scripts/carousel/panel_ready.py --date <date>
+```
+
+A repair re-renders frames, and Phase 14b ran before any of them. A frame a repair turned toward
+the ground, or into a plate over a sentence, reaches three judges unless this runs first. It takes
+seconds, and a red one saves three model calls (Codex, PR 369).
 
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a

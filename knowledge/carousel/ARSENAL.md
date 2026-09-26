@@ -101,7 +101,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
-| `TXT.skyInFrame(camera)` | the share of the frame's height above the horizon, 0 to 1, from the camera's pitch and field of view (lookAt keeps roll at zero). 0 is a camera that shows no sky: pitched down past half its field of view, or ... |
+| `TXT.skyInFrame(camera)` | the share of the frame above the horizon, 0 to 1, measured on the camera's own frustum: a grid of rays through the image, corners included, unprojected through the projection the renderer uses, so zoom, a lens offset ... |
 | `await TXT.snapshot(R, o)` | Renders one still, waits a paint tick, then ASSERTS the frame is not black (research-documented headless failure modes: first-paint race and silent 2D fallback). |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |

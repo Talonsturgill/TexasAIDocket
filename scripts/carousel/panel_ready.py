@@ -394,16 +394,17 @@ def check_sky_in_frame(report: dict) -> list[str]:
     would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's
     frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
 
-    The marker is imported from print_ban so the two can't drift, and an import that fails raises
-    rather than reading as clean.
+    The reading is print_ban's own, each renderer's last line, so a preview withdrawn by the kept
+    snapshot is clean here too and the two can't drift. An import that fails raises rather than
+    reading as clean.
     """
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from print_ban import NO_SKY
+    from print_ban import kept_no_sky
     return [f"{rec.get('file') or '?'} calls TXT.sky and its camera shows none of it, with nothing "
             f"built overhead. Lift the camera until the horizon is in frame, or stand it inside "
             f"something built (a room with TXT.interior, a cab, a canopy)"
             for rec in (report.get("slides") or [])
-            if any(NO_SKY in str(e) for e in (rec.get("console_errors") or []))]
+            if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))]
 
 
 def check_quantifiers(base: Path, articles: Path | None = None) -> list[str]:
@@ -1210,6 +1211,10 @@ def self_test() -> int:
            len(got) == 1 and got[0].startswith("slide-04.html"), str(got))
         ok("...and a frame that shows its sky is clean",
            check_sky_in_frame({"slides": [_sky["slides"][0]]}) == [])
+        from print_ban import SKY_SHOWN
+        ok("...and so is a preview at the ground withdrawn by the renderer's kept snapshot",
+           check_sky_in_frame({"slides": [{"file": "slide-04.html", "console_errors": [
+               NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"]}]}) == [])
         # BUILT FROM PARTS, for the reason the flag check below gives: a literal needle matches itself.
         ok("...and the group is in the list the run reads",
            ("check_sky_in_frame" + "(report)") in Path(__file__).read_text(encoding="utf-8"))
