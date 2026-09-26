@@ -329,6 +329,40 @@ def _display_source(body: str) -> str:
     return re.sub(r"\s+", " ", text + " \n " + " \n ".join(scripts))
 
 
+def _rendered_frames(d: Path) -> tuple[dict, int]:
+    """Each frame's text AS THE BROWSER DREW IT, from the render report the run shipped.
+
+    THE SOURCE CAN CARRY A STRING THE PAGE NEVER SHOWS (Codex, PR 365). `_display_source` reads
+    a frame's scripts whole, so a string sitting in an unused literal or a `//` comment passed
+    this gate while the frame drew different copy. No reading of the source can tell a used
+    literal from an unused one. The render report can, because it records every text node the
+    browser laid out and every string a script painted on a canvas, frame by frame.
+
+    A SECOND REQUIREMENT, NEVER A REPLACEMENT FOR THE SOURCE. This gate exists for 2026-08-25,
+    where the render was new and the shipped `slides/` was old, and judged by the render alone
+    that deck passes. So a string must be in the source, which catches a stale source, and in
+    what the frame drew, which catches a dead literal.
+
+    Compared the way `copy_sync_check` compares, through its own `skeleton`, its own window and
+    its own reading of a frame number, so this gate and the run's copy gate can't disagree about
+    what counts as the same words. Canvas text is included, which that gate leaves out, because
+    a label a script paints is still printed on the frame.
+
+    Returns `({frame number: skeleton}, window)`. A frame the report holds no text for is absent,
+    and only its source is judged.
+    """
+    import copy_sync_check as m
+    rep = _load(d / "render_report.json") or _load(d / "render" / "render_report.json") or {}
+    out = {}
+    for rec in rep.get("slides") or []:
+        n = rec.get("n") or rec.get("slide") or m.slide_no(rec.get("file", ""))
+        texts = [str(t.get("text") or "") for key in ("text_nodes", "canvas_text")
+                 for t in (rec.get(key) or []) if isinstance(t, dict)]
+        if n is not None and any(t.strip() for t in texts):
+            out[int(n)] = m.skeleton(" ".join(texts))
+    return out, int(rep.get("text_window") or m.RENDER_WINDOW)
+
+
 def g_shipped_fresh(d: Path):
     """Every artifact in a shipped run must describe the deck beside it.
 
@@ -357,6 +391,8 @@ def g_shipped_fresh(d: Path):
         return None
     problems = []
     slides_dir = d / "slides"
+    rendered, window = _rendered_frames(d)
+    from copy_sync_check import skeleton
     if slides_dir.is_dir():
         for key, blk in sorted((cp.get("slides") or {}).items()):
             n = blk.get("n") or int(str(key).lstrip("Ss") or 0)
@@ -387,13 +423,26 @@ def g_shipped_fresh(d: Path):
             # Decode AFTER the tags are gone and BEFORE the whitespace collapse: U+00A0 is matched
             # by `\s` in str mode, so the collapse does the rest.
             # 2026-09-26: scripts are lifted out before the strip. See `_display_source`.
+            # And a string the source carries must also be one the frame DREW, where the run's
+            # render report recorded that, because a dead literal is in the source too. Both
+            # halves are required. See `_rendered_frames`.
             flat = _display_source(body)
+            drawn = rendered.get(n)
             for want in (blk.get("strings") or []):
                 probe = re.sub(r"\s+", " ", str(want)).strip()
-                if len(probe) >= 12 and probe not in flat:
+                if len(probe) < 12:
+                    continue
+                if probe not in flat:
                     problems.append(
                         f"{src.name} does not carry the string copy.json says it prints: "
                         f"{probe[:70]!r}. The shipped source is not the deck beside it")
+                    break
+                needle = skeleton(probe[:window])
+                if drawn is not None and needle and needle not in drawn:
+                    problems.append(
+                        f"{src.name} carries {probe[:70]!r} and the frame never drew it, going by "
+                        f"the render report beside it. A string the source holds only in dead "
+                        f"code or a comment is not the deck beside it")
                     break
     # THE PLAN IS AN ARTIFACT TOO, and it is the one the first version of this gate missed.
     # Round 6's hard fail was that the shipped SOURCE did not draw the deck beside it. That was
@@ -1471,6 +1520,68 @@ def self_test() -> int:
             encoding="utf-8")
         ok("...and a label composed from a variable is still NOT found in the source",
            bool(g_shipped_fresh(_d)), "fragments of a composed string are being accepted")
+
+    # ---- THE SOURCE CAN CARRY WHAT THE PAGE NEVER SHOWS. Codex, PR 365 ---------------------
+    #
+    # Reading a frame's scripts whole let a string in an UNUSED literal or a `//` comment pass
+    # while the frame drew different copy. Where the run's render report recorded what each
+    # frame drew, the string must be there as well. Replayed both ways Codex named, then the
+    # 2026-08-25 shape, which proves the render was added to the source and did not replace it.
+    with _tempfile.TemporaryDirectory() as _t:
+        _d = Path(_t) / "2026-09-26"
+        (_d / "slides").mkdir(parents=True)
+        _want = "10 DAYS TO APPEAL A DECISION"
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S8": {
+            "n": 8, "strings": [_want]}}}), encoding="utf-8")
+
+        def _frame(script):
+            (_d / "slides" / "slide-08.html").write_text(
+                "<h1>The line is serious bodily injury</h1>\n<script>\n" + script +
+                "\n</script>\n", encoding="utf-8")
+
+        def _report(texts, canvas=(), window=320):
+            rep = {"slides": [{"file": "slide-08.html",
+                               "text_nodes": [{"text": t} for t in texts],
+                               "canvas_text": [{"text": t} for t in canvas]}]}
+            if window:
+                rep["text_window"] = window
+            (_d / "render_report.json").write_text(_json.dumps(rep), encoding="utf-8")
+
+        _stale = ["The line is serious bodily injury", "30 DAYS TO APPEAL A DECISION"]
+        for _how, _script in (
+                ("a `//` comment", f"// label: {_want}\nlabel('30 DAYS TO APPEAL A DECISION', 0);"),
+                ("an unused literal", f"const unused = '{_want}';\n"
+                                      f"label('30 DAYS TO APPEAL A DECISION', 0);")):
+            _frame(_script)
+            (_d / "render_report.json").unlink(missing_ok=True)
+            ok(f"with no render report, a string only {_how} carries still passes on the source",
+               not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
+            _report(_stale)
+            ok(f"a string only {_how} carries FAILS once the frame's drawn text is known",
+               bool(g_shipped_fresh(_d)), "the gate took the source's word over what the frame drew")
+
+        _frame(f"label('{_want}', 0);")
+        _report(["The line is serious bodily injury", _want])
+        ok("...and the same frame drawing the label is CLEAN", not g_shipped_fresh(_d),
+           str(g_shipped_fresh(_d)))
+        _report(["The line is serious bodily injury"], canvas=[_want])
+        ok("...and a label painted on a canvas counts as drawn", not g_shipped_fresh(_d),
+           str(g_shipped_fresh(_d)))
+
+        _frame("label('30 DAYS TO APPEAL A DECISION', 0);")
+        _report(["The line is serious bodily injury", _want])
+        ok("a fresh render beside a STALE source still FAILS, the 2026-08-25 shape, because the "
+           "render is added to the source and never replaces it", bool(g_shipped_fresh(_d)),
+           "the render report stood in for the shipped source")
+
+        _long = ("The Texas Department of Motor Vehicles authorizes commercial automated vehicles "
+                 "on public roads from May 28th")
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S8": {
+            "n": 8, "strings": [_long]}}}), encoding="utf-8")
+        _frame(f"label('{_long}', 0);")
+        _report([_long[:80]], window=None)
+        ok("a report written before `text_window` existed is read at 80, the width it was cut at",
+           not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
 
     # ---- THE CRAWL BOUNDARY ADAPTER HAS TO BITE, 2026-09-19 ---------------------------------
     #
