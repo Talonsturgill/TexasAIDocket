@@ -11115,5 +11115,132 @@
     "note": "Admitted on the commission's own adoption order and the Texas Register receipt. The rule is adopted and takes effect on the date that receipt gives."
    }
   ]
+ },
+ {
+  "title": "Texas requires a state authorization to run driverless vehicles commercially, with no fee, no expiry and no crash history asked",
+  "summary": "The Texas Department of Motor Vehicles now requires any company running automated vehicles commercially on Texas roads to hold an authorization, under Senate Bill 2807. The requirement became enforceable on May 28th, 2026, after the department's rules took effect on February 27th, 2026. An applicant acknowledges a written statement about the vehicle and certifies that it gave the Department of Public Safety a plan for how first responders should deal with the vehicle. There is no fee, and an authorization does not expire until the department revokes it. The department treats an operation as endangering the public when it has resulted, or is likely to result, in serious bodily injury, and says it is unlikely to act on a complaint below that standard. The City of Dallas asked the department to require crash history and to make approved operators public. The department answered that the statute does not allow it to require crash history.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Texas Department of Motor Vehicles",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "metro": null,
+   "on_ercot": false
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-02-27",
+    "kind": "effective",
+    "note": "The department's automated vehicle rules take effect"
+   },
+   {
+    "date": "2026-05-28",
+    "kind": "effective",
+    "note": "The authorization requirement becomes enforceable"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A concern about an automated vehicle operating in a way that could result in serious bodily injury or death goes to the department's Enforcement Division through its motor carrier credentialing site. Law enforcement can check whether a vehicle or operator holds an authorization at the same address.",
+   "url": "https://txmccs.txdmv.gov/truckstop",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "Every company operating automated vehicles commercially must hold an active authorization from May 28th, 2026.",
+    "verbatim_quote": "All companies operating automated vehicles commercially on or after May 28, 2026, are required to maintain an active authorization with TxDMV.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c1",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The latest of the implementing rules took effect on February 27th, 2026.",
+    "verbatim_quote": "The department and DPS both proposed and adopted administrative rules related to the new programs, the latest of which become effective on February 27, 2026.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c2",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "An authorization carries no fee and does not expire.",
+    "verbatim_quote": "No fees are required for an authorization to operate automated vehicles. Authorizations do not expire and are valid until revoked by the department.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c3",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The department defines endangering the public by serious bodily injury.",
+    "verbatim_quote": "The operation of an automated motor vehicle is considered to endanger the public when the operation has resulted, or is likely to result, in serious bodily injury as defined by Section 1.07, Texas Penal Code.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c4",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The department says it is unlikely to act on a case below that standard.",
+    "verbatim_quote": "The department is unlikely to take administrative enforcement action in cases that do not meet this standard as defined by Texas Penal Code, Section 1.07.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c5",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The applicant certifies that a first responder interaction plan went to the Department of Public Safety.",
+    "verbatim_quote": "The applicant must also certify that the Texas Department of Public Safety has been provided a copy of the plan specifying how a person who provides firefighting, law enforcement, ambulance, medical, or other emergency services should interact with the automated motor vehicle during the provision of those services",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c6",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The City of Dallas asked for crash history and public information about approved operators.",
+    "verbatim_quote": "The City of Dallas encourages the department to require robust safety documentation, including crash history and proof of community stakeholder coordination, and to make information about approved operators publicly accessible.",
+    "source_url": "https://www.txdmv.gov/sites/default/files/body-files/Chap_220_Final_-_Adopt.pdf",
+    "source_title": "Texas Department of Motor Vehicles, adopted 43 TAC Chapter 220, Automated Motor Vehicles",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c7",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The department answered that the statute does not allow it to require crash history.",
+    "verbatim_quote": "Transportation Code, § 545.453 and § 545.456 do not allow the department to require authorization holders to submit crash history or proof of community stakeholder coordination",
+    "source_url": "https://www.txdmv.gov/sites/default/files/body-files/Chap_220_Final_-_Adopt.pdf",
+    "source_title": "Texas Department of Motor Vehicles, adopted 43 TAC Chapter 220, Automated Motor Vehicles",
+    "source_type": "primary_official",
+    "id": "tx-2026-0188-c8",
+    "fetched": "2026-09-26"
+   },
+   {
+    "text": "The Legislature created the authorization in Senate Bill 2807.",
+    "verbatim_quote": "The 89th Texas Legislature passed Senate Bill 2807 (89R) in 2025 creating a required authorization for the commercial operation of automated vehicles on Texas roads.",
+    "source_url": "https://www.txdmv.gov/AVprogram",
+    "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+    "source_type": "primary_official",
+    "fetched": "2026-09-26",
+    "id": "tx-2026-0188-c9"
+   }
+  ],
+  "notes_for_editor": "Admitted as statewide because the authorization governs every commercial automated vehicle on Texas roads. The department's authorization list is checkable by law enforcement at the credentialing site and was not read here.",
+  "history": [
+   {
+    "date": "2026-09-26",
+    "note": "Admitted to the record. The authorization requirement has been enforceable since May 28th, and the lane between Dallas and Houston is where companies are now running freight under it."
+   }
+  ],
+  "id": "tx-2026-0188",
+  "last_verified": "2026-09-26"
  }
 ]
