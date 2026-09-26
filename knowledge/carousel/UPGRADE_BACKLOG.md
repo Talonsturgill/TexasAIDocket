@@ -4364,6 +4364,20 @@ what the craft judge read as a mannequin. The sensor pod retrofit belongs as an 
 three factories above are working references with their dimensions written in, so the lift
 starts from something that already rendered in nine frames.
 
+**LIFTED BY A MAINTAINER, 2026-09-26, into `assets/js/kit/vehicles.js`.** `semi_cab_interior`
+(a set to stand a camera in: the hood through a clear one piece windshield, a binnacle with two
+large and four small gauges, a centre stack with rocker switches and the two air brake valves, a
+three spoke wheel on a raked column, air ride seats in pleated cloth with vinyl bolsters, door
+panels, west coast mirrors, the overhead console and the sleeper curtain; it keeps its origin and
+publishes `userData.attach.eye` and the rest for placing a camera), `semi_truck`'s `sensors` option
+(`pods`, `roof` or `full`: aero sensor pods in place of the mirrors, a roof sensor bar with a
+spinning lidar, bumper radar) and `event_recorder`. `examples/kit/cab-proof.webp` is the cab from
+behind the seats, the driver's seat, the tractor with `sensors: 'full'` and the recorder. The first
+interior proof found that the kit's glass is an exterior's opaque tinted pane and that `sideWindow`
+fills an opening from inside, so the cab carries its own clear glass and gasket rings. Since the same
+day `assets/js/kit/**` is `upgrade` lane, so the next model a chassis has to build is lifted by the
+retro rather than written up here.
+
 ### 2. THE HORIZON STEP, MEASURED ON THE SHIPPED FRAMES, AND WHERE IN THE ENGINE IT COMES FROM
 
 Every judge named a band where the ground meets the fog. It read as sea on frames 1, 3 and 9 and
