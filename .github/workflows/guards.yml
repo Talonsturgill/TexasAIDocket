@@ -1403,6 +1403,16 @@ jobs:
           # testing the projection here rather than only inside a rendered slide.
           node tests/txgeo.mjs
 
+      - name: The world meets its sky, measured in pixels
+        run: |
+          # Carousel no. 34: a judge named the horizon band in every one of five rounds, and the cause
+          # was the engine. Fog was mixed after tone mapping in a colour the sky never shows, so a
+          # fogged ground printed a flat strip under the sky, 26.6 levels off it in this test's
+          # scene on the engine before the fix. This renders a
+          # world through txthree.js in Chromium, fails on a step across the horizon, and proves a
+          # camera pointed at the ground says so in the words print_ban reads.
+          node tests/txworld.mjs
+
       - name: The illustration libraries load, and every catalogue object has a footprint
         run: |
           # The scene bench, the figures, the catalogue and the layout table are read by a

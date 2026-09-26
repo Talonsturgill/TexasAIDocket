@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 23 |
+| engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
 | kit models | 97 in 10 families |
 | asset libraries | 21 |
@@ -46,11 +46,11 @@
 | 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py` |
-| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `layout_check.py`, `noun_trace.py`, `plan_render_check.py`, `texan_check.py` |
+| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
-| 14b | `panel_ready.py`, `qa.py` |
-| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `run_complete.py` |
+| 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py` |
+| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
@@ -85,20 +85,25 @@ const shot = await TXT.snapshot(R);
 | `TXT.contact(R, obj, o)` | A soft falloff sized to the object's own footprint and turned with it. |
 | `TXT.deckRig(R, spec, o)` | THE DECK'S LIGHT, READ FROM THE CHASSIS AND NEVER RESTATED (2026-09-23). |
 | `TXT.deckWorld()` |  |
+| `TXT.enclosed(R)` | true when the camera stands inside something the frame built: at least ENCLOSED_MIN of the sky above it is covered within `reach` metres. |
+| `TXT.enclosure(R, reach)` | the share of the sky above the camera that the frame built covers within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by solid angle, each asking whether it meets something the ... |
 | `TXT.environment(R, opts)` | A tiny "photo studio" room rendered through PMREMGenerator: emissive panels give PBR materials real reflections without any texture files. intensity scales scene.environmentIntensity (r163+) or panel brightness. |
 | `TXT.extrude(outline, depth, mat, o)` | Extruded 2D shape (array of [x,y]), plaques, arrows, silhouettes with depth. |
 | `TXT.fitHeight(group, worldHeight)` | Raises the rendered-hero floor for a single foreground object that must read as a SILHOUETTE against a darker background (the backlit-machine case). |
 | `TXT.frame(R, o)` |  |
 | `TXT.ground(R, { surface:'caliche'\|'dirt'\|'asphalt'\|'concrete'\|'grass', tile:8, size:900, color, seed, joints })` | a seeded, tileable surface map + roughness + bump, and slow macro variation in vertex colour so the tile never shows. (defined twice, the later one wins) |
+| `TXT.inRoom(R)` | true when the room TXT.interior built fills at least ROOM_MIN of the frame, so one the camera has left or sees from far away is no room shot (Codex, PR 369). |
 | `TXT.interior(R, { w:12, d:10, h:4.2, floor:'concrete', wall:0xb9b3a7, window:'left', ceiling:false, light:0.55 })` | A hearing room, an office or a desk is a real frame with no sky, and before this it had nothing to stand in but a flat colour, which is the void the world was built to end. |
 | `TXT.lathe(profile, mat, o)` | Lathe from a 2D profile (array of [x,y]), vessels, turbines, valves. |
 | `TXT.objectHero(R, group, o)` |  |
 | `TXT.rig(R, spec)` | Illustration three-point: warm key with soft shadow, cool rim, low ambient. |
 | `TXT.rng(seed)` | seeded helpers (deterministic, never Math.random) |
+| `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each asking what it meets first among the things the camera draws, inside its near and far, and ... |
 | `TXT.roundedBox(w, h, d, r, material, { segments })` | centred on the origin, y up. |
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
+| `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |
 | `await TXT.snapshot(R, o)` | Renders one still, waits a paint tick, then ASSERTS the frame is not black (research-documented headless failure modes: first-paint race and silent 2D fallback). |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
@@ -402,7 +407,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
 | `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
-| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 15, 19 |
+| `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 12b, 15, 19 |
 | `scripts/carousel/gate_wiring.py` | a gate that nothing runs is a gate that is red, and nobody finds out. | --self-test | shipped |  |
 | `scripts/carousel/gmail_draft.py` | build the run's email payload. | --run --n --title --score --threshold --slides --ref --caption-file --comment-file --gates-file --degraded-file --upgrades-file --notes-file --out --self-test | CI self-test | 19 |
 | `scripts/carousel/instincts.py` | the machine's craft memory, where confidence is earned rather than claimed. | --ledger --add --id --instinct --evidence --confirm --contradict --date --top --prune --validate --self-test | CI | 1, 9, 17 |
@@ -413,9 +418,9 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
-| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 14b, 15 |
+| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 12b, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
-| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11 |
+| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b, 14b, 15 |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |
 | `scripts/carousel/run_complete.py` | the run is not done until the deck ships. | --date --run-dir --all --self-test | CI self-test, gate table, shipped | 15 |
 | `scripts/carousel/scene_bounds.py` | the subject the plan named, and whether the camera put it in the frame. | --date --run --all --self-test | shipped |  |
@@ -445,8 +450,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/sensitive_paths.py` | no instruction file may tell a session to WRITE under `.claude/`. | --self-test | CI |  |
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
-| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11 |
+| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 12b, 14b, 15 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 14b, 15 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -502,7 +507,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
-| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11 |
+| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 14b, 15 |
 | Node | TXLAYOUT.check before dossiers; the article edition suite | artwork, 14b, 16 |
 
 ## THE DOCTRINE, `knowledge/`

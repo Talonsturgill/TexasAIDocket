@@ -275,6 +275,536 @@ export function init(THREE) {
     return new THREE.Mesh(geo, mat);
   };
 
+  // Drawn is what shows in the pixels: the object visible, and a material that puts colour down. A
+  // zero-opacity or colour-masked material is still hit by a ray and shows nothing (Codex, PR 369).
+  const shows = (mat) => !!mat && mat.visible !== false && mat.colorWrite !== false &&
+    !(mat.transparent && !(mat.opacity > 0.001));
+  const drawn = (m) => m.visible && (Array.isArray(m.material) ? m.material.some(shows) : shows(m.material));
+  // Drawn through every parent up to this scene, which is what the renderer walks.
+  const onStage = (o, scene) => { for (let q = o; q; q = q.parent) { if (!q.visible) return false; if (q === scene) return true; } return false; };
+  // ...and on a layer this camera renders, which the renderer checks as well (Codex, PR 369).
+  const inView = (m, cam) => drawn(m) && m.layers.test(cam.layers);
+  // A HIT IS WHAT THE RENDERER DRAWS THERE (Codex, PR 369). Its own material slot has to show, so
+  // a box with one opaque slot and five invisible ones is one face and not a wall, and no clipping
+  // plane may cut the point away: the renderer's own, or the material's when local clipping is on.
+  const slotOf = (h) => {
+    const m = h.object.material;
+    return Array.isArray(m) ? m[(h.face && h.face.materialIndex) || 0] : m;
+  };
+  const clippedAway = (p, mat, renderer) => {
+    const g = renderer && renderer.clippingPlanes;
+    if (g && g.length && g.some((pl) => pl.distanceToPoint(p) < 0)) return true;
+    const l = renderer && renderer.localClippingEnabled && mat && mat.clippingPlanes;
+    if (l && l.length) {
+      const cut = l.map((pl) => pl.distanceToPoint(p) < 0);
+      return mat.clipIntersection ? cut.every(Boolean) : cut.some(Boolean);
+    }
+    return false;
+  };
+  // A CUTOUT'S TEXEL DECIDES (Codex, PR 369). An alpha-tested or alpha-mapped material draws only
+  // the texels that clear its alphaTest, and the kit builds leaf cards, perforated steel and mesh
+  // panels that way, so a hit reads the texture at the hit's own uv: the map's alpha times the
+  // alphaMap's green, times the opacity, as three.js shades it. Each texture is read back once per
+  // version, so a canvas redrawn with needsUpdate between a preview and the kept snapshot is read
+  // again, the way WebGL uploads it again (Codex, PR 369).
+  //
+  // A TEXEL IS WHAT THE SHADER SAMPLES, NOT THE NUMBER STORED (Codex, PR 369). The first reader
+  // divided every stored value by 255. Measured on 2026-09-26 in Chromium through this three.js, a
+  // plane at alphaTest 0.5 over a red clear colour:
+  //   8-bit        the value over 255, from data or an image: alpha 128 draws and 127 doesn't
+  //   half float   the half decoded: 0.6 draws and 0.4 doesn't, where the old reader saw 54 and 57
+  //   float        the value itself
+  //   16-bit, 32-bit and signed integer types never upload. three.js asks glTexStorage2D for an
+  //                unsized format (GL_INVALID_ENUM), and the incomplete texture samples (0, 0, 0, 1)
+  //                whatever the data holds, so such a map draws opaque black and such an alphaMap
+  //                draws nothing, in RGBA, RG and red alike. Dividing by 65535 would be wrong too
+  //   an RG texture samples (r, g, 0, 1) and a red one (r, 0, 0, 1), so a red alphaMap draws nothing
+  //   premultiplyAlpha multiplies the colour channels by alpha on upload, for 8-bit, half, float
+  //                and canvas sources alike
+  //   an 8-bit RGBA texture in sRGB decodes its colour channels and never its alpha, so an sRGB
+  //                alphaMap's green of 180 samples 0.46 and fails alphaTest 0.5 (the kit's
+  //                chain-link fence is one)
+  // Anything else, a packed type, a compressed texture or an array that doesn't match its type, is
+  // left unread, and a cutout whose texel can't be read is no wall.
+  const toLinear = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+  const srgbTexture = (tex) => {
+    const CM = THREE.ColorManagement;
+    if (CM && typeof CM.getTransfer === 'function' && THREE.SRGBTransfer !== undefined)
+      return CM.getTransfer(tex.colorSpace) === THREE.SRGBTransfer;
+    return tex.colorSpace === THREE.SRGBColorSpace;
+  };
+  const UNLOADED = [THREE.UnsignedShortType, THREE.UnsignedIntType, THREE.ByteType, THREE.ShortType, THREE.IntType];
+  // One image as the shader samples it, the green and the alpha of every texel, or null when it can't
+  // be read. Decoded into a copy, so data changed in place without needsUpdate reads as the GPU still
+  // shows it.
+  const readImage = (tex, img) => {
+    if (!img) return null;
+    const w = img.width || img.videoWidth, h = img.height || img.videoHeight;
+    const lanes = tex.format === THREE.RGBAFormat ? 4 : tex.format === THREE.RGFormat ? 2 : tex.format === THREE.RedFormat ? 1 : 0;
+    if (!lanes || !(w > 0) || !(h > 0)) return null;
+    const n = w * h, G = new Float32Array(n), A = new Float32Array(n);
+    if (UNLOADED.includes(tex.type)) { A.fill(1); return { w, h, g: G, a: A }; }   // never uploaded
+    let d, stride, lane;
+    if (img.data) {
+      const arr = img.data;
+      const fits = (tex.type === THREE.UnsignedByteType && (arr instanceof Uint8Array || arr instanceof Uint8ClampedArray)) ||
+        (tex.type === THREE.HalfFloatType && arr instanceof Uint16Array) || (tex.type === THREE.FloatType && arr instanceof Float32Array);
+      if (!fits || arr.length < n * lanes) return null;
+      d = arr; stride = lanes;
+      lane = tex.type === THREE.HalfFloatType ? (v) => THREE.DataUtils.fromHalfFloat(v)
+        : tex.type === THREE.FloatType ? (v) => v : (v) => v / 255;
+    } else if (typeof document !== 'undefined' &&
+               [THREE.UnsignedByteType, THREE.HalfFloatType, THREE.FloatType].includes(tex.type)) {
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(img, 0, 0);
+      d = x.getImageData(0, 0, w, h).data; stride = 4; lane = (v) => v / 255;
+    } else return null;
+    const premul = !!tex.premultiplyAlpha && lanes === 4;
+    const decode = lanes === 4 && tex.type === THREE.UnsignedByteType && srgbTexture(tex);
+    for (let i = 0; i < n; i++) {
+      const o = i * stride, a = lanes === 4 ? lane(d[o + 3]) : 1;
+      let g = lanes >= 2 ? lane(d[o + 1]) : 0;
+      if (premul) g *= a;
+      G[i] = decode ? toLinear(g) : g; A[i] = a;
+    }
+    return { w, h, g: G, a: A };
+  };
+  // A MINIFIED TEXTURE IS READ AT ITS MIP LEVEL (Codex, PR 369). The GPU samples through the texture's
+  // own filters, and a texture seen from far enough through a mip level. The kit's perforated steel,
+  // 128 texels to 5 cm, averages there to an alpha of about 0.67 and clears its alphaTest everywhere,
+  // so at 40 m it draws as a solid sheet while its base texels are a third holes. A hit is read at
+  // the footprint it would have in this frame: one pixel's span at the hit's distance (an
+  // orthographic pixel's size), stretched by the angle the view meets the surface at, counted in the
+  // triangle's own texels through the texture's transform. The level follows the rule of
+  // EXT_texture_filter_anisotropic at the texture's anisotropy, and the filters are the texture's:
+  // nearest or bilinear within a level, nearest or linear between levels. The levels are the ones the
+  // GPU holds: a chain the texture supplies in `mipmaps`, which three.js uploads in place of its
+  // image (Codex, PR 369), or else one averaged in 2 by 2 blocks the way generateMipmap builds it. A
+  // hit around the camera and out of the frame is read at the footprint it would have in view.
+  const texels = new WeakMap();
+  const levelsFor = (tex) => {
+    let e = texels.get(tex);
+    if (e && e.v === tex.version) return e;
+    e = { v: tex.version, levels: null, supplied: false, built: false };
+    try {
+      if (!tex.isCompressedTexture && !tex.isRenderTargetTexture) {
+        const mips = Array.isArray(tex.mipmaps) && tex.mipmaps.length ? tex.mipmaps : null;
+        const got = (mips || [tex.image]).map((img) => readImage(tex, img));
+        if (got.every(Boolean)) { e.levels = got; e.supplied = !!mips; }
+      }
+    } catch (err) { e.levels = null; }
+    texels.set(tex, e);
+    return e;
+  };
+  const builtLevels = (e) => {
+    if (e.built) return e.levels;
+    const out = [e.levels[0]];
+    for (let p = out[0]; p.w > 1 || p.h > 1;) {
+      const w = Math.max(1, p.w >> 1), h = Math.max(1, p.h >> 1);
+      const q = { w, h, g: new Float32Array(w * h), a: new Float32Array(w * h) };
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        let sg = 0, sa = 0;
+        for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++) {
+          const k = Math.min(p.h - 1, 2 * y + dy) * p.w + Math.min(p.w - 1, 2 * x + dx);
+          sg += p.g[k]; sa += p.a[k];
+        }
+        q.g[y * w + x] = sg / 4; q.a[y * w + x] = sa / 4;
+      }
+      out.push(q); p = q;
+    }
+    e.levels = out; e.built = true;
+    return out;
+  };
+  const wrapIndex = (i, n, mode) => {
+    if (mode === THREE.RepeatWrapping) return ((i % n) + n) % n;
+    if (mode === THREE.MirroredRepeatWrapping) { const m = ((i % (2 * n)) + 2 * n) % (2 * n); return m < n ? m : 2 * n - 1 - m; }
+    return Math.min(n - 1, Math.max(0, i));
+  };
+  const fetchTexel = (L, x, y, tex) => {
+    const k = wrapIndex(y, L.h, tex.wrapT) * L.w + wrapIndex(x, L.w, tex.wrapS);
+    return [L.g[k], L.a[k]];
+  };
+  const sampleLevel = (L, q, linear, tex) => {
+    if (!linear) return fetchTexel(L, Math.floor(q.x * L.w), Math.floor(q.y * L.h), tex);
+    const x = q.x * L.w - 0.5, y = q.y * L.h - 0.5, x0 = Math.floor(x), y0 = Math.floor(y), fx = x - x0, fy = y - y0;
+    const s00 = fetchTexel(L, x0, y0, tex), s10 = fetchTexel(L, x0 + 1, y0, tex);
+    const s01 = fetchTexel(L, x0, y0 + 1, tex), s11 = fetchTexel(L, x0 + 1, y0 + 1, tex);
+    const mix = (i) => (s00[i] * (1 - fx) + s10[i] * fx) * (1 - fy) + (s01[i] * (1 - fx) + s11[i] * fx) * fy;
+    return [mix(0), mix(1)];
+  };
+  const filtered = (e, tex, q, lod) => {
+    const mipmapped = tex.minFilter !== THREE.NearestFilter && tex.minFilter !== THREE.LinearFilter;
+    let levels = e.levels, top = 0;
+    if (mipmapped && e.supplied) top = levels.length - 1;
+    else if (mipmapped && tex.generateMipmaps !== false) { levels = builtLevels(e); top = levels.length - 1; }
+    const magnified = !(lod > 0), f = magnified ? tex.magFilter : tex.minFilter;
+    const linear = f === THREE.LinearFilter || f === THREE.LinearMipmapNearestFilter || f === THREE.LinearMipmapLinearFilter;
+    if (magnified || top === 0) return sampleLevel(levels[0], q, linear, tex);
+    const l = Math.min(lod, top);
+    if (f === THREE.NearestMipmapNearestFilter || f === THREE.LinearMipmapNearestFilter)
+      return sampleLevel(levels[Math.min(top, Math.max(0, Math.ceil(l + 0.5) - 1))], q, linear, tex);
+    const k0 = Math.floor(l), k1 = Math.min(top, k0 + 1), fr = l - k0;
+    const s0 = sampleLevel(levels[k0], q, linear, tex), s1 = sampleLevel(levels[k1], q, linear, tex);
+    return [s0[0] * (1 - fr) + s1[0] * fr, s0[1] * (1 - fr) + s1[1] * fr];
+  };
+  // the anisotropy three.js sets on the texture: only for a trilinear minification, never under a
+  // nearest magnification, and never past what the context supports
+  const anisotropyOf = (tex, R) => {
+    if (!(tex.anisotropy > 1) || tex.magFilter === THREE.NearestFilter) return 1;
+    if (tex.minFilter !== THREE.NearestMipmapLinearFilter && tex.minFilter !== THREE.LinearMipmapLinearFilter) return 1;
+    const caps = R.renderer && R.renderer.capabilities;
+    const cap = caps && typeof caps.getMaxAnisotropy === 'function' ? caps.getMaxAnisotropy() : 1;
+    return Math.max(1, Math.min(tex.anisotropy, cap || 1));
+  };
+  const lodM = new THREE.Matrix4(), lodI = new THREE.Matrix4(), lodA = new THREE.Vector3(), lodB = new THREE.Vector3();
+  const lodC = new THREE.Vector3(), lodN = new THREE.Vector3(), lodE = new THREE.Vector3(), lodD = new THREE.Vector3();
+  const lodUa = new THREE.Vector2(), lodUb = new THREE.Vector2(), lodUc = new THREE.Vector2(), lodS = new THREE.Vector2();
+  // The triangle a hit lies on, in the world, and the footprint one pixel of this frame has there:
+  // its span across and the cosine of the angle the view meets the surface at. `m` carries the
+  // geometry's own frame into the world, through the instance's matrix when there is one.
+  const footprintAt = (h, R) => {
+    const cam = R.camera, obj = h.object, g = obj.geometry, f = h.face;
+    if (!cam || !f || !g || !g.attributes || !g.attributes.position) return null;
+    lodM.copy(obj.matrixWorld);
+    if (obj.isInstancedMesh && h.instanceId != null) { obj.getMatrixAt(h.instanceId, lodI); lodM.multiply(lodI); }
+    const P = g.attributes.position;
+    lodA.fromBufferAttribute(P, f.a).applyMatrix4(lodM);
+    lodB.fromBufferAttribute(P, f.b).applyMatrix4(lodM);
+    lodC.fromBufferAttribute(P, f.c).applyMatrix4(lodM);
+    lodN.subVectors(lodB, lodA).cross(lodE.subVectors(lodC, lodA));
+    const world = lodN.length();
+    const tall = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
+      ? R.renderer.getDrawingBufferSize(lodS).y : 0;
+    if (!(world > 1e-12) || !(tall > 0)) return null;
+    lodE.setFromMatrixPosition(cam.matrixWorld);
+    let across;
+    if (cam.isOrthographicCamera) {
+      across = (cam.top - cam.bottom) / (cam.zoom || 1) / tall;
+      cam.getWorldDirection(lodD);
+    } else {
+      lodD.subVectors(h.point, lodE);
+      const dist = lodD.length();
+      if (!(dist > 0)) return null;
+      lodD.divideScalar(dist);
+      across = dist * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
+    }
+    const cos = Math.max(Math.abs(lodD.dot(lodN.divideScalar(world))), 1e-3);
+    return { across, cos, world, m: lodM.clone() };
+  };
+  const lodOf = (h, R, tex, L0) => {
+    const fp = footprintAt(h, R), f = h.face;
+    const uvs = h.object.geometry.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
+    if (!fp || !uvs) return 0;
+    lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
+    lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
+    lodUc.fromBufferAttribute(uvs, f.c).applyMatrix3(tex.matrix);
+    const texels = Math.abs((lodUb.x - lodUa.x) * (lodUc.y - lodUa.y) - (lodUc.x - lodUa.x) * (lodUb.y - lodUa.y)) * L0.w * L0.h;
+    if (!(texels > 0)) return 0;
+    const pMin = fp.across * Math.sqrt(texels / fp.world), pMax = pMin / fp.cos;   // texels per pixel
+    const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
+    return Math.log2(pMax / n);
+  };
+  const texelAt = (tex, uv, h, R) => {
+    if (!tex || !uv) return null;
+    const e = levelsFor(tex);
+    if (!e.levels) return null;
+    if (tex.matrixAutoUpdate) tex.updateMatrix();
+    const q = tex.transformUv(uv.clone());
+    const s = filtered(e, tex, q, h && R ? lodOf(h, R, tex, e.levels[0]) : 0);
+    return { g: s[0], a: s[1] };
+  };
+  // THE UV CHANNEL THE MATERIAL SAMPLES (Codex, PR 369): a texture on channel 2 or 3 reads the
+  // geometry's uv2 or uv3, interpolated at the hit, which the raycaster doesn't report.
+  const uvOf = (h, tex) => {
+    const ch = tex.channel || 0;
+    if (ch === 0) return h.uv;
+    if (ch === 1) return h.uv1;
+    const g = h.object.geometry, attr = g && g.attributes && g.attributes['uv' + ch], f = h.face, b = h.barycoord;
+    if (!attr || !f || !b) return undefined;
+    return new THREE.Vector2(attr.getX(f.a) * b.x + attr.getX(f.b) * b.y + attr.getX(f.c) * b.z,
+                             attr.getY(f.a) * b.x + attr.getY(f.b) * b.y + attr.getY(f.c) * b.z);
+  };
+  // The fragment's alpha as three.js computes it: opacity, times the map's alpha, times the alphaMap's
+  // green, times the vertex alpha when the material reads RGBA vertex colours (Codex, PR 369: the
+  // kit's waterSheet does), interpolated at the hit through its barycentric coordinates.
+  const alphaAt = (h, mat, R) => {
+    let a = mat.opacity != null ? mat.opacity : 1;
+    if (mat.map) { const t = texelAt(mat.map, uvOf(h, mat.map), h, R); if (!t) return null; a *= t.a; }
+    if (mat.alphaMap) { const t = texelAt(mat.alphaMap, uvOf(h, mat.alphaMap), h, R); if (!t) return null; a *= t.g; }
+    const col = mat.vertexColors && h.object.geometry && h.object.geometry.attributes.color;
+    if (col && col.itemSize === 4) {
+      const f = h.face, b = h.barycoord;
+      if (!f || !b) return null;
+      a *= col.getW(f.a) * b.x + col.getW(f.b) * b.y + col.getW(f.c) * b.z;
+    }
+    return a;
+  };
+  // HOW LIKELY THE RENDERER DRAWS A HIT, 0 to 1. Its own material slot has to show, no clipping plane
+  // may cut the point away, and a wireframe draws its edges and not the faces a ray meets (Codex, PR
+  // 369). An opaque material draws every fragment. A cutout or a transparent one draws where its
+  // alpha clears the alphaTest and shows at all. AN ALPHA-HASHED ONE DRAWS AT RANDOM (Codex, PR 369):
+  // three.js discards a fragment whose alpha falls under a hashed threshold spread evenly from 0 to 1,
+  // so a fraction of the fragments equal to the alpha draws, and a shell at 0.2 is a fifth drawn. A
+  // measure counts such a hit by that chance, and a ray behind it by the rest.
+  const drawChance = (h, R) => {
+    const mat = slotOf(h);
+    if (!shows(mat) || clippedAway(h.point, mat, R.renderer) || mat.wireframe) return 0;
+    const hashed = !!mat.alphaHash;
+    if (!(mat.alphaTest > 0 || mat.transparent || hashed)) return 1;
+    const a = alphaAt(h, mat, R);
+    if (a === null) return 0;                     // a cutout whose texel can't be read is no wall
+    if (mat.alphaTest > 0 && a < mat.alphaTest) return 0;
+    if (hashed) return Math.min(1, Math.max(0, a));
+    return mat.transparent && !(a > 0.001) ? 0 : 1;
+  };
+  // AN ALPHA HASH IS SHARED WHERE SURFACES COINCIDE (Codex, PR 369). three.js hashes the fragment's
+  // position in the geometry's own frame, before any instance matrix, over cells a twentieth of the
+  // pixel's reach there (ALPHA_HASH_SCALE 0.05) at two power-of-two scales. So hashed surfaces at the
+  // same local point, stacked copies or instances with matching local coordinates, discard the same
+  // fragments: eight coincident planes at 0.2 draw a fifth of the frame, not 83 percent. Hashed hits
+  // along a ray in the same finer cell are one layer, at the highest chance among them, and the rest
+  // count as independent draws.
+  const lodL = new THREE.Vector3(), lodV = new THREE.Matrix4();
+  const hashKey = (h, R) => {
+    const fp = footprintAt(h, R);
+    if (!fp) return null;
+    const reach = fp.across / fp.cos / (fp.m.getMaxScaleOnAxis() || 1);
+    if (!(reach > 0)) return null;
+    lodL.copy(h.point).applyMatrix4(lodV.copy(fp.m).invert());
+    const fine = Math.pow(2, Math.ceil(Math.log2(1 / (0.05 * reach))));
+    return fine + ':' + Math.floor(fine * lodL.x) + ',' + Math.floor(fine * lodL.y) + ',' + Math.floor(fine * lodL.z);
+  };
+  // The layers a ray passes, nearest first, each with the chance it draws (or hides the sky): an
+  // opaque one ends the ray, and coincident hashed ones merge.
+  const layersAlong = (hits, R, chance) => {
+    const out = [], shared = new Map();
+    for (const h of hits) {
+      const p = chance(h, R);
+      if (!(p > 0)) continue;
+      if (p < 1 && slotOf(h).alphaHash) {
+        const k = hashKey(h, R), same = k !== null ? shared.get(k) : null;
+        if (same) { if (p > same.p) { same.p = p; same.h = h; } continue; }
+        const layer = { p, h };
+        if (k !== null) shared.set(k, layer);
+        out.push(layer);
+        continue;
+      }
+      out.push({ p, h });
+      if (p >= 1) break;
+    }
+    return out;
+  };
+  // Every mesh the camera could draw, the sky dome aside: the dome is the world, never a roof.
+  const drawable = (R) => {
+    const out = [];
+    R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) out.push(m); });
+    return out;
+  };
+  /* INSIDE IS MEASURED AS A SHARE, NEVER AS ONE RAY (Codex, PR 369). A single ray straight up took
+   * a street lamp for a roof, and a room counted as "looked into" from 300 m above it. The
+   * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky, so both
+   * exemptions now ask how much of an interior there is. Measured on 2026-09-26 through
+   * TXT.enclosure itself and the kit, as the share of the sky above the camera that the frame built
+   * covers within 12 m:
+   *
+   *   interiors   the kit's semi_cab_interior at the driver's eye 0.96, a TXT.interior room with a
+   *               ceiling 0.88, a closed shelter 1.0
+   *   open        the kit gas station's canopy 0.65, a carport roof 0.59, a pecan's crown 0.23, a
+   *               streetlight's head 0.02, a lamp 5 m up 0
+   *
+   * ENCLOSED_MIN sits in that gap, so a roof, a canopy or a tree over a camera looking down is still
+   * a frame of the ground. TXT.interior builds no ceiling by default and scores 0.14 to 0.2 from
+   * inside, so a room answers by what the frame shows instead: its walls, or its floor between
+   * them, fill 0.88 to 1.0 of a frame taken in it or looking into its open side, and 0.003 of one
+   * taken 300 m above it. ROOM_MIN is half the frame. Neither number is on TXT, so a frame can't
+   * lower one. */
+  const ENCLOSED_MIN = 0.8, ROOM_MIN = 0.5, HEMI_RAYS = 128;
+  // The sky grid: 25 by 25 rays, and a frame shows its sky when at least one ray's worth reaches it.
+  const SKY_GRID = 24, SKY_RAYS = (SKY_GRID + 1) * (SKY_GRID + 1);
+  /* TXT.enclosure(R, reach) — the share of the sky above the camera that the frame built covers
+   * within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by
+   * solid angle, each asking whether it meets something the camera renders. That is a mesh drawn
+   * and on its layers, a hit whose own material slot shows and no clipping plane cuts away, and a
+   * distance inside the camera's own near and far, so geometry the far plane clips is no wall. A
+   * mesh keeps its own visible flag under a hidden parent, and traverseVisible skips it. A chassis
+   * that builds its own cab needs no flag to be measured. */
+  TXT.enclosure = function (R, reach) {
+    const cam = R.camera;
+    R.scene.updateMatrixWorld();                 // a caller need not have rendered first
+    cam.updateMatrixWorld();
+    const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+    const near = Math.max(0.05, cam.near || 0), far = Math.min(reach || 12, cam.far || Infinity);
+    if (!(far > near)) return 0;
+    const rc = new THREE.Raycaster(eye, new THREE.Vector3(0, 1, 0), near, far);
+    rc.camera = cam;
+    rc.layers.mask = cam.layers.mask;            // only what this camera renders can cover it
+    const hit = drawable(R);
+    if (!hit.length) return 0;
+    const ga = Math.PI * (3 - Math.sqrt(5));
+    let covered = 0;
+    try {
+      for (let i = 0; i < HEMI_RAYS; i++) {
+        const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
+        rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
+        let open = 1;                              // the chance nothing along this ray draws
+        for (const L of layersAlong(rc.intersectObjects(hit, false), R, drawChance)) open *= 1 - L.p;
+        covered += 1 - open;
+      }
+    } catch (e) { return 0; }
+    return covered / HEMI_RAYS;
+  };
+  /* TXT.enclosed(R) — true when the camera stands inside something the frame built: at least
+   * ENCLOSED_MIN of the sky above it is covered within `reach` metres. */
+  TXT.enclosed = function (R, reach) { return TXT.enclosure(R, reach) >= ENCLOSED_MIN; };
+  /* TXT.roomShare(R) — the share of the frame the room TXT.interior built fills: a 17 by 17 grid of
+   * rays through the camera's own projection, each asking what it meets first among the things the
+   * camera draws, inside its near and far, and counting it when that is one of the room's walls or a
+   * point between them, its floor or whatever stands on it (Codex, PR 369: the first cut counted a
+   * floor plane nobody had to render). Only walls the camera renders count, on stage, drawn and on
+   * its layers, so a room taken out of the scene, hidden, or on a layer the camera skips fills
+   * nothing. 0 when there is no room. */
+  TXT.roomShare = function (R) {
+    const room = R.room, cam = R.camera;
+    if (!room || !room.isObject3D || !onStage(room, R.scene)) return 0;
+    const walls = [];
+    room.traverseVisible((m) => { if (m.isMesh && inView(m, cam)) walls.push(m); });
+    if (!walls.length) return 0;                    // walls made invisible are no room
+    R.scene.updateMatrixWorld();                   // a caller need not have rendered first
+    cam.updateMatrixWorld();
+    // THE ROOM'S OWN FOOTPRINT, IN ITS OWN AXES (Codex, PR 369). A room turned 45 degrees has a world
+    // box far larger than its floor, and a camera over an empty corner of that box counted the ground
+    // there as the room. So the walls are boxed, and every hit is tested, in the room's local frame.
+    const toRoom = new THREE.Matrix4().copy(room.matrixWorld).invert(), rel = new THREE.Matrix4();
+    const box = new THREE.Box3(), part = new THREE.Box3();
+    walls.forEach((w) => {
+      let bb = null;
+      if (w.isInstancedMesh) { if (!w.boundingBox) w.computeBoundingBox(); bb = w.boundingBox; }
+      else if (w.geometry) { if (!w.geometry.boundingBox) w.geometry.computeBoundingBox(); bb = w.geometry.boundingBox; }
+      if (bb && !bb.isEmpty()) box.union(part.copy(bb).applyMatrix4(rel.multiplyMatrices(toRoom, w.matrixWorld)));
+    });
+    if (box.isEmpty()) return 0;
+    const own = new Set(walls), all = drawable(R);
+    const eye = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+    const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
+    const rc = new THREE.Raycaster(), v = new THREE.Vector2(), d = new THREE.Vector3();
+    rc.layers.mask = cam.layers.mask;
+    const depthOk = (p) => { const z = d.copy(p).sub(eye).dot(fwd); return z >= cam.near && z <= cam.far; };
+    const lp = new THREE.Vector3();
+    const inside = (p) => {
+      lp.copy(p).applyMatrix4(toRoom);
+      return lp.x >= box.min.x && lp.x <= box.max.x && lp.z >= box.min.z && lp.z <= box.max.z &&
+        lp.y >= box.min.y - 0.05 && lp.y <= box.max.y + 0.05;
+    };
+    const N = 16;
+    let seen = 0;
+    for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
+      v.set(-1 + 2 * i / N, -1 + 2 * j / N);
+      rc.setFromCamera(v, cam);
+      // the chance that the first thing drawn along this ray is the room, hit by hit
+      let open = 1, room = 0;
+      try {
+        const hs = rc.intersectObjects(all, false).filter((h) => depthOk(h.point));
+        for (const L of layersAlong(hs, R, drawChance)) {
+          if (own.has(L.h.object) || inside(L.h.point)) room += open * L.p;
+          open *= 1 - L.p;
+        }
+      } catch (e) { room = 0; }
+      seen += room;
+    }
+    return seen / ((N + 1) * (N + 1));
+  };
+  /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame, so
+   * one the camera has left or sees from far away is no room shot (Codex, PR 369). */
+  TXT.inRoom = function (R) { return TXT.roomShare(R) >= ROOM_MIN; };
+  // THE CHANCE A HIT HIDES THE SKY: drawn there, blended as a solid and not transmissive. Glass, a
+  // veil at partial alpha or an additive glow lets the dome through, and the ray looks on past it.
+  const solidChance = (h, R) => {
+    const p = drawChance(h, R);
+    if (!(p > 0)) return 0;
+    const mat = slotOf(h);
+    if (mat.transmission > 0) return 0;
+    if (mat.blending === THREE.NoBlending) return p;
+    if (mat.blending !== THREE.NormalBlending) return 0;
+    if (!mat.transparent) return p;
+    const a = alphaAt(h, mat, R);
+    return a !== null && a >= 0.999 ? p : 0;
+  };
+  // Every hit along a ray, nearest first, as Raycaster.intersectObjects gives them, except that a
+  // mesh a ray can't be cast against hides nothing rather than ending the measurement.
+  const castAll = (rc, meshes) => {
+    const out = [];
+    for (const m of meshes) {
+      if (!m.layers.test(rc.layers)) continue;
+      try { m.raycast(rc, out); } catch (e) { /* hides nothing */ }
+    }
+    return out.sort((x, y) => x.distance - y.distance);
+  };
+  const skyShare = (camera, R, first) => {
+    camera.updateMatrixWorld();
+    const eye = new THREE.Vector3().setFromMatrixPosition(camera.matrixWorld);
+    let c = eye, rad = 0.92 * camera.far, hits = null;
+    if (R) {
+      const dome = R._txDome;
+      if (!dome || !onStage(dome, R.scene) || !inView(dome, camera)) return 0;
+      R.scene.updateMatrixWorld();                 // a caller need not have rendered first
+      c = new THREE.Vector3().setFromMatrixPosition(dome.matrixWorld);
+      rad = dome.matrixWorld.getMaxScaleOnAxis();
+      hits = drawable(R);
+    }
+    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
+    const o = new THREE.Vector3(), dir = new THREE.Vector3(), w = new THREE.Vector3(), q = new THREE.Vector3();
+    const at = new THREE.Vector3(), rc = new THREE.Raycaster();
+    rc.layers.mask = camera.layers.mask; rc.camera = camera;
+    const N = SKY_GRID, all = SKY_RAYS;
+    let shown = 0;
+    // from the top row down, so a frame with sky along its top answers on its first ray
+    for (let j = N; j >= 0; j--) for (let i = 0; i <= N; i++) {
+      const u = -1 + 2 * i / N, v = -1 + 2 * j / N;
+      o.set(u, v, -1).unproject(camera);
+      dir.set(u, v, 1).unproject(camera).sub(o).normalize();
+      // the dome's far side is what it draws under this ray: where the ray leaves its sphere
+      w.copy(o).sub(c);
+      const b = w.dot(dir), disc = b * b - (w.lengthSq() - rad * rad);
+      if (!(disc >= 0)) continue;                  // an orthographic ray past the dome's rim meets none
+      q.copy(dir).multiplyScalar(Math.sqrt(disc) - b).add(w);
+      if (!(q.y > 1e-9 * rad)) continue;           // under the dome's horizon is its stand-in ground
+      // the chance this ray reaches the dome: nothing solid drawn in front of it, hit by hit
+      let open = 1;
+      if (hits && hits.length) {
+        rc.set(o, dir);
+        const hs = castAll(rc, hits).filter((h) => {
+          const z = at.copy(h.point).sub(eye).dot(fwd);        // clipped at near and far: not drawn
+          return z >= camera.near && z <= camera.far;
+        });
+        for (const L of layersAlong(hs, R, solidChance)) open *= 1 - L.p;
+      }
+      shown += open;
+      if (first && shown >= 1) return shown / all;
+    }
+    return shown / all;
+  };
+  /* TXT.skyInFrame(camera, R) — the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid
+   * of rays through the image, corners included, each unprojected through the projection the
+   * renderer uses, so zoom, a lens offset and roll all count (Codex, PR 369: read off pitch alone, a
+   * portrait camera rolled 90 degrees and pitched 18 down found 0.054 sky with every corner ray under
+   * the horizon). A ray shows sky where it meets the dome above the dome's horizon. The dome sits on
+   * the camera and draws its far side, so a perspective ray's own direction decides, and an
+   * orthographic camera's rays, parallel and starting across its whole near plane, are each followed
+   * to the dome (Codex, PR 369: a frustum 200 m tall pitched 5 degrees down shows sky in its upper
+   * rows, and reading its direction alone found none). Given R, the dome has to be drawn and a ray has
+   * to reach it: the first solid thing the camera draws along it, inside its near and far, hides the
+   * sky there, where glass, a veil or a glow doesn't (Codex, PR 369: a wall filling the frame read
+   * as sky). A cutout is read at the mip level this frame samples it at, and an alpha-hashed surface
+   * hides the sky by the chance it draws, so a ray counts for the share of it that gets through.
+   * Without R it measures the dome TXT.sky builds for this camera, with nothing in front. */
+  TXT.skyInFrame = function (camera, R) { return skyShare(camera, R, false); };
+  // Read by scripts/carousel/print_ban.py off the render report. Keep the four in step there.
+  TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
+  TXT.SKY_SHOWN = 'TXT: SKY IN FRAME';
+  TXT.NO_ROOM = 'TXT: NO ROOM IN FRAME';
+  TXT.ROOM_SHOWN = 'TXT: ROOM IN FRAME';
+  TXT.NO_RENDER = 'TXT: NO RENDER IN FRAME';
+
   /* ---- render ------------------------------------------------------------ */
   // Renders one still, waits a paint tick, then ASSERTS the frame is not black
   // (research-documented headless failure modes: first-paint race and silent
@@ -295,6 +825,42 @@ export function init(THREE) {
   TXT.snapshot = async function (R, o) {
     o = o || {};
     R.renderer.render(R.scene, R.camera);
+    /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and
+     * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
+     * print_ban counted the call. This counts what the camera shows, and the render report carries
+     * it to print_ban before a panel sits. Measured on the shipped decks: no. 33's frame 4 and no.
+     * 34's frames 4 and 5 print it, each with 0 of the sky above its camera built over, and no. 34's
+     * page on the cab seat does not, its cab covering 0.87. */
+    // AN INTERIOR IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3. A camera
+    // inside something built passes on TXT.enclosure's share, and a room TXT.interior built passes
+    // when it fills half the frame (TXT.inRoom). Both are measured above, with the numbers.
+    // THE PAGE'S LAST SNAPSHOT IS ITS VERDICT, as print_ban's kept snapshot is the bench's last on the
+    // page. A console line can't be unprinted, so each line names its renderer, and the last line on
+    // the page is the verdict print_ban and panel_ready read (Codex, PR 369). There is no option to
+    // skip this: an opt-out on the kept snapshot passed every gate with the camera on the ground.
+    // EVERY SNAPSHOT OF A FRAME THAT STANDS SOMEWHERE PRINTS A VERDICT (Codex, PR 369), a clean one
+    // included, so a frame whose TXT.sky or TXT.interior never ran through this snapshot, a 2D
+    // fallback behind a branch, has no verdict and fails, rather than reading as clean. A frame that
+    // builds only a room is held to the room: it has to fill half the frame, or the camera has to
+    // stand inside something built. qa.py lists a clean verdict as a console warn, and gate_status
+    // doesn't count it.
+    // MEASURED HERE, on the scene as rendered, and PRINTED BELOW, once the pixels are validated
+    // (Codex, PR 369): a render that comes out black returns ok false and the frame falls back to
+    // whatever it draws instead, so a clean verdict printed before that check would certify a 2D
+    // fallback. A failed render prints TXT.NO_RENDER.
+    let place = null;
+    if (typeof console !== 'undefined' && (R.world || R.room)) {
+      const world = !!R.world;
+      let sky = 0, cover = 0, share = 0;
+      // A dome hidden or taken out before the snapshot leaves the cleared background, not the sky, and
+      // sky that something solid covers is not in the frame either. One visible ray is enough, so
+      // this stops at the first.
+      if (world) sky = skyShare(R.camera, R, true);
+      let shown = sky * SKY_RAYS >= 1 - 1e-9;
+      if (!shown) { cover = TXT.enclosure(R); shown = cover >= ENCLOSED_MIN; }
+      if (!shown) { share = TXT.roomShare(R); shown = share >= ROOM_MIN; }
+      place = { world, sky, cover, share, shown };
+    }
     await new Promise(r => requestAnimationFrame(() => r()));
     let ok = true, variance = -1, litCount = -1;
     try {
@@ -331,6 +897,45 @@ export function init(THREE) {
         : Math.max(48, Math.round(sampled * 0.0008));
       ok = meanVarOK || lit >= LIT_MIN;
     } catch (e) { /* readPixels unavailable: trust the render */ }
+    if (place) {
+      const { world, sky, cover, share, shown } = place;
+      const page = (typeof window !== 'undefined') ? window : TXT;
+      if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
+      const tag = ' [r' + R._txRid + ']', was = page.__txSky;
+      const pct = (x) => Math.round(x * 100);
+      if (!ok) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_RENDER + tag + '. This frame stands in ' + (world ? 'the world' : 'a room') +
+          ' and its render came out black or unreadable, so TXT.snapshot returned ok false and the ' +
+          'frame falls back to whatever it draws instead. A 2D fallback stands nowhere, and the ' +
+          'showstopper test caps it. Fix the render: qa.py\'s dead canvas and the render log say why');
+      } else if (!shown && world) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
+          'it (pitched below the horizon, looking straight down, the sky dome hidden, or something ' +
+          'solid built across all of it), and it ' +
+          'stands inside nothing: what the frame built covers ' + pct(cover) + ' percent of the sky ' +
+          'above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A reader sees objects ' +
+          'in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
+          'frame, or stand it inside something built (the kit\'s semi_cab_interior, or a TXT.interior ' +
+          'room filling half the frame). A roof, a canopy or a tree overhead is not an interior');
+      } else if (!shown) {
+        page.__txSky = 'none';
+        console.error(TXT.NO_ROOM + tag + '. This frame builds a room with TXT.interior and its kept ' +
+          'camera shows too little of it: the room fills ' + pct(share) + ' percent of the frame, where ' +
+          'a room shot fills ' + pct(ROOM_MIN) + ', and what the frame built covers ' + pct(cover) +
+          ' percent of the sky above the camera, where an interior covers ' + pct(ENCLOSED_MIN) + '. A ' +
+          'reader sees objects in a void. Point the camera into the room or stand it inside, and keep ' +
+          'the room drawn');
+      } else {
+        page.__txSky = 'shown';
+        const why = '. A verdict, not a defect: this snapshot ' + (sky > 0 ? 'shows its sky'
+          : cover >= ENCLOSED_MIN ? 'stands inside something built' : 'shows its room') +
+          (was === 'none' ? '. The line above was a preview and is withdrawn' : '');
+        if (world) console.error(TXT.SKY_SHOWN + tag + why);
+        else console.error(TXT.ROOM_SHOWN + tag + why);
+      }
+    }
     /* THE FRAME IS ALREADY TONE MAPPED, and TXDECK.finish reads this so it does not map it
      * again. Carousel no. 32 ran ACES here and a second ACES curve in the grade, which caps
      * white near 231 of 255 and lifts the mids: the murk measured, not a taste. Marked ONLY
@@ -877,7 +1482,7 @@ export function init(THREE) {
     const dome = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), skyMaterial(W, sunDir, false));
     const far = R.camera.far * 0.92;
     dome.scale.setScalar(far);
-    dome.frustumCulled = false; dome.renderOrder = -1000;
+    dome.frustumCulled = false; dome.renderOrder = -1000; dome.userData.txSky = true;
     dome.onBeforeRender = function (r, s, cam) {
       dome.position.copy(cam.position); dome.updateMatrixWorld();
       // the dome's stand-in ground reads the fog as it is AT RENDER, since frames tune it after TXT.sky
@@ -907,6 +1512,7 @@ export function init(THREE) {
       if (o.skyFog !== false) { installSkyFog(W, sunDir); dome.material.uniforms.uFogMatch.value = 1; }
     }
     R.world = W;
+    R._txDome = dome;             // the snapshot asks whether it is still drawn (Codex, PR 369)
     return dome;
   };
 

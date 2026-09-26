@@ -182,6 +182,152 @@ def check_pointers(base: Path, report: dict) -> list[str]:
     return bad
 
 
+def check_report_complete(base: Path, report: dict) -> list[str]:
+    """THE RENDER REPORT AND THE RENDER DIRECTORY ARE THE DECK ON DISK, NO MORE AND NO LESS
+    (Codex, PR 369).
+
+    Every group here that reads the render reads `render_report.json`, and a frame with no record in
+    it is skipped by all of them in silence. It happens: when the report is unreadable, `render.py
+    --only 4` discards it and writes one holding slide 4 alone, and `qa.py` then measures that same
+    subset, so the sky, the occlusion, the exemptions and the contrast of the other eight frames go
+    unread into a scoring round. `print_ban` compares the report with the slides, and it runs in
+    Phase 12b, not before each round. This does the same comparison before each round.
+
+    The other direction matters as much. A frame a repair deleted or renamed keeps its record in the
+    report, which `render.py` merges into, and its PNG in `render/`, and `assemble.py` builds the
+    PDF from every `render/slide-*.png`. So a record or a PNG with no source in `slides/` is a frame
+    the panel would read and the PDF would ship that the deck no longer has.
+    """
+    listed = {str(rec["file"]) for rec in (report.get("slides") or [])
+              if isinstance(rec, dict) and rec.get("file")}
+    on_disk = {f.name for f in (base / "slides").glob("slide-*.html")}
+    missing, stale = sorted(on_disk - listed), sorted(listed - on_disk)
+    orphans = sorted(p.name for p in (base / "render").glob("slide-*.png")
+                     if p.with_suffix(".html").name not in on_disk)
+    out = []
+    if missing:
+        out.append(f"the render report holds no record of {', '.join(missing)}, so every check here "
+                   f"that reads the render skipped {'it' if len(missing) == 1 else 'them'}. Render the "
+                   f"deck, run qa.py, then this again")
+    if stale:
+        out.append(f"the render report still holds {', '.join(stale)}, which "
+                   f"{'is' if len(stale) == 1 else 'are'} no longer in slides/, so the panel would read "
+                   f"a frame the deck doesn't have. Render the whole deck without --only, which writes "
+                   f"a fresh report, then qa.py, then this again")
+    if orphans:
+        out.append(f"render/ still holds {', '.join(orphans)} with no source in slides/, and "
+                   f"assemble.py builds the PDF from every render/slide-*.png, so the PDF would ship "
+                   f"{'it' if len(orphans) == 1 else 'them'}. Delete "
+                   f"{'it' if len(orphans) == 1 else 'them'} from out/<date>/render, assemble again, "
+                   f"then run this again")
+    return out
+
+
+# A slide's own chassis, the one file under assets/ a run may write (`assets/js/deck/**`, Phase 10.5).
+DECK_ASSET = re.compile(r"@@ASSETS@@/(js/deck/[^\"'?#\s)]+)")
+
+
+def check_renders_current(base: Path, assets: Path | None = None) -> list[str]:
+    """EVERY FRAME WAS RENDERED AFTER ITS LAST EDIT (Codex, PR 369).
+
+    `load_machine_qa` holds the QA file to the render, and nothing held the render to the source. A
+    repair edits `slides/slide-04.html`, and its `render.py --only` names another frame, or dies
+    before it reaches this one. The PNG and the report record are the frame from before the repair,
+    `qa.py` measures that PNG and writes a fresh file, the report's frame set still matches, and the
+    panel scores, and `assemble.py` ships, pixels the repair never touched.
+
+    So each PNG and the render report have to be no older than the frame's source: its own HTML,
+    and the deck chassis it loads from `assets/js/deck/`, the one place under `assets/` a run writes,
+    since a chassis edit restyles every frame that loads it. The engine is not held to this: a run
+    never writes it, and a merge that moves it lands after the panel. `render.py` records no hash, so
+    file times are the evidence, with `load_machine_qa`'s one second of slack. A frame with no PNG
+    is `qa.py`'s "png missing", which `load_machine_qa` already stops on.
+    """
+    assets = Path(assets or (REPO_ROOT / "assets"))
+    rdir = base / "render"
+    rp = rdir / "render_report.json"
+    reported = rp.stat().st_mtime if rp.exists() else None
+    out = []
+    for src in sorted((base / "slides").glob("slide-*.html")):
+        png = rdir / (src.stem + ".png")
+        if not png.exists():
+            continue
+        try:
+            html = src.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            html = ""
+        sources = [src] + [assets / rel for rel in sorted(set(DECK_ASSET.findall(html)))]
+        stamped = [(q.stat().st_mtime, q) for q in sources if q.exists()]
+        if not stamped:
+            continue
+        edited, newest = max(stamped)
+        shown = newest.name if newest == src else f"assets/{newest.relative_to(assets)}"
+        n = re.search(r"slide-0*(\d+)", src.name)
+        again = (f"Render it with render.py --only {n.group(1) if n else '?'}, run qa.py, then this "
+                 f"again")
+        if png.stat().st_mtime + 1.0 < edited:
+            out.append(f"render/{png.name} predates the last edit to {shown}, so the panel would "
+                       f"score, and assemble.py would ship, {src.name} as it was before that edit. "
+                       f"{again}")
+        elif reported is not None and reported + 1.0 < edited:
+            out.append(f"render/render_report.json predates the last edit to {shown}, so its record "
+                       f"of {src.name} describes the frame before that edit. {again}")
+    return out
+
+
+def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
+    """MACHINE QA MEASURED THE FRAMES THAT ARE HERE NOW (Codex, PR 369).
+
+    The contrast group reads `machine_qa.json`, which `qa.py` writes and nothing else refreshes. A
+    repaired round re-renders its frames with `render.py --only`, which rewrites the PNGs and the
+    render report and leaves the QA file describing the frames it just replaced. A line repaired
+    since then reads as failing, and a line broken since then reads as clean, which is the
+    direction that reaches a panel. Until 2026-09-26 a missing file read as `{}` and passed.
+
+    So the file has to exist, parse, be no older than the newest render and carry a record for
+    every frame the render report lists. The age test is `gate_status.staleness`'s, with its one
+    second of slack for a filesystem that rounds file times to the second. Running
+    `qa.py --render-dir out/<date>/render` clears all four. Returns the QA, and the problems, which
+    are empty only when the QA can be read as a reading of these frames.
+    """
+    rdir = base / "render"
+    qp = rdir / "machine_qa.json"
+    again = (f"Run python3 .claude/skills/carousel-engine/qa.py --render-dir {rdir}, then "
+             f"this again")
+    if not qp.exists():
+        return {}, [f"render/machine_qa.json is missing, so no contrast was measured on these "
+                    f"frames. {again}"]
+    try:
+        qa = json.loads(qp.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return {}, [f"render/machine_qa.json can't be read ({e.__class__.__name__}). {again}"]
+    if not isinstance(qa, dict) or not isinstance(qa.get("slides"), list):
+        return {}, [f"render/machine_qa.json carries no list of slides. {again}"]
+    drawn = max([p.stat().st_mtime for p in rdir.glob("slide-*.png")]
+                + [(rdir / "render_report.json").stat().st_mtime])
+    problems = []
+    if qp.stat().st_mtime + 1.0 < drawn:
+        problems.append(f"render/machine_qa.json predates the newest render, so what it says "
+                        f"about contrast describes frames that were replaced. {again}")
+    measured = {q.get("file") for q in qa["slides"] if isinstance(q, dict)}
+    for rec in report.get("slides") or []:
+        name = rec.get("file") if isinstance(rec, dict) else None
+        if name and name not in measured:
+            problems.append(f"{name}: render/machine_qa.json has no record of it, so its contrast "
+                            f"was never measured. {again}")
+    # A RECORD THAT CARRIES A FAIL IS NOT A CLEAN MEASUREMENT (Codex, PR 369). qa.py files "png
+    # missing" on the frame and skips the frame before it counts the deck's fails, so it exits 0 on
+    # a deck with a frame it never measured. Any fail on a frame's record stops the panel here,
+    # because Phase 11 ships no FAIL and a panel on one is a round spent twice.
+    for q in qa["slides"]:
+        if isinstance(q, dict) and q.get("fails"):
+            fails = [str(f) for f in q["fails"]]
+            problems.append(f"{q.get('file') or '?'}: machine QA failed it ({fails[0][:120]}"
+                            f"{f', and {len(fails) - 1} more' if len(fails) > 1 else ''}). Fix it, "
+                            f"render it, run qa.py, then this again")
+    return qa, problems
+
+
 def check_contrast(qa: dict, floor: float) -> list[str]:
     """EVERY LINE CLEARS THE RUBRIC'S OWN CONTRAST FLOOR.
 
@@ -382,6 +528,54 @@ def check_contacts(base: Path) -> list[str]:
     except Exception:                                                # noqa: BLE001
         return []
     return m.problems(base) or []
+
+
+def check_sky_in_frame(report: dict, base: Path | None = None) -> list[str]:
+    """NO FRAME THAT STANDS SOMEWHERE POINTS ITS CAMERA WHERE THAT PLACE ISN'T.
+
+    WIRED HERE ON 2026-09-26. `TXT.snapshot` prints a verdict on every snapshot of a frame that
+    stands in the world or in a room, and render.py keeps it in the report. TXT.NO_SKY is a frame
+    that calls TXT.sky while its camera shows none of it and stands inside nothing built, and
+    TXT.NO_ROOM a frame that builds only a room and shows too little of it. print_ban reads the
+    verdicts on the probe and in Phase 12b. This reads them before every panel round, because a
+    repair can turn a settled frame toward the ground and the next round's judges would be the first
+    to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's frames 4 and 5
+    print NO_SKY, and a judge named no. 33's frame 4 top-down in all five rounds.
+
+    Given the run directory, a frame whose source stands somewhere and whose render printed no
+    verdict at all is named too, on a run dated after print_ban's VERDICT_SINCE: its pixels never
+    went through the snapshot (Codex, PR 369). The reading is print_ban's own, the last verdict on
+    the page, so a preview withdrawn by the kept snapshot is clean here too and the two can't
+    drift. An import that fails raises rather than reading as clean.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from print_ban import place_verdict, in_world, in_room, VERDICT_SINCE, DATED
+    out, verdicts = [], {}
+    for rec in report.get("slides") or []:
+        if not isinstance(rec, dict):
+            continue
+        name, v = str(rec.get("file") or "?"), place_verdict(rec.get("console_errors"))
+        verdicts[name] = v
+        if v == "no sky":
+            out.append(f"{name} calls TXT.sky and its camera shows none of it, with nothing built "
+                       f"around it. Lift the camera until the horizon is in frame, or stand it inside "
+                       f"something built (the kit's semi_cab_interior, or a TXT.interior room filling "
+                       f"half the frame). A roof, a canopy or a tree overhead is not an interior")
+        elif v == "no room":
+            out.append(f"{name} builds a room with TXT.interior and its camera shows too little of it, "
+                       f"with nothing built around it. Point the camera into the room so it fills half "
+                       f"the frame, or stand it inside, and keep the room drawn")
+        elif v == "no render":
+            out.append(f"{name}'s kept snapshot came out black or unreadable, so the frame fell back to "
+                       f"whatever it draws instead, and a 2D fallback stands nowhere. Fix the render")
+    if base is not None and DATED.match(base.name) and base.name > VERDICT_SINCE:
+        for f in sorted((base / "slides").glob("slide-*.html")):
+            src = f.read_text(encoding="utf-8", errors="replace")
+            if f.name in verdicts and verdicts[f.name] is None and (in_world(src) or in_room(src)):
+                out.append(f"{f.name} stands in the world or a room and its render printed no "
+                           f"verdict, so its pixels never went through TXT.snapshot. Render it "
+                           f"through TXT.snapshot, never a 2D fallback or a renderer called by hand")
+    return out
 
 
 def check_quantifiers(base: Path, articles: Path | None = None) -> list[str]:
@@ -780,7 +974,8 @@ def check_value_arc(base: Path) -> list:
 
 # ------------------------------------------------------------------ driver
 
-def run(date: str, out_root: Path | None = None, articles: Path | None = None) -> int:
+def run(date: str, out_root: Path | None = None, articles: Path | None = None,
+        assets: Path | None = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
     rp = base / "render" / "render_report.json"
     qp = base / "render" / "machine_qa.json"
@@ -788,19 +983,31 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         print(f"panel_ready: no render report at {rp}", file=sys.stderr)
         return 2
     report = json.loads(rp.read_text(encoding="utf-8"))
-    qa = json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else {}
+    qa, qa_problems = load_machine_qa(base, report)
+    current = check_renders_current(base, assets)
     floor = rubric_contrast_floor()
+    # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED (GATE_LESSONS 37). Contrast read off a QA
+    # file that describes other frames, or no file, or frames from before the last edit, is not a
+    # reading of this deck.
+    contrast = (check_contrast(qa, floor) if not (qa_problems or current) else
+                [f"CANNOT RUN: {qp.relative_to(base)} is not a reading of these frames, see above"])
 
     groups = [
         ("nothing a reader needs is exempt from the gates", check_nothing_exempt(report)),
         ("no published text has a plate through it", check_nothing_occluded(report)),
         ("every slide number in published copy resolves", check_pointers(base, report)),
-        (f"every line clears the rubric's {floor} contrast floor", check_contrast(qa, floor)),
+        ("the render report holds a record of every frame on disk",
+         check_report_complete(base, report)),
+        ("every frame was rendered after its last edit", current),
+        ("machine QA measured the frames that are here now", qa_problems),
+        (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
         ("every ground a dossier calls worked is worked", check_ground(base)),
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
         ("every bleed a dossier declares is one the frame draws", check_bleed_witness(base)),
         ("every published address traces to a claim", check_contacts(base)),
+        ("every frame that stands somewhere shows it: its sky, its room, or the inside of "
+         "something built", check_sky_in_frame(report, base)),
         ("every universal on every published surface, the web edition included, names its set",
          check_quantifiers(base, articles)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
@@ -1173,6 +1380,57 @@ def self_test() -> int:
             .replace("X: -13, Z: 9", "X: -9.2, Z: 27"), encoding="utf-8")
         ok("...and the repair that shipped is clean", not check_scene_bounds(_b))
 
+        # THE SKY CHECK WIRED IN ON 2026-09-26, replayed on the line the engine prints for no. 34's
+        # frame 4, and on the clean frame beside it.
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from print_ban import NO_SKY
+        _sky = {"slides": [
+            {"file": "slide-03.html", "console_errors": []},
+            {"file": "slide-04.html", "console_errors": [NO_SKY + ". This frame calls TXT.sky and its "
+                                                         "camera shows none of it"]}]}
+        got = check_sky_in_frame(_sky)
+        ok("a frame whose camera shows none of the sky it calls is CAUGHT before the panel, and named",
+           len(got) == 1 and got[0].startswith("slide-04.html"), str(got))
+        ok("...and a frame that shows its sky is clean",
+           check_sky_in_frame({"slides": [_sky["slides"][0]]}) == [])
+        from print_ban import SKY_SHOWN
+        ok("...and so is a preview at the ground withdrawn by the renderer's kept snapshot",
+           check_sky_in_frame({"slides": [{"file": "slide-04.html", "console_errors": [
+               NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"]}]}) == [])
+        from print_ban import NO_ROOM, ROOM_SHOWN, VERDICT_SINCE, NO_RENDER
+        ok("a frame whose kept render came out black is CAUGHT before the panel, and named",
+           [p[:13] for p in check_sky_in_frame({"slides": [{"file": "slide-05.html", "console_errors": [
+               NO_RENDER + " [r1]. its render came out black"]}]})] == ["slide-05.html"])
+        ok("a frame that builds only a room and shows too little of it is CAUGHT, and named",
+           [p[:13] for p in check_sky_in_frame({"slides": [{"file": "slide-07.html", "console_errors": [
+               NO_ROOM + " [r1]. too little of the room"]}]})] == ["slide-07.html"])
+        # A FRAME THAT PRINTED NO VERDICT (Codex, PR 369), on a run dated after VERDICT_SINCE, whose
+        # source calls TXT.sky before its kept snapshot: its pixels never went through the snapshot.
+        with _tf.TemporaryDirectory() as _v:
+            _vb = Path(_v) / "2026-09-27"
+            (_vb / "slides").mkdir(parents=True)
+            (_vb / "slides" / "slide-02.html").write_text(
+                "<script type=\"module\">import * as THREE from '@@ASSETS@@/js/three.module.min.js';"
+                "import { init } from '@@ASSETS@@/js/txthree.js';const TXT = init(THREE);"
+                "const R = TXT.setup(cv);TXT.sky(R);const s = await TXT.snapshot(R);</script>",
+                encoding="utf-8")
+            _silent = {"slides": [{"file": "slide-02.html", "console_errors": []}]}
+            ok("a world frame whose render printed no verdict is CAUGHT before the panel",
+               any(p.startswith("slide-02.html") and "no verdict" in p
+                   for p in check_sky_in_frame(_silent, _vb)), str(check_sky_in_frame(_silent, _vb)))
+            ok("...and with the engine's clean verdict it is clean",
+               check_sky_in_frame({"slides": [{"file": "slide-02.html", "console_errors": [
+                   SKY_SHOWN + " [r1]. A verdict, not a defect"]}]}, _vb) == [])
+            _early = Path(_v) / VERDICT_SINCE
+            (_early / "slides").mkdir(parents=True)
+            (_early / "slides" / "slide-02.html").write_text(
+                (_vb / "slides" / "slide-02.html").read_text(encoding="utf-8"), encoding="utf-8")
+            ok("...while a run dated VERDICT_SINCE, before the engine printed one, is not judged on it",
+               check_sky_in_frame(_silent, _early) == [])
+        # BUILT FROM PARTS, for the reason the flag check below gives: a literal needle matches itself.
+        ok("...and the group is in the list the run reads, with the run directory",
+           ("check_sky_in_frame" + "(report, base)") in Path(__file__).read_text(encoding="utf-8"))
+
         # THE CHECK WIRED IN ON 2026-09-17, replayed on carousel no. 27's own frame 4 numbers.
         # Without a storyboard this returns nothing, so the first assertion is that the check
         # is reading the plan at all rather than reporting clean on an absence.
@@ -1229,6 +1487,19 @@ def self_test() -> int:
                                                       "font_px": 40}]}]}), encoding="utf-8")
         (_q / "slides" / "slide-01.html").write_text(
             "<html><body><h1>The pod picks the spot</h1></body></html>", encoding="utf-8")
+        import os as _os
+        _rpt = _q / "render" / "render_report.json"
+        _mqa = _q / "render" / "machine_qa.json"
+
+        def _qa_at(offset, slides=("slide-01.html",)):
+            """A machine QA file `offset` seconds after the render report, on the clock, so the
+            file-time comparison never depends on how fast this test runs."""
+            _mqa.write_text(json.dumps({"slides": [{"file": f, "fails": [], "warns": []}
+                                                   for f in slides]}), encoding="utf-8")
+            _t = _rpt.stat().st_mtime + offset
+            _os.utime(_mqa, (_t, _t))
+
+        _qa_at(2)
         (_q / "storyboard.md").write_text("```yaml\nslide: 1\nlayout: FULL_BLEED\n```\n",
                                           encoding="utf-8")
         _arts = _root / "articles"
@@ -1238,13 +1509,147 @@ def self_test() -> int:
             (_arts / "2026-09-24.json").write_text(json.dumps({"sections": [{"paragraphs": [
                 {"text": para, "claims": ["c18"]}]}]}), encoding="utf-8")
 
+        _assets = _root / "assets"
+        (_assets / "js" / "deck").mkdir(parents=True)
+
+        def _printed():
+            buf = _io.StringIO()
+            with _cl.redirect_stdout(buf), _cl.redirect_stderr(_io.StringIO()):
+                code = run("2026-09-24", out_root=_root, articles=_arts, assets=_assets)
+            return buf.getvalue() + f"\nexit {code}"
+
         def _run():
             with _cl.redirect_stdout(_io.StringIO()), _cl.redirect_stderr(_io.StringIO()):
-                return run("2026-09-24", out_root=_root, articles=_arts)
+                return run("2026-09-24", out_root=_root, articles=_arts, assets=_assets)
 
         _edition("People appear elsewhere in the draft too.")
         ok("the smallest clean deck, with the repaired web edition, is ready to be scored",
            _run() == 0, "some other group is red on the fixture, so this case proves nothing")
+
+        # MACHINE QA THAT ISN'T A READING OF THESE FRAMES (Codex, PR 369). Each case through run(),
+        # on the deck the case above proved clean, so the QA file is the only thing that changed.
+        _rep = json.loads(_rpt.read_text(encoding="utf-8"))
+        _mqa.unlink()
+        ok("a run with no machine QA is not ready: a missing file read as clean until 2026-09-26",
+           _run() == 1 and any("missing" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(-60)
+        ok("machine QA older than the render report is stale, and the panel waits",
+           _run() == 1 and any("predates" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        # A real frame with a worked ground, so the ground group reads it as clean and the only
+        # thing that can turn this red is its age.
+        _png = _q / "render" / "slide-01.png"
+        try:
+            from PIL import Image as _Im
+            import numpy as _np
+            _Im.fromarray(_np.random.default_rng(7).integers(0, 256, (80, 64), dtype=_np.uint8)
+                          ).save(_png)
+        except ImportError:
+            _png.write_bytes(b"\x89PNG\r\n\x1a\n")
+        _t = _mqa.stat().st_mtime + 60
+        _os.utime(_png, (_t, _t))
+        ok("a frame re-rendered after qa.py ran is stale too, the render --only case",
+           _run() == 1 and any("predates" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(120)
+        ok("...and qa.py run again after that frame clears it", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
+        # A FRAME EDITED AFTER ITS RENDER (Codex, PR 369). The repair's render.py --only named another
+        # frame, so the PNG, its report record and the QA qa.py refreshed from that PNG all predate it.
+        _src = _q / "slides" / "slide-01.html"
+        _html = _src.read_text(encoding="utf-8")
+
+        def _at(path, t):
+            _os.utime(path, (t, t))
+
+        _edit = _png.stat().st_mtime + 30
+        _at(_src, _edit)
+        ok("a slide edited after its PNG stops the panel, and names the frame and the edit",
+           _run() == 1 and any("predates the last edit to slide-01.html" in p and "--only 1" in p
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        ok("...and its contrast is a check that CANNOT RUN, not a clean one",
+           "CANNOT RUN" in _printed(), "contrast read clean off pixels from before the edit")
+        # the chassis the frame loads, edited after the PNG, stales the frame the same way
+        _deck = _assets / "js" / "deck" / "2026-09-24-test.js"
+        _deck.write_text("window.DECK = 1;", encoding="utf-8")
+        _src.write_text(_html.replace("</body>", '<script src="@@ASSETS@@/js/deck/2026-09-24-test.js">'
+                                                 '</script></body>'), encoding="utf-8")
+        _at(_src, _png.stat().st_mtime - 30)
+        _at(_deck, _png.stat().st_mtime + 30)
+        ok("a deck chassis edited after a frame's PNG stops the panel, and names the chassis",
+           _run() == 1 and any("assets/js/deck/2026-09-24-test.js" in p
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        # a PNG rendered after the edit, and a report from before it: the crash after the screenshot
+        _at(_png, _deck.stat().st_mtime + 5)
+        _at(_rpt, _deck.stat().st_mtime - 5)
+        _qa_at(20)
+        ok("a render report older than the edit stops the panel even when the PNG is newer",
+           _run() == 1 and any(p.startswith("render/render_report.json predates")
+                               for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        _at(_rpt, _png.stat().st_mtime)
+        _qa_at(10)
+        ok("...and the frame rendered again, report and QA after it, is ready", _run() == 0,
+           str(check_renders_current(_q, _assets)) + str(load_machine_qa(_q, _rep)[1]))
+        _src.write_text(_html, encoding="utf-8")
+        _deck.unlink()
+        _at(_src, _png.stat().st_mtime - 30)
+        _png.unlink()
+        _qa_at(2, slides=())
+        ok("machine QA with no record of a rendered frame never measured it",
+           _run() == 1 and any(p.startswith("slide-01.html") for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _mqa.write_text("{", encoding="utf-8")
+        ok("machine QA that can't be read is not ready either",
+           _run() == 1 and any("can't be read" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        ok("...and with qa.py run again after the render, the same deck is ready", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
+
+        # A FRAME ON DISK THE RENDER REPORT NEVER RECORDED (Codex, PR 369): the report a repair's
+        # `render.py --only` writes after discarding an unreadable one holds the repaired frame alone.
+        _extra = _q / "slides" / "slide-02.html"
+        _extra.write_text("<html><body><h1>The second frame</h1></body></html>", encoding="utf-8")
+        ok("a frame on disk the render report holds no record of stops the panel, and is named",
+           _run() == 1 and any("no record of slide-02.html" in p
+                               for p in check_report_complete(_q, _rep)),
+           str(check_report_complete(_q, _rep)))
+        _extra.unlink()
+        ok("...and without it the same deck is ready again", _run() == 0,
+           str(check_report_complete(_q, _rep)))
+        # THE OTHER DIRECTION (Codex, PR 369): a record and a PNG for a frame a repair deleted.
+        _two = {"slides": list(_rep["slides"]) + [{"file": "slide-02.html", "text_nodes": []}]}
+        ok("a report record for a frame no longer in slides/ stops the panel, and is named",
+           any("still holds slide-02.html" in p for p in check_report_complete(_q, _two)),
+           str(check_report_complete(_q, _two)))
+        _orphan = _q / "render" / "slide-03.png"
+        try:
+            from PIL import Image as _Im
+            import numpy as _np
+            _Im.fromarray(_np.random.default_rng(3).integers(0, 256, (80, 64), dtype=_np.uint8)
+                          ).save(_orphan)
+        except ImportError:
+            _orphan.write_bytes(b"\x89PNG\r\n\x1a\n")
+        ok("a PNG in render/ with no source in slides/ stops the panel, because the PDF would ship it",
+           _run() == 1 and any("slide-03.png" in p and "assemble.py" in p
+                               for p in check_report_complete(_q, _rep)), str(check_report_complete(_q, _rep)))
+        _orphan.unlink()
+        # A QA RECORD THAT CARRIES A FAIL (Codex, PR 369): qa.py files "png missing" and exits 0.
+        _mqa.write_text(json.dumps({"slides": [{"file": "slide-01.html", "fails": ["png missing"],
+                                                "warns": []}]}), encoding="utf-8")
+        _t = _rpt.stat().st_mtime + 2
+        _os.utime(_mqa, (_t, _t))
+        ok("a machine QA record that failed its frame, png missing, stops the panel",
+           _run() == 1 and any("png missing" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        ok("...and with qa.py clean again, the same deck is ready", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
         _edition("A person enters in one sentence.")
         ok("carousel no. 33's 'A person enters in one sentence' in the web edition stops the "
            "panel", _run() == 1, "the deck reached the judges")

@@ -237,7 +237,7 @@ At wake, write `out/<date>/run_state.json`:
 ```
 
 `chassis` is Phase 10.5 and is `done` only when the probe frame has passed `deck_chassis`,
-`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's seven gates on the
+`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's eight gates on the
 frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run resumed after any of the
 three must know that from this file, because the art after them is built on their answer.
 
@@ -1244,9 +1244,9 @@ verification satisfies every other gate in the run.
 **Fix `copy.json` to say what the slide says.** Never edit the slide to match a stale record. The
 render is what a reader receives.
 
-## PHASE 12b — THE SEVEN GATES ON THE SETTLED FRAMES
+## PHASE 12b — THE EIGHT GATES ON THE SETTLED FRAMES
 
-Run all seven. This heading used to say four, the ones built after the 2026-08-19 run, and the
+Run all eight. This heading used to say four, the ones built after the 2026-08-19 run, and the
 list grew under it. Every one of them exists for a defect that reached a published frame.
 
 ```
@@ -1257,7 +1257,20 @@ python3 scripts/carousel/coherence_check.py   --date <date>
 python3 scripts/carousel/texan_check.py       --date <date>
 python3 scripts/carousel/noun_trace.py        --date <date>
 python3 scripts/carousel/layout_check.py      --date <date> --require
+python3 scripts/carousel/print_ban.py         --assets --date <date>
 ```
+
+**`print_ban` runs again here, on all nine frames.** On the probe it proved the chassis. Here it
+proves the deck: at least six frames rendered, five standing in the world, and no frame that calls
+`TXT.sky` with its camera pointed where the sky isn't. Until 2026-09-26 the probe was the only
+place a run asked, so a frame two to nine that looked straight at the ground reached the panel, and
+no. 33's frame 4 spent all five rounds there (Codex, PR 369). `panel_ready` asks the no-sky
+question again before every round, because a repair can turn a settled frame toward the ground.
+Every snapshot of a frame that stands in the world or a room prints a verdict into the render
+report: `TXT: SKY IN FRAME` or `TXT: ROOM IN FRAME` when it shows its place, `TXT: NO SKY IN FRAME`
+or `TXT: NO ROOM IN FRAME` when it doesn't. `qa.py` lists a clean verdict as a console warn and
+`gate_status` doesn't count it. A frame that stands somewhere and printed no verdict never went
+through `TXT.snapshot`, a 2D fallback behind a branch, and both gates fail it.
 
 **`layout_check` runs again here, on the frames the critics settled**, for the same reason
 `copy_sync_check` runs after every round: a repair pass edits frames, and a frame repaired into
@@ -1329,8 +1342,21 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 ## PHASE 14b — READY FOR THE PANEL (run this before you spawn a single scorer)
 
 ```
+python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/print_ban.py --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
+
+**`qa.py` runs first, every time.** `panel_ready` reads contrast off `machine_qa.json`, and every
+frame re-rendered since Phase 11 left that file describing a frame it replaced. `panel_ready`
+refuses a QA file older than the newest render, missing a frame or missing altogether, so a run
+that skips the first line gets a red second line rather than a reading of the old deck.
+
+**A frame edited after its render is not ready either.** `panel_ready` holds each PNG and the
+render report to the frame's own HTML and to the deck chassis it loads from `assets/js/deck/`. A
+repair whose `render.py --only` named the wrong frame, or died before reaching it, leaves the
+pixels from before the repair, and `qa.py` would measure those and call them fresh (Codex, PR
+369). Render the frame the message names, run `qa.py`, then this again.
 
 **Non-zero means the deck is not ready to be SCORED.** It does not mean the deck is unshippable.
 Fix the frame and run it again. Do not spawn a scorer while this is red.
@@ -1416,6 +1442,46 @@ narrated four different wrong ways. A label butted into its own recess.
 acceptance list against the render you actually made, and read every universal in the copy against
 the code that computed it. That pass costs one agent's worth of tokens. A scoring round costs
 three, plus a repair pass, plus a re-render, plus the next round.
+
+**A DEFECT NAMED TWICE IS A COMPOSITION PROBLEM, NEVER A RENDER PROBLEM (owner, 2026-09-26: "fix
+the artwork so it stops wasting rounds").** Measured on the score cards of the rendered decks of
+September 24th and 26th, most of the art defects still named in round five had been named in round
+one. The horizon band was named in all five rounds on the 26th, the cab built from primitives in all
+five, and the top-down lawn in all five on the 24th. On both days no judge's artwork score moved
+more than half a point from round one to round five, and the 26th's total moved 0.25. Rounds two to
+five re-rendered objects the run could not fix. So when the panel names the same art defect in two
+rounds running and your repair did not move it, the next round does not re-render that object. **It
+recomposes the frame so the defect is not in it:**
+
+- crop the object out of frame, or crop to one part of it you can build well
+- move the camera
+- replace the object with a kit model (`K.make`)
+- build it in the chassis at the detail the kit uses
+
+Say which one in the run record. When the judges name the same thing on frames built different
+ways, the defect is the engine's. Write it in the run record with the frames and the rounds, and
+recompose around it this run. Phase 17 carries it into `knowledge/carousel/UPGRADE_BACKLOG.md` in
+the `upgrade` commit, because that file is `upgrade` lane and the daily lane can't write it.
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
+before the first render, because a defect it names is a round spent twice.
+
+**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py` and
+`panel_ready.py` again, and spawn nothing while any of them is red.**
+
+```
+python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/print_ban.py --date <date>
+python3 scripts/carousel/panel_ready.py --date <date>
+```
+
+A repair re-renders frames, and Phase 14b ran before any of them. A frame a repair turned toward
+the ground, or into a plate over a sentence, reaches three judges unless this runs first. `qa.py`
+comes first because the repair's `render.py --only` rewrote the frames and not the QA file, and
+`panel_ready` refuses a QA file older than the newest render (Codex, PR 369). `print_ban` runs
+because a repair can take a frame out of the world altogether, its `TXT.sky` or `TXT.interior`
+removed or moved after the kept snapshot, and `panel_ready` asks for a verdict only from a frame that
+still stands somewhere. `print_ban` asks every rendered frame to stand somewhere. All three take
+seconds, and a red one saves three model calls.
 
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a
@@ -1766,7 +1832,9 @@ work brought in from `main` by Phase 16, `knowledge/carousel/ARSENAL.md` moves a
 `upgrade` commit. **It is generated and never hand-edited.** A stale arsenal is how the next run
 fails to find the thing this one built. A model the chassis had to build because the kit lacked
 it is lifted into `assets/js/kit/<family>.js` in the same `upgrade` commit, which the section
-before this one makes the phase's first job.
+before this one makes the phase's first job. Every engine defect the round rule wrote into the run
+record, with its frames and its rounds, is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in
+that commit, because the engine stays `human` and only a maintainer can make that fix.
 
 **A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
 worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch
