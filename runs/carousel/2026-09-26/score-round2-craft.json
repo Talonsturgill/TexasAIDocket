@@ -1,0 +1,126 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "No frame passes the showstopper test: sea band at the horizon on 1, 3, 9; hero navy; primitive cab on 3; 200 places uncountable with ghost rows under type on 5; slab seat and accent pencil on 6; floating recorder on 7; banding, seam and doors behind type on 8; block skyline, torn Texan, hairline through the arm on 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One chassis world and a working camera move; frame 2 flat, interiors warm, hero not one material, empty seat asserted more than seen."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "Every numeral traces, round 1 fixes hold, stripe near 1:1:6; frame 5 hook prints '20 running' from a secondary source; frame 7 kicker widens c19."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, who and what to do are on the slides; stake of the Dallas refusal stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover answered on 3, turn at 6 and 7, close on an action; 4 and 5 make one point."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain Texan hooks; 'It cites a CNBC ride.' flat; frame 9 dek one long sentence."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "New world but familiar moves: count grids, accent near no. 32's amber, ground near no. 33's, county map."
+  }
+ ],
+ "weighted_score": 6.7,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": [
+    1,
+    3,
+    4,
+    8,
+    9
+   ],
+   "defect": "world stops short of the horizon, sea band",
+   "fix": "ground past the far plane, fog in the horizon hue"
+  },
+  {
+   "rank": 2,
+   "frames": [
+    1,
+    4,
+    5,
+    8
+   ],
+   "defect": "white tractor renders navy",
+   "fix": "light the truck until it is the lightest mass"
+  },
+  {
+   "rank": 3,
+   "frames": [
+    3,
+    6,
+    7
+   ],
+   "defect": "primitive cab",
+   "fix": "model a seat and dash, delete the rod, bolt the recorder"
+  },
+  {
+   "rank": 4,
+   "frames": [
+    5
+   ],
+   "defect": "200 not countable, ghost rows under type",
+   "fix": "all rows below the dek"
+  },
+  {
+   "rank": 5,
+   "frames": [
+    9
+   ],
+   "defect": "block skyline, torn Texan, hairline through arm",
+   "fix": "haze the skyline, crop the figure, stop the hairline"
+  },
+  {
+   "rank": 6,
+   "frames": [
+    8
+   ],
+   "defect": "court seam, doors behind hook",
+   "fix": "one slab, hook on sky"
+  },
+  {
+   "rank": 7,
+   "frames": [
+    6
+   ],
+   "defect": "accent pencil competes with the tick",
+   "fix": "graphite pencil"
+  },
+  {
+   "rank": 8,
+   "frames": [
+    2
+   ],
+   "defect": "flat map",
+   "fix": "render the mesh under the key"
+  }
+ ]
+}

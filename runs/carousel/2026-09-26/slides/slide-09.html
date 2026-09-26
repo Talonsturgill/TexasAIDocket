@@ -32,7 +32,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Where to report one</h1>
-<p class="dek" data-follow="18">A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop where law enforcement can also verify authorizations.</p>
+<p class="dek" data-follow="18">A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <svg id="bar" viewBox="0 0 1080 1350"></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -49,7 +49,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"days_enforceable_to_run": {"value": 121, "from": ["c1"], "basis": "May 28th, 2026 to the run date September 26th, 2026"}, "enforceable": {"iso": "2026-05-28", "from": ["c1"]}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "If you see one", counter: "09 / 09", src: "c1 c12 c36 c37", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "If you see one", counter: "09 / 09", src: "c1 c12 c36 c37   ILLUSTRATIVE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 80, max: 90, maxLines: 1 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
@@ -66,7 +66,7 @@ window.renderReady = (async () => {
   const hw2 = K.make('highway', { length: 1600, lanes: 2, surface: 'concrete', gantry: false, embank: E, seed: 5 });
   hw2.position.set(0, 0, -200 + LEN / 2 + 800); TXT.add(R, hw2);
   const px = -5.2, pz = OZ + 5.7;
-  const cam = [px + 0.72, DECK + 1.82, pz - 3.4];
+  const cam = [px + 0.55, DECK + 1.78, pz - 2.2];
   TXT.frame(R, { from: cam, look: [px + 2.2, cam[1] - 7.9, pz + 70] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [px, DECK, pz], distance: 80, shadowFar: 200 });

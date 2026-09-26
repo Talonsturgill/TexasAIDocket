@@ -348,7 +348,7 @@ art:
 type:
   kicker: "The Permian Basin"
   hook: "35 already ran with nobody in the cab"
-  dek: "Kodiak says 35 driverless trucks were running commercially in its Permian Basin deployment with no humans in the cab at the end of the second quarter."
+  dek: "Kodiak says 35 driverless trucks were running commercially in its Permian Basin industrial deployment with no humans in the cab at the end of the second quarter."
 
 acceptance:
   - "the frame reads \"35 already ran with nobody in the cab\""
@@ -411,11 +411,11 @@ art:
 
 type:
   kicker: "Aurora's year"
-  hook: "200 allocated, 20 running"
+  hook: "200 by year end, 20 reported"
   dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride."
 
 acceptance:
-  - "the frame reads \"200 allocated, 20 running\""
+  - "the frame reads \"200 by year end, 20 reported\""
   - "exactly 200 places are painted and exactly 20 hold a tractor, each cab readable at 432 px"
   - "the far rows fade into the haze before they reach the type"
   - "the dek attributes the 20 to Breitbart citing CNBC"
@@ -532,7 +532,7 @@ art:
   motion: "from the hook down to the lamp"
 
 type:
-  kicker: "What the state can't require"
+  kicker: "What the department can't require"
   hook: "Dallas asked for crash history"
   dek: "The department said the statute does not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements."
 
@@ -557,7 +557,7 @@ job: >
   Draw when the state steps in and how long an operator can be kept off the road, as a length a
   reader can pace.
 
-claims: [c13, c14, c15, c16, c17]
+claims: [c13, c14, c15, c16, c17, c38]
 numerals:
   - value_from: c15   # 10 days
   - value_from: c16   # 10 and 60 days
@@ -598,7 +598,7 @@ art:
 type:
   kicker: "When the state steps in"
   hook: "The line is serious bodily injury"
-  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says enforcement action is unlikely."
+  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local police."
 
 acceptance:
   - "the frame reads \"The line is serious bodily injury\""
@@ -664,7 +664,7 @@ art:
 type:
   kicker: "If you see one"
   hook: "Where to report one"
-  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop where law enforcement can also verify authorizations."
+  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations."
 
 acceptance:
   - "the frame reads \"Where to report one\""

@@ -483,6 +483,19 @@
    "confidence": "high",
    "location": "Enforcement tab",
    "verification": "added by the showrunner after the fact check; exact match on the live page fetched 2026-09-26"
+  },
+  {
+   "id": "c38",
+   "candidate": 1,
+   "text": "Roadside enforcement of driverless vehicles belongs to DPS and local law enforcement, as it does for human-driven vehicles.",
+   "quote": "Roadside enforcement is the authority of the Texas Department of Public Safety and local law enforcement agencies",
+   "url": "https://www.txdmv.gov/AVprogram",
+   "source_type": "primary_official",
+   "source_title": "Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program",
+   "retrieved": "2026-09-26",
+   "confidence": "high",
+   "location": "Enforcement tab",
+   "verification": "added by the showrunner after the panel's second round; exact match in the page fetched 2026-09-26, out/2026-09-26/tmp/src/avprogram.html line 2056"
   }
  ],
  "rejected": [

@@ -1,0 +1,94 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.61,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frame": "8 and caption",
+   "defect": "c14 'administrative' dropped, roadside enforcement by DPS and police omitted",
+   "fix": "restore 'administrative', add the roadside enforcement sentence as a claim"
+  },
+  {
+   "rank": 2,
+   "frame": "5",
+   "defect": "hook asserts a secondary relay",
+   "fix": "attributive hook"
+  },
+  {
+   "rank": 3,
+   "frame": "3, 9, 4, 1",
+   "defect": "showstopper shortfalls",
+   "fix": "model seat, crop figure, haze, caliche"
+  },
+  {
+   "rank": 4,
+   "frame": "7 and web edition",
+   "defect": "'the state' widens c19",
+   "fix": "'the department'"
+  },
+  {
+   "rank": 5,
+   "frame": "8",
+   "defect": "stripe never says what it follows",
+   "fix": "suspension in the first leader"
+  },
+  {
+   "rank": 6,
+   "frame": "web edition",
+   "defect": "cites c13 and c1 for c36 and c37, promise",
+   "fix": "cite c36 c37, cut the promise"
+  },
+  {
+   "rank": 7,
+   "frame": "9",
+   "defect": "run on, no ILLUSTRATIVE",
+   "fix": "split, add ILLUSTRATIVE"
+  },
+  {
+   "rank": 8,
+   "frame": "5",
+   "defect": "rows illegible",
+   "fix": "pull back"
+  }
+ ]
+}

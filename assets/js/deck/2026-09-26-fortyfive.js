@@ -35,7 +35,7 @@
     /* blueHour, tuned once for the deck: the haze is the cool horizon blue rather than the preset's
      * peach, because a peach haze over a blue-grey ground grades every frame mauve (round 1 critics,
      * five of five). The amber stays in the sky's seam and the lamps, where it belongs. */
-    sky: { preset: "blueHour", haze: 0x5d6f98, horizon: 0x5a74a6, fogDensity: 0.0045, glow: 0.2, horizonGlow: 0.12, sun: 0xffb48c,
+    sky: { preset: "blueHour", haze: 0x9496ba, horizon: 0x5a74a6, fogDensity: 0.0045, glow: 0.2, horizonGlow: 0.12, sun: 0xffb48c,
       rig: { key: { color: 0xf0c6a6, i: 1.0, radius: 10 }, rim: { color: 0x9ab8ff, i: 1.0, pos: [-8, 6, -8] },
              fill: { color: 0x4c62a0, i: 0.55, pos: [-4, 4, 9] }, ambient: { color: 0x2a3456, i: 0.22 } } },
     ground: "#151D33",
