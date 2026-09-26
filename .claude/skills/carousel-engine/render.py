@@ -965,6 +965,11 @@ def resolve_html(src: Path, resolved_dir: Path) -> Path:
     return dst
 
 
+# three.js's own wording for a program that did not compile or link, and WebGL's info log line
+SHADER_ERROR = re.compile(r"THREE\.WebGLProgram: Shader Error|VALIDATE_STATUS false|"
+                          r"THREE\.WebGLShader: gl\.getShaderInfoLog|^ERROR: \d+:\d+:", re.M)
+
+
 def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
@@ -976,8 +981,20 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
     page.add_init_script(CANVAS_TEXT_HOOK_JS.replace("__TEXT_WINDOW__", str(TEXT_WINDOW)))
-    page.on("console", lambda m: rec["console_errors"].append(m.text)
-            if m.type in ("error",) else None)
+    # A SHADER THAT FAILS TO COMPILE IS A RENDER ERROR, not a console note (2026-09-26).
+    # three.js reports it through console.error and carries on, and the mesh simply does not
+    # draw. This handler used to file every console error as a warning, so a page with a broken
+    # shader printed `errors=0` and passed: found by rendering a double init() of txthree's sky
+    # fog, which failed to compile on every fogged material. Other console errors stay warnings,
+    # because a page may log on purpose (the kit's KIT_STATS line is a console.error).
+    def _on_console(m):
+        if m.type not in ("error",):
+            return
+        rec["console_errors"].append(m.text)
+        if SHADER_ERROR.search(m.text):
+            first = next((ln for ln in m.text.splitlines() if ln.strip()), m.text)
+            rec["page_errors"].append(f"shader compile error: {first.strip()[:200]}")
+    page.on("console", _on_console)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
     try:
         page.goto(path.as_uri(), wait_until="load", timeout=timeout_ms)

@@ -101,8 +101,10 @@ defect `bespoke_check.py` was written for, and `deck_chassis.py` refuses one by 
 chassis hands a frame primitives. The frame decides what to build from them.** Every frame's
 composition is still written per frame, which is the whole strength of this machine.
 
-The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
-not edit the workshop.
+The run owns `assets/js/deck/**`, and since 2026-09-26 its retro (the `upgrade` lane) owns
+`assets/js/kit/**`, so a model the chassis had to build is lifted into the kit the same day. The
+engine, the registry and the grade stay the maintainer's. A run may build a world and its retro
+may add to the kit. Neither may edit the engine.
 
 ### ONE LIGHT, ONE MATERIAL, ONE GRADE, AND NO SCREEN
 
