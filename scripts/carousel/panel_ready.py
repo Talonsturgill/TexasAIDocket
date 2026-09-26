@@ -182,6 +182,26 @@ def check_pointers(base: Path, report: dict) -> list[str]:
     return bad
 
 
+def check_report_complete(base: Path, report: dict) -> list[str]:
+    """THE RENDER REPORT HOLDS A RECORD OF EVERY FRAME ON DISK (Codex, PR 369).
+
+    Every group here that reads the render reads `render_report.json`, and a frame with no record in
+    it is skipped by all of them in silence. It happens: when the report is unreadable, `render.py
+    --only 4` discards it and writes one holding slide 4 alone, and `qa.py` then measures that same
+    subset, so the sky, the occlusion, the exemptions and the contrast of the other eight frames go
+    unread into a scoring round. `print_ban` compares the report with the slides, and it runs in
+    Phase 12b, not before each round. This does the same comparison before each round.
+    """
+    listed = {str(rec["file"]) for rec in (report.get("slides") or [])
+              if isinstance(rec, dict) and rec.get("file")}
+    missing = [f.name for f in sorted((base / "slides").glob("slide-*.html")) if f.name not in listed]
+    if not missing:
+        return []
+    return [f"the render report holds no record of {', '.join(missing)}, so every check here that "
+            f"reads the render skipped {'it' if len(missing) == 1 else 'them'}. Render the deck, run "
+            f"qa.py, then this again"]
+
+
 def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
     """MACHINE QA MEASURED THE FRAMES THAT ARE HERE NOW (Codex, PR 369).
 
@@ -431,11 +451,11 @@ def check_sky_in_frame(report: dict) -> list[str]:
     """NO FRAME THAT CALLS TXT.sky POINTS ITS CAMERA WHERE THE SKY ISN'T.
 
     WIRED HERE ON 2026-09-26. `TXT.snapshot` prints TXT.NO_SKY when a frame stands in the world
-    and its camera shows none of it, with nothing built overhead, and render.py keeps that line in
-    the report. print_ban reads it on the probe and in Phase 12b. This reads it before every panel
-    round, because a repair can turn a settled frame toward the ground and the next round's judges
-    would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's
-    frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
+    and its camera shows none of it while standing inside nothing built, and render.py keeps that
+    line in the report. print_ban reads it on the probe and in Phase 12b. This reads it before every
+    panel round, because a repair can turn a settled frame toward the ground and the next round's
+    judges would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and
+    no. 34's frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
 
     The reading is print_ban's own, the last line on the page, so a preview withdrawn by the kept
     snapshot is clean here too and the two can't drift. An import that fails raises rather than
@@ -444,8 +464,9 @@ def check_sky_in_frame(report: dict) -> list[str]:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from print_ban import kept_no_sky
     return [f"{rec.get('file') or '?'} calls TXT.sky and its camera shows none of it, with nothing "
-            f"built overhead. Lift the camera until the horizon is in frame, or stand it inside "
-            f"something built (a room with TXT.interior, a cab, a canopy)"
+            f"built around it. Lift the camera until the horizon is in frame, or stand it inside "
+            f"something built (the kit's semi_cab_interior, or a TXT.interior room filling half the "
+            f"frame). A roof, a canopy or a tree overhead is not an interior"
             for rec in (report.get("slides") or [])
             if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))]
 
@@ -865,6 +886,8 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         ("nothing a reader needs is exempt from the gates", check_nothing_exempt(report)),
         ("no published text has a plate through it", check_nothing_occluded(report)),
         ("every slide number in published copy resolves", check_pointers(base, report)),
+        ("the render report holds a record of every frame on disk",
+         check_report_complete(base, report)),
         ("machine QA measured the frames that are here now", qa_problems),
         (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
@@ -1395,6 +1418,18 @@ def self_test() -> int:
         _qa_at(2)
         ok("...and with qa.py run again after the render, the same deck is ready", _run() == 0,
            str(load_machine_qa(_q, _rep)[1]))
+
+        # A FRAME ON DISK THE RENDER REPORT NEVER RECORDED (Codex, PR 369): the report a repair's
+        # `render.py --only` writes after discarding an unreadable one holds the repaired frame alone.
+        _extra = _q / "slides" / "slide-02.html"
+        _extra.write_text("<html><body><h1>The second frame</h1></body></html>", encoding="utf-8")
+        ok("a frame on disk the render report holds no record of stops the panel, and is named",
+           _run() == 1 and any("no record of slide-02.html" in p
+                               for p in check_report_complete(_q, _rep)),
+           str(check_report_complete(_q, _rep)))
+        _extra.unlink()
+        ok("...and without it the same deck is ready again", _run() == 0,
+           str(check_report_complete(_q, _rep)))
         _edition("A person enters in one sentence.")
         ok("carousel no. 33's 'A person enters in one sentence' in the web edition stops the "
            "panel", _run() == 1, "the deck reached the judges")

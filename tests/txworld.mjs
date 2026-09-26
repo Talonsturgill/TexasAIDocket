@@ -100,6 +100,15 @@ const HORIZON = (size, surface) => `async (T, TXT, cv) => {
 // The same world with the camera looking straight down at the ground: no sky in frame.
 const GROUND_ONLY = `async (T, TXT, cv) => {
   const W = Object.assign({}, TXT.worlds.goldenHour);
+  // A closed shelter around a camera at 1.6 m: a roof and four walls, 3 by 3 by 2.6 m. Covers all
+  // of the sky above the camera, where an interior covers 0.8 and a carport roof alone 0.59.
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
   const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
   TXT.frame(R, { from: [0, 40, 0], look: [0, 0, -0.01] });
   TXT.sky(R, W);
@@ -115,14 +124,13 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const orig = console.error; console.error = (...a) => { before.push(String(a[0])); orig.apply(console, a); };
   await TXT.snapshot(Rm);
   console.error = orig;
-  // and the open camera again, now under a roof the frame built: a cab, a canopy. Inside, not a void.
+  // and the open camera again, now inside a shelter the frame built, walls and a roof: inside, not a void
   const Rr = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
   TXT.frame(Rr, { from: [0, 1.6, 0], look: [0, 0, -0.01] });
   TXT.sky(Rr, W);
   TXT.rig(Rr, { key: Object.assign({}, W.rig.key, { pos: [4, 8, 4] }), ambient: W.rig.ambient });
   TXT.ground(Rr, { surface: 'caliche', size: 900, tile: 5 });
-  const roof = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
-  roof.position.set(0, 2.4, 0); Rr.scene.add(roof);
+  Rr.scene.add(shelter());
   const roofErrors = [];
   const orig2 = console.error; console.error = (...a) => { roofErrors.push(String(a[0])); orig2.apply(console, a); };
   await TXT.snapshot(Rr);
@@ -188,13 +196,13 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   TXT.frame(Rt, { from: [0, 30, 0], look: [0, 30 - 100 * Math.tan(18 * Math.PI / 180), -100] });
   dress(Rt, [20, 40, 20]);
   const rollErrors = await capture(() => TXT.snapshot(Rt));
-  // a roof whose parent group is hidden: the renderer draws neither, so it is no roof (Codex, PR 369)
+  // a shelter whose parent group is hidden: the renderer draws none of it, so it is no shelter
+  // (Codex, PR 369)
   const Rh = world(40);
   TXT.frame(Rh, { from: [0, 1.6, 0], look: [0, 0, -0.01] });
   dress(Rh, [4, 8, 4]);
   const shed = new T.Group(); shed.visible = false;
-  const lid = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
-  lid.position.set(0, 2.4, 0); shed.add(lid); Rh.scene.add(shed);
+  shed.add(shelter()); Rh.scene.add(shed);
   const hiddenErrors = await capture(() => TXT.snapshot(Rh));
   // a preview pointed at the ground, then the kept frame at the horizon, on the same renderer: its
   // last snapshot is its verdict, so the kept one withdraws the preview's line (Codex, PR 369)
@@ -220,11 +228,10 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   TXT.ground(Rd, { surface: 'caliche', size: 900, tile: 5 });
   dome.visible = false;
   const domeErrors = await capture(() => TXT.snapshot(Rd));
-  // a roof at zero opacity: a ray still meets it and the pixels show nothing, so it is no roof
+  // a shelter at zero opacity: a ray still meets it and the pixels show nothing, so it is no shelter
   const Rg = world(40);
   TXT.frame(Rg, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rg, [4, 8, 4]);
-  const glass = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ transparent: true, opacity: 0 }));
-  glass.position.set(0, 2.4, 0); Rg.scene.add(glass);
+  Rg.scene.add(shelter(new T.MeshStandardMaterial({ transparent: true, opacity: 0 })));
   const glassErrors = await capture(() => TXT.snapshot(Rg));
   // an option that once skipped the check is ignored: the kept snapshot is always judged
   const Rs = world(40);
@@ -232,14 +239,15 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const optErrors = await capture(() => TXT.snapshot(Rs, { skyCheck: false }));
   // THE CAMERA'S LAYERS (Codex, PR 369). The renderer draws only what shares a layer with the
   // camera, and a ray, a room or a dome it doesn't draw answers nothing. First the whole world on
-  // layer 1 and a roof on layer 0, which the camera never shows: looking down, that is a top-down
-  // frame. Then the same roof moved onto layer 1, where it is a roof, and the kept frame withdraws.
+  // layer 1 and a shelter on layer 0, which the camera never shows: looking down, that is a top-down
+  // frame. Then the same shelter moved onto layer 1, where it is a shelter, and the kept frame
+  // withdraws.
   const Rl = world(40);
   TXT.frame(Rl, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rl, [4, 8, 4]);
   Rl.scene.traverse((o) => o.layers.set(1)); Rl.camera.layers.set(1);
-  const lid1 = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
-  lid1.position.set(0, 2.4, 0); Rl.scene.add(lid1);
-  const layerErrors = await capture(async () => { await TXT.snapshot(Rl); lid1.layers.set(1); await TXT.snapshot(Rl); });
+  const hut = shelter(); Rl.scene.add(hut);
+  const layerErrors = await capture(async () => {
+    await TXT.snapshot(Rl); hut.traverse((o) => o.layers.set(1)); await TXT.snapshot(Rl); });
   // a dome on a layer the camera doesn't render: facing the horizon, the frame shows no sky
   const Rv = world(40);
   TXT.frame(Rv, { from: [0, 2, 0], look: [0, 2, -100] }); dress(Rv, [20, 40, 20]);
@@ -252,8 +260,32 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   TXT.rig(Rw, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
   Rw.scene.traverse((o) => o.layers.set(1)); Rw.room.traverse((o) => o.layers.set(0)); Rw.camera.layers.set(1);
   const wallErrors = await capture(() => TXT.snapshot(Rw));
+  // A ROOF, A LAMP, A ROOM FAR BELOW: SOMETHING BUILT IS NOT AN INTERIOR (Codex, PR 369). One ray
+  // straight up took each of the first two for a roof, and the third was "looked into" from 300 m.
+  // A carport roof alone, 3 by 3 m and 0.8 m over the camera, covers 0.59 of the sky above it.
+  const Rc = world(40);
+  TXT.frame(Rc, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rc, [4, 8, 4]);
+  const carport = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
+  carport.position.set(0, 2.4, 0); Rc.scene.add(carport);
+  const carportErrors = await capture(() => TXT.snapshot(Rc));
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  const carportCover = cover(Rc);
+  // a lamp head 5 m over the camera, straight up, where the old single ray met it
+  const Rq = world(40);
+  TXT.frame(Rq, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rq, [4, 8, 4]);
+  const lamp = new T.Mesh(new T.BoxGeometry(0.3, 0.1, 0.6), new T.MeshStandardMaterial({ color: 0x333333 }));
+  lamp.position.set(0, 6.6, 0); Rq.scene.add(lamp);
+  const lampErrors = await capture(() => TXT.snapshot(Rq));
+  // a room 300 m straight below the camera: its footprint is a fraction of a percent of the frame
+  const Rf = world(40);
+  TXT.frame(Rf, { from: [0, 300, 0], look: [0, 0, -0.01] });
+  TXT.sky(Rf, W); TXT.interior(Rf, {});
+  TXT.rig(Rf, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+  const farErrors = await capture(() => TXT.snapshot(Rf));
+  const shelterCover = cover(Rr);
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
            crossErrors, domeErrors, glassErrors, optErrors, layerErrors, veilErrors, wallErrors,
+           carportErrors, carportCover, lampErrors, farErrors, shelterCover,
            orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
            outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
            shown: TXT.SKY_SHOWN };
@@ -313,7 +345,7 @@ check('a portrait camera rolled 90 degrees and pitched 18 down shows no sky, and
       g.result.rollSky === 0 && Array.isArray(g.result.rollErrors) &&
       g.result.rollErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify({ rollSky: g.result.rollSky, rollErrors: g.result.rollErrors }));
-check('a roof under a hidden parent is no roof: looking down beneath it IS flagged',
+check('a shelter under a hidden parent is no shelter: looking down inside it IS flagged',
       Array.isArray(g.result.hiddenErrors) &&
       g.result.hiddenErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.hiddenErrors));
@@ -335,7 +367,7 @@ check('a roof under a hidden parent is no roof: looking down beneath it IS flagg
 check('a sky dome hidden before the kept snapshot is no sky: the frame IS flagged',
       Array.isArray(g.result.domeErrors) && g.result.domeErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.domeErrors));
-check('a roof at zero opacity is no roof: looking down beneath it IS flagged',
+check('a shelter at zero opacity is no shelter: looking down inside it IS flagged',
       Array.isArray(g.result.glassErrors) && g.result.glassErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.glassErrors));
 check('there is no option to skip the check: skyCheck false on the kept snapshot is still judged',
@@ -343,7 +375,7 @@ check('there is no option to skip the check: skyCheck false on the kept snapshot
       JSON.stringify(g.result.optErrors));
 {
   const le = Array.isArray(g.result.layerErrors) ? g.result.layerErrors : [];
-  check('a roof on a layer the camera doesn\'t render is no roof, and the same roof on its layer is',
+  check('a shelter on a layer the camera doesn\'t render is no shelter, and the same shelter on its layer is',
         le.length === 2 && le[0].startsWith('TXT: NO SKY IN FRAME') && le[1].startsWith('TXT: SKY IN FRAME'),
         JSON.stringify(le));
 }
@@ -360,9 +392,22 @@ check('a room the camera has left exempts nothing: looking down 40 m away IS fla
 check('a deliberate interior looked down on is a room, and is NOT flagged',
       Array.isArray(g.result.roomErrors) && !g.result.roomErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.roomErrors));
-check('a camera under a roof the frame built looks down from inside, and is NOT flagged',
-      Array.isArray(g.result.roofErrors) && !g.result.roofErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
-      JSON.stringify(g.result.roofErrors));
+check(`a camera inside a shelter the frame built looks down from inside, and is NOT flagged ` +
+      `(it covers ${g.result.shelterCover} of the sky above the camera)`,
+      g.result.shelterCover >= 0.8 && Array.isArray(g.result.roofErrors) &&
+      !g.result.roofErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ cover: g.result.shelterCover, errors: g.result.roofErrors }));
+check(`a carport roof alone is not an interior: looking down beneath it IS flagged ` +
+      `(it covers ${(g.result.carportCover || 0).toFixed(2)} of the sky above the camera)`,
+      g.result.carportCover < 0.8 && Array.isArray(g.result.carportErrors) &&
+      g.result.carportErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ cover: g.result.carportCover, errors: g.result.carportErrors }));
+check('a lamp head straight over the camera is no roof: looking down beneath it IS flagged',
+      Array.isArray(g.result.lampErrors) && g.result.lampErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.lampErrors));
+check('a room 300 m straight below the camera is no interior shot: the frame IS flagged',
+      Array.isArray(g.result.farErrors) && g.result.farErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.farErrors));
 check('...and the engine says so on the console, in the words print_ban reads',
       g.consoleErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')) && g.result.marker === 'TXT: NO SKY IN FRAME',
       JSON.stringify(g.consoleErrors));

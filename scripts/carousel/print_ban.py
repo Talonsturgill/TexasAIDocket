@@ -261,7 +261,9 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     this reads them, so the finding lands on the probe frame and not on a panel round.
 
     Measured through the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5
-    fail, and no. 34's page on the cab seat passes. No. 33's frame 6 passes as shipped. It looked
+    fail, and no. 34's page on the cab seat passes, standing inside a cab that covers 0.97 of the
+    sky above its camera. A roof, a canopy or a tree is not an interior (TXT.enclosure's own
+    measurements). No. 33's frame 6 passes as shipped. It looked
     down through an orthographic camera for three rounds, in a source the run never committed, and
     then showed sky behind the type and failed for a horizon hidden behind the dek, which a count
     of sky in frame can't see.
@@ -369,10 +371,12 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                        f"render of the deck on disk. Render the deck and run this again")
         for name in frames or []:
             out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
-                       f"or looking straight down with nothing built overhead, so a reader sees objects in "
-                       f"a void. Lift the camera until the horizon is in frame, or stand it inside something "
-                       f"built (a room with TXT.interior, a cab, a canopy). No. 33's frame 4, a lawn seen "
-                       f"straight down, was named top-down in all five panel rounds")
+                       f"or looking straight down, and it stands inside nothing built, so a reader sees "
+                       f"objects in a void. Lift the camera until the horizon is in frame, or stand it "
+                       f"inside something built (the kit's semi_cab_interior, or a TXT.interior room "
+                       f"filling half the frame). A roof, a canopy or a tree overhead is not an interior. "
+                       f"No. 33's frame 4, a lawn seen straight down, was named top-down in all five "
+                       f"panel rounds")
     return out
 
 

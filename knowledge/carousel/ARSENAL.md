@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 26 |
+| engine calls (`TXT.*`) | 27 |
 | world presets | 6 |
 | kit models | 97 in 10 families |
 | asset libraries | 21 |
@@ -85,13 +85,14 @@ const shot = await TXT.snapshot(R);
 | `TXT.contact(R, obj, o)` | A soft falloff sized to the object's own footprint and turned with it. |
 | `TXT.deckRig(R, spec, o)` | THE DECK'S LIGHT, READ FROM THE CHASSIS AND NEVER RESTATED (2026-09-23). |
 | `TXT.deckWorld()` |  |
-| `TXT.enclosed(R)` | true when something the frame built stands over the camera within `reach` metres: a cab roof, a ceiling, a canopy. |
+| `TXT.enclosed(R)` | true when the camera stands inside something the frame built: at least ENCLOSED_MIN of the sky above it is covered within `reach` metres. |
+| `TXT.enclosure(R, reach)` | the share of the sky above the camera that the frame built covers within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by solid angle, each asking whether it meets a mesh the ... |
 | `TXT.environment(R, opts)` | A tiny "photo studio" room rendered through PMREMGenerator: emissive panels give PBR materials real reflections without any texture files. intensity scales scene.environmentIntensity (r163+) or panel brightness. |
 | `TXT.extrude(outline, depth, mat, o)` | Extruded 2D shape (array of [x,y]), plaques, arrows, silhouettes with depth. |
 | `TXT.fitHeight(group, worldHeight)` | Raises the rendered-hero floor for a single foreground object that must read as a SILHOUETTE against a darker background (the backlit-machine case). |
 | `TXT.frame(R, o)` |  |
 | `TXT.ground(R, { surface:'caliche'\|'dirt'\|'asphalt'\|'concrete'\|'grass', tile:8, size:900, color, seed, joints })` | a seeded, tileable surface map + roughness + bump, and slow macro variation in vertex colour so the tile never shows. (defined twice, the later one wins) |
-| `TXT.inRoom(R)` | true when the camera stands inside the room TXT.interior built, or looks down into it. |
+| `TXT.inRoom(R)` | true when the room TXT.interior built fills at least ROOM_MIN of the frame. |
 | `TXT.interior(R, { w:12, d:10, h:4.2, floor:'concrete', wall:0xb9b3a7, window:'left', ceiling:false, light:0.55 })` | A hearing room, an office or a desk is a real frame with no sky, and before this it had nothing to stand in but a flat colour, which is the void the world was built to end. |
 | `TXT.lathe(profile, mat, o)` | Lathe from a 2D profile (array of [x,y]), vessels, turbines, valves. |
 | `TXT.objectHero(R, group, o)` |  |

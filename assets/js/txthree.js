@@ -306,50 +306,93 @@ export function init(THREE) {
   const onStage = (o, scene) => { for (let q = o; q; q = q.parent) { if (!q.visible) return false; if (q === scene) return true; } return false; };
   // ...and on a layer this camera renders, which the renderer checks as well (Codex, PR 369).
   const inView = (m, cam) => drawn(m) && m.layers.test(cam.layers);
-  /* TXT.enclosed(R) — true when something the frame built stands over the camera within `reach`
-   * metres: a cab roof, a ceiling, a canopy. A camera under a roof looking down is inside, and the
-   * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky. Measured with
-   * one ray straight up, never guessed from the source, so a chassis that builds its own cab needs no
-   * flag to say so (no. 34's frame 6, a page on the cab seat, is the case). The sky dome is the
-   * world, not a roof, and is never hit. Only what the renderer draws is tested: a mesh keeps its
-   * own visible flag under a hidden parent, and it is no roof, and neither is a mesh on a layer the
-   * camera doesn't render (Codex, PR 369). */
-  TXT.enclosed = function (R, reach) {
+  /* INSIDE IS MEASURED AS A SHARE, NEVER AS ONE RAY (Codex, PR 369). A single ray straight up took
+   * a street lamp for a roof, and a room counted as "looked into" from 300 m above it. The
+   * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky, so both
+   * exemptions now ask how much of an interior there is. Measured on 2026-09-26 through this engine
+   * and the kit, as the share of the sky above the camera that the frame built covers within 12 m:
+   *
+   *   interiors   the kit's semi_cab_interior at the driver's eye 0.96, a TXT.interior room with a
+   *               ceiling 0.89, a closed shelter 1.0
+   *   open        the kit gas station's canopy 0.63, a carport roof 0.59, a pecan's crown 0.25, a
+   *               streetlight's head 0.01, a lamp 5 m up 0
+   *
+   * ENCLOSED_MIN sits in that gap, so a roof, a canopy or a tree over a camera looking down is still
+   * a frame of the ground. TXT.interior builds no ceiling by default and scores 0.14 to 0.2 from
+   * inside, so a room answers by what the frame shows instead: its walls, or its floor between
+   * them, fill 0.88 to 1.0 of a frame taken in it or looking into its open side, and 0.002 of one
+   * taken 300 m above it. ROOM_MIN is half the frame. Neither number is on TXT, so a frame can't
+   * lower one. */
+  const ENCLOSED_MIN = 0.8, ROOM_MIN = 0.5, HEMI_RAYS = 128;
+  /* TXT.enclosure(R, reach) — the share of the sky above the camera that the frame built covers
+   * within `reach` metres (12 by default): HEMI_RAYS rays spread evenly over the upper hemisphere by
+   * solid angle, each asking whether it meets a mesh the camera renders, drawn and on its layers. A
+   * mesh keeps its own visible flag under a hidden parent, and traverseVisible skips it. The sky
+   * dome is the world, not a roof, and is never counted. A chassis that builds its own cab needs no
+   * flag to be measured. */
+  TXT.enclosure = function (R, reach) {
     R.camera.updateMatrixWorld();
     const eye = new THREE.Vector3().setFromMatrixPosition(R.camera.matrixWorld);
     const rc = new THREE.Raycaster(eye, new THREE.Vector3(0, 1, 0), 0.05, reach || 12);
     rc.camera = R.camera;
-    rc.layers.mask = R.camera.layers.mask;       // only what this camera renders can be its roof
+    rc.layers.mask = R.camera.layers.mask;       // only what this camera renders can cover it
     const hit = [];
     R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) hit.push(m); });
-    try { return rc.intersectObjects(hit, false).length > 0; } catch (e) { return false; }
+    if (!hit.length) return 0;
+    const ga = Math.PI * (3 - Math.sqrt(5));
+    let covered = 0;
+    try {
+      for (let i = 0; i < HEMI_RAYS; i++) {
+        const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
+        rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
+        if (rc.intersectObjects(hit, false).length) covered++;
+      }
+    } catch (e) { return 0; }
+    return covered / HEMI_RAYS;
   };
-  /* TXT.inRoom(R) — true when the camera stands inside the room TXT.interior built, or looks down
-   * into it. A room answers the showstopper test's question 3 only for a camera that shows it, so
-   * a camera moved outside it, a room taken out of the scene or hidden before the snapshot, or a
-   * room left standing in the distance is not an interior shot (Codex, PR 369: the first cut
-   * exempted any frame that had called TXT.interior at all). The room's walls give its bounds, with
-   * a margin of about one wall's thickness, and the look point is where the camera's own ray meets
-   * its floor. */
+  /* TXT.enclosed(R) — true when the camera stands inside something the frame built: at least
+   * ENCLOSED_MIN of the sky above it is covered within `reach` metres. */
+  TXT.enclosed = function (R, reach) { return TXT.enclosure(R, reach) >= ENCLOSED_MIN; };
+  // The share of the frame the room shows: the same grid of rays TXT.skyInFrame casts, through the
+  // camera's own projection, each meeting a wall or the floor between the walls.
+  const roomShare = (R, walls) => {
+    const cam = R.camera;
+    cam.updateMatrixWorld();
+    const box = new THREE.Box3();
+    walls.forEach((w) => { w.updateWorldMatrix(true, false); box.expandByObject(w); });
+    if (box.isEmpty()) return 0;
+    const floorY = box.min.y, rc = new THREE.Raycaster(), v = new THREE.Vector2(), q = new THREE.Vector3();
+    rc.layers.mask = cam.layers.mask;
+    const N = 24;
+    let seen = 0;
+    for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
+      v.set(-1 + 2 * i / N, -1 + 2 * j / N);
+      rc.setFromCamera(v, cam);
+      let s = false;
+      try { s = rc.intersectObjects(walls, false).length > 0; } catch (e) { s = false; }
+      const o = rc.ray.origin, d = rc.ray.direction;
+      if (!s && d.y < -1e-9) {
+        const t = (floorY - o.y) / d.y;
+        if (t > 0) {
+          q.copy(o).addScaledVector(d, t);
+          s = q.x >= box.min.x && q.x <= box.max.x && q.z >= box.min.z && q.z <= box.max.z;
+        }
+      }
+      if (s) seen++;
+    }
+    return seen / ((N + 1) * (N + 1));
+  };
+  /* TXT.inRoom(R) — true when the room TXT.interior built fills at least ROOM_MIN of the frame. Only
+   * walls the camera renders count, on stage, drawn and on its layers, so a room taken out of the
+   * scene, hidden, or on a layer the camera skips is no room, and neither is one the camera has left
+   * or sees from far away (Codex, PR 369). */
   TXT.inRoom = function (R) {
     const room = R.room;
     if (!room || !room.isObject3D || !onStage(room, R.scene)) return false;
-    let shown = false;
-    room.traverseVisible((m) => { if (m.isMesh && inView(m, R.camera)) shown = true; });
-    if (!shown) return false;                     // walls made invisible are no room
-    const box = new THREE.Box3().setFromObject(room);
-    if (box.isEmpty()) return false;
-    const floorY = box.min.y;
-    box.expandByScalar(0.25);
-    R.camera.updateMatrixWorld();
-    const cam = new THREE.Vector3().setFromMatrixPosition(R.camera.matrixWorld);
-    if (box.containsPoint(cam)) return true;
-    const fwd = new THREE.Vector3(); R.camera.getWorldDirection(fwd);
-    if (fwd.y > -1e-6) return false;
-    const t = (floorY - cam.y) / fwd.y;
-    if (!(t > 0)) return false;
-    const p = cam.clone().addScaledVector(fwd, t);
-    return p.x >= box.min.x && p.x <= box.max.x && p.z >= box.min.z && p.z <= box.max.z;
+    const walls = [];
+    room.traverseVisible((m) => { if (m.isMesh && inView(m, R.camera)) walls.push(m); });
+    if (!walls.length) return false;                // walls made invisible are no room
+    return roomShare(R, walls) >= ROOM_MIN;
   };
   // Read by scripts/carousel/print_ban.py off the render report. Keep the three in step.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
@@ -379,23 +422,27 @@ export function init(THREE) {
      * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
      * print_ban counted the call. This counts what the camera shows, and the render report carries
      * it to print_ban before a panel sits. Measured on the shipped decks: no. 33's frame 4 and no.
-     * 34's frames 4 and 5 print it, and no. 34's page on the cab seat does not. */
-    // A ROOM THE CAMERA SHOWS IS EXEMPT: "a sky or a deliberate interior" is the test's own question
-    // 3, and a desk or a document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM,
-    // The gate). TXT.inRoom asks whether this camera stands in that room or looks into it.
+     * 34's frames 4 and 5 print it, each with 0 of the sky above its camera built over, and no. 34's
+     * page on the cab seat does not, its cab covering 0.97. */
+    // AN INTERIOR IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3. A camera
+    // inside something built passes on TXT.enclosure's share, and a room TXT.interior built passes
+    // when it fills half the frame (TXT.inRoom). Both are measured above, with the numbers.
     // THE PAGE'S LAST SNAPSHOT IS ITS VERDICT, as print_ban's kept snapshot is the bench's last on the
     // page. A console line can't be unprinted, so each line names its renderer, and any later snapshot
     // that isn't a no-sky frame, on any renderer, prints a line withdrawing the earlier one. print_ban
     // reads the last line on the page (Codex, PR 369). There is no option to skip this: an opt-out on
     // the kept snapshot passed every gate with the camera on the ground (Codex, PR 369).
     if (typeof console !== 'undefined') {
-      let none = false;
+      let none = false, cover = 0;
       if (R.world) {
         // a dome hidden or taken out before the snapshot leaves the cleared background, not the sky
         const dome = R._txDome, domeShown = !!dome && onStage(dome, R.scene) && inView(dome, R.camera);
         const sky = domeShown ? TXT.skyInFrame(R.camera) : 0;
         if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
-        none = sky <= 0 && !TXT.enclosed(R) && !TXT.inRoom(R);
+        if (sky <= 0) {
+          cover = TXT.enclosure(R);
+          none = cover < ENCLOSED_MIN && !TXT.inRoom(R);
+        }
       }
       const page = (typeof window !== 'undefined') ? window : TXT;
       if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
@@ -403,10 +450,13 @@ export function init(THREE) {
       if (none) {
         page.__txSky = 'none';
         console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
-          'it (pitched below the horizon, looking straight down, or with the sky dome hidden), with nothing ' +
-          'overhead. A reader sees objects in a void, and the showstopper test caps the frame. Lift the ' +
-          'camera to put the horizon in frame, or stand it inside something built (a room with ' +
-          'TXT.interior, a cab, a canopy)');
+          'it (pitched below the horizon, looking straight down, or with the sky dome hidden), and it ' +
+          'stands inside nothing: what the frame built covers ' + Math.round(cover * 100) + ' percent of ' +
+          'the sky above the camera, where an interior covers ' + Math.round(ENCLOSED_MIN * 100) + '. A ' +
+          'reader sees objects in a void, and the showstopper test caps the frame. Lift the camera to ' +
+          'put the horizon in frame, or stand it inside something built (the kit\'s semi_cab_interior, ' +
+          'or a TXT.interior room filling half the frame). A roof, a canopy or a tree overhead is not ' +
+          'an interior');
       } else if (page.__txSky === 'none') {
         page.__txSky = 'shown';
         console.error(TXT.SKY_SHOWN + tag + '. The kept snapshot is not a frame without sky, so the ' +
