@@ -11,7 +11,9 @@
  * to be any one company's hardware. A frame that shows it close says so.
  *
  * THE SEAT IS THE STORY. The wheel is there and nobody's hands are on it. The accent is worn by
- * the lidar band alone, the one part of the truck that is doing the driving.
+ * the recording device's status lamp alone, the record the truck must carry and the state can't
+ * ask it to hand over. The lidar bands glow a cool white under the bloom knee and the amber
+ * markers stay yellower and dimmer, so nothing on the truck competes with the lamp.
  *
  * WHAT THIS FILE IS NOT. A frame. It declares the deck's one light and world, installs the kit
  * additions and the deck materials, and hands a frame primitives. Each frame sets up its own
@@ -21,17 +23,19 @@
   "use strict";
   if (!global.TXDECK) throw new Error("fortyfive.js needs txdeck.js loaded first");
 
-  /* ONE DECLARATION. Blue hour on the interstate: the sun just under the western horizon, an
-   * amber seam low in the west, and the declared light is the high-mast and cab lamps' key, up and
-   * to the west of the road, inside blueHour's lamp range of 25 to 45 degrees. az is clockwise
-   * from +Z toward +X. Every cast in the deck runs east and away. */
+  /* ONE DECLARATION. Blue hour on the interstate: the sun just under the horizon down the road
+   * behind the southbound trucks, an amber seam at the far end of the lanes, and the declared light
+   * is the high-mast lamps' key, up the road and a little to its west, inside blueHour's lamp range
+   * of 25 to 45 degrees. az is clockwise from +Z toward +X. A truck heading +z has the seam at its
+   * back and its casts run toward the camera; a camera facing the direction of travel faces the
+   * deep blue, which is the deck's value arc. */
   TXDECK.declare({
     world: "fortyfive",
-    light: { az: -70, el: 32 },
+    light: { az: -160, el: 32 },
     sky: "blueHour",
-    ground: "#0E131B",
+    ground: "#151D33",
     material: "#DADDE0",
-    accent: "#4FC79A",
+    accent: "#E0956A",
     grade: {
       exposure: 0.0,
       saturation: 1.03,
@@ -52,8 +56,8 @@
   N.W = 1080;
   N.H = 1350;
   N.SEED = 20260926;
-  N.ACCENT = 0x4fc79a;          /* signal_open, config/brand.yaml: the one part that is driving */
-  N.GROUND_HEX = "#0E131B";
+  N.ACCENT = 0xe0956a;          /* dusk_gold, config/brand.yaml: the record the truck must keep */
+  N.GROUND_HEX = "#151D33";
 
   /* ONE MATERIAL VOCABULARY. Painted tractor steel, a white van, chrome, black sensor housings,
    * warm cab light, and the accent on the lidar band alone. */
@@ -63,7 +67,9 @@
       housing: TXT.mat.plastic(0x15181c, { roughness: 0.38, metalness: 0.15 }),
       housingEdge: S(0x2a2f35, 0.3, 0.42),
       lens: TXT.mat.plastic(0x0a0e12, { roughness: 0.06, metalness: 0.5 }),
-      band: TXT.mat.emissive(N.ACCENT, 2.2),
+      band: TXT.mat.emissive(0x9fd8e6, 0.8),
+      recLamp: TXT.mat.emissive(N.ACCENT, 3.2),
+      recBody: TXT.mat.steel({ roughness: 0.45 }),
       arm: S(0x3a3f44, 0.6, 0.35),
       seat: S(0x2b2d31, 0.0, 0.8),
       seatStitch: S(0x3c3f44, 0.0, 0.7),
@@ -73,7 +79,7 @@
       cabGlow: TXT.mat.emissive(0xffd29a, 1.1),
       headLamp: TXT.mat.emissive(0xfff2dc, 5.0),
       tailLamp: TXT.mat.emissive(0xff3a2a, 3.0),
-      markerLamp: TXT.mat.emissive(0xffa53a, 3.5),
+      markerLamp: TXT.mat.emissive(0xffb547, 0.9),
       glass: new THREE.MeshPhysicalMaterial({ color: 0x9fb2bf, roughness: 0.04, metalness: 0.0,
         transparent: true, opacity: 0.12, depthWrite: false })
     };
@@ -203,6 +209,24 @@
     g.userData.wheel = [0.55, 1.12, zf + 0.82];
     g.userData.seat = [0.55, 0.6, zf + 1.2];
     g.userData.windshield = zf;
+    return g;
+  };
+
+  /* THE RECORDING DEVICE, drawn to illustrate: the rule says only that the vehicle is equipped
+   * with one, and gives no form or place for it. A sealed finned housing 0.22 x 0.07 x 0.16 m
+   * with two connectors, a cable and one 6 mm status lamp in the accent. Faces +z. */
+  N.recorder = function (THREE, TXT, M) {
+    var g = new THREE.Group();
+    var body = TXT.roundedBox(0.22, 0.07, 0.16, 0.008, M.recBody); body.position.y = 0.035; g.add(body);
+    for (var i = 0; i < 9; i++) { var fin = TXT.roundedBox(0.004, 0.018, 0.14, 0.001, M.recBody); fin.position.set(-0.09 + i * 0.0225, 0.079, 0); g.add(fin); }
+    [-0.05, 0.02].forEach(function (x) {
+      var con = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.03, 16), M.arm); con.rotation.x = Math.PI / 2; con.position.set(x, 0.035, -0.095); g.add(con);
+    });
+    var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.004, 16, 10), M.recLamp); lamp.position.set(0.075, 0.045, 0.081); g.add(lamp);
+    var halo = new THREE.PointLight(N.ACCENT, 0.35, 0.6, 2); halo.position.set(0.075, 0.05, 0.1); g.add(halo);
+    var cable = TXT.tube([[-0.05, 0.035, -0.11], [-0.05, 0.03, -0.2], [-0.03, -0.08, -0.26], [0.0, -0.4, -0.27]], 0.006, M.dash);
+    g.add(cable);
+    g.userData.lamp = [0.075, 0.045, 0.081];
     return g;
   };
 
