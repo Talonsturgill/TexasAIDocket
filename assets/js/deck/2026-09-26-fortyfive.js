@@ -210,8 +210,12 @@
     var mkSeat = function (x) {
       var s = new THREE.Group();
       var cushion = TXT.roundedBox(0.54, 0.16, 0.52, 0.06, M.seat); cushion.position.set(0, 0.5, 0); s.add(cushion);
-      var back = TXT.roundedBox(0.54, 0.78, 0.14, 0.06, M.seat); back.position.set(0, 0.94, 0.28); back.rotation.x = 0.16; s.add(back);
-      var hr = TXT.roundedBox(0.32, 0.22, 0.12, 0.05, M.seatStitch); hr.position.set(0, 1.44, 0.35); s.add(hr);
+      var back = TXT.roundedBox(0.46, 0.74, 0.12, 0.05, M.seat); back.position.set(0, 0.94, 0.28); back.rotation.x = 0.16; s.add(back);
+      /* side bolsters, pleat channels across the face, and a headrest on two posts, so a seat reads as a seat */
+      [-1, 1].forEach(function (k) { var b = TXT.roundedBox(0.09, 0.7, 0.18, 0.045, M.seat); b.position.set(k * 0.25, 0.93, 0.27); b.rotation.set(0.16, 0, -k * 0.05); s.add(b); });
+      for (var c = 0; c < 5; c++) { var ch = TXT.roundedBox(0.4, 0.012, 0.01, 0.004, M.dash); ch.position.set(0, 0.72 + c * 0.11, 0.215 - (0.72 + c * 0.11 - 0.94) * 0.16); ch.rotation.x = 0.16; s.add(ch); }
+      [-0.09, 0.09].forEach(function (x) { var post = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.1, 10), M.arm); post.position.set(x, 1.35, 0.35); s.add(post); });
+      var hr = TXT.roundedBox(0.3, 0.19, 0.1, 0.045, M.seat); hr.position.set(0, 1.47, 0.37); hr.rotation.x = 0.16; s.add(hr);
       var ped = TXT.roundedBox(0.24, 0.42, 0.28, 0.03, M.dash); ped.position.set(0, 0.21, 0); s.add(ped);
       s.position.set(x, 0, zf + 1.2);
       return s;
