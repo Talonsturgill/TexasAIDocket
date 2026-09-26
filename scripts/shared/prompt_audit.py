@@ -93,24 +93,17 @@ def redact(rule: str) -> str:
     if not body or body == "*":
         return f"{m.group('tool')}({body})" if body else m.group("tool")
 
-    # Keep the command, and its SUBCOMMAND when there is one, because `git` alone does not say
-    # what was refused and `git checkout` does. A subcommand is a bare alphabetic word: that
-    # admits `checkout` and `add` while rejecting a flag, a path and anything with a dot in it,
-    # which is where an argument's secret would live.
-    words = body.split()
-    # A LEADING ASSIGNMENT IS AN ARGUMENT TOO. `Bash(TOKEN=secret curl ...)` kept the token as the
-    # command word. Found by Codex on the no-stall hook's copy of this logic, PR 362.
-    while words and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", words[0]):
-        words = words[1:]
-    if not words:
-        return f"{m.group('tool')}((command withheld))"
-    if "=" in words[0] or words[0][:1] in "\"'`$(":
-        return f"{m.group('tool')}((command withheld) ...)"
-    kept = words[:1]
-    if len(words) > 1 and re.fullmatch(r"[a-z][a-z-]*", words[1]):
-        kept.append(words[1])
-    rest = " ..." if words[len(kept):] else ""
-    return f"{m.group('tool')}({' '.join(kept)}{rest})"
+    # ONE REDACTION FOR BOTH SURFACES. The command, and its subcommand when it has one, is kept
+    # by the no-stall hook's own `command_head`, which is what withholds a command in the hook's
+    # log. This was a second copy of it, and the copy leaked the same way the original did: split
+    # on spaces, `TOKEN='hunter 2' curl` kept `2'` (Codex, PR 362, second round). A hook that is
+    # missing or broken withholds the whole command rather than falling back to a weaker copy.
+    mod, _ = _load_hook()
+    try:
+        shown = mod.command_head(body) if mod else "(command withheld)"
+    except Exception:  # noqa: BLE001  a redaction that raises must still withhold
+        shown = "(command withheld)"
+    return f"{m.group('tool')}({shown})"
 
 
 def scan_text(text: str) -> tuple[list[dict], list[str], int]:
@@ -187,6 +180,28 @@ def scan() -> dict:
             "no_stall": no_stall_report()}
 
 
+_HOOKS: dict = {}
+
+
+def _load_hook(root: Path = REPO_ROOT):
+    """(the no-stall hook's own module, None), or (None, why it wouldn't load), or (None, None)
+    when there is no hook at all. Loaded once per repository, since `redact` asks per rule."""
+    key = str(root)
+    if key not in _HOOKS:
+        hook = root / ".claude" / "hooks" / "no_stall.py"
+        if not hook.is_file():
+            _HOOKS[key] = (None, None)
+        else:
+            try:
+                spec = importlib.util.spec_from_file_location("no_stall_hook", hook)
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                _HOOKS[key] = (mod, None)
+            except Exception as exc:  # noqa: BLE001  a broken hook module must not cost the audit
+                _HOOKS[key] = (None, f"{type(exc).__name__}: {exc}")
+    return _HOOKS[key]
+
+
 def no_stall_report(root: Path = REPO_ROOT) -> dict:
     """Whether the no-stall hook was armed in this session, and what it refused.
 
@@ -198,24 +213,34 @@ def no_stall_report(root: Path = REPO_ROOT) -> dict:
     It changes no exit code. Exit 1 still means something WAITED. A hook that was not armed in an
     unattended run is said loudly, because that is a run nothing was guarding.
     """
-    hook = root / ".claude" / "hooks" / "no_stall.py"
-    if not hook.is_file():
+    mod, error = _load_hook(root)
+    if mod is None and error is None:
         return {"present": False,
                 "lines": ["no-stall hook: .claude/hooks/no_stall.py is missing, so nothing in this "
                           "session answered a dialog"]}
     try:
-        spec = importlib.util.spec_from_file_location("no_stall_hook", hook)
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
+        if mod is None:
+            raise RuntimeError(error)
         summary = mod.summary(root, os.environ.get("CLAUDE_CODE_SESSION_ID") or None)
         lines = mod.report_lines(summary)
-        unattended, because = mod.verdict({}, {**os.environ, "CLAUDE_PROJECT_DIR": str(root)})
+        # THE HOST'S `1` IS NOT ASKED HERE. This runs in Phases 17 and 19 of the routine itself,
+        # and whether nobody attended the run is the question, which the host's `1` can't settle
+        # while nobody has read what a scheduled session carries (Codex, PR 362 and PR 367).
+        env = {k: v for k, v in os.environ.items()
+               if not (k == "CLAUDE_CODE_SESSION_ATTENDED" and str(v).strip().lower() in mod.YES)}
+        unattended, because = mod.verdict({}, {**env, "CLAUDE_PROJECT_DIR": str(root)})
     except Exception as exc:  # noqa: BLE001  a broken hook module must not cost the audit
         return {"present": True, "error": f"{type(exc).__name__}: {exc}",
                 "lines": [f"no-stall hook: its log could not be read ({type(exc).__name__})"]}
     if unattended and summary.get("armed") is False:
         lines.insert(0, f"no-stall hook: NOT ARMED IN AN UNATTENDED RUN ({because}). Nothing "
                         f"guarded this run against a dialog. Say so in the run record and the "
+                        f"email.")
+    elif unattended and summary.get("armed") and not summary.get("judged_unattended"):
+        # RAN IS NOT GUARDED (Codex, PR 367). An armed row proves the hook ran. A hook that judged
+        # every call attended answered nothing, and its dialogs would have waited all day.
+        lines.insert(0, f"no-stall hook: RAN BUT NEVER JUDGED THIS RUN UNATTENDED ({because}). Every "
+                        f"dialog would have waited for a person. Say so in the run record and the "
                         f"email.")
     return {"present": True, "unattended": unattended, **summary, "lines": lines}
 
@@ -283,6 +308,28 @@ def self_test() -> int:
     checks.append(("...and a leading assignment, which is where a token rides",
                    redact("Bash(TOKEN=hunter2 curl https://x/y)") == "Bash(curl ...)"
                    and redact("Bash(TOKEN=hunter2)") == "Bash((command withheld))"))
+    checks.append(("...and a QUOTED assignment, one shell word however many spaces it holds "
+                   "(Codex, PR 362, second round)",
+                   redact("Bash(TOKEN='hunter 2' curl https://x/y)") == "Bash(curl ...)"))
+    checks.append(("...and a plain word after a command that has no subcommands, since it can "
+                   "be a passphrase", redact("Bash(echo correct-horse-battery)") == "Bash(echo ...)"))
+    hook_mod, _ = _load_hook()
+    bodies = ["TOKEN='hunter 2' curl https://x/y", "git checkout main", "cp a b", "'unclosed x"]
+    checks.append(("and it is the hook's own command_head, not a second copy that can drift",
+                   hook_mod is not None and all(
+                       redact(f"Bash({b})") == f"Bash({hook_mod.command_head(b)})"
+                       for b in bodies)))
+    saved = _HOOKS.get(str(REPO_ROOT))
+    _HOOKS[str(REPO_ROOT)] = (None, "a stand-in for a hook that won't load")
+    try:
+        withheld = redact("Bash(git push origin main)")
+    finally:
+        if saved is None:
+            _HOOKS.pop(str(REPO_ROOT), None)
+        else:
+            _HOOKS[str(REPO_ROOT)] = saved
+    checks.append(("a hook that won't load withholds the whole command, never a weaker copy",
+                   withheld == "Bash((command withheld))"))
     checks.append(("a wildcard rule survives readably", redact("Bash(git checkout *)")
                    == "Bash(git checkout ...)"))
     checks.append(("a bare tool rule is untouched", redact("Write") == "Write"))
@@ -326,6 +373,44 @@ def self_test() -> int:
     checks.append(("...and this one reads the hook's own log through the hook's own module",
                    here["present"] is True and "error" not in here
                    and here["lines"][0].startswith("no-stall hook:")))
+
+    # THE HOST'S `1` CAN'T SILENCE THE ALARM. The hook lets it outrank the routine's branch, and
+    # an unguarded routine run must still be called what it is (Codex, PR 362, second round).
+    import shutil
+    keys = ("CLAUDE_CODE_SESSION_ATTENDED", "CLAUDE_CODE_SESSION_ID", "TXDOCKET_UNATTENDED")
+    saved_env = {k: os.environ.get(k) for k in keys}
+    with tempfile.TemporaryDirectory() as tmp:
+        fake = Path(tmp)
+        (fake / ".git").mkdir()
+        (fake / ".git" / "HEAD").write_text("ref: refs/heads/claude/daily-2026-09-26\n",
+                                            encoding="utf-8")
+        (fake / ".claude" / "hooks").mkdir(parents=True)
+        shutil.copyfile(REPO_ROOT / ".claude" / "hooks" / "no_stall.py",
+                        fake / ".claude" / "hooks" / "no_stall.py")
+        # and a session whose hook RAN, judged it attended at the start, and never judged it again
+        (fake / "out" / "no_stall").mkdir(parents=True)
+        (fake / "out" / "no_stall" / "2026-09-26.jsonl").write_text(json.dumps({
+            "at": "2026-09-26T06:15:58Z", "session": "sess-ran-attended", "event": "SessionStart",
+            "decision": "armed", "tool": "", "target": "startup", "because": "no unattended signal",
+            "unattended": False, "host_attended": "1"}) + "\n", encoding="utf-8")
+        try:
+            os.environ["CLAUDE_CODE_SESSION_ATTENDED"] = "1"
+            os.environ["CLAUDE_CODE_SESSION_ID"] = "sess-the-hook-never-saw"
+            os.environ.pop("TXDOCKET_UNATTENDED", None)
+            carried = no_stall_report(fake)
+            os.environ["CLAUDE_CODE_SESSION_ID"] = "sess-ran-attended"
+            ran_only = no_stall_report(fake)
+        finally:
+            for k, v in saved_env.items():
+                if v is None:
+                    os.environ.pop(k, None)
+                else:
+                    os.environ[k] = v
+    checks.append(("a routine run carrying the host's `1` is still reported NOT ARMED when "
+                   "nothing guarded it", "NOT ARMED IN AN UNATTENDED RUN" in carried["lines"][0]))
+    checks.append(("and a hook that RAN but never judged the run unattended is not reported as armed "
+                   "and fine (Codex, PR 367)",
+                   "RAN BUT NEVER JUDGED THIS RUN UNATTENDED" in ran_only["lines"][0]))
 
     ok = True
     for label, passed in checks:
