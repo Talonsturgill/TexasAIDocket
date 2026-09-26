@@ -106,19 +106,20 @@ SKY_MARK = re.compile(r"TXT: (NO SKY IN FRAME|SKY IN FRAME)(?: \[r(\d+)\])?")
 
 
 def kept_no_sky(console_errors) -> bool:
-    """True when the LAST sky line of any renderer on the page says it shows no sky.
+    """True when the LAST sky line on the page says its snapshot shows no sky.
 
-    The engine names its renderer on every line, and a renderer's last snapshot is its verdict,
-    the way this file's kept snapshot is the last on its context. A preview pointed at the ground
-    and a kept frame that shows the sky print a no-sky line and then a line withdrawing it (Codex,
-    PR 369). A line with no renderer named, as written before that, stands for renderer 0.
+    The kept snapshot is the page's last, the way this file's kept snapshot is the bench's last. A
+    preview pointed at the ground and a kept frame that isn't, on the same renderer or another,
+    print a no-sky line and then a line withdrawing it, so the last line is the verdict (Codex, PR
+    369: reading each renderer's last line failed a page whose kept frame was on a second
+    renderer). Each line names its renderer, for a reader. It does not change the verdict.
     """
-    last = {}
+    verdict = False
     for e in console_errors or []:
         m = SKY_MARK.search(str(e))
         if m:
-            last[m.group(2) or "0"] = m.group(1) == "NO SKY IN FRAME"
-    return any(last.values())
+            verdict = m.group(1) == "NO SKY IN FRAME"
+    return verdict
 WORLD_FLOOR = 5
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 # THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
@@ -556,17 +557,17 @@ def self_test() -> int:
             root_report.write_text(_json.dumps({"slides": [
                 {"file": f"slide-0{i}.html", "console_errors": (errors_on_6 if i == 6 else [])}
                 for i in range(1, 10)]}))
-        # THE KEPT SNAPSHOT DECIDES, per renderer (Codex, PR 369): a preview pointed at the ground,
-        # then a kept frame that shows the sky, withdraws the preview's line.
+        # THE PAGE'S KEPT SNAPSHOT DECIDES (Codex, PR 369): a preview pointed at the ground, then a
+        # kept frame that isn't, withdraws the preview's line, on the same renderer or another.
         at_root([NO_SKY + " [r1]. a preview", SKY_SHOWN + " [r1]. the kept snapshot"])
-        ok("a preview's no-sky line, withdrawn by the same renderer's kept snapshot, is clean",
+        ok("a preview's no-sky line, withdrawn by the kept snapshot, is clean",
            check_run(seen, chassis_root=a) == [], check_run(seen, chassis_root=a))
-        at_root([NO_SKY + " [r1]. one renderer", SKY_SHOWN + " [r2]. another renderer"])
-        ok("...and another renderer's line withdraws nothing",
+        at_root([NO_SKY + " [r1]. a preview on one renderer", SKY_SHOWN + " [r2]. kept on another"])
+        ok("...and so is one withdrawn by a kept snapshot on a second renderer",
+           no_sky_frames(seen) == [], no_sky_frames(seen))
+        at_root([SKY_SHOWN + " [r1]. first", NO_SKY + " [r2]. the kept snapshot, at the ground"])
+        ok("...while a kept snapshot at the ground stands, whichever renderer took it",
            no_sky_frames(seen) == ["slide-06.html"], no_sky_frames(seen))
-        at_root([SKY_SHOWN + " [r1]. first", NO_SKY + " [r1]. a later snapshot at the ground"])
-        ok("...and a later snapshot at the ground stands", no_sky_frames(seen) == ["slide-06.html"],
-           no_sky_frames(seen))
         # A REPORT THAT CAN'T BE READ, OR ISN'T THERE, IS A CHECK THAT DID NOT RUN (Codex, PR 369).
         root_report.write_text('{"slides": [')
         ok("a report that can't be read is CAUGHT, never read as clean",

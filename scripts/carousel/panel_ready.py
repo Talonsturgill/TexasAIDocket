@@ -394,7 +394,7 @@ def check_sky_in_frame(report: dict) -> list[str]:
     would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's
     frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
 
-    The reading is print_ban's own, each renderer's last line, so a preview withdrawn by the kept
+    The reading is print_ban's own, the last line on the page, so a preview withdrawn by the kept
     snapshot is clean here too and the two can't drift. An import that fails raises rather than
     reading as clean.
     """

@@ -297,8 +297,13 @@ export function init(THREE) {
     }
     return above / ((N + 1) * (N + 1));
   };
-  // Drawn is what the renderer would draw: the object and every parent visible, and its material too
-  const drawn = (m) => m.visible && !(m.material && !Array.isArray(m.material) && m.material.visible === false);
+  // Drawn is what shows in the pixels: the object visible, and a material that puts colour down. A
+  // zero-opacity or colour-masked material is still hit by a ray and shows nothing (Codex, PR 369).
+  const shows = (mat) => !!mat && mat.visible !== false && mat.colorWrite !== false &&
+    !(mat.transparent && !(mat.opacity > 0.001));
+  const drawn = (m) => m.visible && (Array.isArray(m.material) ? m.material.some(shows) : shows(m.material));
+  // Drawn through every parent up to this scene, which is what the renderer walks.
+  const onStage = (o, scene) => { for (let q = o; q; q = q.parent) { if (!q.visible) return false; if (q === scene) return true; } return false; };
   /* TXT.enclosed(R) — true when something the frame built stands over the camera within `reach`
    * metres: a cab roof, a ceiling, a canopy. A camera under a roof looking down is inside, and the
    * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky. Measured with
@@ -324,11 +329,10 @@ export function init(THREE) {
    * its floor. */
   TXT.inRoom = function (R) {
     const room = R.room;
-    if (!room || !room.isObject3D) return false;
-    for (let q = room; ; q = q.parent) {        // hung off this scene through parents that are drawn
-      if (!q || !q.visible) return false;
-      if (q === R.scene) break;
-    }
+    if (!room || !room.isObject3D || !onStage(room, R.scene)) return false;
+    let shown = false;
+    room.traverseVisible((m) => { if (m.isMesh && drawn(m)) shown = true; });
+    if (!shown) return false;                     // walls made invisible are no room
     const box = new THREE.Box3().setFromObject(room);
     if (box.isEmpty()) return false;
     const floorY = box.min.y;
@@ -375,24 +379,33 @@ export function init(THREE) {
     // A ROOM THE CAMERA SHOWS IS EXEMPT: "a sky or a deliberate interior" is the test's own question
     // 3, and a desk or a document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM,
     // The gate). TXT.inRoom asks whether this camera stands in that room or looks into it.
-    // EACH RENDERER'S LAST SNAPSHOT IS ITS VERDICT, as print_ban's kept snapshot is the last on its
-    // context. A console line can't be unprinted, so a renderer names itself on every line, and a kept
-    // frame that shows the sky after a preview that didn't prints a line withdrawing the preview's.
-    // print_ban reads the last line per renderer (Codex, PR 369).
-    if (R.world && o.skyCheck !== false && typeof console !== 'undefined') {
-      const sky = TXT.skyInFrame(R.camera);
-      if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
-      if (!R._txRid) R._txRid = (typeof window !== 'undefined') ? (window.__txRid = (window.__txRid || 0) + 1) : 1;
+    // THE PAGE'S LAST SNAPSHOT IS ITS VERDICT, as print_ban's kept snapshot is the bench's last on the
+    // page. A console line can't be unprinted, so each line names its renderer, and any later snapshot
+    // that isn't a no-sky frame, on any renderer, prints a line withdrawing the earlier one. print_ban
+    // reads the last line on the page (Codex, PR 369). There is no option to skip this: an opt-out on
+    // the kept snapshot passed every gate with the camera on the ground (Codex, PR 369).
+    if (typeof console !== 'undefined') {
+      let none = false;
+      if (R.world) {
+        // a dome hidden or taken out before the snapshot leaves the cleared background, not the sky
+        const dome = R._txDome, domeShown = !!dome && onStage(dome, R.scene) && drawn(dome);
+        const sky = domeShown ? TXT.skyInFrame(R.camera) : 0;
+        if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
+        none = sky <= 0 && !TXT.enclosed(R) && !TXT.inRoom(R);
+      }
+      const page = (typeof window !== 'undefined') ? window : TXT;
+      if (!R._txRid) R._txRid = page.__txRid = (page.__txRid || 0) + 1;
       const tag = ' [r' + R._txRid + ']';
-      if (sky <= 0 && !TXT.enclosed(R) && !TXT.inRoom(R)) {
-        R._txNoSky = true;
+      if (none) {
+        page.__txSky = 'none';
         console.error(TXT.NO_SKY + tag + '. This frame calls TXT.sky and its camera shows none of ' +
-          'it (pitched below the horizon or looking straight down), with nothing overhead. A reader sees ' +
-          'objects in a void, and the showstopper test caps the frame. Lift the camera to put the horizon in ' +
-          'frame, or stand it inside something built (a room with TXT.interior, a cab, a canopy)');
-      } else if (R._txNoSky) {
-        R._txNoSky = false;
-        console.error(TXT.SKY_SHOWN + tag + '. This renderer\'s kept snapshot shows the sky, so its ' +
+          'it (pitched below the horizon, looking straight down, or with the sky dome hidden), with nothing ' +
+          'overhead. A reader sees objects in a void, and the showstopper test caps the frame. Lift the ' +
+          'camera to put the horizon in frame, or stand it inside something built (a room with ' +
+          'TXT.interior, a cab, a canopy)');
+      } else if (page.__txSky === 'none') {
+        page.__txSky = 'shown';
+        console.error(TXT.SKY_SHOWN + tag + '. The kept snapshot is not a frame without sky, so the ' +
           'no-sky line above was a preview and is withdrawn');
       }
     }
@@ -1008,6 +1021,7 @@ export function init(THREE) {
       if (o.skyFog !== false) { installSkyFog(W, sunDir); dome.material.uniforms.uFogMatch.value = 1; }
     }
     R.world = W;
+    R._txDome = dome;             // the snapshot asks whether it is still drawn (Codex, PR 369)
     return dome;
   };
 

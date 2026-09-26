@@ -31,6 +31,10 @@ const ENGINE = process.env.TXWORLD_ENGINE ? resolve(process.env.TXWORLD_ENGINE) 
 // strip. Measured on 2026-09-26: the engine before the fix steps 26.6 levels here, on the horizon
 // row itself, and the fixed engine 2.5.
 const MAX_STEP = 6;
+// The least the lower band may change when the ground is hidden, in levels of 255. Measured on
+// 2026-09-26: 37.2 and 18.8 through this engine, 24.4 and 44.0 through the one before PR 368, for
+// the 900 m and the 12 km ground. A ground that never rendered changes it by nothing.
+const MIN_GROUND_DIFF = 5;
 
 let failures = 0;
 const check = (label, cond, extra = '') => {
@@ -64,7 +68,7 @@ const HORIZON = (size, surface) => `async (T, TXT, cv) => {
   TXT.sky(R, W);
   TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
                fill: W.rig.fill, ambient: W.rig.ambient });
-  TXT.ground(R, ${surface ? `{ surface: 'caliche', size: ${size}, tile: 5 }` : `{ size: ${size} }`});
+  const G = TXT.ground(R, ${surface ? `{ surface: 'caliche', size: ${size}, tile: 5 }` : `{ size: ${size} }`});
   const shot = await TXT.snapshot(R);
   const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
   const x0 = Math.floor(Wd * 0.2), x1 = Math.floor(Wd * 0.8), n = x1 - x0, mid = Math.floor(H / 2);
@@ -76,8 +80,21 @@ const HORIZON = (size, surface) => `async (T, TXT, cv) => {
   }
   let step = 0, at = 0;
   for (let i = 1; i < rows.length; i++) { const d = Math.abs(rows[i] - rows[i - 1]); if (d > step) { step = d; at = i; } }
+  // THE GROUND IS REALLY THERE (Codex, PR 369): without it the dome alone is a smooth, non-black frame
+  // and every check above would pass having measured no seam. A ray through the lower band must meet
+  // the ground plane, and the band's pixels must change when the ground is hidden.
+  const band = (y0, y1) => { const out = new Uint8Array(n * 4 * (y1 - y0)); gl.readPixels(x0, y0, n, y1 - y0, gl.RGBA, gl.UNSIGNED_BYTE, out); return out; };
+  const withGround = band(mid - 90, mid - 30);
+  const rc = new T.Raycaster(); rc.setFromCamera(new T.Vector2(0, ((mid - 60) + 0.5) / H * 2 - 1), R.camera);
+  const groundHit = rc.intersectObject(G, true).length > 0;
+  G.visible = false; R.renderer.render(R.scene, R.camera);
+  const without = band(mid - 90, mid - 30);
+  G.visible = true; R.renderer.render(R.scene, R.camera);
+  let diff = 0, cnt = 0;
+  for (let i = 0; i < withGround.length; i += 4) { for (let c = 0; c < 3; c++) diff += Math.abs(withGround[i + c] - without[i + c]); cnt += 3; }
   return { ok: shot.ok, step, at: at - 90, top: rows[rows.length - 1], bottom: rows[0],
-           chunk: T.ShaderChunk.fog_fragment.includes('txSkyFog'), far: R.camera.far };
+           chunk: T.ShaderChunk.fog_fragment.includes('txSkyFog'), far: R.camera.far,
+           groundHit, groundDiff: diff / cnt };
 }`;
 
 // The same world with the camera looking straight down at the ground: no sky in frame.
@@ -189,7 +206,32 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
     TXT.frame(Rp, { from: [0, 2, 0], look: [0, 2, -100] });
     await TXT.snapshot(Rp);
   });
+  // a preview at the ground on one renderer, and the kept frame at the horizon on another: the page's
+  // last snapshot is its verdict, so the kept one withdraws the preview's line (Codex, PR 369)
+  const Ra = world(40), Rb = world(40);
+  TXT.frame(Ra, { from: [0, 30, 0], look: [0, 0, -0.01] }); dress(Ra, [20, 40, 20]);
+  TXT.frame(Rb, { from: [0, 2, 0], look: [0, 2, -100] }); dress(Rb, [20, 40, 20]);
+  const crossErrors = await capture(async () => { await TXT.snapshot(Ra); await TXT.snapshot(Rb); });
+  // a dome hidden before the kept snapshot: the camera faces the horizon and the sky is not drawn
+  const Rd = world(40);
+  TXT.frame(Rd, { from: [0, 2, 0], look: [0, 2, -100] });
+  const dome = TXT.sky(Rd, W);
+  TXT.rig(Rd, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+  TXT.ground(Rd, { surface: 'caliche', size: 900, tile: 5 });
+  dome.visible = false;
+  const domeErrors = await capture(() => TXT.snapshot(Rd));
+  // a roof at zero opacity: a ray still meets it and the pixels show nothing, so it is no roof
+  const Rg = world(40);
+  TXT.frame(Rg, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rg, [4, 8, 4]);
+  const glass = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ transparent: true, opacity: 0 }));
+  glass.position.set(0, 2.4, 0); Rg.scene.add(glass);
+  const glassErrors = await capture(() => TXT.snapshot(Rg));
+  // an option that once skipped the check is ignored: the kept snapshot is always judged
+  const Rs = world(40);
+  TXT.frame(Rs, { from: [0, 30, 0], look: [0, 0, -0.01] }); dress(Rs, [20, 40, 20]);
+  const optErrors = await capture(() => TXT.snapshot(Rs, { skyCheck: false }));
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
+           crossErrors, domeErrors, glassErrors, optErrors,
            orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
            outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
            shown: TXT.SKY_SHOWN };
@@ -229,6 +271,10 @@ for (const [size, surface] of [[900, true], [12000, false]]) {
         `${(h.result.step || 0).toFixed(1)} levels (at ${h.result.at} rows from mid frame), under ${MAX_STEP}`,
         h.result.step < MAX_STEP, JSON.stringify(h.result));
   check(`${size} m ground: the fog is the sky, the fog chunk mixes toward txSkyFog`, h.result.chunk === true);
+  check(`${size} m ground: the ground is really under the lower band, a ray there meets it`,
+        h.result.groundHit === true, JSON.stringify(h.result));
+  check(`${size} m ground: ...and hiding it changes the band by ${(h.result.groundDiff || 0).toFixed(1)} levels, ` +
+        `over ${MIN_GROUND_DIFF}`, h.result.groundDiff > MIN_GROUND_DIFF, JSON.stringify(h.result));
 }
 
 const g = await run('ground_only', GROUND_ONLY);
@@ -257,6 +303,22 @@ check('a roof under a hidden parent is no roof: looking down beneath it IS flagg
         pe[1].startsWith('TXT: SKY IN FRAME') && tag(pe[0]) !== '' && tag(pe[0]) === tag(pe[1]),
         JSON.stringify(pe));
 }
+{
+  const ce = Array.isArray(g.result.crossErrors) ? g.result.crossErrors : [];
+  const tag = (e) => (e.match(/\[r\d+\]/) || [''])[0];
+  check('a preview at the ground on one renderer is withdrawn by the kept snapshot on another',
+        ce.length === 2 && ce[0].startsWith('TXT: NO SKY IN FRAME') && ce[1].startsWith('TXT: SKY IN FRAME') &&
+        tag(ce[0]) !== '' && tag(ce[1]) !== '' && tag(ce[0]) !== tag(ce[1]), JSON.stringify(ce));
+}
+check('a sky dome hidden before the kept snapshot is no sky: the frame IS flagged',
+      Array.isArray(g.result.domeErrors) && g.result.domeErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.domeErrors));
+check('a roof at zero opacity is no roof: looking down beneath it IS flagged',
+      Array.isArray(g.result.glassErrors) && g.result.glassErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.glassErrors));
+check('there is no option to skip the check: skyCheck false on the kept snapshot is still judged',
+      Array.isArray(g.result.optErrors) && g.result.optErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.optErrors));
 check('a room the camera has left exempts nothing: looking down 40 m away IS flagged',
       Array.isArray(g.result.outsideErrors) &&
       g.result.outsideErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
