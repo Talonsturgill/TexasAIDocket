@@ -37,7 +37,10 @@ import sys
 import time
 from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:          # the browserless self-test runs in CI's gates job, which has none
+    sync_playwright = None
 
 # How many characters of each text node the report stores. See the report header note.
 TEXT_WINDOW = 320
@@ -1042,7 +1045,9 @@ def self_test(browser: bool) -> int:
     check("the vendored three.js still logs a failed program as 'THREE.WebGLProgram: Shader Error'",
           "THREE.WebGLProgram: Shader Error " in bundle and "VALIDATE_STATUS" in bundle)
 
-    if browser:
+    if browser and sync_playwright is None:
+        check("--browser needs the playwright package", False, "pip install playwright")
+    elif browser:
         import tempfile
         root = REPO_ROOT / "out" / "render_selftest"
         root.mkdir(parents=True, exist_ok=True)
@@ -1112,6 +1117,9 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
 def main():
     if "--self-test" in sys.argv:
         sys.exit(self_test("--browser" in sys.argv))
+    if sync_playwright is None:
+        print("FAIL: render.py needs the playwright package (pip install playwright)", file=sys.stderr)
+        sys.exit(1)
     ap = argparse.ArgumentParser()
     ap.add_argument("--slides-dir", required=True)
     ap.add_argument("--out-dir", required=True)
