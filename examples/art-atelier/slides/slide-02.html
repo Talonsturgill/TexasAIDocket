@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- ATELIER 02 — Volumetric cutaway.
+     Construction study: an impossible evidence camera reveals an illuminated internal process
+     while large planes keep the section readable at feed size. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 82px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #eaff5b; color: #241338; font-family: "Bricolage Grotesque", sans-serif; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #241338; }
+  .title {
+    position: absolute; left: 82px; top: 147px; z-index: 9; width: 880px;
+    font-family: "Bricolage Grotesque", sans-serif; font-size: 105px; line-height: .83;
+    font-weight: 790; letter-spacing: -.062em; text-transform: uppercase;
+  }
+  .title .cut { color: #bc1459; }
+  .sub {
+    position: absolute; left: 82px; top: 354px; z-index: 9; width: 610px;
+    font-family: "Manrope", sans-serif; font-size: 28px; line-height: 1.35;
+    font-weight: 700; color: #4b2c56;
+  }
+  svg.scene { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+</style>
+</head>
+<body>
+  <div class="atelier-label">Code atelier · impossible camera</div>
+  <div class="atelier-id">02</div>
+  <h1 class="title">What the<br><span class="cut">surface hides</span></h1>
+  <p class="sub">Outer mass, layered section, internal path — and the light that makes the
+    reveal legible.</p>
+
+  <svg class="scene" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="topFace" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffd1c0"/><stop offset=".48" stop-color="#ff8e7d"/><stop offset="1" stop-color="#d94675"/>
+      </linearGradient>
+      <linearGradient id="frontFace" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a245d"/><stop offset="1" stop-color="#3a164c"/>
+      </linearGradient>
+      <linearGradient id="sideFace" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#571f5f"/><stop offset="1" stop-color="#1f1739"/>
+      </linearGradient>
+      <linearGradient id="cavity" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#11249b"/><stop offset=".52" stop-color="#102164"/><stop offset="1" stop-color="#090d2c"/>
+      </linearGradient>
+      <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#73f8ff"/><stop offset=".52" stop-color="#ffffff"/><stop offset="1" stop-color="#ffb0d7"/>
+      </linearGradient>
+      <filter id="blockShadow" x="-40%" y="-60%" width="180%" height="240%">
+        <feGaussianBlur stdDeviation="26"/>
+      </filter>
+      <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <pattern id="sectionHatch" width="17" height="17" patternUnits="userSpaceOnUse" patternTransform="rotate(17)">
+        <line x1="0" y1="0" x2="0" y2="17" stroke="#ffb3a7" stroke-width="3" opacity=".34"/>
+      </pattern>
+      <clipPath id="frontClip"><polygon points="422,674 951,524 951,1041 422,1210"/></clipPath>
+    </defs>
+
+    <g transform="translate(45 120) scale(.92) translate(-20 -20)">
+    <!-- A lit ground gives the contact shadow enough value to subtract from. -->
+    <ellipse cx="610" cy="1138" rx="440" ry="112" fill="#fffcc4" opacity=".72"/>
+    <ellipse cx="626" cy="1130" rx="390" ry="78" fill="#321342" opacity=".25" filter="url(#blockShadow)"/>
+
+    <!-- Exterior mass: top, left and front planes share one camera. -->
+    <polygon points="190,489 709,344 951,524 422,674" fill="url(#topFace)" stroke="#25143d" stroke-width="5"/>
+    <polygon points="190,489 422,674 422,1210 190,1011" fill="url(#sideFace)" stroke="#25143d" stroke-width="5"/>
+    <polygon points="422,674 951,524 951,1041 422,1210" fill="url(#frontFace)" stroke="#25143d" stroke-width="5"/>
+
+    <!-- Geological/administrative section bands: broad enough to survive the thumbnail. -->
+    <g clip-path="url(#frontClip)" opacity=".92">
+      <path d="M395 760 C560 722 712 716 980 630 L980 716 C741 801 565 802 395 842Z" fill="#ee4e70"/>
+      <path d="M395 842 C561 802 743 797 980 716 L980 805 C770 872 578 905 395 920Z" fill="#ff9b76"/>
+      <path d="M395 920 C610 900 771 872 980 805 L980 906 C760 986 586 1007 395 1007Z" fill="#75235f"/>
+      <path d="M395 1007 C600 1008 770 976 980 906 L980 1060 L395 1240Z" fill="#331740"/>
+      <path d="M395 740 L980 573 L980 1075 L395 1240Z" fill="url(#sectionHatch)" opacity=".34"/>
+    </g>
+
+    <!-- The excavated cavity crosses top and front, creating the impossible evidence view. -->
+    <polygon points="438,494 684,426 806,516 558,589" fill="#10165b" stroke="#ffb3c1" stroke-width="4"/>
+    <polygon points="558,589 806,516 806,888 558,968" fill="url(#cavity)" stroke="#ff95b2" stroke-width="4"/>
+    <polygon points="438,494 558,589 558,968 438,867" fill="#171147" stroke="#ff95b2" stroke-width="4"/>
+
+    <!-- Internal process: a luminous path, with foreground and deep portions explicitly occluded. -->
+    <path d="M472 792 C548 756 554 686 623 679 S680 776 737 721 S748 618 784 603"
+          fill="none" stroke="#51eaf7" stroke-width="34" opacity=".2" filter="url(#glow)"/>
+    <path d="M472 792 C548 756 554 686 623 679 S680 776 737 721 S748 618 784 603"
+          fill="none" stroke="url(#signal)" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+    <circle cx="472" cy="792" r="19" fill="#75fbff"/><circle cx="784" cy="603" r="15" fill="#ffbadb"/>
+
+    <!-- Edge catches and section ticks make the block a fabricated object, not a diagram plate. -->
+    <path d="M190 489 L709 344 L951 524" fill="none" stroke="#fff8dc" stroke-width="7" opacity=".82"/>
+    <g stroke="#fff0bc" stroke-width="3" opacity=".72">
+      <path d="M441 713 l-31 8"/><path d="M441 804 l-31 9"/><path d="M441 895 l-31 9"/>
+      <path d="M441 987 l-31 9"/><path d="M441 1080 l-31 9"/>
+    </g>
+    <path d="M810 887 L875 913 L1000 878" fill="none" stroke="#241338" stroke-width="3"/>
+    <circle cx="810" cy="887" r="8" fill="#eaff5b" stroke="#241338" stroke-width="3"/>
+    </g>
+  </svg>
+
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">CUTAWAY · DEPTH BEFORE TEXTURE</span></div>
+</body>
+</html>
