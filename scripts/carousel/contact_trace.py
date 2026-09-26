@@ -71,6 +71,35 @@ HOST = re.compile(r"\b(?:https?://)?(?:[A-Za-z0-9-]+\.)+"
 PHONE = re.compile(r"\(?\b\d{3}\)?[-. ]\d{3}[-. ]\d{4}\b")
 KINDS = (("email address", EMAIL), ("host", HOST), ("telephone number", PHONE))
 
+# THE PATH ENDS WHERE THE SENTENCE'S PUNCTUATION BEGINS (2026-09-26, carousel no. 34, frame 9).
+# HOST's path part takes everything up to whitespace or a quote, so "Its address
+# txmccs.txdmv.gov/truckstop." read as the token "txmccs.txdmv.gov/truckstop.", which no claim
+# carries, and a true address was reported as an invented one. The run reworded its frame around the
+# gate, and GATE_LESSONS 24 is the entry about a workaround that ends up defended.
+#
+# NOT A LIST CHOSEN HERE. It is the GitHub Flavored Markdown spec's extended autolink path
+# validation, read 2026-09-26 at https://github.github.com/gfm/ (examples 624 and 625): "Trailing
+# punctuation (specifically, ?, !, ., ,, :, *, _, and ~) will not be considered part of the
+# autolink, though they may be included in the interior of the link", and a trailing ")" is dropped
+# only while the token holds more closing brackets than opening ones. The two rules are applied
+# until neither changes the token, so "(see x.gov/a)." loses both the full stop and the bracket.
+#
+# WHY THIS CAN'T LET A WRONG ADDRESS THROUGH. Trimming only makes a token SHORTER, and a token is
+# still held to the claims afterwards. A path that differs from the source anywhere but its
+# trailing punctuation is still a finding. The self-test proves that case goes red.
+GFM_TRAILING = "?!.,:*_~"
+
+
+def trim_trailing(tok: str) -> str:
+    """A url token without the sentence punctuation after it, by the GFM autolink rules above."""
+    while True:
+        if tok and tok[-1] in GFM_TRAILING:
+            tok = tok[:-1]
+        elif tok.endswith(")") and tok.count(")") > tok.count("("):
+            tok = tok[:-1]
+        else:
+            return tok
+
 
 def brand_host() -> str | None:
     """The site's own host, read from `config/brand.yaml` through the gate that already reads it.
@@ -109,7 +138,7 @@ def tokens(text: str) -> list[tuple[str, str]]:
         rest = rest.replace(m.group(0), " " * len(m.group(0)))
     for kind, rx in (("host", HOST), ("telephone number", PHONE)):
         for m in rx.finditer(rest):
-            found.append((kind, m.group(0)))
+            found.append((kind, trim_trailing(m.group(0)) if kind == "host" else m.group(0)))
     return found
 
 
@@ -247,6 +276,50 @@ def self_test() -> int:
     with tempfile.TemporaryDirectory() as t:
         d = deck(Path(t), ["www.ercot.com/services/comm/mkt_notices", "texasaidocket.com"])
         ok("a host that a cited claim's own url carries is CLEAN", check(d) == [], str(check(d)))
+
+    # ---------------------------------------------------------------- A SENTENCE'S OWN FULL STOP
+    # 2026-09-26, carousel no. 34, frame 9. The frame set "Its address txmccs.txdmv.gov/truckstop."
+    # and claim c36 quotes TxDMV giving https://txmccs.txdmv.gov/truckstop. The path pattern took
+    # the sentence's full stop into the token, the token was not in the claim, and a true address
+    # was reported as an unverified one. The run reworded the frame so the url was followed by a
+    # space, which is GATE_LESSONS 24's workaround: it would have held just as happily the next
+    # time a url ends a sentence. These cases are the frame as first written and its siblings.
+    tx_claims = {"claims": [
+        {"id": "c36", "text": "Concerns can be submitted to the TxDMV Enforcement Division",
+         "quote": "can be submitted to the TxDMV Enforcement Division for review at "
+                  "https://txmccs.txdmv.gov/truckstop", "url": "https://www.txdmv.gov/av",
+         "publisher": "TxDMV"}]}
+
+    def tx_deck(td: Path, frame_text: list[str]) -> Path:
+        d = deck(td, frame_text)
+        (d / "claims.json").write_text(json.dumps(tx_claims), encoding="utf-8")
+        return d
+
+    with tempfile.TemporaryDirectory() as t:
+        for label, line in (
+                ("a full stop", "Its address txmccs.txdmv.gov/truckstop."),
+                ("a comma", "Its address txmccs.txdmv.gov/truckstop, where police verify too"),
+                ("a closing bracket nothing opened", "(write to txmccs.txdmv.gov/truckstop)"),
+                ("a question mark", "Have you seen txmccs.txdmv.gov/truckstop?")):
+            d = tx_deck(Path(t) / label.replace(" ", "_"), [line, "texasaidocket.com"])
+            ok(f"a url the claim carries, ending a sentence on {label}, is CLEAN",
+               check(d) == [], str(check(d)))
+        # THE GATE STILL GOES RED THROUGH THE SAME PUNCTUATION. Trimming may only ever remove what
+        # the source can't have carried, never let a changed address through.
+        d = tx_deck(Path(t) / "wrong", ["Its address txmccs.txdmv.gov/truckstops.",
+                                        "texasaidocket.com"])
+        f = check(d)
+        ok("a DIFFERENT path ending a sentence is still CAUGHT, and reported without the stop",
+           len(f) == 1 and "\"txmccs.txdmv.gov/truckstops\"" in f[0], str(f))
+        d = tx_deck(Path(t) / "fake", ["Write to complaints.txdmv.gov/av.", "texasaidocket.com"])
+        ok("an invented host ending a sentence is still CAUGHT",
+           any("complaints.txdmv.gov/av" in x for x in check(d)), str(check(d)))
+    ok("a bracket the path itself opened is KEPT, since it is part of the address",
+       trim_trailing("en.wikipedia.org/wiki/SB_(Texas))") == "en.wikipedia.org/wiki/SB_(Texas)",
+       trim_trailing("en.wikipedia.org/wiki/SB_(Texas))"))
+    ok("interior punctuation is KEPT, only the trailing run goes",
+       trim_trailing("www.ercot.com/a.b/c,d.") == "www.ercot.com/a.b/c,d",
+       trim_trailing("www.ercot.com/a.b/c,d."))
 
     # ---------------------------------------------------------------- THE OTHER TWO KINDS
     with tempfile.TemporaryDirectory() as t:
