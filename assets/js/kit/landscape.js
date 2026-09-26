@@ -221,6 +221,9 @@ export function install(K, THREE, TXT) {
   // Aerial perspective for FAR models: their own exponential haze toward the scene fog colour,
   // with a rate set per model, capped so a silhouette always survives. Replaces the scene fog
   // on that material only (a FogExp2 tuned for a 200 m set would erase a skyline at 5 km).
+  // TOWARD THE SKY BEHIND IT (2026-09-26). Under TXT.sky the haze is the sky in the fragment's own
+  // direction, tone mapped as the dome is. It was the raw fog colour, a tone the sky never shows,
+  // which is why no. 34's Houston read as pasted on and every judge asked to haze it.
   function aerial(mat, rate, cap) {
     mat.fog = true;
     const prev = mat.onBeforeCompile;
@@ -231,7 +234,16 @@ export function install(K, THREE, TXT) {
         .replace('#include <fog_pars_fragment>', '#include <fog_pars_fragment>\nuniform float uAerial, uAerialCap;')
         .replace('#include <fog_fragment>', `#ifdef USE_FOG
           float aF = min(uAerialCap, 1.0 - exp(-uAerial * vFogDepth));
-          gl_FragColor.rgb = mix(gl_FragColor.rgb, fogColor, aF);
+          #ifdef TX_SKY_FOG
+            // HAZE LIES LOW. The air near the ground holds the most of it, so a far skyline's base
+            // dissolves while its crowns stay clear, and the city stands IN the haze rather than on
+            // a line. The fragment's height is the camera's plus the world-space view ray's.
+            float aY = max(cameraPosition.y + vTxFogDir.y, 0.0);
+            aF = min(uAerialCap, 1.0 - exp(-uAerial * vFogDepth * (1.0 + 2.2 * exp(-aY / 55.0))));
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, txFogOut(vTxFogDir), aF);
+          #else
+            gl_FragColor.rgb = mix(gl_FragColor.rgb, fogColor, aF);
+          #endif
         #endif`);
     };
     mat.customProgramCacheKey = () => 'aerial' + rate + '|' + cap;
