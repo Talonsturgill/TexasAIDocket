@@ -20,18 +20,6 @@ engine alone, which is the only honest way to show what the engine changed.
 4. **Clean clay.** Nothing real is clean at the bottom. `TXT.weather` darkens toward the ground
    and mottles roughness in world space.
 
-## The horizon, measured on carousel no. 34 (2026-09-26)
-
-![horizon](horizon.webp)
-
-The same slide source on both sides: no. 34's frames 1, 3 and 9 as they shipped, and re-rendered
-through the fixed engine. A judge named the band on the left in every one of the five rounds, as
-sea in the first two, and no run's fix touched it, because the cause was the engine. three.js mixes
-fog in after tone mapping in a colour that is never tone mapped, while the dome is. So the fogged
-ground printed the raw haze, 26.6 levels off the sky directly above it in `tests/txworld.mjs`, and
-2.5 after the fix. The fog is now the sky's own colour in every direction, a far field carries the
-ground to the horizon, and far models haze toward the sky, heaviest near the ground.
-
 ## The world in five calls
 
 ```js

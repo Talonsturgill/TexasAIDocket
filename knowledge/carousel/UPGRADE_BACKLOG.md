@@ -4400,6 +4400,18 @@ few rows above and below the true horizon row and fail a step over the WCAG 3.0 
 contrast ratio. That is an external number, and a seam a reader reads as an edge is exactly the
 non-text contrast that standard measures.
 
+**FIXED BY A MAINTAINER, 2026-09-26, in `txthree.js`.** The measurement above had one of the two
+causes. The fog was also never tone mapped: three.js mixes fog in after tone mapping and colour
+space, so `fogColor` landed raw beside a dome tone mapped at the frame's exposure, and frame 8's
++0.4 exposure widened the gap. `installSkyFog` now mixes every fogged material toward the sky's own
+horizon colour in its view direction through the same tone curve, and the ground (`TX_GROUND`, set
+by `TXT.ground`) fades fully into it as its ray grazes the line over `horizonFade` radians. The dome
+below the line stands in for ground fogged at the distance its ray would meet it, which closed a
+second band at the far plane's clip line on frame 5 (row 226, a step of 21 in luma, now 1).
+Re-rendered from no. 34's own frames: frame 8 at column 1080 went from sky 191 over ground 133 to
+185 over 166, and the worst 12-row step there from 63 to 31. `examples/world-proof/horizon.webp` is
+frames 3 and 8, each before then after.
+
 ### 3. THE DECLARED KEY BACKLIT THE HERO FOR THREE ROUNDS, AND NO GATE CAN SEE A CAMERA
 
 The chassis declared its key at azimuth -160. On frames 1, 4, 5 and 8 that lit the white tractor
