@@ -140,6 +140,20 @@ jobs:
       - name: Prompt audit self-test (prove it can go red)
         run: python3 scripts/shared/prompt_audit.py --self-test
 
+      # THE ROUTE THAT NEEDS NO APPROVAL, found 2026-09-25. The run needed a PDF's text, WebFetch
+      # saved the PDF under ~/.claude/projects/.../tool-results/, and the run copied it out with a
+      # shell command. Everything under a `.claude` directory is a protected path, so the copy
+      # raised a permission dialog at 06:53 UTC and the unattended run waited on it all day.
+      # fetch_doc.py downloads straight into out/<date>/tmp/src/ and extracts the text there.
+      - name: fetch_doc self-test (prove it can go red)
+        run: python3 scripts/shared/fetch_doc.py --self-test
+
+      # THE BOUNDARY CHECKER'S OWN SELF-TEST, which no step ran until 2026-09-25: it was reached
+      # only through shipped_check. It pins the registry's rules and, since PR 361, the spellings
+      # that used to walk around them (a trailing dot, `%74`, `..`, `//`, a backslash).
+      - name: crawl_boundary self-test (prove it can go red)
+        run: python3 scripts/shared/crawl_boundary.py --self-test
+
       # THE BRANCH BEING MERGEABLE, AND ONLY THE SELF-TEST CAN RUN HERE. The real check is
       # deliberately absent from this file and that is not an oversight: a `pull_request`
       # workflow runs against the pull request's MERGE REF, and GitHub cannot build one for a

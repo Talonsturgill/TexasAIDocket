@@ -148,10 +148,10 @@ rules:
   # widen the gated directory with it.
   #
   # Nothing under `.claude/` is on this list, deliberately. A file there is not a worklog that
-  # needs an owner, it is a file that must not exist: `protected_path_shape.py` fails the build
-  # if any instruction file so much as names it, and it falls to the `human` default so the
-  # pre-commit hook refuses a routine that creates one anyway. Two mechanisms, because the first
-  # draft of this rule proved one is not enough.
+  # needs an owner, it is a file that must not exist: `scripts/shared/sensitive_paths.py` fails
+  # the build if any instruction file tells a run to write under `.claude/`, and it falls to the
+  # `human` default so the pre-commit hook refuses a routine that creates one anyway. Two
+  # mechanisms, because the first draft of this rule proved one is not enough.
   - path: "runs/**/WORKLOG.md"
     owner: daily
     note: >
@@ -179,8 +179,9 @@ rules:
       them. CLAUDE.md carries the full account under the heading about protected directories.
 
       So it moved to the repository root, which is an ordinary tracked path in the `daily`
-      lane, and `scripts/shared/protected_path_shape.py` fails the build if any instruction
-      file sends a run back into `.claude/` or `.git/` with a write.
+      lane, and `scripts/shared/sensitive_paths.py` fails the build if any instruction file
+      sends a run back into `.claude/` with a write. (Until 2026-09-25 this note named a
+      `protected_path_shape.py` that never existed, and claimed a `.git/` check it does not make.)
 
   # ---------------------------------------------------------------- shared identity
   - path: "config/schema_contract.json"

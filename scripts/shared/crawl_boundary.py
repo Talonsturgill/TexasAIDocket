@@ -59,10 +59,12 @@ TWO READINGS THE REGISTRY HAS ALREADY SETTLED AND THIS FILE INHERITS.
 from __future__ import annotations
 
 import argparse
+import posixpath
 import re
 import sys
+import unicodedata
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urlsplit
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REGISTRY = REPO_ROOT / "knowledge" / "shared" / "SOURCES_REGISTRY.md"
@@ -200,10 +202,128 @@ def rules(text: str | None = None) -> list[dict]:
     return out
 
 
-def _host_of(url: str) -> str:
-    parts = urlsplit(url if "//" in url else "//" + url)
-    host = (parts.hostname or "").lower()
-    return host[4:] if host.startswith("www.") else host
+def _browser_form(url: str) -> str:
+    """The url as a browser-style client parses it, when that differs from `urlsplit`.
+
+    For http and https a browser drops tabs and newlines, reads every backslash before the query as
+    a slash, and accepts any number of slashes after the scheme, so `https:capitol.texas.gov/x` and
+    `https://capitol.texas.gov\\tlodocs\\x.pdf` both reach capitol.texas.gov and its `/tlodocs/`.
+    `urlsplit` reads a different host out of both. A tool that fetches the way a browser does,
+    WebFetch among them, would therefore reach a forbidden path this checker had waved through,
+    and `shipped_check` judges claims that tool fetched. Found by review on PR 361.
+
+    A url with no scheme at all is read the way an address bar reads it, as https.
+    """
+    u = re.sub(r"[\t\n\r]", "", url).strip("".join(map(chr, range(0x21))))
+    m = re.match(r"(?i)(https?|wss?|ftp):", u)
+    scheme, rest = (m.group(1).lower(), u[m.end():]) if m else ("https", u)
+    cut = min([i for i in (rest.find("?"), rest.find("#")) if i >= 0] or [len(rest)])
+    head = rest[:cut].replace("\\", "/").lstrip("/")
+    return f"{scheme}://{head}{rest[cut:]}"
+
+
+def _hosts_of(url: str) -> set[str]:
+    """Every host a client might connect to for this url, in the form a rule names."""
+    name = urlsplit(url if "//" in url else "//" + url).hostname or ""
+    out = set()
+    # A CLIENT UNQUOTES THE HOST BEFORE IT CONNECTS. urllib does it in `Request` and a browser
+    # does it in its host parser, so `%6crl.texas.gov` reaches lrl.texas.gov and
+    # `capitol.texas.gov%3a443` reaches capitol.texas.gov on port 443, and neither matched a rule
+    # while only the escaped spelling was judged. The decoded name is split again so a port the
+    # decode exposed is dropped. Found in this PR's own review, 2026-09-25.
+    for host in dict.fromkeys((name, urlsplit("//" + unquote(name)).hostname or "")):
+        # A TRAILING DOT IS THE SAME HOST. `capitol.texas.gov.` is the fully qualified spelling
+        # of `capitol.texas.gov` and DNS answers both with the same server, so a rule matched
+        # against the raw spelling was walked around by one character. Codex found it on PR 361.
+        host = host.lower().rstrip(".")
+        # AND A UNICODE SPELLING IS THE SAME HOST. `capitol\u3002texas.gov`, with an ideographic
+        # full stop, reaches the real server because urllib IDNA-encodes the name before it
+        # connects, and the encoding turns U+3002, U+FF0E and U+FF61 into dots and folds full
+        # width letters. So the rule is judged on the encoded name too. Found by review on PR 361.
+        try:
+            host = host.encode("idna").decode("ascii").lower().rstrip(".")
+        except UnicodeError:
+            pass  # a name IDNA can't encode is a name urllib can't connect to either
+        if host:
+            out.add(host[4:] if host.startswith("www.") else host)
+    return out
+
+
+def _trim(path: str) -> str:
+    """WINDOWS DROPS A TRAILING DOT OR SPACE FROM EVERY PATH SEGMENT, so an IIS host serves
+    `/tlodocs./`, `/tlodocs%20/` and `/tlodocs%2e/` from `/tlodocs/`. `.` and `..` are left for
+    the resolve. Found by review on PR 361."""
+    return "/".join(g if g in (".", "..") else g.rstrip(". ") for g in path.split("/"))
+
+
+def _paths_of(url: str) -> set[str]:
+    """Every path a server might serve for this url. A rule refuses the url if ANY of them is
+    under it.
+
+    One normalised reading was the first fix and it was wrong both ways. Compared raw, the
+    boundary was walked around by `/%74lodocs/`, `/Committees/../tlodocs/` and `//tlodocs/`.
+    Decoded three times and then resolved, it was walked around the other way by
+    `/tlodocs/%252e%252e/../x`, which a server decodes ONCE, keeping `%2e%2e` as a directory
+    name that the `..` then removes, so it serves `/tlodocs/x`, while three decodes turned it into
+    `/x`. And `/tlodocs/.` resolved to `/tlodocs`, which no longer started with `/tlodocs/`.
+
+    A checker cannot know which reading a given server takes, so it takes all of them: the raw
+    path, and the path decoded zero to three times, each with backslashes and repeated slashes
+    folded and dot segments resolved, with and without the Windows trim, with and without path
+    parameters, as written and case folded. Refusing when any one matches can only refuse MORE
+    than any single reading, which is the one direction a boundary may err in.
+    """
+    raw = (urlsplit(url if "//" in url else "//" + url).path or "/").lower()
+    out = {raw}
+    p = raw
+    for _ in range(4):
+        # A SERVER THAT COMPARES UNICODE FOLDS IT FIRST. NFKC turns a full width `ｔ` into `t`, and
+        # a Windows volume compares in upper case, where the dotless `ı` is `I`.
+        for f in dict.fromkeys((p, unicodedata.normalize("NFKC", p).upper().lower())):
+            q = re.sub(r"/+", "/", f.replace("\\", "/"))
+            # A JAVA SERVER DROPS A `;parameter` FROM EVERY SEGMENT, so `/tlodocs;a=b/` is
+            # `/tlodocs/` to it and `/x/..;/tlodocs/` climbs out of `/x/`.
+            s = re.sub(r";[^/]*", "", q)
+            for form in dict.fromkeys((q, _trim(q), s, _trim(s))):
+                resolved = posixpath.normpath("/" + form.lstrip("/"))
+                out.add(form)
+                out.add(resolved)
+                out.add(resolved + "/")  # `/tlodocs/.` and `/tlodocs` both name the directory
+        # IIS ALSO DECODES ITS OWN `%uXXXX` ESCAPE, so `%u0074lodocs` is `tlodocs` to it. AND A
+        # DECODE CAN SURFACE A CAPITAL, `%54` being `T`, so each decoded reading is folded again.
+        # `/%54LODOCS/` was permitted until this PR's own review, 2026-09-25.
+        nxt = unquote(re.sub(r"%u([0-9a-f]{4})", lambda m: chr(int(m.group(1), 16)), p)).lower()
+        if nxt == p:
+            break
+        p = nxt
+    return out
+
+
+_SHORT = re.compile(r"([a-z0-9_$-]{1,6})~\d{1,6}")
+
+
+def _under(candidate: str, rule: str) -> bool:
+    """True when one reading of a path falls under a rule's path.
+
+    A WINDOWS SHORT NAME IS THE SAME FOLDER. Where a volume keeps 8.3 names, `/BILLLO~1/` serves
+    `/BillLookup/`. The alias a volume gives a folder can't be predicted from outside (a collision
+    swaps the tail for a hash), so a `~<digits>` segment is taken as the folder whenever its first
+    two letters agree. That refuses a little more than it must, which is the only direction this
+    checker may be wrong in. Found by review on PR 361.
+    """
+    if candidate.startswith(rule):
+        return True
+    rs = [g for g in rule.split("/") if g]
+    cs = [g for g in candidate.split("/") if g]
+    if not rs or len(cs) < len(rs):
+        return False
+    for r_seg, c_seg in zip(rs, cs):
+        if c_seg == r_seg:
+            continue
+        m = _SHORT.fullmatch(c_seg)
+        if not (m and r_seg.startswith(m.group(1)[:2])):
+            return False
+    return True
 
 
 def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
@@ -213,21 +333,28 @@ def forbidden(url: str, boundary: list[dict] | None = None) -> str | None:
     and read `SOURCES_REGISTRY.md`, which is the only thing that carries it.
     """
     b = rules() if boundary is None else boundary
-    host = _host_of(url)
-    if not host:
-        return None
-    path = (urlsplit(url if "//" in url else "//" + url).path or "/").lower()
-    for row in b:
-        r = row["host"]
-        if host != r and not host.endswith("." + r):
-            continue
-        if not row["paths"]:
-            return (f"{r} is off limits to this project, whole host. "
-                    f"SOURCES_REGISTRY.md: {row['why']}")
-        for p in row["paths"]:
-            if path.startswith(p):
-                return (f"{r}{p} is a disallowed path on an allowed host. "
-                        f"SOURCES_REGISTRY.md: {row['why']}")
+    try:
+        for reading in dict.fromkeys((url, _browser_form(url))):
+            hosts = _hosts_of(reading)
+            paths = None
+            for row in b:
+                r = row["host"]
+                if not any(h == r or h.endswith("." + r) for h in hosts):
+                    continue
+                if not row["paths"]:
+                    return (f"{r} is off limits to this project, whole host. "
+                            f"SOURCES_REGISTRY.md: {row['why']}")
+                paths = _paths_of(reading) if paths is None else paths
+                for p in row["paths"]:
+                    if any(_under(c, p) for c in paths):
+                        return (f"{r}{p} is a disallowed path on an allowed host. "
+                                f"SOURCES_REGISTRY.md: {row['why']}")
+    except ValueError as exc:
+        # A URL THE PARSER CAN'T READ IS REFUSED, never waved through. `urlsplit` raises on a
+        # host that NFKC turns into a separator and on a broken IPv6 bracket, and a checker that
+        # crashed there left its caller to guess. A url that can't be judged is not fetched.
+        return (f"{url[:120]!r} can't be parsed ({exc}), so no rule in SOURCES_REGISTRY.md can be "
+                f"judged against it, and a url that can't be judged is not fetched")
     return None
 
 
@@ -250,6 +377,48 @@ def self_test() -> int:
        bool(forbidden("https://capitol.texas.gov/tlodocs/BillAnalysis.pdf", b)))
     ok("...and in the upper case the registry writes it in",
        bool(forbidden("https://capitol.texas.gov/TLODOCS/BillAnalysis.pdf", b)))
+    # THE SAME PATH SPELLED ANOTHER WAY, and every one of these came back permitted on
+    # 2026-09-25 until the host and the path were normalised the way a server reads them.
+    for u in ("http://capitol.texas.gov./TLODOCS/x", "https://capitol.texas.gov/%74lodocs/x.pdf",
+              "https://capitol.texas.gov/%2574lodocs/x.pdf",
+              "https://capitol.texas.gov/Committees/../tlodocs/x.pdf",
+              "https://capitol.texas.gov//tlodocs/x.pdf", "https://capitol.texas.gov/\\tlodocs/x.pdf",
+              "https://capitol.texas.gov/./tlodocs/x.pdf", "http://lrl.texas.gov./x",
+              # and the three a review found in the first normalisation, 2026-09-25
+              "https://capitol.texas.gov/tlodocs/%252e%252e/../89R/x.pdf",
+              "https://capitol.texas.gov/tlodocs/.", "https://capitol.texas.gov/TLODOCS",
+              "https://capitol\u3002texas.gov/tlodocs/x.pdf", "https://lrl\uff0etexas.gov/x",
+              "https://\uff43apitol.texas.gov/tlodocs/x.pdf",
+              # and the IIS and browser spellings a second review found, 2026-09-25
+              "https://capitol.texas.gov/tlodocs./x.pdf", "https://capitol.texas.gov/tlodocs%20/x.pdf",
+              "https://capitol.texas.gov/tlodocs.%20/x.pdf", "https://capitol.texas.gov/tlodocs%2e/x.pdf",
+              "https://capitol.texas.gov/%u0074lodocs/x.pdf", "https://capitol.texas.gov/TLODOC~1/x.pdf",
+              "https://capitol.texas.gov/BILLLO~1/x", "https://capitol.texas.gov\\tlodocs\\x.pdf",
+              "https:capitol.texas.gov/tlodocs/x", "https:\\\\lrl.texas.gov\\x",
+              "https://capitol.texas.gov/tl\todocs/x.pdf",
+              # and the ones this PR's own review found after that, 2026-09-25
+              "https://capitol.texas.gov/%54LODOCS/x.pdf", "https://%6crl.texas.gov/x",
+              "https://capitol.texas.gov%3a443/tlodocs/x", "https://capitol.texas.gov/ｔlodocs/x",
+              "https://capitol.texas.gov/bılllookup/x", "capitol.texas.gov\\tlodocs\\x.pdf",
+              "https://capitol.texas.gov/tlodocs;a=b/x.pdf",
+              "https://capitol.texas.gov/committees/..;/tlodocs/x.pdf"):
+        ok(f"...and spelled {u!r} it is still refused", bool(forbidden(u, b)))
+    for u in ("https://capitol.texas.gov／tlodocs/x", "https://[::1/x"):
+        try:
+            why = forbidden(u, b)
+            ok(f"a url the parser can't read, {u!r}, is refused rather than waved through",
+               bool(why) and "can't be parsed" in why, str(why))
+        except Exception as exc:  # noqa: BLE001  a crash is the defect this replays
+            ok(f"a url the parser can't read, {u!r}, is refused rather than raising", False,
+               f"{type(exc).__name__}: {exc}")
+    ok("...while a path that merely passes through `..` to an allowed page stays allowed",
+       forbidden("https://capitol.texas.gov/Committees/x/../MeetingsUpcoming.aspx", b) is None)
+    ok("...and a path that only shares the rule's first letters is not refused",
+       forbidden("https://capitol.texas.gov/tlodocsarchive/x", b) is None)
+    for u in ("https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S&q=%2Ftlodocs%2F",
+              "https://capitol.texas.gov/Committees/x.%20/MeetingsUpcoming.aspx",
+              "https://www.ercot.com/content/wcm/lists/x.pdf"):
+        ok(f"...while {u} stays allowed", forbidden(u, b) is None, str(forbidden(u, b)))
     ok("...and the reason names the registry rather than this file",
        "SOURCES_REGISTRY" in (forbidden("https://capitol.texas.gov/TLODOCS/x", b) or ""))
     # AND THE SUBSTITUTE THE REGISTRY VERIFIED IS NOT REFUSED. A boundary checker that refuses

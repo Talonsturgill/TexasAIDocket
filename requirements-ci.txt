@@ -1,3 +1,5 @@
 # The full guard suite also exercises image production.
 -r requirements.txt
 numpy==2.4.6
+# fetch_doc.py reads PDF sources, and its self-test runs here rather than being skipped.
+pypdf==6.16.2

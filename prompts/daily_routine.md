@@ -194,6 +194,16 @@ public fact stand for another day, on a page whose entire promise is that it doe
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
+- **A PDF, or any document you need the text of: `python3 scripts/shared/fetch_doc.py <url>`.**
+  It downloads into `out/<date>/tmp/src/`, writes the text beside the file, and prints the
+  opening. Exit 0 means there is text, 1 means the page did not answer, 2 means the file holds
+  no text, usually a scan, which the Read tool can still look at, and 3 means the crawl boundary
+  refused it or it was not an http url. It asks `crawl_boundary.py` before every request and on
+  every redirect, so a url the registry puts off limits, `capitol.texas.gov/tlodocs/` among them,
+  is never requested.
+  **Never copy a file that WebFetch saved out of the `~/.claude/` directory.** That directory is
+  a protected path, and on September 25th that one copy raised a permission dialog at 06:53 UTC
+  and stopped the run for the day.
 - `knowledge/shared/GATE_LESSONS.md` — how this machine has lied to itself before. Read it before
   you trust a green gate.
 - `knowledge/shared/TEXAS_GOVERNMENT.md` — who decides what, and where a decision actually gets
@@ -253,12 +263,21 @@ top of the run record.
 
    This step used to write `daily` into a file, and that one write stopped an unattended run on
    six days in August. CLAUDE.md carries the account under the heading saying the stamp is never
-   written, and it separates what was measured from what was not. MEASURED: this repo's own
-   permission grant is inert in the scheduled runner, and any edit under `.claude/` prompts
-   whatever the mode, so this run writes nothing there. **NOT ESTABLISHED: whether every other
-   write prompts**, and this file does not claim it. `prompt_audit.py` in Phases 17 and 19 is how
-   a run finds out. Read the account there rather than re-deriving it, because five runs
-   re-derived it wrong.
+   written. Read the account there rather than re-deriving it, because five runs re-derived it
+   wrong.
+
+   **WHICH WRITES PROMPT IS NOW DOCUMENTED RATHER THAN GUESSED (September 25th).** Anthropic's
+   permission docs, under "Protected paths" at code.claude.com/docs/en/permission-modes, say a
+   cloud session pre-approves ordinary file edits inside the working tree and never
+   auto-approves a write to a protected path: a `.git` or `.claude` directory ANYWHERE, including
+   the `~/.claude/` directory where Claude Code keeps its own tool results, plus a short list of
+   config files such as `.gitconfig`, `.bashrc`, `.envrc` and `.mcp.json`. A routine has no
+   permission-mode picker and nobody to answer, so one such write stops the whole run. **So this
+   run never names a file inside a `.claude` or `.git` directory, the repository's or the home
+   directory's, as the thing to write, copy, move or edit, by any tool.** Git's own commands are
+   fine, since `git commit` and `git checkout` name no such path. Reading those files is fine,
+   and so is running a script that lives there. `prompt_audit.py` in Phases 17 and 19 still
+   measures whether anything waited.
 3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
 4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.

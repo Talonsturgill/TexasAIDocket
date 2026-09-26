@@ -486,10 +486,18 @@ The mechanism, measured on 2026-08-30 after eleven days of wrong guesses:
   `ownership.yaml`, and must not weaken it: the only thing standing between the self-editing
   retro phase and `ledger/docket.json` is that map.
 
-If a prompt still stops a run after this, **the remaining lever is the environment's own
-permission configuration in the Claude Code web UI**, which no file in a repository or a
-container can set. Say so plainly in the email rather than writing a sixth fix into a config that
-cannot carry one.
+**SUPERSEDED IN PART, 2026-09-25.** The second and third bullets are wrong for a cloud run, and
+Anthropic's documentation says so in as many words: cloud sessions "don't honor
+`defaultMode: "bypassPermissions"` or `"dontAsk"` from your settings files", user settings
+included. The SessionStart hook still writes the file and it changes nothing. The account, with
+the quotes and where they came from, is the last section before the routines' model heading.
+
+**If a prompt still stops a run, there is no setting left to reach for.** Until 2026-09-25 this
+paragraph named "the environment's own permission configuration in the Claude Code web UI" as the
+remaining lever, and a routine has no such setting: the routines page says "there is no
+permission-mode picker". Find the call that asked with `prompt_audit.py`, remove the run's
+dependency on it the way the protected-path account below does, and say so plainly in the email.
+A sixth fix written into a config that cannot carry one is still the wrong answer.
 
 ### A SESSION CAN SEE THAT IT PROMPTED, and this paragraph used to say it could not (2026-09-02)
 
@@ -559,6 +567,55 @@ forward.
 to `.claude/settings.local.json`, which `.gitignore` excludes and which dies with the container.
 So the owner tapping approve fixes that one run and no future one. That is why the count reached
 six before anybody found it.
+
+### The sensitive file that stopped 2026-09-25 was in the HOME directory, and the docs say which paths prompt
+
+On September 25th the run stopped at 06:53 UTC, 38 minutes in, and waited on one dialog for the
+rest of the day. The owner's screenshot of it, with the ids shortened:
+
+    Claude requested permissions to edit /root/.claude/projects/-home-user-TexasAIDocket/
+    <session>/tool-results/webfetch-<id>.pdf which is a sensitive file.
+
+    cp /root/.claude/projects/.../tool-results/webfetch-<id>.pdf out/2026-09-25/tmp/src/sb2807_le.pdf
+      && python3 -c "... pypdf ..."
+
+WebFetch saves a binary result such as a PDF under `~/.claude/projects/<project>/tool-results/`,
+and the run copied it out to extract the text. **The dialog named the SOURCE of the copy as the
+file being edited.** Nothing in the routine said how to read a PDF, so the run improvised, and the
+improvisation went through the one directory it must never touch. `scripts/shared/fetch_doc.py` is
+the route now, and the routine names it in its list of context files.
+
+**What Anthropic's documentation says, read on 2026-09-25 rather than inferred.** The pages are
+`code.claude.com/docs/en/permission-modes`, `/permissions`, `/hooks` and `/routines`.
+
+- **Protected paths.** "Writes to a small set of paths are never auto-approved, except in
+  `bypassPermissions` mode." The directories are `.git`, `.config/git`, `.vscode`, `.idea`,
+  `.husky`, `.cargo`, `.devcontainer`, `.yarn`, `.mvn` and `.claude` (except `.claude/worktrees`),
+  wherever they sit. The files include `.gitconfig`, `.gitmodules`, the shell rc files, `.envrc`,
+  `.npmrc`, `.mcp.json` and `.claude.json`. In `default` and `acceptEdits` mode such a write is
+  "Prompted", and "`permissions.allow` rules in settings files do not pre-approve protected-path
+  writes."
+- **A cloud session cannot be in bypass mode.** Cloud sessions offer "Accept edits, Plan, and
+  Auto ... Bypass permissions isn't available", and settings files cannot change that. The
+  dialog above is the proof on this repo, because in bypass mode that write would have gone
+  through.
+- **A routine has no mode picker at all.** The routines page says a routine runs "all without
+  stopping for approval apart from some artifact actions". The 2026-09-25 run stopped on a
+  protected-path write, so that sentence does not hold for one. That is a report for Anthropic,
+  not something to route around here.
+- **Ordinary file edits are pre-approved, inside the working tree.** "Cloud sessions pre-approve
+  file edits regardless of mode", and that approval "applies only to paths inside your working
+  directory or `additionalDirectories`. Paths outside that scope, writes to protected paths ...
+  still prompt." So for FILE WRITES the question five fixes chased has an answer: a protected
+  path prompts and so does a path outside the tree, which is what "Scratch never leaves the
+  working tree" was already guarding. Other dialogs remain possible and are NOT ruled out by
+  this: a tool no allow rule covers, a command asking to leave the sandbox, a connector tool an
+  organisation set to ask.
+
+**The rule that follows is short.** A run never names a file inside a `.claude` or `.git`
+directory, the repository's or the home directory's, as the thing to write, copy, move or edit, by
+any tool. Git's own commands are fine, because `git commit` and `git checkout` name no such path.
+Reading those files is fine, and so is running a script that lives there.
 
 ## The routines' model, and what it changed here (2026-09-23)
 
@@ -633,6 +690,18 @@ in `.claude/settings.json` was otherwise carrying the run. What is actually true
   second half of why this recurred five times: each run verified its own fix, honestly, and was
   wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
 
+**SUPERSEDED IN PART, 2026-09-25.** The second and third bullets, and the "not established"
+paragraph under them, no longer describe a cloud run, and each is answered by something measured.
+**The path DOES matter:** Anthropic's documentation says a cloud session pre-approves ordinary
+file edits inside the working tree and prompts on a protected path, and the runs of September
+21st, 23rd and 24th made 1,571, 2,841 and 1,861 tool calls, ordinary working-tree writes among
+them, and `prompt_audit.py` found none that waited. The 2026-08-30 probe that
+saw an ordinary working-tree write prompt is a reading of the runner as it was that day and is not
+repeated since. **A session CAN see that it prompted:** `prompt_audit.py` reads the wait off the
+debug log, as the 2026-09-02 section above says. The protected-path account in "A run never stops
+to ask about permissions" is the current one. The lesson this section draws, remove the
+dependency rather than reword the rule, stands unchanged.
+
 **WHAT IS NOT ESTABLISHED, and do not write it down as though it were.** Whether EVERY write
 prompts, or only the first of its kind in a session, or only until a human approves one. Runs have
 shipped here with hundreds of writes, so it is plainly not true that each one stops the run. The
@@ -669,9 +738,10 @@ ever committed, and it is inside the tree, which is the whole point.
 
 This is not tidiness. The Bash sandbox and the permission mode are two different mechanisms, and
 knowing that is worth an afternoon. `.claude/settings.json` has set `bypassPermissions` since
-2026-08-11 and it is correct. A SANDBOXED command that writes outside the working tree still
-cannot complete, and the tool then stops and asks to re-run it unsandboxed, which is a prompt the
-permission mode does not reach. An unattended run has nobody to answer it.
+2026-08-11, and a cloud session ignores it (the protected-path account under "A run never stops
+to ask about permissions" has the documentation). A SANDBOXED command that writes outside the
+working tree still cannot complete, and the tool then stops and asks to re-run it unsandboxed,
+which is a prompt the permission mode does not reach. An unattended run has nobody to answer it.
 
 On 2026-08-20 the owner was interrupted twice by exactly this, on a run whose permissions had been
 right for nine days, and the session went looking at the permission mode first because that is
