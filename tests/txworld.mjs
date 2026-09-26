@@ -1,11 +1,12 @@
 /* txworld.mjs — the engine's world, rendered in Chromium and measured in pixels.
  *
- * WHY THIS EXISTS. On 2026-09-26 every judge of carousel no. 34 read the horizon as sea, in all
- * five rounds, and no gate saw it. The cause was in the engine rather than any deck. three.js mixes
- * fog in after tone mapping, with a fog colour that is never tone mapped, while the sky dome IS
- * tone mapped. So a fully fogged ground printed the raw haze, a flat strip about 40 levels darker
- * than the sky right above it, with a hard edge on the horizon. The fix makes the fog the sky's own
- * colour in every direction, tone mapped the same way (txthree.js, installSkyFog).
+ * WHY THIS EXISTS. On 2026-09-26 a judge of carousel no. 34 named the horizon band in every one of
+ * five rounds, as sea in the first two, and no gate saw it. The cause was in the engine rather than
+ * any deck. three.js mixes fog in after tone mapping, with a fog colour that is never tone mapped,
+ * while the sky dome IS tone mapped. So a fully fogged ground printed the raw haze, a flat strip
+ * about 40 levels darker than the sky right above it, with a hard edge on the horizon. The fix
+ * makes the fog the sky's own colour in every direction, tone mapped the same way (txthree.js,
+ * installSkyFog).
  *
  * A fix that is not measured does not hold, which this repo has learned twice. So this renders a
  * world through the real engine in a real browser, reads the pixels across the horizon and fails

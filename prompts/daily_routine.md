@@ -1417,13 +1417,14 @@ the code that computed it. That pass costs one agent's worth of tokens. A scorin
 three, plus a repair pass, plus a re-render, plus the next round.
 
 **A DEFECT NAMED TWICE IS A COMPOSITION PROBLEM, NEVER A RENDER PROBLEM (owner, 2026-09-26: "fix
-the artwork so it stops wasting rounds").** Measured across the rendered decks of September 24th
-and 26th: every art defect still named in round five had been named in round one. The horizon band
-was named in all five rounds on the 26th, the cab built from primitives in all five, and the
-top-down lot with no sky in all five on the 24th. Rounds two to five re-rendered objects the run
-could not fix, and the 26th's score moved 0.25 across them. So when the panel names the same art
-defect in two rounds running and your repair did not move it, the next round does not re-render
-that object. **It recomposes the frame so the defect is not in it:**
+the artwork so it stops wasting rounds").** Measured on the score cards of the rendered decks of
+September 24th and 26th, most of the art defects still named in round five had been named in round
+one. The horizon band was named in all five rounds on the 26th, the cab built from primitives in all
+five, and the top-down lawn in all five on the 24th. On both days no judge's artwork score moved
+more than half a point from round one to round five, and the 26th's total moved 0.25. Rounds two to
+five re-rendered objects the run could not fix. So when the panel names the same art defect in two
+rounds running and your repair did not move it, the next round does not re-render that object. **It
+recomposes the frame so the defect is not in it:**
 
 - crop the object out of frame, or crop to one part of it you can build well
 - move the camera

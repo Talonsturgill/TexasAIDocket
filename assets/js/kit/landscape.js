@@ -222,8 +222,8 @@ export function install(K, THREE, TXT) {
   // with a rate set per model, capped so a silhouette always survives. Replaces the scene fog
   // on that material only (a FogExp2 tuned for a 200 m set would erase a skyline at 5 km).
   // TOWARD THE SKY BEHIND IT (2026-09-26). Under TXT.sky the haze is the sky in the fragment's own
-  // direction, tone mapped as the dome is. It was the raw fog colour, a tone the sky never shows,
-  // which is why no. 34's Houston read as pasted on and every judge asked to haze it.
+  // direction, tone mapped as the dome is. It was the raw fog colour, a tone the sky never shows.
+  // No. 34's Houston skyline read as floating on it, and judges asked for it hazed.
   function aerial(mat, rate, cap) {
     mat.fog = true;
     const prev = mat.onBeforeCompile;

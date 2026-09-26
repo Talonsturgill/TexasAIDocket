@@ -325,10 +325,11 @@ export function init(THREE) {
   TXT.snapshot = async function (R, o) {
     o = o || {};
     R.renderer.render(R.scene, R.camera);
-    /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 6 called TXT.sky and
-     * looked straight down through an orthographic camera, so every judge saw objects in a void and
-     * the showstopper test capped it in all five rounds. print_ban counted the call. This counts
-     * what the camera shows, and the render report carries it to print_ban before a panel sits. */
+    /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and
+     * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
+     * print_ban counted the call. This counts what the camera shows, and the render report carries
+     * it to print_ban before a panel sits. Measured on the shipped decks: no. 33's frame 4 and no.
+     * 34's frames 4 and 5 print it, and no. 34's page on the cab seat does not. */
     // A ROOM IS EXEMPT: "a sky or a deliberate interior" is the test's own question 3, and a desk or a
     // document looked down on stands in a room TXT.interior built (ILLUSTRATION_SYSTEM, The gate).
     if (R.world && !R._txRoom && o.skyCheck !== false && typeof console !== 'undefined') {
@@ -757,13 +758,14 @@ export function init(THREE) {
   /* THE FOG IS THE SKY'S OWN COLOUR (2026-09-26). three.js mixes fog in AFTER tone mapping, with a
    * fog colour that is never tone mapped, while the dome the fogged ground meets IS tone mapped. So
    * a fully fogged ground printed the raw haze: a flat strip about 40 levels darker than the sky
-   * right above it on carousel no. 34, with a hard top edge on the horizon. All three judges read
-   * it as sea in all five rounds, and "extend the ground" could never fix it, because the strip was
-   * the ground. The fog chunks are rewritten for this page's world: the fog colour is the clear sky
-   * in the fragment's own direction, horizon glow toward the sun included, put through the same
-   * tone curve and colour encoding as the dome, so a fogged ground dissolves into the sky with no
-   * line. The world is baked in as constants, because a chunk can't add uniforms to every
-   * material, and a page renders one world. Called by TXT.sky before anything compiles. */
+   * right above it on carousel no. 34, with a hard top edge on the horizon. A judge named it in
+   * every one of five rounds, as sea in the first two, and "extend the ground" could never fix it,
+   * because the strip was the ground. The fog chunks are rewritten for this page's world: the fog
+   * colour is the clear sky in the fragment's own direction, horizon glow toward the sun included,
+   * put through the same tone curve and colour encoding as the dome, so a fogged ground dissolves
+   * into the sky with no line. The world is baked in as constants, because a chunk can't add
+   * uniforms to every material, and a page renders one world. Called by TXT.sky before anything
+   * compiles. */
   function installSkyFog(W, sunDir) {
     const c = (hex) => { const k = new THREE.Color(hex); return `vec3(${k.r.toFixed(6)}, ${k.g.toFixed(6)}, ${k.b.toFixed(6)})`; };
     const f = (x) => Number(x).toFixed(6);

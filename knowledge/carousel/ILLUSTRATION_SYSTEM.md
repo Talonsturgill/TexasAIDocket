@@ -964,30 +964,39 @@ which is the finding the judges made in words and the number that says the gate 
 - **A chassis that develops its own frame and grades it filmic again.** The renderer already tone
   maps. `TXDECK.finish` now skips its own curve on a rendered frame, and a chassis must not route
   around it. (2026-09-24)
-- **A horizon that reads as sea.** Every judge named it on frames 1, 3, 4, 5, 8 and 9 of no. 34, in
-  all five rounds, and no fix a run could make touched it, because the cause was the engine. Fog
-  was mixed after tone mapping in a colour the sky never shows, so a fogged ground printed a flat
-  strip below a brighter sky. **Fixed in `txthree.js`:** the fog is the sky's own colour in every
-  direction, a far field carries the ground to the horizon, and the far plane reaches whatever
-  ground a frame builds. Call `TXT.sky` and `TXT.ground`, and never hand-build a horizon plane, a
-  terrain skirt or a backdrop strip. If a band still shows, something in the frame at the horizon
-  has `fog:false` or is a flat 2D layer. (2026-09-26)
-- **A camera pointed at the ground.** No. 33's frame 6 called `TXT.sky` and looked straight down
-  through an orthographic camera, so it showed no sky and the showstopper test capped it in all
-  five rounds. No. 34's frames 4 and 5 looked down on a yard and were named as objects in a dark
-  gradient. `TXT.snapshot` now measures the horizon against the camera, and `print_ban.py` fails
+- **A horizon that reads as sea.** A judge named it in every one of no. 34's five rounds, on frames
+  1, 3, 4, 5, 8 and 9 between them and as sea in the first two, and no fix the run made touched it,
+  because the cause was the engine. Fog was mixed after tone mapping in a colour the sky never
+  shows, so a fogged ground printed a flat strip below a brighter sky, near 160 under a sky near 200
+  on frame 3. **Fixed in `txthree.js`:** the fog is the sky's own colour in every direction, a far
+  field carries the ground to the horizon, and the far plane reaches whatever ground a frame
+  builds. Call `TXT.sky` and `TXT.ground`, and never hand-build a horizon plane, a terrain skirt or
+  a backdrop strip. If a band still shows, something in the frame at the horizon has `fog:false` or
+  is a flat 2D layer. (2026-09-26)
+- **A camera pointed at the ground.** No. 33's frame 4 called `TXT.sky` and looked straight down on
+  a lawn, and a judge named it top-down in every one of its five rounds. Its frame 6 looked down
+  through an orthographic camera for its first three rounds and was failed for no sky in each. No.
+  34's frames 4 and 5 looked down on two truck yards, and a judge called frame 4 dark ground without
+  a horizon. `TXT.snapshot` now measures the horizon against the camera, and `print_ban.py` fails
   the frame off the render report on the probe. A camera with something built overhead within 12 m
-  (a room, a cab roof, a canopy) is inside, and looking down is an interior shot. Measured: no. 34's
-  page on the cab seat passes, and its two yards fail. Keep the horizon in frame, or stand the
-  camera inside something built. (2026-09-26)
-- **A far skyline standing on a line.** No. 34's Houston stood on the sea band with a hard base,
-  and every judge asked to haze it. Kit far models (`city_skyline`, `mesa`) now haze toward the
-  sky behind them, heaviest near the ground, so the base dissolves and the crowns stay clear. Place
-  them 2 to 10 km out and let the haze carry the distance. (2026-09-26)
-- **A figure in the dark.** No. 34's frame 9 used the kit's `person` in dark clothes, backlit at
-  blue hour, and every judge read it as a low-poly mannequin in all five rounds. The model is
-  detailed. What they saw was a silhouette with no light on its face side. Put the key on the
-  side the camera sees, or crop to the shoulder. (2026-09-26)
+  (a room, a cab roof, a canopy) is inside, and looking down is an interior shot. Measured through
+  the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5 fail, and no. 34's
+  page on the cab seat passes. Keep the horizon in frame, or stand the camera inside something
+  built. (2026-09-26)
+- **A horizon hidden behind the type.** No. 33's frame 6 as shipped does show sky, the top fifth of
+  the frame behind the type, and was still failed in its last two rounds, because the horizon ran
+  behind the dek and the lower 40 to 45 percent was empty ground. The no-sky check passes it and
+  can't see this. Put the horizon on a third the type leaves clear, and give the lower frame
+  something to hold. (2026-09-26)
+- **A far skyline standing on a line.** No. 34's Houston skyline was named in every one of the five
+  rounds, as blocks or as floating, and judges asked for it hazed. Kit far models (`city_skyline`,
+  `mesa`) now haze toward the sky behind them, heaviest near the ground, so the base dissolves and
+  the crowns stay clear. That fixes the line and not the blocks, which are the kit model's to carry.
+  Place them 2 to 10 km out and let the haze carry the distance. (2026-09-26)
+- **A figure in the dark.** No. 34's frame 9 used the kit's `person` in dark clothes against the
+  city glow at blue hour, and a judge named it in every one of the five rounds, as low-poly,
+  faceless, a mannequin or a silhouette. Lit from behind, a figure shows its outline and none of its
+  modelling. Put the key on the side the camera sees, or crop to the shoulder. (2026-09-26)
 - **A cab or a room built from primitives.** No. 34's frame 3 built the cab from a capsule seat,
   a torus wheel and a box dash, and it was named in all five rounds. The kit has no vehicle
   interior. Stand outside the cab and look in, or crop to one part modelled at kit detail, and put

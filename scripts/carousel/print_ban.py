@@ -233,11 +233,17 @@ def check_assets(assets: Path = ASSETS) -> list[str]:
 def no_sky_frames(run_dir: Path) -> list[str]:
     """Frames whose render says the camera shows no sky, read off the run's render report.
 
-    WHAT THE CAMERA SHOWS, NOT WHAT THE SOURCE CALLS (2026-09-26). No. 33's frame 6 called TXT.sky
-    and looked straight down through an orthographic camera. This gate counted the call, and all
-    three judges capped the frame as objects in a void in all five rounds. TXT.snapshot now measures
-    the horizon against the camera and says so on the console, render.py keeps console errors per
-    frame, and this reads them, so the finding lands on the probe frame and not on a panel round.
+    WHAT THE CAMERA SHOWS, NOT WHAT THE SOURCE CALLS (2026-09-26). No. 33's frame 4 called TXT.sky
+    and looked straight down on a lawn. This gate counted the call and passed it, and a judge named
+    the frame top-down in every one of the five rounds. TXT.snapshot now measures the horizon
+    against the camera and says so on the console, render.py keeps console errors per frame, and
+    this reads them, so the finding lands on the probe frame and not on a panel round.
+
+    Measured through the engine on the shipped decks: no. 33's frame 4 and no. 34's frames 4 and 5
+    fail, and no. 34's page on the cab seat passes. No. 33's frame 6 passes as shipped. It looked
+    down through an orthographic camera for three rounds, in a source the run never committed, and
+    then showed sky behind the type and failed for a horizon hidden behind the dek, which a count
+    of sky in frame can't see.
     """
     import json
     for rel in ("render/render_report.json", "render_report.json"):
@@ -303,8 +309,8 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
             out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
                        f"or looking straight down with nothing built overhead, so a reader sees objects in "
                        f"a void. Lift the camera until the horizon is in frame, or stand it inside something "
-                       f"built (a room with TXT.interior, a cab, a canopy). No. 33's frame 6 spent all five "
-                       f"panel rounds on exactly this, and no. 34's frames 4 and 5 were named for it")
+                       f"built (a room with TXT.interior, a cab, a canopy). No. 33's frame 4, a lawn seen "
+                       f"straight down, was named top-down in all five panel rounds")
     return out
 
 
