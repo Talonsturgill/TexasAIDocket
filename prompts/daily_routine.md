@@ -1416,6 +1416,26 @@ acceptance list against the render you actually made, and read every universal i
 the code that computed it. That pass costs one agent's worth of tokens. A scoring round costs
 three, plus a repair pass, plus a re-render, plus the next round.
 
+**A DEFECT NAMED TWICE IS A COMPOSITION PROBLEM, NEVER A RENDER PROBLEM (owner, 2026-09-26: "fix
+the artwork so it stops wasting rounds").** Measured across the rendered decks of September 24th
+and 26th: every art defect still named in round five had been named in round one. The horizon band
+was named in all five rounds on the 26th, the cab built from primitives in all five, and the
+top-down lot with no sky in all five on the 24th. Rounds two to five re-rendered objects the run
+could not fix, and the 26th's score moved 0.25 across them. So when the panel names the same art
+defect in two rounds running and your repair did not move it, the next round does not re-render
+that object. **It recomposes the frame so the defect is not in it:**
+
+- crop the object out of frame, or crop to one part of it you can build well
+- move the camera
+- replace the object with a kit model (`K.make`)
+- build it in the chassis at the detail the kit uses
+
+Say which one in the run record. When the judges name the same thing on frames built different
+ways, the defect is the engine's. Write it into `knowledge/carousel/UPGRADE_BACKLOG.md` with the
+frames and the rounds, and recompose around it this run. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
+"What still fails" names the ones already met. Read it before the first render, because a defect it
+names is a round spent twice.
+
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a
 second reading.
