@@ -182,6 +182,49 @@ def check_pointers(base: Path, report: dict) -> list[str]:
     return bad
 
 
+def load_machine_qa(base: Path, report: dict) -> tuple[dict, list[str]]:
+    """MACHINE QA MEASURED THE FRAMES THAT ARE HERE NOW (Codex, PR 369).
+
+    The contrast group reads `machine_qa.json`, which `qa.py` writes and nothing else refreshes. A
+    repaired round re-renders its frames with `render.py --only`, which rewrites the PNGs and the
+    render report and leaves the QA file describing the frames it just replaced. A line repaired
+    since then reads as failing, and a line broken since then reads as clean, which is the
+    direction that reaches a panel. Until 2026-09-26 a missing file read as `{}` and passed.
+
+    So the file has to exist, parse, be no older than the newest render and carry a record for
+    every frame the render report lists. The age test is `gate_status.staleness`'s, with its one
+    second of slack for a filesystem that rounds file times to the second. Running
+    `qa.py --render-dir out/<date>/render` clears all four. Returns the QA, and the problems, which
+    are empty only when the QA can be read as a reading of these frames.
+    """
+    rdir = base / "render"
+    qp = rdir / "machine_qa.json"
+    again = (f"Run python3 .claude/skills/carousel-engine/qa.py --render-dir {rdir}, then "
+             f"this again")
+    if not qp.exists():
+        return {}, [f"render/machine_qa.json is missing, so no contrast was measured on these "
+                    f"frames. {again}"]
+    try:
+        qa = json.loads(qp.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return {}, [f"render/machine_qa.json can't be read ({e.__class__.__name__}). {again}"]
+    if not isinstance(qa, dict) or not isinstance(qa.get("slides"), list):
+        return {}, [f"render/machine_qa.json carries no list of slides. {again}"]
+    drawn = max([p.stat().st_mtime for p in rdir.glob("slide-*.png")]
+                + [(rdir / "render_report.json").stat().st_mtime])
+    problems = []
+    if qp.stat().st_mtime + 1.0 < drawn:
+        problems.append(f"render/machine_qa.json predates the newest render, so what it says "
+                        f"about contrast describes frames that were replaced. {again}")
+    measured = {q.get("file") for q in qa["slides"] if isinstance(q, dict)}
+    for rec in report.get("slides") or []:
+        name = rec.get("file") if isinstance(rec, dict) else None
+        if name and name not in measured:
+            problems.append(f"{name}: render/machine_qa.json has no record of it, so its contrast "
+                            f"was never measured. {again}")
+    return qa, problems
+
+
 def check_contrast(qa: dict, floor: float) -> list[str]:
     """EVERY LINE CLEARS THE RUBRIC'S OWN CONTRAST FLOOR.
 
@@ -811,14 +854,19 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         print(f"panel_ready: no render report at {rp}", file=sys.stderr)
         return 2
     report = json.loads(rp.read_text(encoding="utf-8"))
-    qa = json.loads(qp.read_text(encoding="utf-8")) if qp.exists() else {}
+    qa, qa_problems = load_machine_qa(base, report)
     floor = rubric_contrast_floor()
+    # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED (GATE_LESSONS 37). Contrast read off a QA
+    # file that describes other frames, or no file, is not a reading of this deck.
+    contrast = (check_contrast(qa, floor) if not qa_problems else
+                [f"CANNOT RUN: {qp.relative_to(base)} is not a reading of these frames, see above"])
 
     groups = [
         ("nothing a reader needs is exempt from the gates", check_nothing_exempt(report)),
         ("no published text has a plate through it", check_nothing_occluded(report)),
         ("every slide number in published copy resolves", check_pointers(base, report)),
-        (f"every line clears the rubric's {floor} contrast floor", check_contrast(qa, floor)),
+        ("machine QA measured the frames that are here now", qa_problems),
+        (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
         ("every ground a dossier calls worked is worked", check_ground(base)),
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
@@ -1275,6 +1323,19 @@ def self_test() -> int:
                                                       "font_px": 40}]}]}), encoding="utf-8")
         (_q / "slides" / "slide-01.html").write_text(
             "<html><body><h1>The pod picks the spot</h1></body></html>", encoding="utf-8")
+        import os as _os
+        _rpt = _q / "render" / "render_report.json"
+        _mqa = _q / "render" / "machine_qa.json"
+
+        def _qa_at(offset, slides=("slide-01.html",)):
+            """A machine QA file `offset` seconds after the render report, on the clock, so the
+            file-time comparison never depends on how fast this test runs."""
+            _mqa.write_text(json.dumps({"slides": [{"file": f, "fails": [], "warns": []}
+                                                   for f in slides]}), encoding="utf-8")
+            _t = _rpt.stat().st_mtime + offset
+            _os.utime(_mqa, (_t, _t))
+
+        _qa_at(2)
         (_q / "storyboard.md").write_text("```yaml\nslide: 1\nlayout: FULL_BLEED\n```\n",
                                           encoding="utf-8")
         _arts = _root / "articles"
@@ -1291,6 +1352,49 @@ def self_test() -> int:
         _edition("People appear elsewhere in the draft too.")
         ok("the smallest clean deck, with the repaired web edition, is ready to be scored",
            _run() == 0, "some other group is red on the fixture, so this case proves nothing")
+
+        # MACHINE QA THAT ISN'T A READING OF THESE FRAMES (Codex, PR 369). Each case through run(),
+        # on the deck the case above proved clean, so the QA file is the only thing that changed.
+        _rep = json.loads(_rpt.read_text(encoding="utf-8"))
+        _mqa.unlink()
+        ok("a run with no machine QA is not ready: a missing file read as clean until 2026-09-26",
+           _run() == 1 and any("missing" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(-60)
+        ok("machine QA older than the render report is stale, and the panel waits",
+           _run() == 1 and any("predates" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        # A real frame with a worked ground, so the ground group reads it as clean and the only
+        # thing that can turn this red is its age.
+        _png = _q / "render" / "slide-01.png"
+        try:
+            from PIL import Image as _Im
+            import numpy as _np
+            _Im.fromarray(_np.random.default_rng(7).integers(0, 256, (80, 64), dtype=_np.uint8)
+                          ).save(_png)
+        except ImportError:
+            _png.write_bytes(b"\x89PNG\r\n\x1a\n")
+        _t = _mqa.stat().st_mtime + 60
+        _os.utime(_png, (_t, _t))
+        ok("a frame re-rendered after qa.py ran is stale too, the render --only case",
+           _run() == 1 and any("predates" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(120)
+        ok("...and qa.py run again after that frame clears it", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
+        _png.unlink()
+        _qa_at(2, slides=())
+        ok("machine QA with no record of a rendered frame never measured it",
+           _run() == 1 and any(p.startswith("slide-01.html") for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _mqa.write_text("{", encoding="utf-8")
+        ok("machine QA that can't be read is not ready either",
+           _run() == 1 and any("can't be read" in p for p in load_machine_qa(_q, _rep)[1]),
+           str(load_machine_qa(_q, _rep)[1]))
+        _qa_at(2)
+        ok("...and with qa.py run again after the render, the same deck is ready", _run() == 0,
+           str(load_machine_qa(_q, _rep)[1]))
         _edition("A person enters in one sentence.")
         ok("carousel no. 33's 'A person enters in one sentence' in the web edition stops the "
            "panel", _run() == 1, "the deck reached the judges")

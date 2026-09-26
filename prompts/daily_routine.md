@@ -1336,8 +1336,14 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 ## PHASE 14b — READY FOR THE PANEL (run this before you spawn a single scorer)
 
 ```
+python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
+
+**`qa.py` runs first, every time.** `panel_ready` reads contrast off `machine_qa.json`, and every
+frame re-rendered since Phase 11 left that file describing a frame it replaced. `panel_ready`
+refuses a QA file older than the newest render, missing a frame or missing altogether, so a run
+that skips the first line gets a red second line rather than a reading of the old deck.
 
 **Non-zero means the deck is not ready to be SCORED.** It does not mean the deck is unshippable.
 Fix the frame and run it again. Do not spawn a scorer while this is red.
@@ -1446,16 +1452,19 @@ the `upgrade` commit, because that file is `upgrade` lane and the daily lane can
 `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
 before the first render, because a defect it names is a round spent twice.
 
-**Before every round, the first and every one after a repair, run `panel_ready.py` again and spawn
-nothing while it is red.**
+**Before every round, the first and every one after a repair, run `qa.py` and then
+`panel_ready.py` again, and spawn nothing while either is red.**
 
 ```
+python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
 A repair re-renders frames, and Phase 14b ran before any of them. A frame a repair turned toward
-the ground, or into a plate over a sentence, reaches three judges unless this runs first. It takes
-seconds, and a red one saves three model calls (Codex, PR 369).
+the ground, or into a plate over a sentence, reaches three judges unless this runs first. `qa.py`
+comes first because the repair's `render.py --only` rewrote the frames and not the QA file, and
+`panel_ready` refuses a QA file older than the newest render (Codex, PR 369). Both take seconds,
+and a red one saves three model calls.
 
 Spawn **3** `carousel-scorer` agents IN PARALLEL, one per lens, and combine them with a script.
 Never one. Never sequentially, because a judge that can see another judge's answer is not a

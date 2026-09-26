@@ -304,18 +304,22 @@ export function init(THREE) {
   const drawn = (m) => m.visible && (Array.isArray(m.material) ? m.material.some(shows) : shows(m.material));
   // Drawn through every parent up to this scene, which is what the renderer walks.
   const onStage = (o, scene) => { for (let q = o; q; q = q.parent) { if (!q.visible) return false; if (q === scene) return true; } return false; };
+  // ...and on a layer this camera renders, which the renderer checks as well (Codex, PR 369).
+  const inView = (m, cam) => drawn(m) && m.layers.test(cam.layers);
   /* TXT.enclosed(R) — true when something the frame built stands over the camera within `reach`
    * metres: a cab roof, a ceiling, a canopy. A camera under a roof looking down is inside, and the
    * showstopper test's question 3 accepts "a deliberate interior" as readily as a sky. Measured with
    * one ray straight up, never guessed from the source, so a chassis that builds its own cab needs no
    * flag to say so (no. 34's frame 6, a page on the cab seat, is the case). The sky dome is the
    * world, not a roof, and is never hit. Only what the renderer draws is tested: a mesh keeps its
-   * own visible flag under a hidden parent, and it is no roof (Codex, PR 369). */
+   * own visible flag under a hidden parent, and it is no roof, and neither is a mesh on a layer the
+   * camera doesn't render (Codex, PR 369). */
   TXT.enclosed = function (R, reach) {
     R.camera.updateMatrixWorld();
     const eye = new THREE.Vector3().setFromMatrixPosition(R.camera.matrixWorld);
     const rc = new THREE.Raycaster(eye, new THREE.Vector3(0, 1, 0), 0.05, reach || 12);
     rc.camera = R.camera;
+    rc.layers.mask = R.camera.layers.mask;       // only what this camera renders can be its roof
     const hit = [];
     R.scene.traverseVisible((m) => { if (m.isMesh && drawn(m) && !(m.userData && m.userData.txSky)) hit.push(m); });
     try { return rc.intersectObjects(hit, false).length > 0; } catch (e) { return false; }
@@ -331,7 +335,7 @@ export function init(THREE) {
     const room = R.room;
     if (!room || !room.isObject3D || !onStage(room, R.scene)) return false;
     let shown = false;
-    room.traverseVisible((m) => { if (m.isMesh && drawn(m)) shown = true; });
+    room.traverseVisible((m) => { if (m.isMesh && inView(m, R.camera)) shown = true; });
     if (!shown) return false;                     // walls made invisible are no room
     const box = new THREE.Box3().setFromObject(room);
     if (box.isEmpty()) return false;
@@ -388,7 +392,7 @@ export function init(THREE) {
       let none = false;
       if (R.world) {
         // a dome hidden or taken out before the snapshot leaves the cleared background, not the sky
-        const dome = R._txDome, domeShown = !!dome && onStage(dome, R.scene) && drawn(dome);
+        const dome = R._txDome, domeShown = !!dome && onStage(dome, R.scene) && inView(dome, R.camera);
         const sky = domeShown ? TXT.skyInFrame(R.camera) : 0;
         if (typeof window !== 'undefined') window.TXT_SKY_IN_FRAME = sky;
         none = sky <= 0 && !TXT.enclosed(R) && !TXT.inRoom(R);

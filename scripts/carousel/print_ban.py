@@ -266,15 +266,17 @@ def no_sky_frames(run_dir: Path) -> list[str]:
     then showed sky behind the type and failed for a horizon hidden behind the dek, which a count
     of sky in frame can't see.
     """
-    frames, _ = read_sky_report(run_dir)
+    frames, _, _ = read_sky_report(run_dir)
     return frames or []
 
 
 def read_sky_report(run_dir: Path):
-    """(frames, why): the frames whose kept snapshot shows no sky and "", or None and why the report
-    can't be read, or None and "" when there is no report. A report that can't be read is not a
-    clean report, and neither is a missing one where one should exist: both used to read as no
-    finding at all (Codex, PR 369)."""
+    """(frames, why, listed): the frames whose kept snapshot shows no sky, "", and the names of every
+    frame the report holds a record for. Or None, why the report can't be read and an empty set, or
+    None, "" and an empty set when there is no report. A report that can't be read is not a clean
+    report, and neither is a missing one where one should exist: both used to read as no finding
+    at all (Codex, PR 369). `listed` is what lets the caller see a frame the report never measured,
+    which read as clean too."""
     import json
     for rel in ("render/render_report.json", "render_report.json"):
         rp = run_dir / rel
@@ -285,10 +287,11 @@ def read_sky_report(run_dir: Path):
                 if not isinstance(slides, list):
                     raise ValueError("no slides list")
             except (ValueError, AttributeError) as e:
-                return None, f"{rel} can't be read ({e})"
-            return [str(rec.get("file") or "?") for rec in slides
-                    if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))], ""
-    return None, ""
+                return None, f"{rel} can't be read ({e})", set()
+            return ([str(rec.get("file") or "?") for rec in slides
+                     if isinstance(rec, dict) and kept_no_sky(rec.get("console_errors"))], "",
+                    {str(rec["file"]) for rec in slides if isinstance(rec, dict) and rec.get("file")})
+    return None, "", set()
 
 
 def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS,
@@ -298,7 +301,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
     if not files:
         return [f"{slides_dir} holds no slide-*.html, so there is nothing to check. A gate that "
                 f"cannot find its subject does not report clean"]
-    out, rendered, worlds, chassis, voids = [], 0, 0, set(), []
+    out, rendered, worlds, chassis, voids, world_names = [], 0, 0, set(), [], []
     for f in files:
         src = f.read_text(encoding="utf-8", errors="replace")
         out += scan_source(f.name, src)
@@ -308,6 +311,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                 voids.append(f.name)
         if in_world(src):
             worlds += 1
+            world_names.append(f.name)
         chassis.update(CHASSIS_REF.findall(strip_comments(src)))
     for rel in sorted(chassis):
         p = chassis_root / rel
@@ -338,7 +342,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"An interior is a room built as geometry, never a flat background colour behind "
                    f"an object, which is the void every rendered frame of no. 32 shipped in")
     if not (dated and run_dir.name <= WORLD_SINCE) and worlds:
-        frames, why = read_sky_report(run_dir)
+        frames, why, listed = read_sky_report(run_dir)
         # A run directory is dated, and a dated run whose frames stand in the world has rendered them,
         # so a report that is missing there, or one that can't be read anywhere, is a check that did
         # not run. An undated directory is a fixture or a one-off --run-dir, and missing is allowed.
@@ -347,6 +351,16 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
             out.append(f"the camera check did not run: {why}. TXT.snapshot measures whether each frame "
                        f"that calls TXT.sky shows any of it, and render.py keeps that in the report. "
                        f"Render the frames and run this again")
+        # A FRAME THE REPORT NEVER MEASURED IS NOT A FRAME THAT PASSED (Codex, PR 369). A report
+        # left from a probe, or rebuilt from a partial render, holds no line for a frame it never
+        # drew, and that absence read as clean. Only a frame that calls TXT.sky has a camera check
+        # to run, since everything else here reads the source, so those are the ones named.
+        unmeasured = [n for n in world_names if n not in listed] if frames is not None else []
+        if unmeasured:
+            out.append(f"the camera check did not run on {', '.join(unmeasured)}: the render report "
+                       f"holds no record of {'it' if len(unmeasured) == 1 else 'them'}, so whether "
+                       f"{'its' if len(unmeasured) == 1 else 'their'} camera shows the sky was never "
+                       f"measured. Render {'it' if len(unmeasured) == 1 else 'them'} and run this again")
         for name in frames or []:
             out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
                        f"or looking straight down with nothing built overhead, so a reader sees objects in "
@@ -577,6 +591,17 @@ def self_test() -> int:
            any("did not run" in g for g in check_run(seen, chassis_root=a)), check_run(seen, chassis_root=a))
         ok("...while an undated fixture without one is not judged on it",
            not any("did not run" in g for g in check_run(three, chassis_root=a)), check_run(three, chassis_root=a))
+        # A REPORT THAT OMITS A WORLD FRAME NEVER MEASURED IT (Codex, PR 369). Slide 1 alone, as a
+        # probe leaves it, with nine world frames on disk: eight were never asked the question.
+        root_report.write_text(_json.dumps({"slides": [{"file": "slide-01.html", "console_errors": []}]}))
+        got = check_run(seen, chassis_root=a)
+        ok("a report with no record of eight world frames is CAUGHT, and names the eight",
+           any("did not run on slide-02.html" in g and "slide-09.html" in g and "slide-01.html" not in g
+               for g in got), got)
+        at_root([])
+        ok("...and the same report with all nine records is clean", check_run(seen, chassis_root=a) == [],
+           check_run(seen, chassis_root=a))
+        root_report.unlink()
         engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
         ok("the engine prints the exact words this gate reads, the withdrawal included",
            f"TXT.NO_SKY = '{NO_SKY}'" in engine and "console.error(TXT.NO_SKY" in engine

@@ -50,7 +50,7 @@
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `qa.py` |
-| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `run_complete.py` |
+| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `qa.py`, `render.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
@@ -446,8 +446,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/sensitive_paths.py` | no instruction file may tell a session to WRITE under `.claude/`. | --self-test | CI |  |
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
-| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11 |
+| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b, 15 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11, 15 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -503,7 +503,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
-| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11 |
+| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 15 |
 | Node | TXLAYOUT.check before dossiers; the article edition suite | artwork, 14b, 16 |
 
 ## THE DOCTRINE, `knowledge/`

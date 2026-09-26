@@ -230,8 +230,30 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const Rs = world(40);
   TXT.frame(Rs, { from: [0, 30, 0], look: [0, 0, -0.01] }); dress(Rs, [20, 40, 20]);
   const optErrors = await capture(() => TXT.snapshot(Rs, { skyCheck: false }));
+  // THE CAMERA'S LAYERS (Codex, PR 369). The renderer draws only what shares a layer with the
+  // camera, and a ray, a room or a dome it doesn't draw answers nothing. First the whole world on
+  // layer 1 and a roof on layer 0, which the camera never shows: looking down, that is a top-down
+  // frame. Then the same roof moved onto layer 1, where it is a roof, and the kept frame withdraws.
+  const Rl = world(40);
+  TXT.frame(Rl, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rl, [4, 8, 4]);
+  Rl.scene.traverse((o) => o.layers.set(1)); Rl.camera.layers.set(1);
+  const lid1 = new T.Mesh(new T.BoxGeometry(3, 0.1, 3), new T.MeshStandardMaterial({ color: 0x333333 }));
+  lid1.position.set(0, 2.4, 0); Rl.scene.add(lid1);
+  const layerErrors = await capture(async () => { await TXT.snapshot(Rl); lid1.layers.set(1); await TXT.snapshot(Rl); });
+  // a dome on a layer the camera doesn't render: facing the horizon, the frame shows no sky
+  const Rv = world(40);
+  TXT.frame(Rv, { from: [0, 2, 0], look: [0, 2, -100] }); dress(Rv, [20, 40, 20]);
+  Rv.scene.traverse((o) => { if (!(o.userData && o.userData.txSky)) o.layers.set(1); }); Rv.camera.layers.set(1);
+  const veilErrors = await capture(() => TXT.snapshot(Rv));
+  // a room on a layer the camera doesn't render: a camera standing in it, looking down, shows no room
+  const Rw = world(40);
+  TXT.frame(Rw, { from: [0, 3, 0], look: [0, 0, -0.01] });
+  TXT.sky(Rw, W); TXT.interior(Rw, {});
+  TXT.rig(Rw, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+  Rw.scene.traverse((o) => o.layers.set(1)); Rw.room.traverse((o) => o.layers.set(0)); Rw.camera.layers.set(1);
+  const wallErrors = await capture(() => TXT.snapshot(Rw));
   return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
-           crossErrors, domeErrors, glassErrors, optErrors,
+           crossErrors, domeErrors, glassErrors, optErrors, layerErrors, veilErrors, wallErrors,
            orthoSky: TXT.skyInFrame(oc), orthoErrors, zoomSky: TXT.skyInFrame(Rz.camera), zoomErrors,
            outsideErrors, rollSky: TXT.skyInFrame(Rt.camera), rollErrors, hiddenErrors, previewErrors,
            shown: TXT.SKY_SHOWN };
@@ -319,6 +341,18 @@ check('a roof at zero opacity is no roof: looking down beneath it IS flagged',
 check('there is no option to skip the check: skyCheck false on the kept snapshot is still judged',
       Array.isArray(g.result.optErrors) && g.result.optErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.optErrors));
+{
+  const le = Array.isArray(g.result.layerErrors) ? g.result.layerErrors : [];
+  check('a roof on a layer the camera doesn\'t render is no roof, and the same roof on its layer is',
+        le.length === 2 && le[0].startsWith('TXT: NO SKY IN FRAME') && le[1].startsWith('TXT: SKY IN FRAME'),
+        JSON.stringify(le));
+}
+check('a sky dome on a layer the camera doesn\'t render is no sky: the frame IS flagged',
+      Array.isArray(g.result.veilErrors) && g.result.veilErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.veilErrors));
+check('a room on a layer the camera doesn\'t render is no room: looking down inside it IS flagged',
+      Array.isArray(g.result.wallErrors) && g.result.wallErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify(g.result.wallErrors));
 check('a room the camera has left exempts nothing: looking down 40 m away IS flagged',
       Array.isArray(g.result.outsideErrors) &&
       g.result.outsideErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
