@@ -12,7 +12,7 @@
   body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
   canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
   .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
-          letter-spacing:-0.024em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
           text-shadow:0 2px 18px rgba(8,12,24,0.4); }
   .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
           text-shadow:0 0 5px rgba(8,12,24,0.8), 0 1px 14px rgba(8,12,24,0.6); }
@@ -22,7 +22,7 @@
   .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
   .hook { left:80px; top:150px; width:920px; } .dek { left:82px; width:860px; font-size:29px; }
   svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:12; overflow:visible; }
-  .lab { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; fill:#E3E7EE; }
+  .lab { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; fill:#E3E7EE; stroke:#101726; stroke-width:6px; paint-order:stroke; stroke-linejoin:round; }
   .haze { position:absolute; left:0; top:0; width:1080px; height:620px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
   .floor { position:absolute; left:0; bottom:0; width:1080px; height:220px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.4) 55%, rgba(10,14,28,0) 100%); }
 </style>
@@ -48,7 +48,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"soah": {"request_days": 10, "file_days": 10, "hearing_days": 60, "longest_path_days": 80, "from": ["c15", "c16"], "rounding": "sum of the three windows, the longest a review can run before the hearing must be held"}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "When the state steps in", counter: "08 / 09", src: "c13 c15 c16 c17   A QUARTER METRE PER DAY", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "When the state steps in", counter: "08 / 09", src: "c13 c15 c16 c17   A QUARTER METER PER DAY", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 80, max: 108, maxLines: 2 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
@@ -69,7 +69,7 @@ window.renderReady = (async () => {
   TXT.frame(R, { from: [X0 + total / 2, 20, 30], look: [X0 + total / 2, 0.5, -15] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [X0 + 10, 0, 0], distance: 80, shadowFar: 200 });
-  TXT.ground(R, { surface: 'concrete', size: 900, joints: true, seed: 12 });
+  TXT.ground(R, { surface: 'asphalt', size: 900, seed: 12 });
 
   const t = F.truck(THREE, TXT, K, M, { lit: true, seed: 3 });
   t.rotation.y = Math.PI / 2; t.position.set(X0 + total / 2 + 0.6, 0, -9);
@@ -89,6 +89,8 @@ window.renderReady = (async () => {
   });
   [X0, X0 + total].forEach((xx) => { const k = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.012, 3.0), tick); k.position.set(xx, 0.008, ZS); R.scene.add(k); });
 
+  /* dock stall stripes, painted between the doors out from the dock face, as every truck court has */
+  for (let k = -6; k <= 6; k++) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.012, 16), paint); s.position.set(k * 4.2, 0.008, -46 + 8.5); s.receiveShadow = true; R.scene.add(s); }
   /* mast lamps along the court edge, the key's motivation */
   [X0 - 6, X0 + total + 6].forEach((lx, i) => { const l = K.make('streetlight', { height: 15, reach: 2.4, seed: i }); l.position.set(lx, 0, ZS + 9); l.rotation.y = Math.PI; TXT.add(R, l); });
   TXT.weather(R, {});
@@ -102,8 +104,8 @@ window.renderReady = (async () => {
   const at = mids.map((m) => F.project(THREE, R, m));
   const endPt = F.project(THREE, R, [X0 + total, 0, ZS]);
   const leaders = [];
-  const base = Math.min(...at.map((p) => p[1])) - 58;
-  const below = Math.max(...at.map((p) => p[1])) + 64;
+  const base = Math.min(...at.map((p) => p[1])) - 84;
+  const below = Math.max(...at.map((p) => p[1])) + 84;
   const rows = [below, base, base];
   at.forEach((p, i) => {
     const ly = rows[i];

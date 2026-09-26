@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-09-26, frame 4 of 9. Archetype GRID. RENDERED through txthree.js in the deck's declared
+     blueHour world, on Permian caliche. THE COUNT ALREADY RUNNING. Thirty five bobtail tractors in
+     rows from a long lens, one rendered tractor per truck Kodiak counts. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#151D33; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          text-shadow:0 2px 18px rgba(8,12,24,0.4); }
+  .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
+          text-shadow:0 0 3px rgba(8,12,24,0.75), 0 0 10px rgba(8,12,24,0.45); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
+             white-space:nowrap; z-index:20; }
+  .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
+  .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:820px; font-size:30px; }
+  .haze { position:absolute; left:0; top:0; width:1080px; height:620px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:220px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.4) 55%, rgba(10,14,28,0) 100%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">35 already run with nobody in the cab</h1>
+<p class="dek" data-follow="26">Kodiak says 35 of its driverless trucks were hauling commercially in the Permian Basin with no humans in the cab at the end of the second quarter.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-26-fortyfive.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"permian_trucks": {"value": 35, "from": ["c27"], "basis": "Kodiak's own figure, end of second quarter"}};
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "The Permian Basin", counter: "04 / 09", src: "c27   TRUCKS ILLUSTRATIVE", ink: '#C8D1DC' });
+  TX.fitText(document.getElementById("hook"), { min: 76, max: 104, maxLines: 3 });
+  FORTYFIVE.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
+  const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.35], exposure: W.exposure - 0.3, tone: W.tone, fov: 18.5 });
+
+  /* THE PAD. One rendered bobtail per truck Kodiak counts, the count read from figures.json, seven
+   * across and as many rows deep as it takes. 8 m between centres across, 22 m between rows so no cast shadow reaches the next. */
+  const N = FIG.permian_trucks.value, COLS = 7, ROWS = Math.ceil(N / COLS);
+  const DX = 8, DZ = 22;
+  TXT.frame(R, { from: [0, 118, 262], look: [0, 0, -30] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 140, shadowFar: 400 });
+  TXT.ground(R, { surface: 'caliche', size: 900, seed: 21 });
+  const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: false, seed: 3 });
+  let n = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS && n < N; c++, n++) {
+    const tr = n === 0 ? base : base.clone(true);
+    tr.position.set((c - (COLS - 1) / 2) * DX, 0, (r - (ROWS - 1) / 2) * DZ);
+    TXT.add(R, tr); TXT.contact(R, tr);
+  }
+  /* the pad edge: scrub and mesquite, kept off the pad */
+  TXT.scatter(R, { kind: 'scrub', count: 2600, area: [-120, -160, 120, 120], avoid: [[-22, -40, 22, 40]], seed: 7, scale: [0.4, 1.1] });
+  for (let i = 0; i < 10; i++) { const m = K.make('mesquite', { seed: 30 + i }); m.position.set(-60 + i * 13 + (i % 2) * 5, 0, -58 - (i % 3) * 9); TXT.add(R, m); TXT.contact(R, m); }
+  const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(46, 0, -150); TXT.add(R, pj); TXT.contact(R, pj);
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

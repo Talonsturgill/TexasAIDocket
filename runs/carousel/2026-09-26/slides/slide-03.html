@@ -1,7 +1,8 @@
 <!doctype html>
-<!-- 2026-09-26, frame 7 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's
-     declared blueHour world, inside the chassis cab set on a concrete I-45. THE TURN. The recording
-     device on the sleeper bulkhead, its one lamp in the accent, the driver's headrest at the edge. -->
+<!-- 2026-09-26, frame 3 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's
+     declared blueHour world, inside the chassis cab set. INSIDE THE CAB. From the dash looking back:
+     the empty driver's seat and the wheel, the observer's hands in a lap on the passenger side, and
+     the recorder's lamp on the bulkhead between them. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -28,8 +29,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">It carries a recorder</h1>
-<p class="dek" data-follow="28">The truck must be equipped with a recording device. Dallas asked the state to require crash history too. The department said the statute does not allow it.</p>
+<h1 class="hook" id="hook">Hands off the wheel</h1>
+<p class="dek" data-follow="28">Kodiak's trucks still carry a safety observer. Kodiak says the observer never touched the wheel on its runs from Lancaster to Houston.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -44,34 +45,26 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "What the state can't ask for", counter: "07 / 09", src: "c6 c18 c19   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "Inside the cab", counter: "03 / 09", src: "c23 c24   ILLUSTRATIVE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 92, max: 124, maxLines: 2 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.75, tone: W.tone, fov: 50 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.7, tone: W.tone, fov: 64 });
 
-  /* the cab set rides the right lane of the southbound carriageway, driving toward -z,
-   * so it sits on +x (a truck facing -z has +x on its right). Cab floor 1.25 m over the road. */
   const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
   const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });
   hw.position.set(0, 0, -200); TXT.add(R, hw);
-  const cab = F.cab(THREE, TXT, K, M, { dome: 4.5, domeLens: false });
+  /* the observer rides in the passenger seat; the kit has no seated pose, so a standing figure is
+   * lowered until its hips meet the cushion and the seat hides the rest, and the frame crops high */
+  const cab = F.cab(THREE, TXT, K, M, { dome: 3.6, observer: true, observerSeed: 5, domeLens: false });
   cab.position.set(LANE, FLOOR, 0); TXT.add(R, cab);
+  const rec = F.recorder(THREE, TXT, M); rec.rotation.y = Math.PI;
+  rec.position.set(LANE + 0.16, FLOOR + 1.12, 1.18); TXT.add(R, rec);
+  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.22, 0.22, 1); });   /* the lamp reads from across the cab */
 
-  /* THE RECORDER on the bulkhead face, between the seats and just over the seat backs, facing the
-   * cab (the curtain's face is at cab z 1.275, so the housing's back sits there) */
-  const rec = F.recorder(THREE, TXT, M);
-  rec.rotation.y = Math.PI;
-  const RX = LANE + 0.16, RY = FLOOR + 1.12, RZ = 1.18;
-  rec.position.set(RX, RY, RZ); TXT.add(R, rec);
-  /* the lower bulkhead faced in tread plate behind the housing, as a sleeper's kick panels are */
-  const plate = F.treadPlate(THREE, TXT, 1.1, 0.8); plate.position.set(LANE + 0.02, FLOOR + 0.84, 1.265); TXT.add(R, plate);
-
-  /* from the passenger side of the dash looking back across the cab: the empty driver's seat back
-   * and headrest on the right, the bulkhead behind with the housing on it between the seats, and
-   * the driver's door window at the right edge letting the blue in */
-  TXT.frame(R, { from: [LANE - 0.08, FLOOR + 1.36, 0.1], look: [LANE + 0.12, FLOOR + 1.3, 1.25] });
+  /* from the top of the dash, looking back into the cab */
+  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.3, -0.8], look: [LANE - 0.26, FLOOR + 1.3, 1.2] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
   TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });

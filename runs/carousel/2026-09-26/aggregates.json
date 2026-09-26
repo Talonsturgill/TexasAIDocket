@@ -1,0 +1,123 @@
+{
+ "date": "2026-09-26",
+ "_note": "Every figure the detector reads as a count or duration, declared with the claim it was quoted from or the claims it counted. The one count the deck computes is six, one claim per acknowledgement.",
+ "aggregates": [
+  {
+   "phrase": "219 miles",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 219,
+   "quoted_from": "c25",
+   "quote": "219 miles apart",
+   "note": "Kodiak's own figure for the lane; Waabi's roughly 240 (c33) is printed beside it and never reconciled"
+  },
+  {
+   "phrase": "219 MILES",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 219,
+   "quoted_from": "c25",
+   "quote": "219 miles apart",
+   "note": "the scale bar label; the bar's length is computed from the same figure"
+  },
+  {
+   "phrase": "200 places",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 200,
+   "quoted_from": "c29",
+   "quote": "200 driverless trucks",
+   "note": "Aurora's allocation, quoted"
+  },
+  {
+   "phrase": "200 driverless trucks",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 200,
+   "quoted_from": "c29",
+   "quote": "200 driverless trucks",
+   "note": "the source's own printed figure, quoted"
+  },
+  {
+   "phrase": "20 trucks",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 20,
+   "quoted_from": "c34",
+   "quote": "20 driverless trucks now",
+   "note": "Breitbart's account of a CNBC ride, secondary reported and labelled so"
+  },
+  {
+   "phrase": "10 days",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 10,
+   "quoted_from": "c15",
+   "quote": "has 10 days to request",
+   "note": "the source's own printed figure, quoted"
+  },
+  {
+   "phrase": "10 DAYS",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 10,
+   "quoted_from": "c15",
+   "quote": "has 10 days to request",
+   "note": "the source's own printed figure, quoted"
+  },
+  {
+   "phrase": "60 DAYS",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c16",
+   "quote": "within 60 days of the request",
+   "note": "the source's own printed figure, quoted"
+  },
+  {
+   "phrase": "Six statements",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 6,
+   "from_claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "note": "one claim per acknowledgement the application lists: laws, recording device, federal compliance, minimal risk condition, registration and title, insurance. compute.py counts them as figures.acknowledgements"
+  },
+  {
+   "phrase": "six statements and pays",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 6,
+   "from_claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "note": "one claim per acknowledgement the application lists: laws, recording device, federal compliance, minimal risk condition, registration and title, insurance. compute.py counts them as figures.acknowledgements"
+  },
+  {
+   "phrase": "six acknowledged statements",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 6,
+   "from_claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "note": "one claim per acknowledgement the application lists: laws, recording device, federal compliance, minimal risk condition, registration and title, insurance. compute.py counts them as figures.acknowledgements"
+  }
+ ]
+}

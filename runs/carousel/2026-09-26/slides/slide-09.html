@@ -13,7 +13,7 @@
   body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
   canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
   .hook { position:absolute; font-family:"Fraunces", serif; font-weight:800; line-height:0.94;
-          letter-spacing:-0.024em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
+          letter-spacing:-0.008em; color:#F3F1EC; font-variation-settings:"opsz" 144; z-index:10;
           text-shadow:0 2px 18px rgba(8,12,24,0.4); }
   .dek  { position:absolute; font-size:30px; line-height:1.40; color:#E3E7EE; z-index:10;
           text-shadow:0 0 5px rgba(8,12,24,0.8), 0 1px 14px rgba(8,12,24,0.6); }
@@ -21,9 +21,9 @@
              font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C8D1DC;
              white-space:nowrap; z-index:20; }
   .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
-  .hook { left:80px; top:900px; width:700px; } .dek { left:82px; width:740px; font-size:28px; line-height:1.36; }
+  .hook { left:80px; top:936px; width:700px; } .dek { left:82px; width:740px; font-size:28px; line-height:1.36; }
   svg#bar { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:12; overflow:visible; }
-  .lab { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; fill:#E3E7EE; }
+  .lab { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; fill:#E3E7EE; stroke:#101726; stroke-width:6px; paint-order:stroke; stroke-linejoin:round; }
   .haze { position:absolute; left:0; top:0; width:1080px; height:200px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.45) 0%, rgba(10,14,28,0) 100%); }
   .floor { position:absolute; left:0; bottom:0; width:1080px; height:600px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.54) 0%, rgba(10,14,28,0.5) 70%, rgba(10,14,28,0) 100%); }
 </style>
@@ -100,7 +100,7 @@ window.renderReady = (async () => {
   const t1 = el('text', { class: 'lab', x: X0, y: Y - 32 }); t1.textContent = 'MAY 28TH';
   const t3 = el('text', { class: 'lab', x: X1, y: Y - 32, 'text-anchor': 'middle' }); t3.textContent = 'TODAY';
   const t4 = el('text', { class: 'lab', x: 1000, y: Y - 32, 'text-anchor': 'end' }); t4.textContent = 'UNTIL REVOKED';
-  const t5 = el('text', { class: 'lab', x: X0, y: Y + 42 }); t5.textContent = 'A TICK A WEEK';
+  const t5 = el('text', { class: 'lab', x: 1000, y: Y + 40, 'text-anchor': 'end' }); t5.textContent = 'A TICK A WEEK';
   return true;
 })();
 </script>

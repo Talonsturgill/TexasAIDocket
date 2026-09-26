@@ -88,6 +88,10 @@ with an amber seam in the west. Frame 4 alone stands on Permian caliche because 
 ## The continuity devices
 
     CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
+    VALUE CUT: frame 6
+
+The one hard cut is frame 6, and it is the turn: the deck leaves the lane and the yards, where
+the companies' numbers live, and goes back into the dark cab to read the state's own paper.
 
 1. **Motif evolution, the empty seat and the record.** The seat is seen empty through the glass
    (1), empty beside the observer's hands with the recorder lamp lit behind it (3), empty 35 times
@@ -175,8 +179,8 @@ risks:
 slide: 2
 layout: MAP
 primary_image:
-  subject: "Texas's 254 counties in the Albers projection, dark, with Dallas County and Harris County lit, Lancaster and Houston marked, a dashed line between them, and a scale bar at Kodiak's 219 miles computed through the projection"
-  rect: [0, 470, 1080, 880]
+  subject: "Texas's counties in the Albers projection under the type, Dallas County and Harris County lit and marked at their centroids, a dashed straight line between them labelled as not the road, and a scale bar at Kodiak's 219 miles computed through the projection"
+  rect: [0, 440, 1080, 910]
   bleeds: [left, right, bottom]
 accent: none
 job: >
@@ -199,9 +203,9 @@ composition:
     Gulf coast below it with its own mono label, and the type sits in the dark above the Panhandle.
   bands: >
     Top third, the hook and the dek over the dark field above the state. Middle third, North and
-    Central Texas with Dallas County lit, the Lancaster mark and the dashed line starting south.
+    Central Texas with Dallas County lit and marked, the dashed line starting south.
     Bottom third, the line reaching the lit Harris County and the Houston mark, and the scale bar
-    drawn as a modeled steel ruler with a shaded edge above the Gulf.
+    at the lower left over South Texas counties shaded by the raking light.
   focal: "the dashed line between the two lit counties"
 
 art:
@@ -217,11 +221,11 @@ art:
 
 type:
   kicker: "The lane"
-  hook: "219 miles of I-45"
+  hook: "219 miles, Kodiak says"
   dek: "That is Kodiak's figure for the lane from its Lancaster hub to Houston. Waabi, which hauls the same corridor, calls it roughly 240."
 
 acceptance:
-  - "the frame reads \"219 miles of I-45\""
+  - "the frame reads \"219 miles, Kodiak says\""
   - "Dallas County and Harris County are the only lit counties"
   - "the scale bar is labelled with Kodiak's 219 miles and its length is computed from the projection"
   - "the dashed line is labelled as a straight line between the two places, not the road"
@@ -235,9 +239,9 @@ risks:
 slide: 3
 layout: CLOSE_CROP
 primary_image:
-  subject: "inside the cab from the sleeper opening: the empty driver's seat and the wheel on the right, the observer's hands resting in their lap at the left edge, the dash glowing, the recorder's lamp lit on the bulkhead, and I-45 running south through the windshield at blue hour"
-  rect: [0, 420, 1080, 930]
-  bleeds: [left, right, bottom]
+  subject: "inside the cab from the top of the dash looking back: the empty driver's seat and the wheel's rim on the left, the recorder's lamp lit on the bulkhead between the seats, and the observer seated on the passenger side at the right"
+  rect: [0, 420, 1080, 660]
+  bleeds: [left, right]
 accent: "#E0956A"
 job: >
   Answer the cover from inside. There is somebody aboard, and nobody is driving.
@@ -246,22 +250,21 @@ claims: [c23, c24]
 numerals: []
 
 depth:
-  eye: 2.8
-  horizon: 610
+  eye: 3.2
+  horizon: 560
   cues: [LINEAR_PERSPECTIVE, OCCLUSION, RELATIVE_SIZE, AERIAL, FORM_SHADING]
   subject_at: {X: 0.55, Z: -0.2}
 
 composition:
   structure: >
-    The camera sits between the seats looking forward and a little right, so the empty driver's seat
-    and the wheel take the right half and the lane runs to its vanishing point through the glass in
-    the upper middle. The observer's hands rest at the left edge. The type sits on the dark cab roof
-    liner at the top.
+    The camera sits on the dash looking back into the cab, so the empty driver's seat and the wheel
+    rim take the left edge, the observer sits on the right third, and the recorder glows on the
+    bulkhead between them. The type sits on the dark headliner at the top.
   bands: >
-    Top third, the headliner in shadow with the hook and the dek. Middle third, the windshield with
-    the lanes, a truck's tail lamps ahead and the amber seam, the wheel's dark ring against it.
-    Bottom third, the dash top, the driver's seat cushion and bolster modeled by the dome light, the
-    pedals, and the observer's hands resting in a lap at the left edge.
+    Top third, the headliner in shadow with the hook and the dek. Middle third, the two headrests, the
+    recorder's lit housing on the bulkhead between them, the observer's head and shoulder.
+    Bottom third, the pleated vinyl seat backs modeled by the dome light, the wheel's dark rim
+    at the left edge, and the observer's shirt and arm at the right edge.
   focal: "the empty seat and the wheel against the lit lane"
 
 art:
@@ -278,13 +281,13 @@ art:
 type:
   kicker: "Inside the cab"
   hook: "Hands off the wheel"
-  dek: "Kodiak's trucks still carry a safety observer. On its runs from Lancaster to Houston, the company says, the observer never touched the wheel."
+  dek: "Kodiak's trucks still carry a safety observer. Kodiak says the observer never touched the wheel on its runs from Lancaster to Houston."
 
 acceptance:
   - "the frame reads \"Hands off the wheel\""
   - "the driver's seat is empty and no hand touches the wheel"
   - "the recorder's lamp is the only point of #E0956A on the frame"
-  - "the lane and the seam are visible through the windshield"
+  - "the observer sits in the passenger seat and the driver's seat is empty"
 
 risks:
   - "the observer is a standing kit figure cropped to the hands, and must not read as a mannequin"
@@ -295,8 +298,8 @@ slide: 4
 layout: GRID
 primary_image:
   subject: "thirty five white bobtail tractors with sensor pods parked seven across and five deep on a pale caliche pad in the Permian at blue hour, seen from a long lens high above, every cab empty, mesquite at the pad's edge"
-  rect: [0, 470, 1080, 880]
-  bleeds: [left, right, bottom]
+  rect: [40, 440, 1000, 800]
+  bleeds: []
 accent: none
 job: >
   Show that the end state already exists in Texas, counted one truck per truck, in the company's
@@ -356,9 +359,9 @@ risks:
 slide: 5
 layout: GRID
 primary_image:
-  subject: "a concrete truck yard seen straight down from a long lens: 200 painted stalls in ten rows of twenty, twenty white rigs backed into the nearest row, the rest empty under yard mast lamps"
-  rect: [0, 470, 1080, 880]
-  bleeds: [left, right, bottom]
+  subject: "a truck yard seen straight down from a long lens: 200 pale painted places in five rows of forty on dark asphalt, twenty white tractors parked in the first places of the nearest row"
+  rect: [0, 500, 1080, 760]
+  bleeds: [left, right]
 accent: none
 job: >
   Put Aurora's year end number and the reported number running now on one scale, each named for the
@@ -374,21 +377,22 @@ data_in_art:
   drives: painted stall count, 200, and the occupied stall count from aurora_trucks_now_reported, 20
 
 depth:
-  eye: 300
+  eye: 640
   horizon: 0
   cues: [RELATIVE_SIZE, CAST_SHADOW, FORM_SHADING, TEXTURE_GRADIENT]
   subject_at: {X: 0, Z: 0}
 
 composition:
   structure: >
-    Straight down, the yard is a page of stalls. The twenty rigs fill the nearest row at the bottom,
-    the empty stalls stack up the frame, and the type sits on the dark concrete at the top.
+    Straight down, the yard is a page of places. Five rows of forty cross the lower two thirds, the
+    twenty tractors sit in the first places of the nearest row, and the type sits on the asphalt above.
   bands: >
-    Top third, dark concrete under the hook and the dek, the far stall rows fading. Middle third,
-    rows of empty painted stalls lit in pools by the mast lamps. Bottom third, the twenty white rigs
-    backed into their stalls, white roofs and vans with modeled form and soft contact shadows on
-    the lamp lit concrete, and the painted stall stripes catching the light between them.
-  focal: "the one row of twenty rigs against a field of empty stalls"
+    Top third, dark asphalt under the hook and the dek. Middle third, rows of empty painted places,
+    each a pale pad with its own edge, forty to a row. Bottom third, the nearest row with twenty
+    white tractors parked in its first places, roofs and hoods with modeled form and a soft contact
+    shadow under each on the pale pads, and the pads beyond them running on to the right edge over the
+    asphalt texture.
+  focal: "the one row of twenty tractors against a field of empty places"
 
 art:
   technique: "physically based render from a long lens overhead, instanced stall stripes as their own lower roughness material, the chassis truck twenty times, mast lamps"
@@ -408,7 +412,7 @@ type:
 
 acceptance:
   - "the frame reads \"200 places, 20 trucks\""
-  - "exactly 200 stalls are painted and exactly 20 are occupied"
+  - "exactly 200 places are painted and exactly 20 hold a tractor"
   - "the dek attributes the 20 to Breitbart citing CNBC"
 
 risks:
@@ -419,7 +423,7 @@ risks:
 slide: 6
 layout: DOCUMENT
 primary_image:
-  subject: "the empty driver's seat seen from over the wheel, a letter sheet lying on the cushion with six ruled rows and six tick boxes, the second tick in dusk gold, the dome light pooling on it, the windshield's blue at the top edge"
+  subject: "the empty driver's seat seen from under the roof, a letter sheet lying on the cushion with six ruled rows and six tick boxes, the second tick in dusk gold, the dome light pooling on it, the windshield's blue at the top edge"
   rect: [0, 420, 1080, 930]
   bleeds: [left, right, bottom]
 accent: "#E0956A"
@@ -448,7 +452,7 @@ composition:
     six rows and ticks are geometry on the page. The type sits on the dark headliner and windshield
     band at the top.
   bands: >
-    Top third, the windshield's deep blue and the dark header behind the hook and the dek. Middle
+    Top third, the seat back and headrest in shadow behind the hook and the dek. Middle
     third, the wheel rim cropped across and the sheet's top rows. Bottom third, the sheet's lower
     rows with their tick boxes on the dark vinyl cushion, the bolster modeled by the dome light and
     the seat belt buckle in shadow.
@@ -483,8 +487,8 @@ risks:
 slide: 7
 layout: CLOSE_CROP
 primary_image:
-  subject: "the recording device bolted to the sleeper bulkhead behind the empty driver's headrest, its finned housing lit by the dome, a black cable running down, its one dusk gold status lamp blooming, and the windshield's blue behind"
-  rect: [0, 420, 1080, 930]
+  subject: "the recording device bolted to a tread plate kick panel on the sleeper bulkhead, its finned housing lit by the dome, its one dusk gold status lamp blooming, the bunk curtain above"
+  rect: [0, 560, 1080, 790]
   bleeds: [left, right, bottom]
 accent: "#E0956A"
 job: >
@@ -503,13 +507,12 @@ depth:
 
 composition:
   structure: >
-    A detail camera a third of a metre from the housing puts the recorder on the lower right third,
-    the dark headrest cropping the left, the cable running off the bottom. The type sits on the dark
-    bulkhead above it.
+    A detail camera between the seats a metre from the housing puts the recorder just under the
+    middle, on a tread plate panel that runs off three edges. The type sits on the dark curtain above.
   bands: >
-    Top third, the dark bulkhead and curtain behind the hook and the dek. Middle third, the headrest
-    edge and the recorder's fins catching the dome light. Bottom third, the housing's front with its
-    lit lamp, the two connectors and the cable running into shadow across the carpeted wall.
+    Top third, the dark bulkhead and curtain behind the hook and the dek. Middle third, the
+    mounting plate and the recorder's fins catching the dome light. Bottom third, the tread plate's
+    lugs breaking the dome light into glints, falling off into shadow at the floor.
   focal: "the lit status lamp on the housing"
 
 art:
@@ -541,9 +544,9 @@ risks:
 slide: 8
 layout: DIAGRAM
 primary_image:
-  subject: "a concrete truck court at blue hour from a high oblique, a white rig at the dock, and one painted stripe running across the court in three segments of 10, 10 and 60 metres at one metre per day, with mono labels on leaders"
-  rect: [0, 470, 1080, 880]
-  bleeds: [left, right, bottom]
+  subject: "an asphalt truck court at blue hour from a high oblique, a white rig parked parallel to the dock, and one painted stripe across the court in three segments at a quarter metre per day, with mono labels on leaders"
+  rect: [0, 420, 1080, 660]
+  bleeds: [left, right]
 accent: none
 job: >
   Draw when the state steps in and how long an operator can be kept off the road, as a length a
@@ -557,7 +560,7 @@ numerals:
 
 data_in_art:
   figure: soah.longest_path_days
-  drives: the stripe's total length in metres at one metre per day, split into soah.request_days, soah.file_days and soah.hearing_days segments
+  drives: the stripe's total length in metres at a quarter metre per day, split into soah.request_days, soah.file_days and soah.hearing_days segments
 
 depth:
   eye: 24
@@ -567,8 +570,8 @@ depth:
 
 composition:
   structure: >
-    A high oblique down the court lays the stripe left to right across the lower middle, its three
-    segments separated by gaps, the rig at the dock at its day zero end. Mono labels on DOM leaders
+    A high oblique down the court lays the rig left to right across the middle and the stripe under
+    it, its three segments separated by gaps, the whole review about one rig long. Mono labels on DOM leaders
     sit above the stripe. The type sits in the sky over the warehouse roofline.
   bands: >
     Top third, the blue hour sky with the hook and the dek above the warehouse roofline. Middle
@@ -580,8 +583,8 @@ composition:
 art:
   technique: "physically based render of the kit warehouse and chassis truck on concrete, the stripe as its own lower roughness material, DOM SVG leaders"
   why_this_technique: >
-    A sequence of durations is a quantity and wants one scale. Painting it at one metre per day on
-    the ground the truck stands on makes the days a length the truck would drive.
+    A sequence of durations is a quantity and wants one scale. Painting it at one scale beside the
+    rig makes the whole review a length a reader can hold against a truck.
   palette: "grey concrete, white stripe, white rig, warm mast pools, blue sky"
   value_structure: >
     Lightest is the stripe and the rig. Darkest is the dock doors. Frame median L* planned at 30.
@@ -594,11 +597,11 @@ type:
 
 acceptance:
   - "the frame reads \"The line is serious bodily injury\""
-  - "the stripe's segments measure 10, 10 and 60 metres in the scene, from figures.json"
+  - "the stripe's three segments are set from figures.json soah at a quarter metre per day"
   - "every leader ends on the stripe segment it labels"
 
 risks:
-  - "the stripe is drawn at one metre per day and the labels say so, so it is not a real marking"
+  - "the stripe is drawn at a quarter metre per day and the source line says so, so it is not a real marking"
 ```
 
 ```yaml
@@ -607,7 +610,7 @@ layout: SPLIT_HORIZON
 primary_image:
   subject: "a Texan at an overpass rail over I-45 at the deepest blue of the hour, the white rig passing south beneath with its tail lamps lit, the lanes running to Houston's glow on the horizon; below the cut, one bar from May 28th to today becoming a hairline to the edge"
   rect: [0, 360, 1080, 990]
-  bleeds: [left, right, top]
+  bleeds: [left, right, bottom]
 accent: none
 job: >
   Close on the one person in the deck with a way in, and on the authorization's own run, which has

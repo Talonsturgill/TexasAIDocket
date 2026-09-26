@@ -59,6 +59,33 @@
   N.ACCENT = 0xe0956a;          /* dusk_gold, config/brand.yaml: the record the truck must keep */
   N.GROUND_HEX = "#151D33";
 
+  /* SEAT VINYL, a canvas texture: a fine pebble grain and stitched pleats every 9 cm, so a seat
+   * seen close has a surface rather than a flat value. Seeded, repeated at true size. */
+  N.vinylMat = function (THREE, TXT) {
+    var c = document.createElement("canvas"); c.width = 256; c.height = 256;
+    var x = c.getContext("2d"), s = 13;
+    var r = function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    x.fillStyle = "#3a3c42"; x.fillRect(0, 0, 256, 256);
+    for (var i = 0; i < 2600; i++) { var v = r(); x.fillStyle = v > 0.5 ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.2)"; x.fillRect(r() * 256, r() * 256, 1 + r() * 2, 1 + r() * 2); }
+    for (var k = 0; k < 3; k++) { var y = 42 + k * 86; x.fillStyle = "rgba(0,0,0,0.45)"; x.fillRect(0, y, 256, 5); x.fillStyle = "rgba(255,255,255,0.09)"; x.fillRect(0, y + 5, 256, 2);
+      for (var d = 0; d < 256; d += 8) { x.fillStyle = "rgba(210,205,196,0.18)"; x.fillRect(d, y - 4, 4, 1); x.fillRect(d, y + 10, 4, 1); } }
+    var tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(2, 2); tx.anisotropy = 8;
+    return new THREE.MeshStandardMaterial({ map: tx, roughness: 0.62, metalness: 0 });
+  };
+
+  /* BUNK CURTAIN CLOTH, vertical folds and a woven tooth. */
+  N.clothMat = function (THREE) {
+    var c = document.createElement("canvas"); c.width = 256; c.height = 256;
+    var x = c.getContext("2d"), s = 29;
+    var r = function () { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    var g = x.createLinearGradient(0, 0, 256, 0);
+    for (var i = 0; i <= 10; i++) g.addColorStop(i / 10, i % 2 ? "#4a4e57" : "#16181c");
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+    for (var j = 0; j < 4000; j++) { x.fillStyle = r() > 0.5 ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.14)"; x.fillRect(r() * 256, r() * 256, 1, 2); }
+    var tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(2, 1); tx.anisotropy = 8;
+    return new THREE.MeshStandardMaterial({ map: tx, roughness: 0.95, metalness: 0 });
+  };
+
   /* ONE MATERIAL VOCABULARY. Painted tractor steel, a white van, chrome, black sensor housings,
    * warm cab light, and the accent on the lidar band alone. */
   N.mats = function (TXT, THREE) {
@@ -71,7 +98,7 @@
       recLamp: TXT.mat.emissive(N.ACCENT, 3.2),
       recBody: TXT.mat.steel({ roughness: 0.45 }),
       arm: S(0x3a3f44, 0.6, 0.35),
-      seat: S(0x2b2d31, 0.0, 0.8),
+      seat: N.vinylMat(THREE, TXT),
       seatStitch: S(0x3c3f44, 0.0, 0.7),
       dash: S(0x1e2024, 0.1, 0.6),
       wheel: S(0x17191c, 0.1, 0.5),
@@ -150,9 +177,10 @@
     var g = new THREE.Group();
     var W = 2.3, H = 1.9, D = 2.2, zf = -1.0;            /* width, floor to roof, depth, windshield base z */
     var trim = TXT.mat.clay(0x2e3136, { metalness: 0.05, roughness: 0.75 });
-    var head = TXT.mat.clay(0x8f8a82, { metalness: 0, roughness: 0.9 });
+    var head = TXT.mat.clay(0x16171a, { metalness: 0, roughness: 1 });     /* dark headliner: no bright edge over the type */
     var floor = TXT.roundedBox(W, 0.06, D, 0.01, TXT.mat.clay(0x1c1d20, { roughness: 0.95 })); floor.position.set(0, -0.03, zf + D / 2 - 0.2); g.add(floor);
-    var roof = TXT.roundedBox(W, 0.06, D + 0.3, 0.02, head); roof.position.set(0, H, zf + D / 2 - 0.35); g.add(roof);
+    /* the roof runs from over the windshield back past the bunk curtain, so no sky shows between them */
+    var roof = TXT.roundedBox(W + 0.1, 0.06, D + 0.75, 0.02, head); roof.position.set(0, H, zf + (D + 0.75) / 2 - 0.35); g.add(roof);
     /* the windshield frame: a lower cowl, a header, a centre post and the A pillars, leaning back */
     var lean = 0.32;
     var cowl = TXT.roundedBox(W, 0.1, 0.12, 0.02, trim); cowl.position.set(0, 1.0, zf); g.add(cowl);
@@ -168,7 +196,7 @@
       var rear = TXT.roundedBox(0.08, H, 0.9, 0.02, head); rear.position.set(s * (W / 2), H / 2, zf + 1.9); g.add(rear);
     });
     /* the bunk curtain behind the seats, a soft dark fold */
-    var curtain = TXT.roundedBox(W, H, 0.05, 0.02, TXT.mat.clay(0x24262a, { roughness: 1 })); curtain.position.set(0, H / 2, zf + 2.3); g.add(curtain);
+    var curtain = TXT.roundedBox(W, H, 0.05, 0.02, N.clothMat(THREE)); curtain.position.set(0, H / 2, zf + 2.3); g.add(curtain);
     /* the dash, a wide shelf under the glass, with the instrument cluster in front of the wheel */
     var dash = TXT.roundedBox(W - 0.1, 0.34, 0.55, 0.06, M.dash); dash.position.set(0, 0.86, zf + 0.3); g.add(dash);
     var cluster = TXT.roundedBox(0.5, 0.2, 0.12, 0.03, M.dash); cluster.position.set(0.55, 1.06, zf + 0.5); g.add(cluster);
@@ -198,13 +226,15 @@
     /* pedals under the wheel, nobody's feet on them */
     [0.45, 0.62].forEach(function (x) { var p = TXT.roundedBox(0.08, 0.02, 0.2, 0.01, M.arm); p.position.set(x, 0.2, zf + 0.55); p.rotation.x = -0.5; g.add(p); });
     /* a dim warm dome over the seats */
-    var dome = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.02, 0.14), M.cabGlow); dome.position.set(0, H - 0.04, zf + 1.3); g.add(dome);
-    var pl = new THREE.PointLight(0xffc98a, o.dome != null ? o.dome : 2.2, 4.0, 2); pl.position.set(0, H - 0.2, zf + 1.4); g.add(pl);
+    var dome = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.02, 0.14), M.cabGlow); dome.position.set(0, H - 0.04, zf + 1.3);
+    if (o.domeLens !== false) g.add(dome);   /* a frame looking up at the roof can keep the light and drop the lens */
+    /* the light sits well under the roof so the roof above the type stays an even dark, not a hot pool */
+    var pl = new THREE.PointLight(0xffc98a, o.dome != null ? o.dome : 2.2, 4.0, 2); pl.position.set(0, H - 0.62, zf + 1.4); g.add(pl);
     if (o.observer && K) {
-      var p = K.make('person', { seed: o.observerSeed || 4, pose: 'stand', role: 'worker', hat: 'none' });
+      var p = K.make('person', { seed: o.observerSeed || 4, pose: 'stand', role: 'resident', hat: 'none' });
       /* the kit person stands; a seated observer is posed by lowering it so the hips meet the
        * cushion and hiding the legs in the footwell shadow is left to the camera */
-      p.position.set(-0.55, 0.52 - 0.9, zf + 1.18); p.rotation.y = Math.PI; g.add(p);
+      p.position.set(-0.55, 0.52 - 0.9, zf + 1.18); p.rotation.y = Math.PI; g.add(p);   /* kit people face +z; the cab faces -z */
     }
     g.userData.wheel = [0.55, 1.12, zf + 0.82];
     g.userData.seat = [0.55, 0.6, zf + 1.2];
@@ -224,12 +254,41 @@
     });
     var lamp = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.006, 20), M.recLamp); lamp.rotation.x = Math.PI / 2; lamp.position.set(0.075, 0.042, 0.082); g.add(lamp);
     var halo = new THREE.PointLight(N.ACCENT, 0.5, 0.8, 2); halo.position.set(0.075, 0.045, 0.12); g.add(halo);
+    /* the lamp's bloom as the eye sees it at night, a soft disc in the accent a few centimetres
+     * across, so the record reads at feed size and not only at full size */
+    var gc = document.createElement("canvas"); gc.width = gc.height = 128;
+    var gx = gc.getContext("2d"), rg = gx.createRadialGradient(64, 64, 2, 64, 64, 64);
+    rg.addColorStop(0, "rgba(255,214,176,1)"); rg.addColorStop(0.18, "rgba(224,149,106,0.95)"); rg.addColorStop(0.5, "rgba(224,149,106,0.45)"); rg.addColorStop(1, "rgba(224,149,106,0)");
+    gx.fillStyle = rg; gx.fillRect(0, 0, 128, 128);
+    var gt = new THREE.CanvasTexture(gc); gt.colorSpace = THREE.SRGBColorSpace;
+    var glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: gt, transparent: true, depthWrite: false, toneMapped: false, fog: false }));
+    glow.scale.set(0.15, 0.15, 1); glow.position.set(0.075, 0.045, 0.1); g.add(glow);
     /* the mounting plate it is bolted through, against the wall behind it */
     var plate = TXT.roundedBox(0.36, 0.2, 0.012, 0.004, M.arm); plate.position.set(0, 0.05, -0.088); g.add(plate);
     var cable = TXT.tube([[-0.05, 0.035, -0.11], [-0.05, 0.03, -0.2], [-0.03, -0.08, -0.26], [0.0, -0.4, -0.27]], 0.006, M.dash);
     g.add(cable);
     g.userData.lamp = [0.075, 0.045, 0.081];
     return g;
+  };
+
+  /* A TREAD PLATE KICK PANEL, w by h metres of aluminium diamond plate, the sheet a sleeper's lower
+   * bulkhead and step wells are faced with. Canvas pattern at true size (a lug every 3 cm), bump
+   * from the same pattern, metallic, so the dome light breaks into glints. Faces +z. */
+  N.treadPlate = function (THREE, TXT, w, h) {
+    var c = document.createElement("canvas"); c.width = c.height = 128;
+    var x = c.getContext("2d");
+    x.fillStyle = "#7d8288"; x.fillRect(0, 0, 128, 128);
+    for (var j = 0; j < 4; j++) for (var i = 0; i < 4; i++) {
+      var cx = i * 32 + (j % 2 ? 16 : 0), cy = j * 32 + 8, a = (j % 2 ? 0.7 : -0.7);
+      x.save(); x.translate(cx % 128, cy); x.rotate(a);
+      x.fillStyle = "#c9ced3"; x.fillRect(-9, -2.2, 18, 4.4); x.fillStyle = "#3c4046"; x.fillRect(-9, 2.2, 18, 1.6);
+      x.restore();
+    }
+    var tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping;
+    tx.repeat.set(w / 0.13 * 8, h / 0.13 * 8); tx.anisotropy = 8;   /* roundedBox UVs run 0..1 per eighth of a metre, measured off the render */
+    var m = new THREE.MeshStandardMaterial({ map: tx, bumpMap: tx, bumpScale: 1.2, metalness: 0.75, roughness: 0.38 });
+    var panel = TXT.roundedBox(w, h, 0.01, 0.003, m);
+    return panel;
   };
 
   /* A world point to frame CSS px, through the frame's own camera, for leaders and labels that
