@@ -49,7 +49,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"days_enforceable_to_run": {"value": 121, "from": ["c1"], "basis": "May 28th, 2026 to the run date September 26th, 2026"}, "enforceable": {"iso": "2026-05-28", "from": ["c1"]}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "If you see one", counter: "09 / 09", src: "c1 c12 c36 c37   ILLUSTRATIVE", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "If one could hurt someone", counter: "09 / 09", src: "c1 c12 c36 c37   ILLUSTRATIVE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 80, max: 90, maxLines: 1 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();

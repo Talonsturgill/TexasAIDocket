@@ -65,7 +65,9 @@ window.renderReady = (async () => {
   cab.traverse((o) => { if (o.isMesh && o.material === M.screen) o.material = TXT.mat.plastic(0x0d1117, { roughness: 0.75 }); });
   /* the recorder on the overhead console above the glass, facing back into the cab */
   const rec = F.recorder(THREE, TXT, M);
-  rec.position.set(LANE + 0.38, FLOOR + 1.7, -0.45); TXT.add(R, rec);
+  rec.position.set(LANE + 0.5, FLOOR + 1.66, -0.45); TXT.add(R, rec);
+  /* the cable run is hidden in the console here, so no rod hangs across the glass */
+  rec.traverse((o) => { if (o.isMesh && o.geometry && o.geometry.type === 'TubeGeometry') o.visible = false; });
   rec.traverse((o) => { if (o.isSprite) o.scale.set(0.42, 0.42, 1); if (o.isPointLight) o.intensity *= 0.15; });
 
   /* from the bunk, between the seats, looking forward through the glass at the lane ahead */

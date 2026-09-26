@@ -412,7 +412,7 @@ art:
 type:
   kicker: "Aurora's year"
   hook: "200 by year end, 20 reported"
-  dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. Breitbart puts the fleet running now at 20. It cites a CNBC ride."
+  dek: "Aurora says it is fully allocated to end 2026 with 200 driverless trucks. In a story built on a CNBC ride Breitbart puts the fleet running now at 20."
 
 acceptance:
   - "the frame reads \"200 by year end, 20 reported\""
@@ -662,7 +662,7 @@ art:
   motion: "from the Texan's shoulder down to the tail lamps, then down to the bar and the dek"
 
 type:
-  kicker: "If you see one"
+  kicker: "If one could hurt someone"
   hook: "Where to report one"
   dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can be sent for review to the TxDMV Enforcement Division. Its address txmccs.txdmv.gov/truckstop is also where law enforcement can verify authorizations."
 

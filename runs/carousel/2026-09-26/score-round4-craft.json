@@ -1,0 +1,126 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.7
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3
+  }
+ ],
+ "weighted_score": 6.74,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": [
+    3,
+    6,
+    7
+   ],
+   "defect": "primitive cab interior, rod, pills, bokeh void",
+   "fix": "one modelled cab set"
+  },
+  {
+   "rank": 2,
+   "frames": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "defect": "horizon seams and bands",
+   "fix": "ground and fog past the far plane"
+  },
+  {
+   "rank": 3,
+   "frames": [
+    5,
+    8
+   ],
+   "defect": "objects floating in dark gradient",
+   "fix": "lift ground exposure, cast shadow"
+  },
+  {
+   "rank": 4,
+   "frames": [
+    4
+   ],
+   "defect": "muddy ground, dark trucks",
+   "fix": "pale caliche"
+  },
+  {
+   "rank": 5,
+   "frames": [
+    9
+   ],
+   "defect": "block skyline, mannequin, no rail",
+   "fix": "haze, rail"
+  },
+  {
+   "rank": 6,
+   "frames": [
+    8
+   ],
+   "defect": "parking stripes cross labels",
+   "fix": "move stripes"
+  },
+  {
+   "rank": 7,
+   "frames": [
+    3
+   ],
+   "defect": "bloom behind 'never'",
+   "fix": "move console"
+  },
+  {
+   "rank": 8,
+   "frames": [
+    6
+   ],
+   "defect": "accent pencil",
+   "fix": "graphite"
+  },
+  {
+   "rank": 9,
+   "frames": [
+    2
+   ],
+   "defect": "flat map",
+   "fix": "relief"
+  }
+ ]
+}

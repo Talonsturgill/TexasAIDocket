@@ -51,7 +51,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.5], exposure: W.exposure - 0.5, tone: W.tone, fov: 30 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.5], exposure: W.exposure - 0.15, tone: W.tone, fov: 30 });
 
   /* THE PAD. One rendered bobtail per truck Kodiak counts, the count read from figures.json, seven
    * across and as many rows deep as it takes. 8 m between centres across, 22 m between rows so no cast shadow reaches the next. */
