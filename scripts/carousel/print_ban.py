@@ -96,6 +96,9 @@ RENDERED_FLOOR = 6
 # THE WORLD. Decks on or before WORLD_SINCE were built before TXT.sky existed, so they are not
 # judged on it. From the day after, five of nine frames stand in a world.
 WORLD_SINCE = "2026-09-23"
+# What txthree.js prints when a frame calls TXT.sky and its camera shows none of it. It must equal
+# TXT.NO_SKY there, and the self-test reads the engine to hold the two in step.
+NO_SKY = "TXT: NO SKY IN FRAME"
 WORLD_FLOOR = 5
 DATED = re.compile(r"\d{4}-\d{2}-\d{2}$")
 # THE WORLD IS THE ENGINE'S, NOT ANY METHOD CALLED sky (Codex on #353). No. 32's own chassis had
@@ -227,6 +230,28 @@ def check_assets(assets: Path = ASSETS) -> list[str]:
     return out
 
 
+def no_sky_frames(run_dir: Path) -> list[str]:
+    """Frames whose render says the camera shows no sky, read off the run's render report.
+
+    WHAT THE CAMERA SHOWS, NOT WHAT THE SOURCE CALLS (2026-09-26). No. 33's frame 6 called TXT.sky
+    and looked straight down through an orthographic camera. This gate counted the call, and all
+    three judges capped the frame as objects in a void in all five rounds. TXT.snapshot now measures
+    the horizon against the camera and says so on the console, render.py keeps console errors per
+    frame, and this reads them, so the finding lands on the probe frame and not on a panel round.
+    """
+    import json
+    for rel in ("render/render_report.json", "render_report.json"):
+        rp = run_dir / rel
+        if rp.is_file():
+            try:
+                rep = json.loads(rp.read_text(encoding="utf-8"))
+            except ValueError:
+                return []
+            return [str(rec.get("file") or "?") for rec in (rep.get("slides") or [])
+                    if any(NO_SKY in str(e) for e in (rec.get("console_errors") or []))]
+    return []
+
+
 def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = ASSETS,
               world_floor: int = WORLD_FLOOR) -> list[str]:
     slides_dir = run_dir / "slides"
@@ -273,6 +298,13 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                    f"neither the world (TXT.sky) nor a room (TXT.interior), before the kept snapshot. "
                    f"An interior is a room built as geometry, never a flat background colour behind "
                    f"an object, which is the void every rendered frame of no. 32 shipped in")
+    if not (dated and run_dir.name <= WORLD_SINCE):
+        for name in no_sky_frames(run_dir):
+            out.append(f"{name} calls TXT.sky and its camera shows none of it, pitched below the horizon "
+                       f"or looking straight down with nothing built overhead, so a reader sees objects in "
+                       f"a void. Lift the camera until the horizon is in frame, or stand it inside something "
+                       f"built (a room with TXT.interior, a cab, a canopy). No. 33's frame 6 spent all five "
+                       f"panel rounds on exactly this, and no. 34's frames 4 and 5 were named for it")
     return out
 
 
@@ -446,6 +478,34 @@ def self_test() -> int:
         (probe / "slides" / "slide-01.html").write_text(void)
         ok("the PROBE frame answers to the world too, one of one",
            any("0 of 1 frames stand in a world" in g for g in check_run(probe, chassis_root=a)))
+
+        # WHAT THE CAMERA SHOWS (2026-09-26): a frame that calls TXT.sky and looks straight down.
+        import json as _json
+        seen = root / "2026-09-27"
+        (seen / "slides").mkdir(parents=True)
+        (seen / "render").mkdir(parents=True)
+        for i in range(1, 10):
+            (seen / "slides" / f"slide-0{i}.html").write_text(rendered)
+
+        def report(errors_on_6):
+            (seen / "render" / "render_report.json").write_text(_json.dumps({"slides": [
+                {"file": f"slide-0{i}.html", "console_errors": (errors_on_6 if i == 6 else [])}
+                for i in range(1, 10)]}))
+        report([])
+        ok("nine frames whose cameras show their sky pass", check_run(seen, chassis_root=a) == [],
+           check_run(seen, chassis_root=a))
+        report([NO_SKY + ". This frame calls TXT.sky and its camera shows none of it"])
+        got = check_run(seen, chassis_root=a)
+        ok("a frame that CALLS TXT.sky and shows none of it is CAUGHT off the render, and named",
+           any("slide-06.html" in g and "shows none of it" in g for g in got), got)
+        ok("...and a report at the run root, where a shipped deck keeps it, is read too",
+           (lambda: ((seen / "render_report.json").write_text(
+               (seen / "render" / "render_report.json").read_text()),
+               (seen / "render" / "render_report.json").unlink(),
+               no_sky_frames(seen))[2])() == ["slide-06.html"])
+        engine = (ASSETS / "txthree.js").read_text(encoding="utf-8")
+        ok("the engine prints the exact words this gate reads",
+           f"TXT.NO_SKY = '{NO_SKY}'" in engine and "console.error(TXT.NO_SKY" in engine)
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())
