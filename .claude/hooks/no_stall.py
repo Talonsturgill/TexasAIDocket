@@ -207,7 +207,11 @@ def opening_messages(transcript: str, want: int = 3, max_lines: int = 200,
                     out.append(text)
                     if len(out) >= want:
                         break
-    except OSError:
+    # WIDER THAN OSError SINCE THE TRIGGER RULE RUNS FIRST. `verdict` now reads the opener before
+    # the branch on every call, and anything raised here would crash it, so the hook would fail
+    # open on every dialog instead of falling back to the branch rule. `open()` raises ValueError
+    # on a path with a NUL in it, and `json.loads` raises RecursionError on deep enough nesting.
+    except (OSError, ValueError, RecursionError):
         pass
     return out
 
@@ -739,6 +743,14 @@ def self_test() -> int:
            trigger_line())
         ok(opening_messages(t_routine)[:1] and "meta" not in opening_messages(t_routine),
            "the harness's own meta entries are not read as the opening message")
+        deep = base / "deep.jsonl"
+        deep.write_text('{"type": "user", "x": ' + "[" * 100_000 + "]" * 100_000 + "}\n",
+                        encoding="utf-8")
+        ok(opening_messages("bad\x00path") == [] and opening_messages(str(deep)) == []
+           and verdict({"transcript_path": "bad\x00path"}, e_daily)[0]
+           and verdict({"transcript_path": str(deep)}, e_daily)[0],
+           "a transcript that can't be read falls back to the branch rule instead of crashing "
+           "the verdict, which would fail open on every dialog")
 
         print("which writes the host always asks about")
         cases = [
