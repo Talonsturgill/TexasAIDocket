@@ -1003,9 +1003,12 @@ which is the finding the judges made in words and the number that says the gate 
   faceless, a mannequin or a silhouette. Lit from behind, a figure shows its outline and none of its
   modelling. Put the key on the side the camera sees, or crop to the shoulder. (2026-09-26)
 - **A cab or a room built from primitives.** No. 34's frame 3 built the cab from a capsule seat,
-  a torus wheel and a box dash, and it was named in all five rounds. The kit has no vehicle
-  interior. Stand outside the cab and look in, or crop to one part modelled at kit detail, and name
-  the missing model in the run record, which Phase 17 carries into the backlog. (2026-09-26)
+  a torus wheel and a box dash, and it was named in all five rounds. The kit has carried
+  `semi_cab_interior` since PR 370, a sleeper cab modelled as a set to stand a camera in, with
+  `userData.attach.eye` for the seated driver's eye. Use it. For an interior the kit still lacks,
+  stand outside and look in, or crop to one part modelled at kit detail, and name the missing
+  model in the run record. The kit is `upgrade` lane since the same PR, so Phase 17 can lift it
+  the same day. (2026-09-26)
 
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.
