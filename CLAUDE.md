@@ -642,23 +642,30 @@ an unattended session only**:
   not the self-grant a cloned repository is forbidden, and its worst day is a refused call rather
   than an unsafe one.
 
-**Unattended means** the branch is `claude/daily-*`, or the session opened with the first line of
-`prompts/ROUTINE_PROMPT.txt`, or the host sets `CLAUDE_CODE_SESSION_ATTENDED=0`.
-`TXDOCKET_UNATTENDED=1` or `=0` forces it for a test. Anything else is attended, and there the hook
-prints nothing, so a maintainer's session is exactly as it was. The prompt stored on the routine
-and `ROUTINE_PROMPT.txt` must keep opening with the same sentence, and the hook's self-test fails
-if the file's first line moves.
+**Unattended means** the host sets `CLAUDE_CODE_SESSION_ATTENDED=0`, or the session opened with the
+first line of `prompts/ROUTINE_PROMPT.txt`, or the branch is `claude/daily-*` and the host has not
+set `CLAUDE_CODE_SESSION_ATTENDED=1`. The host's `1` outranks the branch, so a maintainer who opens a
+session on a leftover daily checkout keeps their dialogs. It does not outrank the opening sentence,
+because nobody has read what the host sets in a scheduled session. `TXDOCKET_UNATTENDED=1` or `=0`
+forces it for a test. Anything else is attended, and there the hook prints nothing, so a
+maintainer's session is exactly as it was. The prompt stored on the routine and
+`ROUTINE_PROMPT.txt` must keep opening with the same sentence, which was checked against the
+stored routine on 2026-09-26, and the hook's self-test fails if the file's first line moves.
 
 **What it can't do.** Claude Code runs no `PermissionRequest` hook for a sandboxed command's
 network request, so that one dialog can still wait. The hook logs it once it has waited about six
 seconds, `prompt_audit.py` measures the wait, and the email names both.
 
 **How a run knows it worked.** Every refusal and every dialog still waiting goes to
-`out/no_stall/<date>.jsonl`, with a command's arguments withheld. `prompt_audit.py`, in Phases 17
-and 19, reads that log through the hook's own module and prints whether the hook was armed, what it
-refused and what still waited. `NOT ARMED IN AN UNATTENDED RUN` means nothing guarded the run, and
-it goes in the email. A refusal is not a stall, and it still goes in the run record, because it
-names a call the run should stop making.
+`out/no_stall/<date>.jsonl`, with a command's arguments withheld and a notification kept only as the
+tool it was for. `prompt_audit.py`, in Phases 17 and 19, reads that log through the hook's own
+module and prints whether the hook was armed, how it judged the session when it started and the
+host's own `CLAUDE_CODE_SESSION_ATTENDED`, what it refused and what still waited. `prompt_audit`
+redacts a granted rule through the hook's own `command_head`, so the two can't withhold different
+things. `NOT ARMED IN AN UNATTENDED RUN` means nothing guarded the run, and it goes in the email.
+The host's `1` can't silence that line, because `prompt_audit` asks the question without it. A
+refusal is not a stall, and it still goes in the run record, because it names a call the run should
+stop making.
 
 **It fails open.** A crash, a timeout or unreadable input prints nothing, and the dialog shows as it
 did before the hook existed. Its self-test proves that, proves every answer, and fails CI if
@@ -673,6 +680,14 @@ could run in the container where this was built, because the host supplies that 
 credentials and nothing else holds any. So the hook was proven against Anthropic's documented
 schema, the published settings schema and its own process, never through a real dialog. The first
 scheduled run after it merged is the first real proof, and its email says `armed` or it doesn't.
+
+That run, on 2026-09-26, reported armed at 06:15:58 UTC with nothing refused and nothing waiting.
+**Armed proved only that the hook RAN.** How it judged the session was in the log and not in the
+report, and the log died with the container. So from 2026-09-26 the report prints the verdict at
+session start and the host's own attended value. SessionStart can fire before the opening message
+reaches the transcript, so an `attended` reading there is not by itself a fault: every later call is
+judged again. The value a scheduled session carries for `CLAUDE_CODE_SESSION_ATTENDED` is the open
+question, and the next run's email answers it.
 
 ## The routines' model, and what it changed here (2026-09-23)
 
