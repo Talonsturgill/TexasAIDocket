@@ -51,7 +51,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.6], exposure: W.exposure - 0.2, tone: W.tone, fov: 44 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 1.8], exposure: W.exposure - 0.2, tone: W.tone, fov: 44 });
 
   /* THE YARD. One painted tractor stall per truck in the allocation, read from figures.json, ten
    * across and twenty rows deep, every row with its own drive aisle. The two nearest rows hold one tractor
@@ -92,7 +92,7 @@ window.renderReady = (async () => {
   }
 
   /* the reported count, one lit tractor per stall along the nearest row, noses out to the aisle */
-  const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: true, seed: 3 });
+  const base = F.truck(THREE, TXT, K, M, { trailer: false, lit: false, seed: 3 });
   for (let i = 0; i < NOW; i++) {
     const tr = i === 0 ? base : base.clone(true);
     tr.position.set(-width / 2 + (i % ACROSS + 0.5) * SW, 0, rowZ(Math.floor(i / ACROSS)) - SL / 2); TXT.add(R, tr); TXT.contact(R, tr);

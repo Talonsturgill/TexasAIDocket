@@ -87,12 +87,12 @@ window.renderReady = (async () => {
   sheet.position.set(sx, sy, sz); sheet.castShadow = true; sheet.receiveShadow = true; R.scene.add(sheet);
 
   /* the ticks, extruded marks sitting in the boxes, the recording device row (2) in the accent */
-  const tickShape = [[0, 0.004], [0.004, 0.0], [0.016, 0.014], [0.012, 0.018], [0.004, 0.009], [0.002, 0.011]];
+  const tickShape = [[0, 0.010], [0.006, 0.003], [0.018, 0.016], [0.015, 0.019], [0.006, 0.009], [0.003, 0.013]];   /* a check: short arm down, long arm up */
   const ink = TXT.mat.clay(0x22262c, { roughness: 0.6 });
   const accentInk = new THREE.MeshBasicMaterial({ color: F.ACCENT, toneMapped: false });
   for (let i = 0; i < N; i++) {
     const mk = TXT.extrude(tickShape, 0.0012, i === 1 ? accentInk : ink, { bevel: false });
-    if (i === 1) mk.scale.set(4.2, 4.2, 1);
+    if (i === 1) mk.scale.set(4.8, 4.8, 1);   /* the recording device row, ticked large in the one accent */
     const u = (78 + 26) / 864 * 0.216 - 0.108, v = 0.1395 - (top + i * rowH + 54) / 1116 * 0.279;
     const lx = u, lz = -v;                                                         /* sheet local, after the -90 degree tilt */
     const cs = Math.cos(A), sn = Math.sin(A);
@@ -106,7 +106,7 @@ window.renderReady = (async () => {
   TXT.frame(R, { from: [LANE + seat[0] - 0.22, FLOOR + 1.78, seat[2] - 0.2], look: [sx + 0.03, sy + 0.14, sz + 0.1] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
-  TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });
+  TXT.ground(R, { surface: 'grass', size: 12000, seed: 9 });
   TXT.weather(R, { skip: [cab] });
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);

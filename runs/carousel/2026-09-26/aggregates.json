@@ -48,15 +48,6 @@
    "note": "Breitbart's account of a CNBC ride, secondary reported and labelled so"
   },
   {
-   "phrase": "10 days",
-   "slide": "slide-08.html",
-   "kind": "duration",
-   "value": 10,
-   "quoted_from": "c15",
-   "quote": "has 10 days to request",
-   "note": "the source's own printed figure, quoted"
-  },
-  {
    "phrase": "10 DAYS",
    "slide": "slide-08.html",
    "kind": "duration",
@@ -118,6 +109,48 @@
     "c10"
    ],
    "note": "one claim per acknowledgement the application lists: laws, recording device, federal compliance, minimal risk condition, registration and title, insurance. compute.py counts them as figures.acknowledgements"
+  },
+  {
+   "phrase": "35 driverless trucks",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 35,
+   "quoted_from": "c27",
+   "quote": "35 driverless trucks were operating commercially",
+   "note": "Kodiak's own figure, quoted"
+  },
+  {
+   "phrase": "45 and ends",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c25",
+   "quote": "Interstate 45",
+   "note": "the route's name, not a count; declared because the detector reads a numeral before a verb"
+  },
+  {
+   "phrase": "four first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c22",
+    "c27",
+    "c28",
+    "c33"
+   ],
+   "note": "one claim per company document: Kodiak's September 25th release (c22), Kodiak's September 8th release (c27), Aurora's release (c28), Waabi's post (c33)"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c18"
+   ],
+   "note": "TxDMV's program page (c1) and the adopted rule with its comment responses (c18)"
   }
  ]
 }

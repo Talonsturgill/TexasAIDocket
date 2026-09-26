@@ -31,7 +31,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">The line is serious bodily injury</h1>
-<p class="dek" data-follow="26">The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. After a final decision an operator has 10 days to ask for a hearing. If it isn't held in time the authorization is reinstated.</p>
+<p class="dek" data-follow="26">The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says enforcement action is unlikely.</p>
 <div class="haze" data-decorative></div><div class="floor" data-decorative></div>
 <svg id="lead" viewBox="0 0 1080 1350"></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -48,12 +48,12 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"soah": {"request_days": 10, "file_days": 10, "hearing_days": 60, "longest_path_days": 80, "from": ["c15", "c16"], "rounding": "sum of the three windows, the longest a review can run before the hearing must be held"}};
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "When the state steps in", counter: "08 / 09", src: "c13 c15 c16 c17   DRAWN TO SCALE", ink: '#C8D1DC' });
+  TXLAYOUT.mount(document.body, { kicker: "When the state steps in", counter: "08 / 09", src: "c13 c14 c15 c16 c17   DRAWN TO SCALE", ink: '#C8D1DC' });
   TX.fitText(document.getElementById("hook"), { min: 80, max: 108, maxLines: 2 });
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.4], exposure: W.exposure + 0.1, tone: W.tone, fov: 46 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.4], exposure: W.exposure + 0.05, tone: W.tone, fov: 46 });
 
   /* THE COURT. A tilt wall warehouse with its dock face on +z at z -34, a concrete court in front,
    * one rig backed to the dock. The stripe runs along x across the court at A QUARTER METRE PER DAY, its
@@ -69,7 +69,7 @@ window.renderReady = (async () => {
   TXT.frame(R, { from: [X0 + total / 2, 19, 31], look: [X0 + total / 2, -0.2, -15] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [X0 + 10, 0, 0], distance: 80, shadowFar: 200 });
-  TXT.ground(R, { surface: 'concrete', size: 900, seed: 12 });   /* one surface under the rig and the stripe */
+  TXT.ground(R, { surface: 'concrete', size: 12000, seed: 12 });   /* one surface under the rig and the stripe */
 
   const t = F.truck(THREE, TXT, K, M, { lit: true, seed: 3 });
   t.rotation.y = Math.PI / 2; t.position.set(X0 + total / 2 + 0.6, 0, -9);

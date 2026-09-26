@@ -100,12 +100,14 @@ the companies' numbers live, and goes back into the dark cab to read the state's
 2. **Camera move.** Outside the cab (1), above the state (2), inside the cab (3), up high over two
    yards at one scale (4, 5), back inside at the seat (6) and the bulkhead (7), out onto a court (8),
    and up on an overpass rail (9).
-3. **Value arc.** One world, and the camera turns steadily away from the amber seam toward the
-   deeper blue, so the ground steps down from frame 1 to the Houston end and never back up.
+3. **Value arc.** One world at one grade. The road frames open at the cover's value, the map and
+   the cab drop to the deck's darkest, and from the Permian on the frames step down from a lit
+   caliche pad toward the deep blue at the Houston end, measured by deck_coherence rather than
+   asserted.
 
 ## The rotation
 
-    FULL_BLEED  MAP  CLOSE_CROP  FULL_BLEED  FULL_BLEED  DOCUMENT  CLOSE_CROP  DIAGRAM  SPLIT_HORIZON
+    FULL_BLEED  MAP  CLOSE_CROP  FULL_BLEED  FIGURE_SCALE  DOCUMENT  CLOSE_CROP  DIAGRAM  SPLIT_HORIZON
 
 `TXLAYOUT.check` returns an empty list. Seven distinct, no TYPE_AS_OBJECT, FULL_BLEED and CLOSE_CROP
 three between them, eight frames bleeding an edge.
@@ -259,14 +261,14 @@ depth:
 
 composition:
   structure: >
-    The camera sits on the dash looking back into the cab, so the empty driver's seat and the wheel
-    rim take the left edge, the observer sits on the right third, and the recorder glows on the
-    bulkhead between them. The type sits on the dark headliner at the top.
+    The camera sits in the bunk between the seats looking forward, so the headliner and the
+    overhead console carry the type, the windshield holds the lane running south, the empty wheel
+    takes the lower left and the passenger seat back takes the lower right.
   bands: >
-    Top third, the headliner in shadow with the hook and the dek. Middle third, the two headrests, the
-    recorder's lit housing on the bulkhead between them, the observer's head and shoulder.
-    Bottom third, the pleated vinyl seat backs modeled by the dome light, the wheel's dark rim
-    at the left edge, and the observer's shirt and arm at the right edge.
+    Top third, the headliner in shadow with the hook and the dek, the recorder lit on the overhead
+    console. Middle third, the windshield with the blue hour sky, the lane and the verge running
+    to the horizon. Bottom third, the dash, the wheel's rim modeled by the dome light at the left,
+    and the passenger seat back and headrest at the right, the observer hidden behind it.
   focal: "the empty seat and the wheel against the lit lane"
 
 art:
@@ -359,9 +361,9 @@ risks:
 
 ```yaml
 slide: 5
-layout: FULL_BLEED
+layout: FIGURE_SCALE
 primary_image:
-  subject: "a truck yard at blue hour from a high oblique: 200 painted places in twenty rows of ten on dark asphalt receding to the haze, twenty tractors with lamps lit parked in the two nearest rows, oil stains under them, a mast lamp pooling at each side"
+  subject: "a truck yard at blue hour from a high oblique: 200 painted places in twenty rows of ten on dark asphalt receding to the haze, twenty tractors parked in the two nearest rows, oil stains under them, a mast lamp pooling at each side"
   rect: [0, 560, 1080, 790]
   bleeds: [left, right, bottom]
 accent: none
@@ -390,8 +392,8 @@ composition:
     lower third to the haze, the twenty tractors fill the two nearest rows, and the type sits on the far rows.
   bands: >
     Top third, dark asphalt under the hook and the dek. Middle third, rows of empty painted places,
-    each a pale pad with its own edge, forty to a row. Bottom third, the nearest row with twenty
-    white tractors parked in its first places, roofs and hoods with modeled form and a soft contact
+    each a painted outline, ten to a row, fading into the haze. Bottom third, the two nearest rows with twenty
+    white tractors parked in their places, roofs and hoods with modeled form and a soft contact
     shadow under each on the pale pads, and the pads beyond them running on to the right edge over the
     asphalt texture.
   focal: "the one row of twenty tractors against a field of empty places"
@@ -415,6 +417,7 @@ type:
 acceptance:
   - "the frame reads \"200 places, 20 trucks\""
   - "exactly 200 places are painted and exactly 20 hold a tractor, each cab readable at 432 px"
+  - "the far rows fade into the haze before they reach the type"
   - "the dek attributes the 20 to Breitbart citing CNBC"
 
 risks:
@@ -490,7 +493,7 @@ slide: 7
 layout: CLOSE_CROP
 primary_image:
   subject: "the recording device on a worn painted steel kick panel bolted to the sleeper bulkhead, its charcoal finned housing under a neutral dome light, its one dusk gold status lamp blooming, the seat backs either side"
-  rect: [160, 560, 760, 600]
+  rect: [100, 700, 880, 560]
   bleeds: []
 accent: "#E0956A"
 job: >
@@ -510,10 +513,10 @@ depth:
 composition:
   structure: >
     A detail camera between the seats a meter from the housing puts the recorder just under the
-    middle, on a tread plate panel that runs off three edges. The type sits on the dark curtain above.
+    middle, on a painted steel kick panel panel that runs off three edges. The type sits on the dark curtain above.
   bands: >
     Top third, the dark bulkhead and curtain behind the hook and the dek. Middle third, the
-    mounting plate and the recorder's fins catching the dome light. Bottom third, the tread plate's
+    mounting plate and the recorder's fins catching the dome light. Bottom third, the painted steel kick panel's
     lugs breaking the dome light into glints, falling off into shadow at the floor.
   focal: "the lit status lamp on the housing"
 
@@ -530,11 +533,11 @@ art:
 
 type:
   kicker: "What the state can't ask for"
-  hook: "It carries a recorder"
-  dek: "The truck must be equipped with a recording device. Dallas asked the state to require crash history too. The department said the statute does not allow it."
+  hook: "Dallas asked for crash history"
+  dek: "The department said the statute does not allow it to require crash history from authorization holders. The truck must still be equipped with a recording device."
 
 acceptance:
-  - "the frame reads \"It carries a recorder\""
+  - "the frame reads \"Dallas asked for crash history\""
   - "the recorder's lamp is the only #E0956A on the frame and it blooms"
   - "the recorder is labelled drawn to illustrate in the source line"
 
@@ -554,7 +557,7 @@ job: >
   Draw when the state steps in and how long an operator can be kept off the road, as a length a
   reader can pace.
 
-claims: [c13, c15, c16, c17]
+claims: [c13, c14, c15, c16, c17]
 numerals:
   - value_from: c15   # 10 days
   - value_from: c16   # 10 and 60 days
@@ -595,7 +598,7 @@ art:
 type:
   kicker: "When the state steps in"
   hook: "The line is serious bodily injury"
-  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. After a final decision an operator has 10 days to ask for a hearing. If it isn't held in time the authorization is reinstated."
+  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says enforcement action is unlikely."
 
 acceptance:
   - "the frame reads \"The line is serious bodily injury\""
@@ -660,11 +663,11 @@ art:
 
 type:
   kicker: "If you see one"
-  hook: "A way in"
+  hook: "Where to report one"
   dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement can verify authorizations there too."
 
 acceptance:
-  - "the frame reads \"A way in\""
+  - "the frame reads \"Where to report one\""
   - "the bar starts at a tick labelled May 28th and ends at a tick labelled today, and a hairline runs on to the right edge"
   - "the Texan stands at the rail and the rig passes beneath"
   - "no tail lamp or streetlight crosses the hook, the dek or the bar labels"

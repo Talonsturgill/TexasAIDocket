@@ -1,6 +1,7 @@
 {
  "date": "2026-09-26",
  "carousel_no": 34,
+ "document_title": "Nobody at the wheel on Interstate 45",
  "_note": "Built from render_report.json's own text_nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. The sheet on frame 6 is drawn on a canvas as unlabelled rows and ticks, one per acknowledgement, and carries no words.",
  "slides": {
   "S1": {
@@ -137,18 +138,18 @@
    "n": 7,
    "file": "slide-07.html",
    "kicker": "What the state can't ask for",
-   "headline": "It carries a recorder",
+   "headline": "Dallas asked for crash history",
    "claims": [
     "c6",
     "c18",
     "c19"
    ],
    "cite": "c6 c18 c19 ILLUSTRATIVE",
-   "body": "The truck must be equipped with a recording device. Dallas asked the state to require crash history too. The department said the statute does not allow it.",
+   "body": "The department said the statute does not allow it to require crash history from authorization holders. The truck must still be equipped with a recording device.",
    "strings": [
     "texasaidocket.com",
-    "It carries a recorder",
-    "The truck must be equipped with a recording device. Dallas asked the state to require crash history too. The department said the statute does not allow it.",
+    "Dallas asked for crash history",
+    "The department said the statute does not allow it to require crash history from authorization holders. The truck must still be equipped with a recording device.",
     "What the state can't ask for",
     "07 / 09",
     "c6 c18 c19 ILLUSTRATIVE"
@@ -161,30 +162,31 @@
    "headline": "The line is serious bodily injury",
    "claims": [
     "c13",
+    "c14",
     "c15",
     "c16",
     "c17"
    ],
-   "cite": "c13 c15 c16 c17 DRAWN TO SCALE",
-   "body": "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. After a final decision an operator has 10 days to ask for a hearing. If it isn't held in time the authorization is reinstated.",
+   "cite": "c13 c14 c15 c16 c17 DRAWN TO SCALE",
+   "body": "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says enforcement action is unlikely.",
    "strings": [
     "texasaidocket.com",
     "The line is serious bodily injury",
-    "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. After a final decision an operator has 10 days to ask for a hearing. If it isn't held in time the authorization is reinstated.",
+    "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says enforcement action is unlikely.",
     "10 DAYS TO ASK",
     "STATE FILES IN 10",
     "60 DAYS TO HOLD THE HEARING",
     "REINSTATED IF NOT HELD",
     "When the state steps in",
     "08 / 09",
-    "c13 c15 c16 c17 DRAWN TO SCALE"
+    "c13 c14 c15 c16 c17 DRAWN TO SCALE"
    ]
   },
   "S9": {
    "n": 9,
    "file": "slide-09.html",
    "kicker": "If you see one",
-   "headline": "A way in",
+   "headline": "Where to report one",
    "claims": [
     "c1",
     "c12",
@@ -195,7 +197,7 @@
    "body": "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement can verify authorizations there too.",
    "strings": [
     "texasaidocket.com",
-    "A way in",
+    "Where to report one",
     "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement can verify authorizations there too.",
     "MAY 28TH",
     "TODAY",

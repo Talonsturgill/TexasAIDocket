@@ -62,7 +62,7 @@ window.renderReady = (async () => {
   TXT.frame(R, { from: [LANE_R - 4.2, ROAD_Y + 3.0, 20], look: [LANE_R + 2.2, ROAD_Y + 3.7, -6] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE_R, 0, 0], distance: 90, shadowFar: 260 });
-  TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });
+  TXT.ground(R, { surface: 'grass', size: 12000, seed: 9 });
 
   const t = F.truck(THREE, TXT, K, M, { lit: true, seed: 3 });
   t.position.set(LANE_R, ROAD_Y, -t.userData.front + 0.5);

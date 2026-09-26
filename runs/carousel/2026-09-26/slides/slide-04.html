@@ -50,7 +50,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.5], exposure: W.exposure - 0.15, tone: W.tone, fov: 30 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.5], exposure: W.exposure - 0.5, tone: W.tone, fov: 30 });
 
   /* THE PAD. One rendered bobtail per truck Kodiak counts, the count read from figures.json, seven
    * across and as many rows deep as it takes. 8 m between centres across, 22 m between rows so no cast shadow reaches the next. */
@@ -68,7 +68,7 @@ window.renderReady = (async () => {
     TXT.add(R, tr); TXT.contact(R, tr);
   }
   /* the pad edge: scrub and mesquite, kept off the pad */
-  TXT.scatter(R, { kind: 'scrub', count: 2200, area: [-90, -260, 90, 90], avoid: [[-26, -56, 26, 56]], seed: 7, scale: [0.18, 0.45] });
+  TXT.scatter(R, { kind: 'scrub', count: 2200, area: [-90, -70, 90, 90], avoid: [[-26, -56, 26, 56]], seed: 7, scale: [0.18, 0.45] });
   for (let i = 0; i < 10; i++) { const side = i % 2 ? 1 : -1; const m = K.make('mesquite', { seed: 30 + i }); m.position.set(side * (32 + (i % 3) * 6), 0, 50 - Math.floor(i / 2) * 22); TXT.add(R, m); TXT.contact(R, m); }
   const pj = K.make('pump_jack', { crank: 40, seed: 2 }); pj.position.set(40, 0, -420); TXT.add(R, pj); TXT.contact(R, pj);
   TXT.weather(R, {});

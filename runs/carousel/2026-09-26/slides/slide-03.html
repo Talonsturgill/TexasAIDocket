@@ -66,13 +66,13 @@ window.renderReady = (async () => {
   /* the recorder on the overhead console above the glass, facing back into the cab */
   const rec = F.recorder(THREE, TXT, M);
   rec.position.set(LANE + 0.38, FLOOR + 1.7, -0.45); TXT.add(R, rec);
-  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.34, 0.34, 1); if (o.isPointLight) o.intensity *= 0.15; });
+  rec.traverse((o) => { if (o.isSprite) o.scale.set(0.42, 0.42, 1); if (o.isPointLight) o.intensity *= 0.15; });
 
   /* from the bunk, between the seats, looking forward through the glass at the lane ahead */
-  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.5, 1.15], look: [LANE + 0.02, FLOOR + 1.85, -2.5] });
+  TXT.frame(R, { from: [LANE + 0.12, FLOOR + 1.4, 1.24], look: [LANE + 0.02, FLOOR + 1.78, -2.5] });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [LANE, 0, 0], distance: 60, shadowFar: 120 });
-  TXT.ground(R, { surface: 'grass', size: 900, seed: 9 });
+  TXT.ground(R, { surface: 'grass', size: 12000, seed: 9 });
   TXT.weather(R, { skip: [cab] });
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);

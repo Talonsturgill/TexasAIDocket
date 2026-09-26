@@ -82,6 +82,7 @@ for s in sorted(rep['slides'], key=lambda s: s['file']):
 
 doc = {
     "date": "2026-09-26", "carousel_no": 34,
+    "document_title": "Nobody at the wheel on Interstate 45",
     "_note": ("Built from render_report.json's own text_nodes rather than retyped, because the "
               "strings a reader receives are the ones the browser laid out. The sheet on frame 6 "
               "is drawn on a canvas as unlabelled rows and ticks, one per acknowledgement, and "
