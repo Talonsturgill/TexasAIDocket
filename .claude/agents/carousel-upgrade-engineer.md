@@ -65,8 +65,17 @@ anything.
 
 The run stamps `daily`. **You stamp `upgrade`**, and that actor owns the machine's own files and
 nothing else: `scripts/carousel/**`, `config/carousel/**`, `knowledge/carousel/**`,
-`.claude/agents/carousel-*.md`, `.claude/skills/carousel-engine/**`, and
+`assets/js/kit/**`, `.claude/agents/carousel-*.md`, `.claude/skills/carousel-engine/**`, and
 `ledger/carousel/upgrades.json`.
+
+**The kit is yours, and the artwork lift is your FIRST job (owner, 2026-09-26).** Before any gate,
+checker or doctrine work, take the last round's top ranked artwork defect from the craft card. When
+its fix is a model, lift the chassis's model into `assets/js/kit/<family>.js` at the judge's named
+fix, under the conventions in the header of `assets/js/txkit.js`, prove it with
+`examples/kit/build.py` rendered through the carousel engine, read the proof at full size, and run
+`examples/kit/sizes.py`. That is an upgrade you make, never a proposal you file. Phase 17 of
+`prompts/daily_routine.md` carries the full rule. The registry (`assets/js/txkit.js`) and the
+engine (`assets/js/txthree.js`) are not yours: a fix that needs either is a proposal.
 
 You may not write `ledger/docket.json`. You may not write `seed/**`. You may not write the site
 builder, the workflows, `CLAUDE.md`, `ownership.yaml`, or `prompts/daily_routine.md`.

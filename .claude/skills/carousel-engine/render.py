@@ -37,7 +37,10 @@ import sys
 import time
 from pathlib import Path
 
-from playwright.sync_api import sync_playwright
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:          # the browserless self-test runs in CI's gates job, which has none
+    sync_playwright = None
 
 # How many characters of each text node the report stores. See the report header note.
 TEXT_WINDOW = 320
@@ -965,6 +968,107 @@ def resolve_html(src: Path, resolved_dir: Path) -> Path:
     return dst
 
 
+# three.js's own wording for a program that did not compile or link, and WebGL's info log line
+SHADER_ERROR = re.compile(r"THREE\.WebGLProgram: Shader Error|VALIDATE_STATUS false|"
+                          r"THREE\.WebGLShader: gl\.getShaderInfoLog|^ERROR: \d+:\d+:", re.M)
+
+
+def record_console(rec: dict, mtype: str, text: str) -> None:
+    """File one browser console message into a slide's record.
+
+    A SHADER THAT FAILS TO COMPILE IS A RENDER ERROR, not a console note (2026-09-26). three.js
+    reports it through console.error and carries on, and the mesh simply does not draw. This used
+    to file every console error as a warning, so a page with a broken shader printed `errors=0`
+    and passed: found by rendering a double init() of txthree's sky fog, which failed to compile
+    on every fogged material. Other console errors stay warnings, because a page may log on
+    purpose (the kit's KIT_STATS line is a console.error). `--self-test` replays both.
+    """
+    if mtype != "error":
+        return
+    rec["console_errors"].append(text)
+    if SHADER_ERROR.search(text):
+        first = next((ln for ln in text.splitlines() if ln.strip()), text)
+        rec["page_errors"].append(f"shader compile error: {first.strip()[:200]}")
+
+
+# The fixtures `--self-test --browser` renders: one fragment shader naming a symbol that does not
+# exist, and the same scene with a shader that compiles. Both use the vendored three.js, and both
+# carry a patterned ground, because a flat page compresses under render_slide's 10 KB floor for a
+# screenshot and would fail the clean case for the wrong reason.
+_SELFTEST_PAGE = """<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;
+width:1080px;height:1350px;background:repeating-linear-gradient(45deg,#223 0 7px,#556 7px 13px)}canvas{position:absolute;left:0;top:0;width:1080px;
+height:1350px}</style></head><body><canvas id="gl" width="2160" height="2700"></canvas>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+window.renderReady = (async () => {
+  const r = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), preserveDrawingBuffer: true });
+  const s = new THREE.Scene(), c = new THREE.PerspectiveCamera(40, 1080 / 1350, 0.1, 100); c.position.z = 5;
+  const m = new THREE.ShaderMaterial({
+    vertexShader: 'void main(){ gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'void main(){ gl_FragColor = vec4(__FRAG__, 1.0); }' });
+  s.add(new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), m));
+  r.render(s, c);
+  return true;
+})();
+</script></body></html>"""
+
+
+def self_test(browser: bool) -> int:
+    """Replay the silent pass this module used to give a broken shader. Exit 0 only if every
+    case holds. Without --browser it needs no browser, so CI's gates job runs it."""
+    ok = True
+
+    def check(name, cond, detail=""):
+        nonlocal ok
+        ok = ok and bool(cond)
+        print(f"  {'ok  ' if cond else 'FAIL'}  {name}" + (f"  ({detail})" if detail else ""))
+
+    # the exact text three.js r170 logs for a program that failed, as captured on 2026-09-26
+    captured = ("THREE.WebGLProgram: Shader Error 0 - VALIDATE_STATUS false\n\nMaterial Name: \n"
+                "Material Type: ShaderMaterial\n\nProgram Info Log: Fragment shader is not compiled.\n")
+    rec = {"console_errors": [], "page_errors": []}
+    record_console(rec, "error", captured)
+    check("a shader three.js could not compile is a page error, so the slide fails",
+          rec["page_errors"] and rec["page_errors"][0].startswith("shader compile error: THREE.WebGLProgram"),
+          rec["page_errors"])
+    rec = {"console_errors": [], "page_errors": []}
+    record_console(rec, "error", 'KIT_STATS {"build_ms":298,"models":[{"name":"event_recorder"}]}')
+    check("a page's own console.error log stays a warning", not rec["page_errors"] and rec["console_errors"])
+    rec = {"console_errors": [], "page_errors": []}
+    record_console(rec, "error", "Failed to load resource: net::ERR_FILE_NOT_FOUND")
+    check("an ordinary console error stays a warning", not rec["page_errors"])
+    rec = {"console_errors": [], "page_errors": []}
+    record_console(rec, "warning", captured)
+    check("a warning is never filed at all", not rec["page_errors"] and not rec["console_errors"])
+    # the wording this matches is three.js's own, so an upgrade that rewords it must fail here
+    bundle = (ASSETS_DIR / "js" / "three.module.min.js").read_text(errors="ignore")
+    check("the vendored three.js still logs a failed program as 'THREE.WebGLProgram: Shader Error'",
+          "THREE.WebGLProgram: Shader Error " in bundle and "VALIDATE_STATUS" in bundle)
+
+    if browser and sync_playwright is None:
+        check("--browser needs the playwright package", False, "pip install playwright")
+    elif browser:
+        import tempfile
+        root = REPO_ROOT / "out" / "render_selftest"
+        root.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=root) as td:
+            td = Path(td)
+            (td / "slides").mkdir()
+            (td / "slides" / "slide-01.html").write_text(_SELFTEST_PAGE.replace("__FRAG__", "undefinedSymbol"))
+            (td / "slides" / "slide-02.html").write_text(_SELFTEST_PAGE.replace("__FRAG__", "vec3(fract(gl_FragCoord.x * 0.013), fract(gl_FragCoord.y * 0.017), 0.6)"))
+            resolved = td / "resolved"; resolved.mkdir()
+            with sync_playwright() as p:
+                b = launch_chromium(p)
+                bad = render_slide(b, resolve_html(td / "slides" / "slide-01.html", resolved), td / "a.png", 1080, 1350, 1.0, 45000)
+                good = render_slide(b, resolve_html(td / "slides" / "slide-02.html", resolved), td / "b.png", 1080, 1350, 1.0, 45000)
+                b.close()
+        check("in a real browser, the broken shader fails its slide", any("shader compile error" in e for e in bad["page_errors"]), bad["page_errors"])
+        check("and the same scene with a shader that compiles passes", good["ok"] and not good["page_errors"], good["page_errors"])
+
+    print("render self-test: " + ("all passed" if ok else "FAILED"))
+    return 0 if ok else 1
+
+
 def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
@@ -976,8 +1080,13 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     page = browser.new_page(viewport={"width": width, "height": height},
                             device_scale_factor=scale)
     page.add_init_script(CANVAS_TEXT_HOOK_JS.replace("__TEXT_WINDOW__", str(TEXT_WINDOW)))
-    page.on("console", lambda m: rec["console_errors"].append(m.text)
-            if m.type in ("error",) else None)
+    # A SHADER THAT FAILS TO COMPILE IS A RENDER ERROR, not a console note (2026-09-26).
+    # three.js reports it through console.error and carries on, and the mesh simply does not
+    # draw. This handler used to file every console error as a warning, so a page with a broken
+    # shader printed `errors=0` and passed: found by rendering a double init() of txthree's sky
+    # fog, which failed to compile on every fogged material. Other console errors stay warnings,
+    # because a page may log on purpose (the kit's KIT_STATS line is a console.error).
+    page.on("console", lambda m: record_console(rec, m.type, m.text))
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
     try:
         page.goto(path.as_uri(), wait_until="load", timeout=timeout_ms)
@@ -1006,6 +1115,11 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
 
 
 def main():
+    if "--self-test" in sys.argv:
+        sys.exit(self_test("--browser" in sys.argv))
+    if sync_playwright is None:
+        print("FAIL: render.py needs the playwright package (pip install playwright)", file=sys.stderr)
+        sys.exit(1)
     ap = argparse.ArgumentParser()
     ap.add_argument("--slides-dir", required=True)
     ap.add_argument("--out-dir", required=True)
