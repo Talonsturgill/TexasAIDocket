@@ -1,0 +1,127 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.4
+  }
+ ],
+ "weighted_score": 6.706,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": [
+    1,
+    4,
+    5,
+    8
+   ],
+   "defect": "key at az -160 backlights the white truck so it reads navy",
+   "fix": "light the side the camera sees; cab roof L* above ground L*"
+  },
+  {
+   "rank": 2,
+   "frames": [
+    3,
+    6,
+    7
+   ],
+   "defect": "primitive cab, rod, recorder material differs",
+   "fix": "one modelled cab set, delete the rod"
+  },
+  {
+   "rank": 3,
+   "frames": [
+    1,
+    3,
+    4,
+    8,
+    9
+   ],
+   "defect": "world stops short of horizon, bands and seams",
+   "fix": "ground past far plane, one slab on 8"
+  },
+  {
+   "rank": 4,
+   "frames": [
+    5
+   ],
+   "defect": "ghost rows under type, 200 uncountable",
+   "fix": "rows below the dek"
+  },
+  {
+   "rank": 5,
+   "frames": [
+    9
+   ],
+   "defect": "block skyline, faceless figure, hairline through torso, no rail",
+   "fix": "haze skyline, stop hairline"
+  },
+  {
+   "rank": 6,
+   "frames": [
+    3
+   ],
+   "defect": "recorder bloom behind 'never'",
+   "fix": "move the console"
+  },
+  {
+   "rank": 7,
+   "frames": [
+    6
+   ],
+   "defect": "accent pencil",
+   "fix": "graphite"
+  },
+  {
+   "rank": 8,
+   "frames": [
+    8
+   ],
+   "defect": "doors under hook, hook and picture differ",
+   "fix": "hook in sky"
+  },
+  {
+   "rank": 9,
+   "frames": [
+    2
+   ],
+   "defect": "flat map",
+   "fix": "render the mesh"
+  }
+ ]
+}

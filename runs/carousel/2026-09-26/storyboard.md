@@ -364,7 +364,7 @@ slide: 5
 layout: FIGURE_SCALE
 primary_image:
   subject: "a truck yard at blue hour from a high oblique: 200 painted places in twenty rows of ten on dark asphalt receding to the haze, twenty tractors parked in the two nearest rows, oil stains under them, a mast lamp pooling at each side"
-  rect: [0, 560, 1080, 790]
+  rect: [0, 760, 1080, 590]
   bleeds: [left, right, bottom]
 accent: none
 job: >
@@ -475,13 +475,13 @@ art:
 
 type:
   kicker: "The permission"
-  hook: "Six statements and no fee"
-  dek: "Since May 28th a commercial driverless operator needs a state authorization. It acknowledges six statements, certifies a responder plan and pays nothing. The authorization does not expire."
+  hook: "Six conditions and no fee"
+  dek: "Since May 28th a commercial driverless operator needs a TxDMV authorization. It is free, it does not expire, and it rests on a statement with six conditions and a responder plan."
 
 acceptance:
-  - "the frame reads \"Six statements and no fee\""
+  - "the frame reads \"Six conditions and no fee\""
   - "the sheet carries exactly six ruled rows and six ticks"
-  - "the second tick, the recording device row, is the only #E0956A on the frame"
+  - "the pen and the second tick, the recording device row, are the only #E0956A on the frame"
   - "the driver's seat is empty"
 
 risks:
@@ -534,7 +534,7 @@ art:
 type:
   kicker: "What the department can't require"
   hook: "Dallas asked for crash history"
-  dek: "The department said the statute does not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements."
+  dek: "The department said Transportation Code § 545.453 and § 545.456 do not allow it to require crash history from authorization holders. A required recording device is among the acknowledgements."
 
 acceptance:
   - "the frame reads \"Dallas asked for crash history\""
@@ -549,8 +549,8 @@ risks:
 slide: 8
 layout: DIAGRAM
 primary_image:
-  subject: "a concrete truck court at blue hour from a high oblique, a white rig parked parallel to the dock, and one painted stripe across the court in three segments at a quarter meter per day, with mono labels on leaders"
-  rect: [0, 540, 1080, 480]
+  subject: "a concrete truck court at blue hour from a low oblique under the open sky, a white rig parked across the court, and one painted stripe across the court in three segments at a quarter meter per day, with mono labels on leaders"
+  rect: [0, 760, 1080, 440]
   bleeds: [left, right]
 accent: none
 job: >
@@ -577,28 +577,28 @@ composition:
   structure: >
     A high oblique down the court lays the rig left to right across the middle and the stripe under
     it, its three segments separated by gaps, the whole review about one rig long. Mono labels on DOM leaders
-    sit above the stripe. The type sits in the sky over the warehouse roofline.
+    sit above the stripe. The type sits in the open sky over the court.
   bands: >
-    Top third, the blue hour sky with the hook and the dek above the warehouse roofline. Middle
-    third, the dock face with its doors and the rig backed in, lamps pooling on the concrete. Bottom
+    Top third, the blue hour sky with the hook and the dek. Middle
+    third, the haze horizon and the rig parked across the court, lamps at the court's far edge. Bottom
     third, the painted stripe segments on the tined concrete with shadowed joints, the rig's long
     cast shadow reaching across them, the court's wheel marks and oil stains modeled by the lamps.
   focal: "the long third segment of the stripe"
 
 art:
-  technique: "physically based render of the kit warehouse and chassis truck on concrete, the stripe as its own lower roughness material, DOM SVG leaders"
+  technique: "physically based render of the chassis truck on an open concrete court, the stripe as its own lower roughness material, DOM SVG leaders"
   why_this_technique: >
     A sequence of durations is a quantity and wants one scale. Painting it at one scale beside the
     rig makes the whole review a length a reader can hold against a truck.
   palette: "grey concrete, white stripe, white rig, warm mast pools, blue sky"
   value_structure: >
-    Lightest is the stripe and the rig. Darkest is the dock doors. Frame median L* planned at 30.
+    Lightest is the stripe and the rig. Darkest is the sky behind the type. Frame median L* planned at 30.
   motion: "from the hook down to the rig, along the stripe to its end"
 
 type:
   kicker: "When the state steps in"
   hook: "The line is serious bodily injury"
-  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local police."
+  dek: "The department counts an operation as endangering the public when it has caused or is likely to cause serious bodily injury. Below that line it says administrative action is unlikely. Roadside enforcement belongs to DPS and local law enforcement."
 
 acceptance:
   - "the frame reads \"The line is serious bodily injury\""

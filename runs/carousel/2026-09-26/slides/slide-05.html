@@ -52,7 +52,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 1.1], exposure: W.exposure - 0.45, tone: W.tone, fov: 44 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.6], exposure: W.exposure - 0.45, tone: W.tone, fov: 44 });
 
   /* THE YARD. One painted tractor stall per truck in the allocation, read from figures.json, ten
    * across and twenty rows deep, every row with its own drive aisle. The two nearest rows hold one tractor
@@ -64,7 +64,7 @@ window.renderReady = (async () => {
   const rows = Math.ceil(STALLS / ACROSS);
   const rowZ = (r) => -r * (SL + AISLE);          /* row 0 nearest, rows recede to -z */
   const width = ACROSS * SW, zNear = 0;
-  TXT.frame(R, { from: [0, 40, zNear + 50], look: [0, 0, zNear - 40] });
+  TXT.frame(R, { from: [0, 70, zNear + 80], look: [0, 0, zNear - 90] });
   TXT.sky(R);
   TXT.deckRig(R, Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { shadowSize: 50 }) }), { target: [0, 0, -40], distance: 200, shadowFar: 600 });
   TXT.ground(R, { surface: 'asphalt', size: 4000, seed: 17 });
@@ -87,6 +87,8 @@ window.renderReady = (async () => {
   /* oil stains in the occupied stalls, tyre polish in the near aisle */
   const stain = new THREE.MeshStandardMaterial({ color: 0x0b0c0f, roughness: 0.25, transparent: true, opacity: 0.55, depthWrite: false });
   let sd = 5; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  /* old stains and tyre polish in every row, heavier where trucks already park */
+  for (let i = 0; i < 260; i++) { const r = Math.floor(rnd() * rows), cc = Math.floor(rnd() * ACROSS); const d = new THREE.Mesh(new THREE.CircleGeometry(0.3 + rnd() * 0.7, 16), stain); d.rotation.x = -Math.PI / 2; d.scale.set(1, 1.2 + rnd(), 1); d.position.set(-width / 2 + (cc + 0.5) * SW + (rnd() - 0.5) * 2, 0.011, rowZ(r) - SL * (0.3 + rnd() * 0.5)); R.scene.add(d); }
   for (let i = 0; i < NOW; i++) {
     const d = new THREE.Mesh(new THREE.CircleGeometry(0.5 + rnd() * 0.5, 20), stain);
     d.rotation.x = -Math.PI / 2; d.scale.set(1, 1.6, 1); d.position.set(-width / 2 + (i % ACROSS + 0.5) * SW + (rnd() - 0.5), 0.012, rowZ(Math.floor(i / ACROSS)) - SL * 0.55); R.scene.add(d);

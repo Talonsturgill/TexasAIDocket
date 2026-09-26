@@ -1,0 +1,112 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.7
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "weighted_score": 6.65,
+ "hard_fails": [],
+ "defects_ranked": [
+  {
+   "rank": 1,
+   "frames": "1, 3, 4, 5, 8, 9",
+   "defect": "navy hero, horizon band",
+   "fix": "light the tractor, ground to the horizon"
+  },
+  {
+   "rank": 2,
+   "frames": "3, 9",
+   "defect": "primitive cab, rod, block skyline, mannequin, hairline through figure",
+   "fix": "model, haze, crop, stop the hairline"
+  },
+  {
+   "rank": 3,
+   "frames": "5",
+   "defect": "20 of about 40 visible",
+   "fix": "all rows below the dek"
+  },
+  {
+   "rank": 4,
+   "frames": "6 and caption",
+   "defect": "one statement with six conditions called six statements",
+   "fix": "'a statement with six conditions'"
+  },
+  {
+   "rank": 5,
+   "frames": "8",
+   "defect": "appeal has no object",
+   "fix": "'AFTER A SUSPENSION, 10 DAYS TO APPEAL'"
+  },
+  {
+   "rank": 6,
+   "frames": "3",
+   "defect": "observer seating invented",
+   "fix": "leave the seat out"
+  },
+  {
+   "rank": 7,
+   "frames": "8",
+   "defect": "seam, doors behind dek",
+   "fix": "one slab, sky behind type"
+  },
+  {
+   "rank": 8,
+   "frames": "7",
+   "defect": "statute unnamed",
+   "fix": "name \u00a7 545.453"
+  },
+  {
+   "rank": 9,
+   "frames": "web edition",
+   "defect": "heading 'state', 'could hurt someone', root link",
+   "fix": "'department', quote c36, /truckstop"
+  },
+  {
+   "rank": 10,
+   "frames": "6",
+   "defect": "accent pencil",
+   "fix": "graphite"
+  },
+  {
+   "rank": 11,
+   "frames": "8, claims",
+   "defect": "'local police' narrows c38, c37 location",
+   "fix": "'local law enforcement', fix location"
+  }
+ ]
+}
