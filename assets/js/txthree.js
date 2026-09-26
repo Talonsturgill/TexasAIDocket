@@ -275,29 +275,14 @@ export function init(THREE) {
     return new THREE.Mesh(geo, mat);
   };
 
-  /* ---- render ------------------------------------------------------------ */
-  // Renders one still, waits a paint tick, then ASSERTS the frame is not black
-  // (research-documented headless failure modes: first-paint race and silent
-  // 2D fallback). Returns {ok, variance, litCount}; on ok=false the slide MUST
-  // fall back to its Canvas/TX3D design rather than ship a black rectangle.
-  //
-  // TWO accept paths, OR'd (purely additive -- a frame the old logic accepted
-  // is still accepted, so no existing full-bleed scene regresses):
-  //  (1) global 24-sample mean/variance (the historic full-scene check), and
-  //  (2) COVERAGE: a dense strided read counts pixels carrying real light; a
-  //      lit cluster >= LIT_MIN passes. This fixes the silent false-fail on an
-  //      OBJECT HERO that fills only part of the frame over a transparent/dark
-  //      empty background (run 2026-07-21 S6: the akthree beluga's lit subject
-  //      is a minority of the frame, so the 24 sparse points read ~0 and the
-  //      frame was wrongly judged dead, forcing the flat Canvas fallback).
-  // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
-  // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   /* TXT.skyInFrame(camera) — the share of the frame's height above the horizon, 0 to 1, from the
    * camera's pitch and field of view (lookAt keeps roll at zero). 0 is a camera that shows no sky:
-   * pitched down past half its field of view, or orthographic and looking down. */
+   * pitched down past half its field of view, or orthographic and pitched down at all, because an
+   * orthographic camera's rays are parallel and every one of them points where it points (Codex,
+   * PR 369: a cut-off at 11.5 degrees let the shallower top-down views through). */
   TXT.skyInFrame = function (camera) {
     const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
-    if (camera.isOrthographicCamera) return fwd.y < -0.2 ? 0 : 0.5;
+    if (camera.isOrthographicCamera) return fwd.y < -1e-3 ? 0 : fwd.y > 1e-3 ? 1 : 0.5;
     const pitch = Math.asin(Math.max(-1, Math.min(1, fwd.y)));
     const half = THREE.MathUtils.degToRad((camera.fov || 50) / 2) / (camera.zoom || 1);
     if (Math.abs(pitch) >= Math.PI / 2 - 1e-4) return pitch < 0 ? 0 : 1;
@@ -320,6 +305,23 @@ export function init(THREE) {
   // Read by scripts/carousel/print_ban.py off the render report. Keep the two in step.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
 
+  /* ---- render ------------------------------------------------------------ */
+  // Renders one still, waits a paint tick, then ASSERTS the frame is not black
+  // (research-documented headless failure modes: first-paint race and silent
+  // 2D fallback). Returns {ok, variance, litCount}; on ok=false the slide MUST
+  // fall back to its Canvas/TX3D design rather than ship a black rectangle.
+  //
+  // TWO accept paths, OR'd (purely additive -- a frame the old logic accepted
+  // is still accepted, so no existing full-bleed scene regresses):
+  //  (1) global 24-sample mean/variance (the historic full-scene check), and
+  //  (2) COVERAGE: a dense strided read counts pixels carrying real light; a
+  //      lit cluster >= LIT_MIN passes. This fixes the silent false-fail on an
+  //      OBJECT HERO that fills only part of the frame over a transparent/dark
+  //      empty background (run 2026-07-21 S6: the akthree beluga's lit subject
+  //      is a minority of the frame, so the 24 sparse points read ~0 and the
+  //      frame was wrongly judged dead, forcing the flat Canvas fallback).
+  // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
+  // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   TXT.snapshot = async function (R, o) {
     o = o || {};
     R.renderer.render(R.scene, R.camera);

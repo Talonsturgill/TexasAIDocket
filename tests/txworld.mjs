@@ -110,7 +110,22 @@ const GROUND_ONLY = `async (T, TXT, cv) => {
   const orig2 = console.error; console.error = (...a) => { roofErrors.push(String(a[0])); orig2.apply(console, a); };
   await TXT.snapshot(Rr);
   console.error = orig2;
-  return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors };
+  // an orthographic camera pitched 5 degrees down: its rays are parallel and every one points under
+  // the horizon, so it shows no sky (Codex, PR 369: the first cut-off let anything under 11.5 through)
+  const Ro = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
+  TXT.frame(Ro, { from: [0, 30, 0], look: [0, 30, -100] });
+  TXT.sky(Ro, W);
+  TXT.rig(Ro, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+  TXT.ground(Ro, { surface: 'caliche', size: 900, tile: 5 });
+  const oc = new T.OrthographicCamera(-40, 40, 50, -50, 0.1, 2000);
+  oc.position.set(0, 30, 0); oc.lookAt(0, 30 - 100 * Math.tan(5 * Math.PI / 180), -100); oc.updateMatrixWorld();
+  Ro.camera = oc;
+  const orthoErrors = [];
+  const orig3 = console.error; console.error = (...a) => { orthoErrors.push(String(a[0])); orig3.apply(console, a); };
+  await TXT.snapshot(Ro);
+  console.error = orig3;
+  return { sky: TXT.skyInFrame(R.camera), marker: TXT.NO_SKY, roomErrors: before, roofErrors,
+           orthoSky: TXT.skyInFrame(oc), orthoErrors };
 }`;
 
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
@@ -151,6 +166,10 @@ for (const [size, surface] of [[900, true], [12000, false]]) {
 
 const g = await run('ground_only', GROUND_ONLY);
 check('a camera looking straight down shows no sky', g.result.sky === 0, JSON.stringify(g.result));
+check('an orthographic camera pitched 5 degrees down shows no sky, and says so',
+      g.result.orthoSky === 0 && Array.isArray(g.result.orthoErrors) &&
+      g.result.orthoErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
+      JSON.stringify({ orthoSky: g.result.orthoSky, orthoErrors: g.result.orthoErrors }));
 check('a deliberate interior looked down on is a room, and is NOT flagged',
       Array.isArray(g.result.roomErrors) && !g.result.roomErrors.some((e) => e.startsWith('TXT: NO SKY IN FRAME')),
       JSON.stringify(g.result.roomErrors));

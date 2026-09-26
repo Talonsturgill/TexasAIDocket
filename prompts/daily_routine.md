@@ -237,7 +237,7 @@ At wake, write `out/<date>/run_state.json`:
 ```
 
 `chassis` is Phase 10.5 and is `done` only when the probe frame has passed `deck_chassis`,
-`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's seven gates on the
+`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's eight gates on the
 frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run resumed after any of the
 three must know that from this file, because the art after them is built on their answer.
 
@@ -1243,9 +1243,9 @@ verification satisfies every other gate in the run.
 **Fix `copy.json` to say what the slide says.** Never edit the slide to match a stale record. The
 render is what a reader receives.
 
-## PHASE 12b — THE SEVEN GATES ON THE SETTLED FRAMES
+## PHASE 12b — THE EIGHT GATES ON THE SETTLED FRAMES
 
-Run all seven. This heading used to say four, the ones built after the 2026-08-19 run, and the
+Run all eight. This heading used to say four, the ones built after the 2026-08-19 run, and the
 list grew under it. Every one of them exists for a defect that reached a published frame.
 
 ```
@@ -1256,7 +1256,15 @@ python3 scripts/carousel/coherence_check.py   --date <date>
 python3 scripts/carousel/texan_check.py       --date <date>
 python3 scripts/carousel/noun_trace.py        --date <date>
 python3 scripts/carousel/layout_check.py      --date <date> --require
+python3 scripts/carousel/print_ban.py         --assets --date <date>
 ```
+
+**`print_ban` runs again here, on all nine frames.** On the probe it proved the chassis. Here it
+proves the deck: at least six frames rendered, five standing in the world, and no frame that calls
+`TXT.sky` with its camera pointed where the sky isn't. Until 2026-09-26 the probe was the only
+place a run asked, so a frame two to nine that looked straight at the ground reached the panel, and
+no. 33's frame 4 spent all five rounds there (Codex, PR 369). `panel_ready` asks the no-sky
+question again before every round, because a repair can turn a settled frame toward the ground.
 
 **`layout_check` runs again here, on the frames the critics settled**, for the same reason
 `copy_sync_check` runs after every round: a repair pass edits frames, and a frame repaired into
@@ -1432,8 +1440,9 @@ recomposes the frame so the defect is not in it:**
 - build it in the chassis at the detail the kit uses
 
 Say which one in the run record. When the judges name the same thing on frames built different
-ways, the defect is the engine's. Write it into `knowledge/carousel/UPGRADE_BACKLOG.md` with the
-frames and the rounds, and recompose around it this run. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
+ways, the defect is the engine's. Write it in the run record with the frames and the rounds, and
+recompose around it this run. Phase 17 carries it into `knowledge/carousel/UPGRADE_BACKLOG.md` in
+the `upgrade` commit, because that file is `upgrade` lane and the daily lane can't write it. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
 "What still fails" names the ones already met. Read it before the first render, because a defect it
 names is a round spent twice.
 
@@ -1769,7 +1778,8 @@ work brought in from `main` by Phase 16, `knowledge/carousel/ARSENAL.md` moves a
 `upgrade` commit. **It is generated and never hand-edited.** A stale arsenal is how the next run
 fails to find the thing this one built. A model the chassis had to build because the kit lacked
 it is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in the same commit, as a proposal to
-lift it into `assets/js/kit/<family>.js`, which only a maintainer can make.
+lift it into `assets/js/kit/<family>.js`, which only a maintainer can make. So is every engine
+defect the round rule wrote into the run record, with its frames and its rounds.
 
 **A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
 worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch

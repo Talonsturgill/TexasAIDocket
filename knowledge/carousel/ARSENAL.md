@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 23 |
+| engine calls (`TXT.*`) | 25 |
 | world presets | 6 |
 | kit models | 95 in 10 families |
 | asset libraries | 21 |
@@ -46,7 +46,7 @@
 | 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py` |
-| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `layout_check.py`, `noun_trace.py`, `plan_render_check.py`, `texan_check.py` |
+| 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `qa.py` |
@@ -85,6 +85,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.contact(R, obj, o)` | A soft falloff sized to the object's own footprint and turned with it. |
 | `TXT.deckRig(R, spec, o)` | THE DECK'S LIGHT, READ FROM THE CHASSIS AND NEVER RESTATED (2026-09-23). |
 | `TXT.deckWorld()` |  |
+| `TXT.enclosed(R)` | true when something the frame built stands over the camera within `reach` metres: a cab roof, a ceiling, a canopy. |
 | `TXT.environment(R, opts)` | A tiny "photo studio" room rendered through PMREMGenerator: emissive panels give PBR materials real reflections without any texture files. intensity scales scene.environmentIntensity (r163+) or panel brightness. |
 | `TXT.extrude(outline, depth, mat, o)` | Extruded 2D shape (array of [x,y]), plaques, arrows, silhouettes with depth. |
 | `TXT.fitHeight(group, worldHeight)` | Raises the rendered-hero floor for a single foreground object that must read as a SILHOUETTE against a darker background (the backlit-machine case). |
@@ -99,6 +100,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
+| `TXT.skyInFrame(camera)` | the share of the frame's height above the horizon, 0 to 1, from the camera's pitch and field of view (lookAt keeps roll at zero). 0 is a camera that shows no sky: pitched down past half its field of view, or ... |
 | `await TXT.snapshot(R, o)` | Renders one still, waits a paint tick, then ASSERTS the frame is not black (research-documented headless failure modes: first-paint race and silent 2D fallback). |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
@@ -411,9 +413,9 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
-| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 14b, 15 |
+| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 12b, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
-| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11 |
+| `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |
 | `scripts/carousel/run_complete.py` | the run is not done until the deck ships. | --date --run-dir --all --self-test | CI self-test, gate table, shipped | 15 |
 | `scripts/carousel/scene_bounds.py` | the subject the plan named, and whether the camera put it in the frame. | --date --run --all --self-test | shipped |  |
@@ -444,7 +446,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
 | `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 14b |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table | costs, 10.5, 11 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --slides-dir --out-dir --scale --width --height --only --timeout | gate table, shipped | costs, 10.5, 11 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -560,4 +562,4 @@ Measurements and plumbing, never a subject or a palette to copy.
 | `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
-| `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, into-the-sun.webp, build.py, slides |
+| `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, horizon.webp, into-the-sun.webp, build.py, slides |

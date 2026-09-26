@@ -992,8 +992,9 @@ which is the finding the judges made in words and the number that says the gate 
   something to hold. (2026-09-26)
 - **A far skyline standing on a line.** No. 34's Houston skyline was named in every one of the five
   rounds, as blocks or as floating, and judges asked for it hazed. The haze on kit far models
-  (`city_skyline`, `mesa`) now lands on the sky's own colour behind them, because the sky fog
-  redefines `fogColor` (PR 368), so a skyline's base no longer stands on a strip of another tone.
+  (`city_skyline`, `mesa`) now lands on the sky's own horizon colour in their direction, because the
+  sky fog redefines `fogColor` (PR 368), so a skyline's base no longer stands on a strip of another
+  tone.
   That fixes the line and not the blocks, which are the kit model's to carry. Place them 2 to 10 km
   out and let the haze carry the distance. (2026-09-26)
 - **A figure in the dark.** No. 34's frame 9 used the kit's `person` in dark clothes against the
@@ -1002,8 +1003,8 @@ which is the finding the judges made in words and the number that says the gate 
   modelling. Put the key on the side the camera sees, or crop to the shoulder. (2026-09-26)
 - **A cab or a room built from primitives.** No. 34's frame 3 built the cab from a capsule seat,
   a torus wheel and a box dash, and it was named in all five rounds. The kit has no vehicle
-  interior. Stand outside the cab and look in, or crop to one part modelled at kit detail, and put
-  the missing model in the backlog. (2026-09-26)
+  interior. Stand outside the cab and look in, or crop to one part modelled at kit detail, and name
+  the missing model in the run record, which Phase 17 carries into the backlog. (2026-09-26)
 
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.

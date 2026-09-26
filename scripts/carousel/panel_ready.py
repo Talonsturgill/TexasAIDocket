@@ -384,6 +384,28 @@ def check_contacts(base: Path) -> list[str]:
     return m.problems(base) or []
 
 
+def check_sky_in_frame(report: dict) -> list[str]:
+    """NO FRAME THAT CALLS TXT.sky POINTS ITS CAMERA WHERE THE SKY ISN'T.
+
+    WIRED HERE ON 2026-09-26. `TXT.snapshot` prints TXT.NO_SKY when a frame stands in the world
+    and its camera shows none of it, with nothing built overhead, and render.py keeps that line in
+    the report. print_ban reads it on the probe and in Phase 12b. This reads it before every panel
+    round, because a repair can turn a settled frame toward the ground and the next round's judges
+    would be the first to see it (Codex, PR 369). Through the engine, no. 33's frame 4 and no. 34's
+    frames 4 and 5 print it, and a judge named no. 33's frame 4 top-down in all five rounds.
+
+    The marker is imported from print_ban so the two can't drift, and an import that fails raises
+    rather than reading as clean.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from print_ban import NO_SKY
+    return [f"{rec.get('file') or '?'} calls TXT.sky and its camera shows none of it, with nothing "
+            f"built overhead. Lift the camera until the horizon is in frame, or stand it inside "
+            f"something built (a room with TXT.interior, a cab, a canopy)"
+            for rec in (report.get("slides") or [])
+            if any(NO_SKY in str(e) for e in (rec.get("console_errors") or []))]
+
+
 def check_quantifiers(base: Path, articles: Path | None = None) -> list[str]:
     """EVERY UNIVERSAL ON EVERY PUBLISHED SURFACE NAMES ITS SET, THE WEB EDITION INCLUDED.
 
@@ -801,6 +823,8 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None) -
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
         ("every bleed a dossier declares is one the frame draws", check_bleed_witness(base)),
         ("every published address traces to a claim", check_contacts(base)),
+        ("every frame that stands in the world shows its sky, or stands inside something built",
+         check_sky_in_frame(report)),
         ("every universal on every published surface, the web edition included, names its set",
          check_quantifiers(base, articles)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
@@ -1172,6 +1196,23 @@ def self_test() -> int:
             (_b / "slides" / "slide-01.html").read_text(encoding="utf-8")
             .replace("X: -13, Z: 9", "X: -9.2, Z: 27"), encoding="utf-8")
         ok("...and the repair that shipped is clean", not check_scene_bounds(_b))
+
+        # THE SKY CHECK WIRED IN ON 2026-09-26, replayed on the line the engine prints for no. 34's
+        # frame 4, and on the clean frame beside it.
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from print_ban import NO_SKY
+        _sky = {"slides": [
+            {"file": "slide-03.html", "console_errors": []},
+            {"file": "slide-04.html", "console_errors": [NO_SKY + ". This frame calls TXT.sky and its "
+                                                         "camera shows none of it"]}]}
+        got = check_sky_in_frame(_sky)
+        ok("a frame whose camera shows none of the sky it calls is CAUGHT before the panel, and named",
+           len(got) == 1 and got[0].startswith("slide-04.html"), str(got))
+        ok("...and a frame that shows its sky is clean",
+           check_sky_in_frame({"slides": [_sky["slides"][0]]}) == [])
+        # BUILT FROM PARTS, for the reason the flag check below gives: a literal needle matches itself.
+        ok("...and the group is in the list the run reads",
+           ("check_sky_in_frame" + "(report)") in Path(__file__).read_text(encoding="utf-8"))
 
         # THE CHECK WIRED IN ON 2026-09-17, replayed on carousel no. 27's own frame 4 numbers.
         # Without a storyboard this returns nothing, so the first assertion is that the check
