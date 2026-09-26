@@ -2,6 +2,13 @@
 
 ## DISPOSITION: SHIPPED AT THE ROUND CAP, 6.826, 1.174 UNDER THE 8.0 TOP RUNG
 
+**NOT MERGED.** Pull request #364 is finished and every CI job is green except one step, the
+`ask_pack --self-test` in `gates`. Admitting tx-2026-0188 used the last full-line room in the ask
+index, 59,978 of 60,000 characters against a 265 character median line, and the self-test asserts
+`full > 0`. On `main` it reads 1. `scripts/site/ask_*.py` is `human`, so the one-line patch that
+accepts a record standing on rung 1 is proposed in the pull request comment for a maintainer. The
+email says so at its top and links its images from the run branch. No local suite ran after this.
+
 Carousel no. 34, "Nobody at the wheel on Interstate 45", shipped with its web edition. The panel of
 three scored five rounds: 6.58, 6.75, 6.73, 6.80 and 6.826 (`score.json`, per round cards in
 `scores/`). No judge found a hard fail in any round. Under the rubric's ladder the finished deck
