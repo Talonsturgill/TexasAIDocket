@@ -22,7 +22,7 @@
   .kick, .count, .src, .tx-site { text-shadow:0 0 5px rgba(8,12,24,0.85), 0 1px 14px rgba(8,12,24,0.6); }
   .hook { left:80px; top:150px; width:900px; } .dek { left:82px; width:800px; font-size:30px; }
   .haze { position:absolute; left:0; top:0; width:1080px; height:600px; z-index:5; background:linear-gradient(180deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.42) 70%, rgba(10,14,28,0) 100%); }
-  .floor { position:absolute; left:0; bottom:0; width:1080px; height:220px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.5) 0%, rgba(10,14,28,0.4) 55%, rgba(10,14,28,0) 100%); }
+  .floor { position:absolute; left:0; bottom:0; width:1080px; height:240px; z-index:5; background:linear-gradient(0deg, rgba(10,14,28,0.72) 0%, rgba(10,14,28,0.6) 55%, rgba(10,14,28,0) 100%); }
 </style>
 </head>
 <body>
@@ -50,7 +50,7 @@ window.renderReady = (async () => {
   FORTYFIVE.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = FORTYFIVE, gl = F.glCanvas();
   const W = TXT.deckWorld(), M = F.mats(TXT, THREE);
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.65, tone: W.tone, fov: 40 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure + 0.45, tone: W.tone, fov: 40 });
 
   const ROAD_Y = 0.62, LANE = 0.45 + 1.2 + 3.66 * 1.5, FLOOR = ROAD_Y + 1.25;
   const hw = K.make('highway', { length: 700, lanes: 2, surface: 'concrete', gantry: false, embank: 0.6, seed: 4 });

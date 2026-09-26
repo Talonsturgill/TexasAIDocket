@@ -664,7 +664,7 @@ art:
 type:
   kicker: "If you see one"
   hook: "Where to report one"
-  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop. Law enforcement can verify authorizations there too."
+  dek: "A concern about a driverless vehicle that could cause serious bodily injury or death can go to the TxDMV Enforcement Division at txmccs.txdmv.gov/truckstop and law enforcement can verify authorizations there too."
 
 acceptance:
   - "the frame reads \"Where to report one\""
