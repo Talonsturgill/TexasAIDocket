@@ -136,6 +136,12 @@ A second gate defect surfaced on the way: `deck_coherence.frames_in` took the fi
 with any match, so frame 4 staying a PNG (its WebP fell under the quality floor) read the whole
 shipped deck as one frame. Fixed in the upgrade lane and logged.
 
+CI then went red on PR 376's `gates` job at `shipped_check --self-test`: the `measured figures`
+gate could not reach this deck because the run shipped no `measurements.json`, the same fault the
+2026-09-26 backlog entry names. `measure.py` now sits beside the frames, on the pattern of
+2026-09-26's, and computes the file from the shipped slides at 432 px. The self-test and the full
+`shipped_check` pass on it. No frame, copy or claim changed.
+
 ## Things this run did not do
 
 - It did not name the court on a frame or in the caption.
