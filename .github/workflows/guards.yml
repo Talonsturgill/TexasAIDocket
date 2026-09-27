@@ -556,6 +556,20 @@ jobs:
           # first one accumulated grain in uint8, wrapped 255 to 4, and measured its own bug.
           python3 scripts/carousel/ship_images.py --self-test
 
+      - name: Measure shipped self-test (one writer for measurements.json)
+        run: |
+          # Every run from 2026-09-20 to 2026-09-27 wrote its own measure.py, and two found out from
+          # a red job that the file was missing. This reproduces three shipped runs' own files byte
+          # for byte, so the shared writer measures exactly what those runs measured.
+          python3 scripts/carousel/measure_shipped.py --self-test
+
+      - name: The newest deck's measurements.json matches its shipped frames
+        run: |
+          # shipped_check reads the committed file. This recomputes it from the frames, so a frame
+          # re-rendered after the file was written can't leave the two agreeing about bytes a
+          # reader never receives (Codex, PR 378).
+          python3 scripts/carousel/measure_shipped.py --check
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 
@@ -1083,6 +1097,45 @@ jobs:
       # cannot fail, which is the fault this repo has shipped more than once.
       - name: Ownership checker can go red
         run: python3 scripts/shared/ownership_check.py --self-test
+
+      # CLAUDE.md forbids Claude or Anthropic attribution on every commit. .githooks/commit-msg
+      # strips it before a commit exists, and this reads every commit in the range, so a commit
+      # made without the hook, from a web edit or an API write, still can't land with one.
+      - name: No assistant attribution in the range's commits
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          # A pull request is read from its base. A push to main is read from the SHA main held
+          # before the push, because checkout has already moved origin/main to HEAD, so
+          # origin/main..HEAD would be empty and a web or API write would pass unread (Codex,
+          # PR 378).
+          BASE="$BASE_SHA"
+          BEFORE="$BEFORE_SHA"
+          if [ -n "$BASE" ]; then
+            RANGE="$BASE..HEAD"
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            # A force-push can leave the previous SHA out of this checkout. Fetch it by SHA, and
+            # if it still can't be read, refuse rather than narrow the range to one commit.
+            if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              git fetch --quiet --no-tags origin "$BEFORE" || true
+            fi
+            if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              echo "The push's previous SHA $BEFORE can't be read, so the pushed range can't be checked." >&2
+              exit 1
+            fi
+            RANGE="$BEFORE..HEAD"
+          else
+            # A dispatch has no pushed range. The newest commit is the one it can speak for, and
+            # every earlier one on main was read when it was pushed.
+            RANGE="HEAD~1..HEAD"
+          fi
+          echo "range=$RANGE"
+          python3 scripts/shared/attribution_strip.py --check-range "$RANGE"
+
+      # Its own step, with no CI context, so guards_local runs it too (Codex, PR 378).
+      - name: Attribution check can go red
+        run: python3 scripts/shared/attribution_strip.py --self-test
 
       - name: Port manifest is current
         run: |

@@ -529,6 +529,17 @@ rules:
       The runner, not a gate. It reads guards.yml rather than keeping its own step list, so it
       cannot quietly narrow what CI checks. Phase 17's lane, never the record's.
 
+  # THE ATTRIBUTION CHECK, human on purpose (Codex, PR 378). .githooks/commit-msg runs it on every
+  # commit and guards.yml runs it on every commit in a pull request, and both run the copy in the
+  # tree they are checking. A routine able to edit it could weaken the matcher that judges its own
+  # commits and both layers would bless the result, which is why `.githooks/**` and
+  # `.github/workflows/**` are human too.
+  - path: "scripts/shared/attribution_strip.py"
+    owner: human
+    note: >
+      The check behind CLAUDE.md's authorship rule. A run that could edit it could clear its own
+      attribution lines.
+
   - path: "scripts/site/ask_*.py"
     owner: human
     note: The answer engine is a gate on what the site may claim. Maintainer-owned.
