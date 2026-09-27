@@ -70,12 +70,24 @@ def median_lstar(path: Path) -> float:
 
 
 def frames_in(render_dir: Path) -> list[Path]:
-    """The nine frames in slide order, whatever the engine happened to write."""
+    """The nine frames in slide order, whatever the engine happened to write.
+
+    ONE FRAME PER SLIDE, WHATEVER ITS EXTENSION (2026-09-27, carousel no. 35). This returned the
+    first pattern with any match, so a shipped deck whose frame 4 stayed a PNG (`ship_images`
+    keeps the PNG when the WebP falls under its quality floor) beside eight WebPs read as ONE
+    frame, and `shipped_check` failed a complete deck with "found 1". Frames are now keyed by
+    their stem, PNG preferred over WebP over JPEG, so a mixed directory reads as the deck it is.
+    """
+    rank = {".png": 0, ".webp": 1, ".jpg": 2}
+    best: dict[str, Path] = {}
     for pat in ("slide-*.png", "slide-*.webp", "slide-*.jpg"):
-        got = sorted(p for p in render_dir.glob(pat) if "thumb" not in p.name)
-        if got:
-            return got
-    return []
+        for p in render_dir.glob(pat):
+            if "thumb" in p.name:
+                continue
+            cur = best.get(p.stem)
+            if cur is None or rank[p.suffix] < rank[cur.suffix]:
+                best[p.stem] = p
+    return [best[k] for k in sorted(best)]
 
 
 def declared_cuts(storyboard: Path | None) -> set[int]:

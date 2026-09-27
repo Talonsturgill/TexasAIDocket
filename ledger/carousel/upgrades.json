@@ -2308,6 +2308,14 @@
    "verification": "examples/kit/build.py --family homes --names garden_apartment at goldenHour and blueHour, rendered through .claude/skills/carousel-engine/render.py: exit 0, errors=0 on every page, read at full size. Frames 1 and 4 of no. 35 re-rendered from the committed slides with the kit model in place of the chassis's: exit 0, errors=0, and out/2026-09-27/tmp/kitproof/compare_f1.png shows the building before and after (shingle courses, rake board and drip edge, gable vent, gutter and fascia lines where the slab was). examples/kit/sizes.py: exit 1 before --fix (declared 74 m, measured 54.07), exit 0 after, 98 of 98 models at their declared size and centred. print_ban.py --assets exit 0. node tests/txlayout.mjs exit 0. node --check on homes.js exit 0. No gate was added or changed, so no self-test case is owed",
    "revert": "the upgrade commit on claude/daily-2026-09-27 touching assets/js/kit/homes.js. Reverting it restores the chassis's own model for no. 35, because its installKit only defines the model when the kit lacks it",
    "how_i_would_know_this_was_wrong": "A judge on the next deck that uses garden_apartment still names the roof as a slab, or names the shingle tile's repeat as a pattern at distance (a faint lattice is visible on the in-situ render at 2160 wide). Or a ranch_house, two_story_house or mobile_home proof changes, which would mean the drip option leaked past its default. Or a deck placing things at userData.units finds them off the building, which would mean the in-make centring is wrong"
+  },
+  {
+   "what": "deck_coherence.frames_in keys frames by slide stem across extensions, PNG preferred over WebP over JPEG, instead of returning the first extension with any match",
+   "why": "ship_images keeps a frame's PNG when its WebP falls under the quality floor. No. 35's frame 4 did, so the shipped directory held one PNG beside eight WebPs and shipped_check's deck coherence read one frame and failed a complete deck with 'found 1'",
+   "files": [
+    "scripts/carousel/deck_coherence.py"
+   ],
+   "verification": "deck_coherence --self-test exit 0; frames_in returns 9 on the mixed no. 35 directory, the all-WebP no. 34 directory and the all-PNG render directory; shipped_check --run 2026-09-27 reports no fatal finding"
   }
  ],
  "proposals_out_of_lane": [
