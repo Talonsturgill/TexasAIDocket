@@ -98,7 +98,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.objectHero(R, group, o)` |  |
 | `TXT.rig(R, spec)` | Illustration three-point: warm key with soft shadow, cool rim, low ambient. |
 | `TXT.rng(seed)` | seeded helpers (deterministic, never Math.random) |
-| `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each asking what it meets first among the things the camera draws, inside its near and far, and ... |
+| `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each drawing what it meets among the things the camera draws, inside its near and far, in the ... |
 | `TXT.roundedBox(w, h, d, r, material, { segments })` | centred on the origin, y up. |
 | `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |

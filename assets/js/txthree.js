@@ -491,10 +491,77 @@ export function init(THREE) {
     const cos = Math.max(Math.abs(lodD.dot(lodN.divideScalar(world))), 1e-3);
     return { across, cos, world, m: lodM.clone() };
   };
+  // The level the GPU samples at, from the texels one pixel steps over along each of the screen's two
+  // axes: the larger step, over the samples anisotropic filtering takes along it (the rule
+  // EXT_texture_filter_anisotropic gives), on a log2 scale.
+  const lodFrom = (rx, ry, tex, R) => {
+    const pMax = Math.max(rx, ry), pMin = Math.min(rx, ry);
+    if (!(pMax > 0)) return 0;
+    const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
+    return Math.log2(pMax / n);
+  };
+  // A step in uv, through the texture's own matrix, in texels of its first level.
+  const texelsOf = (du, dv, tex, L0) => {
+    const e = tex.matrix.elements;
+    return Math.hypot((e[0] * du + e[3] * dv) * L0.w, (e[1] * du + e[4] * dv) * L0.h);
+  };
+  // The geometry's coordinates on channel `ch` at barycentric `b` of face `f`.
+  const uvBary = (g, f, b, ch, out) => {
+    const a = g.attributes[ch ? 'uv' + ch : 'uv'];
+    if (!a) return null;
+    return out.set(a.getX(f.a) * b.x + a.getX(f.b) * b.y + a.getX(f.c) * b.z,
+                   a.getY(f.a) * b.x + a.getY(f.b) * b.y + a.getY(f.c) * b.z);
+  };
+  // THE STEP A PIXEL MAKES ON THE SURFACE, AS THE GPU TAKES IT (Codex, PR 373). The GPU reads a
+  // texture's level, and an alpha hash its cell, off how far a surface's coordinates move between
+  // neighbouring pixels. So the step is taken the same way: where the rays one pixel across and one
+  // pixel up from a hit meet the plane of the triangle it lies on, through the camera's own
+  // projection, with the vertices where the renderer puts them, a morph or a skin included. The
+  // barycentric coordinates of the hit and of those two points come back. Only inside the camera's
+  // frustum, where every hit the sky and the room measure lies: the enclosure's rays up from the
+  // camera meet things no pixel draws, and those keep the footprint at their distance.
+  const stepTri = new THREE.Triangle(), stepQ = new THREE.Vector3(), stepO = new THREE.Vector3();
+  const stepR = new THREE.Vector3(), stepN = new THREE.Vector3(), stepT = new THREE.Vector3();
+  const stepB0 = new THREE.Vector3(), stepBx = new THREE.Vector3(), stepBy = new THREE.Vector3();
+  const pixelSteps = (h, R) => {
+    const cam = R.camera, o = h.object, f = h.face, g = o.geometry;
+    if (!cam || !f || !g || !g.attributes || !g.attributes.position || typeof o.getVertexPosition !== 'function') return null;
+    const buf = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
+      ? R.renderer.getDrawingBufferSize(lodS) : null;
+    if (!buf || !(buf.x > 0) || !(buf.y > 0)) return null;
+    stepQ.copy(h.point).project(cam);
+    const edge = 1 + 1e-6;                                                 // a ray on the frame's own edge
+    if (!(Math.abs(stepQ.x) <= edge && Math.abs(stepQ.y) <= edge && Math.abs(stepQ.z) <= edge)) return null;
+    lodM.copy(o.matrixWorld);
+    if (o.isInstancedMesh && h.instanceId != null) { o.getMatrixAt(h.instanceId, lodI); lodM.multiply(lodI); }
+    o.getVertexPosition(f.a, stepTri.a).applyMatrix4(lodM);
+    o.getVertexPosition(f.b, stepTri.b).applyMatrix4(lodM);
+    o.getVertexPosition(f.c, stepTri.c).applyMatrix4(lodM);
+    stepTri.getNormal(stepN);
+    if (!(stepN.lengthSq() > 0)) return null;
+    const at = (dx, dy, bary) => {
+      stepO.set(stepQ.x + dx, stepQ.y + dy, -1).unproject(cam);
+      stepR.set(stepQ.x + dx, stepQ.y + dy, 1).unproject(cam).sub(stepO);
+      const den = stepN.dot(stepR);
+      if (!(Math.abs(den) > 1e-9 * stepR.length())) return null;          // a surface seen edge on
+      const t = stepN.dot(stepT.subVectors(stepTri.a, stepO)) / den;
+      return stepTri.getBarycoord(stepT.copy(stepR).multiplyScalar(t).add(stepO), bary);
+    };
+    if (!at(0, 0, stepB0) || !at(2 / buf.x, 0, stepBx) || !at(0, 2 / buf.y, stepBy)) return null;
+    return { b0: stepB0, bx: stepBx, by: stepBy };
+  };
   const lodOf = (h, R, tex, L0) => {
     if (h.object.isSprite) return spriteLod(h, R, tex, L0);
-    const fp = footprintAt(h, R), f = h.face;
-    const uvs = h.object.geometry.attributes[tex.channel ? 'uv' + tex.channel : 'uv'];
+    const g = h.object.geometry, f = h.face, ch = tex.channel || 0;
+    const s = pixelSteps(h, R);
+    if (s) {
+      const u0 = uvBary(g, f, s.b0, ch, lodUa), ux = uvBary(g, f, s.bx, ch, lodUb), uy = uvBary(g, f, s.by, ch, lodUc);
+      if (!u0) return 0;
+      return lodFrom(texelsOf(ux.x - u0.x, ux.y - u0.y, tex, L0), texelsOf(uy.x - u0.x, uy.y - u0.y, tex, L0), tex, R);
+    }
+    // outside the frustum: one pixel's span at the hit's distance, over the texels the triangle holds
+    const fp = footprintAt(h, R);
+    const uvs = g.attributes[ch ? 'uv' + ch : 'uv'];
     if (!fp || !uvs) return 0;
     lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
     lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
@@ -505,25 +572,25 @@ export function init(THREE) {
     const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
     return Math.log2(pMax / n);
   };
-  // A sprite faces the camera, so its footprint is one pixel's span at its distance, over its own
-  // texels: the texture's size and repeat across the sprite's width and height in the world.
+  // A SPRITE IS ONE CARD FACING THE CAMERA AT ITS CENTRE'S DEPTH (Codex, PR 373): three.js places
+  // every corner of it at that depth, so a pixel steps the same distance across all of it. That step
+  // is the drawing buffer's pixel at that depth, through the camera's own projection, turned back by
+  // the sprite's rotation and over its size, where a sprite that doesn't attenuate is scaled by its
+  // depth the way the shader scales it (Codex, PR 372).
   const spriteLod = (h, R, tex, L0) => {
-    const cam = R.camera, tall = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
-      ? R.renderer.getDrawingBufferSize(lodS).y : 0;
-    if (!cam || !(tall > 0)) return 0;
-    h.object.matrixWorld.decompose(lodA, new THREE.Quaternion(), lodB);
-    const e = tex.matrix.elements, repeat = Math.abs(e[0] * e[4] - e[3] * e[1]);
-    // A SPRITE THAT DOESN'T ATTENUATE (Codex, PR 372) keeps its size on screen: three.js scales it by
-    // its depth under a perspective camera, so its texels per pixel don't change with distance
-    let depth = 1;
-    if (slotOf(h).sizeAttenuation === false && !cam.isOrthographicCamera)
-      depth = Math.max(1e-6, -lodC.copy(lodA).applyMatrix4(cam.matrixWorldInverse).z);
-    const world = Math.abs(lodB.x * lodB.y) * depth * depth;
-    if (!(world > 0) || !(repeat > 0)) return 0;
-    const across = cam.isOrthographicCamera ? (cam.top - cam.bottom) / (cam.zoom || 1) / tall
-      : h.distance * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
-    const p = across * Math.sqrt(L0.w * L0.h * repeat / world);
-    return Math.log2(p);
+    const cam = R.camera, o = h.object, mat = slotOf(h);
+    const buf = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
+      ? R.renderer.getDrawingBufferSize(lodS) : null;
+    if (!cam || !buf || !(buf.x > 0) || !(buf.y > 0)) return 0;
+    const P = cam.projectionMatrix.elements, persp = P[11] === -1;          // the shader's isPerspectiveMatrix
+    const depth = -lodC.setFromMatrixPosition(o.matrixWorld).applyMatrix4(cam.matrixWorldInverse).z;
+    if (persp && !(depth > 0)) return 0;
+    const k = persp ? depth : 1, px = 2 * k / Math.abs(P[0] * buf.x), py = 2 * k / Math.abs(P[5] * buf.y);
+    let sx = lodA.setFromMatrixColumn(o.matrixWorld, 0).length(), sy = lodA.setFromMatrixColumn(o.matrixWorld, 1).length();
+    if (mat.sizeAttenuation === false && persp) { sx *= depth; sy *= depth; }
+    if (!(sx > 0) || !(sy > 0)) return 0;
+    const c = Math.cos(mat.rotation || 0), s = Math.sin(mat.rotation || 0);
+    return lodFrom(texelsOf(c * px / sx, -s * px / sy, tex, L0), texelsOf(s * py / sx, c * py / sy, tex, L0), tex, R);
   };
   const texelAt = (tex, uv, h, R) => {
     if (!tex || !uv) return null;
@@ -586,21 +653,35 @@ export function init(THREE) {
     if (mat.blending !== THREE.NormalBlending || !(a > 0.001)) return null;
     return { hash, blend: Math.min(1, a) };
   };
-  const drawChance = (h, R) => { const d = drawParts(h, R); return d ? d.hash * d.blend : 0; };
   // AN ALPHA HASH IS SHARED WHERE SURFACES COINCIDE (Codex, PR 369). three.js hashes the fragment's
-  // position in the geometry's own frame, before any instance matrix, over cells a twentieth of the
-  // pixel's reach there (ALPHA_HASH_SCALE 0.05) at two power-of-two scales. So hashed surfaces at the
-  // same local point, stacked copies or instances with matching local coordinates, discard the same
-  // fragments: eight coincident planes at 0.2 draw a fifth of the frame, not 83 percent. Hashed hits
-  // along a ray in the same finer cell are one layer, at the highest chance among them, and the rest
-  // count as independent draws.
-  const lodL = new THREE.Vector3(), lodV = new THREE.Matrix4();
+  // position in the geometry's own frame, the raw position before a morph, a skin or an instance
+  // moves it, over cells a twentieth of how far that position moves between neighbouring pixels
+  // (ALPHA_HASH_SCALE 0.05) at two power-of-two scales. So hashed surfaces at the same local point,
+  // stacked copies or instances with matching local coordinates, discard the same fragments: eight
+  // coincident planes at 0.2 draw a fifth of the frame, not 83 percent. Hashed hits along a ray in
+  // the same finer cell share one threshold, and the rest count as independent draws. Inside the
+  // frustum the cell comes off the pixel's own step (Codex, PR 373), and outside it off the
+  // footprint at the hit's distance.
+  const lodL = new THREE.Vector3(), lodV = new THREE.Matrix4(), hashX = new THREE.Vector3(), hashY = new THREE.Vector3();
+  const rawAt = (g, f, b, out) => {
+    const P = g.attributes.position;
+    return out.set(0, 0, 0).addScaledVector(lodA.fromBufferAttribute(P, f.a), b.x)
+      .addScaledVector(lodA.fromBufferAttribute(P, f.b), b.y).addScaledVector(lodA.fromBufferAttribute(P, f.c), b.z);
+  };
   const hashKey = (h, R) => {
-    const fp = footprintAt(h, R);
-    if (!fp) return null;
-    const reach = fp.across / fp.cos / (fp.m.getMaxScaleOnAxis() || 1);
+    let reach;
+    const s = pixelSteps(h, R);
+    if (s) {
+      const g = h.object.geometry, f = h.face;
+      rawAt(g, f, s.b0, lodL);
+      reach = Math.max(rawAt(g, f, s.bx, hashX).distanceTo(lodL), rawAt(g, f, s.by, hashY).distanceTo(lodL));
+    } else {
+      const fp = footprintAt(h, R);
+      if (!fp) return null;
+      reach = fp.across / fp.cos / (fp.m.getMaxScaleOnAxis() || 1);
+      lodL.copy(h.point).applyMatrix4(lodV.copy(fp.m).invert());
+    }
     if (!(reach > 0)) return null;
-    lodL.copy(h.point).applyMatrix4(lodV.copy(fp.m).invert());
     const fine = Math.pow(2, Math.ceil(Math.log2(1 / (0.05 * reach))));
     return fine + ':' + Math.floor(fine * lodL.x) + ',' + Math.floor(fine * lodL.y) + ',' + Math.floor(fine * lodL.z);
   };
@@ -708,13 +789,151 @@ export function init(THREE) {
   /* TXT.enclosed(R) — true when the camera stands inside something the frame built: at least
    * ENCLOSED_MIN of the sky above it is covered within `reach` metres. */
   TXT.enclosed = function (R, reach) { return TXT.enclosure(R, reach) >= ENCLOSED_MIN; };
+  /* THE ORDER three.js DRAWS IN (Codex, PR 373). Which surface a pixel shows depends on the order
+   * things are drawn in once a depth test is off, a surface blends, or a renderOrder moves it. So the
+   * room share draws each ray's hits the way WebGLRenderer does, against a depth buffer:
+   *
+   *   - the opaque list, then the transmissive one, then the transparent one, a material with
+   *     transmission going to the second and a transparent one to the third (WebGLRenderLists.push)
+   *   - the opaque list by group order, renderOrder, material and nearest first, the other two by
+   *     group order, renderOrder and farthest first, then by id (painterSortStable and
+   *     reversePainterSortStable), each object's depth taken where the renderer takes it, at its
+   *     bounding sphere's centre or a sprite's position, through the camera's projection; and with
+   *     sortObjects off, in the order the scene is walked
+   *   - a transparent material seen from both sides draws its back faces first, then its front ones
+   *   - each hit passes or fails its own depth test, writes depth only when it tests and writes, since
+   *     WebGL writes none with the test off, and lays its cover over what is there
+   *
+   * An alpha hash shares its threshold within a cell (Codex, PR 369), so the hashed hits in a cell
+   * survive together, a higher chance whenever a lower one does, and every way a ray's cells can
+   * survive is drawn and weighed by its chance: all of them up to HASH_WAYS, and HASH_WAYS fixed draws
+   * of the thresholds past that. So a sprite with depthTest off behind a room's back wall paints over
+   * the wall, a pane in front of the sprite blends back over it, an opaque backdrop drawn before the
+   * walls is drawn over by them, and coincident hashed overlays survive as one. */
+  const HASH_WAYS = 4096;
+  const sortV = new THREE.Vector4(), sortM = new THREE.Matrix4(), ordM = new THREE.Matrix4(), ordI = new THREE.Matrix4();
+  const ordD = new THREE.Vector3();
+  const sortDepth = (o, cam) => {
+    sortM.multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse);
+    if (o.isSprite) sortV.setFromMatrixPosition(o.matrixWorld);
+    else {
+      let bs = o.boundingSphere;
+      if (bs === undefined) { if (o.geometry.boundingSphere === null) o.geometry.computeBoundingSphere(); bs = o.geometry.boundingSphere; }
+      else if (bs === null) { o.computeBoundingSphere(); bs = o.boundingSphere; }
+      sortV.set(bs.center.x, bs.center.y, bs.center.z, 1).applyMatrix4(o.matrixWorld);
+    }
+    return sortV.applyMatrix4(sortM).z;
+  };
+  const groupOrderOf = (o) => { for (let q = o.parent; q; q = q.parent) if (q.isGroup) return q.renderOrder; return 0; };
+  // the geometry group a multi-material hit's face is drawn in, which the renderer draws as its own item
+  const slotIndexOf = (h) => {
+    const g = h.object.geometry, groups = g && g.groups;
+    if (!Array.isArray(h.object.material) || !groups || !groups.length || h.faceIndex == null) return 0;
+    const i = groups.findIndex((q) => h.faceIndex * 3 >= q.start && h.faceIndex * 3 < q.start + q.count);
+    return i < 0 ? 0 : i;
+  };
+  // A back face as the GPU sees it: the renderer flips the front face for a mirrored object, and not
+  // for a mirrored instance.
+  const isBack = (h, dir) => {
+    const o = h.object;
+    if (!o.isMesh || !h.face) return false;
+    ordM.copy(o.matrixWorld);
+    let flip = false;
+    if (o.isInstancedMesh && h.instanceId != null) { o.getMatrixAt(h.instanceId, ordI); ordM.multiply(ordI); flip = ordI.determinant() < 0; }
+    const back = ordD.copy(dir).transformDirection(ordM.invert()).dot(h.face.normal) > 0;
+    return back !== flip;
+  };
+  const depthPasses = (func, z, D) => {
+    const eq = Math.abs(z - D) <= 1e-6 * Math.max(1, Math.abs(z));      // one surface, drawn twice
+    switch (func) {
+      case THREE.NeverDepth: return false;
+      case THREE.AlwaysDepth: return true;
+      case THREE.LessDepth: return z < D && !eq;
+      case THREE.EqualDepth: return eq;
+      case THREE.GreaterEqualDepth: return z > D || eq;
+      case THREE.GreaterDepth: return z > D && !eq;
+      case THREE.NotEqualDepth: return !eq;
+      default: return z < D || eq;                                       // LessEqualDepth
+    }
+  };
+  // One hit as the renderer draws it, or null when it draws nothing there. `mark` is what the
+  // measure counts, 1 or 0, and `depth` the hit's own depth along the camera's view.
+  const drawItem = (h, R, dir, depth, mark, zOf, walked, partsOf = drawParts) => {
+    const d = partsOf(h, R);
+    if (!d) return null;
+    const o = h.object, mat = slotOf(h), test = mat.depthTest !== false;
+    const twoSided = mat.transparent === true && mat.side === THREE.DoubleSide && mat.forceSinglePass === false;
+    return {
+      h, hash: d.hash, blend: d.blend, mark, depth, test, write: test && mat.depthWrite !== false,
+      func: mat.depthFunc, list: mat.transmission > 0 ? 1 : mat.transparent === true ? 2 : 0,
+      group: groupOrderOf(o), order: o.renderOrder, mat: mat.id, z: walked ? 0 : zOf(o), id: o.id,
+      walk: walked ? walked.get(o) || 0 : 0, slot: slotIndexOf(h), side: twoSided && !isBack(h, dir) ? 1 : 0,
+      face: h.faceIndex || 0,
+    };
+  };
+  const drawOrder = (sorted) => (a, b) => a.list - b.list ||
+    (sorted ? (a.group - b.group || a.order - b.order ||
+      (a.list === 0 ? a.mat - b.mat || a.z - b.z : b.z - a.z) || a.id - b.id) : a.walk - b.walk) ||
+    a.slot - b.slot || a.side - b.side || a.face - b.face;
+  // The share of a pixel that shows what `mark` counts, its items in draw order. The clear colour
+  // counts nothing.
+  const composite = (items, R) => {
+    const cells = [], byKey = new Map();
+    for (const it of items) {
+      if (!(it.hash < 1)) continue;
+      const k = hashKey(it.h, R);
+      let c = k !== null ? byKey.get(k) : undefined;
+      if (!c) { c = []; cells.push(c); if (k !== null) byKey.set(k, c); }
+      c.push(it);
+    }
+    cells.forEach((c, ci) => { c.sort((x, y) => y.hash - x.hash); c.forEach((it, rank) => { it.cell = ci; it.rank = rank; }); });
+    const kept = new Array(cells.length).fill(0);                    // how many of each cell survive
+    const draw = () => {
+      let shown = 0, D = Infinity;
+      for (const it of items) {
+        if (it.hash < 1 && it.rank >= kept[it.cell]) continue;       // discarded by its hash
+        if (it.test && !depthPasses(it.func, it.depth, D)) continue;
+        shown += (it.mark - shown) * it.blend;
+        if (it.write) D = it.depth;
+      }
+      return shown;
+    };
+    let ways = 1;
+    for (const c of cells) if ((ways *= c.length + 1) > HASH_WAYS) break;
+    if (ways <= HASH_WAYS) {
+      let sum = 0;
+      const each = (ci, p) => {
+        if (ci === cells.length) { sum += p * draw(); return; }
+        const c = cells[ci];
+        for (let k = 0; k <= c.length; k++) {
+          // the threshold falls between the k-th chance and the next, so the first k survive
+          const q = k === 0 ? 1 - c[0].hash : k === c.length ? c[k - 1].hash : c[k - 1].hash - c[k].hash;
+          if (q > 0) { kept[ci] = k; each(ci + 1, p * q); }
+        }
+      };
+      each(0, 1);
+      return sum;
+    }
+    let seed = 0x2f6b1d35, sum = 0;
+    const rand = () => {
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    for (let n = 0; n < HASH_WAYS; n++) {
+      cells.forEach((c, ci) => { const t = rand(); let k = 0; while (k < c.length && c[k].hash > t) k++; kept[ci] = k; });
+      sum += draw();
+    }
+    return sum / HASH_WAYS;
+  };
   /* TXT.roomShare(R) — the share of the frame the room TXT.interior built fills: a 17 by 17 grid of
-   * rays through the camera's own projection, each asking what it meets first among the things the
-   * camera draws, inside its near and far, and counting it when that is one of the room's walls or a
-   * point between them, its floor or whatever stands on it (Codex, PR 369: the first cut counted a
-   * floor plane nobody had to render). Only walls the camera renders count, on stage, drawn and on
-   * its layers, so a room taken out of the scene, hidden, or on a layer the camera skips fills
-   * nothing. 0 when there is no room. */
+   * rays through the camera's own projection, each drawing what it meets among the things the camera
+   * draws, inside its near and far, in the renderer's own order (Codex, PR 373), and counting the
+   * share of the pixel that ends up showing one of the room's walls or a point between them, its
+   * floor or whatever stands on it (Codex, PR 369: the first cut counted a floor plane nobody had to
+   * render). Only walls the camera renders count, on stage, drawn and on its layers, so a room taken
+   * out of the scene, hidden, or on a layer the camera skips fills nothing. 0 when there is no room. */
   TXT.roomShare = function (R) {
     const room = R.room, cam = R.camera;
     if (!room || !room.isObject3D || !onStage(room, R.scene)) return 0;
@@ -740,35 +959,32 @@ export function init(THREE) {
     const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
     const rc = new THREE.Raycaster(), v = new THREE.Vector2(), d = new THREE.Vector3();
     rc.layers.mask = cam.layers.mask; rc.camera = cam;           // a sprite is cast against the camera
-    const depthOk = (p) => { const z = d.copy(p).sub(eye).dot(fwd); return z >= cam.near && z <= cam.far; };
     const lp = new THREE.Vector3();
     const inside = (p) => {
       lp.copy(p).applyMatrix4(toRoom);
       return lp.x >= box.min.x && lp.x <= box.max.x && lp.z >= box.min.z && lp.z <= box.max.z &&
         lp.y >= box.min.y - 0.05 && lp.y <= box.max.y + 0.05;
     };
+    let walked = null;                                              // sortObjects off: the scene's own order
+    if (R.renderer && R.renderer.sortObjects === false) { let k = 0; walked = new Map(); R.scene.traverse((o) => walked.set(o, k++)); }
+    const zs = new Map(), zOf = (o) => { if (!zs.has(o)) zs.set(o, sortDepth(o, cam)); return zs.get(o); };
+    const order = drawOrder(!walked);
     const N = 16;
     let seen = 0;
     for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
       v.set(-1 + 2 * i / N, -1 + 2 * j / N);
       rc.setFromCamera(v, cam);
-      // the chance that the first thing drawn along this ray is the room, hit by hit
-      let open = 1, room = 0;
+      // the share of this pixel that shows the room, its hits drawn in the renderer's own order
       try {
-        const hs = rc.intersectObjects(all, false).filter((h) => depthOk(h.point));
-        for (const L of layersAlong(hs.filter((h) => slotOf(h).depthTest !== false), R, drawParts)) {
-          if (own.has(L.h.object) || inside(L.h.point)) room += open * L.p;
-          open *= 1 - L.p;
+        const items = [];
+        for (const h of rc.intersectObjects(all, false)) {
+          const z = d.copy(h.point).sub(eye).dot(fwd);
+          if (!(z >= cam.near && z <= cam.far)) continue;            // clipped at near and far: not drawn
+          const it = drawItem(h, R, rc.ray.direction, z, own.has(h.object) || inside(h.point) ? 1 : 0, zOf, walked);
+          if (it) items.push(it);
         }
-        // A HIT THAT SKIPS THE DEPTH TEST DRAWS OVER WHAT IS IN FRONT OF IT (Codex, PR 372): a sprite
-        // with depthTest off behind the room's back wall still paints over the wall. Such hits lay over
-        // the depth-tested result, farthest first, the order three.js draws transparent ones in.
-        for (const h of hs.filter((x) => slotOf(x).depthTest === false).reverse()) {
-          const p = drawChance(h, R);
-          if (p > 0) room = room * (1 - p) + ((own.has(h.object) || inside(h.point)) ? p : 0);
-        }
-      } catch (e) { room = 0; }
-      seen += room;
+        seen += composite(items.sort(order), R);
+      } catch (e) { /* a ray that can't be measured shows no room */ }
     }
     return seen / ((N + 1) * (N + 1));
   };
@@ -777,8 +993,11 @@ export function init(THREE) {
   TXT.inRoom = function (R) { return TXT.roomShare(R) >= ROOM_MIN; };
   // THE SHARE OF A PIXEL A HIT HIDES THE SKY IN: what it draws there, where a pane at alpha 0.5 hides
   // half and lets half of the dome through, and none behind transmissive glass, which renders the sky
-  // through itself. An additive glow hides none of it.
-  const solidParts = (h, R) => (slotOf(h).transmission > 0 ? null : drawParts(h, R));
+  // through itself, though it still writes its depth. An additive glow hides none of it.
+  const skyParts = (h, R) => {
+    const d = drawParts(h, R);
+    return d && slotOf(h).transmission > 0 ? { hash: d.hash, blend: 0 } : d;
+  };
   // Every hit along a ray, nearest first, as Raycaster.intersectObjects gives them, except that a
   // mesh a ray can't be cast against hides nothing rather than ending the measurement.
   const castAll = (rc, meshes) => {
@@ -805,6 +1024,20 @@ export function init(THREE) {
     const o = new THREE.Vector3(), dir = new THREE.Vector3(), w = new THREE.Vector3(), q = new THREE.Vector3();
     const at = new THREE.Vector3(), rc = new THREE.Raycaster();
     rc.layers.mask = camera.layers.mask; rc.camera = camera;
+    // each ray's hits are drawn in the renderer's own order (Codex, PR 373), the dome among them where
+    // the renderer puts it, first by its renderOrder, and what the measure counts is the dome
+    let walked = null, dome = null, order = null, zOf = null;
+    if (hits && hits.length) {
+      if (R.renderer && R.renderer.sortObjects === false) { let k = 0; walked = new Map(); R.scene.traverse((x) => walked.set(x, k++)); }
+      const zs = new Map();
+      zOf = (x) => { if (!zs.has(x)) zs.set(x, sortDepth(x, camera)); return zs.get(x); };
+      order = drawOrder(!walked);
+      const dm = R._txDome, mat = dm.material, test = mat.depthTest !== false;
+      dome = { h: null, hash: 1, blend: 1, mark: 1, depth: 0, test, write: test && mat.depthWrite !== false,
+        func: mat.depthFunc, list: mat.transmission > 0 ? 1 : mat.transparent === true ? 2 : 0,
+        group: groupOrderOf(dm), order: dm.renderOrder, mat: mat.id, z: walked ? 0 : zOf(dm), id: dm.id,
+        walk: walked ? walked.get(dm) || 0 : 0, slot: 0, side: 0, face: 0 };
+    }
     const N = SKY_GRID, all = SKY_RAYS;
     let shown = 0;
     // from the top row down, so a frame with sky along its top answers on its first ray
@@ -818,15 +1051,18 @@ export function init(THREE) {
       if (!(disc >= 0)) continue;                  // an orthographic ray past the dome's rim meets none
       q.copy(dir).multiplyScalar(Math.sqrt(disc) - b).add(w);
       if (!(q.y > 1e-9 * rad)) continue;           // under the dome's horizon is its stand-in ground
-      // the chance this ray reaches the dome: nothing solid drawn in front of it, hit by hit
+      // the share of this pixel the dome shows in, once everything is drawn over it
       let open = 1;
-      if (hits && hits.length) {
+      if (dome) {
         rc.set(o, dir);
-        const hs = castAll(rc, hits).filter((h) => {
-          const z = at.copy(h.point).sub(eye).dot(fwd);        // clipped at near and far: not drawn
-          return z >= camera.near && z <= camera.far;
-        });
-        for (const L of layersAlong(hs, R, solidParts)) open *= 1 - L.p;
+        const items = [Object.assign({}, dome, { depth: at.copy(q).add(c).sub(eye).dot(fwd) })];
+        for (const h of castAll(rc, hits)) {
+          const z = at.copy(h.point).sub(eye).dot(fwd);
+          if (!(z >= camera.near && z <= camera.far)) continue;  // clipped at near and far: not drawn
+          const it = drawItem(h, R, dir, z, 0, zOf, walked, skyParts);
+          if (it) items.push(it);
+        }
+        open = composite(items.sort(order), R);
       }
       shown += open;
       if (first && shown >= 1) return shown / all;
@@ -842,11 +1078,13 @@ export function init(THREE) {
    * orthographic camera's rays, parallel and starting across its whole near plane, are each followed
    * to the dome (Codex, PR 369: a frustum 200 m tall pitched 5 degrees down shows sky in its upper
    * rows, and reading its direction alone found none). Given R, the dome has to be drawn and a ray has
-   * to reach it: the first solid thing the camera draws along it, inside its near and far, hides the
-   * sky there, where glass, a veil or a glow doesn't (Codex, PR 369: a wall filling the frame read
-   * as sky). A cutout is read at the mip level this frame samples it at, and an alpha-hashed surface
-   * hides the sky by the chance it draws, so a ray counts for the share of it that gets through.
-   * Without R it measures the dome TXT.sky builds for this camera, with nothing in front. */
+   * to reach it: a solid thing the camera draws over it, inside its near and far, hides the sky
+   * there, where glass, a veil or a glow doesn't (Codex, PR 369: a wall filling the frame read as
+   * sky), each ray's hits drawn in the renderer's own order, the dome among them, so a wall that fails
+   * its depth test behind a nearer surface drawn first hides nothing (Codex, PR 373). A cutout is read
+   * at the mip level this frame samples it at, and an alpha-hashed surface hides the sky by the chance
+   * it draws, so a ray counts for the share of it that gets through. Without R it measures the dome
+   * TXT.sky builds for this camera, with nothing in front. */
   TXT.skyInFrame = function (camera, R) { return skyShare(camera, R, false); };
   // Read by scripts/carousel/print_ban.py off the render report. Keep the four in step there.
   TXT.NO_SKY = 'TXT: NO SKY IN FRAME';
