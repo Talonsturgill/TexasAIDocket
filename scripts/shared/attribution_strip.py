@@ -156,21 +156,20 @@ def strip(text: str) -> tuple:
     drop, removed = scan(lines)
     if not removed:
         return text, []
-    # ONLY THE SEAM A REMOVED LINE LEAVES IS CLOSED, AND BY ONE BLANK LINE (Codex, PR 378). The
-    # removal can put two blank lines together that the line used to separate, so one of them
-    # goes. Every other blank line in the message, a second one after the seam included, stays
-    # exactly where its author put it.
+    # ONLY A BLANK PAIR THE REMOVAL CREATED IS CLOSED (Codex, PR 378). A removed block with a blank
+    # line on both sides leaves the two touching, so the one after it goes. Only the first line
+    # after the block is ever judged, which means blank lines that already touched before
+    # anything was removed stay exactly where their author put them.
     kept, seam = [], False
     for k, ln in enumerate(lines):
         if k in drop:
             seam = True
             continue
-        if seam and not ln.strip() and kept and not kept[-1][1].strip():
+        if seam:
             seam = False
-            continue
+            if not ln.strip() and kept and not kept[-1][1].strip():
+                continue
         kept.append((k, ln))
-        if ln.strip():
-            seam = False
     while kept and not kept[-1][1].strip():
         kept.pop()
     # A footer usually sits under a horizontal rule, and with the footer gone the rule separates
@@ -334,6 +333,12 @@ def self_test() -> int:
     out, _ = strip("Subject\n\nBody.\n\nCo-Authored-By: Claude\n\n\nNext section\n")
     ok("...by exactly one blank line, so a second blank after the removed line stays",
        out == "Subject\n\nBody.\n\n\nNext section\n", repr(out))
+    out, _ = strip("Subject\n\nBody.\nCo-Authored-By: Claude\n\n\nNext section\n")
+    ok("...and blank lines that already touched, with prose above the removed line, both stay",
+       out == "Subject\n\nBody.\n\n\nNext section\n", repr(out))
+    out, _ = strip("Subject\n\nBody.\n\nCo-Authored-By: Claude\n\nClaude-Session: 01x\n\nNext.\n")
+    ok("...and two removed lines a blank apart close to one blank",
+       out == "Subject\n\nBody.\n\nNext.\n", repr(out))
     out, _ = strip("Subject\n\nCo-Authored-By: Claude\n\nBody.\n\n---\n")
     ok("a rule the author closed on stays when the removed line was elsewhere",
        out == "Subject\n\nBody.\n\n---\n", repr(out))
