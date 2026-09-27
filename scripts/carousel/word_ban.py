@@ -109,24 +109,23 @@ def _squash(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
-def _found(text: str, *, sources: tuple = (), quotes: tuple = (),
-           banned: list | None = None) -> list:
-    """(word, the words around it) for each banned word in `text` that the house wrote.
+def _found_at(text: str, *, sources: tuple = (), quotes: tuple = (),
+              banned: list | None = None) -> list:
+    """(word, the words around it, offset) for each banned word in `text` the house wrote.
 
     `sources` are passages that are a source's own words wherever they appear, a title say.
     `quotes` are verbatim quotations. A sentence of CONTAINED_MIN_WORDS or more found inside
-    either is the source's sentence, which covers a quotation or a title broken across lines."""
+    either is the source's sentence, which covers a quotation or a title broken across lines.
+    Both are matched on word boundaries, so "a pattern emerged" is not found inside "Data
+    pattern emerged" and a source named "Data Gap" is not found inside "Metadata Gap" (Codex,
+    PR 379)."""
     rx = matcher(banned if banned is not None else words())
     spans = [m.span() for m in QUOTED.finditer(text)] + [m.span() for m in URL.finditer(text)]
     low = text.lower()
     for s in sources:
-        s = s.strip().lower()
-        if len(s) < 4:
-            continue
-        start = low.find(s)
-        while start != -1:
-            spans.append((start, start + len(s)))
-            start = low.find(s, start + 1)
+        s = " ".join(s.split()).lower()
+        if len(s) >= 4:
+            spans += [m.span() for m in re.finditer(rf"(?<!\w){re.escape(s)}(?!\w)", low)]
     theirs = [_squash(q) for q in (*quotes, *sources) if q and q.strip()]
     out = []
     for m in rx.finditer(text):
@@ -135,11 +134,17 @@ def _found(text: str, *, sources: tuple = (), quotes: tuple = (),
         sentence = next((s.group(0) for s in SENTENCE.finditer(text)
                          if s.start() <= m.start() < s.end()), "")
         said = _squash(sentence).strip(" .!?")
-        if len(said.split()) >= CONTAINED_MIN_WORDS and any(said in q for q in theirs):
+        if len(said.split()) >= CONTAINED_MIN_WORDS and any(_bounded_in(said, q) for q in theirs):
             continue
         around = text[max(0, m.start() - 40):m.end() + 40].replace("\n", " ").strip()
-        out.append((m.group(0), around))
+        out.append((m.group(0), around, m.start()))
     return out
+
+
+def _found(text: str, *, sources: tuple = (), quotes: tuple = (),
+           banned: list | None = None) -> list:
+    """(word, the words around it) for each banned word in `text` the house wrote."""
+    return [(w, a) for w, a, _ in _found_at(text, sources=sources, quotes=quotes, banned=banned)]
 
 
 def _say(word: str, around: str) -> str:
@@ -237,17 +242,67 @@ def _bounded_in(needle: str, hay: str) -> bool:
     return bool(needle) and re.search(rf"(?<!\w){re.escape(needle)}(?!\w)", hay) is not None
 
 
+def _text_lines(nodes: list) -> list:
+    """[(text, [(start, end, node text)])], one per visual line of a slide's recorded DOM text.
+
+    render.py records an element that has text of its own, with its whole flattened text and the
+    indices of its recorded ancestors in `anc`. A node an ancestor already holds is read there,
+    in context, and skipped here. The outermost nodes that sit side by side on one line are read
+    together, which is how a name set in two styled spans arrives as the one name it is (Codex,
+    PR 379). A report without `anc` finds ancestors by box instead, and a node without a box is
+    read alone."""
+    def box(t):
+        return tuple(float(t.get(k) or 0) for k in ("x", "y", "w", "h"))
+
+    def inside(a, b):
+        ax, ay, aw, ah = box(a)
+        bx, by, bw, bh = box(b)
+        return aw > 0 and bw > 0 and bx <= ax and by <= ay and ax + aw <= bx + bw \
+            and ay + ah <= by + bh
+
+    tops = []
+    for i, t in enumerate(nodes):
+        text = " ".join(str(t.get("text") or "").split())
+        if not text:
+            continue
+        if "anc" in t:
+            above = [nodes[a] for a in t.get("anc") or []
+                     if isinstance(a, int) and 0 <= a < len(nodes)]
+        else:
+            above = [u for j, u in enumerate(nodes) if j != i and inside(t, u)]
+        if any(_bounded_in(_squash(text), _squash(str(u.get("text") or ""))) for u in above):
+            continue
+        tops.append((text, t))
+    lines = []
+    for text, t in sorted(tops, key=lambda pair: box(pair[1])[0]):
+        x, y, w, h = box(t)
+        fs = float(t.get("font_px") or 0) or h
+        for ln in lines:
+            if (w > 0 and h > 0 and ln["h"] > 0
+                    and abs(y + h / 2 - ln["cy"]) <= 0.5 * max(h, ln["h"])
+                    and -2 <= x - ln["right"] <= 1.2 * max(fs, ln["fs"])):
+                start = len(ln["text"]) + 1
+                ln["text"] += " " + text
+                ln["parts"].append((start, start + len(text), text))
+                ln["right"], ln["fs"] = x + w, max(fs, ln["fs"])
+                break
+        else:
+            lines.append({"text": text, "parts": [(0, len(text), text)], "right": x + w,
+                          "cy": y + h / 2, "h": h, "fs": fs})
+    return [(ln["text"], ln["parts"]) for ln in lines]
+
+
 def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> list:
     """(where, word, around) for each banned word the committed render report says a slide
     printed: a label set straight into the HTML, furniture the design marked decorative, a
     canvas's drawn text. Decorative text is printed text, and the ban grants furniture nothing.
 
+    DOM text is read a line at a time, see `_text_lines`, and canvas text a call at a time.
     `judged` maps a slide number to [(squashed text, {words it was flagged for})] for that
-    slide's authored strings, and `evidence(n)` is the (sources, quotes) slide n cites. A node
-    inside one of its own slide's judged strings that was already flagged for the same word adds
-    nothing, and nor does a node inside a longer node on its slide, which is how a line split
-    across spans arrives. A node inside a string where the word was exempt is judged on its own
-    words, so the label "THE GAP" beside a quotation of the gap is the house's (Codex, PR 379)."""
+    slide's authored strings, and `evidence(n)` is the (sources, quotes) slide n cites. A word
+    found in a rendered string that one of its own slide's judged strings holds, and was already
+    flagged for, adds nothing. Held where the word was exempt, it is judged on its own words, so
+    the label "THE GAP" beside a quotation of the gap is the house's (Codex, PR 379)."""
     rep = next((r for r in (_load(d / "render_report.json"),
                             _load(d / "render" / "render_report.json")) if isinstance(r, dict)),
                None)
@@ -260,20 +315,20 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
         m = re.search(r"(\d+)", str(rec.get("file") or ""))
         n = rec.get("n") or (int(m.group(1)) if m else i)
         sources, quotes = evidence(n)
-        said = [str(t.get("text") or "") for key in ("text_nodes", "canvas_text")
-                for t in rec.get(key) or [] if isinstance(t, dict)]
-        by_form = {}
-        for s in said:
-            if s.strip():
-                by_form.setdefault(_squash(s), s)
-        seen = list(judged.get(n, []))
-        for form in sorted(by_form, key=len, reverse=True):
-            found = _found(by_form[form], sources=sources, quotes=quotes, banned=banned)
-            for w, around in found:
-                if not any(w.lower() in flagged and _bounded_in(form, other)
-                           for other, flagged in seen):
+        units = _text_lines([t for t in rec.get("text_nodes") or [] if isinstance(t, dict)])
+        drawn = dict.fromkeys(str(t.get("text") or "") for t in rec.get("canvas_text") or []
+                              if isinstance(t, dict))
+        units += [(c, [(0, len(c), c)]) for c in drawn if c.strip()]
+        own, seen = judged.get(n, []), set()
+        for text, parts in units:
+            if _squash(text) in seen:
+                continue
+            seen.add(_squash(text))
+            for w, around, at in _found_at(text, sources=sources, quotes=quotes, banned=banned):
+                part = next((pt for a, b, pt in parts if a <= at < b), text)
+                if not any(w.lower() in flagged and _bounded_in(_squash(part), other)
+                           for other, flagged in own):
                     out.append((f"rendered slide {n}", w, around))
-            seen.append((form, {w.lower() for w, _ in found}))
     return out
 
 
@@ -381,6 +436,12 @@ def self_test() -> int:
        len(hits("THE GAP", quotes=("The gap is widening.",), banned=banned)) == 1)
     ok("a word boundary decides containment, so 'the gap' is not inside 'the gaping'",
        not _bounded_in("the gap", "the gaping hole") and _bounded_in("the gap", "mind the gap"))
+    ok("...so the house's 'A pattern emerged.' is not inside a source's 'Data pattern emerged' "
+       "(Codex, PR 379)",
+       len(hits("A pattern emerged.", quotes=("Data pattern emerged in the report.",),
+                banned=banned)) == 1)
+    ok("...and a source named Data Gap is not found inside the house's 'Metadata Gap'",
+       len(hits("The Metadata Gap report.", sources=("Data Gap",), banned=banned)) == 1)
     ok("a quotation broken across a line keeps its words (Codex, PR 379)",
        not hits('The memo says "a pattern\nof late filings" twice.', banned=banned))
     ok("...but a stray mark never carries the exemption past a blank line",
@@ -407,7 +468,8 @@ def self_test() -> int:
                        "notes": "planning residue about the gap, never rendered"},
                 "S2": {"body": 'The memo says "the gap is widening."', "claims": ["c3"]},
                 "S3": {"body": quote, "claims": ["c1"]},
-                "S4": {"body": quote, "claims": ["c3"]}}}))
+                "S4": {"body": quote, "claims": ["c3"]},
+                "S5": {"body": "The request went in on Monday.", "claims": ["c3"]}}}))
         (d / "render_report.json").write_text(json.dumps({"slides": [
             {"file": "slide-01.html",
              "text_nodes": [{"text": "Four filings, one pattern", "decorative": False},
@@ -422,7 +484,21 @@ def self_test() -> int:
              "canvas_text": [{"text": "identified a pattern of incomplete", "fn": "fillText"}]},
             {"file": "slide-03.html",
              "text_nodes": [{"text": "THE PATTERN", "decorative": True}],
-             "canvas_text": [{"text": "Here is why it matters", "fn": "fillText"}]}]}))
+             "canvas_text": [{"text": "Here is why it matters", "fn": "fillText"}]},
+            # A publisher's name set in two spans, the same name inside a recorded parent, and a
+            # house label elsewhere on the frame. Slide 5 cites c3, Pattern Energy's claim, and
+            # its own copy flags nothing, so no authored string can stand in for these nodes.
+            {"file": "slide-05.html", "text_nodes": [
+                {"text": "Pattern", "x": 100, "y": 1000, "w": 120, "h": 30, "font_px": 28,
+                 "anc": []},
+                {"text": "Energy", "x": 232, "y": 1000, "w": 110, "h": 30, "font_px": 28,
+                 "anc": []},
+                {"text": "Pattern Energy filed the request.", "x": 100, "y": 1100, "w": 600,
+                 "h": 30, "font_px": 28, "anc": []},
+                {"text": "Pattern", "x": 100, "y": 1100, "w": 120, "h": 30, "font_px": 28,
+                 "anc": [2]},
+                {"text": "THE PATTERN", "x": 700, "y": 200, "w": 200, "h": 40, "font_px": 36,
+                 "anc": []}]}]}))
         (d / "caption.txt").write_text("The council voted. Here is why it matters.\n")
         (d / "first_comment.txt").write_text(
             f"Sources.\n{title}, KGNS.\nPattern Energy, September 20th.\nhttps://example.com/gap\n")
@@ -443,10 +519,12 @@ def self_test() -> int:
            "A source title, a publisher, a URL, planning notes, clean furniture, a line of a "
            "quote, a quotation and claim c2's own evidence are not. c1's quote exempts a slide "
            "and a paragraph that cite c1, and not slide 4, a canvas line on slide 2 or a "
-           "paragraph that cite c3 (Codex, PR 379)",
+           "paragraph that cite c3. On slide 5 a publisher's name split across two spans and "
+           "a span inside its parent keep their words, and the label beside them does not "
+           "(Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
                      "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
-                     "rendered slide 3": 2, "claim c1": 1, "claim c4": 1,
+                     "rendered slide 3": 2, "rendered slide 5": 1, "claim c1": 1, "claim c4": 1,
                      "web edition section": 1, "web edition dek": 1,
                      "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()
