@@ -21,8 +21,9 @@ WHAT IT MATCHES, and what it leaves alone (Codex, PR 378). A person trailer is a
 `-by` (Co-Authored-By, Signed-off-by, Reviewed-by and the rest), Author, Committer or Cc. It counts
 when its value is an identity, meaning a name, an address in brackets or bare, or both, and that
 identity is Anthropic's or the assistant's. That is an address on a domain Anthropic owns
-(anthropic.com, claude.ai, claude.com), the company named, or Claude alone or followed by a version
-number or a product word, `Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`, `Claude.ai`. A human
+(anthropic.com, claude.ai, claude.com), the company as a name, or Claude alone or followed only by
+version numbers and product words, `Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`, `Claude.ai`.
+A comment in parentheses is judged on its own, so `Claude (AI assistant)` is the assistant. A human
 whose name merely contains the letters, Claudette, Claude Monet or an anthropology department,
 stays. So does a sentence that merely opens with a trailer key, because a sentence is not an
 identity. A session trailer, the generated footer, a robot line and a lone session link count
@@ -53,11 +54,18 @@ IDENTITY = re.compile(r"(?P<name>[^<>@:\n]*?)[ \t]*"
 # An address on a domain Anthropic owns, a subdomain included, read to the address's end, so
 # anthropic.community.example and anthropic.com.example.org are someone else's.
 DOMAIN = re.compile(r"@(?:[\w-]+\.)*(?:anthropic\.com|claude\.ai|claude\.com)\.?$", re.I)
-# The company by name, in the name or the comment. Never read inside an address.
-ANTHROPIC = re.compile(r"(?<!\w)Anthropic(?!\w)", re.I)
-# The assistant by name: Claude alone, or followed by a version number or a product word.
+# The company as a name: Anthropic, possessive or not, followed only by a company suffix or a
+# product or role word. A sentence that opens with the company's name is not an identity, and
+# neither is one that opens with the assistant's, which is the next rule down (Codex, PR 378).
+ANTHROPIC = re.compile(r"(?:the[ \t]+)?Anthropic(?:'s)?(?:[ \t]+(?:PBC|Inc\.?|LLC|Ltd\.?|AI|Claude|"
+                       r"Code|assistant|bot|model|team|staff|agent|app|research|labs?))*", re.I)
+# The assistant as a name: Claude alone, or followed only by version numbers and product words,
+# `Claude 3.5 Sonnet`, `claude-3-opus`, `Claude.ai`. "Claude Code found the regression" is not.
 ASSISTANT = re.compile(r"Claude(?:[- \t.]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|"
-                       r"Instant|AI|Assistant)\b.*)?", re.I)
+                       r"Instant|AI|Assistant|Agent|Bot|App)\b)*", re.I)
+# A comment in parentheses is read on its own, wherever it sits, so `Claude (AI assistant)` is
+# judged as the name Claude with a comment beside it.
+PAREN = re.compile(r"\(([^()]*)\)")
 # The rest are attribution whatever surrounds them on the line: an assistant session trailer, the
 # generated footer, a line that opens with the robot emoji and a session link standing alone. A
 # carriage return counts as trailing space, so a CRLF message reads the same as an LF one.
@@ -85,10 +93,12 @@ def attributes(line: str) -> bool:
     ident = trailer and IDENTITY.fullmatch(trailer["value"])
     if not ident:
         return False
-    name = ident["name"].strip().strip('"').strip()
+    comments = PAREN.findall(ident["name"]) + ([ident["comment"]] if ident["comment"] else [])
+    name = re.sub(r"\s+", " ", PAREN.sub(" ", ident["name"])).strip().strip('"').strip()
     address = (ident["addr"] or ident["bare"] or "").strip()
-    return bool(DOMAIN.search(address) or ANTHROPIC.search(name)
-                or ANTHROPIC.search(ident["comment"] or "") or ASSISTANT.fullmatch(name))
+    return bool(DOMAIN.search(address) or ANTHROPIC.fullmatch(name) or ASSISTANT.fullmatch(name)
+                or any(ANTHROPIC.fullmatch(c.strip()) or ASSISTANT.fullmatch(c.strip())
+                       for c in comments))
 
 
 def scan(lines: list) -> tuple:
@@ -183,6 +193,9 @@ def self_test() -> int:
             "Committer: Claude <noreply@anthropic.com>",
             "Co-Authored-By: Claude (Anthropic) <x@example.com>",
             "Co-Authored-By: Claude.ai <noreply@example.com>",
+            "Co-Authored-By: Claude (AI assistant) <bot@example.com>",
+            "Co-Authored-By: Anthropic's Claude <x@example.com>",
+            "Co-Authored-By: Jane <jane@example.com> (Anthropic)",
             "Co-Authored-By: Jane Doe <jane@anthropic.com>.",
             "Co-Authored-By : Claude <noreply@anthropic.com>",
             'Reviewed-by: "Claude" <x@example.com>',
@@ -213,6 +226,9 @@ def self_test() -> int:
             "Signed-off-by: Anthropic or Reviewed-by: Helper <bot@anthropic.com> passed both the "
             "hook and CI.",
             "Reviewed-by: Claude, whose tests found the bug, see issue 12: it was real.",
+            "Reviewed-by: Claude Code found the regression.",
+            "Reviewed-by: Anthropic's tools found the regression.",
+            "Co-Authored-By: Jane Doe (formerly of Anthropic) <jane@example.com>",
             "Co-Authored-By: Jane Doe <jane@example.com>",
             'The hook strips lines like "Generated with Claude Code" from messages.',
             "A Claude-Session: trailer mentioned mid-sentence stays.",
