@@ -116,23 +116,26 @@ def attributes(line: str) -> bool:
 
 
 # WHO MAY COMMIT HERE (Codex, PR 378). CLAUDE.md: commits are the owner's. Measured over all 408
-# commits on main on 2026-09-27, three identities have ever authored or committed one: the owner,
-# under two names at one address, the repository's own collector bot, and GitHub, as the
-# committer of a merge made through the web or the API. Anything else, another assistant
-# included, is refused rather than listed one by one. A new identity is a maintainer's decision,
-# made here, and this file is `human` lane so no run can widen it.
-AUTHOR_EMAILS = {"talon.sturgill@gmail.com", "bot@texasaidocket.com"}
-COMMITTER_EMAILS = AUTHOR_EMAILS | {"noreply@github.com"}
+# commits on main on 2026-09-27, exactly these name and address pairs have ever authored or
+# committed one: the owner under two names at one address, the repository's own collector bot,
+# and GitHub, as the committer of a merge made through the web or the API. The pair is what is
+# allowed, compared without case, so another name at the owner's address is refused as firmly
+# as another assistant is. A new identity is a maintainer's decision, made here, and this file
+# is `human` lane so no run can widen it.
+AUTHORS = {("talon sturgill", "talon.sturgill@gmail.com"), ("talon", "talon.sturgill@gmail.com"),
+           ("texas-ai-docket-bot", "bot@texasaidocket.com")}
+COMMITTERS = AUTHORS | {("github", "noreply@github.com")}
 
 
 def identity_problem(role: str, name: str, email: str) -> str | None:
     """Why a commit's author or committer may not commit here, or None when it may."""
-    allowed = AUTHOR_EMAILS if role == "author" else COMMITTER_EMAILS
+    allowed = AUTHORS if role == "author" else COMMITTERS
     if assistant_identity(name, email):
         return f"the {role} is {name} <{email}>, an assistant's identity. Commits are the owner's"
-    if email.strip().lower() not in allowed:
-        return (f"the {role} is {name} <{email}>, which is not the owner, the repository's bot or "
-                f"GitHub merging. Commits are the owner's")
+    if (re.sub(r"\s+", " ", name).strip().lower(), email.strip().lower()) not in allowed:
+        return (f"the {role} is {name} <{email}>, which is not one of the identities allowed to "
+                f"commit here, the owner's, the repository's bot or GitHub merging. Commits are "
+                f"the owner's")
     return None
 
 
@@ -424,6 +427,9 @@ def self_test() -> int:
                                      GIT_AUTHOR_EMAIL="codex@openai.com")).returncode
         ok("...and any identity that is not the owner's or the repository's bot", rc == 1)
         rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=dict(human, GIT_AUTHOR_NAME="Codex")).returncode
+        ok("...and another name at the owner's own address", rc == 1)
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
                             env=human).returncode
         ok("...while the owner's own identity commits", rc == 0)
     ok("an identity is judged by its name and its domain, as a trailer is",
@@ -479,6 +485,9 @@ def self_test() -> int:
             merged = commit_as("Talon", "talon.sturgill@gmail.com",
                                dict(os.environ, GIT_COMMITTER_NAME="GitHub",
                                     GIT_COMMITTER_EMAIL="noreply@github.com"))
+            borrowed = commit_as("Talon", "talon.sturgill@gmail.com",
+                                 dict(os.environ, GIT_COMMITTER_NAME="Someone",
+                                      GIT_COMMITTER_EMAIL="noreply@github.com"))
         finally:
             os.chdir(here)
         ok("--check-range passes a clean range", clean == 0)
@@ -489,6 +498,7 @@ def self_test() -> int:
         ok("...and a commit authored by any identity that is not the owner's", other == 1)
         ok("...while the repository's own bot passes", bot == 0)
         ok("...and a merge GitHub committed for the owner passes", merged == 0)
+        ok("...while another name committing at GitHub's address fails", borrowed == 1)
         ok("...and the clean range before any of it still passes", clean_head and clean == 0)
 
     print(f"\nattribution_strip self-test: {'all passed' if not failures else f'{failures} FAILED'}")

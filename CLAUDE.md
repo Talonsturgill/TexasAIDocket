@@ -69,10 +69,10 @@ exceptions, every commit and PR in this repo:
 **`.githooks/commit-msg` strips the first three from every commit message before the commit
 exists, and CI refuses a pull request whose commits still carry one** (2026-09-27), both through
 `scripts/shared/attribution_strip.py`, which is `human` lane so no run can weaken the check on its
-own commits. The fourth rule is enforced as an allowlist: CI holds every commit's author and
-committer to the owner's address, the repository's collector bot, or GitHub committing a merge,
-the only three identities in main's history, and the hook refuses any other identity before the
-commit exists. A clone that skipped the first commands below commits as Claude and is refused.
+own commits. The fourth rule is enforced as an allowlist of name and address pairs: CI holds
+every commit's author and committer to the owner's, the repository's collector bot's, or GitHub's
+committing a merge, the only identities in main's history, and the hook refuses any other before
+the commit exists. A clone that skipped the first commands below commits as Claude and is refused.
 A new identity is added in that file by a maintainer. The harness asks every session to add the
 lines.
 Two reached `main` on 2026-09-19, and the runs of September 20th, 21st and 27th each rewrote pushed
