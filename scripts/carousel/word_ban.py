@@ -35,7 +35,8 @@ WHERE IT RUNS
         hook, subtitle or story line copy.json carries
       every slide string copy.json holds, its machinery keys aside
       every word the render report says a slide printed, text the design marked decorative
-        and a canvas's drawn text included, because a short label set straight into a slide's
+        and a canvas's drawn text included, and every string a slide's own CSS prints through
+        `content`, because a short label set straight into a slide's
         HTML reaches no manifest and copy_sync_check lets a short unauthored string through
       each claim's own sentence, which the web edition's claim by claim verification prints
       the web edition in ledger/articles/, its section kicker included
@@ -85,8 +86,8 @@ ARTICLES = REPO_ROOT / "ledger" / "articles"
 SINCE = "2026-09-27"
 
 # A straight-quoted passage may break across a line, never across a blank line, so one stray mark
-# can't carry the exemption into the paragraphs after it (Codex, PR 379).
-QUOTED = re.compile(r'"(?:[^"\n]|\n(?![ \t]*\n))*"')
+# can't carry the exemption into the paragraphs after it, whatever the line ending (Codex, PR 379).
+QUOTED = re.compile(r'"(?:[^"\n]|\n(?![ \t\r]*\n))*"')
 URL = re.compile(r"https?://\S+|www\.\S+")
 SENTENCE = re.compile(r"[^.!?\n]+[.!?]?")
 # The claim fields that carry a source's own quotation. Its title fields are sources_block's
@@ -154,7 +155,9 @@ def _found_at(text: str, *, sources: tuple = (), quotes: tuple = (),
     for m in rx.finditer(text):
         if any(a <= m.start() and m.end() <= b for a, b in spans):
             continue
-        if len(_passage(text, m.start(), theirs).split()) >= CONTAINED_MIN_WORDS:
+        # a word is a token with a letter or digit in it, so "THE / PATTERN" is two (Codex, PR 379)
+        if sum(1 for t in _passage(text, m.start(), theirs).split()
+               if re.search(r"\w", t)) >= CONTAINED_MIN_WORDS:
             continue
         around = text[max(0, m.start() - 40):m.end() + 40].replace("\n", " ").strip()
         out.append((m.group(0), around, m.start()))
@@ -377,6 +380,22 @@ def _text_blocks(nodes: list) -> list:
     return [(b["text"], b["parts"], b["touch"]) for b in blocks]
 
 
+CSS_CONTENT = re.compile(r"(?<![\w-])content\s*:\s*([^;}]*)")
+CSS_STRING = re.compile(r'"((?:\\.|[^"\\])*)"|\'((?:\\.|[^\'\\])*)\'')
+
+
+def css_content(html: str) -> list:
+    """Each string a stylesheet's `content` property prints, adjacent strings joined as CSS joins
+    them. A ::before or ::after label never reaches render.py's report, so it is read from the
+    slide's own HTML (Codex, PR 379)."""
+    out = []
+    for m in CSS_CONTENT.finditer(html):
+        joined = "".join(a or b for a, b in CSS_STRING.findall(m.group(1)))
+        if joined.strip():
+            out.append(joined)
+    return out
+
+
 def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> list:
     """(where, word, around) for each banned word the committed render report says a slide
     printed: a label set straight into the HTML, furniture the design marked decorative, a
@@ -406,6 +425,10 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
         drawn = dict.fromkeys(str(t.get("text") or "") for t in rec.get("canvas_text") or []
                               if isinstance(t, dict))
         units += [(c, [(0, len(c), c)], []) for c in drawn if c.strip()]
+        page = d / "slides" / Path(str(rec.get("file") or "")).name
+        if rec.get("file") and page.is_file():
+            units += [(c, [(0, len(c), c)], [])
+                      for c in dict.fromkeys(css_content(page.read_text(encoding="utf-8")))]
         # render.py keeps TEXT_WINDOW characters of each string, and a banned word past that is
         # a word no gate can read. None of 3,136 nodes in 35 decks has reached it, so the gate
         # fails closed on one rather than passing what it can't see (Codex, PR 379). The length
@@ -570,8 +593,15 @@ def self_test() -> int:
        and len(hits("U.S. gap remains", banned=banned)) == 1)
     ok("a quotation broken across a line keeps its words (Codex, PR 379)",
        not hits('The memo says "a pattern\nof late filings" twice.', banned=banned))
-    ok("...but a stray mark never carries the exemption past a blank line",
-       len(hits('A stray " mark.\n\nThe gap is ours. "Quoted."', banned=banned)) == 1)
+    ok("...but a stray mark never carries the exemption past a blank line, CRLF included",
+       len(hits('A stray " mark.\n\nThe gap is ours. "Quoted."', banned=banned)) == 1
+       and len(hits('A stray " mark.\r\n\r\nThe gap is ours. "Quoted."', banned=banned)) == 1)
+    ok("a lone punctuation mark is not a word, so 'THE / PATTERN' stays a two word label "
+       "(Codex, PR 379)",
+       len(hits("THE / PATTERN", quotes=("the / pattern of filings",), banned=banned)) == 1)
+    ok("a CSS content string is read, adjacent strings joined, and align-content is not one",
+       css_content('<style>.k::before{content:"THE " \'PATTERN\'} .r{align-content:center}'
+                   '.q::after{content: "\\201C"}</style>') == ["THE PATTERN", "\\201C"])
     ok("--run fails a deck dated after the rule and notes one on or before it (Codex, PR 379)",
        exit_code("2026-09-28", ["x"]) == 1 and exit_code("2026-09-27", ["x"]) == 0
        and exit_code("2026-09-28", []) == 0)
@@ -659,6 +689,9 @@ def self_test() -> int:
                 {"text": ("Ten days apart. " * 21)[:320], "anc": []},
                 {"text": ("Ten days apart. " * 20)[:319], "anc": []}],
              "canvas_text": [{"text": ("Two  spaces here. " * 30)[:320], "fn": "fillText"}]}]}))
+        (d / "slides").mkdir()
+        (d / "slides" / "slide-08.html").write_text(
+            '<style>.k::before{content:"THE " "PATTERN"} .r{align-content:center}</style>')
         (d / "caption.txt").write_text("The council voted. Here is why it matters.\n")
         (d / "first_comment.txt").write_text(
             f"Sources.\n{title}, KGNS.\nPattern Energy, September 20th.\nhttps://example.com/gap\n")
@@ -685,12 +718,12 @@ def self_test() -> int:
            "overlapping, and the last column's label does not. On slide 7 a string cut at the "
            "report's window fails closed, a cut just after a space and a canvas string with a "
            "double space included, and one a character short of it passes. On slide 8 a word "
-           "set in two touching spans and a label beside touching text are caught, and two "
-           "words a space apart are not joined (Codex, PR 379)",
+           "set in two touching spans, a label beside touching text and a ::before label its CSS "
+           "prints are caught, and two words a space apart are not joined (Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
                      "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
                      "rendered slide 3": 2, "rendered slide 5": 1, "rendered slide 6": 1,
-                     "rendered slide 7": 3, "rendered slide 8": 2, "claim c1": 1, "claim c4": 1,
+                     "rendered slide 7": 3, "rendered slide 8": 3, "claim c1": 1, "claim c4": 1,
                      "web edition section": 1, "web edition dek": 1,
                      "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()
