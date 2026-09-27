@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-24
+- Last checked: 2026-09-27
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The docket's own case style still describes the Dinosaur Switch to Longshore Switch line and still names all twenty two counties it would cross. The docket is live and taking filings, and no order disposing of it has appeared.
 - 2026-09-19 · The line is still approved on the terms the commission set. The docket goes on taking filings after the decision, so every count of them here is true of the day it was read rather than of today.
 - 2026-09-24 · The commission's order approving the line still stands on its original terms. The docket keeps taking filings after the order, so any count of them belongs to the day it is read.
+- 2026-09-27 · The commission's order approving the line still stands as issued. Filings keep reaching the docket without reopening it.
 
 ## Evidence
 

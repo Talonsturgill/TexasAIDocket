@@ -1,0 +1,55 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.006,
+ "hard_fails": [
+  "Frame 8 dek: 'The government's claims against the other defendants go on.' c58 says 'the remaining defendants'; 'other defendants' is a universal that re-imports RealPage, whose proposed Final Judgment the source cites at FJ VI.B.3 and IV.D. Repair with c58's own noun."
+ ],
+ "ship": false,
+ "named_defects": [
+  "F8 other vs remaining defendants",
+  "F8 three building comparison unreadable, dead lower 40%",
+  "F2 final prices vs final floor plan prices",
+  "F5 isotype on black",
+  "F3 c29 cited but unused; primitive figure",
+  "caption Frisco placement rests on c13, absent from the first comment"
+ ]
+}

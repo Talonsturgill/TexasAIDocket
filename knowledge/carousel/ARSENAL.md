@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 97 in 10 families |
+| kit models | 98 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 64 |
 | record and site tools the routine names | 20 |
@@ -175,15 +175,16 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `crowd` | 8 x 1.9 x 5.3 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, in the frame of the crowd itself (kept in place, not recentred), else roughly +z. |
 | `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up; toward -1\|1 for point; hat auto\|none\|cap\|cowboy\|hard; build auto\|male\|female. |
 
-### homes (9)
+### homes (10)
 
-`assets/js/kit/homes.js`, The Texas street: the one-storey brick ranch, the suburban two-storey, the single-wide, the fences that run between them, the mailbox, the driveway and the lawn.
+`assets/js/kit/homes.js`, The Texas street: the one-storey brick ranch, the suburban two-storey, the single-wide, the fences that run between them, the mailbox, the driveway and the lawn, and the garden walk-up apartment ...
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `barbed_wire_fence` | 20.2 x 1.6 x 0.2 | length, strands, spacing | Options: length m, strands, spacing (T-post spacing, m). |
 | `chain_link_fence` | 12.2 x 1.3 x 0.25 | length, height, color | Options: length m, height m (1.22 is a 4 ft fence), color galvanized\|black. |
 | `driveway` | 7.5 x 0.06 x 9 | width, length, flare, age | Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). |
+| `garden_apartment` | 54.1 x 13.1 x 16.8 | cores, groupBays, floors, brick, siding, trim, roof, lampsOn, lit, litUnits, glow, office, officeGlow, officeI, officeSpill, lampLights, lampI, poolI, vents | Options (null = seeded choice): cores (breezeways 1 to 6), groupBays (bays between cores 1 to 4), floors (2 to 4), brick, siding, trim, roof (shingle colour), lampsOn (true\|false\|[per core]; false for a daytime frame), lit (share of front units lit, by seed) ... |
 | `mailbox` | 0.7 x 1.45 x 0.7 | style, color, brick | Options (null = seeded choice): style post\|brick, color (box colour), brick (column colour). |
 | `mobile_home` | 23.5 x 4 x 8.7 | style, color, trim | Options (null = seeded choice): style modern\|vintage, color (siding), trim (the vintage accent band). |
 | `privacy_fence` | 12 x 1.9 x 0.15 | length, height, gate, weathered | Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). |
@@ -369,7 +370,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`.
 
 **Geodata** (`assets/geo/`):
 

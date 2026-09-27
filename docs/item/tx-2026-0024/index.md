@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-24
+- Last checked: 2026-09-27
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-18 · The feed is still live and still carries the commission's open meetings with the comment deadlines attached to them. The open meeting the record named for today stands on it, in the commissioners hearing room, and the project deadlines listed after it have not moved.
 - 2026-09-21 · The feed answered and is still publishing the commission's open meetings with the room named on each one. A workshop has appeared on it since the last check, set for the week after this one and marked open to the public. The comment deadline the record already carries is still listed.
 - 2026-09-24 · The feed has rolled past the mid September entries the record quoted, which is what a live calendar does. It still lists the October 15th comment deadline for Project 59086 and still marks each open meeting open to the public.
+- 2026-09-27 · The commission still publishes its open meeting calendar as a live feed, and the feed still names the projects and hearing rooms ahead.
 
 ## Evidence
 

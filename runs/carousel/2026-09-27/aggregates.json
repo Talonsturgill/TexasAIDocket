@@ -1,0 +1,92 @@
+{
+ "date": "2026-09-27",
+ "_note": "Every figure the detector reads as a count or duration, declared with the claim it was quoted from or the claims it counted.",
+ "aggregates": [
+  {
+   "phrase": "four times",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c24",
+   "quote": "three to four times per year",
+   "note": "the complaint's own range, quoted"
+  },
+  {
+   "phrase": "16 million units",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 16,
+   "quoted_from": "c34",
+   "quote": "over 16 million units",
+   "note": "the plaintiffs' allegation, quoted and attributed on the frame"
+  },
+  {
+   "phrase": "48 Texas submarkets",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 48,
+   "computed_by": "out/2026-09-27/compute.py counts the rows under a Texas area in the complaint's Appendix A (c37 carries the 48 extracted names), texas_submarkets in figures.json",
+   "from_claims": [
+    "c36",
+    "c37"
+   ],
+   "note": "17 Dallas-Plano-Irving, 13 Austin-Round Rock, 12 Houston, 4 San Antonio, 2 Fort Worth, all computed from the same list"
+  },
+  {
+   "phrase": "Nine terms",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 9,
+   "from_claims": [
+    "c39",
+    "c40",
+    "c41",
+    "c42",
+    "c43",
+    "c45",
+    "c46",
+    "c47",
+    "c48"
+   ],
+   "note": "the Competitive Impact Statement numbers its requirements i to ix; c44 elaborates v and is not counted"
+  },
+  {
+   "phrase": "60 days",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c8",
+   "quote": "within 60 days of the date of this notice",
+   "note": "the notice's own window, quoted; no close date is printed"
+  },
+  {
+   "phrase": "two ways",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c12",
+    "c37"
+   ],
+   "note": "Frisco as Pinnacle's headquarters in the government's filings (c12) and Frisco listed in Appendix A (c37)"
+  },
+  {
+   "phrase": "60 days",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c8",
+   "quote": "within 60 days of the date of this notice",
+   "note": "the notice's own window, quoted"
+  },
+  {
+   "phrase": "180 days",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 180,
+   "quoted_from": "c49",
+   "quote": "Beginning 180 days after entry of the Stipulation and Order",
+   "note": "the proposed judgment's own start for the software restrictions, quoted"
+  }
+ ]
+}

@@ -2287,4 +2287,63 @@
  "considered_and_not_built": "Candidate 5, acceptance lists passing on blank frames. The instinct acceptance-items-need-a-floor was confirmed by the run, and UPGRADE_BACKLOG items 10 and 13 of 2026-09-21 already carry the harness that answers it. A second proposal would add nothing. A pixel gate for the horizon seam that guesses the horizon row from the steepest gradient was also considered and rejected. It is a proxy that no one has shown separates the defect, which is GATE_LESSONS 77, and the true row needs the camera from proposal 3. A second contact_trace behaviour, requiring the claim match to end at a boundary so a truncated url fails, was found and confirmed live while this fix was being made. It was left out to keep this upgrade to one behaviour, and is written up in UPGRADE_BACKLOG 2026-09-26 item 5",
  "lane": "upgrade. Two scripts, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing the daily lane owns"
 }
+,
+"2026-09-27 upgrade": {
+ "run": "carousel no. 35, the Pinnacle RealPage proposed judgment (nightrent)",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit lift: garden_apartment moved from the no. 35 chassis into assets/js/kit/homes.js at the judges' named fix. The roof is rebuilt through the family's gableRoof (laminated shingle texture with bump in a seeded weathered tone that leaves out the palette's near-black, ridge cap, fascia, rake boards, K-style gutters and downspouts, a light drip edge on the eaves and the rakes, siding gable walls with a louvred vent, turbine vents). The walk pool under a lit core is built in, the wall pack is a housing with a lens, and the model centres its own footprint so its published coordinates stay true",
+   "why": "The craft card named the hero's roof as a flat black slab with no shingle read or rim, and the wall packs as specks until every frame added a pool on the walk (lampI 12, poolI 40 on frames 1, 3, 4 and 7). The chassis roof was two bare planes under the registry's small shingle tile in #3b3936 with no edge trim. Phase 17's first job is lifting the chassis model at the named fix, and the kit had no apartment building",
+   "files": [
+    "assets/js/kit/homes.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "lampI 12 and poolI 40 defaults": "the values every frame of no. 35 converged on through review, read from runs/carousel/2026-09-27/slides/slide-0{1,3,4,7}.html. Not new numbers",
+    "roof tone": "the homes family's existing ROOFS palette less '#393a3c', its near-black entry. No new colour typed",
+    "shingle, fascia, gutter, rake and cap dimensions": "the homes family's gableRoof and eaveTrim as they already build every house (5 5/8 in laminated exposure)",
+    "drip edge colour 0xd4d3cd": "mill-finish aluminium, the material a drip edge is sold in. The houses keep their dark default because the option is unset for them",
+    "declared size [54.1, 13.1, 16.8]": "measured by examples/kit/sizes.py --fix over its sixteen seeds. The chassis declared 74 m wide, which is the no. 35 hero's five-core configuration and not the defaults"
+   },
+   "verification": "examples/kit/build.py --family homes --names garden_apartment at goldenHour and blueHour, rendered through .claude/skills/carousel-engine/render.py: exit 0, errors=0 on every page, read at full size. Frames 1 and 4 of no. 35 re-rendered from the committed slides with the kit model in place of the chassis's: exit 0, errors=0, and out/2026-09-27/tmp/kitproof/compare_f1.png shows the building before and after (shingle courses, rake board and drip edge, gable vent, gutter and fascia lines where the slab was). examples/kit/sizes.py: exit 1 before --fix (declared 74 m, measured 54.07), exit 0 after, 98 of 98 models at their declared size and centred. print_ban.py --assets exit 0. node tests/txlayout.mjs exit 0. node --check on homes.js exit 0. No gate was added or changed, so no self-test case is owed",
+   "revert": "the upgrade commit on claude/daily-2026-09-27 touching assets/js/kit/homes.js. Reverting it restores the chassis's own model for no. 35, because its installKit only defines the model when the kit lacks it",
+   "how_i_would_know_this_was_wrong": "A judge on the next deck that uses garden_apartment still names the roof as a slab, or names the shingle tile's repeat as a pattern at distance (a faint lattice is visible on the in-situ render at 2160 wide). Or a ranch_house, two_story_house or mobile_home proof changes, which would mean the drip option leaked past its default. Or a deck placing things at userData.units finds them off the building, which would mean the in-make centring is wrong"
+  },
+  {
+   "what": "deck_coherence.frames_in keys frames by slide stem across extensions, PNG preferred over WebP over JPEG, instead of returning the first extension with any match",
+   "why": "ship_images keeps a frame's PNG when its WebP falls under the quality floor. No. 35's frame 4 did, so the shipped directory held one PNG beside eight WebPs and shipped_check's deck coherence read one frame and failed a complete deck with 'found 1'",
+   "files": [
+    "scripts/carousel/deck_coherence.py"
+   ],
+   "verification": "deck_coherence --self-test exit 0; frames_in returns 9 on the mixed no. 35 directory, the all-WebP no. 34 directory and the all-PNG render directory; shipped_check --run 2026-09-27 reports no fatal finding"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "Copy out/2026-09-27/tmp/kitproof/compare_f1.png into examples/kit/ as the apartment's proof image, beside cab-proof.webp",
+   "owner": "human",
+   "why": "examples/kit/** is not in the upgrade lane, so the proof lives in scratch and dies with the container. UPGRADE_BACKLOG 2026-09-27 item 1"
+  },
+  {
+   "what": "reverify.py line 797 writes ledger/docket.json at indent 2, canonical is indent 1, third run in a row",
+   "owner": "daily",
+   "why": "The run put the record back by hand again. One-character fix plus a round trip test. UPGRADE_BACKLOG 2026-09-27 item 5"
+  }
+ ],
+ "proposals_in_lane_not_built": [
+  {
+   "what": "Isolate why the kit person reads as a mannequin at the deck's 70 px face (sodium key, skin sheen, unlit sclera, hair value) by one-variable renders, then fix people.js with that crop as proof",
+   "why": "Measured on frame 3: figure about 620 px tall, face about 70 px, so the geometry is at a readable size and something flattens it. No cause is proven, so no edit. UPGRADE_BACKLOG 2026-09-27 item 2"
+  },
+  {
+   "what": "A suburb_block landscape model (street grid, curbs, streetlight heads, lit roofs, tree crowns, instanced) for count and overhead frames",
+   "why": "F5's void was the frame's own fog override and unlit ground between clusters, not an engine gap. The missing piece is ground cover the kit does not have. UPGRADE_BACKLOG 2026-09-27 item 3"
+  },
+  {
+   "what": "layout_check reports accent coverage at full size beside the thumb figure, the warning unchanged",
+   "why": "Frames 1, 3 and 7 declared a storefront accent too small to survive the thumb. The gate is right and is not loosened. The diagnostic tells a director the fix is scale, not colour. UPGRADE_BACKLOG 2026-09-27 item 4"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/homes.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns"
+}
 }

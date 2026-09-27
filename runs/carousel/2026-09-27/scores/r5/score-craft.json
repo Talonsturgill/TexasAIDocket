@@ -1,0 +1,54 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.27,
+ "hard_fails": [],
+ "ship": true,
+ "ranked_artwork_defects": [
+  "F9 cabinet hardware and light strip cross the dek and email line; laptop body flat accent blue; dead bottom third",
+  "F5 void under a hard sky strip",
+  "F8 dead lower fifth; key never names the share",
+  "F3/F7 primitive scale figure; F7 orphaned columns",
+  "F6 hard bands top and bottom",
+  "F2 empty left wall; cool strobe",
+  "F1 pickup cab aliasing"
+ ]
+}

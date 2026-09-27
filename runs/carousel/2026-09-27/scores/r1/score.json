@@ -1,0 +1,116 @@
+{
+ "weighted_score": 6.756,
+ "judges": [
+  6.69,
+  7.3,
+  6.86
+ ],
+ "spread": 0.61,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 5.0,
+   "weight": 0.2,
+   "judges": [
+    5.0,
+    8.5,
+    5.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    8.0,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "an unverified fact presented as verified: frame 3 (kicker 'Auto-accept, by default', dek 'The complaint says AIRM and YieldStar approve those changes on their own by default ... turn auto-accept off') attributes to the complaint a claim it does not make. Paragraph 66 sets only default PARAMETERS and says the landlord can 'disable or enable' auto-accept; paragraphs 67 and 68 describe RealPage pushing clients to turn it on. c27's claim text carries the drift.",
+  "an unverified fact presented as verified: frame 8 dek 'The case against RealPage and the other landlords goes on.' c58 names neither RealPage nor all the landlords, and the same document defines a US-RealPage Final Judgment entered in this case.",
+  "Frame 8 (slide-08, dek line 2): 'The case against RealPage and the other landlords goes on.' is an unverified fact presented as verified. The cited claim c58 says only 'claims against the remaining defendants included in the Complaint' and names no defendant. No claim establishes that RealPage remains a litigating defendant, and c53 refers to a separate RealPage Final Judgment."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "an unverified fact presented as verified: frame 3 (kicker 'Auto-accept, by default', dek 'The complaint says AIRM and YieldStar approve those changes on their own by default ... turn auto-accept off') attributes to the complaint a claim it does not make. Paragraph 66 sets only default PARAMETERS and says the landlord can 'disable or enable' auto-accept; paragraphs 67 and 68 describe RealPage pushing clients to turn it on. c27's claim text carries the drift."
+  },
+  {
+   "judge": 1,
+   "fail": "an unverified fact presented as verified: frame 8 dek 'The case against RealPage and the other landlords goes on.' c58 names neither RealPage nor all the landlords, and the same document defines a US-RealPage Final Judgment entered in this case."
+  },
+  {
+   "judge": 3,
+   "fail": "Frame 8 (slide-08, dek line 2): 'The case against RealPage and the other landlords goes on.' is an unverified fact presented as verified. The cited claim c58 says only 'claims against the remaining defendants included in the Complaint' and names no defendant. No claim establishes that RealPage remains a litigating defendant, and c53 refers to a separate RealPage Final Judgment."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.3 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.3,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.3 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0
+}

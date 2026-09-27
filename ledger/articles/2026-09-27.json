@@ -1,0 +1,138 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Federal action",
+ "dek": {
+  "text": "A proposed federal judgment would bar a Frisco apartment manager from rent software fed by rivals' data. It binds one landlord, and the public can comment first.",
+  "claims": [
+   "c3",
+   "c12",
+   "c55",
+   "c8"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "The Justice Department has asked a federal court to enter a judgment against Pinnacle Property Management Services. The proposed judgment was filed on {{date:c3}}. It [bars Pinnacle from licensing or using a revenue management software that relies on competitively sensitive data](c3). The Competitive Impact Statement describes the company plainly. [Pinnacle, headquartered in Frisco, Texas, is one of the largest apartment managers in the United States.](c12)",
+   "claims": [
+    "c3",
+    "c12"
+   ]
+  },
+  {
+   "text": "The judgment comes out of a larger case. [The United States first sued RealPage](c5) on {{date:c5}} with co-plaintiff states. On {{date:c6}} it [amended the complaint to add Pinnacle and five other property management companies](c6). RealPage itself is [headquartered in Richardson, Texas](c15).",
+   "claims": [
+    "c5",
+    "c6",
+    "c15"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the complaint says the software does",
+   "paragraphs": [
+    {
+     "text": "The government's account of the software is an allegation, not a finding. The amended complaint describes a nightly run. [Every night, for each participating property, AIRM applies the model's learned parameters to that property's internal transactional data](c25). It says [a new floor plan price recommendation is generated daily](c26). It says the model's learned parameters come from landlords' nonpublic data and [are then used for all AIRM clients across the country](c23).",
+     "claims": [
+      "c25",
+      "c26",
+      "c23"
+     ]
+    },
+    {
+     "text": "The complaint describes how easily a recommendation becomes a rent. Auto-accept is a switch the landlord can turn on or off. The complaint says [by default, AIRM and YieldStar set auto-accept parameters of a 3% daily change and an 8% weekly change](c27). Once it is on, it says, [a landlord functionally delegates pricing authority to RealPage](c28) within those limits. A manager [can choose to do a bulk acceptance](c30), while one who declines [must provide \"specific business commentary\"](c31). By the complaint's count, [nearly 60% of final floor plan prices are within 2.5% of RealPage's recommendation](c33).",
+     "claims": [
+      "c27",
+      "c28",
+      "c30",
+      "c31",
+      "c33"
+     ]
+    },
+    {
+     "text": "Texas is all over the complaint's market list. Appendix A names RealPage-defined submarkets where the government says aligned pricing has harmed or is likely to harm renters, and [Frisco](c37) and [Richardson](c38) are both on it. The complaint says [the penetration rate for AIRM and YieldStar](c36) in each of those markets runs from at least around {{number:c36}}% to {{number:c36:1}}%.",
+     "claims": [
+      "c37",
+      "c38",
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the judgment would require",
+   "paragraphs": [
+    {
+     "text": "The core limits are about data. Pinnacle can't use outside pricing software that relies on [third-party nonpublic data to recommend or set prices](c39). Nor can it use one that [pools information across Pinnacle properties with different owners](c40). It also can't use a product that [requires Defendant to accept, or provides any financial rewards for Defendant to accept, any recommended rental prices](c50). Those software limits begin [180 days after entry of the Stipulation and Order](c49).",
+     "claims": [
+      "c39",
+      "c40",
+      "c50",
+      "c49"
+     ]
+    },
+    {
+     "text": "The rest is oversight. Pinnacle must [designate a chief antitrust compliance officer](c43), who [will conduct an annual antitrust compliance audit](c44). The United States may [inspect its documents and interview its employees](c45) and may [review the relevant code and pseudocode](c46) of Pinnacle's own pricing product. A court may appoint a monitor [if the Court finds that Pinnacle has violated the terms](c48).",
+     "claims": [
+      "c43",
+      "c44",
+      "c45",
+      "c46",
+      "c48"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it doesn't do",
+   "paragraphs": [
+    {
+     "text": "It isn't a ban on RealPage. [After entry by the Court of a RealPage Final Judgment, Defendant may license or use a RealPage Revenue Management Product](c53) without a separate certification. It binds [Defendant, as defined above, and all other Persons in active concert or participation with Defendant who receive actual notice](c55), not every landlord in Texas. Pinnacle consented [without this Final Judgment constituting any evidence against or admission by any party](c59), and the government's [claims against the remaining defendants](c58) go on.",
+     "claims": [
+      "c53",
+      "c55",
+      "c59",
+      "c58"
+     ]
+    },
+    {
+     "text": "The record doesn't say whether the judgment will change any rent Pinnacle charges in Frisco or elsewhere. The filings describe what software Pinnacle may use, not what its rents will be.",
+     "claims": [
+      "c3"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "How to comment",
+   "paragraphs": [
+    {
+     "text": "The notice ran in the [Federal Register](c1) on {{date:c1}}, and [public comment is invited within 60 days of the date of this notice](c8). The Competitive Impact Statement words the window as [60 days](c9) from the later of its Federal Register publication or its newspaper summary. Comments go [in English](c10) to the Technology and Digital Platforms Section of the Antitrust Division, or by email to [ATR.Public-Comments-Tunney-Act-MB@usdoj.gov](c11). The court may enter the judgment only after [the Court's determination that the proposed Final Judgment is in the public interest](c62).",
+     "claims": [
+      "c1",
+      "c8",
+      "c9",
+      "c10",
+      "c11",
+      "c62"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0189",
+   "label": "The proposed judgment against Pinnacle, in the record"
+  },
+  {
+   "id": "tx-2026-0006",
+   "label": "The Texas AI law the Attorney General enforces"
+  }
+ ]
+}

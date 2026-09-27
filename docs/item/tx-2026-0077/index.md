@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-09-24
+- Last checked: 2026-09-27
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-16 · The transportation committee's hearing on driverless deployment now sits in the committee's own permanent meeting archive, which is where a held hearing goes. The committee has published no report out of it, so the interim charge is still open.
 - 2026-09-19 · The committee has published no report out of the August hearing on driverless deployment. Its own archive still lists the sitting, and what the posted notice said about the charge is unconfirmed.
 - 2026-09-24 · The committee has still published no report from its August hearing on driverless deployment.
+- 2026-09-27 · The committee's own page still lists the August hearing and still links no report from it.
 
 ## Evidence
 

@@ -1,0 +1,203 @@
+{
+ "_note": "Every value is extracted from a claim quote or counted from a claim's own list by compute.py. Everything on how the software works is the plaintiffs' allegation.",
+ "texas_submarkets": {
+  "value": 48,
+  "from": [
+   "c36",
+   "c37"
+  ],
+  "basis": "rows under a Texas area in the complaint's Appendix A, counted"
+ },
+ "texas_submarkets_by_area": {
+  "Austin-Round Rock, TX": 13,
+  "Dallas-Plano-Irving, TX": 17,
+  "Fort Worth-Arlington, TX": 2,
+  "Houston-The Woodlands-Sugar Land, TX": 12,
+  "San Antonio-New Braunfels, TX": 4
+ },
+ "dallas_submarkets": {
+  "value": 17,
+  "from": [
+   "c37"
+  ]
+ },
+ "austin_submarkets": {
+  "value": 13,
+  "from": [
+   "c37"
+  ]
+ },
+ "houston_submarkets": {
+  "value": 12,
+  "from": [
+   "c37"
+  ]
+ },
+ "san_antonio_submarkets": {
+  "value": 4,
+  "from": [
+   "c37"
+  ]
+ },
+ "fort_worth_submarkets": {
+  "value": 2,
+  "from": [
+   "c37"
+  ]
+ },
+ "auto_accept_daily_pct": {
+  "value": 3,
+  "from": [
+   "c27"
+  ],
+  "basis": "the complaint's default, alleged"
+ },
+ "auto_accept_weekly_pct": {
+  "value": 8,
+  "from": [
+   "c27"
+  ],
+  "basis": "the complaint's default, alleged"
+ },
+ "retrains_low": {
+  "value": 3,
+  "word": "three",
+  "from": [
+   "c24"
+  ]
+ },
+ "retrains_high": {
+  "value": 4,
+  "word": "four",
+  "from": [
+   "c24"
+  ]
+ },
+ "near_rec_share_pct": {
+  "value": 60,
+  "from": [
+   "c33"
+  ],
+  "basis": "nearly, alleged"
+ },
+ "near_rec_band_pct": {
+  "value": 2.5,
+  "from": [
+   "c33"
+  ]
+ },
+ "close_rec_share_pct": {
+  "value": 85,
+  "from": [
+   "c33"
+  ]
+ },
+ "close_rec_band_pct": {
+  "value": 5,
+  "from": [
+   "c33"
+  ]
+ },
+ "units_million": {
+  "value": 16,
+  "from": [
+   "c34"
+  ],
+  "basis": "the plaintiffs' allegation"
+ },
+ "penetration_low_pct": {
+  "value": 26,
+  "from": [
+   "c36"
+  ]
+ },
+ "penetration_high_pct": {
+  "value": 69,
+  "from": [
+   "c36"
+  ]
+ },
+ "comment_days": {
+  "value": 60,
+  "from": [
+   "c8"
+  ]
+ },
+ "term_years": {
+  "value": 5,
+  "word": "five",
+  "from": [
+   "c54"
+  ]
+ },
+ "early_end_years": {
+  "value": 3,
+  "word": "three",
+  "from": [
+   "c54"
+  ]
+ },
+ "restriction_start_days": {
+  "value": 180,
+  "from": [
+   "c49"
+  ]
+ },
+ "realpage_share_pct": {
+  "value": 80,
+  "from": [
+   "c64"
+  ]
+ },
+ "revenue_systems": {
+  "value": 3,
+  "word": "three",
+  "from": [
+   "c22"
+  ]
+ },
+ "judgment_requirements": {
+  "value": 9,
+  "from": [
+   "c39",
+   "c40",
+   "c41",
+   "c42",
+   "c43",
+   "c45",
+   "c46",
+   "c47",
+   "c48"
+  ],
+  "basis": "numbered requirements i to ix in the Competitive Impact Statement, counted"
+ },
+ "defendants_added": {
+  "value": 6,
+  "from": [
+   "c6"
+  ],
+  "basis": "Pinnacle and five others added in the amended complaint"
+ },
+ "software_limits": {
+  "value": 5,
+  "from": [
+   "c39",
+   "c40",
+   "c41",
+   "c50",
+   "c51"
+  ],
+  "basis": "the judgment's limits on what pricing software Pinnacle may use, the set this deck read: i, ii, iii, the acceptance requirement and the rent floor, counted"
+ },
+ "column_scale_m_per_pt": 0.25,
+ "column_daily_m": 0.75,
+ "column_weekly_m": 2.0,
+ "band_px_per_pt": 30,
+ "band_near_px": 75,
+ "band_close_px": 150,
+ "other_building_front_units": 12,
+ "lit_units_low": 3,
+ "lit_units_high": 8,
+ "notice_date": "2026-09-18",
+ "filed_date": "2026-09-04"
+}

@@ -1,0 +1,86 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 6.86,
+ "hard_fails": [
+  "Frame 8 (slide-08, dek line 2): 'The case against RealPage and the other landlords goes on.' is an unverified fact presented as verified. The cited claim c58 says only 'claims against the remaining defendants included in the Complaint' and names no defendant. No claim establishes that RealPage remains a litigating defendant, and c53 refers to a separate RealPage Final Judgment."
+ ],
+ "ship": false,
+ "named_defects": [
+  {
+   "frame": 8,
+   "defect": "'The case against RealPage ... goes on' is backed by no claim."
+  },
+  {
+   "frame": 8,
+   "defect": "Bottom 40% empty road; the lit-neighbour counts are illegible; the penetration sentence belongs on frame 5."
+  },
+  {
+   "frame": 5,
+   "defect": "Clones float in a black void under a hard amber band; Richardson named without its reason (c15)."
+  },
+  {
+   "frame": 7,
+   "defect": "Dek counts c41, a conduct bar, as a software limit; rent floors drops c51's exception."
+  },
+  {
+   "frame": 6,
+   "defect": "Margin labels outside the safe zone; page blown out; dead lower third."
+  },
+  {
+   "frame": 2,
+   "defect": "The 5% label is never explained."
+  },
+  {
+   "frame": 3,
+   "defect": "YieldStar unintroduced; primitive columns and kit person."
+  },
+  {
+   "frame": 4,
+   "defect": "Three sentences open The complaint says, It says, It says."
+  },
+  {
+   "frame": 9,
+   "defect": "The deciding court is never named; relative deadline; primitive kit figure."
+  }
+ ],
+ "one_sentence_fix": "Rewrite frame 8's line to c58's own scope and give Richardson its reason on frame 5 (c15)."
+}

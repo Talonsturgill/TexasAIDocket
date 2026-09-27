@@ -1711,3 +1711,22 @@ next time.
 
 **Hosts that refused this fetcher, stamped rather than routed around:** `www.dps.texas.gov`
 returned a WAF block page to every client. `news.rice.edu` answered 406 to WebFetch.
+
+## 2026-09-27, daily run (carousel no. 35)
+
+**`www.leandertx.gov` rotates its news listing.** Leander's Flock notice (tx-2026-0180) dropped
+off the front of the city's newsflash listing within days. The same notice reads unchanged at its
+own detail address, `/m/newsflash/Home/Detail/1347`. Cite a CivicPlus newsflash by its detail page,
+never by the listing.
+
+**`www.govinfo.gov` serves the Federal Register PDF plainly through `fetch_doc.py`,** and its text
+layer carried every quote this run checked, including the Antitrust Division's comment address,
+which the layer splits across a line break after `ATR.Public-Comments-`. The joined address matches
+the notice. The PDF is the better citation than the federalregister.gov HTML for a notice's
+contact details.
+
+**`www.dhs.gov` behaved as this log already says:** 403 to the project fetcher, 200 to WebFetch,
+and the checked sentences on tx-2026-0120 came back exact.
+
+**Brazos County's own site still answers 403 to every client.** tx-2026-0088 keeps its old stamp
+rather than taking one from a journalism source that is not the county's word.

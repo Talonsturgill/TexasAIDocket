@@ -1,7 +1,8 @@
 /* kit/homes.js, see assets/js/txkit.js for the conventions.
  *
  * The Texas street: the one-storey brick ranch, the suburban two-storey, the single-wide, the
- * fences that run between them, the mailbox, the driveway and the lawn. Every house is built
+ * fences that run between them, the mailbox, the driveway and the lawn, and the garden walk-up
+ * apartment building every suburban submarket has (lifted from no. 35, 2026-09-27). Every house is built
  * the way a house is built: a slab, walls with REAL openings (reveals, sills, lintels), windows
  * that are frames, sashes, meeting rails and glass over a room with blinds in it, a roof with
  * overhang, fascia, soffit, drip edge, gutters and downspouts, and caps on the hips.
@@ -602,7 +603,9 @@ export function install(K, THREE, TXT) {
     for (const [a, b, nx, nz, side] of edges) {
       const L = Math.hypot(b[0] - a[0], b[2] - a[2]), mx = (a[0] + b[0]) / 2, mz = (a[2] + b[2]) / 2, ry = Math.atan2(nx, nz);
       bx(B, fm, L + 0.05, fh, 0.03, mx - nx * 0.015, o.ye - fh, mz - nz * 0.015, { ry });
-      bx(B, metal(0x4a4642, 0.5), L + 0.06, 0.025, 0.045, mx + nx * 0.005, o.ye - 0.012, mz + nz * 0.005, { ry });
+      // o.drip: the drip edge's colour. Every house keeps the dark default; a building seen at dusk
+      // from a lot away passes a mill-finish aluminium so its eave has a rim that catches the sky
+      bx(B, metal(o.drip != null ? o.drip : 0x4a4642, 0.5), L + 0.06, 0.025, 0.045, mx + nx * 0.005, o.ye - 0.012, mz + nz * 0.005, { ry });
       if (o.gutters && o.gutters[side]) {
         // K-style gutter: a face with an ogee lip and a back, and a bead on top
         bx(B, gm, L + 0.04, 0.125, 0.012, mx + nx * 0.125, o.ye - 0.15, mz + nz * 0.125, { ry });
@@ -647,6 +650,8 @@ export function install(K, THREE, TXT) {
         const X = e === '+' ? L1 : L0, nx = e === '+' ? 1 : -1;
         for (const zz of [z0, z1]) {
           const g = beam(B, fm, [X - nx * 0.015, ye - fh / 2 + 0.02, zz], [X - nx * 0.015, yr - fh / 2 + 0.03, cz], 0.03, fh + 0.02);
+          // the rake's own drip edge, only when a caller asked for a light one (see eaveTrim)
+          if (o.drip != null) beam(B, metal(o.drip, 0.5), [X + nx * 0.008, ye - 0.01, zz], [X + nx * 0.008, yr - 0.01, cz], 0.05, 0.03);
         }
       }
       eaveTrim(B, Object.assign({}, o, { x0: L0, x1: L1 }), [[[L0, ye, z1], [L1, ye, z1], 0, 1, 'front'], [[L1, ye, z0], [L0, ye, z0], 0, -1, 'back']]);
@@ -1453,4 +1458,347 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* =======================================================================================
+   * garden_apartment: the Texas garden walk-up, lifted from carousel no. 35's chassis
+   * (assets/js/deck/2026-09-27-nightrent.js, 2026-09-27) AT THE JUDGES' NAMED FIX.
+   *
+   * WHAT IT IS. The garden walk-up of every suburban Texas submarket since the 1980s: two to four
+   * storeys at 3.05 m floor to floor, a brick ground floor and lap siding above, a 6 in 12 gable
+   * roof with its ridge along the building, a balcony and a sliding door on every bay with a window
+   * beside it, and open breezeway stair cores through the depth of the building, each with
+   * concrete treads on steel stringers, landings, a pipe rail and wall pack lamps. Condensers on
+   * pads along the back, a leasing office storefront in the west end bay when asked for.
+   *
+   * WHAT THE LIFT CHANGED, and why. The judges on no. 35 named the building well (brick, lap
+   * siding, balconies and lit breezeways read as a place) and named two defects in it:
+   *   1. THE ROOF READ AS A FLAT BLACK SLAB with no shingle read and no rim. The chassis roof was a
+   *      bare pair of planes under the registry's small shingle tile in near-black (#3b3936), with a
+   *      trim strip under it and nothing on its edges. It is now this family's own roof: the
+   *      laminated architectural shingle (shingleTex, colour and bump, 5 5/8 in exposure) in a
+   *      seeded weathered tone off the family's palette with its darkest entry left out, through
+   *      gableRoof, so it carries a ridge cap, a painted fascia, rake boards, K-style gutters and
+   *      downspouts, and a mill-finish aluminium drip edge on the eaves AND the rakes. Those are the
+   *      light lines a real roof shows at dusk, and they are what a dark roof reads by. Turbine
+   *      vents on the slopes break the plane the way they do on every Texas walk-up.
+   *   2. THE WALL PACKS READ AS SPECKS until every frame added a light pool on the walk. The pool
+   *      is built in now: a lit core throws its pool by default (poolI), independent of lampLights,
+   *      and the pack is a fixture (a bronze housing with a lens on its face) rather than a
+   *      glowing chip. The defaults for lampI and poolI are the values every frame of no. 35
+   *      converged on by review (12 and 40), not new numbers.
+   * A daytime frame passes lampsOn: false, the way a wall pack's photocell would.
+   *
+   * THE FOOTPRINT IS CENTRED IN make(), not left to K.make, because this model publishes
+   * coordinates (units, cores, office, dims.bays) that a shift after the fact would silently
+   * invalidate. The chassis relied on K.make and its unit coordinates were off by the shift.
+   *
+   * userData: units (each front unit's slider centre {bay, floor, x, y, z, lit}), cores ({x, lampOn}),
+   * dims ({L, D, eave, ridge, floorH, y0, bays}), office ({x, y, z, w, h} the storefront) or null.
+   * ===================================================================================== */
+  {
+    const APT_ROOFS = ROOFS.filter((c) => c !== '#393a3c');   // the family palette less its near-black
+    const aBox = (B, m, w, h, d, x, y0, z, uvm) => {
+      const g = new THREE.BoxGeometry(w, h, d); g.translate(x, y0 + h / 2, z);
+      if (uvm) K.uvBox(g, uvm);
+      return B.add(m, g);
+    };
+    const aBar = (B, m, a, b, rad) => {
+      const A = new V3(a[0], a[1], a[2]), C = new V3(b[0], b[1], b[2]), len = A.distanceTo(C);
+      const g = new THREE.CylinderGeometry(rad, rad, len, 8);
+      g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new V3(0, 1, 0), C.clone().sub(A).normalize()));
+      const mid = A.clone().add(C).multiplyScalar(0.5); g.translate(mid.x, mid.y, mid.z);
+      return B.add(m, g);
+    };
+    /* a wall in the x/y plane, outer face at z = zf facing +z (or -z when back), x0..x1, base y0,
+     * height H, thickness t, with rectangular openings cut through it as real reveals */
+    const aWall = (B, m, uvm, x0, x1, y0, H, zf, t, ops, back) => {
+      const zc = back ? zf + t / 2 : zf - t / 2, cuts = [x0, x1];
+      ops.forEach((o) => { cuts.push(Math.max(x0, Math.min(x1, o.x0)), Math.max(x0, Math.min(x1, o.x1))); });
+      cuts.sort((a, b) => a - b);
+      for (let i = 0; i < cuts.length - 1; i++) {
+        const u0 = cuts[i], u1 = cuts[i + 1];
+        if (u1 - u0 < 1e-3) continue;
+        const mid = (u0 + u1) / 2;
+        const holes = ops.filter((o) => o.x0 < mid && o.x1 > mid).sort((a, b) => a.y0 - b.y0);
+        let y = y0;
+        holes.forEach((h) => { if (h.y0 - y > 1e-3) aBox(B, m, u1 - u0, h.y0 - y, t, mid, y, zc, uvm); y = Math.max(y, h.y1); });
+        if (y0 + H - y > 1e-3) aBox(B, m, u1 - u0, y0 + H - y, t, mid, y, zc, uvm);
+      }
+    };
+    /* the room behind a lit window: a warm wash, darker toward the edges, with blinds or a
+     * curtain, so a lit window reads as a room and not a lamp */
+    const ROOMTEX = new Map();
+    const roomTex = (kind) => {
+      if (ROOMTEX.has(kind)) return ROOMTEX.get(kind);
+      const c = canvas(128), x = c.getContext('2d'), g = x.createRadialGradient(64, 58, 6, 64, 64, 96);
+      if (kind === 'office') { g.addColorStop(0, '#ffffff'); g.addColorStop(0.35, '#9aa3ab'); g.addColorStop(1, '#1c2024'); }
+      else if (kind === 'blinds') { g.addColorStop(0, '#fff1d6'); g.addColorStop(0.55, '#e9b777'); g.addColorStop(1, '#6a4526'); }
+      else { g.addColorStop(0, '#ffe7c2'); g.addColorStop(0.6, '#d49a5c'); g.addColorStop(1, '#4d311c'); }
+      x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+      if (kind === 'blinds') for (let i = 0; i < 128; i += 6) { x.fillStyle = 'rgba(40,24,10,0.28)'; x.fillRect(0, i, 128, 1.4); }
+      if (kind === 'curtain') { x.fillStyle = 'rgba(60,34,16,0.55)'; x.fillRect(0, 0, 22, 128); x.fillRect(106, 0, 22, 128); }
+      if (kind === 'office') { x.fillStyle = 'rgba(0,0,0,0.7)'; x.fillRect(0, 88, 128, 40); }
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+      ROOMTEX.set(kind, t);
+      return t;
+    };
+    /* a lit room's material, cached by kind, colour and intensity (never shared across a change
+     * in any of them, the matKey rule in txkit.js) */
+    const litRoom = (kind, c, i) => mat(K.matKey('apt-litroom|' + kind, { emissive: c, emissiveIntensity: i }),
+      () => new THREE.MeshStandardMaterial({ color: 0x000000, emissive: c, emissiveIntensity: i, emissiveMap: roomTex(kind), roughness: 0.2 }));
+
+    K.define('garden_apartment', {
+      size: [54.1, 13.1, 16.8],
+      options: { cores: 2, groupBays: 2, floors: 3, brick: null, siding: null, trim: 0xe9e5da, roof: null,
+                 lampsOn: true, lit: 0.3, litUnits: null, glow: 0xffc27a, office: false, officeGlow: 0x7fb2d9, officeI: 1.6,
+                 officeSpill: 0, lampLights: false, lampI: 12, poolI: 40, vents: true },
+      note: 'Options (null = seeded choice): cores (breezeways 1 to 6), groupBays (bays between cores 1 to 4), floors (2 to 4), brick, siding, trim, roof (shingle colour), lampsOn (true|false|[per core]; false for a daytime frame), lit (share of front units lit, by seed) or litUnits [[bay, floor]...] with bay counted left to right, glow, office ("west"|false), officeGlow, officeI, officeSpill (a light thrown out of the storefront, 0 for none), lampLights (a point light per lit pack, lampI), poolI (each lit core\'s pool on the walk, 0 for none), vents. A Texas garden walk-up: brick ground floor, lap siding above, a 6/12 laminated shingle gable roof with fascia, gutters, downspouts, a light drip edge and turbine vents, a balcony and slider on every bay, open breezeway stair cores with wall pack fixtures, condensers at the back. userData.units, .cores, .dims, .office.',
+      make(o, r) {
+        const grp = new THREE.Group(), B = Bucket();
+        const cores = Math.max(1, Math.min(6, o.cores | 0)), gb = Math.max(1, Math.min(4, o.groupBays | 0));
+        const floors = Math.max(2, Math.min(4, o.floors | 0));
+        const UW = 7.6, FH = 3.05, D = 13.2, T = 0.3, BW = 3.8, Y0 = 0.25;
+        const nBays = (cores + 1) * gb, L = nBays * UW + cores * BW, x0 = -L / 2, zF = D / 2, zB = -D / 2, Htot = floors * FH;
+        const pk = (a) => a[Math.floor(r() * a.length) % a.length];
+        const brickC = o.brick != null ? o.brick : pk(['#8f5a44', '#9b6a52', '#7d4e3c', '#a7775c', '#b99c7c', '#c2a27e']);
+        const sidingC = o.siding != null ? o.siding : pk(['#c9c3b3', '#b8b9ad', '#d2cbbb', '#a9afab', '#c7bba4']);
+        const roofC = o.roof != null ? o.roof : pk(APT_ROOFS);
+        const bT = K.tex('brick', { color: hex(brickC) }), sT = K.tex('siding', { color: hex(sidingC) });
+        const bm = bT.userData.metres, sm = sT.userData.metres;
+        const bM = K.mat('apt-brick|' + brickC, { color: 0xffffff, map: bT, roughness: 0.92, bumpMap: bT, bumpScale: 1.4 });
+        const sM = K.mat('apt-siding|' + sidingC, { color: 0xffffff, map: sT, roughness: 0.8, bumpMap: sT, bumpScale: 0.8 });
+        const roofT = shingleTex(hex(roofC));
+        const roofM = texMat(roofT, 'aptroof|' + hex(roofC), { bumpScale: 2.4, roughness: 0.9, side: THREE.DoubleSide });
+        const capM = texMat(roofT, 'aptcap|' + hex(roofC), { bumpScale: 1.0, roughness: 0.9, color: 0xd8d8d8 });
+        const trimM = K.mat('apt-trim|' + o.trim, { color: o.trim, roughness: 0.55 });
+        const slabM = K.mat('apt-slab', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.93 });
+        const railM = K.mat('apt-rail', { color: 0x222426, roughness: 0.45, metalness: 0.55 });
+        const frameM_ = K.mat('apt-frame', { color: 0x3a3029, roughness: 0.5, metalness: 0.3 });     /* dark bronze */
+        const soffitM = K.mat('apt-soffit', { color: 0xd8d2c4, roughness: 0.8 });
+        const coreWallM = K.mat('apt-corewall', { color: 0x6d675e, roughness: 0.85 });
+        const coreSideM = K.mat('apt-coreside|' + sidingC, { color: 0x857f76, map: sT, roughness: 0.85, bumpMap: sT, bumpScale: 0.8 });
+        const darkPane = K.finish.glass(0x18212a);
+        const litMats = { blinds: litRoom('blinds', o.glow, 1.3), curtain: litRoom('curtain', o.glow, 1.1) };
+        const dimRoom = K.mat('apt-dim', { color: 0x101316, roughness: 0.9 });
+        const lampsOn = (c) => (Array.isArray(o.lampsOn) ? !!o.lampsOn[c] : !!o.lampsOn);
+
+        /* bay and core x positions along the front, left to right */
+        const bayX = [], coreX = [];
+        let x = x0;
+        for (let g = 0; g <= cores; g++) {
+          for (let b = 0; b < gb; b++) { bayX.push(x + UW / 2); x += UW; }
+          if (g < cores) { coreX.push(x + BW / 2); x += BW; }
+        }
+        const officeBay = o.office === 'west' ? 0 : -1;
+        const litSet = {};
+        if (Array.isArray(o.litUnits)) o.litUnits.forEach((u) => { litSet[u[0] + ':' + u[1]] = true; });
+        else for (let b0 = 0; b0 < nBays; b0++) for (let f0 = 0; f0 < floors; f0++) if (r() < o.lit) litSet[b0 + ':' + f0] = true;
+
+        aBox(B, slabM, L + 0.3, Y0, D + 0.3, 0, 0, 0, 3.0);
+        const units = [];
+        let office = null;
+
+        /* the runs of wall between cores, front and back */
+        const runs = [];
+        for (let g2 = 0; g2 <= cores; g2++) {
+          const a = g2 === 0 ? x0 : coreX[g2 - 1] + BW / 2, e = g2 === cores ? x0 + L : coreX[g2] - BW / 2;
+          runs.push([a, e, g2 * gb]);
+        }
+        [false, true].forEach((back) => {
+          const zf = back ? zB : zF, sgn = back ? -1 : 1;
+          for (let f = 0; f < floors; f++) {
+            const yb = Y0 + f * FH, wm = f === 0 ? bM : sM, uvm = f === 0 ? bm : sm;
+            runs.forEach((run) => {
+              const ops = [];
+              for (let k = 0; k < gb; k++) {
+                const bi = run[2] + k, cx = bayX[bi], flip = (bi % 2) ? -1 : 1;
+                if (!back && f === 0 && bi === officeBay) {
+                  ops.push({ x0: cx - 3.1, x1: cx + 3.1, y0: yb + 0.05, y1: yb + 2.6, kind: 'store', cx, bi });
+                } else if (!back) {
+                  ops.push({ x0: cx - flip * 1.25 - 1.15, x1: cx - flip * 1.25 + 1.15, y0: yb + 0.02, y1: yb + 2.12, kind: 'door', cx: cx - flip * 1.25, bi });
+                  ops.push({ x0: cx + flip * 2.1 - 0.7, x1: cx + flip * 2.1 + 0.7, y0: yb + 0.9, y1: yb + 2.3, kind: 'win', cx: cx + flip * 2.1, bi });
+                } else {
+                  ops.push({ x0: cx - 0.6, x1: cx + 0.6, y0: yb + 1.0, y1: yb + 2.2, kind: 'win', cx, bi });
+                  ops.push({ x0: cx + flip * 2.4 - 0.45, x1: cx + flip * 2.4 + 0.45, y0: yb + 1.3, y1: yb + 2.2, kind: 'win', cx: cx + flip * 2.4, bi });
+                }
+              }
+              aWall(B, wm, uvm, run[0], run[1], yb, FH, zf, T, ops, back);
+              aBox(B, trimM, run[1] - run[0] + 0.02, 0.18, 0.05, (run[0] + run[1]) / 2, yb + FH - 0.18, zf + sgn * 0.025);
+              ops.forEach((op) => {
+                const lit = !back && !!litSet[op.bi + ':' + f];
+                const w = op.x1 - op.x0, h = op.y1 - op.y0, cy_ = (op.y0 + op.y1) / 2;
+                const room = new THREE.PlaneGeometry(w - 0.04, h - 0.04); if (back) room.rotateY(Math.PI);
+                room.translate(op.cx, cy_, zf - sgn * (T + 0.25));
+                let rm = dimRoom;
+                if (op.kind === 'store') rm = litRoom('office', o.officeGlow, o.officeI != null ? o.officeI : 1.6);
+                else if (lit) rm = op.kind === 'door' ? litMats.curtain : litMats.blinds;
+                B.add(rm, room);
+                /* the reveal's back returns, so a lit room has a lit box and not a card */
+                if (rm !== dimRoom) {
+                  const side = new THREE.PlaneGeometry(0.27, h - 0.04); side.rotateY(Math.PI / 2);
+                  const sl = side.clone(); sl.translate(op.x0 + 0.02, cy_, zf - sgn * (T + 0.12)); B.add(dimRoom, sl);
+                  const sr = side.clone(); sr.rotateY(Math.PI); sr.translate(op.x1 - 0.02, cy_, zf - sgn * (T + 0.12)); B.add(dimRoom, sr);
+                }
+                const gl = new THREE.PlaneGeometry(w - 0.08, h - 0.08); if (back) gl.rotateY(Math.PI);
+                gl.translate(op.cx, cy_, zf - sgn * (T - 0.1));
+                if (rm === dimRoom) B.add(darkPane, gl);
+                const fz = zf - sgn * (T - 0.13);
+                aBox(B, frameM_, w, 0.05, 0.06, op.cx, op.y0, fz); aBox(B, frameM_, w, 0.05, 0.06, op.cx, op.y1 - 0.05, fz);
+                aBox(B, frameM_, 0.05, h, 0.06, op.x0 + 0.025, op.y0, fz); aBox(B, frameM_, 0.05, h, 0.06, op.x1 - 0.025, op.y0, fz);
+                if (op.kind === 'store') { for (let mu = 1; mu < 4; mu++) aBox(B, frameM_, 0.05, h, 0.06, op.x0 + w * mu / 4, op.y0, fz); aBox(B, frameM_, w, 0.05, 0.06, op.cx, op.y0 + 2.05, fz); }
+                else aBox(B, frameM_, 0.04, h, 0.06, op.cx, op.y0, fz + sgn * 0.01);
+                if (op.kind === 'win') aBox(B, trimM, w + 0.16, 0.06, 0.12, op.cx, op.y0 - 0.06, zf + sgn * 0.04);
+                if (op.kind === 'door') units.push({ bay: op.bi, floor: f, x: op.cx, y: cy_, z: zf, lit });
+                if (op.kind === 'store') office = { x: op.cx, y: cy_, z: zf, w, h };
+              });
+            });
+          }
+        });
+        /* the leasing office's awning: standing seam on two steel brackets */
+        if (office) {
+          const awM = K.mat('apt-awning', { color: 0x2c2f31, roughness: 0.4, metalness: 0.6 });
+          aBox(B, awM, office.w + 0.8, 0.08, 1.4, office.x, Y0 + 2.85, zF + 0.7);
+          for (let sn = 0; sn < 16; sn++) aBox(B, awM, 0.02, 0.04, 1.4, office.x - (office.w + 0.8) / 2 + (sn + 0.5) * (office.w + 0.8) / 16, Y0 + 2.93, zF + 0.7);
+        }
+        /* balconies on the front: a concrete slab on the upper floors, a patio on the ground, each
+         * with a steel picket rail */
+        for (let f2 = 0; f2 < floors; f2++) {
+          const yb2 = Y0 + f2 * FH;
+          for (let bb = 0; bb < nBays; bb++) {
+            if (f2 === 0 && bb === officeBay) continue;
+            const flip2 = (bb % 2) ? -1 : 1, bxC = bayX[bb] - flip2 * 1.25, BWd = 3.2, BD = 1.7;
+            if (f2 > 0) aBox(B, slabM, BWd, 0.16, BD, bxC, yb2 - 0.16, zF + BD / 2, 3.0);
+            else aBox(B, slabM, BWd + 0.4, 0.1, BD + 0.3, bxC, Y0 - 0.06, zF + (BD + 0.3) / 2, 3.0);
+            const ry = yb2 + 1.07, xa = bxC - BWd / 2 + 0.05, xb = bxC + BWd / 2 - 0.05, zo = zF + BD - 0.05;
+            aBar(B, railM, [xa, ry, zo], [xb, ry, zo], 0.028);
+            aBar(B, railM, [xa, ry, zF + 0.02], [xa, ry, zo], 0.028); aBar(B, railM, [xb, ry, zF + 0.02], [xb, ry, zo], 0.028);
+            aBar(B, railM, [xa, yb2 + 0.12, zo], [xb, yb2 + 0.12, zo], 0.018);
+            for (let p = 0; p <= 22; p++) { const px = xa + (xb - xa) * p / 22; aBar(B, railM, [px, yb2 + 0.12, zo], [px, ry, zo], 0.009); }
+            for (let p2 = 1; p2 < 10; p2++) {
+              const pz = zF + (zo - zF) * p2 / 10;
+              aBar(B, railM, [xa, yb2 + 0.12, pz], [xa, ry, pz], 0.009); aBar(B, railM, [xb, yb2 + 0.12, pz], [xb, ry, pz], 0.009);
+            }
+          }
+        }
+        /* the end walls, brick on the ground floor, siding above, a small window per floor */
+        [[x0, -1], [x0 + L, 1]].forEach((en) => {
+          aBox(B, bM, T, FH, D, en[0] - en[1] * T / 2, Y0, 0, bm);
+          aBox(B, sM, T, Htot - FH, D, en[0] - en[1] * T / 2, Y0 + FH, 0, sm);
+          for (let f3 = 0; f3 < floors; f3++) {
+            const wg = new THREE.PlaneGeometry(1.0, 1.2); wg.rotateY(en[1] * Math.PI / 2);
+            wg.translate(en[0] + en[1] * 0.01, Y0 + f3 * FH + 1.55, 2.2); B.add(darkPane, wg);
+            aBox(B, frameM_, 0.05, 1.3, 1.1, en[0] + en[1] * 0.02, Y0 + f3 * FH + 0.9, 2.2);
+          }
+        });
+        /* the breezeway cores */
+        const cores_ = [], doorM = K.mat('apt-door', { color: 0x4a3a2e, roughness: 0.6 });
+        const lensOn = K.finish.lamp(0xffb868, 3.4), lensOff = K.mat('apt-pack-off', { color: 0x8a8578, roughness: 0.3, metalness: 0.1 });
+        const packM = K.mat('apt-pack', { color: 0x2e2923, roughness: 0.5, metalness: 0.4 });
+        /* a wall pack on the core's west wall, facing +x: a bronze housing with a lens on its face,
+         * the lower two thirds of it, which is where a wall pack's refractor sits */
+        const wallPack = (xw, y, z, on) => {
+          aBox(B, packM, 0.16, 0.26, 0.32, xw + 0.08, y, z);
+          aBox(B, on ? lensOn : lensOff, 0.02, 0.16, 0.26, xw + 0.165, y + 0.02, z);
+        };
+        coreX.forEach((cx, ci) => {
+          const on = lampsOn(ci), xl = cx - BW / 2, xr = cx + BW / 2;
+          cores_.push({ x: cx, lampOn: on });
+          [[xl, 1], [xr, -1]].forEach((s) => {
+            aBox(B, coreSideM, T, Htot, D, s[0] + s[1] * T / 2, Y0, 0, sm);
+            for (let f4 = 0; f4 < floors; f4++) {
+              aBox(B, doorM, 0.05, 2.05, 0.95, s[0] + s[1] * (T + 0.02), Y0 + f4 * FH, -2.4);
+              aBox(B, frameM_, 0.06, 2.12, 1.08, s[0] + s[1] * (T + 0.01), Y0 + f4 * FH, -2.4);
+            }
+          });
+          aBox(B, coreWallM, BW, Htot, 0.12, cx, Y0, zB + 0.06, sm);
+          for (let f5 = 0; f5 < floors; f5++) {
+            const yl = Y0 + f5 * FH;
+            if (f5 > 0) {
+              aBox(B, slabM, BW - 0.6, 0.18, 3.4, cx, yl - 0.18, -3.9, 3.0);
+              aBox(B, soffitM, BW - 0.6, 0.02, 3.4, cx, yl - 0.2, -3.9);
+              aBar(B, railM, [xl + 0.3, yl + 1.0, -2.2], [xr - 0.3, yl + 1.0, -2.2], 0.024);
+              for (let p3 = 0; p3 <= 10; p3++) { const qx = xl + 0.3 + (BW - 0.6) * p3 / 10; aBar(B, railM, [qx, yl, -2.2], [qx, yl + 1.0, -2.2], 0.009); }
+            }
+            wallPack(xl + T, yl + 2.1, zF - 0.9, on);
+            wallPack(xl + T, yl + 1.95, -1.0, on);
+            wallPack(xl + T, yl + 1.95, -4.6, on);
+          }
+          /* the stair: a flight up from the front, a landing, a flight back, per floor */
+          for (let f6 = 0; f6 < floors - 1; f6++) {
+            const ys = Y0 + f6 * FH, n = 16, rise = FH / n, run = 0.27, half = (BW - 0.7) / 2;
+            const up = f6 % 2 === 0, xs = up ? xl + 0.35 : xr - 0.35 - half;
+            const zStart = up ? zF - 0.2 : -5.6 + 0.1, dir = up ? -1 : 1;
+            for (let s2 = 0; s2 < n; s2++) {
+              const zt = zStart + dir * (s2 + 0.5) * run;
+              aBox(B, slabM, half, 0.05, run + 0.02, xs + half / 2, ys + (s2 + 1) * rise - 0.05, zt);
+            }
+            const za = zStart, zb = zStart + dir * n * run;
+            [xs + 0.06, xs + half - 0.06].forEach((sx) => { aBar(B, railM, [sx, ys, za], [sx, ys + FH, zb], 0.05); });
+            aBar(B, railM, [xs + (up ? half : 0), ys + 1.0, za], [xs + (up ? half : 0), ys + FH + 1.0, zb], 0.022);
+          }
+          aBox(B, soffitM, BW, 0.1, D, cx, Y0 + Htot - 0.1, 0);
+          if (on && o.lampLights) {
+            for (let lf = 0; lf < floors; lf++) {
+              const pl = new THREE.PointLight(0xffb05a, o.lampI != null ? o.lampI : 12, 7, 2);
+              pl.position.set(cx - 0.6, Y0 + lf * FH + 2.2, zF - 1.4); pl.castShadow = false; grp.add(pl);
+            }
+          }
+          /* THE POOL, built in: the ground floor pack's light thrown out onto the walk in front of the
+           * core, so a lit breezeway reads at feed size and not as a speck (no. 35, every frame) */
+          if (on && o.poolI) {
+            const pp = new THREE.PointLight(0xffb05a, o.poolI, 11, 2);
+            pp.position.set(cx, Y0 + 2.4, zF + 1.0); pp.castShadow = false; grp.add(pp);
+          }
+        });
+        /* THE ROOF, the judges' named fix: 6 in 12, ridge along x, eaves 0.6 m out, rakes 0.4 m,
+         * through the family's gableRoof so it has every edge a real one has */
+        const ov = 0.6, rk = 0.4, pitch = 0.5, fh = 0.25, ye = Y0 + Htot + 0.05;
+        const xa2 = x0 - rk, xb2 = x0 + L + rk, za2 = zB - ov, zb2 = zF + ov, EL = xb2 - xa2;
+        /* downspouts where the chassis put them: both ends and the west side of every core,
+         * measured along each eave from where that eave starts (the back eave runs east to west) */
+        const spoutX = [xa2 + 0.3, xb2 - 0.3].concat(coreX.map((c) => c - BW / 2 - 0.15));
+        const res = gableRoof(B, { x0: xa2, x1: xb2, z0: za2, z1: zb2, ye, pitch, axis: 'x', roofMat: roofM, capMat: capM,
+          uvm: roofT.metres, trim: o.trim, fh, drip: 0xd4d3cd, wallOff: ov,
+          gutters: { front: spoutX.map((sx) => sx - xa2), back: spoutX.map((sx) => xb2 - sx) } });
+        const yr = res.yr;
+        /* the gable walls, in siding with a louvred vent, filling the rake to the roof's underside */
+        const shoulder = (ye - (Y0 + Htot)) + ov * pitch - 0.02;
+        for (const [gx, ry] of [[x0, -Math.PI / 2], [x0 + L, Math.PI / 2]]) {
+          gableWall(B, sM, sm, frameM(gx, Y0 + Htot, 0, ry), D, 0, yr - (Y0 + Htot), T, true, o.trim, shoulder);
+        }
+        /* turbine vents: one per bay, alternating slopes, a metre and a half down from the ridge */
+        if (o.vents) {
+          bayX.forEach((bxp, i) => {
+            const zv = (i % 2 ? -1 : 1) * 1.5, yv = ye + (zb2 - Math.abs(zv)) * pitch - 0.03;
+            turbine(B, bxp + (r() - 0.5) * 2, yv, zv);
+          });
+        }
+        /* condensers on pads along the back */
+        const cM = K.mat('apt-cond', { color: 0xb9bcbd, roughness: 0.5, metalness: 0.4 }), grille = K.mat('apt-grille', { color: 0x2b2d2f, roughness: 0.7 });
+        bayX.forEach((bxp) => {
+          for (let q = 0; q < floors; q++) {
+            const cxp = bxp - 1.2 + q * 1.1;
+            aBox(B, slabM, 0.95, 0.1, 0.95, cxp, 0, zB - 1.1, 3.0); aBox(B, cM, 0.8, 0.8, 0.8, cxp, 0.1, zB - 1.1); aBox(B, grille, 0.62, 0.02, 0.62, cxp, 0.9, zB - 1.1);
+          }
+        });
+        B.flush(grp);
+        /* officeSpill: the storefront's room light thrown out through the glass onto the walk and the
+         * lot in front of it, in the room's own colour */
+        if (office && o.officeSpill) {
+          const sp = new THREE.PointLight(o.officeGlow, o.officeSpill, 16, 2);
+          sp.position.set(office.x, 1.6, zF + 1.8); sp.castShadow = false; grp.add(sp);
+        }
+        /* centre the footprint HERE, and every published coordinate with it (see the header) */
+        const bb = new THREE.Box3().setFromObject(grp);
+        const dx = -(bb.min.x + bb.max.x) / 2, dz = -(bb.min.z + bb.max.z) / 2;
+        grp.children.forEach((c) => { c.position.x += dx; c.position.z += dz; });
+        units.forEach((u) => { u.x += dx; u.z += dz; });
+        cores_.forEach((c) => { c.x += dx; });
+        if (office) { office.x += dx; office.z += dz; }
+        grp.userData.units = units; grp.userData.cores = cores_; grp.userData.office = office;
+        grp.userData.dims = { L, D, eave: ye, ridge: yr, floorH: FH, y0: Y0, bays: bayX.map((b) => b + dx), zFront: zF + dz, zBack: zB + dz };
+        return grp;
+      },
+    });
+  }
 }
