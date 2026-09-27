@@ -1,0 +1,56 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.3,
+ "hard_fails": [],
+ "ship": false,
+ "named_defects": [
+  "F5: no ground plane, buildings float in a black void, hard orange bar under the kicker.",
+  "F2: storefront reads as a flat brown slab, a vertical seam runs through the hook and dek, the chair is a black slab.",
+  "F6: dark smear left of the page, dead desk front, monitor corner at the counter, labels outside the safe zone.",
+  "F9: hair artifact down the figure's back, face turned away, flat orange rectangle on the left wall.",
+  "F3: columns render as unlit black plinths; uncanny kit face.",
+  "F7: whole facade goes dark rather than the five cores; storefront under the accent floor.",
+  "F1, F7, F8: 35 to 45% empty asphalt foreground.",
+  "F8: lit-window encoding can't be read; storyboard contradicts itself on the hero's position."
+ ],
+ "one_sentence_fix": "Rebuild frame 5 as a place: lit ground, lot pools, contact, the glow as haze; give 1, 7 and 8 lot-level foreground detail."
+}

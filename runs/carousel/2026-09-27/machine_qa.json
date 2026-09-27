@@ -1,0 +1,132 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3592,
+        0.5399,
+        0.5092
+      ],
+      "band_ratio": 1.0805
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.1324,
+        0.2815,
+        0.3566
+      ],
+      "band_ratio": 1.3645
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2836,
+        0.4832,
+        0.5588
+      ],
+      "band_ratio": 1.2496
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2689,
+        0.4685,
+        0.7279
+      ],
+      "band_ratio": 1.4578
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3739,
+        0.2017,
+        0.2224
+      ],
+      "band_ratio": 0.8424
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.2794,
+        0.458,
+        0.3217
+      ],
+      "band_ratio": 0.9149
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3739,
+        0.2899,
+        0.5184
+      ],
+      "band_ratio": 1.2968
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2248,
+        0.437,
+        0.5974
+      ],
+      "band_ratio": 1.3965
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built",
+        "a drawn rule crosses the glyph band of 'The notice was published September 18th ' (canvas edge .pixels at 82,576.5 438x5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,509.5 702x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,510.5 702x1) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,512 702x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,513.5 702x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,515 702x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,517.5 702x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,519 702x3.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.2668,
+        0.5378,
+        0.454
+      ],
+      "band_ratio": 1.0782
+    }
+  ],
+  "fails": 0,
+  "warns": 17,
+  "verdict": "WARN"
+}

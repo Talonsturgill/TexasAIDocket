@@ -1,0 +1,275 @@
+{
+ "date": "2026-09-27",
+ "carousel_no": 35,
+ "document_title": "Pinnacle, RealPage and a rent recommended overnight",
+ "_note": "Built from render_report.json's own text nodes rather than retyped, because the strings a reader receives are the ones the browser laid out. The screen on frame 2 and the page on frame 6 are drawn on canvases as bars, bands and ruled lines and carry no words.",
+ "caption": "Frisco is in this case two ways.\n\nThe complaint and the Justice Department's impact statement place Pinnacle Property Management Services there. Appendix A of the complaint lists Frisco as a market where it says aligned pricing harmed or is likely to harm renters.\n\nPinnacle licensed RealPage's AI Revenue Management. The complaint says it recommends a new price for every floor plan every night.\n\nThe proposed judgment isn't a ban on RealPage. What it cuts off is the data. Starting 180 days after the court enters its stipulation order, Pinnacle can't use pricing software fed by third-party nonpublic data or pooled across owners. It binds one landlord.\n\nComments go to the Justice Department's Antitrust Division within 60 days of the September 18th notice.\n\nShould rivals' data be the line for every pricing algorithm in Texas, or only for one Frisco landlord?\n\n#FriscoTX #RealPage #TunneyAct\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "The night shift",
+   "headline": "Rent, recommended overnight",
+   "claims": [
+    "c3",
+    "c12",
+    "c20",
+    "c26"
+   ],
+   "cite": "c3 c12 c20 c26 DRAWN",
+   "body": "The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Rent, recommended overnight",
+    "The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
+    "The night shift",
+    "01 / 09",
+    "c3 c12 c20 c26 DRAWN"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The leasing office",
+   "headline": "Yes in bulk, no with a reason",
+   "claims": [
+    "c21",
+    "c30",
+    "c31",
+    "c33"
+   ],
+   "cite": "c21 c30 c31 c33 DRAWN",
+   "body": "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.",
+   "labels": [
+    "recommended",
+    "bulk acceptance",
+    "decline, with a reason"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Yes in bulk, no with a reason",
+    "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.",
+    "recommended",
+    "2.5%",
+    "5%",
+    "bulk acceptance",
+    "decline, with a reason",
+    "The leasing office",
+    "02 / 09",
+    "c21 c30 c31 c33 DRAWN"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The auto-accept limits",
+   "headline": "3% a day, 8% a week",
+   "claims": [
+    "c27",
+    "c28",
+    "c29"
+   ],
+   "cite": "c27 c28 c29 DRAWN TO ONE SCALE",
+   "body": "The complaint says AIRM and YieldStar can accept recommendations automatically, and the default limits are 3% a day and 8% a week. It says a landlord who turns auto-accept on in effect hands pricing authority to RealPage inside those limits.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "3% a day, 8% a week",
+    "The complaint says AIRM and YieldStar can accept recommendations automatically, and the default limits are 3% a day and 8% a week. It says a landlord who turns auto-accept on in effect hands pricing authority to RealPage inside those limits.",
+    "3% a day",
+    "8% a week",
+    "The auto-accept limits",
+    "03 / 09",
+    "c27 c28 c29 DRAWN TO ONE SCALE"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Where the data comes from",
+   "headline": "Leases feed the model",
+   "claims": [
+    "c23",
+    "c24",
+    "c34"
+   ],
+   "cite": "c23 c24 c34 DRAWN",
+   "body": "The complaint says landlords' nonpublic lease data runs through a machine learning model whose learned parameters serve every AIRM client. It says the model is generally retrained three to four times a year. It says RealPage has data from over 16 million units.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Leases feed the model",
+    "The complaint says landlords' nonpublic lease data runs through a machine learning model whose learned parameters serve every AIRM client. It says the model is generally retrained three to four times a year. It says RealPage has data from over 16 million units.",
+    "Where the data comes from",
+    "04 / 09",
+    "c23 c24 c34 DRAWN"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Appendix A of the complaint",
+   "headline": "48 Texas submarkets",
+   "claims": [
+    "c15",
+    "c36",
+    "c37",
+    "c38"
+   ],
+   "cite": "c15 c36 c37 c38 DRAWN",
+   "body": "The complaint lists them as places where it says aligned pricing harmed or is likely to harm renters. Frisco and Richardson are on the list. RealPage has its headquarters in Richardson.",
+   "labels": [
+    "17 Dallas- Plano- Irving",
+    "13 Austin- Round Rock",
+    "12 Houston",
+    "4 San Antonio",
+    "2 Fort Worth"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "48 Texas submarkets",
+    "48",
+    "The complaint lists them as places where it says aligned pricing harmed or is likely to harm renters. Frisco and Richardson are on the list. RealPage has its headquarters in Richardson.",
+    "17 Dallas- Plano- Irving",
+    "17",
+    "13 Austin- Round Rock",
+    "13",
+    "12 Houston",
+    "12",
+    "4 San Antonio",
+    "4",
+    "2 Fort Worth",
+    "2",
+    "Appendix A of the complaint",
+    "05 / 09",
+    "c15 c36 c37 c38 DRAWN"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The proposed final judgment",
+   "headline": "Nine terms for Pinnacle",
+   "claims": [
+    "c3",
+    "c12",
+    "c39",
+    "c40",
+    "c41",
+    "c42",
+    "c43",
+    "c44",
+    "c45",
+    "c46",
+    "c47",
+    "c48"
+   ],
+   "cite": "c3 c12 c39 to c48 DRAWN",
+   "body": "The impact statement sums up the proposed judgment against Pinnacle in nine terms. Beside the data limits they require a compliance officer, an annual audit and inspections.",
+   "labels": [
+    "v. a chief antitrust compliance officer",
+    "vi. inspect its documents",
+    "ix. a monitor if the Court finds that Pinnacle has violated"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Nine terms for Pinnacle",
+    "The impact statement sums up the proposed judgment against Pinnacle in nine terms. Beside the data limits they require a compliance officer, an annual audit and inspections.",
+    "v. a chief antitrust compliance officer",
+    "vi. inspect its documents",
+    "ix. a monitor if the Court finds that Pinnacle has violated",
+    "The proposed final judgment",
+    "06 / 09",
+    "c3 c12 c39 to c48 DRAWN"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "What the judgment switches off",
+   "headline": "The screen stays on",
+   "claims": [
+    "c39",
+    "c40",
+    "c41",
+    "c50",
+    "c51",
+    "c46",
+    "c53"
+   ],
+   "cite": "c39 c40 c41 c50 c51 c46 c53 DRAWN",
+   "body": "Five of its limits on how Pinnacle may price. It isn't a ban on RealPage, and the government may review the code and pseudocode of Pinnacle's own product.",
+   "labels": [
+    "third-party nonpublic data",
+    "pooling across owners",
+    "rivals' sensitive data",
+    "required acceptance",
+    "built-in rent floors"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The screen stays on",
+    "Five of its limits on how Pinnacle may price. It isn't a ban on RealPage, and the government may review the code and pseudocode of Pinnacle's own product.",
+    "third-party nonpublic data",
+    "pooling across owners",
+    "rivals' sensitive data",
+    "required acceptance",
+    "built-in rent floors",
+    "What the judgment switches off",
+    "07 / 09",
+    "c39 c40 c41 c50 c51 c46 c53 DRAWN"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The rest of the case",
+   "headline": "It binds one landlord",
+   "claims": [
+    "c55",
+    "c56",
+    "c58",
+    "c59",
+    "c36"
+   ],
+   "cite": "c55 c56 c58 c59 c36 DRAWN",
+   "body": "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It binds one landlord",
+    "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket.",
+    "The rest of the case",
+    "08 / 09",
+    "c55 c56 c58 c59 c36 DRAWN"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What a Texan can do",
+   "headline": "Comment before the court rules",
+   "claims": [
+    "c1",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c62"
+   ],
+   "cite": "c1 c8 c9 c10 c11 c62 DRAWN",
+   "body": "The notice was published September 18th and takes public comment within 60 days. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Comment before the court rules",
+    "The notice was published September 18th and takes public comment within 60 days. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division.",
+    "ATR.Public-Comments-Tunney-Act-MB@usdoj.gov",
+    "What a Texan can do",
+    "09 / 09",
+    "c1 c8 c9 c10 c11 c62 DRAWN"
+   ]
+  }
+ }
+}

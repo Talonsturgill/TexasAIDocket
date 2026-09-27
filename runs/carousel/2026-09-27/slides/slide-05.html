@@ -1,0 +1,105 @@
+<!doctype html>
+<!-- 2026-09-27, frame 5 of 9. Archetype GRID. RENDERED in the declared nightSodium world. One building per Texas row of Appendix A, five clusters by area. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#171310; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F3EEE6; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:880px; font-size:30px; line-height:1.4; color:#F0EAE0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2D8C8; white-space:nowrap; z-index:20; }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.25; color:#EDE4D6;
+         letter-spacing:0.02em; white-space:nowrap; z-index:12; }
+  .hook, .dek, .tx-site, .lab { text-shadow:0 0 6px rgba(10,8,6,0.9), 0 1px 16px rgba(10,8,6,0.65); }
+  svg.lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
+  .lab.k { text-align:center; font-size:24px; line-height:1.2; }
+  .lab.k .kn { font-size:34px; }
+  .hook .n48 { font-variation-settings:"opsz" 40; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook"><span class="n48">48</span> Texas submarkets</h1>
+<p class="dek" data-follow="30">The complaint lists them as places where it says aligned pricing harmed or is likely to harm renters. Frisco and Richardson are on the list. RealPage has its headquarters in Richardson.</p>
+<div class="lab k" id="k0"></div><div class="lab k" id="k1"></div><div class="lab k" id="k2"></div><div class="lab k" id="k3"></div><div class="lab k" id="k4"></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-27-nightrent.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Appendix A of the complaint", counter: "05 / 09", src: "c15 c36 c37 c38   DRAWN", ink: '#E2D8C8' });
+  TX.fitText(document.getElementById("hook"), { min: 90, max: 128, maxLines: 2 });
+  NIGHTRENT.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = NIGHTRENT, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, 0.00008], exposure: W.exposure * 1.0, tone: W.tone, fov: 60, far: 40000 });
+  /* ONE BUILDING PER SUBMARKET. Appendix A's Texas rows, counted in compute.py (TOTAL) and split
+   * by area (CL): TOTAL small garden buildings laid out one by one, each dealt to its area's
+   * cluster in the order of the counts, two across, so a cluster's depth is its count. Seen
+   * from a rise with the horizon in frame and the plain going to haze behind them. */
+  const TOTAL = 48;
+  const CL = [["Dallas-Plano-Irving", 17], ["Austin-Round Rock", 13], ["Houston", 12], ["San Antonio", 4], ["Fort Worth", 2]];
+  const proto = F.hero(K, { seed: 30, cores: 1, groupBays: 1, office: false, lampsOn: true, lampLights: false, lit: 0.7, floors: 4 });
+  const SX = 27, SZ = 30, GAP = 44, COLS = 2, ZOFF = 0;
+  const widths = CL.map(([, n]) => Math.min(COLS, n) * SX);
+  const x0 = [];
+  { let x = -(widths.reduce((a, b) => a + b, 0) + GAP * (CL.length - 1)) / 2; widths.forEach((w) => { x0.push(x); x += w + GAP; }); }
+  window.__cl = CL.map(([name, n], ci) => ({ name, n, at: [x0[ci] + widths[ci] / 2, 0, 18 + ZOFF] }));
+  const avoid = [];
+  let ci = 0, k = 0;
+  for (let i = 0; i < TOTAL; i++) {
+    while (k >= CL[ci][1]) { ci++; k = 0; }
+    const b = proto.clone(); const c = k % COLS, r = Math.floor(k / COLS);
+    b.position.set(x0[ci] + (c + 0.5) * SX, 0, -r * SZ + ZOFF); b.rotation.y = ((i * 37) % 7 - 3) * 0.01;
+    TXT.add(R, b);
+    /* each building's own paved lot in front of it, lit by its lamps */
+    const pad = TXT.roundedBox(SX - 5, 0.1, 9, 0.03, new THREE.MeshStandardMaterial({ color: 0x6a645c, roughness: 0.8 }));
+    pad.position.set(b.position.x, 0.05, b.position.z + 11); pad.receiveShadow = true; R.scene.add(pad);
+    k++;
+  }
+  CL.forEach(([name, n], j) => {
+    const rows = Math.ceil(n / COLS), cx = x0[j] + widths[j] / 2;
+    F.lotLamp(THREE, TXT, K, R, cx, 16 + ZOFF, { ry: Math.PI, i: 900, seed: 60 + j, height: 9 });
+    for (let r = 1; r < rows; r += 1) { const gl2 = new THREE.PointLight(F.SODIUM, 520, 28, 2); gl2.position.set(cx, 7, -r * SZ + SZ / 2 + ZOFF); R.scene.add(gl2); }
+    avoid.push([x0[j] - 8, -(rows - 1) * SZ - 14, x0[j] + widths[j] + 8, 26]);
+  });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, -60], distance: 500, shadowFar: 1200 });
+  TXT.ground(R, { surface: 'dirt', color: 0x4a3828, size: 30000, seed: 21 });
+  TXT.frame(R, { from: [0, 339, 376], look: [0, 0, -251] });
+  __cl.forEach((c) => { c.px = F.project(THREE, R, c.at); });
+
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  const WRAP = { 'Dallas-Plano-Irving': 'Dallas-<br>Plano-<br>Irving', 'Austin-Round Rock': 'Austin-<br>Round<br>Rock', 'San Antonio': 'San<br>Antonio', 'Fort Worth': 'Fort<br>Worth' };
+  __cl.forEach((c, i) => {
+    const el = document.getElementById('k' + i);
+    el.innerHTML = '<span class="kn">' + c.n + '</span><br>' + (WRAP[c.name] || c.name);
+    const b = el.getBoundingClientRect();
+    el.style.left = Math.max(80, Math.min(1000 - b.width, c.px[0] - b.width / 2)) + 'px';
+    el.style.top = (c.px[1] + 16) + 'px';
+    (window.__txLeaders = window.__txLeaders || []).push({ target: c.name, at: c.px, to: c.px });
+  });
+
+  return true;
+})();
+</script>
+</body>
+</html>

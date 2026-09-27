@@ -25,3 +25,27 @@ Every page check exited 0: `gridwatch_pagecheck`, `waterwatch_pagecheck`, `water
 - **/sources/.** 848 of 952 claims rest on a primary document, across 277 documents from 125 publishers. Both admissions today rest wholly on primary documents. The top publisher is `interchange.puc.texas.gov`, 109 claims from 23 documents, which is a primary source.
 - **/topic/.** The defense and federal card reads 8 decisions and 5 still open to comment. Its page lists 8 decisions.
 - **/place/.** Brazos County, where 0190 landed, reads 10 on the hub and its page lists 10 decisions.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 64 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 6 warn(s) |
+| aggregates     | PASS   | 8 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.46 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 30,716 chars planned |
+| caption        | PASS   | 143 words |
+| craft floor    | PASS   | 9 frame(s), median 839, floor 151 |
+| plan vs render | WARN   | 9 of 38 acceptance item(s) checkable |
+| texan          | PASS   | places Austin, Dallas, Fort Worth, Houston, Irving, Plano, Round Rock, San Antonio / body yes / deadline yes / next step yes |
+| absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
+| numerals       | FAIL   | 28 numeral(s) over 9 frame(s), 4 the cited claims do not reach: s5 prints '13' in "13 Austin- Round Rock" and NO claim in this run carries that figure in  |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+<!-- gate-status:end -->

@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- 2026-09-27, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's
+     declared nightSodium world. THE COVER. The hero garden building from its own lot at two in the
+     morning: five lit breezeways, two lit windows, the leasing storefront cool at the west end. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#171310; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F3EEE6; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:880px; font-size:30px; line-height:1.4; color:#F0EAE0; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2D8C8; white-space:nowrap; z-index:20; }
+  .hook, .dek, .tx-site { text-shadow:0 0 6px rgba(10,8,6,0.85), 0 1px 16px rgba(10,8,6,0.6); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Rent, recommended overnight</h1>
+<p class="dek" data-follow="30">The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-27-nightrent.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "The night shift", counter: "01 / 09", src: "c3 c12 c20 c26   DRAWN", ink: '#E2D8C8' });
+  TX.fitText(document.getElementById("hook"), { min: 96, max: 128, maxLines: 2 });
+  NIGHTRENT.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = NIGHTRENT, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
+
+  /* the building faces +z; the leasing office is its west (-x) end. The camera stands 100 m out in
+   * the lot, off the west end and low, so the whole front recedes to the right, all five lit cores
+   * and the east gable in frame with the glow beyond, the storefront nearest. */
+  const hero = F.hero(K, { litUnits: [[2, 2], [4, 1]], lampI: 12, poolI: 40, officeI: 8, officeSpill: 25 });
+  TXT.add(R, hero); TXT.contact(R, hero);
+  const L = hero.userData.dims.L, zF = hero.userData.dims.D / 2;
+  const CAM = [-L / 2 - 20, 1.6, 100];
+  TXT.frame(R, { from: CAM, look: [-2, 10.4, 0] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [-20, 0, 30], distance: 160, shadowFar: 360 });
+  const gnd = TXT.ground(R, { surface: 'asphalt', size: 5000, seed: 7 });
+  /* after rain: the asphalt's roughness pulled down so the lamps and the storefront streak in it */
+  if (gnd && gnd.material) gnd.material.roughness = 0.72;
+
+  /* the lot: a drive aisle along the facade, a row of stalls facing the building, lamps */
+  F.stalls(THREE, TXT, R, -L / 2 - 4, 11.5, 22, { dir: 1 });
+  F.lotLamp(THREE, TXT, K, R, -L / 2 + 14, 23, { ry: Math.PI, i: 140 });
+  F.lotLamp(THREE, TXT, K, R, -L / 2 + 58, 23, { ry: Math.PI, i: 120, seed: 33 });
+  const cars = [['pickup', -L / 2 + 1.4, 0x4a4038], ['sedan', -L / 2 + 6.9, 0x8a1f1f], ['suv', -L / 2 + 17.9, 0x1d2126], ['sedan', -L / 2 + 26.1, 0x8a7a66], ['sedan', -L / 2 + 42.4, 0x3a332d]];
+  cars.forEach((c, i) => {
+    const v = K.make(c[0], { seed: 11 + i, color: c[2] });
+    v.position.set(c[1], 0, 14.3); v.rotation.y = Math.PI; TXT.add(R, v); TXT.contact(R, v);
+  });
+  /* the near row, 14 m from the lens: empty stalls in a sodium pool on the wet asphalt, one
+   * pickup at the right edge, its pole just out of frame to the left */
+  const nx = CAM[0] + 8, nz = CAM[2] - 14;
+  F.stalls(THREE, TXT, R, nx - 8, nz - 2.8, 7, { dir: 1 });
+  { const pool = new THREE.PointLight(F.SODIUM, 520, 22, 2); pool.position.set(nx + 8, 7.5, nz - 2); R.scene.add(pool); }
+  const pk = K.make('pickup', { seed: 22, color: 0x6e5e4e }); pk.position.set(nx + 7.2, 0, nz - 3.5); pk.rotation.y = 0.35; TXT.add(R, pk); TXT.contact(R, pk);
+  /* parked cars at two in the morning: no running lamps */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 1 && m.material.emissive.getHex() >= 0xf00000 && (m.material.emissive.getHex() & 0xff) > 0xc0) m.material.emissiveIntensity = 0; });
+  /* a curbed island with a crape myrtle at the left of the near row */
+  const isl = TXT.roundedBox(5, 0.15, 3.4, 0.05, new THREE.MeshStandardMaterial({ color: 0x8e887d, roughness: 0.9 }));
+  isl.position.set(nx - 9, 0.075, nz + 3); TXT.add(R, isl);
+  const cm = K.make('crape_myrtle', { seed: 4, bloom: false, height: 5 }); cm.position.set(nx - 9, 0.15, nz + 3); TXT.add(R, cm); TXT.contact(R, cm);
+  /* a live oak past the east end with the glow beyond it */
+  const oak = K.make('live_oak', { seed: 6, height: 9 }); oak.position.set(L / 2 + 16, 0, 10); TXT.add(R, oak); TXT.contact(R, oak);
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

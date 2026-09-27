@@ -1,0 +1,2526 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rent, recommended overnight",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 202,
+          "font_px": 106.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              898,
+              131
+            ],
+            [
+              80,
+              236,
+              425,
+              131
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
+          "x": 82,
+          "y": 382,
+          "w": 880,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              382,
+              798,
+              41
+            ],
+            [
+              82,
+              424,
+              754,
+              41
+            ],
+            [
+              82,
+              466,
+              825,
+              41
+            ],
+            [
+              82,
+              508,
+              563,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The night shift",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c12 c20 c26 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 322,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              322,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14076,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 39.8,
+          "variance": 686.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Yes in bulk, no with a reason",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 263,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              748,
+              158
+            ],
+            [
+              80,
+              267,
+              693,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.",
+          "x": 82,
+          "y": 443,
+          "w": 880,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              443,
+              865,
+              41
+            ],
+            [
+              82,
+              485,
+              820,
+              41
+            ],
+            [
+              82,
+              527,
+              852,
+              41
+            ],
+            [
+              82,
+              569,
+              712,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "recommended",
+          "x": 232,
+          "y": 801,
+          "w": 164,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              232,
+              800,
+              164,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2.5%",
+          "x": 336,
+          "y": 734,
+          "w": 60,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              336,
+              733,
+              60,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "5%",
+          "x": 365,
+          "y": 670,
+          "w": 30,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              365,
+              669,
+              30,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "bulk acceptance",
+          "x": 166,
+          "y": 931,
+          "w": 223,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              166,
+              930,
+              223,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "decline, with a reason",
+          "x": 553,
+          "y": 976,
+          "w": 327,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              553,
+              975,
+              327,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The leasing office",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c21 c30 c31 c33 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9573,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 36,
+          "variance": 999.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "3% a day, 8% a week",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              464,
+              158
+            ],
+            [
+              80,
+              252,
+              524,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The complaint says AIRM and YieldStar can accept recommendations automatically, and the default limits are 3% a day and 8% a week. It says a landlord who turns auto-accept on in effect hands pricing authority to RealPage inside those limits.",
+          "x": 82,
+          "y": 422,
+          "w": 880,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              689,
+              41
+            ],
+            [
+              82,
+              464,
+              871,
+              41
+            ],
+            [
+              82,
+              506,
+              866,
+              41
+            ],
+            [
+              82,
+              548,
+              873,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "3% a day",
+          "x": 182,
+          "y": 1035,
+          "w": 119,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              182,
+              1034,
+              119,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "8% a week",
+          "x": 328,
+          "y": 787,
+          "w": 134,
+          "h": 30,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              328,
+              786,
+              134,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The auto-accept limits",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c28 c29 DRAWN TO ONE SCALE",
+          "x": 80,
+          "y": 1234,
+          "w": 482,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              482,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16636,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55.8,
+          "variance": 838.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Leases feed the model",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              785,
+              158
+            ],
+            [
+              80,
+              252,
+              331,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The complaint says landlords' nonpublic lease data runs through a machine learning model whose learned parameters serve every AIRM client. It says the model is generally retrained three to four times a year. It says RealPage has data from over 16 million units.",
+          "x": 82,
+          "y": 422,
+          "w": 880,
+          "h": 210,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              766,
+              41
+            ],
+            [
+              82,
+              464,
+              842,
+              41
+            ],
+            [
+              82,
+              506,
+              858,
+              41
+            ],
+            [
+              82,
+              548,
+              878,
+              41
+            ],
+            [
+              82,
+              590,
+              173,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the data comes from",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c23 c24 c34 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15536,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43,
+          "variance": 737.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "48 Texas submarkets",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              247,
+              131,
+              325,
+              158
+            ],
+            [
+              80,
+              252,
+              631,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "48",
+          "x": 80,
+          "y": 131,
+          "w": 167,
+          "h": 158,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              167,
+              158
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The complaint lists them as places where it says aligned pricing harmed or is likely to harm renters. Frisco and Richardson are on the list. RealPage has its headquarters in Richardson.",
+          "x": 82,
+          "y": 422,
+          "w": 880,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              868,
+              41
+            ],
+            [
+              82,
+              464,
+              872,
+              41
+            ],
+            [
+              82,
+              506,
+              730,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "17 Dallas- Plano- Irving",
+          "x": 80,
+          "y": 1005,
+          "w": 104,
+          "h": 127,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1044,
+              104,
+              31
+            ],
+            [
+              87,
+              1073,
+              89,
+              31
+            ],
+            [
+              87,
+              1102,
+              89,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "17",
+          "x": 111,
+          "y": 1002,
+          "w": 42,
+          "h": 45,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              111,
+              1002,
+              42,
+              45
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "13 Austin- Round Rock",
+          "x": 247,
+          "y": 1005,
+          "w": 104,
+          "h": 127,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              247,
+              1044,
+              104,
+              31
+            ],
+            [
+              262,
+              1073,
+              74,
+              31
+            ],
+            [
+              270,
+              1102,
+              60,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "13",
+          "x": 278,
+          "y": 1002,
+          "w": 42,
+          "h": 45,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              278,
+              1002,
+              42,
+              45
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "12 Houston",
+          "x": 488,
+          "y": 1005,
+          "w": 104,
+          "h": 70,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              488,
+              1044,
+              104,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "12",
+          "x": 519,
+          "y": 1002,
+          "w": 42,
+          "h": 45,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              519,
+              1002,
+              42,
+              45
+            ]
+          ],
+          "anc": [
+            8
+          ]
+        },
+        {
+          "text": "4 San Antonio",
+          "x": 729,
+          "y": 1005,
+          "w": 104,
+          "h": 98,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              758,
+              1044,
+              45,
+              31
+            ],
+            [
+              729,
+              1073,
+              104,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4",
+          "x": 770,
+          "y": 1002,
+          "w": 21,
+          "h": 45,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              770,
+              1002,
+              21,
+              45
+            ]
+          ],
+          "anc": [
+            10
+          ]
+        },
+        {
+          "text": "2 Fort Worth",
+          "x": 926,
+          "y": 1005,
+          "w": 74,
+          "h": 98,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              1044,
+              60,
+              31
+            ],
+            [
+              926,
+              1073,
+              74,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2",
+          "x": 952,
+          "y": 1002,
+          "w": 21,
+          "h": 45,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              952,
+              1002,
+              21,
+              45
+            ]
+          ],
+          "anc": [
+            12
+          ]
+        },
+        {
+          "text": "Appendix A of the complaint",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 c36 c37 c38 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14493,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.5,
+          "variance": 1002.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nine terms for Pinnacle",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              751,
+              158
+            ],
+            [
+              80,
+              252,
+              466,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The impact statement sums up the proposed judgment against Pinnacle in nine terms. Beside the data limits they require a compliance officer, an annual audit and inspections.",
+          "x": 82,
+          "y": 422,
+          "w": 880,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              869,
+              41
+            ],
+            [
+              82,
+              464,
+              809,
+              41
+            ],
+            [
+              82,
+              506,
+              712,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "v. a chief antitrust compliance officer",
+          "x": 806,
+          "y": 685,
+          "w": 194,
+          "h": 120,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              684,
+              149,
+              31
+            ],
+            [
+              806,
+              714,
+              134,
+              31
+            ],
+            [
+              806,
+              744,
+              149,
+              31
+            ],
+            [
+              806,
+              774,
+              104,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "vi. inspect its documents",
+          "x": 806,
+          "y": 813,
+          "w": 194,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              812,
+              164,
+              31
+            ],
+            [
+              806,
+              842,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ix. a monitor if the Court finds that Pinnacle has violated",
+          "x": 806,
+          "y": 881,
+          "w": 194,
+          "h": 150,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              880,
+              193,
+              31
+            ],
+            [
+              806,
+              910,
+              179,
+              31
+            ],
+            [
+              806,
+              940,
+              149,
+              31
+            ],
+            [
+              806,
+              970,
+              179,
+              31
+            ],
+            [
+              806,
+              1000,
+              119,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The proposed final judgment",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c12 c39 to c48 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10933,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.8,
+          "variance": 1354.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The screen stays on",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 107,
+          "font_px": 113,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              898,
+              140
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Five of its limits on how Pinnacle may price. It isn't a ban on RealPage, and the government may review the code and pseudocode of Pinnacle's own product.",
+          "x": 82,
+          "y": 287,
+          "w": 880,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              287,
+              796,
+              41
+            ],
+            [
+              82,
+              329,
+              768,
+              41
+            ],
+            [
+              82,
+              371,
+              540,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "third-party nonpublic data",
+          "x": 120,
+          "y": 596,
+          "w": 208,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              143,
+              595,
+              164,
+              31
+            ],
+            [
+              120,
+              625,
+              208,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "pooling across owners",
+          "x": 286,
+          "y": 526,
+          "w": 193,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              330,
+              525,
+              104,
+              31
+            ],
+            [
+              286,
+              555,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "rivals' sensitive data",
+          "x": 436,
+          "y": 596,
+          "w": 208,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              488,
+              595,
+              104,
+              31
+            ],
+            [
+              436,
+              625,
+              208,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "required acceptance",
+          "x": 623,
+          "y": 526,
+          "w": 149,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              638,
+              525,
+              119,
+              31
+            ],
+            [
+              623,
+              555,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "built-in rent floors",
+          "x": 774,
+          "y": 596,
+          "w": 164,
+          "h": 60,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              796,
+              595,
+              119,
+              31
+            ],
+            [
+              774,
+              625,
+              164,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the judgment switches off",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c39 c40 c41 c50 c51 c46 c53 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 531,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              531,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 224.5,
+          "y": 661.7,
+          "w": 2,
+          "h": 66.6,
+          "by": "line",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 382.2,
+          "y": 591.7,
+          "w": 2,
+          "h": 136.6,
+          "by": "line",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 540,
+          "y": 661.7,
+          "w": 2,
+          "h": 66.6,
+          "by": "line",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 697.8,
+          "y": 591.7,
+          "w": 2,
+          "h": 136.6,
+          "by": "line",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 855.5,
+          "y": 661.7,
+          "w": 2,
+          "h": 66.6,
+          "by": "line",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12313,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 47.2,
+          "variance": 643.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It binds one landlord",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              131,
+              608,
+              158
+            ],
+            [
+              80,
+              252,
+              454,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket.",
+          "x": 82,
+          "y": 422,
+          "w": 880,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              823,
+              41
+            ],
+            [
+              82,
+              464,
+              845,
+              41
+            ],
+            [
+              82,
+              506,
+              873,
+              41
+            ],
+            [
+              82,
+              548,
+              696,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rest of the case",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c55 c56 c58 c59 c36 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11699,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.4,
+          "variance": 299.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Comment before the court rules",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 223,
+          "font_px": 117.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(243, 238, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              819,
+              145
+            ],
+            [
+              80,
+              245,
+              700,
+              145
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The notice was published September 18th and takes public comment within 60 days. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division.",
+          "x": 82,
+          "y": 403,
+          "w": 880,
+          "h": 210,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              403,
+              805,
+              41
+            ],
+            [
+              82,
+              445,
+              423,
+              41
+            ],
+            [
+              784,
+              487,
+              145,
+              41
+            ],
+            [
+              82,
+              529,
+              848,
+              41
+            ],
+            [
+              82,
+              571,
+              438,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ATR.Public-Comments-Tunney-Act-MB@usdoj.gov",
+          "x": 82,
+          "y": 487,
+          "w": 702,
+          "h": 41,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(240, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              487,
+              702,
+              41
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "What a Texan can do",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c8 c9 c10 c11 c62 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 216, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13113,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.2,
+          "variance": 1681.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

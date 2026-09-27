@@ -1,0 +1,59 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0
+  }
+ ],
+ "weighted_score": 6.69,
+ "hard_fails": [
+  "an unverified fact presented as verified: frame 3 (kicker 'Auto-accept, by default', dek 'The complaint says AIRM and YieldStar approve those changes on their own by default ... turn auto-accept off') attributes to the complaint a claim it does not make. Paragraph 66 sets only default PARAMETERS and says the landlord can 'disable or enable' auto-accept; paragraphs 67 and 68 describe RealPage pushing clients to turn it on. c27's claim text carries the drift.",
+  "an unverified fact presented as verified: frame 8 dek 'The case against RealPage and the other landlords goes on.' c58 names neither RealPage nor all the landlords, and the same document defines a US-RealPage Final Judgment entered in this case."
+ ],
+ "ship": false,
+ "named_defects": [
+  "F1: 'The rent is set overnight' overstates; the recommendation comes overnight and the manager decides every morning.",
+  "F2: mullion edge through the dek; the 5% band's share appears nowhere.",
+  "F3: hard fail 1; dark box columns; low detail kit figure.",
+  "F5: void under a hard orange strip; repeats no. 33's count by metro.",
+  "F6: 'Nine terms' is the impact statement's summary list; Frisco half true; artifact left of page; monitor at the counter; labels outside the safe zone.",
+  "F7: rent floors drops the hand-set exception; rivals' sensitive data is a conduct term labelled a software limit.",
+  "F8: hard fail 2; empty lower 40%; the lit-window device unreadable.",
+  "F9: primitive hair with a pale slab artifact."
+ ],
+ "one_sentence_fix": "Repair frame 3 to what paragraph 66 says, frame 8 to c58's scope, and the cover to a recommendation made overnight."
+}
