@@ -48,12 +48,15 @@ def lstar(rgb):
 
 
 def frames(d: Path) -> list:
-    """The shipped frames in order. A PNG wins over a WebP of the same number, as ship_images
-    keeps the PNG when its WebP falls under the quality floor."""
+    """The shipped frames in order, each in the format the site serves: WebP, else PNG.
+
+    `site_context` resolves webp then png per slide. ship_images deletes a webp that misses the
+    quality floor and deletes a png once its webp clears it, so both exist only after `--keep` or
+    an interrupted cleanup, and then a reader receives the WebP (Codex, PR 378)."""
     found = {}
     for p in d.iterdir():
         m = FRAME.match(p.name)
-        if m and (int(m.group(1)) not in found or m.group(2) == "png"):
+        if m and (int(m.group(1)) not in found or m.group(2) == "webp"):
             found[int(m.group(1))] = p
     if not found:
         raise ValueError(f"no slide-NN.png or slide-NN.webp in {d}")
@@ -111,7 +114,8 @@ def self_test() -> int:
         ok("...a spread of 100 and a largest step of about 50",
            m["spread_L"] == 100.0 and abs(m["max_adjacent_step_L"] - 50.0) < 0.3, str(m))
         Image.new("RGB", (1080, 1350), (255, 255, 255)).save(d / "slide-02.webp")
-        ok("a PNG wins over a WebP of the same number", frames(d)[1].suffix == ".png")
+        ok("a WebP wins over a PNG of the same number, as the site serves it",
+           frames(d)[1].suffix == ".webp")
         (d / "slide-03.png").unlink()
         Image.new("RGB", (1080, 1350), (9, 9, 9)).save(d / "slide-04.png")
         try:

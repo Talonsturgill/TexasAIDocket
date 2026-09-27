@@ -67,9 +67,10 @@ exceptions, every commit and PR in this repo:
 - Never set the commit author or committer to Claude. Commits are the owner's.
 
 **`.githooks/commit-msg` strips the first three from every commit message before the commit
-exists** (2026-09-27). The harness asks every session to add them. Two reached `main` on
-2026-09-19, and the runs of September 20th, 21st and 27th each rewrote pushed history to take
-them out. The hook never sees a PR body, so the rule still binds there.
+exists, and CI refuses a pull request whose commits still carry one** (2026-09-27), both through
+`scripts/shared/attribution_strip.py`. The harness asks every session to add them. Two reached
+`main` on 2026-09-19, and the runs of September 20th, 21st and 27th each rewrote pushed history to
+take them out. Neither sees a PR body, so the rule still binds there.
 
 Git identity in this repo is `Talon Sturgill <Talon.sturgill@gmail.com>`. The container
 default is `Claude <noreply@anthropic.com>`, so a fresh clone MUST override it before the

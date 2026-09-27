@@ -1091,6 +1091,23 @@ jobs:
       - name: Ownership checker can go red
         run: python3 scripts/shared/ownership_check.py --self-test
 
+      # CLAUDE.md forbids Claude or Anthropic attribution on every commit. .githooks/commit-msg
+      # strips it before a commit exists, and this reads every commit in the range, so a commit
+      # made without the hook, from a web edit or an API write, still can't land with one.
+      - name: No assistant attribution in the range's commits
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          BASE="$BASE_SHA"
+          if [ -n "$BASE" ]; then
+            RANGE="$BASE..HEAD"
+          else
+            git fetch --quiet origin main || true
+            RANGE="origin/main..HEAD"
+          fi
+          python3 scripts/shared/attribution_strip.py --check-range "$RANGE"
+          python3 scripts/shared/attribution_strip.py --self-test
+
       - name: Port manifest is current
         run: |
           # The manifest is generated from the upstream source repos, which are not checked
