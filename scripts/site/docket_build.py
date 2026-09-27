@@ -882,7 +882,9 @@ def gate_banned_words(items: list) -> Result:
     been read and signed by a run bound by the rule, so its whole reader copy is judged, key date
     notes and each claim's own sentence included, since the item page prints those as its
     evidence. A claim's verbatim quote and source title are the source's words and stay, judged
-    by `word_ban.claim_words` so the deck and the record can't disagree about which fields. A
+    by `word_ban.claim_words` so the deck and the record can't disagree about which fields. The
+    title, summary, how to take part, key date notes and movement notes cite no single claim, so
+    they count every claim the item carries, which is word_ban's rule for an uncited surface. A
     movement note is dated, so one written after SINCE is judged whatever the item. Nothing
     older fails, because the record's published prose is not rewritten wholesale without the
     owner, and a run re-verifying an older item rewords it on the way through.
@@ -897,15 +899,21 @@ def gate_banned_words(items: list) -> Result:
     for it in items:
         who = it.get("id", "?")
         texts = []
+        claims = [c for c in (it.get("claims") or []) if isinstance(c, dict)]
+        # A record field names no single claim, so the item's own claims are its evidence, and
+        # each field is judged alone so a title can't run into the summary's first sentence and
+        # hide a quotation the summary sets (Codex, PR 379).
+        cites = word_ban.evidence_of(claims)
         if str(it.get("last_verified") or "") > word_ban.SINCE:
             judged += 1
-            texts.append(("reader copy", _reader_text(it, include_history=False), (), ()))
-            texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""), (), ())
+            texts += [(f, str(it.get(f) or ""), *cites) for f in READER_COPY_FIELDS]
+            texts += [(f"{outer}.{inner}", str((it.get(outer) or {}).get(inner) or ""), *cites)
+                      for outer, inner in READER_COPY_NESTED]
+            texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""), *cites)
                       for kd in (it.get("key_dates") or []) if isinstance(kd, dict)]
             texts += [(f"claim {c.get('id', '?')}", str(c.get("text") or ""),
-                       *word_ban.claim_words(c))
-                      for c in (it.get("claims") or []) if isinstance(c, dict)]
-        texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""), (), ())
+                       *word_ban.claim_words(c)) for c in claims]
+        texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""), *cites)
                   for h in (it.get("history") or [])
                   if isinstance(h, dict) and str(h.get("date") or "") > word_ban.SINCE]
         for where, text, sources, quotes in texts:
@@ -1623,6 +1631,21 @@ def self_test() -> int:
            gate_banned_words([base(last_verified="2026-09-28", claims=[
                dict(_claim, text="Staff identified a pattern of incomplete applications.")])]),
            "PASS")
+    # A record field cites no single claim, so the item's claims are its evidence (Codex, PR 379).
+    _named = dict(_claim, text="The developer filed the request.",
+                  source_title="Pattern Energy interconnection request")
+    expect("...and a summary naming a source the item cites keeps the source's words",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[_named],
+                                   summary="Pattern Energy interconnection request filed.")]),
+           "PASS")
+    expect("...and the same summary FAILS on an item that cites no such source",
+           gate_banned_words([base(last_verified="2026-09-28",
+                                   summary="Pattern Energy interconnection request filed.")]),
+           "FAIL")
+    expect("...and a summary's sentence the item's claim quotes is judged apart from the title",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff reviewed the applications.")],
+               summary="Staff identified a pattern of incomplete applications.")]), "PASS")
     check("...and the build is not frozen by it, while --validate still counts it",
           "banned words" in NON_BLOCKING_FOR_BUILD)
     # THE KEY DATE NOTE, which renders on the timeline and was outside every gate on both

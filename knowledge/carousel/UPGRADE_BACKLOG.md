@@ -4620,3 +4620,28 @@ another file at indent 2 and is not the record. **Three runs have now paid for a
 in the daily lane, which owns it, so the run that next calls `--apply` should make it** with the
 round trip test: `--apply` over a record with nothing to stamp leaves `ledger/docket.json` byte for
 byte unchanged.
+
+## 2026-09-27, PR 379, the owner's banned words. One proposal, for a maintainer at a keyboard
+
+### `render.py` records no lettering the kit strokes as paths, so the word ban can't read it
+
+`scripts/carousel/word_ban.py` reads every string the render report says a slide printed. That
+covers the DOM text nodes, text the design marked decorative, and canvas `fillText` and
+`strokeText` calls. The 3D kit draws one thing as geometry instead, the town name a water tower
+paints on its tank, through `strokeText` in `assets/js/kit/industry.js`, a block font whose
+default word is TEXAS. The kit does that on purpose, so qa.py's raster text warning doesn't fire
+on art. The price is that no gate reads the word. Codex found it on PR 379.
+
+The fix is three small changes. The second is under `.claude/`, which is why it is written down
+here rather than made in that pull request.
+
+1. `assets/js/kit/industry.js`, in `strokeText`. Record the word the helper paints, with
+   `(window.__txVectorText = window.__txVectorText || []).push(String(txt))`.
+2. `.claude/skills/carousel-engine/render.py`, beside the `out.canvas_text` block. Copy
+   `window.__txVectorText` into `out.vector_text`, deduplicated the way canvas text already is.
+   qa.py must not read it, because the point of the block font is that art lettering raises no
+   raster text warning.
+3. `scripts/carousel/word_ban.py`, in `rendered()`. Read `vector_text` beside `text_nodes` and
+   `canvas_text`, and add a self-test case of a water tower named PATTERN.
+
+Until then a water tower's name is the director's choice, and the gate's docstring says so.

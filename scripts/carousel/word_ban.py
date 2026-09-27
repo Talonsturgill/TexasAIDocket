@@ -40,7 +40,16 @@ WHERE IT RUNS
       each claim's own sentence, which the web edition's claim by claim verification prints
       the web edition in ledger/articles/, its section kicker included
   - the record, through docket_build's `banned words` gate, on any item a run verified after
-    SINCE, its claims' own sentences included, and any movement note dated after it
+    SINCE, its claims' own sentences included, and any movement note dated after it. A record
+    field cites no single claim, so it counts every claim its item carries
+
+WHAT IT CAN'T SEE, stated so nobody reads "every printed word" as more than it is. Lettering the
+3D kit strokes as paths never reaches the render report. Today that is one thing, the town name
+a water tower paints on its tank, which defaults to TEXAS. The kit draws it that way on purpose,
+so qa.py's canvas text warning doesn't fire on art. Reading it needs a channel in render.py,
+which is a protected path, so the fix waits for a maintainer and is written up in
+knowledge/carousel/UPGRADE_BACKLOG.md (Codex, PR 379). Until then a water tower's name is the
+director's to choose, and a banned word there is theirs to refuse.
 
 SINCE is 2026-09-27, the last deck shipped before the rule. Nothing published on or before it is
 judged as a failure, because published copy is not rewritten without the owner. shipped_check and
@@ -158,10 +167,15 @@ def _load(p: Path):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
-def _claim_rows(d: Path) -> list:
-    raw = _load(d / "claims.json")
+def claim_rows(path: Path) -> list:
+    """The claims in a claims.json, in either shape a run writes."""
+    raw = _load(Path(path))
     rows = raw.get("claims") if isinstance(raw, dict) else raw
     return [c for c in rows or [] if isinstance(c, dict)]
+
+
+def _claim_rows(d: Path) -> list:
+    return claim_rows(d / "claims.json")
 
 
 def claim_words(c: dict) -> tuple:
@@ -175,14 +189,18 @@ def claim_words(c: dict) -> tuple:
     return got((*sources_block.TITLE_KEYS, "attribution")), got(QUOTE_FIELDS)
 
 
-def _source_words(d: Path) -> tuple:
-    """(sources, quotes) across the run's claims.json, for a surface that may cite any claim."""
+def evidence_of(rows) -> tuple:
+    """(sources, quotes) across `rows`, for a surface that cites none of them in particular."""
     sources, quotes = [], []
-    for c in _claim_rows(d):
+    for c in rows:
         s, q = claim_words(c)
         sources += s
         quotes += q
     return tuple(sources), tuple(quotes)
+
+
+def _source_words(d: Path) -> tuple:
+    return evidence_of(_claim_rows(d))
 
 
 def article_text(article: dict) -> list:
