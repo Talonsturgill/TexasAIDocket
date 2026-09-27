@@ -66,6 +66,11 @@ exceptions, every commit and PR in this repo:
 - No "Generated with Claude Code" or robot-emoji lines in commit messages or PR bodies.
 - Never set the commit author or committer to Claude. Commits are the owner's.
 
+**`.githooks/commit-msg` strips the first three from every commit message before the commit
+exists** (2026-09-27). The harness asks every session to add them. Two reached `main` on
+2026-09-19, and the runs of September 20th, 21st and 27th each rewrote pushed history to take
+them out. The hook never sees a PR body, so the rule still binds there.
+
 Git identity in this repo is `Talon Sturgill <Talon.sturgill@gmail.com>`. The container
 default is `Claude <noreply@anthropic.com>`, so a fresh clone MUST override it before the
 first commit.
@@ -724,6 +729,32 @@ rather than from memory.
 - **It reads charts and screenshots much more precisely.** The pixel critics get that for free.
   It is no reason to drop the thumb transcription, which checks what a reader receives rather
   than what the model can see.
+
+## Which model a subagent runs, measured rather than assumed (2026-09-27)
+
+**Every subagent runs on the session's model, and a cheaper tier was measured and refused.** The
+owner asked to cut cost without cutting quality. The two highest volume agents were run on the
+smaller tier, at half the per token price, against the session's model, on identical inputs, and
+the grading was written down before any result came back. The full account is in the pull
+request that added this section.
+
+- `carousel-pixel-critic`, on carousel no. 35. Both tiers caught every planted defect: a typo, two
+  wrong figures, a dek near black on black, a wrong counter and an em dash. On the shipped frames
+  the round 5 judges' own named defects were found 12 times in 14 by the session's model and 4 in
+  14 by the smaller tier. The smaller tier also called the deck's claim id source line debug text
+  in three of six reports.
+- `carousel-scout`, on two beats. The session's model returned 13 findings, 12 quoted verbatim on
+  pages fetched again afterwards and 8 labelled primary. The smaller tier returned 3, all
+  journalism.
+
+The smaller tier cost about a third as much per critic and a quarter as much per scout, and it
+was still the wrong trade. **Never pin a tier on a cost argument.** A change of tier needs the
+same measurement on this repo's own frames or beats, recorded here.
+
+**The auto-compact window stays on `auto`.** Cache reads were 49 percent of the 2026-09-27 run's
+$184.52, so a smaller window looks like a saving. Claude Code's own text calls `auto` "strongly
+recommended for the best cost and performance" and warns that overriding it "may result in high
+token usage".
 
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 

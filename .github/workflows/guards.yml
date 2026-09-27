@@ -556,6 +556,13 @@ jobs:
           # first one accumulated grain in uint8, wrapped 255 to 4, and measured its own bug.
           python3 scripts/carousel/ship_images.py --self-test
 
+      - name: Measure shipped self-test (one writer for measurements.json)
+        run: |
+          # Every run from 2026-09-20 to 2026-09-27 wrote its own measure.py, and two found out from
+          # a red job that the file was missing. This reproduces three shipped runs' own files byte
+          # for byte, so the shared writer measures exactly what those runs measured.
+          python3 scripts/carousel/measure_shipped.py --self-test
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 

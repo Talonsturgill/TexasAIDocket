@@ -1583,6 +1583,18 @@ standalone article is incomplete, even when the visual release gate passes.
    live article page carried two broken images and silently dropped two more slides. The owner
    found it, which is the one way a defect must never be found. If this exits non-zero, the deck
    is not ready to ship and the run's job is to make it exit zero.
+
+   **Then measure what shipped, and again after any frame is re-rendered and re-shipped:**
+
+   ```
+   python3 scripts/carousel/measure_shipped.py --run <date>
+   ```
+
+   It writes `runs/carousel/<date>/measurements.json` from the shipped frames. `shipped_check
+   --self-test` requires every gate to reach the newest deck, so a deck without that file turns
+   CI red after it is finished. The 2026-09-26 and 2026-09-27 runs each lost a push and a CI
+   cycle to it after the round cap. **Never write a `measure.py` of your own into the run
+   folder.** Every run from 2026-09-20 to 2026-09-27 did, each a copy of the one before.
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
    **Write the web edition at `ledger/articles/<date>.json` before rebuilding.** Read
    `ledger/articles/README.md` for the contract and the latest shipped edition for an example.

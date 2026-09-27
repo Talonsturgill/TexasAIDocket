@@ -15,6 +15,27 @@
 set -uo pipefail
 
 msg_file="$1"
+
+# NO CLAUDE ATTRIBUTION, removed before the commit exists. CLAUDE.md forbids a Co-Authored-By
+# Claude or Anthropic line, a Claude-Session link and a "Generated with Claude Code" line on every
+# commit. The harness asks every session to add them and a session sometimes does. Two reached
+# main on 2026-09-19, and the 2026-09-20, 2026-09-21 and 2026-09-27 runs each rewrote pushed
+# history to take them out. Stripping them here leaves nothing to rewrite. It runs before every
+# exit below, whatever the lane.
+python3 - "$msg_file" <<'PY' || true
+import re, sys
+p = sys.argv[1]
+t = open(p, encoding="utf-8").read()
+pat = re.compile(r"^[ \t]*(?:Co-Authored-By:[^\n]*(?:claude|anthropic)[^\n]*|Claude-Session:[^\n]*"
+                 r"|(?:\U0001F916[ \t]*)?Generated with \[?Claude Code[^\n]*)(?:\n|$)", re.I | re.M)
+n = pat.sub("", t)
+if n != t:
+    n = re.sub(r"\n{3,}", "\n\n", n).rstrip("\n") + "\n"
+    open(p, "w", encoding="utf-8").write(n)
+    print("commit-msg: removed Claude attribution lines, which CLAUDE.md forbids on every commit",
+          file=sys.stderr)
+PY
+
 root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
 # Found through git rev-parse, never by joining "$root/.git". See the note in pre-commit: in a
 # linked worktree that join points under a FILE and the stamp is never found, so every commit
