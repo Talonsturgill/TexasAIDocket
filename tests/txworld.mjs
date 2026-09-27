@@ -755,6 +755,102 @@ const BLENDED = `async (T, TXT, cv) => {
   return { veil001, veil09, spriteSolid, spriteClear };
 }`;
 
+// What draws over what (Codex, PR 372): the sixth page. Coincident hashed surfaces blend every
+// survivor, a hit that skips the depth test paints over the wall in front of it, and a sprite that
+// keeps its size on screen keeps its mip level.
+const OVERLAID = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const shelter = (mat) => {
+    const S = new T.Group(), m = mat || new T.MeshStandardMaterial({ color: 0x333333 });
+    const p = (w, h, d, x, y, z) => { const b = new T.Mesh(new T.BoxGeometry(w, h, d), m); b.position.set(x, y, z); S.add(b); };
+    p(3, 0.1, 3, 0, 2.6, 0); p(0.1, 2.6, 3, -1.5, 1.3, 0); p(0.1, 2.6, 3, 1.5, 1.3, 0);
+    p(3, 2.6, 0.1, 0, 1.3, -1.5); p(3, 2.6, 0.1, 0, 1.3, 1.5);
+    return S;
+  };
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const dress = (Rn, key) => {
+    TXT.sky(Rn, W);
+    TXT.rig(Rn, { key: Object.assign({}, W.rig.key, { pos: key }), ambient: W.rig.ambient });
+    TXT.ground(Rn, { surface: 'caliche', size: 900, tile: 5 });
+  };
+  const cover = (Rn) => (typeof TXT.enclosure === 'function' ? TXT.enclosure(Rn) : -1);
+  // WHAT TWO COINCIDENT HASHED AND BLENDED PLANES COVER ON THE GPU: black over red, the red left in
+  // each pixel is the share they don't cover, averaged over a 128 by 128 frame
+  const gcv = document.createElement('canvas'); gcv.width = gcv.height = 128;
+  const gr = new T.WebGLRenderer({ canvas: gcv, preserveDrawingBuffer: true, antialias: false });
+  gr.setClearColor(0xff0000, 1);
+  const gcam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10); gcam.position.z = 2;
+  const meanCover = (make, copies) => {
+    const s = new T.Scene();
+    for (let i = 0; i < copies; i++) s.add(new T.Mesh(new T.PlaneGeometry(2, 2), make()));
+    gr.render(s, gcam);
+    const gl = gr.getContext(), px = new Uint8Array(128 * 128 * 4);
+    gl.readPixels(0, 0, 128, 128, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    let sum = 0; for (let i = 0; i < px.length; i += 4) sum += 1 - px[i] / 255;
+    return sum / (128 * 128);
+  };
+  const hashBlend = () => new T.MeshBasicMaterial({ color: 0x000000, alphaHash: true, transparent: true, opacity: 0.5, depthWrite: false });
+  const twin = await (async () => {
+    const Rh = world(40);
+    TXT.frame(Rh, { from: [0, 1.6, 0], look: [0, 0, -0.01] }); dress(Rh, [4, 8, 4]);
+    Rh.scene.add(shelter(hashBlend())); Rh.scene.add(shelter(hashBlend()));
+    const errors = await capture(() => TXT.snapshot(Rh));
+    return { errors, cover: cover(Rh), gpu: meanCover(hashBlend, 2) };
+  })();
+  // A SPRITE WITH depthTest OFF, 3 m behind a room's back wall and wide enough to fill the frame: it
+  // is drawn after the walls and paints over them. The same sprite depth-tested stays behind the wall.
+  const overlay = async (depthTest) => {
+    const Ri = world(40);
+    TXT.frame(Ri, { from: [0, 1.6, 4], look: [0, 1.6, -5] }); TXT.interior(Ri, {});
+    TXT.rig(Ri, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+    const sp = new T.Sprite(new T.SpriteMaterial({ color: 0x00ff00, depthTest, toneMapped: false }));
+    sp.scale.set(60, 60, 1); sp.position.set(0, 1.6, -8); Ri.scene.add(sp);
+    const errors = await capture(() => TXT.snapshot(Ri));
+    const gl = Ri.renderer.getContext(), px = new Uint8Array(4);
+    gl.readPixels(Math.floor(gl.drawingBufferWidth / 2), Math.floor(gl.drawingBufferHeight / 2), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    return { errors, share: TXT.roomShare(Ri), centre: Array.from(px.slice(0, 3)) };
+  };
+  const over = await overlay(false), under = await overlay(true);
+  // A SPRITE THAT DOESN'T ATTENUATE, 400 m out and scaled to fill the frame, over a supplied mip chain
+  // clear at level 0 and solid below: on screen it is magnified onto the clear level, so the sky shows
+  const chain = () => {
+    const mips = [];
+    for (let n = 128, i = 0; n >= 1; n >>= 1, i++) {
+      const d = new Uint8Array(n * n * 4);
+      for (let k = 0; k < n * n; k++) { d[k * 4] = d[k * 4 + 1] = d[k * 4 + 2] = 90; d[k * 4 + 3] = i ? 255 : 0; }
+      mips.push({ data: d, width: n, height: n });
+    }
+    const t = new T.DataTexture(mips[0].data, 128, 128, T.RGBAFormat, T.UnsignedByteType);
+    t.mipmaps = mips; t.generateMipmaps = false;
+    t.minFilter = T.NearestMipmapNearestFilter; t.magFilter = T.NearestFilter; t.needsUpdate = true;
+    return t;
+  };
+  const steady = await (async () => {
+    const Rs = world(40);
+    TXT.frame(Rs, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rs, W);
+    TXT.rig(Rs, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rs, { surface: 'caliche', size: 900, tile: 5 });
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: chain(), alphaTest: 0.5, sizeAttenuation: false }));
+    sp.scale.set(2, 2, 1); sp.position.set(0, 2, -400); Rs.scene.add(sp);
+    const errors = await capture(() => TXT.snapshot(Rs));
+    const gl = Rs.renderer.getContext(), Wd = gl.drawingBufferWidth, Hd = gl.drawingBufferHeight;
+    const read = () => { Rs.renderer.render(Rs.scene, Rs.camera); const b = new Uint8Array(Wd * Hd * 4); gl.readPixels(0, 0, Wd, Hd, gl.RGBA, gl.UNSIGNED_BYTE, b); return b; };
+    const shown = read(); dome.visible = false; const hidden = read(); dome.visible = true; read();
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rs.camera, Rs), gpuSky: n / (Wd * Hd) };
+  })();
+  return { twin, over, under, steady };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -1057,6 +1153,30 @@ check('the blended page renders with no page error and no scene error',
         `${(sc.sky || 0).toFixed(3)}, and the frame shows its sky`,
         sc.gpuSky > 0.3 && sc.sky > 0.3 && Array.isArray(sc.errors) && sc.errors.length === 1 &&
         sc.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(sc));
+}
+
+const ov = await run('overlaid', OVERLAID);
+check('the overlaid page renders with no page error and no scene error',
+      !ov.result.error && ov.pageErrors.length === 0, JSON.stringify({ error: ov.result.error, page: ov.pageErrors }));
+{
+  // A SHARED HASH STILL BLENDS EVERY SURVIVOR, A DEPTH-DISABLED SPRITE PAINTS OVER THE WALL, and A
+  // SPRITE THAT KEEPS ITS SIZE KEEPS ITS MIP LEVEL (Codex, PR 372).
+  const tw = ov.result.twin || {}, o1 = ov.result.over || {}, o0 = ov.result.under || {}, st = ov.result.steady || {};
+  const flagged = (r) => Array.isArray(r.errors) && r.errors.some((e) => e.startsWith('TXT: NO SKY IN FRAME'));
+  check(`two coincident shelters hashed and blended at 0.5 cover ${(tw.gpu || 0).toFixed(3)} on the GPU and ` +
+        `${(tw.cover || 0).toFixed(3)} of the sky above the camera, where one merged draw made 0.25`,
+        Math.abs(tw.gpu - 0.375) < 0.03 && Math.abs(tw.cover - 0.375) < 0.03 && flagged(tw), JSON.stringify(tw));
+  check(`a sprite with depthTest off behind a room's back wall paints over it: the centre pixel is ` +
+        `${JSON.stringify(o1.centre)}, the room fills ${(o1.share || 0).toFixed(2)} of the frame, and the frame IS flagged`,
+        Array.isArray(o1.centre) && o1.centre[1] > 200 && o1.centre[0] < 60 && o1.share < 0.5 &&
+        Array.isArray(o1.errors) && o1.errors.some((e) => e.startsWith('TXT: NO ROOM IN FRAME')), JSON.stringify(o1));
+  check(`...while the same sprite depth-tested stays behind the wall: the room fills ${(o0.share || 0).toFixed(2)}`,
+        Array.isArray(o0.centre) && !(o0.centre[1] > 200 && o0.centre[0] < 60) && o0.share >= 0.5 &&
+        Array.isArray(o0.errors) && o0.errors.length === 1 && o0.errors[0].startsWith('TXT: ROOM IN FRAME'), JSON.stringify(o0));
+  check(`a sprite that doesn't attenuate, 400 m out over a chain clear at level 0, is magnified onto that ` +
+        `level: the pixels show ${(st.gpuSky || 0).toFixed(3)} sky, the engine reads ${(st.sky || 0).toFixed(3)}, and the frame shows its sky`,
+        st.gpuSky > 0.3 && st.sky > 0.3 && Array.isArray(st.errors) && st.errors.length === 1 &&
+        st.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(st));
 }
 
 await browser.close();

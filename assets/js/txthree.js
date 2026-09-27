@@ -513,7 +513,12 @@ export function init(THREE) {
     if (!cam || !(tall > 0)) return 0;
     h.object.matrixWorld.decompose(lodA, new THREE.Quaternion(), lodB);
     const e = tex.matrix.elements, repeat = Math.abs(e[0] * e[4] - e[3] * e[1]);
-    const world = Math.abs(lodB.x * lodB.y);
+    // A SPRITE THAT DOESN'T ATTENUATE (Codex, PR 372) keeps its size on screen: three.js scales it by
+    // its depth under a perspective camera, so its texels per pixel don't change with distance
+    let depth = 1;
+    if (slotOf(h).sizeAttenuation === false && !cam.isOrthographicCamera)
+      depth = Math.max(1e-6, -lodC.copy(lodA).applyMatrix4(cam.matrixWorldInverse).z);
+    const world = Math.abs(lodB.x * lodB.y) * depth * depth;
     if (!(world > 0) || !(repeat > 0)) return 0;
     const across = cam.isOrthographicCamera ? (cam.top - cam.bottom) / (cam.zoom || 1) / tall
       : h.distance * 2 * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2) / (cam.zoom || 1) / tall;
@@ -562,23 +567,26 @@ export function init(THREE) {
   // three.js discards a fragment whose alpha falls under a hashed threshold spread evenly from 0 to 1,
   // so a fraction of the fragments equal to the alpha draws, and a shell at 0.2 is a fifth drawn. A
   // measure counts such a hit by that chance, and a ray behind it by the rest.
-  const drawChance = (h, R) => {
+  // How a hit draws, in two parts: `hash`, the chance it survives an alpha hash (1 without one), and
+  // `blend`, the share of the pixel it then covers. null when it doesn't draw.
+  const drawParts = (h, R) => {
     const mat = slotOf(h);
-    if (!shows(mat) || clippedAway(h.point, mat, R.renderer) || mat.wireframe) return 0;
+    if (!shows(mat) || clippedAway(h.point, mat, R.renderer) || mat.wireframe) return null;
     const hashed = !!mat.alphaHash;
-    if (!(mat.alphaTest > 0 || mat.transparent || hashed)) return 1;
+    if (!(mat.alphaTest > 0 || mat.transparent || hashed)) return { hash: 1, blend: 1 };
     const a = alphaAt(h, mat, R);
-    if (a === null) return 0;                     // a cutout whose texel can't be read is no wall
-    if (mat.alphaTest > 0 && a < mat.alphaTest) return 0;
-    const drawnShare = hashed ? Math.min(1, Math.max(0, a)) : 1;
-    if (!mat.transparent) return drawnShare;
+    if (a === null) return null;                  // a cutout whose texel can't be read is no wall
+    if (mat.alphaTest > 0 && a < mat.alphaTest) return null;
+    const hash = hashed ? Math.min(1, Math.max(0, a)) : 1;
+    if (!(hash > 0)) return null;
     // A BLENDED SURFACE COVERS WHAT IS BEHIND IT BY ITS ALPHA (Codex, PR 369): a shell at opacity 0.01
     // is drawn and is no wall. Normal blending lays it over what is behind at its alpha, and a blend
     // that adds to or multiplies what is behind covers none of it.
-    if (mat.blending === THREE.NoBlending) return drawnShare;
-    if (mat.blending !== THREE.NormalBlending || !(a > 0.001)) return 0;
-    return drawnShare * Math.min(1, a);
+    if (!mat.transparent || mat.blending === THREE.NoBlending) return { hash, blend: 1 };
+    if (mat.blending !== THREE.NormalBlending || !(a > 0.001)) return null;
+    return { hash, blend: Math.min(1, a) };
   };
+  const drawChance = (h, R) => { const d = drawParts(h, R); return d ? d.hash * d.blend : 0; };
   // AN ALPHA HASH IS SHARED WHERE SURFACES COINCIDE (Codex, PR 369). three.js hashes the fragment's
   // position in the geometry's own frame, before any instance matrix, over cells a twentieth of the
   // pixel's reach there (ALPHA_HASH_SCALE 0.05) at two power-of-two scales. So hashed surfaces at the
@@ -596,23 +604,41 @@ export function init(THREE) {
     const fine = Math.pow(2, Math.ceil(Math.log2(1 / (0.05 * reach))));
     return fine + ':' + Math.floor(fine * lodL.x) + ',' + Math.floor(fine * lodL.y) + ',' + Math.floor(fine * lodL.z);
   };
-  // The layers a ray passes, nearest first, each with the chance it draws (or hides the sky): an
-  // opaque one ends the ray, and coincident hashed ones merge.
-  const layersAlong = (hits, R, chance) => {
+  // The layers a ray passes, nearest first, each with the share of the pixel it covers (or hides the
+  // sky in): an opaque one ends the ray, and coincident hashed ones share one draw.
+  //
+  // A SHARED HASH STILL BLENDS EVERY SURVIVOR (Codex, PR 372). With the threshold t shared by a cell
+  // and even on 0 to 1, every surface in it whose alpha clears t draws, and the blended ones lay over
+  // one another. So with the surfaces sorted by that chance, t between the k-th chance and the next
+  // draws the first k, and the layer covers the sum of each span times what those k blend to: two
+  // coincident layers at 0.5 cover 0.375, where one merged draw at 0.25 undercounted them.
+  const layersAlong = (hits, R, partsOf) => {
     const out = [], shared = new Map();
     for (const h of hits) {
-      const p = chance(h, R);
-      if (!(p > 0)) continue;
-      if (p < 1 && slotOf(h).alphaHash) {
-        const k = hashKey(h, R), same = k !== null ? shared.get(k) : null;
-        if (same) { if (p > same.p) { same.p = p; same.h = h; } continue; }
-        const layer = { p, h };
-        if (k !== null) shared.set(k, layer);
-        out.push(layer);
+      const d = partsOf(h, R);
+      if (!d) continue;
+      if (d.hash < 1) {
+        const k = hashKey(h, R);
+        if (k !== null) {
+          let g = shared.get(k);
+          if (!g) { g = { p: 0, h, members: [] }; shared.set(k, g); out.push(g); }
+          g.members.push({ hash: d.hash, blend: d.blend, h });
+          continue;
+        }
+        out.push({ p: d.hash * d.blend, h });
         continue;
       }
-      out.push({ p, h });
-      if (p >= 1) break;
+      out.push({ p: d.blend, h });
+      if (d.blend >= 1) break;
+    }
+    for (const L of out) if (L.members) {
+      const m = L.members.sort((x, y) => y.hash - x.hash);
+      let p = 0, open = 1;
+      for (let i = 0; i < m.length; i++) {
+        open *= 1 - m[i].blend;
+        p += (m[i].hash - (i + 1 < m.length ? m[i + 1].hash : 0)) * (1 - open);
+      }
+      L.p = p; L.h = m[0].h;
     }
     return out;
   };
@@ -673,7 +699,7 @@ export function init(THREE) {
         const y = (i + 0.5) / HEMI_RAYS, r = Math.sqrt(1 - y * y), th = i * ga;
         rc.ray.direction.set(r * Math.cos(th), y, r * Math.sin(th));
         let open = 1;                              // the chance nothing along this ray draws
-        for (const L of layersAlong(rc.intersectObjects(hit, false), R, drawChance)) open *= 1 - L.p;
+        for (const L of layersAlong(rc.intersectObjects(hit, false), R, drawParts)) open *= 1 - L.p;
         covered += 1 - open;
       }
     } catch (e) { return 0; }
@@ -730,9 +756,16 @@ export function init(THREE) {
       let open = 1, room = 0;
       try {
         const hs = rc.intersectObjects(all, false).filter((h) => depthOk(h.point));
-        for (const L of layersAlong(hs, R, drawChance)) {
+        for (const L of layersAlong(hs.filter((h) => slotOf(h).depthTest !== false), R, drawParts)) {
           if (own.has(L.h.object) || inside(L.h.point)) room += open * L.p;
           open *= 1 - L.p;
+        }
+        // A HIT THAT SKIPS THE DEPTH TEST DRAWS OVER WHAT IS IN FRONT OF IT (Codex, PR 372): a sprite
+        // with depthTest off behind the room's back wall still paints over the wall. Such hits lay over
+        // the depth-tested result, farthest first, the order three.js draws transparent ones in.
+        for (const h of hs.filter((x) => slotOf(x).depthTest === false).reverse()) {
+          const p = drawChance(h, R);
+          if (p > 0) room = room * (1 - p) + ((own.has(h.object) || inside(h.point)) ? p : 0);
         }
       } catch (e) { room = 0; }
       seen += room;
@@ -745,7 +778,7 @@ export function init(THREE) {
   // THE SHARE OF A PIXEL A HIT HIDES THE SKY IN: what it draws there, where a pane at alpha 0.5 hides
   // half and lets half of the dome through, and none behind transmissive glass, which renders the sky
   // through itself. An additive glow hides none of it.
-  const solidChance = (h, R) => (slotOf(h).transmission > 0 ? 0 : drawChance(h, R));
+  const solidParts = (h, R) => (slotOf(h).transmission > 0 ? null : drawParts(h, R));
   // Every hit along a ray, nearest first, as Raycaster.intersectObjects gives them, except that a
   // mesh a ray can't be cast against hides nothing rather than ending the measurement.
   const castAll = (rc, meshes) => {
@@ -793,7 +826,7 @@ export function init(THREE) {
           const z = at.copy(h.point).sub(eye).dot(fwd);        // clipped at near and far: not drawn
           return z >= camera.near && z <= camera.far;
         });
-        for (const L of layersAlong(hs, R, solidChance)) open *= 1 - L.p;
+        for (const L of layersAlong(hs, R, solidParts)) open *= 1 - L.p;
       }
       shown += open;
       if (first && shown >= 1) return shown / all;
