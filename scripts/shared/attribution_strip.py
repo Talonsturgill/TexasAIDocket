@@ -18,8 +18,9 @@ commit in a pull request's range with `--check-range`, so a commit made without 
 web edit or an API write, still can't land with one.
 
 WHAT IT MATCHES, and what it leaves alone (Codex, PR 378): a co-author line counts only when its
-address is at anthropic.com or its name is Claude alone or Claude plus a product word. A human
-co-author whose name merely contains the letters, Claudette or Claude Monet, stays. Prose that
+address is at anthropic.com or its name is Claude alone or Claude followed by a version number or
+a product word, `Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`. A human co-author whose name
+merely contains the letters, Claudette or Claude Monet, stays. Prose that
 mentions a trailer stays too, because every pattern is anchored to a whole line.
 """
 from __future__ import annotations
@@ -34,7 +35,8 @@ from pathlib import Path
 LINE = re.compile(
     r"^[ \t]*(?:"
     r"Co-Authored-By:[ \t]*(?:[^\n<]*<[^>\n]*@anthropic\.com>"
-    r"|Claude(?:[ \t]+(?:Code|Opus|Sonnet|Haiku|Fable|Mythos)\b[^\n<]*)?[ \t]*(?:<[^>\n]*>)?)"
+    r"|Claude(?:[- \t]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|Instant|AI|Assistant)\b"
+    r"[^\n<]*)?[ \t]*(?:<[^>\n]*>)?)"
     r"|(?:Claude|Assistant)-Session:[^\n]*"
     r"|_?Generated (?:with|by) \[?Claude Code\b[^\n]*"
     r"|\U0001F916[^\n]*"
@@ -93,6 +95,10 @@ def self_test() -> int:
             "Co-authored-by: Claude Code <noreply@anthropic.com>",
             "Co-Authored-By: Claude",
             "Co-Authored-By: Some Model <bot@anthropic.com>",
+            "Co-Authored-By: Claude 3.5 Sonnet <noreply@example.com>",
+            "Co-Authored-By: Claude 4 <noreply@example.com>",
+            "Co-authored-by: claude-3-opus <bot@example.com>",
+            "Co-Authored-By: Claude AI <ai@example.com>",
             "Claude-Session: https://claude.ai/code/session_01abc",
             "Assistant-Session: 01abc",
             "\U0001F916 Generated with [Claude Code](https://claude.com/claude-code)",
@@ -104,6 +110,7 @@ def self_test() -> int:
             "_[session](https://claude.ai/code/session_01abc)_"]
     kept = ["Co-Authored-By: Claudette Colbert <claudette@example.com>",
             "Co-Authored-By: Claude Monet <monet@example.com>",
+            "Co-Authored-By: Claude Debussy <claude.debussy@example.com>",
             "Co-Authored-By: Jane Doe <jane@example.com>",
             'The hook strips lines like "Generated with Claude Code" from messages.',
             "A Claude-Session: trailer mentioned mid-sentence stays.",
