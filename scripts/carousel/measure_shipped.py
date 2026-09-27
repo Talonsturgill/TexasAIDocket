@@ -2,6 +2,8 @@
 """measure_shipped.py — write a run's measurements.json from the frames it SHIPPED.
 
     python3 scripts/carousel/measure_shipped.py --run 2026-09-27
+    python3 scripts/carousel/measure_shipped.py --check              the newest shipped deck
+    python3 scripts/carousel/measure_shipped.py --check --run 2026-09-27
     python3 scripts/carousel/measure_shipped.py --self-test
 
 WHY THIS EXISTS
@@ -20,7 +22,13 @@ median, 5th and 95th percentiles per frame. It reads what shipped, not a scratch
 figures describe the deck a reader receives. Its self-test reproduces those three runs' own
 files byte for byte, so the lift changed nothing about what a run measures.
 
-EXIT CODES: 0 written, 1 refused (no run directory, no frames, or a gap in the frame numbers).
+`--check` recomputes and compares, and writes nothing. CI runs it on the newest shipped deck, the
+latest run directory with a copy.json as `shipped_check` defines it, because `shipped_check` reads
+the committed file and a frame re-rendered after the file was written would leave the two agreeing
+about bytes a reader never receives (Codex, PR 378).
+
+EXIT CODES: 0 written or matching, 1 refused or stale (no run directory, no copy.json, a frame
+copy.json names is missing, or the committed file disagrees with the frames).
 """
 from __future__ import annotations
 
@@ -96,6 +104,29 @@ def measure(d: Path) -> dict:
             "spread_L": round(float(max(med) - min(med)), 1)}
 
 
+def newest_shipped() -> Path | None:
+    runs = sorted(p for p in RUNS.glob("2*") if (p / "copy.json").exists()) if RUNS.exists() else []
+    return runs[-1] if runs else None
+
+
+def check(d: Path) -> list:
+    """What is wrong with d's committed measurements.json against its frames. Empty when it matches."""
+    f = d / "measurements.json"
+    if not f.exists():
+        return [f"{d.name}: no measurements.json. Run measure_shipped.py --run {d.name}"]
+    want = json.dumps(measure(d), indent=1) + "\n"
+    if f.read_text(encoding="utf-8") == want:
+        return []
+    have = json.loads(f.read_text(encoding="utf-8"))
+    new = json.loads(want)
+    out = [f"{d.name}: measurements.json does not match the shipped frames. Run measure_shipped.py "
+           f"--run {d.name} after the last frame change, and correct any prose that printed the old "
+           f"figures"]
+    if have.get("arc") != new.get("arc"):
+        out.append(f"  arc committed {have.get('arc')}, measured {new.get('arc')}")
+    return out
+
+
 def write(d: Path) -> Path:
     out = d / "measurements.json"
     out.write_text(json.dumps(measure(d), indent=1) + "\n", encoding="utf-8")
@@ -148,6 +179,18 @@ def self_test() -> int:
         except ValueError:
             ok("a directory with no copy.json is refused", True)
 
+    # --check SEES A FRAME CHANGED AFTER THE FILE WAS WRITTEN, and a missing file.
+    with tempfile.TemporaryDirectory() as t:
+        d = Path(t)
+        deck(d, 2)
+        for n, v in ((1, 40), (2, 200)):
+            Image.new("RGB", (1080, 1350), (v, v, v)).save(d / f"slide-{n:02d}.png")
+        ok("--check reports a missing measurements.json", len(check(d)) == 1)
+        write(d)
+        ok("--check passes a file written from the frames in front of it", check(d) == [])
+        Image.new("RGB", (1080, 1350), (90, 90, 90)).save(d / "slide-02.png")
+        ok("--check fails once a frame is re-rendered after the file was written", len(check(d)) == 2)
+
     # THE LIFT CHANGED NOTHING. These three runs shipped a measure.py of their own, by this
     # method, and each wrote the measurements.json that is committed beside its frames.
     for date in ("2026-09-24", "2026-09-26", "2026-09-27"):
@@ -167,10 +210,26 @@ def self_test() -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--run", help="the run date, e.g. 2026-09-27")
+    ap.add_argument("--check", action="store_true",
+                    help="recompute and compare, writing nothing; the newest shipped deck by default")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+    if a.check:
+        d = RUNS / a.run if a.run else newest_shipped()
+        if d is None or not d.is_dir():
+            print(f"measure_shipped: no run directory to check ({d})", file=sys.stderr)
+            return 1
+        try:
+            problems = check(d)
+        except ValueError as e:
+            problems = [f"{d.name}: {e}"]
+        for line in problems:
+            print(line)
+        if not problems:
+            print(f"measure_shipped: {d.name}'s measurements.json matches its shipped frames")
+        return 1 if problems else 0
     if not a.run:
         print("measure_shipped: pass --run <date> or --self-test", file=sys.stderr)
         return 1

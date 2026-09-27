@@ -1595,6 +1595,13 @@ standalone article is incomplete, even when the visual release gate passes.
    CI red after it is finished. The 2026-09-26 and 2026-09-27 runs each lost a push and a CI
    cycle to it after the round cap. **Never write a `measure.py` of your own into the run
    folder.** Every run from 2026-09-20 to 2026-09-27 did, each a copy of the one before.
+   CI recomputes the newest deck's file and compares it byte for byte. The same check runs here,
+   writes nothing, and fails when a frame changed after the file was written. Run it before the
+   push if any frame moved, and re-measure rather than editing the file:
+
+   ```
+   python3 scripts/carousel/measure_shipped.py --check
+   ```
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
    **Write the web edition at `ledger/articles/<date>.json` before rebuilding.** Read
    `ledger/articles/README.md` for the contract and the latest shipped edition for an example.

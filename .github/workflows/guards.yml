@@ -563,6 +563,13 @@ jobs:
           # for byte, so the shared writer measures exactly what those runs measured.
           python3 scripts/carousel/measure_shipped.py --self-test
 
+      - name: The newest deck's measurements.json matches its shipped frames
+        run: |
+          # shipped_check reads the committed file. This recomputes it from the frames, so a frame
+          # re-rendered after the file was written can't leave the two agreeing about bytes a
+          # reader never receives (Codex, PR 378).
+          python3 scripts/carousel/measure_shipped.py --check
+
       - name: Bespoke check self-test (a template scores 1.0, a real deck scores near zero)
         run: python3 scripts/carousel/bespoke_check.py --self-test
 

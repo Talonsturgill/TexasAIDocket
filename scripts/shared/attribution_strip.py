@@ -17,7 +17,8 @@ The hook strips them before a commit exists, so there is nothing to rewrite. CI 
 commit in a pull request's range with `--check-range`, so a commit made without the hook, from a
 web edit or an API write, still can't land with one.
 
-WHAT IT MATCHES, and what it leaves alone (Codex, PR 378): a co-author line counts only when its
+WHAT IT MATCHES, and what it leaves alone (Codex, PR 378): a person trailer, any key ending in
+`-by` (Co-Authored-By, Signed-off-by, Reviewed-by and the rest) or Author, counts only when its
 address is on an Anthropic-owned domain (anthropic.com, claude.ai, claude.com), its name is
 Anthropic, or its name is Claude alone or Claude followed by a version number or a product word,
 `Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`. A human co-author whose name merely contains the
@@ -35,7 +36,8 @@ from pathlib import Path
 
 LINE = re.compile(
     r"^[ \t]*(?:"
-    r"Co-Authored-By:[ \t]*(?:[^\n<]*<[^>\n]*@(?:[\w.-]+\.)?(?:anthropic\.com|claude\.ai|claude\.com)>"
+    r"(?:[A-Za-z][A-Za-z-]*-by|(?:Co-)?Authors?):[ \t]*"
+    r"(?:[^\n<]*<[^>\n]*@(?:[\w.-]+\.)?(?:anthropic\.com|claude\.ai|claude\.com)>"
     r"|Anthropic\b[^\n<]*(?:<[^>\n]*>)?"
     r"|Claude(?:[- \t]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|Instant|AI|Assistant)\b"
     r"[^\n<]*)?[ \t]*(?:<[^>\n]*>)?)"
@@ -105,6 +107,10 @@ def self_test() -> int:
             "Co-Authored-By: Anthropic PBC <legal@example.com>",
             "Co-Authored-By: Helper Bot <noreply@claude.com>",
             "Co-Authored-By: Someone <x@mail.anthropic.com>",
+            "Signed-off-by: Anthropic <bot@example.com>",
+            "Reviewed-by: Helper <bot@anthropic.com>",
+            "Assisted-by: Claude Code",
+            "Author: Claude <noreply@anthropic.com>",
             "Claude-Session: https://claude.ai/code/session_01abc",
             "Assistant-Session: 01abc",
             "\U0001F916 Generated with [Claude Code](https://claude.com/claude-code)",
@@ -118,6 +124,9 @@ def self_test() -> int:
             "Co-Authored-By: Claude Monet <monet@example.com>",
             "Co-Authored-By: Claude Debussy <claude.debussy@example.com>",
             "Co-Authored-By: Anthropology Dept <dept@example.edu>",
+            "Signed-off-by: Talon Sturgill <Talon.sturgill@gmail.com>",
+            "Reviewed-by: Claude Monet <monet@example.com>",
+            "Context: Claude 4 is named in a body line that is not a person trailer.",
             "Co-Authored-By: Jane Doe <jane@example.com>",
             'The hook strips lines like "Generated with Claude Code" from messages.',
             "A Claude-Session: trailer mentioned mid-sentence stays.",
