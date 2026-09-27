@@ -17,13 +17,18 @@ The hook strips them before a commit exists, so there is nothing to rewrite. CI 
 commit in a pull request's range with `--check-range`, so a commit made without the hook, from a
 web edit or an API write, still can't land with one.
 
-WHAT IT MATCHES, and what it leaves alone (Codex, PR 378): a person trailer, any key ending in
-`-by` (Co-Authored-By, Signed-off-by, Reviewed-by and the rest) or Author, counts only when its
-address is on an Anthropic-owned domain (anthropic.com, claude.ai, claude.com), its name is
-Anthropic, or its name is Claude alone or Claude followed by a version number or a product word,
-`Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`. A human co-author whose name merely contains the
-letters, Claudette, Claude Monet or an anthropology department, stays. Prose that
-mentions a trailer stays too, because every pattern is anchored to a whole line.
+WHAT IT MATCHES, and what it leaves alone (Codex, PR 378). A person trailer is any key ending in
+`-by` (Co-Authored-By, Signed-off-by, Reviewed-by and the rest), Author, Committer or Cc. It counts
+when its value is an identity, meaning a name, an address in brackets or bare, or both, and that
+identity is Anthropic's or the assistant's. That is an address on a domain Anthropic owns
+(anthropic.com, claude.ai, claude.com), the company named, or Claude alone or followed by a version
+number or a product word, `Claude 3.5 Sonnet`, `Claude 4`, `claude-3-opus`, `Claude.ai`. A human
+whose name merely contains the letters, Claudette, Claude Monet or an anthropology department,
+stays. So does a sentence that merely opens with a trailer key, because a sentence is not an
+identity. A session trailer, the generated footer, a robot line and a lone session link count
+wherever they stand. Every rule is anchored to a whole line, so prose that mentions one stays. A
+trailer folded onto an indented second line is read as git joins it, and a message with CRLF line
+endings is read the same as one without.
 """
 from __future__ import annotations
 
@@ -34,32 +39,92 @@ import sys
 import tempfile
 from pathlib import Path
 
-LINE = re.compile(
-    r"^[ \t]*(?:"
-    r"(?:[A-Za-z][A-Za-z-]*-by|(?:Co-)?Authors?):[ \t]*"
-    r"(?:[^\n<]*<[^>\n]*@(?:[\w.-]+\.)?(?:anthropic\.com|claude\.ai|claude\.com)>"
-    r"|Anthropic\b[^\n<]*(?:<[^>\n]*>)?"
-    r"|Claude(?:[- \t]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|Instant|AI|Assistant)\b"
-    r"[^\n<]*)?[ \t]*(?:<[^>\n]*>)?)"
-    r"|(?:Claude|Assistant)-Session:[^\n]*"
-    r"|_?Generated (?:with|by) \[?Claude Code\b[^\n]*"
-    r"|\U0001F916[^\n]*"
+# A person trailer: any key ending in -by, Author, Committer or Cc, with or without a Co- prefix,
+# and with the space before the colon git allows.
+PERSON = re.compile(r"^[ \t]*(?:[A-Za-z][A-Za-z-]*-by|(?:Co-)?Authors?|(?:Co-)?Committers?|Cc)"
+                    r"[ \t]*:[ \t]*(?P<value>.*?)[ \t\r]*$", re.I)
+# A value that is an identity and nothing else: a name, an address in angle brackets or bare, or
+# both, then an optional comment in parentheses and a closing stop. A sentence that merely opens
+# with a trailer key is not one. The body of 6ee1100 on PR 378 held such a sentence, and a rule
+# reading the whole line would have had the hook delete it.
+IDENTITY = re.compile(r"(?P<name>[^<>@:\n]*?)[ \t]*"
+                      r"(?:<(?P<addr>[^<>\n]*)>|(?P<bare>[^\s<>@:]+@[^\s<>@:]+))?[ \t]*"
+                      r"(?:\((?P<comment>[^()\n]*)\))?[ \t]*[.,;]?")
+# An address on a domain Anthropic owns, a subdomain included, read to the address's end, so
+# anthropic.community.example and anthropic.com.example.org are someone else's.
+DOMAIN = re.compile(r"@(?:[\w-]+\.)*(?:anthropic\.com|claude\.ai|claude\.com)\.?$", re.I)
+# The company by name, in the name or the comment. Never read inside an address.
+ANTHROPIC = re.compile(r"(?<!\w)Anthropic(?!\w)", re.I)
+# The assistant by name: Claude alone, or followed by a version number or a product word.
+ASSISTANT = re.compile(r"Claude(?:[- \t.]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|"
+                       r"Instant|AI|Assistant)\b.*)?", re.I)
+# The rest are attribution whatever surrounds them on the line: an assistant session trailer, the
+# generated footer, a line that opens with the robot emoji and a session link standing alone. A
+# carriage return counts as trailing space, so a CRLF message reads the same as an LF one.
+OTHER = re.compile(
+    r"[ \t]*(?:(?:Claude|Assistant)-Session[ \t]*:.*"
+    r"|[*_]*Generated (?:with|by) \[?Claude Code\b.*"
+    r"|[*_]*\U0001F916.*"
     r"|[*_]*(?:<?https?://claude\.ai/code/session_[^\s>)]*>?"
     r"|\[[^\]\n]*\]\(https?://claude\.ai/code/session_[^)\s]*\))[*_]*[.,]?"
-    r")[ \t]*$", re.I | re.M)
-RULE = re.compile(r"^[ \t]*(?:-{3,}|\*{3,}|_{3,})[ \t]*$")
+    r")[ \t\r]*", re.I)
+RULE = re.compile(r"^[ \t]*(?:-{3,}|\*{3,}|_{3,})[ \t\r]*$")
+
+
+# A line git reads as a trailer's first line. Git joins the lines under it that open with
+# whitespace onto it with a space, so `Co-Authored-By: Jane` over ` <jane@anthropic.com>` is one
+# trailer naming an Anthropic address, and is judged as one.
+TRAILER = re.compile(r"^[A-Za-z0-9-]+[ \t]*:")
+
+
+def attributes(line: str) -> bool:
+    """Whether one line, or one trailer as git joins it, is Claude or Anthropic attribution."""
+    if OTHER.fullmatch(line):
+        return True
+    trailer = PERSON.fullmatch(line)
+    ident = trailer and IDENTITY.fullmatch(trailer["value"])
+    if not ident:
+        return False
+    name = ident["name"].strip().strip('"').strip()
+    address = (ident["addr"] or ident["bare"] or "").strip()
+    return bool(DOMAIN.search(address) or ANTHROPIC.search(name)
+                or ANTHROPIC.search(ident["comment"] or "") or ASSISTANT.fullmatch(name))
+
+
+def scan(lines: list) -> tuple:
+    """The indices of the attribution lines, and each as it reads. A trailer counts as git joins it,
+    continuation lines and all, and every line is also judged on its own, so an indented line git
+    folds into some other trailer still counts."""
+    drop, removed, i = set(), [], 0
+    while i < len(lines):
+        j = i + 1
+        if TRAILER.match(lines[i]):
+            while j < len(lines) and lines[j][:1] in (" ", "\t") and lines[j].strip():
+                j += 1
+        joined = " ".join([lines[i].rstrip("\r")] + [ln.strip() for ln in lines[i + 1:j]])
+        if attributes(joined):
+            drop.update(range(i, j))
+            removed.append(joined.strip())
+        else:
+            for k in range(i, j):
+                if attributes(lines[k]):
+                    drop.add(k)
+                    removed.append(lines[k].strip())
+        i = j
+    return drop, removed
 
 
 def offending(text: str) -> list:
-    return [m.group(0).strip() for m in LINE.finditer(text)]
+    return scan(text.split("\n"))[1]
 
 
 def strip(text: str) -> tuple:
     """The message without attribution lines, and the lines it took out."""
-    removed = offending(text)
+    lines = text.split("\n")
+    drop, removed = scan(lines)
     if not removed:
         return text, []
-    lines = [ln for ln in text.split("\n") if not LINE.fullmatch(ln)]
+    lines = [ln for k, ln in enumerate(lines) if k not in drop]
     # A footer usually sits under a horizontal rule. With the footer gone, a rule left at the end
     # of the message separates nothing.
     while lines and (not lines[-1].strip() or RULE.match(lines[-1])):
@@ -111,6 +176,18 @@ def self_test() -> int:
             "Reviewed-by: Helper <bot@anthropic.com>",
             "Assisted-by: Claude Code",
             "Author: Claude <noreply@anthropic.com>",
+            "Reviewed-by: bot@anthropic.com",
+            "Author: noreply@claude.ai",
+            "Signed-off-by: helper@eu.claude.com",
+            "Cc: Claude <noreply@anthropic.com>",
+            "Committer: Claude <noreply@anthropic.com>",
+            "Co-Authored-By: Claude (Anthropic) <x@example.com>",
+            "Co-Authored-By: Claude.ai <noreply@example.com>",
+            "Co-Authored-By: Jane Doe <jane@anthropic.com>.",
+            "Co-Authored-By : Claude <noreply@anthropic.com>",
+            'Reviewed-by: "Claude" <x@example.com>',
+            "**\U0001F916 Generated with [Claude Code](https://claude.com/claude-code)**",
+            "**Generated with [Claude Code](https://claude.com/claude-code)**",
             "Claude-Session: https://claude.ai/code/session_01abc",
             "Assistant-Session: 01abc",
             "\U0001F916 Generated with [Claude Code](https://claude.com/claude-code)",
@@ -126,7 +203,16 @@ def self_test() -> int:
             "Co-Authored-By: Anthropology Dept <dept@example.edu>",
             "Signed-off-by: Talon Sturgill <Talon.sturgill@gmail.com>",
             "Reviewed-by: Claude Monet <monet@example.com>",
+            "Reviewed-by: jane@anthropic.community.example",
+            "Reviewed-by: jane@notanthropic.com",
+            "Reviewed-by: Jane <jane@anthropic.com.example.org>",
+            "Cc: Jane Doe <jane@example.com>",
+            "Co-Authored-By: Claude.Monet <monet@example.com>",
+            'Co-Authored-By: "Claude Monet" <monet@example.com>',
             "Context: Claude 4 is named in a body line that is not a person trailer.",
+            "Signed-off-by: Anthropic or Reviewed-by: Helper <bot@anthropic.com> passed both the "
+            "hook and CI.",
+            "Reviewed-by: Claude, whose tests found the bug, see issue 12: it was real.",
             "Co-Authored-By: Jane Doe <jane@example.com>",
             'The hook strips lines like "Generated with Claude Code" from messages.',
             "A Claude-Session: trailer mentioned mid-sentence stays.",
@@ -146,6 +232,22 @@ def self_test() -> int:
               "(https://claude.ai/code/session_01abc)_\n")
     out, _ = strip(footer)
     ok("a footer's rule goes with the footer", out == "Subject\n\nBody.\n", repr(out))
+    # A FOLDED TRAILER IS READ AS GIT JOINS IT (git interpret-trailers --parse joins a line that
+    # opens with whitespace onto the trailer above it).
+    out, removed = strip("Subject\n\nBody.\n\nCo-Authored-By: Jane\n <jane@anthropic.com>\n")
+    ok("a trailer folded onto a second line goes whole",
+       removed == ["Co-Authored-By: Jane <jane@anthropic.com>"] and out == "Subject\n\nBody.\n",
+       repr(out))
+    folded = "Subject\n\nCo-Authored-By: Jane Doe\n <jane@example.com>\n"
+    ok("a folded human trailer stays whole", strip(folded) == (folded, []), repr(strip(folded)))
+    out, removed = strip("Subject\n\nActor: daily\n  Co-Authored-By: Claude\n")
+    ok("an indented attribution line git folds into another trailer still goes",
+       removed == ["Co-Authored-By: Claude"] and out == "Subject\n\nActor: daily\n", repr(out))
+
+    crlf = "Subject\r\n\r\nBody.\r\n\r\nCo-Authored-By: Claude\r\n---\r\n"
+    out, removed = strip(crlf)
+    ok("a message with CRLF line endings loses the line and the rule and keeps its endings",
+       removed == ["Co-Authored-By: Claude"] and out == "Subject\r\n\r\nBody.\r\n", repr(out))
     mixed = ("Subject\n\nBody.\n\nCo-Authored-By: Jane Doe <jane@example.com>\n"
              "Co-Authored-By: Claude <noreply@anthropic.com>\nActor: daily\n")
     out, _ = strip(mixed)
@@ -161,6 +263,12 @@ def self_test() -> int:
         rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True).returncode
         ok("a message that is not UTF-8 is stripped and keeps its other bytes",
            rc == 0 and f.read_bytes() == b"Subject caf\xe9\n", repr(f.read_bytes()))
+        f.write_bytes(b"Subject\r\n\r\nCo-Authored-By: Jane\r\n <jane@anthropic.com>\r\n"
+                      b"Signed-off-by: Jane Doe <jane@example.com>\r\n")
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True).returncode
+        want = b"Subject\r\n\r\nSigned-off-by: Jane Doe <jane@example.com>\r\n"
+        ok("the hook keeps a CRLF message's other lines byte for byte",
+           rc == 0 and f.read_bytes() == want, repr(f.read_bytes()))
 
     # THE RANGE CHECK CAN GO RED, measured on a real repository rather than asserted.
     with tempfile.TemporaryDirectory() as t:
@@ -198,9 +306,11 @@ def main() -> int:
         p = Path(args[0])
         # surrogateescape carries bytes that are not UTF-8 through untouched, so a message this
         # can't decode is still stripped rather than crashing the hook, which now fails closed.
-        out, removed = strip(p.read_text(encoding="utf-8", errors="surrogateescape"))
+        # Bytes rather than text mode, because text mode would turn every CRLF into LF and so
+        # change lines the hook did not remove.
+        out, removed = strip(p.read_bytes().decode("utf-8", errors="surrogateescape"))
         if removed:
-            p.write_text(out, encoding="utf-8", errors="surrogateescape")
+            p.write_bytes(out.encode("utf-8", errors="surrogateescape"))
             print("commit-msg: removed Claude attribution lines, which CLAUDE.md forbids on every "
                   "commit", file=sys.stderr)
         return 0
