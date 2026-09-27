@@ -794,7 +794,7 @@ def main() -> int:
     if a.apply:
         stamped = apply(work, findings, today)
         record["items"] = items
-        LEDGER.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
+        LEDGER.write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n",
                           encoding="utf-8")
     save_cache(fresh, today)
     return report(findings, stats, stamped)

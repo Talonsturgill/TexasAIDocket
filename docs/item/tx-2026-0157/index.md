@@ -9,7 +9,7 @@ Galaxy Digital published an account on September 8th, 2026 of the conditional Ba
 - Public access: Write to the decider
 - Take part: https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html
 
-- Last checked: 2026-09-24
+- Last checked: 2026-09-27
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-17 · The developer's account of what the Batch Zero list did to its Texas projects is unchanged. Caspian is still described as submitted for base load and conditionally classified as studied load, and the Helios campus in Dickens County still carries the load requests the record lists.
 - 2026-09-20 · The developer's account of what the Batch Zero list did to its five Texas projects still reads as the record took it. The project that came back in a different class than it was filed in is still described that way.
 - 2026-09-24 · The developer's account to its shareholders of what Batch Zero did to its Texas projects reads as before. The project placed in a different class than it filed in is still described that way.
+- 2026-09-27 · The developer's account to its shareholders of what the Batch Zero list did to its Texas projects still reads as filed.
 
 ## Evidence
 

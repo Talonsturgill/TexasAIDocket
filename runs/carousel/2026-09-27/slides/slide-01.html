@@ -37,7 +37,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   await document.fonts.ready;
-  TXLAYOUT.mount(document.body, { kicker: "The night shift", counter: "01 / 09", src: "c3 c12 c20 c26   DRAWN", ink: '#E2D8C8' });
+  TXLAYOUT.mount(document.body, { kicker: "The night shift", counter: "01 / 09", src: "c3 c12 c13 c20 c26   DRAWN", ink: '#E2D8C8' });
   TX.fitText(document.getElementById("hook"), { min: 96, max: 128, maxLines: 2 });
   NIGHTRENT.follow();
   const TXT = init(THREE), K = initKit(THREE, TXT), F = NIGHTRENT, gl = F.glCanvas();

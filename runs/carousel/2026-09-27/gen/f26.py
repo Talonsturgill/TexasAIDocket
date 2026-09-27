@@ -82,7 +82,7 @@ LAB2 = """  const svg = document.getElementById('lead');
 """
 f2 = page(2, 'CLOSE_CROP', 'RENDERED in a TXT.interior room. The leasing office at night from behind the empty chair, the recommendation screen drawn from figures.json.',
   "Yes in bulk, no with a reason",
-  "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
+  "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. Across landlords nationally, it puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
   "The leasing office", "c21 c30 c31 c33   DRAWN",
   F2.replace('%NEAR%', str(NEAR)).replace('%CLOSE%', str(CLOSE)),
   after=LAB2, extra_css='  .hook { line-height:1.03; }', extra_html='<svg class="lead" id="lead"></svg><div class="lab" id="l0"></div><div class="lab" id="l1"></div><div class="lab" id="l2"></div><div class="lab" id="l3"></div><div class="lab" id="l4"></div>')
@@ -112,7 +112,7 @@ F6 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone
     const lines = 2 + (i * 7 % 3);
     for (let k = 0; k < lines; k++) q.fillRect(120, y + 8 + k * 22, k === lines - 1 ? 300 + (i * 53 % 260) : 620, 9);
     q.strokeStyle = '#a8a298'; q.lineWidth = 3; q.beginPath(); q.moveTo(70, y + step - 8); q.lineTo(746, y + step - 8); q.stroke();
-    window.__entries.push((y + 12) / 1056);
+    window.__entries.push((y + 22) / 1056);
   }
   const ptex = new THREE.CanvasTexture(pc); ptex.colorSpace = THREE.SRGBColorSpace; ptex.anisotropy = 8;
   const PW = 0.216, PH = 0.279;

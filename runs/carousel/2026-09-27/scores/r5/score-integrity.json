@@ -1,0 +1,53 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.8
+  }
+ ],
+ "weighted_score": 7.48,
+ "hard_fails": [],
+ "ship": true,
+ "named_defects": [
+  "F9 cabinet hardware crosses the email line; flat laptop",
+  "F8 key names no quantity; market share drawn as units in one building",
+  "F5 hard orange band",
+  "F1 combines c26 generic with c20 licence",
+  "F5 area labels shortened unevenly",
+  "court never named"
+ ]
+}

@@ -13,10 +13,11 @@
    "claims": [
     "c3",
     "c12",
+    "c13",
     "c20",
     "c26"
    ],
-   "cite": "c3 c12 c20 c26 DRAWN",
+   "cite": "c3 c12 c13 c20 c26 DRAWN",
    "body": "The Justice Department has proposed a judgment against Pinnacle, an apartment manager the complaint places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
    "labels": [],
    "strings": [
@@ -25,7 +26,7 @@
     "The Justice Department has proposed a judgment against Pinnacle, an apartment manager the complaint places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
     "The night shift",
     "01 / 09",
-    "c3 c12 c20 c26 DRAWN"
+    "c3 c12 c13 c20 c26 DRAWN"
    ]
   },
   "S2": {
@@ -40,7 +41,7 @@
     "c33"
    ],
    "cite": "c21 c30 c31 c33 DRAWN",
-   "body": "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
+   "body": "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. Across landlords nationally, it puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
    "labels": [
     "recommended",
     "bulk acceptance",
@@ -49,7 +50,7 @@
    "strings": [
     "texasaidocket.com",
     "Yes in bulk, no with a reason",
-    "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
+    "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. Across landlords nationally, it puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
     "recommended",
     "2.5%",
     "5%",
@@ -235,11 +236,16 @@
    ],
    "cite": "c55 c56 c58 c59 c36 DRAWN",
    "body": "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on.",
-   "labels": [],
+   "labels": [
+    "lit at the low share",
+    "lit at the high share"
+   ],
    "strings": [
     "texasaidocket.com",
     "It binds one landlord",
     "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on.",
+    "lit at the low share",
+    "lit at the high share",
     "The rest of the case",
     "08 / 09",
     "c55 c56 c58 c59 c36 DRAWN"

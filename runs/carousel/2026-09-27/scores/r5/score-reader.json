@@ -1,0 +1,54 @@
+{
+ "judge": "reader",
+ "lens": "reader",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 7.51,
+ "hard_fails": [],
+ "ship": true,
+ "named_defects": [
+  "F9 cabinet handles and strip light cross the dek; flat laptop",
+  "F8 key never names the share",
+  "F2 'nationally' not in c33's quote or text",
+  "F3/F7 primitive figure; F7 unlabelled columns",
+  "F5 void; F8 dead asphalt",
+  "email address in no copyable surface",
+  "court never named"
+ ]
+}

@@ -9,9 +9,9 @@
       "bands": [
         0.3676,
         0.5483,
-        0.5092
+        0.511
       ],
-      "band_ratio": 1.0684
+      "band_ratio": 1.0707
     },
     {
       "file": "slide-02.html",
@@ -21,10 +21,10 @@
       ],
       "bands": [
         0.1134,
-        0.2458,
+        0.2689,
         0.3382
       ],
-      "band_ratio": 1.4254
+      "band_ratio": 1.3825
     },
     {
       "file": "slide-03.html",
@@ -34,10 +34,10 @@
       ],
       "bands": [
         0.2836,
-        0.4832,
-        0.5588
+        0.4769,
+        0.5846
       ],
-      "band_ratio": 1.2496
+      "band_ratio": 1.286
     },
     {
       "file": "slide-04.html",
@@ -74,9 +74,9 @@
       "bands": [
         0.2269,
         0.4223,
-        0.2812
+        0.2702
       ],
-      "band_ratio": 0.9107
+      "band_ratio": 0.8865
     },
     {
       "file": "slide-07.html",
@@ -86,10 +86,10 @@
       ],
       "bands": [
         0.3739,
-        0.2899,
-        0.5184
+        0.2857,
+        0.546
       ],
-      "band_ratio": 1.2968
+      "band_ratio": 1.3367
     },
     {
       "file": "slide-08.html",
@@ -99,30 +99,32 @@
       ],
       "bands": [
         0.2269,
-        0.4307,
+        0.4559,
         0.5974
       ],
-      "band_ratio": 1.4009
+      "band_ratio": 1.375
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 31% / mid 82% / bottom 34% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built",
-        "a drawn rule crosses the glyph band of 'Comment within 60 days of the September ' (canvas edge .pixels at 82,492.5 804x5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
-        "a drawn rule crosses the glyph band of 'Comment within 60 days of the September ' (canvas edge .pixels at 82,503.5 804x2) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
-        "a drawn rule crosses the glyph band of 'Comment within 60 days of the September ' (canvas edge .pixels at 82,506.5 804x2) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
-        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,470 702x2) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+        "a drawn rule crosses the glyph band of 'Comment within 60 days of the September ' (canvas edge .pixels at 82,425.5 834x2) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'Comment within 60 days of the September ' (canvas edge .pixels at 82,504 804x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,475.5 702x2.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'ATR.Public-Comments-Tunney-Act-MB@usdoj.' (canvas edge .pixels at 82,479 702x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "art touching glyphs (3% of the ring around 'Comment within 60 days of the September ', spanning 26%) -- pixel critic verify the label is not crossed"
       ],
       "bands": [
-        0.2731,
-        0.5273,
-        0.454
+        0.3109,
+        0.8172,
+        0.3401
       ],
-      "band_ratio": 1.0816
+      "band_ratio": 0.7046
     }
   ],
   "fails": 0,
-  "warns": 13,
+  "warns": 15,
   "verdict": "WARN"
 }

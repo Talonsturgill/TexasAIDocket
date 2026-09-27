@@ -1,0 +1,53 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 7.29,
+ "hard_fails": [],
+ "ship": false,
+ "named_defects": [
+  "F1 dek credits the complaint but cites c12, not c13",
+  "F2 names no population for c33",
+  "F8 cites c36 and encodes it with no key",
+  "F8 empty lower half",
+  "F9 figure behind the email line",
+  "F6 leaders between entries"
+ ]
+}

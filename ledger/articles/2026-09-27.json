@@ -17,7 +17,7 @@
  },
  "introduction": [
   {
-   "text": "The Justice Department has asked a federal court to enter a judgment against Pinnacle Property Management Services. [The proposed Final Judgment, filed on September 4, 2026, bars Pinnacle from licensing or using a revenue management software that relies on competitively sensitive data](c3). The Competitive Impact Statement describes the company plainly. [Pinnacle, headquartered in Frisco, Texas, is one of the largest apartment managers in the United States.](c12)",
+   "text": "The Justice Department has asked a federal court to enter a judgment against Pinnacle Property Management Services. The proposed judgment was filed on {{date:c3}}. It [bars Pinnacle from licensing or using a revenue management software that relies on competitively sensitive data](c3). The Competitive Impact Statement describes the company plainly. [Pinnacle, headquartered in Frisco, Texas, is one of the largest apartment managers in the United States.](c12)",
    "claims": [
     "c3",
     "c12"
@@ -37,7 +37,7 @@
    "heading": "What the complaint says the software does",
    "paragraphs": [
     {
-     "text": "The government's account of the software is an allegation, not a finding. The amended complaint says [every night, for each participating property, AIRM applies the model's learned parameters to that property's internal transactional data](c25), and that [a new floor plan price recommendation is generated daily](c26). It says the model's learned parameters come from landlords' nonpublic data and [are then used for all AIRM clients across the country](c23).",
+     "text": "The government's account of the software is an allegation, not a finding. The amended complaint describes a nightly run. [Every night, for each participating property, AIRM applies the model's learned parameters to that property's internal transactional data](c25). It says [a new floor plan price recommendation is generated daily](c26). It says the model's learned parameters come from landlords' nonpublic data and [are then used for all AIRM clients across the country](c23).",
      "claims": [
       "c25",
       "c26",
@@ -45,7 +45,7 @@
      ]
     },
     {
-     "text": "The complaint describes how easily a recommendation becomes a rent. Auto-accept is a switch. The complaint says [by default, AIRM and YieldStar set auto-accept parameters of a 3% daily change and an 8% weekly change](c27), that the landlord can turn it on or off, and that once it is on [a landlord functionally delegates pricing authority to RealPage](c28) within those limits. A manager [can choose to do a bulk acceptance](c30), while one who declines [must provide \"specific business commentary\"](c31). By the complaint's count, [nearly 60% of final floor plan prices are within 2.5% of RealPage's recommendation](c33).",
+     "text": "The complaint describes how easily a recommendation becomes a rent. Auto-accept is a switch the landlord can turn on or off. The complaint says [by default, AIRM and YieldStar set auto-accept parameters of a 3% daily change and an 8% weekly change](c27). Once it is on, it says, [a landlord functionally delegates pricing authority to RealPage](c28) within those limits. A manager [can choose to do a bulk acceptance](c30), while one who declines [must provide \"specific business commentary\"](c31). By the complaint's count, [nearly 60% of final floor plan prices are within 2.5% of RealPage's recommendation](c33).",
      "claims": [
       "c27",
       "c28",
@@ -68,7 +68,7 @@
    "heading": "What the judgment would require",
    "paragraphs": [
     {
-     "text": "The core limits are about data. Pinnacle [cannot license or use any third-party revenue management product that uses third-party nonpublic data to recommend or set prices](c39), and it [cannot license or use any third-party revenue management product that pools information across Pinnacle properties with different owners](c40). It also can't use a product that [requires Defendant to accept, or provides any financial rewards for Defendant to accept, any recommended rental prices](c50). Those software limits begin [180 days after entry of the Stipulation and Order](c49).",
+     "text": "The core limits are about data. Pinnacle can't use outside pricing software that relies on [third-party nonpublic data to recommend or set prices](c39). Nor can it use one that [pools information across Pinnacle properties with different owners](c40). It also can't use a product that [requires Defendant to accept, or provides any financial rewards for Defendant to accept, any recommended rental prices](c50). Those software limits begin [180 days after entry of the Stipulation and Order](c49).",
      "claims": [
       "c39",
       "c40",

@@ -314,6 +314,11 @@ _CITED = {
     # the one way to comment on it. The 2026-09-24 edition reports that comment period, so the
     # address is the fact the story turns on, carried in the FAA's own quoted words.
     "9-FAA-Drone-Environmental@faa.gov",
+    # The Justice Department Antitrust Division's Tunney Act comment address, printed in the
+    # Federal Register notice of September 18th, 2026 as the way to comment on the proposed
+    # judgment against Pinnacle. The 2026-09-27 edition reports that comment window, so the
+    # address is the fact the story turns on, carried from the notice's own words (claim c11).
+    "ATR.Public-Comments-Tunney-Act-MB@usdoj.gov",
 }
 
 

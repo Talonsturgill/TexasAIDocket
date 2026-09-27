@@ -108,7 +108,7 @@ window.renderReady = (async () => {
     const lines = 2 + (i * 7 % 3);
     for (let k = 0; k < lines; k++) q.fillRect(120, y + 8 + k * 22, k === lines - 1 ? 300 + (i * 53 % 260) : 620, 9);
     q.strokeStyle = '#a8a298'; q.lineWidth = 3; q.beginPath(); q.moveTo(70, y + step - 8); q.lineTo(746, y + step - 8); q.stroke();
-    window.__entries.push((y + 12) / 1056);
+    window.__entries.push((y + 22) / 1056);
   }
   const ptex = new THREE.CanvasTexture(pc); ptex.colorSpace = THREE.SRGBColorSpace; ptex.anisotropy = 8;
   const PW = 0.216, PH = 0.279;

@@ -1,5 +1,14 @@
 # Run record, September 27th, 2026
 
+## DISPOSITION: SHIPPED AT THE ROUND CAP, 7.446, 0.554 UNDER THE 8.0 TOP RUNG
+
+Carousel no. 35, "Rent, recommended overnight", nine rendered frames in one nightSodium world.
+Five scoring rounds with three judges each. The panel medians were 6.756, 7.2, 7.26, 7.372 and
+7.446. Rounds 1 and 2 carried hard fails (three, then one), each a sentence the source does not
+support, and each was repaired from the source's own words. Rounds 3 to 5 carried none. At the
+round cap the finished deck ships under the ladder with the shortfall named here and in the email.
+The heaviest drag is artwork_craft (6.5 to 7.0 across the final judges).
+
 ## The record, first
 
 - **Worklist.** `docket_staleness.py` named 45 items due on the two day leash, none rotten. `reverify.py --apply` stamped 14 of them from the diff alone (9 sources answered 304, 74 sent a body, 7 did not answer). The other 31 were read by hand, one primary source each, through `fetch_doc.py` and the crawl boundary, and 30 of those were stamped with a dated line. Every stamped item's movement line was re-worded (`reverify.py --check-notes` exit 0).
@@ -26,6 +35,123 @@ Every page check exited 0: `gridwatch_pagecheck`, `waterwatch_pagecheck`, `water
 - **/topic/.** The defense and federal card reads 8 decisions and 5 still open to comment. Its page lists 8 decisions.
 - **/place/.** Brazos County, where 0190 landed, reads 10 on the hub and its page lists 10 decisions.
 
+## A SLIP OF THIS RUN'S OWN, disclosed
+
+**Four commits carried Claude attribution trailers.** The first four commits on this branch (the
+re-verification, the admissions, the comment-window note and the first chassis commit) ended in a
+`Co-Authored-By: Claude` line and a `Claude-Session:` link, which CLAUDE.md forbids on every commit.
+The branch had been pushed but not merged. The messages were rewritten on this run's own branch
+with those two lines removed and nothing else changed: the trees are byte identical, the author is
+Talon Sturgill on every commit and every `Actor: daily` stamp survived. The branch was updated with
+a lease on the old tip. Nothing with the trailers reached `main`.
+
+## What the deck is
+
+One nightSodium world declared once in `assets/js/deck/2026-09-27-nightrent.js`: a garden
+apartment hero built in the chassis (five breezeway cores with wall packs and a pool of light on
+the walk under each, a leasing office storefront at the west end), a key at azimuth 196 elevation
+26, and the storefront's room light as the one accent #7FB2D9, carried indoors into the leasing
+office monitor and the resident's laptop. The story runs from the lot at night, to the office where
+the complaint says the price arrives (bulk acceptance, a reason to decline, nearly 60% within
+2.5%), to the default limits drawn as two steel columns at one scale, to the lease data and the
+48 Texas submarkets counted from Appendix A, to the judgment's nine numbered terms on the desk, to
+the turn on frame 7 (frame 3's exact camera with the five cores switched off and the columns'
+base plates left behind, the storefront still on), to the one bound landlord dark between two lit
+neighbours, to a resident at a kitchen counter with the comment route.
+
+## What the review rounds cost and bought
+
+- **The turn had to be one camera.** Round 1's flow critic found that frames 3 and 7 were built
+  from two cameras, so nobody could see the lamps go out. One shared camera, all five cores in
+  frame, made it the deck's clearest beat, and round 2 called it the best thing in the deck.
+- **Lit cores are invisible until the light reaches the ground.** Wall packs alone read as specks
+  at 432 px. The chassis gained a pool on the walk under each lit core (`poolI`) and a per frame
+  pack strength (`lampI`).
+- **Copy against the claims.** Frame 2's hook "Accept all takes one click" had no claim behind
+  it and became "Yes in bulk, no with a reason" (c30, c31). Frame 6's dek said "No outside
+  software ..., a compliance officer, an annual audit, and inspections", which reads as the
+  judgment banning its own oversight, and became "bars ... and requires ...". Frame 1 now says each
+  participating property and a price recommendation (c25, c26). c30's claim text overstated its
+  quote and was narrowed. c11, the comment address, was re-sourced from the federalregister.gov
+  HTML to the govinfo PDF, whose text layer carries it across a line break, and raised to high.
+  The caption now names the complaint and the impact statement as placing Pinnacle in Frisco
+  (the judgment's own definition says Dallas) and gives the software limits their start, 180 days
+  after the stipulation order is entered.
+- **Accent coverage.** Moving cameras out to fit five cores shrank the storefront below
+  `layout_check`'s floor on frames 1, 3 and 7. The accent holds on 2, 6 and 9 (the monitor, the
+  monitor's edge and the laptop). Brightening the storefront blew it to white rather than toward
+  the accent, which is recorded for the retro.
+- **Frame 8 is declared GRID.** Three buildings side by side, dark hero between lit neighbours,
+  never measured as one silhouette because they are three. The frame's data is a comparison of
+  counts (3 and 8 lit of 12), which is what GRID measures, so the archetype was changed from
+  SPLIT_HORIZON and the rotation still passes (no archetype twice in a row, seven distinct).
+- **Frame 5's horizon.** Two critics asked for opposite things: sky behind the type, or the type
+  on the ground. Neither fit five clusters in frame without a line through the hook, so the
+  horizon sits above the kicker and the clusters were spread so every building separates at feed
+  size.
+
+## The five rounds
+
+| round | integrity | craft | reader | median | hard fails |
+|---|---|---|---|---|---|
+| 1 | 6.69 | 7.30 | 6.86 | 6.756 | 3 (frame 3 auto-accept "by default", frame 8 "the case against RealPage goes on", twice) |
+| 2 | 7.006 | 7.34 | 7.156 | 7.2 | 1 (frame 8 "other defendants" re-imports RealPage; c58 says "remaining") |
+| 3 | 7.18 | 7.44 | 7.34 | 7.26 | 0 |
+| 4 | 7.29 | 7.26 | 7.47 | 7.372 | 0 |
+| 5 | 7.48 | 7.27 | 7.51 | 7.446 | 0, SHIP at the cap |
+
+These figures are copied from each round's `scores/rN/score.json`, which `panel.py` wrote.
+
+**Recompositions under the round rule.** Frame 9's kit figure was named in rounds 2, 3 and 4 (the
+head behind the dek, a mannequin, a blown patch). Round 5 recomposed the frame without a person:
+the counter, the lit laptop, a mug. The round 5 judges then named cabinet hardware crossing the
+email line (legible, four unmeasurable QA warns), which is the next run's lesson. Frame 5's overhead
+count was named in every round as objects in a void under a hard sky strip, and it was not
+recomposed. The engineer's diagnosis is in the backlog: the frame lights only its clusters over an
+unlit 30 km ground, and a kit ground cover model is the fix.
+
+**Still standing at ship, named so the next run starts there.** Frame 5's void. Frame 8's empty
+lower road and a key ("lit at the low share", "lit at the high share") that never says share of
+what, because c36's figures were cut from the dek in round 4. The kit person's flat face on frames
+3 and 7. Frame 9's cabinet hardware under the email line. The court (Middle District of North
+Carolina, c2) named on no frame. The first comment lists the ids the frames print, so c13 is now
+there and the caption-only c49 is not.
+
+## Things this run did not do
+
+- It did not name the court on a frame or in the caption.
+- It did not print a close date, on purpose: the impact statement runs the window from the later
+  of two publications and no newspaper date is printed.
+- It did not count Pinnacle's Texas units; no fetched record gives one.
+
+## The retro
+
+- **Instincts.** Confirmed: a-count-must-name-the-set-it-counted, acceptance-items-need-a-floor,
+  read-the-repair-at-feed-scale, a-gate-fix-can-create-an-editorial-defect. Added at 0.50:
+  one-camera-for-a-change-of-state, read-the-claim-paragraph-not-the-quote.
+- **Upgrade (upgrade lane, its own commit).** `garden_apartment` is lifted from the chassis into
+  `assets/js/kit/homes.js` at the judges' named fix: a shingled roof with ridge cap, fascia, rakes,
+  gutters and a light drip edge instead of a black slab, wall packs as bronze housings, and the walk
+  pool under each lit core built in. Proved with `examples/kit/build.py` at goldenHour and blueHour
+  and `examples/kit/sizes.py` (98 of 98 at size). The shipped frames were rendered with the chassis
+  model before the lift and were not re-rendered. `ledger/carousel/upgrades.json` carries the entry
+  and five proposals are in `knowledge/carousel/UPGRADE_BACKLOG.md`.
+- **reverify.py.** It wrote `ledger/docket.json` at indent 2 while the canonical file is indent 1,
+  for the third run running. Fixed in this run's daily commit (one line, the cache write untouched,
+  `--self-test` exit 0).
+- **house_style_check's cited list.** The Antitrust Division's comment address is the source's
+  own published contact and the web edition turns on it, so it joins the FAA's address with its
+  reason, on the precedent of carousel no. 33.
+
+## Prompt audit (interim, Phase 17)
+
+`prompt_audit.py` exited 1: 1,884 tool calls measured, 567 over its one second line. The longest
+waits were 27.6 s and 25.7 s, then 12.3 s and 10.1 s, and the rest under 4.3 s. The no-stall hook
+was armed at 06:16:27 UTC, judged the session unattended from the start (the host's
+`CLAUDE_CODE_SESSION_ATTENDED` was 0) and refused nothing. No call waited long enough to have
+stalled the run. What made 567 calls slower than a second is not established here. This reading is
+interim; Phase 19's is the one that counts.
+
 ## Gate status
 
 <!-- gate-status:begin -->
@@ -35,17 +161,17 @@ Every page check exited 0: `gridwatch_pagecheck`, `waterwatch_pagecheck`, `water
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 6 warn(s) |
 | aggregates     | PASS   | 8 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.46 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 30,716 chars planned |
+| assembly       | PASS   | 9 slide(s), 6.52 MB, vector |
+| score          | WARN   | 7.446 at the round cap after 5 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 82 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 103 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 4 declared fragment(s) over 2 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 30,636 chars planned |
 | caption        | PASS   | 143 words |
-| craft floor    | PASS   | 9 frame(s), median 839, floor 151 |
+| craft floor    | PASS   | 9 frame(s), median 778, floor 140 |
 | plan vs render | WARN   | 9 of 38 acceptance item(s) checkable |
-| texan          | PASS   | places Austin, Dallas, Fort Worth, Houston, Irving, Plano, Round Rock, San Antonio / body yes / deadline yes / next step yes |
+| texan          | WARN   | places Austin, Dallas, Fort Worth, Houston, Irving, Plano, Round Rock, San Antonio / body yes / deadline yes / next step NO |
 | absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
-| numerals       | FAIL   | 28 numeral(s) over 9 frame(s), 4 the cited claims do not reach: s5 prints '13' in "13 Austin- Round Rock" and NO claim in this run carries that figure in  |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| numerals       | PASS   | 26 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

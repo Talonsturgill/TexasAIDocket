@@ -120,7 +120,7 @@ job: >
   Stop the scroll on an ordinary Texas apartment lot at night and make the one cool light in it
   the question the deck answers.
 
-claims: [c3, c12, c20, c26]
+claims: [c3, c12, c13, c20, c26]
 numerals: []
 
 depth:
@@ -209,7 +209,7 @@ art:
 type:
   kicker: "The leasing office"
   hook: "Yes in bulk, no with a reason"
-  dek: "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%."
+  dek: "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. Across landlords nationally, it puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%."
   labels: ["2.5%", "5%", "recommended"]
 
 verbatim:
@@ -583,7 +583,7 @@ risks:
 slide: 9
 layout: CLOSE_CROP
 primary_image:
-  subject: "inside a unit's kitchen at night, seen from the counter's end by the fridge, a resident standing square to an open laptop on the counter, the screen the room's cool light, cabinets and a tile backsplash, the lot's sodium through the window at the left"
+  subject: "inside a unit's kitchen at night, the counter with an open laptop turned to the lens, the screen the room's one cool light, a mug and a stack of papers beside it, an under cabinet strip light on a tile backsplash, no person in frame"
   rect: [300, 560, 780, 790]
   bleeds: [right, bottom]
 accent: "#7FB2D9"

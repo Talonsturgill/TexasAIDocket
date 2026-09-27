@@ -45,7 +45,7 @@ SCENE = """  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDens
 COLS = f"""  /* THE TWO LIMITS AS TWO STEEL COLUMNS AT ONE SCALE, 0.25 m per percentage point from one zero
    * line: figures.json column_daily_m and column_weekly_m. A resident stands beside them. */
   const DAILY_M = {FIG['column_daily_m']}, WEEKLY_M = {FIG['column_weekly_m']};
-  const steel = TXT.mat.clay(0x8c8a86, {{ metalness: 0.9, roughness: 0.35 }});
+  const steel = TXT.mat.clay(0xaeb2b5, {{ metalness: 0.3, roughness: 0.42 }});
   const colA = TXT.roundedBox(0.5, DAILY_M, 0.5, 0.03, steel), colB = TXT.roundedBox(0.5, WEEKLY_M, 0.5, 0.03, steel);
   colA.position.set(XA, DAILY_M / 2 + 0.03, CZC); colB.position.set(XB, WEEKLY_M / 2 + 0.03, CZC);
   TXT.add(R, colA); TXT.add(R, colB); TXT.contact(R, colA); TXT.contact(R, colB);

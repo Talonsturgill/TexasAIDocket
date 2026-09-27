@@ -1,0 +1,54 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.1
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": false,
+ "ranked_artwork_defects": [
+  "F5 orange strip and void (unchanged all rounds)",
+  "F9 head behind the dek; blown cool patch; flat orange card",
+  "F8 empty lower 45%; cool windshield",
+  "F3/F7 black monolith columns; mannequin face",
+  "F6 dark band; leaders between entries",
+  "F2 empty wall; desk hot spot",
+  "F1 aliasing on pickup window"
+ ]
+}

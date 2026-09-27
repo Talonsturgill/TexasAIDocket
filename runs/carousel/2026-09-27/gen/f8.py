@@ -35,9 +35,10 @@ scene = f"""  const R = TXT.setup(gl, {{ w: 1080, h: 1350, fog: [W.haze, W.fogDe
     const v = K.make(c[0], {{ seed: 61 + i, color: c[2] }}); v.position.set(c[1] - 88, 0, 83.5); v.rotation.y = Math.PI; TXT.add(R, v); TXT.contact(R, v); }});
   R.scene.traverse((m) => {{ if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 1 && (m.material.emissive.getHex() & 0xff) > 0x80) m.material.emissiveIntensity = 0; }});
 """
+LAB8 = open('../lab8.js').read()
 f8 = page(8, 'GRID', 'RENDERED in the declared nightSodium world. From the near kerb, the hero dark between two lit neighbours.',
   "It binds one landlord",
   "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on.",
   "The rest of the case", "c55 c56 c58 c59 c36   DRAWN",
-  scene)
+  scene, after=LAB8, extra_html='<svg class=\"lead\" id=\"lead\"></svg><div class=\"lab\" id=\"n0\"></div><div class=\"lab\" id=\"n1\"></div>')
 open('../../slides/slide-08.html', 'w').write(f8)

@@ -11,7 +11,7 @@ The Leander City Council directed the city to discontinue funding its contract w
 - Public access: Write to the decider
 - Take part: https://www.leandertx.gov/m/newsflash
 
-- Last checked: 2026-09-24
+- Last checked: 2026-09-27
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-21 · Admitted on the city's own notice, which gives both the direction and the date the department stopped. What happens to the images already collected is not stated anywhere the city has published.
 - 2026-09-24 · The city's notice still says the department stopped using the cameras and the city stopped paying for them. What becomes of images already collected is still unstated.
+- 2026-09-27 · The city's notice has moved off the front of its news page and still reads the same at its own address. What becomes of images already collected is still unstated.
 
 ## Evidence
 
@@ -33,11 +34,11 @@ Every fact above rests on one of these. The words are the source's own.
 
 > The City of Leander will discontinue funding its contract with Flock, following the directive by the Leander City Council during its September 3, 2026 meeting. As of September 4, 2026, the Leander Police Department is no longer using Flock cameras or Flock data.
 
-Source (primary_official): https://www.leandertx.gov/m/newsflash
+Source (primary_official): https://www.leandertx.gov/m/newsflash/Home/Detail/1347
 
 ### The city gives its reason.
 
 > The City originally initiated an Automated License Plate Recognition (ALPR) system in an effort to enhance public safety for our citizens and business community. In response to community concerns, the City Council decided to discontinue Flock services. While we will no longer have Flock as a resource, our vigilance and commitment to public safety remains unwavering.
 
-Source (primary_official): https://www.leandertx.gov/m/newsflash
+Source (primary_official): https://www.leandertx.gov/m/newsflash/Home/Detail/1347
 
