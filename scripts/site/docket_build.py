@@ -881,7 +881,8 @@ def gate_banned_words(items: list) -> Result:
     FORWARD ONLY, AND THE LINE IS THE RUN THAT TOUCHES THE ITEM. An item verified after SINCE has
     been read and signed by a run bound by the rule, so its whole reader copy is judged, key date
     notes and each claim's own sentence included, since the item page prints those as its
-    evidence. A claim's verbatim quote and source title are the source's words and stay. A
+    evidence. A claim's verbatim quote and source title are the source's words and stay, judged
+    by `word_ban.claim_words` so the deck and the record can't disagree about which fields. A
     movement note is dated, so one written after SINCE is judged whatever the item. Nothing
     older fails, because the record's published prose is not rewritten wholesale without the
     owner, and a run re-verifying an older item rewords it on the way through.
@@ -902,7 +903,7 @@ def gate_banned_words(items: list) -> Result:
             texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""), (), ())
                       for kd in (it.get("key_dates") or []) if isinstance(kd, dict)]
             texts += [(f"claim {c.get('id', '?')}", str(c.get("text") or ""),
-                       (str(c.get("source_title") or ""),), (str(c.get("verbatim_quote") or ""),))
+                       *word_ban.claim_words(c))
                       for c in (it.get("claims") or []) if isinstance(c, dict)]
         texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""), (), ())
                   for h in (it.get("history") or [])
