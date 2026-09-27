@@ -55,6 +55,11 @@ render.py also keeps only the report's `text_window` characters of each string, 
 word past that is unread. No string in the 35 shipped decks has reached it. One that does is a
 finding, and the fix it names is splitting or shortening it. The backlog has the render.py fix.
 
+Canvas text is also capped. render.py stops recording after 500 fillText and strokeText calls,
+repeats included, and says nothing when it does, so a label drawn after a dense chart's 500th
+tick goes unread. The report can't show the cap was hit, so nothing here can fail closed on it,
+and the backlog has the render.py fix (Codex, PR 379).
+
 SINCE is 2026-09-27, the last deck shipped before the rule. Nothing published on or before it is
 judged as a failure, because published copy is not rewritten without the owner. shipped_check and
 `--run` both still measure those decks and print what they find as notes.
@@ -92,6 +97,9 @@ QUOTE_FIELDS = ("quote", "verbatim_quote")
 COPY_TOP_FIELDS = ("document_title", "title", "hook", "subtitle", "story")
 # A passage at least this long found inside a source's own words is the source's.
 CONTAINED_MIN_WORDS = 3
+# Two nodes on one line closer than this, in ems, touch with no space between them. The narrowest
+# space in assets/fonts is Instrument Serif's, 0.17 em.
+ABUT_EM = 0.1
 
 
 def words(path: Path = BRAND) -> list:
@@ -128,24 +136,57 @@ def _found_at(text: str, *, sources: tuple = (), quotes: tuple = (),
     low = text.lower()
     for s in sources:
         parts = s.lower().split()
-        if len(" ".join(parts)) >= 4:
-            # whitespace in the title matches any whitespace in the text, a line break included,
-            # so a title set across two lines is still the source's (Codex, PR 379)
-            title = r"\s+".join(re.escape(w) for w in parts)
+        if not parts:
+            continue
+        # whitespace in the title matches any whitespace in the text, a line break included,
+        # so a title set across two lines is still the source's (Codex, PR 379)
+        title = r"\s+".join(re.escape(w) for w in parts)
+        if all(rx.fullmatch(re.sub(r"^\W+|\W+$", "", w)) for w in parts):
+            # a title that is nothing but banned words, "Gap" say, is the source's only where it
+            # stands alone, a line or a comma-separated part of one, as the first comment prints
+            # it. Anywhere else it is the house's word (Codex, PR 379)
+            spans += [m.span(1) for m in re.finditer(
+                rf"(?:^|(?<=[\n,]))[ \t]*({title})(?=[ \t]*(?:[,.\n]|$))", low)]
+        elif len(" ".join(parts)) >= 4:
             spans += [m.span() for m in re.finditer(rf"(?<!\w){title}(?!\w)", low)]
     theirs = [_squash(q) for q in (*quotes, *sources) if q and q.strip()]
     out = []
     for m in rx.finditer(text):
         if any(a <= m.start() and m.end() <= b for a, b in spans):
             continue
-        sentence = next((s.group(0) for s in SENTENCE.finditer(text)
-                         if s.start() <= m.start() < s.end()), "")
-        said = _squash(sentence).strip(" .!?")
-        if len(said.split()) >= CONTAINED_MIN_WORDS and any(_bounded_in(said, q) for q in theirs):
+        if len(_passage(text, m.start(), theirs).split()) >= CONTAINED_MIN_WORDS:
             continue
         around = text[max(0, m.start() - 40):m.end() + 40].replace("\n", " ").strip()
         out.append((m.group(0), around, m.start()))
     return out
+
+
+def _passage(text: str, at: int, theirs: list) -> str:
+    """The longest run of sentences around offset `at`, on its line, that a source says
+    verbatim, squashed, or "" when its own sentence isn't one. A full stop inside the run, as in
+    "U.S. gap remains", doesn't cut a quotation short (Codex, PR 379)."""
+    sents = list(SENTENCE.finditer(text))
+    i = next((k for k, s in enumerate(sents) if s.start() <= at < s.end()), None)
+    if i is None:
+        return ""
+
+    def said(lo, hi):
+        return _squash(text[sents[lo].start():sents[hi].end()]).strip(" .!?")
+
+    def theirs_has(lo, hi):
+        return any(_bounded_in(said(lo, hi), q) for q in theirs)
+
+    def joined(k):
+        return "\n" not in text[sents[k].end():sents[k + 1].start()]
+
+    if not theirs_has(i, i):
+        return ""
+    lo = hi = i
+    while lo > 0 and joined(lo - 1) and theirs_has(lo - 1, hi):
+        lo -= 1
+    while hi + 1 < len(sents) and joined(hi) and theirs_has(lo, hi + 1):
+        hi += 1
+    return said(lo, hi)
 
 
 def _found(text: str, *, sources: tuple = (), quotes: tuple = (),
@@ -289,6 +330,8 @@ def _text_lines(nodes: list) -> list:
             if (w > 0 and h > 0 and ln["h"] > 0
                     and abs(y + h / 2 - ln["cy"]) <= 0.5 * max(h, ln["h"])
                     and -2 <= x - ln["right"] <= 1.2 * max(fs, ln["fs"])):
+                if x - ln["right"] < ABUT_EM * max(fs, ln["fs"]):
+                    ln["touch"].append(len(ln["text"]))
                 start = len(ln["text"]) + 1
                 ln["text"] += " " + text
                 ln["parts"].append((start, start + len(text), text))
@@ -297,12 +340,13 @@ def _text_lines(nodes: list) -> list:
                 break
         else:
             lines.append({"text": text, "parts": [(0, len(text), text)], "x0": x, "right": x + w,
-                          "top": y, "bottom": y + h, "cy": y + h / 2, "h": h, "fs": fs})
+                          "top": y, "bottom": y + h, "cy": y + h / 2, "h": h, "fs": fs,
+                          "touch": []})
     return lines
 
 
 def _text_blocks(nodes: list) -> list:
-    """[(text, parts)], one per block of lines stacked in one column, joined by line breaks.
+    """[(text, parts, touch)], one per block of lines stacked in one column, joined by line breaks.
 
     A name whose two styled spans stack or wrap onto the next line is still one name, so a line
     that starts just under the one above it, overlapping it across, joins that line's block
@@ -324,11 +368,13 @@ def _text_blocks(nodes: list) -> list:
                 start = len(b["text"]) + 1
                 b["text"] += "\n" + ln["text"]
                 b["parts"] += [(start + a, start + e, pt) for a, e, pt in ln["parts"]]
+                b["touch"] += [start + t for t in ln["touch"]]
                 b["last"] = ln
                 break
         else:
-            blocks.append({"text": ln["text"], "parts": list(ln["parts"]), "last": ln})
-    return [(b["text"], b["parts"]) for b in blocks]
+            blocks.append({"text": ln["text"], "parts": list(ln["parts"]),
+                           "touch": list(ln["touch"]), "last": ln})
+    return [(b["text"], b["parts"], b["touch"]) for b in blocks]
 
 
 def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> list:
@@ -359,7 +405,7 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
         units = _text_blocks(nodes)
         drawn = dict.fromkeys(str(t.get("text") or "") for t in rec.get("canvas_text") or []
                               if isinstance(t, dict))
-        units += [(c, [(0, len(c), c)]) for c in drawn if c.strip()]
+        units += [(c, [(0, len(c), c)], []) for c in drawn if c.strip()]
         # render.py keeps TEXT_WINDOW characters of each string, and a banned word past that is
         # a word no gate can read. None of 3,136 nodes in 35 decks has reached it, so the gate
         # fails closed on one rather than passing what it can't see (Codex, PR 379). The length
@@ -370,11 +416,26 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
             if window and len(cut) >= window:
                 out.append((f"rendered slide {n}", None, cut[:60]))
         own, seen = judged.get(n, []), set()
-        for text, parts in units:
+        for text, parts, touch in units:
             if _squash(text) in seen:
                 continue
             seen.add(_squash(text))
-            for w, around, at in _found_at(text, sources=sources, quotes=quotes, banned=banned):
+            found = _found_at(text, sources=sources, quotes=quotes, banned=banned)
+            if touch:
+                # Two nodes that touch may be one word in two styles, "PAT" and "TERN". The spaced
+                # reading above keeps each node's own words, and this one adds a word only where
+                # it runs across a join, since a node's box can hold a trailing space the report
+                # trims (Codex, PR 379)
+                tight, cuts, prev = "", [], 0
+                for t in touch:
+                    tight += text[prev:t]
+                    cuts.append(len(tight))
+                    prev = t + 1
+                tight += text[prev:]
+                found += [f for f in _found_at(tight, sources=sources, quotes=quotes,
+                                               banned=banned)
+                          if any(f[2] < c < f[2] + len(f[0]) for c in cuts)]
+            for w, around, at in found:
                 part = next((pt for a, b, pt in parts if a <= at < b), text)
                 if not any(w.lower() in flagged and _bounded_in(_squash(part), other)
                            for other, flagged in own):
@@ -498,6 +559,15 @@ def self_test() -> int:
     ok("a source's title set across a line break is still the source's (Codex, PR 379)",
        not hits("Pattern\nEnergy filed the request.", sources=("Pattern Energy",),
                 banned=banned))
+    ok("a source named only a banned word keeps it where it stands alone, as the first comment "
+       "prints it, and nowhere else (Codex, PR 379)",
+       not hits("Gap, September 3rd. c1\nGap. c2\nSOURCES\nGAP", sources=("Gap",), banned=banned)
+       and len(hits("Mind the gap, the council said.", sources=("Gap",), banned=banned)) == 1
+       and len(hits("The matters before council.", sources=("Matters",), banned=banned)) == 1)
+    ok("a full stop inside a quotation doesn't cut it short, so 'U.S. gap remains' is the "
+       "source's (Codex, PR 379)",
+       not hits("U.S. gap remains", quotes=("U.S. gap remains",), banned=banned)
+       and len(hits("U.S. gap remains", banned=banned)) == 1)
     ok("a quotation broken across a line keeps its words (Codex, PR 379)",
        not hits('The memo says "a pattern\nof late filings" twice.', banned=banned))
     ok("...but a stray mark never carries the exemption past a blank line",
@@ -569,6 +639,18 @@ def self_test() -> int:
                  "anc": []},
                 {"text": "THE PATTERN", "x": 700, "y": 500, "w": 240, "h": 40, "font_px": 36,
                  "anc": []}]},
+            # One word set in two touching spans, a label whose box holds its trailing space,
+            # and two words a real space apart.
+            {"file": "slide-08.html", "text_nodes": [
+                {"text": "PAT", "x": 100, "y": 300, "w": 60, "h": 40, "font_px": 36, "anc": []},
+                {"text": "TERN", "x": 160, "y": 300, "w": 80, "h": 40, "font_px": 36, "anc": []},
+                {"text": "THE GAP", "x": 100, "y": 700, "w": 150, "h": 40, "font_px": 36,
+                 "anc": []},
+                {"text": "IS CLEAR", "x": 250, "y": 700, "w": 150, "h": 40, "font_px": 36,
+                 "anc": []},
+                {"text": "GA", "x": 100, "y": 1000, "w": 50, "h": 40, "font_px": 36, "anc": []},
+                {"text": "P PLAN", "x": 160, "y": 1000, "w": 120, "h": 40, "font_px": 36,
+                 "anc": []}]},
             # A clean string cut at the report's window, the same cut landing just after a space,
             # which render.py keeps, a canvas string cut raw with a double space in it, and one a
             # character short of the window.
@@ -602,11 +684,13 @@ def self_test() -> int:
            "slide 6 the name stacked in one column keeps its words, set loose or with its boxes "
            "overlapping, and the last column's label does not. On slide 7 a string cut at the "
            "report's window fails closed, a cut just after a space and a canvas string with a "
-           "double space included, and one a character short of it passes (Codex, PR 379)",
+           "double space included, and one a character short of it passes. On slide 8 a word "
+           "set in two touching spans and a label beside touching text are caught, and two "
+           "words a space apart are not joined (Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
                      "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
                      "rendered slide 3": 2, "rendered slide 5": 1, "rendered slide 6": 1,
-                     "rendered slide 7": 3, "claim c1": 1, "claim c4": 1,
+                     "rendered slide 7": 3, "rendered slide 8": 2, "claim c1": 1, "claim c4": 1,
                      "web edition section": 1, "web edition dek": 1,
                      "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()

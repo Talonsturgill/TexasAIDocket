@@ -4655,3 +4655,9 @@ reached the window, so `word_ban.py` fails closed on a string that does, and tel
 split or shorten it (Codex, PR 379). The real fix sits in the same file as the one above: record
 each string's full text in a field the gates read, `full` say, keep `text` at the window for the
 gates that compare on it, and have `word_ban.rendered()` read `full` when it is there.
+
+- **render.py's canvas text cap is silent.** The capture hook stops at 500 calls, duplicates
+  included, and writes no marker, so a label drawn after 500 other calls never reaches
+  `word_ban`. Fix: dedupe inside the hook before counting, and write `canvas_text_dropped`, the
+  number of calls past the cap, into each slide's record. `word_ban.rendered()` then fails
+  closed when it is above zero, with a self-test slide whose report sets it (Codex, PR 379).
