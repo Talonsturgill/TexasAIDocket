@@ -1020,6 +1020,13 @@ zero. Captions have no ceiling because no caption has shipped, and borrowing the
 exactly the typed-in number the compute-not-generate law forbids. The cure is splitting the
 sentence at the comma, never deleting the comma and leaving a run-on.
 Never "cannot", always "can't".
+**Never "gap", "matters" or "pattern"**, with "gaps" and "patterns" (owner, 2026-09-27: *"on both
+automations ban the words"*). The list is `brand.banned_words` in `config/brand.yaml`, human lane,
+and `scripts/carousel/word_ban.py` reads it. From the first run after September 27th it fails
+every surface a run publishes, the words a slide's render printed and each claim's own sentence
+included, and the record's prose. That file lists the surfaces. A quotation, a URL and a
+source's own title keep their words, and nothing published before the rule is failed or
+rewritten.
 Never open a sentence with "And" or "But".
 No first person in published copy.
 Every fact carries a claim-id and traces to a fetched source.

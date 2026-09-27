@@ -481,6 +481,9 @@ jobs:
       - name: Caption lint self-test (the house rules, and that they can go red)
         run: python3 scripts/carousel/caption_check.py --self-test
 
+      - name: Banned words self-test (owner, 2026-09-27, and that it can go red)
+        run: python3 scripts/carousel/word_ban.py --self-test
+
       - name: Claims gate self-test (every drift the sibling suffered, replayed)
         run: |
           # The fact-checker is an agent given a schema, and an agent given a schema returns

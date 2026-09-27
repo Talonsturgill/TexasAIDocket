@@ -871,6 +871,61 @@ def gate_house_style(items: list) -> Result:
     return r
 
 
+def gate_banned_words(items: list) -> Result:
+    """The owner's banned words, on the record prose a run writes after the rule (2026-09-27).
+
+    "on both automations ban the words gap and matters and pattern". The list lives in
+    config/brand.yaml and scripts/carousel/word_ban.py reads it, with a quotation and a URL
+    exempt, which is how a claim's verbatim quote and a Legistar `/Matters/` link stay untouched.
+
+    FORWARD ONLY, AND THE LINE IS THE RUN THAT TOUCHES THE ITEM. An item verified after SINCE has
+    been read and signed by a run bound by the rule, so its whole reader copy is judged, key date
+    notes and each claim's own sentence included, since the item page prints those as its
+    evidence. A claim's verbatim quote and source title are the source's words and stay, judged
+    by `word_ban.claim_words` so the deck and the record can't disagree about which fields. The
+    title, summary, how to take part, key date notes and movement notes cite no single claim, so
+    they count every claim the item carries, which is word_ban's rule for an uncited surface. A
+    movement note is dated, so one written after SINCE is judged whatever the item. Nothing
+    older fails, because the record's published prose is not rewritten wholesale without the
+    owner, and a run re-verifying an older item rewords it on the way through.
+
+    The list is read from brand.yaml once per pass, not once per field (Codex, PR 379), because
+    the movement notes this reads only grow.
+    """
+    import word_ban
+    banned = word_ban.words()
+    r = Result("banned words")
+    judged = 0
+    for it in items:
+        who = it.get("id", "?")
+        texts = []
+        claims = [c for c in (it.get("claims") or []) if isinstance(c, dict)]
+        # A record field names no single claim, so the item's own claims are its evidence, and
+        # each field is judged alone so a title can't run into the summary's first sentence and
+        # hide a quotation the summary sets (Codex, PR 379).
+        cites = word_ban.evidence_of(claims)
+        if str(it.get("last_verified") or "") > word_ban.SINCE:
+            judged += 1
+            texts += [(f, str(it.get(f) or ""), *cites) for f in READER_COPY_FIELDS]
+            texts += [(f"{outer}.{inner}", str((it.get(outer) or {}).get(inner) or ""), *cites)
+                      for outer, inner in READER_COPY_NESTED]
+            texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""), *cites)
+                      for kd in (it.get("key_dates") or []) if isinstance(kd, dict)]
+            texts += [(f"claim {c.get('id', '?')}", str(c.get("text") or ""),
+                       *word_ban.claim_words(c)) for c in claims]
+        texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""), *cites)
+                  for h in (it.get("history") or [])
+                  if isinstance(h, dict) and str(h.get("date") or "") > word_ban.SINCE]
+        for where, text, sources, quotes in texts:
+            for hit in word_ban.hits(text, sources=sources, quotes=quotes, banned=banned):
+                r.fail(f"{who}: {where}: {hit}. The owner banned it on 2026-09-27 "
+                       f"(config/brand.yaml banned_words). Say the specific thing instead")
+    if r.status == "PASS":
+        r.note(f"{judged} item(s) verified after {word_ban.SINCE}, and every movement note since, "
+               f"carry none of the owner's banned words")
+    return r
+
+
 def gate_staleness(items: list, today: str,
                    warn_days: int = 2, fail_days: int = 6) -> Result:
     """Two bands, and the outer one is a HARD FAIL.
@@ -1013,6 +1068,7 @@ GATES = {
     "schema": gate_schema, "claims": gate_claims, "numerals": gate_numerals,
     "narration": gate_narration, "house style": gate_house_style,
     "cross references": gate_cross_references, "movement": gate_movement,
+    "banned words": gate_banned_words,
 }
 DATED_GATES = {"staleness": gate_staleness, "deadlines": gate_deadlines}
 
@@ -1161,7 +1217,11 @@ def _atomic_write_text(path: Path, text: str, *, replace=os.replace) -> None:
 # Enforcement is not weakened. `--validate` still counts this and still exits non-zero, CI still
 # goes red, and the routine still has to clear it before it can ship. What changes is only that
 # a stale record can still be REBUILT while it is being fixed.
-NON_BLOCKING_FOR_BUILD = {"staleness"}
+#
+# BANNED WORDS JOINED IT ON 2026-09-27 FOR THE SAME REASON. A page carrying one of the owner's
+# banned words is badly worded, not wrong, and the cron workflows that rebuild `docs/` four times
+# a day must not freeze the Grid Watch over a word. `--validate`, CI and the run still fail on it.
+NON_BLOCKING_FOR_BUILD = {"staleness", "banned words"}
 
 
 def run_gates(items: list, today: str, *, blocking_only: bool = False) -> tuple[int, list]:
@@ -1546,6 +1606,48 @@ def self_test() -> int:
     # inventing an observation, so items stamped before the rule are left alone.
     expect("...but an item stamped before the rule is exempt, never backfilled",
            gate_movement([base(last_verified="2026-08-11", history=[])]), "PASS")
+
+    # THE OWNER'S BANNED WORDS, 2026-09-27, forward only.
+    worded = "The commission will take up transmission matters."
+    expect("an item verified after the rule FAILS on a banned word in its summary",
+           gate_banned_words([base(last_verified="2026-09-28", summary=worded)]), "FAIL")
+    expect("...and the same item last verified before the rule is not judged by it",
+           gate_banned_words([base(last_verified="2026-09-27", summary=worded)]), "PASS")
+    expect("...and a movement note dated after the rule is judged whatever the item",
+           gate_banned_words([base(last_verified="2026-09-20", history=[
+               {"date": "2026-09-28", "note": "The gap closed."}])]), "FAIL")
+    expect("...and a quotation or a URL in reader copy keeps its word",
+           gate_banned_words([base(last_verified="2026-09-28", summary=(
+               'The filing says "a pattern of late comments." '
+               "https://webapi.legistar.com/v1/elpasotexas/Matters/15758"))]), "PASS")
+    _claim = {"id": "tx-2026-0001-c1", "source_title": "PUCT Interchange",
+              "verbatim_quote": "Staff identified a pattern of incomplete applications.",
+              "source_url": "https://interchange.puc.texas.gov/search/filings/",
+              "source_type": "primary_official", "fetched": "2026-09-28"}
+    expect("...and a claim's own sentence is judged, since the item page prints it as evidence",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff describe a pattern of late filings.")])]), "FAIL")
+    expect("...but a claim sentence its own verbatim quote carries is the source's",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff identified a pattern of incomplete applications.")])]),
+           "PASS")
+    # A record field cites no single claim, so the item's claims are its evidence (Codex, PR 379).
+    _named = dict(_claim, text="The developer filed the request.",
+                  source_title="Pattern Energy interconnection request")
+    expect("...and a summary naming a source the item cites keeps the source's words",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[_named],
+                                   summary="Pattern Energy interconnection request filed.")]),
+           "PASS")
+    expect("...and the same summary FAILS on an item that cites no such source",
+           gate_banned_words([base(last_verified="2026-09-28",
+                                   summary="Pattern Energy interconnection request filed.")]),
+           "FAIL")
+    expect("...and a summary's sentence the item's claim quotes is judged apart from the title",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff reviewed the applications.")],
+               summary="Staff identified a pattern of incomplete applications.")]), "PASS")
+    check("...and the build is not frozen by it, while --validate still counts it",
+          "banned words" in NON_BLOCKING_FOR_BUILD)
     # THE KEY DATE NOTE, which renders on the timeline and was outside every gate on both
     # layers until 2026-08-18. Three cases, and the third is the point of the other two: the
     # construction rules apply to a fragment exactly as they apply to a sentence, and the comma

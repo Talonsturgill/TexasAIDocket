@@ -398,7 +398,8 @@ def hashtags_required() -> int:
     return n
 
 
-def post_shape_problems(text: str, today: str | None = None) -> list[str]:
+def post_shape_problems(text: str, today: str | None = None, *, sources: tuple = (),
+                        quotes: tuple = ()) -> list[str]:
     """The three `linkedin_post` rules that live in brand.yaml and had no gate (2026-08-25).
 
     Length, the link rule and the required ending. All three were stated in config, all three
@@ -471,6 +472,21 @@ def post_shape_problems(text: str, today: str | None = None) -> list[str]:
             f"out from the fact that they are reading it this week, so drop it and write "
             f"{bare!r}. The year stays on any date outside {year}, which "
             f"is what makes this a rule about redundancy rather than a rule against years")
+
+    # THE OWNER'S BANNED WORDS (2026-09-27), read from brand.yaml by word_ban, with a quotation
+    # and a URL exempt. POST LEVEL for the reason the year rule is: `check()` also judges the
+    # website, whose published pages carry these words and are not rewritten without the owner.
+    # So the caption room hears it while it writes, and shipped_check holds the rest of the deck.
+    # It reads the WHOLE caption, hashtags included, because a tag is printed too (Codex, PR 379).
+    # `body` drops them for the link and ending rules, which is right there and wrong here.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import word_ban
+    # `sources` and `quotes` are the run's claims, so a source's own title or quotation keeps its
+    # words here exactly as word_ban.check keeps them on the shipped caption (Codex, PR 379).
+    if today is None or today > word_ban.SINCE:
+        for hit in word_ban.hits(text, sources=sources, quotes=quotes):
+            problems.append(f"{hit}. The owner banned it on 2026-09-27 (config/brand.yaml "
+                            f"banned_words). Say the specific thing instead")
 
     return problems
 
@@ -731,15 +747,24 @@ def rate_problem(text: str, ceiling: float | None = COMMA_CEILING) -> str | None
             f"run-on")
 
 
-def run(text: str, *, quiet: bool = False) -> int:
+def caption_problems(text: str, *, sources: tuple = (), quotes: tuple = ()) -> list[str]:
+    """Every rule a caption is held to: `check()`, which also judges the website, and then the
+    caption-only rules. BOTH CLI MODES REPORT THIS LIST. `--json` used to call `check()` alone,
+    so a caption the plain run refused for its hashtags, its year, its ending or the owner's
+    banned words came back `"ok": true` in JSON (Codex, PR 379)."""
     problems = check(text)
     # CAPTION SURFACE ONLY, and this is the only path that reaches it. See `hashtag_problems`.
     problems += hashtag_problems(text)
-    problems += post_shape_problems(text)
-    rate, commas, words = comma_rate(text)
+    problems += post_shape_problems(text, sources=sources, quotes=quotes)
     rp = rate_problem(text)
     if rp:
         problems.append(rp)
+    return problems
+
+
+def run(text: str, *, quiet: bool = False, sources: tuple = (), quotes: tuple = ()) -> int:
+    problems = caption_problems(text, sources=sources, quotes=quotes)
+    rate, commas, words = comma_rate(text)
 
     if not quiet:
         ceil = ("no ceiling yet, measured after 20 shipped captions"
@@ -1097,6 +1122,74 @@ def self_test() -> int:
     ok("...and the message names the form to write instead, rather than only the rule",
        any("September 5th'" in x
            for x in post_shape_problems(_dated("September 5th, 2026"), "2026-09-11")))
+
+    # THE OWNER'S BANNED WORDS, 2026-09-27. A caption written after the rule fails on one, a
+    # quotation of a source keeps it, and a caption from before the rule is not judged by it.
+    def _worded(s):
+        return _base[: _hi - len(_tags) - 70] + f" {s} Is that worth it?\n\n" + _tags
+    ok("a caption after the rule FAILS on a banned word",
+       any("banned it on 2026-09-27" in x
+           for x in post_shape_problems(_worded("That is why the vote matters."), "2026-09-28")),
+       str(post_shape_problems(_worded("That is why the vote matters."), "2026-09-28"))[:200])
+    ok("...and a source quoted in straight quotes keeps its own word",
+       not any("banned it" in x for x in post_shape_problems(
+           _worded('The memo says "a gap remains."'), "2026-09-28")))
+    ok("...and a caption dated on or before the rule is not judged by it",
+       not any("banned it" in x for x in post_shape_problems(
+           _worded("That is why the vote matters."), "2026-09-27")))
+    _tagged = _worded("The vote was nine to two.").replace("#Tag1", "#Gap", 1)
+    ok("...and a hashtag is printed, so a banned word in one FAILS too (Codex, PR 379)",
+       "#Gap" in _tagged and any("banned it on 2026-09-27" in x
+                                 for x in post_shape_problems(_tagged, "2026-09-28")),
+       str(post_shape_problems(_tagged, "2026-09-28"))[:200])
+
+    # --json REPORTS WHAT THE PLAIN RUN REPORTS (Codex, PR 379). It called `check()` alone, so
+    # every caption-only rule, the banned words among them, went unread in JSON.
+    import contextlib
+    import io
+    _said = _worded("That is why the vote matters.")
+    _argv, _buf = sys.argv, io.StringIO()
+    try:
+        sys.argv = ["caption_check.py", "--json", "--text", _said]
+        with contextlib.redirect_stdout(_buf):
+            _rc = main()
+    finally:
+        sys.argv = _argv
+    _got = json.loads(_buf.getvalue())
+    ok("--json holds a caption to every rule the plain run does, the banned words included",
+       _rc == 1 and _got["ok"] is False and _got["problems"] == caption_problems(_said)
+       and any("banned it on 2026-09-27" in x for x in _got["problems"]),
+       str(_got.get("problems"))[:200])
+
+    # A SOURCE'S OWN NAME IN THE CAPTION (Codex, PR 379). The shipped caption is judged against the
+    # run's claims, so the caption room has to be too, or a publisher's name fails here and passes
+    # there. The routine lays the caption beside the run's claims.json, and --file finds it.
+    _named = _worded("Pattern Energy filed the request.")
+    ok("...and a source's own name keeps its words when the run's claims carry it",
+       not any("banned it" in x for x in post_shape_problems(
+           _named, "2026-09-28", sources=("Pattern Energy",)))
+       and any("banned it" in x for x in post_shape_problems(_named, "2026-09-28")))
+    import tempfile
+
+    def _cli(*args):
+        argv, buf = sys.argv, io.StringIO()
+        try:
+            sys.argv = ["caption_check.py", "--json", *args]
+            with contextlib.redirect_stdout(buf):
+                main()
+        finally:
+            sys.argv = argv
+        return json.loads(buf.getvalue())["problems"]
+    with tempfile.TemporaryDirectory() as _t:
+        _cap = Path(_t) / "caption.txt"
+        _cap.write_text(_named, encoding="utf-8")
+        _alone = _cli("--file", str(_cap))
+        (Path(_t) / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_publisher": "Pattern Energy", "quote": "The request is filed."}]}))
+        _beside = _cli("--file", str(_cap))
+    ok("...and --file reads the claims.json beside the caption, as the routine lays them out",
+       any("banned it" in x for x in _alone) and not any("banned it" in x for x in _beside),
+       str(_beside)[:200])
     # THE COMMA IS OPTIONAL IN THE PATTERN AND THE ADVICE USED TO ASSUME IT (2026-09-23). On the
     # uncommaed form, which the deck corpus writes, `split(",")[0]` returned the whole string and
     # the message said "write 'September 5th 2026'" about the string being rejected.
@@ -1157,11 +1250,29 @@ def self_test() -> int:
     return 0
 
 
+def claims_evidence(claims: str | None, caption_file: str | None) -> tuple:
+    """(sources, quotes) from the run's claims.json: `--claims`, or the one beside the caption.
+
+    The routine writes out/<date>/caption.txt beside out/<date>/claims.json, so the caption room
+    gets the source titles and quotations word_ban.check exempts on the shipped caption, and a
+    caption naming a publisher such as Pattern Energy passes here as it does there (Codex, PR 379).
+    No claims file means no source words, which errs toward refusing."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import word_ban
+    path = Path(claims) if claims else (Path(caption_file).parent / "claims.json"
+                                        if caption_file else None)
+    if path is None or not path.exists():
+        return (), ()
+    return word_ban.evidence_of(word_ban.claim_rows(path))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--file", help="path to the caption copy")
     ap.add_argument("--text", help="copy passed inline")
     ap.add_argument("--json", action="store_true", help="machine-readable result")
+    ap.add_argument("--claims", help="the run's claims.json, whose source titles and quotations "
+                                     "keep their words. Defaults to the one beside --file")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
 
@@ -1172,13 +1283,14 @@ def main() -> int:
         return 0
 
     text = Path(a.file).read_text(encoding="utf-8") if a.file else a.text
+    sources, quotes = claims_evidence(a.claims, a.file)
     if a.json:
         rate, commas, words = comma_rate(text)
-        problems = check(text)
+        problems = caption_problems(text, sources=sources, quotes=quotes)
         print(json.dumps({"ok": not problems, "problems": problems, "words": words,
                           "commas": commas, "commas_per_100_words": rate}, indent=2))
         return 1 if problems else 0
-    return run(text)
+    return run(text, sources=sources, quotes=quotes)
 
 
 if __name__ == "__main__":
