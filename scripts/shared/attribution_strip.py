@@ -115,6 +115,27 @@ def attributes(line: str) -> bool:
                               (ident["comment"],))
 
 
+# WHO MAY COMMIT HERE (Codex, PR 378). CLAUDE.md: commits are the owner's. Measured over all 408
+# commits on main on 2026-09-27, three identities have ever authored or committed one: the owner,
+# under two names at one address, the repository's own collector bot, and GitHub, as the
+# committer of a merge made through the web or the API. Anything else, another assistant
+# included, is refused rather than listed one by one. A new identity is a maintainer's decision,
+# made here, and this file is `human` lane so no run can widen it.
+AUTHOR_EMAILS = {"talon.sturgill@gmail.com", "bot@texasaidocket.com"}
+COMMITTER_EMAILS = AUTHOR_EMAILS | {"noreply@github.com"}
+
+
+def identity_problem(role: str, name: str, email: str) -> str | None:
+    """Why a commit's author or committer may not commit here, or None when it may."""
+    allowed = AUTHOR_EMAILS if role == "author" else COMMITTER_EMAILS
+    if assistant_identity(name, email):
+        return f"the {role} is {name} <{email}>, an assistant's identity. Commits are the owner's"
+    if email.strip().lower() not in allowed:
+        return (f"the {role} is {name} <{email}>, which is not the owner, the repository's bot or "
+                f"GitHub merging. Commits are the owner's")
+    return None
+
+
 def _git_ident(var: str) -> tuple:
     """(name, email) of GIT_AUTHOR_IDENT or GIT_COMMITTER_IDENT as the commit will record it, or
     None where git can't say, outside a repository or with no identity set at all."""
@@ -207,8 +228,9 @@ def check_range(rng: str) -> int:
         an, ae, cn, ce = (idents.rstrip("\n").split("\x00") + [""] * 4)[:4]
         body = _git_text("show", "-s", "--format=%B", sha)
         for who, name, email in (("author", an, ae), ("committer", cn, ce)):
-            if assistant_identity(name, email):
-                print(f"{sha[:10]}: the {who} is {name} <{email}>. Commits are the owner's")
+            why = identity_problem(who, name, email)
+            if why:
+                print(f"{sha[:10]}: {why}")
                 bad += 1
         for line in offending(body):
             print(f"{sha[:10]}: {line}")
@@ -364,8 +386,9 @@ def self_test() -> int:
 
     # The CLI runs below judge the identity git reports, so they carry a human one of their own
     # and never depend on how the machine running the self-test is configured.
-    human = dict(os.environ, GIT_AUTHOR_NAME="Jane Doe", GIT_AUTHOR_EMAIL="jane@example.com",
-                 GIT_COMMITTER_NAME="Jane Doe", GIT_COMMITTER_EMAIL="jane@example.com")
+    human = dict(os.environ, GIT_AUTHOR_NAME="Talon Sturgill",
+                 GIT_AUTHOR_EMAIL="Talon.sturgill@gmail.com", GIT_COMMITTER_NAME="Talon Sturgill",
+                 GIT_COMMITTER_EMAIL="Talon.sturgill@gmail.com")
 
     # A MESSAGE THAT IS NOT UTF-8 IS STILL STRIPPED, and its other bytes survive exactly, because
     # the hook fails closed and a decode error must not be what stops a commit.
@@ -396,6 +419,13 @@ def self_test() -> int:
         rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
                             env=dict(human, GIT_AUTHOR_NAME="Helper (Anthropic)")).returncode
         ok("...and an author whose parenthetical names the company", rc == 1)
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=dict(human, GIT_AUTHOR_NAME="Codex",
+                                     GIT_AUTHOR_EMAIL="codex@openai.com")).returncode
+        ok("...and any identity that is not the owner's or the repository's bot", rc == 1)
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=human).returncode
+        ok("...while the owner's own identity commits", rc == 0)
     ok("an identity is judged by its name and its domain, as a trailer is",
        assistant_identity("Claude", "noreply@anthropic.com")
        and assistant_identity("Helper", "bot@claude.ai")
@@ -407,7 +437,8 @@ def self_test() -> int:
     # THE RANGE CHECK CAN GO RED, measured on a real repository rather than asserted.
     with tempfile.TemporaryDirectory() as t:
         def git(*a):
-            return subprocess.run(["git", "-C", t, "-c", "user.name=t", "-c", "user.email=t@t",
+            return subprocess.run(["git", "-C", t, "-c", "user.name=Talon Sturgill",
+                                   "-c", "user.email=Talon.sturgill@gmail.com",
                                    "-c", "core.hooksPath=/dev/null", *a],
                                   capture_output=True, text=True, check=True)
         git("init", "-q")
@@ -437,6 +468,17 @@ def self_test() -> int:
                               "Co-Authored-By: Claude <noreply@anthropic.com>\n", encoding="utf-8")
             git("commit", "-q", "--allow-empty", "--cleanup=verbatim", "-F", str(framed))
             separated = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
+            def commit_as(name, email, env=None):
+                subprocess.run(["git", "-C", t, "-c", f"user.name={name}", "-c",
+                                f"user.email={email}", "-c", "core.hooksPath=/dev/null", "commit",
+                                "-q", "--allow-empty", "-m", "a clean message"],
+                               capture_output=True, check=True, env=env)
+                return check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
+            other = commit_as("Codex", "codex@openai.com")
+            bot = commit_as("texas-ai-docket-bot", "bot@texasaidocket.com")
+            merged = commit_as("Talon", "talon.sturgill@gmail.com",
+                               dict(os.environ, GIT_COMMITTER_NAME="GitHub",
+                                    GIT_COMMITTER_EMAIL="noreply@github.com"))
         finally:
             os.chdir(here)
         ok("--check-range passes a clean range", clean == 0)
@@ -444,6 +486,9 @@ def self_test() -> int:
         ok("--check-range fails a clean message committed as Claude", authored == 1)
         ok("...and one committed as Bot (Claude), the name in its parenthetical", commented == 1)
         ok("...and a trailer behind a record separator the message itself carries", separated == 1)
+        ok("...and a commit authored by any identity that is not the owner's", other == 1)
+        ok("...while the repository's own bot passes", bot == 0)
+        ok("...and a merge GitHub committed for the owner passes", merged == 0)
         ok("...and the clean range before any of it still passes", clean_head and clean == 0)
 
     print(f"\nattribution_strip self-test: {'all passed' if not failures else f'{failures} FAILED'}")
@@ -460,12 +505,15 @@ def main() -> int:
         # A COMMIT UNDER THE CONTAINER'S IDENTITY IS REFUSED BEFORE IT EXISTS (Codex, PR 378). The
         # message can be clean and the commit still be Claude's. git exports the author to this
         # hook, and the committer is the configured one.
+        # Locally the committer is whoever is configured, so both sides are held to the author list;
+        # GitHub only ever commits a merge on the server.
         for who, var in (("author", "GIT_AUTHOR_IDENT"), ("committer", "GIT_COMMITTER_IDENT")):
             ident = _git_ident(var)
-            if ident and assistant_identity(*ident):
-                print(f"commit-msg: the {who} would be {ident[0]} <{ident[1]}>, and CLAUDE.md says "
-                      f"commits are the owner's. Run CLAUDE.md's first commands, which set "
-                      f"user.name and user.email, and commit again", file=sys.stderr)
+            why = ident and identity_problem("author", *ident)
+            if why:
+                print(f"commit-msg: {why.replace('the author', 'the ' + who, 1)}. Run CLAUDE.md's "
+                      f"first commands, which set user.name and user.email, and commit again",
+                      file=sys.stderr)
                 return 1
         p = Path(args[0])
         # surrogateescape carries bytes that are not UTF-8 through untouched, so a message this
