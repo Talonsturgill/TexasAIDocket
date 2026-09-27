@@ -373,11 +373,10 @@ export function init(THREE) {
   // own filters, and a texture seen from far enough through a mip level. The kit's perforated steel,
   // 128 texels to 5 cm, averages there to an alpha of about 0.67 and clears its alphaTest everywhere,
   // so at 40 m it draws as a solid sheet while its base texels are a third holes. A hit is read at
-  // the footprint it would have in this frame: one pixel's span at the hit's distance (an
-  // orthographic pixel's size), stretched by the angle the view meets the surface at, counted in the
-  // triangle's own texels through the texture's transform. The level follows the rule of
-  // EXT_texture_filter_anisotropic at the texture's anisotropy, and the filters are the texture's:
-  // nearest or bilinear within a level, nearest or linear between levels. The levels are the ones the
+  // the footprint it would have in this frame, counted in the texture's own texels through its
+  // transform (see pixelSteps and footprintOf), and through the filters the GPU samples it with: the
+  // texture's own, nearest or bilinear within a level and nearest or linear between levels, or with
+  // anisotropy on, SwiftShader's (see footprintOf). The levels are the ones the
   // GPU holds: a chain the texture supplies in `mipmaps`, which three.js uploads in place of its
   // image (Codex, PR 369), or else one averaged in 2 by 2 blocks the way generateMipmap builds it. A
   // hit around the camera and out of the frame is read at the footprint it would have in view.
@@ -432,11 +431,29 @@ export function init(THREE) {
     const mix = (i) => (s00[i] * (1 - fx) + s10[i] * fx) * (1 - fy) + (s01[i] * (1 - fx) + s11[i] * fx) * fy;
     return [mix(0), mix(1)];
   };
-  const filtered = (e, tex, q, lod) => {
+  const stepUv = new THREE.Vector2();
+  const filtered = (e, tex, uv, fp) => {
     const mipmapped = tex.minFilter !== THREE.NearestFilter && tex.minFilter !== THREE.LinearFilter;
     let levels = e.levels, top = 0;
     if (mipmapped && e.supplied) top = levels.length - 1;
     else if (mipmapped && tex.generateMipmaps !== false) { levels = builtLevels(e); top = levels.length - 1; }
+    // each sample's coordinate through the texture's own transform and wrap, as the GPU takes it
+    const at = (du, dv) => tex.transformUv(stepUv.set(uv.x + du, uv.y + dv));
+    if (fp.aniso) {
+      // WITH ANISOTROPY ON, SwiftShader filters every sample bilinearly in its level, blends the two
+      // levels either side of the level, and averages fp.n samples spread evenly along the longer step
+      // (SamplerCore::sampleAniso, its uvStart and uvWeight tables)
+      const l = Math.min(Math.max(fp.lod, 0), top), k0 = Math.floor(l), k1 = Math.min(top, k0 + 1), fr = l - k0;
+      const out = [0, 0];
+      for (let i = 0; i < fp.n; i++) {
+        const t = -(fp.n - 1) / (2 * fp.n) + i / fp.n, q = at(t * fp.du, t * fp.dv);
+        const s0 = sampleLevel(levels[k0], q, true, tex), s1 = k1 === k0 ? s0 : sampleLevel(levels[k1], q, true, tex);
+        out[0] += (s0[0] * (1 - fr) + s1[0] * fr) / fp.n;
+        out[1] += (s0[1] * (1 - fr) + s1[1] * fr) / fp.n;
+      }
+      return out;
+    }
+    const q = at(0, 0), lod = fp.lod;
     const magnified = !(lod > 0), f = magnified ? tex.magFilter : tex.minFilter;
     const linear = f === THREE.LinearFilter || f === THREE.LinearMipmapNearestFilter || f === THREE.LinearMipmapLinearFilter;
     if (magnified || top === 0) return sampleLevel(levels[0], q, linear, tex);
@@ -491,19 +508,34 @@ export function init(THREE) {
     const cos = Math.max(Math.abs(lodD.dot(lodN.divideScalar(world))), 1e-3);
     return { across, cos, world, m: lodM.clone() };
   };
-  // The level the GPU samples at, from the texels one pixel steps over along each of the screen's two
-  // axes: the larger step, over the samples anisotropic filtering takes along it (the rule
-  // EXT_texture_filter_anisotropic gives), on a log2 scale.
-  const lodFrom = (rx, ry, tex, R) => {
-    const pMax = Math.max(rx, ry), pMin = Math.min(rx, ry);
-    if (!(pMax > 0)) return 0;
-    const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
-    return Math.log2(pMax / n);
+  // log2 of a square root the way SwiftShader takes it, off the float's own bits: exact at a power of
+  // two and at most 0.022 of a level low between them (SamplerCore.cpp, log2sqrt)
+  const log2sqrt = (L) => {
+    const y = Math.fround(L * L);
+    if (!(y > 0)) return -Infinity;
+    if (!isFinite(y)) return Infinity;
+    const e = Math.floor(Math.log2(y));
+    return (e + y / Math.pow(2, e) - 1) / 4;
   };
-  // A step in uv, through the texture's own matrix, in texels of its first level.
-  const texelsOf = (du, dv, tex, L0) => {
+  // THE LEVEL AND THE SAMPLES THE GPU TAKES (Codex, PR 374), from the step one pixel makes in the
+  // geometry's uv, one pixel across (dxu, dxv) and one up (dyu, dyv), measured in texels through the
+  // texture's own matrix. The level is read off the longer step. With anisotropy on, SwiftShader,
+  // which renders every deck here, takes the footprint's stretch as the longer step squared over the
+  // area the two steps span, caps it at the texture's anisotropy, lowers the level by it, and
+  // averages that many samples, rounded, along the longer step (SamplerCore::computeLod2D). The
+  // reference rule of EXT_texture_filter_anisotropic compared the two steps' lengths instead, and read
+  // a footprint stretched along a diagonal of the screen as round.
+  const footprintOf = (dxu, dxv, dyu, dyv, tex, R, L0) => {
     const e = tex.matrix.elements;
-    return Math.hypot((e[0] * du + e[3] * dv) * L0.w, (e[1] * du + e[4] * dv) * L0.h);
+    const ax = (e[0] * dxu + e[3] * dxv) * L0.w, ay = (e[1] * dxu + e[4] * dxv) * L0.h;
+    const bx = (e[0] * dyu + e[3] * dyv) * L0.w, by = (e[1] * dyu + e[4] * dyv) * L0.h;
+    const px2 = ax * ax + ay * ay, py2 = bx * bx + by * by, major2 = Math.max(px2, py2);
+    const cap = anisotropyOf(tex, R);
+    if (cap <= 1) return { lod: log2sqrt(major2), n: 1 };
+    const det = Math.abs(ax * by - ay * bx), a = Math.min(det > 0 ? major2 / det : Infinity, cap);
+    const across = px2 >= py2;
+    return { lod: log2sqrt(major2 / (a * a)), aniso: true, n: Math.max(1, Math.round(a)),
+             du: across ? dxu : dyu, dv: across ? dxv : dyv };
   };
   // The geometry's coordinates on channel `ch` at barycentric `b` of face `f`.
   const uvBary = (g, f, b, ch, out) => {
@@ -556,21 +588,21 @@ export function init(THREE) {
     const s = pixelSteps(h, R);
     if (s) {
       const u0 = uvBary(g, f, s.b0, ch, lodUa), ux = uvBary(g, f, s.bx, ch, lodUb), uy = uvBary(g, f, s.by, ch, lodUc);
-      if (!u0) return 0;
-      return lodFrom(texelsOf(ux.x - u0.x, ux.y - u0.y, tex, L0), texelsOf(uy.x - u0.x, uy.y - u0.y, tex, L0), tex, R);
+      if (!u0) return { lod: 0, n: 1 };
+      return footprintOf(ux.x - u0.x, ux.y - u0.y, uy.x - u0.x, uy.y - u0.y, tex, R, L0);
     }
     // outside the frustum: one pixel's span at the hit's distance, over the texels the triangle holds
     const fp = footprintAt(h, R);
     const uvs = g.attributes[ch ? 'uv' + ch : 'uv'];
-    if (!fp || !uvs) return 0;
+    if (!fp || !uvs) return { lod: 0, n: 1 };
     lodUa.fromBufferAttribute(uvs, f.a).applyMatrix3(tex.matrix);
     lodUb.fromBufferAttribute(uvs, f.b).applyMatrix3(tex.matrix);
     lodUc.fromBufferAttribute(uvs, f.c).applyMatrix3(tex.matrix);
     const texels = Math.abs((lodUb.x - lodUa.x) * (lodUc.y - lodUa.y) - (lodUc.x - lodUa.x) * (lodUb.y - lodUa.y)) * L0.w * L0.h;
-    if (!(texels > 0)) return 0;
+    if (!(texels > 0)) return { lod: 0, n: 1 };
     const pMin = fp.across * Math.sqrt(texels / fp.world), pMax = pMin / fp.cos;   // texels per pixel
     const n = Math.max(1, Math.min(Math.ceil(pMax / Math.max(pMin, 1e-12)), anisotropyOf(tex, R)));
-    return Math.log2(pMax / n);
+    return { lod: Math.log2(pMax / n), n: 1 };
   };
   // A SPRITE IS ONE CARD FACING THE CAMERA AT ITS CENTRE'S DEPTH (Codex, PR 373): three.js places
   // every corner of it at that depth, so a pixel steps the same distance across all of it. That step
@@ -581,24 +613,23 @@ export function init(THREE) {
     const cam = R.camera, o = h.object, mat = slotOf(h);
     const buf = (R.renderer && typeof R.renderer.getDrawingBufferSize === 'function')
       ? R.renderer.getDrawingBufferSize(lodS) : null;
-    if (!cam || !buf || !(buf.x > 0) || !(buf.y > 0)) return 0;
+    if (!cam || !buf || !(buf.x > 0) || !(buf.y > 0)) return { lod: 0, n: 1 };
     const P = cam.projectionMatrix.elements, persp = P[11] === -1;          // the shader's isPerspectiveMatrix
     const depth = -lodC.setFromMatrixPosition(o.matrixWorld).applyMatrix4(cam.matrixWorldInverse).z;
-    if (persp && !(depth > 0)) return 0;
+    if (persp && !(depth > 0)) return { lod: 0, n: 1 };
     const k = persp ? depth : 1, px = 2 * k / Math.abs(P[0] * buf.x), py = 2 * k / Math.abs(P[5] * buf.y);
     let sx = lodA.setFromMatrixColumn(o.matrixWorld, 0).length(), sy = lodA.setFromMatrixColumn(o.matrixWorld, 1).length();
     if (mat.sizeAttenuation === false && persp) { sx *= depth; sy *= depth; }
-    if (!(sx > 0) || !(sy > 0)) return 0;
+    if (!(sx > 0) || !(sy > 0)) return { lod: 0, n: 1 };
     const c = Math.cos(mat.rotation || 0), s = Math.sin(mat.rotation || 0);
-    return lodFrom(texelsOf(c * px / sx, -s * px / sy, tex, L0), texelsOf(s * py / sx, c * py / sy, tex, L0), tex, R);
+    return footprintOf(c * px / sx, -s * px / sy, s * py / sx, c * py / sy, tex, R, L0);
   };
   const texelAt = (tex, uv, h, R) => {
     if (!tex || !uv) return null;
     const e = levelsFor(tex);
     if (!e.levels) return null;
     if (tex.matrixAutoUpdate) tex.updateMatrix();
-    const q = tex.transformUv(uv.clone());
-    const s = filtered(e, tex, q, h && R ? lodOf(h, R, tex, e.levels[0]) : 0);
+    const s = filtered(e, tex, uv, h && R ? lodOf(h, R, tex, e.levels[0]) : { lod: 0, n: 1 });
     return { g: s[0], a: s[1] };
   };
   // THE UV CHANNEL THE MATERIAL SAMPLES (Codex, PR 369): a texture on channel 2 or 3 reads the
@@ -868,13 +899,13 @@ export function init(THREE) {
       func: mat.depthFunc, list: mat.transmission > 0 ? 1 : mat.transparent === true ? 2 : 0,
       group: groupOrderOf(o), order: o.renderOrder, mat: mat.id, z: walked ? 0 : zOf(o), id: o.id,
       walk: walked ? walked.get(o) || 0 : 0, slot: slotIndexOf(h), side: twoSided && !isBack(h, dir) ? 1 : 0,
-      face: h.faceIndex || 0,
+      inst: h.instanceId != null ? h.instanceId : 0, face: h.faceIndex || 0,
     };
   };
   const drawOrder = (sorted) => (a, b) => a.list - b.list ||
     (sorted ? (a.group - b.group || a.order - b.order ||
       (a.list === 0 ? a.mat - b.mat || a.z - b.z : b.z - a.z) || a.id - b.id) : a.walk - b.walk) ||
-    a.slot - b.slot || a.side - b.side || a.face - b.face;
+    a.slot - b.slot || a.side - b.side || a.inst - b.inst || a.face - b.face;
   // The share of a pixel that shows what `mark` counts, its items in draw order. The clear colour
   // counts nothing.
   const composite = (items, R) => {
@@ -1036,7 +1067,7 @@ export function init(THREE) {
       dome = { h: null, hash: 1, blend: 1, mark: 1, depth: 0, test, write: test && mat.depthWrite !== false,
         func: mat.depthFunc, list: mat.transmission > 0 ? 1 : mat.transparent === true ? 2 : 0,
         group: groupOrderOf(dm), order: dm.renderOrder, mat: mat.id, z: walked ? 0 : zOf(dm), id: dm.id,
-        walk: walked ? walked.get(dm) || 0 : 0, slot: 0, side: 0, face: 0 };
+        walk: walked ? walked.get(dm) || 0 : 0, slot: 0, side: 0, inst: 0, face: 0 };
     }
     const N = SKY_GRID, all = SKY_RAYS;
     let shown = 0;

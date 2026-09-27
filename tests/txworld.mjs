@@ -997,6 +997,84 @@ const ORDERED = `async (T, TXT, cv) => {
   return { pane, before, after, hashed, sprite, wall, skewed, layered };
 }`;
 
+// Inside one draw, and the samples an anisotropic texture takes (Codex, PR 374): the eighth page. An
+// instanced draw runs instance by instance, so a later instance paints over an earlier one whatever
+// faces the ray meets. SwiftShader, which renders every deck here, reads an anisotropic texture's
+// stretch off the area its two pixel steps span, so a footprint stretched along a diagonal of the
+// screen is sampled fine and many times, where comparing the steps' lengths read it as round.
+const STEPPED = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const pixels = (Rn) => {
+    Rn.renderer.render(Rn.scene, Rn.camera);
+    const gl = Rn.renderer.getContext(), b = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+    gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, b);
+    return b;
+  };
+  // TWO INSTANCES OF ONE PLANE WITH depthTest OFF, the first red and 3 m behind a room's back wall, the
+  // second blue and inside the room. The plane has four 40 m segments, and every ray meets the first
+  // instance on its last segment and the second on its first, so taken face by face the red one came
+  // last. The renderer draws instance 0 and then instance 1, and the room is blue.
+  const instanced = await (async () => {
+    const Ri = world(40);
+    TXT.frame(Ri, { from: [0, 1.6, 4], look: [0, 1.6, -5] }); TXT.interior(Ri, {});
+    TXT.rig(Ri, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+    const im = new T.InstancedMesh(new T.PlaneGeometry(160, 40, 4, 1),
+      new T.MeshBasicMaterial({ transparent: true, depthTest: false, toneMapped: false }), 2);
+    const m = new T.Matrix4();
+    im.setMatrixAt(0, m.makeTranslation(-60, 1.6, -8)); im.setMatrixAt(1, m.makeTranslation(60, 1.6, 0));
+    im.setColorAt(0, new T.Color(1, 0, 0)); im.setColorAt(1, new T.Color(0, 0, 1));
+    im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true;
+    Ri.scene.add(im);
+    const errors = await capture(() => TXT.snapshot(Ri));
+    const b = pixels(Ri), gl = Ri.renderer.getContext();
+    const c = (Math.floor(gl.drawingBufferHeight / 2) * gl.drawingBufferWidth + Math.floor(gl.drawingBufferWidth / 2)) * 4;
+    return { errors, share: TXT.roomShare(Ri), centre: [b[c], b[c + 1], b[c + 2]] };
+  })();
+  // A WALL 10 M OUT UNDER A CHAIN CLEAR AT LEVEL 0 AND SOLID BELOW, its texture turned 45 degrees and
+  // repeated 32 times more one way than the other. So the steps one pixel across and one up are as
+  // long as each other and nearly parallel, 18.4 texels. SwiftShader takes the stretch as the longer
+  // step squared over the area they span, 16 at this anisotropy, and samples 16 times at level 0.19,
+  // the clear one. Comparing the steps' lengths read level 4.2, the solid one.
+  const chain = (aniso) => {
+    const mips = [];
+    for (let n = 128, i = 0; n >= 1; n >>= 1, i++) {
+      const d = new Uint8Array(n * n * 4);
+      for (let k = 0; k < n * n; k++) { d[k * 4] = d[k * 4 + 1] = d[k * 4 + 2] = 90; d[k * 4 + 3] = i ? 255 : 0; }
+      mips.push({ data: d, width: n, height: n });
+    }
+    const t = new T.DataTexture(mips[0].data, 128, 128, T.RGBAFormat, T.UnsignedByteType);
+    t.mipmaps = mips; t.generateMipmaps = false; t.wrapS = t.wrapT = T.RepeatWrapping;
+    t.repeat.set(1506, 1506 / 32); t.rotation = Math.PI / 4;
+    t.minFilter = T.LinearMipmapLinearFilter; t.magFilter = T.LinearFilter; t.anisotropy = aniso; t.needsUpdate = true;
+    return t;
+  };
+  const skewed = async (aniso) => {
+    const Rs = world(40);
+    TXT.frame(Rs, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rs, W);
+    TXT.rig(Rs, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rs, { surface: 'caliche', size: 900, tile: 5 });
+    const wall = new T.Mesh(new T.PlaneGeometry(40, 40), new T.MeshBasicMaterial({ map: chain(aniso), alphaTest: 0.5, side: T.DoubleSide }));
+    wall.position.set(0, 2, -10); Rs.scene.add(wall);
+    const errors = await capture(() => TXT.snapshot(Rs));
+    const shown = pixels(Rs); dome.visible = false; const hidden = pixels(Rs); dome.visible = true; pixels(Rs);
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    const caps = Rs.renderer.capabilities;
+    return { errors, sky: TXT.skyInFrame(Rs.camera, Rs), gpuSky: n / (shown.length / 4), max: caps.getMaxAnisotropy() };
+  };
+  const aniso = await skewed(16), iso = await skewed(1);
+  return { instanced, aniso, iso };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -1361,6 +1439,25 @@ check('the ordered page renders with no page error and no scene error',
         `show the sky in ${(ly.gpuSky || 0).toFixed(3)} of the frame, the engine reads ${(ly.sky || 0).toFixed(3)} ` +
         `through the half-clear one, and the frame shows its sky`,
         ly.gpuSky > 0.4 && Math.abs(ly.sky - ly.gpuSky / 2) < 0.04 && said(ly, 'TXT: SKY IN FRAME'), JSON.stringify(ly));
+}
+
+const st = await run('stepped', STEPPED);
+check('the stepped page renders with no page error and no scene error',
+      !st.result.error && st.pageErrors.length === 0, JSON.stringify({ error: st.result.error, page: st.pageErrors }));
+{
+  // INSIDE ONE DRAW, and THE SAMPLES AN ANISOTROPIC TEXTURE TAKES (Codex, PR 374).
+  const r = st.result, im = r.instanced || {}, an = r.aniso || {}, is = r.iso || {};
+  const said = (x, v) => Array.isArray(x.errors) && x.errors.length === 1 && x.errors[0].startsWith(v);
+  check(`an instanced draw runs instance by instance: the centre pixel is ${JSON.stringify(im.centre)}, the later ` +
+        `instance, the room fills ${(im.share || 0).toFixed(2)}, and the frame is a room`,
+        Array.isArray(im.centre) && im.centre[2] > 200 && im.centre[0] < 60 && im.share >= 0.5 &&
+        said(im, 'TXT: ROOM IN FRAME'), JSON.stringify(im));
+  check(`an anisotropic texture stretched along a diagonal is sampled at its fine level: the pixels show ` +
+        `${(an.gpuSky || 0).toFixed(3)} sky, the engine reads ${(an.sky || 0).toFixed(3)}, and the frame shows its sky`,
+        an.max >= 16 && an.gpuSky > 0.45 && Math.abs(an.sky - an.gpuSky) < 0.05 && said(an, 'TXT: SKY IN FRAME'), JSON.stringify(an));
+  check(`...while the same wall without anisotropy is read at the longer step, the solid level: the pixels show ` +
+        `${(is.gpuSky || 0).toFixed(4)} sky, the engine reads ${(is.sky || 0).toFixed(3)}, and the frame IS flagged`,
+        is.gpuSky < 0.01 && is.sky === 0 && said(is, 'TXT: NO SKY IN FRAME'), JSON.stringify(is));
 }
 
 await browser.close();
