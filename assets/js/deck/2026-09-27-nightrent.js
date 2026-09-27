@@ -163,7 +163,7 @@
     K.define('garden_apartment', {
       size: [74, 13.1, 16.1],
       options: { cores: 2, groupBays: 2, floors: 3, brick: null, siding: null, trim: 0xe9e5da, roof: 0x3b3936,
-                 lampsOn: true, lit: 0.3, litUnits: null, glow: 0xffc27a, office: false, officeGlow: 0x7fb2d9, lampLights: false },
+                 lampsOn: true, lit: 0.3, litUnits: null, glow: 0xffc27a, office: false, officeGlow: 0x7fb2d9, lampLights: false, lampI: 4, poolI: 0, officeSpill: 0 },
       note: 'Options: cores (breezeways 1 to 6), groupBays (bays between cores), floors (2 to 4), brick, siding, trim, roof, lampsOn (true|false|[per core]), lit (share of front units lit, by seed) or litUnits [[bay, floor]...], glow, office ("west"|false), officeGlow, lampLights. A Texas garden walk-up: brick ground floor, lap siding above, a 6/12 gable roof, a balcony and slider on every bay, open breezeway stair cores with wall packs, condensers at the back. userData.units, .cores, .dims, .office.',
       make: function (o, r) {
         var grp = new THREE.Group(), B = Bucket();
@@ -338,7 +338,9 @@
           }
           box(B, soffitM, BW, 0.1, D, cx, Y0 + Htot - 0.1, 0);
           if (on && o.lampLights) {
-            for (var lf = 0; lf < floors; lf++) { var pl = new THREE.PointLight(0xffb05a, 4, 7, 2); pl.position.set(cx - 0.6, Y0 + lf * FH + 2.2, zF - 1.4); pl.castShadow = false; grp.add(pl); }
+            for (var lf = 0; lf < floors; lf++) { var pl = new THREE.PointLight(0xffb05a, o.lampI != null ? o.lampI : 4, 7, 2); pl.position.set(cx - 0.6, Y0 + lf * FH + 2.2, zF - 1.4); pl.castShadow = false; grp.add(pl); }
+            /* poolI: the ground floor pack's pool thrown out onto the walk, so a lit core reads at feed size */
+            if (o.poolI) { var pp = new THREE.PointLight(0xffb05a, o.poolI, 11, 2); pp.position.set(cx, Y0 + 2.4, zF + 1.0); pp.castShadow = false; grp.add(pp); }
           }
         });
         /* the gable roof, 6 in 12, ridge along x, eaves 0.6 m out, rakes 0.4 m */
@@ -384,6 +386,10 @@
           }
         });
         B.flush(grp);
+        /* officeSpill: the storefront's room light thrown out through the glass onto the walk and the
+         * lot in front of it, in the room's own colour, so the one cool thing on the lot reaches the
+         * ground it stands on rather than staying a lit rectangle */
+        if (office && o.officeSpill) { var sp = new THREE.PointLight(o.officeGlow, o.officeSpill, 16, 2); sp.position.set(office.x, 1.6, zF + 1.8); sp.castShadow = false; grp.add(sp); }
         grp.userData.units = units; grp.userData.cores = cores_; grp.userData.office = office;
         grp.userData.dims = { L: L, D: D, eave: ye, ridge: yr, floorH: FH, y0: Y0, bays: bayX.slice() };
         return grp;
