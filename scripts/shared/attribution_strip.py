@@ -103,6 +103,23 @@ def attributes(line: str) -> bool:
                        for c in comments))
 
 
+def assistant_identity(name: str, email: str) -> bool:
+    """Whether a commit's author or committer is the assistant or the company, judged by the same
+    name and domain rules as a trailer. CLAUDE.md: never set the commit author or committer to
+    Claude, and the container's default identity is exactly that (Codex, PR 378)."""
+    name = re.sub(r"\s+", " ", PAREN.sub(" ", name)).strip().strip('"').strip()
+    return bool(DOMAIN.search(email.strip()) or ANTHROPIC.fullmatch(name)
+                or ASSISTANT.fullmatch(name))
+
+
+def _git_ident(var: str) -> tuple:
+    """(name, email) of GIT_AUTHOR_IDENT or GIT_COMMITTER_IDENT as the commit will record it, or
+    None where git can't say, outside a repository or with no identity set at all."""
+    p = subprocess.run(["git", "var", var], capture_output=True, text=True)
+    m = re.match(r"(.*?)\s*<([^>]*)>", p.stdout) if p.returncode == 0 else None
+    return (m.group(1), m.group(2)) if m else None
+
+
 def scan(lines: list) -> tuple:
     """The indices of the attribution lines, and each as it reads. A trailer counts as git joins it,
     continuation lines and all, and every line is also judged on its own, so an indented line git
@@ -146,18 +163,25 @@ def strip(text: str) -> tuple:
 
 
 def check_range(rng: str) -> int:
-    log = subprocess.run(["git", "log", "--format=%H%x1f%B%x1e", rng], capture_output=True,
-                         text=True, encoding="utf-8", errors="replace", check=True).stdout
+    log = subprocess.run(["git", "log", "--format=%H%x1f%an%x1f%ae%x1f%cn%x1f%ce%x1f%B%x1e", rng],
+                         capture_output=True, text=True, encoding="utf-8", errors="replace",
+                         check=True).stdout
     bad = 0
     for rec in filter(None, (r.strip("\n") for r in log.split("\x1e"))):
-        sha, _, body = rec.partition("\x1f")
+        sha, an, ae, cn, ce, body = (rec.split("\x1f", 5) + [""] * 6)[:6]
+        for who, name, email in (("author", an, ae), ("committer", cn, ce)):
+            if assistant_identity(name, email):
+                print(f"{sha[:10]}: the {who} is {name} <{email}>. Commits are the owner's")
+                bad += 1
         for line in offending(body):
             print(f"{sha[:10]}: {line}")
             bad += 1
     if bad:
-        print(f"attribution_strip: {bad} attribution line(s) in {rng}. CLAUDE.md forbids them on "
-              f"every commit. Reword the commit on this branch, or commit with core.hooksPath set "
-              f"to .githooks so the hook strips them first.")
+        print(f"attribution_strip: {bad} attribution finding(s) in {rng}. CLAUDE.md forbids them "
+              f"on every commit. Reword the commit on this branch, or commit with core.hooksPath "
+              f"set to .githooks so the hook strips them first. An author or committer that is "
+              f"Claude means the clone kept the container's identity: run CLAUDE.md's first "
+              f"commands and re-commit.")
         return 1
     print(f"attribution_strip: no attribution lines in {rng}")
     return 0
@@ -281,20 +305,42 @@ def self_test() -> int:
        out == "Subject\n\nBody.\n\nCo-Authored-By: Jane Doe <jane@example.com>\nActor: daily\n",
        repr(out))
 
+    # The CLI runs below judge the identity git reports, so they carry a human one of their own
+    # and never depend on how the machine running the self-test is configured.
+    human = dict(os.environ, GIT_AUTHOR_NAME="Jane Doe", GIT_AUTHOR_EMAIL="jane@example.com",
+                 GIT_COMMITTER_NAME="Jane Doe", GIT_COMMITTER_EMAIL="jane@example.com")
+
     # A MESSAGE THAT IS NOT UTF-8 IS STILL STRIPPED, and its other bytes survive exactly, because
     # the hook fails closed and a decode error must not be what stops a commit.
     with tempfile.TemporaryDirectory() as t:
         f = Path(t) / "MSG"
         f.write_bytes(b"Subject caf\xe9\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n")
-        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True).returncode
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=human).returncode
         ok("a message that is not UTF-8 is stripped and keeps its other bytes",
            rc == 0 and f.read_bytes() == b"Subject caf\xe9\n", repr(f.read_bytes()))
         f.write_bytes(b"Subject\r\n\r\nCo-Authored-By: Jane\r\n <jane@anthropic.com>\r\n"
                       b"Signed-off-by: Jane Doe <jane@example.com>\r\n")
-        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True).returncode
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=human).returncode
         want = b"Subject\r\n\r\nSigned-off-by: Jane Doe <jane@example.com>\r\n"
         ok("the hook keeps a CRLF message's other lines byte for byte",
            rc == 0 and f.read_bytes() == want, repr(f.read_bytes()))
+        f.write_bytes(b"A clean subject\n")
+        claude = dict(human, GIT_AUTHOR_NAME="Claude", GIT_AUTHOR_EMAIL="noreply@anthropic.com")
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=claude).returncode
+        ok("the hook refuses a clean message committed under the container's Claude identity",
+           rc == 1)
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=dict(human, GIT_COMMITTER_NAME="Claude Code",
+                                     GIT_COMMITTER_EMAIL="bot@example.com")).returncode
+        ok("...and a Claude committer too", rc == 1)
+    ok("an identity is judged by its name and its domain, as a trailer is",
+       assistant_identity("Claude", "noreply@anthropic.com")
+       and assistant_identity("Helper", "bot@claude.ai")
+       and not assistant_identity("Claude Monet", "monet@example.com")
+       and not assistant_identity("Talon Sturgill", "Talon.sturgill@gmail.com"))
 
     # THE RANGE CHECK CAN GO RED, measured on a real repository rather than asserted.
     with tempfile.TemporaryDirectory() as t:
@@ -306,6 +352,7 @@ def self_test() -> int:
         git("commit", "-q", "--allow-empty", "-m", "base")
         base = git("rev-parse", "HEAD").stdout.strip()
         git("commit", "-q", "--allow-empty", "-m", "clean\n\nActor: daily")
+        clean_head = git("rev-parse", "HEAD").stdout.strip()
         here = Path.cwd()
         try:
             os.chdir(t)
@@ -313,10 +360,17 @@ def self_test() -> int:
             git("commit", "-q", "--allow-empty", "-m",
                 "dirty\n\nCo-Authored-By: Claude <noreply@anthropic.com>")
             dirty = check_range(f"{base}..HEAD")
+            subprocess.run(["git", "-C", t, "-c", "user.name=Claude",
+                            "-c", "user.email=noreply@anthropic.com", "-c", "core.hooksPath=/dev/null",
+                            "commit", "-q", "--allow-empty", "-m", "a clean message"],
+                           capture_output=True, check=True)
+            authored = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
         finally:
             os.chdir(here)
         ok("--check-range passes a clean range", clean == 0)
         ok("--check-range fails a range with an attribution trailer", dirty == 1)
+        ok("--check-range fails a clean message committed as Claude", authored == 1)
+        ok("...and the clean range before any of it still passes", clean_head and clean == 0)
 
     print(f"\nattribution_strip self-test: {'all passed' if not failures else f'{failures} FAILED'}")
     return 1 if failures else 0
@@ -329,6 +383,16 @@ def main() -> int:
     if len(args) == 2 and args[0] == "--check-range":
         return check_range(args[1])
     if len(args) == 1 and not args[0].startswith("--"):
+        # A COMMIT UNDER THE CONTAINER'S IDENTITY IS REFUSED BEFORE IT EXISTS (Codex, PR 378). The
+        # message can be clean and the commit still be Claude's. git exports the author to this
+        # hook, and the committer is the configured one.
+        for who, var in (("author", "GIT_AUTHOR_IDENT"), ("committer", "GIT_COMMITTER_IDENT")):
+            ident = _git_ident(var)
+            if ident and assistant_identity(*ident):
+                print(f"commit-msg: the {who} would be {ident[0]} <{ident[1]}>, and CLAUDE.md says "
+                      f"commits are the owner's. Run CLAUDE.md's first commands, which set "
+                      f"user.name and user.email, and commit again", file=sys.stderr)
+                return 1
         p = Path(args[0])
         # surrogateescape carries bytes that are not UTF-8 through untouched, so a message this
         # can't decode is still stripped rather than crashing the hook, which now fails closed.

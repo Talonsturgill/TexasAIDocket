@@ -46,8 +46,8 @@ else
   exit 1
 fi
 if ! "${python_cmd[@]}" "$root/scripts/shared/attribution_strip.py" "$msg_file"; then
-  echo "commit-msg: scripts/shared/attribution_strip.py failed, so the message was not checked" \
-       "for Claude attribution and the commit is refused" >&2
+  echo "commit-msg: the commit is refused. scripts/shared/attribution_strip.py either found" \
+       "that its author or committer would be Claude, or could not check the message (above)" >&2
   exit 1
 fi
 
