@@ -87,6 +87,22 @@ RULE = re.compile(r"^[ \t]*(?:-{3,}|\*{3,}|_{3,})[ \t\r]*$")
 TRAILER = re.compile(r"^[A-Za-z0-9-]+[ \t]*:")
 
 
+def assistant_identity(name: str, email: str, comments: tuple = ()) -> bool:
+    """Whether a name, its address and any comments beside it are the assistant's or the company's.
+
+    The one judgment behind every identity here, a trailer's and a commit's author or committer
+    alike, so a form caught in one place is caught in the other (Codex, PR 378). A comment in
+    parentheses is classified on its own before it comes off the name, so `Bot (Claude)` is the
+    assistant. CLAUDE.md: never set the commit author or committer to Claude, and the container's
+    default identity is exactly that."""
+    comments = tuple(PAREN.findall(name)) + tuple(c for c in comments if c)
+    base = re.sub(r"\s+", " ", PAREN.sub(" ", name)).strip().strip('"').strip()
+    return bool(DOMAIN.search(email.strip()) or ANTHROPIC.fullmatch(base)
+                or ASSISTANT.fullmatch(base)
+                or any(ANTHROPIC.fullmatch(c.strip()) or ASSISTANT.fullmatch(c.strip())
+                       for c in comments))
+
+
 def attributes(line: str) -> bool:
     """Whether one line, or one trailer as git joins it, is Claude or Anthropic attribution."""
     if OTHER.fullmatch(line):
@@ -95,21 +111,8 @@ def attributes(line: str) -> bool:
     ident = trailer and IDENTITY.fullmatch(trailer["value"])
     if not ident:
         return False
-    comments = PAREN.findall(ident["name"]) + ([ident["comment"]] if ident["comment"] else [])
-    name = re.sub(r"\s+", " ", PAREN.sub(" ", ident["name"])).strip().strip('"').strip()
-    address = (ident["addr"] or ident["bare"] or "").strip()
-    return bool(DOMAIN.search(address) or ANTHROPIC.fullmatch(name) or ASSISTANT.fullmatch(name)
-                or any(ANTHROPIC.fullmatch(c.strip()) or ASSISTANT.fullmatch(c.strip())
-                       for c in comments))
-
-
-def assistant_identity(name: str, email: str) -> bool:
-    """Whether a commit's author or committer is the assistant or the company, judged by the same
-    name and domain rules as a trailer. CLAUDE.md: never set the commit author or committer to
-    Claude, and the container's default identity is exactly that (Codex, PR 378)."""
-    name = re.sub(r"\s+", " ", PAREN.sub(" ", name)).strip().strip('"').strip()
-    return bool(DOMAIN.search(email.strip()) or ANTHROPIC.fullmatch(name)
-                or ASSISTANT.fullmatch(name))
+    return assistant_identity(ident["name"], ident["addr"] or ident["bare"] or "",
+                              (ident["comment"],))
 
 
 def _git_ident(var: str) -> tuple:
@@ -153,12 +156,25 @@ def strip(text: str) -> tuple:
     drop, removed = scan(lines)
     if not removed:
         return text, []
-    lines = [ln for k, ln in enumerate(lines) if k not in drop]
+    # ONLY THE SEAM A REMOVED LINE LEAVES IS CLOSED (Codex, PR 378). A blank line that would now
+    # sit on another blank line because the line between them went is dropped, and every other
+    # blank line in the message stays exactly where its author put it.
+    kept, seam = [], False
+    for k, ln in enumerate(lines):
+        if k in drop:
+            seam = True
+            continue
+        if seam and not ln.strip() and kept and not kept[-1].strip():
+            continue
+        kept.append(ln)
+        if ln.strip():
+            seam = False
+    lines = kept
     # A footer usually sits under a horizontal rule. With the footer gone, a rule left at the end
     # of the message separates nothing.
     while lines and (not lines[-1].strip() or RULE.match(lines[-1])):
         lines.pop()
-    out = re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).rstrip("\n") + "\n"
+    out = "\n".join(lines).rstrip("\n") + "\n"
     return out, removed
 
 
@@ -294,6 +310,14 @@ def self_test() -> int:
     ok("an indented attribution line git folds into another trailer still goes",
        removed == ["Co-Authored-By: Claude"] and out == "Subject\n\nActor: daily\n", repr(out))
 
+    spaced = "Subject\n\nPart one.\n\n\nPart two.\n\nCo-Authored-By: Claude\n"
+    out, _ = strip(spaced)
+    ok("a blank line the author put elsewhere survives the removal of a trailer",
+       out == "Subject\n\nPart one.\n\n\nPart two.\n", repr(out))
+    out, _ = strip("Subject\n\nBody.\n\nCo-Authored-By: Claude\n\nMore body.\n")
+    ok("...and only the seam the removed line leaves is closed",
+       out == "Subject\n\nBody.\n\nMore body.\n", repr(out))
+
     crlf = "Subject\r\n\r\nBody.\r\n\r\nCo-Authored-By: Claude\r\n---\r\n"
     out, removed = strip(crlf)
     ok("a message with CRLF line endings loses the line and the rule and keeps its endings",
@@ -336,9 +360,14 @@ def self_test() -> int:
                             env=dict(human, GIT_COMMITTER_NAME="Claude Code",
                                      GIT_COMMITTER_EMAIL="bot@example.com")).returncode
         ok("...and a Claude committer too", rc == 1)
+        rc = subprocess.run([sys.executable, __file__, str(f)], capture_output=True,
+                            env=dict(human, GIT_AUTHOR_NAME="Helper (Anthropic)")).returncode
+        ok("...and an author whose parenthetical names the company", rc == 1)
     ok("an identity is judged by its name and its domain, as a trailer is",
        assistant_identity("Claude", "noreply@anthropic.com")
        and assistant_identity("Helper", "bot@claude.ai")
+       and assistant_identity("Bot (Claude)", "bot@example.com")
+       and not assistant_identity("Jane Doe (formerly of Anthropic)", "jane@example.com")
        and not assistant_identity("Claude Monet", "monet@example.com")
        and not assistant_identity("Talon Sturgill", "Talon.sturgill@gmail.com"))
 
@@ -365,11 +394,17 @@ def self_test() -> int:
                             "commit", "-q", "--allow-empty", "-m", "a clean message"],
                            capture_output=True, check=True)
             authored = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
+            subprocess.run(["git", "-C", t, "-c", "user.name=Bot (Claude)",
+                            "-c", "user.email=bot@example.com", "-c", "core.hooksPath=/dev/null",
+                            "commit", "-q", "--allow-empty", "-m", "another clean message"],
+                           capture_output=True, check=True)
+            commented = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
         finally:
             os.chdir(here)
         ok("--check-range passes a clean range", clean == 0)
         ok("--check-range fails a range with an attribution trailer", dirty == 1)
         ok("--check-range fails a clean message committed as Claude", authored == 1)
+        ok("...and one committed as Bot (Claude), the name in its parenthetical", commented == 1)
         ok("...and the clean range before any of it still passes", clean_head and clean == 0)
 
     print(f"\nattribution_strip self-test: {'all passed' if not failures else f'{failures} FAILED'}")
