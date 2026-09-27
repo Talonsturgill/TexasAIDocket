@@ -11242,5 +11242,336 @@
   ],
   "id": "tx-2026-0188",
   "last_verified": "2026-09-26"
+ },
+ {
+  "title": "Justice Department takes comment on a judgment barring a Frisco apartment manager from rent software fed by rivals' data",
+  "summary": "The Justice Department filed a proposed final judgment on September 4th, 2026 against Pinnacle Property Management Services, an apartment manager headquartered in Frisco. Pinnacle licensed AI Revenue Management and YieldStar from RealPage, which is headquartered in Richardson. The judgment would bar Pinnacle from any outside revenue management product that uses other landlords' nonpublic data to recommend or set prices. It would also bar Pinnacle from sharing competitively sensitive information with competitors. The government may inspect Pinnacle's own pricing product down to its code and pseudocode. A monitor can be appointed if Pinnacle uses outside pricing software without a qualifying certification. The notice was published on September 18th, 2026 and invites public comment for 60 days. The judgment would expire five years after the court enters it. The case against RealPage and the other landlords goes on, and Pinnacle must cooperate in it.",
+  "topic": "defense-and-federal",
+  "decider": {
+   "name": "U.S. Department of Justice, Antitrust Division",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar",
+    "Brazoria",
+    "Collin",
+    "Dallas",
+    "Denton",
+    "Fort Bend",
+    "Harris",
+    "Montgomery",
+    "Rockwall",
+    "Tarrant",
+    "Travis",
+    "Williamson"
+   ],
+   "metro": null,
+   "on_ercot": null
+  },
+  "status": "open",
+  "key_dates": [
+   {
+    "date": "2026-09-04",
+    "kind": "filed",
+    "note": "Proposed final judgment against Pinnacle filed with the court"
+   },
+   {
+    "date": "2026-09-18",
+    "kind": "comment_opens",
+    "note": "Notice published and public comment invited"
+   },
+   {
+    "date": "2026-11-17",
+    "kind": "comment_closes",
+    "note": "Public comment period on the proposed judgment closes"
+   }
+  ],
+  "public_access": {
+   "room": "open_comment",
+   "how": "Anyone can comment on the proposed judgment until November 17th, 2026. Comments go in English to the Technology and Digital Platforms Section of the Antitrust Division, by mail or by the email address printed in the notice. Comments and the government's responses are posted on the division's website and filed with the court.",
+   "url": "https://www.federalregister.gov/documents/2026/09/18/2026-19100/united-states-of-america-et-al-v-realpage-inc-et-al-proposed-final-judgment-and-competitive-impact",
+   "closes": "2026-11-17"
+  },
+  "confidence": "high",
+  "notes_for_editor": "Counties are the ones holding the Texas submarkets the amended complaint lists in Appendix A, in the Dallas, Fort Worth, Austin, Houston and San Antonio areas. The judgment binds Pinnacle wherever it operates and names no Texas property. The comment close date is sixty days from the September 18th notice, computed.",
+  "claims": [
+   {
+    "text": "The Justice Department filed a proposed final judgment against Pinnacle on September 4th, 2026, barring it from rent software that relies on competitively sensitive data.",
+    "verbatim_quote": "The proposed Final Judgment, filed on September 4, 2026, bars Pinnacle from licensing or using a revenue management software that relies on competitively sensitive data and prohibits Pinnacle from sharing competitively sensitive information with other landlords.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c1",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Pinnacle must also adopt an antitrust compliance policy and cooperate with the government in the case.",
+    "verbatim_quote": "Pinnacle must also establish an antitrust compliance policy and cooperate with the United States in this litigation.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c2",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Public comment is invited for 60 days from the notice.",
+    "verbatim_quote": "Public comment is invited within 60 days of the date of this notice.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c3",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Pinnacle is headquartered in Frisco and is one of the largest apartment managers in the country.",
+    "verbatim_quote": "Pinnacle, headquartered in Frisco, Texas, is one of the largest apartment managers in the United States.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c4",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "RealPage is headquartered in Richardson.",
+    "verbatim_quote": "RealPage is a privately-owned company organized and existing under the laws of the State of Delaware and is headquartered in Richardson, Texas.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c5",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Pinnacle licensed RealPage's AI Revenue Management and YieldStar to recommend rents.",
+    "verbatim_quote": "Pinnacle licenses revenue management products called AI Revenue Management (‘‘AIRM’’) and YieldStar from RealPage.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c6",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Pinnacle reviews the software's floor plan recommendations daily and uses it to set rents down to single units.",
+    "verbatim_quote": "It reviews AIRM and YieldStar floor plan price recommendations daily and uses these revenue management products to set scheduled floor plan rents and even unit-level prices.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c7",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The judgment bars Pinnacle from any third party revenue product that uses third party nonpublic data to recommend or set prices.",
+    "verbatim_quote": "Pinnacle cannot license or use any third-party revenue management product that uses third-party nonpublic data to recommend or set prices;",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c8",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The government may inspect Pinnacle's own revenue management product and review its code and pseudocode.",
+    "verbatim_quote": "Pinnacle must allow the United States to inspect documents regarding its proprietary revenue management product and review the relevant code and pseudocode;",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c9",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "A monitor can be appointed if Pinnacle uses an outside revenue product without a qualifying certification covering runtime operation and model training.",
+    "verbatim_quote": "If Pinnacle uses a third-party revenue management product, Pinnacle will be subject to the appointment of a monitor unless Pinnacle obtains a certification that meets certain requirements, including affirming, among other things, that the product complies with all required limitations regarding use of competitors’ competitively sensitive data in its runtime operation or model training;",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c10",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Pinnacle must cooperate in the case against the other defendants.",
+    "verbatim_quote": "Pinnacle must cooperate in this civil antitrust proceeding (United States et al. v. RealPage et al.) with respect to the claims against other defendants;",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c11",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The judgment expires five years after entry unless extended, and may be ended after three years on notice.",
+    "verbatim_quote": "Unless the Court grants an extension, this Final Judgment will expire five years from the date of its entry, except that after three years from the date of its entry, this Final Judgment may be terminated upon notice by the United States to the Court and Defendant that the continuation of this Final Judgment is no longer necessary or in the public interest.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c12",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The complaint says landlords' nonpublic lease data runs through a machine learning model whose learned parameters are used for every AIRM client.",
+    "verbatim_quote": "This data is run through a machine learning model to generate learned parameters for supply and demand models that are then used for all AIRM clients across the country.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c13",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The complaint says RealPage retrains the models three to four times a year on updated nonpublic data.",
+    "verbatim_quote": "RealPage generally retrains the models three to four times per year using updated nonpublic data.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c14",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The complaint says the software's default auto-accept settings approve a 3 percent daily change and an 8 percent weekly change.",
+    "verbatim_quote": "By default, AIRM and YieldStar set auto-accept parameters of a 3% daily change and an 8% weekly change.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c15",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The complaint names RealPage-defined submarkets in Appendix A as markets where aligned pricing harmed or is likely to harm renters.",
+    "verbatim_quote": "The RealPage-defined submarkets identified in Appendix A are relevant markets in which the agreements between RealPage and AIRM and YieldStar users to align pricing has harmed, or is likely to harm, competition and thus renters.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c16",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Comments go to the Antitrust Division's Technology and Digital Platforms Section.",
+    "verbatim_quote": "Comments should be submitted in English and directed to Danielle Hauck, Acting Chief, Technology and Digital Platforms Section, Antitrust Division, Department of Justice,",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-18/pdf/2026-19100.pdf",
+    "source_title": "Federal Register, United States of America, et al. v. RealPage, Inc., et al.; Proposed Final Judgment and Competitive Impact Statement (91 FR 59304)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0189-c17",
+    "fetched": "2026-09-27"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-09-27",
+    "note": "Admitted on the government's own notice, with the comment window open. The judgment is proposed and takes effect only when the court enters it."
+   }
+  ],
+  "id": "tx-2026-0189",
+  "last_verified": "2026-09-27"
+ },
+ {
+  "title": "College Station City Council votes 4 to 2 to keep its Flock plate reader cameras on state and city roads",
+  "summary": "The College Station City Council voted 4 to 2 on September 24th, 2026 to approve two agreements with Flock Group. One covers automatic license plate readers on state highway roads and the other covers cameras on other roads. Council members Mark Smith and Bob Yancy voted against. The cameras photograph the rear of passing vehicles day and night and sort each one by make, model and color. The city says no search can be run without reasonable suspicion. It says its police department decides which agencies can search the network and keeps every search indefinitely. An automated audit tool that went live in April is the city's named check on misuse. The city reports lower property crime since the cameras went up and says the drop correlates with them. It does not claim they caused it.",
+  "topic": "surveillance-and-policing",
+  "decider": {
+   "name": "College Station City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "metro": null,
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-24",
+    "kind": "decided",
+    "note": "Council approves both Flock agreements"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The agreements were approved at a regular council meeting. Residents can speak on any agenda item at a future council meeting or contact council members through the city's website.",
+   "url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The council voted 4 to 2 to approve two Flock agreements, one for plate readers on state highways and one for cameras on other roads.",
+    "verbatim_quote": "The Council voted 4-2 to approve an agreement not to exceed $158,000 with Flock Group for automatic license plate readers on Texas Department of Transportation roads and a $141,062 agreement for cameras on non-TxDOT roads.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c1",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "Two council members voted against.",
+    "verbatim_quote": "Councilmen Mark Smith and Bob Yancy voted against the motion.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c2",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The cameras photograph the rear of passing vehicles day and night.",
+    "verbatim_quote": "The solar-powered, LTE-connected cameras capture photos of the rear of passing vehicles during the day and night.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c3",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The system sorts each vehicle by make, model and color and makes that data searchable.",
+    "verbatim_quote": "The license plate image categorizes the vehicle’s make, model, and color, making the data searchable for criminal justice purposes.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c4",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The city says no search can be run without reasonable suspicion.",
+    "verbatim_quote": "No search of the Flock system can be conducted without reasonable suspicion, the same level required for an officer to initiate a traffic stop.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c5",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The city says the police department controls which agencies can search its network and keeps every search indefinitely.",
+    "verbatim_quote": "CSPD controls the agencies that can search its network, and all searches are retained indefinitely.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c6",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The city names an automated audit tool that went live April 14th as its check on misuse.",
+    "verbatim_quote": "The Flock Audit Assistant tool went live April 14 and detects most of the misuse cases highlighted in recent months, making it CSPD’s only crime-fighting tool with an integrated auditing feature that looks for misuse.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c7",
+    "fetched": "2026-09-27"
+   },
+   {
+    "text": "The city says the drop in property crime correlates with the cameras.",
+    "verbatim_quote": "This reduction in property crime offenses correlates with the introduction of Flock cameras.",
+    "source_url": "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/",
+    "source_title": "City of College Station, Live from City Hall, Thursday's City Council meeting (Sept. 24)",
+    "source_type": "primary_official",
+    "id": "tx-2026-0190-c8",
+    "fetched": "2026-09-27"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-09-27",
+    "note": "Admitted on the city's own account of the meeting. The agreements are approved and the cameras stay in service."
+   }
+  ],
+  "id": "tx-2026-0190",
+  "last_verified": "2026-09-27"
  }
 ]
