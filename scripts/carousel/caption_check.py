@@ -742,15 +742,24 @@ def rate_problem(text: str, ceiling: float | None = COMMA_CEILING) -> str | None
             f"run-on")
 
 
-def run(text: str, *, quiet: bool = False) -> int:
+def caption_problems(text: str) -> list[str]:
+    """Every rule a caption is held to: `check()`, which also judges the website, and then the
+    caption-only rules. BOTH CLI MODES REPORT THIS LIST. `--json` used to call `check()` alone,
+    so a caption the plain run refused for its hashtags, its year, its ending or the owner's
+    banned words came back `"ok": true` in JSON (Codex, PR 379)."""
     problems = check(text)
     # CAPTION SURFACE ONLY, and this is the only path that reaches it. See `hashtag_problems`.
     problems += hashtag_problems(text)
     problems += post_shape_problems(text)
-    rate, commas, words = comma_rate(text)
     rp = rate_problem(text)
     if rp:
         problems.append(rp)
+    return problems
+
+
+def run(text: str, *, quiet: bool = False) -> int:
+    problems = caption_problems(text)
+    rate, commas, words = comma_rate(text)
 
     if not quiet:
         ceil = ("no ceiling yet, measured after 20 shipped captions"
@@ -1123,6 +1132,24 @@ def self_test() -> int:
     ok("...and a caption dated on or before the rule is not judged by it",
        not any("banned it" in x for x in post_shape_problems(
            _worded("That is why the vote matters."), "2026-09-27")))
+
+    # --json REPORTS WHAT THE PLAIN RUN REPORTS (Codex, PR 379). It called `check()` alone, so
+    # every caption-only rule, the banned words among them, went unread in JSON.
+    import contextlib
+    import io
+    _said = _worded("That is why the vote matters.")
+    _argv, _buf = sys.argv, io.StringIO()
+    try:
+        sys.argv = ["caption_check.py", "--json", "--text", _said]
+        with contextlib.redirect_stdout(_buf):
+            _rc = main()
+    finally:
+        sys.argv = _argv
+    _got = json.loads(_buf.getvalue())
+    ok("--json holds a caption to every rule the plain run does, the banned words included",
+       _rc == 1 and _got["ok"] is False and _got["problems"] == caption_problems(_said)
+       and any("banned it on 2026-09-27" in x for x in _got["problems"]),
+       str(_got.get("problems"))[:200])
     # THE COMMA IS OPTIONAL IN THE PATTERN AND THE ADVICE USED TO ASSUME IT (2026-09-23). On the
     # uncommaed form, which the deck corpus writes, `split(",")[0]` returned the whole string and
     # the message said "write 'September 5th 2026'" about the string being rejected.
@@ -1200,7 +1227,7 @@ def main() -> int:
     text = Path(a.file).read_text(encoding="utf-8") if a.file else a.text
     if a.json:
         rate, commas, words = comma_rate(text)
-        problems = check(text)
+        problems = caption_problems(text)
         print(json.dumps({"ok": not problems, "problems": problems, "words": words,
                           "commas": commas, "commas_per_100_words": rate}, indent=2))
         return 1 if problems else 0

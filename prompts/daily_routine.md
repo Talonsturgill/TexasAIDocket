@@ -114,14 +114,17 @@ person.
 
 **5a. THREE WORDS ARE BANNED, owner, 2026-09-27: "gap", "matters" and "pattern", with "gaps" and
 "patterns".** The list is `brand.banned_words` in `config/brand.yaml`. They are banned on every
-surface this run publishes: the caption, the first comment, the document title, every slide
-string, the web edition and the record's own prose. Say the specific thing instead. Name the
-missing document rather than "a gap", state the consequence rather than "why it matters", and
-name the repeated act and count it rather than "a pattern". A quotation in straight quotes, a URL
-and a source's own title keep their words. `caption_check.py` fails the caption,
-`docket_build.py --validate` fails the record and `shipped_check` fails the deck, so check before
-the push rather than after it. The first line reads the caption, the first comment, the document
-title, every slide and the web edition, and the second reads the record:
+surface this run publishes: the caption, the first comment, the document title, every word a
+slide prints, whether `copy.json` holds it or the frame's HTML sets it, each claim's own
+sentence, the web edition and the record's own prose. Pass the rule to every writer you spawn,
+the fact-checker included, because the web edition and the item page print a claim's own
+sentence. Say the specific thing instead. Name the missing document rather than "a gap", state
+the consequence rather than "why it matters", and name the repeated act and count it rather than
+"a pattern". A quotation in straight quotes, a URL and a source's own title keep their words.
+`caption_check.py` fails the caption, `docket_build.py --validate` fails the record and
+`shipped_check` fails the deck, so check before the push rather than after it. The first line
+reads every surface of the deck, the render report's text included, and the second reads the
+record:
 
 ```
 python3 scripts/carousel/word_ban.py --run <date>

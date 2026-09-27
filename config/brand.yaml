@@ -218,9 +218,9 @@ brand:
   # BANNED WORDS (owner, 2026-09-27): "on both automations ban the words gap and matters and
   # pattern". Whole words in any case, with their plurals, so "Singapore" is not "gap" and "no
   # matter" is not "matters". scripts/carousel/word_ban.py reads this list and fails every surface
-  # a run publishes after September 27th: the caption, the first comment, the document title, the
-  # slides, the web edition and the record's own prose. A straight-quoted passage, a URL and a
-  # source's own title are the source's words and stay. `human` lane, so no run can shorten it.
+  # a run publishes after September 27th, which that file lists, and the record's own prose. A
+  # straight-quoted passage, a URL and a source's own title are the source's words and stay.
+  # `human` lane, so no run can shorten it.
   banned_words:
     - gap
     - gaps

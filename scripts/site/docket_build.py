@@ -880,11 +880,17 @@ def gate_banned_words(items: list) -> Result:
 
     FORWARD ONLY, AND THE LINE IS THE RUN THAT TOUCHES THE ITEM. An item verified after SINCE has
     been read and signed by a run bound by the rule, so its whole reader copy is judged, key date
-    notes included. A movement note is dated, so one written after SINCE is judged whatever the
-    item. Nothing older fails, because the record's published prose is not rewritten wholesale
-    without the owner, and a run re-verifying an older item rewords it on the way through.
+    notes and each claim's own sentence included, since the item page prints those as its
+    evidence. A claim's verbatim quote and source title are the source's words and stay. A
+    movement note is dated, so one written after SINCE is judged whatever the item. Nothing
+    older fails, because the record's published prose is not rewritten wholesale without the
+    owner, and a run re-verifying an older item rewords it on the way through.
+
+    The list is read from brand.yaml once per pass, not once per field (Codex, PR 379), because
+    the movement notes this reads only grow.
     """
     import word_ban
+    banned = word_ban.words()
     r = Result("banned words")
     judged = 0
     for it in items:
@@ -892,14 +898,17 @@ def gate_banned_words(items: list) -> Result:
         texts = []
         if str(it.get("last_verified") or "") > word_ban.SINCE:
             judged += 1
-            texts.append(("reader copy", _reader_text(it, include_history=False)))
-            texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""))
+            texts.append(("reader copy", _reader_text(it, include_history=False), (), ()))
+            texts += [(f"key date {kd.get('date', '?')}", str(kd.get("note") or ""), (), ())
                       for kd in (it.get("key_dates") or []) if isinstance(kd, dict)]
-        texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""))
+            texts += [(f"claim {c.get('id', '?')}", str(c.get("text") or ""),
+                       (str(c.get("source_title") or ""),), (str(c.get("verbatim_quote") or ""),))
+                      for c in (it.get("claims") or []) if isinstance(c, dict)]
+        texts += [(f"movement note {h.get('date')}", str(h.get("note") or ""), (), ())
                   for h in (it.get("history") or [])
                   if isinstance(h, dict) and str(h.get("date") or "") > word_ban.SINCE]
-        for where, text in texts:
-            for hit in word_ban.hits(text):
+        for where, text, sources, quotes in texts:
+            for hit in word_ban.hits(text, sources=sources, quotes=quotes, banned=banned):
                 r.fail(f"{who}: {where}: {hit}. The owner banned it on 2026-09-27 "
                        f"(config/brand.yaml banned_words). Say the specific thing instead")
     if r.status == "PASS":
@@ -1602,6 +1611,17 @@ def self_test() -> int:
            gate_banned_words([base(last_verified="2026-09-28", summary=(
                'The filing says "a pattern of late comments." '
                "https://webapi.legistar.com/v1/elpasotexas/Matters/15758"))]), "PASS")
+    _claim = {"id": "tx-2026-0001-c1", "source_title": "PUCT Interchange",
+              "verbatim_quote": "Staff identified a pattern of incomplete applications.",
+              "source_url": "https://interchange.puc.texas.gov/search/filings/",
+              "source_type": "primary_official", "fetched": "2026-09-28"}
+    expect("...and a claim's own sentence is judged, since the item page prints it as evidence",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff describe a pattern of late filings.")])]), "FAIL")
+    expect("...but a claim sentence its own verbatim quote carries is the source's",
+           gate_banned_words([base(last_verified="2026-09-28", claims=[
+               dict(_claim, text="Staff identified a pattern of incomplete applications.")])]),
+           "PASS")
     check("...and the build is not frozen by it, while --validate still counts it",
           "banned words" in NON_BLOCKING_FOR_BUILD)
     # THE KEY DATE NOTE, which renders on the timeline and was outside every gate on both
