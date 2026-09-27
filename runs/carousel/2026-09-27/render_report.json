@@ -184,7 +184,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14332,
+      "render_ms": 16674,
       "ok": true,
       "canvases": [
         {
@@ -197,8 +197,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 39.8,
-          "variance": 686.8
+          "mean": 40.2,
+          "variance": 690.6
         }
       ],
       "breather": false,
@@ -732,7 +732,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 17038,
+      "render_ms": 17353,
       "ok": true,
       "canvases": [
         {
@@ -745,8 +745,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 56.7,
-          "variance": 791.7
+          "mean": 56.8,
+          "variance": 833.2
         }
       ],
       "breather": false,
@@ -932,7 +932,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 15206,
+      "render_ms": 16596,
       "ok": true,
       "canvases": [
         {
@@ -945,8 +945,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 43,
-          "variance": 737.9
+          "mean": 44.2,
+          "variance": 742
         }
       ],
       "breather": false,
@@ -1071,45 +1071,11 @@
           "anc": []
         },
         {
-          "text": "17 Dallas- Plano- Irving",
+          "text": "17",
           "x": 80,
           "y": 1005,
-          "w": 104,
-          "h": 127,
-          "font_px": 24,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(237, 228, 214)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1044,
-              104,
-              31
-            ],
-            [
-              87,
-              1073,
-              89,
-              31
-            ],
-            [
-              87,
-              1102,
-              89,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "17",
-          "x": 111,
-          "y": 1002,
-          "w": 42,
-          "h": 45,
+          "w": 118,
+          "h": 41,
           "font_px": 34,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1118,22 +1084,76 @@
           "overlap_ok": false,
           "lines": [
             [
-              111,
+              118,
               1002,
               42,
               45
             ]
           ],
-          "anc": [
-            4
-          ]
+          "anc": []
         },
         {
-          "text": "13 Austin- Round Rock",
-          "x": 247,
+          "text": "Dallas-Plano-Irving",
+          "x": 80,
+          "y": 1046,
+          "w": 118,
+          "h": 86,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              87,
+              1044,
+              104,
+              31
+            ],
+            [
+              94,
+              1073,
+              89,
+              31
+            ],
+            [
+              94,
+              1102,
+              89,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "13",
+          "x": 240,
           "y": 1005,
-          "w": 104,
-          "h": 127,
+          "w": 118,
+          "h": 41,
+          "font_px": 34,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 228, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              278,
+              1002,
+              42,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Austin-Round Rock",
+          "x": 240,
+          "y": 1046,
+          "w": 118,
+          "h": 86,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1163,11 +1183,11 @@
           "anc": []
         },
         {
-          "text": "13",
-          "x": 278,
-          "y": 1002,
-          "w": 42,
-          "h": 45,
+          "text": "12",
+          "x": 481,
+          "y": 1005,
+          "w": 118,
+          "h": 41,
           "font_px": 34,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1176,22 +1196,20 @@
           "overlap_ok": false,
           "lines": [
             [
-              278,
+              519,
               1002,
               42,
               45
             ]
           ],
-          "anc": [
-            6
-          ]
+          "anc": []
         },
         {
-          "text": "12 Houston",
-          "x": 488,
-          "y": 1005,
-          "w": 104,
-          "h": 70,
+          "text": "Houston",
+          "x": 481,
+          "y": 1046,
+          "w": 118,
+          "h": 29,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1209,11 +1227,11 @@
           "anc": []
         },
         {
-          "text": "12",
-          "x": 519,
-          "y": 1002,
-          "w": 42,
-          "h": 45,
+          "text": "4",
+          "x": 722,
+          "y": 1005,
+          "w": 118,
+          "h": 41,
           "font_px": 34,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1222,22 +1240,20 @@
           "overlap_ok": false,
           "lines": [
             [
-              519,
+              770,
               1002,
-              42,
+              21,
               45
             ]
           ],
-          "anc": [
-            8
-          ]
+          "anc": []
         },
         {
-          "text": "4 San Antonio",
-          "x": 729,
-          "y": 1005,
-          "w": 104,
-          "h": 98,
+          "text": "San Antonio",
+          "x": 722,
+          "y": 1046,
+          "w": 118,
+          "h": 58,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1261,11 +1277,11 @@
           "anc": []
         },
         {
-          "text": "4",
-          "x": 770,
-          "y": 1002,
-          "w": 21,
-          "h": 45,
+          "text": "2",
+          "x": 882,
+          "y": 1005,
+          "w": 118,
+          "h": 41,
           "font_px": 34,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1274,22 +1290,20 @@
           "overlap_ok": false,
           "lines": [
             [
-              770,
+              931,
               1002,
               21,
               45
             ]
           ],
-          "anc": [
-            10
-          ]
+          "anc": []
         },
         {
-          "text": "2 Fort Worth",
-          "x": 926,
-          "y": 1005,
-          "w": 74,
-          "h": 98,
+          "text": "Fort Worth",
+          "x": 882,
+          "y": 1046,
+          "w": 118,
+          "h": 58,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1298,43 +1312,19 @@
           "overlap_ok": false,
           "lines": [
             [
-              933,
+              911,
               1044,
               60,
               31
             ],
             [
-              926,
+              904,
               1073,
               74,
               31
             ]
           ],
           "anc": []
-        },
-        {
-          "text": "2",
-          "x": 952,
-          "y": 1002,
-          "w": 21,
-          "h": 45,
-          "font_px": 34,
-          "weight": "400",
-          "family": "JetBrains Mono",
-          "color": "rgb(237, 228, 214)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              952,
-              1002,
-              21,
-              45
-            ]
-          ],
-          "anc": [
-            12
-          ]
         },
         {
           "text": "Appendix A of the complaint",
@@ -1410,7 +1400,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14822,
+      "render_ms": 24789,
       "ok": true,
       "canvases": [
         {
@@ -1423,8 +1413,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 27.5,
-          "variance": 1002.7
+          "mean": 27.6,
+          "variance": 1007.5
         }
       ],
       "breather": false,
@@ -1828,10 +1818,10 @@
         },
         {
           "text": "third-party nonpublic data",
-          "x": 120,
-          "y": 596,
-          "w": 208,
-          "h": 60,
+          "x": 129,
+          "y": 566,
+          "w": 190,
+          "h": 90,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1841,14 +1831,20 @@
           "lines": [
             [
               143,
-              595,
+              565,
               164,
               31
             ],
             [
-              120,
+              158,
+              595,
+              134,
+              31
+            ],
+            [
+              195,
               625,
-              208,
+              60,
               31
             ]
           ],
@@ -1856,10 +1852,10 @@
         },
         {
           "text": "pooling across owners",
-          "x": 286,
-          "y": 526,
-          "w": 193,
-          "h": 60,
+          "x": 287,
+          "y": 496,
+          "w": 190,
+          "h": 90,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1869,14 +1865,20 @@
           "lines": [
             [
               330,
-              525,
+              495,
               104,
               31
             ],
             [
-              286,
+              338,
+              525,
+              89,
+              31
+            ],
+            [
+              338,
               555,
-              193,
+              89,
               31
             ]
           ],
@@ -1884,10 +1886,10 @@
         },
         {
           "text": "rivals' sensitive data",
-          "x": 436,
-          "y": 596,
-          "w": 208,
-          "h": 60,
+          "x": 445,
+          "y": 566,
+          "w": 190,
+          "h": 90,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1897,14 +1899,20 @@
           "lines": [
             [
               488,
-              595,
+              565,
               104,
               31
             ],
             [
-              436,
+              473,
+              595,
+              134,
+              31
+            ],
+            [
+              510,
               625,
-              208,
+              60,
               31
             ]
           ],
@@ -1912,9 +1920,9 @@
         },
         {
           "text": "required acceptance",
-          "x": 623,
+          "x": 603,
           "y": 526,
-          "w": 149,
+          "w": 190,
           "h": 60,
           "font_px": 24,
           "weight": "400",
@@ -1940,9 +1948,9 @@
         },
         {
           "text": "built-in rent floors",
-          "x": 774,
+          "x": 761,
           "y": 596,
-          "w": 164,
+          "w": 190,
           "h": 60,
           "font_px": 24,
           "weight": "400",
@@ -2096,7 +2104,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 12755,
+      "render_ms": 13234,
       "ok": true,
       "canvases": [
         {
@@ -2110,7 +2118,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 47.9,
-          "variance": 610.1
+          "variance": 610.2
         }
       ],
       "breather": false,
@@ -2351,7 +2359,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 11712,
+      "render_ms": 12354,
       "ok": true,
       "canvases": [
         {
@@ -2364,8 +2372,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 27.4,
-          "variance": 299.8
+          "mean": 27.6,
+          "variance": 299.9
         }
       ],
       "breather": false,

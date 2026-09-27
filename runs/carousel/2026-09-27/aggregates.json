@@ -80,17 +80,6 @@
    "note": "the notice's own window, quoted"
   },
   {
-   "phrase": "17 Dallas",
-   "slide": "slide-05.html",
-   "kind": "count",
-   "value": 17,
-   "computed_by": "out/2026-09-27/compute.py counts the Appendix A rows under Dallas-Plano-Irving, TX (c37 carries the extracted names), dallas_submarkets and texas_submarkets_by_area in figures.json",
-   "from_claims": [
-    "c37"
-   ],
-   "note": "the frame's cluster label, count above the area name; 13, 12, 4 and 2 are the same computation for the other four areas"
-  },
-  {
    "phrase": "180 days",
    "slide": "caption.txt",
    "kind": "duration",

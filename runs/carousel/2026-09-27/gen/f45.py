@@ -82,10 +82,9 @@ F5 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, 0.00008], ex
   TXT.frame(R, { from: [0, 339, 376], look: [0, 0, -251] });
   __cl.forEach((c) => { c.px = F.project(THREE, R, c.at); });
 """
-LAB5 = """  const WRAP = { 'Dallas-Plano-Irving': 'Dallas-<br>Plano-<br>Irving', 'Austin-Round Rock': 'Austin-<br>Round<br>Rock', 'San Antonio': 'San<br>Antonio', 'Fort Worth': 'Fort<br>Worth' };
-  __cl.forEach((c, i) => {
+LAB5 = """    __cl.forEach((c, i) => {
     const el = document.getElementById('k' + i);
-    el.innerHTML = '<span class="kn">' + c.n + '</span><br>' + (WRAP[c.name] || c.name);
+    el.innerHTML = ''; const kn = document.createElement('span'); kn.className = 'kn'; kn.textContent = c.n; const nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = c.name; el.appendChild(kn); el.appendChild(nm);
     const b = el.getBoundingClientRect();
     el.style.left = Math.max(80, Math.min(1000 - b.width, c.px[0] - b.width / 2)) + 'px';
     el.style.top = (c.px[1] + 16) + 'px';
@@ -97,6 +96,6 @@ f5 = page(5, 'GRID', 'RENDERED in the declared nightSodium world. One building p
   "The complaint lists them as places where it says aligned pricing harmed or is likely to harm renters. Frisco and Richardson are on the list. RealPage has its headquarters in Richardson.",
   "Appendix A of the complaint", "c15 c36 c37 c38   DRAWN",
   F5.replace('%CL%', CL).replace('%TOTAL%', str(FIG['texas_submarkets']['value'])), after=LAB5,
-  extra_css='  .lab.k { text-align:center; font-size:24px; line-height:1.2; }\n  .lab.k .kn { font-size:34px; }\n  .hook .n48 { font-variation-settings:"opsz" 40; }',
+  extra_css='  .lab.k { text-align:center; font-size:24px; line-height:1.2; }\n  .lab.k .kn { font-size:34px; display:block; }\n  .lab.k .nm { display:block; white-space:normal; width:118px; margin:0 auto; }\n  .hook .n48 { font-variation-settings:"opsz" 40; }',
   extra_html=''.join(f'<div class="lab k" id="k{i}"></div>' for i in range(5)))
 open('../../slides/slide-05.html', 'w').write(f5)

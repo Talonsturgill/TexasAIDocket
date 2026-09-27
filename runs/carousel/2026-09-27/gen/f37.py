@@ -71,13 +71,13 @@ LABELS3 = """  const svg = document.getElementById('lead');
 LABELS7 = """  /* one label per dark breezeway core, the limits in the order the judgment lists them,
    * set in the sky above the ridge with a leader down to the core */
   const svg = document.getElementById('lead');
-  const NAMES = ["third-party<br>nonpublic data", "pooling<br>across owners", "rivals'<br>sensitive data", "required<br>acceptance", "built-in<br>rent floors"];
+  const NAMES = ["third-party nonpublic data", "pooling across owners", "rivals' sensitive data", "required acceptance", "built-in rent floors"];
   const LIMITS = %LIMITS%;
   const cores = hero.userData.cores.slice(0, LIMITS);
   cores.forEach((c, i) => {
     const at = F.project(THREE, R, [c.x, D.eave - 0.4, zF]);
     const ridge = F.project(THREE, R, [c.x, D.ridge + 0.3, 0]);
-    const el = document.getElementById('c' + i); el.innerHTML = NAMES[i];
+    const el = document.getElementById('c' + i); el.textContent = NAMES[i];
     const b = el.getBoundingClientRect(), row = i % 2;
     const x = Math.max(80, Math.min(1000 - b.width, at[0] - b.width / 2)), y = ridge[1] - 24 - b.height - row * 70;
     el.style.left = x + 'px'; el.style.top = y + 'px';
@@ -85,7 +85,7 @@ LABELS7 = """  /* one label per dark breezeway core, the limits in the order the
     const end = [at[0], at[1] - 4];
     p.setAttribute('x1', at[0]); p.setAttribute('y1', y + b.height + 6); p.setAttribute('x2', end[0]); p.setAttribute('y2', end[1]);
     p.setAttribute('stroke', '#EDE4D6'); p.setAttribute('stroke-width', '2'); svg.appendChild(p);
-    (window.__txLeaders = window.__txLeaders || []).push({ target: 'core ' + (i + 1) + ', ' + NAMES[i].replace('<br>', ' '), at: end, to: end });
+    (window.__txLeaders = window.__txLeaders || []).push({ target: 'core ' + (i + 1) + ', ' + NAMES[i], at: end, to: end });
   });
 """
 f3 = page(3, 'DIAGRAM', 'RENDERED in the declared nightSodium world. The shared lot camera, the five cores lit, two steel columns at one scale.',
@@ -101,5 +101,5 @@ f7 = page(7, 'DIAGRAM', 'RENDERED in the declared nightSodium world. Frame 3 cam
   "What the judgment switches off", "c39 c40 c41 c50 c51 c46 c53   DRAWN",
   SCENE.replace('%LAMPS%', ', lampsOn: false').replace('%EXPO%', '0.82').replace('%EXTRA%', COLS),
   after=LABELS7.replace('%LIMITS%', str(LIMITS)), extra_html='<svg class="lead" id="lead"></svg>' + ''.join(f'<div class="lab" id="c{i}"></div>' for i in range(5)),
-  extra_css='  .lab { font-size:24px; text-align:center; }', hmin=96, hmax=118, hlines=1)
+  extra_css='  .lab { font-size:24px; text-align:center; white-space:normal; width:190px; }', hmin=96, hmax=118, hlines=1)
 open('../../slides/slide-07.html', 'w').write(f7)

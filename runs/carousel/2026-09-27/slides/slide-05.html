@@ -19,7 +19,8 @@
   .hook, .dek, .tx-site, .lab { text-shadow:0 0 6px rgba(10,8,6,0.9), 0 1px 16px rgba(10,8,6,0.65); }
   svg.lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
   .lab.k { text-align:center; font-size:24px; line-height:1.2; }
-  .lab.k .kn { font-size:34px; }
+  .lab.k .kn { font-size:34px; display:block; }
+  .lab.k .nm { display:block; white-space:normal; width:118px; margin:0 auto; }
   .hook .n48 { font-variation-settings:"opsz" 40; }
 </style>
 </head>
@@ -88,10 +89,9 @@ window.renderReady = (async () => {
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   TXDECK.finish(cx);
-  const WRAP = { 'Dallas-Plano-Irving': 'Dallas-<br>Plano-<br>Irving', 'Austin-Round Rock': 'Austin-<br>Round<br>Rock', 'San Antonio': 'San<br>Antonio', 'Fort Worth': 'Fort<br>Worth' };
-  __cl.forEach((c, i) => {
+    __cl.forEach((c, i) => {
     const el = document.getElementById('k' + i);
-    el.innerHTML = '<span class="kn">' + c.n + '</span><br>' + (WRAP[c.name] || c.name);
+    el.innerHTML = ''; const kn = document.createElement('span'); kn.className = 'kn'; kn.textContent = c.n; const nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = c.name; el.appendChild(kn); el.appendChild(nm);
     const b = el.getBoundingClientRect();
     el.style.left = Math.max(80, Math.min(1000 - b.width, c.px[0] - b.width / 2)) + 'px';
     el.style.top = (c.px[1] + 16) + 'px';

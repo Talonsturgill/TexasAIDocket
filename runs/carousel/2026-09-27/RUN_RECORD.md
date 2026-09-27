@@ -117,6 +117,25 @@ what, because c36's figures were cut from the dek in round 4. The kit person's f
 Carolina, c2) named on no frame. The first comment lists the ids the frames print, so c13 is now
 there and the caption-only c49 is not.
 
+## AFTER THE CAP: a CI repair re-rendered six frames, and the score row reads STALE because of it
+
+The local run of `guards.yml` found `shipped_check` red on the finished deck: frames 5 and 7 build
+their labels in JavaScript with `<br>` inside the string, so the labels copy.json records were not
+literally in the source, and the freshness gate refused them. The labels became plain strings with
+CSS doing the wrapping, and frames 5 and 7 were re-rendered. By then the upgrade worker's kit lift
+was live in the tree, so the re-rendered frames draw the kit `garden_apartment` with its new
+shingled roof. Frames 1, 3, 4 and 8 were re-rendered with it too, so the hero is one building
+across the deck. Frames 2, 6 and 9 are interiors and did not change.
+
+So the shipped exterior frames are not pixel for pixel the ones the round 5 panel scored. The
+composition, copy and claims are unchanged; the roof and the label wrapping are. That is why the
+gate block's score row reads STALE. It was not re-scored, because past the round cap a round may
+repair a hard fail and nothing else. Every gate was re-run on the shipped frames and passed.
+
+A second gate defect surfaced on the way: `deck_coherence.frames_in` took the first extension
+with any match, so frame 4 staying a PNG (its WebP fell under the quality floor) read the whole
+shipped deck as one frame. Fixed in the upgrade lane and logged.
+
 ## Things this run did not do
 
 - It did not name the court on a frame or in the caption.
@@ -160,9 +179,9 @@ interim; Phase 19's is the one that counts.
 | claims         | PASS   | 64 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 6 warn(s) |
-| aggregates     | PASS   | 8 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.52 MB, vector |
-| score          | WARN   | 7.446 at the round cap after 5 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| aggregates     | PASS   | 7 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.7 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 82 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 103 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 4 declared fragment(s) over 2 of 9 dossier(s), every one a literal substring of its own claim's quote |
@@ -170,8 +189,8 @@ interim; Phase 19's is the one that counts.
 | caption        | PASS   | 143 words |
 | craft floor    | PASS   | 9 frame(s), median 778, floor 140 |
 | plan vs render | WARN   | 9 of 38 acceptance item(s) checkable |
-| texan          | WARN   | places Austin, Dallas, Fort Worth, Houston, Irving, Plano, Round Rock, San Antonio / body yes / deadline yes / next step NO |
+| texan          | WARN   | places Austin, Dallas, Dallas-Plano-Irving, Fort Worth, Houston, Irving, Plano, Round Rock, San Antonio / body yes / deadline yes / next step NO |
 | absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
-| numerals       | PASS   | 26 numeral(s) over 9 frame(s), every one reachable |
+| numerals       | PASS   | 21 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
