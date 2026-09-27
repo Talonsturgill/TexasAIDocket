@@ -57,12 +57,14 @@ DOMAIN = re.compile(r"@(?:[\w-]+\.)*(?:anthropic\.com|claude\.ai|claude\.com)\.?
 # The company as a name: Anthropic, possessive or not, followed only by a company suffix or a
 # product or role word. A sentence that opens with the company's name is not an identity, and
 # neither is one that opens with the assistant's, which is the next rule down (Codex, PR 378).
-ANTHROPIC = re.compile(r"(?:the[ \t]+)?Anthropic(?:'s)?(?:[ \t]+(?:PBC|Inc\.?|LLC|Ltd\.?|AI|Claude|"
-                       r"Code|assistant|bot|model|team|staff|agent|app|research|labs?))*", re.I)
-# The assistant as a name: Claude alone, or followed only by version numbers and product words,
-# `Claude 3.5 Sonnet`, `claude-3-opus`, `Claude.ai`. "Claude Code found the regression" is not.
-ASSISTANT = re.compile(r"Claude(?:[- \t.]+(?:\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|"
-                       r"Instant|AI|Assistant|Agent|Bot|App)\b)*", re.I)
+ANTHROPIC = re.compile(r"(?:the[ \t]+)?Anthropic(?:'s)?(?:[-,\s.]+(?:PBC|Inc|LLC|Ltd|Corp|Corporation|"
+                       r"Co|Company|AI|Claude|Code|assistant|bot|model|team|staff|agent|app|"
+                       r"research|labs?)\.?)*", re.I)
+# The assistant as a name: Claude alone, or followed only by version numbers, with or without a
+# `v`, and product words, `Claude 3.5 Sonnet`, `Claude Sonnet v4`, `claude-3-5-sonnet-20241022`,
+# `Claude.ai`, and the GitHub app's `claude[bot]`. "Claude Code found the regression" is not.
+ASSISTANT = re.compile(r"Claude(?:[-,\s._]+(?:v?\d+(?:\.\d+)*|Code|Opus|Sonnet|Haiku|Fable|Mythos|"
+                       r"Instant|AI|Assistant|Agent|Bot|App)\b)*(?:\[bot\])?", re.I)
 # A comment in parentheses is read on its own, wherever it sits, so `Claude (AI assistant)` is
 # judged as the name Claude with a comment beside it.
 PAREN = re.compile(r"\(([^()]*)\)")
@@ -196,6 +198,12 @@ def self_test() -> int:
             "Co-Authored-By: Claude (AI assistant) <bot@example.com>",
             "Co-Authored-By: Anthropic's Claude <x@example.com>",
             "Co-Authored-By: Jane <jane@example.com> (Anthropic)",
+            "Co-Authored-By: Claude v3.5 Sonnet <bot@example.com>",
+            "Co-Authored-By: Claude Sonnet v4 <bot@example.com>",
+            "Co-Authored-By: claude-3-5-sonnet-20241022 <x@example.com>",
+            "Co-authored-by: claude[bot] <209825114+claude[bot]@users.noreply.github.com>",
+            "Co-Authored-By: Anthropic, Inc. <bot@example.com>",
+            "Reviewed-by: Anthropic, PBC <bot@example.com>",
             "Co-Authored-By: Jane Doe <jane@anthropic.com>.",
             "Co-Authored-By : Claude <noreply@anthropic.com>",
             'Reviewed-by: "Claude" <x@example.com>',
@@ -228,6 +236,8 @@ def self_test() -> int:
             "Reviewed-by: Claude, whose tests found the bug, see issue 12: it was real.",
             "Reviewed-by: Claude Code found the regression.",
             "Reviewed-by: Anthropic's tools found the regression.",
+            "Reviewed-by: Anthropic, the lab the report cites, found it.",
+            "Reviewed-by: Claude, v2 of the plan is attached.",
             "Co-Authored-By: Jane Doe (formerly of Anthropic) <jane@example.com>",
             "Co-Authored-By: Jane Doe <jane@example.com>",
             'The hook strips lines like "Generated with Claude Code" from messages.',
