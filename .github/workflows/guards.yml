@@ -1097,16 +1097,28 @@ jobs:
       - name: No assistant attribution in the range's commits
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
         run: |
+          # A pull request is read from its base. A push to main is read from the SHA main held
+          # before the push, because checkout has already moved origin/main to HEAD, so
+          # origin/main..HEAD would be empty and a web or API write would pass unread (Codex,
+          # PR 378).
           BASE="$BASE_SHA"
+          BEFORE="$BEFORE_SHA"
           if [ -n "$BASE" ]; then
             RANGE="$BASE..HEAD"
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
+               && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            RANGE="$BEFORE..HEAD"
           else
-            git fetch --quiet origin main || true
-            RANGE="origin/main..HEAD"
+            RANGE="HEAD~1..HEAD"
           fi
+          echo "range=$RANGE"
           python3 scripts/shared/attribution_strip.py --check-range "$RANGE"
-          python3 scripts/shared/attribution_strip.py --self-test
+
+      # Its own step, with no CI context, so guards_local runs it too (Codex, PR 378).
+      - name: Attribution check can go red
+        run: python3 scripts/shared/attribution_strip.py --self-test
 
       - name: Port manifest is current
         run: |
