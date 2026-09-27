@@ -68,7 +68,8 @@ exceptions, every commit and PR in this repo:
 
 **`.githooks/commit-msg` strips the first three from every commit message before the commit
 exists, and CI refuses a pull request whose commits still carry one** (2026-09-27), both through
-`scripts/shared/attribution_strip.py`. The harness asks every session to add them. Two reached
+`scripts/shared/attribution_strip.py`, which is `human` lane so no run can weaken the check on its
+own commits. The harness asks every session to add them. Two reached
 `main` on 2026-09-19, and the runs of September 20th, 21st and 27th each rewrote pushed history to
 take them out. Neither sees a PR body, so the rule still binds there.
 

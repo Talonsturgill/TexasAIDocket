@@ -22,8 +22,14 @@ root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
 # Claude Code" line on every commit. The harness asks every session to add them. Two reached main
 # on 2026-09-19, and the 2026-09-20, 2026-09-21 and 2026-09-27 runs each rewrote pushed history
 # to take them out. It runs before every exit below, whatever the lane, and CI reads each commit
-# in a pull request with the same script's --check-range.
-python3 "$root/scripts/shared/attribution_strip.py" "$msg_file" || true
+# in a pull request with the same script's --check-range. IT FAILS CLOSED (Codex, PR 378): a
+# helper that can't run can't vouch for the message, so the commit is refused rather than made
+# with the lines still in it.
+if ! python3 "$root/scripts/shared/attribution_strip.py" "$msg_file"; then
+  echo "commit-msg: scripts/shared/attribution_strip.py failed, so the message was not checked" \
+       "for Claude attribution and the commit is refused" >&2
+  exit 1
+fi
 
 # Found through git rev-parse, never by joining "$root/.git". See the note in pre-commit: in a
 # linked worktree that join points under a FILE and the stamp is never found, so every commit
