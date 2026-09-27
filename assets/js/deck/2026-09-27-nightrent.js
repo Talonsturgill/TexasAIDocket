@@ -239,7 +239,7 @@
                 var room = new THREE.PlaneGeometry(w - 0.04, h - 0.04); if (back) room.rotateY(Math.PI);
                 room.translate(op.cx, cy, zf - sgn * (T + 0.25));
                 var rm = dimRoom;
-                if (op.kind === 'store') rm = mkLit('office', o.officeGlow, 1.6);
+                if (op.kind === 'store') rm = mkLit('office', o.officeGlow, o.officeI != null ? o.officeI : 1.6);
                 else if (lit) rm = op.kind === 'door' ? litMats.curtain : litMats.blinds;
                 B.add(rm, room);
                 /* the reveal's back returns, so a lit room has a lit box and not a card */
@@ -392,9 +392,13 @@
   };
 
   /* THE HERO, as every frame makes it. One call so the building is the same building. */
+  /* The storefront's room colour. The glass, the room texture and the grade desaturate whatever
+   * the room gives off, so the room is set a step more saturated than the accent and the glass a
+   * reader sees lands on it. Measured on frame 1 against layout_check's 12 Lab unit window. */
+  N.OFFICE_GLOW = 0x4f9fe0;
   N.hero = function (K, o) {
-    return K.make("garden_apartment", Object.assign({ seed: 5, cores: 5, groupBays: 2, floors: 3, brick: "#9b6a52", siding: "#c7bba4",
-      lit: 0, office: "west", officeGlow: N.ACCENT, lampLights: true }, o || {}));
+    return K.make("garden_apartment", Object.assign({ seed: 5, cores: 5, groupBays: 1, floors: 3, brick: "#9b6a52", siding: "#c7bba4",
+      lit: 0, office: "west", officeGlow: N.OFFICE_GLOW, lampLights: true }, o || {}));
   };
 
   /* A LOT LAMP: the kit's streetlight with a real sodium light under its head. The kit pole has
