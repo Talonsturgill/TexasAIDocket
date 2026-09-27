@@ -760,7 +760,7 @@
      "retrieved_at": "2026-09-12"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -832,6 +832,11 @@
     {
      "date": "2026-09-24",
      "note": "The commission's order approving the line still stands on its original terms. The docket keeps taking filings after the order, so any count of them belongs to the day it is read.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The commission's order approving the line still stands as issued. Filings keep reaching the docket without reopening it.",
      "checked": true
     }
    ]
@@ -1770,7 +1775,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -1848,6 +1853,11 @@
      "date": "2026-09-24",
      "note": "The comment window remains closed. The proposal still reads as the record took it and no next step has been published out of it.",
      "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The comment window stays closed. The proposal still reads as published and the commission has put out no next step from it.",
+     "checked": true
     }
    ]
   },
@@ -1905,7 +1915,7 @@
      "fetched": "2026-09-11"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
    "history": [
@@ -1975,6 +1985,11 @@
     {
      "date": "2026-09-24",
      "note": "The survey's comment window is still closed. The notice proposing questions about artificial intelligence still reads as the record took it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The survey's comment window stays closed. The notice proposing questions about artificial intelligence still reads as published, with no final version out.",
      "checked": true
     }
    ]
@@ -2121,7 +2136,7 @@
      "fetched": "2026-09-17"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -2250,6 +2265,11 @@
     {
      "date": "2026-09-24",
      "note": "The feed has rolled past the mid September entries the record quoted, which is what a live calendar does. It still lists the October 15th comment deadline for Project 59086 and still marks each open meeting open to the public.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The commission still publishes its open meeting calendar as a live feed, and the feed still names the projects and hearing rooms ahead.",
      "checked": true
     }
    ]
@@ -2613,7 +2633,7 @@
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-18",
@@ -2683,6 +2703,11 @@
      "date": "2026-09-24",
      "note": "The notice is still gone from the address it was posted to, and the city has since taken down its economic development notices page as well. The city's council meeting pages and archive carry no record of what the council decided.",
      "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The city's notice of the amended agreement is still not posted anywhere on its site. The council video index still lists the item, and no outcome has been published.",
+     "checked": true
     }
    ]
   },
@@ -2746,7 +2771,7 @@
     }
    ],
    "id": "tx-2026-0028",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -2806,6 +2831,11 @@
     {
      "date": "2026-09-24",
      "note": "The emergency review period is still in place as the court adopted it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The county's emergency review of high water use developments still stands as the court adopted it.",
      "checked": true
     }
    ]
@@ -3386,7 +3416,7 @@
     }
    ],
    "id": "tx-2026-0032",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-18",
@@ -3450,6 +3480,11 @@
     {
      "date": "2026-09-24",
      "note": "Reporting of the commission's vote against the permit still reads as the record took it. No new application for the site has surfaced.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The commission's vote against the permit still stands in the city's own agenda record. No new application for the site has appeared.",
      "checked": true
     }
    ]
@@ -3519,7 +3554,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -3579,6 +3614,11 @@
     {
      "date": "2026-09-24",
      "note": "El Paso's framework is still in force and still requires a special permit before a hyperscale project can proceed.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "El Paso's framework still stands in the council's own record, and a hyperscale project still needs a special permit before it can proceed.",
      "checked": true
     }
    ]
@@ -3975,7 +4015,7 @@
     }
    ],
    "id": "tx-2026-0036",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -4028,6 +4068,11 @@
     {
      "date": "2026-09-24",
      "note": "The county remains out of the plate reader contract its court voted to end.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The county is still out of the plate reader contract its court voted to end.",
      "checked": true
     }
    ]
@@ -4156,7 +4201,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-18",
@@ -4220,6 +4265,11 @@
     {
      "date": "2026-09-24",
      "note": "Laredo still has no moratorium. The permanent rules the council asked its staff to write have not come back before it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "Laredo still has no moratorium. The council's own record shows the permanent rules it asked for have not come back to a vote.",
      "checked": true
     }
    ]
@@ -4439,7 +4489,7 @@
     }
    ],
    "id": "tx-2026-0039",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -4499,6 +4549,11 @@
     {
      "date": "2026-09-24",
      "note": "The El Paso campus is still named among the scholarship awards as the foundation made them.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The foundation's award list still names the El Paso campus in the first round, and the campus page still describes the program.",
      "checked": true
     }
    ]
@@ -5193,7 +5248,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -5253,6 +5308,11 @@
     {
      "date": "2026-09-24",
      "note": "The county's own court page still posts the agenda and video of the session where the resolution was adopted. The request to the Legislature has drawn no answer on the record.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The county's request for authority over data centers still stands as adopted. The Legislature has given it no answer on the record.",
      "checked": true
     }
    ]
@@ -6431,7 +6491,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -6491,6 +6551,11 @@
     {
      "date": "2026-09-24",
      "note": "Brazoria County's conditions remain a resolution rather than a requirement any developer has to meet.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "Brazoria County's resolution still reads as the court adopted it. Its conditions remain a stated position rather than a rule a developer must meet.",
      "checked": true
     }
    ]
@@ -6701,7 +6766,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -6761,6 +6826,11 @@
     {
      "date": "2026-09-24",
      "note": "The consulting services are still on the purchasing catalog under the same contract, open to any member government.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The consulting services are still listed on the purchasing catalog under the same contract, open to member governments.",
      "checked": true
     }
    ]
@@ -6992,7 +7062,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -7060,6 +7130,11 @@
      "date": "2026-09-24",
      "note": "The board's denial stands. The state water plan still has no demand category of its own for data centers.",
      "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The board's denial still stands. The state water plan still carries no demand category of its own for data centers.",
+     "checked": true
     }
    ]
   },
@@ -7120,7 +7195,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -7190,6 +7265,11 @@
     {
      "date": "2026-09-24",
      "note": "The notice canceling the Carson County public meeting still reads as before. A new date has not been confirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The agency's hearings page still shows the Carson County meeting as canceled, and no new date has been posted.",
      "checked": true
     }
    ]
@@ -7928,7 +8008,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-19",
@@ -7988,6 +8068,11 @@
     {
      "date": "2026-09-24",
      "note": "The applications are still posted as pending with their public notices, which is the stage at which a neighbor can still ask for a contested hearing.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The pending permit list still carries the data center applications with their public notices, so the window to ask for a contested hearing is still the live one.",
      "checked": true
     }
    ]
@@ -10263,7 +10348,7 @@
      "retrieved_at": "2026-09-12"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -10327,6 +10412,11 @@
     {
      "date": "2026-09-24",
      "note": "The second line's approval stands as the commission ordered it. Filings keep arriving in the docket without reopening the order.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The second line's approval still stands as the commission ordered it, and the docket keeps taking filings without reopening the order.",
      "checked": true
     }
    ]
@@ -10461,7 +10551,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
    "history": [
@@ -10530,6 +10620,11 @@
     {
      "date": "2026-09-24",
      "note": "The committee has still published no report from its August hearing on driverless deployment.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The committee's own page still lists the August hearing and still links no report from it.",
      "checked": true
     }
    ]
@@ -11735,7 +11830,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -11821,6 +11916,11 @@
     {
      "date": "2026-09-24",
      "note": "The award still pairs a model that proposes numerical algorithms with a proof checker that decides which of them stand. The foundation's record of it has not moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The foundation's award to Rice still stands as made, for work that lets a model propose algorithms only where a proof checker certifies them.",
      "checked": true
     }
    ]
@@ -12697,7 +12797,7 @@
     }
    ],
    "id": "tx-2026-0099",
-   "last_verified": "2026-09-23",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-26",
@@ -12753,6 +12853,11 @@
     {
      "date": "2026-09-26",
      "note": "Whether the Army center at Rice still stands as announced is unconfirmed this run. The university's own account of the award could not be read again."
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The university's account of the Army center still reads as announced, with artificial intelligence still one discipline among six.",
+     "checked": true
     }
    ]
   },
@@ -15297,7 +15402,7 @@
     }
    ],
    "id": "tx-2026-0109",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-08-29",
@@ -15377,6 +15482,11 @@
     {
      "date": "2026-09-24",
      "note": "The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The committee's reset hearing on artificial intelligence and the workforce still stands on its posted date, with no published report after it.",
      "checked": true
     }
    ]
@@ -16733,7 +16843,7 @@
    "confidence": "high",
    "notes_for_editor": "The account carries superlatives and no measurement. Nothing in it states an accuracy rate, a count of images captured, a retention period, or whether either system will be deployed.",
    "id": "tx-2026-0120",
-   "last_verified": "2026-09-23",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-04",
@@ -16778,6 +16888,11 @@
     {
      "date": "2026-09-26",
      "note": "Whether the demonstration account still reads as the directorate published it is unconfirmed this run. The directorate's own page could not be read again."
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The directorate's account of the bridge demonstration still reads as published. It still says capture exceeded expectations day and night, and it still describes the opt-out lane for citizens.",
+     "checked": true
     }
    ]
   },
@@ -17228,7 +17343,7 @@
    ],
    "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list. CORRECTED 2026-09-05, at the third scoring round. The title read 'magnets that avoid imported rare earths' and the summary closed 'while cutting dependence on foreign mineral supply', and NOT ONE of this item's four evidence quotes says either. The one quote about the goal reads 'find entirely new materials while simultaneously balancing these supply constraint concerns', which is what the title and the summary now say. The same reading was struck from the deck's slide 6 at round 1 and from the two carousel ledgers at round 2, and this is where it originated. RE-APPLIED after the upgrade lane reverted this file with a git checkout, having read a same length string edit as a stray whitespace reformat. A scorer reading the PUBLISHED item found that its evidence block says every fact above rests on one of these and that not one of the four quotes contained the word magnet or magnetic, so a reader checking only that page could verify the funder, the term, the figure and the coalition and find nothing establishing the subject. Two quotes already verified in this run's claims file were added, one naming the magnetic materials Rice's group chooses between and one naming the target the work is set against.",
    "id": "tx-2026-0124",
-   "last_verified": "2026-09-23",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-05",
@@ -17272,6 +17387,11 @@
     {
      "date": "2026-09-26",
      "note": "The University of Houston's own account of the award still reads as it did. The partner university's account could not be read again, so its part is unconfirmed this run."
+    },
+    {
+     "date": "2026-09-27",
+     "note": "Both universities' accounts of the magnet materials award still read as announced.",
+     "checked": true
     }
    ]
   },
@@ -17511,7 +17631,7 @@
     }
    ],
    "id": "tx-2026-0125",
-   "last_verified": "2026-09-26",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-07",
@@ -17549,6 +17669,11 @@
     {
      "date": "2026-09-26",
      "note": "Frontera's decommission notice still ends the queues on October 1st, and nothing posted since moves that date.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The center's user guide still gives October 1st as the day Frontera's queues close for good.",
      "checked": true
     }
    ]
@@ -17777,7 +17902,7 @@
     }
    ],
    "id": "tx-2026-0129",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-08",
@@ -17806,6 +17931,11 @@
     {
      "date": "2026-09-24",
      "note": "The resolution still bars the city manager from buying a park camera or drone that depends on artificial intelligence. The progress update it asks for has not been published.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The resolution still bars the city manager from buying a park camera or drone that depends on artificial intelligence. The progress update it asks for is still unpublished.",
      "checked": true
     }
    ],
@@ -19664,7 +19794,7 @@
    "confidence": "high",
    "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
    "id": "tx-2026-0142",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-11",
@@ -19692,6 +19822,11 @@
     {
      "date": "2026-09-24",
      "note": "The adopted course text still names artificial intelligence tools among what a student is expected to understand about money.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The board's adopted course text still names artificial intelligence tools among what a student learns about money.",
      "checked": true
     }
    ]
@@ -19731,7 +19866,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
@@ -19767,6 +19902,11 @@
     {
      "date": "2026-09-24",
      "note": "Both plate reader items remain approved as revised. The floor amendments are still unpublished, so what the council changed before voting is still not on the public record.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The council's approval of both plate reader items still stands, and the text of the amendment is still unpublished.",
      "checked": true
     }
    ],
@@ -19863,7 +20003,7 @@
     "closes": null
    },
    "id": "tx-2026-0148",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
    "history": [
@@ -19890,6 +20030,11 @@
     {
      "date": "2026-09-24",
      "note": "The department still lists the Navasota proving ground with the same university partner attached. No construction date for the test pit has appeared.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The Energy Department's award for the Navasota test pit still stands as announced.",
      "checked": true
     }
    ],
@@ -19947,7 +20092,7 @@
     "closes": null
    },
    "id": "tx-2026-0149",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "confidence": "high",
    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
@@ -19974,6 +20119,11 @@
     {
      "date": "2026-09-24",
      "note": "The award to the engineering station is unchanged in scope and in recipient. Its abstract still describes digital twins of small community water systems.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The foundation's award for digital twins of small water systems still stands as made.",
      "checked": true
     }
    ],
@@ -20313,7 +20463,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0152",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-13",
@@ -20332,6 +20482,11 @@
     {
      "date": "2026-09-24",
      "note": "The provisional Batch Zero placements and the conditions attached to them are unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The grid operator's notice of provisional Batch Zero placements still reads as issued, with the same conditions on every placement.",
      "checked": true
     }
    ]
@@ -20444,7 +20599,7 @@
     }
    ],
    "id": "tx-2026-0156",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-14",
@@ -20462,6 +20617,11 @@
     {
      "date": "2026-09-24",
      "note": "The user guide for the questionnaire still requires the notarized attestation and still leaves submission to the transmission service provider alone.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The questionnaire's user guide still requires a notarized attestation and still routes submission through the transmission service provider.",
      "checked": true
     }
    ]
@@ -20562,7 +20722,7 @@
     }
    ],
    "id": "tx-2026-0157",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-14",
@@ -20580,6 +20740,11 @@
     {
      "date": "2026-09-24",
      "note": "The developer's account to its shareholders of what Batch Zero did to its Texas projects reads as before. The project placed in a different class than it filed in is still described that way.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The developer's account to its shareholders of what the Batch Zero list did to its Texas projects still reads as filed.",
      "checked": true
     }
    ]
@@ -20762,7 +20927,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-15",
@@ -20779,6 +20944,11 @@
     {
      "date": "2026-09-24",
      "note": "The board materials describing generator fatigue from AI training loads still read as the record took them.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The board materials on generator fatigue from training loads still read as posted, and the draft limit on how fast that draw may swing is still pending.",
      "checked": true
     }
    ]
@@ -20845,7 +21015,7 @@
     }
    ],
    "id": "tx-2026-0160",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-15",
@@ -20864,6 +21034,11 @@
     {
      "date": "2026-09-24",
      "note": "The physician group is still described as moving toward a single ambient documentation platform. It has named none and set no date.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The physician group's move toward one documentation platform is still described as under way, with no completion announced.",
      "checked": true
     }
    ]
@@ -20939,7 +21114,7 @@
     }
    ],
    "id": "tx-2026-0161",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-15",
@@ -20958,6 +21133,11 @@
     {
      "date": "2026-09-24",
      "note": "The tutor is still described as built to hold back the answer, and the federal award behind it is unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The university's account of the tutor that withholds the answer still reads as announced, police training work included.",
      "checked": true
     }
    ]
@@ -21336,7 +21516,7 @@
     }
    ],
    "id": "tx-2026-0165",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-17",
@@ -21350,6 +21530,11 @@
     {
      "date": "2026-09-24",
      "note": "The gift and the college named for its donors still read as the university announced them.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The university's announcement of the gift and the college named for its donors still reads as published.",
      "checked": true
     }
    ]
@@ -21485,7 +21670,7 @@
     }
    ],
    "id": "tx-2026-0166",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-18",
@@ -21504,6 +21689,11 @@
     {
      "date": "2026-09-24",
      "note": "The trial is still listed as recruiting at the same Texas campuses. A phone held against the abdomen is still the method under test.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The trial of a phone microphone counting fetal movement still stands as the universities described it.",
      "checked": true
     }
    ]
@@ -22318,7 +22508,7 @@
     }
    ],
    "id": "tx-2026-0167",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-18",
@@ -22332,6 +22522,11 @@
     {
      "date": "2026-09-24",
      "note": "The flood sensor is still described as running its model on the device itself. No network has to reach it for the model to work.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The university's account of the flood sensor that runs its model on the device still reads as published.",
      "checked": true
     }
    ]
@@ -22563,7 +22758,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-09-26",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-20",
@@ -22583,6 +22778,11 @@
     {
      "date": "2026-09-26",
      "note": "Texas Southern still leads its regional node in the HBCU network.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The foundation's award naming Texas Southern to lead a regional node still stands as made.",
      "checked": true
     }
    ]
@@ -22903,7 +23103,7 @@
     {
      "text": "The city states the decision and the date the department stopped.",
      "verbatim_quote": "The City of Leander will discontinue funding its contract with Flock, following the directive by the Leander City Council during its September 3, 2026 meeting. As of September 4, 2026, the Leander Police Department is no longer using Flock cameras or Flock data.",
-     "source_url": "https://www.leandertx.gov/m/newsflash",
+     "source_url": "https://www.leandertx.gov/m/newsflash/Home/Detail/1347",
      "source_title": "City of Leander, News Flash",
      "source_type": "primary_official",
      "fetched": "2026-09-21",
@@ -22912,7 +23112,7 @@
     {
      "text": "The city gives its reason.",
      "verbatim_quote": "The City originally initiated an Automated License Plate Recognition (ALPR) system in an effort to enhance public safety for our citizens and business community. In response to community concerns, the City Council decided to discontinue Flock services. While we will no longer have Flock as a resource, our vigilance and commitment to public safety remains unwavering.",
-     "source_url": "https://www.leandertx.gov/m/newsflash",
+     "source_url": "https://www.leandertx.gov/m/newsflash/Home/Detail/1347",
      "source_title": "City of Leander, News Flash",
      "source_type": "primary_official",
      "fetched": "2026-09-21",
@@ -22920,7 +23120,7 @@
     }
    ],
    "id": "tx-2026-0180",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-21",
@@ -22929,6 +23129,11 @@
     {
      "date": "2026-09-24",
      "note": "The city's notice still says the department stopped using the cameras and the city stopped paying for them. What becomes of images already collected is still unstated.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The city's notice has moved off the front of its news page and still reads the same at its own address. What becomes of images already collected is still unstated.",
      "checked": true
     }
    ]
@@ -23003,7 +23208,7 @@
     }
    ],
    "id": "tx-2026-0181",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-21",
@@ -23012,6 +23217,11 @@
     {
      "date": "2026-09-24",
      "note": "The producer's announcement still commits its Ward County operations to a vendor it holds a stake in. Every claim about results is still the company's own.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The producer's announcement of its stake in the vendor and the commitment of its Ward County operations still reads as published.",
      "checked": true
     }
    ]
@@ -23348,11 +23558,16 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-24",
      "note": "Admitted on the agency's own draft and its own review page, with the comment window open. The draft was prepared by the applicant under the agency's supervision, and the operating approvals it assesses have not been granted."
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The agency's draft assessment and review page still stand as published. The comment window is still open until October 11th.",
+     "checked": true
     }
    ]
   },
@@ -23466,11 +23681,16 @@
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
    "id": "tx-2026-0187",
-   "last_verified": "2026-09-24",
+   "last_verified": "2026-09-27",
    "history": [
     {
      "date": "2026-09-24",
      "note": "Admitted on the commission's own adoption order and the Texas Register receipt. The rule is adopted and takes effect on the date that receipt gives."
+    },
+    {
+     "date": "2026-09-27",
+     "note": "The commission's adoption order still reads as filed, and the rule stands as adopted.",
+     "checked": true
     }
    ]
   },
