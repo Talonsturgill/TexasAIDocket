@@ -306,17 +306,20 @@ def _text_blocks(nodes: list) -> list:
 
     A name whose two styled spans stack or wrap onto the next line is still one name, so a line
     that starts just under the one above it, overlapping it across, joins that line's block
-    (Codex, PR 379). A line break lets a source's title and a straight-quoted passage run on,
-    as `_found_at` reads them, and it still ends a sentence, so the three word rule for a
-    quotation stays a rule about one line. Columns never join, because they don't overlap."""
+    (Codex, PR 379). Just under includes a little above its bottom edge, because a box is as
+    tall as its line height and lines set closer than that overlap by up to half a line. A
+    line break lets a source's title and a straight-quoted passage run on, as `_found_at` reads
+    them, and it still ends a sentence, so the three word rule for a quotation stays a rule
+    about one line. Columns never join, because they don't overlap."""
     blocks = []
     for ln in sorted(_text_lines(nodes), key=lambda l: (l["top"], l["x0"])):
         h = ln["bottom"] - ln["top"]
         for b in blocks:
             last = b["last"]
             gap = ln["top"] - last["bottom"]
-            if (h > 0 and last["bottom"] > last["top"]
-                    and 0 <= gap <= 0.8 * max(h, last["bottom"] - last["top"])
+            lh = last["bottom"] - last["top"]
+            if (h > 0 and lh > 0
+                    and -0.5 * min(h, lh) <= gap <= 0.8 * max(h, lh)
                     and ln["x0"] < last["right"] and ln["right"] > last["x0"]):
                 start = len(b["text"]) + 1
                 b["text"] += "\n" + ln["text"]
@@ -359,9 +362,12 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
         units += [(c, [(0, len(c), c)]) for c in drawn if c.strip()]
         # render.py keeps TEXT_WINDOW characters of each string, and a banned word past that is
         # a word no gate can read. None of 3,136 nodes in 35 decks has reached it, so the gate
-        # fails closed on one rather than passing what it can't see (Codex, PR 379).
+        # fails closed on one rather than passing what it can't see (Codex, PR 379). The length
+        # is the string as recorded. A DOM string is collapsed before it is cut, so a cut just
+        # after a space keeps the space, and a canvas string is cut raw, so collapsing either
+        # again would measure a cut string short of the window.
         for cut in [str(t.get("text") or "") for t in nodes] + list(drawn):
-            if window and len(" ".join(cut.split())) >= window:
+            if window and len(cut) >= window:
                 out.append((f"rendered slide {n}", None, cut[:60]))
         own, seen = judged.get(n, []), set()
         for text, parts in units:
@@ -550,18 +556,27 @@ def self_test() -> int:
                  "anc": [2]},
                 {"text": "THE PATTERN", "x": 700, "y": 200, "w": 200, "h": 40, "font_px": 36,
                  "anc": []}]},
-            # The same name in two spans stacked in one column, and a label in the next column.
+            # The same name in two spans stacked in one column, again set closer than its line
+            # height so the two boxes overlap, and a label in the last column.
             {"file": "slide-06.html", "text_nodes": [
                 {"text": "Pattern", "x": 100, "y": 500, "w": 140, "h": 40, "font_px": 36,
                  "anc": []},
                 {"text": "Energy", "x": 100, "y": 545, "w": 140, "h": 40, "font_px": 36,
                  "anc": []},
+                {"text": "Pattern", "x": 400, "y": 500, "w": 140, "h": 43, "font_px": 36,
+                 "anc": []},
+                {"text": "Energy", "x": 400, "y": 532, "w": 140, "h": 43, "font_px": 36,
+                 "anc": []},
                 {"text": "THE PATTERN", "x": 700, "y": 500, "w": 240, "h": 40, "font_px": 36,
                  "anc": []}]},
-            # A clean string cut at the report's window, and one a character short of it.
+            # A clean string cut at the report's window, the same cut landing just after a space,
+            # which render.py keeps, a canvas string cut raw with a double space in it, and one a
+            # character short of the window.
             {"file": "slide-07.html", "text_nodes": [
                 {"text": ("Nine days apart. " * 19)[:320], "anc": []},
-                {"text": ("Ten days apart. " * 20)[:319], "anc": []}]}]}))
+                {"text": ("Ten days apart. " * 21)[:320], "anc": []},
+                {"text": ("Ten days apart. " * 20)[:319], "anc": []}],
+             "canvas_text": [{"text": ("Two  spaces here. " * 30)[:320], "fn": "fillText"}]}]}))
         (d / "caption.txt").write_text("The council voted. Here is why it matters.\n")
         (d / "first_comment.txt").write_text(
             f"Sources.\n{title}, KGNS.\nPattern Energy, September 20th.\nhttps://example.com/gap\n")
@@ -584,13 +599,14 @@ def self_test() -> int:
            "and a paragraph that cite c1, and not slide 4, a canvas line on slide 2 or a "
            "paragraph that cite c3. On slide 5 a publisher's name split across two spans and "
            "a span inside its parent keep their words, and the label beside them does not. On "
-           "slide 6 the name stacked in one column keeps its words and the next column's label "
-           "does not. On slide 7 a string cut at the report's window fails closed and one a "
-           "character short of it passes (Codex, PR 379)",
+           "slide 6 the name stacked in one column keeps its words, set loose or with its boxes "
+           "overlapping, and the last column's label does not. On slide 7 a string cut at the "
+           "report's window fails closed, a cut just after a space and a canvas string with a "
+           "double space included, and one a character short of it passes (Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
                      "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
                      "rendered slide 3": 2, "rendered slide 5": 1, "rendered slide 6": 1,
-                     "rendered slide 7": 1, "claim c1": 1, "claim c4": 1,
+                     "rendered slide 7": 3, "claim c1": 1, "claim c4": 1,
                      "web edition section": 1, "web edition dek": 1,
                      "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()
