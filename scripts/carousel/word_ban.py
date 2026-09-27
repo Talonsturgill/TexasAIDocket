@@ -51,6 +51,10 @@ which is a protected path, so the fix waits for a maintainer and is written up i
 knowledge/carousel/UPGRADE_BACKLOG.md (Codex, PR 379). Until then a water tower's name is the
 director's to choose, and a banned word there is theirs to refuse.
 
+render.py also keeps only the report's `text_window` characters of each string, 320 today, so a
+word past that is unread. No string in the 35 shipped decks has reached it. One that does is a
+finding, and the fix it names is splitting or shortening it. The backlog has the render.py fix.
+
 SINCE is 2026-09-27, the last deck shipped before the rule. Nothing published on or before it is
 judged as a failure, because published copy is not rewritten without the owner. shipped_check and
 `--run` both still measure those decks and print what they find as notes.
@@ -123,9 +127,12 @@ def _found_at(text: str, *, sources: tuple = (), quotes: tuple = (),
     spans = [m.span() for m in QUOTED.finditer(text)] + [m.span() for m in URL.finditer(text)]
     low = text.lower()
     for s in sources:
-        s = " ".join(s.split()).lower()
-        if len(s) >= 4:
-            spans += [m.span() for m in re.finditer(rf"(?<!\w){re.escape(s)}(?!\w)", low)]
+        parts = s.lower().split()
+        if len(" ".join(parts)) >= 4:
+            # whitespace in the title matches any whitespace in the text, a line break included,
+            # so a title set across two lines is still the source's (Codex, PR 379)
+            title = r"\s+".join(re.escape(w) for w in parts)
+            spans += [m.span() for m in re.finditer(rf"(?<!\w){title}(?!\w)", low)]
     theirs = [_squash(q) for q in (*quotes, *sources) if q and q.strip()]
     out = []
     for m in rx.finditer(text):
@@ -243,7 +250,8 @@ def _bounded_in(needle: str, hay: str) -> bool:
 
 
 def _text_lines(nodes: list) -> list:
-    """[(text, [(start, end, node text)])], one per visual line of a slide's recorded DOM text.
+    """The visual lines of a slide's recorded DOM text, each {"text", "parts", "x0", "right",
+    "top", "bottom"}, where a part is (start, end, node text).
 
     render.py records an element that has text of its own, with its whole flattened text and the
     indices of its recorded ancestors in `anc`. A node an ancestor already holds is read there,
@@ -285,11 +293,39 @@ def _text_lines(nodes: list) -> list:
                 ln["text"] += " " + text
                 ln["parts"].append((start, start + len(text), text))
                 ln["right"], ln["fs"] = x + w, max(fs, ln["fs"])
+                ln["top"], ln["bottom"] = min(ln["top"], y), max(ln["bottom"], y + h)
                 break
         else:
-            lines.append({"text": text, "parts": [(0, len(text), text)], "right": x + w,
-                          "cy": y + h / 2, "h": h, "fs": fs})
-    return [(ln["text"], ln["parts"]) for ln in lines]
+            lines.append({"text": text, "parts": [(0, len(text), text)], "x0": x, "right": x + w,
+                          "top": y, "bottom": y + h, "cy": y + h / 2, "h": h, "fs": fs})
+    return lines
+
+
+def _text_blocks(nodes: list) -> list:
+    """[(text, parts)], one per block of lines stacked in one column, joined by line breaks.
+
+    A name whose two styled spans stack or wrap onto the next line is still one name, so a line
+    that starts just under the one above it, overlapping it across, joins that line's block
+    (Codex, PR 379). A line break lets a source's title and a straight-quoted passage run on,
+    as `_found_at` reads them, and it still ends a sentence, so the three word rule for a
+    quotation stays a rule about one line. Columns never join, because they don't overlap."""
+    blocks = []
+    for ln in sorted(_text_lines(nodes), key=lambda l: (l["top"], l["x0"])):
+        h = ln["bottom"] - ln["top"]
+        for b in blocks:
+            last = b["last"]
+            gap = ln["top"] - last["bottom"]
+            if (h > 0 and last["bottom"] > last["top"]
+                    and 0 <= gap <= 0.8 * max(h, last["bottom"] - last["top"])
+                    and ln["x0"] < last["right"] and ln["right"] > last["x0"]):
+                start = len(b["text"]) + 1
+                b["text"] += "\n" + ln["text"]
+                b["parts"] += [(start + a, start + e, pt) for a, e, pt in ln["parts"]]
+                b["last"] = ln
+                break
+        else:
+            blocks.append({"text": ln["text"], "parts": list(ln["parts"]), "last": ln})
+    return [(b["text"], b["parts"]) for b in blocks]
 
 
 def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> list:
@@ -308,6 +344,7 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
                None)
     if rep is None:
         return []
+    window = rep.get("text_window") or 0
     out = []
     for i, rec in enumerate(rep.get("slides") or [], start=1):
         if not isinstance(rec, dict):
@@ -315,10 +352,17 @@ def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> lis
         m = re.search(r"(\d+)", str(rec.get("file") or ""))
         n = rec.get("n") or (int(m.group(1)) if m else i)
         sources, quotes = evidence(n)
-        units = _text_lines([t for t in rec.get("text_nodes") or [] if isinstance(t, dict)])
+        nodes = [t for t in rec.get("text_nodes") or [] if isinstance(t, dict)]
+        units = _text_blocks(nodes)
         drawn = dict.fromkeys(str(t.get("text") or "") for t in rec.get("canvas_text") or []
                               if isinstance(t, dict))
         units += [(c, [(0, len(c), c)]) for c in drawn if c.strip()]
+        # render.py keeps TEXT_WINDOW characters of each string, and a banned word past that is
+        # a word no gate can read. None of 3,136 nodes in 35 decks has reached it, so the gate
+        # fails closed on one rather than passing what it can't see (Codex, PR 379).
+        for cut in [str(t.get("text") or "") for t in nodes] + list(drawn):
+            if window and len(" ".join(cut.split())) >= window:
+                out.append((f"rendered slide {n}", None, cut[:60]))
         own, seen = judged.get(n, []), set()
         for text, parts in units:
             if _squash(text) in seen:
@@ -388,7 +432,10 @@ def check(d: Path, banned: list | None = None, articles: Path = ARTICLES) -> lis
         for where, text, ids in article_text(article):
             judge(f"web edition {where}", text, cited(ids))
     return [f"{where}: {_say(w, a)}. The owner banned it on 2026-09-27 (config/brand.yaml "
-            f"banned_words). Say the specific thing instead" for where, w, a in out]
+            f"banned_words). Say the specific thing instead" if w is not None else
+            f"{where}: \"{a}...\" runs past the characters the render report keeps, so the "
+            f"owner's banned words can't be read in the rest of it. Split it across two "
+            f"elements or shorten it" for where, w, a in out]
 
 
 def exit_code(run_date: str, found: list) -> int:
@@ -442,6 +489,9 @@ def self_test() -> int:
                 banned=banned)) == 1)
     ok("...and a source named Data Gap is not found inside the house's 'Metadata Gap'",
        len(hits("The Metadata Gap report.", sources=("Data Gap",), banned=banned)) == 1)
+    ok("a source's title set across a line break is still the source's (Codex, PR 379)",
+       not hits("Pattern\nEnergy filed the request.", sources=("Pattern Energy",),
+                banned=banned))
     ok("a quotation broken across a line keeps its words (Codex, PR 379)",
        not hits('The memo says "a pattern\nof late filings" twice.', banned=banned))
     ok("...but a stray mark never carries the exemption past a blank line",
@@ -469,8 +519,9 @@ def self_test() -> int:
                 "S2": {"body": 'The memo says "the gap is widening."', "claims": ["c3"]},
                 "S3": {"body": quote, "claims": ["c1"]},
                 "S4": {"body": quote, "claims": ["c3"]},
-                "S5": {"body": "The request went in on Monday.", "claims": ["c3"]}}}))
-        (d / "render_report.json").write_text(json.dumps({"slides": [
+                "S5": {"body": "The request went in on Monday.", "claims": ["c3"]},
+                "S6": {"body": "The request went in on Tuesday.", "claims": ["c3"]}}}))
+        (d / "render_report.json").write_text(json.dumps({"text_window": 320, "slides": [
             {"file": "slide-01.html",
              "text_nodes": [{"text": "Four filings, one pattern", "decorative": False},
                             {"text": "one pattern", "decorative": False},
@@ -498,7 +549,19 @@ def self_test() -> int:
                 {"text": "Pattern", "x": 100, "y": 1100, "w": 120, "h": 30, "font_px": 28,
                  "anc": [2]},
                 {"text": "THE PATTERN", "x": 700, "y": 200, "w": 200, "h": 40, "font_px": 36,
-                 "anc": []}]}]}))
+                 "anc": []}]},
+            # The same name in two spans stacked in one column, and a label in the next column.
+            {"file": "slide-06.html", "text_nodes": [
+                {"text": "Pattern", "x": 100, "y": 500, "w": 140, "h": 40, "font_px": 36,
+                 "anc": []},
+                {"text": "Energy", "x": 100, "y": 545, "w": 140, "h": 40, "font_px": 36,
+                 "anc": []},
+                {"text": "THE PATTERN", "x": 700, "y": 500, "w": 240, "h": 40, "font_px": 36,
+                 "anc": []}]},
+            # A clean string cut at the report's window, and one a character short of it.
+            {"file": "slide-07.html", "text_nodes": [
+                {"text": ("Nine days apart. " * 19)[:320], "anc": []},
+                {"text": ("Ten days apart. " * 20)[:319], "anc": []}]}]}))
         (d / "caption.txt").write_text("The council voted. Here is why it matters.\n")
         (d / "first_comment.txt").write_text(
             f"Sources.\n{title}, KGNS.\nPattern Energy, September 20th.\nhttps://example.com/gap\n")
@@ -520,11 +583,14 @@ def self_test() -> int:
            "quote, a quotation and claim c2's own evidence are not. c1's quote exempts a slide "
            "and a paragraph that cite c1, and not slide 4, a canvas line on slide 2 or a "
            "paragraph that cite c3. On slide 5 a publisher's name split across two spans and "
-           "a span inside its parent keep their words, and the label beside them does not "
-           "(Codex, PR 379)",
+           "a span inside its parent keep their words, and the label beside them does not. On "
+           "slide 6 the name stacked in one column keeps its words and the next column's label "
+           "does not. On slide 7 a string cut at the report's window fails closed and one a "
+           "character short of it passes (Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
                      "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
-                     "rendered slide 3": 2, "rendered slide 5": 1, "claim c1": 1, "claim c4": 1,
+                     "rendered slide 3": 2, "rendered slide 5": 1, "rendered slide 6": 1,
+                     "rendered slide 7": 1, "claim c1": 1, "claim c4": 1,
                      "web edition section": 1, "web edition dek": 1,
                      "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()

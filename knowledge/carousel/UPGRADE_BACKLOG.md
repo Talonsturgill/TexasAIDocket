@@ -4645,3 +4645,13 @@ here rather than made in that pull request.
    `canvas_text`, and add a self-test case of a water tower named PATTERN.
 
 Until then a water tower's name is the director's choice, and the gate's docstring says so.
+
+### `render.py` keeps 320 characters of each string, and the word ban fails closed past that
+
+`render.py` cuts every text node and canvas string at `TEXT_WINDOW`, 320 characters, and
+`copy_sync_check` compares at the same window. A banned word past character 320 of one element
+is on the slide and in no report. None of the 3,136 text nodes in the 35 shipped decks has
+reached the window, so `word_ban.py` fails closed on a string that does, and tells the run to
+split or shorten it (Codex, PR 379). The real fix sits in the same file as the one above: record
+each string's full text in a field the gates read, `full` say, keep `text` at the window for the
+gates that compare on it, and have `word_ban.rendered()` read `full` when it is there.
