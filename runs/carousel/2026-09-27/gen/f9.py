@@ -67,7 +67,7 @@ scene = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, t
 """
 f9 = page(9, 'CLOSE_CROP', 'RENDERED in a TXT.interior room. Over the resident shoulder at the kitchen counter, the laptop the one cool light.',
   "Comment before the court rules",
-  "The notice was published September 18th and takes public comment within 60 days. Email <span style=\"white-space:nowrap\">ATR.Public-Comments-Tunney-Act-MB@usdoj.gov</span> in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division.",
+  "Comment within 60 days of the September 18th notice. Email <span style=\"white-space:nowrap\">ATR.Public-Comments-Tunney-Act-MB@usdoj.gov</span> in English, to the Antitrust Division's Technology and Digital Platforms Section.",
   "What a Texan can do", "c1 c8 c9 c10 c11 c62   DRAWN",
   scene, hmin=84, hmax=118)
 open('../../slides/slide-09.html', 'w').write(f9)

@@ -25,7 +25,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Yes in bulk, no with a reason</h1>
-<p class="dek" data-follow="30">The complaint says a manager can accept recommendations in bulk. Declining one takes "specific business commentary." It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.</p>
+<p class="dek" data-follow="30">A manager can accept in bulk and must give "specific business commentary" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.</p>
 <svg class="lead" id="lead"></svg><div class="lab" id="l0"></div><div class="lab" id="l1"></div><div class="lab" id="l2"></div><div class="lab" id="l3"></div><div class="lab" id="l4"></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -49,7 +49,7 @@ window.renderReady = (async () => {
   const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone: W.tone, fov: 38 });
   /* THE LEASING OFFICE at night. The storefront glass on the left wall with the lot's sodium pool
    * outside it, a veneer desk against the back wall, a 27 inch monitor, an office chair. */
-  TXT.interior(R, { w: 4.0, d: 5.4, h: 2.8, floor: 'concrete', wall: 0x5f5a52, window: 'back', windowColor: 0xffb25a, windowI: 0.03, windowW: 2.0, windowH: 0.7, ceiling: true, light: 0.3 });
+  TXT.interior(R, { w: 4.0, d: 5.4, h: 2.8, floor: 'concrete', wall: 0x5f5a52, window: null, ceiling: false, light: 0.3 });
   /* the storefront: bronze mullions on the glass, the lot's sodium beyond it */
   const bronze = new THREE.MeshStandardMaterial({ color: 0x4a3a28, roughness: 0.45, metalness: 0.6 });
   { const sill = TXT.roundedBox(2.1, 0.08, 0.1, 0.01, bronze); sill.position.set(-0.8, 0.5, -2.55); R.scene.add(sill); }
@@ -85,13 +85,13 @@ window.renderReady = (async () => {
   /* the screen's own light on the desk and the wall behind */
   const sl = new THREE.PointLight(F.ACCENT, 1.4, 3.2, 2); sl.position.set(0.45, 0.86, -1.9); R.scene.add(sl);
   /* the lot's sodium through the storefront */
-  const warm = new THREE.PointLight(F.SODIUM, 4.0, 6, 2); warm.position.set(-0.8, 1.3, -2.2); R.scene.add(warm);
+  const warm = new THREE.PointLight(F.SODIUM, 3.0, 4, 2); warm.position.set(-1.4, 0.9, -1.9); R.scene.add(warm);
   /* a filing cabinet by the storefront, a stack of lease files on the desk */
   const fc = K.make('filing_cabinet', { seed: 3, color: 0x8a7f70 }); fc.position.set(-1.5, 0, -2.25); TXT.add(R, fc); TXT.contact(R, fc);
   const chair = K.make('office_chair', { seed: 2 });
   chair.position.set(0.5, 0, -1.25); chair.rotation.y = Math.PI - 0.1; TXT.add(R, chair); TXT.contact(R, chair);
   TXT.frame(R, { from: [-0.25, 1.47, 0.25], look: [0.3, 1.2, -2.35] });
-  TXT.deckRig(R, W.rig, { target: [0, 1, -1.5], distance: 8, shadowFar: 20 });
+  TXT.deckRig(R, Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { i: (W.rig.key.i || 1) * 0.35 }) }), { target: [0, 1, -1.5], distance: 8, shadowFar: 20 });
   window.__pts = { line: F.project(THREE, R, __uv(0.05, __scr.LY / 576)),
     near: F.project(THREE, R, __uv(0.05, (__scr.LY - __scr.NEAR) / 576)),
     close: F.project(THREE, R, __uv(0.05, (__scr.LY - __scr.CLOSE) / 576)),

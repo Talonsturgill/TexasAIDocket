@@ -37,7 +37,7 @@ scene = f"""  const R = TXT.setup(gl, {{ w: 1080, h: 1350, fog: [W.haze, W.fogDe
 """
 f8 = page(8, 'GRID', 'RENDERED in the declared nightSodium world. From the near kerb, the hero dark between two lit neighbours.',
   "It binds one landlord",
-  "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket.",
+  "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on.",
   "The rest of the case", "c55 c56 c58 c59 c36   DRAWN",
   scene)
 open('../../slides/slide-08.html', 'w').write(f8)

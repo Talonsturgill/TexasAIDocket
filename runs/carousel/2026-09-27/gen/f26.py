@@ -5,7 +5,7 @@ FIG = json.load(open('../../figures.json'))
 NEAR, CLOSE = FIG['band_near_px'], FIG['band_close_px']
 ROOM = """  /* THE LEASING OFFICE at night. The storefront glass on the left wall with the lot's sodium pool
    * outside it, a veneer desk against the back wall, a 27 inch monitor, an office chair. */
-  TXT.interior(R, { w: 4.0, d: 5.4, h: 2.8, floor: 'concrete', wall: 0x5f5a52, window: 'back', windowColor: 0xffb25a, windowI: 0.03, windowW: 2.0, windowH: 0.7, ceiling: true, light: 0.3 });
+  TXT.interior(R, { w: 4.0, d: 5.4, h: 2.8, floor: 'concrete', wall: 0x5f5a52, window: null, ceiling: false, light: 0.3 });
   /* the storefront: bronze mullions on the glass, the lot's sodium beyond it */
   const bronze = new THREE.MeshStandardMaterial({ color: 0x4a3a28, roughness: 0.45, metalness: 0.6 });
   { const sill = TXT.roundedBox(2.1, 0.08, 0.1, 0.01, bronze); sill.position.set(-0.8, 0.5, -2.55); R.scene.add(sill); }
@@ -41,7 +41,7 @@ ROOM = """  /* THE LEASING OFFICE at night. The storefront glass on the left wal
   /* the screen's own light on the desk and the wall behind */
   const sl = new THREE.PointLight(F.ACCENT, 1.4, 3.2, 2); sl.position.set(0.45, 0.86, -1.9); R.scene.add(sl);
   /* the lot's sodium through the storefront */
-  const warm = new THREE.PointLight(F.SODIUM, 4.0, 6, 2); warm.position.set(-0.8, 1.3, -2.2); R.scene.add(warm);
+  const warm = new THREE.PointLight(F.SODIUM, 3.0, 4, 2); warm.position.set(-1.4, 0.9, -1.9); R.scene.add(warm);
 """
 F2 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone: W.tone, fov: 38 });
 """ + ROOM + """  /* a filing cabinet by the storefront, a stack of lease files on the desk */
@@ -49,7 +49,7 @@ F2 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone
   const chair = K.make('office_chair', { seed: 2 });
   chair.position.set(0.5, 0, -1.25); chair.rotation.y = Math.PI - 0.1; TXT.add(R, chair); TXT.contact(R, chair);
   TXT.frame(R, { from: [-0.25, 1.47, 0.25], look: [0.3, 1.2, -2.35] });
-  TXT.deckRig(R, W.rig, { target: [0, 1, -1.5], distance: 8, shadowFar: 20 });
+  TXT.deckRig(R, Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { i: (W.rig.key.i || 1) * 0.35 }) }), { target: [0, 1, -1.5], distance: 8, shadowFar: 20 });
   window.__pts = { line: F.project(THREE, R, __uv(0.05, __scr.LY / 576)),
     near: F.project(THREE, R, __uv(0.05, (__scr.LY - __scr.NEAR) / 576)),
     close: F.project(THREE, R, __uv(0.05, (__scr.LY - __scr.CLOSE) / 576)),
@@ -82,7 +82,7 @@ LAB2 = """  const svg = document.getElementById('lead');
 """
 f2 = page(2, 'CLOSE_CROP', 'RENDERED in a TXT.interior room. The leasing office at night from behind the empty chair, the recommendation screen drawn from figures.json.',
   "Yes in bulk, no with a reason",
-  "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.",
+  "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
   "The leasing office", "c21 c30 c31 c33   DRAWN",
   F2.replace('%NEAR%', str(NEAR)).replace('%CLOSE%', str(CLOSE)),
   after=LAB2, extra_css='  .hook { line-height:1.03; }', extra_html='<svg class="lead" id="lead"></svg><div class="lab" id="l0"></div><div class="lab" id="l1"></div><div class="lab" id="l2"></div><div class="lab" id="l3"></div><div class="lab" id="l4"></div>')
@@ -120,12 +120,11 @@ F6 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone
   page.rotation.x = -Math.PI / 2; page.rotation.z = 0.06; page.position.set(0.3, 0.7415, -1.97); page.castShadow = false; page.receiveShadow = true; R.scene.add(page);
   TXT.contact(R, page);
   const pen = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.14, 12), TXT.mat.clay(0x1b1d22, { roughness: 0.35 }));
-  pen.rotation.z = Math.PI / 2; pen.rotation.y = 1.45; pen.position.set(0.14, 0.7465, -1.98); R.scene.add(pen); TXT.contact(R, pen);
+  pen.rotation.z = Math.PI / 2; pen.rotation.y = 1.45; pen.position.set(0.14, 0.7465, -1.98); R.scene.add(pen);
   /* the lot's sodium through the storefront glass behind the desk, the mullions' shadows across
    * the page */
   { const sp = new THREE.SpotLight(F.SODIUM, 2, 7, 0.55, 0.5, 2); sp.position.set(-0.9, 2.3, -3.4); sp.target.position.set(0.35, 0.74, -1.85);
     sp.castShadow = true; sp.shadow.mapSize.set(1024, 1024); sp.shadow.bias = -0.0005; R.scene.add(sp); R.scene.add(sp.target); }
-  [-0.35, 0.05].forEach((x) => { const m = TXT.roundedBox(0.05, 1.6, 0.05, 0.01, bronze); m.position.set(x, 1.6, -2.95); m.castShadow = true; R.scene.add(m); });
   /* a dark leather desk pad under the page and the margin notes beside it */
   /* the veneer is flat now, so the margin notes need no pad under them */
   page.position.y = 0.7455;
@@ -137,7 +136,7 @@ F6 = """  const R = TXT.setup(gl, { w: 1080, h: 1350, exposure: W.exposure, tone
 """
 LAB6 = """  const svg = document.getElementById('lead');
   let floor = 0;
-  [['e0', 'v. a chief antitrust compliance officer'], ['e1', 'vi. inspect its documents'], ['e2', 'ix. a monitor if the Court finds that Pinnacle has violated']].forEach(([id, txt], k) => {
+  [['e0', 'v. a chief antitrust compliance officer'], ['e1', 'vi. inspect its documents'], ['e2', 'ix. a monitor if the Court finds that Pinnacle has violated the terms']].forEach(([id, txt], k) => {
     const at = __pe[k], el = document.getElementById(id); el.textContent = txt;
     el.style.left = '806px'; el.style.width = '194px'; el.style.whiteSpace = 'normal';
     const top = Math.max(at[1] - 44, floor);

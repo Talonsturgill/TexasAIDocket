@@ -153,7 +153,7 @@ art:
 type:
   kicker: "The night shift"
   hook: "Rent, recommended overnight"
-  dek: "The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night."
+  dek: "The Justice Department has proposed a judgment against Pinnacle, an apartment manager the complaint places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night."
 
 acceptance:
   - "the frame reads \"Rent, recommended overnight\""
@@ -209,7 +209,7 @@ art:
 type:
   kicker: "The leasing office"
   hook: "Yes in bulk, no with a reason"
-  dek: "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%."
+  dek: "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%."
   labels: ["2.5%", "5%", "recommended"]
 
 verbatim:
@@ -451,7 +451,7 @@ type:
 verbatim:
   - c43: "chief antitrust compliance officer"
   - c45: "inspect its documents"
-  - c48: "if the Court finds that Pinnacle has violated"
+  - c48: "if the Court finds that Pinnacle has violated the terms"
 
 acceptance:
   - "the frame reads \"Nine terms for Pinnacle\""
@@ -568,7 +568,7 @@ art:
 type:
   kicker: "The rest of the case"
   hook: "It binds one landlord"
-  dek: "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket."
+  dek: "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on."
 
 acceptance:
   - "the frame reads \"It binds one landlord\""
@@ -616,7 +616,7 @@ art:
 type:
   kicker: "What a Texan can do"
   hook: "Comment before the court rules"
-  dek: "The notice was published September 18th and takes public comment within 60 days. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division."
+  dek: "Comment within 60 days of the September 18th notice. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Antitrust Division's Technology and Digital Platforms Section."
 
 acceptance:
   - "the frame reads \"Comment before the court rules\""

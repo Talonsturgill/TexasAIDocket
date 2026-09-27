@@ -1,0 +1,53 @@
+{
+ "judge": "craft",
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.44,
+ "hard_fails": [],
+ "ship": false,
+ "ranked_artwork_defects": [
+  "F5 hard orange bar and void",
+  "F9 dek over head, wrong-side patch, flat window",
+  "F8 no focal, empty road, counts unreadable",
+  "F2 black glass plate behind type",
+  "F6 smear, band over entries, dead slab, ix label over edge",
+  "F3/F7 black columns, orange face, leaders on eave"
+ ]
+}

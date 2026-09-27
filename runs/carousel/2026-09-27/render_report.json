@@ -71,7 +71,7 @@
           "anc": []
         },
         {
-          "text": "The Justice Department has proposed a judgment against Pinnacle, an apartment manager it places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
+          "text": "The Justice Department has proposed a judgment against Pinnacle, an apartment manager the complaint places in Frisco. The complaint says Pinnacle's RealPage software recommends a new price for every floor plan every night.",
           "x": 82,
           "y": 382,
           "w": 880,
@@ -92,19 +92,19 @@
             [
               82,
               424,
-              754,
+              867,
               41
             ],
             [
               82,
               466,
-              825,
+              861,
               41
             ],
             [
               82,
               508,
-              563,
+              586,
               41
             ]
           ],
@@ -184,7 +184,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14076,
+      "render_ms": 14252,
       "ok": true,
       "canvases": [
         {
@@ -208,7 +208,7 @@
       "file": "slide-02.html",
       "png": "slide-02.png",
       "console_errors": [
-        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -265,7 +265,7 @@
           "anc": []
         },
         {
-          "text": "The complaint says a manager can accept recommendations in bulk. Declining one takes \"specific business commentary.\" It says nearly 60% of final floor plan prices landed within 2.5% of the recommendation and more than 85% within 5%.",
+          "text": "A manager can accept in bulk and must give \"specific business commentary\" to decline, the complaint says. It puts nearly 60% of final floor plan prices within 2.5% of RealPage's recommendation and more than 85% within 5%.",
           "x": 82,
           "y": 443,
           "w": 880,
@@ -280,25 +280,25 @@
             [
               82,
               443,
-              865,
+              856,
               41
             ],
             [
               82,
               485,
-              820,
+              865,
               41
             ],
             [
               82,
               527,
-              852,
+              677,
               41
             ],
             [
               82,
               569,
-              712,
+              659,
               41
             ]
           ],
@@ -488,7 +488,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 9573,
+      "render_ms": 9530,
       "ok": true,
       "canvases": [
         {
@@ -501,8 +501,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 36,
-          "variance": 999.2
+          "mean": 29,
+          "variance": 778.5
         }
       ],
       "breather": false,
@@ -726,7 +726,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 16636,
+      "render_ms": 16518,
       "ok": true,
       "canvases": [
         {
@@ -926,7 +926,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 15536,
+      "render_ms": 15428,
       "ok": true,
       "canvases": [
         {
@@ -1404,7 +1404,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14493,
+      "render_ms": 14409,
       "ok": true,
       "canvases": [
         {
@@ -1428,7 +1428,7 @@
       "file": "slide-06.html",
       "png": "slide-06.png",
       "console_errors": [
-        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1587,11 +1587,11 @@
           "anc": []
         },
         {
-          "text": "ix. a monitor if the Court finds that Pinnacle has violated",
+          "text": "ix. a monitor if the Court finds that Pinnacle has violated the terms",
           "x": 806,
           "y": 881,
           "w": 194,
-          "h": 150,
+          "h": 180,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
@@ -1626,7 +1626,13 @@
             [
               806,
               1000,
-              119,
+              179,
+              31
+            ],
+            [
+              806,
+              1030,
+              74,
               31
             ]
           ],
@@ -1706,7 +1712,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 10933,
+      "render_ms": 11603,
       "ok": true,
       "canvases": [
         {
@@ -1719,8 +1725,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 31.8,
-          "variance": 1354.6
+          "mean": 23.4,
+          "variance": 1270.8
         }
       ],
       "breather": false,
@@ -2084,7 +2090,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 12313,
+      "render_ms": 12649,
       "ok": true,
       "canvases": [
         {
@@ -2165,11 +2171,11 @@
           "anc": []
         },
         {
-          "text": "The judgment is proposed and Pinnacle admits nothing. The government's claims against the remaining defendants go on. The complaint says AIRM and YieldStar penetration runs from at least around 26% to 69% in each listed submarket.",
+          "text": "The judgment is proposed and Pinnacle admits nothing. It must follow the terms before the court enters them. The government's claims against the remaining defendants go on.",
           "x": 82,
           "y": 422,
           "w": 880,
-          "h": 168,
+          "h": 126,
           "font_px": 30,
           "weight": "400",
           "family": "Manrope",
@@ -2180,25 +2186,19 @@
             [
               82,
               422,
-              823,
+              866,
               41
             ],
             [
               82,
               464,
-              845,
+              694,
               41
             ],
             [
               82,
               506,
-              873,
-              41
-            ],
-            [
-              82,
-              548,
-              696,
+              845,
               41
             ]
           ],
@@ -2278,7 +2278,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 11699,
+      "render_ms": 11557,
       "ok": true,
       "canvases": [
         {
@@ -2359,11 +2359,11 @@
           "anc": []
         },
         {
-          "text": "The notice was published September 18th and takes public comment within 60 days. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Technology and Digital Platforms Section of the Justice Department's Antitrust Division.",
+          "text": "Comment within 60 days of the September 18th notice. Email ATR.Public-Comments-Tunney-Act-MB@usdoj.gov in English, to the Antitrust Division's Technology and Digital Platforms Section.",
           "x": 82,
           "y": 403,
           "w": 880,
-          "h": 210,
+          "h": 168,
           "font_px": 30,
           "weight": "400",
           "family": "Manrope",
@@ -2374,31 +2374,25 @@
             [
               82,
               403,
-              805,
-              41
-            ],
-            [
-              82,
-              445,
-              423,
+              834,
               41
             ],
             [
               784,
-              487,
+              445,
               145,
               41
             ],
             [
               82,
-              529,
-              848,
+              487,
+              804,
               41
             ],
             [
               82,
-              571,
-              438,
+              529,
+              115,
               41
             ]
           ],
@@ -2407,7 +2401,7 @@
         {
           "text": "ATR.Public-Comments-Tunney-Act-MB@usdoj.gov",
           "x": 82,
-          "y": 487,
+          "y": 445,
           "w": 702,
           "h": 41,
           "font_px": 30,
@@ -2419,7 +2413,7 @@
           "lines": [
             [
               82,
-              487,
+              445,
               702,
               41
             ]
@@ -2502,7 +2496,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 13113,
+      "render_ms": 13108,
       "ok": true,
       "canvases": [
         {

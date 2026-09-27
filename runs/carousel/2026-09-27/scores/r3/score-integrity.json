@@ -1,0 +1,57 @@
+{
+ "judge": "integrity",
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": false,
+ "named_defects": [
+  "F9 dek across the head; kit figure",
+  "F3/F7 mannequin face; black columns",
+  "F1/F8 empty lower third",
+  "F8 hero a dark wall; counts unreadable",
+  "F2 dark plate behind hook",
+  "F6 dark band on the page",
+  "F2 names no set for 60%/85%",
+  "F6 ix label drops its object",
+  "F1 'it places in Frisco' vs the PFJ's Dallas",
+  "first comment omits c49 and c13"
+ ]
+}
