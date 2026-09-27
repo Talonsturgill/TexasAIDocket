@@ -27,6 +27,11 @@ The byline is the existing organizational attribution. Publication date, artwork
 documents and expandable verification are derived from the shipped run. Claim text and quotes
 are retained in full. A site rebuild never asserts that the sources were checked again.
 
+The owner banned "gap", "matters" and "pattern", with "gaps" and "patterns", on 2026-09-27. Every
+edition dated after that fails on one outside a quotation, so name the missing record, state the
+consequence and count the repeated act instead. `python3 scripts/carousel/word_ban.py --run <date>`
+reads the edition with the rest of the run.
+
 Write a specific lead and connected narrative, not a reformatted slide transcript. State
 the important unknowns as of the original reporting date. Do not invent a person for the
 byline or label a template rebuild as newly checked reporting. Related records may carry

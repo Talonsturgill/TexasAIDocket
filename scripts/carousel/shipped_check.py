@@ -793,6 +793,25 @@ def _by_module(name: str, d: Path):
     return m
 
 
+def g_banned_words(d: Path):
+    """No word the owner banned on any surface a deck published (owner, 2026-09-27).
+
+    See scripts/carousel/word_ban.py for the list's home, what is exempt and why. HISTORY, and
+    measured before the date is consulted, for the reason `g_layout` gives: the since-date IS the
+    newest deck, so an early return would keep this gate off the one sweep `gate_wiring` grades.
+    A deck on or before the rule is measured and its findings printed as a note, because
+    published copy is not rewritten without the owner. Every deck after it must be clean.
+    """
+    m = _by_module("word_ban", d)
+    probs = m.check(d)
+    if probs is None:
+        return None
+    if d.name <= m.SINCE and probs:
+        return (f"the owner banned these words on {m.SINCE} and this deck shipped before the rule. "
+                f"Run into it anyway it finds {len(probs)}, first: {probs[0][:150]}")
+    return probs
+
+
 def g_labels(d: Path):
     """Every label a frame prints beside a claim id is words that claim says.
 
@@ -1232,6 +1251,9 @@ GATES = [
     ("sources block", g_sources, HISTORY),
     ("labels", g_labels, CURRENT),
     ("quantifiers", g_quantifiers, CURRENT),
+    # HISTORY with a since-date inside the gate: every deck after 2026-09-27 must be clean for
+    # good, and a deck before it is measured and noted, never failed. See `g_banned_words`.
+    ("banned words", g_banned_words, HISTORY),
     # CURRENT, for the reason already written above about `aggregates`. Run into history this
     # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"
     # where copy.json titles the deck "Batch Zero, and the calendar with a hole in it". That is a

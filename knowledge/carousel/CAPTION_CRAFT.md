@@ -198,6 +198,14 @@ block at the very end is required.
 Hype: "game changer", "revolutionary", "unprecedented" unless it is literally true and sourced,
 "massive", "explosive", "staggering", "shocking", "the future of".
 
+Three words, banned by the owner on 2026-09-27 and hard-failed by `caption_check.py`: "gap",
+"matters" and "pattern", with "gaps" and "patterns". Each stands in for a fact the writer did not
+state. "Why it matters" promises a consequence and withholds it, so state the consequence. "A
+gap" gestures at something missing, so name the missing document or the unanswered question. "A
+pattern" asks the reader to trust a count, so name the repeated act and give the count. The list
+lives in `config/brand.yaml` under `banned_words`, and a quotation in straight quotes keeps its
+own words.
+
 Consultant filler: "leverage", "unlock", "empower", "at scale", "double down", "circle back",
 "deep dive", "learnings", "in today's landscape".
 

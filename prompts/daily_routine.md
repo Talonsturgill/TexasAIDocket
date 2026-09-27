@@ -112,6 +112,22 @@ dashes anywhere; ranges read "X to Y"; no emojis; straight quotes; no colons or 
 published copy; never "cannot", always "can't"; no sentence opening with "And" or "But"; no first
 person.
 
+**5a. THREE WORDS ARE BANNED, owner, 2026-09-27: "gap", "matters" and "pattern", with "gaps" and
+"patterns".** The list is `brand.banned_words` in `config/brand.yaml`. They are banned on every
+surface this run publishes: the caption, the first comment, the document title, every slide
+string, the web edition and the record's own prose. Say the specific thing instead. Name the
+missing document rather than "a gap", state the consequence rather than "why it matters", and
+name the repeated act and count it rather than "a pattern". A quotation in straight quotes, a URL
+and a source's own title keep their words. `caption_check.py` fails the caption,
+`docket_build.py --validate` fails the record and `shipped_check` fails the deck, so check before
+the push rather than after it. The first line reads the caption, the first comment, the document
+title, every slide and the web edition, and the second reads the record:
+
+```
+python3 scripts/carousel/word_ban.py --run <date>
+python3 scripts/site/docket_build.py --validate
+```
+
 **6. NEVER DELETE AN ITEM.** Decided and dead items change status and keep their history. The
 record is append-only in substance.
 
@@ -212,7 +228,7 @@ public fact stand for another day, on a page whose entire promise is that it doe
   is an executive. The Railroad Commission regulates no railroads.
 - `knowledge/shared/TEXAS_ATTITUDES.md` — the evidence base for tone.
 - `knowledge/carousel/` — craft doctrine for the deck engine. `TECHNIQUE_LIBRARY.md` is what the engine can actually execute and how each technique fails; `CAPTION_CRAFT.md` is the caption room's menus and the anti-template law; `SLIDE_DOSSIER_SPEC.md` is the planning format `dossier_check` enforces.
-- `config/brand.yaml` — voice, house rules, banned phrases, visual tokens.
+- `config/brand.yaml` — voice, house rules, banned words and phrases, visual tokens.
 - `.claude/skills/carousel-engine/SKILL.md` — the slide contract. **Read this before writing a
   slide, every run.** It carries the traps that cost whole slides.
 - `ledger/docket.json` — the record. `seed/docket_seed.json` — items not yet admitted.

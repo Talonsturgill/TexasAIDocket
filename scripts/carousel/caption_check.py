@@ -472,6 +472,17 @@ def post_shape_problems(text: str, today: str | None = None) -> list[str]:
             f"{bare!r}. The year stays on any date outside {year}, which "
             f"is what makes this a rule about redundancy rather than a rule against years")
 
+    # THE OWNER'S BANNED WORDS (2026-09-27), read from brand.yaml by word_ban, with a quotation
+    # and a URL exempt. POST LEVEL for the reason the year rule is: `check()` also judges the
+    # website, whose published pages carry these words and are not rewritten without the owner.
+    # So the caption room hears it while it writes, and shipped_check holds the rest of the deck.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import word_ban
+    if today is None or today > word_ban.SINCE:
+        for hit in word_ban.hits(body):
+            problems.append(f"{hit}. The owner banned it on 2026-09-27 (config/brand.yaml "
+                            f"banned_words). Say the specific thing instead")
+
     return problems
 
 
@@ -1097,6 +1108,21 @@ def self_test() -> int:
     ok("...and the message names the form to write instead, rather than only the rule",
        any("September 5th'" in x
            for x in post_shape_problems(_dated("September 5th, 2026"), "2026-09-11")))
+
+    # THE OWNER'S BANNED WORDS, 2026-09-27. A caption written after the rule fails on one, a
+    # quotation of a source keeps it, and a caption from before the rule is not judged by it.
+    def _worded(s):
+        return _base[: _hi - len(_tags) - 70] + f" {s} Is that worth it?\n\n" + _tags
+    ok("a caption after the rule FAILS on a banned word",
+       any("banned it on 2026-09-27" in x
+           for x in post_shape_problems(_worded("That is why the vote matters."), "2026-09-28")),
+       str(post_shape_problems(_worded("That is why the vote matters."), "2026-09-28"))[:200])
+    ok("...and a source quoted in straight quotes keeps its own word",
+       not any("banned it" in x for x in post_shape_problems(
+           _worded('The memo says "a gap remains."'), "2026-09-28")))
+    ok("...and a caption dated on or before the rule is not judged by it",
+       not any("banned it" in x for x in post_shape_problems(
+           _worded("That is why the vote matters."), "2026-09-27")))
     # THE COMMA IS OPTIONAL IN THE PATTERN AND THE ADVICE USED TO ASSUME IT (2026-09-23). On the
     # uncommaed form, which the deck corpus writes, `split(",")[0]` returned the whole string and
     # the message said "write 'September 5th 2026'" about the string being rejected.
