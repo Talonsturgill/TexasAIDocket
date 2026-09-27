@@ -156,25 +156,39 @@ def strip(text: str) -> tuple:
     drop, removed = scan(lines)
     if not removed:
         return text, []
-    # ONLY THE SEAM A REMOVED LINE LEAVES IS CLOSED (Codex, PR 378). A blank line that would now
-    # sit on another blank line because the line between them went is dropped, and every other
-    # blank line in the message stays exactly where its author put it.
+    # ONLY THE SEAM A REMOVED LINE LEAVES IS CLOSED, AND BY ONE BLANK LINE (Codex, PR 378). The
+    # removal can put two blank lines together that the line used to separate, so one of them
+    # goes. Every other blank line in the message, a second one after the seam included, stays
+    # exactly where its author put it.
     kept, seam = [], False
     for k, ln in enumerate(lines):
         if k in drop:
             seam = True
             continue
-        if seam and not ln.strip() and kept and not kept[-1].strip():
+        if seam and not ln.strip() and kept and not kept[-1][1].strip():
+            seam = False
             continue
-        kept.append(ln)
+        kept.append((k, ln))
         if ln.strip():
             seam = False
-    lines = kept
-    # A footer usually sits under a horizontal rule. With the footer gone, a rule left at the end
-    # of the message separates nothing.
-    while lines and (not lines[-1].strip() or RULE.match(lines[-1])):
-        lines.pop()
-    out = "\n".join(lines).rstrip("\n") + "\n"
+    while kept and not kept[-1][1].strip():
+        kept.pop()
+    # A footer usually sits under a horizontal rule, and with the footer gone the rule separates
+    # nothing. So a trailing rule goes when the nearest line beside it, above or below, blank
+    # lines aside, is one that was removed. A rule the author closed on after their own prose
+    # stays.
+    def beside(i, step):
+        j = i + step
+        while 0 <= j < len(lines) and not lines[j].strip():
+            j += step
+        return j
+    if kept and RULE.match(kept[-1][1]):
+        r = kept[-1][0]
+        if beside(r, -1) in drop or beside(r, 1) in drop:
+            kept.pop()
+            while kept and not kept[-1][1].strip():
+                kept.pop()
+    out = "\n".join(ln for _, ln in kept).rstrip("\n") + "\n"
     return out, removed
 
 
@@ -317,6 +331,12 @@ def self_test() -> int:
     out, _ = strip("Subject\n\nBody.\n\nCo-Authored-By: Claude\n\nMore body.\n")
     ok("...and only the seam the removed line leaves is closed",
        out == "Subject\n\nBody.\n\nMore body.\n", repr(out))
+    out, _ = strip("Subject\n\nBody.\n\nCo-Authored-By: Claude\n\n\nNext section\n")
+    ok("...by exactly one blank line, so a second blank after the removed line stays",
+       out == "Subject\n\nBody.\n\n\nNext section\n", repr(out))
+    out, _ = strip("Subject\n\nCo-Authored-By: Claude\n\nBody.\n\n---\n")
+    ok("a rule the author closed on stays when the removed line was elsewhere",
+       out == "Subject\n\nBody.\n\n---\n", repr(out))
 
     crlf = "Subject\r\n\r\nBody.\r\n\r\nCo-Authored-By: Claude\r\n---\r\n"
     out, removed = strip(crlf)
