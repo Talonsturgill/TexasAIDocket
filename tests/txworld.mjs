@@ -851,6 +851,152 @@ const OVERLAID = `async (T, TXT, cv) => {
   return { twin, over, under, steady };
 }`;
 
+// What draws over what, and the step a pixel takes (Codex, PR 373): the seventh page. The renderer's
+// own order decides what a pixel shows once a depth test is off: a pane in front of a sprite with the
+// test off blends back over it, an opaque backdrop drawn before the walls is drawn over by them, and
+// coincident hashed overlays with the test off survive as one. The GPU reads a texture's level off the
+// step a pixel takes across a surface, so a sprite and a wall seen wide keep one level edge to edge,
+// and a texture repeated more one way than the other is read at the larger step.
+const ORDERED = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const capture = async (fn) => {
+    const out = [], orig = console.error;
+    console.error = (...a) => { out.push(String(a[0])); orig.apply(console, a); };
+    try { await fn(); } finally { console.error = orig; }
+    return out;
+  };
+  const world = (fov) => TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov });
+  const room = (ceiling) => {
+    const Ri = world(40);
+    TXT.frame(Ri, { from: [0, 1.6, 4], look: [0, 1.6, -5] }); TXT.interior(Ri, { ceiling });
+    TXT.rig(Ri, { key: Object.assign({}, W.rig.key, { pos: [2, 6, 2] }), ambient: W.rig.ambient });
+    return Ri;
+  };
+  const pixels = (Rn) => {
+    Rn.renderer.render(Rn.scene, Rn.camera);
+    const gl = Rn.renderer.getContext(), b = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+    gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, b);
+    return b;
+  };
+  const centre = (Rn, b) => {
+    const gl = Rn.renderer.getContext(), c = (Math.floor(gl.drawingBufferHeight / 2) * gl.drawingBufferWidth + Math.floor(gl.drawingBufferWidth / 2)) * 4;
+    return [b[c], b[c + 1], b[c + 2]];
+  };
+  // A PANE IN FRONT OF A SPRITE WITH depthTest OFF: the green sprite, 3 m behind the back wall, paints
+  // over the wall, and the blue pane at 0.6 inside the room, the nearer of the two transparent things,
+  // is drawn after it and blends back over it. Every pixel is 0.6 pane, and the pane is in the room.
+  const pane = await (async () => {
+    const Ri = room(false);
+    const sp = new T.Sprite(new T.SpriteMaterial({ color: 0x00ff00, depthTest: false, toneMapped: false }));
+    sp.scale.set(60, 60, 1); sp.position.set(0, 1.6, -8); Ri.scene.add(sp);
+    const pn = new T.Mesh(new T.PlaneGeometry(6, 6),
+      new T.MeshBasicMaterial({ color: 0x0000ff, transparent: true, opacity: 0.6, toneMapped: false, side: T.DoubleSide }));
+    pn.position.set(0, 1.6, 1); Ri.scene.add(pn);
+    const errors = await capture(() => TXT.snapshot(Ri));
+    const b = pixels(Ri);
+    let blue = 0; for (let i = 2; i < b.length; i += 4) blue += b[i] / 255;
+    return { errors, share: TXT.roomShare(Ri), blue: blue / (b.length / 4) };
+  })();
+  // AN OPAQUE BACKDROP WITH depthTest OFF, 3 m behind the back wall. At renderOrder -1 the renderer
+  // draws it before the walls, which draw over it, and at renderOrder 1 after them, over them.
+  const backdrop = async (order) => {
+    const Ri = room(false);
+    const bd = new T.Mesh(new T.PlaneGeometry(60, 60), new T.MeshBasicMaterial({ color: 0x00ff00, depthTest: false, toneMapped: false }));
+    bd.position.set(0, 1.6, -8); bd.renderOrder = order; Ri.scene.add(bd);
+    const errors = await capture(() => TXT.snapshot(Ri));
+    return { errors, share: TXT.roomShare(Ri), centre: centre(Ri, pixels(Ri)) };
+  };
+  const before = await backdrop(-1), after = await backdrop(1);
+  // FOUR COINCIDENT HASHED OVERLAYS WITH depthTest OFF, black at 0.5, 3 m behind the back wall of a
+  // room with a ceiling. They paint over the room and share one threshold, so in half the pixels all
+  // four draw and cover 1 - 0.5^4 of it, and the GPU's cover is read off how far they darken each pixel.
+  const hashed = await (async () => {
+    const Ri = room(true), veils = [];
+    for (let i = 0; i < 4; i++) {
+      const m = new T.Mesh(new T.PlaneGeometry(60, 60), new T.MeshBasicMaterial({ color: 0x000000, alphaHash: true,
+        transparent: true, opacity: 0.5, depthWrite: false, depthTest: false, toneMapped: false }));
+      m.position.set(0, 1.6, -8); Ri.scene.add(m); veils.push(m);
+    }
+    const errors = await capture(() => TXT.snapshot(Ri));
+    const b = pixels(Ri), share = TXT.roomShare(Ri);
+    veils.forEach((m) => { m.visible = false; });
+    const plain = pixels(Ri), bare = TXT.roomShare(Ri);
+    veils.forEach((m) => { m.visible = true; });
+    let cover = 0, n = 0;
+    for (let i = 0; i < b.length; i += 4) {
+      const s = plain[i] + plain[i + 1] + plain[i + 2];
+      if (s > 60) { cover += 1 - (b[i] + b[i + 1] + b[i + 2]) / s; n++; }
+    }
+    return { errors, bare, share, gpuCover: n ? cover / n : -1 };
+  })();
+  // SEEN WIDE: a 90 degree lens over a chain clear at level 0 and solid below, repeated so a pixel steps
+  // 1.14 texels across the card, which is level 0.19 and the clear level. The GPU samples that level
+  // edge to edge, so the whole card is clear and the upper half of the frame is sky.
+  const chain = (ru, rv) => {
+    const mips = [];
+    for (let n = 128, i = 0; n >= 1; n >>= 1, i++) {
+      const d = new Uint8Array(n * n * 4);
+      for (let k = 0; k < n * n; k++) { d[k * 4] = d[k * 4 + 1] = d[k * 4 + 2] = 90; d[k * 4 + 3] = i ? 255 : 0; }
+      mips.push({ data: d, width: n, height: n });
+    }
+    const t = new T.DataTexture(mips[0].data, 128, 128, T.RGBAFormat, T.UnsignedByteType);
+    t.mipmaps = mips; t.generateMipmaps = false; t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(ru, rv);
+    t.minFilter = T.NearestMipmapNearestFilter; t.magFilter = T.NearestFilter; t.needsUpdate = true;
+    return t;
+  };
+  const wide = async (make) => {
+    const Rs = world(90);
+    TXT.frame(Rs, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rs, W);
+    TXT.rig(Rs, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rs, { surface: 'caliche', size: 900, tile: 5 });
+    Rs.scene.add(make());
+    const errors = await capture(() => TXT.snapshot(Rs));
+    const shown = pixels(Rs); dome.visible = false; const hidden = pixels(Rs); dome.visible = true; pixels(Rs);
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rs.camera, Rs), gpuSky: n / (shown.length / 4) };
+  };
+  // a sprite that doesn't attenuate, 4 by 4 at 50 m: 2700 pixels across, 128 texels repeated 24 times
+  const sprite = await wide(() => {
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: chain(24, 24), alphaTest: 0.5, sizeAttenuation: false }));
+    sp.scale.set(4, 4, 1); sp.position.set(0, 2, -50); return sp;
+  });
+  // a wall 40 m square facing the camera 10 m out, the same 2700 pixels and 24 repeats
+  const wall = await wide(() => {
+    const m = new T.Mesh(new T.PlaneGeometry(40, 40), new T.MeshBasicMaterial({ map: chain(24, 24), alphaTest: 0.5, side: T.DoubleSide }));
+    m.position.set(0, 2, -10); return m;
+  });
+  // ...repeated 48 times across and 12 up: a pixel steps 2.28 texels across and 0.57 up, and the GPU
+  // reads the larger step, level 1.19, the solid one, so the wall hides the sky
+  const skewed = await wide(() => {
+    const m = new T.Mesh(new T.PlaneGeometry(40, 40), new T.MeshBasicMaterial({ map: chain(48, 12), alphaTest: 0.5, side: T.DoubleSide }));
+    m.position.set(0, 2, -10); return m;
+  });
+  // TWO TRANSPARENT WALLS ACROSS THE SKY, the near one at 0.5 and the far one solid, which renderOrder
+  // draws after it: the near one writes its depth first, so the far one fails its depth test behind
+  // it and the sky shows through the near one at half. Taken nearest first, the far one hid it all.
+  const layered = await (async () => {
+    const Rs = world(40);
+    TXT.frame(Rs, { from: [0, 2, 0], look: [0, 2, -100] });
+    const dome = TXT.sky(Rs, W);
+    TXT.rig(Rs, { key: Object.assign({}, W.rig.key, { pos: [20, 40, 20] }), ambient: W.rig.ambient });
+    TXT.ground(Rs, { surface: 'caliche', size: 900, tile: 5 });
+    const near = new T.Mesh(new T.PlaneGeometry(200, 200), new T.MeshBasicMaterial({ color: 0x202020, transparent: true, opacity: 0.5 }));
+    const far = new T.Mesh(new T.PlaneGeometry(400, 400), new T.MeshBasicMaterial({ color: 0x202020, transparent: true, opacity: 1 }));
+    near.position.set(0, 2, -20); far.position.set(0, 2, -40); far.renderOrder = 1;
+    Rs.scene.add(near, far);
+    const errors = await capture(() => TXT.snapshot(Rs));
+    const shown = pixels(Rs); dome.visible = false; const hidden = pixels(Rs); dome.visible = true; pixels(Rs);
+    let n = 0;
+    for (let i = 0; i < shown.length; i += 4)
+      if (Math.max(Math.abs(shown[i] - hidden[i]), Math.abs(shown[i + 1] - hidden[i + 1]), Math.abs(shown[i + 2] - hidden[i + 2])) > 8) n++;
+    return { errors, sky: TXT.skyInFrame(Rs.camera, Rs), gpuSky: n / (shown.length / 4) };
+  })();
+  return { pane, before, after, hashed, sprite, wall, skewed, layered };
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -1177,6 +1323,44 @@ check('the overlaid page renders with no page error and no scene error',
         `level: the pixels show ${(st.gpuSky || 0).toFixed(3)} sky, the engine reads ${(st.sky || 0).toFixed(3)}, and the frame shows its sky`,
         st.gpuSky > 0.3 && st.sky > 0.3 && Array.isArray(st.errors) && st.errors.length === 1 &&
         st.errors[0].startsWith('TXT: SKY IN FRAME'), JSON.stringify(st));
+}
+
+const od = await run('ordered', ORDERED);
+check('the ordered page renders with no page error and no scene error',
+      !od.result.error && od.pageErrors.length === 0, JSON.stringify({ error: od.result.error, page: od.pageErrors }));
+{
+  // THE RENDERER'S OWN ORDER, and THE STEP A PIXEL TAKES (Codex, PR 373).
+  const r = od.result, pn = r.pane || {}, b0 = r.before || {}, b1 = r.after || {}, hs = r.hashed || {};
+  const sp = r.sprite || {}, wl = r.wall || {}, sk = r.skewed || {}, ly = r.layered || {};
+  const said = (x, v) => Array.isArray(x.errors) && x.errors.length === 1 && x.errors[0].startsWith(v);
+  const green = (c) => Array.isArray(c) && c[1] > 200 && c[0] < 60 && c[2] < 60;
+  check(`a pane at 0.6 in front of a sprite with depthTest off blends back over it: the pixels are ` +
+        `${(pn.blue || 0).toFixed(3)} pane, the room fills ${(pn.share || 0).toFixed(3)}, and the frame is a room`,
+        Math.abs(pn.blue - 0.6) < 0.02 && Math.abs(pn.share - pn.blue) < 0.03 && said(pn, 'TXT: ROOM IN FRAME'), JSON.stringify(pn));
+  check(`an opaque backdrop with depthTest off drawn before the walls is drawn over by them: the centre pixel is ` +
+        `${JSON.stringify(b0.centre)}, the room fills ${(b0.share || 0).toFixed(2)}, and the frame is a room`,
+        !green(b0.centre) && b0.share >= 0.5 && said(b0, 'TXT: ROOM IN FRAME'), JSON.stringify(b0));
+  check(`...while drawn after them it paints over them: the centre pixel is ${JSON.stringify(b1.centre)}, ` +
+        `the room fills ${(b1.share || 0).toFixed(2)}, and the frame IS flagged`,
+        green(b1.centre) && b1.share < 0.5 && said(b1, 'TXT: NO ROOM IN FRAME'), JSON.stringify(b1));
+  check(`four coincident hashed overlays at 0.5 with depthTest off share one threshold: the GPU's cover is ` +
+        `${(hs.gpuCover || 0).toFixed(3)}, the room fills ${(hs.share || 0).toFixed(3)} of ${(hs.bare || 0).toFixed(3)}, ` +
+        `and the frame is a room`,
+        Math.abs(hs.gpuCover - 0.469) < 0.04 && Math.abs(hs.share - hs.bare * (1 - hs.gpuCover)) < 0.04 &&
+        said(hs, 'TXT: ROOM IN FRAME'), JSON.stringify(hs));
+  check(`a sprite that doesn't attenuate, seen through a 90 degree lens, keeps the clear level edge to edge: ` +
+        `the pixels show ${(sp.gpuSky || 0).toFixed(3)} sky and the engine reads ${(sp.sky || 0).toFixed(3)}`,
+        sp.gpuSky > 0.45 && Math.abs(sp.sky - sp.gpuSky) < 0.05 && said(sp, 'TXT: SKY IN FRAME'), JSON.stringify(sp));
+  check(`a wall seen through the same lens keeps it too: the pixels show ${(wl.gpuSky || 0).toFixed(3)} sky ` +
+        `and the engine reads ${(wl.sky || 0).toFixed(3)}`,
+        wl.gpuSky > 0.45 && Math.abs(wl.sky - wl.gpuSky) < 0.05 && said(wl, 'TXT: SKY IN FRAME'), JSON.stringify(wl));
+  check(`...while repeated 48 times across and 12 up it is read at the larger step, the solid level: the pixels ` +
+        `show ${(sk.gpuSky || 0).toFixed(4)} sky, the engine reads ${(sk.sky || 0).toFixed(3)}, and the frame IS flagged`,
+        sk.gpuSky < 0.01 && sk.sky === 0 && said(sk, 'TXT: NO SKY IN FRAME'), JSON.stringify(sk));
+  check(`a solid wall drawn after a half-clear one in front of it fails its depth test behind it: the pixels ` +
+        `show the sky in ${(ly.gpuSky || 0).toFixed(3)} of the frame, the engine reads ${(ly.sky || 0).toFixed(3)} ` +
+        `through the half-clear one, and the frame shows its sky`,
+        ly.gpuSky > 0.4 && Math.abs(ly.sky - ly.gpuSky / 2) < 0.04 && said(ly, 'TXT: SKY IN FRAME'), JSON.stringify(ly));
 }
 
 await browser.close();
