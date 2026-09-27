@@ -191,13 +191,21 @@ def strip(text: str) -> tuple:
     return out, removed
 
 
+def _git_text(*args: str) -> str:
+    return subprocess.run(["git", *args], capture_output=True, text=True, encoding="utf-8",
+                          errors="replace", check=True).stdout
+
+
 def check_range(rng: str) -> int:
-    log = subprocess.run(["git", "log", "--format=%H%x1f%an%x1f%ae%x1f%cn%x1f%ce%x1f%B%x1e", rng],
-                         capture_output=True, text=True, encoding="utf-8", errors="replace",
-                         check=True).stdout
+    # EACH COMMIT IS READ ON ITS OWN (Codex, PR 378). One `git log` split on a separator byte let
+    # a message that carried that byte end its own record early, and a trailer after it was never
+    # read. The range is listed first, then each commit's identities are read NUL-separated, which
+    # no name or address can hold, and its message is read alone, where no byte can frame it.
     bad = 0
-    for rec in filter(None, (r.strip("\n") for r in log.split("\x1e"))):
-        sha, an, ae, cn, ce, body = (rec.split("\x1f", 5) + [""] * 6)[:6]
+    for sha in reversed(_git_text("rev-list", rng).split()):
+        idents = _git_text("show", "-s", "--format=%an%x00%ae%x00%cn%x00%ce", sha)
+        an, ae, cn, ce = (idents.rstrip("\n").split("\x00") + [""] * 4)[:4]
+        body = _git_text("show", "-s", "--format=%B", sha)
         for who, name, email in (("author", an, ae), ("committer", cn, ce)):
             if assistant_identity(name, email):
                 print(f"{sha[:10]}: the {who} is {name} <{email}>. Commits are the owner's")
@@ -424,12 +432,18 @@ def self_test() -> int:
                             "commit", "-q", "--allow-empty", "-m", "another clean message"],
                            capture_output=True, check=True)
             commented = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
+            framed = Path(t) / "FRAMED"
+            framed.write_text("a subject\n\nA body line.\n\x1e\n"
+                              "Co-Authored-By: Claude <noreply@anthropic.com>\n", encoding="utf-8")
+            git("commit", "-q", "--allow-empty", "--cleanup=verbatim", "-F", str(framed))
+            separated = check_range(f"{git('rev-parse', 'HEAD~1').stdout.strip()}..HEAD")
         finally:
             os.chdir(here)
         ok("--check-range passes a clean range", clean == 0)
         ok("--check-range fails a range with an attribution trailer", dirty == 1)
         ok("--check-range fails a clean message committed as Claude", authored == 1)
         ok("...and one committed as Bot (Claude), the name in its parenthetical", commented == 1)
+        ok("...and a trailer behind a record separator the message itself carries", separated == 1)
         ok("...and the clean range before any of it still passes", clean_head and clean == 0)
 
     print(f"\nattribution_strip self-test: {'all passed' if not failures else f'{failures} FAILED'}")
