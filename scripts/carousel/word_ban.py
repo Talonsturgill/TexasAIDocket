@@ -23,8 +23,9 @@ WHAT IS EXEMPT, because it is somebody else's words and a quotation is never rew
   - a sentence of three words or more found inside a claim's verbatim quote or a source's own
     title, which is how a quotation a slide sets without quote marks, or a document page a
     canvas draws line by line, keeps its words. Two words are not enough, because a label such
-    as "THE GAP" is the house's however many sources happen to say it. A claim's OWN sentence is
-    measured against that claim's own quote and title only, since it prints beside them
+    as "THE GAP" is the house's however many sources happen to say it. A slide and a web edition
+    block count only the claims they cite, and a claim's own sentence only its own quote and
+    title, since each prints beside that evidence. A surface citing nothing counts every claim
 
 WHERE IT RUNS
   - the caption, through caption_check's post-level rules, while the caption room writes it
@@ -185,30 +186,31 @@ def _source_words(d: Path) -> tuple:
 
 
 def article_text(article: dict) -> list:
-    """(where, text) for every reader-facing string of a web edition, per ledger/articles/README.
-
-    The section prints in the page's kicker. The claim sentences the page's verification block
-    prints come from the run's claims.json, and `check` reads them there."""
+    """(where, text, claim ids) for every reader-facing string of a web edition, per
+    ledger/articles/README. A block's ids are the claims it cites. The section, which prints in
+    the page's kicker, a heading and a related label cite none. The claim sentences the page's
+    verification block prints come from the run's claims.json, and `check` reads them there."""
     out = []
     section = article.get("section")
     if isinstance(section, str):
-        out.append(("section", section))
+        out.append(("section", section, ()))
     dek = article.get("dek")
     if isinstance(dek, dict):
-        out.append(("dek", str(dek.get("text") or "")))
+        out.append(("dek", str(dek.get("text") or ""), dek.get("claims") or ()))
     for i, p in enumerate(article.get("introduction") or []):
         if isinstance(p, dict):
-            out.append((f"introduction[{i}]", str(p.get("text") or "")))
-    for i, s in enumerate(article.get("sections") or []):
-        if not isinstance(s, dict):
+            out.append((f"introduction[{i}]", str(p.get("text") or ""), p.get("claims") or ()))
+    for i, sec in enumerate(article.get("sections") or []):
+        if not isinstance(sec, dict):
             continue
-        out.append((f"sections[{i}].heading", str(s.get("heading") or "")))
-        for j, p in enumerate(s.get("paragraphs") or []):
+        out.append((f"sections[{i}].heading", str(sec.get("heading") or ""), ()))
+        for j, p in enumerate(sec.get("paragraphs") or []):
             if isinstance(p, dict):
-                out.append((f"sections[{i}].paragraphs[{j}]", str(p.get("text") or "")))
+                out.append((f"sections[{i}].paragraphs[{j}]", str(p.get("text") or ""),
+                            p.get("claims") or ()))
     for i, r in enumerate(article.get("related") or []):
         if isinstance(r, dict):
-            out.append((f"related[{i}].label", str(r.get("label") or "")))
+            out.append((f"related[{i}].label", str(r.get("label") or ""), ()))
     return out
 
 
@@ -217,17 +219,17 @@ def _bounded_in(needle: str, hay: str) -> bool:
     return bool(needle) and re.search(rf"(?<!\w){re.escape(needle)}(?!\w)", hay) is not None
 
 
-def rendered(d: Path, judged: list, *, sources: tuple = (), quotes: tuple = (),
-             banned: list | None = None) -> list:
+def rendered(d: Path, judged: dict, evidence, banned: list | None = None) -> list:
     """(where, word, around) for each banned word the committed render report says a slide
     printed: a label set straight into the HTML, furniture the design marked decorative, a
     canvas's drawn text. Decorative text is printed text, and the ban grants furniture nothing.
 
-    `judged` is [(squashed text, {words it was flagged for})] for the authored slide strings. A
-    node inside a judged string that was already flagged for the same word adds nothing, and nor
-    does a node inside a longer node on its own slide, which is how a line split across spans
-    arrives. A node inside a string where the word was exempt is judged on its own words, so the
-    label "THE GAP" beside a quotation of the gap is still the house's (Codex, PR 379)."""
+    `judged` maps a slide number to [(squashed text, {words it was flagged for})] for that
+    slide's authored strings, and `evidence(n)` is the (sources, quotes) slide n cites. A node
+    inside one of its own slide's judged strings that was already flagged for the same word adds
+    nothing, and nor does a node inside a longer node on its slide, which is how a line split
+    across spans arrives. A node inside a string where the word was exempt is judged on its own
+    words, so the label "THE GAP" beside a quotation of the gap is the house's (Codex, PR 379)."""
     rep = next((r for r in (_load(d / "render_report.json"),
                             _load(d / "render" / "render_report.json")) if isinstance(r, dict)),
                None)
@@ -239,13 +241,14 @@ def rendered(d: Path, judged: list, *, sources: tuple = (), quotes: tuple = (),
             continue
         m = re.search(r"(\d+)", str(rec.get("file") or ""))
         n = rec.get("n") or (int(m.group(1)) if m else i)
+        sources, quotes = evidence(n)
         said = [str(t.get("text") or "") for key in ("text_nodes", "canvas_text")
                 for t in rec.get(key) or [] if isinstance(t, dict)]
         by_form = {}
         for s in said:
             if s.strip():
                 by_form.setdefault(_squash(s), s)
-        seen = list(judged)
+        seen = list(judged.get(n, []))
         for form in sorted(by_form, key=len, reverse=True):
             found = _found(by_form[form], sources=sources, quotes=quotes, banned=banned)
             for w, around in found:
@@ -257,17 +260,31 @@ def rendered(d: Path, judged: list, *, sources: tuple = (), quotes: tuple = (),
 
 
 def check(d: Path, banned: list | None = None, articles: Path = ARTICLES) -> list | None:
-    """Every banned word on a run's published surfaces. None when the run has no copy to read."""
+    """Every banned word on a run's published surfaces. None when the run has no copy to read.
+
+    A QUOTATION IS THE SOURCE'S ONLY WHERE THE SURFACE CITES THAT SOURCE (Codex, PR 379). A slide
+    and a web edition block each name the claims they rest on, and only those claims' quotes and
+    titles can exempt their words. A surface that cites nothing, the caption, the first comment,
+    a heading, is measured against every claim the run carries."""
     copy = _load(d / "copy.json")
     if copy is None:
         return None
-    import copy_sync_check  # the one list of copy.json slide keys that are machinery, not copy
+    import copy_sync_check  # the machinery keys, the slide shapes and the claim ids a slide cites
     banned = banned if banned is not None else words()
-    sources, quotes = _source_words(d)
+    rows = _claim_rows(d)
+    by_id = {str(c.get("id")): c for c in rows}
+    everything = _source_words(d)
+
+    def cited(ids) -> tuple:
+        own = [claim_words(by_id[str(i)]) for i in ids or () if str(i) in by_id]
+        if not own:
+            return everything
+        return (tuple(x for s, _ in own for x in s), tuple(x for _, q in own for x in q))
+
     out = []
 
-    def judge(where, text, s=sources, q=quotes):
-        found = _found(text, sources=s, quotes=q, banned=banned)
+    def judge(where, text, evidence=everything):
+        found = _found(text, sources=evidence[0], quotes=evidence[1], banned=banned)
         out.extend((where, w, a) for w, a in found)
         return found
 
@@ -281,18 +298,22 @@ def check(d: Path, banned: list | None = None, articles: Path = ARTICLES) -> lis
     comment = d / "first_comment.txt"
     if comment.exists():
         judge("first comment", comment.read_text(encoding="utf-8"))
-    judged = [(_squash(s), {w.lower() for w, _ in judge(where, s)})
-              for where, s in _strings(copy.get("slides") or {}, "slides",
-                                       copy_sync_check.META_KEYS)]
-    out.extend(rendered(d, judged, sources=sources, quotes=quotes, banned=banned))
+    judged, slide_evidence = {}, {}
+    for key, slide in copy_sync_check.normalize_slides(copy.get("slides")).items():
+        n = copy_sync_check.slide_no(key)
+        evidence = slide_evidence[n] = cited(copy_sync_check.claim_ids_in(slide))
+        for where, text in _strings(slide, f"slides.{key}", copy_sync_check.META_KEYS):
+            flagged = {w.lower() for w, _ in judge(where, text, evidence)}
+            judged.setdefault(n, []).append((_squash(text), flagged))
+    out.extend(rendered(d, judged, lambda n: slide_evidence.get(n, everything), banned=banned))
     # A claim's sentence is printed beside its own evidence, so only that claim's own title and
-    # quotation can make the sentence the source's (Codex, PR 379).
-    for c in _claim_rows(d):
-        judge(f"claim {c.get('id', '?')}", str(c.get("text") or ""), *claim_words(c))
+    # quotation can make the sentence the source's.
+    for c in rows:
+        judge(f"claim {c.get('id', '?')}", str(c.get("text") or ""), claim_words(c))
     article = _load(articles / f"{d.name}.json")
     if isinstance(article, dict):
-        for where, text in article_text(article):
-            judge(f"web edition {where}", text)
+        for where, text, ids in article_text(article):
+            judge(f"web edition {where}", text, cited(ids))
     return [f"{where}: {_say(w, a)}. The owner banned it on 2026-09-27 (config/brand.yaml "
             f"banned_words). Say the specific thing instead" for where, w, a in out]
 
@@ -364,9 +385,11 @@ def self_test() -> int:
             {"id": "c4", "quote": "The vote was nine to two.", "text": quote}]}))
         (d / "copy.json").write_text(json.dumps({
             "caption": "", "document_title": "Why it matters", "slides": {
-                "S1": {"headline": "Four filings, one pattern",
+                "S1": {"headline": "Four filings, one pattern", "claims": ["c1"],
                        "notes": "planning residue about the gap, never rendered"},
-                "S2": {"body": 'The memo says "the gap is widening."'}}}))
+                "S2": {"body": 'The memo says "the gap is widening."', "claims": ["c3"]},
+                "S3": {"body": quote, "claims": ["c1"]},
+                "S4": {"body": quote, "claims": ["c3"]}}}))
         (d / "render_report.json").write_text(json.dumps({"slides": [
             {"file": "slide-01.html",
              "text_nodes": [{"text": "Four filings, one pattern", "decorative": False},
@@ -377,7 +400,8 @@ def self_test() -> int:
              "canvas_text": [{"text": "identified a pattern of incomplete", "fn": "fillText"}]},
             {"file": "slide-02.html",
              "text_nodes": [{"text": 'The memo says "the gap is widening."', "decorative": False},
-                            {"text": "THE GAP", "decorative": False}]},
+                            {"text": "THE GAP", "decorative": False}],
+             "canvas_text": [{"text": "identified a pattern of incomplete", "fn": "fillText"}]},
             {"file": "slide-03.html",
              "text_nodes": [{"text": "THE PATTERN", "decorative": True}],
              "canvas_text": [{"text": "Here is why it matters", "fn": "fillText"}]}]}))
@@ -386,8 +410,10 @@ def self_test() -> int:
             f"Sources.\n{title}, KGNS.\nPattern Energy, September 20th.\nhttps://example.com/gap\n")
         (arts / "2026-09-28.json").write_text(json.dumps({
             "section": "Pattern watch",
-            "dek": {"text": "The gap in the calendar."}, "introduction": [{"text": "Clean."}],
-            "sections": [{"heading": "What changed", "paragraphs": [{"text": "Nothing."}]}],
+            "dek": {"text": "The gap in the calendar.", "claims": ["c1"]},
+            "introduction": [{"text": quote, "claims": ["c1"]}],
+            "sections": [{"heading": "What changed",
+                          "paragraphs": [{"text": quote, "claims": ["c3"]}]}],
             "related": [{"id": "tx-1", "label": "The record"}]}))
         found = check(d, banned, arts)
         where = {}
@@ -397,11 +423,14 @@ def self_test() -> int:
            "Slide 1's label, slide 2's label beside a quotation of it, slide 3's decorative "
            "label and canvas line, and claim c4 quoting c1's evidence as its own are caught. "
            "A source title, a publisher, a URL, planning notes, clean furniture, a line of a "
-           "quote, a quotation and claim c2's own evidence are not (Codex, PR 379)",
+           "quote, a quotation and claim c2's own evidence are not. c1's quote exempts a slide "
+           "and a paragraph that cite c1, and not slide 4, a canvas line on slide 2 or a "
+           "paragraph that cite c3 (Codex, PR 379)",
            where == {"caption": 1, "document title": 1, "slides.S1.headline": 1,
-                     "rendered slide 1": 1, "rendered slide 2": 1, "rendered slide 3": 2,
-                     "claim c1": 1, "claim c4": 1, "web edition section": 1,
-                     "web edition dek": 1}, "\n".join(found))
+                     "slides.S4.body": 1, "rendered slide 1": 1, "rendered slide 2": 2,
+                     "rendered slide 3": 2, "claim c1": 1, "claim c4": 1,
+                     "web edition section": 1, "web edition dek": 1,
+                     "web edition sections[0].paragraphs[0]": 1}, "\n".join(found))
         (d / "render_report.json").unlink()
         (d / "render").mkdir()
         (d / "render" / "render_report.json").write_text(json.dumps({"slides": [

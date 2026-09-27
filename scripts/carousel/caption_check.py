@@ -476,10 +476,12 @@ def post_shape_problems(text: str, today: str | None = None) -> list[str]:
     # and a URL exempt. POST LEVEL for the reason the year rule is: `check()` also judges the
     # website, whose published pages carry these words and are not rewritten without the owner.
     # So the caption room hears it while it writes, and shipped_check holds the rest of the deck.
+    # It reads the WHOLE caption, hashtags included, because a tag is printed too (Codex, PR 379).
+    # `body` drops them for the link and ending rules, which is right there and wrong here.
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import word_ban
     if today is None or today > word_ban.SINCE:
-        for hit in word_ban.hits(body):
+        for hit in word_ban.hits(text):
             problems.append(f"{hit}. The owner banned it on 2026-09-27 (config/brand.yaml "
                             f"banned_words). Say the specific thing instead")
 
@@ -1132,6 +1134,11 @@ def self_test() -> int:
     ok("...and a caption dated on or before the rule is not judged by it",
        not any("banned it" in x for x in post_shape_problems(
            _worded("That is why the vote matters."), "2026-09-27")))
+    _tagged = _worded("The vote was nine to two.").replace("#Tag1", "#Gap", 1)
+    ok("...and a hashtag is printed, so a banned word in one FAILS too (Codex, PR 379)",
+       "#Gap" in _tagged and any("banned it on 2026-09-27" in x
+                                 for x in post_shape_problems(_tagged, "2026-09-28")),
+       str(post_shape_problems(_tagged, "2026-09-28"))[:200])
 
     # --json REPORTS WHAT THE PLAIN RUN REPORTS (Codex, PR 379). It called `check()` alone, so
     # every caption-only rule, the banned words among them, went unread in JSON.
