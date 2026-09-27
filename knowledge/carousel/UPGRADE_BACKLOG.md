@@ -4526,3 +4526,97 @@ which is `daily` lane.
   returns not applicable without that file. This is red at HEAD, before this phase changed
   anything. `runs/carousel/2026-09-24/measure.py` computes the file from the shipped frames and
   is the pattern to follow.
+
+---
+
+## 2026-09-27, carousel no. 35, the upgrade phase. One upgrade, four proposals
+
+The craft card's ranked artwork defects, round 4: F5 orange strip and void, F9 head behind the dek
+with a blown cool patch, F8 empty lower half, F3 and F7 black monolith columns and a mannequin face,
+F6 dark band. The hero model's own defects, named by the judges across the rounds, were the roof
+reading as a flat black slab with no shingle read or rim, and the wall packs reading as specks until
+every frame added a pool on the walk.
+
+### 1. KIT LIFT: `garden_apartment` INTO `assets/js/kit/homes.js`, AT THE NAMED FIX (done)
+
+The chassis built the building because the kit had no apartment. It is lifted into the homes
+family with the roof rebuilt through that family's own `gableRoof`: the laminated shingle texture
+in a seeded weathered tone (the palette less its near-black), a ridge cap, painted fascia, rake
+boards, K-style gutters and downspouts, a mill-finish drip edge on the eaves and the rakes (new
+`drip` option on `eaveTrim` and `gableRoof`, which every house leaves unset so no house changes),
+siding gable walls with a louvred vent, and turbine vents. The pool on the walk under a lit core is
+built in at the value every frame converged on, and the wall pack is a housing with a lens. The
+model centres its own footprint so its published coordinates stay true.
+
+Proof, all under `out/2026-09-27/tmp/kitproof/` because `examples/kit/**` is `human` lane and this
+phase can't commit a proof image there: `examples/kit/build.py` pages at `goldenHour` and
+`blueHour`, rendered through the carousel engine with no errors, and frames 1 and 4 of no. 35
+re-rendered from the committed slides with the kit model in place of the chassis's.
+`compare_f1.png` is frame 1's building before and after. `examples/kit/sizes.py` reports 98 of 98
+models at their declared size, centred. **A maintainer could copy `compare_f1.png` to
+`examples/kit/apartment-proof.webp`**, the way `cab-proof.webp` records the last lift.
+
+**What a re-render of no. 35 now does.** The chassis's `installKit` returns early when the kit
+already defines the model, so any re-render of that deck from `main` draws the kit's building. Its
+options are all honoured, so every frame composes as it did. The roof is the part that changes.
+
+### 2. THE PERSON STILL READS AS A MANNEQUIN, AND THE CAUSE IS NOT YET ISOLATED (proposal)
+
+F3, F7 and F9 named a mannequin with an unmodelled orange face. **Measured on the shipped frame 3
+webp at 2160 by 2700:** the figure stands about 620 px tall (rows near 1655 to 2275, columns near
+1430 to 1620) and the face is about 70 px, so this is not a feature lost under a pixel. Read at full
+size (`out/2026-09-27/tmp/kitproof/f3_person.png`): the face is one flat orange value with the eye
+sockets as two dark marks and no sclera catching light, the hair is close to the skin's value at
+the crown, the hands carry the same flat orange as the face, and the neck reads long.
+`people.js` does sculpt sockets, nose, lips, lids, iris and brows, so the geometry exists and
+something between it and the frame is flattening it. The candidates, none of them tested: a single
+sodium key is nearly monochromatic and removes the hue differences the face tint carries; the skin
+material's sheen (`0xff9f86`, 0.25) adds a warm lift over the whole face under a warm key; and the
+sclera is small and unlit at this distance.
+
+It was not changed in this phase because none of those is proven, and a change to the kit's one
+person touches every frame that uses it. **The next step is a measurement, not an edit:** render
+`person` through `examples/kit/build.py` under `nightSodium` and under `goldenHour`, crop the head
+at the deck's own 70 px, and change one thing at a time (sheen off, a cool fill, a darker hair
+default). Whichever variable makes the face stop reading as a mask is the kit fix, and it goes
+into `people.js` with that crop as its proof.
+
+### 3. F5, THE COUNT FRAME'S VOID, IS COMPOSITION AND A MISSING KIT TILE, NOT AN ENGINE GAP
+
+The frame calls `TXT.sky`, `TXT.ground` and `TXT.weather`, so it stands in the engine's world. The
+void came from three choices in the frame. It set its fog to `0.00008` against a 30 km ground, so
+the plain ran to a hard horizon line. It lit only the clusters, a lot lamp and a row light per cluster over each building's pad. And nothing stood
+between the clusters, so the ground between the pools was the night ground, which is near black. A
+real overhead of suburban Texas at night is streets, lamps, trees and roofs between the complexes.
+
+**The kit gap this points to is the upgrade lane's own, and it is the candidate for the next lift.**
+A `suburb_block` model in `landscape.js` would supply that ground cover: a street grid with curbs,
+streetlight heads, a lit window scatter on low roofs and tree crowns, instanced, at true scale. It
+was not built here because it is a new model rather than a lift of one a chassis already made, and
+that is more than one bounded upgrade. No engine change is needed for it.
+
+### 4. `layout_check`'s ACCENT WARNING ON FRAMES 1, 3 AND 7 IS CORRECT, AND THE FIX IS IN THE PLAN
+
+The dossiers declared the cool storefront as the accent on frames 1, 3 and 7. `layout_check` measured
+0.0002, 0.0000 and 0.0000 of each frame within 12 Lab units of the hex, at thumb scale. The
+storefront is a few dozen pixels at 2160 wide, and at 216 by 270 the box filter mixes it with the
+dark wall around it, so no thumb pixel lands near the hex. **That is what a reader in the feed
+receives, so the gate is measuring the right thing and must not be loosened.** A storefront that
+small is not an accent in the feed.
+
+The plan-side fix: when the accent is a small far element, the dossier says `accent: none` for that
+frame, or the frame brings the element close enough to hold at thumb scale. A diagnostic that would
+help, without changing any line of the gate: report the same coverage measured at full size beside
+the thumb figure, so a director can see "present at full size, lost at thumb" and knows the fix is
+scale rather than colour. Its self-test case is a frame whose accent patch is 4 px square at full
+size. It must report nonzero at full size and zero at thumb, and the warning must still fire.
+
+### 5. `reverify.py --apply` WRITES THE RECORD AT INDENT 2, THIRD RUN IN A ROW (daily lane)
+
+Unchanged from item 2 of the 2026-09-24 section and item 4 of the 2026-09-26 one:
+`scripts/site/reverify.py` line 797 still writes `json.dumps(record, indent=2, ensure_ascii=False)`,
+the canonical form is `indent=1`, and this run put the record back by hand again. Line 485 writes
+another file at indent 2 and is not the record. **Three runs have now paid for a one-character fix
+in the daily lane, which owns it, so the run that next calls `--apply` should make it** with the
+round trip test: `--apply` over a record with nothing to stamp leaves `ledger/docket.json` byte for
+byte unchanged.

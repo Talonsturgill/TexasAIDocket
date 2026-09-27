@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 97 in 10 families |
+| kit models | 98 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 64 |
 | record and site tools the routine names | 20 |
@@ -175,15 +175,16 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `crowd` | 8 x 1.9 x 5.3 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, in the frame of the crowd itself (kept in place, not recentred), else roughly +z. |
 | `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up; toward -1\|1 for point; hat auto\|none\|cap\|cowboy\|hard; build auto\|male\|female. |
 
-### homes (9)
+### homes (10)
 
-`assets/js/kit/homes.js`, The Texas street: the one-storey brick ranch, the suburban two-storey, the single-wide, the fences that run between them, the mailbox, the driveway and the lawn.
+`assets/js/kit/homes.js`, The Texas street: the one-storey brick ranch, the suburban two-storey, the single-wide, the fences that run between them, the mailbox, the driveway and the lawn, and the garden walk-up apartment ...
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `barbed_wire_fence` | 20.2 x 1.6 x 0.2 | length, strands, spacing | Options: length m, strands, spacing (T-post spacing, m). |
 | `chain_link_fence` | 12.2 x 1.3 x 0.25 | length, height, color | Options: length m, height m (1.22 is a 4 ft fence), color galvanized\|black. |
 | `driveway` | 7.5 x 0.06 x 9 | width, length, flare, age | Options: width m, length m (runs along z, the street end at +z), flare (the curb apron) bool, age 0..1 new to stained (null = seeded). |
+| `garden_apartment` | 54.1 x 13.1 x 16.8 | cores, groupBays, floors, brick, siding, trim, roof, lampsOn, lit, litUnits, glow, office, officeGlow, officeI, officeSpill, lampLights, lampI, poolI, vents | Options (null = seeded choice): cores (breezeways 1 to 6), groupBays (bays between cores 1 to 4), floors (2 to 4), brick, siding, trim, roof (shingle colour), lampsOn (true\|false\|[per core]; false for a daytime frame), lit (share of front units lit, by seed) ... |
 | `mailbox` | 0.7 x 1.45 x 0.7 | style, color, brick | Options (null = seeded choice): style post\|brick, color (box colour), brick (column colour). |
 | `mobile_home` | 23.5 x 4 x 8.7 | style, color, trim | Options (null = seeded choice): style modern\|vintage, color (siding), trim (the vintage accent band). |
 | `privacy_fence` | 12 x 1.9 x 0.15 | length, height, gate, weathered | Options: length m, height m (1.83 is a 6 ft fence), gate (a 4 ft gate at the middle), weathered 0..1 fresh cedar to silver (null = seeded). |
