@@ -37,7 +37,6 @@ from PIL import Image
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RUNS = REPO_ROOT / "runs" / "carousel"
 AT = (432, 540)
-FRAME = re.compile(r"^slide-(\d{2})\.(png|webp)$")
 
 
 def lstar(rgb):
@@ -48,22 +47,34 @@ def lstar(rgb):
 
 
 def frames(d: Path) -> list:
-    """The shipped frames in order, each in the format the site serves: WebP, else PNG.
+    """The shipped frames in order, exactly the set the site serves.
 
-    `site_context` resolves webp then png per slide. ship_images deletes a webp that misses the
-    quality floor and deletes a png once its webp clears it, so both exist only after `--keep` or
-    an interrupted cleanup, and then a reader receives the WebP (Codex, PR 378)."""
-    found = {}
-    for p in d.iterdir():
-        m = FRAME.match(p.name)
-        if m and (int(m.group(1)) not in found or m.group(2) == "webp"):
-            found[int(m.group(1))] = p
-    if not found:
-        raise ValueError(f"no slide-NN.png or slide-NN.webp in {d}")
-    nums = sorted(found)
-    if nums != list(range(1, len(nums) + 1)):
-        raise ValueError(f"frame numbers in {d} are {nums}, not 1 to {len(nums)}")
-    return [found[n] for n in nums]
+    The count is copy.json's `slides`, taken the way `site_context` takes it, never inferred from
+    the files present: a deck missing its last frame, or holding a stale frame past its end, would
+    otherwise measure as a different deck from the one a reader receives (Codex, PR 378). Each
+    frame is its WebP, else its PNG. `site_context` resolves them in that order, ship_images deletes
+    a webp that misses the quality floor and deletes a png once its webp clears it, so both exist
+    only after `--keep` or an interrupted cleanup, and then a reader receives the WebP. A file past
+    the deck's count is ignored, as the site ignores it."""
+    cp = d / "copy.json"
+    if not cp.exists():
+        raise ValueError(f"no copy.json in {d}, so the deck's slide count is unknown")
+    planned = json.loads(cp.read_text(encoding="utf-8")).get("slides")
+    n = len(planned) if isinstance(planned, (list, dict)) else 0
+    if n == 0:
+        raise ValueError(f"{cp} names no slides")
+    out, missing = [], []
+    for i in range(1, n + 1):
+        for ext in ("webp", "png"):
+            p = d / f"slide-{i:02d}.{ext}"
+            if p.exists():
+                out.append(p)
+                break
+        else:
+            missing.append(f"slide-{i:02d}")
+    if missing:
+        raise ValueError(f"{d} is missing {', '.join(missing)} of the {n} slides copy.json names")
+    return out
 
 
 def measure(d: Path) -> dict:
@@ -104,8 +115,12 @@ def self_test() -> int:
     ok("white reads L* 100", abs(float(lstar([[255, 255, 255]])[0]) - 100.0) < 1e-6)
     ok("sRGB 119 grey reads L* 50 to within 0.3", abs(float(lstar([[119, 119, 119]])[0]) - 50.0) < 0.3)
 
+    def deck(d, n):
+        (d / "copy.json").write_text(json.dumps({"slides": {str(i): {} for i in range(1, n + 1)}}))
+
     with tempfile.TemporaryDirectory() as t:
         d = Path(t)
+        deck(d, 3)
         for n, v in ((1, 0), (2, 119), (3, 255)):
             Image.new("RGB", (1080, 1350), (v, v, v)).save(d / f"slide-{n:02d}.png")
         m = measure(d)
@@ -116,19 +131,22 @@ def self_test() -> int:
         Image.new("RGB", (1080, 1350), (255, 255, 255)).save(d / "slide-02.webp")
         ok("a WebP wins over a PNG of the same number, as the site serves it",
            frames(d)[1].suffix == ".webp")
-        (d / "slide-03.png").unlink()
         Image.new("RGB", (1080, 1350), (9, 9, 9)).save(d / "slide-04.png")
+        ok("a stale frame past copy.json's count is ignored, as the site ignores it",
+           len(frames(d)) == 3 and len(measure(d)["arc"]) == 3)
+        (d / "slide-03.png").unlink()
         try:
             frames(d)
-            ok("a gap in the frame numbers is refused", False, "frames() returned")
+            ok("a deck missing a frame copy.json names is refused", False, "frames() returned")
         except ValueError:
-            ok("a gap in the frame numbers is refused", True)
+            ok("a deck missing a frame copy.json names is refused", True)
     with tempfile.TemporaryDirectory() as t:
+        Image.new("RGB", (1080, 1350), (9, 9, 9)).save(Path(t) / "slide-01.png")
         try:
             frames(Path(t))
-            ok("a directory with no frames is refused", False, "frames() returned")
+            ok("a directory with no copy.json is refused", False, "frames() returned")
         except ValueError:
-            ok("a directory with no frames is refused", True)
+            ok("a directory with no copy.json is refused", True)
 
     # THE LIFT CHANGED NOTHING. These three runs shipped a measure.py of their own, by this
     # method, and each wrote the measurements.json that is committed beside its frames.

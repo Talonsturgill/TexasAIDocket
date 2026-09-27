@@ -25,7 +25,27 @@ root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
 # in a pull request with the same script's --check-range. IT FAILS CLOSED (Codex, PR 378): a
 # helper that can't run can't vouch for the message, so the commit is refused rather than made
 # with the lines still in it.
-if ! python3 "$root/scripts/shared/attribution_strip.py" "$msg_file"; then
+#
+# The interpreter is chosen the way .githooks/pre-commit chooses it, because on Windows `python3`
+# can be the Microsoft Store launcher, and a hook that fails closed on a missing interpreter would
+# otherwise refuse every commit on that setup (Codex, PR 378).
+python_cmd=()
+if [ -x "$root/.venv/bin/python" ]; then
+  python_cmd=("$root/.venv/bin/python")
+elif [ -x "$root/.venv/Scripts/python.exe" ]; then
+  python_cmd=("$root/.venv/Scripts/python.exe")
+elif command -v python3 >/dev/null 2>&1 && python3 -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(python3)
+elif command -v python >/dev/null 2>&1 && python -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(python)
+elif command -v py >/dev/null 2>&1 && py -3 -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(py -3)
+else
+  echo "commit-msg: Python 3 is required to check the message for Claude attribution." >&2
+  echo "  Create the project environment first:  python -m venv .venv" >&2
+  exit 1
+fi
+if ! "${python_cmd[@]}" "$root/scripts/shared/attribution_strip.py" "$msg_file"; then
   echo "commit-msg: scripts/shared/attribution_strip.py failed, so the message was not checked" \
        "for Claude attribution and the commit is refused" >&2
   exit 1
@@ -43,7 +63,7 @@ branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
 # if some other process left one, and otherwise the branch prefix answers. See resolve_actor().
 checker="$root/scripts/shared/ownership_check.py"
 [ -f "$checker" ] || exit 0
-actor="$(python3 "$checker" --print-actor --branch "$branch" --gitdir "$gitdir" 2>/dev/null \
+actor="$("${python_cmd[@]}" "$checker" --print-actor --branch "$branch" --gitdir "$gitdir" 2>/dev/null \
          | tr -d '[:space:]')"
 [ -n "$actor" ] || exit 0
 
@@ -60,7 +80,7 @@ actor="$(python3 "$checker" --print-actor --branch "$branch" --gitdir "$gitdir" 
 # So the two halves disagreed about a lane the map explicitly permits. The skip now asks whether
 # the BRANCH would have said `human` on its own. When it would, there is still nothing to
 # declare. When it would not, the stamp is the only thing that can tell CI what happened.
-branch_actor="$(env -u TXDOCKET_ACTOR python3 "$checker" --print-actor --branch "$branch" \
+branch_actor="$(env -u TXDOCKET_ACTOR "${python_cmd[@]}" "$checker" --print-actor --branch "$branch" \
                 --gitdir /nonexistent 2>/dev/null | tr -d '[:space:]')"
 [ "$actor" = "human" ] && [ "$branch_actor" = "human" ] && exit 0
 

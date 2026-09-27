@@ -1107,10 +1107,20 @@ jobs:
           BEFORE="$BEFORE_SHA"
           if [ -n "$BASE" ]; then
             RANGE="$BASE..HEAD"
-          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
-               && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            # A force-push can leave the previous SHA out of this checkout. Fetch it by SHA, and
+            # if it still can't be read, refuse rather than narrow the range to one commit.
+            if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              git fetch --quiet --no-tags origin "$BEFORE" || true
+            fi
+            if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              echo "The push's previous SHA $BEFORE can't be read, so the pushed range can't be checked." >&2
+              exit 1
+            fi
             RANGE="$BEFORE..HEAD"
           else
+            # A dispatch has no pushed range. The newest commit is the one it can speak for, and
+            # every earlier one on main was read when it was pushed.
             RANGE="HEAD~1..HEAD"
           fi
           echo "range=$RANGE"
