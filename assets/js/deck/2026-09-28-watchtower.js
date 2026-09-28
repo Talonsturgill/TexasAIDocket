@@ -37,7 +37,7 @@
   TXDECK.declare({
     world: "watchtower",
     light: { az: -68, el: 10 },
-    sky: { preset: "stormFront", haze: 0x9e9a92 },
+    sky: { preset: "stormFront", haze: 0x9e9a92, clouds: 1.4 },
     ground: "#15171C",
     material: "#A9AEB0",
     accent: "#2A7A9E",
@@ -90,7 +90,7 @@
     function mats(o) {
       var weathered = o.finish === 'weathered';
       return {
-        galv: K.mat('cam-galv|' + o.finish, { color: weathered ? 0x8d8f89 : 0xa9aeb0, roughness: weathered ? 0.62 : 0.42, metalness: 0.85 }),
+        galv: K.mat('cam-galv|' + o.finish, { color: weathered ? 0x8d8f89 : 0xb3b7b7, roughness: weathered ? 0.62 : 0.5, metalness: 0.5 }),   /* half metal: fully metallic steel mirrored the straw and read as brass under the grade (round 1) */
         galvDark: K.mat('cam-galvdark', { color: 0x6d7173, roughness: 0.5, metalness: 0.8 }),
         housing: K.mat('cam-housing', { color: 0xe7e6e1, roughness: 0.38, metalness: 0.05 }),
         shield: K.mat('cam-shield', { color: 0xf1f0ec, roughness: 0.32, metalness: 0.05, side: THREE.DoubleSide }),
@@ -108,21 +108,19 @@
      * the front. The housing's front is the group's +z, turned by pan about y and by tilt about x. */
     function head(M, pan, tilt) {
       var h = new THREE.Group(); h.rotation.y = pan || 0;
-      K.cyl(0.085, 0.095, 0.13, M.housing, 0, 0, 0, 24, h);
-      K.cyl(0.098, 0.098, 0.012, M.black, 0, 0.128, 0, 24, h);
+      /* A BOXED PTZ HEAD (round 1, 2026-09-28): a round barrel with a round dark face read as a
+       * floodlight at feed size, so the housing is a rectangular white box under a flat sunshield
+       * with a small dark rectangular window, the silhouette a reader knows as a camera. */
+      K.cyl(0.07, 0.085, 0.12, M.galvDark, 0, 0, 0, 20, h);
       [-1, 1].forEach(function (t) {
-        var yoke = TXT.roundedBox(0.03, 0.2, 0.09, 0.008, M.housing); yoke.position.set(t * 0.105, 0.24, 0); h.add(yoke);
+        var yoke = TXT.roundedBox(0.03, 0.2, 0.09, 0.008, M.galvDark); yoke.position.set(t * 0.12, 0.22, 0); h.add(yoke);
       });
-      var tg = new THREE.Group(); tg.position.set(0, 0.34, 0); tg.rotation.x = -(tilt || 0); h.add(tg);
-      var body = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.36, 24), M.housing); body.rotation.x = Math.PI / 2; tg.add(body);
-      var bezel = new THREE.Mesh(new THREE.CylinderGeometry(0.077, 0.077, 0.03, 24), M.black); bezel.rotation.x = Math.PI / 2; bezel.position.z = 0.18; tg.add(bezel);
-      var win = new THREE.Mesh(new THREE.CircleGeometry(0.062, 28), M.glass); win.position.z = 0.196; tg.add(win);
-      var lens = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.034, 0.02, 20), M.black); lens.rotation.x = Math.PI / 2; lens.position.z = 0.187; tg.add(lens);
-      var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.03, 24), M.housing); cap.rotation.x = Math.PI / 2; cap.position.z = -0.18; tg.add(cap);
-      var hood = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.46, 24, 1, true, -Math.PI * 0.62, Math.PI * 1.24), M.shield);
-      hood.rotation.x = Math.PI / 2; hood.rotation.z = Math.PI; hood.position.set(0, 0.012, 0.04); tg.add(hood);
-      /* a drip lip and two screws on the hood, so it reads as a pressed part and not a pipe */
-      var lip = TXT.roundedBox(0.19, 0.008, 0.02, 0.003, M.shield); lip.position.set(0, 0.1, 0.27); tg.add(lip);
+      var tg = new THREE.Group(); tg.position.set(0, 0.33, 0); tg.rotation.x = -(tilt || 0); h.add(tg);
+      var body = TXT.roundedBox(0.2, 0.15, 0.42, 0.02, M.housing); tg.add(body);
+      var shield = TXT.roundedBox(0.25, 0.018, 0.52, 0.008, M.shield); shield.position.set(0, 0.092, 0.04); tg.add(shield);
+      var bez = TXT.roundedBox(0.15, 0.095, 0.012, 0.006, M.black); bez.position.set(0, -0.005, 0.212); tg.add(bez);
+      var win = new THREE.Mesh(new THREE.PlaneGeometry(0.12, 0.07), M.glass); win.position.set(0, -0.005, 0.2195); tg.add(win);
+      var back = TXT.roundedBox(0.16, 0.11, 0.02, 0.008, M.galvDark); back.position.set(0, 0, -0.215); tg.add(back);
       return h;
     }
 
@@ -220,7 +218,7 @@
       make: function (o, r) {
         var g = new THREE.Group(), L = +o.length || 20, sp = +o.spacing || 2.4;
         var pipe = o.color != null ? K.mat('prf-paint|' + o.color, { color: o.color, roughness: 0.55, metalness: 0.4 })
-                                   : K.mat('prf-pipe', { color: 0x6f6a63, roughness: 0.62, metalness: 0.6 });
+                                   : K.mat('prf-pipe', { color: 0xa2a6a5, roughness: 0.55, metalness: 0.45 });   /* dull galvanized, so a rail reads as a lit line over the grass (round 1) */
         var n = Math.max(2, Math.round(L / sp) + 1), dx = L / (n - 1), posts = [];
         for (var i = 0; i < n; i++) {
           var x = -L / 2 + i * dx, ph = +o.post || 1.65;
