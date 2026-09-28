@@ -51,6 +51,13 @@ rule is read out of the prose it governs. `out/<date>/tmp/` takes anything `/tmp
 
     routine_claims.py --self-test
     routine_claims.py
+
+THE THIRD RULE. The Docket's Scanner guidance must describe the Scanner that exists now.
+Scanner left Supabase for a Cloudflare Worker and private D1 database on 2026-08-20, but the
+routine and repository map kept directing maintainers to the removed Supabase project. That is
+not stale commentary: it disables the daily spend-and-failure check while making the run believe
+it performed one. The checks below reject the retired identifiers and require the current
+backend, cap, failure and unknown-data boundaries to remain explicit.
 """
 from __future__ import annotations
 
@@ -104,6 +111,17 @@ FENCE = re.compile(r"^```(?:bash|sh|shell)\n(.*?)^```", re.MULTILINE | re.DOTALL
 OUTSIDE = re.compile(
     r"""(?:^|[\s=:'"(])(/tmp|/var/tmp|/var/folders|~/\.cache)(?=[/\s"']|$)""")
 
+SCANNER_SECTION = re.compile(
+    r"\*\*THE SCANNER'S DAILY CEILING\.\*\*(.*?)(?=\n\*\*DRAFT, NEVER SEND\.\*\*)",
+    re.DOTALL,
+)
+
+RETIRED_SCANNER_GUIDANCE = {
+    "has NO backend on purpose": "the retired no-backend description",
+    "Through the Supabase connector": "the removed Supabase query route",
+    "scanner.scans": "the removed Supabase scans table",
+}
+
 
 def scratch_problems(root: Path = PROMPTS) -> list[str]:
     """Commands the routine tells a run to execute that write outside the working tree."""
@@ -121,6 +139,46 @@ def scratch_problems(root: Path = PROMPTS) -> list[str]:
                                f"{hit.group(1)}, which is outside the working tree. A "
                                f"sandboxed write there stops and asks, and an unattended run "
                                f"has nobody to answer. Use out/<date>/tmp/")
+    return out
+
+
+def scanner_backend_problems(repo: Path = REPO_ROOT) -> list[str]:
+    """Stale or incomplete claims about Scanner's private operational backend."""
+    constitution = (repo / "CLAUDE.md").read_text(encoding="utf-8")
+    routine_path = repo / "prompts" / "daily_routine.md"
+    routine = routine_path.read_text(encoding="utf-8")
+    out = []
+
+    for stale, label in RETIRED_SCANNER_GUIDANCE.items():
+        for filename, text in (("CLAUDE.md", constitution),
+                               ("prompts/daily_routine.md", routine)):
+            if stale in text:
+                out.append(f"{filename} still carries {label} ({stale!r}); Scanner moved to "
+                           "Cloudflare Worker and D1 on 2026-08-20")
+
+    scanner_row = next((line for line in constitution.splitlines()
+                        if "`TexasAIScanner`" in line), "")
+    for required in ("Cloudflare Worker", "D1", "private"):
+        if required not in scanner_row:
+            out.append(f"CLAUDE.md's TexasAIScanner row does not name {required!r}; the repo "
+                       "map no longer describes Scanner's current backend boundary")
+
+    match = SCANNER_SECTION.search(routine)
+    if not match:
+        out.append("prompts/daily_routine.md has no bounded Scanner daily-ceiling section")
+        return out
+    section = match.group(1)
+    required_claims = {
+        "DAILY_CAP": "the deployed spend ceiling",
+        "D1": "the private record store",
+        "status = 'failed'": "the failure query",
+        "LIVE Worker": "the distinction between deployed config and a repository default",
+        "unknown": "the required disclosure when private live state cannot be read",
+    }
+    for required, meaning in required_claims.items():
+        if required not in section:
+            out.append(f"prompts/daily_routine.md's Scanner section does not name {required!r}, "
+                       f"which carries {meaning}")
     return out
 
 
@@ -226,6 +284,37 @@ def self_test() -> int:
             check(f"{bad} is caught too, since the law is about the tree and not the word tmp",
                   sp != [], str(sp))
 
+        # ------------------------------------------------ THE SCANNER BACKEND BOUNDARY
+        def scanner_fixture(constitution, routine):
+            (root / "CLAUDE.md").write_text(constitution, encoding="utf-8")
+            (root / "prompts" / "daily_routine.md").write_text(routine, encoding="utf-8")
+            return scanner_backend_problems(root)
+
+        current = (
+            "| `TexasAIScanner` | private Cloudflare Worker and D1 |\n",
+            "**THE SCANNER'S DAILY CEILING.**\n"
+            "Read DAILY_CAP from the LIVE Worker. Query private D1 for status = 'failed'. "
+            "If either is unknown, say so.\n\n**DRAFT, NEVER SEND.**\n",
+        )
+        check("current Scanner Worker and D1 guidance is accepted",
+              scanner_fixture(*current) == [], str(scanner_fixture(*current)))
+
+        old = (
+            "| `TexasAIScanner` | it has NO backend on purpose |\n",
+            "**THE SCANNER'S DAILY CEILING.**\nThrough the Supabase connector, query "
+            "scanner.scans and scanner.config.\n\n**DRAFT, NEVER SEND.**\n",
+        )
+        stale = scanner_fixture(*old)
+        check("the retired Scanner Supabase guidance is CAUGHT",
+              any("removed Supabase" in x for x in stale), str(stale))
+        check("the stale no-backend repository map is CAUGHT",
+              any("retired no-backend" in x for x in stale), str(stale))
+
+        incomplete = scanner_fixture(current[0], current[1].replace(
+            "If either is unknown, say so.", "Assume the committed default is deployed."))
+        check("a live check that hides unknown private state is CAUGHT",
+              any("unknown" in x for x in incomplete), str(incomplete))
+
         # AND THE COMMITTED ROUTINE, which is the only reason the six above matter. Two lines of
         # it said `--out /tmp/site` for the whole day after the law was written.
         check("the committed prompts keep their scratch inside the tree",
@@ -236,6 +325,8 @@ def self_test() -> int:
     check("the prompts carry at least one marked claim", bool(live), f"{len(live)} found")
     check("every marked claim holds against the published site", not problems(live),
           "; ".join(problems(live)[:3]))
+    check("the committed Scanner guidance matches its live architecture",
+          not scanner_backend_problems(), "; ".join(scanner_backend_problems()))
 
     if failures:
         print(f"\nroutine_claims self-test: {failures} FAILED")
@@ -251,7 +342,7 @@ def main() -> int:
     if a.self_test:
         return self_test()
     found = claims()
-    bad = problems(found) + scratch_problems()
+    bad = problems(found) + scratch_problems() + scanner_backend_problems()
     if bad:
         print("the routine is out of step with what it governs:", file=sys.stderr)
         for b in bad:
@@ -259,7 +350,8 @@ def main() -> int:
         return 1
     on = sum(1 for c in found if c["kind"] == "onpage")
     print(f"routine claims ok: {on} on-page and {len(found) - on} off-page claim(s) hold, "
-          f"and every command it gives keeps its scratch inside the tree")
+          "every command it gives keeps its scratch inside the tree, and Scanner guidance "
+          "matches the Worker and D1 architecture")
     return 0
 
 
