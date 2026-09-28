@@ -211,12 +211,12 @@
      * (2 7/8 in) rails welded to their faces at given heights. Origin at the run's centre on the
      * ground, the run along x, front on +z. OPTIONS length, spacing, rails ([heights]), post (post
      * height above grade), color (paint hex, null for bare weathered pipe), flags ([post indices]
-     * that carry a knot of survey flagging), flag (flag hex).
+     * that carry a knot of survey flagging), flag (flag hex), flagAt (the height the knot is tied at, null for just under the cap).
      * userData: posts ([{x, y}] each post top), rails ([{y, z}] each rail's centre line). */
     K.define('pipe_rail_fence', {
       size: [20, 1.7, 0.2],
-      options: { length: 20, spacing: 2.4, rails: [1.5, 0.9], post: 1.65, color: null, flags: [], flag: 0xff6a13 },
-      note: 'Oilfield pipe fence: 4.5 in pipe posts with domed caps, 2 7/8 in rails welded to the post faces. Options length m, spacing m, rails [heights m], post (height m), color (paint hex or null for bare weathered pipe), flags [post indices] carrying survey flagging, flag hex. userData.posts, .rails.',
+      options: { length: 20, spacing: 2.4, rails: [1.5, 0.9], post: 1.65, color: null, flags: [], flag: 0xff6a13, flagAt: null },
+      note: 'Oilfield pipe fence: 4.5 in pipe posts with domed caps, 2 7/8 in rails welded to the post faces. Options length m, spacing m, rails [heights m], post (height m), color (paint hex or null for bare weathered pipe), flags [post indices] carrying survey flagging, flag hex, flagAt (knot height m). userData.posts, .rails.',
       make: function (o, r) {
         var g = new THREE.Group(), L = +o.length || 20, sp = +o.spacing || 2.4;
         var pipe = o.color != null ? K.mat('prf-paint|' + o.color, { color: o.color, roughness: 0.55, metalness: 0.4 })
@@ -236,10 +236,11 @@
         (o.flags || []).forEach(function (pi) {
           var p = posts[pi]; if (!p) return;
           var fm = K.mat('prf-flag|' + o.flag, { color: o.flag, roughness: 0.7, side: THREE.DoubleSide });
-          var knot = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.012, 6, 16), fm); knot.rotation.x = Math.PI / 2; knot.position.set(p.x, p.y - 0.12, 0); g.add(knot);
+          var ky = o.flagAt != null ? +o.flagAt : p.y - 0.12;
+          var knot = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.012, 6, 16), fm); knot.rotation.x = Math.PI / 2; knot.position.set(p.x, ky, 0); g.add(knot);
           for (var k = 0; k < 2; k++) {
             var tail = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.34), fm);
-            tail.position.set(p.x + 0.04 + k * 0.025, p.y - 0.3, 0.06); tail.rotation.set(0.1, 0.4 + k * 0.5, 0.18 - k * 0.3); g.add(tail);
+            tail.position.set(p.x + 0.04 + k * 0.025, ky - 0.18, 0.06); tail.rotation.set(0.1, 0.4 + k * 0.5, 0.18 - k * 0.3); g.add(tail);
           }
         });
         g.userData.posts = posts; g.userData.rails = rails;
@@ -289,10 +290,62 @@
     (entries || []).forEach(function (e) {
       if (e.kind === 'gap') { y += e.h || 60; return; }
       if (e.kind === 'heading') { x.fillStyle = 'rgba(40,40,44,0.72)'; x.fillRect(lm, y, (W - 2 * lm) * (e.w || 0.5), 26); y += e.h || 70; return; }
-      x.fillStyle = 'rgba(58,58,62,' + (e.a || 0.42) + ')'; x.fillRect(lm + (e.indent || 0), y, (W - 2 * lm - (e.indent || 0)) * (e.w || 1), e.t || 12); y += e.h || 44;
+      x.fillStyle = 'rgba(46,46,50,' + (e.a || 0.62) + ')'; x.fillRect(lm + (e.indent || 0), y, (W - 2 * lm - (e.indent || 0)) * (e.w || 1), e.t || 12); y += e.h || 44;
     });
     var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
     return t;
+  };
+
+
+  /* ATMOSPHERE TOWARD THE TYPE. Light dims toward type rather than being removed from around it
+   * (ILLUSTRATION_SYSTEM, THE FIRST CHASSIS DECK). Two full-width vertical washes, never a box and
+   * never over 0.45 alpha, so deck_chassis reads them as atmosphere and not as a plate: the storm
+   * deck deepened from the top of the frame to just below the dek, where the brighter band under
+   * the cloud would otherwise sit behind the last lines of type, and the near ground deepened under
+   * the bottom furniture, where grass blades close to the lens would otherwise run through it. */
+  N.atmosphere = function (cx, o) {
+    o = o || {};
+    var dek = document.querySelector('.dek'), bottom = o.to;
+    if (bottom == null && dek) { var b = dek.getBoundingClientRect(); bottom = b.top + b.height; }
+    var top = o.a == null ? 0.38 : Math.min(0.45, o.a);
+    if (bottom != null && top > 0) {
+      var g = cx.createLinearGradient(0, 0, 0, bottom + (o.fade || 170));
+      g.addColorStop(0, 'rgba(10,11,14,' + (top * 0.55) + ')');
+      g.addColorStop(Math.max(0.05, bottom / (bottom + (o.fade || 170))), 'rgba(10,11,14,' + top + ')');
+      g.addColorStop(1, 'rgba(10,11,14,0)');
+      cx.fillStyle = g; cx.fillRect(0, 0, N.W, bottom + (o.fade || 170));
+    }
+    var fa = o.floor == null ? 0.42 : Math.min(0.45, o.floor);
+    if (fa > 0) {
+      var y0 = N.H - (o.floorH || 190);
+      var h = cx.createLinearGradient(0, y0, 0, N.H);
+      for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); h.addColorStop(t, 'rgba(10,11,14,' + (fa * e).toFixed(4) + ')'); }   /* smoothstep, so the wash has no knee to read as a rule */
+      cx.fillStyle = h; cx.fillRect(0, y0, N.W, N.H - y0);
+    }
+  };
+
+
+  /* KNOCK THE EDGE OUT BEHIND A LINE OF TYPE, without removing its light. A rendered frame can't
+   * consult a reserve mask as it draws, so a rail, a horizon or a grass blade that happens to run
+   * through a label's glyph band reads as a strikethrough. This blurs the art under each named
+   * element's line boxes, feathered wide, so the edge dissolves while the tone under the type stays
+   * what the render made it: no plate, no hole, no change in value. */
+  N.soften = function (cx, selectors, o) {
+    o = o || {};
+    var blur = o.blur || 9, pad = o.pad == null ? 16 : o.pad, feather = o.feather || 64;
+    var art = document.getElementById('art');
+    var src = document.createElement('canvas'); src.width = art.width; src.height = art.height;
+    var sx = src.getContext('2d'); sx.filter = 'blur(' + (blur * 2) + 'px)'; sx.drawImage(art, 0, 0);
+    var mask = document.createElement('canvas'); mask.width = art.width; mask.height = art.height;
+    var mx = mask.getContext('2d'); mx.filter = 'blur(' + feather + 'px)'; mx.fillStyle = '#000';
+    (selectors || []).forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+        var r = el.getBoundingClientRect();
+        mx.fillRect((r.left - pad) * 2, (r.top - pad) * 2, (r.width + 2 * pad) * 2, (r.height + 2 * pad) * 2);
+      });
+    });
+    sx.filter = 'none'; sx.globalCompositeOperation = 'destination-in'; sx.drawImage(mask, 0, 0);
+    cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(src, 0, 0); cx.restore();
   };
 
   /* A world point to frame CSS px, through the frame's own camera, for leaders and registered
