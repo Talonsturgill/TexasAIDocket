@@ -1730,3 +1730,22 @@ and the checked sentences on tx-2026-0120 came back exact.
 
 **Brazos County's own site still answers 403 to every client.** tx-2026-0088 keeps its old stamp
 rather than taking one from a journalism source that is not the county's word.
+
+## 2026-09-28, daily run (carousel no. 36)
+
+**`ftp.puc.texas.gov` behaves like `interchange.puc.texas.gov`: HTTP 402 to WebFetch.** Both of
+the rule's and the news release's PDFs on the ftp host answered 402 to WebFetch on September 28th,
+with and without a trailing slash. The registry records the 402 for Interchange only. The same
+documents came back through `scripts/shared/fetch_doc.py`, and every PUCT quote in this run was
+checked against those same-day snapshots. Try `fetch_doc.py` first for any PUCT host.
+
+**The Interchange ZIP for an application is where the testimony lives.** Docket 57463 Item 2 is a
+ZIP, and the plan, the direct testimony and the resiliency study inside it each carry their own
+page numbers. The quotes this run used came from the extracted text, not from a served text layer.
+
+**`www.hayscountytx.gov` answered 200 on September 28th** after a 403 on September 24th, so a
+county copy of an agenda entry may serve again. `public.destinyhosted.com` still serves
+`User-agent: *` / `Disallow: /`, and nothing was routed around it.
+
+**`www.brazoscountytx.gov` still answers 403 to every client**, re-measured September 28th, and
+`www.kbtx.com` still names ClaudeBot under `Disallow: /`. tx-2026-0088 keeps its old stamp.

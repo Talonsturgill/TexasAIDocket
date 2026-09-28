@@ -58,7 +58,8 @@
         "2026-09-03",
         "2026-09-04",
         "2026-09-13",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-09-28"
       ],
       "contradicted": []
     },
@@ -295,7 +296,8 @@
         "2026-08-25",
         "2026-09-03",
         "2026-09-26",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-09-28"
       ],
       "contradicted": []
     },
@@ -586,7 +588,8 @@
         "2026-09-18",
         "2026-09-19",
         "2026-09-20",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-09-28"
       ],
       "contradicted": []
     },
@@ -763,7 +766,8 @@
       "evidence": "Carousel 22 planned a sequence of 22, 46, 34, 30, 26, 18, 72, 26 and 28. It shipped measuring 11.1 to 41.1 with four frames within half a point of each other at the floor, and nothing found out until measure.py was written after the panel had already capped.",
       "confirmed": [
         "2026-09-16",
-        "2026-09-19"
+        "2026-09-19",
+        "2026-09-28"
       ],
       "contradicted": []
     },
@@ -1108,6 +1112,22 @@
       "learned": "2026-09-27",
       "instinct": "Before a frame says the complaint says, read the claim's quote inside its whole paragraph and compare the claim TEXT to it, because a claim's paraphrase drifts while its quote still matches.",
       "evidence": "Carousel no. 35's c27 text said auto-accept was on by default while paragraph 66 says only the limits are defaults and the landlord turns it on. claims_check passed because the quote matched. The integrity judge filed a hard fail on frame 3.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "recompose-kit-primitives-at-distance",
+      "learned": "2026-09-28",
+      "instinct": "Shoot a kit model at the distance the kit holds and recompose the frame the moment a judge names its geometry twice, because re-rendering the same primitive closer never moves the craft score.",
+      "evidence": "No. 36's frame 2 pole was named in panel rounds 1, 2 and 3 as a slab, then a toy top, at 2 m and 3 m, and read as a photograph only when it became a whole distribution line at 26 m.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "measure-the-preset-fog-before-placing-distance",
+      "learned": "2026-09-28",
+      "instinct": "Compute where the world preset's fog closes the plain before placing anything far out, because an exp2 fog hides every mesa beyond its own reach and the judges read the result as a void.",
+      "evidence": "No. 36 placed the caprock 3 to 4 km out under stormFront's fog density 0.0065, which is 95 percent fogged at 150 m, and three critics called the horizon a white wall until the chassis declared 0.0028 and moved the breaks to 400 m.",
       "confirmed": [],
       "contradicted": []
     }
