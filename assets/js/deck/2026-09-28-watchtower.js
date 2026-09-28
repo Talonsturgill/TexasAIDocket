@@ -37,7 +37,7 @@
   TXDECK.declare({
     world: "watchtower",
     light: { az: -68, el: 10 },
-    sky: { preset: "stormFront", haze: 0x9e9a92, clouds: 1.4 },
+    sky: { preset: "stormFront", haze: 0x9e9a92, clouds: 1.4, fogDensity: 0.0028, envIntensity: 0.75 },   /* round 2: the preset's haze closed the plain at 150 m into a white wall, and its dim sky light left every white housing taupe */
     ground: "#15171C",
     material: "#A9AEB0",
     accent: "#2A7A9E",
@@ -111,9 +111,9 @@
       /* A BOXED PTZ HEAD (round 1, 2026-09-28): a round barrel with a round dark face read as a
        * floodlight at feed size, so the housing is a rectangular white box under a flat sunshield
        * with a small dark rectangular window, the silhouette a reader knows as a camera. */
-      K.cyl(0.07, 0.085, 0.12, M.galvDark, 0, 0, 0, 20, h);
+      K.cyl(0.07, 0.085, 0.12, M.housing, 0, 0, 0, 20, h);   /* the turntable and yoke in the housing's white, so the head reads as one seated unit (panel round 1) */
       [-1, 1].forEach(function (t) {
-        var yoke = TXT.roundedBox(0.03, 0.2, 0.09, 0.008, M.galvDark); yoke.position.set(t * 0.12, 0.22, 0); h.add(yoke);
+        var yoke = TXT.roundedBox(0.03, 0.2, 0.09, 0.008, M.housing); yoke.position.set(t * 0.12, 0.22, 0); h.add(yoke);
       });
       var tg = new THREE.Group(); tg.position.set(0, 0.33, 0); tg.rotation.x = -(tilt || 0); h.add(tg);
       var body = TXT.roundedBox(0.2, 0.15, 0.42, 0.02, M.housing); tg.add(body);
