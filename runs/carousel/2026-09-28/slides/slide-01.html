@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-09-28, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's declared stormFront world. THE COVER. The hero wildfire camera station on its caliche pad, 30 m out, its two heads splayed to the plain under the storm deck, a caliche road leading to it across cured straw grass. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#15171C; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:700px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:640px; font-size:30px; line-height:1.4; color:#E2DBCF; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#C9BFAF; white-space:nowrap; z-index:20; }
+  .hook, .dek, .tx-site { text-shadow:0 0 6px rgba(12,12,14,0.8), 0 1px 16px rgba(12,12,14,0.55); }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Agreed to count fire detections. Counted cameras.</h1>
+<p class="dek" data-follow="30">The Xcel Energy utility for most of the Texas Panhandle runs AI smoke cameras. The order approving its plan lists the number of AI camera fire detections among the metrics it agreed to report. Its annual report answered that line with a count of cameras.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-28-watchtower.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Texas Panhandle", counter: "01 / 09", src: "c29 c46 c25 c26 c33 c34 c8 c56 DRAWN", ink: '#C9BFAF' });
+  TX.fitText(document.getElementById("hook"), { min: 92, max: 124, maxLines: 3 });
+  WATCH.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = WATCH, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 30 });
+
+  /* the station at the origin on its pad, heads splayed across the plain. The camera stands 38 m
+   * south and 6 m west, low, so the mast lands on the right third and rises past the dek into the
+   * dark deck, with the sun (az -68) on the left rear and every cast running right. */
+  const hero = F.station(K, { pan: [0.95, -2.35], tilt: [-0.06, -0.1] });
+  TXT.add(R, hero); TXT.contact(R, hero);
+  TXT.frame(R, { from: [-5, 2.2, 30], look: [-3.6, 5.4, 0] });   /* a longer lens from the same spot, so the two heads read as cameras at feed size (round 1) */
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 90, shadowFar: 260 });
+
+  /* the pad, graded caliche 7 m square, a hair proud of the grass */
+  const padM = new THREE.MeshStandardMaterial({ color: 0xd9ccb0, map: K.tex('concrete'), roughness: 0.96 });
+  const pad = TXT.roundedBox(7, 0.06, 7, 0.02, padM); pad.position.set(0, 0.03, 0); TXT.add(R, pad);
+  /* the caliche road from the bottom right of the frame to the pad, curving */
+  const road = K.make('caliche_road', { seed: 5, length: 60, curve: 0.12 });
+  road.position.set(1.5 + 30 * Math.sin(0.1), 0, 3.5 + 30 * Math.cos(0.1)); road.rotation.y = 0.1;   /* round 2: turned toward the lens so it leaves by the bottom right */ TXT.add(R, road);
+  /* a four strand barbed wire fence across the near left, the scale a reader measures the mast by */
+  const fence = K.make('barbed_wire_fence', { seed: 4, length: 18, strands: 4, spacing: 3.4 });
+  fence.position.set(-17, 0, 14); fence.rotation.y = 0.3;   /* round 2: its brace stood in line with the mast */ TXT.add(R, fence);
+  /* the country: straw pasture, scrub on the rise, the caprock far out on the left */
+  TXT.ground(R, { surface: 'grass', color: F.STRAW, size: 7000, seed: 11 });
+  F.grass(TXT, R, { count: 26000, area: [-90, -260, 90, 36], avoid: [[-4, -4, 4, 4], [0, 2, 16, 64]] });
+  /* round 2: the breaks sit 400 m out, where the thinned haze still carries a silhouette */
+  F.caprock(K, TXT, R, { x: -260, z: -390, width: 460, height: 24, ry: 0.15 });
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.45 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.lab']);
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

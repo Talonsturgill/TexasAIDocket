@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "This is up from round 1's 5.9 median, but more than one frame still leans on a default, so it stays under the 7 descriptor. Four frames are now a place at an hour: 1, 6, 7 and 9, each with a storm sky, caprock on the horizon, straw grass and the camera pole standing on a pad. Frame 7's two pipes on cribbing are a good in-world bar chart. By my measurement at 1600px the plan pipe is about 815px and the anticipated pipe about 1335px, a ratio of about 0.61, which matches 6,423,554 over 10,537,400. Frame 9's rancher at the gate and road now reads as a person at true scale beside the pole. Three defects that round 1 named are still visible. Frame 2's 'pole' is still a flat brown slab with black vertical stripes and a grey square tag, so it reads as a plank or a curtain and not a round, decayed wooden pole. It is the one object the headline points at. Frame 8 still has a hard-edged brown wall that boxes the headline and dek exactly, with a black band above it. That is a text plate by look, and the chairs below are kit furniture. Frames 4 and 5 are the same desk, paper and binder from nearly the same camera, against a flat dark wall with only a black window frame at top right. The caprock strata on 1, 3 and 7 are still horizontal smear textures. On frame 3 the three mono labels are 22px, which machine_qa flags as tiny-text under the 24px floor, and the rim of the escarpment runs under the dek's last line. Shadows are faint throughout, so the low shaft of light the storyboard promises reads as overcast."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck. The storm sky, straw plain, caprock and galvanized camera pole carry frames 1, 3, 6, 7 and 9, and the pole returns as the hero at different scales: close on 1, macro on 3, distant on 6 and 9. The blue comal underline under a mono verbatim label ties 4, 5 and 6. Frames 4, 5 and 8 are a second world of dim interiors, and at thumb size on the contact sheet the row 4-5-6 steps from a warm dark room back to the plain. machine_qa band_ratio drops to 1.10 and 1.14 on 4 and 5 against 1.34 to 1.52 on the outdoor frames. Frame 2's pole is a different object and material from the hero it introduces. The deck_coherence and deck_chassis gates pass, so it is not capped. Held at 7 by the interior block and frame 2."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every numeral traces in figures.json. 33 and 34 come from c8. $10,537,400, $6,423,554 and 64.04% come from c15. Eight and 160 come from c43. 57463 and 57941 come from c10 and c9. July 10th, 2025 comes from c10 and c31. The caption's 24 and 26 come from c18 and c20, and its 30 from c5. The labels on 3, 4, 5 and 6 are verbatim. The absence is scoped correctly: frame 6 says 'The report gives that line no count of detections. A missing count isn't a count of none', and figures.json keeps detections_reported as a drawn empty, never a printed zero. Frame 8 now carries c52 as attributed Tribune reporting. It is still at the 7 descriptor for two reasons. First, the Smokehouse Creek cause on frame 2 and the 8-of-160 count on frame 8 rest on the Tribune (secondary_reported) where primary records exist, though both are honestly attributed. Second, caption line 9 reads 'That rule gives 30 days after notice to intervene.' No rule has been named for 'That rule' to point back to, so the scoping to 25.60 only works by adjacency. A lead for the integrity judge, not a hard fail: copy.json's 'caption' field still holds the round 1 text ('Under the state's wildfire plan rule, the deadline to intervene in a utility's plan case is 30 days after notice'), while caption.txt holds the new text. Confirm the email and post carry caption.txt."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan swiping once learns what happened (frames 4 and 5: the order asked for detections, the report answered with cameras) and who decided it (the PUCT, July 10th, 2025, Docket 57463). They also learn why it matters: frame 2's Smokehouse Creek and SPS's own 'appeared to be involved in two ignitions', plus frame 7's 64.04% cost overrun. Hutchinson County is now named on frame 9. What they can DO is still thin. Frame 9's kicker says 'What a Texan can do', but the body has no verb for the reader. It says where the two filings 'sit' and that 'each annual report carries the same line', with no next report date and no open case. The Hutchinson County sentence is about a hardening circuit, not the cameras, so the county is named but not tied to the stake. The caption's 30-day window names no docket and no notice date for SPS's separate wildfire plan, which frame 8 says was submitted 'the month before' a September hearing. So a reader can't tell whether that door is open. The 10 descriptor asks for the deadline, and here it is a rule, not a date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe: 'Agreed to count fire detections. Counted cameras.' is the whole story in seven words. Frame 2 pays at once with the fire. The turn at 7, 'The cost was counted to the dollar.', lands as the moment the missing number becomes a choice. The close is fixed from round 1: 'How many fires have the cameras detected?' is a question a reader carries away, and it matches the caption's last line. Frames 5 and 6 still both state the substitution, and 4 and 5 are the same desk, so one frame could go without loss. Frame 8 widens to the statewide 8-of-160 and a separate law, which interrupts the SPS thread just before the close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.1,
+   "why": "Clean and on register, and it keeps the house rules: can't, isn't, no colons outside the verbatim labels, the post-year 'May 1st' without a year and the prior-year date with one, no banned words. Good lines include 'Two cameras turn. A person checks.' (frame 3), 'A missing count isn't a count of none.' (frame 6) and 'The cost was counted to the dollar.' (frame 7). It is fair to SPS, carrying its partial-year caveat on frame 5. It reads as a careful filings reader more than a Panhandle voice, and the regional texture is in the art, not the words. Two flat lines: frame 9's 'The order sits in Docket 57463 and the report SPS filed on May 1st in Project 57941' is clerk prose on the close, and the caption's 'That rule gives 30 days' dangles."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "The subject is new for the window (a wildfire camera metric at a Panhandle utility, read from the commission order against the compliance report), the storm-front sky is fresh, and the camera pole is a new hero. The familiar moves remain. The spine is again what a document doesn't say (frame 6, 'One line filled. One left bare.'), the house move earlier decks were asked to stop leaning on. Frame 8's hearing room of empty chairs and a podium is a room the ledger already holds from no. 24, and the document-on-a-desk interior on 4 and 5 is a default. A fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.896,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Fetch SPS's wildfire mitigation plan case on the PUCT Interchange (the plan frame 8 says was submitted the month before the September hearing) and put its docket number, notice date and computed intervention deadline, open or closed, on frame 9 in place of 'The order sits in Docket 57463...'. That gives the 'What a Texan can do' kicker a real door with a date, and the caption's dangling 'That rule gives 30 days' becomes that case's named deadline."
+}

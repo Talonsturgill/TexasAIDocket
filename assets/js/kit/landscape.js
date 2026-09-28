@@ -1009,12 +1009,16 @@ export function install(K, THREE, TXT) {
     return m;
   }
   const asGround = (obj) => { obj.traverse((m) => { if (m.isMesh) m.userData.txGround = true; }); return obj; };
-  // cliff and talus rock: horizontal strata, vertical joints; tiles every 24 m
+  /* cliff rock: horizontal strata, vertical joints. One tile covers 70 m along the rim by 24 m of
+   * height. THE BEDS ARE 1.5 M, NOT 0.5 (no. 36, 2026-09-28). At 4 by 48 cells a bed was 17.5 m
+   * long and 0.5 m tall, a 35 to 1 streak, and at the 1 to 8 km this model is placed at a 0.5 m
+   * bed is under a pixel, so the map aliased into "stretched horizontal terraced striations" that
+   * all three judges read as a render artifact on six frames. 6 by 16 is 11.7 m by 1.5 m. */
   function strataTex() {
     return canvasTex('strata', 512, (x, N, r) => {
-      const n1 = tileNoise2(601, 4, 48), n2 = tileNoise(603, 64), n3 = tileNoise2(607, 96, 6);
+      const n1 = tileNoise2(601, 6, 16), n2 = tileNoise(603, 64), n3 = tileNoise2(607, 96, 6);
       pixelPaint(x, N, (i, j) => { const u = i / N, v = j / N;
-        let k = 0.86 + (n1(u * 4, v * 48) - 0.5) * 0.28 + (n2(u * 64, v * 64) - 0.5) * 0.14;
+        let k = 0.86 + (n1(u * 6, v * 16) - 0.5) * 0.28 + (n2(u * 64, v * 64) - 0.5) * 0.14;
         const jt = n3(u * 96, v * 6); if (jt > 0.76) k *= 1 - (jt - 0.76) * 0.7;      // joints
         const g = 245 * k; return [g, g * 0.97, g * 0.93]; });
     });
@@ -1040,7 +1044,10 @@ export function install(K, THREE, TXT) {
         const c = Math.cos(th), s = Math.sin(th);
         const lobes = fbm(nA, c * 1.3 + 5, s * 1.3 + 5, 4);
         const e = butte ? 1 : (1 + 0.35 * c * c);                    // longer than deep
-        return R0 * e * (0.72 + 0.55 * lobes) * (1 + (nB(th * 40, 3) - 0.5) * 0.035);
+        // jitter sampled by the columns (about 38 cells round, 10 columns each) and PERIODIC in th:
+        // nB(th * 40) put 1.5 columns in a cell, a sawtooth rim, and jumped at th = 0, which is the
+        // right hand end of a mesa seen from the south (no. 36 "hard jagged cutoff at its right end")
+        return R0 * e * (0.72 + 0.55 * lobes) * (1 + (nB(c * 6 + 11, s * 6 + 11) - 0.5) * 0.035);
       };
       // radial profile: [offset from rim (m), height (m), gully weight, band]
       const prof = [];
@@ -1053,14 +1060,25 @@ export function install(K, THREE, TXT) {
       const h2 = h1 - capT * 0.9, d2 = 1.2 + capT * 0.9;
       for (let i = 1; i <= 16; i++) { const t = i / 16; prof.push({ d: d2 + talusL * t, h: h2 * Math.pow(1 - t, 1.9), gw: 1, band: 3 }); }
       prof.push({ d: d2 + talusL * 1.12, h: -0.5, gw: 1, band: 4 });
-      const rows = prof.length, pos = new Float32Array(NT * rows * 3 + 3), colr = new Float32Array(NT * rows * 3 + 3), uv = new Float32Array(NT * rows * 2 + 2);
+      const rows = prof.length, pos = new Float32Array(NT * rows * 3 + 3), colr = new Float32Array(NT * rows * 3 + 3);
+      // THE MAPPING FOLLOWS THE SURFACE (no. 36, 2026-09-28). A strip on the TOP is mapped in plan, so
+      // the cap no longer fans out from its centre. The CLIFF (cap ledge and face) is mapped along the
+      // rim and up, so its beds are horizontal. The TALUS is mapped along the rim and DOWN the slope,
+      // so the same map lies as rills running downhill: talus is debris, and mapping it by height had
+      // laid the strata across a slope of 3 to 1 as the terraces the judges named. The rim is
+      // measured by its own arclength, so the texture has no seam where th wraps to 0.
+      const rowMode = prof.map((P) => (P.top != null ? 0 : P.band >= 3 ? 2 : 1));
+      const RR = new Float32Array(NT), arc = new Float32Array(NT + 1);
+      for (let i = 0; i < NT; i++) RR[i] = rimR(i / NT * TAU);
+      for (let i = 0; i < NT; i++) { const a0 = i / NT * TAU, a1 = (i + 1) / NT * TAU, i2 = (i + 1) % NT;
+        arc[i + 1] = arc[i] + Math.hypot(Math.cos(a1) * RR[i2] - Math.cos(a0) * RR[i], Math.sin(a1) * RR[i2] - Math.sin(a0) * RR[i]); }
       const pal = o.rock === 'tan'
         ? { cap: 0xc9b58f, face: 0xb49c78, soft: 0xa58766, talus: 0x9c8466, foot: 0x8e7f5e }
         : { cap: 0xcdb892, face: 0xb07a58, soft: 0xa55f43, talus: 0x9a6248, foot: 0x8a6f52 };
       const cCap = col(pal.cap), cFace = col(pal.face), cSoft = col(pal.soft), cTal = col(pal.talus), cFoot = col(pal.foot), cTop = col(0x8c8458), tmp = new THREE.Color();
       for (let i = 0; i < NT; i++) {
         const th = i / NT * TAU, c = Math.cos(th), s = Math.sin(th), Rr = rimR(th);
-        const gul = Math.pow(Math.abs(fbm(nG, th * 9 + fbm(nA, th * 3, 2, 2) * 3, 1.5, 3) * 2 - 1), 0.55);   // 0 in a gully, 1 on a spur
+        const gul = Math.pow(Math.abs(fbm(nG, c * 9 + 20 + fbm(nA, c * 3 + 20, s * 3 + 20, 2) * 3, s * 9 + 20, 3) * 2 - 1), 0.55);   // 0 in a gully, 1 on a spur; periodic round the rim
         for (let k = 0; k < rows; k++) {
           const P = prof[k]; let rad, y;
           if (P.top != null) { rad = Rr * P.top; y = H + (fbm(nB, c * P.top * 3, s * P.top * 3, 3) - 0.5) * H * 0.04 + 0.3 * (1 - P.top); }
@@ -1069,7 +1087,11 @@ export function install(K, THREE, TXT) {
             rad = Rr + P.d * (1 + (gul - 0.5) * 0.5 * P.gw);
             y = P.h;
             if (P.band >= 2 && P.band < 4) y *= 1 - (1 - gul) * 0.1 * P.gw * Math.sin(Math.PI * Math.min(1, t * 1.4));
-            y += (nB(th * 60, P.d * 0.2) - 0.5) * 1.2 * P.gw;
+            // was nB(th * 60), one cell a column: a sawtooth foot. It also fades out over the last 6 m
+            // of height, because the talus is nearly flat there and a metre of jitter moved the line
+            // where it meets the ground by tens of metres, which is the ragged foot the judges saw
+            y += (nB(c * 9 + 31, s * 9 + 31 + P.d * 0.02) - 0.5) * 1.2 * P.gw * Math.min(1, Math.max(0, P.h) / 6);
+            if (P.band === 4) y = Math.min(y, -0.3);                                // the foot stays under grade
           }
           const q = (i * rows + k) * 3;
           pos[q] = c * rad; pos[q + 1] = y; pos[q + 2] = s * rad;
@@ -1078,20 +1100,33 @@ export function install(K, THREE, TXT) {
           else if (P.band === 2) mix3(tmp, cFace, cSoft, (P.h > 0 ? (h1 - P.h) / (capT * 0.9) : 1));
           else { const t = (h2 - P.h) / h2; mix3(tmp, cSoft, cTal, smooth(0, 0.35, t)); mix3(tmp, tmp, cFoot, smooth(0.6, 1, t)); tmp.multiplyScalar(0.88 + gul * 0.18); }
           colr[q] = tmp.r; colr[q + 1] = tmp.g; colr[q + 2] = tmp.b;
-          uv[(i * rows + k) * 2] = th * Rr / 70; uv[(i * rows + k) * 2 + 1] = y / 24;
         }
       }
-      const idx = [];
+      const idx = [], triMode = [];
       for (let i = 0; i < NT; i++) { const i2 = (i + 1) % NT;
-        for (let k = 0; k < rows - 1; k++) { const a = i * rows + k, b = i2 * rows + k, c2 = i * rows + k + 1, d = i2 * rows + k + 1; idx.push(a, b, c2, b, d, c2); } }
+        for (let k = 0; k < rows - 1; k++) { const a = i * rows + k, b = i2 * rows + k, c2 = i * rows + k + 1, d = i2 * rows + k + 1; idx.push(a, b, c2, b, d, c2);
+          const md = rowMode[k] === 0 ? 0 : (rowMode[k] === 2 && rowMode[k + 1] === 2 ? 2 : 1); triMode.push(md, md); } }
       const cI = NT * rows; pos[cI * 3] = 0; pos[cI * 3 + 1] = H + 0.3; pos[cI * 3 + 2] = 0;   // centre of the top
       colr[cI * 3] = cTop.r; colr[cI * 3 + 1] = cTop.g; colr[cI * 3 + 2] = cTop.b;
-      for (let i = 0; i < NT; i++) idx.push(cI, ((i + 1) % NT) * rows, i * rows);
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-      geo.setAttribute('color', new THREE.BufferAttribute(colr, 3));
+      for (let i = 0; i < NT; i++) { idx.push(cI, ((i + 1) % NT) * rows, i * rows); triMode.push(0); }
+      const ig = new THREE.BufferGeometry();
+      ig.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      ig.setAttribute('color', new THREE.BufferAttribute(colr, 3));
+      ig.setIndex(idx); ig.computeVertexNormals();                    // smooth normals across every strip, before the split
+      const geo = ig.toNonIndexed(), uv = new Float32Array(idx.length * 2);
+      for (let t = 0; t < triMode.length; t++) {
+        const md = triMode[t], cols = [0, 1, 2].map((j) => (idx[t * 3 + j] === cI ? -1 : Math.floor(idx[t * 3 + j] / rows)));
+        const wrap = cols.includes(NT - 1) && cols.includes(0);
+        for (let j = 0; j < 3; j++) {
+          const v = idx[t * 3 + j], o = (t * 3 + j) * 2, X = pos[v * 3], Yv = pos[v * 3 + 1], Z = pos[v * 3 + 2];
+          if (md === 0) { uv[o] = X / 70; uv[o + 1] = Z / 70; continue; }
+          const ci = cols[j], along = (wrap && ci === 0) ? arc[NT] : arc[ci], k = v - ci * rows, P = prof[k];
+          if (md === 1) { uv[o] = along / 70; uv[o + 1] = Yv / 24; }
+          else { uv[o] = (P.d || 0) / 70; uv[o + 1] = along / 24; }
+        }
+      }
       geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
-      geo.setIndex(idx); geo.computeVertexNormals();
+      ig.dispose();
       const m = farMat('mesa', { color: 0xffffff, vertexColors: true, map: strataTex(), roughness: 0.95 }, o.aerial, 0.82);
       g.add(new THREE.Mesh(geo, m));
       // scrub dotted over the talus and the top: mesquite, juniper, creosote

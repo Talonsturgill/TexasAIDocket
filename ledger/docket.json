@@ -1,8 +1,9 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-27",
+  "generated": "2026-09-28",
   "gates": [
+   "banned words",
    "claims",
    "cross references",
    "deadlines",
@@ -3028,15 +3029,7 @@
      "note": "The Georgetown abatement still stands as the court granted it to the server service center.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.wilcotx.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.wilcotx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "Austin City Council adopted Ordinance 20260423-029 creating City Code Chapter 2-19 on surveillance technology",
@@ -4856,15 +4849,7 @@
      "note": "The conditional use permit for the Airport Drive data center still stands as the commission approved it, and the report of the vote reads as it did.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.wichitafallstx.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.wichitafallstx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "Young County Commissioners Court receives the Project Saltworks tax abatement application and ratifies a developer funded escrow for consultants",
@@ -5641,8 +5626,8 @@
      "www.newschannel10.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-24",
-    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, measured 2026-09-24. www.sec.gov answered 403. Nothing was routed around."
+    "checked": "2026-09-28",
+    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, re-measured 2026-09-28. www.sec.gov answered 403 on 2026-09-24. Nothing was routed around."
    }
   },
   {
@@ -8422,15 +8407,7 @@
      "note": "The ordinance capping data center cooling water is still posted by the city beside its data center page, and closed loop cooling is still what it requires.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.sanangelo.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "San Angelo writes data centers into its zoning code and makes them a conditional use only",
@@ -8614,15 +8591,7 @@
      "note": "San Angelo's zoning code still treats a data center as a conditional use only, in the ordinance the city posts.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.sanangelo.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "San Angelo sets reporting rules for data center coolant discharged into the city sewer",
@@ -8787,15 +8756,7 @@
      "note": "The reporting rules for coolant sent into the city sewer still stand in the ordinance the city posts.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.sanangelo.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.sanangelo.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "Reeves County Emergency Services District No. 2 takes up a Chapter 312 abatement for a gas plant built to run data centers",
@@ -13951,6 +13912,10 @@
     {
      "date": "2026-09-26",
      "note": "The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again."
+    },
+    {
+     "date": "2026-09-28",
+     "note": "The county's own notice could not be read again, so the named assignee and the estimated cost it states rest on the last reading rather than a fresh one. Nothing on the record says the assignment the court approved has been undone."
     }
    ],
    "unreachable": {
@@ -13958,8 +13923,8 @@
      "www.brazoscountytx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
+    "checked": "2026-09-28",
+    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent on 2026-09-28, on the item's own front door, as it did on 2026-09-24. www.kbtx.com, which carries the vote, names ClaudeBot under Disallow: / in robots.txt. There is no second door the record can use, so nothing was routed around."
    }
   },
   {
@@ -17631,7 +17596,7 @@
     }
    ],
    "id": "tx-2026-0125",
-   "last_verified": "2026-09-27",
+   "last_verified": "2026-09-28",
    "history": [
     {
      "date": "2026-09-07",
@@ -17674,6 +17639,11 @@
     {
      "date": "2026-09-27",
      "note": "The center's user guide still gives October 1st as the day Frontera's queues close for good.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-28",
+     "note": "With the closing date close, the user guide still carries the notice unchanged, and Horizon is still described as limited to internal users.",
      "checked": true
     }
    ]
@@ -17782,15 +17752,7 @@
      "note": "Brownsville's temporary moratorium is still before the commission, with no final action posted.",
      "checked": true
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.brownsvilletx.gov"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.brownsvilletx.gov answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
@@ -18700,15 +18662,7 @@
      "date": "2026-09-26",
      "note": "The council began the procedure for a 90 day moratorium on data center rezoning, permits and annexation, and the petition's 18 month version failed without a second. The moratorium still needs two public hearings before it takes hold."
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "www.mylubbock.us"
-    ],
-    "boundary": "blocks_every_client",
-    "checked": "2026-09-24",
-    "note": "www.mylubbock.us answered 403 to curl with a browser User-Agent and to WebFetch on 2026-09-24, on the item's own front door. There is no second door the record can use, so nothing was routed around."
-   }
+   ]
   },
   {
    "title": "The grid operator sets an October 6th workshop on how it would curtail a large load under Senate Bill 6",
@@ -21851,8 +21805,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-24",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-28",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around."
    }
   },
   {
@@ -21972,8 +21926,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-24",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-28",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around."
    }
   },
   {
@@ -22084,8 +22038,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-09-24",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-24, on a single line. www.hayscountytx.gov, which carries the same county's own copy, answers 403 to curl and to WebFetch alike, so there is no second door. The agenda entry this item is read from can't be fetched again and was not routed around."
+    "checked": "2026-09-28",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around."
    }
   },
   {
@@ -22758,7 +22712,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-09-27",
+   "last_verified": "2026-09-28",
    "history": [
     {
      "date": "2026-09-20",
@@ -22783,6 +22737,11 @@
     {
      "date": "2026-09-27",
      "note": "The foundation's award naming Texas Southern to lead a regional node still stands as made.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-28",
+     "note": "The award record still puts Texas Southern at the head of one of the network's regional nodes, with its start date days away and unchanged.",
      "checked": true
     }
    ]
@@ -24151,6 +24110,344 @@
    ],
    "id": "tx-2026-0190",
    "last_verified": "2026-09-27"
+  },
+  {
+   "title": "PUCT wildfire plan blueprint lists cameras suggested, not required",
+   "summary": "The wildfire mitigation plan rule, 16 TAC §25.60, reaches every electric utility, municipally owned utility and electric cooperative that owns transmission or distribution lines in Texas. In Project 59053 commission staff filed a pro forma plan and guidelines that a utility may use and is not required to use. Its situational awareness section names cameras or other monitoring technology among the tools a plan describes. That section is marked suggested rather than required. Pano AI sells AI smoke detection cameras and names Xcel Energy, CenterPoint Energy, American Electric Power and Austin Energy as its Texas customers. It had asked staff to make a description of situational awareness tools a minimum requirement. A House State Affairs hearing reported on September 21st, 2026 heard that only eight of 160 utilities in fire-prone areas had complied with the plan law. The same hearing heard that Southwestern Public Service, which operates as Xcel Energy in the Panhandle, has deployed AI smoke detection cameras across its service territory.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Public Utility Commission of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": null
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2025-12-04",
+     "kind": "effective",
+     "note": "16 TAC §25.60, Transmission and Distribution Wildfire Mitigation Plans, takes effect"
+    },
+    {
+     "date": "2026-04-10",
+     "kind": "filed",
+     "note": "Commission staff files its pro forma wildfire mitigation plan and guidelines in Project 59053"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The pro forma is final. Each utility files its own plan as an application at the commission. The rule sets the intervention deadline at 30 calendar days from the date notice of that application is complete. The pro forma, the comments filed on it and TDEM's wildfire risk area determination are public in Project 59053 on the commission's filing system.",
+    "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59053&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the rule, staff's pro forma memo and plan, and Pano AI's filed comment in Projects 56789 and 59053. The count of utilities that have filed and the SPS camera deployment come from the Texas Tribune's hearing report. The 97 cameras cover the whole SPS service territory, which includes New Mexico. No Texas count exists in the record.",
+   "history": [
+    {
+     "date": "2026-09-28",
+     "note": "Admitted on the commission's own rule and staff's pro forma, with a hearing report on how many utilities have filed."
+    }
+   ],
+   "claims": [
+    {
+     "text": "The wildfire mitigation plan rule reaches every utility, municipal utility and cooperative with transmission or distribution lines in Texas.",
+     "verbatim_quote": "This section applies to each electric utility, municipally owned utility, and electric cooperative that owns a transmission or distribution facility in this state.",
+     "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/rulesnlaws/subrules/electric/25.60/25.60.pdf",
+     "source_title": "PUCT, 16 TAC §25.60, Transmission and Distribution Wildfire Mitigation Plans",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c1"
+    },
+    {
+     "text": "Using the pro forma is optional.",
+     "verbatim_quote": "An entity required to file an application for approval of a wildfire mitigation plan may, but is not required to, use a pro forma plan.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF",
+     "source_title": "PUCT Project 59053, Commission Staff's Pro Forma Wildfire Mitigation Plan and Guidelines, filed April 10th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c2"
+    },
+    {
+     "text": "The pro forma's situational awareness section names cameras among the tools a plan describes.",
+     "verbatim_quote": "Cameras or other monitoring technology",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF",
+     "source_title": "PUCT Project 59053, Commission Staff's Pro Forma Wildfire Mitigation Plan and Guidelines, filed April 10th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c3"
+    },
+    {
+     "text": "The situational awareness section is marked suggested, for operational decisions during elevated risk.",
+     "verbatim_quote": "to support operational decision-making during elevated risk conditions",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF",
+     "source_title": "PUCT Project 59053, Commission Staff's Pro Forma Wildfire Mitigation Plan and Guidelines, filed April 10th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c4"
+    },
+    {
+     "text": "Pano AI asked staff to make a description of situational awareness tools a minimum requirement.",
+     "verbatim_quote": "Pano recommends inclusion of an additional minimum requirement to provide a description of the use of situational awareness solutions.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF",
+     "source_title": "PUCT Project 59053, Comments of Pano AI in response to Draft Pro Forma Wildfire Mitigation Plan, filed December 29th, 2025",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c5"
+    },
+    {
+     "text": "Pano AI describes what its cameras do when paired with AI analytics.",
+     "verbatim_quote": "When paired with native AI-based analytics, these enterprise-grade camera systems can automatically surface anomalies, rapidly identify and locate smoke or heat signatures, pinpoint the precise coordinates of ignitions, and support faster decision-making, operational response, and coordination by utilities and public safety agencies.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF",
+     "source_title": "PUCT Project 59053, Comments of Pano AI in response to Draft Pro Forma Wildfire Mitigation Plan, filed December 29th, 2025",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c6"
+    },
+    {
+     "text": "Pano AI names its Texas utility customers.",
+     "verbatim_quote": "Our solution is deployed with more than 20 electric utility companies across the United States, including CenterPoint Energy, American Electric Power, Xcel Energy, and Austin Energy in Texas.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF",
+     "source_title": "PUCT Project 59053, Comments of Pano AI in response to Draft Pro Forma Wildfire Mitigation Plan, filed December 29th, 2025",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c7"
+    },
+    {
+     "text": "The commission says every utility must submit a plan and need not use the blueprint.",
+     "verbatim_quote": "These tools do not replace utility-specific planning, and utilities are not required to use the pro-forma blueprint when preparing a WMP.",
+     "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/resources/pubs/news/2026/PUCT-Announces-Blueprint-Guidelines-for-Utility-Wildfire-Mitigation-Plans.pdf",
+     "source_title": "PUCT news release, PUCT Announces Blueprint, Guidelines for Utility Wildfire Mitigation Plans, April 17th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c8"
+    },
+    {
+     "text": "Lawmakers heard that few utilities in fire-prone areas had complied.",
+     "verbatim_quote": "Only eight of 160 utility companies that operate in fire-prone areas of Texas have complied with a law that helps mitigate wildfires, lawmakers recently learned.",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/",
+     "source_title": "Texas Tribune, Despite state law, only eight of 160 utility companies have filed wildfire response plans, September 21st, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c9"
+    },
+    {
+     "text": "Southwestern Public Service told lawmakers it has deployed AI smoke detection cameras.",
+     "verbatim_quote": "The company was heavily criticized in the wake of the fires and has since deployed 97 wildfire detection cameras across its service territory. The cameras use AI to detect smoke and provide that information in real-time to utility personnel, local fire responders and emergency managers.",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/",
+     "source_title": "Texas Tribune, Despite state law, only eight of 160 utility companies have filed wildfire response plans, September 21st, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c10"
+    },
+    {
+     "text": "The Smokehouse Creek fire started at an Xcel Energy pole.",
+     "verbatim_quote": "It was the largest wildfire in Texas history, started when a decayed power pole owned by Xcel Energy snapped and landed in dry grass.",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/",
+     "source_title": "Texas Tribune, Despite state law, only eight of 160 utility companies have filed wildfire response plans, September 21st, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c11"
+    },
+    {
+     "text": "The commission's director gave lawmakers the count still preparing plans and the count not heard from.",
+     "verbatim_quote": "Corona said another 135 have indicated to the PUC they are in the process of preparing their plan. This leaves 13 who have not communicated their plans to the PUC.",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/",
+     "source_title": "Texas Tribune, Despite state law, only eight of 160 utility companies have filed wildfire response plans, September 21st, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c12"
+    },
+    {
+     "text": "The committee chair told utilities that have not filed that no excuse is good enough.",
+     "verbatim_quote": "I think it’s imperative for anybody that has not filed that report to realize January is coming. You will file that wildfire mitigation plan, and if you’re dragging your feet, there’s no excuse good enough for me.",
+     "source_url": "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/",
+     "source_title": "Texas Tribune, Despite state law, only eight of 160 utility companies have filed wildfire response plans, September 21st, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c13"
+    },
+    {
+     "text": "Xcel Energy lists AI predictive modeling and panoramic cameras among its Texas resiliency plan's wildfire measures.",
+     "verbatim_quote": "Measures include enhanced inspections, vegetation clearing, replacing structures, installing weather stations, using AI for predictive modeling, placing panoramic cameras, upgrading fire-resistant equipment, and improving emergency response plans.",
+     "source_url": "https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas",
+     "source_title": "Xcel Energy Stories, Powering through, Xcel Energy's commitment to a resilient Texas",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c14"
+    },
+    {
+     "text": "The commission lists SPS's approved resiliency plan and its wildfire aim.",
+     "verbatim_quote": "Improve detection, prevention, and ability to withstand wildfires",
+     "source_url": "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/",
+     "source_title": "PUCT, System Resiliency Plans",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c15"
+    },
+    {
+     "text": "TDEM counts a county as a wildfire risk area when it has asked the state for wildfire help in the preceding 36 months.",
+     "verbatim_quote": "requested state assistance in responding to a wildfire, including a request made through TDEM or the Texas A&M Forest Service.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_19_1582214.ZIP",
+     "source_title": "PUCT Project 59053, TDEM Wildfire Risk Area Determination, filed February 5th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c16"
+    },
+    {
+     "text": "The rule sets how long a party has to intervene in a utility's plan application.",
+     "verbatim_quote": "the intervention deadline is 30 calendar days from the date service of notice is complete.",
+     "source_url": "https://ftp.puc.texas.gov/public/puct-info/agency/rulesnlaws/subrules/electric/25.60/25.60.pdf",
+     "source_title": "PUCT, 16 TAC §25.60, Transmission and Distribution Wildfire Mitigation Plans",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0191-c17"
+    }
+   ],
+   "id": "tx-2026-0191",
+   "last_verified": "2026-09-28"
+  },
+  {
+   "title": "Asked for AI camera fire detections, Xcel counted cameras",
+   "summary": "The Public Utility Commission of Texas approved the system resiliency plan of Southwestern Public Service Company, which serves the Panhandle as Xcel Energy, in Docket 57463. The order lists the metrics the utility must carry into its annual reports. One of them is the number of artificial intelligence camera fire detections. The utility filed its first annual report in Project 57941 on May 1st, 2026. Against that metric it reports 33 cameras installed and projects 34 for 2026, and it gives no count of detections. The same report counts 24 wildfire ignitions associated with its overhead power lines and puts the 2026 capital cost of the AI camera project 64.04 percent above the plan's estimate.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Public Utility Commission of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Hutchinson",
+     "Moore"
+    ],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2025-07-10",
+     "kind": "ordered",
+     "note": "Commission order approving the SPS system resiliency plan filed in Docket 57463"
+    },
+    {
+     "date": "2026-05-01",
+     "kind": "filed",
+     "note": "SPS files its System Resiliency Plan Annual Report for 2025 in Project 57941"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The plan is approved and the report is filed. Both are public on the commission's filing system, the order in Docket 57463 and the annual report in Project 57941. A reader with a question about either can contact the commission.",
+    "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=57941&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "The order is a scanned PDF and its quotes come from the text layer Interchange serves, checked phrase by phrase. The annual report's quotes match both its served text layer and the native PDF in the ZIP beside it. The plan covers SPS's whole Texas service area, which the resiliency study puts at 37 counties in a map rather than a list, so the record names only the counties its filings name in text: Hutchinson, where the plan's example of work in its highest wildfire risk area sits, and Moore, where the report's one resiliency event was declared.",
+   "history": [
+    {
+     "date": "2026-09-28",
+     "note": "Admitted on the commission's own order and the utility's first annual report under it."
+    }
+   ],
+   "claims": [
+    {
+     "text": "The commission approved the SPS resiliency plan application.",
+     "verbatim_quote": "including $538.3 million of investments tailored to the characteristics of its service area.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF",
+     "source_title": "PUCT Docket 57463, Order approving Southwestern Public Service Company's system resiliency plan, filed July 10th, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c1"
+    },
+    {
+     "text": "The order names AI camera fire detections as a metric.",
+     "verbatim_quote": "number of artificial intelligence camera fire detections;",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF",
+     "source_title": "PUCT Docket 57463, Order approving Southwestern Public Service Company's system resiliency plan, filed July 10th, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c2"
+    },
+    {
+     "text": "The order requires the metrics in the annual reports.",
+     "verbatim_quote": "will include those evaluation metrics and criteria in the annual reports filed under 16 TAC § 25.62(g).",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF",
+     "source_title": "PUCT Docket 57463, Order approving Southwestern Public Service Company's system resiliency plan, filed July 10th, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c3"
+    },
+    {
+     "text": "The first annual report answers the detection metric with a count of cameras.",
+     "verbatim_quote": "Number of artificial intelligence camera fire detections. • Actual: 33 cameras installed • Projected: 34 for 2026",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF",
+     "source_title": "PUCT Project 57941, Southwestern Public Service Company's System Resiliency Plan Annual Report for 2025, filed May 1st, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c4"
+    },
+    {
+     "text": "The report counts ignitions associated with overhead lines.",
+     "verbatim_quote": "Number of wildfire ignitions associated with electric overhead power lines within each wildfire risk tier. • Actual: 24",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF",
+     "source_title": "PUCT Project 57941, Southwestern Public Service Company's System Resiliency Plan Annual Report for 2025, filed May 1st, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c5"
+    },
+    {
+     "text": "The report says what the AI cameras are for.",
+     "verbatim_quote": "ability to detect smoke, identify fires, notify the Wildfire Command Center",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF",
+     "source_title": "PUCT Project 57941, Southwestern Public Service Company's System Resiliency Plan Annual Report for 2025, filed May 1st, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c6"
+    },
+    {
+     "text": "The AI camera project's 2026 capital cost runs over the plan's estimate.",
+     "verbatim_quote": "resulting in a 64.04% change",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF",
+     "source_title": "PUCT Project 57941, Southwestern Public Service Company's System Resiliency Plan Annual Report for 2025, filed May 1st, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c7"
+    },
+    {
+     "text": "The report names Moore County in the reporting period's one resiliency event.",
+     "verbatim_quote": "Moore County issued a local disaster declaration",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF",
+     "source_title": "PUCT Project 57941, Southwestern Public Service Company's System Resiliency Plan Annual Report for 2025, filed May 1st, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c8"
+    },
+    {
+     "text": "The commission lists the SPS plan among approved resiliency plans.",
+     "verbatim_quote": "Southwestern Public Service Company (SPS) (Docket No. 57463)",
+     "source_url": "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/",
+     "source_title": "PUCT, System Resiliency Plans",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c9"
+    },
+    {
+     "text": "SPS testimony with the plan application gives a protection zone rebuild on circuit BURN1398 in Hutchinson County as a project in its highest wildfire risk area.",
+     "verbatim_quote": "BURN1398 in Hutchinson County. This lateral circuit lies in SPS’s highest wildfire",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57463_2_1452818.ZIP",
+     "source_title": "Application of Southwestern Public Service Company for Approval of its Transmission and Distribution System Resiliency Plan, direct testimony (PUCT Docket 57463, Item 2)",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c10"
+    }
+   ],
+   "id": "tx-2026-0192",
+   "last_verified": "2026-09-28"
   }
  ]
 }

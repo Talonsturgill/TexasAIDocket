@@ -6,6 +6,46 @@
   "description": "A fact-checked record of AI decisions in Texas.",
   "items": [
     {
+      "id": "https://texasaidocket.com/item/tx-2026-0125/",
+      "url": "https://texasaidocket.com/item/tx-2026-0125/",
+      "title": "Frontera's queues close permanently on October 1st, 2026",
+      "content_text": "The Texas Advanced Computing Center's Frontera user guide carries a warning. The queues close permanently on October 1st, 2026 after seven years of running. Users will still reach Frontera's file systems to transfer data off. Frontera is funded by the National Science Foundation through award 1818253 and the guide calls it the largest cluster dedicated to open science in the United States. The successor is Horizon. It is funded through the Leadership Class Computing Facility award. Horizon's own guide carries a notice dated in July saying it is still limited only to internal users. That guide also says it is in progress. Horizon lists three ways in. They are the facility's own allocations and the National Artificial Intelligence Research Resource Pilot and the state's allocation system.",
+      "date_modified": "2026-09-28T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0175/",
+      "url": "https://texasaidocket.com/item/tx-2026-0175/",
+      "title": "The National Science Foundation puts Texas Southern University in charge of one of five regional nodes in a new HBCU network for AI and quantum science",
+      "content_text": "The National Science Foundation made a cooperative agreement to Texas Southern University in Houston for the HBCU AI and Quantum Innovation Network. The award record carries an award date of September 17th, 2026 and a start date of October 1st, 2026. Clark Atlanta University leads the network. The work runs through five regional nodes and Texas Southern leads one of them. Daniel Vrinceanu is the principal investigator. The stated work is identifying institutional strengths and needs. It also covers regional meetings and workshops. It covers shared training resources and pathways for students and faculty into these fields. The award sits in the foundation's Directorate for Technology, Innovation, and Partnerships.",
+      "date_modified": "2026-09-28T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0191/",
+      "url": "https://texasaidocket.com/item/tx-2026-0191/",
+      "title": "PUCT wildfire plan blueprint lists cameras suggested, not required",
+      "content_text": "The wildfire mitigation plan rule, 16 TAC §25.60, reaches every electric utility, municipally owned utility and electric cooperative that owns transmission or distribution lines in Texas. In Project 59053 commission staff filed a pro forma plan and guidelines that a utility may use and is not required to use. Its situational awareness section names cameras or other monitoring technology among the tools a plan describes. That section is marked suggested rather than required. Pano AI sells AI smoke detection cameras and names Xcel Energy, CenterPoint Energy, American Electric Power and Austin Energy as its Texas customers. It had asked staff to make a description of situational awareness tools a minimum requirement. A House State Affairs hearing reported on September 21st, 2026 heard that only eight of 160 utilities in fire-prone areas had complied with the plan law. The same hearing heard that Southwestern Public Service, which operates as Xcel Energy in the Panhandle, has deployed AI smoke detection cameras across its service territory.",
+      "date_modified": "2026-09-28T00:00:00Z",
+      "tags": [
+        "power-and-the-grid"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0192/",
+      "url": "https://texasaidocket.com/item/tx-2026-0192/",
+      "title": "Asked for AI camera fire detections, Xcel counted cameras",
+      "content_text": "The Public Utility Commission of Texas approved the system resiliency plan of Southwestern Public Service Company, which serves the Panhandle as Xcel Energy, in Docket 57463. The order lists the metrics the utility must carry into its annual reports. One of them is the number of artificial intelligence camera fire detections. The utility filed its first annual report in Project 57941 on May 1st, 2026. Against that metric it reports 33 cameras installed and projects 34 for 2026, and it gives no count of detections. The same report counts 24 wildfire ignitions associated with its overhead power lines and puts the 2026 capital cost of the AI camera project 64.04 percent above the plan's estimate.",
+      "date_modified": "2026-09-28T00:00:00Z",
+      "tags": [
+        "power-and-the-grid"
+      ]
+    },
+    {
       "id": "https://texasaidocket.com/item/tx-2026-0003/",
       "url": "https://texasaidocket.com/item/tx-2026-0003/",
       "title": "PUCT Docket 59315, Oncor application for a 765 kV transmission line across 22 counties",
@@ -246,16 +286,6 @@
       ]
     },
     {
-      "id": "https://texasaidocket.com/item/tx-2026-0125/",
-      "url": "https://texasaidocket.com/item/tx-2026-0125/",
-      "title": "Frontera's queues close permanently on October 1st, 2026",
-      "content_text": "The Texas Advanced Computing Center's Frontera user guide carries a warning. The queues close permanently on October 1st, 2026 after seven years of running. Users will still reach Frontera's file systems to transfer data off. Frontera is funded by the National Science Foundation through award 1818253 and the guide calls it the largest cluster dedicated to open science in the United States. The successor is Horizon. It is funded through the Leadership Class Computing Facility award. Horizon's own guide carries a notice dated in July saying it is still limited only to internal users. That guide also says it is in progress. Horizon lists three ways in. They are the facility's own allocations and the National Artificial Intelligence Research Resource Pilot and the state's allocation system.",
-      "date_modified": "2026-09-27T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
       "id": "https://texasaidocket.com/item/tx-2026-0129/",
       "url": "https://texasaidocket.com/item/tx-2026-0129/",
       "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
@@ -390,16 +420,6 @@
       "url": "https://texasaidocket.com/item/tx-2026-0167/",
       "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server",
       "content_text": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined four things. Solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
-      "date_modified": "2026-09-27T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0175/",
-      "url": "https://texasaidocket.com/item/tx-2026-0175/",
-      "title": "The National Science Foundation puts Texas Southern University in charge of one of five regional nodes in a new HBCU network for AI and quantum science",
-      "content_text": "The National Science Foundation made a cooperative agreement to Texas Southern University in Houston for the HBCU AI and Quantum Innovation Network. The award record carries an award date of September 17th, 2026 and a start date of October 1st, 2026. Clark Atlanta University leads the network. The work runs through five regional nodes and Texas Southern leads one of them. Daniel Vrinceanu is the principal investigator. The stated work is identifying institutional strengths and needs. It also covers regional meetings and workshops. It covers shared training resources and pathways for students and faculty into these fields. The award sits in the foundation's Directorate for Technology, Innovation, and Partnerships.",
       "date_modified": "2026-09-27T00:00:00Z",
       "tags": [
         "research-and-science"

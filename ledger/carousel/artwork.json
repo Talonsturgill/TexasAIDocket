@@ -2314,6 +2314,57 @@
     "hex": "#171310",
     "note": "The deck's declared ground."
    }
+  },
+  {
+   "date": "2026-09-28",
+   "carousel_no": 36,
+   "written_from": "deck_coherence's value track at 432 px and layout_check's accent measurement, both run by this script off the final renders, and the gate suite by exit code.",
+   "register": "RENDERED, NOT PRINTED. One stormFront world declared once in assets/js/deck/2026-09-28-watchtower.js with the haze pulled to a dust grey, a denser cloud deck, a thinner fog and more sky light, one wildfire_camera_station hero built in the chassis with boxed white PTZ heads, the key at azimuth -68 elevation 10, and the one accent #2A7A9E kept to a DOM bar under the line the order named.",
+   "structural_laws": [
+    "THE KIT'S POLE IS A PRIMITIVE AT DETAIL SCALE. Frame 2 was named in three panel rounds, the trunk twice and the pole top once, and read only when recomposed onto a whole distribution line at the distance the kit holds.",
+    "A PRESET'S FOG CAN CLOSE THE WORLD. stormFront's density fogged the plain to a white wall at 150 m and hid every mesa placed kilometres out. The caprock read only at 400 m under a thinner fog.",
+    "A ROUND FACE ON A CAMERA READS AS A LAMP. Boxed white housings with a small rectangular window read as cameras at feed size, and a yoke plate stops a head floating over its turntable.",
+    "A PANE BEHIND A WALL'S FACE RENDERS NOTHING. The window glass on 4 and 5 sat 1 cm behind the interior wall and only its black sash showed, which three judges read as a monitor.",
+    "A MAST UNDER THE SITE LINE STRIKES IT AT EVERY PAN THAT KEEPS BOTH HEADS. Frame 3 was recomposed with the mast just left of the footer and the heads dropped below the dek."
+   ],
+   "techniques": [
+    "one wildfire_camera_station model in the chassis, shot from 30 m through a 30 degree lens, level with its crossarm at 12 m, from a corral 57 m off, beside a pipe yard and from a ranch gate",
+    "33 loose camera heads on the top rail of a pipe corral seen square on, the lower rail left bare, one head per camera the report counts",
+    "two galvanized tubes on timber cribbing from one end plate at the plan and anticipated camera capital on one scale",
+    "a hearing room of 160 seats in ten rows with eight white binders placed where a reader can count them",
+    "a kit distribution line of 40 ft class poles receding across the plain, and a kit ranch gate closed across a caliche road with a Texan turned toward the mast"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     32.1,
+     27.8,
+     33.8,
+     26.1,
+     26.1,
+     30.3,
+     27.4,
+     13.6,
+     31.6
+    ],
+    "deck_median_L": 27.8,
+    "max_adjacent_delta": 18.0,
+    "mean_adjacent_delta": 7.11,
+    "note": "Measured by deck_coherence at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#2A7A9E",
+    "name": "comal, the line the state's order named",
+    "frames_above_floor": [
+     4,
+     5,
+     6
+    ],
+    "note": "A DOM bar under the quoted detections line on 4, 5 and 6. The binders' spine tabs on 8 carry it under the floor."
+   },
+   "ground": {
+    "hex": "#15171C",
+    "note": "The deck's declared ground."
+   }
   }
  ]
 }

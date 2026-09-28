@@ -1,0 +1,79 @@
+{
+ "verdict": "revise",
+ "momentum": "1 to 3 builds. 1 states the charge. 2 gives the stakes, the fire and the pole. 3 climbs to the heads, the biggest and best-read hero shot in the deck. 3 to 4 is a hard cut from the plain to an indoor desk with nothing carried across it. The storyboard promised the loose white head on the desk and it isn't rendered, so the reader loses the object at the exact point the argument moves to paper. 4 to 5 stalls. At thumb size the only visible change is a second sheet on the same desk, so the swipe reads as the same frame twice. 5 to 6 picks up again, because the 33 heads on the rail are the second-best image in the deck. 6 to 7 has the strongest line in the deck, 'The cost was counted to the dollar.', but the art is two small pipes on cribbing that read as a bench, so the irony (dollars counted exactly, detections not counted) gets no picture. 7 to 8 jumps scope with no bridge. The kicker 'House State Affairs' is unexplained, the hero is gone, and the dek ends on top of the seats. 8 to 9 comes back outside to a small figure and a speck of a mast, and it ends on docket numbers. Frame 2's headline 'The Tribune traces it to a pole.' has no antecedent for 'it' when read from frame 1, where the fire appears only in the kicker.",
+ "the_turn": "None that lands. The planned turn is 5, the answer landing on the question, but frame 1's hook 'Asked for fire detections. Counted cameras.' has already given it away, and 6 says it a third time. So 5 and 6 confirm something the reader already knows rather than changing it. The real turn is 7: the utility counted its own cost to the dollar and left the detections line empty. That is the moment the reader's view shifts from a paperwork slip to a choice about what gets counted. Right now it is drawn as the weakest image in the deck.",
+ "rhythm": "Flat. All nine frames have the same weight. Kicker, a 2 to 3 line hook at the same size, a 40 to 55 word dek in the top-left 45 to 55 percent, and the picture in the lower half. No frame lets the image take over and no frame goes quiet. The only change of pace is darkness, the value cut at 8, and even there the density is the same. 7 and 9 are the heaviest in text (four dollar and percent figures on 7, two docket numbers, a county and a rule on 9) exactly where the deck should be loosening toward the close.",
+ "rotation": "Read off the sheet: 1 FULL_BLEED, 2 CLOSE_CROP, 3 DIAGRAM, 4 DOCUMENT, 5 DOCUMENT, 6 GRID (an isotype of heads), 7 OBJECT_AND_CAPTION (it actually reads as a two-bar chart), 8 GRID, 9 FIGURE_SCALE. That is seven distinct layouts with at most two in a row, so the numbers pass. The storyboard contradicts itself: its rotation line says 6 is GRID and 6's dossier says DIAGRAM. Pick one. As one deck: the world continuity is real. 1, 2, 3, 6, 7 and 9 share the stormFront deck, the straw grass and the horizon band. 4, 5 and 8 are dark brown interiors with no visible window, so the storm light never enters them and they read as a second world. The fault the mandate names is here in full: nine frames with a headline at the top and a drawing under it. The type block never moves. Of the declared devices, CAMERA_MOVE works on 1 to 3 and loosely on 6, 7 and 9, and breaks at 4, 5 and 8. MOTIF_EVOLUTION shows only on 3 (heads split) and 6 (heads on the rail). On 1, 7 and 9 the heads are specks, so 'turned away' on 7 and 'facing the reader' on 9 can't be read. EDGE_TEASE does nothing. Frame 1 has no caliche road entering bottom right and no foreground fence, only grass and the mast. The road appears only on 9. A 1 to 9 bookend isn't an edge tease anyway, which by definition runs n to n+1. So one device is half working, below the mandate's two. Accent: the comal rule shows on 4, 5 and 6, as the same underline under the question's label, which is good continuity. The spine tabs on 8 can't be seen, so the real count is three, which is the minimum.",
+ "must_fix": [
+  {
+   "slides": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    9
+   ],
+   "problem": "The hero is recognisable on only 1, 3 and 6. On 2 the station 'small on the ridge' doesn't show at 432px. 4 and 5 have no loose head on the desk, though the dossier bands call for one. 7 and 9 show a thin mast that reads as a utility pole, not the camera station. 8 has none by design. The deck says it is held together by one hero object, and the reader loses it for six frames.",
+   "fix": "Put the object back where the storyboard promised it. On 4 and 5, render the loose white head on its turntable on the desk, left of the pages. Pan it between the two frames so 5 carries a visible change beyond the page. On 2, bring the station up the ridge and scale it until two white heads read at 432px. On 7 and 9, move the camera in or the station forward until the crossarm and both white housings read at thumb size: turned away on 7, facing the lens on 9. With 8 as the only deliberate absence, the hero is on eight of nine."
+  },
+  {
+   "slides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "problem": "Same skeleton nine times: kicker, hook and dek top-left in the same box, picture below. This is the 'headline at the top and a drawing under it' fault the continuity mandate names as a must-fix.",
+   "fix": "Move the type on at least two frames. On 3, let the heads and crossarm fill the upper two-thirds and seat the hook low on the shadowed plain. On 6 (or on 9), cut the dek to one sentence and give the image 70 percent of the frame. Keep the kicker, counter and source line fixed, since they are the furniture that should stay put."
+  },
+  {
+   "slides": [
+    1,
+    5,
+    6
+   ],
+   "problem": "The same job done three times. 1 ('Counted cameras'), 5 ('The answer counted cameras') and 6 ('One line filled. One left bare') all state the substitution. 5 adds only the date and the partial-year caveat, and its picture is 4's picture.",
+   "fix": "Either cut 5 and move its May 1st date and caveat into 6's dek, or make 5 visibly different from 4 (the head pans, the report page covers line j, the light moves across the desk) so the 4 to 5 swipe is a before and after the eye can see. Then 6 gets one short dek sentence and becomes the picture that does the talking."
+  },
+  {
+   "slides": [
+    7
+   ],
+   "problem": "The turn is buried. 'The cost was counted to the dollar.' is the line that changes the reader's understanding, and it gets two small grey pipes in the bottom quarter that read as a bench, with the station a speck at the far right. The two dollar labels crowd the pipes, and 1.64 as a ratio doesn't read.",
+   "fix": "Stage 7 as a camera move off 6. Use the same fence and the same lens, with the station close. The plan and anticipated tubes lie on the two rails where the heads and the bare rail were, so the reader sees in one swipe that the money rail is measured to the dollar and the detections rail is still bare. Make the tubes the main subject (at least 30 percent of the frame, lit tops, both from one end plate) and cut the dek to the two figures and 'a 64.04% change'."
+  },
+  {
+   "slides": [
+    7,
+    8,
+    9
+   ],
+   "problem": "The close carries less drawing than the open. 1 to 3 build the hero up in scale: mast, then the pole, then heads at detail. 7 is pipes in the bottom quarter and an empty sky. 8 is a dark room whose one piece of data, the eight binders, doesn't read at 432px (at most one white mark shows), and the accent tabs can't be seen. 9 is a small figure, a road and a speck of a mast, with a dek of docket numbers. The deck ends by stopping, not by landing.",
+   "fix": "7 as above. On 8, raise the camera and light the binders so eight white marks read as a count against the 160 dark seats. Pull the dek up or trim it so 'requirement.' no longer sits on the seat rows. Bridge 7 to 8 with a kicker the reader can place, such as 'At the Capitol', and a dek that opens on the state before the committee name. On 9, make the station large enough that its two heads visibly face the reader (the motif's payoff) with the figure at the gate beneath it. Replace the abstract hook 'The question stays on the record.' with the unanswered question itself: the caption already ends on it ('How many fire detections have SPS's cameras made so far?'). Move the Hutchinson County sentence to the caption, since nothing sets it up. Make clear that the 30 days apply to a wildfire plan case, which is where the reader can act."
+  },
+  {
+   "slides": [
+    1,
+    9
+   ],
+   "problem": "EDGE_TEASE is declared and not rendered. Frame 1 has no road entering bottom right and no foreground fence. That leaves one working device (CAMERA_MOVE, partly) against a mandate of two.",
+   "fix": "Render the caliche road on 1, leaving at the bottom right as the dossier describes, so 9's road arrives. Also add a real n to n+1 tease across a pair that currently cuts hard, most usefully 3 to 4 (the loose head leaving 3's right edge and sitting on 4's desk) or 6 to 7 (the rail running off 6's right edge into 7). Or make MOTIF_EVOLUTION readable at thumb size on 1, 7 and 9 per the first fix, and name those two as the working pair."
+  },
+  {
+   "slides": [
+    2
+   ],
+   "problem": "The hook 'The Tribune traces it to a pole.' has no antecedent coming from frame 1, which never mentions a fire, so the 1 to 2 swipe reads as a change of subject.",
+   "fix": "Name the fire in the hook, for example 'Smokehouse Creek started at a pole.', and keep the Tribune attribution in the dek, where it already is."
+  }
+ ],
+ "cuttable": [
+  "5: its job is done by 1 and 6, and at thumb size its picture is frame 4's. Keep it only if it is rebuilt as a visible before and after off 4."
+ ]
+}

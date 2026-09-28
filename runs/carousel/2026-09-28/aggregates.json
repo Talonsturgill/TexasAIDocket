@@ -1,0 +1,130 @@
+{
+ "date": "2026-09-28",
+ "_note": "Every figure the detector reads as a count, ratio or duration, declared with the claim it was quoted from. The deck counts nothing of its own on a slide.",
+ "aggregates": [
+  {
+   "phrase": "two ignitions",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c28",
+   "quote": "involved in two ignitions",
+   "note": "SPS testimony's own figure, quoted and attributed on the frame"
+  },
+  {
+   "phrase": "Two cameras",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c25",
+   "quote": "two physical cameras",
+   "note": "the application's own count per camera site, quoted"
+  },
+  {
+   "phrase": "two cameras",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c25",
+   "quote": "two physical cameras",
+   "note": "the application's own count per camera site, quoted"
+  },
+  {
+   "phrase": "two physical cameras",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c25",
+   "quote": "two physical cameras",
+   "note": "the application's own count per camera site, quoted"
+  },
+  {
+   "phrase": "33 cameras",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 33,
+   "quoted_from": "c8",
+   "quote": "33 cameras installed",
+   "note": "the report's own actual figure, quoted verbatim"
+  },
+  {
+   "phrase": "33 cameras",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 33,
+   "quoted_from": "c8",
+   "quote": "33 cameras installed",
+   "note": "the report's own actual figure, quoted verbatim, and the head count drawn on the rail"
+  },
+  {
+   "phrase": "Eight of 160",
+   "slide": "slide-08.html",
+   "kind": "ratio",
+   "value": 8,
+   "quoted_from": "c43",
+   "quote": "eight of 160",
+   "note": "the Tribune's reported figure from the hearing, quoted"
+  },
+  {
+   "phrase": "eight of 160",
+   "slide": "slide-08.html",
+   "kind": "ratio",
+   "value": 8,
+   "quoted_from": "c43",
+   "quote": "eight of 160",
+   "note": "the Tribune's reported figure from the hearing, quoted"
+  },
+  {
+   "phrase": "33 cameras",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 33,
+   "quoted_from": "c8",
+   "quote": "33 cameras installed",
+   "note": "the report's own actual figure, quoted"
+  },
+  {
+   "phrase": "24 ignitions",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 24,
+   "quoted_from": "c18",
+   "quote": "Actual: 24",
+   "note": "the report's own actual figure for overhead line ignitions, quoted"
+  },
+  {
+   "phrase": "26 wildfires",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 26,
+   "quoted_from": "c20",
+   "quote": "Actual: 26",
+   "note": "the report's own NIFC wildfire total, quoted"
+  },
+  {
+   "phrase": "six official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 6,
+   "computed_by": "the number of distinct source documents typed primary_official behind the deck's printed claim ids, counted by scripts/carousel/sources_block.py from claims.json when it built first_comment.txt. It is the length of that set rather than a figure anybody typed",
+   "from_claims": [
+    "c1",
+    "c8",
+    "c24",
+    "c31",
+    "c37",
+    "c38"
+   ],
+   "note": "One representative claim id per official document the deck cites: the wildfire plan rule, the annual report, the plan application, the order, the pro forma blueprint and the PUCT news release"
+  },
+  {
+   "phrase": "135 were preparing plans",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 135,
+   "quoted_from": "c45",
+   "quote": "another 135 have indicated",
+   "note": "the PUC director's count as the Tribune reports it, quoted"
+  }
+ ]
+}

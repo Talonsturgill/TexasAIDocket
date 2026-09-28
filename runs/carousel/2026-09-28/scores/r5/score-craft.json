@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Three frames come close to a place at an hour: 1, 2 and 9. They have the storm deck, the caprock in haze and straw grass lit from the left, and on 9 a pipe gate and a figure standing on the caliche road. Past those three, several frames each lean on a primitive or a dead zone, which puts the deck below the 7 descriptor ('one frame leans'). (a) Frame 6 is where the argument lands, and at the 432px thumb its 33 heads read as a comb of tiny T shapes, not as cameras. The row also sits on a strip above the top rail rather than on it. The bottom third (about y 1650 to 2000 at display scale) is flat brown ground with nothing in it. (b) Frame 7's two tubes are flat matte beige cylinders that don't read as galvanized steel, the end plate is a black bar, and the bottom quarter is another dead band. A single stray grass blade enters the bottom right corner beside the site line. (c) Frame 8 is a grid of stacking chairs under a pure black upper half. The storyboard's window light, flags and dais don't read, and translucent cup cylinders are cut off by the bottom edge. (d) Frame 3's heads and crossarm are box primitives at detail scale. The plain behind them is a flat brown field with no depth, meeting the caprock at a hard seam on the right. (e) The mesa is textured in stretched horizontal terraced striations on frames 1, 2, 3, 6, 7 and 9, and it reads as a render artifact at full size. (f) Frames 4 and 5 are a clean, deliberate interior with a page and a stack of binders, but the 'loose white head' the storyboard puts on the desk is absent. The window is a grey slab, and on frame 5 the end of the dek's line 2 ('It says a') runs into the window frame. (g) The acceptance items on frame 1 (a caliche road to the bottom right and a barbed wire fence in the near left) are not in the render. Nothing here is a decorated template or an object floating in a gradient, and every exterior object touches its ground, so it sits above 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.9,
+   "why": "The six exterior frames (1, 2, 3, 6, 7, 9) share one world: the same stormFront deck, the same mesa, the same straw and a key light from the left, with the pad and cribbing shadows on 1 and 7 running right. The station is a clear hero on 1, 3, 7 and 9. The camera move works as a continuity device. Motif evolution mostly works, though the pan of the heads can't be read at thumb size on 7 or 9. The declared edge tease doesn't work: no road leaves frame 1 at the bottom right, so frame 9's road arrives from nowhere. Frames 4 and 5 are a warm brown interior with no station and no head in it. Frame 8 is a cool blue and grey hall on a black wall with no hero, and on the contact sheet it sits clearly outside the palette. That is more than the 7 descriptor's 'one frame slightly outside'."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral on the slides traces to a claim quote. 33 and 34 trace to c8, $10,537,400, $6,423,554 and 64.04% to c15, eight, 160, four and 135 to c43 and c45, 57463 to c10 and c31, 57941 to c9, 2027 to c57, and July 10th, 2025 to c10 and c31. Frames 4 and 5 set the order's line j and the report's line verbatim, and the report's own partial year caveat (c21) is carried on frame 5. Frame 6's dek refuses to read the bare line as zero. The Smokehouse Creek cause is attributed to the Tribune (c53), with SPS's own testimony (c28) set beside it. Weak points: frame 8's hook 'Eight of 160 utilities had filed.' is unattributed in the hook itself, and the Tribune's quote says 'complied with a law' (the dek does attribute it). Frame 9's 'public on the PUCT Interchange' leans on the URLs, not on a claim. The Tribune is the only source for the cause of the fire. None of this changes what a reader believes, and I found no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.2,
+   "why": "A reader learns who decided (the PUCT order of July 10th, 2025), who answered (SPS, Xcel's Panhandle utility, report of May 1st), what the gap between the two is (line j asked for detections and the answer counted cameras), and why it lands in the Panhandle (Smokehouse Creek on frame 2). Frame 9 names both dockets and the 2027 report. No county is named, and no deadline or formal route for a Texan is given beyond 'the filings are public'. The stake past curiosity stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover hook 'Agreed to count fire detections. Counted cameras.' earns the swipe. The turn from 4 to 5 (the same desk, with the answer laid over the question) is the deck's best move, and frame 9's question lands. Frame 6 largely restates frame 5's point in a second form, and 7 and 8 are two side trips in a row (the budget, then the statewide hearing). One of them could be cut or moved without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.1,
+   "why": "It has lines with real dry edge: 'The cost was projected to the dollar.' (frame 7) and 'A missing count isn't a count of none.' (frame 6). The regional nouns (Panhandle, Smokehouse Creek, the caprock in the art) are right. Several deks read clerical, not Texan, most of all frame 8's 'a different rule from resiliency plans' and frame 4's 'as modified by the parties' agreement'. It is clean and on register, with a couple of flat, record-speak lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The beat is new for the window: wildfire and utility AI cameras, and no entry in topics.json is close. The stormFront light is new against decks 32 to 35. The structure is the same rendered-world chassis as the last four, though, with a document on a desk used again as the evidence frame. The opening move (a document asked for X and got Y, so the spine is an absence) is the one the ledger's own angle_notes on decks 11, 14, 15, 16, 23 and 28 flag as the house habit."
+  }
+ ],
+ "weighted_score": 6.97,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 6, the frame where the argument lands, so the heads are the size of frame 3's modelled camera heads (a closer camera with fewer heads in frame, running off both edges, or the rail at eye level). A reader at 432px should see cameras on a rail rather than a comb of T shapes. Fill its empty bottom third, and in the same pass fix the mesa's terraced texture streaking, which is visible on six of nine frames."
+}

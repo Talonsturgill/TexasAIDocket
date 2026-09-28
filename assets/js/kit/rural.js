@@ -1431,4 +1431,47 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       return g;
     },
   });
+
+  /* ====================================================================== pipe rail fence */
+  /* LIFTED from the no. 36 chassis (assets/js/deck/2026-09-28-watchtower.js, 2026-09-28), where it
+   * carried frame 6's row of loose camera heads and frame 9's lease line. No judge named it, so it
+   * comes across as it shipped. The oilfield pipe fence of every Panhandle lease and ranch
+   * headquarters: 0.114 m (4.5 in) pipe posts with welded domed caps at a spacing along x, and
+   * 0.073 m (2 7/8 in) rails welded to their +z faces at the given heights. Origin at the run's
+   * centre on the ground, the run along x, front on +z.
+   * userData: posts ([{x, y}] each post top), rails ([{y, z}] each rail's centre line). */
+  K.define('pipe_rail_fence', {
+    size: [20, 1.7, 0.2],
+    options: { length: 20, spacing: 2.4, rails: [1.5, 0.9], post: 1.65, color: null, flags: [], flag: 0xff6a13, flagAt: null },
+    note: 'Oilfield pipe fence: 4.5 in pipe posts with domed caps, 2 7/8 in rails welded to the post faces. Options length m, spacing m, rails [heights m], post (height m), color (paint hex or null for bare weathered pipe), flags [post indices] carrying survey flagging, flag hex, flagAt (knot height m, null for just under the cap). userData.posts, .rails.',
+    make(o, r) {
+      const g = new THREE.Group(), L = +o.length || 20, sp = +o.spacing || 2.4;
+      const pipe = o.color != null ? K.mat('prf-paint', { color: o.color, roughness: 0.55, metalness: 0.4 })
+                                   : K.mat('prf-pipe', { color: 0xa2a6a5, roughness: 0.55, metalness: 0.45 });   // dull galvanized, so a rail reads as a lit line over the grass (no. 36 round 1)
+      const n = Math.max(2, Math.round(L / sp) + 1), dx = L / (n - 1), posts = [], ph = +o.post || 1.65;
+      for (let i = 0; i < n; i++) {
+        const x = -L / 2 + i * dx;
+        K.cyl(0.057, 0.057, ph, pipe, x, 0, 0, 14, g);
+        const dome = new THREE.Mesh(new THREE.SphereGeometry(0.06, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2), pipe); dome.position.set(x, ph, 0); g.add(dome);
+        posts.push({ x, y: ph });
+      }
+      const rails = [];
+      (o.rails || []).forEach((h) => {
+        K.bar([-L / 2 - 0.06, h, 0.09], [L / 2 + 0.06, h, 0.09], 0.0365, pipe, 12, g);
+        rails.push({ y: h, z: 0.09 });
+      });
+      (o.flags || []).forEach((pi) => {
+        const p = posts[pi]; if (!p) return;
+        const fm = K.mat('prf-flag', { color: o.flag, roughness: 0.7, side: THREE.DoubleSide });
+        const ky = o.flagAt != null ? +o.flagAt : p.y - 0.12;
+        const knot = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.012, 6, 16), fm); knot.rotation.x = Math.PI / 2; knot.position.set(p.x, ky, 0); g.add(knot);
+        for (let k = 0; k < 2; k++) {
+          const tail = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.34), fm);
+          tail.position.set(p.x + 0.04 + k * 0.025, ky - 0.18, 0.06); tail.rotation.set(0.1, 0.4 + k * 0.5, 0.18 - k * 0.3); g.add(tail);
+        }
+      });
+      g.userData.posts = posts; g.userData.rails = rails;
+      return g;
+    },
+  });
 }

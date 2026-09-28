@@ -1,0 +1,110 @@
+Round 2 pixel review of slides 07, 08 and 09 for deck no. 36 "The Watchtower", 2026-09-28. **All three are revise.**
+
+- **Slide 07:** The station fix worked. The tubes are still not pale steel, and there is still no caliche pad.
+- **Slide 08:** The eight binders can now be counted and the flag is gone. The room is still a flat brown card with a black strip above it and no window. The two dais microphones now cross the source line and the site line.
+- **Slide 09:** The gate and the new dek landed. The faceted stones are still there, one of them behind "c10". The figure's face is dark under a black dome cap, and the heads are dark rather than white.
+- **Numbers:** Every number on all three slides traces to a claim (c15 on 07; c43 on 08; c10, c9 and c5 on 09).
+- **Reading:** Nothing was misread at 432 px, and none of the 3 and 5 pairs collapse.
+- **Measurements:** Median L* is estimated by eye on all three, not measured.
+
+Coordinates are in the 1080x1350 frame. The full-size PNG is 2160x2700, so double them. For slides 07 and 09 the checklists pass or fail on counts a reader can't see and leave out the defects that actually show. On slide 08 the crossing check names flags, nameplates and cups but not microphones, so the new crossing passes it.
+
+Files read, all under /home/user/TexasAIDocket/out/2026-09-28/:
+- render/slide-07.png, slide-08.png, slide-09.png, render/thumbs/slide-06.png to slide-09.png
+- storyboard.md, copy.json, claims.json, render/render_report.json (head only)
+- reviews/r1/pixel_07_08.json.txt, reviews/r1/pixel_09.json
+
+```json
+[
+  {
+    "slide": "slide-07",
+    "transcription": "THE CAMERA BUDGET | 07 / 09 | The cost was counted to the dollar. | For 2026 SPS anticipates $10,537,400 of AI camera capital costs against $6,423,554 in the plan. It calls that a 64.04% change. | PLAN $6,423,554 | ANTICIPATED $10,537,400 | c15 DRAWN | texasaidocket.com",
+    "illegible": [],
+    "checklist": [
+      {"item": "the lower tube's length over the upper tube's length measures 1.64 plus or minus 0.03 on the PNG", "pass": true, "note": "Measured on the full size. Upper tube x 108 to 658 (550), lower x 108 to 1010 (902). Ratio 1.64."},
+      {"item": "both tubes start at the same end plate", "pass": true, "note": "A dark plate at x 98 to 118, y 988 to 1123 stands behind both tube ends. On the thumb it reads as a post, which is fine."},
+      {"item": "the tubes read as pale galvanized steel, lighter than the grass around them at 432px", "pass": false, "note": "On the thumb the tubes are khaki or taupe, in the same warm hue family as the straw. The upper tube's top is no lighter than the lit grass behind it (x 108 to 658, y 1002 to 1043). They read as brown pipes, not pale galvanized steel. They now match the mast's taupe, which is better than round 1's matte brown, but they are not pale."},
+      {"item": "the station stands on the right third with its crossarm and both heads clear of the dek", "pass": true, "note": "Mast x about 874 to 890, from the antenna at y 54 to the pier at y 1005. Crossarm x 780 to 918. The dek ends at x 631. The right head does kiss the counter, see must_fix."},
+      {"item": "the frame's median L* at 432px is between 24 and 44", "pass": true, "note": "Estimated by eye at about L* 33 (a dark sky, a light horizon band, straw grass, a dark foreground). Not measured."},
+      {"item": "(reviewer) the checklist tests what failed in round 1", "pass": false, "note": "Round 1 asked for a caliche pad item. It was not adopted, and the pad is still missing, so the checklist passes a frame that fails the dossier's declared subject ('on the pad')."}
+    ],
+    "round1": {
+      "resolved": ["The station is now tall and on the right third, and its two heads read as two boxes on a crossarm at 432 px", "The upper tube's cribbing now sits on the lower tube, so the stack is physically legible", "Grass no longer runs behind the source line or the site line", "The c16 sentence was cut from the dek and from the cite"],
+      "not_resolved": ["The tubes are still not pale galvanized, only lighter brown", "There is still no caliche pad, so the lower third still reads as frame 06's two pipes in grass", "The horizon is still at y 928 against the declared 820. The left two thirds of the band from y 650 to 925 is still bare sky gradient"]
+    },
+    "verdict": "revise",
+    "must_fix": [
+      {"what": "The tubes are taupe, not pale galvanized. On the thumb they are no lighter than the lit straw around them. The dossier's focal is 'the two lit galvanized tubes', and its lightest value is 'the lit top of the tubes', but neither is delivered. The lightest thing below the sky is the grass highlights.", "where": "upper tube x 108 to 658, y 1002 to 1043. Lower tube x 108 to 1010, y 1073 to 1114", "fix": "Set both tubes' material to base colour #C2C6C8, metalness 0.9, roughness 0.3, with envMap from TXT.sky, so the -68/10 key throws a bright specular along each top. If the grade pulls it warm, raise the base to #D0D3D4 rather than touching the grade. Re-check on thumbs/slide-07.png that the tube tops are the lightest pixels below y 928."},
+      {"what": "No caliche pad. Everything below the tubes is a flat, clean, dark brown plane with no texture, grime or contact dirt. It reads as a void floor, which fails the showstopper test ('clean clay, no grime at the base'). Without a pale pad under the steel, the lower third is frame 06 again: two horizontal pipes across straw under a storm sky.", "where": "x 0 to 1080, y 1114 to 1350, and the strip between the tubes and the grass at y 1043 to 1073", "fix": "Lay a TXT.ground caliche surface (albedo about #CBBFA8, with a roughness and dirt variation map) about 14 m by 5 m under the cribbing, so it fills y 1040 to 1350 and grass shows only beyond its far edge. Add TXT.contact darkening and dust where each crib block meets the pad. Then add 'the tubes and cribbing rest on a pale caliche pad visible at 432px' to the slide 7 acceptance list."},
+      {"what": "The right camera head sits about 3 px under the counter. On the thumb the '07' reads as if it is printed on the housing.", "where": "counter '07 / 09' x 884 to 998, y 86 to 108. Right head x 891 to 921, y 111 to 145", "fix": "Move the station 1.2 m left in world X so the right head's right edge lands at or left of x 872. The crossarm will then span about x 740 to 872, still right of the dek's edge at 631. Or keep X and shorten the mast 8 percent so the head tops sit at y 140 or lower."}
+    ],
+    "would_improve": [
+      "Give the sky cloud structure between y 300 and 900. On the thumb the middle of the frame is a smooth grey ramp that reads as a backdrop, not a storm deck. Also add the pale caprock and red breaks in the horizon haze that the palette declares, so the flat grass line at y 928 reads as distance.",
+      "The heads are dark taupe, not the chassis white powder coat. They read as floodlight fixtures on the thumb. Set them to #E8E6E0 so the station is the same object as on frames 1 and 3.",
+      "'PLAN $6,423,554' (x 113 to 365, y 950 to 975) sits on busy grass tops. It is legible on the thumb but grainy at full size. Lift it 40 px onto the haze band above the horizon, or add a 12 px soft dark halo."
+    ]
+  },
+  {
+    "slide": "slide-08",
+    "transcription": "THE HOUSE HEARING | 08 / 09 | Eight of 160 had complied. | The Tribune reports that count of utilities in fire-prone areas reached lawmakers at a House State Affairs hearing on the wildfire plan law. The PUCT's plan blueprint lists cameras as a \"Suggested\" tool, not a requirement. | ONE SEAT FOR EACH UTILITY THE HEARING COUNTED | c43 c37 DRAWN | texasaidocket.com",
+    "illegible": ["None. The far right binder (x 726 to 770, y 635 to 675) is grey rather than white and is the faintest of the eight on the thumb."],
+    "checklist": [
+      {"item": "exactly 160 seats are modelled and exactly 8 carry a binder", "pass": false, "note": "The 160 can't be verified from pixels. Both seat blocks bleed the left and right edges, and the back row meets the wall at y 604. Eight binders are visible."},
+      {"item": "eight separate white binder marks are countable at 432px", "pass": true, "note": "Full size, 1080 frame: (182,672 to 719), (424,725 to 787), (105,796 to 867), (209,908 to 1003), (746,635 to 675), (952,729 to 790), (921,807 to 881), (877,918 to 1013). All eight separate on the thumb. The far right one is grey and marginal."},
+      {"item": "the witness podium stands in the well on the aisle, not among the seats", "pass": true, "note": "The podium (x 338 to 530, y 1016 to 1158) has its base just in front of the front row's feet and slightly left of the aisle's centre. On the thumb it still looks flush with the front row. It passes, but only just."},
+      {"item": "no flag, nameplate or cup crosses the dek, the label or the source line", "pass": true, "note": "True as written, but two gooseneck microphones cross the source line and the site line. The item lists object classes instead of testing crossings, so it passes a new defect."},
+      {"item": "the frame's median L* at 432px is between 12 and 36", "pass": true, "note": "Estimated by eye at about L* 24. Not measured."}
+    ],
+    "round1": {
+      "resolved": ["Eight binders are now white and countable", "The podium has moved out of the seat block to the front of the well", "Chair backs no longer cross the dek", "The nameplate no longer crosses the label", "The flag is removed", "The median L* is likely inside the band"],
+      "not_resolved": ["The room still fails the showstopper test. There is no window and no storm light. The back wall is still a flat untextured brown card behind the type. The black void strip above it is larger than in round 1 (now y 0 to 159). The unlit slanted plane at the right (x 969 to 1080) is still there. The chairs are identical clones on clean tile", "Round 1's checklist items for the window and for 'no object edge crosses the dek or the label' were not adopted"],
+      "new": ["Microphone goosenecks now cross the source line and the site line"]
+    },
+    "verdict": "revise",
+    "must_fix": [
+      {"what": "The two dais microphone goosenecks cross type. The left stem runs through 'DRAWN' of the source line, and the right stem runs through 'do' of 'texasaidocket.com'. Both are visible on the thumb at about x 100 and x 345.", "where": "left mic x 240 to 263, y 1191 to 1303, crossing 'DRAWN' (x 209 to 287, y 1242 to 1262). Right mic x 827 to 878, y 1191 to 1306, crossing the site line (x 727 to 998, y 1242 to 1262)", "fix": "Move the left gooseneck's base to x 320 or more and the right one's to x 690 or less, so both clear the text bands. Or delete both mics, since they carry nothing. Rewrite acceptance item 4 as 'no object edge crosses any DOM text', not a list of object classes."},
+      {"what": "This fails the showstopper test as an interior. It reads as chairs on clean tile in front of a flat brown text card, not a room at a time of day. There is no ceiling: a black void strip fills the top eighth. The back wall has no material and no fixtures. A slanted cut edge ends it at x 969, with an unlit plane beyond. The dossier's light source ('lit from its left window') and its lightest value ('the window') are missing, and nothing tells you where the light comes from.", "where": "void x 0 to 1080, y 0 to 159. Wall x 0 to 969, y 159 to 604. Unlit plane x 969 to 1080, y 159 to 604", "fix": "Build the room with TXT.interior with a closed ceiling. Coffer it or fit recessed fixtures so y 0 to 159 is ceiling, not black. Panel the back wall in dark oak with a dado rail at about wall height 1 m, and run it past both frame edges so the slanted edge leaves the frame. Cut a tall window into the left wall (it can sit off frame left) and put the deck's key light through it, so chair shadows rake to the right across the tile. Keep the wall behind the hook dark enough for the type. Add the acceptance item 'window light rakes across the rows and chair shadows fall right at 432px'."}
+    ],
+    "would_improve": [
+      "The label 'ONE SEAT FOR EACH UTILITY THE HEARING COUNTED' (y 570 to 594) sits about 10 px under the dek's last line (bottom about y 560). On the thumb it reads as a fifth dek line in another face. Tighten the hook and dek leading by 20 px to open a gap of 30 px or more, or set the label at the floor edge, just above the back row.",
+      "Pull the podium 1 m nearer the dais and centre it on the aisle (aisle centre about x 480 at the front row), so its base clears the front row's feet by 40 px or more and it stops reading as a front-row seat on the thumb.",
+      "The two clear cups (x 135 to 162, y 1269 to 1316, and x 736 to 763, y 1276 to 1323) render as grey smudges just under the source line and the site line. Remove them.",
+      "Add ±3 degree yaw jitter and some wear to the seats. The perfect clones on spotless tile read as CG.",
+      "At full size the apostrophe in \"PUCT's\" (about x 268, y 500) looks sloped, while the double quotes around \"Suggested\" render straight. Crop it at 4x. If it is U+2019, replace it with U+0027 in slide-08.html (straight quotes are house style). This was raised in round 1 and is still unchecked.",
+      "The dek opens 'The Tribune reports that count of utilities'. 'That count' leans on the hook for its antecedent. 'The Tribune reports lawmakers heard the count at a House State Affairs hearing on the wildfire plan law' reads more cleanly."
+    ]
+  },
+  {
+    "slide": "slide-09",
+    "transcription": "WHAT A TEXAN CAN DO | 09 / 09 | The question stays on the record. | Search Docket 57463 for the order and Project 57941 for the report SPS filed on May 1st, both on the PUCT Interchange. In a utility's wildfire plan case the rule gives 30 calendar days from notice to intervene. | c10 c9 c1 c5 DRAWN | texasaidocket.com",
+    "illegible": ["The source line's 'c10' has a pale faceted stone behind its '0' (x 122 to 142, y 1234 to 1250), which blotches the glyph on the thumb. It is readable but damaged.", "The 30 T-posts can't be counted on the thumb. Past thumb x 100 they merge into a comb."],
+    "checklist": [
+      {"item": "exactly 30 T-posts stand between the gate and the mast", "pass": false, "note": "The fence runs parallel to the road on its LEFT side and ends at a wooden brace post (x 746 to 770, y 830 to 901). The mast stands on the RIGHT side of the road (x 874 to 891), so no fence lies between the gate and the mast. I count about 26 to 30 posts at full size. None can be counted on the thumb, so this encoding is invisible to a reader."},
+      {"item": "a pipe gate closes the road and the figure stands beside it", "pass": true, "note": "A five-rail pipe gate with a diagonal brace spans the road from the hinge post (x 435 to 460, y 786 to 1120) off the right edge. The figure stands about 260 px left of the hinge post, in the grass by the pipe rail fence."},
+      {"item": "the figure is lit on the camera side and reads as a person at 432px", "pass": false, "note": "It reads as a person on the thumb. The shirt front is lit, but the face (x 108 to 138, y 813 to 847) is dark reddish-brown under a black dome cap and is the darkest part of the figure. The dossier's focal, 'the figure's lit face and shoulders', is not delivered. The arms hang stiff at the sides, so the figure reads as a mannequin."},
+      {"item": "the station's two heads face the lens", "pass": false, "note": "At full size the heads (x 835 to 849 and 913 to 926, y 300 to 324) show a square front face that plausibly faces the lens. On the thumb each is about 6 px and its facing can't be read. The motif payoff ('the heads face the reader on 9') exists only at full size."},
+      {"item": "the dek names where to look and the rule's deadline", "pass": true, "note": "Docket 57463, Project 57941, PUCT Interchange, and 30 calendar days from notice. All trace to c10, c9 and c5."},
+      {"item": "the frame's median L* at 432px is between 22 and 42", "pass": true, "note": "Estimated by eye at about L* 34. Not measured."},
+      {"item": "(reviewer) checklist quality", "pass": false, "note": "Items 1 and 4 grade encodings no reader can see at 432 px. Nothing tests the stones, which round 1 flagged and which remain, or whether the figure reads as a convincing person."}
+    ],
+    "round1": {
+      "resolved": ["The dek now names where to look and the deadline", "A galvanized pipe gate closes the road", "The figure's face and hands now share one skin tone", "The station is closer: heads are about 15 px wide, up from about 7, and it now reads as a T-mast with two boxes, not a bare pole", "The gate throws shadows across the road, so there are now cast shadows"],
+      "not_resolved": ["Faceted pale stones are still in a scatter with no contact, and one sits behind 'c10' in the source line", "The figure is still not lit at the face and is still full length, not the declared waist-up focal", "The heads are still dark grey, not the chassis white powder coat", "The fence still does not reach the mast", "The sky is still mostly a smooth ramp, and there is still no caprock or breaks in the haze"]
+    },
+    "verdict": "revise",
+    "must_fix": [
+      {"what": "The faceted low-poly stones remain: pale, flat-shaded chips resting on the surface with no contact. The showstopper test names faceted stones as a must-fix on their own. One sits directly behind the '0' of 'c10' in the source line.", "where": "(122 to 142, 1234 to 1250) behind 'c10'. Also (277 to 304, 1191 to 1208), (338 to 422, 1073 to 1131), (486 to 520, 1023 to 1040), and the row along the road's left edge toward (700, 940)", "fix": "Replace the scatter geometry with subdivided, rounded stones in caliche dust albedo (#BFB29A, roughness 0.9). Sink each 30 percent into the ground with TXT.contact, at irregular spacing. Exclude scatter from the rectangle x 60 to 560, y 1220 to 1290."},
+      {"what": "The figure's face is the darkest part of the figure, under a black dome cap that reads as a helmet. The arms hang rigid, so it reads as a mannequin. The dossier's focal ('the figure's lit face and shoulders at the gate') is missing.", "where": "figure x 54 to 176, y 793 to 1215. Face x 108 to 138, y 813 to 847", "fix": "Add a camera-side fill: a RectAreaLight 1.5 m left of camera at head height, aimed at the face, raised until the face reads about L* 55 on the thumb. Replace the black cap with a tan felt or straw hat (#B89A6A), or remove it. Pose the right arm with its hand on the gate's top rail and move the figure right to stand at the hinge post (about x 330 to 450), so the figure is visibly at the gate."},
+      {"what": "The camera heads render dark grey, and on the thumb they are about 6 px dark boxes. The deck's motif payoff, heads turned to the reader, can't be seen, and the hero reads as a utility pole with lamps.", "where": "heads x 835 to 849 and 913 to 926, y 300 to 324", "fix": "Set the head housings to the chassis white powder coat (#E8E6E0, roughness 0.5), with the dark lens window facing the camera, so two white marks with dark centres stand against the dark sky on the thumb. If they are still under 8 px on the thumb, scale the heads 1.4x. They are drawn, per the DRAWN source line."},
+      {"what": "The data encoding in the plan is invisible and the geometry contradicts it. The '30 T-posts from the gate to the mast' fence runs up the left shoulder and ends at a brace post across the road from the mast, and its posts can't be counted at 432 px. The checklist grades it anyway.", "where": "fence from x 40 to 770, y 830 to 950, ending at the brace (746 to 770, 830 to 901). Mast at x 874 to 891", "fix": "Drop 'drives T-post count (30)' from the slide 9 dossier's data_in_art, since no reader can count it. Replace checklist item 1 with 'the fence leaves the gate and recedes toward the station with no post crossing type'. Replace item 4 with 'at 432px the two heads read as two white housings with dark lenses toward the lens'."}
+    ],
+    "would_improve": [
+      "The gate is closed and the figure stands outside it, so the picture says 'shut out' while the kicker and dek say 'here is the way in'. Swing the gate a quarter open, or put the figure's hand on the latch, so the image agrees with the job.",
+      "Give the sky cloud structure and add the caprock and red breaks in the horizon haze. On the thumb the sky is a smooth grey ramp and the time of day is unreadable.",
+      "The figure throws no readable cast shadow, while the gate throws long shadows toward the lens. Put the figure's feet on the road edge, not in the grass, so its shadow lands with the gate's.",
+      "At full size the apostrophe in \"utility's\" (about x 535, y 628) looks sloped. Crop it at 4x and confirm it is U+0027 (straight quotes are house style).",
+      "'the rule' has no named antecedent on this slide. 'the PUCT wildfire plan rule gives 30 calendar days' would stand alone. Re-run numeral_lint and word_ban after any edit."
+    ]
+  }
+]
+```

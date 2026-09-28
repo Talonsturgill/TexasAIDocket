@@ -1,0 +1,135 @@
+All three slides get a revise verdict. I transcribed every slide from the 432px thumb first and then checked it against the 2160x2700 render. All pixel coordinates below are in the full-size 2160x2700 frame unless marked "thumb".
+
+**What round 1 fixed and what it didn't**
+- **Slide 1:**
+  - Fixed: the camera heads now read as two boxed cameras at thumb size, not streetlight heads. A fence and a pier with a contact shadow now exist.
+  - Not fixed:
+    - The empty band between the dek and the horizon is still a dead zone.
+    - There is still no mesa, no light shaft and no visible mast shadow.
+    - The road can't be read as a road.
+    - The mast shadow and mesa items round 1 asked to add never reached the checklist.
+  - New defect: a fence H-brace post stands exactly in front of the mast.
+- **Slide 2:**
+  - Fixed:
+    - The ridge station is gone, so nothing crosses the dek.
+    - The pole now bleeds top, right and bottom at about 250px (1080-space).
+    - The headline now says "the fire".
+    - Slide 2 no longer looks like slide 1.
+  - Not fixed:
+    - The pole reads as a brown curtain, not weathered wood.
+    - The through bolt, the aluminium tag and the silvered finish are absent.
+    - The sky is still smooth.
+    - The dossier's `composition` block still describes the pole on the left and the station on the ridge.
+  - New defect: the pole's left edge runs through the site line.
+- **Slide 3:**
+  - Fixed:
+    - The hood no longer crosses the dek.
+    - The heads are boxed housings, not searchlights.
+    - The lightning rod no longer sits against the headline.
+    - The free-standing conduit is gone.
+  - Not fixed:
+    - The leaders still end about 213px short of their label and still read as cables.
+    - Grass is still scattered under all three labels and the source line.
+    - There is still no terrain, caprock or horizon.
+    - There is still no right bleed.
+
+**What I could not do or check**
+- I could not measure median L* on any slide, so every L* item is an estimate by eye and unverified. Slides 1 and 2 are probably near their upper bounds.
+- No numeral appears that isn't a counter or a claim id. Every label traces to c24, c25 or c26.
+- There are no dashes, no colons or semicolons in copy, no first person, no banned words, no screen texture, no accent, no flag red and no dial.
+
+```json
+[
+{
+  "slide": "slide-01",
+  "transcription": "TEXAS PANHANDLE | 01 / 09 | Asked for fire detections. Counted cameras. | The Xcel Energy utility for most of the Texas Panhandle runs AI smoke cameras. The state's order asks its annual reports to count AI camera fire detections. Its annual report answered that line with a count of cameras. | c29 c46 c25 c26 c33 c34 c8 c56 DRAWN | texasaidocket.com",
+  "illegible": [],
+  "checklist": [
+    {"item": "the two camera heads read as two separate boxed white housings at 432px", "pass": true, "note": "On the thumb they are two pale boxy housings about 15px wide at (300-316, 55-66) and (348-363, 55-66), each on a bracket off the crossarm. They read as CCTV-type cameras, not lamps. They are grey-white rather than white."},
+    {"item": "the mast touches its pad with a contact shadow and the pad touches the ground", "pass": true, "note": "At full size the concrete pier at (1607-1769, 2160-2255) has a dark base ring and a short shadow running right. On the thumb this is undone: the fence's H-brace post stands directly in front of the mast (see must_fix), so the mast line appears to run on past the pier into the foreground grass. The pier is clean grey concrete with no grime."},
+    {"item": "a caliche road runs from the pad toward the bottom right edge and a barbed wire fence stands in the near left", "pass": false, "note": "Fence: yes. There are T-posts at x about 277 and 1120, an H-brace and strands, readable on the thumb as a fence. Road: no. The only caliche is a pale patch at (1700-2160, 2268-2390), mostly under grass. It reaches the right edge at y about 2390, not the bottom-right corner. On the thumb it is a faint light smear, not a road. The EDGE_TEASE continuity device (road leaves frame 1, arrives at frame 9's gate) does not exist on the pixels."},
+    {"item": "no type crosses the mast or either head", "pass": true, "note": "'Counted cameras.' ends at x about 1553. The mast's left edge is at about 1640. The left head (1499-1586, 267-324) clears the first headline line, which ends at x about 1200."},
+    {"item": "no smoke plume and no flame anywhere in the frame", "pass": true, "note": "None."},
+    {"item": "the frame's median L* at 432px is between 22 and 42", "pass": true, "note": "Not measured. By eye it is about 36 to 40: a dark zenith, a pale haze band at L* about 65 from y 1480 to 1930, and mid-dark grass. It is close to the upper bound and needs a measured number."},
+    {"item": "no numeral appears in the art", "pass": true, "note": "None. The only numerals are the DOM counter and the claim ids."}
+  ],
+  "plan_finding": "The checklist took round 1's fence and road but not the mesa or the mast's cast shadow. It still passes a frame whose left 75 percent of the middle band is empty fog. Nothing tests that the subject's declared 'hazed mesa 4 km out' exists, that the frame has a readable light direction, or that nothing in the foreground coincides with the mast. Add: 'a caprock or mesa silhouette sits on the horizon left of the mast and reads at 432px' and 'no foreground object shares a vertical line with the mast within 60px'.",
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "The fence H-brace's right post stands exactly in front of the mast. On the thumb (330-340, 400-475) the mast appears to continue straight down through the enclosure and the post into the foreground grass. The brace rail reads as bolted to the mast, so the mast looks like a fence corner post in the near field rather than a 12 m tower 30 m away. This destroys the contact and the scale the frame depends on.", "where": "brace post x 1654-1701, y 2025-2376. Brace rail x 1175-1660, y 2133-2160. Mast x 1640-1715.", "fix": "Translate the whole H-brace assembly in scene X so its right post lands at full x about 1450 or less, at least 190px clear of the mast's left edge. Alternatively end the fence at a corner post left of x 1450 and drop the brace segment that reaches the mast. Re-check on the thumb that the pier is the lowest point of the mast line."},
+    {"what": "Dead zone and missing mesa. The band from the dek's last line to the horizon, left of the mast, is an empty grey-to-white haze gradient, about 17 percent of the frame carrying nothing. The dossier's 'hazed mesa 4 km out' and 'caprock far out in haze on the left' are absent. This was round 1's must-fix and it is not resolved.", "where": "x 0-1620, y 1350-1930", "fix": "Add the kit `mesa` far model 3 to 5 km out, left of the mast, so its caprock silhouette spans full x 0-1450 and rises 50 to 110px above the horizon at y about 1930. Let the deck's haze carry it to about 10 to 15 L* darker than the sky band behind it. Do not hand-build a backdrop strip."},
+    {"what": "THE SHOWSTOPPER TEST, question 1 (time of day) and question 2 (lit from the side its shadows say). On the thumb the frame reads as an overcast foggy day. The sky is still a smooth vertical gradient with faint horizontal streaks. The horizon is a white fog wall, there is no shaft of low sun, and the mast has no visible lit and shade sides or cast shadow. The stormFront 'bruised deck and one shaft of sun' is not there.", "where": "sky x 0-2160, y 0-1930. Mast x 1640-1715.", "fix": "In the chassis's `TXDECK.declare` sky tuning, cut the haze density by about 40 percent so the far grass carries to the horizon instead of fading into a white strip at y 1480-1930. Raise the key light's intensity until the mast's lit left edge sits at least 15 L* above its right edge on the thumb. Pan the camera about 8 degrees toward the declared azimuth so a warmer lit slot sits under the cloud deck on the left horizon, behind the mesa."},
+    {"what": "The caliche road doesn't read. It is a pale patch under grass at the right edge rather than a road leaving the bottom-right corner, so the deck's edge tease to frame 9 is lost.", "where": "x 1700-2160, y 2268-2390", "fix": "Build the road as a TXT.ground caliche strip about 4 m wide from the pad to the bottom edge, exiting at full x 1750-2160, y 2700, with two darker wheel tracks. Add a `TXT.scatter` avoid rect over its footprint so no grass sits on it. On the thumb it must read as a pale wedge at least 25px wide at the bottom edge."}
+  ],
+  "would_improve": [
+    "The source line and site line (y 2440-2530) sit on grass tufts. They are readable on the thumb, but this is scatter under type. Lay a wash of at most 0.45 alpha in #15171C over y 2380-2700, or extend a scatter avoid under the footer band.",
+    "The apostrophe in 'state's' at about (1390, 1023) looks curly at full size, and the house rule is straight quotes. copy.json holds a straight quote. Confirm the page is not substituting a curly apostrophe. This carries over from round 1.",
+    "The pier is spotless. Run TXT.weather with a dirt gradient over the bottom 0.3 m of the pier and the enclosure base.",
+    "The heads are grey-white on the thumb. Raising the housing albedo toward #E8E4DA would make them the lightest objects in the frame, which the dossier's value_structure asks for."
+  ]
+},
+{
+  "slide": "slide-02",
+  "transcription": "SMOKEHOUSE CREEK | 02 / 09 | The Tribune traces the fire to a pole. | The Tribune reports the Smokehouse Creek fire was the largest in Texas history. It says the fire started when a decayed Xcel Energy pole snapped and landed in dry grass. SPS testimony says its equipment \"appeared to be involved in two ignitions\" of the fire. | c53 c28 DRAWN | texasaidocket.com",
+  "illegible": [],
+  "checklist": [
+    {"item": "the pole stands and is whole, and nothing in the frame is broken, burnt or smoking", "pass": true, "note": "Nothing is broken, burnt or smoking."},
+    {"item": "the pole spans at least 220 px of the 1080 frame and bleeds the right edge", "pass": true, "note": "It spans full x 1660-2160, about 250px in 1080-space, and bleeds top, right and bottom."},
+    {"item": "at full size at least three drying checks and the pole tag show on the face toward the lens", "pass": false, "note": "There are many dark vertical lines. All of them are straight, parallel and run the full height, so they read as curtain folds or plank seams, not checks, which are short irregular splits. The 'tag' at (1897-2039, 466-662) is a dark brown rectangle, not aluminium. The through bolt named in the subject is absent. Something shows. None of it is what the item names."},
+    {"item": "no object in the art crosses the hook or the dek", "pass": true, "note": "Clear, but the headline's second line ('...to') ends at x about 1620, 40px from the pole's edge at 1660. On the thumb that gap is 8px."},
+    {"item": "the frame's median L* at 432px is between 20 and 40", "pass": true, "note": "Not measured. It is a dark sky over bright gold grass filling about 35 percent of the frame, so the median is probably 36 to 40. It is at risk and needs a measured number."}
+  ],
+  "plan_finding": "A brown rectangle with vertical stripes and a dark square passes all five items, and that is close to what rendered. Nothing tests that the pole reads as a round weathered wood pole at 432px, that its west face is lit (the dossier's own focal point), or that the second pole down the line exists. The dossier's composition.structure and bands blocks still describe 'the pole close on the left' and 'the station tiny on the ridge on the right third', which contradicts the rewritten subject. That was round 1's plan finding, and only the acceptance half was fixed.",
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "The subject doesn't read as a wood utility pole. On the thumb (332-432, 0-540) it is a brown panel with full-height vertical stripes, a velvet curtain or a plank wall, and the one-word answer is not 'pole'. The material is a warm satin brown with specular ribbons, where the dossier asks for 'creosote brown gone silver'. The face toward the lens is darker than the grass, so the focal 'lit west face ... against the dark cloud' is not in the frame.", "where": "x 1660-2160, y 0-2700", "fix": "Change the pole material to a weathered grey-brown: albedo #7F7669, roughness 0.9, metalness 0, no clearcoat or sheen. Replace the full-height grooves with 4 to 6 irregular drying checks, each 0.3 to 1.2 m long and 3 to 8 mm wide, tapering at both ends and staggered so none spans more than 40 percent of the visible height. Keep the one straight ground wire at x about 1925 as the only full-length line. Light the pole's west edge as a lit sliver at least 20 L* above the face, so the cylinder turns and separates from the sky."},
+    {"what": "The tag is a dark brown plate and the bolt is missing, so the pole's age cues are absent at full size and on the thumb.", "where": "tag x 1897-2039, y 466-662", "fix": "Make the tag aluminium (metalness 1, roughness 0.35, albedo #BDBDB6) with two nail heads and one bent corner. Add a galvanized through bolt with a square washer on the lens-facing face at about x 1800-1850, y 1450-1500."},
+    {"what": "The pole's left edge runs through the site line. On the thumb the edge at x about 332 cuts 'texasaidocket.com' between 'a' and 'i', and the footer sits on the brightest, busiest foreground grass (scatter under type).", "where": "site line x 1458-1998, y 2484-2525. 'c53 c28 DRAWN' x 162-575, y 2484-2525.", "fix": "Lay a #15171C wash at 0.5 alpha from y 2360 to 2700 across the full width, feathered over the top 120px. It takes the gold blades and the pole's edge down to one dark value under the footer, so no edge contrast crosses the site line. This is under the 0.55 plate limit."}
+  ],
+  "would_improve": [
+    "Add the dossier's 'second pole down the line' on the fence at the horizon, at about x 900, y 1600-1700, hazed. It gives the pole a kind to belong to and a scale.",
+    "Open the 40px gap between the headline's second line (ends x 1620) and the pole's edge (x 1660) to at least 80px. Refit the hook with a max width of 1440 full px.",
+    "The storm deck is still a smooth gradient at thumb size. Cloud structure is the same chassis change as slide 1.",
+    "The foreground blades are flat ribbons of one hue. Vary blade value by 10 to 15 L* and add seed heads."
+  ]
+},
+{
+  "slide": "slide-03",
+  "transcription": "THE CAMERA SITE | 03 / 09 | Two cameras turn. A person checks. | The SPS application says each camera site carries two cameras that rotate to detect smoke. A human operator verifies and forwards what they gather. SPS named Pano AI as its partner. | two physical cameras that rotate | verified and forwarded by a human operator | shared with SPS and first responders | c25 c24 c26 DRAWN | texasaidocket.com",
+  "illegible": [],
+  "checklist": [
+    {"item": "each leader leaves the first label's last glyph and ends in a ring on its own head", "pass": false, "note": "The rings are on the heads at (1169, 1494) and (1789, 1467). Both leaders drop straight down through each head's pan drum and the crossarm, then turn left and stop in mid-air at x about 1127, y 1890 and 1917. The first label's line 'two physical cameras that' ends at x 914 and its last glyph ('rotate') ends at x 338, y 1930-1971. The leaders stop about 213px short of the label and touch nothing. On the thumb they read as two cables hanging from the cameras and a wire across the mast."},
+    {"item": "the two housings read as two boxed cameras at 432px", "pass": true, "note": "Two boxed housings with sunshields on yokes. The left one's dark window fills about 50 percent of its face, so on the thumb it leans toward a small monitor. The housings are tan-grey, darker than the mast's highlight, not white."},
+    {"item": "no leader and no part of the station crosses a glyph", "pass": true, "note": "No glyph is crossed. The left sunshield's top-left corner at (1006, 1316) sits level with 'partner.' (ends x 956, y 1296-1350) about 50px away. On the thumb the hood reads as a continuation of that line."},
+    {"item": "the station's crossarm and both heads sit right of the dek's right edge", "pass": false, "note": "The dek's widest line ('camera site carries two cameras') ends at x about 1050. The left head's sunshield starts at x 1006 and its yoke at about 1040, so the head overlaps the dek's right edge by about 45px."},
+    {"item": "the frame's median L* at 432px is between 24 and 44", "pass": true, "note": "Not measured. By eye it is about 35 to 40."}
+  ],
+  "plan_finding": "The checklist now tests the leaders and the dek clearance, which is better. It still says nothing about the world the subject names ('the plain and the caprock breaks below the horizon'), about scatter under the labels, about the declared right bleed, or about the housings being the lightest thing (value_structure). All four fail on the pixels, and none is on the list.",
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "The leaders don't reach their label and still read as cables. This is round 1's must-fix, still open.", "where": "left leader (1169,1494) to (1127,1890). Right leader (1789,1467) to (1127,1917). Label 1 at x 162-914, y 1870-1971.", "fix": "Set label 1 on one line by widening its box to 1000 full px, so 'two physical cameras that rotate' ends at about x 1130, y 1890. First confirm at least 16px clearance below the crossarm's underside at y 1850, or drop the whole label block 30px. Terminate both leaders at one point 16px right of the label's last glyph. Give both a 1px #15171C keyline at 40 percent under the 1.5px cream stroke. If the station is panned per the next item, recompute both rings at their new positions."},
+    {"what": "The station doesn't bleed right as declared (bleeds: [right, bottom]). The right head ends at x about 1890 and the strip x 1890-2160 carries nothing from top to bottom. The same placement leaves the left head overlapping the dek's right edge.", "where": "x 1890-2160, y 0-2700. Left head x 1006-1303, y 1316-1627.", "fix": "Pan the camera so the whole station moves about 270px right: mast to x about 1688-1890, left head to about 1276-1573, right head's outer yoke to x 2160 or past it. That clears the dek by about 220px, satisfies acceptance item 4 and makes the right bleed real."},
+    {"what": "Grass is still scattered under all three mono labels and the source line. On the thumb the 9px labels sit on speckle. This is round 1's must-fix, still open.", "where": "x 0-1050, y 1750-2560", "fix": "Add a TXT.scatter avoid rect whose ground footprint projects to x 0-1150, y 1700-2600 in this camera, so the labels and source line sit on a smooth shadowed plain. Halve the scatter count everywhere else."},
+    {"what": "THE SHOWSTOPPER TEST, question 3. There is no horizon line and no terrain. The sky's grey fades into a brown plane across y 1485-1690, and the caprock breaks the subject names are absent. With the type covered, the thumb shows a pole in front of a gradient over flat brown with sprinkles, an object in a haze rather than the High Plains at a time of day. This is round 1's must-fix, still open.", "where": "band x 0-2160, y 1485-1690", "fix": "Place the kit `mesa` far models 3 to 5 km out on the true horizon at eye 12.2 m, spanning x 0-1400. That is under the dek and above the labels, with the red-brown breaks in the deck's haze at about 25 percent aerial fade. Cut haze density the same 40 percent as slide 1 so the line between plain and sky is visible on the thumb."}
+  ],
+  "would_improve": [
+    "The mast's frontal specular stripe (x about 1500-1540) is the lightest thing in the frame and reads as brass or beige plastic. Raise the steel's roughness to about 0.6 and pull its base to neutral #8A8C88, so the housings become the lightest objects as the value_structure says.",
+    "The left head's window fills about 50 percent of its face and reads as a screen at thumb size. Shrink it to about 30 percent of the face and add a round lens bezel inside it.",
+    "A pale slab pokes in at the bottom edge (x 1120-1262, y 2612-2700). Crop it out or show enough of it to read as the enclosure. This carries over from round 1.",
+    "The thin dark vertical streak at x 1904-1930, y 2228-2700 reads on the thumb as a second post in the field. If it is the mast's shadow, the pan above takes it out of frame. If not, remove it.",
+    "Labels 2 and 3 have no anchor in the art. Set them as a caption block with a 24px gap above so they don't read as head labels."
+  ]
+}
+]
+```
+
+Files are in /home/user/TexasAIDocket/out/2026-09-28/:
+- render/slide-01.png, render/slide-02.png, render/slide-03.png
+- render/thumbs/slide-01.png, render/thumbs/slide-02.png, render/thumbs/slide-03.png
+- storyboard.md
+- copy.json
+- claims.json
+- reviews/r1/pixel_01_02.json.txt
+- reviews/r1/pixel_03_04.json.txt
+
+The standard is /home/user/TexasAIDocket/knowledge/carousel/ILLUSTRATION_SYSTEM.md.

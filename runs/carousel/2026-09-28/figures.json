@@ -1,0 +1,192 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py. The four camera figures come from three documents with three scopes and are never combined.",
+ "cameras_installed": {
+  "value": 33,
+  "from": [
+   "c8"
+  ],
+  "basis": "the annual report's answer under the detections metric, a count of cameras"
+ },
+ "cameras_projected_2026": {
+  "value": 34,
+  "from": [
+   "c8"
+  ],
+  "basis": "the same line's projection"
+ },
+ "detections_reported": {
+  "value": null,
+  "from": [
+   "c8"
+  ],
+  "basis": "the detections line reports no count of detections. The value is MISSING, not zero: a missing count isn't a count of none. Drawn as a bare rail, never printed",
+  "missing": true
+ },
+ "cameras_planned": {
+  "value": 68,
+  "from": [
+   "c23"
+  ],
+  "basis": "the plan application, Tier 2 and Tier 3"
+ },
+ "cameras_per_site": {
+  "value": 2,
+  "from": [
+   "c25"
+  ]
+ },
+ "cameras_service_territory": {
+  "value": 97,
+  "from": [
+   "c41"
+  ],
+  "basis": "across the whole service territory, which includes New Mexico. Never a Texas count"
+ },
+ "ignitions_overhead": {
+  "value": 24,
+  "from": [
+   "c18"
+  ],
+  "basis": "ignitions associated with overhead lines, reporting year"
+ },
+ "ignitions_projected_2026": {
+  "value": 18,
+  "from": [
+   "c18"
+  ]
+ },
+ "nifc_wildfires": {
+  "value": 26,
+  "from": [
+   "c20"
+  ],
+  "basis": "wildfires the NIFC reported in counties SPS serves"
+ },
+ "downed_tier1": {
+  "value": 83,
+  "from": [
+   "c19"
+  ]
+ },
+ "downed_tier2": {
+  "value": 22,
+  "from": [
+   "c19"
+  ]
+ },
+ "downed_tier3": {
+  "value": 29,
+  "from": [
+   "c19"
+  ]
+ },
+ "capex_2026": {
+  "value": 10537400,
+  "from": [
+   "c15"
+  ]
+ },
+ "capex_plan_2026": {
+  "value": 6423554,
+  "from": [
+   "c15"
+  ]
+ },
+ "capex_change_pct": {
+  "value": 64.04,
+  "from": [
+   "c15"
+  ],
+  "basis": "the report's own figure",
+  "checked": "recomputed from the two costs to two places and equal"
+ },
+ "capex_ratio_drawn": {
+  "value": 1.6404,
+  "from": [
+   "c15"
+  ],
+  "basis": "the actual over the plan, the length ratio two bars are drawn at",
+  "computed": true
+ },
+ "opex_2025": {
+  "value": 82764,
+  "from": [
+   "c14"
+  ]
+ },
+ "utilities_filed": {
+  "value": 8,
+  "from": [
+   "c43"
+  ]
+ },
+ "utilities_total": {
+  "value": 160,
+  "from": [
+   "c43"
+  ],
+  "checked": "filed, dated, preparing and silent sum to the total"
+ },
+ "utilities_dated": {
+  "value": 4,
+  "from": [
+   "c45"
+  ]
+ },
+ "utilities_preparing": {
+  "value": 135,
+  "from": [
+   "c45"
+  ]
+ },
+ "utilities_silent": {
+  "value": 13,
+  "from": [
+   "c45"
+  ]
+ },
+ "utilities_not_filed": {
+  "value": 152,
+  "from": [
+   "c43"
+  ],
+  "basis": "total minus filed, same sentence, same scope",
+  "computed": true
+ },
+ "tier23_share_pct": {
+  "value": 64,
+  "from": [
+   "c27"
+  ]
+ },
+ "service_counties": {
+  "value": 37,
+  "from": [
+   "c29"
+  ]
+ },
+ "service_sq_mi": {
+  "value": 33000,
+  "from": [
+   "c29"
+  ]
+ },
+ "intervene_days": {
+  "value": 30,
+  "from": [
+   "c5"
+  ]
+ },
+ "plan_investment_musd": {
+  "value": 538.3,
+  "from": [
+   "c22"
+  ]
+ },
+ "shutoffs_since_2024": {
+  "value": 5,
+  "from": [
+   "c52"
+  ]
+ }
+}

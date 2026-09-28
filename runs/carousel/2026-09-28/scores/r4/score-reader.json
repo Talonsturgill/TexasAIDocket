@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame is rendered and stands in a world: a stormFront sky, cured grass, a caprock on the horizon line. The type sits in the calm sky on 1, 2, 3, 6, 7 and 9 with no plates. Frame 7 is the best idea in the deck. The PLAN and ANTICIPATED pipes on cribbing measure about 815 px and 1337 px at 1600 wide, a 1.64 ratio that matches the 64.04% change, so the chart is an object in the place. Three things keep it well below the 10. (1) The escarpment on frames 1, 2 and 7 is a smeared, stretched strata texture with streaks and no rock detail. It reads as painted backdrop, not a place, and it is the same asset on six frames. (2) Frame 3 is the weakest outdoor frame. The ground is a flat brown plane with sparse grass sprites, the red band on the horizon is a flat strip, and the camera heads are clean primitive boxes with no dirt or wear. (3) Frame 9's rancher is a low-poly mannequin with a helmet-like hat, on the frame that closes the deck. Frames 4 and 5 are nearly the same desk from the same camera. The 'storm window' named in the brief is a grey slab at the top-right edge and does not read as weather. Shadows are faint on every outdoor frame, so the claimed low west-southwest sun does not show. At 432 px frames 1, 2 and 7 pass as a place at an hour. None would open a magazine feature."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "On the contact sheet this is plainly one deck. It has one Panhandle world under one slate sky, one grade and one caprock. The hero, a galvanized monopole with two white heads, appears on 1, 3, 6, 7 and 9, and the caliche road leaves frame 1 and arrives at the gate on frame 9, as the storyboard's edge tease says. The value holds dark at the top of every frame, so it does not strobe. The two desk frames (4, 5) and the hearing room (8) leave the plain. Frame 8's cut is declared in the storyboard as the value cut. The desk frames are declared only as a camera position ('seated at a desk for two frames'), and the hero is absent from four of nine frames (2 shows wooden distribution poles, not the station, despite the storyboard saying 'the station on the ridge'). That is a spine a reader would describe as 'the Panhandle and a camera pole', which meets the 7 descriptor, with one stretch of frames sitting outside it."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces to a claim quote. 33 and 34 are c8, 2027 is c57, $10,537,400, $6,423,554 and 64.04% are c15, July 10th, 2025 is c10/c31, the Docket 57463 and Project 57941 numbers are c10/c9, eight of 160 is c43, and the caption's 24 and 26 are c18 and c20. The central absence is scoped correctly. Frame 6 says 'The report gives that line no count of detections. A missing count isn't a count of none', and the caption says 'What that line lacks'. Neither claims the report counts no fires, and the caption credits the 24 ignitions and 26 wildfires it does count. SPS's partial-year caveat (c21) is printed on frame 5. 97 and Colorado appear nowhere. The frame 8 fix works: it now says wildfire mitigation plans 'fall under a different rule from resiliency plans' before it says SPS submitted its own. Why this is not higher: (a) two load-bearing facts rest on the Tribune, eight of 160 (c43) and the fire's cause on frame 2 (c53), where PUCT and state records exist, though frame 2 does set SPS's own testimony (c28) beside it. (b) Frame 8's headline drops the Tribune's 'in fire-prone areas'. (c) Frame 9's 'that report carries the same detections line' states a future filing's content as fact. The order says SPS 'will include' the metrics (c34), so 'must carry' would be exact. Also noted, not failed: first_comment.txt says 'all fetched September 28th' while claims.json notes both PUCT hosts returned HTTP 402 to WebFetch that day. The quotes were matched against snapshots under out/2026-09-28/tmp/src, which do appear to be this run's own fetches."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "Reader lens. A Texan who swipes once learns what happened (frames 1, 4, 5: the order named a detections count and the report gave a camera count), who decided it (the PUCT, Docket 57463, July 10th, 2025), where (the Panhandle) and why it is personal. Frame 2 puts Smokehouse Creek in the second slot, the largest fire in Texas history, with SPS's own 'appeared to be involved in two ignitions'. Frame 7 adds the money. What they can DO is thinner. Frame 9 gives the docket and project numbers and the Interchange, which is a real route, but it gives no date. c58 carries the May 1st filing rule and the deck never says when the next report is due. No county is named, although c54 (Moore County) and c55 (Hutchinson County) are verified and sit in the claims file unused. 'Texas Panhandle' is a region, not the county the rubric's 10 asks for. Clear and accurate, with the stake and the next step stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover's two-beat headline 'Agreed to count fire detections. Counted cameras.' earns the swipe. Frame 2 pays at once with the fire. The turn runs 4 to 5 to 6 (order, answer, bare rail) and lands. Frame 7's 'The cost was counted to the dollar' is a strong counterweight to the uncounted detections. Frame 8 is still the one frame that could go. Its 'Eight of 160 utilities had complied' is the biggest numeral headline in the back half, and it is about a different rule. A feed reader takes the headline before the dek's clarifying clause, so the scoping fix sits under the confusion rather than ahead of it. Frame 9 closes on the question plus filing numbers. It is honest and it lands softly. Frames 4 and 5 are the same picture twice, which slows the middle."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Several lines are genuinely good: 'A missing count isn't a count of none.' (frame 6), 'Two cameras turn. A person checks.' (frame 3), 'The cost was counted to the dollar.' (frame 7). It is fair without doom. The caption gives SPS's partial-year explanation and credits what the report does count. No boosterism. The flat lines are procedural. Frame 9's dek 'The order sits in Docket 57463 and the report SPS filed on May 1st in Project 57941, both on the PUCT Interchange' reads like a citation, not a person. The caption opener 'The answer was filed on May 1st.' is cryptic in the two-line preview a feed shows. Regional texture (caprock, ranch gate, caliche) lives in the art, not the words. Clean and on register, with more than one flat line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "The light and world are fresh against the last four decks (no. 32 TCEQ halt, no. 33 Zipline, no. 34 TxDMV lane, no. 35 RealPage): a stormFront Panhandle afternoon, and the first wildfire and utility-resiliency topic in the window. Checked against topics.json, there is no repeat inside 30 days. The nearest is no. 31's Dallas AI cameras, a different body and instrument. The familiar moves are the house's. The spine is once again what a document does not say (a bare rail), which the ledger's angle_notes on nos. 11, 14, 15, 23, 28 and 33 each flag. The desk-with-a-page document frames (4, 5) are a recurring layout. A fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 7.162,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace the two primitives that recur across the deck, the smeared stretched-texture caprock escarpment seen on six frames (sharpest on 1, 2 and 7) and frame 9's low-poly mannequin rancher, with a modelled escarpment carrying real rock breakup and a properly built figure, because artwork_craft is the heaviest criterion, it is the lowest score here, and those two assets are what keep the best frames from reading as a photograph of a place."
+}

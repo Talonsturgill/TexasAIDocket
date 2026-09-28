@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 1, 6, 7 and 9 pass most of the showstopper test. Each is a Panhandle place at an hour, with a storm deck, the caprock in haze, cured grass and a low west light. Frame 7's tubes measure about 815 and 1337 px on the 1600 px view, a 1.64 ratio that matches c15, and they sit on cribbing that casts shadows. Frame 6 now fits the whole row of about 33 heads inside the frame. The recut frame 2 is still the weakest. The pole top is a plain cylinder with a black cone and a white slab bolted on, the brown insulators are stacked discs, the left two thirds is empty grass, and the upper conductor starts exactly where the hook's 'to' ends, so it touches the type. Frame 3's heads are primitive boxes on yokes over a flat crossarm. On frames 4 and 5 the 'window' at the top right still reads as a black-framed monitor, not a lit window. The rest is a generic desk with one sheet, a grommet and two binders. Frame 9's figure faces away from the lens, where the storyboard asked for a lit face. More than one frame leans on a primitive, so this sits below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "On the contact sheet this reads as one deck. It has one stormFront sky, one low west light, one caprock and grass ground, and one galvanized station with two white heads on frames 1, 3, 6, 7 and 9. Frames 4 and 5 hold the same camera and swap the page, which is a working device. machine_qa bands stay close from frame to frame except on frame 8, the declared value cut. deck_coherence and deck_chassis both pass. Three frames sit a little outside the world: the two desk interiors (4 and 5) and the hearing room (8). Frame 2 drops the hero. The frame 1 road meant to reach the frame 9 gate barely shows at the bottom right of frame 1."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "I tried to refute the spine and couldn't. I read the whole 57941 snapshot. Page 13 metric 10 reads 'Number of artificial intelligence camera fire detections. • Actual: 33 cameras installed • Projected: 34 for 2026', and no detection count appears anywhere in the report, so the absence on frame 6 holds and is scoped to 'that line'. The order snapshot has FoF 49(j) verbatim, and FoF 51 reads 'Under the agreement, SPS will use the agreed-upon evaluation metrics', so the hook 'Agreed to count' and 'the parties' agreement' on frame 4 are exact (the order's opening names the eight parties). The new c57 matches page 15: '2027 Annual Report which will include a full year' s worth of data'. 64.04% recomputes from the two costs. Every numeral on the slides and in the caption traces to a claim: 33, 34, 24, 26, 160, eight, 57463, 57941, 2025, 2026, 2027 and the dollar figures. The sources block covers every cited claim id and its count of 'four official records, one first party account and one news report' is right. REMAINING LOOSENESS, none rising to a hard fail. (1) Frame 2's fire cause and 'largest in Texas history', and frame 8's eight of 160, rest on the Tribune where official records exist. (2) Frame 8 moves from the resiliency plan (16 TAC 25.62, where the camera metric sits) to the wildfire mitigation plan law and the pro forma without saying these are different plans. 'SPS told them it had submitted its own wildfire plan' can read as the same plan that carries the detections line. (3) 'The PUCT's blueprint' takes its noun from c38, which frame 8 doesn't cite and the sources block doesn't list. (4) Frame 7's 'The cost was counted to the dollar' calls a 2026 projection counted, though its dek does say 'anticipates'. (5) The report's 33 is odd, while frame 3 says each site carries two cameras (c25). The deck draws 33 heads without saying the report's unit is ambiguous. (6) Frame 9's art still encodes intervene_days, 30 T-posts from c5, a claim the deck removed from its copy and does not cite on that frame."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who decided it and the paper trail are clear. The PUCT order is dated July 10th, 2025, the SPS report was filed May 1st and the detections line counts cameras. Frame 2 makes the stake concrete with Smokehouse Creek. Frame 9 now gives a real next step in this matter: SPS's 2027 report with a full year of data (c57), and the order holding that report to the same line (c34). It names both dockets and says where to find them. Three things are missing from the 10. No county is named, only 'most of the Texas Panhandle' (Hutchinson, where Smokehouse Creek started, is on no surface). The next step has a year but no date. And the only thing a reader can do is look up two filings. One stake is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "'Agreed to count fire detections. Counted cameras.' earns the swipe, and frame 2 pays at once with the fire. The page swap from 4 to 5 is the turn. Frame 7's dollar precision is a sharp counterpoint to the missing count. Frame 9's question lands on a real future report, not on procedure. Frame 6 restates frame 5 with a new picture and could be cut with little loss. Frame 8's jump to the statewide count is the slackest link, because it changes which plan the deck is talking about."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.1,
+   "why": "The copy is restrained and fair. 'A missing count isn't a count of none.' is the best line, and the utility's partial-year caveat is carried on frame 5 and in the caption. I checked the copy against the house rules and found no colon, semicolon, dash, banned word, 'cannot', first person, or 'And' or 'But' opener. The post's own year is dropped from 'May 1st'. Flat spots: frame 9's first dek sentence is a filing index. Frame 8's dek reads like wire copy. The caption's 'Under the order it carries the same line' is stiff, and it uses 'PUCT' without ever spelling it out for a feed reader."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The topic is clear of the ledger. topics.json has no wildfire, utility-resiliency or SPS deck in the 30 day window, and stormFront with the Panhandle caprock is a world none of nos. 32 to 35 used. The spine is again a document's missing count, which the ledger has asked runs to stop in capitals, in the entries for nos. 11, 14, 15, 16, 23 and 28. No. 33 four decks back was built on 'the draft gives no figure for how often' and on a human reviewing what a machine flags, which frame 3's 'A person checks.' echoes. AI cameras watching Texas land also sits seven days after no. 31 (the Dallas brush truck cameras). That makes this a fresh concept with a familiar opening move."
+  }
+ ],
+ "weighted_score": 6.866,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 2 as a real modelled weathered wood pole top: a round checked-grain trunk, a bolted wood crossarm with pin insulators and hardware, and conductors that stay clear of the hook's 'to'. Then give frames 4 and 5 a window that reads as lit glass instead of a black-framed monitor. Art is the heaviest-weighted criterion and the one furthest under the bar, and those three frames are where it loses its points."
+}

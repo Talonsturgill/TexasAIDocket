@@ -2346,4 +2346,62 @@
  ],
  "lane": "upgrade. assets/js/kit/homes.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns"
 }
+,
+"2026-09-28 upgrade": {
+ "run": "carousel no. 36, 'The Watchtower', SPS's AI smoke cameras and the PUCT detections line (tx-2026-0192, tx-2026-0191). Shipped at the round cap at 7.088 under the 7.7 rung, artwork 6.0 to 6.6 on the round 5 cards",
+ "actor": "upgrade",
+ "branch": "claude/daily-2026-09-28",
+ "upgrades": [
+  {
+   "what": "Kit lift: wildfire_camera_station into assets/js/kit/power.js and pipe_rail_fence into assets/js/kit/rural.js, from the no. 36 chassis, the camera head rebuilt at the judges' named fix: a long housing under a sunshield hood on standoffs with side skirts overhanging the face, a round window with a lens barrel, domed element and chrome retaining ring behind a clear cover, seated on a saddle over a pan drum with short cradle arms to the tilt axis. userData.lenses now applies tilt as well as pan",
+   "why": "All three round 5 judges ranked the heads: 'Frame 6's 33 heads read as a comb of tiny T shapes, not as cameras' and 'the camera heads are box primitives at detail scale' (frame 3), repeated from round 3. The chassis head was a short box under a flat plate on a tall thin U yoke. The kit had no detection camera and no pipe fence. Phase 17's first job (owner, 2026-09-26)",
+   "files": [
+    "assets/js/kit/power.js",
+    "assets/js/kit/rural.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "station, mast, enclosure, crossarm, fence dimensions and all options": "the no. 36 chassis, assets/js/deck/2026-09-28-watchtower.js, unchanged",
+    "head proportions (0.48 m housing, 0.15 m tall, hood 0.6 m)": "chosen to give the camera silhouette the judges asked for, and read at full size in the proofs. Not a threshold",
+    "declared size [2, 13, 1.1]": "measured by examples/kit/sizes.py --fix over its sixteen seeds. The chassis declared 1.6 m deep"
+   },
+   "verification": "node --check on power.js and rural.js exit 0. examples/kit/build.py --family power --names wildfire_camera_station and --family rural --names pipe_rail_fence, plus two harness pages of loose heads built with build.page, all rendered through .claude/skills/carousel-engine/render.py: exit 0, errors=0 on every page, read at full size (out/2026-09-28/tmp/kitlift/heads, station, fence). No. 36's frames 1, 3 and 6 re-rendered from the committed slides with the kit model: exit 0, errors=0. Frame 3 read at full size shows a camera with a lens behind glass and a hood where the box was. f6_compare.png shows frame 6's row before and after. examples/kit/sizes.py exit 1 before --fix (station z declared 1.6, measures 1.07), exit 0 after, 100 of 100 models. print_ban.py --assets exit 0. No gate was added or changed, so no self-test case is owed",
+   "revert": "the upgrade commit on claude/daily-2026-09-28 touching assets/js/kit/power.js and assets/js/kit/rural.js. Reverting restores the chassis's own models for no. 36, because its installKit only defines them when the kit lacks wildfire_camera_station",
+   "how_i_would_know_this_was_wrong": "A judge on the next deck using the head still names it as a T, a box or a floodlight at the frame's own scale. Frame 6's row still reads as one bar after this change, and that is composition (33 heads spaced closer than a head is long, turned side on), written in UPGRADE_BACKLOG 2026-09-28 item 1. If a deck's leader or label placed from userData.lenses misses the lens, the new tilt term is wrong"
+  },
+  {
+   "what": "mesa in assets/js/kit/landscape.js: strata beds at 6 by 16 cells (11.7 m by 1.5 m) instead of 4 by 48 (17.5 m by 0.5 m); UVs set per triangle by surface (top in plan, cliff along the rim and up, talus along the rim and down the slope as rills) with the rim measured by arclength; rim, gully and height jitter run round the rim on cos and sin at a frequency the 384 columns sample, and the height jitter fades out over the last 6 m",
+   "why": "Rounds 3, 4 and 5 of no. 36 named the mesa on six frames: 'stretched horizontal terraced striations ... reads as a render artifact' and 'stair-step banding in its strata and a hard jagged cutoff at its right end'. Read in the code: 0.5 m beds alias to hairlines at 1 to 8 km, height mapping laid strata across the talus as terraces, nB(th * 40) gave the rim 1.5 columns per cell (the stair steps), and none of the three noises was periodic in th, so all jumped at th = 0, the right hand end of a mesa seen from the south",
+   "files": [
+    "assets/js/kit/landscape.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "tile 70 m by 24 m": "the model's existing mapping, unchanged",
+    "6 by 16 cells": "chosen so a bed is 1.5 m, above a pixel at the deck's distance, and read at full size in the proof. Not a threshold",
+    "6 m jitter fade": "chosen and read in the proof. Not a threshold"
+   },
+   "verification": "node --check exit 0. The deck's own call (width 1400, height 80, stormFront) and the default mesa (goldenHour) rendered through build.page and render.py before and after, exit 0, errors=0, read at full size: mesa_compare.png and mesa2_compare.png show the hairline terraces, the stair-step rim and the radial fan on the top gone. No. 36's frame 1 re-rendered: f1_mesa_compare.png shows the stair-step rim replaced by a smooth caprock skyline. sizes.py: mesa within its declared size (100 of 100). print_ban.py --assets exit 0",
+   "revert": "the upgrade commit on claude/daily-2026-09-28 touching assets/js/kit/landscape.js",
+   "how_i_would_know_this_was_wrong": "A judge names the talus rills as a pattern or a crosshatch at distance, or a deck that placed things on a mesa by its old outline finds them off it (the outline moved slightly because the rim noise changed). The default mesa's ragged foot at goldenHour is still there and was there before, written in UPGRADE_BACKLOG 2026-09-28 item 2"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "stormFront preset: fogDensity 0.0065 to 0.0028 and envIntensity 0.45 to 0.75, the values no. 36 shipped in its chassis",
+   "owner": "human",
+   "why": "At 0.0065 the engine's own FogExp2 factor is 0.6135 at 150 m and 0.9777 at 300 m, the 'white wall' the no. 36 critics named, which hid every mesa. assets/js/txthree.js is human. UPGRADE_BACKLOG 2026-09-28 item 3"
+  },
+  {
+   "what": "Copy the kit proofs (f1_mesa_compare.png, heads/render/slide-01.png) into examples/kit/ as WebP",
+   "owner": "human",
+   "why": "examples/kit/** is not upgrade lane, so the proof dies with the container. UPGRADE_BACKLOG 2026-09-28 item 5"
+  }
+ ],
+ "proposals_in_lane_not_built": [
+  {
+   "what": "utility_pole at detail scale: poleTex paints full-tile-height streaks, pin insulators are stacked discs, a fuse tube reads as a black cone",
+   "why": "Named in rounds 1 to 3 of no. 36 and frame 2 was recomposed twice around it. Diagnosed from the code only, not re-rendered, so not edited. UPGRADE_BACKLOG 2026-09-28 item 4"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/power.js, rural.js and landscape.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis untouched"
+}
 }

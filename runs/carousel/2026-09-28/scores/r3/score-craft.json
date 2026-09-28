@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.9,
+   "why": "Frames 1, 6 and 9 come closest to THE SHOWSTOPPER TEST. Each has a storm deck, a horizon on a third, haze, modelled straw grass and contact. Frame 1's mast sits on a pier with its enclosure. Frame 9's pipe gate throws shadows across a caliche road with wheel tracks and low-poly stones. Frame 6's foreground grass is the best surface in the deck. The round 3 recompose of frame 2 did not fix it. The pole is a smooth brown cylinder with a plastic specular hotspot at y 1300 to 1500, not the storyboard's 'checked wood gone silver'. The insulators are stacked toy discs. A black wedge at the crossarm end (x 1390 to 1600, y 1030 to 1190) reads as a render artifact. A loose pale rectangle floats at x 1480, y 1200. Nothing in the frame casts a shadow, the plain is sparse sprites on a flat brown plane, and the station the dossier puts on the ridge is not visible. The upper conductor ends against the 'o' of 'to' in the hook, and the lower one runs about 20 px above the dek's first line. Frame 3's heads are toy-like cream blocks. The caprock sits level with heads that are 12 m up, so it reads as a painted backdrop, and its top edge runs through the dek's last line ('named Pano AI as its partner'). qa.py flagged exactly this as unmeasurable and asked for a judge's eye. The labels are 22px, under the 24px floor. The mesa texture smears into horizontal streaks with dark diagonal bands on 1, 6 and 7. On 6 its left edge is a hard curved cutout, and a pale strip between grass and mesa reads as water. Frames 4 and 5 are a competent interior with a graded desk and binders. The window-glass fix does not read: the top right panel is flat grey inside a black frame and looks like a monitor, not a storm sky. On frame 7 the tubes read as clay rather than galvanized steel, the lower tube carries wavy shadow bands, and the foreground is a flat dark plane with no dirt. Frame 8's chairs are primitives with little contact shadow. Behind its hook and dek is a dark rectangle with a visible top edge at y about 230 and a right edge at x about 1440 to 1470. That still reads as a plate behind type, the defect round 1 named. At the 7 descriptor one frame leans on a primitive or an artifact. Here 2, 3, 7 and 8 all do, and the mesa artifact repeats across three frames. It stays well above 4 because six frames stand in a real lit world."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Read as a filmstrip on the contact sheet, it is clearly one deck. One stormFront world carries 1, 2, 3, 6, 7 and 9, and every exterior has the same slate zenith, straw ground and red caprock. The station is the same kit model on 1, 3, 6, 7 and 9, and the head-pan motif and the camera moving around one station are real devices. The declared cut at 8 is the darkest frame and sits at the argument's widening to the state. Against the 7 descriptor: frame 8 sits outside the deck. Its navy upholstery brings in a hue found nowhere else, and it has no link to the station world. The edge tease is claimed and not delivered. Frame 1 shows no road leaving the bottom right, only a pale pad patch under the mast, so the road first appears on 9. Frame 2 no longer carries the hero or the ridge the storyboard says it does. deck_coherence and deck_chassis both pass, so 7 is permitted."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every numeral on the slides traces to a claim quote: 33 and 34 (c8), 2025 (c10), $10,537,400, $6,423,554 and 64.04% (c15), Eight and 160 (c43), Docket 57463 (c10), Project 57941 (c9) and 2027 (c57). The caption's 24 and 26 trace to c18 and c20. The load-bearing claims rest on primary documents: the order line j (c33), the report line (c8) and SPS's own two-ignitions testimony (c28), which sits beside the Tribune's cause on frame 2. Scopes are held. 97, 68 and Colorado appear nowhere, and the bare rail is written in words as not a zero. Frame 8's hook and count rest on Tribune reporting of a hearing, which is attributed but is journalism where a hearing record exists. Frame 9's 'that report carries the same detections line' is an inference from c34 (metrics go into annual reports) rather than a quoted statement. That is why this sits at the 7 to 8 band and not 10."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "A Texan learns what happened: the order asked for detections and the May 1st report answered with 33 cameras installed. They learn who decided it (the PUCT, Docket 57463, July 10th, 2025), where (SPS's Panhandle territory) and why it matters here (Smokehouse Creek on frame 2). Frame 9 names both filings on the Interchange and the 2027 report. Two stakes are left general. The cost on frame 7 is not tied to who pays it. There is no dated next step a reader can act on, because the 2027 report's due date is not stated on the close."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover hook 'Agreed to count fire detections. Counted cameras.' earns the swipe. Frame 2 pays at once with the fire and the pole. The 4 to 5 page swap on a held camera is a real turn. Frame 6 largely restates frame 5's point in a second picture, and frame 7's money beat could move without loss. The closing question on frame 9 lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Clean and plain, with good lines: 'A missing count isn't a count of none.' and 'The cost was counted to the dollar.' The frame 1 dek opener 'The Xcel Energy utility for most of the Texas Panhandle runs AI smoke cameras' is clunky and institutional. The register is careful rather than regional. Caprock and ranch gate live in the pictures more than in the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The topic is fresh, and the stormFront light differs from the last four decks: no. 32's genset yard, no. 33 goldenHour, no. 34 blueHour and no. 35 nightSodium. The structure is the house template again. A kit hero sits on the right third with the hook top left, as on no. 32 and no. 33. A desk and document pair repeats no. 35's office desk. A hearing room of seats echoes no. 24. A figure closes the deck, as no. 32 used a person for scale. That is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.956,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Stop shooting the kit's primitive models at detail scale. Rebuild frame 2 as a mid-distance photograph of a standing wood distribution line crossing the plain in the storm light, where the kit's geometry holds and the sky, grass and cast shadows do the work, and fix the smeared caprock texture that repeats across 1, 3, 6 and 7, because a two-round recompose of frame 2's close crop turned one visible defect into a toy-model frame."
+}
