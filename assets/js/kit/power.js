@@ -1696,4 +1696,170 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* =============================================================== wildfire camera station */
+  /* LIFTED from the no. 36 chassis (assets/js/deck/2026-09-28-watchtower.js, 2026-09-28) AT THE
+   * JUDGES' NAMED FIX, not as the chassis shipped it. All three round 5 judges named the heads:
+   * "33 heads read as a comb of tiny T shapes, not as cameras" (frame 6) and "the camera heads are
+   * box primitives at detail scale" (frame 3). The chassis head was a short box under a flat plate
+   * on a tall thin U yoke, so from the side it was a T and from the front a mailbox with a dark
+   * rectangle. What a reader knows as a pan and tilt camera, and what this builds instead:
+   *   - a LONG housing, about two and a half times as long as it is tall, so the side view has the
+   *     camera's length and a T can't form;
+   *   - a SUNSHIELD HOOD, a top plate standing proud of the housing on standoffs with skirts down
+   *     both sides, overhanging the face so the front reads as a peak with a shadow under it;
+   *   - a ROUND FRONT WINDOW with a lens behind the glass: a dark recess, a lens barrel with a
+   *     domed element, a bright retaining ring that catches the sky, and a clear cover;
+   *   - SEATED, not stood: a pan drum, a saddle block the housing rests on, and short cradle arms
+   *     only to the tilt axis with a pivot hub each side, so nothing is left for a T's stem.
+   * Nothing on it is a brand. It stands for the kind of site a utility's plan describes, "two
+   * physical cameras that rotate to detect smoke" on a high vantage point, and is no one's station.
+   *
+   * OPTIONS part ('station' | 'head'), height (m, 6 to 30), pan ([yaw, yaw] radians about the
+   * mast, 0 faces +z; one number for part 'head'), tilt ([pitch, pitch], negative looks down),
+   * arm (crossarm half span m), enclosure, antenna, finish ('galvanized' | 'weathered'), lens
+   * (hex, the lens element's tint), lensGlow (0..1).
+   * userData: lenses ([{x, y, z}] each window's centre, tilt and pan applied), heads ([{x, y, z}]
+   * each drum's foot), top, enclosure, dims ({H, arm}). Both parts keep their own origin: the
+   * station is anchored at the foot of its mast, a loose head at the foot of its drum. */
+  const CAM = { TY: 0.245, FACE: 0.268 };        // the tilt axis above the drum's foot, the window's z at tilt 0
+  function camMats(o) {
+    const weathered = o.finish === 'weathered';
+    return {
+      galv: kmat('cam_galv', { color: weathered ? 0x8d8f89 : 0xb3b7b7, roughness: weathered ? 0.62 : 0.5, metalness: 0.5 }),   // half metal: fully metallic steel mirrored the straw and read as brass under the grade (no. 36 round 1)
+      galvDark: kmat('cam_galvd', { color: 0x6d7173, roughness: 0.5, metalness: 0.8 }),
+      housing: kmat('cam_housing', { color: 0xe7e6e1, roughness: 0.38, metalness: 0.05 }),
+      shield: kmat('cam_shield', { color: 0xf1f0ec, roughness: 0.32, metalness: 0.05, side: THREE.DoubleSide }),
+      black: kmat('cam_black', { color: 0x1d1f21, roughness: 0.55, metalness: 0.2 }),
+      recess: kmat('cam_recess', { color: 0x07080a, roughness: 0.7, metalness: 0 }),
+      ring: kmat('cam_ring', { color: 0xd9dcde, roughness: 0.18, metalness: 1 }),
+      lens: kmat('cam_lens', { color: o.lens, roughness: 0.06, metalness: 0.35, clearcoat: 1, clearcoatRoughness: 0.03,
+                               emissive: o.lens, emissiveIntensity: +o.lensGlow || 0, envMapIntensity: 1.6 }, true),
+      cover: kmat('cam_cover', { color: 0xe4ecf0, roughness: 0.02, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.02,
+                                 transparent: true, opacity: 0.22, depthWrite: false, envMapIntensity: 1.8 }, true),
+      box: kmat('cam_enclosure', { color: 0xb9bcb8, roughness: 0.5, metalness: 0.3 }),
+      conc: kmat('cam_pier', { color: 0xffffff, map: K.tex('concrete'), roughness: 0.94 }),
+      conduit: kmat('cam_conduit', { color: 0x9c9fa0, roughness: 0.45, metalness: 0.7 }),
+    };
+  }
+  const rbx = (w, h, d, r, mat, x, y, z, parent) => { const m = TXT.roundedBox(w, h, d, r, mat); m.position.set(x, y, z); parent.add(m); return m; };
+  const disc = (rad, len, mat, z, seg, parent) => {           // a cylinder whose axis is z, centred at z
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, len, seg || 32), mat); m.rotation.x = Math.PI / 2; m.position.z = z; parent.add(m); return m;
+  };
+  /* One head on y = 0 of its own group, front +z, turned by pan about y and tilt about x. */
+  function camHead(M, pan, tilt) {
+    const h = new THREE.Group(); h.rotation.y = pan || 0;
+    K.cyl(0.074, 0.084, 0.09, M.housing, 0, 0, 0, 28, h);                            // pan drum
+    K.cyl(0.077, 0.077, 0.008, M.black, 0, 0.058, 0, 28, h);                         // its rotating seam
+    rbx(0.13, 0.075, 0.2, 0.014, M.housing, 0, 0.1275, 0, h);                        // the saddle the housing rests on
+    [-1, 1].forEach((s) => {
+      rbx(0.02, 0.13, 0.11, 0.007, M.housing, s * 0.107, 0.195, 0, h);               // cradle arm, up to the tilt axis only
+      const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.014, 20), M.housing);   // in the housing's white: a dark hub read as a second, sideways lens at feed size
+      hub.rotation.z = Math.PI / 2; hub.position.set(s * 0.12, CAM.TY, 0); h.add(hub);
+    });
+    const tg = new THREE.Group(); tg.position.set(0, CAM.TY, 0); tg.rotation.x = -(tilt || 0); h.add(tg);
+    rbx(0.19, 0.15, 0.48, 0.035, M.housing, 0, 0, 0.015, tg);                        // the long housing
+    rbx(0.198, 0.158, 0.028, 0.02, M.housing, 0, 0, 0.245, tg);                      // front lip
+    const face = new THREE.Group(); face.position.z = CAM.FACE; tg.add(face);
+    disc(0.063, 0.006, M.recess, -0.004, 36, face);                                   // dark recess behind the glass
+    disc(0.043, 0.03, M.black, -0.01, 28, face);                                      // lens barrel
+    const el = new THREE.Mesh(new THREE.SphereGeometry(0.034, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), M.lens);
+    el.rotation.x = Math.PI / 2; el.scale.y = 0.45; el.position.z = 0.002; face.add(el);   // domed front element
+    const inner = new THREE.Mesh(new THREE.TorusGeometry(0.041, 0.0035, 8, 36), M.ring); inner.position.z = 0.004; face.add(inner);
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(0.066, 0.006, 8, 40), M.ring); outer.position.z = 0.003; face.add(outer);   // retaining ring, the glint
+    disc(0.064, 0.003, M.cover, 0.012, 36, face);                                     // the clear cover
+    // the sunshield hood: a top plate on standoffs, skirts down both sides, over the face
+    rbx(0.232, 0.012, 0.6, 0.005, M.shield, 0, 0.1, 0.055, tg);
+    [-1, 1].forEach((s) => {
+      rbx(0.008, 0.065, 0.54, 0.003, M.shield, s * 0.112, 0.07, 0.06, tg);
+      [-0.12, 0.14].forEach((z) => K.cyl(0.008, 0.008, 0.02, M.black, s * 0.05, 0.075, z, 8, tg));
+    });
+    rbx(0.15, 0.11, 0.022, 0.008, M.galvDark, 0, 0, -0.232, tg);                     // rear cap
+    K.cyl(0.012, 0.012, 0.03, M.black, 0.04, -0.06, -0.2, 10, tg);                   // cable gland
+    K.cable([0.04, 0.17, -0.19], [0.06, 0.07, -0.07], 0.03, 0.0065, M.black, h);     // its lead to the drum
+    return h;
+  }
+  const lensAt = (pan, tilt) => { const zc = CAM.FACE * Math.cos(tilt || 0);
+    return { x: Math.sin(pan || 0) * zc, y: CAM.TY + CAM.FACE * Math.sin(tilt || 0), z: Math.cos(pan || 0) * zc }; };
+
+  K.define('wildfire_camera_station', {
+    anchor: 'base',
+    size: [2, 13, 1.1],
+    options: { part: 'station', height: 12, pan: [0.6, -2.5], tilt: [-0.08, -0.08], arm: 0.78, enclosure: true, antenna: true,
+               finish: 'galvanized', lens: 0x1a2228, lensGlow: 0 },
+    note: 'Options: part station|head, height m (6 to 30), pan [yaw, yaw] radians for the two heads (0 faces +z; one number for part head), tilt [pitch, pitch] (negative looks down), arm (crossarm half span m), enclosure bool, antenna bool, finish galvanized|weathered, lens hex, lensGlow 0..1. A wildfire detection station: a tapered galvanized monopole on a concrete pier, a crossarm with two pan and tilt cameras, each a long white housing under a sunshield hood with a round window and a lens behind the glass, seated on a saddle over a pan drum, an equipment enclosure with conduit up the mast, a panel antenna and a lightning rod. part head returns one loose head on its drum (0.24 m wide, 0.4 m tall, 0.6 m long). userData.lenses, .heads, .top, .enclosure, .dims.',
+    make(o, r) {
+      const M = camMats(o), g = new THREE.Group();
+      if (o.part === 'head') {
+        const p = Array.isArray(o.pan) ? o.pan[0] : o.pan, t = Array.isArray(o.tilt) ? o.tilt[0] : o.tilt;
+        g.add(camHead(M, p, t));
+        g.userData.lenses = [lensAt(p, t)];
+        g.userData.heads = [{ x: 0, y: 0, z: 0 }];
+        g.userData.keepOrigin = true;
+        return g;
+      }
+      const H = Math.max(6, Math.min(30, +o.height || 12)), arm = +o.arm || 0.78;
+      // the pier: a cast pier standing 0.35 m proud of grade, a base plate, four anchor bolts
+      K.cyl(0.46, 0.5, 0.35, M.conc, 0, 0, 0, 28, g);
+      rbx(0.62, 0.035, 0.62, 0.01, M.galvDark, 0, 0.3675, 0, g);
+      [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach((s) => {
+        K.cyl(0.016, 0.016, 0.12, M.galvDark, s[0] * 0.24, 0.35, s[1] * 0.24, 8, g);
+        K.cyl(0.03, 0.03, 0.03, M.galvDark, s[0] * 0.24, 0.39, s[1] * 0.24, 6, g);
+      });
+      // the mast: a tapered 12 sided pole shipped in three parts, a base collar, a hand hole
+      const y0 = 0.387, rb = 0.2, rt = 0.11;
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, H - y0, 12, 1), M.galv);
+      mast.position.set(0, y0 + (H - y0) / 2, 0); g.add(mast);
+      K.cyl(rb + 0.03, rb + 0.035, 0.22, M.galv, 0, y0, 0, 12, g);
+      rbx(0.12, 0.26, 0.02, 0.01, M.galvDark, 0, 0.95, rb - 0.01, g);
+      [0.36, 0.7].forEach((f) => {
+        const y = y0 + (H - y0) * f, rr = rb + (rt - rb) * f;
+        K.cyl(rr + 0.045, rr + 0.045, 0.03, M.galvDark, 0, y, 0, 12, g);
+        for (let k = 0; k < 8; k++) { const a = k / 8 * Math.PI * 2; K.cyl(0.012, 0.012, 0.05, M.galvDark, Math.cos(a) * (rr + 0.03), y - 0.01, Math.sin(a) * (rr + 0.03), 6, g); }
+      });
+      K.cyl(rt + 0.02, rt + 0.02, 0.04, M.galvDark, 0, H - 0.02, 0, 12, g);
+      K.bar([0, H, 0], [0, H + 0.95, 0], 0.009, M.galv, 6, g);
+      K.cyl(0.02, 0.02, 0.04, M.galv, 0, H + 0.93, 0, 8, g);
+      // the crossarm, with a brace each side and a platform plate at each end
+      const ya = H - 0.45;
+      rbx(arm * 2 + 0.16, 0.1, 0.1, 0.012, M.galv, 0, ya, 0, g);
+      const lenses = [], heads = [];
+      [-1, 1].forEach((s, i) => {
+        K.bar([s * 0.1, ya - 0.34, 0], [s * 0.42, ya - 0.04, 0], 0.018, M.galv, 6, g);
+        K.cyl(0.11, 0.11, 0.018, M.galvDark, s * arm, ya + 0.05, 0, 20, g);
+        const pan = (o.pan && o.pan[i] != null) ? o.pan[i] : 0, tilt = (o.tilt && o.tilt[i] != null) ? o.tilt[i] : 0;
+        const hd = camHead(M, pan, tilt); hd.position.set(s * arm, ya + 0.068, 0); g.add(hd);
+        const L = lensAt(pan, tilt);
+        lenses.push({ x: s * arm + L.x, y: ya + 0.068 + L.y, z: L.z });
+        heads.push({ x: s * arm, y: ya + 0.068, z: 0 });
+      });
+      // the enclosure on unistrut at chest height on the +z face, conduit up to the arm
+      const ye = 1.35, ze = rb + 0.02;
+      if (o.enclosure !== false) {
+        [ye - 0.05, ye + 0.62].forEach((y) => rbx(0.62, 0.042, 0.042, 0.006, M.galvDark, 0, y, ze + 0.02, g));
+        rbx(0.52, 0.68, 0.26, 0.02, M.box, 0, ye + 0.3, ze + 0.17, g);
+        rbx(0.48, 0.64, 0.012, 0.01, M.box, 0, ye + 0.3, ze + 0.306, g);
+        rbx(0.58, 0.02, 0.3, 0.006, M.box, 0, ye + 0.66, ze + 0.17, g);
+        K.bar([0.19, ye + 0.22, ze + 0.32], [0.19, ye + 0.4, ze + 0.32], 0.012, M.black, 8, g);
+        K.bar([0.12, ye + 0.64, ze + 0.12], [0.12, ya - 0.1, rt + 0.03], 0.017, M.conduit, 8, g);
+        K.bar([-0.12, ye - 0.02, ze + 0.12], [-0.12, 0.36, ze + 0.12], 0.017, M.conduit, 8, g);
+        for (let yy = ye + 1.2; yy < ya - 0.3; yy += 1.4) {
+          const rr2 = rb + (rt - rb) * (yy - y0) / (H - y0);
+          const strap = new THREE.Mesh(new THREE.TorusGeometry(rr2 + 0.012, 0.006, 6, 24), M.conduit); strap.rotation.x = Math.PI / 2; strap.position.y = yy; g.add(strap);
+        }
+      }
+      if (o.antenna !== false) {
+        const yA = ya - 1.4, rA = rb + (rt - rb) * (yA - y0) / (H - y0);
+        K.bar([0, yA, 0], [0, yA, -(rA + 0.3)], 0.022, M.galv, 8, g);
+        rbx(0.26, 0.42, 0.07, 0.02, M.housing, 0, yA, -(rA + 0.36), g);
+        K.bar([0, yA - 0.2, -(rA + 0.36)], [0, yA - 0.6, -(rA + 0.05)], 0.008, M.black, 6, g);
+      }
+      g.userData.lenses = lenses; g.userData.heads = heads;
+      g.userData.top = { x: 0, y: H, z: 0 };
+      g.userData.enclosure = { x: 0, y: ye + 0.3, z: ze + 0.31 };
+      g.userData.dims = { H, arm };
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
 }

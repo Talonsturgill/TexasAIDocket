@@ -16,9 +16,9 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 98 in 10 families |
+| kit models | 100 in 10 families |
 | asset libraries | 21 |
-| carousel and shared tools | 64 |
+| carousel and shared tools | 67 |
 | record and site tools the routine names | 20 |
 | agents | 10 |
 | knowledge files | 41 |
@@ -29,7 +29,7 @@
 | section | tools |
 |---|---|
 | costs | `render.py` |
-| nonnegotiables | `bespoke_check.py`, `caption_check.py`, `gridwatch_page.py`, `house_style_check.py`, `waterwatch_page.py` |
+| nonnegotiables | `bespoke_check.py`, `caption_check.py`, `docket_build.py`, `gridwatch_page.py`, `house_style_check.py`, `shipped_check.py`, `waterwatch_page.py`, `word_ban.py` |
 | context | `arsenal.py`, `crawl_boundary.py`, `dossier_check.py`, `fetch_doc.py` |
 | state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py` |
 | 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
@@ -51,7 +51,7 @@
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
-| 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
+| 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `measure_shipped.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
 | 19 | `email_check.py`, `gate_status.py`, `gmail_draft.py`, `prompt_audit.py` |
@@ -223,7 +223,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `suv` | 2.4 x 1.93 x 5.35 | color, metallic, rack | Full-size SUV, 5.35 m, roof rails. |
 | `utility_bucket_truck` | 3 x 3 x 9.8 | boom, swing, color, lettering | Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). |
 
-### power (11)
+### power (12)
 
 `assets/js/kit/power.js`, THE GRID FAMILY.
 
@@ -239,6 +239,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `substation` | 56 x 23.5 x 97.2 | size, kv, leads | OPTIONS size small \| large (2 or 3 transformer bays); kv high side 345 \| 138; leads draws the incoming and outgoing line stubs. |
 | `transmission_tower` | 15.2 x 49.5 x 9.3 | voltage, insulator, height, leads | OPTIONS voltage 138 \| 345 \| 765; insulator glass \| porcelain \| polymer (null = seeded); height is a body extension factor; leads = metres of sagging conductor shown each side. |
 | `utility_pole` | 2.4 x 11.3 x 5.4 | transformer, streetlight, guy, guyDir, insulators, height | OPTIONS transformer (pole mount can), streetlight (cobra head on a davit), guy (down guy with yellow guard), guyDir -1 = anchor toward -z, 1 = +z; insulators porcelain \| polymer (null = seeded); height m above ground (10.7 is a 40 ft class 3 pole). |
+| `wildfire_camera_station` | 2 x 13 x 1.1 | part, height, pan, tilt, arm, enclosure, antenna, finish, lens, lensGlow | Options: part station\|head, height m (6 to 30), pan [yaw, yaw] radians for the two heads (0 faces +z; one number for part head), tilt [pitch, pitch] (negative looks down), arm (crossarm half span m), enclosure bool, antenna bool, finish galvanized\|weathered ... |
 | `wind_turbine` | 106 x 150.2 x 21.4 | rotor, hub, diameter, yaw | OPTIONS rotor angle deg (0 = a blade straight up); hub height m; diameter m; yaw deg (0 = rotor faces +z). |
 
 ### industry (11)
@@ -301,7 +302,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `seal_plaque` | 0.9 x 0.9 x 0.04 | d, finish, stars, backer | A round seal plaque for a wall: rope moulded rim, raised rings, a ring of small stars in the legend band and a BLANK centre field. finish bronze \| gold \| wood. |
 | `server_row` | 4.2 x 2.5 x 2.4 | racks, doors, containment, tray, floor | A data hall row: 42U racks (0.6 x 2.0 x 1.2 m) with servers, storage shelves, GPU nodes and top of rack switches painted per rack (status LEDs glow), mounting rails, blanking panels and patch cords; overhead ladder tray with a yellow fibre raceway; hot aisle ... |
 
-### rural (9)
+### rural (10)
 
 `assets/js/kit/rural.js`, The working country: cattle (a Texas longhorn or a Hereford, modelled as one smooth body from a signed distance field so it has real anatomy and no seams), the Aermotor windmill that waters them, the ...
 
@@ -313,6 +314,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `cotton_module` | 2.5 x 2.3 x 2.3 | shape, count, wrap | Harvested cotton. shape round: the plastic wrapped round module a picker drops (2.29 m across, 2.44 m wide) in yellow film with its loose tail, white lint and trash specks showing on the spiral faces; count lays them in a row. shape rect: a 32 ft rectangular ... |
 | `grain_bin` | 8.1 x 9.2 x 8.8 | d, rings, fan, ladder | Corrugated steel grain bin (24 ft default, rings of 32 in): horizontal corrugation in the silhouette, sheet laps and bolt rows, a 30 degree roof with standing ribs, a peak collar and cap, roof vents, an eave lip, a caged side ladder with a roof ladder to the ... |
 | `hay_bale` | 3.1 x 3.1 x 7.1 | count, layout, age, wrap, d, w | Round hay bales (5 x 5 ft default), instanced: lumpy rolled sides with net wrap or twine, spiral faces, a flattened contact patch where each sits. layout row \| pyramid \| scatter (auto: pyramid at 5 and more); age fresh \| weathered (grey outer, gold faces). |
+| `pipe_rail_fence` | 20 x 1.7 x 0.2 | length, spacing, rails, post, color, flags, flag, flagAt | Oilfield pipe fence: 4.5 in pipe posts with domed caps, 2 7/8 in rails welded to the post faces. |
 | `ranch_gate` | 13.9 x 1.8 x 0.2 | w, rails, finish, color, open, fence | Pipe rail ranch gate (12 ft default) closed across the opening: galvanized tube frame, five rails spaced tighter at the bottom, a diagonal brace, welded joints, hung on pin hinges from a painted oilfield pipe post with a domed cap; latch post with a chain ... |
 | `stock_tank` | 3.7 x 0.8 x 3.5 | d, h, water, inlet | Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill ... |
 | `windmill` | 4.2 x 11.8 x 4.3 | tower, wheel, yaw, platform, ladder, pipe | Aermotor style water pumping windmill: four post galvanized angle lattice tower with girts and rod cross bracing on concrete footings, wooden platform, side ladder, pump rod down the centre to a pump stand with a discharge pipe, a geared head with its domed ... |
@@ -370,7 +372,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -394,7 +396,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/arsenal.py` | writes knowledge/carousel/ARSENAL.md, the inventory of everything a run has. | --check --stdout --self-test |  | context, 17 |
 | `scripts/carousel/bespoke_check.py` | prove the deck is nine drawings and not one drawing nine times. | --slides-dir --self-test | CI | nonnegotiables, 11 |
 | `scripts/carousel/bleed_witness.py` | a declared bleed has to be drawn, and the drawing is in the slide's source. | --run-dir --date --run --all --self-test | shipped |  |
-| `scripts/carousel/caption_check.py` | the house rules, enforced on published copy rather than remembered. | --file --text --json --self-test | CI self-test, gate table | nonnegotiables, 10 |
+| `scripts/carousel/caption_check.py` | the house rules, enforced on published copy rather than remembered. | --file --text --json --claims --self-test | CI self-test, gate table | nonnegotiables, 10 |
 | `scripts/carousel/claims_check.py` | the contract between the fact-checker and everything downstream. | --date --file --out --self-test --template | CI self-test | 6, 12, 13 |
 | `scripts/carousel/coherence_check.py` | the deck reads as ONE object, and a reader can actually read it. | --date --copy --slides-dir --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/construction_check.py` | how many frames trigger one bright-region proxy. | --render-dir --date --self-test | shipped |  |
@@ -416,6 +418,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/layout_check.py` | Is there an IMAGE on this frame, and did the deck turn the page? | --run-dir --date --require --self-test --prose | CI, shipped | 9, artwork, 11, 12, 12b |
 | `scripts/carousel/ledger_check.py` | the variety ledgers are DERIVED, so they are re-derived and compared. | --date --ledger-dir --self-test --derive | shipped |  |
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
+| `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI | 16 |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
@@ -426,11 +429,13 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/run_complete.py` | the run is not done until the deck ships. | --date --run-dir --all --self-test | CI self-test, gate table, shipped | 15 |
 | `scripts/carousel/scene_bounds.py` | the subject the plan named, and whether the camera put it in the frame. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/ship_images.py` | make the shipped deck weigh what a phone can afford. | --run --all --dry-run --force --keep --self-test | CI self-test | 16 |
-| `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI |  |
+| `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI | nonnegotiables |
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
+| `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
 | `scripts/shared/actor_stamp_shape.py` | no instruction file may tell a session to WRITE the actor stamp. | --root --self-test | CI |  |
+| `scripts/shared/attribution_strip.py` | no Claude or Anthropic attribution in a commit message, ever. |  | CI |  |
 | `scripts/shared/crawl_boundary.py` | ask the registry whether a url is inside the boundary, once, in one place. | <url> --list --self-test | CI self-test, shipped | context |
 | `scripts/shared/dependency_shape.py` | prove every install uses the committed dependency locks. | --self-test | CI |  |
 | `scripts/shared/fetch_doc.py` | fetch a web document into the run's own scratch and read its text. | <url> --name --date --chars --self-test | CI self-test | context |
@@ -459,7 +464,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | tool | what it is | flags | wired | phases |
 |---|---|---|---|---|
 | `scripts/site/article_check.py` | Reject a shipped carousel without a source-bound, standalone web edition. | --date |  | 16 |
-| `scripts/site/docket_build.py` | the docket's schema, its gates, and the projection the site renders from. | --self-test --validate --project --promote --ledger --today | CI | 0, 2, 5, 16 |
+| `scripts/site/docket_build.py` | the docket's schema, its gates, and the projection the site renders from. | --self-test --validate --project --promote --ledger --today | CI | nonnegotiables, 0, 2, 5, 16 |
 | `scripts/site/docket_ingest.py` | turn a research batch into docket items the gates will accept. | --batch --today --out --self-test | CI self-test | 5 |
 | `scripts/site/docket_staleness.py` | which docket items must be re-verified TODAY, ranked and uncapped. | --today --budget --ledger --json --self-test | CI | 2 |
 | `scripts/site/favicon.py` | the mark in the browser tab, computed from the same statute as the wordmark. | --self-test --write | CI self-test | 7 |

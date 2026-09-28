@@ -4661,3 +4661,98 @@ gates that compare on it, and have `word_ban.rendered()` read `full` when it is 
   `word_ban`. Fix: dedupe inside the hook before counting, and write `canvas_text_dropped`, the
   number of calls past the cap, into each slide's record. `word_ban.rendered()` then fails
   closed when it is above zero, with a self-test slide whose report sets it (Codex, PR 379).
+
+## 2026-09-28, carousel no. 36 "The Watchtower", the upgrade phase. Two kit upgrades, three proposals
+
+The round 5 craft card's ranked artwork defects, verbatim and repeated from round 3: "Frame 6's 33
+heads read as a comb of tiny T shapes, not as cameras", "the camera heads are box primitives at
+detail scale" (frame 3), and "The mesa is textured in stretched horizontal terraced striations on
+frames 1, 2, 3, 6, 7 and 9, and it reads as a render artifact at full size" / "stair-step banding in
+its strata and a hard jagged cutoff at its right end". The kit's `utility_pole` failed at detail
+scale in rounds 1 to 3 and frame 2 was recomposed twice around it.
+
+### 1. KIT LIFT: `wildfire_camera_station` INTO `power.js` AND `pipe_rail_fence` INTO `rural.js`, AT THE NAMED FIX (done)
+
+The chassis head was a short box under a flat plate on a tall thin U yoke: a T from the side, a
+mailbox with a dark rectangle from the front. The kit head is a long housing (0.48 m by 0.15 m,
+about three to one), a sunshield hood on standoffs with skirts down both sides overhanging the face,
+a round window with a lens behind the glass (a dark recess, a lens barrel, a domed element, a
+chrome retaining ring that catches the sky, a clear cover), seated on a saddle over a pan drum with
+short cradle arms to the tilt axis. The pivot hubs are in the housing's white because a dark hub
+read as a second, sideways lens. `userData.lenses` now applies tilt as well as pan. The station,
+the mast, the enclosure and the options are the chassis's. The fence comes across as it shipped,
+because no judge named it. The declared size moved to `[2, 13, 1.1]` by `sizes.py --fix`.
+
+Proof, under `out/2026-09-28/tmp/kitlift/` (scratch, see proposal 5): `heads/render/slide-01.png`
+(four loose heads at frame 6's pan and three others, stormFront) and `slide-02.png` (one head
+close), `station/render/slide-02.png` (the station with a 1.75 m person), `insitu/slide-03.png`
+and `insitu2/slide-01.png` (no. 36's frames 3 and 1 re-rendered from the committed slides with the
+kit model), `f6_compare.png` (frame 6's row before and after).
+
+**What the lift does NOT fix: frame 6.** Read at full size the new heads are housings with hoods,
+not T shapes, and the row still reads as one bar, because the frame spaces 33 heads closer than a
+head is long and turns them side on, so each hood runs into the next. That is composition. A row
+of counted objects needs a gap between them wider than the object's own shadow line, or a three
+quarter turn so each lens shows. It goes to the next count frame's dossier, not to the kit.
+
+**What a re-render of no. 36 now does.** The chassis's `installKit` returns early when the kit
+defines `wildfire_camera_station`, so it defines neither of its two models and both come from the
+kit. Every option is honoured and both userData shapes are kept, so every frame composes as it did.
+The heads change, and frame 3's leader dots land on the new lens centre.
+
+### 2. THE MESA'S STRIATION WAS THE KIT MODEL'S OWN, AND IS FIXED IN `landscape.js` (done)
+
+Three causes, all in `landscape.js`, none in the engine:
+- `strataTex` drew beds of 4 by 48 noise cells over a 70 m by 24 m tile, 17.5 m long and 0.5 m tall,
+  under a pixel at the 1 to 8 km the model is placed at, so the map aliased into hairline terraces.
+  Now 6 by 16 cells, 11.7 m by 1.5 m.
+- Every vertex was mapped by height, the talus included, so the strata lay across a slope of about
+  three to one as contour terraces, and the top was mapped by angle, so it fanned from its centre.
+  Now the UVs are set per triangle by the surface it is on: the top in plan, the cliff along the
+  rim and up, the talus along the rim and down the slope, where the same map reads as rills. The rim
+  is measured by its own arclength, so there is no seam where the angle wraps. Normals are computed
+  before the split, so shading stays smooth across it.
+- The rim jitter was `nB(th * 40)`, one and a half columns per cell, which is the stair-step rim on
+  frame 1, and neither it nor the gully noise nor the height jitter was periodic, so all three
+  jumped at th = 0, the right hand end of a mesa seen from the south. All three now run round the
+  rim on `cos` and `sin`, at a frequency the 384 columns sample, and the height jitter fades out
+  over the last 6 m so the foot no longer zigzags across the ground.
+
+Proof: `mesa_before/` and `mesa_after/` (the deck's own call at stormFront, and the default at
+goldenHour), `mesa_compare.png`, `mesa2_compare.png`, and `f1_mesa_compare.png` (frame 1's mesa
+before and after, where the stair-step rim is gone). **Still there and not fixed:** the default
+mesa's talus foot is ragged against the ground at goldenHour, before and after, because the thin
+foot takes the far material's own aerial haze and reads lighter than the ground it meets. The
+fix is a foot that blends into the ground colour, which is a design change and more than this phase.
+
+### 3. ENGINE: THE `stormFront` PRESET'S FOG CLOSES THE PLAIN AT ABOUT 150 M (proposal, `txthree.js` is `human`)
+
+`TXT.worlds.stormFront` carries `fogDensity: 0.0065` with `FogExp2`. Computed from the engine's own
+fog factor, `1 - exp(-(d * density)^2)`: 0.6135 fogged at 150 m and 0.9777 at 300 m. The critics'
+second round on no. 36 named it: "the preset's fog closed the plain into a white wall", and every
+mesa placed kilometres out vanished. The chassis declared `fogDensity: 0.0028` and
+`envIntensity: 0.75` (the preset's is 0.45, which left every white housing taupe) and the deck
+shipped on those. At 0.0028 the same formula gives 0.1617 at 150 m and 0.5062 at 300 m.
+`nightSodium` at the same 0.0065 is a night world where a short view is right, so the fix is the one
+preset, not the family. **For a maintainer:** set `stormFront.fogDensity` to the value no. 36 shipped
+(0.0028) and `envIntensity` to 0.75, render `examples/kit/build.py --world stormFront` and one
+exterior frame of no. 36 against it, and read the plain and the mesa. The run's instinct
+`measure-the-preset-fog-before-placing-distance` is the workaround until then.
+
+### 4. KIT `utility_pole` AT DETAIL SCALE (proposal in lane, not built this run)
+
+Named in rounds 1 to 3 of no. 36: "a flat slab trunk with full-height streaks, stacked-disc
+insulators, a black cone at the crossarm end". Read in `power.js`: `poleTex` paints every check as
+`fillRect(x, 0, w, N)`, a streak the full height of the tile, 1 to 4 px wide on a 256 px tile, so a
+pole seen close is striped top to bottom like a board. The grey pin insulators are a stack of
+identical discs from `pinInsulator`, where a porcelain pin type has a skirted bell with drip sheds.
+The black cone is most likely the fuse tube on the cutout (`M.paint(0x3b3632)`, a 14 mm bar) seen
+end on. None of these was re-rendered this run, so the diagnosis is from the code and not proven.
+**Next step:** render `utility_pole` through `examples/kit/build.py` with a hero camera at 3 m, read
+it at full size, then fix `poleTex` (short checks of random length, a lengthwise grain) and the pin
+insulator profile with that crop as the proof.
+
+### 5. THE PROOF IMAGES DIE WITH THE CONTAINER (proposal, `examples/kit/**` is `human`)
+
+Same as 2026-09-27 item 1. A maintainer could copy `out/2026-09-28/tmp/kitlift/f1_mesa_compare.png`
+and `heads/render/slide-01.png` into `examples/kit/` as WebP, beside `cab-proof.webp`.
