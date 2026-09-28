@@ -2,7 +2,7 @@
 
 The whole record as plain Markdown, one decision after another, in the order they are filed. Every fact carries a quote from a source that was fetched, and at least one of those sources is the filing, the statute or the agency itself.
 
-Licence CC BY 4.0. Built September 27th, 2026. The canonical page for any decision below is https://texasaidocket.com/item/<id>/.
+Licence CC BY 4.0. Built September 28th, 2026. The canonical page for any decision below is https://texasaidocket.com/item/<id>/.
 
 ---
 
@@ -5724,6 +5724,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The assignment of the abatement stands as the court made it.
 - 2026-09-24 · The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again.
 - 2026-09-26 · The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again.
+- 2026-09-28 · The county's own notice could not be read again, so the named assignee and the estimated cost it states rest on the last reading rather than a fresh one. Nothing on the record says the assignment the court approved has been undone.
 
 ## Evidence
 
@@ -8469,7 +8470,7 @@ The Texas Advanced Computing Center's Frontera user guide carries a warning. The
 - Public access: Write to the decider
 - Take part: https://docs.tacc.utexas.edu/hpc/frontera/
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-28
 
 ## Dates
 
@@ -8489,6 +8490,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The decommission notice still dates the end of the queues to October 1st, now a week away. Nothing posted since pushes it back.
 - 2026-09-26 · Frontera's decommission notice still ends the queues on October 1st, and nothing posted since moves that date.
 - 2026-09-27 · The center's user guide still gives October 1st as the day Frontera's queues close for good.
+- 2026-09-28 · With the closing date close, the user guide still carries the notice unchanged, and Horizon is still described as limited to internal users.
 
 ## Evidence
 
@@ -11525,7 +11527,7 @@ The National Science Foundation made a cooperative agreement to Texas Southern U
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2619041&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-28
 
 ## Dates
 
@@ -11542,6 +11544,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · Texas Southern is still the lead institution for its regional node, and the award record shows no change to the network around it.
 - 2026-09-26 · Texas Southern still leads its regional node in the HBCU network.
 - 2026-09-27 · The foundation's award naming Texas Southern to lead a regional node still stands as made.
+- 2026-09-28 · The award record still puts Texas Southern at the head of one of the network's regional nodes, with its start date days away and unchanged.
 
 ## Evidence
 
@@ -12480,5 +12483,223 @@ Source (primary_official): https://blog.cstx.gov/2026/09/24/live-from-city-hall-
 > This reduction in property crime offenses correlates with the introduction of Flock cameras.
 
 Source (primary_official): https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/
+
+---
+
+# PUCT wildfire plan blueprint lists cameras suggested, not required
+
+The wildfire mitigation plan rule, 16 TAC §25.60, reaches every electric utility, municipally owned utility and electric cooperative that owns transmission or distribution lines in Texas. In Project 59053 commission staff filed a pro forma plan and guidelines that a utility may use and is not required to use. Its situational awareness section names cameras or other monitoring technology among the tools a plan describes. That section is marked suggested rather than required. Pano AI sells AI smoke detection cameras and names Xcel Energy, CenterPoint Energy, American Electric Power and Austin Energy as its Texas customers. It had asked staff to make a description of situational awareness tools a minimum requirement. A House State Affairs hearing reported on September 21st, 2026 heard that only eight of 160 utilities in fire-prone areas had complied with the plan law. The same hearing heard that Southwestern Public Service, which operates as Xcel Energy in the Panhandle, has deployed AI smoke detection cameras across its service territory.
+
+- Topic: power-and-the-grid
+- Decided by: Public Utility Commission of Texas (state-agency)
+- Where: Statewide
+- Status: decided
+- Public access: Write to the decider
+- Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59053&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+- Last checked: 2026-09-28
+
+## Dates
+
+- 2025-12-04 · effective: 16 TAC §25.60, Transmission and Distribution Wildfire Mitigation Plans, takes effect
+- 2026-04-10 · filed: Commission staff files its pro forma wildfire mitigation plan and guidelines in Project 59053
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-28 · Admitted on the commission's own rule and staff's pro forma, with a hearing report on how many utilities have filed.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The wildfire mitigation plan rule reaches every utility, municipal utility and cooperative with transmission or distribution lines in Texas.
+
+> This section applies to each electric utility, municipally owned utility, and electric cooperative that owns a transmission or distribution facility in this state.
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/rulesnlaws/subrules/electric/25.60/25.60.pdf
+
+### Using the pro forma is optional.
+
+> An entity required to file an application for approval of a wildfire mitigation plan may, but is not required to, use a pro forma plan.
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF
+
+### The pro forma's situational awareness section names cameras among the tools a plan describes.
+
+> Cameras or other monitoring technology
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF
+
+### The situational awareness section is marked suggested, for operational decisions during elevated risk.
+
+> to support operational decision-making during elevated risk conditions
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF
+
+### Pano AI asked staff to make a description of situational awareness tools a minimum requirement.
+
+> Pano recommends inclusion of an additional minimum requirement to provide a description of the use of situational awareness solutions.
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF
+
+### Pano AI describes what its cameras do when paired with AI analytics.
+
+> When paired with native AI-based analytics, these enterprise-grade camera systems can automatically surface anomalies, rapidly identify and locate smoke or heat signatures, pinpoint the precise coordinates of ignitions, and support faster decision-making, operational response, and coordination by utilities and public safety agencies.
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF
+
+### Pano AI names its Texas utility customers.
+
+> Our solution is deployed with more than 20 electric utility companies across the United States, including CenterPoint Energy, American Electric Power, Xcel Energy, and Austin Energy in Texas.
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF
+
+### The commission says every utility must submit a plan and need not use the blueprint.
+
+> These tools do not replace utility-specific planning, and utilities are not required to use the pro-forma blueprint when preparing a WMP.
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/resources/pubs/news/2026/PUCT-Announces-Blueprint-Guidelines-for-Utility-Wildfire-Mitigation-Plans.pdf
+
+### Lawmakers heard that few utilities in fire-prone areas had complied.
+
+> Only eight of 160 utility companies that operate in fire-prone areas of Texas have complied with a law that helps mitigate wildfires, lawmakers recently learned.
+
+Source (journalism): https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/
+
+### Southwestern Public Service told lawmakers it has deployed AI smoke detection cameras.
+
+> The company was heavily criticized in the wake of the fires and has since deployed 97 wildfire detection cameras across its service territory. The cameras use AI to detect smoke and provide that information in real-time to utility personnel, local fire responders and emergency managers.
+
+Source (journalism): https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/
+
+### The Smokehouse Creek fire started at an Xcel Energy pole.
+
+> It was the largest wildfire in Texas history, started when a decayed power pole owned by Xcel Energy snapped and landed in dry grass.
+
+Source (journalism): https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/
+
+### The commission's director gave lawmakers the count still preparing plans and the count not heard from.
+
+> Corona said another 135 have indicated to the PUC they are in the process of preparing their plan. This leaves 13 who have not communicated their plans to the PUC.
+
+Source (journalism): https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/
+
+### The committee chair told utilities that have not filed that no excuse is good enough.
+
+> I think it’s imperative for anybody that has not filed that report to realize January is coming. You will file that wildfire mitigation plan, and if you’re dragging your feet, there’s no excuse good enough for me.
+
+Source (journalism): https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/
+
+### Xcel Energy lists AI predictive modeling and panoramic cameras among its Texas resiliency plan's wildfire measures.
+
+> Measures include enhanced inspections, vegetation clearing, replacing structures, installing weather stations, using AI for predictive modeling, placing panoramic cameras, upgrading fire-resistant equipment, and improving emergency response plans.
+
+Source (primary_corporate): https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas
+
+### The commission lists SPS's approved resiliency plan and its wildfire aim.
+
+> Improve detection, prevention, and ability to withstand wildfires
+
+Source (primary_official): https://www.puc.texas.gov/industry/electric/system-resiliency-plans/
+
+### TDEM counts a county as a wildfire risk area when it has asked the state for wildfire help in the preceding 36 months.
+
+> requested state assistance in responding to a wildfire, including a request made through TDEM or the Texas A&M Forest Service.
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_19_1582215.PDF
+
+### The rule sets how long a party has to intervene in a utility's plan application.
+
+> the intervention deadline is 30 calendar days from the date service of notice is complete.
+
+Source (primary_official): https://ftp.puc.texas.gov/public/puct-info/agency/rulesnlaws/subrules/electric/25.60/25.60.pdf
+
+---
+
+# Asked for AI camera fire detections, Xcel counted cameras
+
+The Public Utility Commission of Texas approved the system resiliency plan of Southwestern Public Service Company, which serves the Panhandle as Xcel Energy, in Docket 57463. The order lists the metrics the utility must carry into its annual reports. One of them is the number of artificial intelligence camera fire detections. The utility filed its first annual report in Project 57941 on May 1st, 2026. Against that metric it reports 33 cameras installed and projects 34 for 2026, and it gives no count of detections. The same report counts 24 wildfire ignitions associated with its overhead power lines and puts the 2026 capital cost of the AI camera project 64.04 percent above the plan's estimate.
+
+- Topic: power-and-the-grid
+- Decided by: Public Utility Commission of Texas (state-agency)
+- Where: Moore
+- Statistical areas:
+  - Dumas, TX
+- Status: decided
+- Public access: Write to the decider
+- Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=57941&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+
+- Last checked: 2026-09-28
+
+## Dates
+
+- 2025-07-10 · ordered: Commission order approving the SPS system resiliency plan filed in Docket 57463
+- 2026-05-01 · filed: SPS files its System Resiliency Plan Annual Report for 2025 in Project 57941
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-28 · Admitted on the commission's own order and the utility's first annual report under it.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The commission approved the SPS resiliency plan application.
+
+> including $538.3 million of investments tailored to the characteristics of its service area.
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF
+
+### The order names AI camera fire detections as a metric.
+
+> number of artificial intelligence camera fire detections;
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF
+
+### The order requires the metrics in the annual reports.
+
+> will include those evaluation metrics and criteria in the annual reports filed under 16 TAC § 25.62(g).
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF
+
+### The first annual report answers the detection metric with a count of cameras.
+
+> Number of artificial intelligence camera fire detections. • Actual: 33 cameras installed • Projected: 34 for 2026
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF
+
+### The report counts ignitions associated with overhead lines.
+
+> Number of wildfire ignitions associated with electric overhead power lines within each wildfire risk tier. • Actual: 24
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF
+
+### The report says what the AI cameras are for.
+
+> ability to detect smoke, identify fires, notify the Wildfire Command Center
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF
+
+### The AI camera project's 2026 capital cost runs over the plan's estimate.
+
+> resulting in a 64.04% change
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF
+
+### The report names Moore County in the reporting period's one resiliency event.
+
+> Moore County issued a local disaster declaration
+
+Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF
+
+### The commission lists the SPS plan among approved resiliency plans.
+
+> Southwestern Public Service Company (SPS) (Docket No. 57463)
+
+Source (primary_official): https://www.puc.texas.gov/industry/electric/system-resiliency-plans/
 
 ---

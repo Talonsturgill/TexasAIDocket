@@ -11,7 +11,7 @@ The Texas Advanced Computing Center's Frontera user guide carries a warning. The
 - Public access: Write to the decider
 - Take part: https://docs.tacc.utexas.edu/hpc/frontera/
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-28
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The decommission notice still dates the end of the queues to October 1st, now a week away. Nothing posted since pushes it back.
 - 2026-09-26 · Frontera's decommission notice still ends the queues on October 1st, and nothing posted since moves that date.
 - 2026-09-27 · The center's user guide still gives October 1st as the day Frontera's queues close for good.
+- 2026-09-28 · With the closing date close, the user guide still carries the notice unchanged, and Horizon is still described as limited to internal users.
 
 ## Evidence
 
