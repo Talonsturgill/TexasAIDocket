@@ -1,0 +1,136 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Utility regulation",
+ "dek": {
+  "text": "Xcel Energy's Texas utility agreed to report AI camera fire detections under its approved plan. Its annual report answered that line with a count of cameras.",
+  "claims": [
+   "c34",
+   "c33",
+   "c8",
+   "c56"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Southwestern Public Service Company operates as Xcel Energy](c56), the Tribune reports. [Its service area covers most of the Texas Panhandle](c29), about {{number:c29}} square miles by the utility's own study. Its wildfire plan now puts AI smoke cameras on towers across that ground.",
+   "claims": [
+    "c56",
+    "c29"
+   ]
+  },
+  {
+   "text": "The Public Utility Commission approved the utility's resiliency plan on {{date:c10}}. [The order lists the number of artificial intelligence camera fire detections among the evaluation metrics](c33) for that plan. [SPS will include the agreed evaluation metrics in its annual resiliency plan reports](c34) under the same order.",
+   "claims": [
+    "c10",
+    "c33",
+    "c34"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the report put on that line",
+   "paragraphs": [
+    {
+     "text": "[SPS filed its annual resiliency plan report](c9) on {{date:c9}}. Under the detections metric [the report gives 33 cameras installed as the actual figure and 34 for 2026 as the projection](c8). The line reports a count of cameras. It gives no count of detections.",
+     "claims": [
+      "c9",
+      "c8"
+     ]
+    },
+    {
+     "text": "The report states its own limits. [SPS says the partial reporting year means it can't yet compare each measure's actual effectiveness with its projected effectiveness](c21). Other lines on the same page do carry counts. [For wildfire ignitions associated with overhead power lines the report gives a single actual figure of 24](c18). [It gives 26 as the actual total of wildfires reported by the National Interagency Fire Center](c20) in counties SPS serves.",
+     "claims": [
+      "c21",
+      "c18",
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the cameras do",
+   "paragraphs": [
+    {
+     "text": "The plan application describes the system in plain terms. [Each AI camera location carries two physical cameras that rotate to detect smoke](c25). [Data from the cameras is verified and forwarded by a human operator](c24). [SPS named Pano AI as its partner and said the system's fire detections are shared with SPS and first responders](c26). [SPS said it planned to install a total of 68 AI cameras in Tier 2 and Tier 3 wildfire risk areas](c23).",
+     "claims": [
+      "c25",
+      "c24",
+      "c26",
+      "c23"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it costs",
+   "paragraphs": [
+    {
+     "text": "[SPS budgeted $0 in 2025 capital for the AI camera project because the project was scheduled to start in 2026](c12). It reports [approximately $2M of actual capital spending on it in 2025](c13) once the order was approved. For the current year [SPS anticipates $10,537,400 of AI camera capital costs against $6,423,554 in the plan, which it calls a 64.04% change](c15). It points in part to [added system capabilities and expanded camera coverage in high-risk areas](c16).",
+     "claims": [
+      "c12",
+      "c13",
+      "c15",
+      "c16"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the state asks of every utility",
+   "paragraphs": [
+    {
+     "text": "The rule behind these plans reaches far past one company. [It applies to every electric utility, municipally owned utility and electric cooperative that owns a transmission or distribution facility in Texas](c2). The staff blueprint for writing a plan treats cameras as optional. [Its Situational Awareness section is marked Suggested and lists cameras or other monitoring technology as a tool](c37). [The PUCT said utilities are not required to use the blueprint](c38). [Pano AI had asked the commission to add a minimum requirement that plans describe their use of situational awareness solutions](c39).",
+     "claims": [
+      "c2",
+      "c37",
+      "c38",
+      "c39"
+     ]
+    },
+    {
+     "text": "Few plans had arrived when lawmakers asked. [Only eight of 160 utilities operating in fire-prone areas of Texas had complied with the wildfire mitigation plan law](c43), the Tribune reports from a House State Affairs hearing.",
+     "claims": [
+      "c43"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't show",
+   "paragraphs": [
+    {
+     "text": "The report doesn't say whether the cameras detected a fire. It doesn't say they detected none either. A missing count isn't a count of zero. [SPS says its 2027 annual report will carry a full year of data](c57), and under the order that report carries the same line. The Tribune reports the company's interim president told lawmakers [the company has deployed 97 wildfire detection cameras across its service territory](c41). That count covers more than Texas.",
+     "claims": [
+      "c57",
+      "c41",
+      "c34"
+     ]
+    },
+    {
+     "text": "Both documents are public on the PUCT Interchange. [The order sits in Docket 57463](c31) and [the report in Project 57941](c9). Under the state rule [the deadline to intervene in a wildfire mitigation plan case is 30 calendar days from the date service of notice is complete](c5).",
+     "claims": [
+      "c31",
+      "c9",
+      "c5"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0192",
+   "label": "The camera count on the detections line, in the record"
+  },
+  {
+   "id": "tx-2026-0191",
+   "label": "The PUCT blueprint that lists cameras as suggested"
+  }
+ ]
+}

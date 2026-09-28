@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Five frames (1, 2, 6, 7, 9) pass the place-at-an-hour test at 432px. Each has a stormFront deck, a hazed caprock on a third, cured grass and contact under the pier. Frame 7's two tubes on cribbing measure about 815px against 1335px, which matches 6.42M to 10.54M, so the encoding is honest. Several frames fall short, though. The mesa on 1, 7 and 9 shows stair-step banding in its strata and a hard jagged cutoff at its right end, a render artifact. Frame 3's camera heads are box primitives, and only the first label has a leader. The other two labels, 'verified and forwarded by a human operator' and 'shared with SPS and first responders', float at 22px (machine_qa tiny-text warns), with an orphaned 'operator' and 'responders'. Frames 4 and 5 put a sheet with fake hairline text and two binders on a desk against an unlit wall, with a clipped grey slab bleeding off the top right. Frame 8's 160 chairs sit under a flat near-black upper half that reads as a plate behind the type, and the room has no walls or dais in view. Frame 9's rancher is a low-poly kit figure. Strong overall, but more than one frame leans on a primitive or a dead zone."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "Clearly one deck on the contact sheet. One stormFront sky, one low west light, one straw-and-caprock ground, and the same two-headed station on 1, 3, 6, 7 and 9. The heads' pan does change state across the deck: plain on 1, split on 3, loose on the rail on 6, facing the reader on 9. The caliche road runs from 1 to the gate on 9. Frames 4, 5 and 8 leave the world for interiors. 4 and 5 are near-duplicates on purpose, and 8 is the declared value cut. So three of nine sit outside the filmstrip, and the hero is absent from 4, 5 and 8. deck_coherence and deck_chassis exit 0, so the 7 cap does not bind."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "I traced every numeral on the slides and in the caption. 33 and 34 (c8), 24 (c18), 26 (c20), $10,537,400, $6,423,554 and 64.04% (c15), 8, 160, four and 135 (c43, c45), July 10th, 2025 (c10, c31), May 1st (c9), 2027 (c57), and Docket 57463 and Project 57941 all trace, and the verbatim labels on 3 to 6 match their quotes. The deck is careful never to call the 33 detections and never to draw the bare rail as zero ('A missing count isn't a count of none'). The first-comment count of 'six official records, one first party account and one news report' is right. Three looser spots, none a hard fail. Frame 2's cause of Smokehouse Creek rests on the Tribune where an official investigation exists, though SPS's own testimony (c28) stands beside it. Frame 8's '160 utilities' drops the source's set, 'that operate in fire-prone areas of Texas'. The PUCT quotes were checked against local snapshots after live WebFetch returned 402, which the claims file discloses."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "A Panhandle reader learns what happened, who decided it and when. The PUCT order of July 10th, 2025 (frame 4) named detections as a metric, and SPS's May 1st report answered with cameras (frames 5 and 6). Smokehouse Creek on frame 2 makes the stake concrete for that region. Frame 9 names both filings and where they sit, and says the 2027 report is the next answer. A reader still has nothing to do but wait and read. No comment route, no commissioner, no date for the 2027 report (May 1st per c58, never printed) and no county are named. The money stake on frame 7 is stated without who bears it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover hook 'Agreed to count fire detections. Counted cameras.' earns the swipe, and frame 2 pays at once with the fire. The turn lands at 5 to 6 (question, answer, bare rail), 7's 'projected to the dollar' sharpens it, and 9 closes on the open question. Frame 8 is a detour into a different rule (wildfire mitigation plans, which its own dek calls 'a different rule from resiliency plans') and could move or be cut without loss. The caption's first line, 'The answer was filed on May 1st.', gives a feed reader an answer before any question, so it is a weak lead."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and on register, and it keeps its nerve without doom. 'A missing count isn't a count of none.' and 'The cost was projected to the dollar.' are the lines of someone who read the filing. It passes the house rules I checked: no dashes, 'can't', no banned words, and colons only inside verbatim quotes. Regional specificity lives in the art (caprock, ranch gate) more than in the words, and nothing in the copy sounds Panhandle-born. Frame 8's dek and the caption's hearing paragraph read like procedural summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "This is the first stormFront world, with a new palette and a new daylight exterior, after nos. 32 to 35 (genset yard, goldenHour neighbourhood, blueHour I-45, nightSodium apartments). The moves are familiar, though. The opening is again a full-bleed chassis hero with the headline top left, the same as 32 to 35. Frames 4 and 5 are a document on a desk, and no. 35 had an office. Frame 8 is a hearing room, which no. 24 had and no. 32 put a hearing table on. The kit person for scale was in no. 32 and no. 35. Two lengths at one scale were no. 35's columns. A fresh concept, built mostly from recent parts."
+  }
+ ],
+ "weighted_score": 7.182,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail found. 7.182 is under this round's 7.7 rung, and at the round cap of 5 the finished deck ships with that shortfall named, per the rubric's ladder.",
+ "one_sentence_fix": "Rebuild frames 4, 5 and 8 as lit places instead of objects against a dark void (a desk under a window full of the storm deck, a hearing room with its dais and walls instead of 160 chairs under a black plate), and put the station in them, because those three interiors are where the deck drops out of its own world and loses the most on artwork and coherence together."
+}

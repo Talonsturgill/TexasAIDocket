@@ -1,0 +1,53 @@
+{
+ "judge_lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.1,
+   "why": "Better than round 1, but still more than one frame leans on a default. STRONG: Slide 9 is now the best frame. The caliche road carries the gate's cast shadows across it, rocks and grass sit where things meet the ground, the mast stands on the right third and the Texan is turned away, which hides the mannequin face. The figure is still a stiff kit body. Slide 1 puts the horizon on the lower third, the mast on a pad with a contact shadow and the hook in quiet storm sky. On slide 7 the tubes are now pale and measure about 815 px and 1337 px on the 1600 px display, a ratio of 1.64, and they rest on cribbing with shadows. WEAK: (2) The 'weathered wood' pole still reads as a flat brown panel at 432 px and at full size. The 'checks' are ruler-straight black slots and the 'tag' is a flat grey square at about x 1405 to 1510, y 345 to 490. There is no grain, no taper, no visible bolt and no roundness catching the west light, so this frame fails the showstopper test. (4, 5) There is no 'lit window' in the pixels. At the top right there is a black frame corner whose inside is the same dark wall value, so it reads as the edge of a monitor or picture frame. There is no storm light on the desk and the promised loose camera head is still absent. The page shadows are faint. machine_qa band ratios are 1.10 and 1.14, the flattest in the deck. (3) The camera housings are box primitives on leg struts beside plain bowl mounts. The ground is a flat mustard plane with sparse sprite tufts, and the mesa face is a smeared horizontal streak. The dek's last line, 'named Pano AI as its partner.', sits on the caprock rim, which is the dek-band warn machine_qa says it could not measure. The labels are 22 px, under the 24 px floor (warn). (6) At 432 px the '33 heads' are a row of dark specks that read as a railing. The rail runs off the left edge, so no reader can count it. The bottom 40 percent is faceted grass spikes and bare dirt. (8) It is improved: a dark hall, a dais with nameplates, a podium, eight white binders and the label moved to the foot. The hook and dek still sit on a hard-edged dark rectangle running from y about 230 to 895, with a vertical edge at x about 1435 and a black void above, so the wall still reads as a plate. No window light reaches the chairs. Across the deck the sky is a flat grey gradient that shows no direction, and cast shadows are faint everywhere except on 9. On the descriptors, 7 allows one weak frame. Here 2, 3, 4 and 5 lean on defaults and 8 is partial, so it is well above the 4 and below the 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "As a filmstrip, six frames (1, 2, 3, 6, 7, 9) share one stormFront sky, straw ground, red caprock and grade. The station recurs on 1, 3, 6, 7 and 9 in one galvanized and white material. The held camera from 4 to 5, with the page swapped, is a real device, and the frame 8 value cut is declared in the storyboard. What still breaks it: 4 and 5 remain a dark brown interior with no light shared with the world. The 'window' is an unlit black frame, so there is no storm light to tie them to the plain. The heads' motif (splayed on 1, turned away on 7, facing the reader on 9) can't be read, because on 7 and 9 the heads are a few pixels at 432 px. The declared edge tease, the road leaving frame 1 at the bottom right, shows only as a pale smudge at slide 1's lower right corner, although it does arrive clearly on 9. That is two devices working and a two-frame block sitting outside. deck_coherence and deck_chassis pass, so no cap applies."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "The round 2 copy fixes the authorship problem. The slide 1 hook and dek say 'Agreed to count fire detections' and 'among the metrics it agreed to report', which c34 supports ('agreed-upon evaluation metrics'). The 30-day window is off the slides, and slide 8 names SPS's own separate plan (c52). Every slide numeral traces: 33 and 34 to c8, $10,537,400, $6,423,554 and 64.04% to c15, eight and 160 to c43, 57463 and 57941 to c10 and c9, July 10th, 2025 to c10 and c31. The labels on 3 to 6 are verbatim. The first comment now uses ordinals ('September 21st', 'December 30th, 2024') and labels Item 108 as 'the Commission's order'. Still held near 7: Smokehouse Creek's cause and 'largest in Texas history' (slide 2) and 'Eight of 160' (slide 8) rest on the Tribune (c53, c43), attributed but journalism where a primary exists. The caption still sets the 25.60 wildfire plan 30-day intervention rule (c5) right after the 25.62 resiliency order and report without saying they are different proceedings. Slide 6's dek promises 'Each head on the top rail is one camera the report counts'. The rail bleeds off the left edge, and from the pixels I can't confirm 33. The spacing estimate at full size is 33 to 35. figure_bearing passes on the source count, so I do not list it as a fault."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened: the order's line j on slide 4, answered by 'Actual: 33 cameras installed' on slide 5. They learn who decided (the PUCT, July 10th, 2025, Docket 57463) and the stake (Smokehouse Creek and SPS's own 'two ignitions' testimony on slide 2, and the budget on slide 7). Slide 9 now names Hutchinson County and both filings on the Interchange. Short of 10: the action is to go and read two dockets and ask the question. No deadline is named on any slide. The next annual report date (c6, May 1st) is only implied by 'each annual report carries the same line', and the caption's 30 days points at no named case."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover is the whole story in six words, and slide 2 pays at once with the fire. Slides 4 to 5 are the turn: same camera, question then answer. Slide 7's 'The cost was counted to the dollar.' is a sharp counterpoint. The close is now stronger. Slide 9's 'How many fires have the cameras detected?' is the question the deck earned, where round 1's abstract line did not land. Slide 6 still restates slide 5 in a second picture and could go with little loss. Slide 8 now bridges with SPS's own plan, so the move to statewide compliance is less of a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The headlines are plain and specific: 'The order wrote the measure down.', 'One line filled. One left bare.', 'The cost was counted to the dollar.' 'A missing count isn't a count of none.' is fair to SPS, and the partial-year caveat is carried on slide 5. I found no colons outside verbatim labels, no dashes, no 'cannot' and no banned words. Flat spots: slide 2's 'The Tribune traces the fire to a pole.' reads as newsroom attribution in a headline. On slide 8, 'lawmakers heard that count' leans on the headline to be understood. The regional texture (caprock, caliche) is mostly carried by the art, with the copy reaching Hutchinson County only on the last frame."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "New for the window: the stormFront light, the slate, straw and red caprock palette, the Panhandle wildfire and utility topic, and the camera station as hero. Familiar moves: the spine is again what a document does not say (the bare rail), which the topics ledger has flagged across earlier decks. Slide 8's hearing room of empty seats echoes no. 24's hearing room. Slide 7's two lengths at one scale repeat no. 35's steel columns, and the paper-on-a-desk set on 4 and 5 is a house default. The opener is again a hero object in a landscape, with the hook in the sky. That is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.848,
+ "weighted_score_arithmetic": "0.22*6.1 + 0.12*6.8 + 0.20*7.3 + 0.16*7.0 + 0.10*7.2 + 0.10*7.3 + 0.10*6.6 = 1.342 + 0.816 + 1.460 + 1.120 + 0.720 + 0.730 + 0.660 = 6.848",
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the three frames where the artwork score is lost: model frame 2's pole as a round, tapered creosote pole in a real weathered wood material (grain, irregular tapering checks, a stamped tag and a through bolt catching the low west light), and on frames 4 and 5 give the dark black frame at the top right an actual lit storm sky that rakes light across the desk and throws the pages' shadows, so the interior shares the deck's one light."
+}

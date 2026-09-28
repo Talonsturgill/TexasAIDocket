@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.9,
+   "why": "Every frame is rendered, and 1, 3, 6 and 7 read as a place at an hour: storm deck, horizon on the lower third, straw grass, the station on a pier with a contact pad. It stops short of the 7 descriptor, which allows one frame that leans on a default. This deck has several. Slide 2's 'pole' is a flat brown slab with black stripes and a grey rectangle for a tag, so it reads as a plank or a curtain and not a round weathered pole. On slide 8 the back wall is a hard-edged brown rectangle boxing the hook and dek exactly, with a black void above it, which is a text plate by look, and the label 'ONE SEAT FOR EACH UTILITY THE HEARING COUNTED' is jammed a few pixels under the dek. Slide 9's Texan is a stiff kit mannequin. The mesa on 1, 3, 7 and 9 shows stretched horizontal striation smears, not strata. Slide 6's foreground grass is faceted low-poly spikes. Slides 4 and 5 are a generic desk under a flat dark wall with no window and no head, although the dossier promises both. On slide 3 the caprock rim runs straight through the dek's last line 'named Pano AI as its partner.', which is machine_qa's own unmeasured warn. The storyboard claims a low WSW shaft, but cast shadows are faint almost everywhere, so the light reads as flat overcast. Nothing here is best-in-class. Frame 1 is the strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "It is clearly one deck. The stormFront sky, straw plain, caprock and galvanized station tie 1, 2, 3, 6, 7 and 9, and the comal underline under a mono verbatim label ties 4, 5 and 6. Slides 4, 5 and 8 read as a second world of dark interiors with no storm light through a window. The hero is legible on only 1, 3 and 6. On 7 and 9 its heads are specks at 432px, so the motif's payoff ('turned away' on 7, 'facing the reader' on 9) can't be seen. The declared EDGE_TEASE (road from 1 to 9) doesn't read at thumb. That makes about one and a half working devices against the two required. The round 2 flow critic said the same thing and it is still true on this render. The deck_coherence gate passes, so it is not capped. It still sits just under 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "Every numeral traces to a claim quote in figures.json: 33 and 34 (c8), $10,537,400, $6,423,554 and 64.04% (c15, which recomputes to 1.6404), Eight and 160 (c43), 57463, 57941 and 30 (c10, c9, c5), July 10th, 2025 (c10, c31). The labels on 3, 4, 5 and 6 are verbatim. The absence is scoped well: 'The report gives that line no count of detections', 'A missing count isn't a count of none', and the caption says 'What that line lacks'. The 97 and Colorado claims are correctly kept off every frame. Two things hold it at the 7 descriptor. First, it leans on journalism where a primary existed: Smokehouse Creek's cause (slide 2) and the 'Eight of 160' count (slide 8) both come from the Tribune, when the Forest Service cause determination and the hearing record exist. Second, slides 8 and 9 move from the resiliency plan order (the 25.62 annual report that holds the camera metric) to the wildfire mitigation plan law (25.60, the 8 of 160 and the 30-day intervention) and never say these are two different proceedings. The literal strings are correct ('In a utility's wildfire plan case'), but a reader will reasonably believe the 30 days lets them intervene on the camera question, and nothing supports that. No hard fail. The local snapshots behind the 402'd PUCT pages exist under out/2026-09-28/tmp/src."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.4,
+   "why": "What happened is clear in one swipe: the order asked for detections (slide 4), the report answered with cameras (slide 5). Who decided is named: the PUCT, July 10th, 2025, Docket 57463. The stake is concrete: Smokehouse Creek on slide 2, the costs on slide 7. Where is 'Texas Panhandle' only. No county is named, even though c54 (Moore County) and c55 (Hutchinson County) are verified and unused, and texan_check warns on exactly this. The weakest part for a reader is 'what can I do'. Slide 9 offers 'Search Docket 57463... and Project 57941', which is reading and not acting, plus a generic 30-day rule with no open case, no docket number and no date. c52 (Baldridge: SPS submitted its wildfire plan last month) is verified and unused, so a reader on slide 8 can't tell whether SPS is among the eight, and slide 9 can't point to the one case where the 30 days might actually be running. The deadline, the thing that makes the 10 descriptor, is stated only as a rule."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "The cover earns the swipe: 'Asked for fire detections. Counted cameras.' is the whole story in six words. Frame 2 pays at once with Smokehouse Creek. After that it stalls. Slides 1, 5 and 6 all state the same substitution, and 5's picture is 4's desk with a second sheet, so the 4 to 5 swipe changes almost nothing at thumb size. The real turn is 7, 'The cost was counted to the dollar.', the moment a reading slip becomes a choice about what gets measured. It is drawn as frame 1's camera again, with two tubes in the bottom fifth. The close, 'The question stays on the record.', is abstract and ends on docket numbers. The caption's own last line ('How many fire detections have SPS's cameras made so far?') is the stronger close and isn't on the slide. One frame (5) could go without loss, and the turn and the close both underland."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and restrained, and it keeps to the house rules: no colons outside verbatim quotes, can't, no banned words, and the year is kept on the prior-year date. Some lines are genuinely good: 'A missing count isn't a count of none.', 'The state wrote the question down.', 'The cost was counted to the dollar.' It is honest about costs without doom, and it carries SPS's own partial-year caveat on slide 5, which is fair. It reads as a careful filings reader more than as a Texan from the Panhandle. The only regional texture (caprock, caliche) is in the art, not the words. Two lines are flat or clumsy. Slide 8 opens 'The Tribune reports that count of utilities in fire-prone areas reached lawmakers...', where 'that count' dangles off the headline. Slide 9's 'The question stays on the record.' says nothing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The subject is new for the window. topics.json has no wildfire, SPS or resiliency-plan deck in the last 30 days, and the instrument (a commission order read against the utility's own compliance report) is fresh. The storyboard says stormFront wasn't used in the last four decks, and the hero is a new object. The familiar moves: the spine is once again what a document doesn't say, which decks 11, 14, 15, 23 and 28 each asked the next run to stop leaning on. The hearing room of empty seats with an empty podium repeats no. 24's (September 14th) hearing room and three empty chairs. The Caprock escarpment was no. 24's register 14 days ago. A document lying on a desk is a house default. That is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.62,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Close the reader's loop with the verified c52 and one more fetch: on frame 8 say that SPS filed its own wildfire mitigation plan in August under a law separate from the resiliency order that asked for detections, and on frame 9 name that case's docket and whether its 30-day intervention window is still open, with a date, and put the caption's closing question ('How many fire detections have SPS's cameras made so far?') on the slide in place of 'The question stays on the record.', so a Panhandle reader knows exactly which door is open and what to ask through it."
+}

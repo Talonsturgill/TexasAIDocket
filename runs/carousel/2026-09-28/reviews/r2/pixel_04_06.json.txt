@@ -1,0 +1,123 @@
+Round 2 pixel review for deck no. 36 "The Watchtower", 2026-09-28, slides 04, 05 and 06. **All three are REVISE.**
+
+Coordinates are CSS px on the 1080x1350 canvas; double them for the 2160x2700 PNG. Findings come from the 432px thumb unless marked full.
+
+**Summary**
+- **Slides 4 and 5 still fail the showstopper test.** With the type covered, each is a desk in front of a flat, unlit brown wall from y 0 to about 575. There is no window, no source for the light and no raking light: an object in a void, indoors.
+- **The camera-behind-the-type argument does not hold.** Two placements avoid the hook and dek:
+  - The stormFront sky already carries the hook legibly on frame 6.
+  - A window that bleeds off the right edge, from x 990 to 1080, clears both the hook and the dek.
+- **The camera head is still missing from 4 and 5.** Slide 5's own dossier subject names it ("frame 4's desk and camera unchanged"). The hero is now absent from frames 2, 4, 5 and 8.
+- **On both desk frames the leader ends on blank paper.** It stops 47px under the page's last hairline on 4 and about 36px under it on 5, so no bare line j or metric line is shown.
+- **On frame 6 the 33 heads are dark taupe notches, not white housings.** The dossier's lightest element is inverted. At 432px the row reads as fence cresting, not cameras.
+- **The bare lower rail, the subject of "One left bare", is the least visible line in frame 6.** It sits inside the grass band at y 843.
+- **The accent bar now reads as a half-filled meter.** It is 420px long under labels about 850 to 890px wide. On frame 6 that is a partial fill drawn on the line the hook calls bare.
+
+**Checks that came back clean**
+- **Numerals:** every one traces to the claims file. 10th and 2025 are c10, 1st is c9, 33, 34 and 2026 are c8, and the 33 on frame 6 is c8.
+- **3 against 5:** clean at thumb. "33", "34" and "2025" all read correctly at 432px, in both the sans and the mono.
+- **House style:** no dashes, no colons or semicolons outside verbatim quotes, and no first person.
+- **Median L\*:** not measured. The figures in the checklists are estimates from the pixels.
+
+```json
+[
+{
+  "slide": "slide-04",
+  "transcription": "THE PUCT ORDER | 04 / 09 | The state wrote the question down. | The PUCT approved the SPS resiliency plan on July 10th, 2025. Its order lists the number of AI camera fire detections among the metrics SPS will carry into its annual reports. | j. number of artificial intelligence camera fire detections; | c10 c31 c32 c33 c34 DRAWN | texasaidocket.com",
+  "illegible": ["the page's hairline entries (x 385-583, y 775-827) are unreadable at thumb and at full size, by design under the mute world law. That is not a defect, but it means the page carries no visible 'line j' at all (see must_fix)"],
+  "checklist": [
+    {"item": "the line j label reads 'j. number of artificial intelligence camera fire detections;' exactly and ends inside x 1000", "pass": true, "note": "It is verbatim c33 and reads the same at thumb and at full size. It ends at about x 970 and clears the lower binder's edge by about 30px."},
+    {"item": "one accent bar #2A7A9E sits under the line j label and the accent appears nowhere else", "pass": true, "note": "There is one bar at x 80-500, y 1080-1094 and no other accent. The bar ends under 'intelligence', mid-label, so at thumb it reads as a meter filled to about 47 percent (see would_improve)."},
+    {"item": "the leader runs from the label to the bare line on the page", "pass": false, "note": "The leader runs from (119,1027) up to (119,998), then on the diagonal to (456,874). That end point is blank paper 47px below the last hairline (y 827). The page has no bare line. What it has is about 10 unlettered hairlines and empty paper under them."},
+    {"item": "the page casts a soft shadow on the desk and the binders are neutral covers, no navy and no red", "pass": false, "note": "The binders pass: there is no red, and the covers are a low-saturation slate blue-grey. The shadow fails. At thumb the page has no visible cast shadow, no curl and no contact line, and at full size there is only a faint darkening along its right edge. It reads laid on, not resting."},
+    {"item": "the frame's median L* at 432px is between 20 and 40", "pass": true, "note": "Not measured. It is a dark wall over mid-brown wood with a dark apron, and looks near 30. Confirm by measurement."}
+  ],
+  "plan_finding": "The checklist is trivially satisfiable. All five items pass on a desk in front of a flat wall, with a white quad on it and a blue bar under a DOM string, which is close to what rendered. No item tests the room, a light source, the hero head, or a line j a reader can find on the page. The dossier is also inconsistent with itself. The subject dropped the head, but the bands still name 'the window with the storm light' and 'the loose white head', and slide 5's subject still says 'desk and camera unchanged'.",
+  "round1": {
+    "resolved": ["The accent used twice: the on-page rule is gone and one DOM bar remains.", "The line j label past the margin: it is now 24px and ends at about x 970.", "The crimson and navy binders: they are now neutral slate with buff page edges."],
+    "not_resolved": ["THE SHOWSTOPPER: there is still no window, no room and no light source.", "The page does not read as a list with line j in it: the leader now lands on blank paper instead.", "The hero head is missing: declined.", "The page is placed, not rendered: no curl and no readable contact shadow at thumb."]
+  },
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "THE SHOWSTOPPER TEST fails, plainly. With the type covered, the top 43% (y 0-575) is a flat dark brown plane with a vignette. There is no window, no wall edge, no second plane and no source for the light. The desk and page are evenly lit from nowhere, and the frame does not show the deck's low west-southwest storm shaft. The room is not a deliberate interior. It is a desk in a void. 'Every window position sits behind the hook and dek' is not true for this camera.", "where": "x 0-1080, y 0-575, and the light on the desk from y 575 to 1100", "fix": "Build the TXT.interior window in the wall so it bleeds the right edge: glass from x 990 to 1080, y 0 to 560, with its left jamb at x 985. That clears hook line 1 (ends at about x 953) and the dek (ends at about x 930 on frame 4 and x 960 on frame 5). Show the stormFront sky through it with the dust-grey horizon near y 470. Aim the rig's key through it so a raked, warm-edged band crosses the desk from upper right to lower left, x 300-1080, y 600-1000, with the binders' shadows falling left onto the veneer. Dim the wall toward the type. Do not light the wall behind the hook or dek."},
+    {"what": "There is no line j on the page, so the leader points at nothing. The page shows about 10 unlettered hairlines (y 775-827), and the leader ends at (456,874) on empty paper 47px under them. At 432px the reader sees a line drawn to a blank part of a blank sheet, and the frame's claim ('the state wrote the question down', item j among the metrics) has no picture.", "where": "page x 270-649, y 748-964. Leader end at 456,874", "fix": "Redraw the page texture as a lettered list, a to l, at even leading of about 10px, so the list runs from frame y about 775 to 900. Leave entry j's slot empty except for a small dark 'j.' tick at its left, and place that slot exactly under the leader end at (456,874). Entries k and l then continue below it at about y 886 and 898, so j sits inside the list. Keep the leader end fixed so frame 5 can match it."},
+    {"what": "The page is placed, not rendered. At thumb it is a flat white quad with no thickness, no curl and no contact shadow, so it reads as pasted onto the wood photo.", "where": "x 270-649, y 748-964", "fix": "Curl the page's lower-right corner up by about 6mm on a bent plane. Add TXT.contact under the whole sheet at 0.35 opacity with about 10px of falloff, plus the rig's soft VSM cast shadow. With the key from the right (see the first fix), the cast should fall about 8 to 12px to the left and down of the sheet's edges."},
+    {"what": "The hero object is absent. The deck's one hero is on no desk frame, and frame 5 is built on 'the head's turn' from this frame. A reader reaching frames 4 and 5 sees paper and binders, and nothing of the machine the story is about.", "where": "desk rear left, x 30-230, y 595-800 (the grommet's place)", "fix": "Delete the grommet. Place WATCH.station(K,{part:'head'}) on the rear left of the desk, base at frame y about 795, top no higher than y 595. That clears frame 5's dek (bottom y 553) by 40px or more and stays above the leader's diagonal (y 931 at x 300). Give it TXT.contact under the turntable and a soft cast shadow. On frame 5 use the same position with a different pan."}
+  ],
+  "would_improve": [
+    "The accent bar (x 80-500) stops mid-label under 'intelligence', and at thumb it reads as a progress bar about half full. Replace it on frames 4, 5 and 6 with a fixed 48 x 8 px tab at x 80-128, y 1080-1088, so it marks the line and implies no fraction.",
+    "The black grommet (x 216-289, y 603-636) is the darkest mark in the upper half and reads at thumb as a hole or a stain. The hero fix above removes it.",
+    "Two small dark specks sit on the apron and floor at about (672,1278) and (1045,1333) at full size. Remove them, or make them read as hardware.",
+    "The upper binder cover is a cool slate blue-grey, in the accent's hue family. Pull it to a warm charcoal (#3A3833) so the only blue in the frame is the accent.",
+    "The accent bar sits on the desk's front edge line (y about 1085). Move the label and bar up 12px or down 16px so the bar is not tangent to that edge."
+  ]
+},
+{
+  "slide": "slide-05",
+  "transcription": "THE ANNUAL REPORT | 05 / 09 | The answer counted cameras. | SPS filed its annual report on May 1st. Under the detections line it wrote 33 cameras installed and 34 projected for 2026. It says a partial year means actual effectiveness can't yet be compared with projections. | Number of artificial intelligence camera fire detections. | Actual: 33 cameras installed | Projected: 34 for 2026 | c9 c8 c21 DRAWN | texasaidocket.com",
+  "illegible": ["the hairlines on both sheets are unreadable at thumb and at full size, by design"],
+  "checklist": [
+    {"item": "the page labels read exactly as the report prints them", "pass": true, "note": "All three match the c8 quote with its bullets dropped. The colons are verbatim. '33' and '34' read correctly at thumb."},
+    {"item": "the report sheet is turned 13 degrees against the order sheet and four sheet corners are visible at 432px", "pass": true, "note": "At thumb the two sheets separate. The order is a warmer cream stock, and its top-left and bottom-right corners show past the report sheet. Four or more corners are visible. No shadow from the report sheet onto the order sheet shows at thumb, so they separate by tint alone."},
+    {"item": "the accent bar and the leader's end sit at the same frame position as on frame 4 within 4px", "pass": true, "note": "The bar is at x 80-500, y 1080-1094 and the leader end at (456,874), both identical to frame 4. The leader ends on blank report paper, about 36px under the report's last hairline (y about 838)."},
+    {"item": "the desk, the grommet and the stack match frame 4 within 4px", "pass": true, "note": "They are pixel-identical by eye."},
+    {"item": "the frame's median L* at 432px is between 20 and 40", "pass": true, "note": "Not measured. It looks near 30, the same as frame 4. Confirm."}
+  ],
+  "plan_finding": "The checklist does not test the subject its own dossier names. The subject says 'frame 4's desk and camera unchanged' and the composition says 'the only change is the page and the head's turn'. No item asks for the camera, the room or the metric line under the leader, so a frame without a hero or a room scores full marks. Round 1 asked for those items and they were not added. Frames 4 and 5 are both DOCUMENT, which the rotation allows as a deliberate beat.",
+  "round1": {
+    "resolved": ["The two sheets read as one notched page: they are now turned apart with a warmer order stock, and read as two sheets at thumb.", "The accent shifted between frames: the on-page rule is gone and the DOM bar is identical to frame 4."],
+    "not_resolved": ["The hero is absent.", "THE SHOWSTOPPER: there is no room, window or light source.", "The checklist is trivially satisfiable: it now has the rotation and corner items, but still nothing on the head, the window or a sheet shadow.", "There is no visible shadow of the report sheet onto the order sheet at thumb."]
+  },
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "The named subject is not there. The dossier subject is 'frame 4's desk and camera unchanged', and the composition's whole device is 'the page and the head's turn'. There is no camera head on the desk, so the swipe from 4 to 5 carries no turn. In one word at 432px this frame is 'papers'.", "where": "desk rear left, x 30-230, y 595-800", "fix": "Apply the same placement as frame 4: WATCH.station(K,{part:'head'}) with its base at y about 795 and top at or below y 595, clearing the dek's bottom at y 553. Replace the grommet, and give the head TXT.contact and a soft cast. Pan it 35 to 45 degrees from frame 4's pan toward the lens, so the turn reads at thumb."},
+    {"what": "THE SHOWSTOPPER TEST fails, for the same reason as frame 4. The frame is a desk in front of a flat unlit wall (y 0-575), with no window, no source for the light and no raking light. Its own bands name 'the window light'.", "where": "x 0-1080, y 0-575, and the light on the desk", "fix": "Use frame 4's fix, identically, so the held camera holds. The right-edge window glass runs x 990-1080, y 0-560, with its jamb at x 985. The dek's widest line here ends at about x 960 ('It says a'), so the jamb clears it by 25px. The key comes through it and rakes across the desk and both sheets, and the binders' shadows fall left."},
+    {"what": "The leader ends on blank paper, so the report's detections line is not shown. The end at (456,874) sits about 36px under the report sheet's last hairline. The frame's claim is that the utility wrote its answer under that line, and nothing on the page marks the line.", "where": "report sheet about x 244-680, y 738-970. Leader end at 456,874", "fix": "In the report sheet's texture, draw metric 10 as a short heading hairline with two short indented hairlines under it (the 'Actual' and 'Projected' bullets). Place it so the heading hairline passes through (456,874) at the sheet's 13-degree turn, and let one or two further metric entries continue below it so it sits inside a list."}
+  ],
+  "would_improve": [
+    "Curl the report sheet's lower-right edge (near 533,970) and let it cast a 6 to 8px soft shadow onto the order sheet. The sheets then separate by shadow as well as by tint.",
+    "The dek's last line, 'with projections.', ends at about y 555 and the desk's far edge is at y 575-588 under it. At thumb the line sits right on that edge. Tighten the dek leading by 2px, or drop the desk's far edge 20px in the camera.",
+    "Replace the 420px accent bar with the 48 x 8 tab (see slide 04) so it cannot read as a half-filled meter.",
+    "'can't' renders with a slanted, comma-shaped apostrophe at full size even though copy.json carries a straight ' (U+0027). Confirm that the dek font's straight apostrophe is not being substituted with a typographic one."
+  ]
+},
+{
+  "slide": "slide-06",
+  "transcription": "THE DETECTIONS LINE | 06 / 09 | One line filled. One left bare. | Each head on the top rail is one camera the report counts as installed. The lower rail is the line the order named. The report gives that line no count of detections. A missing count isn't a count of none. | Actual: 33 cameras installed | number of artificial intelligence camera fire detections | c8 c33 c25 DRAWN | texasaidocket.com",
+  "illegible": ["the 33 heads can't be counted at 432px. They read as a continuous strip of dark notches from x 0 to 993, y 705-736"],
+  "checklist": [
+    {"item": "exactly 33 heads stand on the top rail, each within 15 percent of the others' width at full size", "pass": true, "note": "Widths are now even. The near-square-on camera worked. The count is about 33 at full size and I could not fix it to exactly 33 by eye. The leftmost head sits flush against the left edge at x 0-24 and reads cut at thumb, which puts the count a reader can make at risk."},
+    {"item": "no numeral and no mark appears on or beside the lower rail", "pass": true, "note": "Nothing is on or beside the rail except the DOM label and bar under it."},
+    {"item": "the count label sits just over the heads and the order's line sits just under the bare rail with one accent bar under it", "pass": true, "note": "'Actual: 33 cameras installed' (y 655-678) sits 27px above the heads. The order's line (y 867-891) sits 24px under the rail at y about 843, and the bar is at y 908-921."},
+    {"item": "the station's heads render smaller than the rail heads", "pass": true, "note": "The station's heads are about 12px wide at (908,447) and (957,449), against about 20px on the rail."},
+    {"item": "the frame's median L* at 432px is between 24 and 44", "pass": true, "note": "Not measured. It is a grey sky, gold grass and brown dirt, and looks near 38 to 42, close to the ceiling. Confirm."}
+  ],
+  "plan_finding": "The checklist is trivially satisfiable. It passes on 33 dark dots on a line with two strings placed near two rails. No item tests that the heads read as WHITE CAMERAS at 432px (the dossier names them 'white heads' and the lightest thing in the frame), or that the lower rail is visible at thumb. That rail is the frame's whole claim, and it is what failed. The dossier's subject names 'a caliche two track along the fence', which is absent and unchecked. The layout is declared DIAGRAM while the storyboard's rotation line lists GRID for frame 6.",
+  "round1": {
+    "resolved": ["Perspective defeated the isotype: the camera is near square on and the heads are one size.", "The station was out of scale: its heads now render smaller than the rail heads.", "The accent was inverted: the flagging is gone and one bar remains.", "The label floated on the track: it now sits 24px under the lower rail.", "The dek widow: 'of none.' now carries on its line."],
+    "not_resolved": ["The bare lower rail does not read as a line: it is still a dull line inside the grass band at thumb.", "The showstopper is still weak. The sky now has a darker deck with some cloud texture, but the horizon is bare, no post casts a shadow under a 10-degree sun, and the bottom quarter is a smooth dirt plane."]
+  },
+  "verdict": "revise",
+  "must_fix": [
+    {"what": "The heads do not read as cameras. They render as dark taupe boxes on pedestals against the lightest band of the frame, the haze at y 690-760. The dossier's 'lightest is the row of heads' is inverted. At 432px the row is a strip of dark notches that reads as fence cresting or a comb, and in one word the frame is 'fence'. The dek's 'Each head on the top rail is one camera' then points at something the reader can't see as a camera.", "where": "head row x 0-993, y 705-736", "fix": "Set the head housings to the kit's white powder coat (#E8E4DA, roughness 0.45) with the dark glass window facing the lens, and turn every head so its lit side takes the key. Move the brightest haze band below the row by lowering the stormFront horizon glow to y 790 or below, so the sky behind the heads (y 690-750) sits near L* 40 to 45 and the white heads read light against it."},
+    {"what": "The bare lower rail, the subject of 'One left bare', is the least visible line in the frame. It is a dull brown pipe at y about 843, inside the grass band (y 810-900), within a few L* of the grass. At thumb the order's label reads as a caption for the grass, and the scatter runs under that label.", "where": "lower rail x 0-1026, y 838-848. Label x 81-940, y 867-891", "fix": "Lay the dossier's own caliche two-track as a mown fence-line strip. Exclude TXT.scatter from Z -38 to -60 m across the full width and surface it as TXT.ground pale caliche at about L* 65. It then sits directly behind the lower rail on screen (y about 832-852), and the galvanized rail reads dark against it. Also exclude scatter from Z -17 to -26 m, surfaced as grazed bare soil at about L* 30, so the order's label (y 867-891) sits on a smooth dark ground rather than on grass."},
+    {"what": "The accent bar reads as a partial fill on the line the hook calls bare. It runs x 80-500 under a label that runs to x 940, so at 432px it reads as that line filled about 45 percent. That contradicts 'One left bare' and the dek's 'A missing count isn't a count of none', on the one frame where it matters most.", "where": "x 80-500, y 908-921", "fix": "Replace it with a fixed 48 x 8 px tab at x 80-128, y 908-916, and use the same tab on frames 4 and 5 so the three frames still match."},
+    {"what": "The leftmost head sits flush against the left edge and reads cut at thumb. On a frame whose claim is a count, a cropped unit makes the count 32 and a fraction.", "where": "x 0-24, y 705-736", "fix": "Keep the rail bleeding left, but shift the head row so the first head's left edge sits at x 40 or more and the 33rd ends at or before x 1000. If spacing is the problem, tighten it to about 29px pitch."},
+    {"what": "The world stops short of a photograph. Under a 10-degree sun the seven pipe posts cast no visible shadow, so nothing states where the light comes from. The bottom quarter (y 1150-1350) is a smooth brown gradient with no tufts, dirt or stones, which is the 'clean clay' ground. The foreground tufts are near-identical blade cards in even rows.", "where": "posts at x about 157, 339, 517, 690, 857, 1018. Ground y 1150-1350. Tufts y 900-1170", "fix": "Once the mown strip exists, let the posts' VSM shadows fall on it, 80 to 150px long and raking in the chassis key's direction. Extend the scatter to the bottom edge with tuft heights varied 60 to 140 percent and a 20 percent value jitter, and add caliche pebbles and dust on the bare soil. Keep the reserve mask over the source line at y 1235-1275."}
+  ],
+  "would_improve": [
+    "'Actual: 33 cameras installed' (y 655-678) sits on the mid-grey haze, the frame's lowest-contrast placement for type. Lowering the haze glow, as the first fix does, helps it. Check it at thumb after that change.",
+    "Add a low caprock break silhouette in haze at the horizon between x 560 and 900, clear of the head row, so the horizon is a place rather than a line.",
+    "'isn't' renders with a slanted apostrophe at full size, although copy.json carries a straight one. Confirm that no typographic substitution is happening.",
+    "The station reads at thumb as a streetlight or weather mast. It is secondary here, but a slightly larger white head pair would tie it to the rail heads."
+  ]
+}
+]
+```
+
+Files:
+- /home/user/TexasAIDocket/out/2026-09-28/render/slide-04.png, slide-05.png, slide-06.png
+- /home/user/TexasAIDocket/out/2026-09-28/render/thumbs/slide-04.png, slide-05.png, slide-06.png
+- /home/user/TexasAIDocket/out/2026-09-28/storyboard.md (slide 4 at lines 304-360, slide 5 at 362-422, slide 6 at 424-486)
+- /home/user/TexasAIDocket/out/2026-09-28/reviews/r1/pixel_03_04.json.txt and pixel_05_06.json.txt
+- /home/user/TexasAIDocket/out/2026-09-28/copy.json and claims.json

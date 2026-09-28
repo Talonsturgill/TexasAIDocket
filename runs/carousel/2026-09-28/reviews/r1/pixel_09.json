@@ -1,0 +1,74 @@
+{
+ "slide": "slide-09",
+ "transcription": "WHAT A TEXAN CAN DO | 09 / 09 | The question stays on the record. | The order sits in resiliency Docket 57463 and the report in Project 57941, both on the PUCT Interchange. SPS testimony puts a Hutchinson County circuit in its highest wildfire risk area. Wildfire plan cases run under a different rule, with 30 calendar days from notice to intervene. | c10 c9 c55 c1 c34 c5 DRAWN | texasaidocket.com",
+ "illegible": [
+  "Not words, but the hero is unreadable: at 432px the two camera heads on the station's crossarm (thumb about x 340 to 355, y 246) are two dark specks about 3px wide. You can't tell whether they are cameras, what colour their housings are, or which way they face. The station reads as a plain utility pole.",
+  "The T-post count can't be read at 432px. Past thumb x 250 the posts merge into one comb, so the 30 the dossier encodes is not recoverable by a reader."
+ ],
+ "checklist": [
+  {
+   "item": "exactly 30 T-posts stand between the gate and the mast",
+   "pass": false,
+   "note": "Checked on both frames. There is no gate. The fence ends on a wooden brace post (1080 frame about 800,942) on the LEFT side of the road, and the mast stands on the RIGHT side of the road (about 862,940), so the fence never reaches the mast. On the full size I count roughly 28 green T-posts plus wooden brace posts. On the thumb they can't be counted. The data encoding is invisible to a reader."
+  },
+  {
+   "item": "the figure is lit on the camera side and reads as a person at 432px",
+   "pass": false,
+   "note": "On the thumb it reads as a person, a small standing figure at x 90 to 125, y 350 to 470. It is not lit on the camera side. On the full size the face (1080 about 273,897) is an ashen grey mask under a dark cap, and the hands are terracotta orange, so skin materials disagree between head and hands. The trousers and the shadow side of the shirt are the darkest mass in the lower third. The dossier asked for the figure 'from the waist up' close to the lens. The render is full length and about 23 percent of frame height, standing mid distance."
+  },
+  {
+   "item": "the station's two heads face the lens",
+   "pass": false,
+   "note": "Can't be judged on the thumb because each head is about 3px. On the full size (1080 about 840,614 and 883,614) the heads are small dark grey boxes, not the white sunshielded housings the chassis declares, and their facing is ambiguous. This was the payoff of the deck's MOTIF_EVOLUTION device (heads turn to face the reader on 9), so the continuity device fails with it."
+  },
+  {
+   "item": "the frame's median L* at 432px is between 22 and 42",
+   "pass": true,
+   "note": "Estimated by eye from the thumb only, not measured. A dark upper sky, a pale haze band at the horizon and a mid tan ground put it plausibly around 30 to 38."
+  }
+ ],
+ "verdict": "revise",
+ "must_fix": [
+  {
+   "what": "Every item on this acceptance list would pass on a frame that fails its job. Three items are counts and orientations no reader can see at 432px (30 posts, head facing) and one is a value band. None of them tests whether the hero reads as a camera station, whether the closing frame gives a reader a next step, or whether the light agrees with the deck. The plan graded itself on invisible encodings.",
+   "where": "storyboard.md slide 9 acceptance block (lines 650 to 654)",
+   "fix": "Replace the acceptance list with these items. (1) At 432px the station's crossarm and both heads read as a camera mast, with each head at least 8px wide on the thumb and white housings. (2) The figure's face and shoulders are the lightest warm mass in the lower third on the thumb. (3) The fence visibly runs from a pipe gate beside the figure to the mast's base. (4) The dek names one concrete action and where to do it. (5) Posts, figure and mast cast shadows consistent with the key at azimuth -68, elevation 10."
+  },
+  {
+   "what": "The hero is not readable as the hero. The station is a thin grey line with a T on top at thumb scale, visually the same object as frame 2's wood pole, and the heads are specks.",
+   "where": "station, 1080 frame x 837 to 888, y 587 to 942. Heads at about (840,614) and (883,614)",
+   "fix": "Pull the station from subject_at Z -70 to about Z -30 and keep it on the right third (x about 760 to 900), so the crossarm spans at least 150px at 1080 wide and each head is at least 20px. Set the heads to the chassis white powder coat material and yaw both to the camera. Let the mast top rise into the empty upper right sky (the region x 742 to 1080, y 135 to 574 is currently dead) without crossing the dek, which ends at x about 760."
+  },
+  {
+   "what": "The declared composition is missing. There is no galvanized pipe gate with hinge post and chain, the fence runs along the far side of the road away from the mast, and the road ends at the horizon instead of arriving at a gate, so frame 1's EDGE_TEASE does not pay off.",
+   "where": "left and middle ground, the wooden H-brace at 1080 x 378 to 466, y 908 to 1127, and the fence end at about (800,942)",
+   "fix": "Replace the wooden H-brace with the galvanized pipe gate on its hinge post, placed just right of the figure at about x 380 to 560, y 950 to 1150. Route the fence from the gate's latch post along the road's right side, or across it, so it terminates at the mast's concrete pier. Lower the camera eye or swing it about 15 degrees so the fence recedes across the frame more than into depth, which spaces the posts wide enough that the first ten are countable on the thumb."
+  },
+  {
+   "what": "The figure is not lit, is too small for the declared focal, and its skin materials disagree (a grey face, orange hands), so it reads as a mannequin.",
+   "where": "figure, 1080 frame x 230 to 314, y 878 to 1188. Face at about (273,897)",
+   "fix": "Assign one skin material to the kit person's head and hands. Move the camera or the figure so the figure is framed waist up on the left third, occupying about x 40 to 360, y 820 to 1350 and bleeding off the bottom as the dossier says. Add a camera-side key or bounce so the face and shoulders are the brightest warm values below the horizon."
+  },
+  {
+   "what": "The light does not agree with the deck. The world declares a low WSW shaft at elevation 10 under a bruised cloud deck. The render shows no readable cast shadow from any post, the figure or the mast on the road or the grass. The sky is a smooth dark-to-grey ramp with only faint mottling at the top right, which on the thumb reads as a gradient backdrop rather than a storm deck. The time of day can't be told.",
+   "where": "whole frame. Sky y 0 to 915, ground y 915 to 1350",
+   "fix": "Confirm the chassis key light casts VSM shadows on the fence posts, gate, figure and mast. At elevation 10 they should throw long shadows across the road toward frame right. Use TXT.sky stormFront's cloud deck, not a flat ramp, so the upper sky shows cloud structure with a brighter slot low in the west. Add the pale caprock and red breaks in the horizon haze that the palette declares, currently absent, so the flat horizon line at y 915 reads as distance."
+  },
+  {
+   "what": "Faceted low-poly stones line the road edge in a regular row, pale and flat-shaded, with no contact. One sits directly under the source line.",
+   "where": "stones at 1080 about (553,1107), (398,1198), (432,1198), (334,1276, just under 'c55' of the source line at y about 1252) and (169,1323). The row runs from (660,1030) toward (790,950)",
+   "fix": "Swap the stone scatter for rounded, subdivided stones with caliche dust albedo, sunk 20 to 40 percent into the ground with TXT.contact, at irregular spacing, not a border line. Exclude scatter from the source-line band y 1230 to 1290 at x 60 to 520."
+  },
+  {
+   "what": "The closing frame does not give a reader a next step. The kicker promises 'What a Texan can do', but the dek never names an action. 'A different rule' has no antecedent on this slide or in the deck. The Hutchinson County sentence (c55) is a fact that leads nowhere.",
+   "where": "dek, 1080 frame x 82 to 760, y 530 to 770",
+   "fix": "Set the dek to: 'Search Docket 57463 for the order and Project 57941 for the report on the PUCT Interchange at interchange.puc.texas.gov. In a utility's wildfire plan case, the deadline to intervene is 30 calendar days after notice is served.' Keep cite ids c10 c9 c5 and drop c55 and c1 from the cite if their sentences go. Every numeral stays traceable to c10, c9 and c5, and the domain appears in the claims' url fields. Re-run numeral_lint and word_ban."
+  }
+ ],
+ "would_improve": [
+  "The upper right third (1080 x 742 to 1080, y 135 to 574) carries nothing. Moving the station closer, per the must-fix, fills it with the hero instead of empty dark sky.",
+  "The grass field near the horizon repeats identical clumps in a visible grid at full size (1080 about y 915 to 960). Randomize the scale and rotation, and thin the scatter density with distance.",
+  "The road has faint ruts but no grass centre strip, which the dossier declares. Add the strip so the road reads as a ranch two-track.",
+  "The rendered dek departs from the dossier's dek and lost clarity doing it. The dossier's 'When a utility's wildfire plan case is noticed, the rule gives 30 days to intervene' was clearer than 'run under a different rule'."
+ ]
+}

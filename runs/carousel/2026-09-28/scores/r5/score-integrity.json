@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Each frame is a real place under one storm sky, and the type sits on dark sky that the composition leaves empty (slides 1, 7 and 9 put the hook and dek over the cloud deck, with the station on the right third). Slide 7's two tubes measure about 815px and 1340px on the 1600px view, a ratio of about 1.64. That matches the 1.6404 in figures.json, so the data drawn in the art is honest. What holds the score down: on slides 1 and 7 the caprock mesa has streaky, smeared bands of texture and the sky is mostly flat grey. The grass is one tuft instanced over and over. On slide 6 the 33 'heads' read as small grey T shapes at full size, not white camera housings, so the dek has to explain what they are. The figure on slide 9 is a kit person. Slide 8's hall is clean but plainly CG. None of these frames passes the showstopper test as a photograph of a place at a time of day. This is a competent render, not a magazine spread."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One stormFront world, one low shaft of light from the west-southwest, and one galvanised station with two white heads recur on 1, 3, 6 (at the right edge), 7 and 9. The caliche road runs from 1 to 9. The accent is cool comal blue and only ever marks the state's question (the rules on 4, 5 and 6, the binder tabs on 8). The value track stays dark with no strobing. The storyboard names three continuity devices, CAMERA_MOVE, MOTIF_EVOLUTION and EDGE_TEASE, and declares one value cut at frame 8. Frames 4 and 5 are interiors that swap only the page, which works. Frame 8's hall has no station at all and sits outside the world, which the storyboard admits ('the hero is absent from this one frame')."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "I tried to refute the spine and could not. I read the full report snapshot (57941_7_1637275_7db50bb0.txt, pages 1 to 15). It carries no count of detections anywhere. Metric 10 reads 'Actual: 33 cameras installed / Projected: 34 for 2026', and the only mention of detection is item 3's 'enhance SPS's ability to detect smoke'. Order FoF 49(j) and FoF 51 read exactly as c33 and c34 say. Every numeral traces: 33, 34, 2026, July 10th 2025, May 1st, $10,537,400, $6,423,554 and 64.04% (I recomputed it and it holds), Eight, 160, Four, 135, 57463, 57941 and 2027, plus 24 and 26 in the caption (c18, c20). The deck keeps 68, 97 and Colorado off every surface, as its notes promise, and 'A missing count isn't a count of none' scopes the absence correctly. Four places are looser than they should be:\n(1) Frame 8 prints the statewide 'Eight of 160' non-filer count in a deck about SPS and leaves out c52, which is in the claims file: Baldridge told the same hearing that SPS had filed its wildfire plan the month before. A reader is left free to count SPS among the 152.\n(2) Frame 2 rests the pole cause on the Tribune (c53) when an official investigation exists. It is attributed, though, and paired with SPS's own testimony (c28).\n(3) Frame 9's hook, 'How many fires have the cameras detected?', turns the order's 'fire detections' into fires. The caption gets it right: 'How many fire detections'.\n(4) The report's own hedge, that it applied the metrics 'as appropriate for each measure' (page 10), is not carried, although c21 is.\nOne provenance lead: the first comment says 'all fetched September 28th', while the claims notes say interchange and ftp returned HTTP 402 to WebFetch that day and the quotes were checked against 'the local snapshot the brief names'. The snapshots sit in today's run directory, so I do not count this as a hard fail. The run record should still say which tool fetched them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (the report answered the detections line with a camera count), who decided (the PUCT, in Docket 57463, approving SPS's plan), where (the Texas Panhandle) and why it lands (Smokehouse Creek on frame 2, and a 64.04% capital overrun on frame 7). What they can do next is weak. Frame 9 offers 'Both filings are public on the PUCT Interchange' and a 2027 report with no date. There is no body to contact, no window and no deadline, and no county is named even though c29 and c54 give 37 counties and Moore County."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover states the substitution as an act, and it earns the swipe. Frame 2 pays the reason at once with the fire and the pole. Frames 4, 5 and 6 are a clean question, answer and bare rail, with the camera held still while the page swaps. Frame 9 closes on the open question. Frame 7 (cost) is a useful contrast. Frame 8 is a statewide detour on a different rule, which its own dek has to explain ('a different rule from resiliency plans'). It could be cut or moved without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The register is plain and exact, and it never accuses. 'Two cameras turn. A person checks.' and 'A missing count isn't a count of none.' are good lines. There is no boosterism and no doom. The caption obeys the house rules: no colons, can't, no years on 2026 dates, and 'In July 2025' is correct for another year. Some lines read like a filing clerk, not a Panhandle voice: 'The order wrote the measure down.' and frame 9's Interchange routing sentence. The Texas texture comes from the art (caprock, caliche, a red flag sky) more than from the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Wildfire, a utility and the Panhandle are new to the 30-day window, and topics.json shows no SPS or wildfire deck. The stormFront light is new too. The spine, though, is again a document's absence ('One line left bare'), the habit that deck entries 11, 14, 15, 16, 23 and 28 each asked the next run to break. AI cameras on residents' land also echoes no. 31 (Dallas brush-truck cameras) from a week ago, and the document-on-a-desk frames repeat a now-familiar move."
+  }
+ ],
+ "weighted_score": 7.0,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put c52 on frame 8 (Baldridge told that same hearing that SPS filed its wildfire plan the month before), so the statewide 'Eight of 160' stops implying that SPS is one of the 152 non-filers and the detour ties back to the deck's subject, or else cut the frame."
+}

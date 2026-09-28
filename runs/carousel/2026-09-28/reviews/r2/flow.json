@@ -1,0 +1,99 @@
+{
+ "verdict": "revise",
+ "momentum": "1 to 3 builds, and it builds better than in round 1. Frame 1's two heads now read as boxed cameras at 432px, and frame 2's hook 'The Tribune traces the fire to a pole.' now follows from 1. 3 is still the best hero shot. 3 to 4 is still a hard cut from the plain to a windowless desk with nothing carried across it. No head is on the desk, and no storm window is in view, though the dossier bands for 4 still promise both. 4 to 5 still stalls. At thumb size the one change is one sheet turning into two fanned sheets, so the swipe reads as the same frame twice. 5 to 6 picks up, because the 33 heads on the rail are still the second-best image. 6 to 7 is where the argument turns and the picture doesn't. 7 is frame 1's camera again (the mast on the right third about 30 m out, horizon about 70 percent down, grass below) with two pipes added in the bottom fifth. 7 to 8 is now bridged by the kicker 'The House hearing', and 8's eight binders count at thumb, so 8 works. 8 to 9 comes back outside. 9 is now a real frame, with a figure, a gate and a road, but it ends on docket numbers under an abstract hook.",
+ "the_turn": "Frame 7, and it is still underdrawn. 'The cost was counted to the dollar.' is the moment the reader goes from 'a reporting slip' to 'they measure what they choose to measure'. 5 and 6 only confirm what 1's hook already said. On the sheet 7 is one of the three lightest frames in drawing: a mast that repeats frame 1 and two tubes across the bottom 20 percent.",
+ "rhythm": "Still flat. On all nine frames the kicker sits at the same height, the hook runs two to three lines at one size, and the dek runs three to five lines. Only 7's dek got shorter (two sentences). No frame lets the picture take over without a dek, so the deck never breathes. The only change of pace is value: 4, 5 and 8 are dark interiors against six storm-sky exteriors. That reads as three frames from a second world, not as a deliberate cut, because none of the three interiors shows the storm light through a window. Density peaks in the wrong places: 6 carries a four-sentence dek plus two mono labels on the frame that should talk through the picture, and 9 carries two docket numbers, a date and a rule.",
+ "rotation": "Read off the sheet: 1 FULL_BLEED, 2 CLOSE_CROP, 3 DIAGRAM, 4 DOCUMENT, 5 DOCUMENT, 6 DIAGRAM (reads as an isotype GRID of heads), 7 OBJECT_AND_CAPTION, 8 GRID, 9 FIGURE_SCALE. Seven distinct, at most two in a row (4 and 5), FULL_BLEED plus CLOSE_CROP makes two, TYPE_AS_OBJECT zero. The numbers pass. The storyboard still contradicts itself: its rotation line (out/2026-09-28/storyboard.md line 112) says frame 6 is GRID and frame 6's dossier says DIAGRAM. As one deck, it does not turn the page nine ways. The stormFront sky, straw grass and horizon band tie 1, 2, 3, 6, 7 and 9 together, and the comal underline under a mono label ties 4, 5 and 6. So the opposite failure is the live one: nine frames with a headline at the top and a drawing under it. Devices doing real work: CAMERA_MOVE works on 1 to 2 to 3 and on 6, and it fails on 7, which repeats 1's camera, and on 4 and 5, which have no hero to move around. MOTIF_EVOLUTION reads at thumb only on 3 (the heads split) and 6 (the heads on the rail). On 1, 7 and 9 the heads are 6 to 10 px specks, so 'turned away' on 7 and 'facing the reader' on 9 can't be seen. They face the lens on 9 only at full size. EDGE_TEASE still does nothing. At full size frame 1 shows a faint pale sliver at the bottom right, beside the pier. It doesn't read at 432px, and a 1 to 9 bookend isn't n to n+1 anyway. That is one and a half working devices against a mandate of two. The world is doing the real unifying, and it isn't one of the named devices. Hero: the recognisable station appears on 1, 3 and 6. It is a thin pole with specks on 7 and 9 and absent from 2, 4, 5 and 8, so four of nine frames lack the one object that is meant to hold the deck. Accent: comal on 4, 5 and 6 as the underline, plus the binder spine edges on 8, which show faintly at thumb. That is four frames, small, within three to six. It passes.",
+ "round_1_status": {
+  "resolved": [
+   "Frame 2 hook now names the fire: 'The Tribune traces the fire to a pole.'",
+   "Frame 8: eight binders now count at 432px, the kicker 'The House hearing' places the scope jump, and the dek no longer repeats the hook.",
+   "Frame 9: the Hutchinson County sentence is gone, and the 30 days are now scoped to 'a utility's wildfire plan case'.",
+   "Frame 7 (partly): the tubes now read as pale galvanized steel from one end plate, the ratio reads, and the dek is down to the two figures and the change."
+  ],
+  "not_resolved": [
+   "Hero on 2, 4, 5, 7 and 9: no loose head on the 4 and 5 desk, station removed from 2 by design, and heads still specks on 7 and 9 at thumb.",
+   "The type skeleton is identical on all nine (see must-fix 2 for which frames it actually hurts).",
+   "1, 5 and 6 still do the same job. 5 is still 4's picture, and 6's dek is still four sentences.",
+   "7 is still buried: the tubes sit in the bottom fifth, and the camera repeats frame 1.",
+   "EDGE_TEASE is still unrendered at readable size on 1, and there is no n to n+1 tease anywhere.",
+   "Frame 9's hook is still 'The question stays on the record.'",
+   "Storyboard rotation line versus frame 6 dossier (GRID vs DIAGRAM)."
+  ]
+ },
+ "must_fix": [
+  {
+   "slides": [
+    4,
+    5,
+    7,
+    9
+   ],
+   "problem": "The one hero object is missing or unreadable on four frames where the plan puts it. 4 and 5 have a page and two binders on a desk and no head, though the frame 4 dossier's bands still say 'the loose white head with its lit housing and cast shadow'. On 7 and 9 the station is a thin grey pole with 6 to 10 px heads at 432px, so the motif's two payoff states (turned away on 7, facing the reader on 9) are invisible. With 2 and 8 deliberately empty, the hero is legible on only three frames (1, 3 and 6).",
+   "fix": "4 and 5: render WATCH.station part:'head' on its turntable on the desk, upper right of the page in front of the binders, at least 120 px wide at 1080. Pan it between the frames (lens-facing on 4, turned to the page on 5) so 4 to 5 carries a visible change and the heads' pan runs through the interior frames. 7 and 9: bring the station to 12 to 15 m from the lens so the crossarm spans at least 200 px and each head reads as a white box at thumb. The heads show their backs on 7 and their dark windows to the lens on 9. That gives the hero on seven of nine, with 2 and 8 as the stated absences."
+  },
+  {
+   "slides": [
+    4,
+    5,
+    7,
+    8
+   ],
+   "problem": "The chassis's fixed top-left type block is still a fault, but only where the picture sits entirely under it. On 1, 2, 3, 6 and 9 the render rises beside the type through the sky (the mast, the pole, the heads), so the type sits inside the scene. On 4 and 5 the desk starts about 43 percent down under a flat dark wall. On 7 everything but the thin mast is in the bottom 30 percent. On 8 the back wall is a hard-edged brown rectangle from about y 235 to y 890 (at 1600-wide display) that boxes the hook and dek exactly, with a black band above it. That is a text box by look, which is the owner's exact complaint ('threw some text boxes on a page'), and the label 'ONE SEAT FOR EACH UTILITY...' sits on the top row of seats. This is 'headline at the top, drawing under it' four times.",
+   "fix": "Without moving the type, move the image up. On 4 and 5, rotate the camera so the dossier's window takes the upper right with the storm deck and its light visible, and the head on the desk rises into the upper third. On 7, the station comes forward as in fix 1, so the crossarm and heads fill the upper right beside the hook as they do on 1. On 8, replace the flat brown panel with a wall that has a window on the left (the deck's storm light entering, which also ties 8 to the exterior world) and raise the camera so the rows climb to about 35 percent down. Move the label so it sits a full line clear of the first seat row. Also break the skeleton once on purpose. The chassis law asks for 'one way of seating type, which is a reserve', not one fixed rectangle, so add a low reserve to assets/js/deck/2026-09-28-watchtower.js and use it on 3. The heads and crossarm take the upper two thirds and the hook sits on the calm dark plain at the bottom."
+  },
+  {
+   "slides": [
+    1,
+    5,
+    6
+   ],
+   "problem": "Three frames still do one job. 1 ('Counted cameras.'), 5 ('The answer counted cameras.') and 6 ('One line filled. One left bare.') all state the substitution, and 5's picture is 4's picture with one extra sheet. The 4 to 5 swipe carries no change a thumb reader sees.",
+   "fix": "Rebuild 5 as a real camera move off 4, a push-in rather than a held camera. Drop to the page so the report sheet and its line fill the lower two thirds as a CLOSE_CROP, with the loose head from fix 1 resting on the page's corner. The registered 'Actual: 33 cameras installed' then becomes the image, not a caption under it. Cut 6's dek to one sentence ('A missing count isn't a count of none.') so 6 is the frame the picture carries. Otherwise 5 is cuttable, with its May 1st date and partial-year caveat moved into 6's dek."
+  },
+  {
+   "slides": [
+    7
+   ],
+   "problem": "The turn is drawn as the weakest image and repeats frame 1's camera. The tubes are about 15 percent of the frame, stacked on cribbing in the bottom fifth, and the station is a right-third mast at frame 1's distance. The irony that the cost was counted exactly while detections weren't has no picture.",
+   "fix": "Make it a camera move off 6, not a re-shoot of 1. Stand at 6's fence line at 1.2 m, square on. The two tubes lie on the two rails in the places the heads and the bare rail held on 6: the money measured to the dollar on the rails, with the detections rail still bare below or beside them. Scale so the longer tube spans at least 70 percent of the width in the middle band. Put the station 12 to 15 m behind with its heads visibly turned away. The labels stay at the tube ends."
+  },
+  {
+   "slides": [
+    1,
+    9,
+    3,
+    4,
+    6,
+    7
+   ],
+   "problem": "EDGE_TEASE is declared and not delivered. Frame 1's road is a faint sliver at the bottom right, invisible at 432px, and a 1 to 9 bookend isn't an edge tease by definition. No pair carries anything across a cut. Of the declared devices only CAMERA_MOVE works, and only partly, so the deck is under the mandate's two.",
+   "fix": "On 1, render the caliche road as a readable pale band from the pier to the bottom right corner, at least 60 px wide at the edge at 1080, so 9's road reads as its arrival. Add one real n to n+1 tease across a hard cut. The best pair is 6 to 7: 6's two rails run off the right edge, and 7 opens on the same rails at its left edge with the tubes on them, which fix 4's staging gives for free. The other option is 3 to 4, with the loose head cut by 3's right edge and resting on 4's desk. With fix 1 making the heads legible on 7 and 9, MOTIF_EVOLUTION becomes the second working device."
+  },
+  {
+   "slides": [
+    9
+   ],
+   "problem": "The close stops rather than lands. 'The question stays on the record.' is abstract, the dek is a search instruction with two docket numbers, and the heads 'facing the reader', the motif's payoff, read only at full size.",
+   "fix": "Fix 1's station scale delivers the payoff. Make the hook the concrete unanswered question the caption already ends on (a form of 'How many fires have the cameras caught?'), kept within what c8 and c33 support, and leave 'what a Texan can do' to the dek. Cut the dek to where to look plus the 30 days, and put the Project number in the caption if it won't fit."
+  },
+  {
+   "slides": [
+    6
+   ],
+   "problem": "The storyboard's rotation line (out/2026-09-28/storyboard.md line 112) says GRID for frame 6, and frame 6's dossier says DIAGRAM. The flag from round 1 is still open. Separately, the bare lower rail sits on the grass line directly above its label and is the least visible thing in a frame whose whole point is that rail. The accent flagging on its end posts that the storyboard names isn't rendered.",
+   "fix": "Change the rotation line to DIAGRAM and re-run TXLAYOUT.check. Lift the lower rail clear of the grass tops, or lower the camera so it reads against the sky band, and give it the two flagged end posts at thumb-readable size."
+  }
+ ],
+ "cuttable": [
+  "5, unless it is rebuilt as the push-in in must-fix 3. At thumb its picture is frame 4's, and its message is frame 1's hook."
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/out/2026-09-28/render/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-09-28/render/thumbs/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-09-28/render/slide-01.png, slide-06.png, slide-08.png, slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-09-28/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-09-28/reviews/r1/flow.json",
+  "/home/user/TexasAIDocket/knowledge/carousel/ILLUSTRATION_SYSTEM.md (THE DECK IS THE UNIT, THE RENDER, THE WORLD)"
+ ]
+}

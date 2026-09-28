@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered in one stormFront Panhandle world with sky, caprock in haze and cured grass, and frame 7 is the strongest. On the 1600 px view the tubes measure about 815 and 1337 px, a 1.64 ratio that matches c15, and they sit on cribbing with shadows. Several frames still use primitive models and fail the zoom test. Frame 2's 'weathered pole with checks' is a flat brown slab with straight black rule lines and a grey square for a tag. It doesn't read as a round wood pole, and no bolt is visible. On frame 3 both white heads float above their turntables, with a visible gap between each yoke's legs and the cylinder under it. The heads are boxes. Frames 4 and 5 are a blank letter sheet with hairlines beside a generic binder in a brown room. The 'lit window at the right edge' reads as a black frame and not as light. On frame 6 the 33 heads are tiny blocks that bleed off the left edge and can't be counted at 1600 px, and the lower half of the frame is repeated grass blades with nothing in them. The binders on frame 8 are plain white slabs. The frame 9 figure is passable, and the gate and road are good. More than one frame leans on a primitive, so this sits below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The contact sheet reads as one deck. It has one storm deck, one low west light, one caprock and grass ground, and one galvanized mast with two white heads on frames 1, 3, 6, 7 and 9. Frames 4 and 5 hold the same desk camera with the page swapped, which is a working device. The frame 1 road reaching the frame 9 gate is declared, though it only half reads. Canvas means in render_report.json run 72.7, 68.9, 70.9, 69.2, 69.6, 71.9, 68.7, then 36.4 on frame 8, then 72.0. Frame 8 is the one storyboarded value cut, so adjacency holds except at that declared turn. The three interiors (4, 5 and 8) sit a little outside the outdoor world, and frame 2 drops the hero. deck_coherence and deck_chassis pass."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "I tried to refute the spine and couldn't. In the annual report snapshot (57941_7), metric 10 on page 13 reads 'Number of artificial intelligence camera fire detections. • Actual: 33 cameras installed • Projected: 34 for 2026'. I read the whole report and it carries no detection count anywhere. The absence on frame 6 is scoped correctly ('that line', 'A missing count isn't a count of none'). The round 1 authorship fault is fixed. The order's FoF 49 reads 'The parties agree to the following evaluation metrics ... j. number of artificial intelligence camera fire detections;', so 'Agreed to count fire detections' (frame 1) and 'the agreed metrics' (frame 4, caption) are exact. Every numeral traces: 33, 34, 24, 26, $10,537,400, $6,423,554, 64.04% (c15, in the report text on page 8), July 10th 2025, May 1st, 57463, 57941, 30 and eight of 160. The sources block now uses ordinal dates and labels the order correctly. REMAINING LOOSENESS, none rising to a hard fail. (1) Caption, 'That rule gives 30 days after notice to intervene.' The previous sentence names a plan and no rule, so 'That rule' has no antecedent. The rule itself (16 TAC 25.60, c5) is missing from the first comment's sources block, which counts 'four official records' and leaves it out. The caption also offers the window as the reader's way in without checking whether it is open. c52 has SPS's plan submitted in August, so the 30 days after notice may already have closed. (2) The Smokehouse Creek cause and 'largest in Texas history' (frame 2) and eight of 160 (frame 8) rest on the Tribune when primary records exist. SPS's own 'two ignitions' testimony (c28) partly offsets frame 2. (3) Frame 8's headline 'Eight of 160 had complied.' doesn't name the set (utilities operating in fire-prone areas, c43), and 'a hearing on the wildfire plan law' goes slightly past the Tribune's wording. (4) The first comment labels the 57941 document 'section III.B, metric 10' but hangs c10 (introduction) and c15 (variances section) on it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "What happened, who decided it and the paper trail are clear. The PUCT order is dated July 10th, 2025, the SPS report was filed May 1st and the detections line reads cameras. Frame 2 makes the stake concrete with Smokehouse Creek. A county is now named on frame 9 ('a Hutchinson County circuit in its highest wildfire risk area', c55), but it has no job there. The deck never says why that county matters, and a reader can't act on it. Frame 9 is headed 'What a Texan can do', yet it gives two docket numbers and 'each annual report carries the same line' with no date. The dated next step the claims already hold is the next report due May 1st under the rule (c6). The deck doesn't use it, or SPS's own statement on report page 14 that full-year data comes in its 2027 report. The caption's only formal action, the 30-day intervention window, is generic and may have expired. One stake is stated generally, and the deadline is missing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook 'Agreed to count fire detections. Counted cameras.' earns the swipe, and frame 2 pays at once with the fire. The 4 to 5 page swap is a real turn, and frame 7's 'The cost was counted to the dollar.' is a sharp counterpoint against the missing count. Frame 8 now bridges to the statewide count through SPS's own August plan (c52). Frame 6 restates frame 5 with a new picture and could be cut with little loss. Frame 9's question lands, but its dek closes on procedure."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is restrained and fair. 'A missing count isn't a count of none.' is the best line, and the utility's partial-year caveat is carried on frame 5 and in the caption. Against house rules I found no colons, semicolons, dashes, banned words, 'cannot' or first person, and the post's own year is correctly dropped from 'May 1st'. Flat spots: frame 8's dek reads like wire copy, frame 9's dek is a filing index, and the caption's 'That rule gives 30 days after notice to intervene.' is clumsy. The Texas texture is in the art more than in the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "The topic is new. topics.json has no wildfire, utility-resiliency or PUCT resiliency deck in the 30-day window, and stormFront is a world none of nos. 32 to 35 used. The spine is again a document's missing count. That is the move the ledger has asked runs to stop, in capitals, from nos. 11, 14, 15, 16, 23 and 28, and no. 33 four decks back was built on 'the draft gives no figure for how often'. AI cameras watching Texas land also sits seven days after no. 31 (Dallas AI cameras) and twenty days after no. 18 (Austin cameras). So this is a fresh concept with a familiar opening move."
+  }
+ ],
+ "weighted_score": 6.69,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frame 9's orphaned Hutchinson County sentence and the caption's antecedent-less 'That rule gives 30 days after notice to intervene' with a dated, checked next step in this matter: SPS's next annual report is due May 1st under the rule (c6), and SPS's report says its 2027 report will carry a full year of data (add that as a claim from report page 14). If the 25.60 intervention window stays, fetch SPS's wildfire plan docket and say whether the window is open, and list the rule in the sources block."
+}

@@ -1,0 +1,50 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The storm deck world is real on the exterior frames, and 1 and 9 come closest to a place at an hour. Frame 1 has the caprock, cured grass and the mast standing on its pier. Frame 9 has the gate, a caliche road with wheel tracks and rocks, the figure, and the station on its pad. No frame passes THE SHOWSTOPPER TEST as a photograph, and several lean on primitives or dead zones, which is below the 7 descriptor's 'one frame'. Frame 3: the camera heads are box housings on blocky yokes and cylinder turntables, a smooth cylinder mast and a box crossarm. That is the kit-at-detail-scale defect that was removed from 2, now on 3. The plain under it is flat brown with sprite tufts. The caprock is a flat red band with a stretched, smeared texture and a dark notch at its base right of the mast. Its labels are 22 px against the 24 px floor (machine_qa warns). Frames 4 and 5: the 'window' reads as a monitor bezel, not a window with storm light. The upper roughly 40 percent is a flat brown wall that acts as a plate behind the hook. The page casts no visible shadow on the desk. The full-width accent bar reads as UI. Neither frame has a place or an hour, and the hero is absent. Frame 8: the top roughly 45 percent is a black void behind the hook and dek, with no window, ceiling or light source in frame. The chairs are primitives. The eight binders do count cleanly (4 left, 4 right). Frame 2: the recomposition helps at the 432 thumb. The pole line reads, but the hero is thin lines that do not own the frame. The bottom 40 percent is undifferentiated grass, and the dek's last line ('be involved in two ignitions') sits on the caprock's top edge rather than in quiet. Frame 6: the 33 heads read as a strip of glyphs at thumb scale. The caprock behind is another smeared texture wall. The bottom quarter is dead flat ground. Frame 7: the tubes are untextured cylinders. The lower tube stops at x of about 1495 of 1600 instead of bleeding right as planned. The upper tube's cribbing blocks visually intersect the lower tube. The bottom 15 percent is flat brown. The composition nearly duplicates frame 1 (mast on the right third, caprock left, same horizon). Credit: the tube ratio measures about 1335/815 = 1.64 on the PNG, as claimed."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "Read as a filmstrip, the six exterior frames (1, 2, 3, 6, 7, 9) are clearly one world: one stormFront deck, one west-southwest key, the same straw grass and the same red caprock in haze. The station is one model in one galvanized material on 1, 3, 6, 7 and 9. The value cut at 8 is declared in the storyboard. The three interior frames sit outside that world. 4 and 5 are a generic dark office with no storm light or Panhandle in it, and 8 is a black-topped hall. So three frames sit outside, not the 7 descriptor's one. Of the named devices, CAMERA_MOVE works. MOTIF_EVOLUTION (the heads' pan) can't be read at 432 px, where the heads are specks on 1, 7 and 9. EDGE_TEASE is weak because frame 1's caliche road is barely visible at bottom right, then arrives clearly on 9. Frames 1 and 7 are near twins, which reads as repetition rather than continuity."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces to a claim quote. July 10th, 2025 is c10/c31. 33 and 34 for 2026 are c8. $10,537,400, $6,423,554 and 64.04% are c15. Eight and 160 are c43. Docket 57463 and Project 57941 are c10/c9. 2027 is c57. The core sources are primary: the order (FoF 49(j), c33), the SPS annual report (c8) and the application (c24 to c26). The Tribune is attributed on every slide that leans on it, frame 2's cause (c53) and frame 8's count (c43). The deck is careful not to overclaim. Frame 6 says 'A missing count isn't a count of none'. The station is marked DRAWN. 97 and Colorado appear nowhere. The caption fairly adds the 24 ignitions and 26 wildfires (c18, c20). One looser line: frame 8's hook 'Eight of 160 utilities had complied' drops the Tribune's set, 'that operate in fire-prone areas of Texas', and carries no attribution in the hook itself. The dek attributes it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "A Texan learns what happened, who and where: the PUCT order (frame 4) named a detections metric, and SPS/Xcel's May 1st report (frame 5) answered it with cameras, in the Panhandle, with Smokehouse Creek as the reason (frame 2). The stake is concrete: $10.5M against a $6.4M plan (frame 7). What a reader can do is weak. Frame 9 names where the documents sit and says the 2027 report carries the same line, but it gives no deadline, no comment route and no body to contact. The 10 descriptor's 'what they can do next' is only half met."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover states the substitution as an act and earns the swipe. The turn lands on 5 and 6, where the 'question' page and the 'answer' page on one desk, then the filled and bare rails, make the argument physical. Frame 2 is context before payoff rather than paying at once. Frame 8 widens to a different rule, wildfire mitigation plans rather than resiliency plans, which its own dek has to explain, so it could move or go without loss. The close lands as the unanswered question."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.1,
+   "why": "Clean, attributive and even-handed. Frame 5 carries SPS's partial-year caveat. There are good lines: 'Two cameras turn. A person checks.' and 'A missing count isn't a count of none.' Much of the dek copy is document-register ('The order lists the number of AI camera fire detections among the agreed metrics SPS will carry into its annual reports') and carries little Panhandle specificity beyond the kicker. It reads careful rather than local."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The stormFront daytime light is new against the last four decks: no. 32 generator yard, no. 33 goldenHour, no. 34 blueHour, no. 35 nightSodium. The rail-fence isotype and the tube ratio are fresh. The opening move is familiar: a chassis hero on the right third under a serif hook at top left, as in recent decks. The desk-with-document interior repeats no. 35's office desk and no. 32/33's page-as-object frames, and 'a person beside the hero for scale' recurs from no. 32 and no. 35."
+  }
+ ],
+ "weighted_score": 6.974,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put frames 4, 5 and 8 back in the storm-deck world instead of a generic dark office and a black-topped hall: lay the order and report pages on the station's equipment-enclosure shelf or a truck tailgate at the pad under the same west key, and give the hearing room a visible window and ceiling carrying that light. Those three frames are where the deck loses its place, its hour and its hero at once, which drags down both artwork_craft and deck_coherence."
+}

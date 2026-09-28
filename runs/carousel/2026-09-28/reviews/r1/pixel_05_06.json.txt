@@ -1,0 +1,81 @@
+Round 1 pixel review, deck no. 36 "The Watchtower", 2026-09-28. Both slides are **revise**.
+
+Frames reviewed:
+- Full size: /home/user/TexasAIDocket/out/2026-09-28/render/slide-05.png and slide-06.png (2160x2700)
+- Thumbs: /home/user/TexasAIDocket/out/2026-09-28/render/thumbs/slide-05.png and slide-06.png
+- Slide 04 (full and thumb) was also read, for frame 5's "match frame 4" item.
+
+All coordinates below are in 1080x1350 CSS space.
+
+**Slide 05:**
+- **No camera head anywhere.** The dossier asks for "frame 4's desk and camera unchanged" and "the head's turn". Frame 4 has no head either. The deck's hero object is missing from both desk frames.
+- **Object in a void.** There is no window and no room. The top 574px is a flat brown-grey plane, and the light is soft ambient from above, not the deck's low storm light from the west-southwest.
+- **The swipe doesn't read at 432px.** The two sheets are the same white with no shadow between them, so they merge into one sheet with a missing corner. Frame 5 looks like a duplicate of frame 4.
+- **The accent rule moved.** It sits 48px right and 46px down from frame 4.
+- Its checklist would pass on a frame with no hero, no room and no shadows.
+
+**Slide 06:**
+- **The bare lower rail doesn't read as a second line of the ledger.** It is dark brown pipe on dark gold grass. Its label sits about 60 to 85px below it on the caliche track, so at thumb it reads as the bottom rail of a fence.
+- **Perspective too steep.** The heads were meant to be one size. Here they shrink from about 30px to about 14px wide and overlap at the right end, so "countable at full size" is only marginal.
+- **Station out of scale.** Its two heads are about twice the size of the rail heads directly in front of it, though it stands behind the fence.
+- **Weak world.** The sky is a plain gradient with no cloud deck, and the posts cast no visible shadows under a low sun.
+- **Accent inverted.** The end-post flagging is invisible at 432px, and the only accent a reader sees is an 860px DOM bar.
+
+No numeral is missing from the claims file. The 1st, 33, 34 and 2026 on slide 05 trace to c9 and c8, and the 33 on slide 06 to c8. The 3 and 5 glyph check is clean at thumb size on both frames. I didn't measure median L*. The figures below are estimates from the pixels, and that item needs a measured reading.
+
+```json
+[
+  {
+    "slide": "slide-05",
+    "transcription": "THE ANNUAL REPORT | 05 / 09 | The answer counted cameras. | SPS filed its annual report on May 1st. Under the detections line it wrote 33 cameras installed and 34 projected for 2026. It says a partial year means actual effectiveness can't yet be compared with projections. | Number of artificial intelligence camera fire detections. | Actual: 33 cameras installed | Projected: 34 for 2026 | c9 c8 c21 DRAWN | texasaidocket.com",
+    "illegible": [
+      "Page hairlines on both sheets (x 385 to 640, y 745 to 880) are unreadable at thumb and at full size. That is by design under the mute world law and is not a defect."
+    ],
+    "checklist": [
+      {"item": "the page labels read exactly as the report prints them", "pass": true, "note": "All three labels match the c8 quote. Only the report's bullet glyphs are dropped. Verbatim colons are kept. Legible at 432px."},
+      {"item": "the accent rule #2A7A9E sits at the same page position as on frame 4", "pass": false, "note": "Frame 4's on-page rule is at x 387 to 527, y 873. Frame 5's is at x 435 to 575, y 919, which is 48px right and 46px down. If 'same page position' means relative to a new sheet, the dossier needs to say so. As a reader swipes, the bar jumps."},
+      {"item": "the camera, the desk and the stack match frame 4 within 4px", "pass": false, "note": "The desk, the grommet (x 251, y 622) and both binders are pixel-identical to frame 4. The camera the item names is absent from both frames, so the match is vacuous."},
+      {"item": "the frame's median L* at 432px is between 28 and 50", "pass": false, "note": "Not measured. From the pixels, about 60 percent of the frame is the dark wall and the dark lower desk, so it probably sits near the 28 floor. Measure it and don't assume a pass."}
+    ],
+    "verdict": "revise",
+    "must_fix": [
+      {"what": "The hero object is absent. The dossier's subject is 'frame 4's desk and camera unchanged' and its composition says 'the only change is the page and the head's turn'. There is no camera head on the desk in frame 4 or frame 5. The deck's one hero object drops out for two consecutive frames, and the 'head's turn' device can't happen.", "where": "desk surface, empty zone x 60 to 380, y 640 to 800", "fix": "Place WATCH.station(K, {part:'head'}) on the desk at about x 150 to 300, y 660 to 780 in both frame 4 and frame 5, with the same position and a different pan between the two frames. Give it a soft VSM shadow and a TXT.contact where the turntable base meets the veneer."},
+      {"what": "The showstopper test fails. The frame is a desk in front of a flat, unlit, featureless plane (y 0 to 574), not a deliberate interior. There is no window, wall edge, floor, or storm light. The light is soft top ambient that doesn't agree with the deck's low west-southwest shaft. The dossier's own bands name 'the window light'. Frame 4's checklist names TXT.interior with the window lit, and that didn't happen either.", "where": "top 574px of frame, and the light on the desk", "fix": "Build the room with TXT.interior. Put a window on the upper left (x 0 to 300, y 60 to 520) showing the stormFront sky, with the rig's key through it at azimuth -68 and elevation 10. That puts a raked, warm-edged shaft across the desk from the left, with the binders' shadows running right. Keep the hook zone on the darker wall to the right of the window."},
+      {"what": "The two sheets read as one notched page at 432px. The order and the report are the same white at the same value, with no shadow between them. The overlap reads as one sheet with a missing lower-left corner (thumb x 110 to 125, y 368 to 380). The 'answer landing on the question' swipe reads as a near-duplicate of frame 4.", "where": "page group x 270 to 725, y 745 to 1028. The notch is at x 270 to 317, y 925 to 959.", "fix": "Rotate the report sheet 8 to 12 degrees against the order and offset it at least 60px so both sheets show clean corners. Give the report sheet a curled lower edge that casts a soft 6 to 10px shadow onto the order page. Tint the order sheet 6 to 8 L* darker (older, warmer stock) so the two separate by value at thumb."},
+      {"what": "The accent rule shifts between frame 4 and frame 5. It sits 48px right and 46px down, on a frame whose whole premise is a held camera.", "where": "rule at x 435 to 575, y 919 on frame 5, against x 387 to 527, y 873 on frame 4", "fix": "Place the report sheet so its metric-10 rule lands on the same frame coordinates as frame 4's line j rule (x 387 to 527, y 873). Or state in the dossier that the rule moves with the new sheet, and move the leader end with it."},
+      {"what": "The acceptance checklist is trivially satisfiable. All four items would pass on a desk with no hero, no room, no light and pages with no shadows, and that is roughly what rendered. Nothing checks for the head, the window, the page shadows or a readable change from frame 4.", "where": "storyboard.md, slide 5 acceptance", "fix": "Add these items. 'A loose camera head stands on the desk with a contact shadow and its pan differs from frame 4.' 'The TXT.interior window is in frame and lit.' 'The report sheet casts a visible shadow on the order sheet at 432px.' 'At 432px frame 5 is distinguishable from frame 4 without reading the type.'"}
+    ],
+    "would_improve": [
+      "A bright bloom sits below the report sheet's lower-right corner (x 594 to 635, y 999 to 1029) and reads as a light leak rather than paper. Remove it, or make it a real shadow edge.",
+      "The lower binder's saturated red edge (thumb x 300 to 432, y 330 to 390) reads as a red accent stripe on a deck whose flag red is reserved. Recolour it to a dark green or oxblood below 30 percent saturation.",
+      "The leader enters the page through the notch (x 294, y 961). Once the sheets are separated, make sure it lands on the report sheet's rule and not on the order sheet's edge."
+    ]
+  },
+  {
+    "slide": "slide-06",
+    "transcription": "TWO LINES OF THE LEDGER | 06 / 09 | One line filled. One left bare. | Each head on the top rail is one camera the report counts as installed. The lower rail is the line the order named. The report gives that line no count of detections. A missing count isn't a count of none. | Actual: 33 cameras installed | number of artificial intelligence camera fire detections | c8 c33 c25 DRAWN | texasaidocket.com",
+    "illegible": [
+      "The accent flagging on the lower rail's end posts (about x 20 to 34, y 977 and x 1013 to 1023, y 930) can't be seen at 432px at all. At full size it is a 2 to 3px blue tick."
+    ],
+    "checklist": [
+      {"item": "exactly 33 heads stand on the top rail, countable at full size", "pass": false, "note": "My count at full size is 33. The last 8 or so heads (x 931 to 1013, y 770 to 800) overlap each other at about 14px wide and can't be counted with confidence. That is a marginal count at full size, and at thumb it is a strip. The dossier asked for 'near square on so every head is one size', and the render is a steep recession."},
+      {"item": "no numeral and no mark appears on or beside the lower rail", "pass": true, "note": "No numeral is on or at the rail. The DOM label and its accent bar sit 60 to 85px below the rail on the caliche track, so the rail itself is bare. That separation is also the main legibility problem (see must_fix)."},
+      {"item": "the accent flagging #2A7A9E is on the lower rail's two end posts only", "pass": true, "note": "Blue ticks are present at both end posts and nowhere else in the art at full size. They are invisible at 432px, and the accent the reader actually receives is the 860px DOM bar at y 1073."},
+      {"item": "the frame's median L* at 432px is between 24 and 44", "pass": true, "note": "Not measured. It looks mid-dark, with a slate sky and dark gold grass, and plausibly lands in range. Confirm by measurement."}
+    ],
+    "verdict": "revise",
+    "must_fix": [
+      {"what": "The diagram's comparison doesn't read at 432px. The top rail reads as 'a row of white things on a fence'. The lower rail is a thin dark brown pipe on dark gold grass (thumb y 350 to 398), close to the grass in value, and it reads as the fence's bottom rail, not as an empty line. Its label floats 60 to 85px below it on the track and spans the whole frame, so the label attaches to the ground, not to the rail. The same goes for 'Actual: 33 cameras installed', which sits about 75px above the heads with no registration.", "where": "lower rail (27, 989) to (1026, 938). Label and bar at x 80 to 940, y 1036 to 1077. Top label at x 80 to 510, y 655 to 680.", "fix": "Render the pipe as galvanized steel, as the palette states, not dark bronze. A lit metallic top edge at about L* 70 against the grass makes both rails read as lines. Move the detections label and its bar up so the bar sits 12 to 16px under the lower rail's left segment (y about 1000 at the left post), and shorten it to x 80 to 700 so it follows that segment. Move 'Actual: 33 cameras installed' down to y about 710, directly above the first eight heads."},
+      {"what": "The perspective defeats the isotype. The dossier says 'near square on to the fence so every head is one size'. The render recedes steeply: heads shrink from about 30px to about 14px wide and overlap at the right end. A count needs equal units, and at thumb the right third of the row collapses into a strip.", "where": "head row x 88 to 1013, y 742 to 820. The overlap is at x 931 to 1013.", "fix": "Swing the camera to within 10 degrees of square on to the fence, with the lens at about head height, so the row spans x 60 to 1020 at a near-constant head width. Or split the 33 across a straight, parallel section with even spacing of at least 26px, so every head separates by at least 4px at 432px."},
+      {"what": "The objects disagree about their size. The station stands behind the fence (the top rail passes in front of the mast at y 820), yet its two crossarm heads (x 776 to 864, y 169 to 223, about 35px each) are about twice the width of the rail heads directly in front of it (about 18 to 20px at x 815). A farther object is drawn larger.", "where": "mast heads x 776 to 864, y 169 to 223, against the rail heads at x 800 to 840, y 770 to 815", "fix": "Push the station back to Z at least 60 m behind the fence, so its heads render smaller than the rail heads. Or bring the rail heads to kit true scale beside it. Then check that the head width on the mast is no larger than the head width on the rail at the same x."},
+      {"what": "The showstopper test is weak. The sky is a plain slate-to-grey gradient with no cloud structure, no 'bruised deck' and no shaft. The horizon is a flat grey line with no caprock or mesa in the haze. The grass is lit warm, but no post casts a visible shadow, so the low sun at elevation 10 that the grass implies throws no long shadows raking right. The world reads as a gradient backdrop over a grass plane.", "where": "sky y 0 to 877, horizon at about y 877, posts at x 27, 280, 482, 650, 793, 912, 1016", "fix": "Confirm that TXT.sky stormFront is actually drawing its cloud deck and not being overpainted by a DOM gradient. Lift sky contrast so cloud forms show between y 500 and 850. Add the caprock breaks from frame 1 in haze at the horizon (x 0 to 400). Make sure the posts cast shadow on the grass and track, 80 to 150px long, raking right from each post base at y 950 to 1000."}
+    ],
+    "would_improve": [
+      "The dek ends on the widow 'none.' alone on line 5 (x 80, y 588). Narrow or widen the measure by about 20px so 'of none.' carries together.",
+      "The mast's crossarm heads come within about 20px of the headline's 'filled.' (x 756, y 236). Nudge the station right 30 to 40px, or crop the hook measure.",
+      "The label end 'fire detections' (x 740 to 940, y 1040) sits on the paler caliche track at the lowest contrast on the frame. Once the label moves up onto the grass under the rail, check that it holds.",
+      "The midground grass band (y 885 to 1010) reads at thumb as a uniform field of vertical strokes. Vary tuft height and value so it doesn't read as a hatch texture."
+    ]
+  }
+]
+```
