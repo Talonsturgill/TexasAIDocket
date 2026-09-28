@@ -120,7 +120,7 @@ Source (primary_official): https://www.puc.texas.gov/industry/electric/system-re
 
 > requested state assistance in responding to a wildfire, including a request made through TDEM or the Texas A&M Forest Service.
 
-Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_19_1582215.PDF
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59053_19_1582214.ZIP
 
 ### The rule sets how long a party has to intervene in a utility's plan application.
 

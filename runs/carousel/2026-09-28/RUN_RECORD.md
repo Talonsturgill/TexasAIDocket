@@ -114,6 +114,28 @@ floodlights. The preset's fog closed the plain into a white wall. The labels flo
   the judges read it as orphaned.
 - Phase 1, the craft refresh, was skipped for time. The timebox went to record work.
 
+## Review on the pull request, and what it changed before the merge
+
+CI's first run on the pull request failed `email_check --all`, because the email payload had not
+been built yet. It was built and committed before the merge, as CLAUDE.md requires. The next
+run's `shipped_check` found five document locators in the first comment ("Item 7" and the rest)
+that no claim's source title carried. Each PUCT claim's source title now names its item, and
+`locator_trace` reads 0 untraced.
+
+Codex left five findings on the first head. All five were true and all five were fixed:
+
+- **tx-2026-0191 was marked ERCOT-only.** The rule applies statewide and reaches SPS, which is
+  outside ERCOT, so `on_ercot` is now null.
+- **tx-2026-0192 named only Moore County.** Moore is the county of the report's one storm event.
+  The record now names the two counties its filings name in text: Hutchinson, the plan's own
+  example of work in its highest wildfire risk area (a new claim, -c10), and Moore. The
+  editor's note says the full 37 counties are a map in the study and not a list.
+- **One article sentence ran without its claim.** It is now bound to c23.
+- **compute.py stored the missing detection count as a counted zero.** It is now `None`, marked
+  missing, which is the distinction the deck itself draws.
+- **c49 linked a different attachment.** It linked the served PDF of Item 19 while its quote was
+  checked against the ZIP beside it. The run's claim and the record both now link the ZIP.
+
 ## Prompt audit (interim, Phase 17)
 
 `prompt_audit.py` measured 1,592 tool calls and reported 481 as waiting on a human, with

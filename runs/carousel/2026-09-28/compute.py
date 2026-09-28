@@ -30,7 +30,7 @@ def put(k, v, cids, basis=None, **kw):
 
 put("cameras_installed", num("c8", r"Actual: (\d+) cameras installed"), ["c8"], "the annual report's answer under the detections metric, a count of cameras")
 put("cameras_projected_2026", num("c8", r"Projected: (\d+) for 2026"), ["c8"], "the same line's projection")
-put("detections_reported", 0, ["c8"], "the number of detection counts the detections line reports: none. Drawn as an empty column, never printed as a count of fires", counted=True)
+put("detections_reported", None, ["c8"], "the detections line reports no count of detections. The value is MISSING, not zero: a missing count isn't a count of none. Drawn as a bare rail, never printed", missing=True)
 put("cameras_planned", num("c23", r"a total of (\d+) cameras"), ["c23"], "the plan application, Tier 2 and Tier 3")
 put("cameras_per_site", num("c25", r"with (\w+) physical cameras"), ["c25"])
 put("cameras_service_territory", num("c41", r"deployed (\d+) wildfire detection cameras"), ["c41"], "across the whole service territory, which includes New Mexico. Never a Texas count")

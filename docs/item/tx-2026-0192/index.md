@@ -4,8 +4,9 @@ The Public Utility Commission of Texas approved the system resiliency plan of So
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
-- Where: Moore
+- Where: Hutchinson, Moore
 - Statistical areas:
+  - Borger, TX
   - Dumas, TX
 - Status: decided
 - Public access: Write to the decider
@@ -81,4 +82,10 @@ Source (primary_corporate): https://interchange.puc.texas.gov/Documents/57941_7_
 > Southwestern Public Service Company (SPS) (Docket No. 57463)
 
 Source (primary_official): https://www.puc.texas.gov/industry/electric/system-resiliency-plans/
+
+### SPS testimony with the plan application gives a protection zone rebuild on circuit BURN1398 in Hutchinson County as a project in its highest wildfire risk area.
+
+> BURN1398 in Hutchinson County. This lateral circuit lies in SPS’s highest wildfire
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/57463_2_1452818.ZIP
 

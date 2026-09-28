@@ -15,12 +15,12 @@
   "basis": "the same line's projection"
  },
  "detections_reported": {
-  "value": 0,
+  "value": null,
   "from": [
    "c8"
   ],
-  "basis": "the number of detection counts the detections line reports: none. Drawn as an empty column, never printed as a count of fires",
-  "counted": true
+  "basis": "the detections line reports no count of detections. The value is MISSING, not zero: a missing count isn't a count of none. Drawn as a bare rail, never printed",
+  "missing": true
  },
  "cameras_planned": {
   "value": 68,

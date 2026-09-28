@@ -24123,7 +24123,7 @@
     "statewide": true,
     "counties": [],
     "metro": null,
-    "on_ercot": true
+    "on_ercot": null
    },
    "status": "decided",
    "key_dates": [
@@ -24291,7 +24291,7 @@
     {
      "text": "TDEM counts a county as a wildfire risk area when it has asked the state for wildfire help in the preceding 36 months.",
      "verbatim_quote": "requested state assistance in responding to a wildfire, including a request made through TDEM or the Texas A&M Forest Service.",
-     "source_url": "https://interchange.puc.texas.gov/Documents/59053_19_1582215.PDF",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59053_19_1582214.ZIP",
      "source_title": "PUCT Project 59053, TDEM Wildfire Risk Area Determination, filed February 5th, 2026",
      "source_type": "primary_official",
      "fetched": "2026-09-28",
@@ -24321,9 +24321,10 @@
    "geography": {
     "statewide": false,
     "counties": [
+     "Hutchinson",
      "Moore"
     ],
-    "metro": "Dumas, TX",
+    "metro": null,
     "on_ercot": false
    },
    "status": "decided",
@@ -24346,7 +24347,7 @@
     "closes": null
    },
    "confidence": "high",
-   "notes_for_editor": "The order is a scanned PDF and its quotes come from the text layer Interchange serves, checked phrase by phrase. The annual report's quotes match both its served text layer and the native PDF in the ZIP beside it. Moore County is the county the report itself names. The service area covers most of the Panhandle and no county list is in a document this record reads.",
+   "notes_for_editor": "The order is a scanned PDF and its quotes come from the text layer Interchange serves, checked phrase by phrase. The annual report's quotes match both its served text layer and the native PDF in the ZIP beside it. The plan covers SPS's whole Texas service area, which the resiliency study puts at 37 counties in a map rather than a list, so the record names only the counties its filings name in text: Hutchinson, where the plan's example of work in its highest wildfire risk area sits, and Moore, where the report's one resiliency event was declared.",
    "history": [
     {
      "date": "2026-09-28",
@@ -24434,6 +24435,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-28",
      "id": "tx-2026-0192-c9"
+    },
+    {
+     "text": "SPS testimony with the plan application gives a protection zone rebuild on circuit BURN1398 in Hutchinson County as a project in its highest wildfire risk area.",
+     "verbatim_quote": "BURN1398 in Hutchinson County. This lateral circuit lies in SPS’s highest wildfire",
+     "source_url": "https://interchange.puc.texas.gov/Documents/57463_2_1452818.ZIP",
+     "source_title": "Application of Southwestern Public Service Company for Approval of its Transmission and Distribution System Resiliency Plan, direct testimony (PUCT Docket 57463, Item 2)",
+     "source_type": "primary_official",
+     "fetched": "2026-09-28",
+     "id": "tx-2026-0192-c10"
     }
    ],
    "id": "tx-2026-0192",
