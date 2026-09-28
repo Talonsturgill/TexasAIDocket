@@ -115,6 +115,7 @@
       [-1, 1].forEach(function (t) {
         var yoke = TXT.roundedBox(0.03, 0.2, 0.09, 0.008, M.housing); yoke.position.set(t * 0.12, 0.22, 0); h.add(yoke);
       });
+      var base = TXT.roundedBox(0.28, 0.025, 0.1, 0.006, M.housing); base.position.set(0, 0.125, 0); h.add(base);   /* the yoke's base plate on the turntable, so the head sits on it and doesn't float (panel round 2) */
       var tg = new THREE.Group(); tg.position.set(0, 0.33, 0); tg.rotation.x = -(tilt || 0); h.add(tg);
       var body = TXT.roundedBox(0.2, 0.15, 0.42, 0.02, M.housing); tg.add(body);
       var shield = TXT.roundedBox(0.25, 0.018, 0.52, 0.008, M.shield); shield.position.set(0, 0.092, 0.04); tg.add(shield);
