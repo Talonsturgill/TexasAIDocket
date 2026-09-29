@@ -146,9 +146,9 @@ at a clause in claims.json, the verbatim quotes untouched.
 | aggregates     | PASS   | 8 declaration(s), 15 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.15 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| labels         | PASS   | 44 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 90 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 31,850 chars planned |
 | caption        | PASS   | 149 words |
 | craft floor    | PASS   | 9 frame(s), median 1702, floor 306 |
