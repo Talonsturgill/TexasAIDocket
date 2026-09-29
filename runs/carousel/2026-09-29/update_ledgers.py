@@ -39,7 +39,7 @@ put('artwork', {
   "a lane between block rows at the yard's west edge with the units within fifty metres built as the full model and a worker in the lane",
   "one block of five on its pad with its transformer, the camera low and pitched up so the block fills the lower half",
   "the whole yard of 813 from 90 m up beside the data hall",
-  "a primer beam ruled to the 1,000 MW commitment with the plant's tier laid on it from the end of Region 1",
+  "a primer beam ruled to the 1,000 MW commitment with the plant as its own bar in the enclosures' paint, from the same origin in front of it, scaled to its own depth so its ends meet the beam's zero and 366 on screen",
   "the transformer's cabinet door square to the lens with the judges' two lines set on a page in its pocket",
   "one unit turned so the low sun rakes its intake louvres, the gas riser past its corner",
   "a twenty span fence side on, five granite panels then twenty on one camera",

@@ -1,13 +1,14 @@
 # Run record, September 29th, 2026
 
-## DISPOSITION: SHIPPED AT THE ROUND CAP, 7.538, 0.162 UNDER THE 7.7 RUNG
+## DISPOSITION: SHIPPED AT THE ROUND CAP, 7.538, 0.462 UNDER THE 8.0 TOP RUNG
 
 Carousel no. 37, "813 gas generators. One customer, at first.", is nine frames rendered in one
 goldenHour El Paso County world with a modular gas generator as the hero. It went through a critic
 round and five scoring rounds with three judges each. The panel medians were 7.01, 7.24, 7.354,
 7.596 and 7.538. Round 1 carried one hard fail, the caption's KVIA facts with no source in the first
 comment, repaired in round 2. No round after it carried one. At the round cap the finished deck
-ships under the ladder, with the shortfall named here and in the email. The heaviest drag is
+ships under the ladder, 0.462 under the 8.0 top rung as score.json states it, and 0.162 under
+the 7.7 rung rounds 4 and 5 were held to. The heaviest drag is
 artwork_craft, 6.8 to 7.0 across the final judges, and the most repeated named defect is that
 frames 7 and 8, where the argument turns, are the least modelled frames in the deck.
 

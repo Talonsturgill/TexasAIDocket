@@ -89,9 +89,9 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59076_176
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59076_176_1686197.PDF
 
-### The proposed order would hold other retail customers harmless for the life of the plant.
+### The proposed order would hold other retail customers harmless from the plant's capital and operating costs for its life, unless El Paso Electric later shows the plant meets the statute's factors.
 
-> For the life of the McCloud facility, EPE must hold harmless its retail customers other than Wurldwide from any capital or operating costs of the facility
+> For the life of the McCloud facility, EPE must hold harmless its retail customers other than Wurldwide from any capital or operating costs of the facility, unless and until EPE demonstrates that, at that time, the McCloud facility satisfies the factors in PURA § 37.056 with respect to its Texas retail customers.
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59076_176_1686197.PDF
 
