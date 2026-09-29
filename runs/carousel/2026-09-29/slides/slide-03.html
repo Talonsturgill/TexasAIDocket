@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-09-29, frame 3 of 9. Archetype GRID. RENDERED through txthree.js in the deck's goldenHour world. The whole field from 90 m up on a pad whose area is the record's acreage, the data hall immediately north, the year fence bare along the west edge. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#16181D; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:790px; font-size:30px; line-height:1.4; color:#EFE9DE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2DACD; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:0.92em; }
+  .hook, .dek, .tx-site { text-shadow:0 0 3px rgba(12,12,14,0.42), 0 1px 10px rgba(12,12,14,0.26); }
+  .dek { text-shadow:0 0 4px rgba(12,12,14,0.55), 0 1px 16px rgba(12,12,14,0.42); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About <span class="num">31</span> acres beside the data center</h1>
+<p class="dek" data-follow="30">The McCloud plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-29-mccloud.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Northeast El Paso County", counter: "03 / 09", src: "c1 c2 c6 c7 c8 c14 DRAWN", ink: '#E2DACD' });
+  TX.fitText(document.getElementById("hook"), { min: 78, max: 104, maxLines: 2 });
+  MC.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = MC, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"units": 813, "acres": 31, "service_life_years": 20};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.55], exposure: W.exposure, tone: W.tone, fov: 30, near: 0.5, far: 12000 });
+  /* THE PAD FROM 90 M UP. The whole field of units on a pad whose area is the record's acreage,
+   * the data hall immediately north of it, the year fence bare along the west edge, the desert out
+   * to the eastern range. The camera stands south-west and high, the sun at its back. */
+
+  const S = F.site(FIG.acres);
+  const yard = F.yard(K, THREE, TXT, { count: FIG.units });
+  yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
+  F.pad(K, THREE, TXT, R, S.side);
+
+  const dc = K.make('data_center', { seed: 4, length: 260, gensets: 0, fence: true });
+  dc.position.set(S.hall[0], 0, S.hall[2]); TXT.add(R, dc); TXT.contact(R, dc);
+  const yf = F.yearFence(K, THREE, TXT, { spans: FIG.service_life_years, paid: 0 });
+  yf.rotation.y = Math.PI / 2; yf.position.set(S.fence[0], 0, 18); TXT.add(R, yf);
+  TXT.frame(R, { from: [-233, 40, 258], look: [30, 34, -120] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 0], distance: 320, shadowFar: 800, normalBias: 0.05 });
+  TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
+  F.desert(TXT, R, { area: [-S.side / 2 - 260, -S.side / 2 - 300, S.side / 2 + 260, S.side / 2 + 260], avoid: [[-S.side / 2 - 2, -S.side / 2 - 140, S.side / 2 + 2, S.side / 2 + 2], [-360, 150, -110, 380]], scrub: 2600, rock: 0, grass: 0, scale: [0.35, 0.7] });
+  F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
+  TXT.weather(R, {});
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.45, floor: 0.3 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);
+  TXDECK.finish(cx);
+  window.__txDrawn = { units: yard.userData.drawn };
+
+  return true;
+})();
+</script>
+</body>
+</html>

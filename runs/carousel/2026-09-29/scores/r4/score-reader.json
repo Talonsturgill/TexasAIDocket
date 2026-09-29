@@ -1,0 +1,51 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Every frame a rendered place. The kit person reads as a game asset, frame 5's left 58 percent a flat door with a plain page, frames 7 and 8 a thin horizon under a large empty sky with hairline brackets, frame 3's rows a tabletop model."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck, the fence on 7 and 8 the strongest device. Frames 5 and 9 sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, KVIA attributed, 'at first' matches c9, frame 5's quotes verbatim. c46 rests on KVIA, and 'then no decision' is looser than c25's 'at this time'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "County, bodies, money and the stake land. No route for the reader to file, and c37's exceptions deadlines unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns it, 5 turns, 7 to 8 the best turn. Frame 2 delays the stake, frame 4 makes the reader work, the close ends on a status."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Restrained, specific, local, house rules clean. 'the statute's test' and Region 1 and 2 read as legal register, the closing question a little rhetorical."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Concept fresh against 33 to 36. The hero repeats no. 32's genset with a person beside it."
+  }
+ ],
+ "weighted_score": 7.68,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give frame 9 a reader action from c37 and the docket, and fold frame 2 so the stake arrives by frame 3."
+}

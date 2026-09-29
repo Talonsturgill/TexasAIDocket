@@ -2404,4 +2404,61 @@
  ],
  "lane": "upgrade. assets/js/kit/power.js, rural.js and landscape.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis untouched"
 }
+,
+"2026-09-29 upgrade": {
+ "run": "The McCloud deck, El Paso Electric's 813 modular gas generators for a Meta data center and the proposal for decision in PUCT Docket 59076 (tx-2026-0193). Round 5 artwork 6.8 (craft) and 7.0 (integrity)",
+ "actor": "upgrade",
+ "branch": "claude/daily-2026-09-29",
+ "upgrades": [
+  {
+   "what": "Kit lift: modular_gas_genset, padmount_transformer and genset_block into assets/js/kit/power.js from the 2026-09-29 chassis, at the judges' named fix: every enclosure panel mapped onto one painted weathering atlas by its position on the box (caliche dust up the base, grime streaks under each louvre and off the drip edge, rust at the seams, per panel fade, a chalked, dusty roof sooted at the stack) with a matching roughness map, three seeded variants per colour; silencer straps and dished heads, stack flange, rain cap and heat tint; the chassis's ribs moved out of the intake louvres; a door reveal in shaded paint instead of black. Each model baked to one mesh per material",
+   "why": "Round 5: 'no visible grime on 6' (craft) and 'the genset models simple' (integrity); round 1: 'a flat brown box without raking light'. The chassis used one flat K.mat paint on every panel and TXT.weather at grime 0.55 did not read. Read at full size the shipped frame 6 also shows the chassis's ribs as a dashed bar through both intake louvres. The top ranked defect (frames 7 and 8) has a camera for its fix, so the top ranked defect whose fix is a model was lifted. Phase 17's first job (owner, 2026-09-26)",
+   "files": [
+    "assets/js/kit/power.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "enclosure, skid, louvre, door, silencer, stack, gas train, transformer and block dimensions, all options and userData": "the 2026-09-29 chassis, assets/js/deck/2026-09-29-mccloud.js, unchanged",
+    "rib positions -2.8, -1.2, 0.31, 2.85 m": "chosen to stand clear of the chassis's own louvre and door extents, read at full size in the proof. Not a threshold",
+    "atlas resolution, streak counts and alphas, dust heights 0.55 and 0.3 m, reveal at 0.4 of the paint": "art direction, read at full size in the proofs. Not thresholds",
+    "declared sizes [6.82, 4.09, 2.48], [2.8, 2.11, 2.5], [22.47, 4.24, 7.2]": "measured by examples/kit/sizes.py over its sixteen seeds"
+   },
+   "verification": "node --check assets/js/kit/power.js exit 0. examples/kit/build.py --family power --names modular_gas_genset,padmount_transformer,genset_block --surface caliche, rendered through .claude/skills/carousel-engine/render.py: 4 pages, exit 0, errors=0, read at full size (out/2026-09-29/tmp/upgrade/kit/render, crop-side.png). The first proof showed the rib through the louvres and a hard black door outline; both fixed and re-rendered. This deck's frames 6 and 2 re-rendered from the committed slides with the kit model: exit 0, errors=0 (compare-f6.png, compare-f2.png), streaks, dust and seam rust visible on frame 6 where the shipped frame was clean. examples/kit/sizes.py: exit 0, 103 of 103 models declare the size they build, centred. arsenal.py then arsenal.py --check: exit 0, current. ownership_check --actor upgrade on the changed files: ok. No gate changed, so no gate self-test is involved",
+   "revert": "the upgrade commit on claude/daily-2026-09-29 touching assets/js/kit/power.js and knowledge/carousel/ARSENAL.md. Reverting restores the chassis's own models for this deck, because its installKit defines them only when the kit lacks modular_gas_genset",
+   "how_i_would_know_this_was_wrong": "A judge on the next deck using these models names the streaks as stripes, wood grain or a texture artifact, or calls the dust a stain; or the weathering reads at full size and vanishes at feed size, and a critic still says 'clean box'. If a frame's leader placed from userData.stackTop or gasInlet misses, the bake moved something it should not have. If a render slows by seconds per unit, the 2048 by 1024 atlas painting is the cause (three variants per colour are cached)"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "reverify.py skips and reports as BOUNDARY any claim whose host the item's own live unreachable block names with boundary 'robots', still withholding the stamp, with a self-test that such a host is fetched zero times and that a host under any other boundary is still fetched",
+   "owner": "daily",
+   "why": "On 2026-09-29 re-verification fetched www.newschannel10.com (tx-2026-0046) and public.destinyhosted.com (tx-2026-0168), both recorded as robots boundaries re-measured 2026-09-28, and the run withdrew four stamps (tx-2026-0046, 0168, 0169, 0170). check() never reads item['unreachable']. UPGRADE_BACKLOG 2026-09-29 item 2"
+  },
+  {
+   "what": "A maintainer decides whether docs.tacc.utexas.edu gets a recorded carve-out from the tacc.utexas.edu refusal, or the field log's 'check the subdomain' advice is corrected",
+   "owner": "human",
+   "why": "crawl_boundary.py refuses the subdomain by design, and SOURCES_FIELD_LOG records that it serves no robots.txt. Until the two agree tx-2026-0125 can't be re-verified. A data change with a reason, never a wider matcher. UPGRADE_BACKLOG 2026-09-29 item 6"
+  },
+  {
+   "what": "Copy out/2026-09-29/tmp/upgrade/compare-f6.png into examples/kit/ as WebP",
+   "owner": "human",
+   "why": "examples/kit/** is not upgrade lane, so the proof dies with the container, third run in a row. UPGRADE_BACKLOG 2026-09-29 item 5"
+  }
+ ],
+ "proposals_in_lane_not_built": [
+  {
+   "what": "pipe_rail_fence gains ribbed sheet panels on the weathering atlas and a paint option, so a year ruler is a kit call",
+   "why": "Defect 1's model half, 'cardboard panels' on frames 7 and 8. Its main fix is a camera, which is frame work. UPGRADE_BACKLOG 2026-09-29 item 3"
+  },
+  {
+   "what": "Take the kit person's mannequin read first in the next upgrade phase",
+   "why": "Named on 2026-09-27, 2026-09-28 and in rounds 3 to 5 today, the most repeated artwork defect. people.js is upgrade lane. UPGRADE_BACKLOG 2026-09-29 item 4"
+  },
+  {
+   "what": "A mountain_range landscape model on the mesa's far material, with bajada fans at the foot",
+   "why": "N.ridge is chassis code and read as 'jagged mesh with glints', 'spiky black mass' and 'a heavy band with a ground seam' across rounds 1 to 4. UPGRADE_BACKLOG 2026-09-29 item 4"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/power.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis untouched"
+}
 }

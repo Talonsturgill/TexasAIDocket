@@ -1,0 +1,191 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py. The two cost figures carry different scopes and are never combined.",
+ "units": {
+  "value": 813,
+  "from": [
+   "c6"
+  ],
+  "basis": "modular gas generators El Paso Electric proposes to buy"
+ },
+ "kw_per_unit": {
+  "value": 450,
+  "from": [
+   "c6"
+  ]
+ },
+ "plant_mw": {
+  "value": 366,
+  "from": [
+   "c1"
+  ]
+ },
+ "acres": {
+  "value": 31,
+  "from": [
+   "c8"
+  ]
+ },
+ "units_per_group_min": {
+  "value": 4,
+  "from": [
+   "c7"
+  ]
+ },
+ "units_per_group_max": {
+  "value": 5,
+  "from": [
+   "c7"
+  ]
+ },
+ "first_request_mw": {
+  "value": 220,
+  "from": [
+   "c10"
+  ]
+ },
+ "first_request_year": {
+  "value": 2027,
+  "from": [
+   "c10"
+  ]
+ },
+ "second_request_mw": {
+  "value": 220,
+  "from": [
+   "c11"
+  ]
+ },
+ "peak_commit_mw": {
+  "value": 1000,
+  "from": [
+   "c12"
+  ]
+ },
+ "peak_commit_year": {
+  "value": 2029,
+  "from": [
+   "c12"
+  ]
+ },
+ "bridge_years_max": {
+  "value": 5,
+  "from": [
+   "c23"
+  ],
+  "basis": "the proposed bridge period, an upper bound"
+ },
+ "bridge_expected_under_years": {
+  "value": 3,
+  "from": [
+   "c24"
+  ],
+  "basis": "the EPE witness's expectation"
+ },
+ "service_life_years": {
+  "value": 20,
+  "from": [
+   "c19"
+  ]
+ },
+ "total_cost_musd": {
+  "value": 499.8,
+  "from": [
+   "c20",
+   "c21"
+  ],
+  "basis": "the judges' proposed finding, generation facilities only"
+ },
+ "cash_cost_musd": {
+  "value": 473,
+  "from": [
+   "c20"
+  ]
+ },
+ "afudc_musd": {
+  "value": 26.8,
+  "from": [
+   "c20"
+  ]
+ },
+ "cost_incl_tx_musd": {
+  "value": 551.8,
+  "from": [
+   "c22",
+   "c19"
+  ],
+  "basis": "the estimate including transmission interconnection and AFUDC, as the City's witness gave it"
+ },
+ "usd_per_kw": {
+  "value": 1609,
+  "from": [
+   "c56",
+   "c19"
+  ]
+ },
+ "generic_ct_usd_per_kw": {
+  "value": 1264,
+  "from": [
+   "c56"
+  ]
+ },
+ "city_cost_cap_musd": {
+  "value": 565.6,
+  "from": [
+   "c22"
+  ]
+ },
+ "protestor_comments": {
+  "value": 1118,
+  "from": [
+   "c45"
+  ]
+ },
+ "ccn_threshold_mw": {
+  "value": 10,
+  "from": [
+   "c36"
+  ]
+ },
+ "hearing_parties": {
+  "value": 7,
+  "from": [
+   "c35"
+  ],
+  "basis": "the parties listed as appearing through counsel, counted",
+  "listed": [
+   "EPE",
+   "the City",
+   "TIEC",
+   "FMI",
+   "OPUC",
+   "Mr. Vargas",
+   "Staff"
+  ]
+ },
+ "bridge_share_of_life": {
+  "value": 0.25,
+  "from": [
+   "c23",
+   "c19"
+  ],
+  "basis": "drawn as the bridge's length against the service life's length at one scale, never printed",
+  "drawn_only": true
+ },
+ "plant_share_of_peak": {
+  "value": 0.366,
+  "from": [
+   "c1",
+   "c12"
+  ],
+  "basis": "drawn as the plant's length against the committed peak at one scale, never printed",
+  "drawn_only": true
+ },
+ "units_times_rating_kw": {
+  "value": 365850,
+  "from": [
+   "c6"
+  ],
+  "basis": "a consistency check on the record, never printed",
+  "drawn_only": true
+ }
+}

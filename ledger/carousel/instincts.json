@@ -307,7 +307,8 @@
       "instinct": "Put one acceptance item on every dossier that names what the frame must NOT be mistaken for, because a checklist of parts passes while the whole reads as the wrong thing.",
       "evidence": "Slide 5 passed all five of its acceptance items while reading as a Gantt chart that asserted start times the record does not state, with the contradicting caption on the same frame. The list checked edges, proportions, light and labels and never asked whether it read as a chart.",
       "confirmed": [
-        "2026-08-21"
+        "2026-08-21",
+        "2026-09-29"
       ],
       "contradicted": []
     },
@@ -394,7 +395,8 @@
         "2026-08-21",
         "2026-08-25",
         "2026-09-03",
-        "2026-09-26"
+        "2026-09-26",
+        "2026-09-29"
       ],
       "contradicted": []
     },
@@ -767,7 +769,8 @@
       "confirmed": [
         "2026-09-16",
         "2026-09-19",
-        "2026-09-28"
+        "2026-09-28",
+        "2026-09-29"
       ],
       "contradicted": []
     },
@@ -788,7 +791,8 @@
         "2026-09-15",
         "2026-09-18",
         "2026-09-20",
-        "2026-09-26"
+        "2026-09-26",
+        "2026-09-29"
       ],
       "contradicted": []
     },
@@ -1128,6 +1132,22 @@
       "learned": "2026-09-28",
       "instinct": "Compute where the world preset's fog closes the plain before placing anything far out, because an exp2 fog hides every mesa beyond its own reach and the judges read the result as a void.",
       "evidence": "No. 36 placed the caprock 3 to 4 km out under stormFront's fog density 0.0065, which is 95 percent fogged at 150 m, and three critics called the horizon a white wall until the chassis declared 0.0028 and moved the breaks to 400 m.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-fence-seen-along-its-length-lies",
+      "learned": "2026-09-29",
+      "instinct": "Shoot any ruler the deck draws square to the lens, because a length seen along its axis gives its near units most of the screen and misstates the ratio it exists to show.",
+      "evidence": "Carousel no. 37's year fence, seen along its length, gave five spans of twenty about 45 percent of its screen length. Every critic named it, and side on it read as a quarter at feed size.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-bar-in-front-of-a-bar-needs-its-depth",
+      "learned": "2026-09-29",
+      "instinct": "When two bars share an origin at different depths, scale and place the nearer one by the ratio of the two depths, because perspective otherwise moves its ends off the other bar's zero and makes it read long.",
+      "evidence": "Carousel no. 37's frame 4 plant bar stood 1.6 m nearer the lens than the peak's beam, overhung zero by about 45 px and read 0.39 of the beam against 0.366, until it was scaled by (28 - 1.6) / 28.",
       "confirmed": [],
       "contradicted": []
     }

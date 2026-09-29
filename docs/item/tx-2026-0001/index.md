@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-26
+- Last checked: 2026-09-29
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The comment window closed on August 11th.
 - 2026-09-23 · The rulemaking is still sitting between a closed comment file and a proposal, with nothing new posted to the project.
 - 2026-09-26 · The comment file closed on August 11th and the commission has not yet brought a proposal for adoption to an open meeting.
+- 2026-09-29 · The transmission cost recovery rule has not come to an open meeting for adoption, and the comment file that closed on August 11th has taken nothing new.
 
 ## Evidence
 

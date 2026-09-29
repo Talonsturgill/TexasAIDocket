@@ -1,0 +1,51 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Frames 3, 6 and 1 reach the 10. The kit person a mannequin large on frame 2, edge streaks still on frame 2's corners, frame 5's flat door slab and square plate, frame 9's near black ridge mass over a thin band of rows, frames 7 and 8 a thin strip where the argument lands, frame 4's centre aisle black boxes and left rows in violet shade."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck, one key, one hero, small adjacent steps. The 7 to 8 device is the clearest swipe. Frame 5 and 9 sit outside and the fence on 9 is not legible."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every figure spot checked traces verbatim. Timing rests on KVIA and is attributed. Frame 4's tier position is an inference."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Actors, decision, date and stake named. The reader's action only implied."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "Cover earns it, 2 pays, 7 into 8 turns, the close lands. 3 and 4 could swap, 6 sits between findings and offer."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Several lines read as written, house rules clean. Frame 1's second sentence flat, local texture only in the art, Commission capitalised inconsistently."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Palette and frames fresh. The genset on caliche again after no. 32, goldenHour as no. 33, a ruler in the scene as 34 and 36."
+  }
+ ],
+ "weighted_score": 7.4,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Drop frame 9's ridge to a thin band so the rows and fence own the middle third, and give frame 5's door modelled material and a glazed pocket."
+}

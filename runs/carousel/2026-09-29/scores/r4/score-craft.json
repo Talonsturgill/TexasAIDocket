@@ -1,0 +1,51 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 1, 3, 6 and 9 pass or come close. The mannequin readable at full size on frame 2, frame 4's slabs on empty caliche with the grey bar overhanging zero by about 45 px, frames 7 and 8 flat elevations with no post shadows and empty sky crossed by brackets, frame 5's door still flat and its shadow a hard polygon, frame 9's ridge still a heavy band with a ground seam."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "One deck, one world, the 7 to 8 device the clearest. Frame 5 sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.6,
+   "why": "Every numeral traces, KVIA attributed, 'at first' faithful. Frame 4's 366 bar reads about 0.39 of the beam."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.9,
+   "why": "What, who, where and the decision named, the stake concrete. No route to act."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "Hook earns it, 2 pays, 7 to 8 felt, 9 closes. 6 could move, 4 interrupts the walk."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and on register. Deks a docket summary, frame 8 dense, place texture only in the art, 1118 without a separator."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Topic new. goldenHour and into the sun as 33, gensets with a person as 32, rail count and one scale as 36, a PUCT docket as 36."
+  }
+ ],
+ "weighted_score": 7.37,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Spend the detail where the argument lands: a low three quarter view down the fence with long post shadows and weathered panels on 7 and 8, and no mannequin close on frame 2."
+}

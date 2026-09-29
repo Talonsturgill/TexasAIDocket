@@ -1,0 +1,51 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Most frames pass the place test. Frame 4's centre aisle column of near black boxes reads as an artifact and its diagram sits on the dirt like an overlay. Frame 9's faceted black ridge fills the middle and the plant is a thin strip. Frame 5's page a flat plate. The genset boxy throughout."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One filmstrip, the 7 to 8 device and the camera walk work. Frames 5 and 9 sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. 'residents have filed their own' plural rests on one identified resident. c29 missing from the first comment ids. Frame 4 draws McCloud serving the load beyond Region 1 with no claim on the slide saying so."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "County, body, decision, cost and a deadline named. No action for the reader, held harmless and proposal for decision never plain, McCloud first appears unintroduced on frame 4."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns it, 5 turns, 7 to 8 the sharpest. 2 and 3 both site description, the close flat."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean, specific, even handed. Docket register on 8, and 'it' in 'unless it later meets' has no clear antecedent."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Concept fresh. goldenHour as no. 33, the type skeleton, a repeated yard like 34 and 35, one scale on the ground like 36."
+  }
+ ],
+ "weighted_score": 7.39,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give frame 9 the plant and a plain comment route, and put held harmless into plain words on frame 8."
+}

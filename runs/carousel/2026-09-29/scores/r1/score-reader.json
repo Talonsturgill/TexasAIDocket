@@ -1,0 +1,16 @@
+{
+  "lens": "reader",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Every frame is a rendered place at one golden hour with a real sky, frame 1 works well. Frame 3 is a flat carpet of boxes with an empty bottom third, frame 4 two slabs on dirt, frame 6 a plain box with a stack smudge near the dek, frame 9's Franklins read as crumpled paper and the public fence as scaffold with a detached shadow. Frame 1's lower quarter is empty lane."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One world, one sun, one enclosure model, accent on 1, 7 and 8. The fence motif across adjacent 7 and 8 is the best device. Frame 5's olive door slab sits outside the deck and frame 9's violet dusk breaks the light."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.0, "why": "Every slide numeral traces. Looser: 'One customer.' vs c9's 'intended initially'. The caption's KVIA facts (c46, c48) have no source in first_comment.txt. 'those costs' in c48 has no stated referent. 'put the generation at' is looser than c20's 'total estimated cost of the McCloud facility'."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A Texan learns what, where, who, what the judges found and the stake. The deciding body is never named on a slide, SOAH and the judges never appear, and the close gives no next step for a customer."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, frame 2 pays it off, the turn at 7 to 8 lands. Frame 4 labels REGION 2 at the cumulative 440 tick. Frame 3 partly repeats frame 1. The close lands softly."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and specific. 'the statute's test' never says what the test is. Frame 2's dek reads like a spec sheet. Little regional texture beyond place names. House rules clean."},
+    {"name": "variety", "weight": 0.10, "score": 6.0, "why": "No topic repeat, fence timeline new. No. 32 was also behind-the-meter gas engines for a data center, no. 36 also a PUCT docket read, third or fourth rendered desert deck, cover opens on a count over rows."}
+  ],
+  "weighted_score": 6.98,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild frame 9 as the reader's next step: name the Public Utility Commission of Texas and Docket 59076, say that residents file comments there, and add the KVIA story to the sources block so the caption's City Council and CEO lines resolve to a document."
+}

@@ -1,0 +1,2166 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "813 gas generators. One customer, at first.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 186,
+          "font_px": 98,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              225,
+              136,
+              634,
+              121
+            ],
+            [
+              80,
+              229,
+              891,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "813",
+          "x": 80,
+          "y": 136,
+          "w": 145,
+          "h": 123,
+          "font_px": 90.2,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              145,
+              123
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County. Two judges recommend approval with a condition on who pays, and denial without it.",
+          "x": 82,
+          "y": 380,
+          "w": 860,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              380,
+              783,
+              41
+            ],
+            [
+              82,
+              422,
+              816,
+              41
+            ],
+            [
+              82,
+              464,
+              822,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "El Paso County",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c6 c8 c9 c28 c29 c39 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 515,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              515,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 82,
+          "y": 354.1,
+          "w": 891,
+          "h": 10,
+          "by": "acc",
+          "color": "rgb(154, 59, 42)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28402,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 87.4,
+          "variance": 2428.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four or five to a transformer",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 219,
+          "font_px": 115.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              726,
+              142
+            ],
+            [
+              80,
+              243,
+              592,
+              142
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The plan would buy 813 modular gas generators rated at 450 kilowatts each. They are typically installed in groups of four or five, each group connected to a step-up transformer.",
+          "x": 82,
+          "y": 399,
+          "w": 860,
+          "h": 126,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              399,
+              823,
+              41
+            ],
+            [
+              82,
+              441,
+              841,
+              41
+            ],
+            [
+              82,
+              483,
+              726,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One block of the 813",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18940,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 74.2,
+          "variance": 1579.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 31 acres beside the data center",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 179,
+          "font_px": 94,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              254,
+              116
+            ],
+            [
+              421,
+              136,
+              483,
+              116
+            ],
+            [
+              80,
+              225,
+              571,
+              116
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "31",
+          "x": 334,
+          "y": 136,
+          "w": 87,
+          "h": 118,
+          "font_px": 86.5,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              334,
+              136,
+              87,
+              118
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The McCloud plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline.",
+          "x": 82,
+          "y": 359,
+          "w": 790,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              359,
+              751,
+              41
+            ],
+            [
+              82,
+              401,
+              737,
+              41
+            ],
+            [
+              82,
+              443,
+              764,
+              41
+            ],
+            [
+              82,
+              485,
+              573,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Northeast El Paso County",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c6 c7 c8 c14 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15510,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 89.8,
+          "variance": 1617.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "366 MW against 1,000",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 216,
+          "font_px": 113.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              265,
+              133,
+              579,
+              140
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "366",
+          "x": 80,
+          "y": 133,
+          "w": 185,
+          "h": 142,
+          "font_px": 104.4,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              185,
+              142
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "1,000",
+          "x": 80,
+          "y": 241,
+          "w": 277,
+          "h": 142,
+          "font_px": 104.4,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              241,
+              277,
+              142
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "The data center has committed to 1,000 MW by the end of 2029. The judges found existing resources can serve about the first 220 MW of its load, and the second 220 MW requires additional capacity.",
+          "x": 82,
+          "y": 396,
+          "w": 860,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              396,
+              790,
+              41
+            ],
+            [
+              82,
+              438,
+              813,
+              41
+            ],
+            [
+              82,
+              480,
+              834,
+              41
+            ],
+            [
+              82,
+              522,
+              267,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "220 MW, REGION 1",
+          "x": 79,
+          "y": 896,
+          "w": 198,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              125,
+              896,
+              108,
+              31
+            ],
+            [
+              117,
+              927,
+              123,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "220 MW MORE, REGION 2",
+          "x": 283,
+          "y": 896,
+          "w": 198,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              290,
+              896,
+              184,
+              31
+            ],
+            [
+              321,
+              927,
+              123,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1,000 MW BY 2029",
+          "x": 754,
+          "y": 927,
+          "w": 246,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              754,
+              927,
+              246,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "366 MW McCLOUD",
+          "x": 139,
+          "y": 1138,
+          "w": 215,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              139,
+              1138,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At one scale",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c10 c11 c12 c13 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16729,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 76.5,
+          "variance": 1255.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Need shown. Cost and alternatives, not.",
+          "x": 80,
+          "y": 150,
+          "w": 500,
+          "h": 205,
+          "font_px": 72,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              374,
+              88
+            ],
+            [
+              80,
+              208,
+              258,
+              88
+            ],
+            [
+              80,
+              277,
+              493,
+              88
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The two judges filed their proposal for decision on September 23rd. They found the utility showed a need for capacity to serve the data center.",
+          "x": 82,
+          "y": 385,
+          "w": 490,
+          "h": 210,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              385,
+              476,
+              41
+            ],
+            [
+              82,
+              427,
+              438,
+              41
+            ],
+            [
+              82,
+              469,
+              431,
+              41
+            ],
+            [
+              82,
+              511,
+              479,
+              41
+            ],
+            [
+              82,
+              553,
+              96,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"did not show that the McCloud facility is a cost-effective and reliable resource\"",
+          "x": 143,
+          "y": 778,
+          "w": 265,
+          "h": 124,
+          "font_px": 25,
+          "weight": "560",
+          "family": "Fraunces",
+          "color": "rgb(31, 29, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              143,
+              778,
+              258,
+              30
+            ],
+            [
+              143,
+              809,
+              239,
+              30
+            ],
+            [
+              143,
+              840,
+              211,
+              30
+            ],
+            [
+              143,
+              871,
+              209,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"failed to show that it adequately considered alternatives\"",
+          "x": 143,
+          "y": 920,
+          "w": 265,
+          "h": 124,
+          "font_px": 25,
+          "weight": "560",
+          "family": "Fraunces",
+          "color": "rgb(31, 29, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              143,
+              920,
+              250,
+              30
+            ],
+            [
+              143,
+              951,
+              131,
+              30
+            ],
+            [
+              143,
+              982,
+              132,
+              30
+            ],
+            [
+              143,
+              1013,
+              150,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "State Office of Administrative Hearings",
+          "x": 80,
+          "y": 80,
+          "w": 646,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              646,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c38 c39 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19047,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 69.7,
+          "variance": 2633.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The vendor the data center preferred",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 210,
+          "font_px": 110.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              898,
+              136
+            ],
+            [
+              80,
+              239,
+              752,
+              136
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "El Paso Electric engaged Enchanted Rock after the data center preferred it. It considered no other vendor, issued no request for proposals and ran no cost-benefit analysis for ratepayers. The plant would be its first experience with modular gas generation.",
+          "x": 82,
+          "y": 390,
+          "w": 916,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              390,
+              860,
+              41
+            ],
+            [
+              82,
+              432,
+              879,
+              41
+            ],
+            [
+              82,
+              474,
+              851,
+              41
+            ],
+            [
+              82,
+              516,
+              871,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How it was chosen",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 c18 c52 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15002,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 76.7,
+          "variance": 2171.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Up to five years, then no decision",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 181,
+          "font_px": 95.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              802,
+              117
+            ],
+            [
+              80,
+              227,
+              439,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that. Its chief executive told KVIA it isn't seeking to shift those costs onto residential or other customers.",
+          "x": 82,
+          "y": 361,
+          "w": 916,
+          "h": 210,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              883,
+              41
+            ],
+            [
+              82,
+              403,
+              888,
+              41
+            ],
+            [
+              82,
+              445,
+              877,
+              41
+            ],
+            [
+              82,
+              487,
+              812,
+              41
+            ],
+            [
+              82,
+              529,
+              424,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UP TO YEAR 5, BRIDGE",
+          "x": 81,
+          "y": 680,
+          "w": 328,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 22, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              81,
+              680,
+              328,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "YEAR 20, ESTIMATED SERVICE LIFE",
+          "x": 491,
+          "y": 636,
+          "w": 508,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 22, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              491,
+              636,
+              508,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The utility's offer",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c23 c25 c26 c48 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 81,
+          "y": 716.4,
+          "w": 229.5,
+          "h": 10,
+          "by": "acc",
+          "color": "rgb(154, 59, 42)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14709,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 94.8,
+          "variance": 1702.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "For the life of the plant",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 91,
+          "font_px": 95.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              869,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The judges recommend approval only if the utility's other customers pay none of the plant's capital and operating costs, unless the plant later meets the statute's test. Its generation facilities are estimated at about $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
+          "x": 82,
+          "y": 271,
+          "w": 916,
+          "h": 210,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              271,
+              776,
+              41
+            ],
+            [
+              82,
+              313,
+              855,
+              41
+            ],
+            [
+              82,
+              355,
+              837,
+              41
+            ],
+            [
+              82,
+              397,
+              808,
+              41
+            ],
+            [
+              82,
+              439,
+              843,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "For the life of the McCloud facility",
+          "x": 81,
+          "y": 680,
+          "w": 590,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 22, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              81,
+              680,
+              590,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OTHER CUSTOMERS PAY NONE",
+          "x": 606,
+          "y": 636,
+          "w": 393,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 22, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              606,
+              636,
+              393,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The judges' proposed condition",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c20 c21 c28 c30 c46 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 466,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              466,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 81,
+          "y": 716.4,
+          "w": 918,
+          "h": 10,
+          "by": "acc",
+          "color": "rgb(154, 59, 42)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15172,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 95.9,
+          "variance": 1809.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The commission has not ruled",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 197,
+          "font_px": 103.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(241, 236, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              864,
+              127
+            ],
+            [
+              80,
+              233,
+              388,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 on the PUCT Interchange holds comments from 1118 protestors and a residential customer.",
+          "x": 82,
+          "y": 377,
+          "w": 880,
+          "h": 168,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(239, 233, 222)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              377,
+              810,
+              41
+            ],
+            [
+              82,
+              419,
+              758,
+              41
+            ],
+            [
+              82,
+              461,
+              835,
+              41
+            ],
+            [
+              82,
+              503,
+              805,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Public Utility Commission of Texas",
+          "x": 80,
+          "y": 80,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c37 c42 c44 c45 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 218, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13414,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 84.3,
+          "variance": 1197.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

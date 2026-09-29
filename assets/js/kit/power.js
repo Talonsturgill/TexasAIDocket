@@ -1862,4 +1862,381 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* ========================================================================================
+   * MODULAR GAS GENERATION: modular_gas_genset, padmount_transformer, genset_block.
+   *
+   * LIFTED FROM THE 2026-09-29 CHASSIS (assets/js/deck/2026-09-29-mccloud.js, carousel of El Paso
+   * Electric's McCloud facility) AT THE JUDGES' NAMED FIX, not as it shipped. The shipped unit was
+   * one flat K.mat paint on every panel, and three rounds of judges said so in their own words:
+   * "no visible grime on 6" (craft, round 5), "the genset models simple" (integrity, round 5), "a
+   * flat brown box without raking light" (craft, round 1). TXT.weather's grime (0.55 on that
+   * frame) did not read, because a world-space darkening at the foot is not what an enclosure
+   * that has stood in the sun looks like. What does read, and what this adds:
+   *
+   *   THE WEATHERED SKIN. Every enclosure panel shares ONE painted atlas (wxSkin), mapped by the
+   *   panel's position on the box rather than tiled (wxUV), so a mark is where it would be in
+   *   life: caliche dust banked up the base and splashed above it, dark streaks run down from
+   *   under each louvre and off the roof drip edge, rust bleeds at the seams, each panel a slightly
+   *   different fade of the same paint, the upper faces chalked by the sun, the roof dusted and
+   *   sooted round the stack. A ROUGHNESS map painted with the same strokes makes the dust matte
+   *   and the clean paint hold a sheen, so a raking sun separates them. Three seeded variants
+   *   per colour, so a row of five is not five copies.
+   *   THE EXHAUST. The silencer carries saddle straps and dished heads, the stack a flange and a
+   *   hinged rain cap, and the stack is heat tinted and sooted toward its mouth.
+   *   A DOOR READS AS A DOOR: a dark reveal round each leaf and hinge knuckles.
+   *
+   * Everything else is the chassis's model, same dimensions, same options, same userData, so the
+   * chassis's own installKit (which returns when the kit already has the model) keeps working.
+   * No record gives the unit's dimensions, so it stays DRAWN at a plausible size and no frame may
+   * print one. Each model is baked to one mesh per material.
+   * ====================================================================================== */
+  const MGG_PAINT = 0xd4d0c6;
+  const MGG_RIBS = [-2.8, -1.2, 0.31, 2.85];     // panel seams on the door side, clear of every louvre and door
+  const WX_W = 2048, WX_H = 1024, WX_M = 6;
+  /* the atlas: long faces on top, ends bottom left, roof bottom right, each inset WX_M px so a
+   * mip level never bleeds one into another */
+  const WX_REG = { side: [0, 0, 2048, 640], end: [0, 640, 820, 384], roof: [820, 640, 1228, 384] };
+  const WXC = new Map();
+  const wxRGBA = (c, k, a) => {
+    const f = (v) => Math.max(0, Math.min(255, Math.round(v * k)));
+    return 'rgba(' + f((c >> 16) & 255) + ',' + f((c >> 8) & 255) + ',' + f(c & 255) + ',' + (a == null ? 1 : a) + ')';
+  };
+  const grey = (v, a) => 'rgba(' + v + ',' + v + ',' + v + ',' + (a == null ? 1 : a) + ')';
+  /* face metres -> canvas px. y is up the face; on the roof, y is fd - z so the row is z. */
+  function wxPx(reg, fw, fh, x, y) {
+    const R = WX_REG[reg];
+    return [R[0] + WX_M + (x / fw) * (R[2] - 2 * WX_M), R[1] + WX_M + (1 - y / fh) * (R[3] - 2 * WX_M)];
+  }
+  /* ONE REGION'S WEATHER. mode 'c' paints colour, 'r' roughness (grey = roughness x 255). The rng
+   * is consumed identically in both modes so the two maps carry the same strokes. */
+  function wxFace(x, C, r, reg, fw, fh, sp, f) {
+    const R = WX_REG[reg], P = (xx, yy) => wxPx(reg, fw, fh, xx, yy);
+    const ppm = (R[2] - 2 * WX_M) / fw;
+    const base = sp.color, dust = sp.dust;
+    x.save(); x.beginPath(); x.rect(R[0], R[1], R[2], R[3]); x.clip();
+    x.fillStyle = C ? wxRGBA(base, 1) : grey(122); x.fillRect(R[0], R[1], R[2], R[3]);
+    // each panel its own fade of the same paint
+    const cuts = [0].concat(f.seams || [], [fw]);
+    for (let i = 0; i < cuts.length - 1; i++) {
+      const k = 0.955 + r() * 0.08, dr = Math.round((r() - 0.5) * 24);
+      const a = P(cuts[i], fh), b = P(cuts[i + 1], 0);
+      x.fillStyle = C ? wxRGBA(base, k, 0.6) : grey(122 + dr, 0.8); x.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]);
+    }
+    // the sun chalks the upper face (the whole roof)
+    const t = P(0, fh), m = P(0, fh * (f.roof ? 0 : 0.55));
+    let g = x.createLinearGradient(0, t[1], 0, m[1] + 1);
+    g.addColorStop(0, C ? 'rgba(255,248,236,' + (f.roof ? 0.12 : 0.1) + ')' : grey(200, 0.35)); g.addColorStop(1, C ? 'rgba(255,248,236,0)' : grey(200, 0));
+    x.fillStyle = g; x.fillRect(R[0], R[1], R[2], R[3]);
+    // soft mottle, light and dark
+    for (let i = 0; i < 160 * fw * fh / 16; i++) {
+      const p = P(r() * fw, r() * fh), rad = (0.08 + r() * 0.4) * ppm, dark = r() < 0.5, a = 0.02 + r() * 0.05;
+      const rg = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+      rg.addColorStop(0, C ? (dark ? 'rgba(60,50,40,' + a + ')' : 'rgba(255,250,240,' + a + ')') : grey(dark ? 170 : 100, a * 2));
+      rg.addColorStop(1, C ? 'rgba(0,0,0,0)' : grey(128, 0));
+      x.fillStyle = rg; x.fillRect(p[0] - rad, p[1] - rad, rad * 2, rad * 2);
+    }
+    function streak(sx, top, len, wd, a, col, rough) {
+      const bend = (r() - 0.5) * 0.03, p0 = P(sx, top), p1 = P(sx + bend, Math.max(0, top - len)), pm = P(sx + bend * 0.3, top - len * 0.5);
+      const lg = x.createLinearGradient(p0[0], p0[1], p1[0], p1[1]);
+      lg.addColorStop(0, C ? col(a) : grey(rough, a * 1.6)); lg.addColorStop(0.35, C ? col(a * 0.7) : grey(rough, a)); lg.addColorStop(1, C ? col(0) : grey(rough, 0));
+      x.strokeStyle = lg; x.lineWidth = Math.max(1, wd * ppm); x.lineCap = 'round';
+      x.beginPath(); x.moveTo(p0[0], p0[1]); x.quadraticCurveTo(pm[0], pm[1], p1[0], p1[1]); x.stroke();
+    }
+    const grime = (a) => 'rgba(58,47,37,' + a + ')', rust = (a) => 'rgba(126,70,36,' + a + ')', dustc = (a) => wxRGBA(dust, 1, a);
+    x.filter = 'blur(1px)';
+    if (!f.roof) {
+      // run-off from the drip edge, the full length of the top
+      const k = f.k != null ? f.k : 1;          // streak intensity: a small dark tank streaks to wood grain at full
+      for (let i = 0; i < Math.round(26 * fw * k); i++) streak(r() * fw, fh - 0.02, 0.05 + r() * r() * fh * 0.55, 0.004 + r() * 0.01, (0.05 + r() * 0.1) * k, grime, 170);
+      // under each louvre: a grime line along the sill, then streaks falling from it
+      (f.sources || []).forEach((s) => {
+        const a = P(s.x - s.w / 2, s.y), b = P(s.x + s.w / 2, s.y - 0.035);
+        x.fillStyle = C ? grime(0.35) : grey(185, 0.7); x.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]);
+        const n = Math.round((18 * s.w + 6) * k);
+        for (let i = 0; i < n; i++) streak(s.x + (r() - 0.5) * s.w, s.y - 0.01, 0.2 + r() * Math.min(1.3, s.y * 0.9), 0.005 + r() * 0.022, (0.1 + r() * 0.26) * k, grime, 178);
+        for (let i = 0; i < 3; i++) streak(s.x + (r() - 0.5) * s.w, s.y - 0.01, 0.1 + r() * 0.35, 0.004 + r() * 0.008, 0.12 + r() * 0.16, rust, 190);
+        // dust lodged on the sill above the streaks
+        const d0 = P(s.x - s.w / 2, s.y + 0.03), d1 = P(s.x + s.w / 2, s.y);
+        x.fillStyle = C ? dustc(0.35) : grey(225, 0.8); x.fillRect(d0[0], d0[1], d1[0] - d0[0], d1[1] - d0[1]);
+      });
+      // rust weeping from the fasteners at each seam
+      (f.seams || []).forEach((sx) => { for (let i = 0; i < 2; i++) streak(sx + (r() - 0.5) * 0.03, fh * (0.35 + r() * 0.55), 0.08 + r() * 0.3, 0.004 + r() * 0.006, 0.12 + r() * 0.18, rust, 190); });
+    }
+    x.filter = 'none';
+    if (f.roof) {
+      // a roof is where the desert settles: a dust wash, drifts along the lee edge, soot at the stack
+      x.fillStyle = C ? dustc(0.3) : grey(215, 0.6); x.fillRect(R[0], R[1], R[2], R[3]);
+      for (let i = 0; i < 70 * fw * fh / 4; i++) {
+        const p = P(r() * fw, r() * fh), rad = (0.05 + r() * 0.3) * ppm, a = 0.06 + r() * 0.14;
+        const rg = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+        rg.addColorStop(0, C ? dustc(a) : grey(235, a * 2)); rg.addColorStop(1, C ? dustc(0) : grey(235, 0));
+        x.fillStyle = rg; x.fillRect(p[0] - rad, p[1] - rad, rad * 2, rad * 2);
+      }
+      (f.soot || []).forEach((s) => {
+        const p = P(s.x, fh - s.z), rad = s.r * ppm;
+        const rg = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+        rg.addColorStop(0, C ? 'rgba(28,24,21,0.6)' : grey(200, 0.7)); rg.addColorStop(1, C ? 'rgba(28,24,21,0)' : grey(200, 0));
+        x.fillStyle = rg; x.fillRect(p[0] - rad, p[1] - rad, rad * 2, rad * 2);
+      });
+    } else {
+      // dust banked up the base, a ragged top edge, and splash above it
+      const dh = f.dustH, b0 = P(0, 0), b1 = P(0, dh);
+      g = x.createLinearGradient(0, b0[1], 0, b1[1]);
+      g.addColorStop(0, C ? dustc(0.78) : grey(236, 0.95)); g.addColorStop(0.3, C ? dustc(0.5) : grey(232, 0.8)); g.addColorStop(1, C ? dustc(0) : grey(232, 0));
+      x.fillStyle = g; x.fillRect(R[0], R[1], R[2], R[3]);
+      for (let i = 0; i < 90 * fw; i++) {
+        const p = P(r() * fw, dh * (0.3 + r() * 0.9)), rad = (0.02 + r() * 0.08) * ppm, a = 0.06 + r() * 0.16;
+        const rg = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], rad);
+        rg.addColorStop(0, C ? dustc(a) : grey(232, a * 2)); rg.addColorStop(1, C ? dustc(0) : grey(232, 0));
+        x.fillStyle = rg; x.fillRect(p[0] - rad, p[1] - rad, rad * 2, rad * 2);
+      }
+      for (let i = 0; i < 260 * fw; i++) {
+        const yy = dh * 1.5 * r() * r(), p = P(r() * fw, yy), rad = 0.5 + r() * 2.2, dark = r() < 0.3;
+        x.fillStyle = C ? (dark ? grime(0.12 + r() * 0.2) : dustc(0.2 + r() * 0.4)) : grey(dark ? 190 : 235, 0.6);
+        x.beginPath(); x.arc(p[0], p[1], rad, 0, Math.PI * 2); x.fill();
+      }
+    }
+    x.restore();
+  }
+  function wxCanvas(sp, mode, scale) {
+    const c = document.createElement('canvas'); c.width = WX_W * scale; c.height = WX_H * scale;
+    const x = c.getContext('2d'), r = K.rng(sp.seed), C = mode === 'c';
+    x.scale(scale, scale);
+    wxFace(x, C, r, 'side', sp.fw, sp.fh, sp, sp.side);
+    wxFace(x, C, r, 'end', sp.fd, sp.fh, sp, sp.end);
+    wxFace(x, C, r, 'roof', sp.fw, sp.fd, sp, Object.assign({ roof: true }, sp.roof));
+    if (C) {   // a fine grain, so a panel under a raking sun is a surface and not a fill
+      const im = x.getImageData(0, 0, c.width, c.height), d = im.data, q = K.rng(sp.seed + 1);
+      for (let i = 0; i < d.length; i += 4) { const k = 1 + (q() - 0.5) * 0.05; d[i] *= k; d[i + 1] *= k; d[i + 2] *= k; }
+      x.putImageData(im, 0, 0);
+    }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.anisotropy = 8;
+    if (C) t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+  /* The weathered skin for one box of face size fw x fh x fd metres. Cached by key. */
+  function wxSkin(key, sp) {
+    if (WXC.has(key)) return WXC.get(key);
+    const m = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, metalness: sp.metal != null ? sp.metal : 0.15,
+      map: wxCanvas(sp, 'c', 1), roughnessMap: wxCanvas(sp, 'r', 0.5) });
+    WXC.set(key, m);
+    return m;
+  }
+  /* Map a baked skin mesh onto the atlas by where each vertex sits on the box f = {x0..z1}. The
+   * normal picks the face, so a door, a rib or a louvre frame on a side samples the side at its
+   * own position and a streak runs on across it. */
+  function wxUV(geo, f) {
+    const P = geo.attributes.position, N = geo.attributes.normal, uv = new Float32Array(P.count * 2);
+    const cl = (v) => Math.max(0, Math.min(1, v));
+    const at = (reg, t, s) => { const R = WX_REG[reg];
+      return [(R[0] + WX_M + t * (R[2] - 2 * WX_M)) / WX_W, 1 - (R[1] + WX_M + (1 - s) * (R[3] - 2 * WX_M)) / WX_H]; };
+    for (let i = 0; i < P.count; i++) {
+      const x = P.getX(i), y = P.getY(i), z = P.getZ(i), ax = Math.abs(N.getX(i)), ay = Math.abs(N.getY(i)), az = Math.abs(N.getZ(i));
+      const tx = cl((x - f.x0) / (f.x1 - f.x0)), ty = cl((y - f.y0) / (f.y1 - f.y0)), tz = cl((z - f.z0) / (f.z1 - f.z0));
+      const q = ay >= ax && ay >= az ? at('roof', tx, 1 - tz) : ax >= az ? at('end', tz, ty) : at('side', tx, ty);
+      uv[i * 2] = q[0]; uv[i * 2 + 1] = q[1];
+    }
+    geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    return geo;
+  }
+  /* One mesh per material, in the group's own frame. The skin is atlas mapped after merging. */
+  function bakeSkin(root, skin, f) {
+    root.updateMatrixWorld(true);
+    const by = new Map();
+    root.traverse((o) => {
+      if (!o.isMesh) return;
+      const g = (o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone()).applyMatrix4(o.matrixWorld);
+      if (!by.has(o.material)) by.set(o.material, []);
+      by.get(o.material).push(g);
+    });
+    const out = new THREE.Group();
+    for (const [mat, list] of by) {
+      const geo = mergeGeos(list);
+      if (mat === skin) wxUV(geo, f);
+      geo.computeBoundingBox(); geo.computeBoundingSphere();
+      out.add(new THREE.Mesh(geo, mat));
+      list.forEach((g) => g.dispose());
+    }
+    Object.assign(out.userData, root.userData);
+    return out;
+  }
+  /* the stack: bare steel at the flange, heat tinted up its length, sooted at the mouth */
+  let STACKM = null;
+  function stackMat() {
+    if (STACKM) return STACKM;
+    const c = document.createElement('canvas'); c.width = 32; c.height = 256;
+    const x = c.getContext('2d'), g = x.createLinearGradient(0, 0, 0, 256);
+    g.addColorStop(0, '#1f1c1a'); g.addColorStop(0.12, '#2e2925'); g.addColorStop(0.3, '#5a4e45');
+    g.addColorStop(0.5, '#6d6158'); g.addColorStop(0.75, '#76706a'); g.addColorStop(1, '#7c7873');
+    x.fillStyle = g; x.fillRect(0, 0, 32, 256);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    STACKM = new THREE.MeshStandardMaterial({ color: 0xffffff, map: t, roughness: 0.62, metalness: 0.55 });
+    return STACKM;
+  }
+  function mggMats(o, variant) {
+    const col = o.color != null ? o.color : MGG_PAINT;
+    const L = 6.1, Wd = 2.35, H = 2.55, sk = 0.22;
+    const fw = L + 0.1, fh = H + 0.06, fd = Wd + 0.1;
+    const fx = (xm) => xm + fw / 2;           // model x -> face x
+    return {
+      skin: wxSkin('mgg|' + col.toString(16) + '|' + variant, {
+        seed: 7001 + variant * 97, color: col, dust: 0xc2ab86, fw, fh, fd,
+        side: { dustH: 0.55, sources: [{ x: fx(-L / 2 + 1.1), y: 1.0, w: 1.3 }, { x: fx(-L / 2 + 2.6), y: 1.0, w: 1.3 }],
+                seams: MGG_RIBS.concat([0.425, 1.375, 1.625, 2.575]).sort((a, b) => a - b).map(fx) },
+        end: { dustH: 0.5, sources: [], seams: [] },   // both ends share the region, and the gas end has no louvre to streak under
+        roof: { soot: [{ x: fx(0.3), z: -0.3 + fd / 2, r: 0.7 }, { x: fx(0.3) + 0.5, z: -0.3 + fd / 2, r: 0.45 }] } }),
+      louvre: kmat('mgg-louvre', { color: 0x5d6064, roughness: 0.64, metalness: 0.35 }),
+      dark: kmat('mgg-dark', { color: 0x17191c, roughness: 0.75, metalness: 0.2 }),
+      /* the door's shadow line is the paint in shade, not black: a black reveal printed as a hard
+       * outline at feed size, the "hard black seam" the judges named on frame 5 of 2026-09-29 */
+      reveal: kmat('mgg-reveal|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.4).getHex(), roughness: 0.8, metalness: 0.1 }),
+      skid: kmat('mgg-skid', { color: 0x3c3f42, roughness: 0.66, metalness: 0.5 }),
+      sil: kmat('mgg-sil', { color: 0x5b5651, roughness: 0.6, metalness: 0.6 }),
+      stack: stackMat(),
+      yellow: kmat('mgg-gasline', { color: 0xc9a227, roughness: 0.55, metalness: 0.3 }),
+      plate: kmat('mgg-plate', { color: 0xdedbd2, roughness: 0.5 }),
+      frame: { x0: -fw / 2, x1: fw / 2, y0: sk, y1: sk + fh, z0: -fd / 2, z1: fd / 2 },
+    };
+  }
+  /* a louvre panel: a dark recess with blades, on a face at +z (turned by the caller) */
+  function mggLouvres(parent, M, w, h, x, y, z, ry) {
+    const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = ry || 0; parent.add(g);
+    const back = TXT.roundedBox(w, h, 0.03, 0.006, M.dark); back.position.set(0, h / 2, -0.01); g.add(back);
+    const n = Math.max(3, Math.round(h / 0.09));
+    for (let i = 0; i < n; i++) {
+      const b = TXT.roundedBox(w - 0.04, 0.012, 0.07, 0.004, M.louvre);
+      b.position.set(0, (i + 0.5) * h / n, 0.025); b.rotation.x = 0.55; g.add(b);
+    }
+    for (const yy of [h + 0.015, -0.015]) { const fr = TXT.roundedBox(w + 0.06, 0.035, 0.05, 0.008, M.skin); fr.position.set(0, yy, 0.01); g.add(fr); }
+    for (const xx of [-w / 2 - 0.015, w / 2 + 0.015]) { const fr = TXT.roundedBox(0.03, h, 0.05, 0.008, M.skin); fr.position.set(xx, h / 2, 0.01); g.add(fr); }
+    return g;
+  }
+  K.define('modular_gas_genset', {
+    size: [6.82, 4.09, 2.48],
+    options: { color: null, lod: 'high', stack: true, gas: true },
+    note: 'Modular natural gas generator in a sound attenuated enclosure on a steel skid, the kind installed in groups of four or five on one step-up transformer: radiator louvres at +x, intake louvres down both sides, personnel doors on +z, a roof silencer with straps and dished heads, a stack with a flange and rain cap, the gas train and its yellow line at -x. WEATHERED: caliche dust up the base, streaks under the louvres and off the drip edge, rust at the seams, a sun chalked and dusty roof sooted at the stack, a matching roughness map (three seeded variants per colour). DRAWN at a plausible size for a unit of a few hundred kilowatts; no record gives its dimensions. lod "low" keeps the weathered body with banded louvres for a yard. userData.stackTop, .gasInlet, .cableOut.',
+    make(o, r) {
+      const variant = (((o.seed | 0) % 3) + 3) % 3, M = mggMats(o, variant), g = new THREE.Group();
+      const L = 6.1, Wd = 2.35, H = 2.55, sk = 0.22, low = o.lod === 'low';
+      /* the skid: two channel rails and cross members, standing proud of the pad */
+      [-1, 1].forEach((s) => { K.box(L + 0.2, sk, 0.18, M.skid, 0, 0, s * (Wd / 2 - 0.09), 0.01, g); });
+      K.box(L, 0.06, Wd - 0.1, M.skid, 0, sk - 0.06, 0, 0, g);
+      /* the enclosure and its roof drip edge */
+      const body = TXT.roundedBox(L, H, Wd, 0.05, M.skin); body.position.set(0, sk + H / 2, 0); g.add(body);
+      const roof = TXT.roundedBox(L + 0.1, 0.06, Wd + 0.1, 0.02, M.skin); roof.position.set(0, sk + H + 0.03, 0); g.add(roof);
+      if (!low) {
+        /* panel seams on the door side, standing clear of the face so they never z-fight it */
+        /* THE RIBS STAND BETWEEN THE LOUVRES. The chassis put two at x -2.35 and -0.95, inside both
+         * intake louvres, and they printed as a dashed bar through each on frame 6 of 2026-09-29. */
+        MGG_RIBS.forEach((x) => { const rib = TXT.roundedBox(0.05, H - 0.1, 0.03, 0.01, M.skin); rib.position.set(x, sk + H / 2, Wd / 2 + 0.03); g.add(rib); });
+        mggLouvres(g, M, Wd - 0.4, H - 0.5, L / 2 + 0.005, sk + 0.25, 0, Math.PI / 2);
+        [1, -1].forEach((s) => {
+          mggLouvres(g, M, 1.3, 1.2, -L / 2 + 1.1, sk + 1.0, s * (Wd / 2 + 0.01), s > 0 ? 0 : Math.PI);
+          mggLouvres(g, M, 1.3, 1.2, -L / 2 + 2.6, sk + 1.0, s * (Wd / 2 + 0.01), s > 0 ? 0 : Math.PI);
+        });
+        /* two personnel doors on +z: a dark reveal round the leaf, hinge knuckles, a handle */
+        [0.9, 2.1].forEach((x) => {
+          const rv = TXT.roundedBox(0.97, 2.02, 0.012, 0.004, M.reveal); rv.position.set(x, sk + 1.08, Wd / 2 + 0.006); g.add(rv);
+          const d = TXT.roundedBox(0.95, 2.0, 0.02, 0.01, M.skin); d.position.set(x, sk + 1.08, Wd / 2 + 0.02); g.add(d);
+          for (const hy of [0.3, 1.0, 1.7]) K.cyl(0.018, 0.018, 0.12, M.skid, x - 0.49, sk + 0.08 + hy - 0.06, Wd / 2 + 0.035, 8, g);
+          K.bar([x + 0.36, sk + 1.0, Wd / 2 + 0.05], [x + 0.36, sk + 1.25, Wd / 2 + 0.05], 0.012, M.dark, 6, g);
+        });
+        const pl = TXT.roundedBox(0.34, 0.22, 0.01, 0.004, M.plate); pl.position.set(-1.95, sk + 2.38, Wd / 2 + 0.03); g.add(pl);
+      } else {
+        /* banded louvres at the far end and down the sides, so a far unit reads as a machine */
+        const band = TXT.roundedBox(0.02, H - 0.5, Wd - 0.4, 0.004, M.dark); band.position.set(L / 2 + 0.01, sk + H / 2, 0); g.add(band);
+        [1, -1].forEach((s) => { for (const x of [-L / 2 + 1.1, -L / 2 + 2.6]) { const b2 = TXT.roundedBox(1.3, 1.2, 0.02, 0.004, M.dark); b2.position.set(x, sk + 1.6, s * (Wd / 2 + 0.01)); g.add(b2); } });
+      }
+      /* the roof silencer on saddles with straps and dished heads, and the stack */
+      let stackTop = null;
+      if (o.stack !== false) {
+        const sy = sk + H + 0.42, sz = -0.3, sx0 = -0.6;
+        const sil = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 1.7, low ? 12 : 24), M.sil); sil.rotation.z = Math.PI / 2; sil.position.set(sx0, sy, sz); g.add(sil);
+        if (!low) {
+          for (const e of [-1, 1]) {
+            const head = new THREE.Mesh(new THREE.SphereGeometry(0.3, 24, 8, 0, Math.PI * 2, 0, Math.PI / 2), M.sil);
+            head.scale.set(1, 0.28, 1); head.rotation.z = -e * Math.PI / 2; head.position.set(sx0 + e * 0.85, sy, sz); g.add(head);
+          }
+          for (const x of [-1.2, 0.0]) {
+            const strap = new THREE.Mesh(new THREE.TorusGeometry(0.305, 0.012, 6, 28), M.skid); strap.rotation.y = Math.PI / 2; strap.position.set(x, sy, sz); g.add(strap);
+          }
+          K.cyl(0.14, 0.14, 0.18, M.sil, sx0 - 0.6, sk + H + 0.06, sz, 16, g);   // the inlet from the engine through the roof
+        }
+        [-1.2, 0.0].forEach((x) => { K.box(0.12, 0.2, 0.5, M.skid, x, sk + H + 0.06, sz, 0.01, g); });
+        K.cyl(0.13, 0.13, 0.75, M.stack, 0.3, sy, sz, 16, g);
+        K.cyl(0.15, 0.13, 0.06, M.stack, 0.3, sy + 0.73, sz, 16, g);
+        if (!low) {
+          K.cyl(0.17, 0.17, 0.035, M.skid, 0.3, sy + 0.2, sz, 16, g);             // the flange
+          const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.155, 0.155, 0.012, 20), M.skid);   // the rain cap, propped open by the draught
+          cap.position.set(0.3 - 0.03, sy + 0.82, sz); cap.rotation.z = 0.5; g.add(cap);
+        }
+        stackTop = { x: 0.3, y: sk + H + 1.21, z: sz };
+      }
+      /* the gas train at -x: a yellow riser from the pad, a regulator and a valve */
+      const gasInlet = { x: -L / 2 - 0.35, y: 0.0, z: 0.55 };
+      if (o.gas !== false && !low) {
+        K.bar([-L / 2 - 0.35, 0.0, 0.55], [-L / 2 - 0.35, 0.9, 0.55], 0.05, M.yellow, 12, g);
+        K.bar([-L / 2 - 0.35, 0.9, 0.55], [-L / 2 + 0.02, 0.9, 0.55], 0.05, M.yellow, 12, g);
+        K.cyl(0.14, 0.14, 0.22, M.yellow, -L / 2 - 0.35, 0.55, 0.55, 16, g);
+        K.cyl(0.18, 0.06, 0.12, M.dark, -L / 2 - 0.35, 0.77, 0.55, 16, g);
+        K.bar([-L / 2 - 0.35, 0.35, 0.55], [-L / 2 - 0.62, 0.35, 0.55], 0.018, M.dark, 8, g);
+      }
+      g.userData.stackTop = stackTop;
+      g.userData.gasInlet = gasInlet;
+      g.userData.cableOut = { x: L / 2 - 0.5, y: 0.0, z: -Wd / 2 };
+      return bakeSkin(g, M.skin, M.frame);
+    },
+  });
+
+  K.define('padmount_transformer', {
+    size: [2.8, 2.11, 2.5],
+    options: { xcolor: null, fins: true },
+    note: 'Pad mounted step-up transformer the units of one block share: a green steel tank on a concrete pad with radiator fins on both sides, a low voltage cabinet on +z and a high voltage cabinet on -z, a nameplate, bushings. WEATHERED on the same atlas as modular_gas_genset: dust up the base, run-off under the lid, rust at the seams, a dusty lid. DRAWN, no rating printed. userData.hvOut.',
+    make(o, r) {
+      const variant = (((o.seed | 0) % 3) + 3) % 3, col = o.xcolor != null ? o.xcolor : 0x5c6b58, g = new THREE.Group();
+      const fw = 1.7, fh = 1.56, fd = 2.29;
+      const skin = wxSkin('pmt|' + col.toString(16) + '|' + variant, {
+        seed: 8101 + variant * 89, color: col, dust: 0xa99f8d, metal: 0.25, fw, fh, fd,
+        side: { dustH: 0.3, k: 0.45, sources: [{ x: fw / 2, y: fh - 0.06, w: fw - 0.4 }], seams: [fw / 2] },
+        end: { dustH: 0.3, k: 0.45, sources: [], seams: [0.35, fd - 0.35] }, roof: {} });
+      const fin = kmat('pmt-fin|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.84).getHex(), roughness: 0.66, metalness: 0.35 });
+      K.box(2.8, 0.2, 2.5, M.concrete(), 0, 0, 0, 0.02, g);
+      const tank = TXT.roundedBox(1.6, 1.5, 1.4, 0.04, skin); tank.position.set(0, 0.2 + 0.75, 0); g.add(tank);
+      const lid = TXT.roundedBox(1.7, 0.06, 1.5, 0.02, skin); lid.position.set(0, 0.2 + 1.53, 0); g.add(lid);
+      [1, -1].forEach((s) => { const cab = TXT.roundedBox(1.5, 1.4, 0.45, 0.03, skin); cab.position.set(0, 0.2 + 0.7, s * 0.92); g.add(cab); });
+      if (o.fins !== false) {
+        [-1, 1].forEach((s) => { for (let i = 0; i < 9; i++) { const f = TXT.roundedBox(0.36, 1.2, 0.03, 0.006, fin); f.position.set(s * 0.98, 0.2 + 0.7, -0.52 + i * 0.13); g.add(f); } });
+      }
+      const np = TXT.roundedBox(0.3, 0.2, 0.01, 0.004, kmat('pmt-plate', { color: 0xdcdad2, roughness: 0.45 })); np.position.set(0.3, 0.2 + 1.1, 1.15 + 0.005); g.add(np);
+      [-0.3, 0, 0.3].forEach((x) => K.cyl(0.05, 0.05, 0.35, K.finish.porcelain(), x, 0.2 + 1.56, -0.4, 12, g));
+      g.userData.hvOut = { x: 0, y: 1.9, z: -0.4 };
+      return bakeSkin(g, skin, { x0: -fw / 2, x1: fw / 2, y0: 0.2, y1: 0.2 + fh, z0: -fd / 2, z1: fd / 2 });
+    },
+  });
+
+  /* one block: n units (4 or 5) side by side along x, doors to +z, on a shared concrete pad,
+   * the step-up transformer at the +x end of the row, a conduit trench to it. */
+  K.define('genset_block', {
+    size: [22.47, 4.24, 7.2],
+    options: { units: 5, lod: 'high', gap: 1.1 },
+    note: 'One group of modular gas generators on a shared pad with the step-up transformer they share at the +x end, units 4 or 5 (the record says groups of four or five). Units stand side by side, long axis along z, each a different seeded weathering. userData.units ([{x,z}]), .transformer ({x,z}).',
+    make(o, r) {
+      const g = new THREE.Group(), n = Math.max(1, Math.min(6, o.units | 0 || 5)), gap = +o.gap || 1.1;
+      const pitch = 2.35 + gap, span = (n - 1) * pitch, units = [];
+      K.box(span + 2.35 + 6.2, 0.15, 7.2, M.concrete(), 6.2 / 2 - 0.5, 0, 0, 0.02, g);
+      for (let i = 0; i < n; i++) {
+        const u = K.make('modular_gas_genset', { seed: (o.seed || 1) * 13 + i, lod: o.lod });
+        u.rotation.y = Math.PI / 2; u.position.set(-span / 2 + i * pitch, 0.15, 0); g.add(u);
+        units.push({ x: -span / 2 + i * pitch, z: 0 });
+      }
+      const tx = K.make('padmount_transformer', { seed: 3 });
+      tx.position.set(span / 2 + 4.2, 0.15, -1.2); g.add(tx);
+      K.box(span + 4.0, 0.04, 0.5, kmat('mgg-trench', { color: 0x8c8a86, roughness: 0.9 }), 0.2, 0.15, -3.1, 0.01, g);
+      g.userData.units = units;
+      g.userData.transformer = { x: span / 2 + 4.2, z: -1.2 };
+      return g;
+    },
+  });
 }

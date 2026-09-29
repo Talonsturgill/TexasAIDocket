@@ -1,0 +1,51 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "One goldenHour desert on every frame, 1, 5 and 9 strong. Frames 7 and 8 a flat stage with cardboard panels and little shadow, frame 4 near orthographic with a floating slab, the genset models simple."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One world, one key, one hero, one accent, both devices carried, the fence measured at 229.5 of 918 px. Frame 5 slightly outside, frame 1's rule blurs the accent's meaning."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces, frame 4's bar ends at 366 of 1,000, frame 5's lines verbatim, the sources block lists every id. Frame 7's accent carries a reading beyond c23's capital costs, frame 3 drops c21's 'initially', 'told KVIA' is looser than c48's published statement, c46 rests on KVIA, frame 8's label drops the exception."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "County, bodies, decision, date and a concrete stake named. The reader's action implied."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "Cover earns it, 2 pays, the 7 to 8 swipe lands, 9 closes. 3 could fold into 2."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and passes every house rule, sharp hooks. Several deks paraphrase the PFD, regional texture only in the art."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat. Gas engines for a data center as no. 32, the PUCT Interchange as no. 36."
+  }
+ ],
+ "weighted_score": 7.488,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make the granite accent mean only what each frame's claim supports and label it: capital costs on frame 7, c30's scope with its exception on frame 8, no decorative rule on frame 1, and 'initially' restored to islanded on frame 3."
+}

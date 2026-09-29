@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-09-26
+- Last checked: 2026-09-29
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The audit the Governor ordered is still the gate every queued data center has to pass, and no project has been reported through it.
 - 2026-09-23 · The audit the Governor ordered is still the thing standing between a queued data center and its place in line.
 - 2026-09-26 · The Governor's audit of every data center in the queue is still the step each one must clear before it advances.
+- 2026-09-29 · Each data center in the interconnection queue still has to clear the Governor's audit before it advances.
 
 ## Evidence
 

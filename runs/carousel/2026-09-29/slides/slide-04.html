@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- 2026-09-29, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's goldenHour world. Two lines ruled on the caliche south of the field at one scale: a pale line to the committed peak with stakes at the first and second requests, a grey line that stops at the plant. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#16181D; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:30px; line-height:1.4; color:#EFE9DE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2DACD; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:0.92em; }
+  .hook, .dek, .tx-site { text-shadow:0 0 3px rgba(12,12,14,0.42), 0 1px 10px rgba(12,12,14,0.26); }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.04em; color:#F1ECE3; z-index:12; white-space:nowrap; text-shadow:0 0 4px rgba(12,12,14,0.6), 0 1px 8px rgba(12,12,14,0.35); }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; overflow:visible; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook"><span class="num">366</span> MW against <span class="num">1,000</span></h1>
+<p class="dek" data-follow="30">The data center has committed to 1,000 MW by the end of 2029. The judges found existing resources can serve about the first 220 MW of its load, and the second 220 MW requires additional capacity.</p>
+<svg id="lead" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+<div class="lab" data-at="r1" data-rise="90" style="left:80px; top:900px;">220 MW, REGION 1</div>
+<div class="lab" data-at="r2" data-rise="150" style="left:80px; top:900px;">220 MW MORE, REGION 2</div>
+<div class="lab" data-at="peak" data-rise="90" style="left:80px; top:900px;">1,000 MW BY 2029</div>
+<div class="lab" data-at="plant" data-rise="60" style="left:80px; top:900px;">366 MW McCLOUD</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-29-mccloud.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "At one scale", counter: "04 / 09", src: "c1 c10 c11 c12 c13 DRAWN", ink: '#E2DACD' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 116, maxLines: 2 });
+  MC.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = MC, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"units": 813, "acres": 31, "plant_mw": 366, "plant_share_of_peak": 0.366, "first_request_mw": 220, "second_request_mw": 220, "peak_commit_mw": 1000};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40, near: 0.2, far: 12000 });
+  /* THE RAMP AT ONE SCALE. Two lines ruled on the caliche south of the field, one metre of line
+   * for every MW_PER_M megawatts: a pale line to the committed peak with survey stakes at the first
+   * request, the second, and the peak; a grey line in the enclosures' own paint that stops at the
+   * plant. Both lines start at one origin stake. The camera stands high and square to them. */
+
+  const S = F.site(FIG.acres);
+  const yard = F.yard(K, THREE, TXT, { count: FIG.units });
+  yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
+  F.pad(K, THREE, TXT, R, S.side);
+
+  const MW_PER_M = 1000 / 14, L = (mw) => mw / MW_PER_M;
+  const oz = Math.max.apply(null, yard.userData.units.map(u => u[1])) + 16, ox = -L(FIG.peak_commit_mw) / 2;
+  const paint = (c, e) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.8, emissive: c, emissiveIntensity: e || 0 });
+  /* the lines are raised painted beams on the caliche, 0.3 m high, so a reader sees two lengths and not two scratches */
+  const line = (len, z, m) => { const b = TXT.roundedBox(len, 0.3, 0.45, 0.04, m); b.position.set(ox + len / 2, 0.15, z); b.castShadow = true; b.receiveShadow = true; TXT.add(R, b); TXT.contact(R, b); };
+  /* the peak is a primer grey beam, the plant a tier in the enclosures' own paint laid on it from the same origin */
+  const beam = TXT.roundedBox(L(FIG.peak_commit_mw), 0.4, 0.8, 0.04, paint(0x6c675f, 0.02)); beam.position.set(ox + L(FIG.peak_commit_mw) / 2, 0.2, oz); beam.castShadow = false; beam.receiveShadow = true; TXT.add(R, beam); TXT.contact(R, beam);
+  /* the plant is its own bar from the same origin, in front of the peak's beam: a comparison of sizes, never an allocation of load, since no claim says which load the plant serves */
+  /* the bar stands 1.6 m nearer the lens than the beam, so it is scaled and placed by the ratio of the two depths and its ends land on the beam's own zero and 366 on screen */
+  const PX = ox + L(FIG.peak_commit_mw) / 2, KD = (28 - 1.6) / 28, tx0 = PX + (ox - PX) * KD, tlen = L(FIG.peak_commit_mw) * FIG.plant_share_of_peak * KD;
+  const tier = TXT.roundedBox(tlen, 0.4, 0.8, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(tx0 + tlen / 2, 0.2, oz + 1.6); tier.castShadow = true; TXT.add(R, tier); TXT.contact(R, tier);
+  const stakeM = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: 0.6 });
+  const stake = (mw, z) => { const x = ox + L(mw); const p = K.cyl(0.05, 0.05, 1.8, stakeM, x, 0, z, 10); TXT.add(R, p); return [x, 1.8, z]; };
+  const at = {
+    r1: stake(FIG.first_request_mw, oz),
+    r2: stake(FIG.first_request_mw + FIG.second_request_mw, oz),
+    peak: stake(FIG.peak_commit_mw, oz),
+    plant: [ox + L(FIG.plant_mw), 0.0, oz],
+    plant0: [ox, 0.0, oz]
+  };
+  at.o = stake(0, oz);
+  const mid = ox + L(FIG.peak_commit_mw) / 2;
+  TXT.frame(R, { from: [mid, 6.5, oz + 28], look: [mid, 6.5, oz - 6] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [mid, 0, oz], distance: 120, shadowFar: 320, normalBias: 0.05 });
+  TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
+  F.desert(TXT, R, { area: [mid - 60, oz + 4, mid + 60, oz + 60], avoid: [[mid - 22, oz - 2, mid + 22, oz + 6]], scrub: 200, rock: 0, grass: 1600 });
+  TXT.scatter(R, { kind: 'rock', count: 3200, area: [mid - 24, oz + 1.5, mid + 24, oz + 22], seed: 93, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
+  F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
+  TXT.weather(R, {});
+  const labs = Array.prototype.slice.call(document.querySelectorAll('.lab')), svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg', leaders = [];
+  /* every label names its own segment: a bracket over the stretch it measures, ticked down to the
+   * stakes at its two ends, the label centred over the bracket. The peak's label ends at its own
+   * stake. The plant's bracket runs under its tier and its label sits under the bracket */
+  const bracket = (pts) => { const pl = document.createElementNS(NS, 'polyline'); pl.setAttribute('points', pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ')); pl.setAttribute('fill', 'none'); pl.setAttribute('stroke', '#F1ECE3'); pl.setAttribute('stroke-width', '2'); svg.appendChild(pl); };
+  const P = {}; Object.keys(at).forEach(k => { P[k] = F.project(THREE, R, at[k]); });
+  const top = P.o[1] - 18;
+  const seg = (lab, a, b) => {
+    const x0 = P[a][0], x1 = P[b][0];
+    bracket([[x0 + 1, P[a][1] - 4], [x0 + 1, top], [x1 - 1, top], [x1 - 1, P[b][1] - 4]]);
+    lab.style.whiteSpace = 'normal'; lab.style.textAlign = 'center'; lab.style.width = (x1 - x0 - 6) + 'px';
+    const hh = lab.getBoundingClientRect().height; lab.style.left = (x0 + 3) + 'px'; lab.style.top = (top - 10 - hh) + 'px';
+    leaders.push({ target: 'the stakes at ' + a + ' and ' + b, at: [x1, P[b][1] - 4], to: [x1, P[b][1] - 4] });
+  };
+  labs.forEach(function (lab) {
+    const key = lab.dataset.at;
+    if (key === 'r1') seg(lab, 'o', 'r1');
+    else if (key === 'r2') seg(lab, 'r1', 'r2');
+    else if (key === 'peak') { const p = P.peak, w = lab.getBoundingClientRect().width, hh = lab.getBoundingClientRect().height;
+      bracket([[p[0], p[1] - 4], [p[0], top - 10]]); lab.style.left = Math.min(1000 - w, p[0] + 8 - w) + 'px'; lab.style.top = (top - 10 - hh) + 'px';
+      leaders.push({ target: 'the stake at peak', at: [p[0], p[1] - 4], to: [p[0], p[1] - 4] }); }
+    else if (key === 'plant') { const a0 = P.plant0, a1 = P.plant, yb = a0[1] + 22, w = lab.getBoundingClientRect().width;
+      bracket([[a0[0] + 1, a0[1] + 4], [a0[0] + 1, yb], [a1[0] - 1, yb], [a1[0] - 1, a1[1] + 4]]);
+      lab.style.left = ((a0[0] + a1[0]) / 2 - w / 2) + 'px'; lab.style.top = (yb + 10) + 'px';
+      leaders.push({ target: 'the ends of the plant tier', at: [a1[0], a1[1] + 4], to: [a1[0], a1[1] + 4] }); }
+  });
+  window.__txLeaders = leaders;
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.45, floor: 0.45 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek', '.lab']);
+  TXDECK.finish(cx);
+  window.__txDrawn = { plant_len_m: L(FIG.plant_mw), peak_len_m: L(FIG.peak_commit_mw) };
+
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "One desert world, 1, 3, 6 and 9 pass the place test, 9 and 3 strongest. 7 and 8 a flat fence under a diagram, 4 chart hardware on the ground before a blocky field, low poly workers on 1 and 2, 5's page a flat plate though the frame is graded."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck, one sky ramp, one hero, one accent that opens on 1 and closes on 7 and 8. The 7 to 8 turn a reader could describe unprompted. Frame 5 breaks the run."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, KVIA attributed on the frame. Frame 5's hook drops reliability, the caption's 'for its life' leaves out c30's 'unless and until' test, frame 4's bar sits under the Region 1 bracket."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Place, actors, decision, date and a concrete stake, the utility's answer beside the witness. No action for the reader, frame 4 leaves the sizing question open."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns it, 2 pays, 5 turns, 7 into 8 the strongest move this account has made. Frame 4 could go, the close is flat."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean, specific, gives the utility its own answer. Some flat lines, islanded unexplained, 1118 without a separator, outside ERCOT never said."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Concept fresh in the window. The PUCT Interchange instrument as no. 36, data center power the dominant beat, a numeral cover the house's common move."
+  }
+ ],
+ "weighted_score": 7.55,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give frame 9 a fetched public comment route for Docket 59076, and keep frame 4's plant bar out from under the Region 1 bracket."
+}
