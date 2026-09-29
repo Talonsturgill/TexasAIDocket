@@ -1,0 +1,147 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Utility regulation",
+ "dek": {
+  "text": "Two judges recommend approving El Paso Electric's gas plant for Meta's data center only if its other customers are held harmless from the plant's costs for its life.",
+  "claims": [
+   "c28",
+   "c30",
+   "c1",
+   "c2"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[El Paso Electric asked the Public Utility Commission to amend its certificate so it can build a {{number:c1}} MW natural gas plant called the McCloud facility](c1). [It would primarily serve a data center that Wurldwide is developing in El Paso County](c1). [Wurldwide is owned by Meta Platforms](c2), the proposal for decision notes, citing the utility's own application. [The plant would be {{number:c6}} modular gas generators rated at {{number:c6:1}} kilowatts each](c6), [on approximately {{number:c8}} acres immediately adjacent to the data center](c8).",
+   "claims": [
+    "c1",
+    "c2",
+    "c6",
+    "c8"
+   ]
+  },
+  {
+   "text": "[Two administrative law judges heard the case by videoconference on {{date:c39}}](c39). [Their proposal for decision was filed in the docket on {{date:c38}}](c38). [They recommend approval only if El Paso Electric holds its customers other than Wurldwide harmless from the plant's costs](c28). [Without that condition they would recommend denial](c29).",
+   "claims": [
+    "c39",
+    "c38",
+    "c28",
+    "c29"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Who pays, and for how long",
+   "paragraphs": [
+    {
+     "text": "[El Paso Electric proposes a bridge period of up to five years in which Wurldwide takes all of the plant's output and carries all of its capital costs](c23). [Its witness James Schichtl testified that the bridge lasts as long as it takes to extend transmission to the data center's site](c24). [After that the utility may fold McCloud into its generation resources and revise its rates, no decision has been made, and any change in cost responsibility would need Commission approval in a separate case](c25). [It would not commit to Wurldwide being the only customer to pay the plant's costs after the bridge](c26).",
+     "claims": [
+      "c23",
+      "c24",
+      "c25",
+      "c26"
+     ]
+    },
+    {
+     "text": "[The utility estimates a {{number:c19}} year service life for the plant](c19). The judges' condition reaches all of it. [Their proposed ordering paragraph holds the other retail customers harmless from any capital or operating costs of the facility for its life, unless the utility later shows the plant meets the statute's test](c30). [They limited the condition to those capital and operating costs](c31).",
+     "claims": [
+      "c19",
+      "c30",
+      "c31"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the judges found",
+   "paragraphs": [
+    {
+     "text": "[The judges found the utility showed a need for capacity to serve the data center but did not show McCloud is a cost-effective and reliable resource](c27). [They found the plant isn't needed to serve any other El Paso Electric customer](c51). [The utility engaged Enchanted Rock after Wurldwide preferred that vendor](c16). [It acknowledged it considered no alternative and issued no request for proposals](c17). [It ran no cost-benefit analysis for its ratepayers](c18). [McCloud would be the largest project Enchanted Rock has built and the utility's first experience with modular gas generation](c52).",
+     "claims": [
+      "c27",
+      "c51",
+      "c16",
+      "c17",
+      "c18",
+      "c52"
+     ]
+    },
+    {
+     "text": "[The data center has committed to a peak demand of {{number:c12}} MW by the end of {{number:c12:1}}](c12). [The judges found the utility can serve about the first {{number:c13}} MW of that load from its existing resources, and the second block of about {{number:c13:2}} MW requires additional capacity](c13).",
+     "claims": [
+      "c12",
+      "c13"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What it costs",
+   "paragraphs": [
+    {
+     "text": "[The judges' proposed findings put the plant's total estimated cost at approximately {{money:c20}}](c20). [That estimate covers the generation facilities only and excludes transmission interconnection](c21). [Per kilowatt the plant costs $1,609 against $1,264 for a generic gas combustion turbine in the utility's own resource plan](c56). [The City of El Paso asked for a capital cost cap of $565.6 million](c22). [The judges declined the cap and a performance guarantee and said the hold-harmless condition already protects customers from the plant's costs](c55).",
+     "claims": [
+      "c20",
+      "c21",
+      "c56",
+      "c22",
+      "c55"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What happens next",
+   "paragraphs": [
+    {
+     "text": "[The Commission will place the case on an open meeting agenda and notify the parties of the date](c37). [KVIA reports that the five commissioners will decide whether to accept, change or reject the recommendation, and that a final order is expected by {{date:c42}}](c42). [On Monday El Paso City Council authorized a counteroffer for a full hold harmless](c46).",
+     "claims": [
+      "c37",
+      "c42",
+      "c46"
+     ]
+    },
+    {
+     "text": "The docket is public on the PUCT Interchange. [It holds comments from {{number:c45}} protestors filed by the Sembrando Esperanza Coalition](c45), and [residents have filed comments of their own](c44).",
+     "claims": [
+      "c45",
+      "c44"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't show",
+   "paragraphs": [
+    {
+     "text": "The proposal for decision is a recommendation and not a ruling. It names no payer for the plant's costs after the bridge if the commissioners drop the condition. [The cost estimate carries no transmission interconnection cost for the day the plant joins the utility's system](c21). [The judges also left the cost of serving the data center's first load outside this case](c49).",
+     "claims": [
+      "c28",
+      "c21",
+      "c49"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0193",
+   "label": "The judges' condition on McCloud, in the record"
+  },
+  {
+   "id": "tx-2026-0035",
+   "label": "El Paso asks the state to protect residential ratepayers from data center costs"
+  },
+  {
+   "id": "tx-2026-0033",
+   "label": "El Paso's data center policy framework"
+  }
+ ]
+}

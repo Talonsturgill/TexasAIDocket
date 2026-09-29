@@ -45,7 +45,7 @@ light, goldenHour, capitol granite as the one accent for the costs the data cent
   year, rather than a survey pole. A fence belongs to a Texas site; a banded pole is a prop. Also
   the one-scale MW ramp of frame 4.
 - From THE VERDICT ON PAPER: the findings page of frame 5 (need shown, cost and reliability not),
-  the vendor detail of frame 7, and "drawn to illustrate" carried on every frame.
+  the vendor detail of frame 6, and "drawn to illustrate" carried on every frame.
 - Refused: highNoon (THE BILL) and overcast (THE VERDICT) are both light decks with dark type, and
   the register allows one per eight runs; the pipe lengths for dollars per kW (no frame left, and a
   price the deck otherwise never prints); a clipboard in a resident's hands (the kit person has no
@@ -71,7 +71,7 @@ instanced low detail units (`MC.yard`). The year fence (`MC.yearFence`) is the r
 | token | hex | where |
 |---|---|---|
 | `ground` | `#16181D` | the DOM body behind the render |
-| `accent` | `#9A3B2A` | capitol granite, the costs the data center carries, frames 1, 6 and 8. It replaced bluebonnet on the first render, because a blue accent under a blue golden hour sky measured as sky |
+| `accent` | `#9A3B2A` | capitol granite, the costs the data center carries, frames 1, 7 and 8. It replaced bluebonnet on the first render, because a blue accent under a blue golden hour sky measured as sky |
 | `hook` | `#F1ECE3` | the hook |
 | `dek` | `#E2DBCF` | the dek |
 | `rule` | `#C9BFAF` | the site line, the source line and the counter |
@@ -82,21 +82,25 @@ violet in the haze toward the sun.
 
 ## The continuity devices
 
-    CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, EDGE_TEASE
+    CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE
     VALUE CUT: frame 9
 
-1. **Motif evolution.** The year fence: first seen bare in frame 3's aerial at the pad edge, five
-   spans capitol granite on frame 6, all twenty on frame 8, and a dark line in the last light on 9.
+1. **Motif evolution.** The year fence: five panels capitol granite on frame 7, all twenty on
+   frame 8 on the same camera, the two frames adjacent so the swipe is the before and after, and a
+   dark banded line across the pad's edge in the last light on 9.
 2. **Camera move.** One site from nine positions: low along the rows (1), beside one block (2), up
-   over the whole pad (3), square to the lines ruled on the pad (4), at the transformer door (5),
-   beside the fence (6 and 8, one camera), at an enclosure's corner (7), out at the public fence
-   into the sun (9).
-3. **Edge tease.** The yellow gas header leaves frame 2 at the right edge and arrives in frame 3's
-   aerial as the spine of the nearest block row.
+   over the whole pad (3), square to the beam ruled south of the field (4), at the transformer door
+   (5), at an enclosure's corner (6), side on to the fence (7 and 8, one camera), out on the public
+   road into the sun (9).
+
+The edge tease the first plan declared (frame 2's yellow gas header arriving as the spine of frame
+3's nearest row) was dropped after round 1, because two judges measured it absent at feed size and
+a device the pixels do not carry is a claim the deck does not keep. The bare fence the first plan
+put on frame 3 went for the same reason: at 250 m from the aerial camera it does not resolve.
 
 ## The rotation
 
-    FULL_BLEED  FIGURE_SCALE  FULL_BLEED  DIAGRAM  DOCUMENT  SPLIT_HORIZON  CLOSE_CROP  SPLIT_HORIZON  FULL_BLEED
+    FULL_BLEED  FIGURE_SCALE  FULL_BLEED  DIAGRAM  DOCUMENT  CLOSE_CROP  SPLIT_HORIZON  SPLIT_HORIZON  FULL_BLEED
 
 Frame 3 was declared GRID and re-declared FULL_BLEED on the first render: from 90 m up the field of 813 comes apart into one mass at thumb scale, not countable units, so it is a place, not a count.
 
@@ -116,7 +120,7 @@ job: >
   Stop the scroll on the scale of the thing, and state the whole story's tension in the hook, a
   plant built from one small box multiplied for one customer.
 
-claims: [c1, c2, c3, c6, c9, c28]
+claims: [c1, c2, c3, c6, c8, c9, c28, c38, c39]
 numerals:
   - value_from: c6
 
@@ -146,11 +150,11 @@ art:
   palette: "Hueco Bolson caliche, warm grey enclosure paint, utility green, a blue golden hour sky"
   value_structure: >
     Lightest is the sun-struck faces of the near enclosures and the haze at the horizon. Darkest is
-    the shadow side of the near row and the zenith behind the hook. Frame median L* planned at 48.
+    the shadow side of the near row and the zenith behind the hook. Frame median L* planned at 30, rewritten from 48 after the renders measured the golden hour deck darker than planned.
 
 type:
   hook: "813 gas generators. One customer."
-  dek: "El Paso Electric wants to build them beside the AI data center Meta is building in northeast El Paso County. Two judges recommend approval only if the utility's other customers are held harmless from the plant's costs."
+  dek: "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County, at first the plant's only retail customer. Two judges have now filed a proposal for decision with a condition on who pays."
   labels: []
 
 verbatim: []
@@ -210,11 +214,11 @@ art:
   palette: "warm grey paint, gas-line yellow, utility green, pale concrete"
   value_structure: >
     Lightest is the lit enclosure faces and the sky at the horizon. Darkest is the transformer's
-    shade side and the shadows on the pad. Frame median L* planned at 46.
+    shade side and the shadows on the pad. Frame median L* planned at 34, rewritten from 36 after the renders measured the golden hour deck darker than planned, rewritten from 46 after the first render measured 26.5 and the second 33.1.
 
 type:
-  hook: "Five to a transformer"
-  dek: "The plan buys 813 modular gas generators rated at 450 kilowatts each. They are typically installed in groups of four or five, and each group is connected to one step-up transformer."
+  hook: "Four or five to a transformer"
+  dek: "The plan would buy 813 modular gas generators rated at 450 kilowatts each. They are typically installed in groups of four or five, each group connected to a step-up transformer."
   labels: []
 
 verbatim: []
@@ -224,7 +228,7 @@ acceptance:
   - "the person stands on the ground with a contact shadow and reads as a person, not a post"
   - "each enclosure touches its pad with a contact shadow"
   - "no type crosses the person or an enclosure"
-  - "the frame's median L* at 432px is between 34 and 58"
+  - "the frame's median L* at 432px is between 26 and 50"
 
 risks:
   - "the person reads as a mannequin, so the key is on the camera's side of the figure"
@@ -242,7 +246,7 @@ job: >
   Put the plant on its ground beside its one customer, the count drawn as units a reader could
   count, and name whose data center it is.
 
-claims: [c2, c3, c6, c8, c9]
+claims: [c1, c2, c3, c6, c8, c9]
 numerals:
   - value_from: c8
   - value_from: c6
@@ -273,11 +277,11 @@ art:
   palette: "caliche, warm grey units, the pale data hall wall, blue sky"
   value_structure: >
     Lightest is the lit unit roofs and the data hall wall. Darkest is the shadow lanes between
-    rows. Frame median L* planned at 50.
+    rows. Frame median L* planned at 34, rewritten from 36 after the renders measured the golden hour deck darker than planned, rewritten from 50 after the render measured 33.3, because lifting the exposure dropped the dek under 4.5 to 1.
 
 type:
-  hook: "31 acres beside the data hall"
-  dek: "The plant would sit immediately next to the data center Meta is building through Wurldwide LLC. Meta calls it its newest AI-focused data center. It is intended at first to be the only retail customer of the plant's output."
+  hook: "About 31 acres beside the data center"
+  dek: "The plant would sit immediately next to Meta's newest AI data center, which Wurldwide LLC is developing. That data center is intended at first to be the only retail customer of the plant's output."
   labels: []
 
 verbatim: []
@@ -287,7 +291,7 @@ acceptance:
   - "the data hall reads as one long building behind the field"
   - "the render report's instance count for the field equals figures.json units"
   - "no numeral appears in the art"
-  - "the frame's median L* at 432px is between 38 and 62"
+  - "the frame's median L* at 432px is between 26 and 50"
 
 risks:
   - "a reader takes the layout for the site plan, so the source line says DRAWN and the dek never describes an arrangement"
@@ -297,8 +301,8 @@ risks:
 slide: 4
 layout: DIAGRAM
 primary_image:
-  subject: "two lines ruled on the graded caliche at one depth and one scale in front of a row of blocks: a pale demand line with ticks at the first 220 MW, the second 220 MW and the 1,000 MW commitment, and a parallel line in the enclosures' grey that stops at 366 MW, seen square from 4 m up"
-  rect: [0, 600, 1080, 750]
+  subject: "a primer grey beam ruled on the caliche south of the field to the 1,000 MW commitment, white stakes at the first 220 MW, the second 220 MW and the peak, and a tier in the enclosures' own paint laid on the beam from the same origin that stops at 366 MW, the field's block rows behind under the eastern range, seen square from 6.5 m up"
+  rect: [0, 700, 1080, 650]
   bleeds: [left, right, bottom]
 accent: none
 job: >
@@ -337,13 +341,12 @@ art:
   why_this_technique: "two quantities in one unit want two lengths at one scale, laid on the ground the plant stands on"
   palette: "caliche, a pale lime-white ruled line, enclosure grey"
   value_structure: >
-    Lightest is the pale ruled line and the sky. Darkest is the block row's shade sides. Frame
-    median L* planned at 50.
+    Lightest is the pale ruled line and the sky. Darkest is the block row's shade sides. Frame median L* planned at 32, rewritten from 50 after the renders measured the golden hour deck darker than planned.
 
 type:
   hook: "366 MW against 1,000"
-  dek: "The data center first asked for 220 MW by 2027, then another 220 MW. It has committed to 1,000 MW by the end of 2029. The judges found the utility's existing resources can serve the first 220 MW."
-  labels: ["220 MW, REGION 1", "220 MW, REGION 2", "1,000 MW BY 2029", "366 MW McCLOUD"]
+  dek: "The data center has committed to 1,000 MW by the end of 2029. The judges found existing resources can serve about the first 220 MW of its load, and the second 220 MW requires additional capacity."
+  labels: ["220 MW, REGION 1", "220 MW MORE, REGION 2", "1,000 MW BY 2029", "366 MW McCLOUD"]
 
 verbatim: []
 
@@ -361,7 +364,7 @@ risks:
 slide: 5
 layout: DOCUMENT
 primary_image:
-  subject: "the green step-up transformer's cabinet door at the end of a block, square to the lens, a portrait page of the judges' proposal for decision in the door's clear document pocket, the next enclosure's lit end and the Franklin ridge in the sun's glow to the right"
+  subject: "the dark green step-up transformer's cabinet door square to the lens, a portrait page of the judges' proposal for decision in the door's clear document pocket with their two lines set on the page, and past the cabinet's edge on the right the next block's lit end, the field and the eastern range"
   rect: [0, 470, 1080, 880]
   bleeds: [left, right, bottom]
 accent: none
@@ -369,7 +372,7 @@ job: >
   Put the judges' findings in their own words on the site they judge: need shown, and the rest
   not shown.
 
-claims: [c27, c38]
+claims: [c27, c38, c39]
 numerals: []
 
 depth:
@@ -383,9 +386,10 @@ composition:
     The door shot square so the page's DOM lines register to it without rotation, the page low
     in the frame, and a slice of the world to its right so the document stands on the site.
   bands: >
-    Top third, sky and type. Middle third, the transformer's top and the ridge to the right.
-    Bottom third, the transformer's green door with its radiator fins raked by the low sun, the
-    lit page in its pocket, and the dust at the door's foot on the concrete pad.
+    Top third, the type on the dark door, sky to the right. Middle third, the page in its pocket
+    and past the cabinet's edge the next block and the horizon. Bottom third, the door's foot with
+    dust at its sill on the concrete pad, and to the right the transformer's cast shadow across the
+    caliche and the next block's pad in raking light.
   focal: "the lit page in the pocket against the dark green door"
 
 art:
@@ -393,11 +397,11 @@ art:
   why_this_technique: "the claim is the judges' own sentence, and a document frame prints it where the thing it judges stands"
   palette: "utility green steel, a white page, the sun's glow"
   value_structure: >
-    Lightest is the page. Darkest is the door's green around it. Frame median L* planned at 36.
+    Lightest is the page. Darkest is the door's green around it. Frame median L* planned at 22, rewritten from 36 after the renders measured the golden hour deck darker than planned.
 
 type:
   hook: "Need shown. The rest, not."
-  dek: "In their proposal for decision filed September 23rd, the two judges found the utility showed a need for capacity to serve the data center."
+  dek: "The two judges filed their proposal for decision on September 23rd. They found the utility showed a need for capacity to serve the data center."
   labels: ["did not show that the McCloud facility is a cost-effective and reliable resource", "failed to show that it adequately considered alternatives"]
 
 verbatim:
@@ -416,9 +420,64 @@ risks:
 
 ```yaml
 slide: 6
+layout: CLOSE_CROP
+primary_image:
+  subject: "one enclosure's south face at the pad's edge, cropped by the right edge: intake louvre blades raked by the low sun, a blank data plate above them, the roof silencer and stack, and past its corner on the left the yellow gas riser and valve against the desert, the horizon and the sky"
+  rect: [60, 690, 1020, 660]
+  bleeds: [right, bottom]
+accent: none
+job: >
+  Say how the machine was chosen: the vendor the data center preferred, no request for proposals,
+  no cost-benefit analysis, and a first of its kind for this utility.
+
+claims: [c16, c17, c18, c52]
+numerals: []
+
+depth:
+  eye: 1.5
+  horizon: 690
+  cues: [OCCLUSION, CAST_SHADOW, TEXTURE_GRADIENT, AERIAL]
+  subject_at: {X: 0, Z: -2}
+
+composition:
+  structure: >
+    The enclosure fills the right two thirds, cropped by the right edge, so the reader stands at
+    the machine. The sliver of world on the left keeps it in the place.
+  bands: >
+    Top third, sky and type. Middle third, the louvres and the plate. Bottom third, the riser, the
+    valve and the dust at the base.
+  focal: "the sun-raked louvre bank beside the yellow riser"
+
+art:
+  technique: "physically based render at detail scale"
+  why_this_technique: "the finding is about this machine, and detail is where a reader believes it exists"
+  palette: "warm grey paint, gas-line yellow, dark louvres"
+  value_structure: >
+    Lightest is the lit rounded edge and the sky sliver. Darkest is the louvre recesses. Frame median L* planned at 24, rewritten from 40 after the renders measured the golden hour deck darker than planned.
+
+type:
+  hook: "The vendor the data center preferred"
+  dek: "El Paso Electric engaged Enchanted Rock after the data center preferred it. It considered no other vendor, issued no request for proposals and ran no cost-benefit analysis for ratepayers. The plant would be its first experience with modular gas generation."
+  labels: []
+
+verbatim: []
+
+acceptance:
+  - "the louvre blades read as separate blades at 432px"
+  - "the gas riser reads as a yellow pipe with a valve"
+  - "the frame shows sky past the enclosure's corner"
+  - "no brand or maker's name appears anywhere in the art"
+
+risks:
+  - "a close crop loses the place, so a sliver of horizon stays in frame"
+  - "a studio shot of the model passes the list, so the enclosure's base meets a pad with a contact shadow and the horizon is in frame"
+```
+
+```yaml
+slide: 7
 layout: SPLIT_HORIZON
 primary_image:
-  subject: "the year fence side on, twenty spans of oilfield pipe rail along the pad's west edge, the first five top rails capitol granite and the rest bare primer, a galvanised collar on the post that ends the third span, a block of generators behind it, the eastern desert under a blue sky"
+  subject: "the year fence side on, twenty spans of oilfield pipe rail with sheet panels along the pad's west edge, the first five panels capitol granite and the rest bare primer, a galvanised collar on the post that ends the third span, a block of generators behind it, the eastern desert under a blue sky"
   rect: [0, 660, 1080, 690]
   bleeds: [left, right, bottom]
 accent: "#9A3B2A"
@@ -426,7 +485,7 @@ job: >
   Draw the utility's offer as time: the data center pays for up to five years of a twenty year
   life, and nobody has decided the rest.
 
-claims: [c19, c23, c24, c25, c26]
+claims: [c19, c23, c25, c26]
 numerals:
   - value_from: c19
   - value_from: c23
@@ -450,7 +509,7 @@ composition:
     transformer standing behind the fence, the far desert and the eastern range. Bottom third,
     the fence's twenty spans running across, its lit rails and posts, and their long shadows
     across the textured caliche.
-  focal: "the run of five capitol granite rails against the bare rails that follow"
+  focal: "the run of five capitol granite panels against the primer panels that follow"
 
 art:
   technique: "physically based render with the fence as a bar that is never a dial"
@@ -458,18 +517,19 @@ art:
   palette: "capitol granite paint, primer grey pipe, caliche, blue sky"
   value_structure: >
     Lightest is the sky at the horizon and the lit rails. Darkest is the fence's shadow on the
-    caliche. Frame median L* planned at 50.
+    caliche. Frame median L* planned at 38, rewritten from 50 after the renders measured the golden hour deck darker than planned.
 
 type:
   hook: "Up to five years, then no decision"
-  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness expects under three. After that he testified no decision has been made, and he wanted the flexibility."
-  labels: ["YEAR 5, BRIDGE", "YEAR 20, ESTIMATED SERVICE LIFE"]
+  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need Commission approval in a separate case."
+  labels: ["UP TO YEAR 5, BRIDGE", "YEAR 20, ESTIMATED SERVICE LIFE"]
 
 verbatim: []
 
 acceptance:
   - "twenty spans read as countable spans at 432px"
-  - "exactly bridge_years_max top rails are the accent and the rest are not, measured off the render"
+  - "exactly bridge_years_max panels are the accent and the rest are not, measured off the render"
+  - "post 0 and post 20 are both inside the frame"
   - "the fence's first and last spans differ in projected length by under 10 percent"
   - "the accent covers under 8 percent of the frame"
   - "no type crosses the fence"
@@ -479,65 +539,10 @@ risks:
 ```
 
 ```yaml
-slide: 7
-layout: CLOSE_CROP
-primary_image:
-  subject: "one enclosure's corner at detail scale: louvre blades raked by the low sun, a blank data plate, the yellow gas riser and its valve, the rounded steel edge catching light, a sliver of sky and desert past the corner"
-  rect: [60, 690, 1020, 660]
-  bleeds: [right, bottom]
-accent: none
-job: >
-  Say how the machine was chosen: the vendor the data center preferred, no request for proposals,
-  no cost-benefit analysis, and a first of its kind for this utility.
-
-claims: [c16, c17, c18, c52]
-numerals: []
-
-depth:
-  eye: 1.5
-  horizon: 690
-  cues: [OCCLUSION, CAST_SHADOW, TEXTURE_GRADIENT, AERIAL]
-  subject_at: {X: 0, Z: -2}
-
-composition:
-  structure: >
-    The enclosure fills the left two thirds, cropped by three edges, so the reader stands at the
-    machine; the sliver of world on the right keeps it in the place.
-  bands: >
-    Top third, sky and type. Middle third, the louvres and the plate. Bottom third, the riser, the
-    valve and the dust at the base.
-  focal: "the sun-raked louvre bank beside the yellow riser"
-
-art:
-  technique: "physically based render at detail scale"
-  why_this_technique: "the finding is about this machine, and detail is where a reader believes it exists"
-  palette: "warm grey paint, gas-line yellow, dark louvres"
-  value_structure: >
-    Lightest is the lit rounded edge and the sky sliver. Darkest is the louvre recesses. Frame
-    median L* planned at 40.
-
-type:
-  hook: "The vendor the data center preferred"
-  dek: "The utility engaged Enchanted Rock after the data center expressed a preference for it. It considered no alternative, issued no request for proposals and did no cost-benefit analysis for its ratepayers. It has never built modular gas generation before."
-  labels: []
-
-verbatim: []
-
-acceptance:
-  - "the louvre blades read as separate blades at 432px"
-  - "the gas riser reads as a yellow pipe with a valve"
-  - "the frame shows sky past the enclosure's corner"
-  - "no brand or maker's name appears anywhere in the art"
-
-risks:
-  - "a close crop loses the place, so a sliver of horizon stays in frame"
-```
-
-```yaml
 slide: 8
 layout: SPLIT_HORIZON
 primary_image:
-  subject: "frame 6's camera, fence, block and desert unchanged, with all twenty top rails capitol granite"
+  subject: "frame 7's camera, fence, block and desert unchanged, with all twenty panels capitol granite"
   rect: [0, 660, 1080, 690]
   bleeds: [left, right, bottom]
 accent: "#9A3B2A"
@@ -561,12 +566,12 @@ depth:
 
 composition:
   structure: >
-    Frame 6 exactly, one parameter changed, so the swipe is a before and after.
+    Frame 7 exactly, one parameter changed, so the swipe is a before and after.
   bands: >
     Top third, sky and type. Middle third, the horizon with the same block and transformer behind
     the fence, the far desert and the eastern range. Bottom third, the fence with every top rail
     painted, lit by the sun behind the camera, and the long post shadows across the caliche.
-  focal: "the full run of capitol granite rails across the frame"
+  focal: "the full run of capitol granite panels across the frame"
 
 art:
   technique: "physically based render, motif state change on an identical camera"
@@ -574,19 +579,20 @@ art:
   palette: "capitol granite paint, primer grey posts, caliche, blue sky"
   value_structure: >
     Lightest is the sky and the lit rails. Darkest is the fence's shadow. Frame median L* planned
-    at 49.
+    at 38, rewritten from 49 after the renders measured the golden hour deck darker than planned.
 
 type:
   hook: "For the life of the plant"
-  dek: "The judges recommend approval only if El Paso Electric holds its other retail customers harmless from the plant's capital and operating costs for the life of the facility, unless it later shows the plant meets the statute's test for them. Without that condition they would recommend denial."
+  dek: "The judges recommend approval only if other customers are held harmless from the plant's capital and operating costs, unless the plant is later shown to meet the statute's test. Without that condition they would recommend denial."
   labels: ["For the life of the McCloud facility"]
 
 verbatim:
   - c30: "For the life of the McCloud facility"
 
 acceptance:
-  - "all twenty top rails are the accent, measured off the render"
-  - "the camera, fence and block match frame 6 within 2px at every post"
+  - "all twenty panels are the accent, measured off the render"
+  - "the camera, fence and block match frame 7 within 2px at every post"
+  - "at 432px the accented length is at least 3.5 times frame 7's, measured off the thumbs"
   - "the accent covers under 8 percent of the frame"
   - "no type crosses the fence"
 
@@ -606,7 +612,7 @@ job: >
   Close on the public's route and the open question: the commission has not ruled, the city is
   negotiating, and the docket is where a Texan reads it.
 
-claims: [c37, c44, c45, c46, c6]
+claims: [c6, c37, c42, c43, c44, c45]
 numerals:
   - value_from: c45
 
@@ -638,11 +644,11 @@ art:
   palette: "rose and gold sky, violet ridge, dark silhouettes"
   value_structure: >
     Lightest is the sun's seam on the horizon. Darkest is the silhouetted rows and the ground.
-    Frame median L* planned at 34.
+    Frame median L* planned at 23, rewritten from 34 after round 1 dimmed the key to the ridge's shadow and the render measured 22.9.
 
 type:
   hook: "The commission has not ruled"
-  dek: "The commissioners will take up the case at an open meeting with no date set. On Monday El Paso City Council authorized a counteroffer for a full hold harmless. Docket 59076 already holds comments from 1118 protestors and from residents."
+  dek: "Five commissioners will accept, change or reject the proposal at an open meeting, and KVIA reports a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and residents."
   labels: []
 
 verbatim: []
@@ -651,7 +657,7 @@ acceptance:
   - "the rows read as silhouettes with lit edges at 432px"
   - "the chain link fence reads as a fence receding along the right edge at 432px"
   - "the sun's glow sits behind the ridge, not in the type band"
-  - "the frame's median L* at 432px is between 24 and 44"
+  - "the frame's median L* at 432px is between 18 and 40"
 
 risks:
   - "a figure in the dark is a named defect, so no person stands in this backlit frame"

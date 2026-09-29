@@ -45,7 +45,7 @@
    * peach haze over a blue zenith grades a frame mauve (2026-09-26). */
   TXDECK.declare({
     world: "mccloud",
-    light: { az: -84, el: 3.5 },
+    light: { az: -84, el: 9 },
     sky: { preset: "goldenHour", zenith: 0x1b4f8f, horizon: 0x86bdd0, haze: 0xf0c07e, span: 0.3, fogDensity: 0.00017, clouds: 0, envIntensity: 0.46 },
     ground: "#16181D",
     material: "#CFCAC0",
@@ -71,7 +71,7 @@
   N.H = 1350;
   N.SEED = 20260929;
   N.ACCENT = 0x9a3b2a;
-  N.DESERT = 0xcdb28a;          /* the basin floor, caliche and sand under creosote */
+  N.DESERT = 0xdcc6a0;          /* the basin floor, caliche and sand under creosote */
   N.PAINT = 0xd4d0c6;           /* the enclosure paint, a warm light grey */
 
   /* THE KIT ADDITIONS: modular_gas_genset, padmount_transformer and genset_block. The kit has a
@@ -142,7 +142,7 @@
             K.bar([x + 0.36, sk + 1.0, Wd / 2 + 0.05], [x + 0.36, sk + 1.25, Wd / 2 + 0.05], 0.012, M.dark, 6, g);
           });
           /* a data plate */
-          var pl = TXT.roundedBox(0.34, 0.22, 0.01, 0.004, K.mat('mgg-plate', { color: 0xeeece6, roughness: 0.4 })); pl.position.set(-0.4, sk + 1.8, Wd / 2 + 0.03); g.add(pl);
+          var pl = TXT.roundedBox(0.34, 0.22, 0.01, 0.004, K.mat('mgg-plate', { color: 0xeeece6, roughness: 0.4 })); pl.position.set(-1.95, sk + 2.38, Wd / 2 + 0.03);   /* above the intake louvres, on solid panel */ g.add(pl);
         } else {
           /* one dark band for the louvres at the far end and down the side, so a far unit still reads as a machine */
           var band = TXT.roundedBox(0.02, H - 0.5, Wd - 0.4, 0.004, M.dark); band.position.set(L / 2 + 0.01, sk + H / 2, 0); g.add(band);
@@ -165,7 +165,7 @@
           var reg = K.cyl(0.14, 0.14, 0.22, M.yellow, -L / 2 - 0.35, 0.55, 0.55, 16, g);
           var cap = K.cyl(0.18, 0.06, 0.12, M.dark, -L / 2 - 0.35, 0.77, 0.55, 16, g);
           /* the quarter turn valve handle on the riser */
-          K.bar([-L / 2 - 0.35, 0.35, 0.55], [-L / 2 - 0.62, 0.35, 0.55], 0.018, K.mat('mgg-valve', { color: 0xb8322a, roughness: 0.5 }), 8, g);
+          K.bar([-L / 2 - 0.35, 0.35, 0.55], [-L / 2 - 0.62, 0.35, 0.55], 0.018, M.dark, 8, g);
         }
         g.userData.stackTop = stackTop;
         g.userData.gasInlet = gasInlet;
@@ -234,24 +234,34 @@
    * userData.posts ([{x, y}]) so a frame can land a leader on a post. */
   N.yearFence = function (K, THREE, TXT, o) {
     o = o || {};
-    var spans = o.spans | 0, paid = o.paid | 0, sp = o.spacing || 3.0, g = new THREE.Group(), posts = [];
+    var spans = o.spans | 0, paid = o.paid | 0, sp = o.spacing || 1.8, ph = o.postH || 2.2, g = new THREE.Group(), posts = [];
     if (!spans) throw new Error('yearFence needs spans from figures.json');
     var pipe = K.mat('yf-pipe', { color: 0x9a9da0, roughness: 0.5, metalness: 0.55 });
-    var acc = K.mat('yf-acc', { color: N.ACCENT, roughness: 0.4, metalness: 0.1, emissive: N.ACCENT, emissiveIntensity: 0.55 });   /* a little emissive so the paint holds its hue under the orange sun */
+    /* the paint is darker than the accent it has to read as, because the low sun lifts a lit face
+     * well above its base colour (2026-09-29, the first render sampled vermilion on a #9A3B2A base) */
+    var acc = K.mat('yf-acc2', { color: 0x6e2a20, roughness: 0.65, metalness: 0.05 });
+    var primer = K.mat('yf-primer', { color: 0x8f8a80, roughness: 0.8, metalness: 0.05 });
     var galv = K.finish.galvanized();
     for (var i = 0; i <= spans; i++) {
       var x = i * sp;
-      K.cyl(0.057, 0.057, 1.4, pipe, x, 0, 0, 14, g);
-      var dome = new THREE.Mesh(new THREE.SphereGeometry(0.06, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2), pipe); dome.position.set(x, 1.4, 0); g.add(dome);
-      if (o.collarAt != null && i === (o.collarAt | 0)) K.cyl(0.085, 0.085, 0.16, galv, x, 1.12, 0, 16, g);
-      posts.push({ x: x, y: 1.4 });
+      K.cyl(0.057, 0.057, ph, pipe, x, 0, 0, 14, g);
+      var dome = new THREE.Mesh(new THREE.SphereGeometry(0.06, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2), pipe); dome.position.set(x, ph, 0); g.add(dome);
+      if (o.collarAt != null && i === (o.collarAt | 0)) K.cyl(0.085, 0.085, 0.16, galv, x, ph - 0.3, 0, 16, g);
+      posts.push({ x: x, y: ph });
     }
+    /* each span carries a sheet panel between the rails: the PANEL carries the paint, because a
+     * pipe rail projects under a pixel at feed size once the fence is seen side on */
+    var pT = ph - 0.25, pB = 0.45;
     for (var s = 0; s < spans; s++) {
       var x0 = s * sp, x1 = (s + 1) * sp;
-      K.bar([x0 + 0.05, 1.3, 0.09], [x1 - 0.05, 1.3, 0.09], 0.06, s < paid ? acc : pipe, 14, g);
-      K.bar([x0 + 0.05, 0.7, 0.09], [x1 - 0.05, 0.7, 0.09], 0.05, s < paid ? acc : pipe, 12, g);
+      K.bar([x0 + 0.05, pT + 0.05, 0.0], [x1 - 0.05, pT + 0.05, 0.0], 0.05, pipe, 12, g);
+      K.bar([x0 + 0.05, pB - 0.05, 0.0], [x1 - 0.05, pB - 0.05, 0.0], 0.045, pipe, 12, g);
+      var pn = TXT.roundedBox(sp - 0.16, pT - pB, 0.03, 0.008, s < paid ? acc : primer);
+      pn.position.set((x0 + x1) / 2, (pT + pB) / 2, 0.06); pn.castShadow = true; pn.receiveShadow = true; g.add(pn);
+      /* three pressed ribs per panel, so a panel lit face on still shows its modelling */
+      for (var rb = 1; rb <= 3; rb++) { var rib = TXT.roundedBox(0.05, pT - pB - 0.12, 0.025, 0.008, s < paid ? acc : primer); rib.position.set(x0 + (x1 - x0) * rb / 4, (pT + pB) / 2, 0.085); rib.castShadow = true; g.add(rib); }
     }
-    g.userData.posts = posts; g.userData.spans = spans; g.userData.paid = paid;
+    g.userData.posts = posts; g.userData.spans = spans; g.userData.paid = paid; g.userData.panel = [pB, pT];
     return g;
   };
 
@@ -300,7 +310,9 @@
     };
     var bodyG = new THREE.BoxGeometry(2.35, 2.55, 6.1); bodyG.translate(0, 0.22 + 1.275, 0);
     var louvG = new THREE.BoxGeometry(2.0, 1.9, 0.04); louvG.translate(0, 0.22 + 1.3, 3.07);
-    var sideG = new THREE.BoxGeometry(2.38, 1.1, 2.8); sideG.translate(0, 0.22 + 1.5, -1.3);
+    /* the intake louvres as three dark bands, not one dark window, so a far unit reads as a machine and not a cabin (2026-09-29) */
+    var sideG = new THREE.BoxGeometry(2.38, 0.16, 2.8); sideG.translate(0, 0.22 + 1.1, -1.3);
+    var sideG2 = sideG.clone(); sideG2.translate(0, 0.36, 0); var sideG3 = sideG.clone(); sideG3.translate(0, 0.72, 0);
     var stackG = new THREE.CylinderGeometry(0.13, 0.13, 1.0, 10); stackG.translate(0.3, 0.22 + 2.55 + 0.5, -0.4);
     var silG = new THREE.CylinderGeometry(0.3, 0.3, 1.6, 12); silG.rotateX(Math.PI / 2); silG.translate(0.3, 0.22 + 2.55 + 0.34, 0.5);
     var xfG = new THREE.BoxGeometry(1.6, 1.7, 2.1); xfG.translate(0, 0.85, 0);
@@ -319,9 +331,22 @@
     function inst(geo, mat, list, shadow) {
       var im = K.instances(geo, mat, list, grp); im.castShadow = shadow !== false; im.receiveShadow = true; return im;
     }
-    inst(bodyG, M.paint, U); inst(louvG, M.dark, U, false); inst(sideG, M.dark, U, false);
+    /* THE DETAIL ZONE. o.detail = [x0, z0, x1, z1] in the yard's own centred coordinates: every
+     * unit and transformer inside it is built as the full kit model instead of an instance, so a
+     * camera standing at the yard's edge sees the hero at the lens and the count stays exact */
+    var DU = [], DX = [], total = U.length;
+    if (o.detail) {
+      var d = o.detail, c0 = (function () { var a = Infinity, b = -Infinity, e = Infinity, f = -Infinity;
+        units.forEach(function (u) { a = Math.min(a, u[0]); b = Math.max(b, u[0]); e = Math.min(e, u[1]); f = Math.max(f, u[1]); }); return [(a + b) / 2, (e + f) / 2]; })();
+      var inBox = function (x, z) { x -= c0[0]; z -= c0[1]; return x > d[0] && x < d[2] && z > d[1] && z < d[3]; };
+      U = U.filter(function (u) { if (inBox(u[0], u[2])) { DU.push(u); return false; } return true; });
+      X = X.filter(function (x) { if (inBox(x[0], x[2])) { DX.push(x); return false; } return true; });
+    }
+    inst(bodyG, M.paint, U); inst(louvG, K.mat('mgg-louvre', { color: 0x5d6064, roughness: 0.6, metalness: 0.35 }), U, false);   /* a louvre grey, not a black square, on the end a camera faces */ inst(sideG, M.dark, U, false); inst(sideG2, M.dark, U, false); inst(sideG3, M.dark, U, false);
     inst(stackG, M.stack, U); inst(silG, M.stack, U);
     inst(xfG, M.xfmr, X);
+    DU.forEach(function (u, i) { var m = K.make('modular_gas_genset', { seed: 40 + i }); m.rotation.y = -Math.PI / 2; m.position.set(u[0], 0.15, u[2]); grp.add(m); });
+    DX.forEach(function (x, i) { var m = K.make('padmount_transformer', { seed: 3 }); m.rotation.y = -Math.PI / 2; m.position.set(x[0], 0.15, x[2]); grp.add(m); });
     var pads = new THREE.InstancedMesh(padG, M.conc, P.length), Mx = new THREE.Matrix4();
     P.forEach(function (p, i) { Mx.compose(new THREE.Vector3(p[0], 0, p[2]), new THREE.Quaternion(), new THREE.Vector3(p[5], 1, 1)); pads.setMatrixAt(i, Mx); });
     pads.receiveShadow = true; grp.add(pads);
@@ -331,7 +356,7 @@
     var cx = (minx + maxx) / 2, cz = (minz + maxz) / 2;
     grp.children.forEach(function (c) { c.position.x -= cx; c.position.z -= cz; });
     units = units.map(function (u) { return [u[0] - cx, u[1] - cz]; });
-    grp.userData = { units: units, drawn: U.length, blocks: blocks.length, fours: fours, extent: [maxx - minx + 6.1, maxz - minz + 7.4] };
+    grp.userData = { units: units, drawn: U.length + DU.length, detailed: DU.length, blocks: blocks.length, fours: fours, extent: [maxx - minx + 6.1, maxz - minz + 7.4] };
     return grp;
   };
 
@@ -341,7 +366,7 @@
    * stands west of the site, and no frame names a peak or a height. */
   N.ridge = function (THREE, TXT, R, o) {
     o = o || {};
-    var len = o.length || 26000, depth = o.depth || 2600, peak = o.peak || 430, seg = 480, dseg = 90;
+    var len = o.length || 26000, depth = o.depth || 2600, peak = o.peak || 430, seg = o.seg || 480, dseg = o.dseg || 90;
     var geo = new THREE.PlaneGeometry(depth, len, dseg, seg); geo.rotateX(-Math.PI / 2);
     var rng = TX.rng(o.seed || 29), ph = [rng() * 10, rng() * 10, rng() * 10];
     var pos = geo.attributes.position;

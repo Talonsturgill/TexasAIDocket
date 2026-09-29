@@ -1,0 +1,128 @@
+{
+ "date": "2026-09-29",
+ "_note": "Every figure the detector reads as a count or duration, declared with the claim it was quoted or counted from. The deck computes nothing it prints except the count of two named judges.",
+ "aggregates": [
+  {
+   "phrase": "813 gas generators",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 813,
+   "quoted_from": "c6",
+   "quote": "EPE is proposing to purchase 813 modular 450-kilowatt (kW) gas",
+   "note": "the proposal for decision's own count, quoted"
+  },
+  {
+   "phrase": "813 gas generators",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 813,
+   "quoted_from": "c6",
+   "quote": "EPE is proposing to purchase 813 modular 450-kilowatt (kW) gas",
+   "note": "the proposal for decision's own count, quoted"
+  },
+  {
+   "phrase": "813 gas generators",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 813,
+   "quoted_from": "c6",
+   "quote": "EPE is proposing to purchase 813 modular 450-kilowatt (kW) gas",
+   "note": "the proposal for decision's own count, quoted"
+  },
+  {
+   "phrase": "813 modular gas generators",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 813,
+   "quoted_from": "c6",
+   "quote": "EPE is proposing to purchase 813 modular 450-kilowatt (kW) gas",
+   "note": "the proposal for decision's own count, quoted"
+  },
+  {
+   "phrase": "450 kilowatts",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 450,
+   "quoted_from": "c6",
+   "quote": "EPE is proposing to purchase 813 modular 450-kilowatt (kW) gas",
+   "note": "each unit's rating as the proposal states it, quoted"
+  },
+  {
+   "phrase": "31 acres",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 31,
+   "quoted_from": "c8",
+   "quote": "The McCloud facility will be located on approximately 31 acres of already-disturbed land immediately adjacent to the Wurldwide data center in northeast El Paso County, Texas.",
+   "note": "the proposal's own approximate acreage, and the headline says About"
+  },
+  {
+   "phrase": "Two judges",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "note": "the two administrative law judges the proposal names, counted from the names",
+   "computed_by": "len() of the SOAH ALJ names in claim c39's text, Cassandra Quinn and Arthur D'Andrea",
+   "from_claims": [
+    "c39"
+   ]
+  },
+  {
+   "phrase": "Two judges",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "note": "the two administrative law judges the proposal names, counted from the names",
+   "computed_by": "len() of the SOAH ALJ names in claim c39's text, Cassandra Quinn and Arthur D'Andrea",
+   "from_claims": [
+    "c39"
+   ]
+  },
+  {
+   "phrase": "two judges",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 2,
+   "note": "the two administrative law judges the proposal names, counted from the names",
+   "computed_by": "len() of the SOAH ALJ names in claim c39's text, Cassandra Quinn and Arthur D'Andrea",
+   "from_claims": [
+    "c39"
+   ]
+  },
+  {
+   "phrase": "five years",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 5,
+   "quoted_from": "c23",
+   "quote": "EPE proposes a \"bridge period\" of up to five years during which Wurldwide will consume all the generation from the Project and will be responsible for all the Project's capital costs.",
+   "note": "the proposed bridge period's upper bound, quoted as up to five years"
+  },
+  {
+   "phrase": "five years",
+   "slide": "slide-06.html",
+   "kind": "duration",
+   "value": 5,
+   "quoted_from": "c23",
+   "quote": "EPE proposes a \"bridge period\" of up to five years during which Wurldwide will consume all the generation from the Project and will be responsible for all the Project's capital costs.",
+   "note": "the proposed bridge period's upper bound, quoted as up to five years"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counting the distinct official document urls, the SOAH proposal for decision and the PUCT filing list, among the claim ids the deck prints",
+   "note": "the sources block's own tally of official documents"
+  },
+  {
+   "phrase": "Five commissioners",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c42",
+   "quote": "the five Public Utility Commission of Texas (PUCT) commissioners will make the final decision",
+   "note": "KVIA's count of the commissioners who decide, quoted"
+  }
+ ]
+}
