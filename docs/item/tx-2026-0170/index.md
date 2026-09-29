@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · Whether the county adopted the surveillance policy statement its agenda contemplated is unconfirmed this run.
 - 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
 - 2026-09-26 · Hays County's policy on artificial intelligence in surveillance is still pending, with no disposition posted.
+- 2026-09-29 · The surveillance policy item is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. No disposition appears on the county's own site.
 
 ## Evidence
 

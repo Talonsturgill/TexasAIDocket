@@ -9,7 +9,7 @@ Governor Greg Abbott announced on August 6th, 2026 that SpaceX will construct a 
 - Public access: Write to the decider
 - Take part: https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county
 
-- Last checked: 2026-09-26
+- Last checked: 2026-09-29
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The plant is still planned for Grimes County on the grant and the two school district agreements, with no change published to any of the three.
 - 2026-09-23 · The Grimes County plant still rests on a state grant and two school district agreements.
 - 2026-09-26 · The Terafab plant in Grimes County still rests on the state grant and the two school district agreements.
+- 2026-09-29 · The Terafab plant in Grimes County still rests on one state grant and two school district agreements.
 
 ## Evidence
 

@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-26
+- Last checked: 2026-09-29
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-20 · Comments on the five year review of the system-wide offer caps are no longer being taken. The window the staff memorandum set ran out on September 17th, and what the commission does with what was filed has not been published.
 - 2026-09-23 · The comment window shut on September 17th and the file filled the same day. Responses came from the grid operator, from generators and retailers, from industrial and municipal buyers, and from Google, which is the first time a hyperscaler has filed in this project. What the commission does with them has not been published.
 - 2026-09-26 · The comment window closed on September 17th. The commission has not yet acted on the offer cap review.
+- 2026-09-29 · The comment window closed on September 17th, and the commission's calendar has dropped the deadline now that it has passed. No order on the offer cap review has been posted.
 
 ## Evidence
 

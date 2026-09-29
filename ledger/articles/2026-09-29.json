@@ -7,7 +7,7 @@
  },
  "section": "Utility regulation",
  "dek": {
-  "text": "Two judges recommend approving El Paso Electric's gas plant for Meta's data center only if its other customers are held harmless from the plant's costs for its life.",
+  "text": "Two judges recommend approving El Paso Electric's gas plant for Meta's data center only if its other customers are held harmless for its life.",
   "claims": [
    "c28",
    "c30",
@@ -40,7 +40,7 @@
    "heading": "Who pays, and for how long",
    "paragraphs": [
     {
-     "text": "[El Paso Electric proposes a bridge period of up to five years in which Wurldwide takes all of the plant's output and carries all of its capital costs](c23). [Its witness James Schichtl testified that the bridge lasts as long as it takes to extend transmission to the data center's site](c24). [After that the utility may fold McCloud into its generation resources and revise its rates, no decision has been made, and any change in cost responsibility would need Commission approval in a separate case](c25). [It would not commit to Wurldwide being the only customer to pay the plant's costs after the bridge](c26).",
+     "text": "[El Paso Electric proposes a bridge period of up to five years in which Wurldwide takes all of the plant's output and carries all of its capital costs](c23). [Its witness James Schichtl testified that the bridge lasts as long as it takes to extend transmission to the data center's site](c24). [After that the utility may fold McCloud into its generation resources and revise its rates, and no decision has been made](c25). [Any change in cost responsibility would need Commission approval in a separate case](c25). [It would not commit to Wurldwide being the only customer to pay the plant's costs after the bridge](c26).",
      "claims": [
       "c23",
       "c24",
@@ -49,7 +49,7 @@
      ]
     },
     {
-     "text": "[The utility estimates a {{number:c19}} year service life for the plant](c19). The judges' condition reaches all of it. [Their proposed ordering paragraph holds the other retail customers harmless from any capital or operating costs of the facility for its life, unless the utility later shows the plant meets the statute's test](c30). [They limited the condition to those capital and operating costs](c31).",
+     "text": "[The utility estimates a {{number:c19}} year service life for the plant](c19). The judges' condition reaches all of it. [Their proposed ordering paragraph holds the other retail customers harmless from any capital or operating costs of the facility for its life](c30). [The condition lifts only if the utility later shows the plant meets the statute's test](c30). [They limited the condition to those capital and operating costs](c31).",
      "claims": [
       "c19",
       "c30",
@@ -73,7 +73,7 @@
      ]
     },
     {
-     "text": "[The data center has committed to a peak demand of {{number:c12}} MW by the end of {{number:c12:1}}](c12). [The judges found the utility can serve about the first {{number:c13}} MW of that load from its existing resources, and the second block of about {{number:c13:2}} MW requires additional capacity](c13).",
+     "text": "[The data center has committed to a peak demand of {{number:c12}} MW by the end of {{number:c12:1}}](c12). [The judges found the utility can serve about the first {{number:c13}} MW of that load from its existing resources](c13). [The second block of about {{number:c13:2}} MW requires additional capacity](c13).",
      "claims": [
       "c12",
       "c13"

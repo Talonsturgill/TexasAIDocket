@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The boundary was re-measured rather than assumed. public.destinyhosted.com still refuses every client in its exclusion file, and www.hayscountytx.gov, which carries the same county's agendas, answers 403 to curl and to WebFetch alike. The agenda entry the commitment was read from can't be fetched again and was not routed around. Nothing in its wording is known to have moved.
 - 2026-09-24 · The court moved the money it had set aside for a possible Axon contract into two corrections officer positions on September 15th. Local reporting puts the vote at three to two. The sheriff's commitment not to switch on the report writing feature now sits beside a budget with nothing in it for the contract. The county's own minutes of the vote are not yet published.
 - 2026-09-26 · The sheriff's promise to come back to the court before switching on report writing is still what the county has posted.
+- 2026-09-29 · The sheriff's promise is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. The county's own site still carries the item, and nothing on the record shows the promise withdrawn.
 
 ## Evidence
 

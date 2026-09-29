@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote
 
-- Last checked: 2026-09-26
+- Last checked: 2026-09-29
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The moratorium is still running and the grid filing requirements adopted with it are still in force.
 - 2026-09-23 · Fort Worth's pause is still running and its grid filing requirements still apply to anything filed during it.
 - 2026-09-26 · Fort Worth's moratorium is still running, and its grid filing requirements still apply to what is filed in the meantime.
+- 2026-09-29 · Fort Worth's data center moratorium is in effect, and anyone filing in the meantime still owes the grid information the council adopted.
 
 ## Evidence
 

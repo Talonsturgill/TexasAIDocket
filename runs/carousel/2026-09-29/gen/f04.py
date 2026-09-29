@@ -1,5 +1,5 @@
 import sys; sys.path.insert(0,'.'); import shell, json; from common import *
-scene = figs('units', 'acres', 'plant_mw', 'first_request_mw', 'second_request_mw', 'peak_commit_mw') + r'''
+scene = figs('units', 'acres', 'plant_mw', 'plant_share_of_peak', 'first_request_mw', 'second_request_mw', 'peak_commit_mw') + r'''
   const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40, near: 0.2, far: 12000 });
   /* THE RAMP AT ONE SCALE. Two lines ruled on the caliche south of the field, one metre of line
    * for every MW_PER_M megawatts: a pale line to the committed peak with survey stakes at the first
@@ -15,7 +15,7 @@ scene = figs('units', 'acres', 'plant_mw', 'first_request_mw', 'second_request_m
   const beam = TXT.roundedBox(L(FIG.peak_commit_mw), 0.4, 0.8, 0.04, paint(0x6c675f, 0.02)); beam.position.set(ox + L(FIG.peak_commit_mw) / 2, 0.2, oz); beam.castShadow = false; beam.receiveShadow = true; TXT.add(R, beam); TXT.contact(R, beam);
   /* the plant is its own bar from the same origin, in front of the peak's beam: a comparison of sizes, never an allocation of load, since no claim says which load the plant serves */
   /* the bar stands 1.6 m nearer the lens than the beam, so it is scaled and placed by the ratio of the two depths and its ends land on the beam's own zero and 366 on screen */
-  const PX = ox + L(FIG.peak_commit_mw) / 2, KD = (28 - 1.6) / 28, tx0 = PX + (ox - PX) * KD, tlen = L(FIG.plant_mw) * KD;
+  const PX = ox + L(FIG.peak_commit_mw) / 2, KD = (28 - 1.6) / 28, tx0 = PX + (ox - PX) * KD, tlen = L(FIG.peak_commit_mw) * FIG.plant_share_of_peak * KD;
   const tier = TXT.roundedBox(tlen, 0.4, 0.8, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(tx0 + tlen / 2, 0.2, oz + 1.6); tier.castShadow = true; TXT.add(R, tier); TXT.contact(R, tier);
   const stakeM = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: 0.6 });
   const stake = (mw, z) => { const x = ox + L(mw); const p = K.cyl(0.05, 0.05, 1.8, stakeM, x, 0, z, 10); TXT.add(R, p); return [x, 1.8, z]; };
