@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-29T07:06:09Z",
+  "checked_at": "2026-09-29T14:11:50Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "fa406ca5f10254e054635d807ef61152a2c15f2fc80b045cb54c56ce75b1835c",
+  "response_sha256": "9ce5226a11322e02c14158c92dfd6feb77ee763397a7a3d6093eb6a7ee4f403b",
   "articles": [
     {
       "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
@@ -26,13 +26,6 @@
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
-      "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-      "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-      "first_seen_at": "2026-09-22T13:08:11Z",
-      "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-      "feed": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
       "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
       "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
       "first_seen_at": "2026-09-24T20:11:43Z",
@@ -48,184 +41,20 @@
     }
   ],
   "selected": {
-    "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-    "first_seen_at": "2026-09-22T13:08:11Z",
-    "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
+    "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+    "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+    "first_seen_at": "2026-09-23T08:49:00Z",
+    "summary": "ERCOT claims the audit will be completed by December",
     "feed": "https://www.datacenterdynamics.com/en/rss/",
     "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.0093,
+    "score": 0.013376,
     "priority": 4
   },
-  "expires_at": "2026-09-29T13:08:11Z",
+  "expires_at": "2026-09-30T08:49:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-09-29T01:23:00Z",
-      "selected": {
-        "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-        "first_seen_at": "2026-09-22T13:08:11Z",
-        "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.0093,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-          "first_seen_at": "2026-09-22T13:08:11Z",
-          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.0093,
-          "priority": 4
-        },
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.316178,
-          "priority": 0
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.048761,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.04639,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.045611,
-          "priority": 4
-        },
-        {
-          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
-          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
-          "first_seen_at": "2026-09-23T08:49:00Z",
-          "summary": "ERCOT claims the audit will be completed by December",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.016418,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-09-29T07:23:00Z",
-      "selected": {
-        "title": "New funding supports AI safety research and training at UT San Antonio",
-        "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-        "first_seen_at": "2026-09-27T15:14:02Z",
-        "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.313624,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.313624,
-          "priority": 0
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.048367,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.046015,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.045243,
-          "priority": 4
-        },
-        {
-          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
-          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
-          "first_seen_at": "2026-09-23T08:49:00Z",
-          "summary": "ERCOT claims the audit will be completed by December",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.016285,
-          "priority": 4
-        },
-        {
-          "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-          "first_seen_at": "2026-09-22T13:08:11Z",
-          "summary": "Powered via an adjacent natural gas plant in Odessa, Texas",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.009225,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-09-29T13:23:00Z",
       "selected": {
@@ -236,7 +65,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.013694,
+        "score": 0.013376,
         "priority": 4
       },
       "stories": [
@@ -248,7 +77,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.013694,
+          "score": 0.013376,
           "priority": 4
         },
         {
@@ -259,7 +88,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.263725,
+          "score": 0.257598,
           "priority": 0
         },
         {
@@ -270,7 +99,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.040672,
+          "score": 0.039727,
           "priority": 3
         },
         {
@@ -281,7 +110,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.038694,
+          "score": 0.037795,
           "priority": 3
         },
         {
@@ -292,7 +121,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.038044,
+          "score": 0.037161,
           "priority": 4
         }
       ]
@@ -367,19 +196,151 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-09-30T01:23:00Z",
+      "selected": {
+        "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
+        "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
+        "first_seen_at": "2026-09-24T20:46:52Z",
+        "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.027361,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
+          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
+          "first_seen_at": "2026-09-24T20:46:52Z",
+          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.027361,
+          "priority": 3
+        },
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.186482,
+          "priority": 0
+        },
+        {
+          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
+          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
+          "first_seen_at": "2026-09-24T22:30:27Z",
+          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.028759,
+          "priority": 3
+        },
+        {
+          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
+          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
+          "first_seen_at": "2026-09-24T20:11:43Z",
+          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.026902,
+          "priority": 4
+        },
+        {
+          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+          "first_seen_at": "2026-09-23T08:49:00Z",
+          "summary": "ERCOT claims the audit will be completed by December",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.009683,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-09-30T07:23:00Z",
+      "selected": {
+        "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
+        "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
+        "first_seen_at": "2026-09-24T22:30:27Z",
+        "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.024184,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
+          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
+          "first_seen_at": "2026-09-24T22:30:27Z",
+          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.024184,
+          "priority": 3
+        },
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.156812,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
+          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
+          "first_seen_at": "2026-09-24T20:46:52Z",
+          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.023007,
+          "priority": 3
+        },
+        {
+          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
+          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
+          "first_seen_at": "2026-09-24T20:11:43Z",
+          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.022621,
+          "priority": 4
+        },
+        {
+          "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+          "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+          "first_seen_at": "2026-09-23T08:49:00Z",
+          "summary": "ERCOT claims the audit will be completed by December",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.008143,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-      "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-      "shown_at": "2026-09-22T07:23:00Z"
-    },
-    {
-      "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-      "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-      "shown_at": "2026-09-22T13:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
       "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
@@ -509,6 +470,16 @@
       "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
       "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
       "shown_at": "2026-09-29T01:23:00Z"
+    },
+    {
+      "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+      "title": "New funding supports AI safety research and training at UT San Antonio",
+      "shown_at": "2026-09-29T07:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
+      "title": "Abbott halts new Texas data center permits pending ERCOT audit",
+      "shown_at": "2026-09-29T13:23:00Z"
     }
   ],
   "feeds": [
@@ -524,7 +495,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "7588e22860fc10ec0640560e58de68b69b0bb8e4b64d2d0b61f45489fe670ab8"
+      "sha256": "603de2e036742d815903f134162c4d1460e8bb9df31afe5d23ea96b9030e9895"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -536,7 +507,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1235,
-      "sha256": "8fddb0057f8e3df340f90ac86d589a0bc0dbda513f1190d76a03dbbbf11e5ef4"
+      "sha256": "a2f0dfd70157ab70a06c375427c76a96eb3883401abdd7078d554b133eebe8c1"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -552,7 +523,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "ef1b8b2917d0877044a9a8955d632ec173d9bc09206fda013ec878763b3f4dd9"
+      "sha256": "4af1b59f8c709d40ae9176fc1d4e472d32bf7a55c5ba59225da9b0dd6c5e2719"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -563,23 +534,25 @@
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "76619c7bc1ce3e63479b19c0da705c6a5c9f981be190a3296a916e17726db780"
+      "sha256": "79f78c46ac23c98889566755f19b391c66c77f830fd6571d82c325b30b33f46a"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "ddeba91f35f027012b534f7bedcde5182fc5a6c68afc04fa4ff70bd58d47a7a4"
+      "sha256": "d68533f1f902f41489be8eb6b13731c76db172e2f192be61e145b13f6e909044"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "3c650eb63a7b08b3b179f4997084c1156f126745d7d138e4cbf2d19f396d48e6"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "6134cae466fc45f93327212ed823f5ff8f8e491222fe10bee404728ffa7a608e"
+      "sha256": "33624ff00279f463d7ae2711406e64e67a88c97df9ee865aac5faf365009afdd"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -591,7 +564,7 @@
       "etag": "\"bc7f22ae610fd552f35bd59b897dd3a4\"",
       "last_modified": "Mon, 28 Sep 2026 13:03:38 GMT",
       "failures": 0,
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "sha256": "9f96691be2a78973d8911cee768818b1f729de6df3ee7c81fad84cbce5459490",
       "parser_version": 2
     },
@@ -599,52 +572,52 @@
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7588e22860fc10ec0640560e58de68b69b0bb8e4b64d2d0b61f45489fe670ab8",
-      "last_modified": "Tue, 29 Sep 2026 07:00:44 GMT"
+      "sha256": "603de2e036742d815903f134162c4d1460e8bb9df31afe5d23ea96b9030e9895",
+      "last_modified": "Tue, 29 Sep 2026 12:40:36 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "767e5b5ac18aea52533ac5594212765b6d533158ae5c110c5a93374af7fe6fdd",
-      "etag": "\"1790664748\"",
-      "last_modified": "Tue, 29 Sep 2026 06:52:28 GMT"
+      "etag": "\"1790690032\"",
+      "last_modified": "Tue, 29 Sep 2026 13:53:52 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8fddb0057f8e3df340f90ac86d589a0bc0dbda513f1190d76a03dbbbf11e5ef4"
+      "sha256": "a2f0dfd70157ab70a06c375427c76a96eb3883401abdd7078d554b133eebe8c1"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"3915704c0ebed0f19a04c6dc9abc3a94-gzip\"",
       "last_modified": "Mon, 28 Sep 2026 22:32:18 GMT",
       "failures": 0,
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "sha256": "4e604fa09c82d1a319b159f55714c5714d97c9ac66100d5c8347fc3857f3c362",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "d1a84143c5aa266ba37ead1ac6f87cab718f024624926c0017c742f7c211f297"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ef1b8b2917d0877044a9a8955d632ec173d9bc09206fda013ec878763b3f4dd9",
-      "etag": "\"2f06106e8928e0362e448748c9f88104\"",
-      "last_modified": "Tue, 29 Sep 2026 03:17:21 GMT"
+      "sha256": "4af1b59f8c709d40ae9176fc1d4e472d32bf7a55c5ba59225da9b0dd6c5e2719",
+      "etag": "\"22c8e90ee6d364689d78ed9c3f2a8500\"",
+      "last_modified": "Tue, 29 Sep 2026 13:25:55 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -656,38 +629,38 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "76619c7bc1ce3e63479b19c0da705c6a5c9f981be190a3296a916e17726db780",
-      "etag": "W/\"9a5ace0c94c840a4f2a7c57465fcbe2f\"",
-      "last_modified": "Tue, 29 Sep 2026 06:16:37 GMT"
+      "sha256": "79f78c46ac23c98889566755f19b391c66c77f830fd6571d82c325b30b33f46a",
+      "etag": "W/\"1ca175c40362abd1e3ff2931e52ff15b\"",
+      "last_modified": "Tue, 29 Sep 2026 13:44:40 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ddeba91f35f027012b534f7bedcde5182fc5a6c68afc04fa4ff70bd58d47a7a4",
-      "etag": "W/\"dc5c6060642432de2be1b3a126424bd1\""
+      "sha256": "d68533f1f902f41489be8eb6b13731c76db172e2f192be61e145b13f6e909044",
+      "etag": "W/\"223c70b876384748fab62e212c377c09\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Mon, 28 Sep 2026 14:12:26 GMT",
-      "failures": 0,
-      "ok_at": "2026-09-29T07:06:07Z",
-      "sha256": "9bcf07e428cce586d562e3c1a2dc969c1b2911e8cdc1c239d20ea85a0bcae105",
-      "parser_version": 2
-    },
-    "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6134cae466fc45f93327212ed823f5ff8f8e491222fe10bee404728ffa7a608e"
+      "sha256": "3c650eb63a7b08b3b179f4997084c1156f126745d7d138e4cbf2d19f396d48e6",
+      "last_modified": "Tue, 29 Sep 2026 10:17:28 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-09-29T14:11:48Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "33624ff00279f463d7ae2711406e64e67a88c97df9ee865aac5faf365009afdd"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "W/\"26a174a7bba71b419c8772d20a5e75f9\"",
       "last_modified": "Mon, 28 Sep 2026 13:42:24 GMT",
       "failures": 0,
-      "ok_at": "2026-09-29T07:06:07Z",
+      "ok_at": "2026-09-29T14:11:48Z",
       "sha256": "cdac8d1f67c4f102aaef38a8b33d082c24a1465b1b9dd7d56e115da6bd7bea90",
       "parser_version": 2
     }
