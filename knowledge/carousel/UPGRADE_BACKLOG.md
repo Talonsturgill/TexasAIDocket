@@ -4756,3 +4756,118 @@ insulator profile with that crop as the proof.
 
 Same as 2026-09-27 item 1. A maintainer could copy `out/2026-09-28/tmp/kitlift/f1_mesa_compare.png`
 and `heads/render/slide-01.png` into `examples/kit/` as WebP, beside `cab-proof.webp`.
+
+## 2026-09-29, carousel of El Paso Electric's McCloud facility (tx-2026-0193), the upgrade phase. One kit upgrade, five proposals
+
+**Engine and registry: nothing this run needs `txthree.js` or `txkit.js`.** No ranked artwork
+defect was traced to either, so there is no engine heading for the email. The one candidate is
+frame 9's "no sun or glow" (craft, round 5). The declared sun sits at el 9 and the frame's ridge
+crest, at `peak: 820` and 5.6 km, stands about 8 degrees high, so the disc is most likely behind
+the ridge. That is composition until a render with the ridge removed says otherwise.
+
+The round 5 cards rank four artwork defects:
+1. Frames 7 and 8, the turn: "a thin flat strip under a dead sky band with no post shadows"
+   (craft), "a flat stage with cardboard panels and little shadow" (integrity), named from round 4.
+   The named fix: "one low three quarter camera down the fence with the red bridge panels large in
+   the foreground and post shadows raking the caliche".
+2. "the mannequin on 1 and 2" (craft, rounds 3, 4 and 5).
+3. The genset enclosures: "no visible grime on 6" (craft r5), "the genset models simple"
+   (integrity r5), "a flat brown box without raking light" (craft r1).
+4. Frame 9's ridge: "an oversized jagged mesh with glints" (r1), "a spiky black mass" (r2), "a
+   heavy band with a ground seam" (r4).
+
+### 1. KIT LIFT: `modular_gas_genset`, `padmount_transformer` AND `genset_block` INTO `power.js`, WEATHERED (done)
+
+Defect 1's fix is a CAMERA, and a camera belongs in a frame, not the kit (see item 3 for its model
+half). Defect 3 is the top ranked one whose fix is a model, so it is the one lifted. The chassis
+gave every panel a single flat `K.mat` paint, and `TXT.weather` at grime 0.55 on frame 6 did not
+read. The kit's version paints one ATLAS per colour (`wxSkin`) and maps every enclosure panel onto
+it by where the panel sits on the box (`wxUV`, after baking). So a mark lands where it would in life:
+caliche dust banked up the base with splash above it, grime streaks falling from under each louvre
+and off the drip edge, rust weeping at the seams, each panel its own fade, the upper faces chalked,
+the roof dusted and sooted round the stack. A roughness map painted with the same strokes makes the
+dust matte against the paint's sheen. Three seeded variants per colour, so a block of five is not
+five copies. The silencer gets straps and dished heads, the stack a flange, a propped rain cap and
+a heat tint sooted at the mouth. Each model bakes to one mesh per material.
+
+Two chassis defects surfaced when the proof was read at full size, and both are fixed in the lift:
+- **The panel ribs at x -2.35 and -0.95 stood INSIDE both intake louvres.** The shipped frame 6
+  shows each one as a dashed light bar through the louvre. The ribs are now at -2.8, -1.2, 0.31 and
+  2.85, clear of every louvre and door (`MGG_RIBS`).
+- A black door reveal printed as a hard outline, the "hard black seam" the judges named on frame 5.
+  The reveal is the paint in shade (0.4 of the paint colour), 1 cm wide.
+
+Proof, under `out/2026-09-29/tmp/upgrade/` (scratch, see item 5): `kit/render/slide-01.png` to
+`slide-04.png` (the lineup with a 1.75 m person, then each model, caliche, goldenHour),
+`crop-side.png` (the louvres, doors and dust at full resolution), and frames 6 and 2 of this deck
+re-rendered from the committed slides with the kit model (`f6/render/`, `f2/render/`,
+`compare-f6.png`, `compare-f2.png`). `examples/kit/sizes.py`: 103 of 103 models declare the size
+they build, centred. The declared sizes are now the measured ones.
+
+**What a re-render of this deck now does.** The chassis's `installKit` returns early when the kit
+defines `modular_gas_genset`, so all three models come from the kit. Every option and every
+userData field (`stackTop`, `gasInlet`, `cableOut`, `hvOut`, `units`, `transformer`) is kept, so
+every frame composes as it did. **`MC.yard`'s far instanced units are the chassis's own boxes and
+are NOT weathered**, which leaves the "toy grid" at the yard scale. A yard helper in the kit would
+own that. It is the next item for a deck that stands hundreds of units on one frame.
+
+### 2. `reverify.py` FETCHES A HOST THE ITEM ITSELF RECORDS AS A ROBOTS BOUNDARY (proposal, `scripts/site/reverify.py` is `daily`)
+
+On 2026-09-29 re-verification fetched `www.newschannel10.com` (tx-2026-0046) and
+`public.destinyhosted.com` (tx-2026-0168). Each item's own `unreachable` block names that host with
+`"boundary": "robots"`, re-measured 2026-09-28. The run withdrew four stamps (tx-2026-0046, 0168,
+0169, 0170). `check()` builds `by_url` from every claim's `source_url` and fetches each one. It
+never reads `item["unreachable"]`. **The fix:** before fetching, skip any claim whose host is named
+in `item["unreachable"]["hosts"]` with `boundary == "robots"`, and report it as a new state
+(`BOUNDARY`) that `apply()` treats like `UNREACHABLE` for stamping, so the item is still not stamped.
+The fix removes the fetch and changes no verdict. **Its self-test:** an item whose claim host is in
+its own robots block must be fetched zero times (the existing `counting` opener counts), must land
+as `BOUNDARY`, and must not be stamped. A host in a block with any other boundary (the record carries one
+`blocks_every_client` today) must STILL be fetched, because a refusal of every client can clear,
+as `www.hayscountytx.gov`'s 403 did on the 28th. That case is what keeps the skip from widening
+into "never retry anything that failed once".
+
+### 3. DEFECT 1'S MODEL HALF: THE YEAR FENCE'S PANELS (proposal in lane, not built)
+
+The camera is the frame's job. The panels are the model's: "cardboard panels". `N.yearFence` gives
+each sheet panel a flat `K.mat` (`yf-acc2`, `yf-primer`). The kit already has `pipe_rail_fence`
+(rural.js, 2026-09-28), which has no sheet panels. **Next step:** add a `panels` option to
+`pipe_rail_fence` that fills each span with a ribbed sheet on the `wxSkin` atlas approach used in
+item 1 (primer scuffed at the foot, rust at the posts, the accent paint worn at the top rail),
+and a `paint: [indices]` option, so a deck's year ruler is a kit call and not chassis code. The
+`wxSkin` helpers live inside `power.js`'s install. A second family using them means moving them to
+a shared kit helper, and that sits in `txkit.js`, which is `human`. So either copy the hundred lines
+into `rural.js` or propose `K.weatheredSkin` for a maintainer.
+
+### 4. THE PERSON AND THE RIDGE (proposals in lane, not built)
+
+- **The mannequin, now three decks running** (2026-09-27 proposal "isolate why the kit person reads
+  as a mannequin", named again on 2026-09-28 and in rounds 3 to 5 today). `people.js` is `upgrade`
+  lane, so this needs no maintainer, only a phase that takes it first. It is now the most repeated
+  artwork defect in the record, and the next upgrade phase should take it ahead of a fresh defect
+  unless a judge ranks one above it.
+- **A `mountain_range` landscape model.** `N.ridge` is chassis code, a displaced strip whose crest
+  is sine plus simplex, lit as one material with `roughness: 0.98` and no far-material haze, which is
+  where "glints", "jagged" and "black mass" come from. The kit has `mesa` and `hill_country_terrain`
+  and nothing for a fault block range like the Franklins or the Davis. **Next step:** a
+  `mountain_range` in `landscape.js` built on the mesa's far material (its own aerial haze, never
+  grimed) and its per-triangle UVs, with bajada fans at the foot so it meets the ground without a
+  seam.
+
+### 5. THE PROOF IMAGES DIE WITH THE CONTAINER (proposal, `examples/kit/**` is `human`)
+
+Same as 2026-09-27 item 1 and 2026-09-28 item 5, now three runs in a row. A maintainer could copy
+`out/2026-09-29/tmp/upgrade/compare-f6.png` into `examples/kit/` as WebP.
+
+### 6. A QUESTION FOR A MAINTAINER: `docs.tacc.utexas.edu` (`crawl_boundary.py` is `daily`, the registry it reads is not this lane's)
+
+`scripts/shared/crawl_boundary.py` refuses `docs.tacc.utexas.edu` as part of `tacc.utexas.edu`,
+and its self-test asserts that a whole host rule reaches a subdomain, "the direction a boundary may
+err". `knowledge/shared/SOURCES_FIELD_LOG.md` (the TACC paragraph near line 976) records that
+`docs.tacc.utexas.edu` serves NO robots.txt (an nginx 404) and says "Check the subdomain before
+writing an organisation off." Both are deliberate, and they disagree. Until they agree tx-2026-0125
+can't be re-verified. **The question:** is the refusal of `tacc.utexas.edu` a statement about the
+organisation, in which case the field log's advice is wrong and should say so, or about that host's
+robots.txt, in which case the registry needs a recorded carve-out for `docs.tacc.utexas.edu`, with
+the date it was measured and a self-test that the parent host is still refused? Either answer is a
+data change with a reason attached. Widening the matcher is not an answer.

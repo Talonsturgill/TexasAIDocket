@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 100 in 10 families |
+| kit models | 103 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 67 |
 | record and site tools the routine names | 20 |
@@ -223,7 +223,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `suv` | 2.4 x 1.93 x 5.35 | color, metallic, rack | Full-size SUV, 5.35 m, roof rails. |
 | `utility_bucket_truck` | 3 x 3 x 9.8 | boom, swing, color, lettering | Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). |
 
-### power (12)
+### power (15)
 
 `assets/js/kit/power.js`, THE GRID FAMILY.
 
@@ -231,8 +231,11 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 |---|---|---|---|
 | `battery_storage` | 88 x 14.8 x 44.1 | rows, cols, gsu | OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. |
 | `gas_peaker` | 51.7 x 30.7 x 19.7 | units, transformer | OPTIONS units 1 \| 2; transformer adds the generator step up. |
+| `genset_block` | 22.47 x 4.24 x 7.2 | units, lod, gap | One group of modular gas generators on a shared pad with the step-up transformer they share at the +x end, units 4 or 5 (the record says groups of four or five). |
 | `h_frame` | 9.2 x 21.1 x 1.8 | material, height, voltage | OPTIONS material wood \| steel (weathering steel tubes); height m above ground; voltage 69 \| 138. |
+| `modular_gas_genset` | 6.82 x 4.09 x 2.48 | color, lod, stack, gas | Modular natural gas generator in a sound attenuated enclosure on a steel skid, the kind installed in groups of four or five on one step-up transformer: radiator louvres at +x, intake louvres down both sides, personnel doors on +z, a roof silencer with straps ... |
 | `monopole_138` | 7.9 x 29 x 1.9 | circuits, insulators, finish, height | OPTIONS circuits 1 \| 2; insulators suspension \| post (braced horizontal line post); finish galvanized \| weathering (null = seeded); height m above ground. |
+| `padmount_transformer` | 2.8 x 2.11 x 2.5 | xcolor, fins | Pad mounted step-up transformer the units of one block share: a green steel tank on a concrete pad with radiator fins on both sides, a low voltage cabinet on +z and a high voltage cabinet on -z, a nameplate, bushings. |
 | `power_line` | 15.2 x 49.5 x 660 | structure, spans, span, sag, structures, voltage, insulator, insulators, height, material, circuits, transformer, streetlight, guy | OPTIONS structure transmission_tower \| monopole_138 \| h_frame \| utility_pole; spans; span m (null = typical: 330, 200, 230, 45); sag m at mid span (null = about span x 0.034); structures [[x, z, rotY], ...] places them yourself and the wires follow; voltage ... |
 | `power_plant` | 109.1 x 51 x 121.5 | units, cooling | OPTIONS units 1 \| 2 gas turbine and HRSG trains; cooling tower (mechanical draft) \| acc (air cooled condenser). |
 | `solar_array` | 43.2 x 2.7 x 25.4 | rows, cols, tilt, pitch | OPTIONS rows (trackers); cols (modules per row); tilt deg, positive faces +z, trackers run about plus or minus 60; pitch m row spacing. |
@@ -372,7 +375,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`.
 
 **Geodata** (`assets/geo/`):
 
