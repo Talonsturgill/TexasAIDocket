@@ -305,7 +305,7 @@
       paint: K.mat('mgg-paint|' + N.PAINT, { color: N.PAINT, roughness: 0.52, metalness: 0.18 }),
       dark: K.mat('mgg-dark', { color: 0x17191c, roughness: 0.7, metalness: 0.2 }),
       stack: K.mat('mgg-stack', { color: 0x6f6a64, roughness: 0.45, metalness: 0.7 }),
-      xfmr: K.mat('pmt-green|' + 0x5c6b58, { color: 0x5c6b58, roughness: 0.5, metalness: 0.3 }),
+      xfmr: K.mat('pmt-green|yard', { color: 0x74846d, roughness: 0.6, metalness: 0.2 }),
       conc: K.finish.concrete()
     };
     var bodyG = new THREE.BoxGeometry(2.35, 2.55, 6.1); bodyG.translate(0, 0.22 + 1.275, 0);

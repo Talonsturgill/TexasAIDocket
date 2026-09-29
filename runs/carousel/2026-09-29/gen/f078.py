@@ -17,7 +17,7 @@ def scene(n):
   yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
   F.pad(K, THREE, TXT, R, S.side);
   const FX = S.fence[0], SP = 1.8, LEN = FIG.service_life_years * SP, Z0 = -LEN / 2;
-  const yf = F.yearFence(K, THREE, TXT, { spans: FIG.service_life_years, paid: PAID, spacing: SP, postH: 2.2, collarAt: FIG.bridge_expected_under_years });
+  const yf = F.yearFence(K, THREE, TXT, { spans: FIG.service_life_years, paid: PAID, spacing: SP, postH: 3.0, collarAt: FIG.bridge_expected_under_years });
   yf.rotation.y = -Math.PI / 2; yf.position.set(FX, 0, Z0); TXT.add(R, yf); TXT.contact(R, yf);
   const blk = F.block(K, { units: 5, seed: 8 });
   blk.rotation.y = Math.PI / 2; blk.position.set(FX + 24, 0, 8); TXT.add(R, blk); TXT.contact(R, blk);
@@ -32,7 +32,7 @@ def scene(n):
   F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
   TXT.weather(R, {});
   /* the posts the labels name, projected through this camera: post i stands at z = Z0 + i * SP */
-  const post = (i, y) => F.project(THREE, R, [FX, y == null ? 2.2 : y, Z0 + i * SP]);
+  const post = (i, y) => F.project(THREE, R, [FX, y == null ? 3.0 : y, Z0 + i * SP]);
   const svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg', leaders = [];
   const line = (pts) => { const pl = document.createElementNS(NS, 'polyline'); pl.setAttribute('points', pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ')); pl.setAttribute('fill', 'none'); pl.setAttribute('stroke', '#14161A'); pl.setAttribute('stroke-width', '2'); svg.appendChild(pl); };
   const labs = Array.prototype.slice.call(document.querySelectorAll('.lab'));
@@ -65,7 +65,7 @@ for n in (7, 8):
     shell.write(n,
       ("Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's goldenHour world. The year fence side on, twenty spans with sheet panels, one per year of the estimated service life, the camera square to it looking east with the sun behind. " +
        ("The bridge's panels are painted capitol granite, a galvanised collar on the post that ends the witness's expected span, the rest primer." if n == 7 else "Frame 7's camera, fence and block unchanged, every panel painted capitol granite.")),
-      k, h, b, s, scene(n), hook_css="left:80px; top:150px; width:900px;", dek_css="width:916px;", fit=(76, 100, 2),
+      k, h, b, s, scene(n), hook_css="left:80px; top:150px; width:900px;", dek_css="width:916px;", fit=(72, 96, 2),
       extra_css='''  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.03em; color:#14161A; z-index:12; white-space:nowrap; text-shadow:0 0 6px rgba(236,230,218,0.55); }
   svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; overflow:visible; }
   #acc { position:absolute; height:10px; background:#9A3B2A; z-index:12; }''',

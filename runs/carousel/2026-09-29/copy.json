@@ -9,25 +9,24 @@
    "n": 1,
    "file": "slide-01.html",
    "kicker": "El Paso County",
-   "headline": "813 gas generators. One customer.",
+   "headline": "813 gas generators. One customer, at first.",
    "claims": [
-    "c1",
     "c2",
     "c3",
     "c6",
     "c8",
     "c9",
     "c28",
-    "c38",
+    "c29",
     "c39"
    ],
-   "cite": "c1 c2 c3 c6 c8 c9 c28 c38 c39 DRAWN",
-   "body": "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County, at first the plant's only retail customer. Two judges have now filed a proposal for decision with a condition on who pays.",
+   "cite": "c2 c3 c6 c8 c9 c28 c29 c39 DRAWN",
+   "body": "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County. Two judges recommend approval with a condition on who pays, and denial without it.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
-    "813 gas generators. One customer.",
-    "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County, at first the plant's only retail customer. Two judges have now filed a proposal for decision with a condition on who pays."
+    "813 gas generators. One customer, at first.",
+    "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County. Two judges recommend approval with a condition on who pays, and denial without it."
    ]
   },
   "S2": {
@@ -54,19 +53,20 @@
    "kicker": "Northeast El Paso County",
    "headline": "About 31 acres beside the data center",
    "claims": [
+    "c1",
     "c2",
     "c6",
     "c7",
     "c8",
     "c14"
    ],
-   "cite": "c2 c6 c7 c8 c14 DRAWN",
-   "body": "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline.",
+   "cite": "c1 c2 c6 c7 c8 c14 DRAWN",
+   "body": "The McCloud plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "About 31 acres beside the data center",
-    "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
+    "The McCloud plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
    ]
   },
   "S4": {
@@ -155,7 +155,7 @@
     "c26"
    ],
    "cite": "c19 c23 c25 c26 DRAWN",
-   "body": "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need Commission approval in a separate case.",
+   "body": "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need commission approval in a separate case.",
    "labels": [
     "UP TO YEAR 5, BRIDGE",
     "YEAR 20, ESTIMATED SERVICE LIFE"
@@ -163,7 +163,7 @@
    "strings": [
     "texasaidocket.com",
     "Up to five years, then no decision",
-    "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need Commission approval in a separate case.",
+    "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need commission approval in a separate case.",
     "UP TO YEAR 5, BRIDGE",
     "YEAR 20, ESTIMATED SERVICE LIFE"
    ]
@@ -176,19 +176,20 @@
    "claims": [
     "c19",
     "c20",
+    "c21",
     "c28",
     "c30",
     "c46"
    ],
-   "cite": "c19 c20 c28 c30 c46 DRAWN",
-   "body": "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
+   "cite": "c19 c20 c21 c28 c30 c46 DRAWN",
+   "body": "The judges recommend approval only if the utility's other customers pay none of the plant's capital and operating costs, unless the plant later meets the statute's test. Its generation facilities are estimated at about $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
    "labels": [
     "For the life of the McCloud facility"
    ],
    "strings": [
     "texasaidocket.com",
     "For the life of the plant",
-    "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
+    "The judges recommend approval only if the utility's other customers pay none of the plant's capital and operating costs, unless the plant later meets the statute's test. Its generation facilities are estimated at about $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
     "For the life of the McCloud facility"
    ]
   },
@@ -201,17 +202,16 @@
     "c6",
     "c37",
     "c42",
-    "c43",
     "c44",
     "c45"
    ],
-   "cite": "c6 c37 c42 c43 c44 c45 DRAWN",
-   "body": "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own.",
+   "cite": "c6 c37 c42 c44 c45 DRAWN",
+   "body": "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and from an El Paso Electric residential customer.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "The commission has not ruled",
-    "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own."
+    "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and from an El Paso Electric residential customer."
    ]
   }
  }

@@ -2,7 +2,7 @@ import sys, json; sys.path.insert(0,'.'); import shell
 FIG = json.load(open('/home/user/TexasAIDocket/out/2026-09-29/figures.json'))
 scene = r'''
   const FIG = ''' + json.dumps({k: FIG[k]['value'] for k in ('units', 'acres', 'service_life_years')}) + r''';
-  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.38], exposure: W.exposure * 0.62, tone: W.tone, fov: 42, near: 0.3, far: 12000 });
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity * 0.38], exposure: W.exposure * 0.8, tone: W.tone, fov: 42, near: 0.3, far: 12000 });
   /* LAST LIGHT, INTO THE SUN. The camera stands on the shoulder of the public road east of the pad
    * and looks west over the field toward the Franklin ridge, where the sun is going down behind the
    * crest. The rows go to silhouette with lit seams, the year fence stands painted across the pad's
@@ -13,7 +13,7 @@ scene = r'''
   const ex = yard.userData.extent;
   yard.position.set(S.side / 2 - 40 - ex[0] / 2, 0, 0); TXT.add(R, yard);
   F.pad(K, THREE, TXT, R, S.side);
-  const C = [S.side / 2 + 26, 3.2, 18], LK = [-200, 116];
+  const C = [S.side / 2 + 26, 3.2, 18], LK = [S.side / 2 + 26 - 346, 218];
   const dd = Math.hypot(LK[0] - C[0], LK[1] - C[2]), h = [(LK[0] - C[0]) / dd, (LK[1] - C[2]) / dd], r = [-h[1], h[0]];
   const along = (a, lat) => [C[0] + a * h[0] + lat * r[0], C[2] + a * h[1] + lat * r[1]];
   const yawTo = (v) => Math.atan2(-v[1], v[0]);
@@ -38,16 +38,16 @@ scene = r'''
     [1.95, 2.07, 2.19].forEach((y, k) => K.bar([12, y, -0.1 * (k + 0.5)], [12 + (n - 1) * sp, y, -0.1 * (k + 0.5)], 0.006, wire, 5, g));
     g.traverse(m => { if (m.isMesh) m.castShadow = true; });
     const p = along(0, lat); g.position.set(p[0], 0, p[1]); g.rotation.y = yawTo(h); TXT.add(R, g); }
-  TXT.frame(R, { from: C, look: [LK[0], C[1] + dd * Math.tan(7.4 * Math.PI / 180), LK[1]] });
+  TXT.frame(R, { from: C, look: [LK[0], C[1] + dd * Math.tan(3.6 * Math.PI / 180), LK[1]] });
   TXT.sky(R);
-  /* the sun stands behind the ridge in this frame, so the valley is in the ridge's shadow and the key is dimmed to the sky it leaves */
-  const rig = TXT.deckRig(R, W.rig, { target: [S.side / 2 - 60, 0, 30], distance: 240, shadowFar: 700, normalBias: 0.05 }); rig[0].intensity *= 0.4;
+  /* the sun stands just out of frame to the right over the thin band of the ridge, so the rows take the last light edge on and the ground runs warm to the lens */
+  const rig = TXT.deckRig(R, W.rig, { target: [S.side / 2 - 60, 0, 30], distance: 240, shadowFar: 700, normalBias: 0.05 });
   TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11, bumpScale: 0 });
   { const a0 = along(9, -1.2), a1 = along(40, 12); }
   F.desert(TXT, R, { area: [S.side / 2 + 1, -40, S.side / 2 + 60, 90], avoid: [], scrub: 160, rock: 0, grass: 2600, scale: [0.06, 0.14], grassArea: [S.side / 2 + 1, -10, S.side / 2 + 40, 60] });
   /* fine gravel to the lens, so the near ground carries material and not only a gradient */
   TXT.scatter(R, { kind: 'rock', count: 2600, area: [C[0] - 40, C[2] - 20, C[0] - 2, C[2] + 20], seed: 91, scale: [0.012, 0.035], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
-  F.ridge(THREE, TXT, R, { peak: 1750, seg: 1100, dseg: 200 });
+  F.ridge(THREE, TXT, R, { peak: 760, seg: 1100, dseg: 200 });
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   F.atmosphere(cx, { a: 0.45, floor: 0.45, fade: 260 });

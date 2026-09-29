@@ -15,12 +15,18 @@ scene = figs('units', 'acres') + r'''
   /* the fins on the cabinet's far side stand in its own shadow and would close the view past its edge */
   tx.traverse(m => { if (m.isMesh && m.position.x > 0.9 && m.position.z < 0.7) m.visible = false; });
   /* matte utility paint: a metallic door mirrors the sky in a patch behind the hook */
-  const matte = K.mat('pmt-green|matte', { color: 0x34453a, roughness: 0.78, metalness: 0.08 });
+  /* painted steel that has stood in the sun: a mottled colour map and a roughness map, streaked down from the lid */
+  const steel = (function () { const cv = document.createElement('canvas'); cv.width = 256; cv.height = 512; const g = cv.getContext('2d'), rn = TX.rng(59076);
+    g.fillStyle = '#34453a'; g.fillRect(0, 0, 256, 512);
+    for (let i = 0; i < 900; i++) { const v = rn(); g.fillStyle = v < 0.5 ? 'rgba(20,28,24,0.10)' : 'rgba(120,120,96,0.09)'; g.fillRect(rn() * 256, rn() * 512, 2 + rn() * 10, 2 + rn() * 6); }
+    for (let i = 0; i < 40; i++) { g.fillStyle = 'rgba(90,86,70,' + (0.05 + rn() * 0.08) + ')'; g.fillRect(rn() * 256, 0, 1 + rn() * 3, 80 + rn() * 300); }
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const matte = K.mat('pmt-green|matte2', { color: 0xffffff, map: steel, roughness: 0.74, metalness: 0.1 });
   tx.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x34453a) m.material = matte; if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xdcdad2) m.visible = false; });
   const at = (lx, y, lz) => [T[0] + rt[0] * lx + n[0] * lz, y, T[1] + rt[1] * lx + n[1] * lz];
   const DOOR = 1.145 * SC + 0.004;
   /* the door furniture, in the door's own plane: two leaves, a handle bar, a hasp, hinge knuckles */
-  const green = K.mat('pmt-green|door', { color: 0x34453a, roughness: 0.78, metalness: 0.08 });
+  const green = K.mat('pmt-green|door', { color: 0x3a4c40, roughness: 0.7, metalness: 0.1 });
   const dark = K.mat('mgg-dark', { color: 0x17191c, roughness: 0.7, metalness: 0.2 });
   const onDoor = (m, lx, y, dz) => { const p = at(lx, y, DOOR + (dz || 0)); m.position.set(p[0], p[1], p[2]); m.rotation.y = TH; m.castShadow = false; TXT.add(R, m); return m; };
   onDoor(TXT.roundedBox(0.012, 1.55, 0.01, 0.003, dark), 0.0, 1.12, 0.002);
@@ -38,7 +44,7 @@ scene = figs('units', 'acres') + r'''
   [[0, 1.93, 1.8, 0.035], [0, 0.34, 1.8, 0.035]].forEach(b => onDoor(TXT.roundedBox(b[2], b[3], 0.022, 0.006, green), b[0], b[1], 0.01));
   [[-0.88, 1.13], [0.88, 1.13]].forEach(b => onDoor(TXT.roundedBox(0.035, 1.6, 0.022, 0.006, green), b[0], b[1], 0.01));
   /* the page, a tabloid sheet of the proposal for decision, and the clear pocket over it */
-  const PW = 0.28, PH = 0.43, PX = 0.62, PY = 1.06;
+  const PW = 0.28, PH = 0.43, PX = 0.67, PY = 1.06;
   const entries = [{ kind: 'heading', w: 0.5 }, { w: 0.34, t: 10 }, { w: 0.42, t: 10 }];
   const tpage = F.pageTexture(THREE, entries, { top: 150, left: 150 });
   const page = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshStandardMaterial({ map: tpage, roughness: 0.85 }));
@@ -50,7 +56,7 @@ scene = figs('units', 'acres') + r'''
   /* the next enclosure and its block behind, and the field */
   const blk = F.block(K, { units: 5, seed: 12 });
   const bp = at(6.5, 0, -12); blk.position.set(bp[0], 0, bp[2]); blk.rotation.y = TH; TXT.add(R, blk); TXT.contact(R, blk);
-  const DCAM = 1.5, CX = 0.80, EYE = at(CX, 1.25, DOOR + DCAM), LOOK = at(CX, 1.25, DOOR);
+  const DCAM = 1.5, CX = 0.894, EYE = at(CX, 1.25, DOOR + DCAM), LOOK = at(CX, 1.25, DOOR);
   TXT.frame(R, { from: EYE, look: LOOK });
   TXT.sky(R);
   TXT.deckRig(R, W.rig, { target: [T[0], 0, T[1]], distance: 50, shadowFar: 120, normalBias: 0.05 });
@@ -73,7 +79,7 @@ k,h,b,s = shell.copy(5)
 labs = json.load(open('/home/user/TexasAIDocket/out/2026-09-29/copy.json'))['slides']['S5']['labels']
 pg = '<div id="pg">' + ''.join(f'<p class="qt">"{t}"</p>' for t in labs) + '</div>\n'
 shell.write(5, "Archetype DOCUMENT. RENDERED through txthree.js in the deck's goldenHour world. The step-up transformer's cabinet door square to the lens, the judges' proposal for decision in its clear pocket with their two lines set on the page, the fins, the next enclosure and the field past the cabinet's edge.",
-  k, h, b, s, scene, hook_css="left:80px; top:150px; width:600px;", dek_css="width:590px;", fit=(80, 112, 2),
+  k, h, b, s, scene, hook_css="left:80px; top:150px; width:500px;", dek_css="width:490px;", fit=(72, 100, 2),
   extra_css='''  #pg { position:absolute; z-index:9; }
   .qt { font-family:"Fraunces", serif; font-weight:560; font-size:25px; line-height:1.24; color:#1F1D1A; margin-bottom:18px; font-variation-settings:"opsz" 24; }''',
   extra_html=pg)

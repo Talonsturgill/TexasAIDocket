@@ -1,5 +1,5 @@
 # Storyboard, 2026-09-29
-# "813 gas generators. One customer."
+# "813 gas generators. One customer, at first."
 
 ## The story, and what the fact check did to it
 
@@ -22,7 +22,7 @@ today as tx-2026-0193.
   No frame draws or says an absence of lines.
 - **No bare $551.8 million.** It is the City witness's figure including transmission and
   financing (c19, c22). The judges' own generation-only figure is about $499.8 million (c20, c21).
-  The deck prints no dollar figure.
+The deck prints one dollar figure, the judges' approximately $499.8 million for the generation facilities alone, on frame 8 with c21's scope.
 - **The bridge is "up to five years"** (c23), and the utility's witness expects under three (c24).
   Never a flat five.
 - **"Monday" and no date** for the City Council vote (c46).
@@ -120,7 +120,7 @@ job: >
   Stop the scroll on the scale of the thing, and state the whole story's tension in the hook, a
   plant built from one small box multiplied for one customer.
 
-claims: [c1, c2, c3, c6, c8, c9, c28, c38, c39]
+claims: [c2, c3, c6, c8, c9, c28, c29, c39]
 numerals:
   - value_from: c6
 
@@ -153,8 +153,8 @@ art:
     the shadow side of the near row and the zenith behind the hook. Frame median L* planned at 30, rewritten from 48 after the renders measured the golden hour deck darker than planned.
 
 type:
-  hook: "813 gas generators. One customer."
-  dek: "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County, at first the plant's only retail customer. Two judges have now filed a proposal for decision with a condition on who pays."
+  hook: "813 gas generators. One customer, at first."
+  dek: "El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County. Two judges recommend approval with a condition on who pays, and denial without it."
   labels: []
 
 verbatim: []
@@ -246,7 +246,7 @@ job: >
   Put the plant on its ground beside its one customer, the count drawn as units a reader could
   count, and name whose data center it is.
 
-claims: [c2, c6, c7, c8, c14]
+claims: [c1, c2, c6, c7, c8, c14]
 numerals:
   - value_from: c8
   - value_from: c6
@@ -281,7 +281,7 @@ art:
 
 type:
   hook: "About 31 acres beside the data center"
-  dek: "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
+  dek: "The McCloud plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
   labels: []
 
 verbatim: []
@@ -301,7 +301,7 @@ risks:
 slide: 4
 layout: DIAGRAM
 primary_image:
-  subject: "a primer grey beam ruled on the caliche south of the field to the 1,000 MW commitment, white stakes at the first 220 MW, the second 220 MW and the peak, and a tier in the enclosures' own paint laid on the beam from the same origin that stops at 366 MW, the field's block rows behind under the eastern range, seen square from 6.5 m up"
+  subject: "a primer grey beam ruled on the caliche south of the field to the 1,000 MW commitment, white stakes at the first 220 MW, the second 220 MW and the peak, and a separate bar in the enclosures' own paint in front of the beam, from the same origin, that stops at 366 MW, the field's block rows behind under the eastern range, seen square from 6.5 m up"
   rect: [0, 700, 1080, 650]
   bleeds: [left, right, bottom]
 accent: none
@@ -521,7 +521,7 @@ art:
 
 type:
   hook: "Up to five years, then no decision"
-  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need Commission approval in a separate case."
+  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need commission approval in a separate case."
   labels: ["UP TO YEAR 5, BRIDGE", "YEAR 20, ESTIMATED SERVICE LIFE"]
 
 verbatim: []
@@ -550,7 +550,7 @@ job: >
   The turn. The judges' condition covers every year, and the reader sees it as one changed state
   of the same fence before they read it.
 
-claims: [c19, c20, c28, c30, c46]
+claims: [c19, c20, c21, c28, c30, c46]
 numerals:
   - value_from: c19
 
@@ -583,7 +583,7 @@ art:
 
 type:
   hook: "For the life of the plant"
-  dek: "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless."
+  dek: "The judges recommend approval only if the utility's other customers pay none of the plant's capital and operating costs, unless the plant later meets the statute's test. Its generation facilities are estimated at about $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless."
   labels: ["For the life of the McCloud facility"]
 
 verbatim:
@@ -612,7 +612,7 @@ job: >
   Close on the public's route and the open question: the commission has not ruled, the city is
   negotiating, and the docket is where a Texan reads it.
 
-claims: [c6, c37, c42, c43, c44, c45]
+claims: [c6, c37, c42, c44, c45]
 numerals:
   - value_from: c45
 
@@ -648,7 +648,7 @@ art:
 
 type:
   hook: "The commission has not ruled"
-  dek: "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own."
+  dek: "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and from an El Paso Electric residential customer."
   labels: []
 
 verbatim: []
@@ -656,7 +656,7 @@ verbatim: []
 acceptance:
   - "the rows read as silhouettes with lit edges at 432px"
   - "the chain link fence reads as a fence receding along the right edge at 432px"
-  - "the sun's glow sits behind the ridge, not in the type band"
+  - "the sun's glow sits at the right edge over a thin band of ridge, not in the type band"
   - "the frame's median L* at 432px is between 18 and 40"
 
 risks:
