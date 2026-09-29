@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- 2026-09-29, frame 6 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's goldenHour world. One modular gas generator at the pad's edge, cropped by the right edge, the low sun raking along its intake louvres, the yellow gas riser and valve past its corner against the field and the Franklin ridge. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#16181D; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:916px; font-size:30px; line-height:1.4; color:#EFE9DE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2DACD; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:0.92em; }
+  .hook, .dek, .tx-site { text-shadow:0 0 3px rgba(12,12,14,0.42), 0 1px 10px rgba(12,12,14,0.26); }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The vendor the data center preferred</h1>
+<p class="dek" data-follow="30">El Paso Electric engaged Enchanted Rock after the data center preferred it. It considered no other vendor, issued no request for proposals and ran no cost-benefit analysis for ratepayers. The plant would be its first experience with modular gas generation.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-29-mccloud.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "How it was chosen", counter: "06 / 09", src: "c16 c17 c18 c52 DRAWN", ink: '#E2DACD' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 116, maxLines: 2 });
+  MC.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = MC, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"units": 813, "acres": 31};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 50, near: 0.05, far: 12000 });
+  /* THE MACHINE. One unit at full detail at the field's south-west corner, the camera at the pad's
+   * edge looking north at its south face, the low sun from the west raking along the intake
+   * louvres. Past its south-west corner on the left, the yellow gas riser and valve stand against
+   * the pad, the field going back and the Franklin ridge under haze. */
+
+  const S = F.site(FIG.acres);
+  const yard = F.yard(K, THREE, TXT, { count: FIG.units });
+  yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
+  F.pad(K, THREE, TXT, R, S.side);
+
+  const ux = -S.side / 2 + 20, uz = S.side / 2 - 8;
+  const u = F.unit(K, { seed: 7 });
+  u.position.set(ux, 0.15, uz); TXT.add(R, u); TXT.contact(R, u);
+  const padM = new THREE.MeshStandardMaterial({ color: 0xffffff, map: K.tex('concrete'), roughness: 0.92 });
+  const pad = TXT.roundedBox(9, 0.15, 4.6, 0.02, padM); pad.position.set(ux - 0.6, 0.075, uz); pad.receiveShadow = true; TXT.add(R, pad);
+  /* the unit and the camera turn together by TURN about the unit's centre, so the low sun from the west rakes the south face at about thirty degrees instead of grazing it */
+  const TURN = -0.5, rotP = (px, pz) => { const dx = px - ux, dz = pz - uz; return [ux + dx * Math.cos(TURN) + dz * Math.sin(TURN), uz - dx * Math.sin(TURN) + dz * Math.cos(TURN)]; };
+  u.rotation.y = TURN; pad.rotation.y = TURN;
+  const D = 8, cx0 = ux - 3.05 + 0.3 * 0.373 * D * 1.0, e = rotP(cx0, uz + 1.175 + D), l = rotP(cx0, uz + 1.175), EYE = [e[0], 1.5, e[1]];
+  TXT.frame(R, { from: EYE, look: [l[0], 1.5 + D * Math.tan(12.2 * Math.PI / 180), l[1]] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [ux, 0, uz], distance: 60, shadowFar: 140, normalBias: 0.05 });
+  TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
+  F.desert(TXT, R, { area: [ux - 90, uz - 60, ux + 30, uz + 30], avoid: [[ux - 7, uz - 5, ux + 7, uz + 5], [EYE[0] - 8, EYE[2] - 5, EYE[0] + 8, EYE[2] + 2]], scrub: 260, rock: 0, grass: 1600 });
+  TXT.scatter(R, { kind: 'rock', count: 4000, area: [EYE[0] - 8, EYE[2] - 9, EYE[0] + 8, EYE[2] - 2], seed: 83, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
+  F.ridge(THREE, TXT, R, { x: -5600, peak: 820, seed: 29, length: 70000 });
+  F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
+  TXT.weather(R, { grime: 0.55 });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.34, floor: 0.3, floorH: 220 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

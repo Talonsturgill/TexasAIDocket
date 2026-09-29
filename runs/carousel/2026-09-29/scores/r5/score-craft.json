@@ -1,0 +1,51 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frames 1, 2, 3 and 6 read as places, 3 the best image. The detail runs backwards: 7 and 8 a thin flat strip under a dead sky band with no post shadows, 5 a flat khaki door with a hard black seam, 9 no sun or glow and the plant a black wall with the foreground lit warm, barbed wire where the dossier names chain link, 4's empty bottom third, the mannequin on 1 and 2, no visible grime on 6."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One world, one hero, the 7 to 8 swipe is the turn. Frame 5 an undeclared value cut mid deck, 9's fence carryover reads only as the plant's wall."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.9,
+   "why": "Every numeral traces, drawn ratios measure correctly. Frame 4's bar spans Region 1 in the picture, frame 8's label drops c30's exception, the caption's 99.8 million omits c21's scope."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "Who, where, what and when named, a concrete stake, the CEO beside the witness. The reader's action only implied."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "Cover earns it, 2 pays, 7 to 8 a genuine turn. 3 and 4 both answer how big, the close is status."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean, sharp hooks. 7 and 8 run long in near legal paraphrase, specificity geographic more than vernacular."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fence ruler and transformer pocket fresh, one familiar move in the enclosures on caliche."
+  }
+ ],
+ "weighted_score": 7.52,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 7 and 8 as one low three quarter camera down the fence with the red bridge panels large in the foreground and post shadows raking the caliche."
+}

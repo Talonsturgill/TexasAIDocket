@@ -1,0 +1,53 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Most frames pass the place at an hour test. Frame 1 strongest. Primitive field models on 4, 7, 8, fence frames lit flat from behind the camera, frame 9's ridge faceted, frame 1's bottom third an untextured plane, frame 5's door one flat field."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one sun, one hero, one grade. The year fence carries the deck. Frame 5 is a hard value cut beside the declared one on 9. The edge tease does not read."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every numeral traces. The caption's KVIA facts (c46, c48) are not in first_comment.txt, whose provenance line reads two official records and one first party account. Frame 4 labels REGION 2 at the 440 stake and draws McCloud over Region 1, which c13 says existing resources serve, and its end measures 0.356 against 0.366. Frame 6 drops 'to Enchanted Rock'. The cover drops 'intended initially'. Frame 7 and the caption omit c25's point that any change in cost responsibility would require Commission approval in a separate case. Frame 2 adds 'its own' to c7."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where, who and the stake land. SOAH and the PUC are never spelled out, the judges unnamed, no route to file a comment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 7 to 8 is the best move, the close lands. Frame 3 repeats frame 1's payload. Frame 6 slows the path from 5 to 7."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Tight and specific, house rules clean. 'a condition on who pays' and 'the statute's test' are flat officialese. 1118 beside 1,000 is inconsistent formatting."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No topic repeat. No. 32 was gas engines for a data center, no. 36 the same PUCT Interchange instrument. The fence timeline and desert are fresh."
+  }
+ ],
+ "weighted_score": 6.65,
+ "hard_fails": [
+  "The caption states two facts that rest only on KVIA (c46 the council's counteroffer, c48 the CEO statement) and first_comment.txt never lists KVIA, its provenance line reading two official records and one first party account, so no reader can trace the council vote."
+ ],
+ "ship": false,
+ "one_sentence_fix": "List every surface's sources in the first comment, caption included, and keep frame 4's art from contradicting its labels: each 220 MW label on its own segment and the McCloud tier against the Region 2 load."
+}

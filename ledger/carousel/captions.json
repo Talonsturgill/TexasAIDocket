@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the two things",
   "the plain question",
   "the number that is wrong",
   "the object",
   "the who",
-  "the place"
+  "the place",
+  "the quiet decision"
  ],
  "entries": [
   {
@@ -636,15 +636,34 @@
    ],
    "critic_note": "The critic chose A. After three panel rounds the order's line was reframed as a metric the parties agreed, the unscoped 30 day wildfire plan window was dropped for SPS's own statement that its 2027 report carries a full year of data, and the close was rewritten to name the next filing, since the room's own close repeated the last run's substance and ledger_check refused it.",
    "move_note": "Opens on the filing date, lays the order's line against the report's answer and what the report does count, and closes on the next filing and when it comes, put as the question it leaves."
+  },
+  {
+   "date": "2026-09-29",
+   "carousel_no": 37,
+   "opening_move": "the two things",
+   "structure": "Two columns",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "Up to five years in El Paso Electric's plan. The life of the plant in the judges'.",
+   "words": 145,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 883,
+   "hashtags": [
+    "#ElPaso",
+    "#PUCT",
+    "#ElPasoElectric"
+   ],
+   "critic_note": "The critic chose the two things. After panel round one the unscoped CEO line came out, because the record does not say what 'those costs' are, the Commission's separate case went in from c25, and the cost line was scoped to the plant's total estimated cost.",
+   "move_note": "Opens on the two spans side by side, lays the utility's offer against the judges' condition, and closes on the payer the record does not yet name, put as a question."
   }
  ],
  "structures_recent": [
-  "Zoom out",
   "Ladder",
-  "Pivot"
+  "Pivot",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

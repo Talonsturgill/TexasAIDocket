@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 2026-09-29, frame 2 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's goldenHour world. One block of the record's larger group size on its pad with its step-up transformer, a worker at true scale at the pad corner, the field beyond. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#16181D; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:30px; line-height:1.4; color:#EFE9DE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2DACD; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:0.92em; }
+  .hook, .dek, .tx-site { text-shadow:0 0 3px rgba(12,12,14,0.42), 0 1px 10px rgba(12,12,14,0.26); }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four or five to a transformer</h1>
+<p class="dek" data-follow="30">The plan would buy 813 modular gas generators rated at 450 kilowatts each. They are typically installed in groups of four or five, each group connected to a step-up transformer.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-29-mccloud.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "One block of the 813", counter: "02 / 09", src: "c6 c7 DRAWN", ink: '#E2DACD' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 116, maxLines: 2 });
+  MC.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = MC, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"units": 813, "acres": 31, "units_per_group_max": 5};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure * 1.12, tone: W.tone, fov: 34, near: 0.2, far: 12000 });
+  /* ONE BLOCK AND A PERSON. A block of the record's larger group size on its pad at the field's
+   * south edge, the step-up transformer at its east end, a resident at the pad's south-west corner
+   * for the size. The camera stands south-west of it at eye height, the low sun over its left
+   * shoulder, so every west end and every south face is lit. The yellow gas header runs out of the
+   * right edge. */
+
+  const S = F.site(FIG.acres);
+  const yard = F.yard(K, THREE, TXT, { count: FIG.units });
+  yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
+  F.pad(K, THREE, TXT, R, S.side);
+
+  const bz = S.side / 2 - 14, bx = -30;
+  const blk = F.block(K, { units: FIG.units_per_group_max, seed: 6 });
+  blk.position.set(bx, 0, bz); TXT.add(R, blk); TXT.contact(R, blk);
+  const hdr = TXT.tube([[bx - 14, 0.55, bz - 2.9], [bx + 60, 0.55, bz - 2.9]], 0.14, K.mat('mgg-gasline', { color: 0xc9a227, roughness: 0.5, metalness: 0.3 }));
+  hdr.castShadow = true; TXT.add(R, hdr);
+  const who = K.make('person', { seed: 4, role: 'worker', pose: 'stand', hat: 'hard', vest: true });
+  who.position.set(bx + 3.5, 0.0, bz + 3.4); who.rotation.y = -0.9; TXT.add(R, who); TXT.contact(R, who);
+  const apron = TXT.roundedBox(34, 0.12, 5.0, 0.02, new THREE.MeshStandardMaterial({ color: 0xffffff, map: K.tex('concrete'), roughness: 0.92 }));
+  apron.position.set(bx + 2, 0.06, bz + 6.0); apron.receiveShadow = true; TXT.add(R, apron);
+  /* the block's own transformer stands behind its last unit from here, so it is moved to the pad's front corner where the lens sees it */
+  blk.traverse(m => { if (m.isMesh && m.parent && m.parent !== blk && m.parent.userData && m.parent.userData.hvOut) m.visible = false; });
+  const tx = K.make('padmount_transformer', { seed: 3 }); tx.rotation.y = -0.5; tx.position.set(bx + 11.4, 0.15, bz + 1.6); TXT.add(R, tx); TXT.contact(R, tx);
+  TXT.frame(R, { from: [bx - 14, 1.2, bz + 12.5], look: [bx + 8, 1.2 + 26 * Math.tan(6.2 * Math.PI / 180), bz - 1] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [bx, 0, bz], distance: 70, shadowFar: 180, normalBias: 0.12 });
+  TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
+  F.desert(TXT, R, { area: [bx - 70, bz + 6, bx + 60, bz + 60], avoid: [[bx - 24, bz + 3, bx + 20, bz + 9], [bx - 30, bz + 9, bx + 6, bz + 30]], scrub: 120, rock: 0, grass: 2600 });
+  TXT.scatter(R, { kind: 'rock', count: 5000, area: [bx - 20, bz + 3.8, bx + 14, bz + 14], seed: 82, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
+  F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
+  TXT.weather(R, { grime: 0.5 });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.45, floor: 0.45 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);
+  TXDECK.finish(cx);
+  window.__txDrawn = { units: yard.userData.drawn + FIG.units_per_group_max };
+
+  return true;
+})();
+</script>
+</body>
+</html>

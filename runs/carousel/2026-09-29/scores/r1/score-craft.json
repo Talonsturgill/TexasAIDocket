@@ -1,0 +1,51 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "One golden hour world, few frames pass the showstopper test. Frame 1 best but its bottom 28 percent is empty blotchy caliche and the risers are tokens. Frame 2 leaves the lower 45 percent flat, the person has no contact shadow, the nearest enclosure is cropped dark, a silencer sits behind the dek. Frame 3's field reads as shadowless toy blocks, scrub floats in the fog, no range, no visible year fence. Frame 4's back rows render solid black faces, a wide empty caliche band, REGION 2 nearly runs into the peak label. Frame 5 spends 65 percent on a flat unweathered olive door plate, the page reads as a sticker, the hook's The straddles the door to sky seam. Frame 6 is the weakest, a flat brown box without raking light, a tilted ground, the stack rising into the dek. Frames 7 and 8 read cleanly but the panels are flat fills and the back row mixes cream and blue striped units. Frame 9 has the best mood but the ridge is an oversized jagged mesh with glints and the foreground is lit warm while looking into the sun."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One deck on the contact sheet. The 7 to 8 state change works hard. The edge tease does not show and frame 3 has no visible fence. Frame 5 breaks the sky over ground rhythm and the hero's paint moves from cream to brown grey."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, frame 5's lines match c27. Frame 6's 'It considered no alternative' drops c17's 'to Enchanted Rock'. The cover's 'One customer.' leans on c9's 'intended initially'. The caption's 'put the generation at' reads awkwardly."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and the stake are named. Frame 9 never says a Texan can file a comment in the docket."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, frame 2 pays off, 7 to 8 is a real turn. Frame 4 could move without loss. The close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and specific with voice in places. Frame 3's hook and dek are flat record summary cadence and no copy uses the Franklins or the Hueco Bolson. House rules clean."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 32 rendered a genset yard on caliche, no. 36 a pipe rail counting device seen square on, no. 33 golden hour at el 9 closing into the sun, no. 36 also a PUCT Interchange docket. The accent and the aerial are fresh."
+  }
+ ],
+ "weighted_score": 7.01,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Recompose frames 2, 3 and 6 so the rendered hero fills the lower half, rake frame 6's louvres and throw frame 3's row shadows with the 9 degree sun, place the year fence on frame 3, and work frame 5's flat door plate."
+}

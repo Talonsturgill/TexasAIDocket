@@ -2365,6 +2365,60 @@
     "hex": "#15171C",
     "note": "The deck's declared ground."
    }
+  },
+  {
+   "date": "2026-09-29",
+   "carousel_no": 37,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, by out/2026-09-29/tmp/ledgers.py, and the gate suite by exit code.",
+   "register": "RENDERED, NOT PRINTED. One goldenHour world declared once in assets/js/deck/2026-09-29-mccloud.js, the key at azimuth -84 elevation 9 after round one raised it from 3.5, the haze pulled to a dust gold, one hero built in the chassis (modular_gas_genset, padmount_transformer, genset_block) and a yard of 813 units whose units nearest the lens are built as the full model, and one accent, capitol granite #9A3B2A, on the fence panels the data center pays for and a DOM bar on 1, 7 and 8.",
+   "structural_laws": [
+    "A SUN AT 3.5 DEGREES LIGHTS THE GROUND AT SIX PERCENT OF ITS STRENGTH. Every ground in the first render read as violet asphalt, because at that elevation the sky light carries the ground. At 9 degrees the caliche reads as caliche.",
+    "A FENCE SEEN ALONG ITS LENGTH LIES ABOUT ITS OWN RATIO. Five spans of twenty took about 45 percent of the fence on screen. Side on, every span projects at one length and the painted run is the share it stands for.",
+    "A PIPE RAIL IS UNDER A PIXEL AT FEED SIZE. The accent had to live on a panel between the rails, and the lit paint had to be set darker than the accent it must read as.",
+    "A METALLIC DOOR MIRRORS THE SKY BEHIND THE HOOK. The transformer door read as a lit patch until its paint was made matte and its nameplate hidden.",
+    "A SUN BEHIND THE RIDGE STILL LIGHTS THE VALLEY unless the key is dimmed for that frame, because the directional light does not know the ridge is there."
+   ],
+   "techniques": [
+    "a lane between block rows at the yard's west edge with the units within fifty metres built as the full model and a worker in the lane",
+    "one block of five on its pad with its transformer, the camera low and pitched up so the block fills the lower half",
+    "the whole yard of 813 from 90 m up beside the data hall",
+    "a primer beam ruled to the 1,000 MW commitment with the plant's tier laid on it from the end of Region 1",
+    "the transformer's cabinet door square to the lens with the judges' two lines set on a page in its pocket",
+    "one unit turned so the low sun rakes its intake louvres, the gas riser past its corner",
+    "a twenty span fence side on, five granite panels then twenty on one camera",
+    "the field into the sun from the public road with the sun behind the Franklin ridge"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     29.0,
+     25.7,
+     37.7,
+     27.6,
+     22.8,
+     23.1,
+     38.1,
+     38.7,
+     36.5
+    ],
+    "deck_median_L": 29.0,
+    "max_adjacent_delta": 15.0,
+    "mean_adjacent_delta": 6.04,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#9A3B2A",
+    "name": "capitol granite, the costs the data center carries",
+    "frames_above_floor": [
+     1,
+     7,
+     8
+    ],
+    "note": "Painted fence panels on 7 and 8 and a DOM bar on 1, 7 and 8."
+   },
+   "ground": {
+    "hex": "#16181D",
+    "note": "The deck's declared ground."
+   }
   }
  ]
 }

@@ -1,0 +1,10 @@
+{"lens":"integrity","criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.3,"why":"Most frames are rendered places at an hour. Frame 5's door is flat, the page a plaque, the lit world a separate panel. Frame 9's ridge a near black low poly mass, the burning seam a faint disc."},
+{"name":"deck_coherence","weight":0.12,"score":7.6,"why":"One world, accent as declared, both devices work. Frame 5 breaks the sky band between 4 and 6."},
+{"name":"claim_integrity","weight":0.2,"score":7.4,"why":"Every numeral traces, rejected figures kept out, frame 5's quotes verbatim. Frame 4's tier runs about 7 percent long and starts 28 px inside Region 1. Frame 9 fuses c45's count with c44's commenter. 'Five commissioners' rests on KVIA and 'Meta's newest' repeats an October 2025 corporate claim as present fact. The block's id lists omit c46 and c20."},
+{"name":"story_and_stakes","weight":0.16,"score":8.0,"why":"County, applicant, customer, decision, deciding body, date and docket all land. The reader's action only implied, judges and SOAH never named, the council's move only in the caption."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.4,"why":"Cover earns it, the turn is real, the close lands. Frame 3 is cuttable, 6 could move."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Clean and on register, reads as a careful docket reporter rather than an El Pasoan. The caption's Commission has no antecedent."},
+{"name":"variety","weight":0.1,"score":6.6,"why":"No repeat in window. Same PUCT Interchange instrument as no. 36, gas engines like no. 32. The opening and fence device are fresh."}],
+"weighted_score":7.43,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Build frame 4's tier from measured coordinates so it starts at the Region 1 tick at 366/220 of a bracket, and list caption claims in the first comment."}

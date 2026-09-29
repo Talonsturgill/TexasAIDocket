@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- 2026-09-29, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's goldenHour world. THE COVER. The field of 813 modular gas generators from a monument camera at the west end of a lane between two block rows, looking east with the low sun behind, the rows converging on the horizon. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#16181D; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.95; letter-spacing:-0.008em; color:#F1ECE3; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:30px; line-height:1.4; color:#EFE9DE; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E2DACD; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:0.92em; }
+  .hook, .dek, .tx-site { text-shadow:0 0 3px rgba(12,12,14,0.42), 0 1px 10px rgba(12,12,14,0.26); }
+  #acc { position:absolute; left:82px; height:14px; background:#9A3B2A; z-index:12; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook"><span class="num">813</span> gas generators. One customer, at first.</h1>
+<p class="dek" data-follow="30">El Paso Electric wants to build them beside Meta's AI data center in northeast El Paso County. Two judges recommend approval with a condition on who pays, and denial without it.</p>
+<div id="acc"></div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-29-mccloud.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "El Paso County", counter: "01 / 09", src: "c2 c3 c6 c8 c9 c28 c29 c39 DRAWN", ink: '#E2DACD' });
+  TX.fitText(document.getElementById("hook"), { min: 92, max: 124, maxLines: 2 });
+  MC.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = MC, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"units": 813, "acres": 31};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 32, near: 0.2, far: 12000 });
+  /* THE COVER. A monument camera at the west end of a lane between two block rows, looking east
+   * down the lane with the low sun at its back: every unit's west end and the lane's caliche take
+   * the warm light, the rows converge on the horizon, and the count is felt as depth. */
+  const S = F.site(FIG.acres);
+  const probe = F.yard(K, THREE, TXT, { count: FIG.units });
+  const zs0 = Array.from(new Set(probe.userData.units.map(u => Math.round(u[1] * 10) / 10))).sort((a, b) => a - b);
+  const lz0 = (zs0[Math.floor(zs0.length / 2)] + zs0[Math.floor(zs0.length / 2) + 1]) / 2, xmin = Math.min.apply(null, probe.userData.units.map(u => u[0]));
+  /* the units within about fifty metres of the lens on both sides of the lane are the full model */
+  const yard = F.yard(K, THREE, TXT, { count: FIG.units, detail: [xmin - 5, lz0 - 12, xmin + 52, lz0 + 12] });
+  yard.position.set(S.yard[0], 0, S.yard[2]); TXT.add(R, yard);
+  F.pad(K, THREE, TXT, R, S.side);
+  const zs = Array.from(new Set(yard.userData.units.map(u => Math.round(u[1] * 10) / 10))).sort((a, b) => a - b);
+  const laneZ = (zs[Math.floor(zs.length / 2)] + zs[Math.floor(zs.length / 2) + 1]) / 2;
+  const xs = yard.userData.units.map(u => u[0]), x0 = Math.min.apply(null, xs);
+  const who = K.make('person', { seed: 4, role: 'worker', pose: 'stand', hat: 'hard', vest: true });
+  who.position.set(x0 + 3.5, 0, laneZ + 0.9); who.rotation.y = -Math.PI / 2 - 0.4; TXT.add(R, who); TXT.contact(R, who);
+  TXT.frame(R, { from: [x0 - 18, 1.6, laneZ - 0.2], look: [x0 + 120, 1.6 + 138 * Math.tan(2.4 * Math.PI / 180), laneZ - 0.6] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [x0 + 40, 0, laneZ], distance: 260, shadowFar: 700, normalBias: 0.05 });
+  TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
+  F.desert(TXT, R, { area: [x0 - 60, laneZ - 60, x0 - 3, laneZ + 60], avoid: [[x0 - 24, laneZ - 4, x0 - 3, laneZ + 4]], scrub: 220, rock: 0, grass: 1800 });
+  TXT.scatter(R, { kind: 'grass', count: 90, area: [x0 - 2, laneZ - 1.4, x0 + 60, laneZ + 1.4], seed: 71, scale: [0.3, 0.55], clumping: 0.7, colors: [0xb7a07a, 0xa89272, 0xc2ad86] });
+  TXT.scatter(R, { kind: 'rock', count: 5000, area: [x0 - 17, laneZ - 1.7, x0 + 6, laneZ + 1.5], seed: 81, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
+  F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
+  TXT.weather(R, { grime: 0.5 });
+  /* the accent under the hook's last line: the one customer who would carry the plant's costs */
+  { const hk = document.getElementById('hook'), rg = document.createRange(); rg.selectNodeContents(hk); const rs = rg.getClientRects(), last = rs[rs.length - 1], a = document.getElementById('acc');
+    a.style.top = (last.bottom + 4) + 'px'; a.style.height = '10px';
+    const dk = document.querySelector('.dek'); dk.style.top = (parseFloat(dk.style.top) + 14) + 'px'; a.style.width = Math.round(last.width) + 'px'; }
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.atmosphere(cx, { a: 0.4, floor: 0.35 });
+  F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);
+  TXDECK.finish(cx);
+  window.__txDrawn = { units: yard.userData.drawn, detailed: yard.userData.detailed };
+
+  return true;
+})();
+</script>
+</body>
+</html>

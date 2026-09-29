@@ -1,0 +1,51 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "One desert world with contact and haze. Frame 4's field a repetitive instanced grid on flat ground, frame 9's sawtooth ridge a dead dark mass, frame 5's door a flat panel with a blue shadow wedge, frame 3 does not clearly show the data hall."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, both devices work, no strobe. Frame 5 reads as an interior break."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces, KVIA attributed. Frame 4's tier from 220 to 586 asserts an unclaimed relation to Region 2 and breaks its own acceptance line. 'One customer.' at feed size. 'residents' plural on one identified resident. Frame 8's 99.8 million without c21's generation only scope, and the storyboard still says the deck prints no dollar figure."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "County, bodies, decision, deadline and stake named. No route to comment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Hook earns it, 2 pays, 7 to 8 lands, 9 closes. 3 and 6 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean, strong opener. Frames 7 and 8 procedural, 1118 without a separator."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat. Same instrument as no. 36, gas engines like no. 32."
+  }
+ ],
+ "weighted_score": 7.09,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put frame 4's 366 MW tier back at the origin unless a claim says which load McCloud serves."
+}
