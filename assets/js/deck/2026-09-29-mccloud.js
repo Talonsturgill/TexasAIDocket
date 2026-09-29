@@ -25,9 +25,11 @@
  * genset_block is one group of four or five on its pad. N.yard lays out a count of units as
  * instanced low detail geometry, so 813 can stand on one frame.
  *
- * THE ACCENT. bluebonnet #4E5FA8, the ratepayer. It marks the customers the proposal would hold
- * harmless and nothing else: the lit window of one house, a rule under the ordering paragraph, the
- * gate a resident walks through. It never touches a generator, the pipeline, the sky or the ridge.
+ * THE ACCENT. capitol granite #9A3B2A, the costs the data center carries. It marks the fence spans
+ * the data center pays for, a rule under the judges' own words, and the one customer on the cover,
+ * and nothing else. It never touches a generator, the pipeline, the sky or the ridge. It replaced
+ * bluebonnet on the first render, because a blue accent under a blue golden hour sky measures as
+ * sky and the sky measured as accent.
  *
  * WHAT THIS FILE IS NOT. A frame. It declares the deck's one light and world, installs the kit
  * additions and the deck's materials, and hands a frame primitives. Each frame sets up its own
@@ -43,11 +45,11 @@
    * peach haze over a blue zenith grades a frame mauve (2026-09-26). */
   TXDECK.declare({
     world: "mccloud",
-    light: { az: -84, el: 5 },
-    sky: { preset: "goldenHour", zenith: 0x1b4f8f, horizon: 0x86bdd0, haze: 0xf0c07e, span: 0.3, fogDensity: 0.00017, clouds: 0.3, envIntensity: 0.46 },
+    light: { az: -84, el: 3.5 },
+    sky: { preset: "goldenHour", zenith: 0x1b4f8f, horizon: 0x86bdd0, haze: 0xf0c07e, span: 0.3, fogDensity: 0.00017, clouds: 0, envIntensity: 0.46 },
     ground: "#16181D",
     material: "#CFCAC0",
-    accent: "#4E5FA8",
+    accent: "#9A3B2A",
     grade: {
       exposure: 0.0,
       saturation: 1.0,
@@ -68,7 +70,7 @@
   N.W = 1080;
   N.H = 1350;
   N.SEED = 20260929;
-  N.ACCENT = 0x4e5fa8;
+  N.ACCENT = 0x9a3b2a;
   N.DESERT = 0xcdb28a;          /* the basin floor, caliche and sand under creosote */
   N.PAINT = 0xd4d0c6;           /* the enclosure paint, a warm light grey */
 
@@ -156,12 +158,14 @@
           stackTop = { x: 0.3, y: sk + H + 1.21, z: -0.3 };
         }
         /* the gas train at -x: a yellow riser from the pad, a regulator and a valve */
-        var gasInlet = { x: -L / 2 - 0.35, y: 0.0, z: -0.5 };
+        var gasInlet = { x: -L / 2 - 0.35, y: 0.0, z: 0.55 };
         if (o.gas !== false && o.lod !== 'low') {
-          K.bar([-L / 2 - 0.35, 0.0, -0.5], [-L / 2 - 0.35, 0.9, -0.5], 0.05, M.yellow, 12, g);
-          K.bar([-L / 2 - 0.35, 0.9, -0.5], [-L / 2 + 0.02, 0.9, -0.5], 0.05, M.yellow, 12, g);
-          var reg = K.cyl(0.14, 0.14, 0.22, M.yellow, -L / 2 - 0.35, 0.55, -0.5, 16, g);
-          var cap = K.cyl(0.18, 0.06, 0.12, M.dark, -L / 2 - 0.35, 0.77, -0.5, 16, g);
+          K.bar([-L / 2 - 0.35, 0.0, 0.55], [-L / 2 - 0.35, 0.9, 0.55], 0.05, M.yellow, 12, g);
+          K.bar([-L / 2 - 0.35, 0.9, 0.55], [-L / 2 + 0.02, 0.9, 0.55], 0.05, M.yellow, 12, g);
+          var reg = K.cyl(0.14, 0.14, 0.22, M.yellow, -L / 2 - 0.35, 0.55, 0.55, 16, g);
+          var cap = K.cyl(0.18, 0.06, 0.12, M.dark, -L / 2 - 0.35, 0.77, 0.55, 16, g);
+          /* the quarter turn valve handle on the riser */
+          K.bar([-L / 2 - 0.35, 0.35, 0.55], [-L / 2 - 0.62, 0.35, 0.55], 0.018, K.mat('mgg-valve', { color: 0xb8322a, roughness: 0.5 }), 8, g);
         }
         g.userData.stackTop = stackTop;
         g.userData.gasInlet = gasInlet;
@@ -219,6 +223,53 @@
         return g;
       }
     });
+  };
+
+  /* THE YEAR FENCE: an oilfield pipe-rail fence of `spans` equal spans, one span per year of the
+   * plant's estimated service life, whose top rails are painted the accent for the first `paid`
+   * spans and left bare primer for the rest. The fence is the deck's measure of time, and the
+   * number of spans and the number painted are figures from the record (figures.json), never
+   * typed into a frame. `collarAt` puts a galvanised collar on the post that ends that span.
+   * Origin at the fence's west end on the ground, the run along +x. Returns the group with
+   * userData.posts ([{x, y}]) so a frame can land a leader on a post. */
+  N.yearFence = function (K, THREE, TXT, o) {
+    o = o || {};
+    var spans = o.spans | 0, paid = o.paid | 0, sp = o.spacing || 3.0, g = new THREE.Group(), posts = [];
+    if (!spans) throw new Error('yearFence needs spans from figures.json');
+    var pipe = K.mat('yf-pipe', { color: 0x9a9da0, roughness: 0.5, metalness: 0.55 });
+    var acc = K.mat('yf-acc', { color: N.ACCENT, roughness: 0.4, metalness: 0.1, emissive: N.ACCENT, emissiveIntensity: 0.55 });   /* a little emissive so the paint holds its hue under the orange sun */
+    var galv = K.finish.galvanized();
+    for (var i = 0; i <= spans; i++) {
+      var x = i * sp;
+      K.cyl(0.057, 0.057, 1.4, pipe, x, 0, 0, 14, g);
+      var dome = new THREE.Mesh(new THREE.SphereGeometry(0.06, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2), pipe); dome.position.set(x, 1.4, 0); g.add(dome);
+      if (o.collarAt != null && i === (o.collarAt | 0)) K.cyl(0.085, 0.085, 0.16, galv, x, 1.12, 0, 16, g);
+      posts.push({ x: x, y: 1.4 });
+    }
+    for (var s = 0; s < spans; s++) {
+      var x0 = s * sp, x1 = (s + 1) * sp;
+      K.bar([x0 + 0.05, 1.3, 0.09], [x1 - 0.05, 1.3, 0.09], 0.06, s < paid ? acc : pipe, 14, g);
+      K.bar([x0 + 0.05, 0.7, 0.09], [x1 - 0.05, 0.7, 0.09], 0.05, s < paid ? acc : pipe, 12, g);
+    }
+    g.userData.posts = posts; g.userData.spans = spans; g.userData.paid = paid;
+    return g;
+  };
+
+  /* THE SITE, one layout for every frame so a camera anywhere sees the same place. The pad is a
+   * square whose area is the record's acreage (figures.json acres, converted in code at 4046.86 m2
+   * per acre); the yard stands on it; the data hall stands immediately north of it; the year fence
+   * runs north along the pad's west edge from its south-west corner. None of this is the site plan,
+   * which the record does not give. */
+  N.site = function (acres) {
+    var side = Math.sqrt(acres * 4046.86);
+    return { side: side, yard: [0, 0, 0], hall: [0, 0, -side / 2 - 70], fence: [-side / 2 - 4, 0, side / 2 - 8] };
+  };
+  N.pad = function (K, THREE, TXT, R, side) {
+    /* graded caliche with the concrete texture's tooth, tiled in metres, so the pad is a surface and not a plate */
+    var tex = K.tex('concrete').clone(); tex.needsUpdate = true; tex.repeat.set(side / 6, side / 6);
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(side, side), new THREE.MeshStandardMaterial({ color: 0xe6d6b8, map: tex, roughness: 0.95 }));
+    m.rotation.x = -Math.PI / 2; m.position.y = 0.02; m.receiveShadow = true; TXT.add(R, m);
+    return m;
   };
 
   /* THE HERO, made the same way on every frame. */
@@ -290,7 +341,7 @@
    * stands west of the site, and no frame names a peak or a height. */
   N.ridge = function (THREE, TXT, R, o) {
     o = o || {};
-    var len = o.length || 26000, depth = o.depth || 2600, peak = o.peak || 620, seg = 480, dseg = 90;
+    var len = o.length || 26000, depth = o.depth || 2600, peak = o.peak || 430, seg = 480, dseg = 90;
     var geo = new THREE.PlaneGeometry(depth, len, dseg, seg); geo.rotateX(-Math.PI / 2);
     var rng = TX.rng(o.seed || 29), ph = [rng() * 10, rng() * 10, rng() * 10];
     var pos = geo.attributes.position;
@@ -319,7 +370,7 @@
    * where depth_floor reads it. Call AFTER TXT.frame. */
   N.desert = function (TXT, R, o) {
     o = o || {};
-    TXT.scatter(R, { kind: 'scrub', count: o.scrub || 2600, area: o.area || [-400, -400, 400, 200], avoid: o.avoid || [], seed: (o.seed || 11) + 2, scale: o.scale || [0.16, 0.34],
+    TXT.scatter(R, { kind: 'scrub', count: o.scrub || 2600, area: o.area || [-400, -400, 400, 200], avoid: o.avoid || [], seed: (o.seed || 11) + 2, scale: o.scale || [0.1, 0.2],
                      colors: [0x5a5e3a, 0x676a41, 0x4f5535, 0x6f6c46] });
     TXT.scatter(R, { kind: 'rock', count: o.rock || 1400, area: o.area || [-400, -400, 400, 200], avoid: o.avoid || [], seed: (o.seed || 11) + 3, scale: [0.05, 0.16] });
     if (o.grass) TXT.scatter(R, { kind: 'grass', count: o.grass, area: o.grassArea || o.area || [-200, -200, 200, 100], avoid: o.avoid || [], seed: (o.seed || 11) + 4, scale: [0.4, 0.8],
@@ -373,7 +424,7 @@
    * named element's line boxes, feathered wide, so the edge dissolves while the tone stays. */
   N.soften = function (cx, selectors, o) {
     o = o || {};
-    var blur = o.blur || 9, pad = o.pad == null ? 16 : o.pad, feather = o.feather || 64;
+    var blur = o.blur || 13, pad = o.pad == null ? 20 : o.pad, feather = o.feather || 72;
     var art = document.getElementById('art');
     var src = document.createElement('canvas'); src.width = art.width; src.height = art.height;
     var sx = src.getContext('2d'); sx.filter = 'blur(' + (blur * 2) + 'px)'; sx.drawImage(art, 0, 0);
