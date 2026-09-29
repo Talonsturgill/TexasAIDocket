@@ -12,17 +12,17 @@ scene = figs('units', 'acres', 'plant_mw', 'first_request_mw', 'second_request_m
   /* the lines are raised painted beams on the caliche, 0.3 m high, so a reader sees two lengths and not two scratches */
   const line = (len, z, m) => { const b = TXT.roundedBox(len, 0.3, 0.45, 0.04, m); b.position.set(ox + len / 2, 0.15, z); b.castShadow = true; b.receiveShadow = true; TXT.add(R, b); TXT.contact(R, b); };
   /* the peak is a primer grey beam, the plant a tier in the enclosures' own paint laid on it from the same origin */
-  const beam = TXT.roundedBox(L(FIG.peak_commit_mw), 0.4, 2.0, 0.04, paint(0x6c675f, 0.02)); beam.position.set(ox + L(FIG.peak_commit_mw) / 2, 0.2, oz); beam.castShadow = false; beam.receiveShadow = true; TXT.add(R, beam); TXT.contact(R, beam);
+  const beam = TXT.roundedBox(L(FIG.peak_commit_mw), 0.4, 0.8, 0.04, paint(0x6c675f, 0.02)); beam.position.set(ox + L(FIG.peak_commit_mw) / 2, 0.2, oz); beam.castShadow = false; beam.receiveShadow = true; TXT.add(R, beam); TXT.contact(R, beam);
   /* the plant's tier starts where Region 1 ends, since the judges found existing resources serve Region 1 */
-  const tier = TXT.roundedBox(L(FIG.plant_mw), 0.24, 2.0, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(ox + L(FIG.first_request_mw) + L(FIG.plant_mw) / 2, 0.52, oz); tier.castShadow = true; TXT.add(R, tier);
+  const tier = TXT.roundedBox(L(FIG.plant_mw), 0.24, 0.8, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(ox + L(FIG.first_request_mw) + L(FIG.plant_mw) / 2, 0.52, oz); tier.castShadow = true; TXT.add(R, tier);
   const stakeM = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: 0.6 });
-  const stake = (mw, z) => { const x = ox + L(mw); const p = K.cyl(0.05, 0.05, 1.8, stakeM, x, 0, z - 1.1, 10); TXT.add(R, p); return [x, 1.8, z - 1.1]; };
+  const stake = (mw, z) => { const x = ox + L(mw); const p = K.cyl(0.05, 0.05, 1.8, stakeM, x, 0, z, 10); TXT.add(R, p); return [x, 1.8, z]; };
   const at = {
     r1: stake(FIG.first_request_mw, oz),
     r2: stake(FIG.first_request_mw + FIG.second_request_mw, oz),
     peak: stake(FIG.peak_commit_mw, oz),
-    plant: [ox + L(FIG.first_request_mw) + L(FIG.plant_mw), 0.2, oz + 1.0],
-    plant0: [ox + L(FIG.first_request_mw), 0.2, oz + 1.0]
+    plant: [ox + L(FIG.first_request_mw) + L(FIG.plant_mw), 0.2, oz],
+    plant0: [ox + L(FIG.first_request_mw), 0.2, oz]
   };
   at.o = stake(0, oz);
   const mid = ox + L(FIG.peak_commit_mw) / 2;

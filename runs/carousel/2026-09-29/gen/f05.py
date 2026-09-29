@@ -30,17 +30,20 @@ scene = figs('units', 'acres') + r'''
   /* a vent of pressed slats across the door's upper leaf, and road dust rising up the door from its sill */
   for (let i = 0; i < 9; i++) onDoor(TXT.roundedBox(0.62, 0.018, 0.02, 0.005, green), 0.36, 1.66 + i * 0.034, 0.012).rotation.x = -0.5;
   { const dc = document.createElement('canvas'); dc.width = 8; dc.height = 256; const dg = dc.getContext('2d'), gr = dg.createLinearGradient(0, 256, 0, 0);
-    gr.addColorStop(0, 'rgba(176,150,112,0.85)'); gr.addColorStop(0.35, 'rgba(176,150,112,0.35)'); gr.addColorStop(1, 'rgba(176,150,112,0)'); dg.fillStyle = gr; dg.fillRect(0, 0, 8, 256);
+    gr.addColorStop(0, 'rgba(186,160,120,1)'); gr.addColorStop(0.3, 'rgba(186,160,120,0.6)'); gr.addColorStop(1, 'rgba(176,150,112,0)'); dg.fillStyle = gr; dg.fillRect(0, 0, 8, 256);
     const dt = new THREE.CanvasTexture(dc); dt.colorSpace = THREE.SRGBColorSpace;
     const dust = new THREE.Mesh(new THREE.PlaneGeometry(1.86, 0.7), new THREE.MeshStandardMaterial({ map: dt, transparent: true, roughness: 1, depthWrite: false }));
     onDoor(dust, 0, 0.62, 0.006); dust.castShadow = false; }
+  /* the door's pressed border and the leaf's stiffener, so the door carries relief the low sun can find */
+  [[0, 1.93, 1.8, 0.035], [0, 0.34, 1.8, 0.035]].forEach(b => onDoor(TXT.roundedBox(b[2], b[3], 0.022, 0.006, green), b[0], b[1], 0.01));
+  [[-0.88, 1.13], [0.88, 1.13]].forEach(b => onDoor(TXT.roundedBox(0.035, 1.6, 0.022, 0.006, green), b[0], b[1], 0.01));
   /* the page, a tabloid sheet of the proposal for decision, and the clear pocket over it */
   const PW = 0.28, PH = 0.43, PX = 0.62, PY = 1.06;
   const entries = [{ kind: 'heading', w: 0.5 }, { w: 0.34, t: 10 }, { w: 0.42, t: 10 }];
   const tpage = F.pageTexture(THREE, entries, { top: 150, left: 150 });
   const page = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshStandardMaterial({ map: tpage, roughness: 0.85 }));
   onDoor(page, PX, PY, 0.012); page.castShadow = false; page.receiveShadow = true;
-  const pocketM = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.16, roughness: 0.08, metalness: 0, clearcoat: 1 });
+  const pocketM = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.22, roughness: 0.05, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.05 });
   onDoor(TXT.roundedBox(PW + 0.03, PH + 0.03, 0.008, 0.003, pocketM), PX, PY - 0.005, 0.02).castShadow = false;
   const lipM = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.12, transparent: true, opacity: 0.9, emissive: 0xfff4e0, emissiveIntensity: 0.25 });
   onDoor(TXT.roundedBox(PW + 0.03, 0.01, 0.014, 0.003, lipM), PX, PY + PH / 2 + 0.01, 0.022).castShadow = false;

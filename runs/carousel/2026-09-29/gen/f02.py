@@ -21,7 +21,7 @@ scene = figs('units', 'acres', 'units_per_group_max') + r'''
   const tx = K.make('padmount_transformer', { seed: 3 }); tx.rotation.y = -0.5; tx.position.set(bx + 11.4, 0.15, bz + 1.6); TXT.add(R, tx); TXT.contact(R, tx);
   TXT.frame(R, { from: [bx - 14, 1.2, bz + 12.5], look: [bx + 8, 1.2 + 26 * Math.tan(6.2 * Math.PI / 180), bz - 1] });
   TXT.sky(R);
-  TXT.deckRig(R, W.rig, { target: [bx, 0, bz], distance: 120, shadowFar: 320, normalBias: 0.05 });
+  TXT.deckRig(R, W.rig, { target: [bx, 0, bz], distance: 120, shadowFar: 320, normalBias: 0.12 });
   TXT.ground(R, { surface: 'caliche', color: F.DESERT, size: 16000, seed: 11 });
   F.desert(TXT, R, { area: [bx - 70, bz + 6, bx + 60, bz + 60], avoid: [[bx - 24, bz + 3, bx + 20, bz + 9], [bx - 30, bz + 9, bx + 6, bz + 30]], scrub: 120, rock: 0, grass: 2600 });
   TXT.scatter(R, { kind: 'rock', count: 5000, area: [bx - 20, bz + 3.8, bx + 14, bz + 14], seed: 82, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });

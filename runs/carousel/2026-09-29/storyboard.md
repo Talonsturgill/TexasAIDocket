@@ -246,7 +246,7 @@ job: >
   Put the plant on its ground beside its one customer, the count drawn as units a reader could
   count, and name whose data center it is.
 
-claims: [c1, c2, c3, c6, c8, c9]
+claims: [c2, c6, c7, c8, c14]
 numerals:
   - value_from: c8
   - value_from: c6
@@ -281,7 +281,7 @@ art:
 
 type:
   hook: "About 31 acres beside the data center"
-  dek: "The plant would sit immediately next to Meta's newest AI data center, which Wurldwide LLC is developing. That data center is intended at first to be the only retail customer of the plant's output."
+  dek: "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
   labels: []
 
 verbatim: []
@@ -550,7 +550,7 @@ job: >
   The turn. The judges' condition covers every year, and the reader sees it as one changed state
   of the same fence before they read it.
 
-claims: [c19, c28, c29, c30]
+claims: [c19, c20, c28, c30, c46]
 numerals:
   - value_from: c19
 
@@ -583,7 +583,7 @@ art:
 
 type:
   hook: "For the life of the plant"
-  dek: "The judges recommend approval only if other customers are held harmless from the plant's capital and operating costs, unless the plant is later shown to meet the statute's test. Without that condition they would recommend denial."
+  dek: "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless."
   labels: ["For the life of the McCloud facility"]
 
 verbatim:
@@ -648,7 +648,7 @@ art:
 
 type:
   hook: "The commission has not ruled"
-  dek: "Five commissioners will accept, change or reject the proposal at an open meeting, and KVIA reports a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and residents."
+  dek: "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own."
   labels: []
 
 verbatim: []

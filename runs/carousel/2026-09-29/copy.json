@@ -3,7 +3,7 @@
  "carousel_no": "37",
  "document_title": "813 gas generators for one AI data center, and who pays",
  "_note": "Slide strings set from the storyboard dossiers; each carries its claim ids.",
- "caption": "Up to five years in El Paso Electric's plan. The life of the plant in the judges'.\n\nThe plant would be 813 gas generators beside Meta's AI data center in northeast El Paso County. The data center would carry the plant's capital costs for a bridge of up to five years. After that the utility wanted flexibility on who pays. Any change would need Commission approval in a separate case.\n\nTwo judges recommend approval only if other customers are held harmless from the plant's capital and operating costs for its life. Otherwise they would recommend denial. The condition lifts only if the utility shows the plant meets the statute's test.\n\nEl Paso City Council has authorized a counteroffer for a full hold harmless.\n\nThe judges' findings put the plant's total estimated cost at approximately $499.8 million. How much of that has a named payer after the bridge?\n\n#ElPaso #PUCT #ElPasoElectric\n",
+ "caption": "Up to five years in El Paso Electric's plan. The life of the plant in the judges'.\n\nThe plant would be 813 gas generators beside Meta's AI data center in northeast El Paso County. The data center would carry the plant's capital costs for a bridge of up to five years. After that the utility wanted flexibility on who pays. Any change would need commission approval in a separate case.\n\nTwo judges recommend approval only if other customers are held harmless from the plant's capital and operating costs for its life. Otherwise they would recommend denial. The condition lifts only if the utility shows the plant meets the statute's test.\n\nEl Paso City Council has authorized a counteroffer for a full hold harmless.\n\nThe judges' findings put the plant's total estimated cost at approximately $499.8 million. How much of that has a named payer after the bridge?\n\n#ElPaso #PUCT #ElPasoElectric\n",
  "slides": {
   "S1": {
    "n": 1,
@@ -54,20 +54,19 @@
    "kicker": "Northeast El Paso County",
    "headline": "About 31 acres beside the data center",
    "claims": [
-    "c1",
     "c2",
-    "c3",
     "c6",
+    "c7",
     "c8",
-    "c9"
+    "c14"
    ],
-   "cite": "c1 c2 c3 c6 c8 c9 DRAWN",
-   "body": "The plant would sit immediately next to Meta's newest AI data center, which Wurldwide LLC is developing. That data center is intended at first to be the only retail customer of the plant's output.",
+   "cite": "c2 c6 c7 c8 c14 DRAWN",
+   "body": "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "About 31 acres beside the data center",
-    "The plant would sit immediately next to Meta's newest AI data center, which Wurldwide LLC is developing. That data center is intended at first to be the only retail customer of the plant's output."
+    "The plant would sit on already-disturbed land immediately next to the data center, which Wurldwide LLC, owned by Meta, is developing. Its generators would run islanded, fed by a natural gas pipeline."
    ]
   },
   "S4": {
@@ -103,7 +102,7 @@
   "S5": {
    "n": 5,
    "file": "slide-05.html",
-   "kicker": "The proposal for decision",
+   "kicker": "State Office of Administrative Hearings",
    "headline": "Need shown. The rest, not.",
    "claims": [
     "c27",
@@ -176,19 +175,20 @@
    "headline": "For the life of the plant",
    "claims": [
     "c19",
+    "c20",
     "c28",
-    "c29",
-    "c30"
+    "c30",
+    "c46"
    ],
-   "cite": "c19 c28 c29 c30 DRAWN",
-   "body": "The judges recommend approval only if other customers are held harmless from the plant's capital and operating costs, unless the plant is later shown to meet the statute's test. Without that condition they would recommend denial.",
+   "cite": "c19 c20 c28 c30 c46 DRAWN",
+   "body": "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
    "labels": [
     "For the life of the McCloud facility"
    ],
    "strings": [
     "texasaidocket.com",
     "For the life of the plant",
-    "The judges recommend approval only if other customers are held harmless from the plant's capital and operating costs, unless the plant is later shown to meet the statute's test. Without that condition they would recommend denial.",
+    "The judges recommend approval only if El Paso Electric's other customers are held harmless from the plant's capital and operating costs, unless it later meets the statute's test. Its total estimated cost is approximately $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless.",
     "For the life of the McCloud facility"
    ]
   },
@@ -206,12 +206,12 @@
     "c45"
    ],
    "cite": "c6 c37 c42 c43 c44 c45 DRAWN",
-   "body": "Five commissioners will accept, change or reject the proposal at an open meeting, and KVIA reports a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and residents.",
+   "body": "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "The commission has not ruled",
-    "Five commissioners will accept, change or reject the proposal at an open meeting, and KVIA reports a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and residents."
+    "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors, and residents have filed their own."
    ]
   }
  }

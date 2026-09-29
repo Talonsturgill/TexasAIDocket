@@ -309,7 +309,10 @@
       conc: K.finish.concrete()
     };
     var bodyG = new THREE.BoxGeometry(2.35, 2.55, 6.1); bodyG.translate(0, 0.22 + 1.275, 0);
-    var louvG = new THREE.BoxGeometry(2.0, 1.9, 0.04); louvG.translate(0, 0.22 + 1.3, 3.07);
+    /* the radiator end as five slats with gaps between, so a far unit's end reads as louvres and not a black square (round 2) */
+    var louvG = (function () { var parts = [], k; for (k = 0; k < 5; k++) { var b = new THREE.BoxGeometry(2.0, 0.22, 0.06); b.rotateX(0.5); b.translate(0, 0.22 + 0.62 + k * 0.36, 3.07); parts.push(b); }
+      var pos = [], nor = []; parts.forEach(function (g) { var n = g.toNonIndexed(); pos.push.apply(pos, n.attributes.position.array); nor.push.apply(nor, n.attributes.normal.array); });
+      var G = new THREE.BufferGeometry(); G.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); G.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3)); return G; })();
     /* the intake louvres as three dark bands, not one dark window, so a far unit reads as a machine and not a cabin (2026-09-29) */
     var sideG = new THREE.BoxGeometry(2.38, 0.16, 2.8); sideG.translate(0, 0.22 + 1.1, -1.3);
     var sideG2 = sideG.clone(); sideG2.translate(0, 0.36, 0); var sideG3 = sideG.clone(); sideG3.translate(0, 0.72, 0);
@@ -379,7 +382,7 @@
       var along = Math.min(1, Math.min(z + len / 2, len / 2 - z) / 2500);
       var hh = peak * n * prof * Math.max(0.15, along);
       var rough = 0; for (var oc = 0, a = 1, f = 1; oc < 5; oc++, a *= 0.5, f *= 2.1) rough += a * (1 - Math.abs(TX.simplex2 ? TX.simplex2(x / 900 * f + ph[0], z / 900 * f + ph[1]) : Math.sin(x * f / 300 + z * f / 410)));
-      hh = hh * (0.55 + 0.45 * rough / 1.9) + 60 * Math.pow(Math.max(0, TX.simplex2 ? TX.simplex2(z / 380 + ph[2], x / 380) : 0), 2) * prof;
+      var rk = o.rough != null ? o.rough : 1; hh = hh * (1 - 0.45 * rk + 0.45 * rk * rough / 1.9) + 60 * Math.pow(Math.max(0, TX.simplex2 ? TX.simplex2(z / 380 + ph[2], x / 380) : 0), 2) * prof;
       pos.setY(i, Math.max(0, hh));
     }
     geo.computeVertexNormals();
