@@ -98,6 +98,12 @@ record does not say what "those costs" are. Every date in the post's own year ca
 - **A repair that did not hold.** Frame 9's ridge was smoothed in round 3 and put back, because the
   smooth ridge failed panel_ready's ground gate. It was lowered to a thin band in round 4 instead.
 
+**The score row reads STALE, and that is true.** After round 5, shipped_check found frame 4's code
+drew the plant bar from plant_mw and never read its declared figure, plant_share_of_peak. The bar
+was rebound to that figure and frame 4 re-rendered. It draws the same 366 of 1,000, so the frame a
+reader sees did not change in substance, but score.json describes the render before it. No score
+was refreshed by hand, and no round was spent on it, because the round cap had been reached.
+
 ## Instrument check
 
 Every page check exited 0: the gridwatch and waterwatch page checks, the waterwatch self-test, and
@@ -137,7 +143,7 @@ at a clause in claims.json, the verbatim quotes untouched.
 | claims         | PASS   | 56 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 8 declaration(s), 15 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.15 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
