@@ -25,7 +25,7 @@
  * genset_block is one group of four or five on its pad. N.yard lays out a count of units as
  * instanced low detail geometry, so 813 can stand on one frame.
  *
- * THE ACCENT. capitol granite #9A3B2A, the costs the data center carries. It marks the fence spans
+ * THE ACCENT. capitol granite #9A3B2A, the years the utility's other customers pay none of the plant's costs. It marks the fence spans
  * the data center pays for, a rule under the judges' own words, and the one customer on the cover,
  * and nothing else. It never touches a generator, the pipeline, the sky or the ridge. It replaced
  * bluebonnet on the first render, because a blue accent under a blue golden hour sky measures as

@@ -47,7 +47,7 @@ scene = r'''
   F.desert(TXT, R, { area: [S.side / 2 + 1, -40, S.side / 2 + 60, 90], avoid: [], scrub: 160, rock: 0, grass: 2600, scale: [0.06, 0.14], grassArea: [S.side / 2 + 1, -10, S.side / 2 + 40, 60] });
   /* fine gravel to the lens, so the near ground carries material and not only a gradient */
   TXT.scatter(R, { kind: 'rock', count: 2600, area: [C[0] - 40, C[2] - 20, C[0] - 2, C[2] + 20], seed: 91, scale: [0.012, 0.035], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
-  F.ridge(THREE, TXT, R, { peak: 760, seg: 1100, dseg: 200 });
+  F.ridge(THREE, TXT, R, { peak: 520, seg: 1100, dseg: 200 });
   TXT.weather(R, {});
   const cx = F.develop(await TXT.snapshot(R), gl);
   F.atmosphere(cx, { a: 0.45, floor: 0.45, fade: 260 });

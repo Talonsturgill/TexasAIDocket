@@ -13,7 +13,7 @@ scene = figs('units', 'acres', 'units_per_group_max') + r'''
   const hdr = TXT.tube([[bx - 14, 0.55, bz - 2.9], [bx + 60, 0.55, bz - 2.9]], 0.14, K.mat('mgg-gasline', { color: 0xc9a227, roughness: 0.5, metalness: 0.3 }));
   hdr.castShadow = true; TXT.add(R, hdr);
   const who = K.make('person', { seed: 4, role: 'worker', pose: 'stand', hat: 'hard', vest: true });
-  who.position.set(bx - 6.2, 0.0, bz + 5.2); who.rotation.y = -0.9; TXT.add(R, who); TXT.contact(R, who);
+  who.position.set(bx + 3.5, 0.0, bz + 3.4); who.rotation.y = -0.9; TXT.add(R, who); TXT.contact(R, who);
   const apron = TXT.roundedBox(34, 0.12, 5.0, 0.02, new THREE.MeshStandardMaterial({ color: 0xffffff, map: K.tex('concrete'), roughness: 0.92 }));
   apron.position.set(bx + 2, 0.06, bz + 6.0); apron.receiveShadow = true; TXT.add(R, apron);
   /* the block's own transformer stands behind its last unit from here, so it is moved to the pad's front corner where the lens sees it */
@@ -26,7 +26,7 @@ scene = figs('units', 'acres', 'units_per_group_max') + r'''
   F.desert(TXT, R, { area: [bx - 70, bz + 6, bx + 60, bz + 60], avoid: [[bx - 24, bz + 3, bx + 20, bz + 9], [bx - 30, bz + 9, bx + 6, bz + 30]], scrub: 120, rock: 0, grass: 2600 });
   TXT.scatter(R, { kind: 'rock', count: 5000, area: [bx - 20, bz + 3.8, bx + 14, bz + 14], seed: 82, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
   F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
-  TXT.weather(R, {});
+  TXT.weather(R, { grime: 0.5 });
   const cx = F.develop(await TXT.snapshot(R), gl);
   F.atmosphere(cx, { a: 0.45, floor: 0.45 });
   F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);

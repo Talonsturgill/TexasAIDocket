@@ -25,7 +25,7 @@ scene = figs('units', 'acres') + r'''
   TXT.scatter(R, { kind: 'grass', count: 90, area: [x0 - 2, laneZ - 1.4, x0 + 60, laneZ + 1.4], seed: 71, scale: [0.3, 0.55], clumping: 0.7, colors: [0xb7a07a, 0xa89272, 0xc2ad86] });
   TXT.scatter(R, { kind: 'rock', count: 5000, area: [x0 - 17, laneZ - 1.7, x0 + 6, laneZ + 1.5], seed: 81, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
   F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
-  TXT.weather(R, {});
+  TXT.weather(R, { grime: 0.5 });
   /* the accent under the hook's last line: the one customer who would carry the plant's costs */
   { const hk = document.getElementById('hook'), rg = document.createRange(); rg.selectNodeContents(hk); const rs = rg.getClientRects(), last = rs[rs.length - 1], a = document.getElementById('acc');
     a.style.top = (last.bottom + 4) + 'px'; a.style.height = '10px';

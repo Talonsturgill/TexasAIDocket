@@ -14,15 +14,17 @@ scene = figs('units', 'acres', 'plant_mw', 'first_request_mw', 'second_request_m
   /* the peak is a primer grey beam, the plant a tier in the enclosures' own paint laid on it from the same origin */
   const beam = TXT.roundedBox(L(FIG.peak_commit_mw), 0.4, 0.8, 0.04, paint(0x6c675f, 0.02)); beam.position.set(ox + L(FIG.peak_commit_mw) / 2, 0.2, oz); beam.castShadow = false; beam.receiveShadow = true; TXT.add(R, beam); TXT.contact(R, beam);
   /* the plant is its own bar from the same origin, in front of the peak's beam: a comparison of sizes, never an allocation of load, since no claim says which load the plant serves */
-  const tier = TXT.roundedBox(L(FIG.plant_mw), 0.4, 0.8, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(ox + L(FIG.plant_mw) / 2, 0.2, oz + 1.6); tier.castShadow = true; TXT.add(R, tier); TXT.contact(R, tier);
+  /* the bar stands 1.6 m nearer the lens than the beam, so it is scaled and placed by the ratio of the two depths and its ends land on the beam's own zero and 366 on screen */
+  const PX = ox + L(FIG.peak_commit_mw) / 2, KD = (28 - 1.6) / 28, tx0 = PX + (ox - PX) * KD, tlen = L(FIG.plant_mw) * KD;
+  const tier = TXT.roundedBox(tlen, 0.4, 0.8, 0.03, paint(0xd4d0c6, 0.32)); tier.position.set(tx0 + tlen / 2, 0.2, oz + 1.6); tier.castShadow = true; TXT.add(R, tier); TXT.contact(R, tier);
   const stakeM = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: 0.6 });
   const stake = (mw, z) => { const x = ox + L(mw); const p = K.cyl(0.05, 0.05, 1.8, stakeM, x, 0, z, 10); TXT.add(R, p); return [x, 1.8, z]; };
   const at = {
     r1: stake(FIG.first_request_mw, oz),
     r2: stake(FIG.first_request_mw + FIG.second_request_mw, oz),
     peak: stake(FIG.peak_commit_mw, oz),
-    plant: [ox + L(FIG.plant_mw), 0.0, oz + 2.0],
-    plant0: [ox, 0.0, oz + 2.0]
+    plant: [ox + L(FIG.plant_mw), 0.0, oz],
+    plant0: [ox, 0.0, oz]
   };
   at.o = stake(0, oz);
   const mid = ox + L(FIG.peak_commit_mw) / 2;

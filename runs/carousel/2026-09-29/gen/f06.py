@@ -23,7 +23,7 @@ scene = figs('units', 'acres') + r'''
   TXT.scatter(R, { kind: 'rock', count: 4000, area: [EYE[0] - 8, EYE[2] - 9, EYE[0] + 8, EYE[2] - 2], seed: 83, scale: [0.012, 0.04], colors: [0xa89c86, 0x8f8676, 0xb8ad98] });
   F.ridge(THREE, TXT, R, { x: -5600, peak: 820, seed: 29, length: 70000 });
   F.ridge(THREE, TXT, R, { x: 9000, peak: 380, seed: 31 });
-  TXT.weather(R, { grime: 0.35 });
+  TXT.weather(R, { grime: 0.55 });
   const cx = F.develop(await TXT.snapshot(R), gl);
   F.atmosphere(cx, { a: 0.34, floor: 0.3, floorH: 220 });
   F.soften(cx, ['.tx-site', '.src', '.kick', '.count', '.hook', '.dek']);

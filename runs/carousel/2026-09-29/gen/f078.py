@@ -66,7 +66,7 @@ for n in (7, 8):
       ("Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's goldenHour world. The year fence side on, twenty spans with sheet panels, one per year of the estimated service life, the camera square to it looking east with the sun behind. " +
        ("The bridge's panels are painted capitol granite, a galvanised collar on the post that ends the witness's expected span, the rest primer." if n == 7 else "Frame 7's camera, fence and block unchanged, every panel painted capitol granite.")),
       k, h, b, s, scene(n), hook_css="left:80px; top:150px; width:900px;", dek_css="width:916px;", fit=(72, 96, 2),
-      extra_css='''  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.03em; color:#14161A; z-index:12; white-space:nowrap; text-shadow:0 0 6px rgba(236,230,218,0.55); }
+      extra_css='''  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.03em; color:#14161A; z-index:12; white-space:nowrap; text-shadow:0 0 6px rgba(236,230,218,0.7), 0 0 14px rgba(236,230,218,0.45); }
   svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; overflow:visible; }
   #acc { position:absolute; height:10px; background:#9A3B2A; z-index:12; }''',
       extra_html='<svg id="lead" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>\n<div id="acc"></div>\n' + labhtml)

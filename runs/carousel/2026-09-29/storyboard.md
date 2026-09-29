@@ -39,7 +39,7 @@ condition (c30), seen twice through one camera. Three directors finding the same
 seeing each other is the strongest evidence the room produces that it is the right one.
 
 The deck is CONSEQUENCE AND SCALE's spine: one photographer walking one site in the last hour of
-light, goldenHour, capitol granite as the one accent for the costs the data center carries.
+light, goldenHour, capitol granite as the one accent for the years the utility's other customers pay none of the plant's costs.
 
 - From THE BILL: the ruler is an oilfield pipe-rail fence on the pad's edge, twenty spans, one per
   year, rather than a survey pole. A fence belongs to a Texas site; a banded pole is a prop. Also
@@ -71,7 +71,7 @@ instanced low detail units (`MC.yard`). The year fence (`MC.yearFence`) is the r
 | token | hex | where |
 |---|---|---|
 | `ground` | `#16181D` | the DOM body behind the render |
-| `accent` | `#9A3B2A` | capitol granite, the costs the data center carries, frames 1, 7 and 8. It replaced bluebonnet on the first render, because a blue accent under a blue golden hour sky measured as sky |
+| `accent` | `#9A3B2A` | capitol granite, the years the utility's other customers pay none of the plant's costs, frames 1, 7 and 8. It replaced bluebonnet on the first render, because a blue accent under a blue golden hour sky measured as sky |
 | `hook` | `#F1ECE3` | the hook |
 | `dek` | `#E2DBCF` | the dek |
 | `rule` | `#C9BFAF` | the site line, the source line and the counter |
@@ -228,7 +228,7 @@ acceptance:
   - "the person stands on the ground with a contact shadow and reads as a person, not a post"
   - "each enclosure touches its pad with a contact shadow"
   - "no type crosses the person or an enclosure"
-  - "the frame's median L* at 432px is between 26 and 50"
+  - "the frame's median L* at 432px is between 22 and 48"
 
 risks:
   - "the person reads as a mannequin, so the key is on the camera's side of the figure"
@@ -291,7 +291,7 @@ acceptance:
   - "the data hall reads as one long building behind the field"
   - "the render report's instance count for the field equals figures.json units"
   - "no numeral appears in the art"
-  - "the frame's median L* at 432px is between 26 and 50"
+  - "the frame's median L* at 432px is between 22 and 48"
 
 risks:
   - "a reader takes the layout for the site plan, so the source line says DRAWN and the dek never describes an arrangement"
@@ -400,7 +400,7 @@ art:
     Lightest is the page. Darkest is the door's green around it. Frame median L* planned at 22, rewritten from 36 after the renders measured the golden hour deck darker than planned.
 
 type:
-  hook: "Need shown. The rest, not."
+  hook: "Need shown. Cost and alternatives, not."
   dek: "The two judges filed their proposal for decision on September 23rd. They found the utility showed a need for capacity to serve the data center."
   labels: ["did not show that the McCloud facility is a cost-effective and reliable resource", "failed to show that it adequately considered alternatives"]
 
@@ -485,7 +485,7 @@ job: >
   Draw the utility's offer as time: the data center pays for up to five years of a twenty year
   life, and nobody has decided the rest.
 
-claims: [c19, c23, c25, c26]
+claims: [c19, c23, c25, c26, c48]
 numerals:
   - value_from: c19
   - value_from: c23
@@ -521,7 +521,7 @@ art:
 
 type:
   hook: "Up to five years, then no decision"
-  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that, and any change would need commission approval in a separate case."
+  dek: "El Paso Electric proposes a bridge of up to five years in which the data center pays all the plant's capital costs. Its witness testified that no decision has been made on who pays after that. Its chief executive told KVIA it isn't seeking to shift those costs onto residential or other customers."
   labels: ["UP TO YEAR 5, BRIDGE", "YEAR 20, ESTIMATED SERVICE LIFE"]
 
 verbatim: []
@@ -584,7 +584,7 @@ art:
 type:
   hook: "For the life of the plant"
   dek: "The judges recommend approval only if the utility's other customers pay none of the plant's capital and operating costs, unless the plant later meets the statute's test. Its generation facilities are estimated at about $499.8 million. El Paso City Council has authorized a counteroffer for a full hold harmless."
-  labels: ["For the life of the McCloud facility"]
+  labels: ["For the life of the McCloud facility", "OTHER CUSTOMERS PAY NONE"]
 
 verbatim:
   - c30: "For the life of the McCloud facility"
@@ -648,7 +648,7 @@ art:
 
 type:
   hook: "The commission has not ruled"
-  dek: "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 holds comments from 1118 protestors and from an El Paso Electric residential customer."
+  dek: "KVIA reports that five commissioners will accept, change or reject the proposal and that a final order is expected by December 7th. Docket 59076 on the PUCT Interchange holds comments from 1118 protestors and a residential customer."
   labels: []
 
 verbatim: []
