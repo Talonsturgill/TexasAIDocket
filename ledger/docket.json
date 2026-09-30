@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-29",
+  "generated": "2026-09-30",
   "gates": [
    "banned words",
    "claims",
@@ -25512,6 +25512,182 @@
    ],
    "id": "tx-2026-0193",
    "last_verified": "2026-09-29"
+  },
+  {
+   "id": "tx-2026-0194",
+   "title": "The Texas Education Agency scores written STAAR answers with a machine first and sends at least a quarter of them to people",
+   "summary": "The Texas Education Agency scores the written answers on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to trained human scorers, along with any the engine flags as unusual or scores with low confidence. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for any written answer to be rescored by a person for a fee, and the fee is waived if the score changes.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Texas Education Agency",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-04",
+     "kind": "decided",
+     "note": "The agency said about 27,200 students received additional credit after the annual rescore review"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "A parent or guardian who has concerns about a score on a written answer can raise them with the district's testing staff. The district files the rescore request in the state's testing system within a set window. A rescore is done by a human scorer. The district pays a fee, and the fee is waived when the score changes.",
+    "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "The scoring model and the rescore route come from two agency documents. The September figures come from the agency spokesperson as reported by The Texas Tribune, which Texas Public Radio republished word for word. The agency's own rescore announcement was not found posted. The 75 percent is the presentation's own approximate figure for responses whose score of record comes from the engine.",
+   "history": [
+    {
+     "date": "2026-09-30",
+     "note": "Admitted on the agency's own scoring documents and the agency's account of its September rescore."
+    }
+   ],
+   "claims": [
+    {
+     "id": "tx-2026-0194-c1",
+     "text": "The agency's scoring engine scores every written answer first, and at least a quarter go on to people.",
+     "verbatim_quote": "This means that the responses are initially scored by an automated scoring engine (ASE) and at least 25 percent of student responses are then routed to human scorers.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c2",
+     "text": "Written answers on the Spanish language tests are scored by people and never by the engine.",
+     "verbatim_quote": "Student responses to SCR and ECR questions for STAAR Spanish assessments are 100 percent human scored and do not get scored by the ASE.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c3",
+     "text": "Where a person scores an answer, the person's score is the one that counts.",
+     "verbatim_quote": "Any student responses that are routed for human scoring maintain the score assigned by the human scorer as the score of record.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c4",
+     "text": "The engine learns from answers people have already scored in field tests.",
+     "verbatim_quote": "The ASE is trained on student responses and human scores from the field-test data.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c5",
+     "text": "A rescore is done by a person.",
+     "verbatim_quote": "Rescore requests are sent for human scoring.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c6",
+     "text": "The rescore fee is waived when the score changes.",
+     "verbatim_quote": "If the score on the constructed-response question changes, the fee is waived.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+     "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c7",
+     "text": "The agency's presentation puts the engine's score as the score of record on about three in four responses.",
+     "verbatim_quote": "Scenario 1: Auto scoring engine assigns score of record Approx. 75% responses",
+     "source_url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+     "source_title": "Texas Education Agency, Hybrid Scoring Key Questions, March 2024",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c8",
+     "text": "The agency says full human scoring of the redesigned test would have cost more each year.",
+     "verbatim_quote": "maintaining full human scoring would have cost $15-20M more per year",
+     "source_url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+     "source_title": "Texas Education Agency, Hybrid Scoring Key Questions, March 2024",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c9",
+     "text": "The engine is programmed from a sample of answers people scored in field tests.",
+     "verbatim_quote": "The engine uses a sample of ~3,000 human scored responses from the field test for programming.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+     "source_title": "Texas Education Agency, Hybrid Scoring Key Questions, March 2024",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c10",
+     "text": "The move to hybrid scoring began in December 2023.",
+     "verbatim_quote": "The hybrid scoring transition started in December 2023, and student responses went from fully human scoring to hybrid scoring.",
+     "source_url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+     "source_title": "Texas Education Agency, Hybrid Scoring Key Questions, March 2024",
+     "source_type": "primary_official",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c11",
+     "text": "The agency said about 27,200 students received more credit after the annual review.",
+     "verbatim_quote": "Texas Education Agency officials said Friday about 27,200 students received additional credit for their text responses to some questions on the reading portion of the State of Texas Assessments of Academic Readiness.",
+     "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+     "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c12",
+     "text": "The agency said none of the regraded answers had been scored by the engine.",
+     "verbatim_quote": "However, Kobersky said none of the regraded responses were graded by its “automated scoring engine.”",
+     "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+     "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c13",
+     "text": "The regraded answers were short typed responses read again by content experts.",
+     "verbatim_quote": "Content experts rescored “text entry” responses, where students type brief text — such as a number, word, or phrase.",
+     "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+     "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c14",
+     "text": "The agency's example of what the review credits is a misspelled right answer.",
+     "verbatim_quote": "For example: If the correct answer to a question was ‘first,’ content experts may decide to award credit for a student that entered the response ‘ferst.’",
+     "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+     "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-30"
+    },
+    {
+     "id": "tx-2026-0194-c15",
+     "text": "The agency said no score goes down as a result of the review.",
+     "verbatim_quote": "No students’ scores will be lowered as a result of the review.",
+     "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+     "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-09-30"
+    }
+   ],
+   "last_verified": "2026-09-30"
   }
  ]
 }
