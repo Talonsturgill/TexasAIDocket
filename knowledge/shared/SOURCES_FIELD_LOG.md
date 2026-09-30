@@ -1749,3 +1749,31 @@ county copy of an agenda entry may serve again. `public.destinyhosted.com` still
 
 **`www.brazoscountytx.gov` still answers 403 to every client**, re-measured September 28th, and
 `www.kbtx.com` still names ClaudeBot under `Disallow: /`. tx-2026-0088 keeps its old stamp.
+
+## 2026-09-30, daily run (carousel no. 38)
+
+**`www.faa.gov` answers 403 to the project's own agent and 200 to a browser agent.** The Zipline
+page and the draft environmental assessment behind tx-2026-0186 both behaved that way on September
+30th. faa.gov's robots.txt permits `/uas/` to a browser agent, so the item was read that way, as
+the registry already does for PUCT and the Tribune, and all 17 of its claims held.
+
+**`www.dhs.gov` answered 403 to every client on September 30th**, the project's agent and a
+browser agent alike, the page and robots.txt both. This log said on September 27th that WebFetch
+got a 200 there. tx-2026-0120 now carries a dated `unreachable` block of kind
+`blocks_every_client` and kept its old stamp.
+
+**TEA moved the hybrid scoring key questions deck.** The live path is
+`tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf`. The scoring process PDF is
+at `.../staar/scoring-process-staar-constructed-response-1.pdf`. Both came back through
+`fetch_doc.py` with clean text layers, and every quote this run used matched them.
+
+**A robots.txt written on a single line defeats Python's `urllib.robotparser`.**
+`public.destinyhosted.com` serves `User-agent: * Disallow: /` on one line, and the stock parser
+reads that as allowing everything. A scratch helper in this run made exactly that mistake once and
+fetched the Hays County agenda. The result was discarded and the three items stayed unstamped.
+Split the directives onto their own lines before parsing, or ask `crawl_boundary.py`. That tool
+has no rule for this host yet, so for now the split is the guard.
+
+**`reverify.py` fetched two refused hosts again**: tacc.utexas.edu, which the crawl boundary puts
+off limits as a whole host, and public.destinyhosted.com. It stamped tx-2026-0125 and tx-2026-0168
+to 0170 off those requests. The stamps were withdrawn, as they were on September 29th.
