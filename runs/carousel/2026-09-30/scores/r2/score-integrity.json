@@ -1,0 +1,92 @@
+{
+ "judge_lens": "integrity",
+ "deck": "2026-09-30, carousel no. 38, round 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame does stand in a world. There is an overcast lid, a ground, haze toward the school wing and soft contact shadows under the desk legs (slide-01 and slide-09 at the glides, slide-04 under the readers). No type sits on a plate. It still does not pass the showstopper test on any frame. It looks like a clean 3D sim, not a photograph. (1) The ground on 1, 4 and 9 is a flat green plane with sparse repeated grass-tuft sprites. There is no wear, dirt or straw variation under the desk. (2) The school is a flat box facade with pasted window rectangles, the same wing on every exterior frame. (3) The kit people are primitive and have artifacts. On slide-04 skin shows through the standing reader's blue shirt at the shoulder (about 1250,1420 displayed). On slide-09 an orange skin patch shows on the parent's white shirt at the shoulder (about 1090,1080), and her hands hover above the keyboard without touching it. On slide-05 the readers sit on stools the camera barely shows, and the bottom 40% of the frame is empty floor tile, a dead zone. (4) Slide-02 has a visible light halo in the sky around the headline and dek with ragged dithered edges (the band around y 250 to 780). The white source line sits across busy desk rows. (5) On slide-07 the Texas and US flags sit blurred directly behind the dek line with \"ferst\" in it, so type crosses art. Several frames lean on primitives, so this is below the 7 descriptor (one frame leaning) and well above the 4 (floating objects in a flat gradient)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is the deck's strength. The world, light and grade are one throughout: one overcast campus, one buff-brick school with the US and Texas flags, one desk hero in one material (putty top, charcoal shell, black tube frame). Frames 1 and 9 share one camera exactly (desk empty, then parent at it). Frame 7 is frame 1's field filled with desks. Frames 3 and 6 share the long-lens camera. The storyboard declares MOTIF_EVOLUTION (people at the desk: none, then two at a quarter, then two at one, then one at every desk, then one expert in 27,200, then the parent) and CAMERA_MOVE, and both are visible on the contact sheet. The values hold: all nine frames are pale sky over mid ground, with no strobe. Slide-05 is the one frame outside, an interior with a blue window wall and tile floor, and slide-08 is closer and darker under the canopy. That fits the 7 descriptor with a second device working, so 8."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "I tried to refute every numeral and could not. 2023 comes from c17. 15 and 20 come from c14 ($15-20M), 3,000 from c16 (~3,000, per item, and the deck says 'for each question'). 75% is c13 and the dek hedges it as 'in the agency's own chart'. 100 is c2. 1.7% and 1.6 million are c24. 27,200 is c19. The 17 in '17 of every 1,000' is per1000_improved with a stated rounding rule in compute.py. 1.7% of 1.6M is consistent with 27,200. Universals name their sets. 'None of the regraded answers' is attributed to the agency on slide-07, and quantifiers.json scopes it to c20. The caption's 'none of them' has 'short typed answers' as its antecedent. The deck does not overclaim the September review against the engine: slide-06 says 'The review reread short typed answers. The engine scores the longer ones' (c21, c22). Where it loses points: (a) the whole back half is secondary. Slides 6 and 7 and caption paragraph 3 (c19 to c24, c30) rest on one Texas Tribune story for what 'the agency said', and no TEA release or statement was fetched for it. That is journalism where an agency statement likely exists. (b) The cover's source line reads 'c1 c17 c2 c14' with no DRAWN, although slide-01 draws a desk, laptop and school like every other frame. It is the one frame that breaks the deck's own disclosure convention, and it is the most-seen frame. (c) The desk changes unit from frame to frame: one answer on 2 and 3, one exam on 6, one student on 7. Frame 7's desks grow out of frame 1's 'one child's answer' desk, so a reader can equate students with answers. (d) The web edition (ledger/articles/2026-09-30.json) puts words no quote carries inside claim brackets: 'annual review of the spring results' inside c21, and 'not the short typed ones' inside c22. Its unbracketed 'nearly every written answer' is softer than c1, which says all non-Spanish answers are initially engine-scored. None of these is a hard fail. Together they are more than the 7 descriptor's single lean, but the primary core is clean."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns the whole mechanism. A machine reads first (slide-01). It trained on about 3,000 answers per question. It keeps the score on about 75%. Low confidence, condition codes and a random sample go to two people. Spanish tests are all human. The decider is named (the Texas Education Agency), and so is the stake ($15 million to $20 million a year saved). The action is concrete: go to the district (slide-08), testing staff request a rescore for a fee, and the fee is waived if the score changes (slide-09). The descriptor's 10 needs a deadline and one is missing. No rescore window, fee amount or date to act by is on any frame, and the web edition admits the record lacks both. The only fresh news (the September review, slides 6 and 7) is by the agency's own account about answers the engine never scored. The live event therefore does not bear on the deck's subject, and the story is a 2023 policy with a 2026 aside. No place is named more specifically than 'Texas' (the campus is generic)."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover 'A machine reads it first.' earns the swipe. Frame 2 pays at once with the 3,000 field. Frames 3 to 5 build the routing. Frame 7 is a declared turn. The close on 9 is frame 1's camera with a parent at the desk, and it lands. Frames 6 and 7 cover one review and split its figures (1.7% and 1.6M on 6, 27,200 on 7), so 6 could fold into 7 without loss. Frames 3 and 4 also overlap: 'Two people read the rest' on 3 is restated as routing on 4. That fits the 7 descriptor plus a strong close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is plain, exact and not boosterish. 'Spanish answers skip the machine.' and 'Start with the district.' are good. The attribution discipline ('The agency says...') reads as a careful reporter. There are flat lines: 'About 1.7% of exams improved.' and 'Rescores are read by people.' are register-neutral, and nothing is regionally specific beyond a generic ISD campus. In the caption, 'It learned from about 3,000 human scored answers per question.' opens on 'It' right after a sentence whose subject is the agency, so the pronoun lands on the wrong noun. The closing question 'Should a family have to ask for a person?' leans toward a position the claims don't take. Clean and on register with more than one flat line, so 7."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The palette and register genuinely diverge. It is a pale overcast day world with median L* around 60. The last four in ledger/carousel/artwork.json are all dark: no. 34 blueHour at 18.1, no. 35 nightSodium at 9.3, no. 36 stormFront at 27.8 and no. 37 goldenHour at 29.0. Schools and testing is a new beat, and an agency process document is a new instrument after four regulatory filings (TxDMV rule, DOJ judgment, PUCT order, SOAH PFD). The technique is familiar. 'A count drawn as a field of instanced units in rows' is no. 37's yard of 813 gensets, no. 34's truck yard and no. 36's 33 heads and 160 seats. Here it is 3,000, 1,000 and 27,200 desks. The opening move is again an assertion headline over the rendered hero. A fresh concept with one familiar move."
+  }
+ ],
+ "weighted_score": 7.05,
+ "weighted_score_arithmetic": "0.22*6.0 + 0.12*8.0 + 0.20*7.5 + 0.16*7.0 + 0.10*7.5 + 0.10*7.0 + 0.10*7.0 = 1.32 + 0.96 + 1.50 + 1.12 + 0.75 + 0.70 + 0.70 = 7.05",
+ "hard_fails": [],
+ "hard_fail_checks_run": [
+  "Numerals, slides and caption: 2023, 15, 20, 3,000, 75%, 100, 1.7%, 1.6, 17, 1,000 (rule denominator in figures.json per1000_improved), 27,200. Every one traces to claims.json or compute.py. The first comment's 'two' is computed by sources_block.py per aggregates.json.",
+  "Machine QA: render/machine_qa.json shows fails 0, verdict WARN. The 19 warnings are canvas raster 'SCHOOL BUS' and 'STOP' decals and TXT SKY/ROOM verdict logs. No failure.",
+  "Caption house rules: no colon, semicolon, em or en dash, emoji, 'And'/'But' opener, first person or banned word (gap, matters, pattern). No year on a date in the post's own year.",
+  "Topic window: ledger/carousel/topics.json from August 31st to September 29th has no STAAR, TEA scoring or testing deck. The nearest are no. 21 (SBOE finance course, September 11th) and no. 26 (UTA tutor, September 16th). Not a repeat.",
+  "Sources: first_comment.txt cites the two TEA PDFs and the Tribune URL, all retrieved 2026-09-30 per claims.json. There is no placeholder or unfinished frame."
+ ],
+ "ship": false,
+ "ship_note": "There is no fault. This is a threshold dissent: 7.05 is under the round-2 rung of 8.0.",
+ "named_defects_ranked": [
+  "1. The kit figures and world surfaces read as a game render. Skin clips through the shirt at the shoulder on slide-04 (standing reader) and on slide-09 (parent). The parent's hands hover over the laptop on slide-09. The stools on slide-05 are barely visible, and its bottom 40% is empty tile. The ground on 1, 4 and 9 is sprite tufts on a flat plane. The school is a flat box facade.",
+  "2. The back half's source is secondary. Slides 6 and 7 and caption paragraph 3 attribute statements to 'the agency' through one Texas Tribune story (c19 to c24, c30), and no TEA statement or release was fetched.",
+  "3. The cover's source line 'c1 c17 c2 c14' has no DRAWN, although slide-01 is as drawn as frames 2 to 9, which all print DRAWN.",
+  "4. The desk changes unit: one answer (2 and 3), one exam (6), one student (7). Frame 7 grows out of frame 1's one-answer desk and invites reading students as answers.",
+  "5. There is no deadline, fee amount or rescore window anywhere. The action on slides 8 and 9 has no date to act by.",
+  "6. On slide-07 the blurred flags sit directly behind the dek's 'ferst' line. On slide-02 a ragged halo shows in the sky around the type block, and the white source line runs across dark desk rows.",
+  "7. Frame 6 could fold into frame 7, since both carry one review's figures. On slide-06 the drawn 17 experts can't be counted against 1,000, because the field crops at both edges and about nine figures are visible.",
+  "8. The web edition puts unquoted words inside claim brackets: 'annual review of the spring results' in c21 and 'not the short typed ones' in c22. Its 'nearly every written answer' is looser than c1.",
+  "9. In the caption, 'It learned from about 3,000...' has the agency as the nearest antecedent, not the machine."
+ ],
+ "one_sentence_fix": "Bring the rendered world up to photographic standard where it is weakest: replace the sprite-tuft ground with a real worn straw bermuda surface that is scuffed and bare under the desk glides, give the school facade depth and weathering, and fix the kit figures (shirt clipping at the shoulder on 4 and 9, the parent's hands touching the laptop on 9, visible stools and a filled floor on 5). Art is the heaviest-weighted criterion at 0.22 and the only one under 7, and every frame currently reads as a simulation rather than a photograph of a Texas campus on a grey morning.",
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-09-30/copy.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/claims.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/figures.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/compute.py",
+  "/home/user/TexasAIDocket/out/2026-09-30/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/quantifiers.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/render_report.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-09-30.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json"
+ ],
+ "not_verified": "Two things were not checked. The drawn instance counts (3,000 desks on 2, 25 attended of 100 on 3, 17 of 1,000 on 6, 27,200 on 7) are not recorded in render_report.json, although the storyboard's acceptance lines say they are. aggregates.json says they are asserted in each frame's own code, which I did not read. The record item tx-2026-0194 in ledger/docket.json was also not read."
+}

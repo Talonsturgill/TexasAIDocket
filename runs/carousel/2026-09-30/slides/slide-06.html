@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-09-30, frame 6 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's overcast world. Frame 3's camera on the practice field, now one thousand desks, one per exam, every screen dark but the share of them that improved, lit, a content expert in bluebonnet seated at each. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#D7D9DA; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.96; letter-spacing:-0.01em; color:#12131A; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:31px; font-weight:600; line-height:1.38; color:#1E2028; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#111216; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:1em; }
+  .hook, .dek, .tx-site, .kick, .count, .src { text-shadow:0 0 2px rgba(240,242,242,0.35), 0 1px 10px rgba(240,242,242,0.25); }
+  .tx-site, .src { text-shadow:0 0 3px rgba(240,242,242,0.55), 0 1px 12px rgba(240,242,242,0.4); }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About <span class="num">1.7%</span> of exams improved.</h1>
+<p class="dek" data-follow="30">Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-30-firstreader.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "Announced September 4th", counter: "06 / 09", src: "c24 c21 c19 DRAWN", ink: '#111216' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 112, maxLines: 2 });
+  FR.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FR, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"per1000_improved": 17};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36, near: 0.1, far: 4000 });
+  /* THE FALL REVIEW, from frame 3's camera. The same lawn now holds one thousand desks, one per
+   * exam, and the screens of per1000_improved of them are lit, the share of exams reviewed that
+   * improved, drawn per thousand and placed by a seeded draw. The counts are asserted. */
+  const COLS = 40, ROWS = 25, N = COLS * ROWS, P = 1.45, x0 = -(COLS - 1) * P / 2, z0 = -16;
+  const field = F.field(K, THREE, TXT, { count: N, cols: COLS, pitch: [P, P], origin: [x0, z0], lidGlow: false, screen: 'off', castShadow: false,
+    near: (x, z) => z > z0 - 4 && Math.abs(x) < 9 });
+  TXT.add(R, field);
+  const rng = TX.rng(20260930 + 6), picked = new Set();
+  while (picked.size < FIG.per1000_improved) { const i = Math.floor(rng() * N); const c = i % COLS, r = Math.floor(i / COLS); if (r >= 3 && r < 13 && Math.abs(c - COLS / 2) < 9) picked.add(i); }
+  /* the review's content experts reread the typed answers on every exam. The share that
+   * improved is drawn as the experts whose rereading raised a score: a person in the accent seated
+   * at the screen, which is lit, while every other screen is dark. All seventeen stand inside the
+   * frame's middle rows so the count can be read in the pixels. */
+  let improved = 0;
+  const lit = new THREE.MeshBasicMaterial({ color: 0xf4f8fb }); lit.color.multiplyScalar(2.2);
+  field.userData.units.forEach(([x, z], i) => {
+    if (!picked.has(i)) return;
+    const sc = new THREE.Mesh(new THREE.PlaneGeometry(0.29, 0.19), lit); sc.position.set(x + 0.04, 0.865, z - 0.284); TXT.add(R, sc);
+    F.attend(K, { x, z, rotY: 0 }, { seed: 80 + i % 23, detail: 'low' }).forEach((p) => { TXT.add(R, p); TXT.contact(R, p); });
+    improved++;
+  });
+  if (field.userData.drawn !== N || improved !== FIG.per1000_improved) throw new Error('drawn wrong');
+  F.campus(K, THREE, TXT, R, {});
+  TXT.frame(R, { from: [3, 7.5, 13], look: [-0.5, 6.3, -40] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, -30], distance: 80, shadowFar: 180, normalBias: 0.04 });
+  TXT.ground(R, { surface: 'grass', color: F.STRAW, size: 6000, seed: 27 });
+  F.grass(TXT, R, { count: 6000, area: [-16, -14, 16, 10], scale: [0.06, 0.12], seed: 39 });
+  TXT.weather(R, { grime: 0.35 });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.post(cx, { a: 0.22, type: ['.kick', '.count', '.hook', '.dek'] });
+  TXDECK.finish(cx);
+  window.__txDrawn = { desks: field.userData.drawn, improved: improved };
+
+  return true;
+})();
+</script>
+</body>
+</html>

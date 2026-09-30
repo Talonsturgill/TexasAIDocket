@@ -1,0 +1,1941 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A machine reads it first.",
+          "x": 80,
+          "y": 132,
+          "w": 900,
+          "h": 199,
+          "font_px": 103.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              775,
+              127
+            ],
+            [
+              80,
+              217,
+              201,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Since December 2023 the Texas Education Agency has sent the longer written STAAR answers to an automated engine first, unless the test is in Spanish. The agency said scoring every answer by hand would have cost $15 million to $20 million more a year.",
+          "x": 82,
+          "y": 361,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              801,
+              42
+            ],
+            [
+              82,
+              403,
+              822,
+              42
+            ],
+            [
+              82,
+              446,
+              848,
+              42
+            ],
+            [
+              82,
+              489,
+              837,
+              42
+            ],
+            [
+              82,
+              532,
+              382,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STAAR scoring",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c17 c2 c14 c22 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SCHOOL BUS",
+          "fn": "fillText",
+          "font": "900 67.92px Arial, Helvetica, sans-serif"
+        },
+        {
+          "text": "STOP",
+          "fn": "fillText",
+          "font": "900 130.32px Arial, Helvetica, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15775,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 160.1,
+          "variance": 2348.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 240, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 3,000 answers taught it.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 163,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              226,
+              103
+            ],
+            [
+              544,
+              140,
+              298,
+              103
+            ],
+            [
+              80,
+              221,
+              309,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "3,000",
+          "x": 306,
+          "y": 132,
+          "w": 238,
+          "h": 115,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              306,
+              132,
+              238,
+              115
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "For each question the engine is programmed on about 3,000 field test answers that people scored. The agency requires it to agree with scorers as often as scorers agree with each other.",
+          "x": 82,
+          "y": 343,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              343,
+              793,
+              42
+            ],
+            [
+              82,
+              386,
+              824,
+              42
+            ],
+            [
+              82,
+              429,
+              843,
+              42
+            ],
+            [
+              82,
+              472,
+              238,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How it learned",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c4 c5 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 240, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20487,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 146.6,
+          "variance": 4192.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 75% keep the machine's score.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 155,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              216,
+              98
+            ],
+            [
+              453,
+              140,
+              288,
+              98
+            ],
+            [
+              80,
+              217,
+              536,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "75%",
+          "x": 296,
+          "y": 133,
+          "w": 158,
+          "h": 109,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              296,
+              133,
+              158,
+              109
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "In the agency's own chart the engine sets the score of record on about 75% of answers. Two people read the rest. A person's score is the one that counts.",
+          "x": 82,
+          "y": 335,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              335,
+              792,
+              42
+            ],
+            [
+              82,
+              377,
+              856,
+              42
+            ],
+            [
+              82,
+              420,
+              578,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The score of record",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c31 c3 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 257,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              257,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 26828,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 154.9,
+          "variance": 3110.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Low confidence scores go to people.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 214,
+          "font_px": 111.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              711,
+              137
+            ],
+            [
+              80,
+              242,
+              880,
+              137
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "So do answers that are blank, too short, in another language, off topic or worded unlike the answers the engine learned from. So does a random sample.",
+          "x": 82,
+          "y": 394,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              394,
+              739,
+              42
+            ],
+            [
+              82,
+              437,
+              767,
+              42
+            ],
+            [
+              82,
+              480,
+              693,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LOW CONFIDENCE",
+          "x": 600,
+          "y": 534,
+          "w": 228,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              534,
+              228,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CONDITION CODE",
+          "x": 600,
+          "y": 576,
+          "w": 228,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              576,
+              228,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RANDOM SAMPLE",
+          "x": 600,
+          "y": 618,
+          "w": 211,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              618,
+              211,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The handoff",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c33 c34 c6 c7 c32 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SCHOOL BUS",
+          "fn": "fillText",
+          "font": "900 67.92px Arial, Helvetica, sans-serif"
+        },
+        {
+          "text": "STOP",
+          "fn": "fillText",
+          "font": "900 130.32px Arial, Helvetica, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19849,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 152.1,
+          "variance": 3059.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Spanish STAAR answers skip the machine.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 169,
+          "font_px": 88,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              899,
+              108
+            ],
+            [
+              80,
+              222,
+              626,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Written answers on the Spanish language STAAR are 100 percent human scored.",
+          "x": 82,
+          "y": 349,
+          "w": 860,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              349,
+              831,
+              42
+            ],
+            [
+              82,
+              392,
+              342,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One exception",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20630,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 144.3,
+          "variance": 1630.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 1.7% of exams improved.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 163,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              226,
+              103
+            ],
+            [
+              483,
+              140,
+              314,
+              103
+            ],
+            [
+              80,
+              221,
+              350,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1.7%",
+          "x": 306,
+          "y": 132,
+          "w": 176,
+          "h": 115,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              306,
+              132,
+              176,
+              115
+            ]
+          ],
+          "anc": [
+            1
+          ]
+        },
+        {
+          "text": "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved.",
+          "x": 82,
+          "y": 343,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              343,
+              809,
+              42
+            ],
+            [
+              82,
+              386,
+              803,
+              42
+            ],
+            [
+              82,
+              429,
+              606,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Announced September 4th",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c24 c21 c19 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18208,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 150.7,
+          "variance": 3580.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 240, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The agency says the engine scored none of the regraded answers.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 242,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              676,
+              103
+            ],
+            [
+              80,
+              219,
+              863,
+              103
+            ],
+            [
+              80,
+              299,
+              637,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 27,200 students got more credit on the reading test after content experts reread short typed answers, like \"ferst\" for \"first.\" That says nothing about how often the engine's own scores would change.",
+          "x": 82,
+          "y": 422,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              422,
+              858,
+              42
+            ],
+            [
+              82,
+              465,
+              792,
+              42
+            ],
+            [
+              82,
+              507,
+              824,
+              42
+            ],
+            [
+              82,
+              550,
+              518,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The human reread",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c20 c19 c21 c23 c22 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 240, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SCHOOL BUS",
+          "fn": "fillText",
+          "font": "900 67.92px Arial, Helvetica, sans-serif"
+        },
+        {
+          "text": "STOP",
+          "fn": "fillText",
+          "font": "900 130.32px Arial, Helvetica, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22928,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 147.1,
+          "variance": 4062.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Start with the district.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 214,
+          "font_px": 111.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              621,
+              137
+            ],
+            [
+              80,
+              242,
+              355,
+              137
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A rescore can start with a parent or guardian's concern about a score. Rescores are read by people.",
+          "x": 82,
+          "y": 394,
+          "w": 740,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              394,
+              673,
+              42
+            ],
+            [
+              82,
+              437,
+              648,
+              42
+            ],
+            [
+              82,
+              480,
+              110,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A concern about a score",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c10 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SCHOOL BUS",
+          "fn": "fillText",
+          "font": "900 67.92px Arial, Helvetica, sans-serif"
+        },
+        {
+          "text": "STOP",
+          "fn": "fillText",
+          "font": "900 130.32px Arial, Helvetica, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18388,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 140,
+          "variance": 3068.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ask the district for a rescore.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 245,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(18, 19, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              784,
+              158
+            ],
+            [
+              80,
+              254,
+              680,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "District testing staff request it for a fee, inside a window set in the agency's Calendar of Events. If the score changes, the fee is waived.",
+          "x": 82,
+          "y": 425,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(30, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              425,
+              821,
+              42
+            ],
+            [
+              82,
+              468,
+              739,
+              42
+            ],
+            [
+              82,
+              510,
+              396,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What a family can do",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c11 c35 DRAWN",
+          "x": 80,
+          "y": 1234,
+          "w": 257,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(17, 18, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              257,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "SCHOOL BUS",
+          "fn": "fillText",
+          "font": "900 67.92px Arial, Helvetica, sans-serif"
+        },
+        {
+          "text": "STOP",
+          "fn": "fillText",
+          "font": "900 130.32px Arial, Helvetica, sans-serif"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17460,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 152.7,
+          "variance": 3059.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

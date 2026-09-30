@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- 2026-09-30, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's overcast world. A row of four desks on the practice field from a standing eye off the row's end, one reader in bluebonnet seated at the fourth and one leaning in at its side, three mono labels gathered by a bracket, one leader landing on its screen. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#D7D9DA; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.96; letter-spacing:-0.01em; color:#12131A; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:31px; font-weight:600; line-height:1.38; color:#1E2028; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#111216; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:1em; }
+  .hook, .dek, .tx-site, .kick, .count, .src { text-shadow:0 0 2px rgba(240,242,242,0.35), 0 1px 10px rgba(240,242,242,0.25); }
+  .tx-site, .src { text-shadow:0 0 3px rgba(240,242,242,0.55), 0 1px 12px rgba(240,242,242,0.4); }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:25px; font-weight:500; letter-spacing:0.05em; color:#1E2028; z-index:12; white-space:nowrap; text-shadow:0 0 3px rgba(240,242,242,0.6), 0 1px 10px rgba(240,242,242,0.45); }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; overflow:visible; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Low confidence scores go to people.</h1>
+<p class="dek" data-follow="30">So do answers that are blank, too short, in another language, off topic or worded unlike the answers the engine learned from. So does a random sample.</p>
+<svg id="lead" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+<div class="lab" id="l1">LOW CONFIDENCE</div>
+<div class="lab" id="l2">CONDITION CODE</div>
+<div class="lab" id="l3">RANDOM SAMPLE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-30-firstreader.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "The handoff", counter: "04 / 09", src: "c33 c34 c6 c7 c32 DRAWN", ink: '#111216' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 112, maxLines: 2 });
+  FR.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FR, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"per4_engine": 3, "per4_people": 1};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 42, near: 0.05, far: 4000 });
+  /* THE HANDOFF, explained. A row of four desks from a standing eye: per4_engine alone and
+   * per4_people with two readers at it, and three labels on leaders naming what sends an answer to
+   * people. The leaders land on the readers' desk top, projected through this frame's camera. */
+  const n = FIG.per4_engine + FIG.per4_people, xs = [], z = -5;
+  let lastDesk = null;
+  for (let i = 0; i < n; i++) { const d = F.desk(K, { seed: 40 + i }); const x = -3.1 + i * 1.5; d.position.set(x, 0, z); TXT.add(R, d); TXT.contact(R, d); xs.push(x); lastDesk = d; }
+  const xr = xs[n - 1];
+  /* the handed-off answer is read twice: one reader in the seat at the screen, one leaning in at its side */
+  const pair = F.attend(K, { x: xr, z, rotY: 0 }, { seed: 51, side: 1 });
+  pair.forEach((p) => { TXT.add(R, p); TXT.contact(R, p); });
+  F.campus(K, THREE, TXT, R, {});
+  /* a bus at the far curb */
+  const bus4 = K.make('school_bus', { seed: 6 }); bus4.position.set(24, 0, -72); bus4.rotation.y = -Math.PI / 2; TXT.add(R, bus4); TXT.contact(R, bus4);
+  TXT.frame(R, { from: [5.7, 2.15, 3.4], look: [-1.2, 2.95, -7.2] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, -5], distance: 40, shadowFar: 120, normalBias: 0.04 });
+  TXT.ground(R, { surface: 'grass', color: F.STRAW, size: 6000, seed: 21 });
+  F.grass(TXT, R, { count: 12000, area: [-12, -30, 12, 3], avoid: [[-3.7, -5.9, 3.0, -4.1]], scale: [0.07, 0.14], seed: 33 });
+  TXT.weather(R, { grime: 0.35 });
+  const lpw = new THREE.Vector3(); lastDesk.updateMatrixWorld(true); lastDesk.userData.laptop.getWorldPosition(lpw);
+  const SITE = F.project(THREE, R, [lpw.x, lpw.y + 0.12, lpw.z]);
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.post(cx, { a: 0.22, type: ['.kick', '.count', '.hook', '.dek'] });
+  TXDECK.finish(cx);
+  /* the labels sit in the sky band under the dek as a list of alternatives, any one of which
+   * sends an answer to people: a bracket gathers them and ONE leader drops to the readers' screen */
+  const dk = document.querySelector('.dek').getBoundingClientRect(), top0 = dk.bottom + 12, svg = document.getElementById('lead'), leaders = [];
+  const line = (pts) => { const pl = document.createElementNS('http://www.w3.org/2000/svg', 'polyline'); pl.setAttribute('points', pts.map(p => p.join(',')).join(' ')); pl.setAttribute('fill', 'none'); pl.setAttribute('stroke', '#1E2028'); pl.setAttribute('stroke-width', '2'); svg.appendChild(pl); };
+  let right = 0; const mids = [];
+  ['l1', 'l2', 'l3'].forEach((id, i) => {
+    const el = document.getElementById(id); el.style.left = '600px'; el.style.top = (top0 + i * 42) + 'px';
+    const r = el.getBoundingClientRect(); right = Math.max(right, r.right); mids.push(r.top + r.height / 2);
+  });
+  const bx = right + 14, by = (mids[0] + mids[2]) / 2;
+  mids.forEach((y) => line([[bx - 8, y], [bx, y]]));
+  line([[bx, mids[0]], [bx, mids[2]]]);
+  const to = [SITE[0], SITE[1] - 6];
+  line([[bx, by], [bx + 18, by], to]);
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', to[0]); c.setAttribute('cy', to[1]); c.setAttribute('r', '4'); c.setAttribute('fill', '#1E2028'); svg.appendChild(c);
+  leaders.push({ target: "the readers' screen", at: to, to: to });
+  window.__txLeaders = leaders;
+  window.__txDrawn = { desks: n, withReaders: FIG.per4_people };
+
+  return true;
+})();
+</script>
+</body>
+</html>

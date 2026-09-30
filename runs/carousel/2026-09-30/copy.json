@@ -1,0 +1,190 @@
+{
+ "date": "2026-09-30",
+ "carousel_no": "38",
+ "document_title": "A machine reads it first. How Texas scores written STAAR",
+ "_note": "Slide strings set from the storyboard dossiers; each carries its claim ids.",
+ "caption": "Who reads a long written STAAR answer first?\n\nUnless the test is in Spanish, a machine does. The Texas Education Agency has done it that way since December 2023. In the agency's chart the machine's score stands on about 75% of them. The agency said scoring them all by hand would have cost $15 million to $20 million more a year.\n\nThe machine learned from about 3,000 human scored answers per question. Low confidence scores, blank answers and a random sample go to people, and the person's score counts.\n\nThe agency said about 27,200 students got more credit on the reading test after content experts reread short typed answers. It said the engine scored none of them.\n\nA parent can take a concern to the district. Its testing staff can request a human rescore for a fee. If the score changes, the fee is waived.\n\nShould a family have to ask for a person?\n\n#STAAR #TexasEducationAgency #TexasSchools\n",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "STAAR scoring",
+   "headline": "A machine reads it first.",
+   "claims": [
+    "c1",
+    "c17",
+    "c2",
+    "c14",
+    "c22"
+   ],
+   "cite": "c1 c17 c2 c14 c22 DRAWN",
+   "body": "Since December 2023 the Texas Education Agency has sent the longer written STAAR answers to an automated engine first, unless the test is in Spanish. The agency said scoring every answer by hand would have cost $15 million to $20 million more a year.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A machine reads it first.",
+    "Since December 2023 the Texas Education Agency has sent the longer written STAAR answers to an automated engine first, unless the test is in Spanish. The agency said scoring every answer by hand would have cost $15 million to $20 million more a year."
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "How it learned",
+   "headline": "About 3,000 answers taught it.",
+   "claims": [
+    "c16",
+    "c4",
+    "c5"
+   ],
+   "cite": "c16 c4 c5 DRAWN",
+   "body": "For each question the engine is programmed on about 3,000 field test answers that people scored. The agency requires it to agree with scorers as often as scorers agree with each other.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 3,000 answers taught it.",
+    "For each question the engine is programmed on about 3,000 field test answers that people scored. The agency requires it to agree with scorers as often as scorers agree with each other."
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The score of record",
+   "headline": "About 75% keep the machine's score.",
+   "claims": [
+    "c13",
+    "c31",
+    "c3"
+   ],
+   "cite": "c13 c31 c3 DRAWN",
+   "body": "In the agency's own chart the engine sets the score of record on about 75% of answers. Two people read the rest. A person's score is the one that counts.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 75% keep the machine's score.",
+    "In the agency's own chart the engine sets the score of record on about 75% of answers. Two people read the rest. A person's score is the one that counts."
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The handoff",
+   "headline": "Low confidence scores go to people.",
+   "claims": [
+    "c33",
+    "c34",
+    "c6",
+    "c7",
+    "c32"
+   ],
+   "cite": "c33 c34 c6 c7 c32 DRAWN",
+   "body": "So do answers that are blank, too short, in another language, off topic or worded unlike the answers the engine learned from. So does a random sample.",
+   "labels": [
+    "LOW CONFIDENCE",
+    "CONDITION CODE",
+    "RANDOM SAMPLE"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Low confidence scores go to people.",
+    "So do answers that are blank, too short, in another language, off topic or worded unlike the answers the engine learned from. So does a random sample.",
+    "LOW CONFIDENCE",
+    "CONDITION CODE",
+    "RANDOM SAMPLE"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "One exception",
+   "headline": "Spanish STAAR answers skip the machine.",
+   "claims": [
+    "c2"
+   ],
+   "cite": "c2 DRAWN",
+   "body": "Written answers on the Spanish language STAAR are 100 percent human scored.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Spanish STAAR answers skip the machine.",
+    "Written answers on the Spanish language STAAR are 100 percent human scored."
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Announced September 4th",
+   "headline": "About 1.7% of exams improved.",
+   "claims": [
+    "c24",
+    "c21",
+    "c19"
+   ],
+   "cite": "c24 c21 c19 DRAWN",
+   "body": "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 1.7% of exams improved.",
+    "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved."
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The human reread",
+   "headline": "The agency says the engine scored none of the regraded answers.",
+   "claims": [
+    "c20",
+    "c19",
+    "c21",
+    "c23",
+    "c22"
+   ],
+   "cite": "c20 c19 c21 c23 c22 DRAWN",
+   "body": "About 27,200 students got more credit on the reading test after content experts reread short typed answers, like \"ferst\" for \"first.\" That says nothing about how often the engine's own scores would change.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The agency says the engine scored none of the regraded answers.",
+    "About 27,200 students got more credit on the reading test after content experts reread short typed answers, like \"ferst\" for \"first.\" That says nothing about how often the engine's own scores would change."
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "A concern about a score",
+   "headline": "Start with the district.",
+   "claims": [
+    "c12",
+    "c10"
+   ],
+   "cite": "c12 c10 DRAWN",
+   "body": "A rescore can start with a parent or guardian's concern about a score. Rescores are read by people.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Start with the district.",
+    "A rescore can start with a parent or guardian's concern about a score. Rescores are read by people."
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What a family can do",
+   "headline": "Ask the district for a rescore.",
+   "claims": [
+    "c9",
+    "c11",
+    "c35"
+   ],
+   "cite": "c9 c11 c35 DRAWN",
+   "body": "District testing staff request it for a fee, inside a window set in the agency's Calendar of Events. If the score changes, the fee is waived.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Ask the district for a rescore.",
+    "District testing staff request it for a fee, inside a window set in the agency's Calendar of Events. If the score changes, the fee is waived."
+   ]
+  }
+ }
+}

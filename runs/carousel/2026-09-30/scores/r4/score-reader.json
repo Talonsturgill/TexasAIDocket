@@ -1,0 +1,62 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is a rendered place at one hour: an overcast lid, buff ISD brick on the horizon third, scatter grass with contact shadows under desks and feet (frames 1, 4, 9), and type always sitting in open sky. Frame 2 is the strongest image, 3,000 desks running to the school with a yellow goal post for scale. Frame 8's covered walk also works. It still reads as an architectural visualisation, not a photograph. The kit people are stiff and plastic. On frame 9 the parent's grey hair is a solid shell and her hands hover on the chair back. On frame 4 the two readers are mannequins. Frame 5's interior is the frame that leans on a default: a blank untextured grey wall fills about half the frame above the heads, a flat blue side wall, bare VCT and dead space. Frame 2 also has about 18 white-screened desks at bottom left that nothing explains. That is more than the 7 descriptor's single weak frame, and nowhere near the 4 descriptor's decorated templates."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "In the contact sheet this is plainly a filmstrip. There is one campus with the same flagpole and wing in 7 of 9 frames, one overcast key, one grade and one high-key value register with no strobe. The hero is one combo desk in one material. Frames 1 and 9 share a camera, empty desk then parent at the desk, so the spine is legible. Frames 3 and 6 share a camera too. The declared motif, how many people stand at a desk, really does change state (0, 0, 25 of 100, 1 of 4, 5 of 5, 1 in 27,200, a parent). Frame 5, the tiled interior, is the one frame that sits outside the world. The storyboard declares it, but it still breaks the ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every printed numeral traces to figures.json and compute.py. That covers 2023 (c17), $15 million to $20 million (c14), 3,000 (c16), 75% (c13), 100 (c2), 1.7% and 1.6 million (c24), 17 of every 1,000 (per1000_improved, rule stated) and 27,200 (c19). The sources block matches claims.json. Attribution is careful: 'In the agency's own chart' on frame 3, 'The agency says' on frame 7. Two things lower the score. (1) The cover dek and the caption opener make a universal, 'written STAAR answers' go to an engine first. c1's document is scoped to constructed responses, and the deck's own frames 6 and 7 show short typed text-entry answers that the engine did not score ('The engine scores the longer ones'). So the set is looser than its source until frame 6 quietly narrows it. (2) The whole review half (c19 to c24) rests on the Texas Tribune quoting a spokesperson, not on TEA's own release. None of this is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A parent learns what happened: since December 2023 TEA machine-scores written answers first, with $15 million to $20 million a year saved. They learn who decided (TEA), that it covers the whole state, and what they can do: raise a concern with the district, which requests a human rescore for a fee that is waived if the score changes (frames 8 and 9). The deadline is missing. Frame 9 says 'inside a window set in the agency's Calendar of Events' with no dates and no fee amount. So a parent reading today can't tell whether the window for this spring's scores is still open. The descriptor's 10 names the deadline. The news peg, the review TEA announced September 4th, is never dated on any frame. Frame 6's 'Officials reviewed more than 1.6 million exams' names no year and no administration."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook 'A machine reads it first.' earns the swipe, and frame 2 pays at once with a size, 3,000 desks on a football field. Two frames are cuttable. Frame 5 repeats the cover dek's 'unless the test is in Spanish'. Frames 8 and 9 make one move twice ('Start with the district.' / 'Ask the district for a rescore.'). The declared turn on frame 7 is honest but deflating: it tells the reader the headline correction says 'nothing either way about the engine', so understanding narrows rather than turns. Frame 3's picture also works against its own headline at 432 px. The attended block covers about 45% of the grid's width, so a thumb reads roughly half attended against a headline of 75% machine."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain, specific and unhyped, and it doesn't turn the machine into a villain. 'A person's score is the one that counts.' and 'So the review says nothing either way about the engine's own scores.' are the voice of somebody who read the documents. 'like \"ferst\" for \"first.\"' is a good concrete touch. Some lines are flat and lifted from the source, like frame 5's 'Written answers on the Spanish language STAAR are 100 percent human scored.' No Texas place or district is named anywhere, so the Texan texture comes entirely from the drawn ISD campus. The caption's closing question 'Should a family have to ask for a person?' leans slightly toward advocacy, but it stays on register."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "This is the first high-key overcast deck in the artwork window (nos. 32 to 37 are dusk, golden hour, blue hour, night sodium and storm, with dark grounds). It is the first to set dark type on a pale sky, the first with people as the progress motif, and the first education or testing topic since no. 21 on September 11th, a different instrument and body. topics.json has no STAAR entry inside 30 days. One familiar move is used three times: the instanced field of N identical objects that turns a count into a size (frames 2, 6 and 7). That is also the spine of no. 33 (220 masts), no. 34 (the truck yard) and no. 37 (813 gensets)."
+  }
+ ],
+ "weighted_score": 7.4,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Fetch TEA's Calendar of Events and the rescore fee, then use frame 5 (whose Spanish exception already sits on the cover) for when the current rescore window closes and what it costs, so the close tells a parent whether they can still act this fall and not just that a window exists somewhere.",
+ "named_defects_ranked": [
+  "1. No deadline and no fee on the close. Frame 9 says 'inside a window set in the agency's Calendar of Events' but gives no dates or amount (claims c9 and c35 carry neither), so a parent can't tell whether this spring's scores can still be rescored.",
+  "2. Frame 3's data picture misreads at thumb size. In final/thumbs/slide-03-thumb.png the 25 attended desks, drawn as the near-left quarter of a 10 by 10 grid, fill about 45% of the grid's visible width, so the picture reads as about half going to people against a headline of 75% machine.",
+  "3. Frame 5 is redundant and is the weakest render. It repeats the cover dek's Spanish exception, and the interior is a blank untextured grey wall over mannequin readers, the one frame outside the campus world.",
+  "4. Frames 8 and 9 make the same move ('Start with the district.' then 'Ask the district for a rescore.'). One of them is cuttable.",
+  "5. The review is never dated or placed. Frame 6 'Officials reviewed more than 1.6 million exams' gives no year and no administration, and the September 4th peg appears on no frame.",
+  "6. The cover and caption universal 'written STAAR answers' go to the engine first is broader than c1's constructed-response scope, and frames 6 and 7 show short typed answers the engine didn't score. The narrowing arrives only on frame 6.",
+  "7. Kit people are stiff and plastic at full size (frame 9 hair shell and hovering hands, frame 4 readers). Frame 2 has about 18 unexplained white-screened desks at bottom left.",
+  "8. The review half (c19 to c24, frames 6 and 7) rests on the Tribune quoting a spokesperson, not on TEA's own release."
+ ],
+ "notes": "machine_qa.json shows 0 fails and 19 warns. The warns are SKY or ROOM IN FRAME verdicts, plus 'SCHOOL BUS' and 'STOP' canvas text from an off-frame bus model on 1, 4, 8 and 9, harmless. render_report.json carries no instance counts, so the storyboard acceptance lines about counts on frames 2, 3, 6 and 7 can't be verified from this package. On frame 6 only about 9 lit screens are visible against a stated 17, probably from occlusion, but no report proves it. The curly-looking apostrophes in the dek renders are Manrope's glyph for U+0027: render_report text nodes carry straight quotes, so this is not a house-rule breach. Caption checked by hand against the house rules (no colons or semicolons, no dashes, no banned words, no And/But openers, the year only on a month-year, hashtags present) and I found no violation. Topic ledger checked: no STAAR or TEA-scoring entry inside 30 days. ship is false only because 7.40 is under the 7.7 round-4 rung. That is a threshold dissent, not a fault. Files: /home/user/TexasAIDocket/out/2026-09-30/render/slide-03.png, /home/user/TexasAIDocket/out/2026-09-30/render/slide-05.png, /home/user/TexasAIDocket/out/2026-09-30/render/slide-09.png, /home/user/TexasAIDocket/out/2026-09-30/final/thumbs/slide-03-thumb.png, /home/user/TexasAIDocket/out/2026-09-30/copy.json, /home/user/TexasAIDocket/out/2026-09-30/claims.json",
+ "judge_lens": "reader"
+}

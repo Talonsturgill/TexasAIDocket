@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-09-30, frame 2 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's overcast world. The school's football field covered goal line to goal line with one desk per human scored field test answer, seen from above the south end zone past the goal post, the school wing beyond. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#D7D9DA; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.96; letter-spacing:-0.01em; color:#12131A; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:31px; font-weight:600; line-height:1.38; color:#1E2028; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#111216; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:1em; }
+  .hook, .dek, .tx-site, .kick, .count, .src { text-shadow:0 0 2px rgba(240,242,242,0.35), 0 1px 10px rgba(240,242,242,0.25); }
+  .tx-site, .src { text-shadow:0 0 3px rgba(240,242,242,0.55), 0 1px 12px rgba(240,242,242,0.4); }
+  .tx-site, .src { color:#EEF0F0 !important; text-shadow:0 0 3px rgba(20,22,20,0.65), 0 1px 12px rgba(20,22,20,0.5) !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About <span class="num">3,000</span> answers taught it.</h1>
+<p class="dek" data-follow="30">For each question the engine is programmed on about 3,000 field test answers that people scored. The agency requires it to agree with scorers as often as scorers agree with each other.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-30-firstreader.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "How it learned", counter: "02 / 09", src: "c16 c4 c5 DRAWN", ink: '#111216' });
+  TX.fitText(document.getElementById("hook"), { min: 84, max: 116, maxLines: 2 });
+  FR.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FR, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+const FIG = {"training_sample": 3000};
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36, near: 0.1, far: 4000 });
+  /* HOW IT LEARNED. The school's football field south of the wing, covered goal line to goal line
+   * with one desk per human scored field test answer the engine is programmed on for a question:
+   * 60 rows down the field by 50 across. The count is exact and the render reports it. */
+  const FF = F.footballField(THREE, TXT, R, { center: [6, -12] });
+  const ROWS = 60, COLS = FIG.training_sample / ROWS, pz = FF.L / ROWS, px = FF.W / COLS;
+  const field = F.field(K, THREE, TXT, { count: FIG.training_sample, cols: COLS, pitch: [px, pz], origin: [FF.west + px / 2, FF.south - pz / 2], lidGlow: true,
+    near: (x, z) => z > FF.south - 7 && x < FF.west + 16 });
+  TXT.add(R, field);
+  if (field.userData.drawn !== FIG.training_sample) throw new Error('field drew ' + field.userData.drawn);
+  const post = F.goalPost(K, THREE, TXT); post.position.set(6, 0, FF.south + FF.EZ + 0.4); window.__txEncodings = { training_sample: FIG.training_sample }; TXT.add(R, post); TXT.contact(R, post);
+  F.campus(K, THREE, TXT, R, {});
+  /* the field's own furniture: light poles down both sidelines and a chain link fence behind the
+   * south end zone */
+  [[-1, -14], [-1, -52], [1, -14], [1, -52]].forEach(([sd, z], i) => { const lp = K.make('streetlight', { height: 18, reach: 1.2, finish: 'galvanized' }); lp.position.set(6 + sd * (FF.W / 2 + 7), 0, z); lp.rotation.y = sd > 0 ? -Math.PI / 2 : Math.PI / 2; TXT.add(R, lp); TXT.contact(R, lp); });
+  const endFence = K.make('chain_link_fence', { length: 64, height: 1.83 }); endFence.position.set(6, 0, FF.south + FF.EZ + 5.5); TXT.add(R, endFence);
+  TXT.frame(R, { from: [-3, 13, FF.south + FF.EZ + 24], look: [7, 4.2, FF.north - 30] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [6, 0, -30], distance: 110, shadowFar: 260, normalBias: 0.05 });
+  TXT.ground(R, { surface: 'grass', color: F.STRAW, size: 6000, seed: 25 });
+  TXT.weather(R, { grime: 0.3 });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.post(cx, { a: 0.22, type: ['.kick', '.count', '.hook', '.dek'], veil: 0.45, veilH: 220, dark: true });
+  TXDECK.finish(cx);
+  window.__txDrawn = { desks: field.userData.drawn, detailed: field.userData.detailed };
+
+  return true;
+})();
+</script>
+</body>
+</html>

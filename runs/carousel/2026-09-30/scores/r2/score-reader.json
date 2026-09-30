@@ -1,0 +1,65 @@
+{
+ "judge_lens": "reader",
+ "deck": "2026-09-30, carousel no. 38, round 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame does stand in a place at an hour. There's an overcast lid, a buff ISD wing on the horizon at about a third, haze in depth and soft contacts under desks (slide 1's desk shadow, slide 4's four desks, slide 5's glides on the VCT). Scale comes from true objects, like slide 2's 3,000 desks on a football field with a yellow goal post, which a Texan can size at once. It falls short of the 7 descriptor because more than one frame leans on a primitive or an artifact. (1) The kit people read as mannequins. On slide 9 the parent's white shirt has a brown texture tear at the left shoulder, and her hands hover above the laptop without touching it. Slide 5's five scorers are the same blocky figure and the room is a stage set, a flat blue wall panel with a blank window and an empty wall. (2) Slide 3 has two parked cars intersecting at the left edge, the red sedan inside the grey one. (3) Slide 2 has a lighter oval scrim in the sky behind the hook and dek with a stepped, posterised edge, visible at x 20 to 60, y 700 to 900 of the displayed frame. That is type on a halo rather than type in quiet. (4) On slide 7 the blurred flag sits inside the dek, behind '\"ferst\" for' and 'No', and on slide 1 the flagpole tip touches 'a year'. (5) Slide 7's declared focal ('frame 1's desk at the front of the rows') doesn't read. The one content expert is a speck at 432 px. Facades are flat textured boxes, so no frame would pass as a magazine spread."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "It reads as a filmstrip. One overcast campus and one light run through it, with no strobing. The pale sky carries dark type on every frame. There's one hero, the combo desk with its lit laptop, in one material. The spine is easy to describe without prompting: one empty desk, then a field of 3,000, then a block with readers, then a field of 27,200, then the same desk with a parent. Two continuity devices actually work. Frames 1 and 9 share a camera, with the desk empty and then attended, and the storyboard's motif evolution (people at the desk) is visible on 3, 4, 5, 7 and 9. Frame 5, the interior, sits outside the world as declared, and frame 8's close walkway breaks scale a little. That keeps it off 10."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 2023 goes to c17, $15 million to $20 million to c14, 3,000 to c16 ('for each question' honours c16's per-item note), 75% to c13, 100 percent to c2, 1.7% and 1.6 million to c24, 17 of every 1,000 to figures.json per1000_improved with its stated rule, and 27,200 to c19. Both universals ('none of the regraded answers', caption 'none of them') are attributed to the agency and scoped in quantifiers.json. The fact check's rejection of '11 districts' is honoured on every surface. It isn't a 10 for two reasons. First, the fall review (c19, c20, c21, c22, c24, c30) rests on the Texas Tribune reporting what 'TEA officials said Friday' when the agency's own statement was the primary. Second, slide 7's 'No score will be lowered' drops c30's scope 'as a result of the review', though the frame's context carries it. No hard fail found."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan parent learns what happened (the engine reads written STAAR answers first, since December 2023, except Spanish), who decided (the Texas Education Agency), the scope (statewide) and a route (slide 8 'Start with the district', slide 9 'District testing staff can request it for a fee. If the score changes, the fee is waived'). The action stake is stated generally, and at thumb that is what a parent needs most. No fee amount, no request window and no word on whether spring 2026 answers can still be rescored. The storyboard admits none is in the claims, and the web edition says so outright ('the agency's documents give the process but not the price of a rescore or the window'), but the deck never tells the reader that. There's also no district, county or named office, so 'the district' is abstract. The 10 descriptor asks for a deadline, and there isn't one."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover's hook 'A machine reads it first.' plus a lone desk earns a swipe, and frame 2 pays at once with a count made into a size. The 6 to 7 turn is real. A reader sees '1.7% of exams improved' after five machine frames, assumes the machine was corrected, and frame 7 says the engine scored none of them. The bookend close on 9 lands. More than one frame could go without loss, though. Frames 6 and 7 carry one fact twice (1.7% of 1.6 million and 27,200 students are the same review). Frames 8 and 9 split one action across two slides, and frame 3's 'Two people read the rest' is restated by frame 4. At thumb, frames 2, 3, 6 and 7 are all rows of desks on grass from a raised camera, and 6 is nearly indistinguishable from 7 in the contact sheet, so the middle feels like a repeat rather than a move. The turn headline is also three lines of 'The agency says the engine scored none of the regraded answers', which is slow for the frame that has to flip understanding."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The voice is clean, plain and on register for a parent: 'Start with the district.' 'Ask for a rescore.' 'A student who typed \"ferst\" for \"first\" may get credit.' It's honest without alarm, crediting the fee waiver and the human rescore. The caption's opener 'Who reads a written STAAR answer first?' is a good question-led hook. It stays at state-level abstraction, though, with no district, region or school named anywhere. Slide 7's hook 'The agency says the engine scored none of the regraded answers' reads like agency copy rather than a Texan talking. The caption's closer 'Should a family have to ask for a person?' leans a little against the deck's own evidence that the fall corrections weren't the machine's."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Nos. 34 to 37 (I-45 driverless trucks, RealPage and Pinnacle, SPS wildfire cameras, El Paso McCloud) were all dark rendered worlds with deck medians of L* 9.3 to 29.0 on near-black grounds, and all were regulatory filings. This deck is the first pale overcast register in the window, a schools and parents subject, and a process explainer rather than a docket read. topics.json has no STAAR or TEA-scoring deck in the 30-day window. The nearest education deck is no. 21, the SBOE money course on September 11th, a different topic. The familiar move is the count drawn as a field of repeated instanced units, which is also the device of no. 34 (truck yard), no. 36 (33 camera heads) and no. 37 (813 gensets). The type skeleton is unchanged."
+  }
+ ],
+ "weighted_score": 7.21,
+ "weighted_score_arithmetic": "0.22*6.0 + 0.12*8.5 + 0.20*8.0 + 0.16*7.0 + 0.10*6.5 + 0.10*7.0 + 0.10*8.0 = 1.32 + 1.02 + 1.60 + 1.12 + 0.65 + 0.70 + 0.80 = 7.21",
+ "hard_fails": [],
+ "hard_fail_checks_run": "Every slide numeral and caption numeral traced to claims.json or figures.json. machine_qa.json shows fails 0, verdict WARN (canvas fillText 'SCHOOL BUS'/'STOP' warns only). No colon, semicolon, em or en dash, emoji, banned word, sentence-initial And or But, or first person in caption.txt or any slide string. The first comment's sources are all fetched per claims.json retrieved 2026-09-30. No placeholder frame. No STAAR or TEA-scoring topic in the topics.json 30-day window.",
+ "ship": false,
+ "ship_note": "No fault found. This is a threshold dissent only: 7.21 against the round 2 rung of 8.0.",
+ "named_defects_ranked": [
+  "1. The close tells a parent to ask for a rescore but not what it costs or by when. Slide 9 says 'for a fee' with no amount and no request window, and doesn't say whether spring 2026 answers can still be rescored. The web edition admits the record lacks both, and the deck doesn't say so.",
+  "2. Slide 9 and slide 5 figures read as mannequins. Slide 9 has a texture tear at the parent's left shoulder and her hands float above the laptop. Slide 5 is a flat stage-set room with five identical blocky scorers.",
+  "3. Slides 6 and 7 split one fact across two frames (the 1.7% of 1.6 million exams is the 27,200 students), and at thumb they look almost the same, as does slide 2. One frame is cuttable, and cutting it would free a slot for the fee and window.",
+  "4. On slide 7 the blurred flag sits inside the dek behind '\"ferst\" for' and 'No', and the declared focal (frame 1's desk at the front) doesn't read at 432 px. The one content expert is a speck.",
+  "5. Slide 2 has a posterised oval scrim in the sky behind the hook and dek, with a stepped edge visible at the frame's left and right. It reads as a plate.",
+  "6. Slide 3 has two parked cars intersecting at the left edge.",
+  "7. Slide 7's hook is three lines of agency phrasing on the frame that carries the turn. Something like 'People fixed them. Not the machine.' would flip understanding faster. Slide 1's flagpole tip also touches the dek's last line 'a year'.",
+  "8. No Texas place below statewide appears anywhere, not a district or a region."
+ ],
+ "one_sentence_fix": "Fetch TEA's own rescore procedure for the spring 2026 STAAR (the fee per question and the district's request window) and put the price and the deadline on the closing frame, merging frames 6 and 7 into one turn frame so a Texan parent leaves knowing what it costs and by when to ask for a person."
+}

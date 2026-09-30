@@ -1,0 +1,62 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Eight of nine frames are a real place at a real hour. They share one overcast ISD campus: buff brick, a flagpole, straw bermuda and soft contact shadows under every desk and figure (slides 1, 3, 4, 6, 7, 9 at full size). Frame 4 is the best frame. The two readers lean to one lit screen, three bare desks stand beside them and the leaders land on the laptop. Frame 7's field of 27,200 desks running into haze, with one reader for scale, is a real showstopper. The frame that falls short is 5. About 60% of it is an empty grey wall cut by a flat blue slab, the tile floor is untextured, and the five readers are mannequin kit figures with their hands off the keyboards. That is a dead zone, and it is exactly what the 7 descriptor describes. Frame 8's parent is a few pixels tall under the walkway, and the flags are cropped at the right edge. Overcast keeps every frame in a mid band with little real dark outside the seat shells."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The contact sheet reads as a filmstrip: one campus, one light, one grade and one hero (the combo desk) all the way through. Two named devices work in the pixels. MOTIF_EVOLUTION: nobody at the desk on 1 and 2, two readers at a quarter of the desks on 3, the parent at the desk on 9. CAMERA_MOVE: 1, 7 and 9 share a seat, and 3 and 6 share a camera, visibly the same school, flag and wing. The value track holds pale from frame to frame with no strobe (machine_qa bands are 0.88 to 0.99 on top). The one frame outside is 5, an interior with a saturated blue wall that appears nowhere else. I did not run deck_coherence.py or deck_chassis.py myself."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every printed numeral traces. 2023 is c17. $15 million to $20 million is c14 (cost_low_m and cost_high_m). 3,000 is c16. 75% is c13. 100 percent is c2. 1.7% and 1.6 million are c24. 17 is per1000_improved, round(1.7 x 1000 / 100). 27,200 is c19. The mechanism rests on two primary TEA documents with page numbers. The turn (c20) is attributed 'The agency says'. The caption's 'none of them' is declared in quantifiers.json. Four things hold it at 7. (1) The rescore facts on frames 6 and 7 (c19 to c24, c30) are Texas Tribune reporting of TEA officials. The run shows no attempt at TEA's own release or its letter to districts. (2) Frame 8's 'A parent or guardian with a concern about a score can raise it with the district' is built on c12, which is only the if-clause of a sentence. The document never says the parent goes to the district. That is a reasonable inference, but it is an inference. (3) The pictures carry meaning the claims do not. On frame 6, bluebonnet readers sit at 17 of 1,000 desks. On 3, 4 and 5 the deck taught the reader that bluebonnet at a desk means a person read that answer. So frame 6 says people reread 1.7%, when its own dek says the review reread short typed answers across more than 1.6 million exams (gen/f06.py places experts only at the picked 17). (4) One desk stands for a different unit on different frames. It is a training answer on 2, a scored answer on 3 and 4, an exam on 6 and a student on 7. The storyboard deliberately builds 7 to 'read larger than frame 2', which sets 27,200 students against 3,000 training answers. Two bookkeeping untruths as well. aggregates.json's _note says 'The deck prints no number it computed', but slide 6 prints the computed 17 of every 1,000, and that phrase is not in the aggregates list. gen/f03.py computes a seeded shuffle it never uses, and its comment says the attended quarter is 'drawn by a seeded shuffle because part of that share is a random sample'. The code actually takes the near-left 5x5 block. None of these stretches a source in the printed words, so none is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happens (an engine scores written STAAR answers first, since December 2023) and who decides it (TEA). They learn the exception (Spanish, frame 5), how many answers keep the machine's score (about 75%, frame 3) and what they can do (frames 8 and 9: the district's testing staff request a human rescore for a fee, waived if the score changes). What is stated only in general terms: the deadline is 'a window set in the agency's Calendar of Events' with no dates, and the fee has no amount. The web edition admits both gaps and the deck does not. The review on frames 6 and 7 is never dated or given a cause on any frame. A reader can't tell it was this September or why TEA reread the answers, so the news hook floats."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's 'A machine reads it first.' earns the swipe, and frame 2 pays at once with a size (3,000 desks on a football field). The turn is declared and real at 7: the correction came from people, on answers the engine never scored. The close lands on the cover's own desk with the parent at it. Frames 8 and 9 split one action ('Start with the district', then 'Ask for a rescore'), and 6 and 7 split one event, so one frame could merge without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The copy is plain and on register, with no boosterism and no doom. 'A machine reads it first.' and the ferst/first example are good, and the caption's closing question 'Should a family have to ask for a person?' is pointed without claiming a verdict. Frame 9's 'District testing staff request it for a fee, inside a window set in the agency's Calendar of Events.' reads like a procedures manual. No copy names a Texas place below the state, and the regional specificity lives only in the drawn ISD campus."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "The palette and register break clearly from the last four. artwork.json records nos. 36 and 37 at deck median L* 27.8 and 29.0 on dark grounds, and no. 35 is a dark storefront. This is a pale overcast sky with dark type, and a school campus subject the window has not used (topics.json holds no STAAR or scoring deck since August 31st). The familiar move is counting with instanced objects in a field: 3,000, 100, 1,000 and 27,200 desks here, against no. 37's 813-genset yard and no. 36's 33 camera heads on a rail. The cover also opens on a single hero object, as recent decks do."
+  }
+ ],
+ "weighted_score": 7.4,
+ "hard_fails": [],
+ "ship": false,
+ "named_defects_ranked": [
+  "1. Frame 6's picture contradicts its dek. Bluebonnet means 'a person read this answer' on frames 3, 4 and 5. On frame 6 it sits at only the 17 of 1,000 desks that improved, so the image tells a reader people reread 1.7%, while the dek says the review reread short typed answers on more than 1.6 million exams (gen/f06.py line 12 picks only per1000_improved desks for experts).",
+  "2. The desk changes unit across the deck: a training answer (frame 2), a scored answer (3 and 4), an exam (6), a student (7). The storyboard designs frame 7 to read larger than frame 2, which invites a size comparison between incommensurable counts (27,200 students against 3,000 training answers).",
+  "3. Frame 5 is a dead zone. An empty grey wall and a flat blue slab fill about 60% of the frame, the tile floor is untextured, and the mannequin readers have their hands off the keyboards. It is the one frame that fails the showstopper test and the one frame that sits outside the deck's world.",
+  "4. Frames 6 and 7 carry the Tribune's reporting of TEA officials (c19 to c24, c30) with no TEA primary for the rescore. The review is undated and has no cause on any frame, so a reader can't place the news hook in time.",
+  "5. Frame 8's 'can raise it with the district' rests on c12, which is only the if-clause of a TEA sentence. The document never states the route, so the frame is looser than its source.",
+  "6. Frame 9 names a window but no dates and a fee but no amount, and says neither is known. The web edition says so in plain words. The deck and caption do not.",
+  "7. Record hygiene. aggregates.json's _note says the deck prints no computed number, while slide 6 prints the computed 17 of every 1,000, which is absent from the aggregates list. gen/f03.py's comment claims a seeded shuffle places the attended quarter, but the shuffle is dead code and the block is the near-left 5x5.",
+  "8. Frame 4's three leaders (LOW CONFIDENCE, CONDITION CODE, RANDOM SAMPLE) all land on one desk, so one answer reads as carrying all three reasons at once, though they are alternative routes. Frame 8's flags are cropped at the right edge and the parent is too small to read at feed size."
+ ],
+ "notes_on_verdict": "No hard fail was found. Every numeral on the slides and in the caption traces to claims.json through figures.json. machine_qa.json reports 0 fails and 19 warns: canvas raster 'SCHOOL BUS' and 'STOP' labels on 1, 4, 7, 8 and 9, and the SKY or ROOM IN FRAME verdict lines. No topic repeats inside the 30 day window. A manual read of the caption against the house rules found no colon, semicolon, em dash, banned word, first person or 'cannot', and no sentence opening with And or But. ship is false because 7.40 is under round 3's 8.0 rung. That is a threshold dissent, not a fault.",
+ "one_sentence_fix": "Hold the desk to one unit through the whole deck and redraw frame 6 on the deck's own grammar: put a content expert at every desk, because the review reread short typed answers on all the exams, and mark the 17 in 1,000 that improved by a change on the screen, not by a person, so the picture stops saying people reread 1.7%.",
+ "judge_lens": "integrity"
+}

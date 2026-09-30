@@ -1,0 +1,63 @@
+{
+ "judge_lens": "integrity",
+ "deck": "2026-09-30, carousel no. 38, round 4",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered in the same overcast campus world, with a sky, a hazed horizon on the lower third and soft contacts under desks and figures (render/slide-01, -04). Type sits in real sky quiet on all nine frames and none of it is on a plate. It fails the showstopper test as a photograph of a place. The school wing is a long box with a tiled brick texture and flat rooftop units (slides 01, 03, 06, 07). The grass is sprite-scattered, and the kit people read as mannequins at full size (slide 03's block of 50, slide 05's classroom). Frames 2, 6 and 7 are fields of instanced desks that read as texture at 432 px, and the hero shrinks to a pattern there. machine_qa band_ratio sits at 1.48 to 1.82, so the frames are mostly one pale mid band with no real dark. Slide 04 is the strongest frame. Several frames lean on primitive models, so this is below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "The contact sheet reads as a filmstrip: one grey September lid, one light, one straw ground, one hero (the combo desk) and one bluebonnet accent. The declared CAMERA_MOVE works in the pixels. Frames 1 and 9 share a camera and so do 3 and 6, and 7 is a crane up from frame 1's seat. The value holds across all nine frames with no strobe (canvas means 138.6 to 155). Frame 5's interior sits slightly outside the world, and frame 8 drops the desk. The desk's MEANING drifts, and that is counted under claim_integrity rather than here."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every printed numeral traces. 2023, $15M/$20M, 3,000, 75%, 100 percent, 1.7%, 1.6 million, 27,200 and the counter are extracted from quotes by compute.py. 17 of every 1,000 is per1000_improved with its rule stated. Attribution is careful: 'In the agency's own chart', 'The agency says'. Four integrity faults hold it under 7. (1) Frame 6's drawing contradicts frame 7's headline. Frames 3 and 4 teach that a lit screen with no person is a desk whose score the engine set (f03.py: 'per100_engine stand alone with their screens lit'). Frame 6 then marks the 17 improved exams with exactly that encoding, and its dossier says so outright: 'marked on the machine's side'. So the frame shows the improvements as the machine's, and on the next swipe the deck says the engine scored none of them (c20). (2) Frame 7's dek, 'So the review says nothing either way about the engine's own scores', is the deck's own inference. c20 and c21 support only that the regraded answers were not engine-scored. The web edition scopes it correctly ('how often the machine's own scores would change if a person read them') and the slide does not. (3) The desk changes unit from frame to frame. It is one answer on frames 2 and 3, one exam on frame 6 and one student on frame 7. Frame 7's 27,200-desk field was built to 'read larger than frame 2' (storyboard l.97), which sets students credited against training answers per question as if they were one quantity. (4) c19 to c24 rest on the Texas Tribune reporting TEA officials. No TEA primary for the rescore figures was sought."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happens (an engine scores written STAAR first), who decided it (TEA, since December 2023, to save $15M to $20M a year), the exception (Spanish) and the route (a parent's concern goes to the district, whose testing staff request a human rescore, fee waived if the score changes). No deadline and no fee are named. Slide 9 points to a 'window set in the agency's Calendar of Events' without saying whether it is open on September 30th, so the imperative 'Ask the district for a rescore.' does not tell a family whether they can still act on this year's score."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'A machine reads it first.' earns the swipe and frame 2 pays at once with the training size. The turn at frame 7 is real and declared, and the close lands on an action. Frames 8 and 9 both say 'go to the district' and could merge. Frame 5 (Spanish) is one sentence that could fold into 4 or 1 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The copy is plain, specific and unhyped, and honest about the cost reason without doom ('The agency said scoring every answer by hand would have cost...'). It passes the house rules I checked: no colons, no dashes, no banned words, no year on a 2026 date. Regional specificity lives in the art (an ISD campus, the Texas flag) and not in the words. No region, district or place is named anywhere in the copy. 'Rescores are read by people.' is a flat line, and the caption's closing question leans a little."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The topic and beat diverge from the last four decks: no. 34 driverless authorization, no. 35 RealPage, no. 36 SPS fire cameras, no. 37 El Paso McCloud plant. No STAAR or TEA scoring deck is in topics.json's window, and the education beat last appeared on September 11th (no. 21). An overcast campus with one object on a field is a fresh world. The isotype count field and the one-object-in-a-landscape cover are familiar moves for this engine."
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail found. The ship is false because 7.26 is under round 4's 7.7 rung, which is a threshold dissent and not a fault. Checked and clean: every numeral against figures.json and compute.py, all four quotes and dates against claims.json, the caption against house rules, the 30-day topic window in ledger/carousel/topics.json (no STAAR or TEA scoring entry), and machine_qa.json (0 fails, 19 warns: canvas 'SCHOOL BUS'/'STOP' raster text and 'SKY IN FRAME' verdicts, neither of them a fail).",
+ "named_defects_ranked": [
+  "1. Frame 6's encoding asserts the opposite of c20. The 17 improved exams are drawn as lit screens with no person, which is the deck's established sign for the engine's score (f03.py, f04.py, and f06.py's own comment 'marked on the machine side'). Frame 7 then says the engine scored none of the regraded answers.",
+  "2. Frame 6's drawn count does not reach the pixels. f06.py asserts 17 lit of 1,000 desks, but about 9 lit screens are visible in render/slide-06.png. The 40-column field is cropped at both edges and some screens are hidden behind seat backs, so the frame shows neither 1,000 nor 17. The acceptance check counts objects, not pixels.",
+  "3. Frame 7's dek 'the review says nothing either way about the engine's own scores' goes further than c20 and c21. The web edition's narrower wording is the defensible one.",
+  "4. The desk's unit changes from answers (frames 2 and 3) to exams (6) to students (7), and frame 7's field is built to look bigger than frame 2's. That invites a comparison between two unlike quantities.",
+  "5. Slide 6 says 'The review reread short typed answers. The engine scores the longer ones.' TEA's own item type 'short constructed response' is engine-scored (c22), so a reader who knows the term reads 'short' the wrong way. Name the item type ('one word or number answers') instead.",
+  "6. Stale storyboard. Line 97 says frame 6 was 'redrawn ... with a content expert at the share that improved', and neither f06.py nor the dossier has a person. The planning record contradicts the shipped frame.",
+  "7. The deadline and fee are absent, and the CTA does not say whether the rescore window for this year's scores is still open.",
+  "8. Frames 2, 6 and 7 reduce the hero to texture at feed size. The school is a textured box, and the band ratios of 1.48 to 1.82 show no real dark."
+ ],
+ "one_sentence_fix": "Give the desk one unit and one sign for the whole deck: on frame 6, mark the improved exams with a person in the bluebonnet accent (the content expert who reread them) instead of a lit unattended screen, which frames 3 and 4 already taught the reader means the engine's score, and frame the thousand whole so all 17 marks can be counted in the pixels."
+}

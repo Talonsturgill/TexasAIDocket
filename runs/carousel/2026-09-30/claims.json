@@ -1,0 +1,398 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Under TEA's hybrid model an automated scoring engine scores written STAAR answers first, and at least 25 percent of them then go to human scorers.",
+   "quote": "This means that the responses are initially scored by an automated scoring engine (ASE) and at least 25 percent of student responses are then routed to human scorers.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "1"
+  },
+  {
+   "id": "c2",
+   "text": "Written answers on the Spanish-language STAAR are 100 percent human scored and are never scored by the engine.",
+   "quote": "Student responses to SCR and ECR questions for STAAR Spanish assessments are 100 percent human scored and do not get scored by the ASE.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "1"
+  },
+  {
+   "id": "c3",
+   "text": "When a response is sent to a human scorer, the human's score becomes the score of record.",
+   "quote": "Any student responses that are routed for human scoring maintain the score assigned by the human scorer as the score of record.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c4",
+   "text": "The engine is trained on student responses from field tests and on the scores humans gave those responses.",
+   "quote": "The ASE is trained on student responses and human scores from the field-test data.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "3"
+  },
+  {
+   "id": "c5",
+   "text": "TEA requires the engine to agree with human scorers at the same rate human scorers agree with one another.",
+   "quote": "human scorers at the same rate human scorers agree with one another and that the distribution of ASE scores is similar to the distribution of human scores.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "4",
+   "note": "The sentence starts at the foot of page 3 with the words TEA requires the ASE to agree with. A running header interrupts it, so the quote is the page 4 part."
+  },
+  {
+   "id": "c6",
+   "text": "The engine gives a condition code to a response that is blank, uses too few words, is mostly duplicated text, is written in another language, is mostly stimulus material, uses vocabulary unlike the responses used to train the engine, or reads as off topic or off task.",
+   "quote": "Condition codes indicate that a response is blank, uses too few words, uses mostly duplicated text, is written in another language, consists primarily of stimulus material, uses vocabulary that does not overlap with the vocabulary in the subset of responses used to train the ASE, or uses language patterns that are reflective of off-topic or off-task responses.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "4"
+  },
+  {
+   "id": "c7",
+   "text": "Responses the engine marks as low confidence are often ones that fall on the border between two score points.",
+   "quote": "The low confidence responses are often those responses that are on the border between",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "4",
+   "note": "The text layer splits the next word, so the quote stops before it. The sentence ends two score points."
+  },
+  {
+   "id": "c8",
+   "text": "Both engine and human scoring results are monitored daily for the whole scoring window.",
+   "quote": "Throughout the scoring window, both ASE and human scoring results are monitored daily",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c9",
+   "text": "District testing personnel can ask for a student's written response to be rescored, for a fee.",
+   "quote": "district testing personnel can request that the student’s response be rescored for a fee.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c10",
+   "text": "A requested rescore goes to human scorers.",
+   "quote": "Rescore requests are sent for human scoring.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c11",
+   "text": "If the rescore changes the score on the question, the fee is waived.",
+   "quote": "If the score on the constructed-response question changes, the fee is waived.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c12",
+   "text": "A rescore request can start with concerns about a student's score raised by district personnel or by a parent or guardian.",
+   "quote": "If district personnel or a parent or guardian has concerns about a student’s score",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5"
+  },
+  {
+   "id": "c13",
+   "text": "TEA's March 2024 presentation says the engine assigns the score of record for approximately 75% of responses.",
+   "quote": "Scenario 1: Auto scoring engine assigns score of record Approx. 75% responses",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "26",
+   "note": "On the slide, Approx. 75% responses is a bracket label under the Scenario 1 box. The label At least 25% responses spans Scenarios 2 and 3."
+  },
+  {
+   "id": "c14",
+   "text": "TEA said that keeping full human scoring would have cost $15-20M more per year.",
+   "quote": "maintaining full human scoring would have cost $15-20M more per year",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "6"
+  },
+  {
+   "id": "c15",
+   "text": "TEA said the STAAR redesign left it with 6-7x more constructed responses to grade each year.",
+   "quote": "With 6-7x more constructed responses to grade annually for STAAR",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "6"
+  },
+  {
+   "id": "c16",
+   "text": "The engine is programmed on a sample of about 3,000 human scored responses from the field test for each item it scores.",
+   "quote": "The engine uses a sample of ~3,000 human scored responses from the field test for programming.",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "23",
+   "note": "The slide puts this bullet under the heading For each item being scored, so the sample is per item."
+  },
+  {
+   "id": "c17",
+   "text": "Hybrid scoring began in December 2023, when student responses moved from fully human scoring to hybrid scoring.",
+   "quote": "The hybrid scoring transition started in December 2023, and student responses went from fully human scoring to hybrid scoring.",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "31"
+  },
+  {
+   "id": "c18",
+   "text": "A human scorer who does not keep at least 65% exact agreement and 95% adjacent agreement during the scoring window can't remain a scorer for that administration.",
+   "quote": "If a scorer does not maintain at least at 65% exact agreement and 95% adjacent agreement during the scoring window, they cannot remain as a scorer for that admin.",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "17"
+  },
+  {
+   "id": "c19",
+   "text": "TEA officials said about 27,200 students received additional credit for text responses to some questions on the reading portion of STAAR.",
+   "quote": "Texas Education Agency officials said Friday about 27,200 students received additional credit for their text responses to some questions on the reading portion of the State of Texas Assessments of Academic Readiness.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c20",
+   "text": "TEA spokesperson Jake Kobersky said none of the regraded responses had been graded by the agency's automated scoring engine.",
+   "quote": "However, Kobersky said none of the regraded responses were graded by its “automated scoring engine.”",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th",
+   "note": "Restored to the full sentence from a byte-level fetch of the page, which carries U+201C and U+201D around automated scoring engine."
+  },
+  {
+   "id": "c21",
+   "text": "Content experts rescored text entry responses, in which students type brief text such as a number, word or phrase.",
+   "quote": "Content experts rescored “text entry” responses, where students type brief text — such as a number, word, or phrase.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th",
+   "note": "Restored to the full sentence from a byte-level fetch, which carries U+201C, U+201D and U+2014."
+  },
+  {
+   "id": "c22",
+   "text": "The automated model handles short and extended constructed-response questions, which ask students for longer answers.",
+   "quote": "The automated model reviews short and extended constructed-response questions, which ask students to provide longer answers.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c23",
+   "text": "Kobersky said content experts may decide to credit a misspelled answer, and gave the example of a student who entered ferst when the correct answer was first.",
+   "quote": "For example: If the correct answer to a question was ‘first,’ content experts may decide to award credit for a student that entered the response ‘ferst.’",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th",
+   "note": "Restored to the full sentence from a byte-level fetch, which carries U+2018 and U+2019 around first and ferst."
+  },
+  {
+   "id": "c24",
+   "text": "Agency officials said about 1.7% of more than 1.6 million exams reviewed saw their scores improve.",
+   "quote": "About 1.7% of more than 1.6 million exams reviewed saw scores improve",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c25",
+   "text": "Officials said nine campuses and five districts saw their A-F ratings rise as a result of the rescore.",
+   "quote": "Nine campuses and five districts saw their A-F rating increases as a result",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c26",
+   "text": "Kobersky named the affected districts as Chester, Crandall, Daingerfield-Lone Star, Floydada Collegiate, Forney, Fredericksburg, Galveston, Jim Hogg County, Odem-Edroy, Southwest and Walnut Bend ISDs.",
+   "quote": "The affected districts consist of Chester, Crandall, Daingerfield-Lone Star, Floydada Collegiate, Forney, Fredericksburg, Galveston, Jim Hogg County, Odem-Edroy, Southwest and Walnut Bend ISDs",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th",
+   "note": "The article calls these the affected districts. It does not say all of them saw an A-F rise (see c25)."
+  },
+  {
+   "id": "c27",
+   "text": "Texas released preliminary accountability ratings on August 14th, 2026.",
+   "quote": "Texas released the preliminary accountability ratings on Aug. 14.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c28",
+   "text": "Districts could appeal their preliminary ratings until September 11th, 2026.",
+   "quote": "Districts can file an appeal of their preliminary ratings until Sept. 11.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c29",
+   "text": "TEA officials will update ratings for the affected schools and districts automatically, without requiring an appeal.",
+   "quote": "TEA officials will automatically update ratings for the impacted schools and districts without requiring an appeal.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th"
+  },
+  {
+   "id": "c30",
+   "text": "The agency said no student's score will be lowered as a result of the review.",
+   "quote": "No students’ scores will be lowered as a result of the review.",
+   "url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "The Texas Tribune, Megan Menchaca, September 4th",
+   "note": "Rejected by the fact-checker on an unsettled apostrophe glyph. Restored from a byte-level fetch, which carries U+2019."
+  },
+  {
+   "id": "c31",
+   "text": "When hybrid scoring sends an answer to people, two human scorers read it, one giving the score of record and one auditing.",
+   "quote": "All scores go through auto scoring engine; 25% are double human scored (one score of record, one for auditing)",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "20"
+  },
+  {
+   "id": "c32",
+   "text": "Part of the share that goes to people is a random sample, scored by two people.",
+   "quote": "Scenario 3: Random sample of responses for double human scoring",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "26"
+  },
+  {
+   "id": "c33",
+   "text": "Answers the engine gives a condition code or marks as low confidence are routed to trained human scorers.",
+   "quote": "Student responses that the ASE assigns condition codes (e.g., use words not seen in the responses used to train the ASE) or that are identified as “low confidence” are routed to",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "4",
+   "note": "The text layer splits the next word, so the quote stops before it. The sentence ends trained human scorers."
+  },
+  {
+   "id": "c34",
+   "text": "The agency's presentation shows the engine flagging answers for double human scoring by condition code or low confidence.",
+   "quote": "Scenario 2: Engine flags responses for double human scoring (assignment of condition codes or low confidence*)",
+   "url": "https://tea.texas.gov/data-reports/staar/hybrid-scoring-key-questions-2.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Hybrid Scoring Key Questions, March 2024",
+   "page": "26"
+  },
+  {
+   "id": "c35",
+   "text": "District testing staff must submit a rescore request within a specific window, and the agency's Calendar of Events gives the dates.",
+   "quote": "The rescore request must be submitted in the Test Information Distribution Engine (TIDE) by district testing personnel within a specific window. Refer to the Calendar of Events for specific dates.",
+   "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-30",
+   "confidence": "high",
+   "document": "TEA, Scoring Process for STAAR Constructed Responses, December 2023",
+   "page": "5",
+   "note": "Added in scoring round 3, when two judges asked when a family has to ask. The document names the window and not its dates, so the deck says the window exists and where its dates are, and prints no date."
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "That eleven districts saw A-F grades improve, from the headline",
+   "reason": "The body says nine campuses and five districts saw rating increases (c25) and lists the named districts as affected (c26). The headline's eleven is not stated in the body."
+  },
+  {
+   "finding": "One quote spanning the whole sentence TEA requires the ASE to agree with human scorers at the same rate",
+   "reason": "The sentence crosses a page break with a running header in it, so only the page 4 part is quoted (c5)."
+  }
+ ]
+}

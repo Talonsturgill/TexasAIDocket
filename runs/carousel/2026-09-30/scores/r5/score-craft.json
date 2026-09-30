@@ -1,0 +1,73 @@
+{
+ "judge_lens": "craft",
+ "deck": "2026-09-30, carousel no. 38, round 5",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "What works: every frame is a place at an hour. There's an overcast lid, a horizon carrying the buff ISD wing and the flags, haze in depth (the far rows on 2, 3 and 6 fade into it rather than ending hard), and soft contact shadows under every desk glide and shoe. The one hero, the combo desk with its laptop, is at true scale. The type sits in sky the composition left empty for it, with no plates. Frames 2 and 7, a football field of 3,000 desks and 27,200 desks run to the school, are strong ideas that read at thumb size. Why it doesn't reach 7: more than one frame leans on a default or a primitive. (1) Frame 5, the classroom, looks unfinished. It's a bare grey wall with a diagonal shading smudge across its middle (about x 700 to 900, y 650 to 1000 in the 1600 px view), a flat ceiling wedge in the top left corner, a blown-out white window with nothing behind it, and empty tile filling the lower half. Its five readers are the lowest-fidelity figures in the deck, with helmet hair and plastic shirts. (2) The people throughout are mannequin grade. On frame 9 a hair clump sticks out behind the parent's neck, and her collar is a white blob. On frame 3 the 50 readers read as an assembly, not as pairs reading screens. (3) Frame 2 has a level-of-detail seam: about ten desks in the bottom-left corner have lit screens and a different model from the thousands around them. (4) Frame 8 is box-model architecture. The canopy is an untextured slab, the glass is a flat dark gradient, and the flags are soft-blurred while their pole is sharp. (5) The sky on every exterior is a smooth gradient with no cloud form, and the grass is one tuft repeated at even density. It reads as a render engine, not a photograph. (6) The hooks carry a visible halo, from text-shadow 0 1px 10px rgba(240,242,242,0.25) in the slide CSS (slides/slide-03.html line 18). It shows as a pale ring around the Fraunces on 2, 5 and 7. (7) On 2, 3 and 6 the numeral is set in Manrope inside a Fraunces hook ('.hook .num'), so '3,000', '75%' and '1.7%' look like a second face dropped into the line. (8) On frame 7 the dek's last line (y about 850) almost touches the rooftop units (y about 910). (9) The lower 40 percent of frame 3 is empty grass. This isn't a 4, since nothing floats in a void and there's no banding. It isn't the magazine spread the 10 describes either."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "It's close to a filmstrip. There's one campus, one overcast light with the same soft shadow direction on every exterior, one desk model in one material, and the flag motif on 1, 2, 3, 6, 8 and 9. Two continuity devices are declared in the storyboard and both actually work. Frames 1 and 9 share one camera exactly (empty desk, then the parent at it), and 3 and 6 share one camera. The motif evolves from no readers, to readers at a quarter of the desks, to one reader at each of the 17, to one in 27,200, to a parent. A reader could state the spine unprompted: one desk becomes a field of desks and comes back to one desk with a person at it. The value doesn't strobe: every exterior is pale sky over straw ground. The frame that sits outside is 5. It's an interior with a blue feature wall and grey tile, the only change of hue and material in the deck, though the bluebonnet shirts and the desks keep it in the family. One more point off because 2 and 7 are nearly the same picture at thumb size (desk grid running to the school), so the filmstrip repeats instead of moving."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim or to figures.json: 2023 (c17), $15 million to $20 million (c14), 3,000 (c16), 75% (c13), 1.7% and 1.6 million (c24), 17 of every 1,000 (per1000_improved from c24), 27,200 (c19), 100 percent (c2). The drawn counts are asserted in code; slide-03.html throws 'split drawn wrong' unless 25 of the 100 desks have readers. Mechanism claims rest on the two TEA primary PDFs. The review figures (c19 to c24) rest on the Texas Tribune reporting what officials said, and the deck attributes them ('The agency says', 'Officials reviewed'). That is the 7-to-10 line: journalism where an agency release may well exist. Frame 7's closing sentence is an inference, but a careful one, and it narrows what a reader believes rather than widening it. I found nothing stretched past its source. I checked whether the apostrophes that render curly in Manrope on the deks break the straight-quotes rule. The HTML source has straight U+0027 (slides/slide-03.html line 27), so it's the glyph shape, not a violation."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happens (a machine scores written STAAR answers first, since December 2023), who decided it (TEA), the exception (the Spanish-language test), and what to do (ask the district, whose testing staff request a rescore, with the fee waived if the score changes, frames 8 and 9). The stake is personal: a child's answer. Two things keep it off 10. The deadline is only 'a window set in the agency's Calendar of Events', with no date, and the fee has no amount. Neither is in the claims, so this is honest, but a reader still can't act without another lookup. And the deck names no place beyond a generic ISD campus."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover ('A machine reads it first.' over one empty desk) earns the swipe, and frame 2 pays immediately with a size. The turn is declared at 7 and lands on the same field frame 1 left empty. The close answers the cover. But 6 and 7 both carry the fall reread, and 8 ('Start with the district.') and 9 ('Ask the district for a rescore.') make the same move twice, so 8 could fold into 9 without loss. Frame 5 could also move without harm."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "It's clean and on register, with no boosterism and no doom. The cover line and 'Should a family have to ask for a person?' are good. Some lines are procedural and flat, like 'In the agency's own chart the engine sets the score of record on about 75% of answers.' Frame 7's hook, 'The agency says the engine scored none of the regraded answers.', reads like a memo. There's little regional texture: no town, no district and no Texan voice beyond the agency's."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The palette and value clearly diverge. The last four decks (no. 34 blue hour, median L* 18.1; no. 35 night sodium, 9.3; no. 36 storm front, 27.8; no. 37 golden hour, 29.0, per ledger/carousel/artwork.json) were all dark, and this is a pale overcast deck with dark type on sky. The opening move, one object alone on a field, is fresh against no. 37's yard lane. The familiar move is the count drawn as a field of repeated instanced units, which no. 34 (a truck yard in rows), no. 36 (33 heads on a corral rail) and no. 37 (a yard of 813 units) all used."
+  }
+ ],
+ "weighted_score": 7.39,
+ "weighted_score_arithmetic": "6.3x0.22=1.386, 8.5x0.12=1.020, 8.0x0.20=1.600, 7.5x0.16=1.200, 7.3x0.10=0.730, 7.0x0.10=0.700, 7.5x0.10=0.750, total 7.386",
+ "hard_fails": [],
+ "hard_fail_checks_made": [
+  "machine QA: render/machine_qa.json fails 0, verdict WARN. The warns are the kit bus's canvas 'SCHOOL BUS'/'STOP' fillText and the SKY/ROOM IN FRAME verdict lines, none a failure",
+  "numerals: every slide and caption numeral matched to figures.json or a claim quote",
+  "topic window: no STAAR or education-scoring deck in ledger/carousel/topics.json since August 31st. The nearest is no. 26 (UTA AI tutor, September 16th), a different subject",
+  "placeholder or unfinished frame: frame 5's room is under-built, but it is a finished render with every declared element present, not a placeholder",
+  "sources: the three documents in first_comment.txt are exactly the URLs in claims.json"
+ ],
+ "ship": true,
+ "ship_note": "No hard fail found. 7.39 is under the round 4+ rung of 7.7. Round 5 is max_rounds, so under the ladder the finished deck ships with the 0.31 shortfall named.",
+ "named_defects_ranked": [
+  "1. Frame 5 is an unfinished room: a diagonal shading smudge on the bare wall, a flat ceiling wedge top left, a blown-out window with no exterior, and an empty tile floor over the lower half. It has the weakest figures in the deck.",
+  "2. Mannequin-grade people on 3, 4, 5, 7 and 9: a hair clump detached behind the parent's neck and a blob collar on 9, and a 50-figure crowd on 3 that reads as an assembly, not as readers at screens.",
+  "3. Frame 3's quarter reads as nearly half at 432 px, because the standing crowd fills the left half of the block's silhouette. The count is right but the reading is wrong, and the lower 40 percent of the frame is empty grass.",
+  "4. Level-of-detail seam on frame 2: about ten near-left desks with lit screens and a different model inside the uniform field.",
+  "5. Hook halo from the .hook text-shadow glow, visible as a pale ring on 2, 5 and 7.",
+  "6. Manrope numerals inside the Fraunces hooks on 2, 3 and 6, reading as two faces colliding in one line.",
+  "7. Frame 8 is box-model architecture: an untextured canopy slab, flat glass, and flags blurred against a sharp pole.",
+  "8. The sky is a smooth gradient with no cloud structure, and the grass is one tuft at even density on every exterior.",
+  "9. Frame 7's dek sits almost on the roofline and rooftop units.",
+  "10. Frames 2 and 7 are near duplicates at thumb size, and 8 and 9 make the same move twice."
+ ],
+ "one_sentence_fix": "Spend the next round's render budget on the readers and the room rather than on more desks: bring the kit people on 3, 4, 5 and 9 up to real hair, faces and cloth, rebuild frame 5 to the campus's standard (a lit window with a world behind it, a finished ceiling and wall, the readers bent to their screens), and redraw frame 3's attended quarter as seated pairs so it reads as one in four at 432 px, because the mannequins and the unfinished classroom are what keep an otherwise coherent overcast world from passing the showstopper test."
+}

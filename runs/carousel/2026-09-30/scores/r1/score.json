@@ -1,0 +1,111 @@
+{
+ "weighted_score": 6.924,
+ "judges": [
+  6.69,
+  6.7,
+  6.96
+ ],
+ "spread": 0.27,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.2,
+    5.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    7.0,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    8.0,
+    7.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, on slide 7's headline: 'The engine scored none of the regraded answers.' The only support is c20, a secondary_reported Tribune line in which TEA spokesperson Jake Kobersky 'said none of the regraded responses were graded by its automated scoring engine'. The claims file verifies that the agency SAID it, not that it is so. The deck's own caption attributes it ('The agency said the engine scored none of them') and the headline of the turn frame drops the attribution. It is the interested party's self-exoneration printed in the deck's own voice. Topics ledger entry no. 31 records the same defect (an agency's self-description of its own process stated without attribution) as an integrity hard fail. Counter-argument, stated so the panel can weigh it: the claim is quoted and fetched, and a reader of the caption gets the attribution. The repair is one clause, e.g. 'The agency says the engine scored none of them.'"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified, on slide 7's headline: 'The engine scored none of the regraded answers.' The only support is c20, a secondary_reported Tribune line in which TEA spokesperson Jake Kobersky 'said none of the regraded responses were graded by its automated scoring engine'. The claims file verifies that the agency SAID it, not that it is so. The deck's own caption attributes it ('The agency said the engine scored none of them') and the headline of the turn frame drops the attribution. It is the interested party's self-exoneration printed in the deck's own voice. Topics ledger entry no. 31 records the same defect (an agency's self-description of its own process stated without attribution) as an integrity hard fail. Counter-argument, stated so the panel can weigh it: the claim is quoted and fetched, and a reader of the caption gets the attribution. The repair is one clause, e.g. 'The agency says the engine scored none of them.'"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.7 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.96 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.7,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.7 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.96,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.96 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "artwork_craft",
+  "claim_integrity"
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0
+}

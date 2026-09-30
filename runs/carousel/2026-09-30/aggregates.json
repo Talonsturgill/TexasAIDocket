@@ -1,0 +1,68 @@
+{
+ "date": "2026-09-30",
+ "_note": "Every figure the detector reads as a count, declared with the claim it was quoted from or the rule that computed it. The drawn counts (the desks in frames 2, 3, 4 and 7, the readers, the lit screens on frame 6) are set from figures.json by compute.py and asserted in each frame's own code. Slide 6's 17 of every 1,000 is compute.py's per1000_improved, a rate restated per thousand so the frame can draw it. The detector does not read it as a count, so it is recorded here rather than declared.",
+ "aggregates": [
+  {
+   "phrase": "3,000 answers",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c16",
+   "quote": "The engine uses a sample of ~3,000 human scored responses from the field test for programming.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "3,000 field test answers",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c16",
+   "quote": "The engine uses a sample of ~3,000 human scored responses from the field test for programming.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "1.6 million exams",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 1.6,
+   "quoted_from": "c24",
+   "quote": "About 1.7% of more than 1.6 million exams reviewed saw scores improve",
+   "note": "the source's own figure, 1.6 million, quoted, never computed"
+  },
+  {
+   "phrase": "27,200 students",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 27200,
+   "quoted_from": "c19",
+   "quote": "Texas Education Agency officials said Friday about 27,200 students received additional credit for their text responses to some questions on the reading portion of the State of Texas Assessments of Academic Readiness.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "3,000 human scored answers",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c16",
+   "quote": "The engine uses a sample of ~3,000 human scored responses from the field test for programming.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "27,200 students",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 27200,
+   "quoted_from": "c19",
+   "quote": "Texas Education Agency officials said Friday about 27,200 students received additional credit for their text responses to some questions on the reading portion of the State of Texas Assessments of Academic Readiness.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counting the distinct official document urls, the agency's scoring process and its hybrid scoring key questions, among the claim ids the deck prints",
+   "note": "the sources block's own tally of official documents"
+  }
+ ]
+}
