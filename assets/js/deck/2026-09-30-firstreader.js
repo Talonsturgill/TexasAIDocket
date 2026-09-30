@@ -106,8 +106,9 @@
         var lip = TXT.roundedBox(0.4, 0.05, 0.03, 0.012, M.shell); lip.position.set(0, 0.45, 0.02); g.add(lip);
         /* the back: a moulded shell panel in three slightly turned segments so it reads as curved */
         var backP = TXT.roundedBox(0.4, 0.23, 0.028, 0.02, M.shell); backP.position.set(0, 0.73, 0.42); backP.rotation.x = 0.12; g.add(backP);
-        K.bar([-0.12, 0.47, 0.37], [-0.14, 0.6, 0.41], 0.012, M.tube, 8, g);
-        K.bar([0.12, 0.47, 0.37], [0.14, 0.6, 0.41], 0.012, M.tube, 8, g);
+        /* the two back posts run up into the panel and are hidden behind it, so they read as its stem, never as stubs */
+        K.bar([-0.12, 0.45, 0.37], [-0.13, 0.72, 0.445], 0.012, M.tube, 8, g);
+        K.bar([0.12, 0.45, 0.37], [0.13, 0.72, 0.445], 0.012, M.tube, 8, g);
         /* the frame: two runners on the ground-side, four legs, the spine to the top on the writing side */
         var R = 0.011;
         [-0.19, 0.19].forEach(function (x) {
@@ -150,6 +151,33 @@
   N.reader = function (K, o) {
     o = o || {};
     return K.make('person', { seed: o.seed || 3, role: 'worker', pose: o.pose || 'stand', shirt: o.accent === false ? (o.shirt || 0x8a8f96) : N.ACCENT, trousers: o.trousers || 0x2b2d33, hat: 'none', vest: false, detail: o.detail || 'full' });
+  };
+
+  /* THE PARENT, one person across frames 8 and 9 and never in the accent: a resident's own shirt,
+   * so at thumb size the parent never reads as one of the scorers. */
+  N.parent = function (K, o) {
+    o = o || {};
+    return K.make('person', { seed: 12, role: 'resident', pose: o.pose || 'stand', hat: 'none', build: 'female', detail: 'full' });
+  };
+
+  /* READERS AT A DESK, placed in the desk's own frame so they are seated in its seat or standing
+   * at its side and always turned to its screen. at = { x, z, rotY } of the desk. sit puts one
+   * reader in the seat (pose sit_read); side (1 or -1) stands one beside the top (pose read).
+   * Returns the people, already positioned. */
+  N.attend = function (K, at, o) {
+    o = o || {};
+    var out = [], c = Math.cos(at.rotY || 0), s = Math.sin(at.rotY || 0);
+    function w(lx, lz) { return [at.x + lx * c + lz * s, at.z - lx * s + lz * c]; }
+    var screen = w(0.04, -0.2);
+    if (o.sit !== false) {
+      var p = w(0, 0.24), a = N.reader(K, { seed: o.seed || 5, pose: 'sit_read', detail: o.detail });
+      a.position.set(p[0], 0, p[1]); a.rotation.y = (at.rotY || 0) + Math.PI; out.push(a);
+    }
+    if (o.side) {
+      var q = w(o.side * (o.gap || 0.62), -0.12), b = o.make ? o.make('read') : N.reader(K, { seed: (o.seed || 5) + 1, pose: 'read', detail: o.detail });
+      b.position.set(q[0], 0, q[1]); b.rotation.y = Math.atan2(screen[0] - q[0], screen[1] - q[1]); out.push(b);
+    }
+    return out;
   };
 
   /* LOW DETAIL DESKS AS INSTANCED GEOMETRY, one mesh per material, so a count in the tens of
@@ -367,9 +395,12 @@
     N.atmosphere(cx, { a: o.a == null ? 0.22 : o.a });
     N.soften(cx, o.type || ['.kick', '.count', '.hook', '.dek'], { blur: o.typeBlur || 12, feather: o.typeFeather || 70 });
     N.soften(cx, ['.tx-site', '.src'], { blur: 9, pad: 14, feather: 40 });
-    /* a full-width veil lifting the footer band, never a box and never over 0.45 alpha */
-    var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H);
-    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, 'rgba(236,238,238,' + ((o.veil == null ? 0.45 : o.veil) * e).toFixed(4) + ')'); }
+    /* a full-width band under the footer, never a box and never over 0.45 alpha. It LIFTS where
+     * the near ground is open grass, and on a frame whose near ground is a dense field (dark: true)
+     * it DARKENS, a near turf band the light footer reads on, because a pale wash over the nearest
+     * desks reads as a scrim, not as haze. */
+    var y0 = N.H - (o.veilH || 200), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.dark ? '30,33,30' : '236,238,238';
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, 'rgba(' + rgb + ',' + (Math.min(0.45, o.veil == null ? 0.3 : o.veil) * e).toFixed(4) + ')'); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
   };
 
