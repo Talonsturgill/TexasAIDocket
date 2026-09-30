@@ -24,7 +24,7 @@
    ]
   },
   {
-   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). The machine is the first reader of nearly every written answer a Texas student types on the English language test. For most of them it is also the only reader whose score counts.",
+   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). The machine is the first reader of every written answer a Texas student types on the English language test. For most of them it is also the only reader whose score counts.",
    "claims": [
     "c14",
     "c15"
@@ -77,7 +77,7 @@
    "heading": "The fall review, and what it did not touch",
    "paragraphs": [
     {
-     "text": "[Texas released its preliminary school ratings on {{date:c27}}](c27). [In the agency's annual review of the spring results, content experts reread short typed answers, the kind where a student enters a number, a word or a phrase](c21). [The agency's example is a student who typed ferst when the answer was first, and who may now get credit](c23).",
+     "text": "[Texas released its preliminary school ratings on {{date:c27}}](c27). [In the review, content experts reread short typed answers, the kind where a student enters a number, a word or a phrase](c21). [The agency's example is a student who typed ferst when the answer was first, and who may now get credit](c23).",
      "claims": [
       "c27",
       "c21",
@@ -95,7 +95,7 @@
      ]
     },
     {
-     "text": "[The agency said none of the regraded answers had been scored by its automated scoring engine](c20). [The engine scores the longer written answers, not the short typed ones](c22). So the correction that moved school ratings this fall came from people reading answers the machine never scored. It says nothing either way about how often the machine's own scores would change if a person read them.",
+     "text": "[The agency said none of the regraded answers had been scored by its automated scoring engine](c20). [The engine handles the longer written answers](c22). So the correction that moved school ratings this fall came from people reading answers the machine never scored. It says nothing either way about how often the machine's own scores would change if a person read them.",
      "claims": [
       "c20",
       "c22"
@@ -107,16 +107,17 @@
    "heading": "What a family can do",
    "paragraphs": [
     {
-     "text": "[A rescore can start with a parent or guardian who has concerns about a student's score](c12). [The district's testing staff can request that the answer be rescored, for a fee](c9). [A rescore is sent to people, not to the engine](c10). [If the score on that question changes, the fee is waived](c11).",
+     "text": "[A rescore can start with a parent or guardian who has concerns about a student's score](c12). [The district's testing staff can request that the answer be rescored, for a fee](c9). [A rescore is sent to people, not to the engine](c10). [If the score on that question changes, the fee is waived](c11). [The request has to go in within a specific window, and the agency points to its Calendar of Events for the dates](c35).",
      "claims": [
       "c12",
       "c9",
       "c10",
-      "c11"
+      "c11",
+      "c35"
      ]
     },
     {
-     "text": "The agency's documents give the process but not the price of a rescore or the window for asking this year, and the record does not yet hold either. A family that wants a person to read a written answer starts with the district's testing staff.",
+     "text": "The agency's scoring document gives the process but not the price of a rescore, and it leaves the dates to that calendar. The record does not yet hold either. A family that wants a person to read a written answer starts with the district's testing staff.",
      "claims": []
     }
    ]
