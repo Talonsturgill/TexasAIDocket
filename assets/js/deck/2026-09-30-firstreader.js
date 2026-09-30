@@ -39,7 +39,7 @@
   TXDECK.declare({
     world: "firstreader",
     light: { az: -40, el: 48 },
-    sky: { preset: "overcast", zenith: 0x8d98a6, horizon: 0xe3e6e6, haze: 0xd2d6d8, fogDensity: 0.0032, envIntensity: 1.05, exposure: 1.02 },
+    sky: { preset: "overcast", clouds: 0.32, zenith: 0x8d98a6, horizon: 0xe3e6e6, haze: 0xd2d6d8, fogDensity: 0.0032, envIntensity: 1.05, exposure: 1.02 },
     ground: "#D7D9DA",
     material: "#4A4D52",
     accent: "#4E5FA8",
@@ -257,11 +257,37 @@
        * crane puts the flag behind the dek itself */
       var fp = sc.children[sc.children.length - 1];
       if (o.flag === false) sc.remove(fp); else if (o.flagScale) fp.scale.setScalar(o.flagScale);
+      if (o.shade !== false) N.schoolShade(THREE, sc);
       TXT.add(R, sc); TXT.contact(R, sc); out.school = sc;
     }
     if (o.oaks !== false) S.oaks.forEach(function (p) { var t = K.make('live_oak', { seed: p[3] }); t.position.set(p[0], 0, p[2]); TXT.add(R, t); TXT.contact(R, t); });
     if (o.fence) { var f = K.make('chain_link_fence', { length: o.fence.length || 60, height: 1.83 }); f.position.set(o.fence.at[0], 0, o.fence.at[2]); f.rotation.y = o.fence.rotY || 0; TXT.add(R, f); out.fence = f; }
     return out;
+  };
+
+  /* THE SHADE UNDER THE SCHOOL'S COVERED WALK. The school stands 90 m out, past the reach of the
+   * key's shadow camera, so its walkway roof cast nothing and three judges read the facade as a
+   * flat card. Under an overcast lid the walk's shade is soft and sits straight below the roof, on
+   * the slab and up the wall behind it, so it is laid there as graded shade in the school's own
+   * frame (the kit school: length 57, depth 14, the walk at z 9.6, the vestibule at x -15.5), with
+   * a grime line where the brick meets the slab. Fog still reaches it, so it hazes with the wall. */
+  N.schoolShade = function (THREE, sc) {
+    function grad(stops) {
+      var c = document.createElement('canvas'); c.width = 4; c.height = 64; var g = c.getContext('2d');
+      var lg = g.createLinearGradient(0, 0, 0, 64); stops.forEach(function (st) { lg.addColorStop(st[0], 'rgba(20,22,24,' + st[1] + ')'); });
+      g.fillStyle = lg; g.fillRect(0, 0, 4, 64); var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+    }
+    function quad(w, h, tex, x, y, z, flat) {
+      var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+      if (flat) m.rotation.x = -Math.PI / 2; m.position.set(x, y, z); m.renderOrder = 2; m.castShadow = false; m.receiveShadow = false; sc.add(m); return m;
+    }
+    var wallT = grad([[0, 0.5], [0.55, 0.34], [1, 0.26]]), slabT = grad([[0, 0.3], [0.7, 0.42], [1, 0.12]]), grimeT = grad([[0, 0], [1, 0.34]]);
+    [[-27.5, -20], [-11, 27.5]].forEach(function (seg) {
+      var w = seg[1] - seg[0], cx = (seg[0] + seg[1]) / 2;
+      quad(w, 3.25, wallT, cx, 0.15 + 3.25 / 2, 7.02);            // the wall under the walk roof
+      quad(w, 3.8, slabT, cx, 0.1, 9.8, true);                    // the slab under it
+    });
+    quad(57, 0.45, grimeT, 0, 0.15 + 0.22, 7.025);                // brick meeting the slab
   };
 
   /* THE PRACTICE FIELD's grass, kept off rectangles a frame names. Call AFTER TXT.frame. */
