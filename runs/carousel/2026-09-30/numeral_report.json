@@ -1,0 +1,7 @@
+{
+ "examined": 16,
+ "frames": 9,
+ "problems": [
+  "s6 prints '1,000' in \"Officials reviewed more than 1.6 million exams. Conte...\" and NO claim in this run carries that figure in its quote, its text, its document title or its url. The frame cites c24, c21, c19. Fetch the span that states it and make it a claim, which is what the record does for every other figure. Declaring it in aggregates.json clears THIS gate and only clears aggregate_check when that gate's own detector already found the phrase on a frame, so a bare figure declared there is refused there while passing here. Make it a claim"
+ ]
+}

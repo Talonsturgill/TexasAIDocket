@@ -1201,7 +1201,7 @@
           ]
         },
         {
-          "text": "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved.",
+          "text": "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 in a thousand improved.",
           "x": 82,
           "y": 343,
           "w": 860,
@@ -1228,7 +1228,7 @@
             [
               82,
               429,
-              606,
+              601,
               42
             ]
           ],
@@ -1308,7 +1308,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18208,
+      "render_ms": 19733,
       "ok": true,
       "canvases": [
         {
@@ -1321,8 +1321,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 150.7,
-          "variance": 3580.3
+          "mean": 150.1,
+          "variance": 3669.8
         }
       ],
       "breather": false,

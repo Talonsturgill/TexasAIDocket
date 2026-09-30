@@ -444,7 +444,7 @@ art:
 
 type:
   hook: "About 1.7% of exams improved."
-  dek: "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 of every 1,000 improved."
+  dek: "Officials reviewed more than 1.6 million exams. Content experts reread the answers typed as a number, word or phrase. About 17 in a thousand improved."
   labels: []
 
 verbatim: []
