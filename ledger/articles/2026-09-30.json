@@ -7,7 +7,7 @@
  },
  "section": "Schools and testing",
  "dek": {
-  "text": "An automated engine scores STAAR's longer written answers first. People read a quarter or more of them, every written answer on the Spanish language test, and any answer a district asks to have rescored.",
+  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more of them and any answer a district asks to have rescored. Spanish language answers are read only by people.",
   "claims": [
    "c1",
    "c2",
@@ -59,11 +59,12 @@
    "heading": "Which answers go to people",
    "paragraphs": [
     {
-     "text": "[Part of the share that goes to people is a random sample](c32). [The rest is chosen by the engine itself. It flags an answer that is blank, uses too few words, repeats itself, is written in another language, leans on the reading passage, uses vocabulary unlike the answers it was trained on, or reads as off topic](c6). [It also sends answers it scores with low confidence, which are often the ones on the border between two score points](c7).",
+     "text": "[Part of the share that goes to people is a random sample](c32). [The rest is chosen by the engine itself](c34). [It flags an answer that is blank, uses too few words, repeats itself, is written in another language, leans on the reading passage, uses vocabulary unlike the answers it was trained on, or reads as off topic](c6). [It also sends answers it scores with low confidence, which are often the ones on the border between two score points](c7).",
      "claims": [
       "c32",
       "c6",
-      "c7"
+      "c7",
+      "c34"
      ]
     },
     {
