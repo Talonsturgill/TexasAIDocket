@@ -25516,7 +25516,7 @@
   {
    "id": "tx-2026-0194",
    "title": "The Texas Education Agency scores the constructed responses on English language STAAR tests with a machine first and sends at least a quarter of them to people",
-   "summary": "The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to trained human scorers, along with any the engine flags as unusual or scores with low confidence. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes.",
+   "summary": "The Texas Education Agency scores the constructed responses on English language STAAR tests with an automated scoring engine first. At least 25 percent of those answers then go to people. Where a person scores an answer, that score is the one that counts. A March 2024 agency presentation puts the engine's score as the score of record on about 75 percent of responses. Constructed responses on Spanish language tests are scored by people alone. The agency began the hybrid model in December 2023, and its presentation says full human scoring would have cost $15 million to $20 million more per year. On September 4th, 2026 the agency said about 27,200 students received additional credit after content experts rescored short typed answers. It said none of the regraded responses had been graded by the engine. A district can ask for a constructed response to be rescored by a person for a fee, and the fee is waived if the score changes.",
    "topic": "health-and-education",
    "decider": {
     "name": "Texas Education Agency",
@@ -25533,7 +25533,7 @@
     {
      "date": "2026-09-04",
      "kind": "decided",
-     "note": "The agency said about 27,200 students received additional credit after the annual rescore review"
+     "note": "The agency said about 27,200 students received additional credit after content experts rescored text responses"
     }
    ],
    "public_access": {
@@ -25553,7 +25553,7 @@
    "claims": [
     {
      "id": "tx-2026-0194-c1",
-     "text": "The agency's scoring engine scores constructed responses first, and at least a quarter go on to people.",
+     "text": "On STAAR tests not given in Spanish, the agency's scoring engine scores constructed responses first, and at least a quarter go on to people.",
      "verbatim_quote": "This means that the responses are initially scored by an automated scoring engine (ASE) and at least 25 percent of student responses are then routed to human scorers.",
      "source_url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
      "source_title": "Texas Education Agency, Scoring Process for STAAR Constructed Responses, December 2023",
@@ -25643,7 +25643,7 @@
     },
     {
      "id": "tx-2026-0194-c11",
-     "text": "The agency said about 27,200 students received more credit after the annual review.",
+     "text": "The agency said about 27,200 students received additional credit for their text responses.",
      "verbatim_quote": "Texas Education Agency officials said Friday about 27,200 students received additional credit for their text responses to some questions on the reading portion of the State of Texas Assessments of Academic Readiness.",
      "source_url": "https://www.texastribune.org/2026/09/04/school-districts-improved-ratings-staar-rescore-2026/",
      "source_title": "The Texas Tribune, After rescoring STAAR exams, 11 Texas districts seeing A-F grades improve, September 4th, 2026",
