@@ -1,0 +1,66 @@
+{
+ "judge": "reader",
+ "deck": "2026-09-30, carousel no. 38, round 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Eight of nine frames are a place at an hour: an overcast lid, a buff ISD wing with flags on the horizon, straw ground and a desk at true scale. The type sits in real sky quiet on every frame, with no plates. The renders still read as clean CG rather than a photograph. The grass on 1, 4 and 9 is a flat green with scattered tufts. The school is a frontal textured box. The people on 3, 4, 5, 8 and 9 are mannequin-like, and the slide 5 heads are low poly. Specific faults: (a) On slide 9 the laptop screen faces the camera, so the parent is leaning over the back of the lid. There is also a brown texture blotch on her right shoulder at about (1020,1080) in the 1600px view. (b) Slide 5 throws a hard diagonal sun shaft across the wall, which contradicts the deck's declared overcast light. (c) On slide 4 the three leaders run from labels in the sky, cross one another and converge on one laptop. (d) The slide 8 foreground flag is blurred by depth of field and sits out of scale beside the entry. That is more than the one default frame the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "On the contact sheet it reads as one deck. It has one campus, one overcast grade, one pale value band on every frame, one hero (the combo desk) in one material, and dark type on sky throughout. Two named devices do real work. The count of people at the desks changes state (empty on 1 and 2, a quarter on 3, one in four on 4, every desk on 5, a parent on 9), and 1 and 9 share a camera as bookends. Slide 5 sits outside: it is the only interior, with a hard beam of light. Slide 8 drops the desk. Frames 2, 6 and 7 are the same desk field three times, which is continuity in excess rather than a spine moving."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every slide numeral traces. 2023 is c17. $15M to $20M is c14. 3,000 is c16. 75% is c13. 100 is c2. 1.7% and 1.6 million are c24. '17 of every 1,000' is per1000_improved, whose rule is stated in figures.json. 27,200 is c19. The universals are attributed ('The agency says') and scoped in quantifiers.json. The first comment lists two TEA PDFs and the Tribune, all tagged with retrieved dates. Three things are looser than their sources. (1) The slide 5 hook 'Spanish answers skip the machine' is broader than c2, which covers answers on the Spanish-language STAAR, while c6 says an answer written in another language on the English test is condition-coded by the engine. The dek repairs it. (2) The slide 9 hook 'Ask for a rescore.' under the kicker 'What a family can do' says the family asks, but c9 says district testing personnel request it. Slide 8 and the dek carry the correction. (3) Slides 6 and 7 rest entirely on the Tribune (secondary_reported), where an agency statement on the review very likely exists. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A parent learns what happens (the engine reads first, about 75% keep its score), who decided it (TEA), since when (December 2023) and the route to act (raise it with the district, whose staff request a paid human rescore, and the fee is waived if the score changes). What is missing for a parent is whether they can still act. Slide 9 names 'a window set in the agency's Calendar of Events' with no dates, no fee and no word on whether this year's window is open. No county, district or campus appears anywhere, although c25 and c26 carry the nine campuses and five districts whose ratings rose and eleven named districts. The one piece of news, the fall review, is presented on slide 7 without its meaning. The web edition says the review 'says nothing either way about how often the machine's own scores would change', and the deck never does, so a thumb reader may take slide 7 as clearing the machine."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover hook 'A machine reads it first.' is strong, but 'it' has no referent until the 5-line dek. STAAR appears only in the tiny kicker, so the scroll stop depends on the dek. Frame 2 pays at once with a football field of 3,000 desks. Frames 3 and 4 build well. After that there is slack. Slide 6 and slide 7 state the same event twice (1.7% of 1.6 million is about the 27,200), on near-identical desk fields, and at thumb size the 27,200 field on 7 does not read larger than the 3,000 field on 2, so the scale step is lost. The declared turn (7) lands as a correction of the premise with no line saying what changed. Slides 8 and 9 are one action split in two. More than one frame could move or merge."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The lines are clean, plain and on register: 'A machine reads it first.', 'Start with the district.', 'A person's score is the one that counts.', and the 'ferst' for 'first' detail is concrete and human. Nothing is doom and nothing is boosterish. It is statewide throughout, with no town, ISD or region on any frame or in the caption. The caption's close 'Should a family have to ask for a person?' leans a little editorial, but it is fair. No house-rule breaches were found in the slide strings or caption: no colons, semicolons, dashes, 'cannot', banned words, first person or sentence-initial And/But."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The register fully diverges from the last four decks in artwork.json: no. 34 blueHour at median L* 18.1, no. 35 nightSodium at 9.3, no. 36 stormFront at 27.8 and no. 37 goldenHour at 29.0. This deck is a pale overcast world with dark type on sky, and it is the first schools and testing subject in the window (topics.json has no STAAR entry, and the nearest is no. 21 SBOE on September 11th). The familiar move is the core technique: a count drawn as an instanced field of identical units. That repeats no. 37's yard of 813 gensets, no. 34's truck yard and no. 36's 33 camera heads, and this deck uses it three times (2, 6, 7)."
+  }
+ ],
+ "weighted_score": 6.91,
+ "weighted_score_arithmetic": "0.22*6.5 + 0.12*7.8 + 0.20*7.0 + 0.16*6.5 + 0.10*6.5 + 0.10*7.0 + 0.10*7.5 = 1.430 + 0.936 + 1.400 + 1.040 + 0.650 + 0.700 + 0.750 = 6.906",
+ "hard_fails": [],
+ "hard_fail_checks_run": "Numerals: every slide and caption numeral maps to a claim or a figures.json key (per1000_improved for 17 and 1,000). Machine QA: render/machine_qa.json fails 0, verdict WARN (SCHOOL BUS/STOP canvas raster text, SKY IN FRAME notes), so no failure. Caption: no colon, semicolon, dash, banned word, 'cannot', first person, And/But opener or current-year date. Topic window: no STAAR or TEA scoring topic in topics.json since 2026-08-31. Sources: all three URLs in first_comment.txt carry retrieved 2026-09-30 in claims.json. No placeholders. The curly-looking apostrophes on slides 3 and 9 are Manrope's glyph, and the DOM text in render_report.json is straight.",
+ "ship": false,
+ "ship_note": "No fault found. This false is a threshold dissent: 6.91 is under the round 3 rung of 8.0.",
+ "named_defects_ranked": [
+  "1. Slide 7, the declared turn, never says what it means. The headline clears the engine of the regrade, and no frame says (as the web edition does) that the review therefore says nothing about how often the engine's own scores would change. A parent is left with no takeaway, or the wrong one.",
+  "2. Slides 6 and 7 carry one fact twice (1.7% of more than 1.6 million is about the 27,200) on two near-identical desk fields. One frame is spent.",
+  "3. The close can't be acted on: slide 9 gives 'a window set in the agency's Calendar of Events' with no dates, no fee and no word on whether it is open now. The hook 'Ask for a rescore.' under 'What a family can do' overstates the family's role, since c9 puts the request with district testing staff.",
+  "4. No Texas place on any frame or in the caption, although c25 and c26 carry the campuses and named districts whose ratings moved.",
+  "5. Scale is lost at thumb size: the 27,200 desk field on 7 reads no bigger than the 3,000 on 2, and 2, 6 and 7 look like the same picture three times.",
+  "6. Slide 9 staging: the parent leans over the back of the laptop lid (the screen faces the camera), with a texture blotch on her right shoulder. The figures on 3, 4, 5, 8 and 9 read as mannequins.",
+  "7. Slide 5's hard sun shaft breaks the overcast world, and its hook 'Spanish answers skip the machine' is broader than c2's Spanish-language STAAR (c6 condition-codes an answer written in another language on the English test).",
+  "8. Slide 4's three leaders cross each other and fall from the sky onto one laptop. The source lines on 2 and 7 sit over busy desk rows."
+ ],
+ "one_sentence_fix": "Merge slides 6 and 7 into one frame that states what the fall review means for the machine (it reread no answer the engine scored, so it says nothing about how often the engine's scores would change), and spend the freed frame on the stake a parent can act on: fetch TEA's Calendar of Events and the rescore fee so slide 9 prints the actual window and price, and name the campuses and districts whose ratings moved.",
+ "judge_lens": "reader"
+}

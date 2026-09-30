@@ -9,7 +9,7 @@ The Energy Department's Office of Critical Minerals and Energy Innovation named 
 - Public access: Write to the decider
 - Take part: https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · The department's list of mining proving ground projects still carries the Navasota site, and the university project attached to it is described the same way. Nothing has been added about when the test pit gets built.
 - 2026-09-24 · The department still lists the Navasota proving ground with the same university partner attached. No construction date for the test pit has appeared.
 - 2026-09-27 · The Energy Department's award for the Navasota test pit still stands as announced.
+- 2026-09-30 · The department's award for the synthetic test pit at the Navasota drilling site still stands as announced.
 
 ## Evidence
 

@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-20 · The grid operator's user guide for the Verification RFI still carries the same rules for answering it. The notarized attestation, the response window and the transmission service provider's sole authority to submit all read as the record has them.
 - 2026-09-24 · The user guide for the questionnaire still requires the notarized attestation and still leaves submission to the transmission service provider alone.
 - 2026-09-27 · The questionnaire's user guide still requires a notarized attestation and still routes submission through the transmission service provider.
+- 2026-09-30 · The grid operator's questionnaire to every conditionally classified large load still reads as issued.
 
 ## Evidence
 

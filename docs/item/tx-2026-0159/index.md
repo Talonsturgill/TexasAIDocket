@@ -9,7 +9,7 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · The rule on dynamic model quality is still with the commission rather than in force. The market rules page shows it pending and names the board's recommendation to approve as the last action taken. The Public Utility Commission of Texas is named as the body that takes it next. The presentation the risk list comes from still reads as the record holds it. That goes down to the ramp limit the draft rule will recommend and the modeling work the grid operator is doing with Texas A&M.
 - 2026-09-24 · The board materials describing generator fatigue from AI training loads still read as the record took them.
 - 2026-09-27 · The board materials on generator fatigue from training loads still read as posted, and the draft limit on how fast that draw may swing is still pending.
+- 2026-09-30 · The grid operator's board presentation and the planning guide revision it names still read as filed.
 
 ## Evidence
 

@@ -1,0 +1,65 @@
+{
+ "judge_lens": "reader",
+ "deck": "2026-09-30, carousel no. 38, round 5",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is a rendered place at a time of day: an overcast lid, a hazed horizon on the upper third (frames 2 and 4 carry real aerial depth, the live oaks on 4 are the best single passage), soft contacts under the desks, and type in quiet sky with no plates anywhere. It still falls short of the 7 descriptor on more than one frame. The kit people read as mannequins, with lumpy shirts and flat hair, and they carry frame 5 (five near-identical seated figures against a large empty grey wall with a flat blue panel at left) and frame 9 (the parent's pose and hands at the desk). The school is the same textured box on seven frames. On frame 2 the goal post is a single yellow upright, which reads as a stray line at thumb size rather than a goal post. The flags on frame 8 carry a blurred halo. The grade sits in one pale mid band with dark only in the seat shells. On the showstopper test this is an architectural visualisation, not a photograph."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "The contact sheet reads as a filmstrip. One ISD campus sits under one overcast sky with one key, and one combo desk is the hero in one material. Bluebonnet keeps one meaning throughout, a person reading an answer, on frames 3 to 7 and never on the parent. Two continuity devices are declared in the storyboard and visible: the reader count changes state from 1 to 9, and frames 1 and 9 share one camera, empty desk then parent at the desk. The value holds with no strobing, and machine_qa bands put every frame's top band around 0.95. Frame 5 is the one frame outside, an interior with a blue wall and tiled floor, which is exactly the 7 descriptor's 'one frame slightly outside'. The rest of the deck sits at the 10."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide numeral traces. $15 million to $20 million is c14, 3,000 is c16, 75% is c13 (attributed 'in the agency's own chart', which honestly handles c1's 'at least 25 percent'), 100 percent is c2, and 1.7% and 1.6 million are c24. The 17 per 1,000 comes from figures.json per1000_improved with its rounding rule stated, and 27,200 is c19. It is internally consistent too: 1.7% of 1.6 million is 27,200. Frame 7's 'The agency says' correctly attributes Kobersky (c20), and its dek line 'That says nothing about how often the engine's own scores would change' stops the reader inferring past the source. The caption and first comment match the claims, and the first comment lists 19 of the 21 cited ids (c21 and c22 are missing, see defects). Held off 10 because every September 4th figure (c19 to c24) rests on the Texas Tribune quoting officials, not on a TEA release. Also, frame 3's drawing does not read as its own number at feed size (see defects)."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A parent learns what happened and who decided it: TEA has machine-scored written STAAR answers first since December 2023, with named routes to a person and a Spanish-test exception. They also learn the route: raise a concern with the district, district testing staff request a human rescore for a fee, and the fee is waived if the score changes (frames 8 and 9). What they can't learn is whether they can act NOW. Frame 9 says 'inside a window set in the agency's Calendar of Events' and gives no dates and no fee amount, so the deadline the 10 descriptor asks for is absent. A parent reading this in late September can't tell whether this year's window is already closed. There is also no way to know whether their own child's answer was one the engine scored."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook 'A machine reads it first.' earns the swipe for a parent, and the close 'Ask the district for a rescore.' lands as an action. The middle sags. Frame 2 opens on training data (a mechanism) before the stake, which only arrives on frame 3. Frame 5 is a one-sentence restatement of the Spanish exception that the cover dek already gave, so it is cuttable. Frames 8 ('Start with the district.') and 9 ('Ask the district for a rescore.') are nearly the same instruction on two frames. The declared turn on frame 7 is a hedged 11-word, three-line headline, and its picture (a field of desks) looks at thumb size almost exactly like frame 2 on the contact sheet, so the turn is carried by type alone."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain, specific and unexcited. The 'ferst' for 'first' detail on frame 7 is the most human line in the deck and sounds like someone who knows schools. The caption's closing 'Should a family have to ask for a person?' is pointed without doom. House rules hold in the strings: no colons, dashes, 'cannot', banned words, openers or first person, and the September 4th kicker carries no year. It is Texas by institution (TEA, STAAR, ISD) more than by place, and several lines read as agency procedure: 'District testing staff request it for a fee, inside a window set in the agency's Calendar of Events', 'Officials reviewed more than 1.6 million exams', and frame 7's 'The agency says' headline."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The palette and register break a run: nos. 34 to 37 were blueHour, nightSodium, stormFront and goldenHour with deck median L* of 18.1, 9.3, 27.8 and 29.0 (artwork.json), and this is a pale overcast deck with dark type on sky. It is the first education deck since no. 21 on September 11th, and topics.json shows no repeat inside 30 days. The familiar move is the counted instanced field, one instance per unit on frames 2, 3, 6 and 7. Nos. 35 (48 apartments), 36 (33 camera heads) and 37 (813 gensets) each used it, and it sits on the same txthree PBR engine every deck since no. 32 has used."
+  }
+ ],
+ "weighted_score": 7.55,
+ "weighted_arithmetic": "6.5*0.22=1.430 + 8.5*0.12=1.020 + 8.5*0.20=1.700 + 7.5*0.16=1.200 + 7.0*0.10=0.700 + 7.5*0.10=0.750 + 7.5*0.10=0.750 = 7.550",
+ "hard_fails": [],
+ "hard_fail_checks_run": "render/machine_qa.json: fails 0, verdict WARN. The 19 warns are the SKY/ROOM IN FRAME verdict notes plus the SCHOOL BUS and STOP canvas fillText labels, none a fail. Every numeral on every slide and in caption.txt traced to claims.json or figures.json. Topic checked against ledger/carousel/topics.json for the 30-day window: the nearest is no. 21 (SBOE financial literacy TEKS, TEA as an entity), a different decision and instrument, so not a repeat. Caption and slide strings checked for colons, semicolons, dashes, 'cannot', banned words, And/But openers, first person and a same-year date carrying a year: none found. No placeholder or unfinished frame. Every source in first_comment.txt is one of the three fetched documents.",
+ "ship": true,
+ "ship_note": "No hard fail. 7.55 is under the 7.7 rung that applies from round 4. This is round 5 = max_rounds, so under the rubric's ladder the finished deck ships at the cap with the 0.15 shortfall named in the email and the run record. This is not a pass on the bar.",
+ "named_defects_ranked": [
+  "1. Frames 8 and 9 give a parent a route and no clock. The window is 'set in the agency's Calendar of Events' with no dates, the fee has no amount, and nothing says whether this year's window is open on September 30th. The run never fetched the Calendar of Events that c35 points to (c35's note says the rescore document names the window but not its dates).",
+  "2. Frame 7, the declared turn, is visually indistinguishable from frame 2 at thumb size (both are receding fields of desks, see contact_sheet.png). The storyboard's 'frame 1's camera craned up' is not legible to a reader, so the turn rests on a hedged three-line headline.",
+  "3. Frame 3 draws 25 attended desks with two readers each. The 50 blue figures form a mass about as large as the five empty rows beside them, so at feed size the picture reads as roughly half going to people, against a headline of 75% machine.",
+  "4. Frames 8 and 9 repeat one instruction ('Start with the district.' / 'Ask the district for a rescore.'). Frame 5 restates the cover dek's Spanish exception in one sentence. Two slots are spent without new information.",
+  "5. Frame 6's kicker 'Announced September 4th' never says what the review was or why 1.6 million exams were reviewed, so a reader arrives at 1.7% assuming machine errors until frame 7 corrects them.",
+  "6. Kit figures read as mannequins on frames 5 and 9. The frame 2 goal post is a lone yellow upright that reads as a stray line. The frame 8 flags carry a blurred halo.",
+  "7. first_comment.txt lists c19, c20, c23 and c24 against the Tribune line but omits c21 and c22. Both are printed in the source lines of frames 6 and 7. A reader matching ids can't find those two in the sources block.",
+  "8. The Manrope dek apostrophes on frames 3, 7, 8 and 9 ('agency's', 'engine's', 'guardian's') render with a curled shape, while the Fraunces headline apostrophe on frame 3 renders straight. render_report text_nodes carry U+0027, so it is a glyph shape and not a curly character, and not a hard fail. Worth an integrity look against the straight-quotes rule as a reader sees it."
+ ],
+ "one_sentence_fix": "Fetch TEA's Calendar of Events and the rescore fee schedule during research. Then fold frame 8 into frame 9 so the close prints the actual rescore window dates and fee from claims (or states plainly that this year's window has closed). Spend the freed slot making frame 7's turn a different picture from frame 2, so a parent leaves knowing when and at what cost they can ask for a person."
+}

@@ -1,0 +1,65 @@
+{
+ "judge_lens": "craft",
+ "deck": "2026-09-30, carousel no. 38, round 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "The world is real and consistent. Every frame has an overcast sky over a horizon on the lower third, a fog band in depth (2, 3, 4 and 6 all show the far grass melting into haze at the school line), soft contact shadows under every desk leg (1 and 9 are clean at full size), and hook and dek sitting in open sky on all nine frames with no plates. That meets several of the 10 descriptor's items. It falls short on models and artifacts across more frames than the 7 descriptor allows. (a) The school building on 1, 3, 6, 7 and 9 is a flat texture-mapped box. It has no cast shadow under the canopy, no recess depth at the doors, no dirt or foundation contact, and the roof units sit on a plain line. At 432 px it reads as a backdrop card, not a building. (b) The kit figures are game grade. On 3 the standing readers' arms pass through the seated readers in the near-left block. On 9, the close, the parent's hands hover in the air a hand's width off the laptop, a brown texture blotch sits on her right shoulder, and a spike of hair mesh clips out behind her head. The same shoulder blotch is on the standing reader on 4. (c) On 2 the sky has a posterized, dithered elliptical halo around the type block, ungraded banding that is visible at full size. On the same frame only a block of about 6 x 4 near-left desks carries lit laptops and the rest of the field does not, which reads as a LOD seam rather than a choice. (d) Type collisions: on 1 the flagpole's finial touches the dek's last line 'a year.', which breaks the frame's own acceptance line 'flag reads on the horizon, below the dek's last line'. On 7 a depth-of-field-blurred flag sits directly under dek lines 3 and 4 ('ferst' ... 'No') and reads as a smudge on the copy. (e) On 5 the lower 40 percent is empty tile floor, the window is blown to flat white with nothing outside, and the figures are the same stiff kit people seen from behind. Read at thumb size with the type covered, this is a clean architectural or game render and not a photograph of a place. It would not hold as a magazine opening spread."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The contact sheet plays as a filmstrip. There is one campus, one overcast lid, one grade and one hero: the combo desk with a putty top, charcoal shell and lit laptop, carried from 1 through 9. Two continuity devices named in the storyboard actually work on the pixels. Frames 1 and 9 are the same camera with the parent added, and 3 and 6 are the same camera going from 100 desks to 1,000. The motif also changes state, from nobody to readers to a parent. The value holds with no strobe: the canvas means in render_report run 137.9 to 155.1 across all nine frames. Frame 5 sits outside the world. It has a warm beige wall, a slate-blue panel and a different light quality, and it is the one interior. It is declared as the 'one exception', so that is defensible, but it still reads as a different stock. Frame 8 drops the hero desk. Frames 2 and 7 are near twins at thumb size (endless desk fields to the school) and blur the crane idea the storyboard claims for 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim or a computation. 2023 is c17, $15 million to $20 million is c14, 3,000 is c16, 75% is c13, 1.7% and 1.6 million are c24, 17 of every 1,000 is figures.json per1000_improved computed from c24, 27,200 is c19, and 100 percent is c2. The TEA mechanics rest on two primary TEA PDFs. The 27,200, the 1.7% and 'none of the regraded answers' rest on the Texas Tribune (secondary_reported), where an agency statement very likely exists. That is the 7 descriptor's 'leans on journalism'. Minor points: 7's 'No score will be lowered.' drops c30's scope 'as a result of the review', though the dek's context carries it. The drawn counts (3,000 desks on 2, 25 attended of 100 on 3, 17 experts of 1,000 on 6, 27,200 on 7) are asserted in the storyboard, but render_report.json carries no instance counts, so the acceptance items 'render report counts ...' can't be checked from this package. Frame 1's source line prints 'c1 c17 c2 c14' with no DRAWN although the desk is drawn, unlike the other eight frames."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "A Texan learns what happened: TEA machine-scores written STAAR answers first, since December 2023, except in Spanish. They learn who decided (the Texas Education Agency) and what they can do (frames 8 and 9: raise it with the district, whose testing staff request a human rescore for a fee that is waived if the score changes). The stakes stay general where it counts. No frame or caption line dates the review behind 27,200 and 1.7%, so a reader can't tell whether it is this fall's news or history. The rescore has no request window or deadline and no fee amount (the storyboard says none is in the claims, which is honest, but the reader is still left without a date). Statewide scope makes 'county' moot."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover 'A machine reads it first.' earns the swipe. Frame 2 pays at once with the training size, and 3 to 4 walk the handoff. The turn at 7, human reread and the engine scored none, lands, and 9 closes on the cover's own desk. Some frames are cuttable or movable. 5 (Spanish) could sit anywhere. 6 and 7 both carry the review, and 6's 'The engine scores the longer ones' interrupts rather than builds. 8 and 9 are one action split in two."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no boosterism and no doom. The cover line and the caption's closing question 'Should a family have to ask for a person?' are good. Several lines are flat agency prose: 6's 'Officials reviewed more than 1.6 million exams.' and 7's three-line hook 'The agency says the engine scored none of the regraded answers.' Nothing in the copy is regionally Texan beyond the agency's name. The ISD campus, the flags and the straw bermuda live only in the art."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The palette and register diverge sharply from the last four decks. No. 34 blue hour (median L* 18.1), no. 35 night sodium (9.3), no. 36 storm dust (27.8) and no. 37 golden hour (29.0) were all dark. This is a pale overcast deck with dark type on sky. The opening move, one object alone in a field, is fresh. The familiar move is the technique: a count drawn as an instanced field of repeated units. The ledger records it on no. 37 (a yard of 813 units), no. 36 (33 camera heads), no. 35 (48 repeated apartments) and no. 34 (a yard of trucks), and it is here on 2, 3, 6 and 7, with the same kit people."
+  }
+ ],
+ "weighted_score": 7.29,
+ "weighted_score_arithmetic": "0.22*6.3 + 0.12*8.0 + 0.20*8.0 + 0.16*7.3 + 0.10*7.3 + 0.10*7.0 + 0.10*7.5 = 1.386 + 0.960 + 1.600 + 1.168 + 0.730 + 0.700 + 0.750 = 7.294",
+ "hard_fails": [],
+ "hard_fail_checks_run": "machine_qa.json has fails 0 and verdict WARN. The 19 warns are the bus decal canvas text 'SCHOOL BUS' and 'STOP' plus the SKY IN FRAME and ROOM IN FRAME verdicts, which are not failures. Every slide and caption numeral traces (see claim_integrity). No placeholder or unfinished frame. No STAAR or TEA scoring topic in topics.json inside 30 days: no. 21 on September 11th was the SBOE financial literacy standards, a different decision. The caption has no colon, semicolon, em dash, banned word, 'cannot' or post-year date. The sources block cites three documents, all present in claims.json with retrieved 2026-09-30.",
+ "ship": false,
+ "ship_note": "No fault found. 7.29 is under the round 2 rung of 8.0, so this is a threshold dissent and a work order.",
+ "named_defects_ranked": [
+  "1. Frame 9 (the close): the parent's hands float about a hand's width off the laptop, a brown texture blotch sits on her right shoulder, and hair mesh spikes out behind her head. The deck ends on its worst model.",
+  "2. Frames 1, 3, 6, 7, 9: the school is a flat texture-mapped box with no cast shadow under the canopy, no recessed openings and no ground contact. It reads as a backdrop card at 432 px and is the main reason the showstopper test fails.",
+  "3. Frame 3: standing readers' arms pass through seated readers across the near-left block. The attended block also reads closer to half than a quarter at thumb size, because the standing figures double its visual mass.",
+  "4. Frame 2: a posterized, dithered elliptical halo in the sky around the hook and dek (banding). Only a block of about 6 x 4 near-left desks carries lit laptops, which reads as a LOD seam.",
+  "5. Frame 7: a DOF-blurred flag sits directly under dek lines 3 and 4 ('ferst' ... 'No') as a smudge. Frame 1: the flagpole finial touches the dek's last line 'a year.', against its own acceptance item.",
+  "6. Frame 5: the lower 40 percent is dead tile floor, the window is blown to flat white, and the warm beige wall sits outside the deck's cool grade.",
+  "7. Frame 4: three leader lines run about 500 px from the labels down to one screen, cross each other and end in dots on the laptop. They read as a diagram pasted onto a render. The same shoulder blotch as frame 9 is on the standing reader.",
+  "8. Frame 1's source line omits DRAWN while the other eight print it."
+ ],
+ "one_sentence_fix": "Rebuild the two assets that seven of nine frames depend on before touching anything else: give the school elevation real depth (canopy and roof overhang casting onto the brick, recessed doors and windows, a dirty foundation line meeting the grass) and fix the kit figures (no arm passing through a body on 3, hands actually on the laptop, the shoulder texture blotch and hair spike gone on 4 and 9), because those models, not the light or the layout, are why the frames read as a game render rather than a photograph of a campus."
+}

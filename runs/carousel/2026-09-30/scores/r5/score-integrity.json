@@ -1,0 +1,67 @@
+{
+ "judge": "integrity",
+ "deck": "2026-09-30, carousel no. 38, round 5",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered in one overcast campus world with a real sky, a horizon, haze and contact shadows (slide-01 desk legs, slide-04 reader shoes). Type sits in quiet sky on 1, 2, 3, 4, 6, 7 and 9, and no frame uses a plate. It does not pass the showstopper test. The ground on 1 and 9 is a tiled straw texture with repeated tuft sprites, the school is a flat-textured box, and the kit people read as mannequins. On slide-09 the parent's grey hair has spiky strands standing off the back of her head, and that is the deck's closing focal. On slide-05 the upper 55 to 60 percent is a blank grey wall, a dead zone, and the five readers are seen from behind as plastic figures. On slide-03 the 25 attended desks crowd into one blue mass at 432 px. The render is competent and does not read as a photograph of a place."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The frames form a real filmstrip. It has one overcast lid and one light (chassis 2026-09-30-firstreader.js, az -40 el 48), one hero in one material (the student_desk with putty top and charcoal shell), and a declared value cut of none. Machine QA bands sit between 0.88 and 0.99 on the top band on every frame, so nothing strobes. Two continuity devices do real work. The camera move is exact: 1 and 9 share one camera and 7 is 1 craned up to 7.2 m (f07.py TXT.frame from HOME.from at y 7.2). The motif changes state through the number of people at the desks. Frames 3 and 6 share a camera ([3, 7.5, 13] in both f03.py and f06.py). Slide-05's interior sits outside the world, and slide-08 is the other outlier."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Numerals are clean. 3,000, 75%, 100, $15 million, $20 million, 27,200, 1.7%, 1.6 million and 2023 are each regex-extracted from a claim quote in compute.py. 17 of every 1,000 is per1000_improved = round(1.7 x 1000 / 100), and f06.py asserts 17 lit screens among 1,000 desks. f07.py asserts 27,200 desks and f03.py asserts the 25/75 split. The problem is set overreach. c1, c16 and c22 cover constructed responses, and c22 says the model reviews short and extended constructed responses. Slide-01's dek ('has sent written STAAR answers to an automated engine first') and the caption's opener ('Who reads a written STAAR answer first? Unless the test is in Spanish, a machine does.') both stretch that to all written answers. Slide-07 and caption paragraph 3 then show short typed answers that the engine 'scored none of' (c20, c21). The deck never names the set, so it contradicts itself. The web edition turns this into an explicit universal (see hard_fails). All six fall-review claims (c19 to c24) rest on the Texas Tribune, and slide-06's kicker 'Announced September 4th' is inferred from 'said Friday'. No TEA primary for the announcement was fetched or declined. The drawn encodings also lean. Slide-06 seats content experts only at the 17 improved desks, yet f06.py's own comment says the experts 'reread the typed answers on every exam'. Slide-05, the one frame whose claim is 100 percent human scored, draws a second row of 4 empty desks behind the 5 readers (f05.py line 31)."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happens (the engine scores first), who decided it (TEA), since when (December 2023, c17), why (a $15 million to $20 million a year saving, c14) and what a family can do. The route runs from parent to district testing staff to a human rescore for a fee, waived if the score changes (c12, c9, c10, c11). The actionable part is general. No fee amount is given, and no window dates. slide-09 points to 'a window set in the agency's Calendar of Events', and on September 30th a reader can't tell whether any window for this year's spring scores is still open. The web edition admits 'The record does not yet hold either.' The deck has no local place beyond a generic ISD campus."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and frame 2 pays at once with 3,000 desks on a football field. Frames 3 to 5 build the routing logic. The declared turn at slide-07 deflates rather than turns. Its own dek says the fall correction 'says nothing about how often the engine's own scores would change', so frames 6 and 7 spend two slides on a story the deck concedes is not about the machine. Slide-08 ('Start with the district.') and slide-09 ('Ask the district for a rescore.') say nearly the same thing, and one could be cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The copy is plain and declarative and follows the house rules. No colons, semicolons or banned words appear in the slides or caption, dates are ordinal with no redundant year, and 'can't' style is kept. 'A machine reads it first.' is a strong line. The honesty guard on slide-07 is well phrased. Two lines are flat: 'Low confidence scores go to people.' (slide-04) reads as spec-sheet language, and 'Should a family have to ask for a person?' leans rhetorical. The Texas texture is visual (ISD brick, flags) rather than in the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The register diverges from the last four decks. It is a light overcast campus, where the artwork ledger has no. 36 at deck median L* 27.8 and no. 37 at 29.0, both dark. The hero and palette (bluebonnet on readers only) are new to the window. The opening move repeats. Drawing a count as N instanced units (3,000, 1,000 and 27,200 desks) is the same device as no. 37's yard of 813 gensets and no. 36's 33 camera heads, and the type skeleton (Fraunces hook, Manrope dek, mono kicker, counter and source line) is unchanged. There is no topic repeat in topics.json's 30 day window. The nearest education items are no. 21 (SBOE, September 11th) and no. 26 (UTA tutor, September 16th), and both are different stories."
+  }
+ ],
+ "weighted_score": 6.91,
+ "weighted_score_arithmetic": "0.22x6.5 + 0.12x8.0 + 0.20x6.0 + 0.16x7.0 + 0.10x7.0 + 0.10x7.5 + 0.10x7.5 = 1.43 + 0.96 + 1.20 + 1.12 + 0.70 + 0.75 + 0.75 = 6.91",
+ "hard_fails": [
+  "AN UNVERIFIED UNIVERSAL PRESENTED AS VERIFIED, REFUTED BY THE RUN'S OWN CLAIMS (web edition, /home/user/TexasAIDocket/ledger/articles/2026-09-30.json, introduction paragraph 2). The sentence reads: 'The machine is the first reader of every written answer a Texas student types on the English language test.' It carries no claim id, which breaks the house rule that every fact carries one. c1 covers constructed responses only, and c22 says the automated model reviews short and extended constructed-response questions. c21 defines text entry responses as answers 'where students type brief text', and c20 says none of the regraded (text entry) responses were graded by the automated scoring engine. So typed answers exist that the engine did not score. The same document says so itself two sections later: 'the correction that moved school ratings this fall came from people reading answers the machine never scored.' Repair: scope the sentence to the longer written answers, the short and extended constructed responses (c22), and tag it. The same unscoped set is on slide-01's dek and the caption's opening line and must be scoped in the same edit (see defects 1 and 2)."
+ ],
+ "ship": false,
+ "named_defects_ranked": [
+  "1. Web edition intro, 'every written answer a Texas student types', is an untagged universal that c20, c21 and c22 refute and the article contradicts itself. HARD FAIL, above.",
+  "2. slide-01 dek and caption line 1 ('Who reads a written STAAR answer first? Unless the test is in Spanish, a machine does.') claim the engine reads all written answers first. The caption's own paragraph 3 and slide-07 then show short typed answers the engine never scored. Name the set as 'longer written answers' (c22). c22 is already cited on slide-07 and its content is printed nowhere.",
+  "3. slide-06 draws content experts only at the 17 improved desks among 1,000, so a reader sees experts rereading 1.7 percent of exams. f06.py's own comment says experts reread the typed answers on every exam. The drawing encodes a narrower reread than the claim.",
+  "4. slide-05, the '100 percent human scored' frame, draws 4 unattended desks in a back row (f05.py line 31, laptop:false). In this deck's visual grammar an unattended desk means no person read it (slide-03).",
+  "5. The whole fall review (slide-06, slide-07, caption paragraph 3) rests on one Texas Tribune article (c19 to c24). No TEA primary for the September 4th announcement was fetched or recorded as unreachable.",
+  "6. slide-09's call to action names no window dates and no fee amount. A September 30th reader can't tell whether a spring 2026 rescore is still possible. No claim says it is or isn't, and the deck doesn't say it doesn't know.",
+  "7. slide-08 and slide-09 overlap ('Start with the district.' and 'Ask the district for a rescore.'), so one is cuttable.",
+  "8. Craft: slide-09's closing parent has a hair artifact (strands standing off the back of the head). slide-05 has a blank upper wall. The tiled tuft ground on 1 and 9 reads as texture rather than turf at full size.",
+  "9. Low priority, verify rather than fail. In the render, the Manrope dek apostrophes on 3, 7 and 9 ('agency's', 'engine's') and slide-07's quotes around ferst and first look typographically curved. render_report.json records straight U+0027 and U+0022 in the DOM text, so this is probably the glyph shape and not a curly character."
+ ],
+ "one_sentence_fix": "Scope the engine's set everywhere it is stated, as the longer written answers (short and extended constructed responses, c22), in slide-01's dek, the caption's opening line and the web edition's 'every written answer a Texas student types', so the cover's premise no longer collides with frame 7's short typed answers the engine never scored, and tag the web sentence to c1 and c22.",
+ "judge_lens": "integrity"
+}

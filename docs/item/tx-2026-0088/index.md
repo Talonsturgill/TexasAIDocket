@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The assignment of the RELLIS abatement is unconfirmed this run. The county's own notice of it could not be read again.
 - 2026-09-28 · The county's own notice could not be read again, so the named assignee and the estimated cost it states rest on the last reading rather than a fresh one. Nothing on the record says the assignment the court approved has been undone.
 - 2026-09-29 · The county's own notice of the RELLIS assignment would not load again, so the assignee and the cost it names still rest on an earlier reading. Nothing on the record shows the court undoing the assignment.
+- 2026-09-30 · The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind a barrier to automated readers, and nothing on the record shows the court undoing it.
 
 ## Evidence
 

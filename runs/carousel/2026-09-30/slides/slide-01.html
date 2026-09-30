@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-09-30, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's overcast world. THE COVER. One student combo desk alone on a straw practice field, its laptop open and lit, seen from behind its empty seat at a seated eye, the school wing, flags and live oaks in haze on the horizon. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#D7D9DA; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:132px; width:900px; font-family:"Fraunces", serif; font-weight:800;
+          line-height:0.96; letter-spacing:-0.01em; color:#12131A; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:82px; width:860px; font-size:31px; font-weight:600; line-height:1.38; color:#1E2028; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#111216; white-space:nowrap; z-index:20; }
+  .hook .num { font-family:"Manrope", sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:1em; }
+  .hook, .dek, .tx-site, .kick, .count, .src { text-shadow:0 0 2px rgba(240,242,242,0.35), 0 1px 10px rgba(240,242,242,0.25); }
+  .tx-site, .src { text-shadow:0 0 3px rgba(240,242,242,0.55), 0 1px 12px rgba(240,242,242,0.4); }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A machine reads it first.</h1>
+<p class="dek" data-follow="30">Since December 2023 the Texas Education Agency has sent the longer written STAAR answers to an automated engine first, unless the test is in Spanish. The agency said scoring every answer by hand would have cost $15 million to $20 million more a year.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-30-firstreader.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  TXLAYOUT.mount(document.body, { kicker: "STAAR scoring", counter: "01 / 09", src: "c1 c17 c2 c14 c22 DRAWN", ink: '#111216' });
+  TX.fitText(document.getElementById("hook"), { min: 90, max: 104, maxLines: 2 });
+  FR.follow();
+  const TXT = init(THREE), K = initKit(THREE, TXT), F = FR, gl = F.glCanvas();
+  F.installKit(K, THREE, TXT);
+  const W = TXT.deckWorld();
+
+  /* THE HOME CAMERA, shared exactly by frames 1, 7 and 9: seated eye behind the desk's empty seat,
+   * looking north over it to the laptop and past it to the school wing 92 m out. */
+  const HOME = { from: [-0.9, 1.02, 3.3], look: [0.1, 1.8, -8] };
+  const DESK = { at: [-0.45, -2.35], rotY: 0.55 };
+
+  const R = TXT.setup(gl, { w: 1080, h: 1350, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 34, near: 0.05, far: 4000 });
+  /* THE COVER. One desk alone on the practice field, its laptop open and lit, the school wing,
+   * its flags and the oaks soft in haze on the horizon. */
+  const desk = F.desk(K, { seed: 7 }); desk.position.set(DESK.at[0], 0, DESK.at[1]); desk.rotation.y = DESK.rotY; TXT.add(R, desk); TXT.contact(R, desk);
+  F.campus(K, THREE, TXT, R, { flagScale: 0.8 });
+  /* the campus beyond the field: a school bus at the curb by the wing's west end, a pecan and a
+   * bench at the practice field's edge */
+  const bus1 = K.make('school_bus', { seed: 2, stopArm: false }); bus1.position.set(-30, 0, -70); bus1.rotation.y = Math.PI / 2; TXT.add(R, bus1); TXT.contact(R, bus1);
+  const pecan1 = K.make('pecan', { seed: 8 }); pecan1.position.set(34, 0, -48); TXT.add(R, pecan1); TXT.contact(R, pecan1);
+  const bench1 = K.make('bench', { length: 1.8 }); bench1.position.set(-7.5, 0, -14); bench1.rotation.y = 0.3; TXT.add(R, bench1); TXT.contact(R, bench1);
+  TXT.frame(R, HOME);
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, -2], distance: 40, shadowFar: 120, normalBias: 0.04 });
+  TXT.ground(R, { surface: 'grass', color: F.STRAW, size: 6000, seed: 21 });
+  F.grass(TXT, R, { count: 14000, area: [-14, -40, 14, 3.5], avoid: [[-1.25, -3.15, 0.4, -1.55], [-2.2, 1.2, 2.4, 3.4]], scale: [0.06, 0.12] });
+  TXT.weather(R, { grime: 0.35 });
+  const cx = F.develop(await TXT.snapshot(R), gl);
+  F.post(cx, { a: 0.22, type: ['.kick', '.count', '.hook', '.dek'], veil: 0.45, veilH: 420 });
+  TXDECK.finish(cx);
+  window.__txDrawn = { desks: 1 };
+
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+ "judge_lens": "reader",
+ "deck": "2026-09-30, carousel no. 38, round 1",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "It passes the world test but not the showstopper test. Every exterior frame is a real place at an hour: an overcast lid, a buff ISD brick wing on the horizon line, flags, soft contact shadows under the desk legs on slides 1 and 9, and haze on the far rows of 2 and 7. The type sits in open sky on every frame and never on a plate. The hero desk is at true scale and reads at thumb size. The frames still read as architectural previz rather than a photograph. The school is an extruded box with a tiled brick texture. The grass on 1, 4 and 9 is a visibly repeating sprite of tufts, and the overcast grade leaves the whole deck in one pale mid band with only the seat shells dark. The kit people are the weak default. Slide 5 is the weakest frame in the deck: four mannequins with blank faces stand stiffly behind closed laptops against a bare wall with no readable window. On slide 4 the three leaders land on the back of a black laptop while two figures stand idle behind it. The scale fields on 2 (3,000 desks behind a goal post) and 7 (the crane over 27,200) are the strongest images and do real work. Against the descriptors this is closer to the 7 than the 4, with more than one frame leaning on a primitive (5, 4, and the building everywhere)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The contact sheet reads as a filmstrip. There is one campus, one overcast light, one hero desk in one material, and one bluebonnet accent kept to the readers. Frames 1 and 9 share a camera exactly, empty desk and then the parent at it. Frame 7 is the same field filled, and 3 and 6 share a camera. The motif, the number of people at the desks, visibly changes state (none, a quarter attended, all attended, one walker, a parent), and the storyboard names both devices. The value stays steady with no strobe, since every frame has a pale sky top and a straw ground. Two frames sit slightly outside. Frame 5 is the declared interior, grey tile and a blank wall. Frame 8 is a close architectural view of an entrance that no other frame shows."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral on a slide and in the caption traces to a claim: 2023 (c17), 25 (c1), 3,000 (c16), 75% (c13), 100 (c2), 1.7% and 1.6 million (c24), 27,200 (c19). The process claims are TEA primaries. The phrasing is looser than its source in three places, none of which changes the basic picture. (1) The slide 7 headline 'The engine scored none of the regraded answers.' states as fact what c20 records as spokesperson Kobersky saying, via the Tribune. The caption attributes it ('The agency said') and the slide does not. (2) Slide 3 correctly scopes the 75% to 'the agency's own chart', a March 2024 presentation bracket (c13 note). The caption drops that scope and says in the present tense 'The machine's score stands on about 75% of them.' (3) The cover's 'written STAAR answers' is an unscoped universal until slide 5 carves out Spanish. The whole fall review rests on journalism (c19 to c24, Texas Tribune), and no TEA release was fetched."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan comes away knowing the body (TEA), the decision (engine first since December 2023), the scope (statewide, English tests, about 75% machine score of record), the exception (Spanish) and the route (raise it with the district, whose testing staff request a human rescore for a fee that is waived if the score changes). That is a real next step. Three things are missing or muddled. (1) The deck never says why TEA did this. c14 (full human scoring would have cost $15-20M more a year) and c15 are verified and appear in the web edition, but no frame or caption line uses them. (2) The fee amount and the window are absent. The web edition honestly says the record lacks both, but the deck gives no hint of that. (3) The fall review on frames 6 and 7 leaves a reader unable to say what went wrong. It never says what originally scored the short typed answers that got regraded. The deck also never carries the web edition's key sentence that the correction 'says nothing either way about how often the machine's own scores would change'. The stake of the turn therefore stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe with a strong six word hook over one empty desk. Frame 2 pays at once with a size. Frames 3 to 5 build the mechanism cleanly. The declared turn at 7 is the deck's biggest image, and after five frames about the machine, a field of 27,200 desks under 'regraded answers' reads visually as the machine's errors while the headline says the opposite. The turn lands as confusion rather than as a change of understanding. Frame 6 and frame 7 split one event (the fall review) over two frames and could merge without loss, and so could 8 and 9 (one route). The close lands on the action, on the cover's own camera."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The copy is clean, plain and on register. It has no boosterism and no doom, and 'A student who typed \"ferst\" for \"first\" may get credit' is a good human detail. The words are mostly agency procedure restated ('Condition code', 'score of record') with little that sounds like a Texan who knows schools. No district, no grade, no season of the testing calendar, and only the art says 'ISD'. The caption carries a line that narrates the deck: 'The deck runs from one desk alone to a field of 27,200.' That is the same defect judges cut from the captions of September 24th ('The deck walks from a back yard to the draft's own pages') and September 26th ('the line narrating the deck was cut'), per ledger/carousel/captions.json. It is also inaccurate, because the deck ends back at one desk on frame 9, not on the field. The close 'Should a family have to ask for a person?' leans editorial."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The palette and register diverge clearly from the last four. The overcast pale lid and a school campus follow no. 37's navy dusk El Paso generator yards, no. 36's Panhandle and no. 35's RealPage deck. No education deck appears since no. 26 on September 16th, and the topics ledger has no STAAR or TEA scoring entry in the 30 day window. The caption's opening move, 'the plain question', was last spent September 21st, outside its six run window. The one familiar move is the main technique: a field of instanced identical units counting a figure (3,000 desks, 27,200 desks, 1,000 desks). That is the same device yesterday's no. 37 used with its 813 generators in rows on frames 1, 3 and 4."
+  }
+ ],
+ "weighted_score": 6.96,
+ "weighted_score_arithmetic": "0.22*6.5 + 0.12*8.0 + 0.20*7.0 + 0.16*7.0 + 0.10*7.0 + 0.10*6.5 + 0.10*7.0 = 1.43 + 0.96 + 1.40 + 1.12 + 0.70 + 0.65 + 0.70 = 6.96",
+ "hard_fails": [],
+ "hard_fail_checks_run": "Every numeral on every slide string in copy.json and in caption.txt was checked against claims.json, and all trace. The caption was checked for colons, semicolons, em or en dashes, 'cannot', sentence openings with And or But, first person and the banned words gap, matters and pattern: none found. The topic window in ledger/carousel/topics.json was checked for STAAR, TEA or automated scoring from August 31st on: none. The caption's opening move was checked against captions.json: 'the plain question' was last used 2026-09-21, outside the six run window. No placeholder or unfinished frame was seen in any of the nine renders. The first comment and the render QA report were not in the package and were not checked.",
+ "ship": false,
+ "ship_note": "No fault. This is a threshold dissent only: 6.96 against the round 1 rung of 8.0.",
+ "named_defects_ranked": [
+  "1. Frames 6 and 7, the turn. A reader can't tell whether the 27,200 corrections indict or clear the machine. The field of 27,200 desks after five machine frames implies machine errors, and the headline says the engine scored none of them. The deck never says what did score those short answers, or that the correction says nothing about the engine's own error rate. The web edition's sentence that does say it is on no frame.",
+  "2. The caption line 'The deck runs from one desk alone to a field of 27,200.' narrates the deck, a defect judges cut on 09-24 and 09-26. It is also wrong, since the deck ends on one desk (frame 9), and it adds to the misreading in defect 1.",
+  "3. The why is missing. c14 ($15-20M a year more for full human scoring) and c15 (6-7x more written answers) are verified and on no frame or caption line, so the reader learns what TEA did and never why.",
+  "4. The slide 7 headline states Kobersky's statement (c20, reported by the Tribune) as fact without attribution. The caption attributes it.",
+  "5. The caption's 'The machine's score stands on about 75% of them' drops the 'agency's own chart' scope that slide 3 keeps (c13 is a March 2024 presentation bracket).",
+  "6. On slides 8 and 9 the parent wears the same bluebonnet shirt, with an arm patch, as the scorers on 3 to 5, so at thumb size she reads as staff rather than a parent. On slide 9 her gaze passes over the laptop rather than resting on it.",
+  "7. Slide 5 shows mannequin kit people with blank faces standing behind closed laptops in a bare interior. It is the weakest frame and the one outside the campus world.",
+  "8. On slide 4 the three leaders land on the back of a dark laptop, and the two readers stand idle behind the desk rather than reading it.",
+  "9. Frame pairs 6 and 7, and 8 and 9, each split one beat over two frames. Merging either frees a frame for defect 3."
+ ],
+ "one_sentence_fix": "Give the turn one unambiguous meaning: merge frames 6 and 7 into one frame whose attributed headline and dek say the regraded answers were short typed ones the engine never scores, and that this says nothing either way about the engine's own error rate (the web edition's sentence). Spend the freed frame on c14's $15-20M a year as the reason TEA switched, and cut the caption line that narrates the deck.",
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-09-30/copy.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/claims.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/thumbs/slide-06-thumb.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/slide-01.png, slide-03.png, slide-04.png, slide-05.png, slide-07.png, slide-08.png, slide-09.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-09-30.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/captions.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json (header only)",
+  "/home/user/TexasAIDocket/runs/carousel/2026-09-29/contact_sheet.png"
+ ]
+}

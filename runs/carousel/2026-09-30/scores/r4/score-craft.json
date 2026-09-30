@@ -1,0 +1,67 @@
+{
+ "judge_lens": "craft",
+ "deck": "2026-09-30, carousel no. 38, round 4",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is a rendered place, not an object in a void. It has an overcast lid, a horizon, and on 2, 3, 4 and 6 real haze in depth that softens the school and oaks. There are soft contact shadows under every desk on 1, 4, 6 and 9, and the hero combo desk (tube frame, book rack, lit laptop) is a well-built model that reads as one silhouette at 432 px. Type sits in the sky band the composition leaves for it. It still fails the showstopper test on most frames, and it falls short of the 7 descriptor ('one frame leans on a default') because several frames do. (1) The ground on 1, 4, 8 and 9 is a tiled green texture strewn with identical sprite tufts. There is no dirt, wear, path or kerb, so it reads as a game terrain rather than a photograph. (2) Frame 5 is a dead zone. The top 60% is a flat, unlit grey wall with a bare ceiling wedge at top left, and the readers are faceted mannequins with helmet-like hair. Nothing in the frame says Spanish, so the frame's one claim is not drawn. (3) The frame 8 flags at top right are soft and ghosted, with a doubled edge on the Texas flag and stripes smeared into the sky, which is a render artifact at full size. (4) Frame 4 duplicates one oak model side by side and drops a park bench into an open field. A sliver of the school is cut by the right edge at x~1550. (5) On 3 the attended quarter is a dense cluster of standing figures that at this oblique angle covers close to half the block. (6) Headlines on 2, 3, 4, 6 and 7 carry a pale halo stroke around every glyph (clearest on 7's 'The agency says the'), and 2, 3, 6 and 7 show a lighter oval behind the text block. That is a soft plate where the frame should have made quiet. (7) render_report shows the headline numerals set in Manrope 800 inside Fraunces 800 lines ('3,000' on 2, '75%' on 3, '1.7%' on 6). The box sits 8 px higher and 12 px taller than the line, and on the pixels it reads as a font fallback. (8) The frame 9 parent's hair mesh clumps and sticks out behind her head. Strong frames are 1, 2, 6 and 8, weak are 3, 4, 5 and 7. No frame would open a serious magazine feature."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This clearly reads as one deck, and more than the 7 descriptor asks. There is one campus model (buff brick wing, cast stone band, the same flagpole with US and Texas flags), one overcast lid, one key and one hero desk on 1, 2, 3, 4, 6, 7 and 9. The value does not strobe: every frame is a pale sky over a straw or green ground on the contact sheet. Two declared continuity devices work in the pixels. First, the camera move: 1 and 9 are the identical camera with only the parent added, and 3 and 6 share the school view. Second, the people count as a motif changing state: none on 1 and 2, readers on 3 to 5, one reader on 7, the parent on 8 and 9. What keeps it from a filmstrip: frame 7's desks render with pale grey tops and shells against the charcoal shells of 2 and 6, so the hero changes material at the turn. Frame 5 is an interior with a different light that sits outside the world. Frame 8 has no desk. The sameness also costs something: 1, 3, 6 and 9 share nearly one layout (type in the sky, school across the frame at about 55%, field below). deck_coherence.py output was not in the package, so this score does not rest on it."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide numeral traces. 2023 goes to c17, $15 million to $20 million to c14, 3,000 to c16, 75% to c13, 100 percent to c2, 1.7% and 1.6 million to c24, 17 of every 1,000 to compute.py per1000_improved, and 27,200 to c19. The caption's numerals are the same set. The universal 'none of the regraded answers' is attributed ('The agency says') and its set is named in quantifiers.json. All 25 cited ids are in the sources block. The TEA process facts rest on two primary TEA PDFs. The review figures (c19 to c24) rest on the Texas Tribune reporting TEA officials, so this is the 7 descriptor's 'one claim leans on journalism where a filing existed' if a TEA release exists. Two looser points. Slide 7's 'So the review says nothing either way about the engine's own scores' is the deck's own inference from c20 and c21, sound but not sourced. The drawn counts (3,000 desks, 25 attended of 100, 17 lit of 1,000, 27,200 desks) are said to be asserted in frame code, but render_report.json carries no instance counts, so I could not verify them from the package. On frame 7 the visible field ends at the school face and does not read as nine times frame 2's field. I did not refute any of them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (a machine scores written STAAR answers first, since December 2023), who decided (TEA), the money ($15 million to $20 million a year), the one exception (Spanish), the fall review (about 27,200 students) and what to do (frames 8 and 9: raise it with the district, whose testing staff request a fee-waived-if-changed rescore). The deadline is stated generally ('inside a window set in the agency's Calendar of Events'), which is the 7 descriptor. The deck says honestly that no date is in the record. No district or place is named, which is fair for a statewide rule but still general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover 'A machine reads it first.' earns the swipe. Frame 2 pays at once with how it learned, 3 and 4 give the split and the handoff, and 7 is a real turn: the correction was human and the engine scored none of it. The close is an action. Frames 8 and 9 both say 'the district', so 8 could fold into 9 with little loss. Frame 6's dek ending ('The engine scores the longer ones.') pre-empts frame 7's turn. It reads well in order with a cuttable frame, which is the 7 descriptor with a strong turn on top."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Plain, even and neither booster nor doom. 'Start with the district.' and 'Ask the district for a rescore.' sound like someone who has dealt with a school office. The caption's closing question is fair. There are flat or wordy lines. Frame 7's headline 'The agency says the engine scored none of the regraded answers.' is eleven words of attribution in the deck's largest type. Kickers like 'One exception' and 'The review' are generic. Regional specificity comes from the art (Texas flag, goal post, ISD brick) and not from the copy, which names no place in Texas."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The palette and register diverge sharply from the last four decks in artwork.json: no. 34 blue hour (median L* 18.1), no. 35 night sodium (9.3), no. 36 storm (27.8) and no. 37 golden hour (29.0). This is the first pale overcast daylight deck in that run, and the cover opens on one object alone rather than a site or a machine. The core technique is the house move, though: a count drawn as instanced units in rows receding into haze. No. 34 did this with the truck yard, no. 37 with the 813-unit yard, and no. 35 with 48 repeats. Here it drives frames 2, 6 and 7. That is a fresh concept with one familiar move."
+  }
+ ],
+ "weighted_score": 7.28,
+ "weighted_score_arithmetic": "6.3x0.22=1.386 + 8.0x0.12=0.960 + 7.5x0.20=1.500 + 7.5x0.16=1.200 + 7.5x0.10=0.750 + 7.3x0.10=0.730 + 7.5x0.10=0.750 = 7.276",
+ "hard_fails": [],
+ "hard_fail_checks_run": "machine_qa.json verdict WARN with 0 fails (19 warns: canvas raster 'SCHOOL BUS' and 'STOP', plus SKY or ROOM IN FRAME verdict notices). Slide and caption numerals traced as above. Caption: no colon, semicolon, em or en dash, emoji, banned word, 'cannot', or sentence opening with And or But. Straight quotes in copy.json. No placeholder. topics.json checked from 2026-08-29 to 2026-09-29 with no STAAR or TEA scoring topic in the 30-day window (the nearest is no. 21, the SBOE financial literacy standards, on a different subject). All three sources in first_comment.txt appear in claims.json with retrieval dates.",
+ "ship": false,
+ "ship_note": "The refusal is on the number, not a fault. 7.28 is under round 4's 7.7 rung and I found no hard fail.",
+ "named_defects_ranked": [
+  "1. Frame 7, the turn, does not read as 27,200. The field stops at the school face and does not visibly outnumber frame 2's 3,000. The desks change to pale grey tops and shells against the charcoal of 2 and 6. The storyboard's 'frame 1's own desk at full detail with its lit laptop' in the foreground is not visible.",
+  "2. The ground on 1, 4, 8 and 9 is a tiled texture with repeated sprite tufts and no dirt, wear, path or kerb. It is the single biggest reason the world reads as a game engine rather than a photograph.",
+  "3. Frame 5: a flat, unlit grey wall fills the top 60%, there is a bare ceiling wedge, the readers are faceted mannequins, and nothing says Spanish.",
+  "4. Headline numerals are set in Manrope inside Fraunces on 2, 3 and 6 ('3,000', '75%', '1.7%'), with a box 8 px higher and 12 px taller than the line. It reads as a font fallback.",
+  "5. A pale halo stroke around headline glyphs and a lighter oval behind the text on 2, 3, 6 and 7 act as a soft plate.",
+  "6. Frame 8's flags are ghosted and blurred, with a doubled edge on the Texas flag.",
+  "7. Frame 3's 25-of-100 attended cluster covers close to half the visible block at this camera angle.",
+  "8. Frame 4 has two cloned oaks side by side, a stray park bench, and a building sliver cut at the right edge.",
+  "9. Frame 9's parent has a clumping hair mesh behind the head.",
+  "10. The footer on 2 and 7 is set light over the busy desk field and is weak at thumb size."
+ ],
+ "one_sentence_fix": "Rebuild frame 7, the deck's turn, so its field of desks in frame 2's charcoal material visibly runs past the school into the haze and plainly dwarfs frame 2's 3,000, and in the same pass replace the tiled sprite-tuft ground across the deck with worn straw turf that has dirt, paths and wear at every contact, because those two are what stop this world from reading as a photograph."
+}

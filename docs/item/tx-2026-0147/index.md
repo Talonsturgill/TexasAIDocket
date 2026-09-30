@@ -11,7 +11,7 @@ The El Paso City Council took up two items filed by members of the council at it
 - Public access: Write to the decider
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · Both plate reader items still stand approved as revised. The text of the floor amendments is still unpublished, so what the council changed before it voted stays off the public record.
 - 2026-09-24 · Both plate reader items remain approved as revised. The floor amendments are still unpublished, so what the council changed before voting is still not on the public record.
 - 2026-09-27 · The council's approval of both plate reader items still stands, and the text of the amendment is still unpublished.
+- 2026-09-30 · Both plate reader approvals still stand as the council voted them, and the amended text has still not been published.
 
 ## Evidence
 

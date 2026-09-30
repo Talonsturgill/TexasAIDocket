@@ -1,0 +1,114 @@
+{
+ "weighted_score": 7.45,
+ "judges": [
+  6.91,
+  7.39,
+  7.55
+ ],
+ "spread": 0.64,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.3,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.5,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    8.5,
+    8.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.3,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "AN UNVERIFIED UNIVERSAL PRESENTED AS VERIFIED, REFUTED BY THE RUN'S OWN CLAIMS (web edition, /home/user/TexasAIDocket/ledger/articles/2026-09-30.json, introduction paragraph 2). The sentence reads: 'The machine is the first reader of every written answer a Texas student types on the English language test.' It carries no claim id, which breaks the house rule that every fact carries one. c1 covers constructed responses only, and c22 says the automated model reviews short and extended constructed-response questions. c21 defines text entry responses as answers 'where students type brief text', and c20 says none of the regraded (text entry) responses were graded by the automated scoring engine. So typed answers exist that the engine did not score. The same document says so itself two sections later: 'the correction that moved school ratings this fall came from people reading answers the machine never scored.' Repair: scope the sentence to the longer written answers, the short and extended constructed responses (c22), and tag it. The same unscoped set is on slide-01's dek and the caption's opening line and must be scoped in the same edit (see defects 1 and 2)."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds_derived": 5,
+ "rounds": 5,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "hard_fails_at_round5": [
+  "AN UNVERIFIED UNIVERSAL PRESENTED AS VERIFIED, REFUTED BY THE RUN'S OWN CLAIMS (web edition, /home/user/TexasAIDocket/ledger/articles/2026-09-30.json, introduction paragraph 2). The sentence reads: 'The machine is the first reader of every written answer a Texas student types on the English language test.' It carries no claim id, which breaks the house rule that every fact carries one. c1 covers constructed responses only, and c22 says the automated model reviews short and extended constructed-response questions. c21 defines text entry responses as answers 'where students type brief text', and c20 says none of the regraded (text entry) responses were graded by the automated scoring engine. So typed answers exist that the engine did not score. The same document says so itself two sections later: 'the correction that moved school ratings this fall came from people reading answers the machine never scored.' Repair: scope the sentence to the longer written answers, the short and extended constructed responses (c22), and tag it. The same unscoped set is on slide-01's dek and the caption's opening line and must be scoped in the same edit (see defects 1 and 2)."
+ ],
+ "hard_fail_repairs": {
+  "note": "Past the round cap, repairs were limited to the hard fail, as the routine allows. Round 5's integrity judge failed an unscoped universal about which STAAR answers the engine reads first. It was repaired on every surface that carried it and confirmed by three integrity-only verification passes. The first two each found the same set still unscoped on a surface the repair had missed, and each finding was repaired before the next pass. No sixth scoring round was run, so the scores above describe the deck before the repair.",
+  "verification_passes": [
+   "pass 1: repaired the three named instances, found the record and web dek unscoped",
+   "pass 2: found the Spanish half on the web dek and record title",
+   "pass 3: found the web lede, record c1, a summary routing sentence and an untraced annual",
+   "pass 4: confirmed all earlier repairs, found the dek's Spanish sentence unscoped, repaired to its quote"
+  ],
+  "repaired": [
+   "web edition intro: the engine handles the longer written answers, the short and extended constructed responses (c22), and is the first reader of those answers on any test not given in Spanish (c1)",
+   "web edition dek: the longer written answers on English language STAAR tests, and Spanish language answers are read only by people",
+   "slide 1 dek: the longer written STAAR answers, source line adds c22",
+   "caption opening: Who reads a long written STAAR answer first?",
+   "record tx-2026-0194 title, summary, access note and claim c1 scoped to constructed responses on English language tests",
+   "claims.json c1 text scoped to constructed responses on tests not given in Spanish",
+   "frame 5's unattended back row removed"
+  ]
+ }
+}

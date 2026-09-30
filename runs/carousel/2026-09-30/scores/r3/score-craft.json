@@ -1,0 +1,86 @@
+{
+ "judge": "craft",
+ "deck": "2026-09-30, carousel no. 38, round 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame has a real rendered image that owns the lower half, with the type seated in a sky the composition left for it. The horizons sit at about 0.47 to 0.63 of frame height and the hook and dek never cross a subject. Contact shadows are present under every desk and figure (F1 desk feet, F5 each chair, F9 shoes). One overcast key runs through the deck. The descriptor's 7 allows ONE frame leaning on a primitive, a dead zone or an artifact, and this deck has several. (1) F5 is a bare box room. It has untextured blue and grey wall planes, a ceiling wedge poking into the top left, windows blown to flat white with nothing outside, and a large diagonal light shaft across the grey wall with no visible caster. It is the one frame that fails the showstopper test outright. (2) F9's parent has a brown texture tear on her right shoulder (about 1377,1465 in the 2160x2700 render) and a stray grey hair spike behind her head (about 1350,1343). This is the closing frame and the figure is its focal. (3) F4 has a stray sliver of brick wall cut by the right edge (about x 2105 to 2160, y 1465 to 1650) that belongs to nothing in the composition, and its three leader lines run about 600 px through open sky as near-parallel strings to one laptop. (4) On F8 the flags are soft or blurred while the pole beside them is crisp at the same depth (flags about x 1937 to 2160, y 371 to 850). (5) F3's bottom fifth is empty tiled grass, a dead band under the block. On the showstopper test, no outdoor frame reads as a photograph of a place. The sky is a smooth gradient with no cloud structure. The grass is one tiled texture with sprite tufts that repeats visibly in the F1 and F9 foreground. The school is a flat facade with its frosted windows as flat grey planes, and it stands sharp on F1 and F9 with almost no haze. Figures are kit mannequins with featureless faces. It reads as a clean archviz or game render. That is well above 'objects floating in a flat gradient' (4), but short of 7 because the faults are on several frames, not one. F2's football field of 3,000 desks with yard lines and a goal post is the strongest single image and does make a count a size."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "The deck plays like a filmstrip. There is one campus (buff brick wing, flagpole with US and Texas flags), one overcast light, one grade, and one hero (the combo desk with its lit laptop) in one material on every outdoor frame. The two declared devices both work in the pixels. F1 and F9 share one camera exactly, empty desk then parent at it. F3 and F6 share the practice-field camera, 100 desks then 1,000. The bluebonnet shirts mark readers on 3, 4, 5, 6 and 7 and the parent's white shirt on 8 and 9 keeps her apart, as the storyboard declares. There is no screen texture. The value holds, pale sky over mid green on eight frames with no strobe. One frame sits outside: F5's interior with its saturated blue wall and tile floor is the only frame that leaves the campus exterior. It is argued (people reading indoors), but on the contact sheet it is the frame a reader would not place in this deck. The canopy fascia on F8 is a second saturated navy near the bluebonnet reserve. Between 7 and 10, on the strong side."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral on the slides and in the caption traces to a claim or a computation. December 2023 is c17. $15 million to $20 million is c14. 3,000 is c16, 75% is c13, 100 percent is c2, 1.7% and 1.6 million are c24, and 27,200 is c19. 17 of every 1,000 is computed in figures.json per1000_improved, round(1.7 x 1000 / 100). The universal 'none of the regraded answers' is attributed on the slide ('The agency says') and its set is named in quantifiers.json against c20. 'Two people read the rest' (F3) sits on c31 and c1. The mechanism facts rest on two primary TEA documents. The review figures (c19 to c24, c30) rest on the Texas Tribune quoting TEA officials, which is journalism where an agency statement probably exists. That is the 7 descriptor's one lean. One point I could not close from this package: render_report.json carries no instance counts, so the drawn 3,000, 1,000 and 27,200 fields can't be checked against figures.json here, although the storyboard's acceptance lines say the report should carry them. I flag it, not fail it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (a machine scores written STAAR answers first, F1), who decided (the Texas Education Agency), since when (December 2023), the exception (Spanish, F5), and what a family can do (raise it with the district, F8. Staff request a rescore for a fee, waived if the score changes, F9). The action close is concrete. What is missing is a deadline. F9 says there is a window 'set in the agency's Calendar of Events' but gives no date, and no frame says when this fall's review happened, so the story has no date a reader can act against. It is statewide, with no county or district named. The stakes are clear, but the timing is stated only in general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe ('A machine reads it first.' over one empty desk). F2 pays at once with the 3,000 desks. The turn at F7 is declared and the close lands on the cover's camera with a person in it. The sag is visual repetition in the middle. F2, F3, F6 and F7 are all fields of desks before the same school, and on the contact sheet F6 and F7 are nearly the same picture (grey desk rows receding to the brick wing, a few blue figures). F7 is meant to read larger than F2 (27,200 against 3,000), but on screen the rows end at the school after about forty rows, so it doesn't look bigger than F2 and the scale turn is lost. F5 could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The copy is plain and specific and not a press release: 'Start with the district.', 'A student who typed \"ferst\" for \"first\" may get credit.', 'A person's score is the one that counts.' It is honest about cost without doom (the $15 million to $20 million a year is stated flatly). House rules hold on every slide string and the caption: no colons, semicolons, dashes or banned words, and 'can't' is not needed. It lacks regional texture, since nothing places a reader in a Texas district or town. The caption's closing question ('Should a family have to ask for a person?') leans slightly toward an editorial position. Clean and on register, with a couple of generic lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The palette and register break clearly from the last four decks. Nos. 34 to 37 were blue hour, night sodium, storm front and golden hour, with deck median L* of 18.1, 9.3, 27.8 and 29.0 in ledger/carousel/artwork.json. This is a pale overcast deck. The subject (education testing) has not appeared in the topics window, and no STAAR or TEA item appears in the 30 days. The familiar move is the count field of repeated instanced units standing in for a number. No. 37 had a yard of 813, no. 36 a corral of 33 heads, no. 35 48 apartments and no. 34 a truck yard, and this deck builds four frames on it. The technique (PBR through txthree) is mandated and does not count against it."
+  }
+ ],
+ "weighted_score": 7.45,
+ "weighted_score_arithmetic": "6.5x0.22=1.430 + 8.5x0.12=1.020 + 8.0x0.20=1.600 + 7.5x0.16=1.200 + 7.0x0.10=0.700 + 7.5x0.10=0.750 + 7.5x0.10=0.750 = 7.450",
+ "hard_fails": [],
+ "hard_fail_checks_run": "machine_qa.json: 0 fails, 19 warns (canvas fillText 'SCHOOL BUS'/'STOP' on 1, 4, 7, 8, 9, and TXT verdict console lines), so no machine-QA failure. Every slide and caption numeral traced to c2, c13, c14, c16, c17, c19 or c24, or to figures.json per1000_improved. The topics ledger has no STAAR or TEA deck inside 30 days. No placeholder or unfinished frame. The first comment cites three documents, all present in claims.json with URLs and retrieved 2026-09-30.",
+ "ship": false,
+ "ship_note": "No fault. My weighted 7.45 is under the round 3 rung of 8.0, so this is a threshold dissent only.",
+ "named_defects_ranked": [
+  "1. F5 is a primitive box room: flat untextured blue and grey walls, a ceiling wedge in the top left, windows blown to flat white with no exterior, and an uncaused diagonal light shaft on the wall. It is the one frame that fails the showstopper test outright.",
+  "2. The world reads as a game render on every outdoor frame: a smooth gradient sky with no cloud structure, one tiled grass texture repeating in the F1 and F9 foreground, and a flat school facade that stands sharp with almost no haze on F1 and F9. This is a chassis-level fault, so one fix moves nine frames.",
+  "3. F7's 27,200 field doesn't read larger than F2's 3,000. The rows stop at the school after about forty rows, so the deck's declared turn loses its scale, and on the contact sheet F6 and F7 are nearly the same image.",
+  "4. F9 parent: brown texture tear on the right shoulder (about 1377,1465) and a stray hair spike (about 1350,1343), on the closing frame's focal figure.",
+  "5. F4: a stray brick-wall sliver cut by the right edge (about x 2105 to 2160, y 1465 to 1650), and three leader lines running about 600 px through empty sky as parallel strings.",
+  "6. F8: flags rendered soft or blurred while the pole at the same depth is crisp.",
+  "7. Headline type: the numerals '3,000', '75%' and '1.7%' are set in Manrope inside Fraunces headlines (render_report anc spans on F2, F3, F6), a visible change of face at display size, and a pale halo rings the headline glyphs on F2, F3, F6 and F7.",
+  "8. F3: the attended quarter reads as about 40% of the block at the 432 px thumb and as a crowd rather than pairs, over an empty foreground band in the bottom fifth.",
+  "9. The F6 dossier's bands, focal and value_structure still describe a running track and a painted finish band that the frame does not draw (storyboard.md slide 6)."
+ ],
+ "one_sentence_fix": "Rebuild the overcast world in the chassis (assets/js/deck/2026-09-30-firstreader.js) so all nine frames read as photographs rather than a game render: give the sky real cloud structure, break the tiled grass with worn paths and dirt at every desk foot, and push the school into haze. Then replace F5's bare box room with a furnished classroom and re-frame F7 so its 27,200 desks visibly outnumber F2's 3,000.",
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/slide-01.png ... slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/thumbs/slide-03-thumb.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/thumbs/slide-05-thumb.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/copy.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/claims.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/figures.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/quantifiers.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/render_report.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ],
+ "judge_lens": "craft"
+}

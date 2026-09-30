@@ -1,0 +1,145 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Schools and testing",
+ "dek": {
+  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more, and any answer a district asks to have rescored.",
+  "claims": [
+   "c1",
+   "c10",
+   "c22"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[On STAAR tests not given in Spanish, the Texas Education Agency scores the constructed responses with an automated scoring engine first. At least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}} of responses](c13). [In December {{number:c17}} the agency started moving from fully human scoring to this hybrid model](c17).",
+   "claims": [
+    "c1",
+    "c13",
+    "c17"
+   ]
+  },
+  {
+   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). [The engine handles the longer written answers, the short and extended constructed responses](c22). [On STAAR tests not given in Spanish it is the first reader of those answers](c1).",
+   "claims": [
+    "c14",
+    "c15",
+    "c22",
+    "c1"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "How the engine learns, and what it is held to",
+   "paragraphs": [
+    {
+     "text": "[For each question the engine is programmed on a sample of about {{number:c16}} answers that people scored during field testing](c16). [It is trained on those answers and the scores people gave them](c4). [The agency requires it to agree with human scorers at the same rate human scorers agree with one another](c5). [Both the engine's scores and the human scores are monitored daily through the scoring window](c8).",
+     "claims": [
+      "c16",
+      "c4",
+      "c5",
+      "c8"
+     ]
+    },
+    {
+     "text": "[The human scorers are held to a standard of their own. A scorer who falls below {{number:c18}} exact agreement and {{number:c18:1}} adjacent agreement during the window can't keep scoring for that administration](c18).",
+     "claims": [
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Which answers go to people",
+   "paragraphs": [
+    {
+     "text": "[Part of the share that goes to people is a random sample](c32). [The rest is chosen by the engine itself](c34). [It flags an answer that is blank, too short or mostly repeated. It flags one written in another language or leaning on the reading passage. It flags one worded unlike the answers it was trained on, or one that reads as off topic](c6). [It also sends answers it scores with low confidence, which are often the ones on the border between two score points](c7).",
+     "claims": [
+      "c32",
+      "c6",
+      "c7",
+      "c34"
+     ]
+    },
+    {
+     "text": "[An answer routed to people is read by two of them, one giving the score of record and one auditing it](c31). [Where a person scores an answer, the person's score is the one that counts](c3). [Written answers on the Spanish language STAAR never reach the engine. They are {{number:c2}} percent human scored](c2).",
+     "claims": [
+      "c31",
+      "c3",
+      "c2"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The fall review, and what it did not touch",
+   "paragraphs": [
+    {
+     "text": "[Texas released its preliminary school ratings on {{date:c27}}](c27). [In the review, content experts reread short typed answers, the kind where a student enters a number, a word or a phrase](c21). [The agency's example is a student who typed ferst when the answer was first, and who may now get credit](c23).",
+     "claims": [
+      "c27",
+      "c21",
+      "c23"
+     ]
+    },
+    {
+     "text": "[Agency officials said about {{number:c19}} students received additional credit](c19), [and that about {{number:c24}} of more than {{number:c24:1}} million exams reviewed saw scores improve](c24). [Nine campuses and five districts saw their A-F ratings rise as a result](c25), [and the agency said it would update those ratings without an appeal](c29). [The agency said no score will be lowered as a result of the review](c30).",
+     "claims": [
+      "c19",
+      "c24",
+      "c25",
+      "c29",
+      "c30"
+     ]
+    },
+    {
+     "text": "[The agency said none of the regraded answers had been scored by its automated scoring engine](c20). [The engine handles the longer written answers](c22). So the correction that moved school ratings this fall came from people reading answers the machine never scored. It says nothing either way about how often the machine's own scores would change if a person read them.",
+     "claims": [
+      "c20",
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What a family can do",
+   "paragraphs": [
+    {
+     "text": "[A rescore can start with a parent or guardian who has concerns about a student's score](c12). [The district's testing staff can request that the answer be rescored, for a fee](c9). [A rescore is sent to people, not to the engine](c10). [If the score on that question changes, the fee is waived](c11). [The request has to go in within a specific window, and the agency points to its Calendar of Events for the dates](c35).",
+     "claims": [
+      "c12",
+      "c9",
+      "c10",
+      "c11",
+      "c35"
+     ]
+    },
+    {
+     "text": "[The agency's scoring document says a rescore costs a fee](c9) and names no amount, and it leaves the dates to that calendar. The record does not yet hold either. A family that wants a person to read a written answer starts with the district's testing staff.",
+     "claims": [
+      "c9"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0194",
+   "label": "How the agency scores written STAAR answers, in the record"
+  },
+  {
+   "id": "tx-2026-0142",
+   "label": "The state board's money course and the AI tools it names"
+  },
+  {
+   "id": "tx-2026-0161",
+   "label": "UT Arlington's AI tutor that holds back the answer"
+  }
+ ]
+}

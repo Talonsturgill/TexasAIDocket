@@ -834,7 +834,7 @@ export function install(K, THREE, TXT) {
     size: [0.5, 1.75, 0.3],
     options: { seed: 1, role: 'resident', pose: 'stand', toward: 1, height: null, build: 'auto',
                hat: 'auto', vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full' },
-    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up; toward -1|1 for point; hat auto|none|cap|cowboy|hard; build auto|male|female. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
+    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard; build auto|male|female. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
     make(o, r) {
       LOW = o.detail === 'low';
       try { return makePerson(o, r); } finally { LOW = false; }
@@ -912,6 +912,15 @@ export function install(K, THREE, TXT) {
       headPitch = -0.5;
       const s = r() < 0.5 ? 1 : -1;
       if (r() < 0.6) arm[s] = { u: n3(s * 0.55, 0.15, 0.55), f: n3(-s * 0.75, 0.45, -0.1), hand: 'shade' };
+    } else if (pose === 'read' || pose === 'sit_read') {
+      // Reading a screen or a page on a desk in front (+z): head down, standing forearms angled
+      // down so the hands land on a desk top at about 0.76 m, seated forearms forward to it.
+      // sit_read folds the legs to a seat, and the ankle lift below then sets the hips at about
+      // knee height, which is where a school or office seat is.
+      headPitch = 0.42; torsoLean = pose === 'read' ? 0.12 : 0.1;
+      for (const s of [1, -1]) arm[s] = pose === 'read' ? { u: n3(s * 0.12, -1, 0.2), f: n3(-s * 0.14, -0.72, 0.7), hand: 'relax' }
+        : { u: n3(s * 0.1, -1, 0.3), f: n3(-s * 0.12, -0.5, 1), hand: 'relax' };
+      if (pose === 'sit_read') for (const s of [1, -1]) leg[s] = { t: n3(s * 0.06, -0.08, 1), c: n3(s * 0.01, -1, 0.06) };
     }
     const ankleH = 0.075 * k;
     for (const s of [1, -1]) {
@@ -1306,8 +1315,10 @@ export function install(K, THREE, TXT) {
       const at = (a, b, t) => a.clone().lerp(b, t).toArray();
       const m1 = 1 + 0.14 * mass;
       const armPts = [
-        { p: S.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.034 * k * m1, ry: 0.036 * k * m1 },
-        { p: at(S, E, 0.3), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
+        // the two rings under the sleeve stay a little thinner than the arm below it, so an arm
+        // swung forward (pose read) never pokes skin through the sleeve cap
+        { p: S.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.029 * k * m1, ry: 0.031 * k * m1 },
+        { p: at(S, E, 0.3), rx: 0.036 * k * m1, ry: 0.038 * k * m1 },
         { p: at(S, E, 0.72), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
         { p: E.toArray(), rx: 0.035 * k * m1, ry: 0.037 * k * m1 },
         { p: at(E, Wr, 0.25), rx: 0.039 * k * m1, ry: 0.036 * k * m1 },

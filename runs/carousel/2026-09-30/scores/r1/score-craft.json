@@ -1,0 +1,169 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.0,
+   "why": "The world is there. Eight of nine frames have a sky, a horizon near a third, a ground the desks touch with soft contacts, and one overcast light that agrees everywhere. Type sits in real sky with no plate. It still fails THE SHOWSTOPPER TEST on every frame: none of them reads as a photograph of a place. (1) The kit figures look like mannequins and pass through the furniture. On slide 5 the readers stand inside the chairs' footprint with their shoes on the book racks (rightmost figure at display x~1130-1290, y~1450-1500). On slide 4 the two readers stand upright facing the lens with the laptop lid turned away, and the dossier's focal of 'two readers leaning to one screen' is not what rendered. On slide 9 the parent stands beside the desk in profile looking past the laptop. (2) Slide 9 tangent: the flagpole and both flags come out of the back of the parent's head (display x~410-490, y~850-970). (3) Inverted aerial perspective. On slides 2 and 7 the nearest desks wash to translucent white across the bottom ~15% (display y 1700-2000) while the far rows stay crisp, and the same lift greys the near grass on 1, 3, 6 and 9. That reads as a scrim for the footer, not as haze. (4) Slide 7's school bus intersects the building facade (display x 0-280, y 1045-1150). (5) The ground and building are primitive: a flat olive ground with evenly scattered sprite tufts and no mow lines, dirt, desire paths, kerb or lot. On slide 3 the cars are parked on the lawn. The building is one extruded box with flat window planes. (6) The values are one mid band: pale sky over mid olive, with the only darks being thin desk tubes. There is no dark mass, so slides 2, 3, 6 and 7 have a texture field where a focal should be. (7) Slide 5's interior has an empty tile floor over its bottom ~40%, an unexplained blue slab at the left edge, and no window, though its dossier named a window wall. The hero is meant to be a 'one piece combo chair desk' and renders as a separate desk and chair. The chair's two back posts read as broken stubs at full size (slide 1, display x~820-970, y~1480-1560). Several frames lean on primitives and artifacts, not one, so this sits between the 4 and 7 descriptors."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "As a filmstrip it is plainly one deck. There is one campus, one buff brick wing with a flagpole, one overcast lid and one grass. The desk is in one material everywhere and the bluebonnet is kept to shirts. Frames 1 and 9 share a camera exactly and the bookend works. Frames 3 and 6 share a camera as declared. The value holds with no strobe, since the band ratios in machine_qa run 1.50 to 1.84. Two devices are named in the storyboard (MOTIF_EVOLUTION, CAMERA_MOVE). Against that: frame 5 sits outside the deck, a grey interior with a blue slab and no declared cut ('VALUE CUT: none'). Frame 7 drops the motif state the storyboard lists ('one walking the full field on 7'). There is no figure in it and no bluebonnet, though the palette table puts the accent on frame 7. Its dossier still says 'frame 1's exact camera' while the render is a high crane. Frames 1, 3, 4, 6 and 9 repeat nearly the same horizon composition, which holds the deck together but flattens the camera move."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral on slides and caption traces to a claim or to figures.json: 2023 (c17), 25 (c1), 3,000 (c16), 75% (c13), 100 (c2), 1.7% and 1.6 million (c24), 27,200 (c19). The mechanism claims are TEA primary PDFs. Looser spots: slide 7's hook states 'The engine scored none of the regraded answers.' as flat fact, but c20 is a spokesperson's statement reported by the Tribune (the caption attributes it and the slide doesn't). The fall review figures lean on journalism (c19, c24) where a TEA release may exist. Slide 1's dek says 'written STAAR answers' without its set until slide 5 carves out Spanish. The drawn encodings can't be verified: render_report.json carries no instance counts, so the acceptance items 'instance count equals training_sample / students_credited' and the caption's 'a field of 27,200' can't be checked. Slide 4's per4 encoding (one of four desks attended) shows three desks, one cropped, so it reads one in three."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happens (the engine reads first, about 75% keep its score), who decided it (TEA, since December 2023), the one exception (Spanish), and what to do (raise it with the district, whose testing staff request a human rescore, fee waived if the score changes). What's missing is any window or deadline for a rescore request and any fee amount. Both are honestly absent from the claims, but it leaves the action without a clock."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover 'A machine reads it first.' earns the swipe, and frame 2 pays at once. Frames 3 to 5 build the mechanism cleanly. Frames 6 and 7 are one event, the fall text-entry review, spread over two frames. By the deck's own account it concerns answers the engine never scored, so the declared turn is a sidestep more than a change in understanding, and one of the two could be cut. The close on 8 and 9 lands with an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain, short and on register: 'Close calls go to people.', 'Start with the district.', 'Ask for a rescore.' Some lines are flat, such as 'In the agency's own chart the engine sets the score of record on about 75% of answers.' Nothing is regionally specific beyond the ISD campus in the art. The caption's closing 'Should a family have to ask for a person?' leans editorial."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The palette and register diverge sharply. This is a pale overcast deck after four dark ones (the artwork ledger has deck medians of 18.1, 9.3, 27.8 and 29.0 L* for nos. 34 to 37), and the topic is new in the window (no STAAR item in topics.json). The familiar move is the instanced field of N units standing for a count, used here on slides 2, 3, 6 and 7. That repeats no. 37's yard of 813, no. 36's 33 heads on a rail and no. 34's truck yard. The close on a kit person beside the hero echoes no. 36's 'Texan turned toward the mast'."
+  }
+ ],
+ "weighted_score": 6.7,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-pose and re-place every bluebonnet figure (slides 3, 4, 5, 6, 8, 9) so each one is visibly reading, seated or bent over a lit screen and clear of chairs and flagpole, and remove the white footer wash from the near ground on 2 and 7. The deck's one accent is defined as 'a person reading an answer' and no figure in nine frames is reading.",
+ "ranked_artwork_defects": [
+  {
+   "rank": 1,
+   "slides": [
+    3,
+    4,
+    5,
+    6,
+    8,
+    9
+   ],
+   "defect": "The kit figures are mannequin-stiff and none of them is reading. On 5 they stand inside the chairs with shoes on the book racks. On 4 they face the lens with the laptop lid turned away. On 9 the parent looks past the screen.",
+   "fix": "Seat the readers on 5 and bend the readers on 4 and 9 to the lit screen, head pitched down with a hand on the desk. Collision-place figures behind the chair footprint, and turn the laptop on 4 so its screen faces the camera and the readers."
+  },
+  {
+   "rank": 2,
+   "slides": [
+    9
+   ],
+   "defect": "The flagpole and both flags come out of the back of the parent's head (display x~410-490, y~850-970).",
+   "fix": "Move the parent half a metre toward the desk or pan the camera so the head sits against brick or clear sky. Or move the pole."
+  },
+  {
+   "rank": 3,
+   "slides": [
+    2,
+    7,
+    1,
+    3,
+    6,
+    9
+   ],
+   "defect": "The near foreground washes to translucent white under the footer, strongest on 2 and 7 where the nearest desks ghost out. This is inverted aerial perspective, a scrim posing as haze.",
+   "fix": "Remove the scrim. Keep the near ground at its lit value and move the ground rather than the ink (a darker near turf band or a lower camera) so the footer seats without a wash."
+  },
+  {
+   "rank": 4,
+   "slides": [
+    7
+   ],
+   "defect": "The walker the dossier and motif both require is missing, so the frame has no bluebonnet. The school bus intersects the building facade at left.",
+   "fix": "Put one bluebonnet content expert walking a near row. Park the bus on a drawn drive clear of the wall, or remove it."
+  },
+  {
+   "rank": 5,
+   "slides": [
+    1,
+    3,
+    4,
+    6,
+    9
+   ],
+   "defect": "The ground and building are primitive: a flat olive ground with evenly scattered sprite tufts, no mow lines, wear, dirt, kerb or lot, cars parked on the lawn (3), and a one-box building with flat window planes.",
+   "fix": "Vary straw against green with a noise mask. Add mown stripes, a worn path to the entry, a paved drive and lot for the cars, and sky reflection on the glass."
+  },
+  {
+   "rank": 6,
+   "slides": [
+    2,
+    3,
+    6,
+    7
+   ],
+   "defect": "The values are one mid band with no dark mass, and the focal is a repeated-desk texture field.",
+   "fix": "Give each frame a near anchor: one desk at full detail large in the lower third with its charcoal shell as the frame's dark, or a live oak mass on the horizon (the dossiers promise oaks that never rendered)."
+  },
+  {
+   "rank": 7,
+   "slides": [
+    4
+   ],
+   "defect": "The dossier's four desks with one attended render as three, one of them cropped, so the frame reads one in three.",
+   "fix": "Pull the camera back or respace so four whole desks are in frame."
+  },
+  {
+   "rank": 8,
+   "slides": [
+    5
+   ],
+   "defect": "The bottom ~40% is empty tile, an unexplained blue slab sits at the left edge, and there is no window, though the dossier names a window wall.",
+   "fix": "Build the window wall as the light source for the shaft and lower the camera so the desk row fills the floor band."
+  },
+  {
+   "rank": 9,
+   "slides": [
+    1,
+    9
+   ],
+   "defect": "The 'one piece combo chair desk' hero renders as a separate desk and chair, and the chair's back posts read as broken stubs at full size.",
+   "fix": "Model the true combo desk, with the seat joined to the desk frame by one bent tube, and lift it into the kit."
+  },
+  {
+   "rank": 10,
+   "slides": [
+    2,
+    3,
+    6
+   ],
+   "defect": "The numeral spans are set in Manrope at 104.4, 93.8 and 102.6 px inside Fraunces lines at 113.5, 102 and 111.5 px (render_report), so the figure reads smaller and lighter than the words around it.",
+   "fix": "Match the numeral's cap height and optical weight to the Fraunces line, keeping the sans figure per the house rule, so the seam doesn't show."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-09-30/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-09-30/copy.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-09-30/claims.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/figures.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-09-30/render/render_report.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/knowledge/carousel/ILLUSTRATION_SYSTEM.md"
+ ],
+ "notes": "I found no hard fail. machine_qa has 0 fails and 19 warns: canvas fillText 'SCHOOL BUS' and 'STOP' on the bus texture, and the SKY IN FRAME verdict lines. I found no numeral without a trace, no placeholder and no topic repeat inside 30 days. ship is false because 6.70 is under the round 1 rung of 8.0. It is a threshold dissent, not a fault.",
+ "judge_lens": "craft"
+}

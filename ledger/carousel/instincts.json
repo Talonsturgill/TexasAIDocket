@@ -591,7 +591,8 @@
         "2026-09-19",
         "2026-09-20",
         "2026-09-27",
-        "2026-09-28"
+        "2026-09-28",
+        "2026-09-30"
       ],
       "contradicted": []
     },
@@ -1148,6 +1149,30 @@
       "learned": "2026-09-29",
       "instinct": "When two bars share an origin at different depths, scale and place the nearer one by the ratio of the two depths, because perspective otherwise moves its ends off the other bar's zero and makes it read long.",
       "evidence": "Carousel no. 37's frame 4 plant bar stood 1.6 m nearer the lens than the peak's beam, overhung zero by about 45 px and read 0.39 of the beam against 0.366, until it was scaled by (28 - 1.6) / 28.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "pose-the-act-the-copy-names",
+      "learned": "2026-09-30",
+      "instinct": "Pose every person at the act the frame's copy says they do, seated at or leaning over the thing, never standing beside it, because a person standing next to a desk reads as waiting.",
+      "evidence": "2026-09-30 round 1: all three judges named that none of the readers was reading. Two kit poses, read and sit_read, lifted artwork_craft and every later card named the readers as reading.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "one-sign-one-meaning",
+      "learned": "2026-09-30",
+      "instinct": "Check every mark a frame adds against what earlier frames taught the reader that mark means, because a sign reused with a new meaning reads as the old one.",
+      "evidence": "2026-09-30 rounds 3 to 5: lit screens with no person had meant the engine's score on frame 3, so frame 6's lit screens for the improved exams read as the engine's, and experts at only those desks read as people rereading 1.7%.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "reread-the-paragraph-before-an-absence",
+      "learned": "2026-09-30",
+      "instinct": "Before the deck says a source names no date, fee or window, reread the source's own paragraph on it, because the absence the run recorded may sit one sentence past the quote it took.",
+      "evidence": "2026-09-30: the storyboard said no window was in the claims, and the scoring document's rescore paragraph named one in the sentence after c11. It became c35 in round 3.",
       "confirmed": [],
       "contradicted": []
     }

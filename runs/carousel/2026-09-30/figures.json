@@ -1,0 +1,163 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "human_share_min_pct": {
+  "value": 25,
+  "from": [
+   "c1"
+  ],
+  "basis": "share of written responses routed to human scorers, at least"
+ },
+ "engine_record_pct": {
+  "value": 75,
+  "from": [
+   "c13"
+  ],
+  "basis": "approximate share of responses whose score of record the engine assigns"
+ },
+ "spanish_human_pct": {
+  "value": 100,
+  "from": [
+   "c2"
+  ],
+  "basis": "share of Spanish-language written responses scored by people"
+ },
+ "training_sample": {
+  "value": 3000,
+  "from": [
+   "c16"
+  ],
+  "basis": "human scored field test responses the engine is programmed on, per item"
+ },
+ "cost_low_m": {
+  "value": 15,
+  "from": [
+   "c14"
+  ],
+  "basis": "low end of the yearly cost of full human scoring, millions of dollars"
+ },
+ "cost_high_m": {
+  "value": 20,
+  "from": [
+   "c14"
+  ],
+  "basis": "high end, millions of dollars"
+ },
+ "redesign_x_low": {
+  "value": 6,
+  "from": [
+   "c15"
+  ]
+ },
+ "redesign_x_high": {
+  "value": 7,
+  "from": [
+   "c15"
+  ]
+ },
+ "hybrid_start_year": {
+  "value": 2023,
+  "from": [
+   "c17"
+  ]
+ },
+ "scorer_exact_pct": {
+  "value": 65,
+  "from": [
+   "c18"
+  ]
+ },
+ "scorer_adjacent_pct": {
+  "value": 95,
+  "from": [
+   "c18"
+  ]
+ },
+ "students_credited": {
+  "value": 27200,
+  "from": [
+   "c19"
+  ],
+  "basis": "students the agency said received additional credit for their text responses"
+ },
+ "improved_pct": {
+  "value": 1.7,
+  "from": [
+   "c24"
+  ],
+  "basis": "share of exams reviewed whose scores improved"
+ },
+ "exams_reviewed_m": {
+  "value": 1.6,
+  "from": [
+   "c24"
+  ],
+  "basis": "exams reviewed, millions, a floor"
+ },
+ "campuses_up": {
+  "value": 9,
+  "from": [
+   "c25"
+  ]
+ },
+ "districts_up": {
+  "value": 5,
+  "from": [
+   "c25"
+  ]
+ },
+ "districts_affected": {
+  "value": 11,
+  "from": [
+   "c26"
+  ],
+  "basis": "districts the agency named as affected, counted from the list in the quote",
+  "names": [
+   "Chester",
+   "Crandall",
+   "Daingerfield-Lone Star",
+   "Floydada Collegiate",
+   "Forney",
+   "Fredericksburg",
+   "Galveston",
+   "Jim Hogg County",
+   "Odem-Edroy",
+   "Southwest",
+   "Walnut Bend"
+  ]
+ },
+ "per100_engine": {
+  "value": 75,
+  "from": [
+   "c13"
+  ],
+  "basis": "of every 100 responses, rule: engine_record_pct"
+ },
+ "per100_people": {
+  "value": 25,
+  "from": [
+   "c1"
+  ],
+  "basis": "of every 100 responses, rule: human_share_min_pct"
+ },
+ "per4_engine": {
+  "value": 3,
+  "from": [
+   "c13"
+  ],
+  "basis": "of every 4 responses, rule: engine_record_pct x 4 / 100"
+ },
+ "per4_people": {
+  "value": 1,
+  "from": [
+   "c1"
+  ],
+  "basis": "of every 4 responses, rule: human_share_min_pct x 4 / 100"
+ },
+ "per1000_improved": {
+  "value": 17,
+  "from": [
+   "c24"
+  ],
+  "basis": "of every 1,000 exams reviewed, rule: round(improved_pct x 1000 / 100)"
+ }
+}

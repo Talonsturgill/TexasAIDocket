@@ -1,0 +1,65 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Every frame is rendered in a world. Each has an overcast sky, haze on the school wing, a horizon near a third and soft contacts under the desks (slides 1, 3, 6 and 7). The type sits in quiet sky and never on a plate. The zoom test fails on the models. The kit people read as mannequins: the two readers on slide 4 stand behind the desk facing the camera, their laptop shows a black back, and the right figure's face is flat grey. The school is the same textured box on every exterior. The grass is sparse tufts on a flat green plane. Slide 5's interior is a grey box with a blue strip and its headline drops to 63.5 px against about 110 px elsewhere. Slide 7 is the strongest frame and slide 5 the weakest. This is above the 4 descriptor, since nothing floats and nothing is a template. It is short of 7, because more than one frame leans on a primitive model: slides 3, 4, 5, 6, 8 and 9 all do."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One world, one key at az -40 and el 48, one hero desk and one bluebonnet accent. Canvas means hold between 136.6 and 157.6 across all nine frames, so nothing strobes. The two named devices really work. Slides 1, 7 and 9 share one camera (empty desk, full field, parent at the desk), and the number of readers rises frame by frame. Slide 5 is the one frame outside the deck: an interior with a different floor and light."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every numeral traces. 2023, 25, 3,000, 75%, 100, 1.7%, 1.6 million and 27,200 each come out of a claim quote through compute.py, and the mechanism rests on primary TEA documents. The failures are in wording and in the drawn counts. (1) Slide 7's headline, 'The engine scored none of the regraded answers.', states as fact what c20 records only as spokesperson Kobersky's statement, relayed by the Tribune (secondary). The caption does attribute it ('The agency said'), and the frame that carries the turn does not. (2) Slide 1's dek says TEA 'has sent written STAAR answers to an automated engine first' with no set named. c2, on slide 5, says Spanish answers never go to the engine. The caption gets this right ('Unless the test is in Spanish') and the cover does not. (3) Slide 4's headline, 'Close calls go to people.', turns c7's 'low confidence responses are OFTEN those on the border' into a definition. (4) The drawn scale is inverted. Slide 6 draws 1,000 desks for more than 1.6 million exams. Slide 7 then draws 27,200 desks for the credited students, a 1.7% subset of that same review, 27 times larger than its parent set on the frame before it. The desk also changes unit: an answer on slides 1 to 4, an exam on 6, a student on 7. The caption line 'from one desk alone to a field of 27,200' puts that drawing into print. (5) 'The fall review' and 'This fall' appear in no claim. The 75% (c13) and ~3,000 (c16) come from a March 2024 presentation and are printed in the present tense with no date. c19's 'reading portion' qualifier is dropped. (6) quantifiers.json registers the caption's 'none of them' but not slide 7's headline universal."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A Texan learns what happens (the engine reads first and at least 25 percent go on to two people), who decided it (TEA), since when (December 2023) and what a family can do (slides 8 and 9: raise it with the district, the district's testing staff request a rescore for a fee, and the fee is waived if the score changes). No deadline or rescore window is named, no fee amount, and no statement of which administration can still be rescored as of September 30th. The storyboard admits all three ('No fee amount, no window date'). A reader can't tell whether the step on slide 9 is still open to them, and that is the 10 descriptor's missing deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover ('A machine reads it first.') earns the swipe and slide 2 pays at once. Slides 2 to 5 build the mechanism cleanly. The turn on slides 6 and 7 is about text-entry answers the engine never scored, so the deck's biggest frame belongs to a review that sits beside its subject rather than inside it, and a reader can reasonably ask why it is there. Slides 8 and 9 split one procedure (district, then rescore) that one frame could carry."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Plain and on register, with no boosterism and no doom ('A person's score is the one that counts.'). There is little regional specificity: the campus is a generic ISD and no place in Texas is named anywhere. The caption line 'The deck runs from one desk alone to a field of 27,200.' is a machine describing its own artwork. The closing question, 'Should a family have to ask for a person?', tilts toward editorial."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "A new beat and a new instrument against the window: an agency's own procedure documents plus Tribune reporting on testing. The last four decks (nos. 34 to 37) were driverless trucks, RealPage, SPS fire cameras and an El Paso gas plant. The nearest education deck, no. 21 on September 11th, is SBOE standards, not scoring, and there is no STAAR topic within 30 days. The world is new too: an overcast campus with a desk hero. The familiar move is the house pattern of type in sky over a rendered ground."
+  }
+ ],
+ "weighted_score": 6.69,
+ "hard_fails": [
+  "An unverified fact presented as verified, on slide 7's headline: 'The engine scored none of the regraded answers.' The only support is c20, a secondary_reported Tribune line in which TEA spokesperson Jake Kobersky 'said none of the regraded responses were graded by its automated scoring engine'. The claims file verifies that the agency SAID it, not that it is so. The deck's own caption attributes it ('The agency said the engine scored none of them') and the headline of the turn frame drops the attribution. It is the interested party's self-exoneration printed in the deck's own voice. Topics ledger entry no. 31 records the same defect (an agency's self-description of its own process stated without attribution) as an integrity hard fail. Counter-argument, stated so the panel can weigh it: the claim is quoted and fetched, and a reader of the caption gets the attribution. The repair is one clause, e.g. 'The agency says the engine scored none of them.'"
+ ],
+ "ship": false,
+ "ranked_defects": [
+  "1. Slide 7 headline states c20, the agency's spokesperson statement, as fact without attribution (hard fail above).",
+  "2. Drawn scale inversion across slides 6 and 7: 1,000 desks stand for more than 1.6 million exams, then 27,200 desks stand for a 1.7% subset of that review. The desk's unit shifts from answer (1 to 4) to exam (6) to student (7), and the caption claims 'a field of 27,200'.",
+  "3. Slide 1 dek's universal 'has sent written STAAR answers to an automated engine first' does not name its set, and c2 (Spanish, slide 5) refutes it. The caption scopes it and the cover does not.",
+  "4. Slide 4 headline 'Close calls go to people.' drops c7's 'often'. The source's category is low confidence, which is often borderline.",
+  "5. No rescore deadline or window, no fee amount, and nothing on whether the step on slide 9 is open now. The story's only action has no date.",
+  "6. 'The fall review' (slide 6 kicker) and 'This fall' (caption) are backed by no claim. The 75% and ~3,000 come from a March 2024 presentation and are printed in the present tense with no date. c19's 'reading portion' qualifier is dropped from 27,200.",
+  "7. Slide 3's art: 50 bluebonnet figures fill the whole left half of the block, so 25 of 100 reads as about half at feed size, even though the drawn count is right.",
+  "8. Slide 4 shows three desks, not the dossier's four, so the per4_people encoding reads as 1 in 3. Its three leaders (LOW CONFIDENCE, CONDITION CODE, RANDOM SAMPLE) all land on one desk, as if one answer were all three.",
+  "9. Slide 7's kicker 'The human reread' sits over a frame with no visible person. The dossier's walking reader is absent.",
+  "10. quantifiers.json omits slide 7's headline universal ('none of the regraded answers') and registers only the caption's copy of it."
+ ],
+ "one_sentence_fix": "Rebuild the turn (slides 6 and 7) so it is attributed and drawn at true relative scale: say 'The agency says the engine scored none of them' in the headline, and draw the 27,200 credited students as a visible share of the review's field, not as a field 27 times larger than the one drawn for the whole review.",
+ "judge_lens": "integrity"
+}
