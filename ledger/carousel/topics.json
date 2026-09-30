@@ -1178,6 +1178,32 @@
     "Enchanted Rock",
     "El Paso County"
    ]
+  },
+  {
+   "date": "2026-09-30",
+   "carousel_no": 38,
+   "docket_item": "tx-2026-0194",
+   "instrument": "The Texas Education Agency's Scoring Process for STAAR Constructed Responses (December 2023) and its Hybrid Scoring Key Questions presentation (March 2024), read with The Texas Tribune's September 4th account of the annual rescore.",
+   "topic": "The Texas Education Agency scores written STAAR answers with an automated scoring engine first, gives the engine's score as the score of record on about 75% of responses, and sends at least a quarter to two human scorers: a random sample, answers the engine flags with condition codes and answers it scores with low confidence. Spanish language written answers are 100 percent human scored. In the fall review about 27,200 students got more credit after content experts reread short typed answers the engine never scored, and a district can request a human rescore for a fee that is waived if the score changes.",
+   "angle": "One student desk on a Texas ISD campus as one child's written answer: alone, as a field of 3,000, as a block of a hundred with a quarter attended, beside two readers, in a classroom where every desk has one, as a thousand with a few attended, as 27,200 from the same seat, and at the end with a parent reading it.",
+   "angle_note": "Nothing says the engine is inaccurate. The September corrections were answers the engine never scored (c20), so the turn says so. No fee amount, no window, no vendor and no location for any scoring. The routing of flagged and low confidence answers to people rests on the agency's own sentence (c33, c34).",
+   "entities": [
+    "Texas Education Agency",
+    "STAAR",
+    "The Texas Tribune"
+   ],
+   "places": [],
+   "what_was_refused": "Any claim about the engine's accuracy. The headline's eleven districts improved. A rescore fee or window. A map of the districts. A rubric frame, since no claim carries the rubric's scales.",
+   "keywords": [
+    "STAAR",
+    "automated scoring engine",
+    "hybrid scoring",
+    "Texas Education Agency",
+    "rescore",
+    "Spanish STAAR",
+    "constructed response",
+    "A-F ratings"
+   ]
   }
  ]
 }

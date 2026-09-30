@@ -16,7 +16,7 @@
  },
  "introduction": [
   {
-   "text": "[The Texas Education Agency scores written STAAR answers with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
+   "text": "[The Texas Education Agency scores STAAR's constructed responses, the written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
    "claims": [
     "c1",
     "c13",
@@ -24,10 +24,12 @@
    ]
   },
   {
-   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). The machine is the first reader of every written answer a Texas student types on the English language test. For most of them it is also the only reader whose score counts.",
+   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). [The engine handles the longer written answers, the short and extended constructed responses](c22). [On any test not given in Spanish it is the first reader of those answers](c1).",
    "claims": [
     "c14",
-    "c15"
+    "c15",
+    "c22",
+    "c1"
    ]
   }
  ],
