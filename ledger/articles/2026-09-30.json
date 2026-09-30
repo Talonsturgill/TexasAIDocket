@@ -7,7 +7,7 @@
  },
  "section": "Schools and testing",
  "dek": {
-  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more of them and any answer a district asks to have rescored. Spanish language answers are read only by people.",
+  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more of them and any answer a district asks to have rescored. The longer written answers on Spanish language tests are read only by people.",
   "claims": [
    "c1",
    "c2",
@@ -17,7 +17,7 @@
  },
  "introduction": [
   {
-   "text": "[On every STAAR test not given in Spanish, the Texas Education Agency scores the constructed responses, the longer written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
+   "text": "[On STAAR tests not given in Spanish, the Texas Education Agency scores the constructed responses, the longer written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
    "claims": [
     "c1",
     "c13",
@@ -25,7 +25,7 @@
    ]
   },
   {
-   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). [The engine handles the longer written answers, the short and extended constructed responses](c22). [On any test not given in Spanish it is the first reader of those answers](c1).",
+   "text": "[The agency gave its reason in a presentation on the change. Keeping full human scoring would have cost ${{number:c14}} million to ${{number:c14:1}} million more a year](c14), [because the redesigned test carries several times more written answers to grade](c15). [The engine handles the longer written answers, the short and extended constructed responses](c22). [On STAAR tests not given in Spanish it is the first reader of those answers](c1).",
    "claims": [
     "c14",
     "c15",
@@ -39,7 +39,7 @@
    "heading": "How the engine learns, and what it is held to",
    "paragraphs": [
     {
-     "text": "[For each question the engine is programmed on a sample of about {{number:c16}} answers that people scored during field testing](c16). [It is trained to give the scores those people gave](c4). [The agency requires it to agree with human scorers at the same rate human scorers agree with one another](c5). [Both the engine's scores and the human scores are monitored daily through the scoring window](c8).",
+     "text": "[For each question the engine is programmed on a sample of about {{number:c16}} answers that people scored during field testing](c16). [It is trained on those answers and the scores people gave them](c4). [The agency requires it to agree with human scorers at the same rate human scorers agree with one another](c5). [Both the engine's scores and the human scores are monitored daily through the scoring window](c8).",
      "claims": [
       "c16",
       "c4",
