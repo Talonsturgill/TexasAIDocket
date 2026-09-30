@@ -4871,3 +4871,131 @@ organisation, in which case the field log's advice is wrong and should say so, o
 robots.txt, in which case the registry needs a recorded carve-out for `docs.tacc.utexas.edu`, with
 the date it was measured and a self-test that the parent host is still refused? Either answer is a
 data change with a reason attached. Widening the matcher is not an answer.
+
+## 2026-09-30, carousel no. 38 "A machine reads it first.", the upgrade phase. Three kit upgrades, eight proposals
+
+Round 5's craft card ranked eight artwork defects, and every one of this phase's three upgrades is in
+`assets/js/kit/`. (1) `student_desk` and `student_desk_rows` in `interior.js`, at round 1's named fix,
+"Model the true combo desk, with the seat joined to the desk frame by one bent tube". Each side is
+now one continuous bent tube, the back posts run up behind the moulded back into it, and the rows are
+the hero's own tubes at a coarser tessellation, so no level of detail seam is possible between them
+(round 5 defect 4). (2) The kit `school` in `civic.js` carries its own walk shade and a ribbed
+deck. (3) `classroom_window` in `interior.js`, the model half of round 5's top defect. The account is
+in `ledger/carousel/upgrades.json` under `2026-09-30 upgrade`.
+
+### 0. FOR THE TOP OF THE EMAIL: frame 5's room is half a frame choice and half the engine (`assets/js/txthree.js` is `human`)
+
+Round 5's top defect is "Frame 5 is an unfinished room: a diagonal shading smudge on the bare wall, a
+flat ceiling wedge top left, a blown-out window with no exterior, and an empty tile floor over the
+lower half." The window is fixed in the kit this run (`classroom_window`). The rest splits like this:
+
+- **The frame's own choices, for the next deck's directors.** `slide-05.html` called
+  `TXT.interior(R, { w: 10.5, d: 8.5, h: 8.5, ceiling: false, window: null })`. That is a room 8.5 m
+  tall with no ceiling, which is where the "flat ceiling wedge" comes from: the camera looks up past
+  the top of the walls. A classroom is about 3 m to the ceiling. The kit now makes the window, so
+  `window: null` plus `classroom_window` on the wall is the right call. The engine's own window was
+  never the fix.
+- **The engine's half, a maintainer's.** `TXT.interior` builds solid walls with no opening, so a
+  window can only be mounted proud of a wall and its exterior painted 12 mm behind the glass. That
+  holds for distant scenery and can't give the light a real opening throws. A room lit through a
+  window needs (a) an `opening` option that cuts a wall and (b) a key light aimed through it that is
+  shadowed by the frame and the mullions. With both, the light shaft and the "diagonal shading smudge"
+  become one thing. `classroom_window` publishes `userData.lightAt` and `.lightNormal` for exactly
+  that. **Proposal:** `TXT.interior(R, { openings: [{ wall: 'left', x, y, w, h }] })` building each
+  wall as the solid minus its openings (four boxes around each hole), and `TXT.windowLight(R, win)`
+  placing a `DirectionalLight` behind the opening with a shadow camera fitted to it. Both are
+  `txthree.js`, which is `human`.
+- **The empty floor** is composition. A classroom frame needs its desk rows filling the floor band,
+  which `student_desk_rows` now makes one call.
+
+### 1. `ledger_check` IS RED ON THIS BRANCH, for the fifth run (proposal, `prompts/daily_routine.md` is `human`, `captions.json` is `daily`)
+
+`python3 scripts/carousel/ledger_check.py` exits 1 on `claude/daily-2026-09-30`, and CI runs it
+through `shipped_check`. All three `*_recent` lists in `ledger/carousel/captions.json` are one entry
+behind. They hold `['Ladder', 'Pivot', 'Ledger']` where the entries derive
+`['Pivot', 'Ledger', 'Two columns']`, and the same holds for the openings and the closes. The run's own
+`out/2026-09-30/update_ledgers.py` appended the entry with `put('captions', ...)` and never re-derived
+them. The gate's failure text names this exact cause ("Writing a fresh derivation into out/<date>/
+instead is what has put those three lists one entry behind on four runs running"), and `--derive`
+has existed since 2026-09-17. **The repair this run needs:** `python3 scripts/carousel/ledger_check.py
+--derive`, committed as `daily`. **The fix that stops it:** the routine's ledger step should say, in
+the sentence that tells a run to append to `captions.json`, "then run `ledger_check.py --derive`".
+Prompt text is `human`. The gate is right and is not to be touched.
+
+### 2. `reverify.py`, THIRD RUN (proposal, `scripts/site/reverify.py` is `daily`)
+
+2026-09-29 item 2 above covers the `unreachable` block half. This run adds two facts. **tx-2026-0125's
+host (`tacc.utexas.edu`) is not in the item's block at all.** It is refused by the crawl boundary,
+and `reverify.check()` never asks `scripts/shared/crawl_boundary.forbidden(url)`, so the 09-29 fix
+alone would still fetch it. **The fix, whole:** before `fetch()`, skip a url for which
+`crawl_boundary.forbidden(url)` returns a reason OR whose host is in the item's own `unreachable`
+block with `boundary: "robots"`. Record it as `BOUNDARY`, which `apply()` treats as not unchanged.
+**Self-test:** a `tacc.utexas.edu` claim and a claim whose host is in its own robots block are each
+fetched zero times by the `counting` opener, land as `BOUNDARY`, and are not stamped. A
+`blocks_every_client` host is still fetched. Withdrawn stamps on 09-28, 09-29 and 09-30: tx-2026-0125,
+0168, 0169 and 0170, plus 0046 on 09-29.
+
+### 3. `public.destinyhosted.com` HAS NO BOUNDARY RULE, AND `urllib.robotparser` MISREADS ITS robots.txt (proposal, the registry is `human`)
+
+Its robots.txt is `User-agent: * Disallow: /` on ONE line. `urllib.robotparser` reads a directive per
+line, so it sees one `User-agent` line carrying junk, no `Disallow`, and allows everything. This
+run's own scratch helper fetched the Hays County agenda because of it, and the result was discarded.
+**Two proposals:** (a) a row for `public.destinyhosted.com` in `knowledge/shared/SOURCES_REGISTRY.md`
+so `crawl_boundary` refuses it by rule, with the date it was measured. (b) Any code in this repo that
+parses robots.txt should split on whitespace before each `User-agent`, `Allow` and `Disallow` token,
+with a self-test on that exact one-line file. **Two committed callers can't do that today.**
+`scripts/site/news_feeds.py` (line 57) feeds `policy.parse(body.decode().splitlines())` to the stock
+parser, and `scripts/site/news_headlines.py` imports it too. Both are `daily`. A feed host serving a
+one-line `Disallow: /` would be read as allowed. The field log already records the parser finding
+(`SOURCES_FIELD_LOG.md`, the paragraph beginning "A robots.txt written on a single line"), and the
+2026-09-24 upgrades entry names the fail closed reader this needs.
+
+### 4. `prompt_audit.py`'s one second line counts host latency as a human (proposal, `scripts/shared/prompt_audit.py` is `daily`)
+
+The measurement, 2026-09-30, from the session's own debug log: 1312 calls. 954 waited under
+100 ms, 18 from 100 to 1000 ms, 317 from 1.0 to 2.0 s, 23 from 2.0 to 5.0 s, and none over 5 s. The
+no-stall hook was armed, it judged the session unattended, and it logged no dialog. So 340 calls
+over `HUMAN_MS = 1000` had no human, and the docstring's "the two populations do not overlap"
+(4 to 43 ms against 21585 ms, measured 2026-09-02) no longer holds for this host. **Proposal, and it
+types no new threshold:** a call counts as a human only when the no-stall log (`out/no_stall/<date>.jsonl`,
+read through the hook's own module as the report already does) recorded a dialog for that call.
+A wait over `HUMAN_MS` with no dialog is reported on its own line as "host decision latency", with
+its count and its longest, and is never the exit code. A wait with a dialog stays exit 1. **Self-test:**
+a fixture of this run's shape (a 1.4 s wait with no dialog row) exits 0 and prints the latency line.
+The 2026-09-02 shape (a 21585 ms wait with a dialog row) still exits 1. A debug log with no no-stall
+log at all keeps today's rule, so the audit can't go quiet when the hook isn't there.
+
+### 5. THE PERSON, FOUR DECKS RUNNING (in lane, not built, and the next phase should take it first)
+
+Round 5 defect 2 names it: "a hair clump detached behind the parent's neck and a blob collar on 9". It
+is 2026-09-29 item 4's mannequin again. `people.js` is `upgrade` lane. This phase didn't take it
+because it isn't bounded inside one phase. The model is about 1500 lines of distance-field
+garments, and `examples/kit/build.py` frames the whole body, so the head can't be read at full size
+from the harness. A render of the parent (seed 12, female, resident) from behind showed the shirt and
+not the head. **Next step, in order:** (a) a `--head` framing in the harness, or a proof page that
+frames `person` from the neck up at three angles. That is a change to `examples/kit/build.py`, which
+is `human`, so the page lives in `out/` as this phase's proofs did. (b) Find the hair clump. The
+candidates are the `curtainGeo` long hair shell and the bun sphere in `people.js` near line 1456.
+(c) The collar fall at `bandG` near line 1183.
+
+### 6. FRAME 2's LOD SEAM IS FIXED IN THE KIT, AND A CHASSIS HAS TO USE IT (for the next director)
+
+`student_desk_rows` is the hero desk instanced. A deck drawing a field of desks should call it
+for the far rows with `detail: 'low'` and put `student_desk` at full detail only where the camera is
+close, both with the same `lids`. The 2026-09-30 chassis's `N.lodParts` boxes are what the judge saw.
+
+### 7. The 2026-09-30 chassis now double shades the school on a re-render
+
+The kit school lays its own walk shade (`userData.walkShade`), and `N.campus` in
+`assets/js/deck/2026-09-30-firstreader.js` still calls `N.schoolShade`, whose quads land 6.53 m in
+front of the wall (measured). The deck has shipped and nothing re-renders it. A future chassis
+copying `N.campus` should drop the `schoolShade` call, and the arsenal's school entry says the model
+shades itself.
+
+### 8. The proof images die with the container (proposal, `examples/kit/**` is `human`, fourth run)
+
+`out/2026-09-30/tmp/compare-f1.png` (the desk, shipped and after), `winproof/compare-f5.png` (frame 5,
+the shipped pane and the kit window) and `schoolproof/walk_off_on.png`. A maintainer could keep them
+as WebP under `examples/kit/`.
+
+Frontier scan: not run this phase. The time went to three lifts, each proved on this deck's own frames.

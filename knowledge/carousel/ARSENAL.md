@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 103 in 10 families |
+| kit models | 106 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 67 |
 | record and site tools the routine names | 20 |
@@ -279,18 +279,19 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `gas_station` | 30 x 7.1 x 36 | islands | A Texas fuel station: a canopy with a banded fascia over pump islands, dispensers with hoses, bollards, a convenience store with storefront glazing and a blank sign, a blank price pylon |
 | `hospital` | 62 x 43.5 x 45.5 | floors | A Texas regional hospital: a precast patient tower with ribbon windows over a two storey podium, a glazed lobby under a porte-cochere, a blank red emergency sign, a rooftop helipad |
 | `road` | 30 x 0.21 x 14.1 | length, lanes, oneWay, sidewalk, parkway | Road segment along x: asphalt lanes (3.6 m) with MUTCD markings, curb and gutter, parkway, sidewalks |
-| `school` | 57 x 11.1 x 28.1 | length, brick | A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway, an entry vestibule and a flagpole flying the US and Texas flags |
+| `school` | 57 x 11.1 x 28.1 | length, brick, walkShade | A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway with a ribbed metal deck and the sky shade under it on the slab and the wall (walkShade false leaves it off; userData.walkShade says it is ... |
 | `stop_sign` | 1.2 x 3.5 x 1.2 | blades, size | R1-1 stop sign, 30 in, bottom at 7 ft on a perforated square post; optional blank street blades on top |
 | `streetlight` | 0.7 x 9.1 x 3.2 | height, reach, finish | TxDOT cobra head on a davit arm: tapered galvanized pole on a breakaway base at the origin, the arm reaching +z |
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 
-### interior (13)
+### interior (16)
 
 `assets/js/kit/interior.js`, The rooms decisions are made in: a commissioners court dais, the lectern the public speaks from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork is about.
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
+| `classroom_window` | 6.72 x 2.65 x 0.43 | w, h, sill, blinds, outside, sky, unitVent | A classroom ribbon window for a solid wall, with an exterior behind the glass (an overcast campus, sky: clear for a blue day, outside the brightness under white): aluminium frame, mullions about every 1.6 m, an awning row, glass that reflects the room, mini ... |
 | `conference_table` | 4.8 x 1.0 x 2.8 | seats, shape, wood, chairs, chairStyle, chairColor | Boardroom table (shape boat \| rect) with a bevelled veneer top, two panel bases on plinths, a flush power and data box, and office chairs pulled up around it (seats 4 to 14, ends seated at 8 and up), each a little askew. |
 | `desk` | 1.52 x 0.76 x 0.76 | w, d, h, pedestal, wood, pulls | Office desk (60 x 30 in): bevelled veneer top, drawer pedestal (left \| right \| both \| none) with a pencil drawer and a file drawer, bar pulls, recessed toe kick, a panel leg and a modesty panel, and a cable grommet. |
 | `document_stack` | 0.75 x 0.2 x 0.45 | count | Paperwork on a surface: ragged paper stacks with printed top pages (grey text lines, nothing legible), 3 ring binders stacked with blank spine pockets, and a report with a black binder clip. count = number of piles (1 to 8); seed varies the mix, colours and ... |
@@ -304,6 +305,8 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `public_seating` | 5.6 x 0.95 x 2.9 | rows, perRow, aisle, type, color, frame, wood | Rows of public seating facing +z (toward the dais): padded stacking chairs on chrome or black tube frames, or wooden pews (type: pews). |
 | `seal_plaque` | 0.9 x 0.9 x 0.04 | d, finish, stars, backer | A round seal plaque for a wall: rope moulded rim, raised rings, a ring of small stars in the legend band and a BLANK centre field. finish bronze \| gold \| wood. |
 | `server_row` | 4.2 x 2.5 x 2.4 | racks, doors, containment, tray, floor | A data hall row: 42U racks (0.6 x 2.0 x 1.2 m) with servers, storage shelves, GPU nodes and top of rack switches painted per rack (status LEDs glow), mounting rails, blanking panels and patch cords; overhead ladder tray with a yellow fibre raceway; hot aisle ... |
+| `student_desk` | 0.62 x 0.86 x 0.88 | hand, detail, laptop, open, top, shell, tube | Student combo chair desk, one piece: a putty laminate top (0.61 x 0.46 m, surface at 0.756 m) with a dark T-mould edge and pencil groove, a moulded charcoal seat (0.455 m) and raked curved back, on ONE continuous bent tube per side (back post, rear leg, floor ... |
+| `student_desk_rows` | 7.78 x 0.96 x 5.8 | count, cols, pitch, detail, lids, footprint | Rows of the student_desk, instanced from the one baked model (detail low by default, full for a near block): count exact, cols across, pitch [x, z] metres, rows running -z, every desk facing -z. lids lit \| off \| none, footprint true lays a soft oval under ... |
 
 ### rural (10)
 

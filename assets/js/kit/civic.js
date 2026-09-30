@@ -1382,11 +1382,50 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* THE SHADE UNDER A COVERED WALK, lifted from the 2026-09-30 chassis (N.schoolShade). The
+   * engine has no ambient occlusion, so the sky still lights a slab and a wall under a roof as if
+   * the roof were not there, and a school past the key's shadow reach gets no shadow under its walk
+   * at all: three judges read that facade as a flat card. What the roof takes away is SKY, which
+   * is true under any sun, so it is laid as graded shade: on the wall under the roof, on the slab,
+   * and a grime line where the brick meets the slab. Fog still reaches it.
+   *
+   * It is built HERE, before K.make centres the model, because the chassis laid it after, in the
+   * uncentred frame: the school's footprint is not centred on its wall (the flagpole and the entry
+   * walk run out the front), K.make shifted every child and the shade stayed where it was put.
+   * segs are the walk's [x0, x1] runs, L the wall length, wallZ the front wall, wz the walk's line. */
+  function walkShade(G, segs, L, wallZ, wz) {
+    const grad = (stops) => {
+      const c = document.createElement('canvas'); c.width = 4; c.height = 64; const g = c.getContext('2d');
+      const lg = g.createLinearGradient(0, 0, 0, 64); stops.forEach((st) => lg.addColorStop(st[0], 'rgba(20,22,24,' + st[1] + ')'));
+      g.fillStyle = lg; g.fillRect(0, 0, 4, 64); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+    };
+    const quad = (w, h, tex, x, y, z, flat) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+      if (flat) m.rotation.x = -PI / 2;
+      m.position.set(x, y, z); m.renderOrder = 2;
+      // TXT.add turns shadows on for every mesh it is handed, and a shade quad must never cast
+      Object.defineProperty(m, 'castShadow', { get: () => false, set: () => {} });
+      m.receiveShadow = false; m.userData.shade = true; G.add(m); return m;
+    };
+    const wallT = grad([[0, 0.5], [0.55, 0.34], [1, 0.26]]), slabT = grad([[0, 0.3], [0.7, 0.42], [1, 0.12]]), grimeT = grad([[0, 0], [1, 0.34]]);
+    // STANDOFFS. The wall quads stand 0.16 m proud of the brick, in front of everything rectWin and
+    // the doors build on that face (glass front 0.04, frames 0.08, door leaves 0.14; only a sill
+    // passes through). At 0.02 they sat inside the window depth, and at 90 m the depth buffer
+    // could not tell them from the glass: the re-render of 2026-09-30's frame 1 showed the fight as
+    // a dot screen over every window under the walk. The slab quad stands 0.04 m over the slab.
+    const WALL_OFF = 0.16;
+    segs.forEach(([a, b]) => {
+      quad(b - a, 3.25, wallT, (a + b) / 2, 0.15 + 3.25 / 2, wallZ + WALL_OFF);
+      quad(b - a, 3.8, slabT, (a + b) / 2, 0.12, wz + 0.2, true);
+    });
+    quad(L, 0.45, grimeT, 0, 0.15 + 0.22, wallZ + WALL_OFF + 0.002);
+  }
+
   /* ================================ school ================================ */
   K.define('school', {
     size: [57, 11.1, 28.1],
-    options: { length: 56, brick: 'auto' },
-    note: 'A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway, an entry vestibule and a flagpole flying the US and Texas flags',
+    options: { length: 56, brick: 'auto', walkShade: true },
+    note: 'A one storey Texas ISD campus wing: brick with cast stone bands, a ribbon of classroom windows, a covered walkway with a ribbed metal deck and the sky shade under it on the slab and the wall (walkShade false leaves it off; userData.walkShade says it is there), an entry vestibule and a flagpole flying the US and Texas flags',
     make(o, r) {
       const G = new THREE.Group(), B = Builder(), L = o.length, D = 14, H = 4.8;
       const bc = o.brick === 'auto' ? pick(r, ['#b56a45', '#c49460', '#a3533a', '#cfae80']) : o.brick;
@@ -1421,15 +1460,21 @@ export function install(K, THREE, TXT) {
       const wz = D / 2 + 2.6, x0 = -L / 2 + 1, x1 = L / 2 - 1;
       for (let x = x0; x <= x1 + 0.01; x += (x1 - x0) / 12) { if (Math.abs(x - ex) < 4.5) continue; B.box(paint, 0.2, 3.25, 0.2, x, 0.15, wz + 1.5); }
       [[x0, ex - 4.5], [ex + 4.5, x1]].forEach(([a, b]) => {
-        B.box(mat('deck', { color: 0xc9cbcc, metalness: 0.5, roughness: 0.45 }), b - a + 0.4, 0.12, 3.8, (a + b) / 2, 3.4, wz + 0.2);
+        // a ribbed metal deck, ribs running from the wall out to the fascia: the round 5 judge of
+        // 2026-09-30 read the plain slab as "an untextured canopy slab"
+        B.box(tmat('corrugated', '#c9cbcc', 0.45, { metalness: 0.45 }), b - a + 0.4, 0.12, 3.8, (a + b) / 2, 3.4, wz + 0.2);
         B.box(paint, b - a + 0.4, 0.35, 0.1, (a + b) / 2, 3.2, wz + 2.1);
       });
       B.box(conc, L, 0.08, 4.5, 0, 0, wz);
       B.box(conc, 2.2, 0.08, 9, ex, 0, wz + 6.5);
       rtu(B, -8, H + 0.1, -2); rtu(B, 6, H + 0.1, 1); rtu(B, 18, H + 0.1, -1);
       B.flush(G);
+      if (o.walkShade !== false) { walkShade(G, [[x0, ex - 4.5], [ex + 4.5, x1]], L, D / 2, wz); G.userData.walkShade = true; }
+      // THE FLAGPOLE STAYS THE LAST CHILD. A chassis finds it that way to shorten it or drop it
+      // under its type (2026-09-30's N.campus), and the walk shade added after it once made that
+      // chassis scale a shade quad and fly the full flag through the dek. userData.flagpole names it.
       const fp = flagpoleGroup(r, { height: 10.7, flags: ['us', 'texas'] });
-      fp.position.set(ex + 6, 0, D / 2 + 10); G.add(fp);
+      fp.position.set(ex + 6, 0, D / 2 + 10); G.add(fp); G.userData.flagpole = fp;
       return G;
     },
   });

@@ -2461,4 +2461,99 @@
  ],
  "lane": "upgrade. assets/js/kit/power.js, one backlog section, the regenerated arsenal and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis untouched"
 }
+,
+"2026-09-30 upgrade": {
+ "run": "Carousel no. 38, 'A machine reads it first.', the Texas Education Agency's hybrid scoring of written STAAR answers (tx-2026-0194). Round 5 artwork 6.3 (craft), weighted 7.39, shipped at the round cap",
+ "actor": "upgrade",
+ "branch": "claude/daily-2026-09-30",
+ "upgrades": [
+  {
+   "what": "Kit lift: student_desk and student_desk_rows into assets/js/kit/interior.js from the 2026-09-30 chassis, at round 1's named fix. Each side frame is ONE continuous bent tube with radiused bends (back post, rear leg, floor runner, front post, and on the writing side the rail under the top and the spine down to the seat), so the seat and the top stand on one tube. The back posts run up behind a moulded, raked, curved back and into it. The seat is a dished moulding with a waterfall front, and the shells are smooth shaded. userData.laptopAt and .seatAt are kept and moved with the centring, and a laptop option is added. student_desk_rows instances the SAME desk at a coarser tessellation (detail low) with laptop lids and a per desk footprint quad pinned so it can't cast",
+   "why": "Round 1 craft: 'The hero is meant to be a one piece combo chair desk and renders as a separate desk and chair ... Model the true combo desk, with the seat joined to the desk frame by one bent tube, and lift it into the kit.' Read at full size, shipped frame 1 also shows the back posts as free sticks ending in front of the back. Round 5 defect 4: 'Level-of-detail seam on frame 2', caused by the chassis's N.lodParts boxes being a different model from the hero. The chassis also published laptopAt in the uncentred frame, so K.make's centring put its laptop 4 cm off",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "top 0.61 x 0.46 m at 0.756 m, seat 0.455 m, frame rails at x 0.19 m, tube radius 11 mm, top colour, shell colour and tube colour": "the 2026-09-30 chassis, unchanged",
+    "bend radius 45 mm, back rake 0.14 rad, back wrap 40 mm, seat profile points, runner and post positions": "art direction read at full size in the proofs. Not thresholds",
+    "declared sizes [0.62, 0.86, 0.88] and [7.78, 0.96, 5.8]": "measured by examples/kit/sizes.py over its sixteen seeds"
+   },
+   "verification": "node --check exit 0. examples/kit/build.py --family interior --names student_desk,student_desk_rows --world overcast, plus three pages (behind the seat, the open side profile with hand left, a 27 desk rows block beside a full detail desk), rendered through .claude/skills/carousel-engine/render.py: exit 0, errors=0, read at full size (out/2026-09-30/tmp/kitproof). The first proof showed faceted shells and a waterfall that hooked like a flap. Both were fixed (smoothSides, a new seat profile) and re-rendered. This deck's committed frame 1 was re-rendered with the kit desk, because the chassis's installKit defers to the kit: out/2026-09-30/tmp/compare-f1.png, shipped against after. The posts run into the back, the frame bends continuously at the floor and the spine joins the top to the seat. examples/kit/sizes.py exit 0, 106 of 106. arsenal.py then arsenal.py --check exit 0. No gate changed",
+   "revert": "the upgrade commit on claude/daily-2026-09-30 touching assets/js/kit/interior.js. Reverting restores the chassis's own student_desk for this deck, because its installKit defines one only when the kit lacks it",
+   "how_i_would_know_this_was_wrong": "A judge on the next desk deck still says 'separate desk and chair', or calls the back posts sticks, or reads the rows and the hero as two models. A sit_read person placed from userData.seatAt floats or sinks through the seat. A frame instancing tens of thousands of rows at detail low renders seconds slower than the chassis's box stand-ins did."
+  },
+  {
+   "what": "The kit school (assets/js/kit/civic.js) lays its own walk shade before K.make centres it: graded sky shade on the wall under the walk roof, on the walk slab, and a grime line at the wall's foot, 0.16 m proud of the brick and clear of every window and door. The walk deck is ribbed metal (the kit corrugated texture). walkShade false leaves the shade off, and userData.walkShade and userData.flagpole say what is there. The flagpole stays the school's LAST child",
+   "why": "Three judges read the school's facade as a flat card, and an earlier round said 'no cast shadow under the canopy'. The school stands past the key's shadow reach and the engine has no ambient occlusion, so nothing darkened the walk. The chassis's N.schoolShade was the right idea in the wrong frame. It added its quads after K.make had shifted the school's children, and measured by ray cast they sat 6.53 m in front of the wall. Round 5 defect 7 names 'an untextured canopy slab'",
+   "files": [
+    "assets/js/kit/civic.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "gradient stops, quad sizes and the walk segments": "the 2026-09-30 chassis's N.schoolShade, unchanged, and the segments now read from the school's own x0, x1 and vestibule rather than typed",
+    "0.16 m wall standoff": "the depth of what the kit builds on that face: glass front 0.04, window frames 0.08, door leaves 0.14 (rectWin and the hmdoor box). Not a threshold",
+    "slab standoff 0.04 m": "art direction, read in the proof"
+   },
+   "verification": "THE DEFECT REPLAYED, in the engine, by ray cast (out/2026-09-30/tmp/schoolproof/measure): the chassis's quad placed as the chassis placed it lands 6.53 m in front of the school's wall (the red case). The kit's lands 0.12 m from the first surface behind it, the window glass on that ray. The kit school with walkShade false carries zero shade meshes and with it five. Visual: walk_off_on.png, the same camera with the shade off and on. TWO FAULTS FOUND BY PROOF AND FIXED BEFORE LOGGING: (1) adding the quads after the flagpole made the 2026-09-30 chassis, which finds the pole as the last child, scale a quad instead, and the re-render of frame 1 flew the full flag through the dek. The pole is now built last and named in userData. After the fix, frames 1 and 2's top 1100 px are pixel identical to the shipped renders. (2) At 0.02 m standoff the quads z-fought the window glass at 90 m, visible as a dot screen over every window under the walk. At 0.16 m the re-render is clean. examples/kit/sizes.py exit 0, school [57, 11.14, 28.1] against declared [57, 11.1, 28.1]",
+   "revert": "the upgrade commit touching assets/js/kit/civic.js",
+   "how_i_would_know_this_was_wrong": "Under a low hard sun a judge calls the wall under the walk too dark or 'a dark band', because the shade is sky occlusion and the key's own shadow then lands on top of it. Any chassis that finds the school's flagpole by a child index other than the last breaks. A dot screen or shimmer returns on a school seen from further than 90 m or with a larger near plane."
+  },
+  {
+   "what": "Kit lift: classroom_window into assets/js/kit/interior.js from frame 5 of the 2026-09-30 deck, at round 5's named fix. It is a ribbon window for a solid wall with an EXTERIOR behind the glass (a painted overcast campus: a lid with cloud form, a brick wing, live oak crowns, the field and a walk, softened as if out of focus and held under white). Glass that reflects the room, an aluminium frame with mullions about every 1.6 m and an awning row, mini blinds part way, a deep casing and stool, and a unit ventilator under the sill. Origin at the wall face, projecting toward +z, keepOrigin. userData.lightAt and .lightNormal",
+   "why": "Round 5's TOP ranked artwork defect: 'Frame 5 is an unfinished room ... a blown-out window with no exterior'. The frame built its window as a flat white MeshBasicMaterial pane and four bars, because TXT.interior makes solid walls and the kit had no window. The other parts of that defect (an 8.5 m room with no ceiling, the empty floor) were the frame's own settings, and the engine half (a wall opening with a light through it) is a proposal because txthree.js is human",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "w 6.4, h 1.55, sill 0.945": "frame 5's own window (WL, WH, WY)",
+    "casing 0.2 m, frame 55 mm, blind slat pitch 22 mm, unit ventilator proportions, the exterior's colours and layout": "art direction read at full size in the proofs. Not thresholds",
+    "declared size [6.72, 2.65, 0.43]": "measured by examples/kit/sizes.py over its sixteen seeds"
+   },
+   "verification": "node --check exit 0. Frame 5 of this deck re-rendered from a scratch copy of its committed slide with the hand built pane replaced by one K.make('classroom_window') call on the same wall: exit 0, errors=0 (out/2026-09-30/tmp/winproof/compare-f5.png, shipped against after). The white pane is now a window onto a campus, with blinds and a casing. The first exterior painted oversized blob crowns over a horizon that hid the wing. It was repainted with clustered crowns on a lower horizon, re-rendered and read at full size (c-win.png). The harness page shows the unit on its own (it floats without a wall, which the note says). examples/kit/sizes.py exit 0, 106 of 106. arsenal.py and --check exit 0",
+   "revert": "the upgrade commit touching assets/js/kit/interior.js",
+   "how_i_would_know_this_was_wrong": "A judge calls the exterior a poster, wallpaper or a painted backdrop, or the window still reads as blown out under a frame that raises exposure. On a close camera at a steep angle the 12 mm between the exterior and the glass shows no parallax where the viewer expects some. A deck that wants a real light shaft through the window finds this can't give one, which is the engine proposal."
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "TXT.interior openings (a wall built as the solid minus each opening) and TXT.windowLight (a shadowed directional light through an opening), so a room is lit by its window",
+   "owner": "human",
+   "why": "Round 5's top defect. The window's model half is fixed in the kit this run. A real opening and its light need assets/js/txthree.js. UPGRADE_BACKLOG 2026-09-30 item 0, for the top of the email"
+  },
+  {
+   "what": "The routine's ledger step runs `ledger_check.py --derive` after appending to captions.json",
+   "owner": "human",
+   "why": "ledger_check is red on this branch because the three *_recent lists are one entry behind, the fifth run in a row. The run's update_ledgers.py appends without re-deriving. Repair for this run: `python3 scripts/carousel/ledger_check.py --derive`, committed as daily. UPGRADE_BACKLOG 2026-09-30 item 1"
+  },
+  {
+   "what": "reverify.py asks crawl_boundary.forbidden(url) and the item's own robots block before fetching, and reports BOUNDARY, never stamped",
+   "owner": "daily",
+   "why": "Third run withdrawing stamps on tx-2026-0125 (tacc.utexas.edu, refused by the crawl boundary and not in the item's block) and tx-2026-0168 to 0170. UPGRADE_BACKLOG 2026-09-30 item 2"
+  },
+  {
+   "what": "A registry row refusing public.destinyhosted.com, and a fail closed robots reader where scripts/site/news_feeds.py and news_headlines.py use urllib.robotparser",
+   "owner": "human (the registry), daily (the news scripts)",
+   "why": "Its robots.txt is 'User-agent: * Disallow: /' on one line, which the stock parser reads as allow all. UPGRADE_BACKLOG 2026-09-30 item 3"
+  },
+  {
+   "what": "prompt_audit.py counts a wait over HUMAN_MS as a human only when the no-stall log recorded a dialog for it, and reports the rest as host decision latency",
+   "owner": "daily",
+   "why": "2026-09-30: 1312 calls, 340 over 1 s (317 from 1 to 2 s, 23 from 2 to 5 s, none over 5 s), the hook armed, the session judged unattended and no dialog logged. UPGRADE_BACKLOG 2026-09-30 item 4"
+  },
+  {
+   "what": "The proof images for the three lifts kept under examples/kit/ as WebP",
+   "owner": "human",
+   "why": "out/ dies with the container. Fourth run asking. UPGRADE_BACKLOG 2026-09-30 item 8"
+  }
+ ],
+ "proposals_in_lane_not_built": [
+  {
+   "what": "The kit person's hair (a clump detached behind the parent's neck) and collar (a blob), with a head framed proof",
+   "why": "Round 5 defect 2, four decks running. Not bounded inside this phase: build.py frames the whole body. UPGRADE_BACKLOG 2026-09-30 item 5"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/interior.js, assets/js/kit/civic.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis and the shipped slides untouched (the proofs used scratch copies)"
+}
 }
