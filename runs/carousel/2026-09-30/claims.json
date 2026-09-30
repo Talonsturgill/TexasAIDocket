@@ -2,7 +2,7 @@
  "claims": [
   {
    "id": "c1",
-   "text": "Under TEA's hybrid model an automated scoring engine scores the constructed responses on tests not given in Spanish first, and at least 25 percent of them then go to human scorers.",
+   "text": "Under TEA's hybrid model an automated scoring engine scores the constructed responses on tests not given in Spanish first. At least 25 percent of them then go to human scorers.",
    "quote": "This means that the responses are initially scored by an automated scoring engine (ASE) and at least 25 percent of student responses are then routed to human scorers.",
    "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
    "source_type": "primary_official",
@@ -58,7 +58,7 @@
   },
   {
    "id": "c6",
-   "text": "The engine gives a condition code to a response that is blank, uses too few words, is mostly duplicated text, is written in another language, is mostly stimulus material, uses vocabulary unlike the responses used to train the engine, or reads as off topic or off task.",
+   "text": "The engine gives a condition code to a response that is blank, too short or mostly duplicated text. It does the same for one in another language or mostly stimulus material. It also codes one worded unlike its training responses, or one off topic or off task.",
    "quote": "Condition codes indicate that a response is blank, uses too few words, uses mostly duplicated text, is written in another language, consists primarily of stimulus material, uses vocabulary that does not overlap with the vocabulary in the subset of responses used to train the ASE, or uses language patterns that are reflective of off-topic or off-task responses.",
    "url": "https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf",
    "source_type": "primary_official",

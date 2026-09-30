@@ -11,7 +11,7 @@ The University of Texas at Arlington published an account on September 10th, 202
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · The university's account still describes a tutor built to withhold the answer, and the federal award behind it is unchanged. The design choice that makes it unusual is still the one the account leads with.
 - 2026-09-24 · The tutor is still described as built to hold back the answer, and the federal award behind it is unchanged.
 - 2026-09-27 · The university's account of the tutor that withholds the answer still reads as announced, police training work included.
+- 2026-09-30 · The university's account of the tutor that holds back the answer still reads as published, including the police training work.
 
 ## Evidence
 

@@ -12,7 +12,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
 - Public access: Write to the decider
 - Take part: https://clinicaltrials.gov/study/NCT07626112
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-21 · The registry entry still shows the trial recruiting at the three Texas campuses, under the same sponsor and by the same method of holding a phone against the abdomen.
 - 2026-09-24 · The trial is still listed as recruiting at the same Texas campuses. A phone held against the abdomen is still the method under test.
 - 2026-09-27 · The trial of a phone microphone counting fetal movement still stands as the universities described it.
+- 2026-09-30 · The universities still describe the three campus trial of a phone microphone counting fetal movement as they first did.
 
 ## Evidence
 

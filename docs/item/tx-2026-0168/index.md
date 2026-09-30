@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The court moved the money it had set aside for a possible Axon contract into two corrections officer positions on September 15th. Local reporting puts the vote at three to two. The sheriff's commitment not to switch on the report writing feature now sits beside a budget with nothing in it for the contract. The county's own minutes of the vote are not yet published.
 - 2026-09-26 · The sheriff's promise to come back to the court before switching on report writing is still what the county has posted.
 - 2026-09-29 · The sheriff's promise is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. The county's own site still carries the item, and nothing on the record shows the promise withdrawn.
+- 2026-09-30 · The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county's own archive lists meeting dates without the item's text.
 
 ## Evidence
 

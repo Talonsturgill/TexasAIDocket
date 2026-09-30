@@ -9,7 +9,7 @@ The State Board of Education took the new Applied Personal Financial Literacy st
 - Public access: Closed
 - Take part: https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-19 · The course is still adopted for final reading and the published text still names a machine among the things a student is expected to do.
 - 2026-09-24 · The adopted course text still names artificial intelligence tools among what a student is expected to understand about money.
 - 2026-09-27 · The board's adopted course text still names artificial intelligence tools among what a student learns about money.
+- 2026-09-30 · The board's agenda item still carries the money course to second reading and final adoption.
 
 ## Evidence
 

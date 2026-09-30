@@ -7,17 +7,16 @@
  },
  "section": "Schools and testing",
  "dek": {
-  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more of them and any answer a district asks to have rescored. The longer written answers on Spanish language tests are read only by people.",
+  "text": "An automated engine scores the longer written answers on English language STAAR tests first. People read a quarter or more, and any answer a district asks to have rescored.",
   "claims": [
    "c1",
-   "c2",
    "c10",
    "c22"
   ]
  },
  "introduction": [
   {
-   "text": "[On STAAR tests not given in Spanish, the Texas Education Agency scores the constructed responses, the longer written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
+   "text": "[On STAAR tests not given in Spanish, the Texas Education Agency scores the constructed responses with an automated scoring engine first. At least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}} of responses](c13). [In December {{number:c17}} the agency started moving from fully human scoring to this hybrid model](c17).",
    "claims": [
     "c1",
     "c13",
@@ -48,7 +47,7 @@
      ]
     },
     {
-     "text": "[The human scorers are held to a standard of their own. A scorer who falls below {{number:c18}}% exact agreement and {{number:c18:1}}% adjacent agreement during the window can't keep scoring for that administration](c18).",
+     "text": "[The human scorers are held to a standard of their own. A scorer who falls below {{number:c18}} exact agreement and {{number:c18:1}} adjacent agreement during the window can't keep scoring for that administration](c18).",
      "claims": [
       "c18"
      ]
@@ -59,7 +58,7 @@
    "heading": "Which answers go to people",
    "paragraphs": [
     {
-     "text": "[Part of the share that goes to people is a random sample](c32). [The rest is chosen by the engine itself](c34). [It flags an answer that is blank, uses too few words, repeats itself, is written in another language, leans on the reading passage, uses vocabulary unlike the answers it was trained on, or reads as off topic](c6). [It also sends answers it scores with low confidence, which are often the ones on the border between two score points](c7).",
+     "text": "[Part of the share that goes to people is a random sample](c32). [The rest is chosen by the engine itself](c34). [It flags an answer that is blank, too short or mostly repeated. It flags one written in another language or leaning on the reading passage. It flags one worded unlike the answers it was trained on, or one that reads as off topic](c6). [It also sends answers it scores with low confidence, which are often the ones on the border between two score points](c7).",
      "claims": [
       "c32",
       "c6",
@@ -89,7 +88,7 @@
      ]
     },
     {
-     "text": "[Agency officials said about {{number:c19}} students received additional credit](c19), [and that about {{number:c24}}% of more than {{number:c24:1}} million exams reviewed saw scores improve](c24). [Nine campuses and five districts saw their A-F ratings rise as a result](c25), [and the agency said it would update those ratings without an appeal](c29). [The agency said no score will be lowered as a result of the review](c30).",
+     "text": "[Agency officials said about {{number:c19}} students received additional credit](c19), [and that about {{number:c24}} of more than {{number:c24:1}} million exams reviewed saw scores improve](c24). [Nine campuses and five districts saw their A-F ratings rise as a result](c25), [and the agency said it would update those ratings without an appeal](c29). [The agency said no score will be lowered as a result of the review](c30).",
      "claims": [
       "c19",
       "c24",

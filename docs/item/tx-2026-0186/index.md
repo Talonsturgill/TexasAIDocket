@@ -22,7 +22,7 @@ The Federal Aviation Administration has published a draft environmental assessme
 - Comment closes: 2026-10-11
 - Take part: https://www.faa.gov/uas/advanced_operations/nepa_and_drones
 
-- Last checked: 2026-09-27
+- Last checked: 2026-09-30
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-24 · Admitted on the agency's own draft and its own review page, with the comment window open. The draft was prepared by the applicant under the agency's supervision, and the operating approvals it assesses have not been granted.
 - 2026-09-27 · The agency's draft assessment and review page still stand as published. The comment window is still open until October 11th.
+- 2026-09-30 · The agency's review page and the draft assessment still read as published, and the comment window is still open until October 11th.
 
 ## Evidence
 

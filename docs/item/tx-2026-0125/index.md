@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The center's user guide still gives October 1st as the day Frontera's queues close for good.
 - 2026-09-28 · With the closing date close, the user guide still carries the notice unchanged, and Horizon is still described as limited to internal users.
 - 2026-09-29 · Whether the user guide still gives October 1st for the end of Frontera's queues is unconfirmed. The closing notice on the page has changed since the last reading, and the new wording has not been read.
+- 2026-09-30 · Whether Frontera's queues still close on October 1st is unconfirmed. The user guide could not be read, and no other published notice of the closing was found.
 
 ## Evidence
 
