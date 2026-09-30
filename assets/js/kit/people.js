@@ -917,9 +917,9 @@ export function install(K, THREE, TXT) {
       // down so the hands land on a desk top at about 0.76 m, seated forearms forward to it.
       // sit_read folds the legs to a seat, and the ankle lift below then sets the hips at about
       // knee height, which is where a school or office seat is.
-      headPitch = 0.42; torsoLean = pose === 'read' ? 0.2 : 0.1;
-      for (const s of [1, -1]) arm[s] = pose === 'read' ? { u: n3(s * 0.12, -1, 0.32), f: n3(-s * 0.14, -0.8, 0.62), hand: 'relax' }
-        : { u: n3(s * 0.1, -1, 0.28), f: n3(-s * 0.12, -0.3, 1), hand: 'relax' };
+      headPitch = 0.42; torsoLean = pose === 'read' ? 0.12 : 0.1;
+      for (const s of [1, -1]) arm[s] = pose === 'read' ? { u: n3(s * 0.12, -1, 0.2), f: n3(-s * 0.14, -0.72, 0.7), hand: 'relax' }
+        : { u: n3(s * 0.1, -1, 0.3), f: n3(-s * 0.12, -0.5, 1), hand: 'relax' };
       if (pose === 'sit_read') for (const s of [1, -1]) leg[s] = { t: n3(s * 0.06, -0.08, 1), c: n3(s * 0.01, -1, 0.06) };
     }
     const ankleH = 0.075 * k;
@@ -1315,8 +1315,10 @@ export function install(K, THREE, TXT) {
       const at = (a, b, t) => a.clone().lerp(b, t).toArray();
       const m1 = 1 + 0.14 * mass;
       const armPts = [
-        { p: S.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.034 * k * m1, ry: 0.036 * k * m1 },
-        { p: at(S, E, 0.3), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
+        // the two rings under the sleeve stay a little thinner than the arm below it, so an arm
+        // swung forward (pose read) never pokes skin through the sleeve cap
+        { p: S.clone().addScaledVector(Ud, 0.03 * k).toArray(), rx: 0.029 * k * m1, ry: 0.031 * k * m1 },
+        { p: at(S, E, 0.3), rx: 0.036 * k * m1, ry: 0.038 * k * m1 },
         { p: at(S, E, 0.72), rx: 0.04 * k * m1, ry: 0.042 * k * m1 },
         { p: E.toArray(), rx: 0.035 * k * m1, ry: 0.037 * k * m1 },
         { p: at(E, Wr, 0.25), rx: 0.039 * k * m1, ry: 0.036 * k * m1 },
