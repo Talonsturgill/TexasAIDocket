@@ -149,7 +149,7 @@
   /* A READER, the bluebonnet shirt that means a person is reading an answer. */
   N.reader = function (K, o) {
     o = o || {};
-    return K.make('person', { seed: o.seed || 3, role: o.role || 'resident', pose: o.pose || 'stand', shirt: o.accent === false ? (o.shirt || 0x8a8f96) : N.ACCENT, trousers: o.trousers || 0x2b2d33, hat: 'none', vest: false, detail: o.detail || 'full' });
+    return K.make('person', { seed: o.seed || 3, role: 'worker', pose: o.pose || 'stand', shirt: o.accent === false ? (o.shirt || 0x8a8f96) : N.ACCENT, trousers: o.trousers || 0x2b2d33, hat: 'none', vest: false, detail: o.detail || 'full' });
   };
 
   /* LOW DETAIL DESKS AS INSTANCED GEOMETRY, one mesh per material, so a count in the tens of
@@ -204,6 +204,13 @@
       [[P.top, mt], [P.shell, ms], [P.tube, mtu], [P.base, mb], [P.lid, ml]].forEach(function (pm) {
         var im = K.instances(pm[0], pm[1], lists.far, g); im.castShadow = o.castShadow !== false; im.receiveShadow = true;
       });
+      /* a soft dark footprint under every instanced desk, so each one sits on the grass instead of
+       * floating: one instanced quad with a radial falloff, never a shadow map */
+      var fc = document.createElement('canvas'); fc.width = fc.height = 64; var fx = fc.getContext('2d');
+      var rg = fx.createRadialGradient(32, 32, 4, 32, 32, 31); rg.addColorStop(0, 'rgba(0,0,0,0.55)'); rg.addColorStop(1, 'rgba(0,0,0,0)'); fx.fillStyle = rg; fx.fillRect(0, 0, 64, 64);
+      var ft = new THREE.CanvasTexture(fc), fg = new THREE.PlaneGeometry(0.78, 1.0); fg.rotateX(-Math.PI / 2); fg.translate(0, 0.02, -0.02);
+      var fm = new THREE.MeshBasicMaterial({ map: ft, transparent: true, depthWrite: false, color: 0x000000, opacity: 0.8 });
+      var fim = K.instances(fg, fm, lists.far, g); fim.castShadow = false; fim.receiveShadow = false; fim.renderOrder = 1;
     }
     g.userData.units = units; g.userData.drawn = units.length; g.userData.detailed = detailed;
     return g;
@@ -296,6 +303,25 @@
     return { width: Wd, lanes: lanes };
   };
 
+
+  /* A COVERED ENTRY WALK: galvanized posts at 3 m bays and a flat metal deck with a fascia, from a
+   * school's doors out along a walk. from [x, z] is the door end, the walk runs toward +z for len
+   * metres, width w. Built in metres at the kit's conventions. */
+  N.canopy = function (K, THREE, TXT, R, o) {
+    o = o || {};
+    var g = new THREE.Group(), w = o.w || 3.2, len = o.len || 15, h = 3.1;
+    var galv = K.finish.galvanized(), deck = K.mat('cn-deck', { color: 0xcdd0d1, metalness: 0.5, roughness: 0.42 }), fas = K.mat('cn-fascia', { color: 0x2d4a73, metalness: 0.3, roughness: 0.45 });
+    var bays = Math.round(len / 3);
+    for (var b = 0; b <= bays; b++) [-1, 1].forEach(function (sd) { var p = TXT.roundedBox(0.15, h, 0.15, 0.02, galv); p.position.set(sd * (w / 2 - 0.08), h / 2, b * len / bays); g.add(p); });
+    var d = TXT.roundedBox(w + 0.5, 0.12, len + 0.6, 0.02, deck); d.position.set(0, h + 0.06, len / 2); g.add(d);
+    [-1, 1].forEach(function (sd) { var f = TXT.roundedBox(0.08, 0.36, len + 0.6, 0.01, fas); f.position.set(sd * (w / 2 + 0.25), h - 0.05, len / 2); g.add(f); });
+    var fr = TXT.roundedBox(w + 0.5, 0.36, 0.08, 0.01, fas); fr.position.set(0, h - 0.05, len + 0.3); g.add(fr);
+    var walk = TXT.roundedBox(w + 0.8, 0.06, len + 1.5, 0.01, K.finish.concrete()); walk.position.set(0, 0.03, len / 2); g.add(walk);
+    g.position.set(o.from ? o.from[0] : 0, 0, o.from ? o.from[1] : 0);
+    TXT.add(R, g);
+    return g;
+  };
+
   /* LIGHT TOWARD THE TYPE. On this deck the type is dark on a pale lid, so the wash LIFTS the
    * value under the type rather than darkening it: a full-width vertical wash, never a box and never
    * over 0.45 alpha, so deck_chassis reads it as atmosphere and not as a plate. */
@@ -339,8 +365,12 @@
   N.post = function (cx, o) {
     o = o || {};
     N.atmosphere(cx, { a: o.a == null ? 0.22 : o.a });
-    N.soften(cx, o.type || ['.kick', '.count', '.hook', '.dek']);
-    N.soften(cx, ['.tx-site', '.src'], { blur: 24, pad: 26, feather: 60 });
+    N.soften(cx, o.type || ['.kick', '.count', '.hook', '.dek'], { blur: o.typeBlur || 12, feather: o.typeFeather || 70 });
+    N.soften(cx, ['.tx-site', '.src'], { blur: 9, pad: 14, feather: 40 });
+    /* a full-width veil lifting the footer band, never a box and never over 0.45 alpha */
+    var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H);
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, 'rgba(236,238,238,' + ((o.veil == null ? 0.45 : o.veil) * e).toFixed(4) + ')'); }
+    cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
   };
 
   /* A world point to frame CSS px, through the frame's own camera. */
