@@ -7,16 +7,17 @@
  },
  "section": "Schools and testing",
  "dek": {
-  "text": "An automated engine scores written STAAR answers first. People read a quarter or more of them, every Spanish test, and any answer a district asks to have rescored.",
+  "text": "An automated engine scores STAAR's longer written answers first. People read a quarter or more of them, every written answer on the Spanish language test, and any answer a district asks to have rescored.",
   "claims": [
    "c1",
    "c2",
-   "c10"
+   "c10",
+   "c22"
   ]
  },
  "introduction": [
   {
-   "text": "[The Texas Education Agency scores STAAR's constructed responses, the written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
+   "text": "[The Texas Education Agency scores STAAR's constructed responses, the longer written answers, with an automated scoring engine first, and at least {{number:c1}} percent of them then go to human scorers](c1). [In the agency's own chart the engine assigns the score of record on approximately {{number:c13:1}}% of responses](c13). [The move from fully human scoring to this hybrid model started in December {{number:c17}}](c17).",
    "claims": [
     "c1",
     "c13",
@@ -87,7 +88,7 @@
      ]
     },
     {
-     "text": "[Agency officials said about {{number:c19}} students received additional credit](c19), [and that about {{number:c24}}% of more than {{number:c24:1}} million exams reviewed saw scores improve](c24). [Nine campuses and five districts saw their A-F ratings rise as a result](c25), [and the agency said it would update those ratings without an appeal](c29). [No score was lowered](c30).",
+     "text": "[Agency officials said about {{number:c19}} students received additional credit](c19), [and that about {{number:c24}}% of more than {{number:c24:1}} million exams reviewed saw scores improve](c24). [Nine campuses and five districts saw their A-F ratings rise as a result](c25), [and the agency said it would update those ratings without an appeal](c29). [The agency said no score will be lowered as a result of the review](c30).",
      "claims": [
       "c19",
       "c24",
@@ -119,8 +120,10 @@
      ]
     },
     {
-     "text": "The agency's scoring document gives the process but not the price of a rescore, and it leaves the dates to that calendar. The record does not yet hold either. A family that wants a person to read a written answer starts with the district's testing staff.",
-     "claims": []
+     "text": "[The agency's scoring document says a rescore costs a fee](c9) and names no amount, and it leaves the dates to that calendar. The record does not yet hold either. A family that wants a person to read a written answer starts with the district's testing staff.",
+     "claims": [
+      "c9"
+     ]
     }
    ]
   }
