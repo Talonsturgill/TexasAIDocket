@@ -7448,9 +7448,9 @@
   "status": "decided",
   "key_dates": [
    {
-    "date": "2026-09-09",
+    "date": "2026-09-10",
     "kind": "filed",
-    "note": "Joint announcement published"
+    "note": "Wiwynn's copy of the joint release carries this date"
    }
   ],
   "public_access": {
@@ -7466,7 +7466,7 @@
     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
     "source_type": "primary_corporate",
-    "fetched": "2026-09-11",
+    "fetched": "2026-10-01",
     "id": "tx-2026-0146-c1"
    },
    {
@@ -7475,7 +7475,7 @@
     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
     "source_type": "primary_corporate",
-    "fetched": "2026-09-11",
+    "fetched": "2026-10-01",
     "id": "tx-2026-0146-c2"
    },
    {
@@ -7484,7 +7484,7 @@
     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
     "source_type": "primary_corporate",
-    "fetched": "2026-09-11",
+    "fetched": "2026-10-01",
     "id": "tx-2026-0146-c3"
    },
    {
@@ -7493,18 +7493,40 @@
     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
     "source_type": "primary_corporate",
-    "fetched": "2026-09-11",
+    "fetched": "2026-10-01",
     "id": "tx-2026-0146-c4"
+   },
+   {
+    "text": "Wiwynn's own copy of the joint release carries a date.",
+    "verbatim_quote": "Updated on September 10, 2026",
+    "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+    "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-01",
+    "id": "tx-2026-0146-c5"
+   },
+   {
+    "text": "Wiwynn states the employment the plant is expected to reach.",
+    "verbatim_quote": "Together, the companies expect to create nearly 1,000 new advanced manufacturing jobs by the end of 2027.",
+    "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+    "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-01",
+    "id": "tx-2026-0146-c6"
    }
   ],
-  "confidence": "medium",
-  "notes_for_editor": "The release carries NO publication date on the page, confirmed by a second fetch, so the September 9th date rests on wire coverage that was not fetched. It does not name the county either. El Paso County is from the Texas Municipal League directory entry for Socorro. Held at medium until the date is on a document. The release says nothing about whether the line itself uses AI or robotics.",
+  "confidence": "high",
+  "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
   "id": "tx-2026-0146",
-  "last_verified": "2026-09-11",
+  "last_verified": "2026-10-01",
   "history": [
    {
     "date": "2026-09-11",
     "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
+   },
+   {
+    "date": "2026-10-01",
+    "note": "Both copies of the release still announce the expansion. Wiwynn's copy carries a September 10th date, which is the day the record now gives for the announcement."
    }
   ]
  },

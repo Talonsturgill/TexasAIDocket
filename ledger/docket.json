@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-30",
+  "generated": "2026-10-01",
   "gates": [
    "banned words",
    "claims",
@@ -25757,6 +25757,107 @@
     }
    ],
    "last_verified": "2026-09-30"
+  },
+  {
+   "title": "Amazon and Wiwynn say they will expand the El Paso County plant that builds the racks going into AI data centers",
+   "summary": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, the Taiwanese contract manufacturer's first plant in the United States. Wiwynn builds and integrates the server systems and racks that go into Amazon's data centers. Wiwynn's chief executive puts the investment at over 1.6 billion dollars and Amazon's vice president of Annapurna Labs states the number of advanced manufacturing roles it supports. Socorro is in El Paso County, which is the one corner of Texas that is not on the ERCOT grid.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Amazon.com, Inc. and Wiwynn Corporation",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "El Paso"
+    ],
+    "metro": "El Paso, TX",
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-10",
+     "kind": "filed",
+     "note": "Wiwynn's copy of the joint release carries this date"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "Neither release names a vote, a hearing or a public body acting on this. A resident who wants a say goes to the City of Socorro or El Paso County, either of which would hear a zoning or abatement matter if one is brought.",
+    "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Wiwynn's chief executive states the size of the investment in the Texas facility.",
+     "verbatim_quote": "Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c1"
+    },
+    {
+     "text": "Amazon states the number of manufacturing roles the investment supports.",
+     "verbatim_quote": "supporting the creation of nearly 1,000 advanced manufacturing roles that will help strengthen both the",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c2"
+    },
+    {
+     "text": "The release states what the plant makes for Amazon's data centers.",
+     "verbatim_quote": "Wiwynn supports Amazon's data center infrastructure by manufacturing and integrating server systems and racks",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c3"
+    },
+    {
+     "text": "The release names the town the plant is in.",
+     "verbatim_quote": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, Texas.",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c4"
+    },
+    {
+     "text": "Wiwynn's own copy of the joint release carries a date.",
+     "verbatim_quote": "Updated on September 10, 2026",
+     "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c5"
+    },
+    {
+     "text": "Wiwynn states the employment the plant is expected to reach.",
+     "verbatim_quote": "Together, the companies expect to create nearly 1,000 new advanced manufacturing jobs by the end of 2027.",
+     "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c6"
+    }
+   ],
+   "confidence": "high",
+   "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
+   "id": "tx-2026-0146",
+   "last_verified": "2026-10-01",
+   "history": [
+    {
+     "date": "2026-09-11",
+     "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Both copies of the release still announce the expansion. Wiwynn's copy carries a September 10th date, which is the day the record now gives for the announcement."
+    }
+   ]
   }
  ]
 }
