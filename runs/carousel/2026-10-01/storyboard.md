@@ -81,7 +81,7 @@ it.
 | token | hex | where |
 |---|---|---|
 | `ground` | `#1A2133` | the DOM body behind the render |
-| `accent` | `#3E8F68` | the green of a town limit sign's sheeting. Only ever a sign. Frames 1, 4, 7 and 8 |
+| `accent` | `#3E8F68` | the green of a town limit sign's sheeting. Only ever a sign. Frames 1, 2 and 4 |
 | `hook` | `#F2F1EC` | the hook, light on the blue sky |
 | `dek` | `#D9DCE3` | the dek |
 | `rule` | `#E6E7EA` | the site line, the source line and the counter |
@@ -108,12 +108,13 @@ sky, the cool white of a 4000K LED cobra head, and the amber seam on the west ho
 
 ## The rotation
 
-    FULL_BLEED  DIAGRAM  FULL_BLEED  SPLIT_HORIZON  FIGURE_SCALE  OBJECT_AND_CAPTION  SPLIT_HORIZON  FULL_BLEED  FULL_BLEED
+    FULL_BLEED  DIAGRAM  FULL_BLEED  SPLIT_HORIZON  FIGURE_SCALE  OBJECT_AND_CAPTION  FULL_BLEED  FULL_BLEED  SPLIT_HORIZON
 
-Frames 7 and 8 were planned as GRID. On the first render each read as one field rather than as
-separable units at thumb scale, which is what a GRID is held to, so 7 is declared as what it is, a
-straight cut with the sky over the field, and 8 as an eye level view of the lot from the street.
-The value cut at frame 9 is the turn indoors, into the room where the decision is made.
+Frames 7 and 8 were planned as GRID and then as two different views. Round 1's flow critic asked
+for one camera on both, so the count is compared and not the picture, and from round 3 they are a
+deliberate same camera pair on one lot: FULL_BLEED twice, the only repeat in the deck. Frame 9 is
+the value cut indoors and a SPLIT_HORIZON on the dais top line, so three frames in a row never
+share one structure.
 
 `TXLAYOUT.check` returns an empty list.
 
@@ -131,10 +132,9 @@ job: >
   Stop the scroll on the object itself, and say the whole turn in the hook, the state stopped paying
   for the camera on the pole.
 
-claims: [c1, c12, c15, c17]
+claims: [c1, c12, c15, c16]
 numerals:
   - value_from: c15
-  - value_from: c17
 
 depth:
   eye: 0.8
@@ -163,12 +163,13 @@ art:
 
 type:
   hook: "The state stopped paying for this."
-  dek: "A $1 fee added to Texas auto insurance in 2023 became at least 3,200 Flock cameras. In late August Governor Abbott ordered state agencies to pause funding them."
+  dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's network of Flock cameras. In late August Governor Abbott ordered state agencies to pause funding them."
   labels: []
 
 verbatim: []
 
 acceptance:
+  - "the plate reader, not the streetlight, is the largest dark object beside the hook"
   - "the frame's median L* at 432px is between 22 and 40"
   - 'the hook reads "The state stopped paying for this."'
   - "the pole, its two panels and the camera head all read at 432px as one plate reader on a pole"
@@ -190,7 +191,7 @@ primary_image:
   subject: "the same plate reader in pure side view on its shoulder, panels, LTE puck, camera on its band clamp and breakaway base all legible, the rear of a sedan in the lane below its aim"
   rect: [0, 360, 1080, 990]
   bleeds: [left, right, bottom]
-accent: none
+accent: "#3E8F68"
 job: >
   Show what the thing is and what it records, in the city's own words, so every later frame is read
   as this object.
@@ -224,7 +225,7 @@ art:
 
 type:
   hook: "It runs on sunlight and a cell signal."
-  dek: "College Station says it photographs the rear of passing vehicles by day and by night. It sorts each one by make, model and color so the data can be searched."
+  dek: "College Station says the camera photographs the rear of passing vehicles by day and by night. It sorts each one by make, model and color so the data can be searched."
   labels: ["solar-powered", "LTE-connected", "the rear of passing vehicles", "make, model, and color"]
 
 verbatim:
@@ -234,6 +235,7 @@ verbatim:
   - c26: "make, model, and color"
 
 acceptance:
+  - "a small green town limit sign stands on the far shoulder behind the sedan"
   - "the frame's median L* at 432px is between 22 and 40"
   - 'the hook reads "It runs on sunlight and a cell signal."'
   - "four labels are present and each leader ends within 24px of the part it names"
@@ -419,7 +421,7 @@ art:
 
 type:
   hook: "El Paso gave it 60 days."
-  dek: "On September 15th the council directed the removal of every Flock fixed camera under city control. It told the city manager not to sign or renew a contract with any such provider."
+  dek: "On September 15th the council directed the removal of every Flock fixed camera under city control. It told the city manager not to sign or renew a contract with Flock or another provider of fixed plate reader cameras."
   labels: []
 
 verbatim: []
@@ -503,12 +505,12 @@ risks:
 
 ```yaml
 slide: 7
-layout: SPLIT_HORIZON
+layout: FULL_BLEED
 primary_image:
-  subject: "32 plate reader poles in four exact ranks of eight on a mown verge seen through a long lens, every one the same size, a green town limit sign at the near left corner"
+  subject: "32 plate reader poles filling the near ranks of a lot, six to a rank at 1.8 m, on a mown verge, from the one camera frame 8 uses, the lit lamp at the lot's left edge and live oak past the empty ranks"
   rect: [0, 520, 1080, 700]
   bleeds: [left, right]
-accent: "#3E8F68"
+accent: none
 job: >
   Show a town that kept paying without the state, at the size of the cameras its missing grant was
   for.
@@ -520,7 +522,7 @@ numerals:
 
 data_in_art:
   figure: kyle_cameras
-  drives: instance count, one pole per camera, eight files by four ranks
+  drives: instance count, one pole per camera, ranks of six filled from the near rank
 
 depth:
   eye: 7
@@ -557,7 +559,9 @@ acceptance:
   - 'the hook reads "Kyle kept its contract, 6 to 1."'
   - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
   - "the four ranks of poles separate into rows at 432px"
-  - "a green town limit sign stands at the near left corner"
+  - "every one of the 32 poles stands wholly inside the frame"
+  - "the near rank's camera heads read as a separate shape below the panels at 432px"
+  - "frame 8 uses the identical camera and the near ranks line up between 7 and 8"
   - "the horizon is in frame above the poles"
 
 risks:
@@ -568,10 +572,10 @@ risks:
 slide: 8
 layout: FULL_BLEED
 primary_image:
-  subject: "165 plate reader poles in eleven ranks of fifteen on a South Texas caliche lot behind a chain link fence, seen at eye level from across the road, mesquite at the edges, a green town limit sign on the near shoulder"
+  subject: "165 plate reader poles filling the same lot as frame 7, six to a rank from the near rank back, on South Texas caliche, from the identical camera, mesquite past the far ranks and the lit lamp at the left edge"
   rect: [0, 560, 1080, 720]
   bleeds: [left, right]
-accent: "#3E8F68"
+accent: none
 job: >
   The other answer, put to voters, at the same scale as Kyle so the swipe from 32 to 165 is one
   scale.
@@ -583,7 +587,7 @@ numerals:
 
 data_in_art:
   figure: laredo_cameras
-  drives: instance count, one pole per camera, fifteen files by eleven ranks
+  drives: instance count, one pole per camera, ranks of six filled from the near rank
 
 depth:
   eye: 7
@@ -620,9 +624,9 @@ acceptance:
   - "the frame's median L* at 432px is between 20 and 40"
   - 'the hook reads "Laredo will ask its voters."'
   - "the code draws exactly the figure's count of poles, 165, and window.__txDrawn says so"
-  - "a chain link fence runs across the foreground in front of the poles"
+  - "the near ranks line up with frame 7's, so only the count and the ground differ"
   - "mesquite stands at the edges of the lot"
-  - "a green town limit sign stands at the near left corner"
+  - "the near rank's camera heads read as a separate shape below the panels at 432px"
 
 risks:
   - "eleven ranks on a long lens merge into a band, so the spacing is wide enough that the near three ranks separate at 432px"
@@ -630,7 +634,7 @@ risks:
 
 ```yaml
 slide: 9
-layout: FULL_BLEED
+layout: SPLIT_HORIZON
 primary_image:
   subject: "an empty council chamber at blue hour seen from the public seats, a curved dais with nine chairs and microphones, the flags, the back of empty public seating in the foreground, the window behind the dais deep blue"
   rect: [0, 470, 1080, 880]
@@ -674,13 +678,13 @@ art:
 
 type:
   hook: "Your council decides this in public."
-  dek: "League City votes on November 3rd, on a question its council called on August 11th. Laredo votes in May."
+  dek: "League City votes on November 3rd, on a question its council called on August 11th."
   labels: []
 
 verbatim: []
 
 acceptance:
-  - "the frame's median L* at 432px is between 18 and 38"
+  - "the frame's median L* at 432px is between 14 and 34"
   - 'the hook reads "Your council decides this in public."'
   - "the code draws exactly the figure's count of chairs at the dais, 9, and window.__txDrawn says so"
   - "the dais reads as a council dais at 432px"

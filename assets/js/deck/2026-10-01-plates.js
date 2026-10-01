@@ -256,8 +256,9 @@
         var g = new THREE.Group(), w = +o.w || 1.52, h = +o.h || 0.76, b = o.bottom == null ? 1.5 : +o.bottom;
         var post = K.mat('cls-post', { color: 0x9a9fa3, roughness: 0.45, metalness: 0.8 });
         var back = K.mat('cls-back', { color: 0x8f9396, roughness: 0.5, metalness: 0.7 });
-        var white = K.mat('cls-white', { color: 0xe9ece8, roughness: 0.4, emissive: 0xe9ece8, emissiveIntensity: 0.12 * (+o.glow || 0) });
-        var green = K.mat('cls-green-' + Math.round((+o.glow || 0) * 100), { color: N.ACCENT, roughness: 0.35, emissive: N.ACCENT, emissiveIntensity: 0.9 * (+o.glow || 0) });
+        var white = K.mat('cls-white', { color: 0xffffff, roughness: 0.4, emissive: 0xffffff, emissiveIntensity: 0.3 * (+o.glow || 0) });
+        /* tint: the emissive's own hue, for a frame whose blue hour cools the sheeting off the accent */
+        var green = K.mat('cls-green-' + Math.round((+o.glow || 0) * 100) + '-' + (o.tint || 0), { color: N.ACCENT, roughness: 0.35, emissive: o.tint || N.ACCENT, emissiveIntensity: 0.7 * (+o.glow || 0) });
         [-w * 0.3, w * 0.3].forEach(function (x) {
           rbx(0.05, b + h - 0.04, 0.035, 0.004, post, x, (b + h - 0.04) / 2, -0.03, g);
         });
@@ -299,6 +300,15 @@
       var reach = o.reach || 2.4, hx = x + Math.sin(s.rotation.y) * reach, hz = z + Math.cos(s.rotation.y) * reach;
       var pl = new N.T.PointLight(0xfff0d8, o.pool || 70, 26, 2);
       pl.position.set(hx, (o.height || 9.1) - 0.4, hz); R.scene.add(pl);
+      /* a soft halo round the lens, so a lit head reads lit at feed size and at distance */
+      if (o.halo !== false) {
+        var hc = document.createElement('canvas'); hc.width = hc.height = 64; var hx2 = hc.getContext('2d');
+        var hg = hx2.createRadialGradient(32, 32, 1, 32, 32, 31);
+        hg.addColorStop(0, 'rgba(255,246,222,1)'); hg.addColorStop(0.2, 'rgba(255,232,190,0.55)'); hg.addColorStop(1, 'rgba(255,220,170,0)');
+        hx2.fillStyle = hg; hx2.fillRect(0, 0, 64, 64);
+        var sp = new N.T.Sprite(new N.T.SpriteMaterial({ map: new N.T.CanvasTexture(hc), transparent: true, depthWrite: false, blending: N.T.AdditiveBlending }));
+        sp.scale.setScalar(o.haloSize || 1.6); sp.position.set(hx, (o.height || 9.1) - 0.35, hz); R.scene.add(sp);
+      }
     }
     return s;
   };
@@ -333,12 +343,15 @@
     slab(grav, sh, 0.02, rw / 2 + sh / 2); slab(grav, sh, 0.02, -(rw / 2 + sh / 2));
     slab(white, 0.15, 0.004, rw / 2 - 0.25, 0.04); slab(white, 0.15, 0.004, -(rw / 2 - 0.25), 0.04);
     slab(yel, 0.1, 0.004, 0.11, 0.04); slab(yel, 0.1, 0.004, -0.11, 0.04);
+    /* the wheel paths, polished a shade darker than the rest of the lane */
+    var path = K.mat('pl-wheelpath', { color: 0x2a2b2f, roughness: 0.8 });
+    [-2.7, -0.9, 0.9, 2.7].forEach(function (z) { slab(path, 0.7, 0.002, z, 0.04); });
     g.position.set(at[0], 0, at[1]); if (o.rotY) g.rotation.y = o.rotY;
     TXT.add(R, g);
     return g;
   };
-  N.sign = function (K, R, TXT, at, rotY, glow) {
-    var sg = K.make('city_limit_sign', { glow: glow == null ? 0.8 : glow });
+  N.sign = function (K, R, TXT, at, rotY, glow, tint) {
+    var sg = K.make('city_limit_sign', { glow: glow == null ? 0.8 : glow, tint: tint });
     sg.position.set(at[0], 0, at[1]); sg.rotation.y = rotY || 0; TXT.add(R, sg); TXT.contact(R, sg);
     return sg;
   };
@@ -411,13 +424,13 @@
     return g;
   };
 
-  /* ONE LOT, ONE LENS, for the two frames that compare counts. Ranks of eleven at 2.6 m, 4 m
+  /* ONE LOT, ONE LENS, for the two frames that compare counts. Ranks of six at 1.8 m, 4 m
    * apart, filled from the near rank, left to right, so 32 and 165 stand on the same ground in
    * the same order and only the count differs. The first `near` ranks are the full kit model.
    * N.lotView is the one camera both frames use. */
   N.lot = function (K, THREE, TXT, R, count, o) {
     o = o || {};
-    var files = 11, px = 2.6, pz = 4.0, near = o.near == null ? 2 : o.near, full = new THREE.Group(), far = [], drawn = 0;
+    var files = 6, px = 1.8, pz = 4.0, near = o.near == null ? 2 : o.near, full = new THREE.Group(), far = [], drawn = 0;
     for (var i = 0; i < count; i++) {
       var c = i % files, r = Math.floor(i / files), x = -((files - 1) * px) / 2 + c * px, z = -r * pz;
       if (r < near) { var u = N.pole(K, { yaw: -Math.PI / 2, face: 0, seed: 40 + i }); u.position.set(x, 0, z); full.add(u); }
@@ -436,7 +449,7 @@
     }
     return drawn;
   };
-  N.lotView = function (TXT, R) { TXT.frame(R, { from: [0, 7, 30], look: [0, 2.5, -20] }); };
+  N.lotView = function (TXT, R) { TXT.frame(R, { from: [0, 5.8, 14.8], look: [0, 1.7, -35.2] }); };
 
   /* THE SKY BAND THE TYPE STANDS IN. A light wash toward the type, never over 0.45 alpha. On a
    * blue hour sky the type is light, so the wash DARKENS a little behind it rather than lifting. */
