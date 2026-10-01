@@ -1777,3 +1777,25 @@ has no rule for this host yet, so for now the split is the guard.
 **`reverify.py` fetched two refused hosts again**: tacc.utexas.edu, which the crawl boundary puts
 off limits as a whole host, and public.destinyhosted.com. It stamped tx-2026-0125 and tx-2026-0168
 to 0170 off those requests. The stamps were withdrawn, as they were on September 29th.
+
+## 2026-10-01, daily run (carousel no. 39)
+
+**`reverify.py` now asks the crawl boundary and the live robots.txt before it fetches.** The two
+day old proposal from September 29th and 30th landed in this run's first commit. The script refused
+12 urls and never requested them: tacc.utexas.edu (off limits as a whole host), the Hays County
+agenda on public.destinyhosted.com (`User-agent: * Disallow: /` on one line, now split before it is
+parsed), www.ksat.com's Guadalupe County story (its robots.txt disallows the path to this project)
+and search.txcourts.gov's case page behind tx-2026-0127. No stamp rests on a refused request.
+
+**`search.txcourts.gov` disallows its case search to this project.** It is new to this log.
+tx-2026-0127 now carries a dated `unreachable` block naming it, and its old stamp stands.
+
+**`www.cityoflaredo.com` still returns an Akamai 403 on robots.txt**, so the Laredo vote is carried
+on the Tribune's September 24th account. `cityoflaredo.legistar.com` is the city's own route and
+was not needed for any claim this run.
+
+**`www.click2houston.com` names ClaudeBot under `Disallow: /`**, so the League City account was read
+on the city's own news flash at `www.leaguecitytx.gov`, which is clean.
+
+**El Paso's Legistar meeting page marks both plate reader items approved as revised**, read by
+this run's fact check on October 1st. This run did not look for the revision text there.
