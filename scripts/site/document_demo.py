@@ -25,6 +25,8 @@ def load() -> dict:
 
 
 def validate(data: dict) -> None:
+    if data.get("_spec") != 1:
+        raise ValueError("Document demo schema version is missing or unsupported")
     for key in ("source_url", "status_url"):
         url = urlparse(data[key])
         if url.scheme != "https" or url.hostname != "www.tceq.texas.gov":

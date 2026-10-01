@@ -20,9 +20,10 @@ class DocumentDemoTest(unittest.TestCase):
         self.assertEqual(self.data['permit'], 'TXR050000')
 
     def test_negative_controls(self):
-        for mutation in ('host', 'page', 'duplicate', 'section', 'empty'):
+        for mutation in ('version', 'host', 'page', 'duplicate', 'section', 'empty'):
             with self.subTest(mutation=mutation):
                 data = copy.deepcopy(self.data)
+                if mutation == 'version': del data['_spec']
                 if mutation == 'host': data['source_url'] = 'https://example.com/permit.pdf'
                 if mutation == 'page': data['entries'][0]['pages'] = [data['pdf_pages'] + 1]
                 if mutation == 'duplicate': data['entries'].append(data['entries'][0])
