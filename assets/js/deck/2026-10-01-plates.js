@@ -282,6 +282,29 @@
     return s;
   };
 
+
+  /* SCENERY THE FRAMES SHARE, as primitives. Each frame decides where things go; these only save
+   * it typing the same three lines for every tree, road and sign. */
+  N.trees = function (K, R, TXT, list, o) {
+    o = o || {};
+    list.forEach(function (t) {
+      var tr = K.make(t[2], { seed: t[3], height: t[4] }); tr.position.set(t[0], 0, t[1]);
+      if (t[5] != null) tr.rotation.y = t[5];
+      TXT.add(R, tr); if (o.contact !== false) TXT.contact(R, tr);
+    });
+  };
+  N.road = function (K, R, TXT, at, o) {
+    o = o || {};
+    var rd = K.make('road', { length: o.length || 900, lanes: o.lanes || 2, sidewalk: !!o.sidewalk, parkway: o.parkway == null ? 1.6 : o.parkway });
+    rd.position.set(at[0], 0, at[1]); if (o.rotY) rd.rotation.y = o.rotY; TXT.add(R, rd);
+    return rd;
+  };
+  N.sign = function (K, R, TXT, at, rotY, glow) {
+    var sg = K.make('city_limit_sign', { glow: glow == null ? 0.8 : glow });
+    sg.position.set(at[0], 0, at[1]); sg.rotation.y = rotY || 0; TXT.add(R, sg); TXT.contact(R, sg);
+    return sg;
+  };
+
   /* THE HERO, the same call on every frame. */
   N.pole = function (K, o) {
     o = o || {};
@@ -417,7 +440,41 @@
     return [(v.x + 1) / 2 * N.W, (1 - v.y) / 2 * N.H];
   };
 
-  /* THE DECK'S SHELL, kept here rather than typed into nine frames. */
+
+  /* THE SHELL EVERY FRAME SHARES, kept here rather than typed into nine frames: the type styles,
+   * the furniture, the fit of the hook and the stage. None of it draws anything. */
+  N.CSS = [
+    '* { margin:0; padding:0; box-sizing:border-box; }',
+    'html, body { width:1080px; height:1350px; overflow:hidden; background:#1A2133; }',
+    'body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }',
+    'canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }',
+    '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:800; line-height:0.98; letter-spacing:-0.01em; color:#F2F1EC; font-variation-settings:"opsz" 144; z-index:10; }',
+    '.dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:#EEF0F3; z-index:10; }',
+    '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#E6E7EA; white-space:nowrap; z-index:20; }',
+    '.hook, .dek, .tx-site, .kick, .src, .cap, .lab { text-shadow:0 0 2px rgba(6,10,24,0.45), 0 1px 12px rgba(6,10,24,0.35); }'
+  ].join('\n');
+  N.start = function (o) {
+    var st = document.createElement('style'); st.textContent = N.CSS;
+    document.head.insertBefore(st, document.head.firstChild);
+    TXLAYOUT.mount(document.body, { kicker: o.kicker, counter: o.counter, src: o.src, ink: '#E6E7EA' });
+    TX.fitText(document.getElementById('hook'), o.fit || { min: 96, max: 128, maxLines: 2 });
+    N.follow();
+  };
+  /* THE BOOT, once per frame: fonts, the shell, the engine and the kit with this deck's additions. */
+  N.boot = async function (THREE, init, initKit, o) {
+    await document.fonts.ready;
+    N.start(o);
+    var TXT = init(THREE), K = initKit(THREE, TXT);
+    N.installKit(K, THREE, TXT);
+    return { TXT: TXT, K: K, gl: N.glCanvas(), W: TXT.deckWorld() };
+  };
+  N.stage = function (TXT, gl, W, o) {
+    o = o || {};
+    return TXT.setup(gl, { w: N.W, h: N.H, fog: [W.haze, o.fog == null ? W.fogDensity : o.fog], exposure: W.exposure * (o.exposure || 1),
+                           tone: W.tone, fov: o.fov || 40, near: o.near || 0.05, far: o.far || 5000 });
+  };
+
+  /* THE DECK'S SHELL, continued. */
   N.follow = function () {
     var h = document.getElementById("hook");
     Array.prototype.forEach.call(document.querySelectorAll(".dek[data-follow]"), function (d) {

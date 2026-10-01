@@ -93,7 +93,7 @@ sky, the cool white of a 4000K LED cobra head, and the amber seam on the west ho
 ## The continuity devices
 
     CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE
-    VALUE CUT: none
+    VALUE CUT: frame 9
 
 1. **Motif evolution.** The pole's state is the progress indicator: on (1, 2), multiplied (3), the
    nearest one standing dark beside a town line (4), unbolted on the ground beside its bare footing
@@ -108,7 +108,12 @@ sky, the cool white of a 4000K LED cobra head, and the amber seam on the west ho
 
 ## The rotation
 
-    FULL_BLEED  DIAGRAM  FULL_BLEED  SPLIT_HORIZON  FIGURE_SCALE  OBJECT_AND_CAPTION  GRID  GRID  FULL_BLEED
+    FULL_BLEED  DIAGRAM  FULL_BLEED  SPLIT_HORIZON  FIGURE_SCALE  OBJECT_AND_CAPTION  SPLIT_HORIZON  FULL_BLEED  FULL_BLEED
+
+Frames 7 and 8 were planned as GRID. On the first render each read as one field rather than as
+separable units at thumb scale, which is what a GRID is held to, so 7 is declared as what it is, a
+straight cut with the sky over the field, and 8 as an eye level view of the lot from the street.
+The value cut at frame 9 is the turn indoors, into the room where the decision is made.
 
 `TXLAYOUT.check` returns an empty list.
 
@@ -310,8 +315,8 @@ slide: 4
 layout: SPLIT_HORIZON
 primary_image:
   subject: "a straight two lane road seen from the driver's seat running to the seam, fourteen green town limit signs stepping down the right shoulder, and the nearest plate reader pole dark on the shoulder in the right foreground"
-  rect: [0, 560, 1080, 790]
-  bleeds: [left, right, bottom]
+  rect: [0, 560, 1080, 460]
+  bleeds: [left, right]
 accent: "#3E8F68"
 job: >
   Say what happened after the pause, in places rather than cameras, one sign for each city or county
@@ -436,8 +441,8 @@ risks:
 slide: 6
 layout: OBJECT_AND_CAPTION
 primary_image:
-  subject: "two identical plate reader poles three metres apart on one curb, square on, the streetlight between and behind them, the left one dark and the right one with its streetlight lit beside it"
-  rect: [0, 300, 1080, 760]
+  subject: "two identical plate reader poles three metres apart on one curb, square on, the streetlight off centre behind them, a line of live oaks and a fence on the horizon, the grass verge and curb in the foreground"
+  rect: [0, 640, 1080, 620]
   bleeds: [left, right]
 accent: none
 job: >
@@ -478,7 +483,7 @@ type:
   dek: ""
   labels:
     - "LEANDER. Stopped September 4th, \"in response to community concerns.\""
-    - "COLLEGE STATION. Kept, 4-2. \"You can't afford the number of cops it would take.\""
+    - "COLLEGE STATION. Kept, 4 to 2. \"You can't afford the number of cops it would take.\""
 
 verbatim:
   - c22: "in response to community concerns"
@@ -498,7 +503,7 @@ risks:
 
 ```yaml
 slide: 7
-layout: GRID
+layout: SPLIT_HORIZON
 primary_image:
   subject: "32 plate reader poles in four exact ranks of eight on a mown verge seen through a long lens, every one the same size, a green town limit sign at the near left corner"
   rect: [0, 520, 1080, 700]
@@ -541,7 +546,7 @@ art:
     Lightest is the sky. Darkest is the poles. Frame median L* planned at 28.
 
 type:
-  hook: "Kyle kept paying, 6-1."
+  hook: "Kyle kept paying, 6 to 1."
   dek: "Its $205,000 grant for 2026 has not arrived. $80,000 of it would help pay for these 32 Flock cameras."
   labels: []
 
@@ -549,9 +554,9 @@ verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
-  - 'the hook reads "Kyle kept paying, 6-1."'
+  - 'the hook reads "Kyle kept paying, 6 to 1."'
   - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
-  - "every pole reads at the same size at 432px"
+  - "the four ranks of poles separate into rows at 432px"
   - "a green town limit sign stands at the near left corner"
   - "the horizon is in frame above the poles"
 
@@ -561,10 +566,10 @@ risks:
 
 ```yaml
 slide: 8
-layout: GRID
+layout: FULL_BLEED
 primary_image:
-  subject: "165 plate reader poles in eleven ranks of fifteen on a South Texas caliche lot with mesquite at the edges, through the same long lens, spacing and height as frame 7, a green town limit sign at the near left corner"
-  rect: [0, 470, 1080, 760]
+  subject: "165 plate reader poles in eleven ranks of fifteen on a South Texas caliche lot behind a chain link fence, seen at eye level from across the road, mesquite at the edges, a green town limit sign on the near shoulder"
+  rect: [0, 560, 1080, 720]
   bleeds: [left, right]
 accent: "#3E8F68"
 job: >
@@ -588,8 +593,8 @@ depth:
 
 composition:
   structure: >
-    Frame 7's camera, lens and spacing exactly, on a different ground, so the only thing that
-    changes on the swipe is how many there are and where they stand.
+    An eye level view from across the road, the fence and the shoulder in the foreground and the
+    ranks receding behind it, so the count is felt as a lot a driver passes rather than a chart.
   bands: >
     Top third, the sky holding the hook and dek. Middle third, the eleven ranks receding, mesquite
     at their edges. Bottom third, the caliche lot and the near ranks, the green sign at the near
@@ -606,7 +611,7 @@ art:
 
 type:
   hook: "Laredo will ask its voters."
-  dek: "Its council voted 7-2 for a nonbinding referendum in May on spending $1 million a year to keep 165 cameras."
+  dek: "Its council voted 7 to 2 for a nonbinding referendum in May on spending $1 million a year to keep 165 cameras."
   labels: []
 
 verbatim: []
@@ -615,7 +620,7 @@ acceptance:
   - "the frame's median L* at 432px is between 20 and 40"
   - 'the hook reads "Laredo will ask its voters."'
   - "the code draws exactly the figure's count of poles, 165, and window.__txDrawn says so"
-  - "the poles are the same size at 432px as the poles on frame 7"
+  - "a chain link fence runs across the foreground in front of the poles"
   - "mesquite stands at the edges of the lot"
   - "a green town limit sign stands at the near left corner"
 
