@@ -352,7 +352,7 @@
   };
   N.sign = function (K, R, TXT, at, rotY, glow, tint) {
     var sg = K.make('city_limit_sign', { glow: glow == null ? 0.8 : glow, tint: tint });
-    sg.position.set(at[0], 0, at[1]); sg.rotation.y = rotY || 0; TXT.add(R, sg); TXT.contact(R, sg);
+    sg.position.set(at[0], 0, at[1]); sg.rotation.y = rotY || 0; TXT.add(R, sg);   /* no footprint quad: under a sign it reads as a detached slab */
     return sg;
   };
 

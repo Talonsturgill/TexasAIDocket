@@ -162,7 +162,7 @@ art:
     Frame median L* planned at 30.
 
 type:
-  hook: "The state stopped paying for this."
+  hook: "The state paused paying for this."
   dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's network of Flock cameras. In late August Governor Abbott ordered state agencies to pause funding them."
   labels: []
 
@@ -171,7 +171,7 @@ verbatim: []
 acceptance:
   - "the plate reader, not the streetlight, is the largest dark object beside the hook"
   - "the frame's median L* at 432px is between 22 and 40"
-  - 'the hook reads "The state stopped paying for this."'
+  - 'the hook reads "The state paused paying for this."'
   - "the pole, its two panels and the camera head all read at 432px as one plate reader on a pole"
   - "the panels are darker than the sky directly behind them at 432px"
   - "a streetlight with a lit head stands on the frame"
@@ -358,7 +358,7 @@ art:
     at 26.
 
 type:
-  hook: "At least 14 cities and counties shut them off."
+  hook: "At least 14 cities and counties shut cameras off."
   dek: "More than 900 Flock cameras went dark after the state money was rescinded in late August. Plano, Robinson and Kendall County ended their contracts."
   labels: []
 
@@ -366,7 +366,7 @@ verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 18 and 36"
-  - 'the hook reads "At least 14 cities and counties shut them off."'
+  - 'the hook reads "At least 14 cities and counties shut cameras off."'
   - "the code draws exactly the figure's count of signs, 14, and window.__txDrawn says so"
   - "the near signs read as green signs with a white border at 432px"
   - "the horizon runs across the frame below the dek's last line"
@@ -380,14 +380,14 @@ risks:
 slide: 5
 layout: FIGURE_SCALE
 primary_image:
-  subject: "the plate reader unbolted and lying whole on a dry caliche shoulder beside its bare footing and four anchor bolts, a worker in a vest bent over the bolts for scale, a white work pickup behind, and a surveyor's rod with 60 graduations standing by the footing, seen from a standing eye with a mesa on the horizon"
+  subject: "the plate reader unbolted and lying whole on a dry caliche shoulder beside its bare footing and four anchor bolts, a worker in a vest at the footing for scale, a white work pickup behind, and a surveyor's rod with 60 graduations standing by the footing, seen from a standing eye with a mesa on the horizon"
   rect: [0, 0, 1080, 830]
   bleeds: [left, right, top]
 accent: none
 job: >
-  Show what a removal order does to the object, and the clock El Paso put on it.
+  Show what the filed item called for, and the clock it carried as filed. The council passed it as revised, and the frame is read as what the filed text calls for.
 
-claims: [c32, c33]
+claims: [c32]
 numerals:
   - value_from: c32
 
@@ -420,15 +420,15 @@ art:
     planned at 28.
 
 type:
-  hook: "El Paso gave it 60 days."
-  dek: "On September 15th the council directed the removal of every Flock fixed camera under city control. It told the city manager not to sign or renew a contract with Flock or another provider of fixed plate reader cameras."
+  hook: "El Paso took up a 60 day clock."
+  dek: "As filed, the September 15th item called for removing every Flock fixed camera under city control within 60 days. The council passed it as revised."
   labels: []
 
 verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
-  - 'the hook reads "El Paso gave it 60 days."'
+  - 'the hook reads "El Paso took up a 60 day clock."'
   - "the code paints exactly the figure's count of bands on the rod, 60, and window.__txDrawn says so"
   - "the pole lies on the ground with its panels and camera head still attached"
   - "the footing shows four bolts standing up and no pole"
@@ -546,7 +546,7 @@ art:
 
 type:
   hook: "Kyle kept its contract, 6 to 1."
-  dek: "Its $205,000 grant for 2026 has not arrived. Of that, $80,000 would help pay for these 32 Flock cameras."
+  dek: "Its $205,000 grant for 2026 had not arrived, the Tribune reported. Of that, $80,000 would help pay for these 32 Flock cameras."
   labels: []
 
 verbatim: []
@@ -635,16 +635,13 @@ primary_image:
   bleeds: [left, right, bottom]
 accent: none
 job: >
-  End where the decision is made, in a room a reader can walk into, and name the next dates.
+  End where the decision is made, in a room a reader can walk into, and name the next one: League City's nonbinding vote.
 
-claims: [c34, c2]
+claims: [c34, c35]
 numerals:
   - value_from: c34
-  - computed_by: "compute.py, laredo_yes plus laredo_no, the votes cast on c2, drawn as dais chairs and never printed"
 
-data_in_art:
-  figure: laredo_votes_cast
-  drives: chair count at the dais, one chair per vote cast on Laredo's referendum call
+data_in_art: none
 
 depth:
   eye: 1.15
@@ -671,16 +668,16 @@ art:
     at 26.
 
 type:
-  hook: "Your council decides this in public."
-  dek: "League City votes on November 3rd, on a question its council called on August 11th."
+  hook: "League City decides next."
+  dek: "Its voters answer a nonbinding question on November 3rd. The council called it on August 11th."
   labels: []
 
 verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 14 and 34"
-  - 'the hook reads "Your council decides this in public."'
-  - "the code draws exactly the figure's count of chairs at the dais, 9, and window.__txDrawn says so"
+  - 'the hook reads "League City decides next."'
+  - "all nine dais chairs read at 432px"
   - "the dais reads as a council dais at 432px"
   - "the room has walls and a floor, never a flat colour behind the dais"
   - "nobody sits in the chamber"
