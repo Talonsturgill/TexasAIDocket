@@ -4186,6 +4186,10 @@
     {
      "date": "2026-09-30",
      "note": "That the county is out of the plate reader contract is unconfirmed this time. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote was found to read instead."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "That the county is out of the plate reader contract is still unconfirmed. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote has been posted to read instead."
     }
    ]
   },
@@ -5457,6 +5461,10 @@
     {
      "date": "2026-09-30",
      "note": "That the county's request for authority over data centers still stands is unconfirmed this time. Both published accounts sit on sites that bar automated readers, and the resolution itself was not found posted."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "That the county's request for authority over data centers still stands is unconfirmed. The published accounts sit on sites that bar automated readers, and the resolution itself has not been found posted."
     }
    ]
   },
@@ -14351,6 +14359,10 @@
     {
      "date": "2026-09-30",
      "note": "The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind a barrier to automated readers, and nothing on the record shows the court undoing it."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind barriers to automated readers, and nothing on the record shows the court undoing it."
     }
    ],
    "unreachable": {
@@ -17382,6 +17394,10 @@
     {
      "date": "2026-09-30",
      "note": "The department's account of the bridge demonstration is unconfirmed this time, because its site would not serve the page."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page."
     }
    ],
    "unreachable": {
@@ -18036,8 +18052,20 @@
      "date": "2026-09-30",
      "note": "The court's docket still sets oral argument in the court reporters' mandamus proceeding for October 6th.",
      "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers, and the court's published submission schedules do not yet list an October sitting for 2026."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "search.txcourts.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-01",
+    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around."
+   }
   },
   {
    "title": "Frontera's queues close permanently on October 1st, 2026",
@@ -18215,6 +18243,10 @@
     {
      "date": "2026-09-30",
      "note": "Whether Frontera's queues still close on October 1st is unconfirmed. The user guide could not be read, and no other published notice of the closing was found."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether Frontera's queues closed on October 1st as scheduled is unconfirmed. The center's user guide sits on a site that bars automated readers, and no other published notice of the closing has been found."
     }
    ]
   },
@@ -19345,7 +19377,7 @@
     }
    ],
    "id": "tx-2026-0139",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-09",
@@ -19389,6 +19421,11 @@
     {
      "date": "2026-09-30",
      "note": "The grid operator's calendar still carries the workshop on curtailing a large load under Senate Bill 6.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The grid operator's notice still sets the October 6th workshop on how a large load would be curtailed under Senate Bill 6.",
      "checked": true
     }
    ]
@@ -22539,6 +22576,10 @@
     {
      "date": "2026-09-30",
      "note": "The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county's own archive lists meeting dates without the item's text."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and nothing on the record shows the promise withdrawn."
     }
    ],
    "last_verified": "2026-09-26",
@@ -22668,6 +22709,10 @@
     {
      "date": "2026-09-30",
      "note": "The clerk's request is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the clerk's request to buy minute writing software is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site."
     }
    ],
    "last_verified": "2026-09-26",
@@ -22788,6 +22833,10 @@
     {
      "date": "2026-09-30",
      "note": "The surveillance policy item is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the county has acted on its policy for AI in surveillance is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site."
     }
    ],
    "last_verified": "2026-09-26",
@@ -23501,7 +23550,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-20",
@@ -23541,6 +23590,11 @@
     {
      "date": "2026-09-30",
      "note": "Texas Southern still holds one of the regional nodes in the foundation's network, and the award's dates have not moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Texas Southern's regional node in the foundation's network still carries the award date and the October 1st start the award record gave it.",
      "checked": true
     }
    ]
@@ -24469,7 +24523,7 @@
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
    "id": "tx-2026-0187",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-24",
@@ -24483,6 +24537,11 @@
     {
      "date": "2026-09-30",
      "note": "The commission's order adopting the large load interconnection rule still reads as filed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The commission's adopted large load interconnection rule still reads as the order filed it, security requirement and dropped interconnection fee included.",
      "checked": true
     }
    ]
@@ -24999,6 +25058,11 @@
     {
      "date": "2026-09-28",
      "note": "Admitted on the commission's own rule and staff's pro forma, with a hearing report on how many utilities have filed."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The adopted wildfire plan rule and staff's pro forma still read as filed. The blueprint still lists cameras among measures a utility may use, with no requirement to deploy them.",
+     "checked": true
     }
    ],
    "claims": [
@@ -25157,7 +25221,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-09-28"
+   "last_verified": "2026-10-01"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -25201,6 +25265,11 @@
     {
      "date": "2026-09-28",
      "note": "Admitted on the commission's own order and the utility's first annual report under it."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The commission's order still names AI camera fire detections among the metrics, and the utility's annual report under it still counts cameras rather than detections.",
+     "checked": true
     }
    ],
    "claims": [
@@ -25296,7 +25365,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-09-28"
+   "last_verified": "2026-10-01"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",

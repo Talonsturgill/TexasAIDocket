@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-30",
+    "generated": "2026-10-01",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -389,8 +389,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Wed, 30 Sep 2026 06:20:03 GMT",
-      "hash": "1e245e0c5d06b659217f662aa462ccd8aa3bf2c5062b1810a3d65450cf37d24a",
+      "last_modified": "Thu, 01 Oct 2026 06:20:53 GMT",
+      "hash": "2bae063b724ed82c824309d7d5abb3c0f339129e7924f878e6744c2cdfc84f8a",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -561,6 +561,18 @@
       "hash": "5d5e7365aa3ba2b02f6ac6e50f756497da99e8881b7d1c4a3fca0b4b67cf284c",
       "proven": []
     },
+    "https://ftp.puc.texas.gov/public/puct-info/agency/resources/pubs/news/2026/PUCT-Announces-Blueprint-Guidelines-for-Utility-Wildfire-Mitigation-Plans.pdf": {
+      "etag": "\"4147fee9acedc1:0\"",
+      "last_modified": "Fri, 17 Apr 2026 18:49:32 GMT",
+      "hash": "7fc62357ace1a5dfab88c9d8d17455ce96395a388dfd62deeeab343d0eca15e7",
+      "proven": []
+    },
+    "https://ftp.puc.texas.gov/public/puct-info/agency/rulesnlaws/subrules/electric/25.60/25.60.pdf": {
+      "etag": "\"48b0dcf7a064dc1:0\"",
+      "last_modified": "Wed, 03 Dec 2025 22:05:43 GMT",
+      "hash": "06ff2a1e79b13f1bcfbf67d50271e0df7a8506826029c971dc780a2ac90b3902",
+      "proven": []
+    },
     "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin": {
       "etag": null,
       "last_modified": null,
@@ -634,6 +646,24 @@
         "tx-2026-0162-c9"
       ]
     },
+    "https://interchange.puc.texas.gov/Documents/57463_108_1518793.PDF": {
+      "etag": "\"42ecd47bbf1db1:0\"",
+      "last_modified": "Thu, 10 Jul 2025 16:54:20 GMT",
+      "hash": "9088fc692c9ad28ad46702d60ba9b3dc6559dea391ada109e166cd1fd532a750",
+      "proven": []
+    },
+    "https://interchange.puc.texas.gov/Documents/57463_2_1452818.ZIP": {
+      "etag": "\"1c5b742d2c5bdb1:0\"",
+      "last_modified": "Tue, 31 Dec 2024 02:32:03 GMT",
+      "hash": "86070e5ebff8e455bbbaa44f21d590be07dd1e413f34b43c77af9d79190d82c0",
+      "proven": []
+    },
+    "https://interchange.puc.texas.gov/Documents/57941_7_1637275.PDF": {
+      "etag": "\"a5b9fe55a7d9dc1:0\"",
+      "last_modified": "Fri, 01 May 2026 20:16:03 GMT",
+      "hash": "a0a381652dda1400bd6eaf3e4b28deb4bb4479fa97e9022513dd93f919ba826e",
+      "proven": []
+    },
     "https://interchange.puc.texas.gov/Documents/58481_218_1684654.PDF": {
       "etag": "\"d97376819a47dd1:0\"",
       "last_modified": "Fri, 18 Sep 2026 18:21:21 GMT",
@@ -650,6 +680,24 @@
       "etag": "\"33f332b2137dd1:0\"",
       "last_modified": "Fri, 28 Aug 2026 19:11:35 GMT",
       "hash": "e4b2b9293b4566b5e93749e91f8795b46edbbd1597255ab1d5ba842e85b6841b",
+      "proven": []
+    },
+    "https://interchange.puc.texas.gov/Documents/59053_14_1570011.PDF": {
+      "etag": "\"ffb4cf6e1379dc1:0\"",
+      "last_modified": "Mon, 29 Dec 2025 22:35:28 GMT",
+      "hash": "8ea9bc9368dc7b8e545a1665e076ebc7aaa90e63b721e6f36d7ea47a0c82908d",
+      "proven": []
+    },
+    "https://interchange.puc.texas.gov/Documents/59053_19_1582214.ZIP": {
+      "etag": "\"ed898ce0e096dc1:0\"",
+      "last_modified": "Thu, 05 Feb 2026 20:49:09 GMT",
+      "hash": "584f9d5b428143747f451ad6e0e2f88e2ba67f55268c198a21513d41861a55c5",
+      "proven": []
+    },
+    "https://interchange.puc.texas.gov/Documents/59053_20_1620229.PDF": {
+      "etag": "\"4210461227c9dc1:0\"",
+      "last_modified": "Fri, 10 Apr 2026 20:17:36 GMT",
+      "hash": "b7887ca659a139c2032fd6ed4e55fe827e90a881bab97fa17e3a149b4af2c30f",
       "proven": []
     },
     "https://interchange.puc.texas.gov/Documents/59142_52_1675837.ZIP": {
@@ -1256,6 +1304,14 @@
       "hash": "37de56d2dac3ad8e0af52a545ffd2862ceeb8c2fbb522c8a100ab0607ccd100c",
       "proven": []
     },
+    "https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "79ff75d3213a7182bc5c74923f08c40539f2c21d8f5913638369c3d24d43121f",
+      "proven": [
+        "tx-2026-0191-c14"
+      ]
+    },
     "https://taylortx.new.swagit.com/videos/396213": {
       "etag": "W/\"5f5c8904f1324711c18bf0ddba3aff36\"",
       "last_modified": null,
@@ -1786,7 +1842,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "6a540aa3faf768cbda1c0f3bbbd9eefd13637d55a8d0a4713014bfa657acb12e",
+      "hash": "147a6b34fe61be6a49295ce0b783040792df1363afb8774ea9a9fd08a14ddd2e",
       "proven": [
         "tx-2026-0139-c1",
         "tx-2026-0139-c2",
@@ -1959,8 +2015,8 @@
     },
     "https://www.hayscountytx.gov/Archive.aspx?AMID=71": {
       "etag": null,
-      "last_modified": "Wed, 30 Sep 2026 06:20:50 GMT",
-      "hash": "891f7c635ffba751cdbe79a51ab3ff81f698ecb1a5606c608f6468d284391663",
+      "last_modified": "Thu, 01 Oct 2026 06:23:52 GMT",
+      "hash": "7d293b1c2520ffc21e8697cafe72d30f0039d4f354740805ac425104eb15c138",
       "proven": [
         "tx-2026-0168-c7",
         "tx-2026-0169-c6",
@@ -2241,6 +2297,15 @@
         "tx-2026-0162-c8"
       ]
     },
+    "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "d92dc73cbd0cc8f1020e1069b7c34963dbc98352eb9013674dc68e9d5af92758",
+      "proven": [
+        "tx-2026-0191-c15",
+        "tx-2026-0192-c9"
+      ]
+    },
     "https://www.sanangelo.gov/803/Data-Center-Information": {
       "etag": null,
       "last_modified": null,
@@ -2386,6 +2451,18 @@
       "hash": "b473d96228fbc2d30345b9c0c21a904af9845a0a2317f3708d3d362f5c0ddbc7",
       "proven": [
         "tx-2026-0182-c2"
+      ]
+    },
+    "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/": {
+      "etag": null,
+      "last_modified": "Tue, 22 Sep 2026 21:17:30 GMT",
+      "hash": "6bcdf96feb9783cd5fba61c15139e3ba5bbb9ab193646cab52cfc242189db34d",
+      "proven": [
+        "tx-2026-0191-c10",
+        "tx-2026-0191-c11",
+        "tx-2026-0191-c12",
+        "tx-2026-0191-c13",
+        "tx-2026-0191-c9"
       ]
     },
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
