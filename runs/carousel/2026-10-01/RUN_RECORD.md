@@ -150,6 +150,32 @@ self-test exits 0 (`media_check`, `schema_check`, `og`, `favicon`, `truetype`, `
 access, so `today`, `failed_24h` and the live `DAILY_CAP` are all unknown. Nothing is reported
 healthy from a repository default.
 
+## Did this run stop and wait for a human
+
+**Interim reading, Phase 17. Phase 19 takes the one that counts.** `prompt_audit.py` exits 1. It
+measured 1,408 tool calls and counts 465 whose permission decision took longer than its
+threshold, from 1.0 to 11.2 seconds, the longest an Agent call. The no-stall hook logged `armed`
+at 06:17:01 UTC, judged the session unattended from the start with the host's
+`CLAUDE_CODE_SESSION_ATTENDED=0`, refused nothing and logged no dialog left waiting. No call
+waited longer than 11.2 seconds and the run never stalled. These waits are consistent with an
+automatic permission check rather than a person. That reading is not established, and the counts
+are reported as the audit printed them.
+
+## Craft memory
+
+- Confirmed: `acceptance-items-need-a-floor`, `read-the-repair-at-feed-scale` and
+  `acceptance-lists-cannot-catch-their-own-frame`. Every frame passed its own checklist while the
+  critics found the faults, and two repairs (the lamp moves on 1 and 2) made new collisions.
+- Added at 0.50: `approved-as-revised-is-the-filed-text`, `a-repair-may-not-drop-the-data` and
+  `verticals-merge-in-screen-space`.
+
+## Things this run did not do
+
+- It did not merge the duplicate El Paso and UTSA records. That is a maintainer's call.
+- It did not fetch El Paso's revision text, which the council's page does not carry.
+- The panel did not score the three post cap frame changes.
+- Scanner ceiling not checked, as above.
+
 ## Gate status
 
 <!-- gate-status:begin -->
@@ -161,8 +187,8 @@ healthy from a repository default.
 | aggregates     | PASS   | 12 declaration(s), 16 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.59 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 83 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 6 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 31,692 chars planned |
 | caption        | PASS   | 151 words |

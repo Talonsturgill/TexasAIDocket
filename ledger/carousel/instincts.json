@@ -297,7 +297,8 @@
         "2026-09-03",
         "2026-09-26",
         "2026-09-27",
-        "2026-09-28"
+        "2026-09-28",
+        "2026-10-01"
       ],
       "contradicted": []
     },
@@ -308,7 +309,8 @@
       "evidence": "Slide 5 passed all five of its acceptance items while reading as a Gantt chart that asserted start times the record does not state, with the contradicting caption on the same frame. The list checked edges, proportions, light and labels and never asked whether it read as a chart.",
       "confirmed": [
         "2026-08-21",
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-01"
       ],
       "contradicted": []
     },
@@ -592,7 +594,8 @@
         "2026-09-20",
         "2026-09-27",
         "2026-09-28",
-        "2026-09-30"
+        "2026-09-30",
+        "2026-10-01"
       ],
       "contradicted": []
     },
@@ -1173,6 +1176,30 @@
       "learned": "2026-09-30",
       "instinct": "Before the deck says a source names no date, fee or window, reread the source's own paragraph on it, because the absence the run recorded may sit one sentence past the quote it took.",
       "evidence": "2026-09-30: the storyboard said no window was in the claims, and the scoring document's rescore paragraph named one in the sentence after c11. It became c35 in round 3.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "approved-as-revised-is-the-filed-text",
+      "learned": "2026-10-01",
+      "instinct": "When a source marks an item approved as revised, print its terms only as filed, and draw nothing the filed text calls for as though it happened.",
+      "evidence": "Carousel no. 39 printed El Paso's 60 day removal as what passed and drew the pole lying beside its footing. The integrity judge failed it in round 1, and in round 2 named the picture as asserting a removal the copy now declined to state.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-repair-may-not-drop-the-data",
+      "learned": "2026-10-01",
+      "instinct": "Before a repair removes a drawn count, run figure_bearing, because the shipped deck must keep six frames that carry a computed figure and CI refuses the deck after the cap when the art loses them.",
+      "evidence": "Carousel no. 39's panel repairs removed the rod, the chairs and the Kyle field, the deck fell to 3 of 9, and shipped_check went red after the round cap, which forced three unscored post cap changes.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "verticals-merge-in-screen-space",
+      "learned": "2026-10-01",
+      "instinct": "Place every vertical (lamp post, rod, sign post, mast) by its projected screen x and keep 150 px between any two at feed size, because two verticals in one screen column read as one object.",
+      "evidence": "On carousel no. 39 critics named a merge in four rounds running: a lamp arm onto a pole bracket, a rod onto a lamp post, a lamp mast through a sign post and through a label.",
       "confirmed": [],
       "contradicted": []
     }
