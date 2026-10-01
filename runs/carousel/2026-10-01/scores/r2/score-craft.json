@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Better than round 1, and the fixes are visible. Slide 2's dark ellipse is gone and the label now sits on clean sky. Slide 4's near third has lane patch seams and denser shoulder grass. Slide 5's two rut slabs are gone. Slide 1's sign now has contact at its post bases. What is left keeps this below the 7 descriptor, which allows one weak frame. (1) Slides 7 and 8 still share a camera, front ranks and the lamp at x ~280-490, and slide 3 is a third counted pole field. A third of the deck is one stamped picture, and the detail goes on repetition instead of where the argument lands. (2) Slide 4's subject is still 14 blank green rectangles. The hero is a sliver cropped at the right edge, x ~1430-1600. Faint detached blue strips still sit under the near signs at y ~1320, ~1370 and ~1440. machine_qa's top-loaded warn got worse, bottom third 61% to 73%. (3) Slide 5 still has the faceted kit pickup and a worker reaching into the cab. The striped 60-band rod stands far from the footing and reads as a striped stick. A bright horizontal streak still runs through the haze band at y ~580. (4) New on slide 9: the dek's last line ('3rd. The council called it on August 11th.', baseline y ~735) now sits on the window's top frame at y ~760 with no air. The type is not seated in quiet the picture made, and the darker strip about 12 px deep along the top edge is still there. (5) Slide 2: 'the rear of passing vehicles' is struck through by the streetlight pole at x ~220. (6) Deck-wide, value stays in one mid violet band with lamp heads as the only real lights. The foreground grass on 1 and 5 is one repeated tuft sprite. On the showstopper test, only 1 and 6 read close to a photograph of a place at an hour."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Unchanged and strong. One plate_reader in one material runs from 1 to 8 and returns in the chamber window on 9 beside the cobra-head lamp. One blue-hour sky, one grade and the lamp companion run on every frame. The declared MOTIF_EVOLUTION and CAMERA_MOVE both work, and a reader could name the spine. Slide 5 still sits outside: mesas, a bright white faceted truck that is the deck's lightest mass, and a warmer ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.7,
+   "why": "Tighter than round 1. Slide 5 now says what the record shows: 'As filed... within 60 days. The council passed it as revised.' on c32 alone, so it no longer claims the 60-day removal passed as written. Slide 7 attributes the grant status ('had not arrived, the Tribune reported'). Slide 9 adds c35 and says nonbinding. Every numeral traces: $1/2023 c15, 3,200 c17, $30M c16, 14/900 c1, 60 c32, 6 to 1 c9, 4 to 2 c23, $205,000/$80,000/32 c8, 7 to 2/$1M/165 c2/c3, Nov 3rd/Aug 11th c34. Still Tribune-reliant for the statewide figures and the Governor's order where MVCPA records existed. Slide 4's 'rescinded' still sits against slide 1's 'paused', both sourced."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "The close is now concrete: 'League City decides next.' names the body, a nonbinding question and November 3rd, and Laredo's May vote is on 8. In exchange, El Paso's beat is muddier. A reader of 'took up a 60 day clock' and 'passed it as revised' can't tell what El Paso actually ordered. Readers outside League City and Laredo get no action of their own."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover still earns the swipe ('The state paused paying for this.'), the turn at 6 lands and the close lands on a dated decision. Slide 2 is still a detour before the money pays off on 3. The swipe from 7 to 8 still shows nearly the same picture. 4 and 5 are both 'turned off' beats."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Still plain and Texan in places: 'It runs on sunlight and a cell signal.', 'Same pole. Two councils.' The integrity rewrites cost register. Slide 5's dek 'As filed, the September 15th item called for...' reads like a clerk's minute, and 'took up a 60 day clock' is strained. The caption's 'El Paso amended and passed an item that as filed gave its fixed Flock cameras 60 days.' is the deck's flattest line. 'The state paused paying for this.' is slightly awkward next to round 1's version. No house-rule breaks found."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Unchanged. The counted instanced fields (3, 7, 8) repeat no. 37's 813 gensets and no. 38's 3,000/1,000 desks. The shared-camera count pair repeats no. 38 and no. 35. A pole-mounted camera as chassis hero is three decks after no. 36's wildfire_camera_station. A blue-hour roadside echoes no. 34, and the hearing-room close echoes no. 36. The palette is fresh against nos. 35 to 38."
+  }
+ ],
+ "weighted_score": 7.14,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frame 8's field of 165 poles with a different picture of Laredo (a single dark pole against Laredo's own street, with the 165 left to the dek), and redraw frame 4 with a switched-off plate reader large in the near third instead of 14 blank signs. Those two frames carry most of the deck's repetition and its weakest focal, and they are why the art criterion is stuck near 6.",
+ "lens": "craft"
+}

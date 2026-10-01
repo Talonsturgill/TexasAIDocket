@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame is a rendered blue-hour place with sky, haze and contact. Frame 3's field and frame 6's pair are strong. Frame 5 is better: the plate reader stands whole on its footing beside a lit cobra-head, a grade rod and a worker, with buttes on a third. Frame 7 is now a close single pole between live oaks and no longer duplicates frame 8. Remaining faults: 1) The town limit signs on 1, 2 and 4 are still flat blank green panels. They read as placeholders at feed size, and they are frame 4's whole subject. 2) On slide 7 the plate reader's thin antenna mast rises into the dek and passes behind 'would help pay' at about x=800, y=740-800 (display coords), so type crosses the hero. 3) Frame 5's pickup is still slab-shaded and primitive. The worker faces the truck with a hand at their head rather than pointing at the pole as described, and the striped rod still means nothing to a reader. 4) Four of nine frames (1, 2, 5, 7) are now the same lone-pole composition. That is more than the 7 descriptor's single default."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.9,
+   "why": "One blueHour world from one chassis, one plate_reader hero in one black powder coat, and the cobra-head streetlight as the key on every exterior frame. The spine reads by state: on, multiplied, dark, standing under a clock, the pair, kept, multiplied, absent. Frame 9's interior is the one declared cut. Frames 7 and 8 are no longer one picture. The green-sign motif still dies after frame 4."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "The repairs hold. Slide 5's hook 'El Paso voted on a 60 day clock.' and its dek 'As filed ... The council passed it as revised on September 15th.' match c32 and tx-2026-0147, and the art now shows nothing removed. Slide 9's 'League City votes next.' matches c34 and c35. Slide 1 ('paused', reason from c12), slide 4 ('shut cameras off'), slide 7 ('had not arrived, the Tribune reported') and the web edition's Kyle sentence ('had not arrived when the Tribune reported') are all faithful. Every numeral traces through figures.json. Still open: (a) slide 2's hook 'It runs on sunlight and a cell signal.' generalizes College Station's description of its own cameras (c25) to the device. (b) Kyle's 6-1, Laredo's 7-2 with its $1 million and 165 cameras, the 2023 statute and the Governor's order rest on the Tribune alone, where city agendas, minutes and the statute exist. (c) Slide 1 puts 'AI-powered surveillance devices' in quotation marks with no speaker, so a reader can't tell they are the Tribune's words rather than the Governor's. (d) Slide 6's chief quote stops at 'it would take,' which is verbatim as far as it goes, with the meaning intact. (e) The caption's reasonable-suspicion sentence rests on c27, which first_comment.txt doesn't list. The source document is listed, and the sources_block rule explains the omission, so this is bookkeeping and not a missing source. That leaves the work traceable throughout, with journalism standing in where filings existed and two phrasings looser than their source, which is the 7 descriptor."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "A Texan learns what happened: the fee built the network, the state paused, and towns split. Five councils are named with votes and dates. The close names a body, a date and an instrument: League City voters, November 3rd, a nonbinding question. Laredo's May vote is named too. A reader outside those two cities still gets no route to their own council's decision, so the wider stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe. Frame 2 is a how-it-works detour before frame 3 pays. Frame 6 is the declared turn. Frame 7 (Kyle kept) repeats frame 6's College Station 'kept' beat, so one of the two is cuttable. The close lands on a dated fact."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and clean. I found no house-rule breaks in the new strings: no colons, no banned words, ordinals throughout, no year on in-year dates and straight quotes. 'Same pole. Two councils.' still carries the deck, and 'El Paso voted on a 60 day clock.' is plainer and better than round 2's 'took up'. The flat lines are 'How it works' and 'Where it is decided'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.8,
+   "why": "Unchanged, with several familiar moves. A camera on a mast over a plain with buttes repeats no. 36 (2026-09-28). This is the third deck running built on fields of instanced counted units: no. 37's 813 units, no. 38's desks, and here 3,200 and 165 poles. The empty hearing room of public seats is no. 36's. The opening move, a lone hero at a low three-quarter, is no. 38's. Blue hour is no. 34's. The deck also retells no. 12's whole topic 32 days on, after no. 30 refused this Flock story as LIKELY REPEAT 0.74."
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Next time, give the scale frames a structure the last four decks did not use instead of a third straight one-unit-per-count instanced field, and replace the blank green town limit panel, which reads as a placeholder on the cover and is frame 4's whole subject, with a sign that reads as real reflective sheeting or with a different motif.",
+ "lens": "integrity"
+}

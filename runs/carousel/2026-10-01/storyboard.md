@@ -379,7 +379,7 @@ risks:
 slide: 5
 layout: FIGURE_SCALE
 primary_image:
-  subject: "the plate reader still standing whole on its footing at the shoulder of a far west road at blue hour, a broken tan ridge on the horizon, the lit lamp across the road"
+  subject: "the plate reader still standing whole on its footing at the shoulder of a far west road at blue hour, a grade rod beside it painted in 60 bands, a broken tan ridge on the horizon, the lit lamp across the road"
   rect: [0, 0, 1080, 830]
   bleeds: [left, right, top]
 accent: none
@@ -390,7 +390,9 @@ claims: [c32]
 numerals:
   - value_from: c32
 
-data_in_art: none
+data_in_art:
+  figure: el_paso_days
+  drives: graduation count on the grade rod, one painted band per day
 
 depth:
   eye: 1.6
@@ -424,6 +426,7 @@ type:
 verbatim: []
 
 acceptance:
+  - "the code paints exactly the figure's count of bands on the rod, 60, and window.__txDrawn says so"
   - "the frame's median L* at 432px is between 20 and 38"
   - 'the hook reads "El Paso voted on a 60 day clock."'
   - "the plate reader stands on its footing with its panels and camera head"
@@ -515,7 +518,9 @@ numerals:
   - value_from: c9
   - value_from: c8
 
-data_in_art: none
+data_in_art:
+  figure: kyle_cameras
+  drives: instance count, the close camera and the rest of the 32 receding behind it in a line
 
 depth:
   eye: 3.0
@@ -527,7 +532,7 @@ composition:
   structure: >
     The one close detail in the deck: the camera at the head's own height a few metres off, looking a little up, so the panels stand against the sky and the switched on camera head is the largest object the deck shows.
   bands: >
-    Top third, the sky holding the hook and dek. Middle third, the panels and the lit camera head. Bottom third, the pole running down past the road, the live oak and the verge.
+    Top third, the sky holding the hook and dek. Middle third, the panels and the lit camera head, the line of the other poles receding into the haze behind it. Bottom third, the pole's dark powder coat mast running down through the foreground, the fence posts throwing soft shadows on the verge grass texture, the live oak trunks lit at the edges.
   focal: "the camera head with its IR ring lit"
 
 art:
@@ -545,6 +550,7 @@ type:
 verbatim: []
 
 acceptance:
+  - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
   - "the frame's median L* at 432px is between 20 and 38"
   - 'the hook reads "Kyle kept its contract, 6 to 1."'
   - "the camera head reads as a camera at 432px, separate from the panels"
@@ -627,11 +633,14 @@ accent: none
 job: >
   End where the decision is made, in a room a reader can walk into, and name the next one: League City's nonbinding vote.
 
-claims: [c34, c35]
+claims: [c34, c35, c2]
 numerals:
   - value_from: c34
+  - computed_by: "compute.py, laredo_yes plus laredo_no, the votes cast on c2, drawn as dais chairs"
 
-data_in_art: none
+data_in_art:
+  figure: laredo_votes_cast
+  drives: chair count at the dais, one chair per vote cast on Laredo's referendum call
 
 depth:
   eye: 1.15
@@ -659,7 +668,7 @@ art:
 
 type:
   hook: "League City votes next."
-  dek: "Its voters answer a nonbinding question on November 3rd. The council called it on August 11th."
+  dek: "Its voters answer a nonbinding question on November 3rd. Laredo's council voted 7 to 2 to ask its own in May."
   labels: []
 
 verbatim: []

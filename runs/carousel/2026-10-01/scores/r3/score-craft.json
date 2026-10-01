@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.7,
+   "why": "Clear progress. Slide 7 is now a close hero: the two panels show their cell grid and catch the sky, the camera head is on its clamp, live oak sits on the horizon and a barbed wire fence runs in the near third. It is the most finished frame in the deck. Slide 5 now stands the plate reader on its footing as a tall vertical bleeding the top, with the 60-band rod, lamp, worker and truck in one plane, and its top-loaded warn is gone. Slide 2's lamp mast no longer crosses the label (mast at x ~65, label from x ~135). Slide 9's dek now has about 35 px of air above the window frame (baseline y ~750, frame y ~785). Still short of the 7 descriptor, which allows one weak frame. (1) Slide 4 is unchanged in substance. Its subject is 14 blank green rectangles, the hero is a sliver at x ~1430-1600, and the top-loaded warn is still there at 67%. (2) Slide 5 still uses the faceted kit pickup and the game-asset worker, who has a hand to his face. The rod still reads as a striped stick rather than a clock. Muddy dark scrim patches sit around the hook and dek (y ~1170-1210 under the pole base, y ~1640 at mid-left). (3) New on slide 7: the LTE puck mast tip runs up into the dek and ends under 'would' at x ~800, y ~740, with a dark halo, so a geometry edge strikes a line of type. The live oak at right has a pale, almost white trunk. The 'Hill Country road' in the brief is not in frame; it is pasture and fence. (4) Slides 3 and 8 are still instanced count fields. They are no longer adjacent or alike, which helps. (5) Deck-wide, value sits in one mid violet band and the lamp heads are the only real lights. The grass is one repeated tuft sprite (slides 1 and 5 foregrounds), and slide 9 still has a darker strip about 12 px deep along its top edge. On the showstopper test, 1, 6 and now 7 read close to a place at an hour."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.2,
+   "why": "Stronger than round 2. The same plate_reader appears on every frame, including through the chamber window on 9. Its state now runs on, multiplied, off, standing under a clock, paired, alone up close, multiplied, then seen through glass. A reader could name that spine. Slide 7's close-up breaks the field rhythm without leaving the world: same blue hour, same lamp, same grass. Slide 5 now shares the deck's vertical-pole grammar, but its mesas, white faceted truck and warmer ground still sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every numeral still traces: $1/2023 c15, 3,200 c17, $30M c16, 14/900 c1, 60 c32, 6 to 1 c9, 4 to 2 c23, $205,000/$80,000/32 c8, 7 to 2/$1M/165 c2/c3, November 3rd/August 11th c34. Slide 7 dropped 'these 32', so the single pole no longer claims to be the count. Slide 5's 'as filed... passed it as revised' stays faithful to c32. One new looseness: slide 1's dek quotes \"AI-powered surveillance devices\" with no speaker. The words are the Tribune's (c12 quote), and on a cover a reader will likely take them as the Governor's. The statewide figures are still Tribune where MVCPA records existed, and slide 4's 'rescinded' still sits against slide 1's 'pause'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6,
+   "why": "The cover now gives why the funding was paused (scrutiny), and the close names League City, a nonbinding question and November 3rd. Laredo has May. 'El Paso voted on a 60 day clock' is clearer than round 2's hook, though the dek still leaves a reader unsure what passed. Readers outside the named cities get no act or date of their own."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "The stall from 7 to 8 is gone. Slide 7 is a close detail and slide 8 a field, so the swipe moves. The cover earns it, the turn at 6 lands and the close lands on a dated vote. Slide 2 is still a how-it-works detour before the money on 3. Slides 4 and 5 are both 'turning off' beats."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Still good in the hooks: 'It runs on sunlight and a cell signal.', 'Same pole. Two councils.', 'League City votes next.' Slide 5's dek ('As filed, the item called for...') still reads like a clerk's minute. The caption's 'El Paso amended and passed an item that as filed gave its fixed Flock cameras 60 days.' is unchanged and still the flattest line. The cover dek has grown to seven lines and reads heavy for slide 1. No house-rule breaks found."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The shared-camera count pair is gone, and with it the repeat of nos. 35 and 38. Two counted instanced fields remain (3 and 8), which nos. 37 (813 gensets) and 38 (3,000 desks) both used. A pole camera as chassis hero comes three decks after no. 36, a blue-hour roadside echoes no. 34, and the hearing-room close echoes no. 36. The palette is fresh."
+  }
+ ],
+ "weighted_score": 7.3,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Recompose frame 4 the way frame 7 was recomposed. Put one switched-off plate reader large in the near third on the shoulder, with the 14 signs dropped or given real legends, so the frame's subject is the dark camera and not a row of blank green rectangles. It is the one frame named in all three rounds, the last frame whose focal is a prop, and the only one with a dead lower zone that keeps coming back.",
+ "lens": "craft"
+}

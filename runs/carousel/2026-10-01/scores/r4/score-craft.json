@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "At the 7 descriptor: strong overall, with one frame on primitive models. Slide 4 is fixed in substance. The switched-off plate reader stands whole on the right shoulder, base and contact at y ~1780, panels against the brightest sky at y ~840-935, and the 14 signs recede to its left. machine_qa's top-loaded warn on 4 is gone (bands 0.34 / 0.53 / 0.39, ratio 0.94). Slide 7's puck mast now stops at y ~965, well clear of the dek, so the panel close-up is clean. 1, 4, 6 and 7 now pass the showstopper test well enough: a blue-hour roadside or pasture with a haze horizon and a hero at true scale. Below 7 for these reasons. (1) Slide 5 is the one frame on primitive models: the faceted kit pickup, the kit worker now pointing an arm at the pole, and the 60-band rod, which still reads as a striped stick. The dark veil under the pole base still pools around the hook ('El Paso voted on' at y ~1170-1220) and between the hook and dek (y ~1450-1500). (2) Slide 4's signs are still blank green rectangles. Faint blue footprint strips are still visible under the near three at y ~1340, ~1395 and ~1470. (3) Slides 3 and 8 are still instanced count fields. (4) Deck-wide, value sits in one mid violet band with the lamp heads as the only true lights. The grass is one repeated tuft sprite (foregrounds of 1 and 5). Slide 7's live oak has a pale, near-white trunk. Slide 9 keeps a darker strip about 12 px deep along its top edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.3,
+   "why": "Every frame now has the plate reader as its focal or its echo: 1, 2, 4, 5, 6 and 7 single, 3 and 8 multiplied, and 9 through the chamber window. Its state reads in order: on, multiplied, off, under a clock, paired, alone up close, multiplied, through glass. One blue hour, one lamp and one grass run through. Slide 5 still sits slightly outside: Far West mesas, a bright white faceted truck that is the deck's lightest mass, and a warmer ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Slide 1's quote is now attributed (\"... 'AI-powered surveillance devices' mounted, the Tribune reported\"), which closes my round 3 point. Every numeral still traces: $1/2023 c15, 3,200 c17, $30M c16, 14/900 c1, 60 c32, 6 to 1 c9, 4 to 2 c23, $205,000/$80,000/32 c8, 7 to 2/$1M/165 c2/c3, November 3rd/August 11th c34. Slide 5 stays faithful to c32's 'as filed, passed as revised'. Short of 10 because the statewide figures and the Governor's order rest on the Tribune where MVCPA records and an executive statement existed, and slide 4's 'rescinded' still sits against slide 1's 'pause'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6,
+   "why": "What happened, who decided and where are all named across the deck. The close gives League City, a nonbinding question and November 3rd, and Laredo has May. El Paso's beat is honest but still leaves a reader unsure what the revised item ordered. Readers outside the named cities get no act or date of their own."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "The cover earns the swipe, 6 turns, 7 breaks the field rhythm with a close-up and 9 lands on a dated vote. Slide 2 is still a how-it-works detour before the money on 3, and 4 and 5 are both turning-off beats."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The caption's El Paso line now reads cleanly ('El Paso voted on a 60 day clock for its fixed Flock cameras and passed it as revised.'). The hooks stay strong. Slide 5's dek ('As filed, the item called for...') still reads like a clerk's minute. The cover dek runs to seven lines (y ~705-1105), the same length as round 3 despite the 'shorter' note, and reads heavy for a cover. No house-rule breaks found in the slides or caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "Unchanged since round 3. Counted instanced fields remain on 3 and 8, a device nos. 37 and 38 both used. A pole camera as hero comes three decks after no. 36, a blue-hour roadside echoes no. 34, and the hearing-room close echoes no. 36. The palette is fresh."
+  }
+ ],
+ "weighted_score": 7.43,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Recompose slide 5 as the last frame on kit models: drop the faceted pickup, the pointing worker and the striped rod, put the standing plate reader and its four-bolt footing close at the shoulder of an El Paso road with the Franklins on the horizon, and let the hook carry the 60 days, so that the deck's weakest frame, and the only one still on primitive models, matches slides 4 and 7.",
+ "lens": "craft"
+}

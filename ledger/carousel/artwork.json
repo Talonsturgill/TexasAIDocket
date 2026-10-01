@@ -2477,6 +2477,62 @@
     "hex": "#D7D9DA",
     "note": "The deck's declared ground, a light register deck."
    }
+  },
+  {
+   "date": "2026-10-01",
+   "carousel_no": 39,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, by out/2026-10-01/update_ledgers.py, and the gate suite by exit code.",
+   "register": "RENDERED, NOT PRINTED. One blue hour world declared once in assets/js/deck/2026-10-01-plates.js, tuned off the preset's mauve (horizonGlow 0.3, glow 0.4, clouds 0, agx), the key due west with a lit cobra head standing where it is. One hero built in the chassis (plate_reader, the Flock Falcon from its own specification, with on, off and stub states), one accent, highway green #3E8F68, only ever the sheeting of a town limit sign, and shared lots and lenses as chassis helpers.",
+   "structural_laws": [
+    "THE BLUE HOUR PRESET PRINTS MAUVE through its broad horizon glow and clouds. Turn both down in the deck's own world before a frame is drawn.",
+    "BACKLIT GRASS PRINTS BLACK when the key stands behind the camera's view. Fewer, larger, lighter tufts read as pasture; dense small ones read as stipple.",
+    "A LAMP HEAD, A ROD OR A SIGN THAT SHARES A SCREEN COLUMN WITH ANOTHER VERTICAL READS AS ONE OBJECT. Every round named a merge somewhere. Place verticals in screen space, not world space.",
+    "A COUNT COMPARED ACROSS TWO FRAMES WANTS ONE LOT AND ONE LENS, filled in the same order, so only the count and the ground differ.",
+    "A CEILING OR WALL EDGE BEHIND THE HOOK READS AS A RULE THROUGH THE TYPE. Put the room's junction above the kicker or below the dek.",
+    "AN ACCENT SURFACE UNDER BLUE HOUR COOLS OFF ITS HEX. A frame whose sign reads too blue takes an emissive tint, measured at thumb scale, not a new hex."
+   ],
+   "techniques": [
+    "one plate reader on the parkway of a four lane road at blue hour, low behind its shoulder, a distribution line and the town limit sign down the road",
+    "the same pole in side view with four leaders in the city's own words, a sedan's rear in the far lane, the lit lamp in the sky band",
+    "3,200 poles as forty files and eighty ranks on a fall pasture from a raised eye just short of the first rank",
+    "a rural two lane road into the seam, fourteen town limit signs stepping out geometrically, the dark reader cropped at the right edge",
+    "a standing eye over a footing with four bare bolts, the reader lying back from it, a worker, a truck, a grade rod in sixty bands, a mesa on the horizon, the type at the foot",
+    "two identical readers on one curb from a crouch, the lamp between them, the hook and a caption under each pole on a concrete apron",
+    "32 poles filling the near ranks of one lot on a mown verge from a shared lens",
+    "165 poles filling the same lot to the vanishing point on caliche from the same lens",
+    "an empty council chamber from the centre aisle, nine dais chairs, a window behind the dais holding blue hour with a plate reader in silhouette"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     30.1,
+     27.3,
+     31.9,
+     33.4,
+     33.3,
+     33.1,
+     26.0,
+     35.8,
+     19.2
+    ],
+    "deck_median_L": 31.9,
+    "max_adjacent_delta": 16.6,
+    "mean_adjacent_delta": 5.34,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Frame 9 is the declared value cut."
+   },
+   "accent": {
+    "hex": "#3E8F68",
+    "name": "highway green, a town limit sign's sheeting",
+    "frames_above_floor": [
+     1,
+     2,
+     4
+    ],
+    "note": "Only ever a sign. Frames 1 and 2 carry one sign each, tinted toward the hex because blue hour cools it, and frame 4 carries the fourteen."
+   },
+   "ground": {
+    "hex": "#1A2133",
+    "note": "The deck's declared ground, a dark register deck."
+   }
   }
  ]
 }

@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame is a rendered blue-hour place with sky, haze and contact. Frame 3's field of 3,200 and frame 6's square-on pair are still the strongest. Frame 5 is cleaner with the kit vehicle, figure and rod gone: one whole plate reader on its footing at the shoulder, a lit cobra head across the road, and a mesquite on the left third. Three things are left. 1) Frame 5's ridge is four identical butte copies at the same height and spacing (display x 560 to 1600, y 680 to 780). The cloning reads at full size, and the landform is a mesa row rather than El Paso's broken Franklin ridge. 2) The town limit signs on frames 1, 2 and 4 are still blank green panels. At feed size, frame 1 at (330 to 545, 1245 to 1355) still reads as a placeholder, bolts and gloss notwithstanding. 3) The lone pole now carries frames 1, 2, 4, 5 and 7, so per-frame composition has converged. That is more than the 7 descriptor's 'one frame leans on a default'."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is a filmstrip. There is one blueHour world from one chassis, and one plate_reader hero in one black powder coat, unchanged in every exterior frame. The cobra head is the key on every exterior frame. The state spine reads in order (on, multiplied, dark on the shoulder, standing under a clock, the pair, kept, multiplied, absent), and frame 9's interior is the one declared cut. With frame 5's foreign kit vehicle and rod gone, nothing sits outside the deck. The green-sign motif still drops after frame 4."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "Every numeral on the slides and in the caption traces to a claim quote through figures.json: $1, 2023, 3,200, $30 million, 14, 900, 60, September 15th, September 4th, 4 to 2, 6 to 1, $205,000, $80,000, 32, 7 to 2, $1 million, 165, November 3rd, August 11th. Every caption claim's id is in first_comment.txt. Frame 1's dek credits its quoted phrase to the Tribune, and the phrase matches c12 verbatim. Frame 5 ('As filed ... The council passed it as revised on September 15th.') and the caption ('voted on a 60 day clock ... and passed it as revised') match c32. I read tx-2026-0174 in ledger/docket.json at lines 23317 to 23395. Its title, summary and both claim texts now say 'as filed', with 'Whether those terms survived the revisions is unconfirmed' and a dated 2026-10-01 history note. Two looser points remain, and neither changes what a reader believes. (a) Frame 2's hook 'It runs on sunlight and a cell signal.' generalizes College Station's description of its own cameras (c25), though the dek opens 'College Station says'. (b) Kyle's 6-1, Laredo's 7-2 with $1 million and 165, the 2023 statute and the Governor's order rest on the Tribune alone, where city records, the statute and the order exist. Frame 6's chief quote stops at 'it would take,'. It is verbatim as far as it goes and the meaning is intact. That fits the 7 descriptor, a shade above it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "A Texan learns what happened: the fee built the network, the state paused for a reason given in the Tribune's words, and the towns split. Five councils are named with their votes and dates. The close names a body, a date and an instrument: League City voters, November 3rd, a nonbinding question. Laredo's May vote is named too. A reader outside those two cities still has no route to their own council, so the wider stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe. Frame 2 is a how-it-works detour before frame 3 pays off. Frame 6 is the declared turn. Frame 7 (Kyle kept) repeats frame 6's College Station 'kept' beat, so one of the two could move without loss. The close lands on a dated fact."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and specific, with no house-rule break in the final strings. There are no colons, no banned words and no year on in-year dates. Quotes are straight, and no sentence opens with 'And' or 'But'. 'Same pole. Two councils.' and 'El Paso voted on a 60 day clock.' land. Frame 1's dek runs seven lines and reads as a wire paragraph. 'How it works' and 'Where it is decided' are generic."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.8,
+   "why": "Several familiar moves from recent decks. A camera on a mast over a plain with buttes was no. 36 (2026-09-28). Fields of instanced counted units are now three decks running: no. 37's 813 units, no. 38's desks, and here 3,200 and 165 poles. The empty hearing room of public seats was also no. 36. Opening on a lone hero at a low three-quarter was no. 38, and blue hour was no. 34. The topic retells no. 12's whole story 32 days later, after no. 30 refused this Flock story as LIKELY REPEAT 0.74."
+  }
+ ],
+ "weighted_score": 7.014,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Next time, give the scale frames a structure the last four decks did not use instead of a third straight one-unit-per-count instanced field, and replace the blank green town limit panel, which still reads as a placeholder on the cover and frame 4, with a sign that reads as real sheeting or with a different motif.",
+ "lens": "integrity"
+}

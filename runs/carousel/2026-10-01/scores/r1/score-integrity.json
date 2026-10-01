@@ -1,0 +1,53 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame is a rendered place at blue hour with a sky, haze and grounded contact. Frame 3's 3,200 poles running to the seam and frame 6's square-on pair are genuinely strong. Several frames lean on defaults, though. 1) The town limit sign is a flat, blank green rectangle and reads as a chroma-key placeholder: alone on 1 and 2, and fourteen of them are frame 4's whole subject. 2) Frame 2 puts a dark elliptical smudge behind the label 'the rear of passing vehicles' (a plate under type), and the car is an odd fastback with a ute rear. 3) Frame 5 has a primitive slab-shaded pickup, a striped rod no reader can decode (it is the 60-day encoding), and a worker reaching at empty air beside the truck rather than bent over the bolts as the dossier says. Its flat-topped buttes do not read as El Paso's Franklin ridge. 4) Frames 7 and 8 are the same picture at the near ranks. 5) machine_qa warns of a dead lower third on 4, 5 and 9. That is more than the 7 descriptor's 'one frame leans on a default'."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One blueHour world from one chassis (2026-10-01-plates.js) and one hero, the plate_reader, in one black powder coat on every exterior frame. The cobra-head streetlight is the declared key throughout and the shadows agree. The state change works as a spine: on, multiplied, dark, unbolted, kept, absent. Frame 9's interior is the one declared value cut. The green sign motif dies after frame 4, and the 7/8 pair is a repeat rather than a move, but this is clearly one filmstrip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every printed numeral traces. figures.json extracts each one from a quote by regex, 900 and 3,200 are never set against each other, and League City is never framed as a reaction to the pause. Against that: (a) c32 and c33 both record the El Paso items as 'approved as revised', yet slide 5's hook, its dek and the caption print the agenda caption's terms ('within 60 days', 'every Flock fixed camera under city control') as what passed. The revised text was never fetched (see hard_fails). (b) Slide 9's hook, 'Your council decides this in public.', is a universal no claim supports and it names no set. Kendall and Harris are commissioners courts, c19's tollway cameras are a state and DPS decision, and both League City and Laredo hand the question to voters. Its cite, 'c34 c2', borrows a Laredo claim. (c) Slide 9's nine dais chairs encode Laredo's 7+2 (laredo_votes_cast) inside a frame whose only text is League City, so the drawn count belongs to the wrong city's room. (d) Slide 2's hook, 'It runs on sunlight and a cell signal.', generalizes College Station's description of its own cameras (c25) to the device. (e) Several claims lean on journalism where filings exist: Kyle's 6-1 and Laredo's 7-2, $1M and 165 (both cities post agendas and minutes), the 2023 statute and the Governor's order. All are Tribune-only. (f) Phrasings run looser than the source: 'stopped paying' for a pause (S1). 'Shut them off' for jurisdictions that shut off some cameras, when c6 says Houston and Dallas kept much of their networks (S4). Kyle's grant 'has not arrived' is stated in the present tense on October 1st off a September 24th report (S7). (g) The caption's 'Searching its system takes reasonable suspicion.' drops c27's 'College Station says'. The first comment's id lists omit c27 and c35 even though the caption uses both."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "A Texan learns what happened (fee, then network, then pause, then towns splitting) and who decided (El Paso, Leander, Kyle, College Station and Laredo councils, by vote count and date where known). Two dates a voter can act on are named: League City on November 3rd and Laredo in May. The close's general stake, 'Your council decides this in public', comes with no route to the reader's own council agenda and no way to know whether their own town runs Flock. Outside League City and Laredo the next step is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe. Frame 2 is a how-it-works detour rather than an immediate payoff, and the money lands on 3. Frame 6 is a real declared turn. Frame 7 (Kyle kept) repeats frame 6's College Station 'kept' beat, and 7 and 8 share a camera and composition, so one of 6 and 7 is cuttable. The close lands as a civic line rather than a fact."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and on register. 'Same pole. Two councils.' and 'El Paso gave it 60 days.' are good. The caption is concrete and Texas-specific, with no boosterism and no doom, and I found no house-rule breaks (no colons, no banned words, 'can't', ordinals, no year on in-year dates). 'Your council decides this in public.' and 'How it works' are the flat, generic lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.8,
+   "why": "Several familiar moves from the last four decks. A camera hero on a mast over a plain with mesas is no. 36 (2026-09-28). Fields of instanced units, one per counted item, are now three decks running: no. 37's 813-unit yard, no. 38's 3,000, 1,000 and 27,200 desks, and here 3,200, 32 and 165 poles. An empty hearing room of public seats is no. 36's frame. The opening move, a lone hero object at a low three-quarter, matches no. 38's lone desk. Blue hour was no. 34. The subject retells no. 12's whole topic (fee, MVCPA, 3,200, the Governor's pause) 32 days later. No. 30 refused this exact Flock story as LIKELY REPEAT 0.74 eleven days ago, and this run cleared the 30-day window by two days."
+  }
+ ],
+ "weighted_score": 6.54,
+ "hard_fails": [
+  "Unverified fact presented as verified. In slide 5 (hook 'El Paso gave it 60 days.', dek 'directed the removal of every Flock fixed camera under city control...') and the caption ('El Paso's council directed the removal of its fixed Flock cameras within 60 days'), the 60-day term and the scope are quoted from the Legistar agenda caption (c32 quote: 'Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed ...'). The run's own claim text for c32 and c33 says each item was 'approved as revised'. No claim records the adopted text or what the revision changed, and the storyboard and web edition (ledger/articles/2026-10-01.json) never address it. The deck asserts the terms of a motion its own source says was changed before passage. Repair: fetch the adopted resolution, minutes or action text and confirm or correct the 60 days and the scope, or reword slide 5 and the caption to what the record supports (an item calling for removal within 60 days passed in revised form)."
+ ],
+ "ship": false,
+ "one_sentence_fix": "When a source marks an item 'approved as revised', fetch the adopted text before printing any term of it, and confirm or correct El Paso's 60 days on slide 5 and in the caption. Then rewrite slide 9's hook so it names who decides (councils, commissioners courts, voters) rather than asserting an unscoped 'your council', and draw League City's own dais rather than Laredo's vote count.",
+ "lens": "integrity"
+}

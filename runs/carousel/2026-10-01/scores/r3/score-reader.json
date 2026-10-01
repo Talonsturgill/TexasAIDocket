@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "S5 and S7 are both improvements. S5 now shows the pole standing whole on the shoulder under the 60-band rod, with the lamp lit across the road and a mesa horizon. It reads as a place at an hour, and the picture no longer claims a removal. S7 is a strong close detail: panel cells, clamp and camera body against the seam, live oaks framing it, a barbed-wire fence in the ground. Located defects that remain: (1) The town limit signs on S1 (x 330 to 545, y 1245 to 1355 at display scale), S2 and S4 (fourteen of them) are still flat, unshaded mint rectangles with no legend. At feed size they read as green-screen placeholders, and S1 is the cover. (2) On S7 the LTE mast rises into the dek and ends in a dark blurred spot under 'would' (about x 800, y 745), so art and type touch. The pole also stands in a fenced pasture, not on a Kyle street. (3) S5 keeps the faceted pickup and a low-detail worker. The pole's base dissolves into the dark wash behind the headline (x 900 to 1000, y 1150 to 1220), so the hero loses its contact shadow. The striped rod still reads as a post, not a clock. (4) Machine QA still warns of dead lower zones on S4 (bottom 25%, an empty band of asphalt) and S9 (26%). S5's warning cleared."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The filmstrip holds. There is one blue-hour sky, one cobra-head lamp on every exterior frame, and one plate_reader in black powder coat. Its state carries the argument: standing on 1, 2 and 5, multiplied on 3, paired on 6, close on 7, counted on 8, and in the chamber window on 9. S7's close shot adds a real camera move rather than breaking the deck. S5 now shares the roadside's composition, but its warm brown ground and mesa horizon are still the one palette that sits apart. S9 is the declared value cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.9,
+   "why": "Every printed numeral traces to a claim: $1/2023 c15, 3,200 c17, $30 million c16, 14/900 c1, 60/September 15th c32, 4 to 2 c23, 6 to 1 c9, $205,000/$80,000/32 c8, 7 to 2 c2, $1 million/165 c3, November 3rd/August 11th c34. The caption traces the same way. S5's copy and art now agree, and the copy states only what c32 supports (as filed, 60 days, passed as revised). S9's 'votes next' matches c35's nonbinding preference vote. S1's added clause matches c12's quote verbatim on the quoted span. Remaining issues: (a) S1 puts 'AI-powered surveillance devices' in quote marks without saying whose words they are. A reader will hear Abbott, but it is the Tribune's characterisation. Credit the Tribune by name, as S3 and S7 already do. (b) The S6 quote of c7 is still cut at 'it would take,' with no mark. (c) Kyle 6-1, Laredo 7-2 and the 3,200 count still rest on the Tribune."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.9,
+   "why": "This is the biggest gain this round. The cover now says why the state stopped, and the deck says AI for the first time. A Texan learns what the device is (S2), who paid (S1, S3), who paused it and why (S1), how six named places answered with margins and dates, and that League City votes on a nonbinding question on November 3rd (S9). What holds it under the 10 descriptor: (1) A reader outside the six towns still gets no next step, and no county is named because none was fetched. (2) S5 is honest but leaves the reader not knowing whether El Paso's cameras are coming down, so the stake there is unresolved by design. (3) The caption, which is the first thing the feed shows, still gives no reason for the pause and never says AI."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.7,
+   "why": "The cover earns the swipe, frame 2 pays, S6 is a declared turn, and the close lands on a body and a date. S7 and S8 now differ, a single kept camera and then a counted field put to voters, so the Kyle-to-Laredo swipe moves. What remains: the $1 fee is still told twice (S1's dek and S3's hook), and S4, S5 and the Leander half of S6 are still three shut-off beats in a row before the turn. The S1 dek is now seven lines, which slows the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "On register and fair. 'It runs on sunlight and a cell signal.', 'El Paso voted on a 60 day clock.' and 'League City votes next.' are plain and specific. The police chief keeps his line. I found no house-rule breaks in the slide strings or the caption: no colons, semicolons, dashes, banned words or first person, 'can't' throughout, and no year on in-year dates. Flat spots: the unattributed quote marks on S1 read as scare quotes, which tips toward editorialising. S9 still breaks 'November / 3rd' across lines. The caption opener 'League City answers on November 3rd.' is still cryptic in the two-line preview."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "Slightly better. S7's single close detail removes one of the three counted fields, so the move shared with yesterday's no. 38 (desks drawn at counted totals) is now on S3 and S8 only. The topic overlap is unchanged. S1 and S3 re-tell no. 12's spine (2026-08-30, tx-2026-0111: fee, MVCPA, pause), 32 days back and outside the window. League City's nonbinding ballot was no. 4's topic. The roadside blue-hour world, the pole-as-state spine and the cover move are fresh."
+  }
+ ],
+ "weighted_score": 7.49,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Turn the town limit signs on S1, S2 and S4 around so the camera sees their grey aluminum backs and bracing, which are honestly blank, instead of flat unshaded green faces with no legend that read as green-screen placeholders on the cover, and use the freed contrast to run S4's road furniture down into its dead lower half.",
+ "lens": "reader"
+}

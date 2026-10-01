@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · Whether the demonstration account still reads as the directorate published it is unconfirmed this run. The directorate's own page could not be read again.
 - 2026-09-27 · The directorate's account of the bridge demonstration still reads as published. It still says capture exceeded expectations day and night, and it still describes the opt-out lane for citizens.
 - 2026-09-30 · The department's account of the bridge demonstration is unconfirmed this time, because its site would not serve the page.
+- 2026-10-01 · The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page.
 
 ## Evidence
 

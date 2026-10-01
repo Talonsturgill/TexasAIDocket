@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · Hays County's policy on artificial intelligence in surveillance is still pending, with no disposition posted.
 - 2026-09-29 · The surveillance policy item is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. No disposition appears on the county's own site.
 - 2026-09-30 · The surveillance policy item is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site.
+- 2026-10-01 · Whether the county has acted on its policy for AI in surveillance is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site.
 
 ## Evidence
 

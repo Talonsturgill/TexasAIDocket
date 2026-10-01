@@ -1,0 +1,207 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "fee_dollars": {
+  "value": 1,
+  "from": [
+   "c15"
+  ],
+  "basis": "dollars added to Texans' auto insurance by the 2023 law"
+ },
+ "fee_year": {
+  "value": 2023,
+  "from": [
+   "c15"
+  ],
+  "basis": "year the Legislature passed the fee"
+ },
+ "fee_to_flock_m_min": {
+  "value": 30,
+  "from": [
+   "c16"
+  ],
+  "basis": "millions of dollars of the fee put toward the Flock network, at least"
+ },
+ "cameras_funded_min": {
+  "value": 3200,
+  "from": [
+   "c17"
+  ],
+  "basis": "Flock cameras the authority turned the fee into, at least"
+ },
+ "searches_2025": {
+  "value": 62000,
+  "from": [
+   "c18"
+  ],
+  "basis": "searches of the authority's plate reader data in 2025, as the authority reported"
+ },
+ "search_year": {
+  "value": 2025,
+  "from": [
+   "c18"
+  ]
+ },
+ "cleared_cases": {
+  "value": 1660,
+  "from": [
+   "c18"
+  ],
+  "basis": "cleared catalytic converter theft cases, about, as the authority reported"
+ },
+ "tollway_cameras": {
+  "value": 583,
+  "from": [
+   "c19"
+  ],
+  "basis": "more cameras the authority approved money for DPS to install along tollways"
+ },
+ "tollway_m": {
+  "value": 3,
+  "from": [
+   "c19"
+  ]
+ },
+ "jurisdictions_off_min": {
+  "value": 14,
+  "from": [
+   "c1"
+  ],
+  "basis": "cities and counties that shut off Flock cameras since the funding was rescinded, at least"
+ },
+ "cameras_off_min": {
+  "value": 900,
+  "from": [
+   "c1"
+  ],
+  "basis": "Flock cameras shut off since the funding was rescinded, more than"
+ },
+ "laredo_yes": {
+  "value": 7,
+  "from": [
+   "c2"
+  ]
+ },
+ "laredo_no": {
+  "value": 2,
+  "from": [
+   "c2"
+  ]
+ },
+ "laredo_cost_m": {
+  "value": 1,
+  "from": [
+   "c3"
+  ],
+  "basis": "millions of dollars a year the Laredo referendum asks about"
+ },
+ "laredo_cameras": {
+  "value": 165,
+  "from": [
+   "c3"
+  ],
+  "basis": "Laredo cameras the referendum asks about"
+ },
+ "laredo_residents": {
+  "value": 272000,
+  "from": [
+   "c4"
+  ]
+ },
+ "kyle_grant": {
+  "value": 205000,
+  "from": [
+   "c8"
+  ]
+ },
+ "kyle_flock_part": {
+  "value": 80000,
+  "from": [
+   "c8"
+  ]
+ },
+ "kyle_cameras": {
+  "value": 32,
+  "from": [
+   "c8"
+  ],
+  "basis": "Kyle cameras the grant share would help pay for"
+ },
+ "kyle_yes": {
+  "value": 6,
+  "from": [
+   "c9"
+  ]
+ },
+ "kyle_no": {
+  "value": 1,
+  "from": [
+   "c9"
+  ]
+ },
+ "cs_yes": {
+  "value": 4,
+  "from": [
+   "c23"
+  ]
+ },
+ "cs_no": {
+  "value": 2,
+  "from": [
+   "c23"
+  ]
+ },
+ "cs_txdot_max": {
+  "value": 158000,
+  "from": [
+   "c23"
+  ]
+ },
+ "cs_other": {
+  "value": 141062,
+  "from": [
+   "c23"
+  ]
+ },
+ "el_paso_days": {
+  "value": 60,
+  "from": [
+   "c32"
+  ],
+  "basis": "days El Paso's council gave the city manager to remove the cameras"
+ },
+ "deflock_estimate": {
+  "value": 13000,
+  "from": [
+   "c11"
+  ],
+  "basis": "a watchdog's estimate of all Flock cameras in Texas, late August"
+ },
+ "cs_home_burglary_pct": {
+  "value": 54,
+  "from": [
+   "c30"
+  ]
+ },
+ "cs_car_burglary_pct": {
+  "value": 84,
+  "from": [
+   "c30"
+  ]
+ },
+ "laredo_votes_cast": {
+  "value": 9,
+  "from": [
+   "c2"
+  ],
+  "basis": "votes cast on Laredo's referendum call, yes plus no, drawn as dais chairs and never printed",
+  "rule": "laredo_yes + laredo_no"
+ },
+ "tribune_jurisdictions_named_off": {
+  "value": 3,
+  "from": [
+   "c5"
+  ],
+  "basis": "count of governments c5 names as ending contracts (Plano, Robinson, Kendall County), counted from the quote's list",
+  "rule": "len(['Plano','Robinson','Kendall County']) checked against the quote below"
+ }
+}
