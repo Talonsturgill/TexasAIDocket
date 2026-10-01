@@ -525,25 +525,22 @@ data_in_art:
   drives: instance count, one pole per camera, ranks of six filled from the near rank
 
 depth:
-  eye: 7
+  eye: 5.8
   horizon: 560
   cues: [RELATIVE_SIZE, TEXTURE_GRADIENT, AERIAL, CAST_SHADOW]
   subject_at: {X: 0, Z: -120}
 
 composition:
   structure: >
-    A long lens from far back and a little up so every pole is one size and the count reads as a
-    grid, the horizon held in the upper third.
+      One camera shared with frame 8: eye 5.8 m, 14.8 m short of the near rank, fov 50, looking down the lot so ranks of six at 1.8 m recede to the vanishing point. The count is 32, filling the near six ranks, on a mown verge.
   bands: >
-    Top third, the sky holding the hook and dek. Middle third, the four ranks of poles, their panels
-    a row of Ts. Bottom third, the foreground verge with its grass texture and the near rank's
-    contact shadows, the green sign at the near left.
-  focal: "the four ranks of panel Ts"
+      Top third, the sky holding the hook and dek. Middle and lower thirds, the ranks of poles from the near rank, whose bases sit near y 1110, back toward the horizon, with live oak and juniper at the far edge and the lit lamp at the lot's left edge.
+  focal: "the near rank of plate readers, panels over camera heads"
 
 art:
-  technique: "instanced render on a long lens, near parallel, held identical to frame 8"
+  technique: "full kit models through rank eight, instanced units beyond, one lens held identical across frames 7 and 8"
   why_this_technique: "a count compared across two frames has to be drawn at one scale or the eye compares sizes instead of counts"
-  palette: "mown verge, black powder coat, pale panel glass, highway green, cobalt sky"
+  palette: "a mown verge, black powder coat, dark panel glass, cobalt sky, the lamp's warm pool"
   value_structure: >
     Lightest is the sky. Darkest is the poles. Frame median L* planned at 28.
 
@@ -558,14 +555,14 @@ acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
   - 'the hook reads "Kyle kept its contract, 6 to 1."'
   - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
-  - "the four ranks of poles separate into rows at 432px"
+  - "the near three ranks separate into rows at 432px"
   - "every one of the 32 poles stands wholly inside the frame"
   - "the near rank's camera heads read as a separate shape below the panels at 432px"
   - "frame 8 uses the identical camera and the near ranks line up between 7 and 8"
   - "the horizon is in frame above the poles"
 
 risks:
-  - "a long lens from 7 m reads as looking down, so the horizon stays in the upper third and the sky holds the type"
+  - "ranks of six on one lens read as a solar farm alone, so the camera heads must read under the panels on the near ranks"
 ```
 
 ```yaml
@@ -590,25 +587,22 @@ data_in_art:
   drives: instance count, one pole per camera, ranks of six filled from the near rank
 
 depth:
-  eye: 7
+  eye: 5.8
   horizon: 520
   cues: [RELATIVE_SIZE, TEXTURE_GRADIENT, AERIAL, CAST_SHADOW]
   subject_at: {X: 0, Z: -120}
 
 composition:
   structure: >
-    An eye level view from across the road, the fence and the shoulder in the foreground and the
-    ranks receding behind it, so the count is felt as a lot a driver passes rather than a chart.
+      One camera shared with frame 7: eye 5.8 m, 14.8 m short of the near rank, fov 50, looking down the lot so ranks of six at 1.8 m recede to the vanishing point. The count is 165, filling the lot to the vanishing point, on South Texas caliche.
   bands: >
-    Top third, the sky holding the hook and dek. Middle third, the eleven ranks receding, mesquite
-    at their edges. Bottom third, the caliche lot and the near ranks, the green sign at the near
-    left.
-  focal: "the near ranks of panel Ts"
+      Top third, the sky holding the hook and dek. Middle and lower thirds, the ranks of poles from the near rank, whose bases sit near y 1110, back toward the horizon, with mesquite at the far edge and the lit lamp at the lot's left edge.
+  focal: "the near rank of plate readers, panels over camera heads"
 
 art:
-  technique: "instanced render on the long lens of frame 7, kit mesquite on a caliche ground"
+  technique: "full kit models through rank eight, instanced units beyond, one lens held identical across frames 7 and 8"
   why_this_technique: "the same lens makes 165 a size beside 32 without a chart"
-  palette: "pale South Texas caliche, mesquite olive, black powder coat, cobalt sky"
+  palette: "South Texas caliche, black powder coat, dark panel glass, cobalt sky, the lamp's warm pool"
   value_structure: >
     Lightest is the sky and the caliche. Darkest is the poles and the mesquite. Frame median L*
     planned at 30.
@@ -629,7 +623,7 @@ acceptance:
   - "the near rank's camera heads read as a separate shape below the panels at 432px"
 
 risks:
-  - "eleven ranks on a long lens merge into a band, so the spacing is wide enough that the near three ranks separate at 432px"
+  - "ranks of six on one lens read as a solar farm alone, so the camera heads must read under the panels on the near ranks"
 ```
 
 ```yaml

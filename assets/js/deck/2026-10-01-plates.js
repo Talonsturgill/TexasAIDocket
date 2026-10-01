@@ -263,8 +263,8 @@
           rbx(0.05, b + h - 0.04, 0.035, 0.004, post, x, (b + h - 0.04) / 2, -0.03, g);
         });
         rbx(w, h, 0.012, 0.01, back, 0, b + h / 2, 0, g);
-        rbx(w - 0.006, h - 0.006, 0.004, 0.008, white, 0, b + h / 2, 0.008, g);
-        rbx(w - 0.16, h - 0.16, 0.004, 0.025, green, 0, b + h / 2, 0.011, g);
+        rbx(w - 0.006, h - 0.006, 0.004, 0.008, white, 0, b + h / 2, 0.012, g);
+        rbx(w - 0.16, h - 0.16, 0.004, 0.025, green, 0, b + h / 2, 0.026, g);
         [b + h * 0.25, b + h * 0.75].forEach(function (y) { rbx(w * 0.9, 0.03, 0.02, 0.004, back, 0, y, -0.016, g); });
         g.userData.face = { x: 0, y: b + h / 2, z: 0.013 };
         return g;
@@ -337,7 +337,7 @@
     o = o || {};
     var T = N.T, g = new T.Group(), L = o.length || 900, rw = 7.2, sh = o.shoulder == null ? 2.4 : o.shoulder;
     function slab(m, w, h, z, y) { var b = new T.Mesh(new T.BoxGeometry(L, h, w), m); b.position.set(0, (y || 0) + h / 2, z); b.receiveShadow = true; g.add(b); }
-    var asph = K.mat('pl-asphalt', { color: 0x2b2d31, roughness: 0.93 }), grav = K.mat('pl-shoulder', { color: o.gravel || 0x6a6359, roughness: 1 });
+    var asph = K.mat('pl-asphalt-' + (o.asphalt || 0x2b2d31), { color: o.asphalt || 0x2b2d31, roughness: 0.93 }), grav = K.mat('pl-shoulder', { color: o.gravel || 0x6a6359, roughness: 1 });
     var white = K.mat('pl-paint', { color: 0xd8d8d2, roughness: 0.6 }), yel = K.mat('pl-yellow', { color: 0xc99a2a, roughness: 0.6 });
     slab(asph, rw, 0.04, 0);
     slab(grav, sh, 0.02, rw / 2 + sh / 2); slab(grav, sh, 0.02, -(rw / 2 + sh / 2));
@@ -345,7 +345,7 @@
     slab(yel, 0.1, 0.004, 0.11, 0.04); slab(yel, 0.1, 0.004, -0.11, 0.04);
     /* the wheel paths, polished a shade darker than the rest of the lane */
     var path = K.mat('pl-wheelpath', { color: 0x2a2b2f, roughness: 0.8 });
-    [-2.7, -0.9, 0.9, 2.7].forEach(function (z) { slab(path, 0.7, 0.002, z, 0.04); });
+    if (o.wheelPaths !== false) [-2.7, -0.9, 0.9, 2.7].forEach(function (z) { slab(path, 0.7, 0.002, z, 0.04); });
     g.position.set(at[0], 0, at[1]); if (o.rotY) g.rotation.y = o.rotY;
     TXT.add(R, g);
     return g;
@@ -426,14 +426,14 @@
 
   /* ONE LOT, ONE LENS, for the two frames that compare counts. Ranks of six at 1.8 m, 4 m
    * apart, filled from the near rank, left to right, so 32 and 165 stand on the same ground in
-   * the same order and only the count differs. The first `near` ranks are the full kit model.
+   * the same order and only the count differs. The first `near` ranks (eight by default) are the full kit model, footing included, and the first four carry a contact ring.
    * N.lotView is the one camera both frames use. */
   N.lot = function (K, THREE, TXT, R, count, o) {
     o = o || {};
-    var files = 6, px = 1.8, pz = 4.0, near = o.near == null ? 2 : o.near, full = new THREE.Group(), far = [], drawn = 0;
+    var files = 6, px = 1.8, pz = 4.0, near = o.near == null ? 8 : o.near, full = new THREE.Group(), far = [], drawn = 0;
     for (var i = 0; i < count; i++) {
       var c = i % files, r = Math.floor(i / files), x = -((files - 1) * px) / 2 + c * px, z = -r * pz;
-      if (r < near) { var u = N.pole(K, { yaw: -Math.PI / 2, face: 0, seed: 40 + i }); u.position.set(x, 0, z); full.add(u); }
+      if (r < near) { var u = N.pole(K, { yaw: -Math.PI / 2, face: 0, seed: 40 + i }); u.position.set(x, 0, z); full.add(u); if (r < 4) TXT.contact(R, u, { opacity: 0.7 }); }
       else far.push([x, 0, z, 0, 1]);
       drawn++;
     }
@@ -467,6 +467,18 @@
     }
   };
 
+  /* A SOFT DUSK BEHIND ONE SMALL LABEL, an elliptical falloff never over 0.45 alpha, for a label
+   * that has to sit on the brightest band of sky to land beside the part it names. */
+  N.dusk = function (cx, sel, a) {
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) {
+      var b = el.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2, r = b.width * 0.8;
+      cx.save(); cx.translate(x, y); cx.scale(1, (b.height * 2.2) / r);
+      var g = cx.createRadialGradient(0, 0, 0, 0, 0, r);
+      g.addColorStop(0, 'rgba(8,14,32,' + Math.min(0.45, a || 0.4) + ')'); g.addColorStop(0.6, 'rgba(8,14,32,' + (Math.min(0.45, a || 0.4) * 0.92) + ')'); g.addColorStop(1, 'rgba(8,14,32,0)');
+      cx.fillStyle = g; cx.beginPath(); cx.arc(0, 0, r, 0, Math.PI * 2); cx.fill(); cx.restore();
+    });
+  };
+
   /* KNOCK THE EDGE OUT BEHIND A LINE OF TYPE, without removing its light. */
   N.soften = function (cx, selectors, o) {
     o = o || {};
@@ -490,7 +502,7 @@
    * TXDECK.finish itself, last. A dark band under the footer, never a box and never over 0.45. */
   N.post = function (cx, o) {
     o = o || {};
-    N.atmosphere(cx, { a: o.a == null ? 0.2 : o.a });
+    N.atmosphere(cx, { a: o.a == null ? 0.2 : o.a, to: o.to, fade: o.fade });
     N.soften(cx, o.type || ['.kick', '.hook', '.dek'], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
     N.soften(cx, ['.tx-site', '.src'], { blur: 9, pad: 14, feather: 40 });
     var y0 = N.H - (o.veilH || 220), v = cx.createLinearGradient(0, y0, 0, N.H);
