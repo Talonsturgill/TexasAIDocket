@@ -152,8 +152,8 @@ healthy from a repository default.
 
 ## Did this run stop and wait for a human
 
-**Interim reading, Phase 17. Phase 19 takes the one that counts.** `prompt_audit.py` exits 1. It
-measured 1,408 tool calls and counts 465 whose permission decision took longer than its
+**Final reading, Phase 19, taken before the merge.** `prompt_audit.py` exits 1. It
+measured 1,544 tool calls and counts 541 whose permission decision took longer than its
 threshold, from 1.0 to 11.2 seconds, the longest an Agent call. The no-stall hook logged `armed`
 at 06:17:01 UTC, judged the session unattended from the start with the host's
 `CLAUDE_CODE_SESSION_ATTENDED=0`, refused nothing and logged no dialog left waiting. No call
