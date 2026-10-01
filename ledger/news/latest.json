@@ -1,21 +1,28 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-01T14:40:40Z",
+  "checked_at": "2026-10-01T23:17:21Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "4f1d4a29fb03f99da66f76e3ac0ae402114dc70dd4a0a144daa96bd8efbe5bf6",
+  "response_sha256": "9325bef35edd92c7b89142c67751be7d6a184883f355d7222b0019badffaf20e",
   "articles": [
     {
-      "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-      "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-      "first_seen_at": "2026-09-24T22:30:27Z",
-      "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
+      "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+      "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+      "first_seen_at": "2026-10-01T18:50:07Z",
+      "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
-      "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-      "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-      "first_seen_at": "2026-09-24T20:46:52Z",
-      "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+      "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+      "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+      "first_seen_at": "2026-10-01T20:34:13Z",
+      "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+      "feed": "https://dallasinnovates.com/feed/"
+    },
+    {
+      "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+      "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+      "first_seen_at": "2026-10-01T19:29:27Z",
+      "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
@@ -33,13 +40,6 @@
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
-      "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-      "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-      "first_seen_at": "2026-09-24T20:11:43Z",
-      "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-      "feed": "https://www.tpr.org/index.rss"
-    },
-    {
       "title": "New funding supports AI safety research and training at UT San Antonio",
       "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
       "first_seen_at": "2026-09-27T15:14:02Z",
@@ -48,126 +48,66 @@
     }
   ],
   "selected": {
-    "title": "Colovore files to develop data center in Fort Worth, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-    "first_seen_at": "2026-09-29T14:30:08Z",
-    "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-    "feed": "https://www.datacenterdynamics.com/en/rss/",
-    "publisher": "Data Center Dynamics",
+    "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+    "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+    "first_seen_at": "2026-10-01T20:34:13Z",
+    "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.248736,
-    "priority": 1
+    "score": 0.924479,
+    "priority": 0
   },
-  "expires_at": "2026-10-06T14:30:08Z",
+  "expires_at": "2026-10-08T20:34:13Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
     {
-      "starts_at": "2026-10-01T13:23:00Z",
-      "selected": {
-        "title": "Colovore files to develop data center in Fort Worth, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-        "first_seen_at": "2026-09-29T14:30:08Z",
-        "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.248736,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Colovore files to develop data center in Fort Worth, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-          "first_seen_at": "2026-09-29T14:30:08Z",
-          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.248736,
-          "priority": 1
-        },
-        {
-          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-          "first_seen_at": "2026-09-30T11:59:59Z",
-          "summary": "Campus set to span at least six single-story buildings",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.462785,
-          "priority": 1
-        },
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.063512,
-          "priority": 3
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.009795,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.009318,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.009162,
-          "priority": 4
-        }
-      ]
-    },
-    {
       "starts_at": "2026-10-01T19:23:00Z",
       "selected": {
-        "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-        "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-        "first_seen_at": "2026-09-24T20:46:52Z",
-        "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+        "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+        "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+        "first_seen_at": "2026-10-01T20:34:13Z",
+        "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.008134,
-        "priority": 3
+        "score": 0.924479,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.008134,
-          "priority": 3
+          "score": 0.924479,
+          "priority": 0
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.896103,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.879296,
+          "priority": 1
         },
         {
           "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
@@ -177,7 +117,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.403978,
+          "score": 0.360884,
           "priority": 1
         },
         {
@@ -188,7 +128,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.217128,
+          "score": 0.193966,
           "priority": 1
         },
         {
@@ -199,47 +139,58 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.055441,
+          "score": 0.049527,
           "priority": 3
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.00855,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.007998,
-          "priority": 4
         }
       ]
     },
     {
       "starts_at": "2026-10-02T01:23:00Z",
       "selected": {
-        "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-        "first_seen_at": "2026-09-30T11:59:59Z",
-        "summary": "Campus set to span at least six single-story buildings",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
+        "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+        "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+        "first_seen_at": "2026-10-01T19:29:27Z",
+        "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.339704,
-        "priority": 1
+        "score": 0.843511,
+        "priority": 0
       },
       "stories": [
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.843511,
+          "priority": 0
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.870222,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.827691,
+          "priority": 1
+        },
         {
           "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
           "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
@@ -278,27 +229,49 @@
     {
       "starts_at": "2026-10-02T07:23:00Z",
       "selected": {
-        "title": "New funding supports AI safety research and training at UT San Antonio",
-        "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-        "first_seen_at": "2026-09-27T15:14:02Z",
-        "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
+        "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+        "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+        "first_seen_at": "2026-10-01T18:50:07Z",
+        "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.039203,
-        "priority": 3
+        "score": 0.696002,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.039203,
-          "priority": 3
+          "score": 0.696002,
+          "priority": 1
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.731767,
+          "priority": 0
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.709306,
+          "priority": 0
         },
         {
           "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
@@ -321,16 +294,104 @@
           "coverage": 1,
           "score": 0.153533,
           "priority": 1
+        },
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.039203,
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-02T13:23:00Z",
+      "selected": {
+        "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+        "first_seen_at": "2026-09-30T11:59:59Z",
+        "summary": "Campus set to span at least six single-story buildings",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.240207,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+          "first_seen_at": "2026-09-30T11:59:59Z",
+          "summary": "Campus set to span at least six single-story buildings",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.240207,
+          "priority": 1
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.61534,
+          "priority": 0
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.596453,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.585266,
+          "priority": 1
+        },
+        {
+          "title": "Colovore files to develop data center in Fort Worth, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+          "first_seen_at": "2026-09-29T14:30:08Z",
+          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.129105,
+          "priority": 1
+        },
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.032966,
+          "priority": 3
         }
       ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
-      "title": "Abbott halts new Texas data center permits pending ERCOT audit",
-      "shown_at": "2026-09-24T19:23:00Z"
-    },
     {
       "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
       "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
@@ -470,7 +531,9 @@
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "15b3699821aece6cc1a1c9957f5b807f9fc431bb234850b0889ff4da44f25e16"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -480,25 +543,25 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "416e2ca9a409e1227347f055470be693dbf755bc130b53963c976e4f5d2e44db"
+      "sha256": "04914fefe31578860ea327a3508fd9de322cd1973332b80a8559ffa0da552fea"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "06cf570f6ea1ec3e35c70a558530df5a06b9aa6107d8b010e48d4773ca829c2c"
+      "sha256": "c202b53d6f5eb88bf966fd548f1060d84dc107084dfb7b00628b2b7f7d038326"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1240,
-      "sha256": "852b24e877d405bd756f39a1be675007e54431f0b1c17006ba0b87ce468682c0"
+      "items": 1243,
+      "sha256": "0fef81c597a54422420bbfaec3bc5f79e5dec5ae3b9752bf35cde827ac426d72"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "4cbabd7b8c1b4dbe8f1fdb8003827ca7a7829062da830fce0afb7aedd6e8ea0c"
+      "sha256": "43ec9ea62673382122aad3978bab39f0942d8218ec2ed7b6a79fda96e388ce08"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -510,146 +573,147 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "7c773cd831701ef03e0c13e9897beae0767a4f11077e4f700bf0e809f7f72873"
+      "sha256": "d26bd7ba9814fe3f0c38ac4dbc81fcef7c5f4869dc0ba50874b23511f8ade520"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-10-01T23:07:22Z"
+      "status": "unavailable",
+      "retry_at": "2026-10-02T23:17:19Z",
+      "reason": "not well-formed (invalid token): line 1, column 119"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 35,
+      "sha256": "49066c7c3f1cacd289c7a98100642488ae453912d02db43b53a40fb707f7dcd8"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "ea0157e5a40d2387289908eb327d2fcaccb610e4006fc32cb2e122bd0cb37eaf"
+      "sha256": "3e0139b68fe42f41de43fc7e5e17e9baa100eb4b96e18e802c331dcd13341107"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "3e26a6ab19a6d119e1cc958b786e00b6aa39bbe1f621a9e4576b80b966fd544e"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "23580f088db6427519b3e60619765c8044de83681025a740920573d8651da78c"
+      "sha256": "735af091fe6c7d4650e694a1644e71826bb147937b3ab6a0ec6392e5ff2b11ad"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "5b3eb76428225a6e6b589f5211875d3838a6284867f74c4ab548445c25f8ced0"
+      "sha256": "afd7bc2381b2757055ea0c261062941d49fa7f109f79262f3fb78f7f78744f0b"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"c7b6b3f5f52d1146aa48479102f613d0\"",
-      "last_modified": "Wed, 30 Sep 2026 22:06:03 GMT",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
-      "ok_at": "2026-10-01T14:40:38Z",
-      "sha256": "3bcd74756bf1ccc8c19b8efe63aed244cd02a283870ab9b9d4cc246563c477dc",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "15b3699821aece6cc1a1c9957f5b807f9fc431bb234850b0889ff4da44f25e16",
+      "etag": "\"4cf79f8ec7d10eb5cd2da053fc8e9582\"",
+      "last_modified": "Thu, 01 Oct 2026 21:14:15 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "416e2ca9a409e1227347f055470be693dbf755bc130b53963c976e4f5d2e44db",
-      "last_modified": "Thu, 01 Oct 2026 14:28:55 GMT"
+      "sha256": "04914fefe31578860ea327a3508fd9de322cd1973332b80a8559ffa0da552fea",
+      "last_modified": "Thu, 01 Oct 2026 17:50:29 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "06cf570f6ea1ec3e35c70a558530df5a06b9aa6107d8b010e48d4773ca829c2c",
-      "etag": "\"1790865188\"",
-      "last_modified": "Thu, 01 Oct 2026 14:33:08 GMT"
+      "sha256": "c202b53d6f5eb88bf966fd548f1060d84dc107084dfb7b00628b2b7f7d038326",
+      "etag": "\"1790896217\"",
+      "last_modified": "Thu, 01 Oct 2026 23:10:17 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "852b24e877d405bd756f39a1be675007e54431f0b1c17006ba0b87ce468682c0"
+      "sha256": "0fef81c597a54422420bbfaec3bc5f79e5dec5ae3b9752bf35cde827ac426d72"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4cbabd7b8c1b4dbe8f1fdb8003827ca7a7829062da830fce0afb7aedd6e8ea0c",
-      "etag": "\"f2dbb62cb2a768c639bc487fd8f5d0ce-gzip\"",
-      "last_modified": "Thu, 01 Oct 2026 13:12:09 GMT"
+      "sha256": "43ec9ea62673382122aad3978bab39f0942d8218ec2ed7b6a79fda96e388ce08",
+      "etag": "\"b4369ed6f6b6a05838e48afe1f063a10-gzip\"",
+      "last_modified": "Thu, 01 Oct 2026 18:03:27 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "d1a84143c5aa266ba37ead1ac6f87cab718f024624926c0017c742f7c211f297"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7c773cd831701ef03e0c13e9897beae0767a4f11077e4f700bf0e809f7f72873",
-      "etag": "\"efb8f82fe8d1c90880947ec6463c6ef6\"",
-      "last_modified": "Thu, 01 Oct 2026 13:00:45 GMT"
+      "sha256": "d26bd7ba9814fe3f0c38ac4dbc81fcef7c5f4869dc0ba50874b23511f8ade520",
+      "etag": "\"19104cbfd59c10336bbf35f8c566d5b9\"",
+      "last_modified": "Thu, 01 Oct 2026 23:13:00 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-10-01T23:07:22Z",
-      "failures": 7,
+      "retry_at": "2026-10-02T23:17:19Z",
+      "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "etag": "W/\"e2434f4b7a28b7b5a60d0f862f79ad2f\"",
-      "last_modified": "Thu, 01 Oct 2026 02:06:54 GMT",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
-      "ok_at": "2026-10-01T14:40:38Z",
-      "sha256": "95b4006ceb525356b6148f8cb9405690954ec236d953a693b8c022580983e0f9",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "49066c7c3f1cacd289c7a98100642488ae453912d02db43b53a40fb707f7dcd8",
+      "etag": "W/\"ff9cf2f676aad891bbdb7b789a538c3f\"",
+      "last_modified": "Thu, 01 Oct 2026 21:46:23 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ea0157e5a40d2387289908eb327d2fcaccb610e4006fc32cb2e122bd0cb37eaf",
-      "etag": "W/\"794dee42b212eb0a121382a01ff8d5c8\""
+      "sha256": "3e0139b68fe42f41de43fc7e5e17e9baa100eb4b96e18e802c331dcd13341107",
+      "etag": "W/\"fe9bb6f4b2aacfe7ad0461e61ce2ca36\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "last_modified": "Thu, 01 Oct 2026 14:18:52 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-01T23:17:19Z",
       "sha256": "3e26a6ab19a6d119e1cc958b786e00b6aa39bbe1f621a9e4576b80b966fd544e",
-      "last_modified": "Thu, 01 Oct 2026 14:18:52 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "23580f088db6427519b3e60619765c8044de83681025a740920573d8651da78c"
+      "sha256": "735af091fe6c7d4650e694a1644e71826bb147937b3ab6a0ec6392e5ff2b11ad"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-01T14:40:38Z",
+      "ok_at": "2026-10-01T23:17:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "5b3eb76428225a6e6b589f5211875d3838a6284867f74c4ab548445c25f8ced0",
-      "etag": "W/\"8f24d7c2228dbe04b6421948dee5ab5d\"",
-      "last_modified": "Thu, 01 Oct 2026 11:59:00 GMT"
+      "sha256": "afd7bc2381b2757055ea0c261062941d49fa7f109f79262f3fb78f7f78744f0b",
+      "etag": "W/\"57bda014b6ba2443f82a242da988d8e3\"",
+      "last_modified": "Thu, 01 Oct 2026 21:26:10 GMT"
     }
   }
 }
