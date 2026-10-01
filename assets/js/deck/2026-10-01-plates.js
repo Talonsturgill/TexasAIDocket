@@ -63,7 +63,7 @@
   N.H = 1350;
   N.SEED = 20261001;
   N.ACCENT = 0x3e8f68;
-  N.CALICHE = 0x9e9486;     /* a caliche shoulder gone grey violet in the dusk */
+  N.CALICHE = 0x6e665c;     /* a caliche shoulder, grey warm, which the blue hour cools rather than tints mauve */
   N.VERGE = 0x6f7458;       /* a mown fall verge */
   N.LAMP = { az: -90, el: 34 };
 
@@ -165,6 +165,16 @@
         var H = +o.height || 3.66, r = 2.875 * IN / 2, st = o.state || 'on';
         /* the footing, flush with grade with a slight crown, and the breakaway base: a square cast
          * pedestal with four bolts, the pole socketed into it */
+        if (st === 'stub') {
+          /* what a removal leaves: a square pad proud of grade, four bolts, scuffed dirt round it */
+          rbx(0.6, 0.05, 0.6, 0.01, M.conc, 0, 0.025, 0, g);
+          [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(function (q) {
+            K.cyl(0.0125, 0.0125, 0.08, M.bolt, q[0] * 0.18, 0.05, q[1] * 0.18, 10, g);
+            K.cyl(0.022, 0.022, 0.018, M.bolt, q[0] * 0.18, 0.06, q[1] * 0.18, 6, g);
+          });
+          g.userData.top = { x: 0, y: 0.13, z: 0 }; g.userData.keepOrigin = true;
+          return g;
+        }
         if (o.footing !== false) K.cyl(0.24, 0.26, 0.06, M.conc, 0, -0.03, 0, 24, g);
         rbx(0.2, 0.012, 0.2, 0.004, M.cast, 0, 0.033, 0, g);
         var base = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.085, 0.2, 16), M.cast);
@@ -174,7 +184,6 @@
           K.cyl(0.015, 0.015, 0.012, M.bolt, s[0] * 0.072, 0.068, s[1] * 0.072, 6, g);
         });
         g.userData.top = { x: 0, y: 0.24, z: 0 };
-        if (st === 'stub') { g.userData.keepOrigin = true; return g; }
         /* the pole */
         var pole = new THREE.Mesh(new THREE.CylinderGeometry(r, r, H - 0.22, 20, 1), M.pole);
         pole.position.set(0, 0.22 + (H - 0.22) / 2, 0); g.add(pole);
@@ -193,7 +202,9 @@
           K.bar([x * 0.2, 0.03, 0], [x, 0.05, 0], 0.012, M.frame, 8, top);
         }
         /* the LTE puck and the battery pack under the panels */
-        K.cyl(0.04, 0.045, 0.03, M.puck, 0, H + 0.0, -0.1, 18, g);
+        K.bar([0, H + 0.04, 0], [0, H + 0.62, 0], 0.012, M.frame, 8, g);
+        K.cyl(0.055, 0.06, 0.04, M.puck, 0, H + 0.62, 0, 20, g);
+        g.userData.puck = { x: 0, y: H + 0.66, z: 0 };
         rbx(0.14, 0.24, 0.09, 0.012, M.housing, 0, H - 0.35, -(r + 0.045), g);
         rbx(0.15, 0.012, 0.1, 0.004, M.clamp, 0, H - 0.21, -(r + 0.045), g);
         rbx(0.15, 0.012, 0.1, 0.004, M.clamp, 0, H - 0.49, -(r + 0.045), g);
@@ -252,7 +263,7 @@
         });
         rbx(w, h, 0.012, 0.01, back, 0, b + h / 2, 0, g);
         rbx(w - 0.006, h - 0.006, 0.004, 0.008, white, 0, b + h / 2, 0.008, g);
-        rbx(w - 0.07, h - 0.07, 0.004, 0.02, green, 0, b + h / 2, 0.011, g);
+        rbx(w - 0.16, h - 0.16, 0.004, 0.025, green, 0, b + h / 2, 0.011, g);
         [b + h * 0.25, b + h * 0.75].forEach(function (y) { rbx(w * 0.9, 0.03, 0.02, 0.004, back, 0, y, -0.016, g); });
         g.userData.face = { x: 0, y: b + h / 2, z: 0.013 };
         return g;
@@ -273,12 +284,22 @@
     s.position.set(x, 0, z);
     s.rotation.y = Math.atan2(at[0] - x, at[1] - z);
     /* the cobra head's lens lit, a cool 4000K white, so the lamp reads as on */
+    /* the cobra head's lens: the one material with a warm white emissive. Matched on the colour
+     * itself, never on an exact hex, because colour management round trips the hex. */
     s.traverse(function (m) {
-      if (m.isMesh && m.material && m.material.emissive && m.material.emissive.getHex() === 0xfff1d6) {
-        m.material = m.material.clone(); m.material.emissiveIntensity = o.lit == null ? 2.4 : o.lit;
+      var e = m.isMesh && m.material && m.material.emissive;
+      if (e && e.r > 0.85 && e.g > 0.8 && e.b > 0.6 && m.material.emissiveIntensity < 1) {
+        m.material = m.material.clone(); m.material.emissiveIntensity = o.lit == null ? 3.2 : o.lit;
       }
     });
     TXT.add(R, s); TXT.contact(R, s);
+    /* and the light it gives: a 4000K pool under the head, no shadow of its own (the deck's one
+     * shadow casting key is deckRig, which stands where this lamp is) */
+    if (N.T && o.pool !== false) {
+      var reach = o.reach || 2.4, hx = x + Math.sin(s.rotation.y) * reach, hz = z + Math.cos(s.rotation.y) * reach;
+      var pl = new N.T.PointLight(0xfff0d8, o.pool || 70, 26, 2);
+      pl.position.set(hx, (o.height || 9.1) - 0.4, hz); R.scene.add(pl);
+    }
     return s;
   };
 
@@ -298,6 +319,23 @@
     var rd = K.make('road', { length: o.length || 900, lanes: o.lanes || 2, sidewalk: !!o.sidewalk, parkway: o.parkway == null ? 1.6 : o.parkway });
     rd.position.set(at[0], 0, at[1]); if (o.rotY) rd.rotation.y = o.rotY; TXT.add(R, rd);
     return rd;
+  };
+  /* A RURAL TWO LANE ROAD with no curb: neutral blue black asphalt, white edge lines, a double
+   * yellow centre and caliche gravel shoulders at grade. The kit road is a city street with curb
+   * and gutter, which a ranch road never has. Along x, centred on `at`. */
+  N.lane = function (K, R, TXT, at, o) {
+    o = o || {};
+    var T = N.T, g = new T.Group(), L = o.length || 900, rw = 7.2, sh = o.shoulder == null ? 2.4 : o.shoulder;
+    function slab(m, w, h, z, y) { var b = new T.Mesh(new T.BoxGeometry(L, h, w), m); b.position.set(0, (y || 0) + h / 2, z); b.receiveShadow = true; g.add(b); }
+    var asph = K.mat('pl-asphalt', { color: 0x2b2d31, roughness: 0.93 }), grav = K.mat('pl-shoulder', { color: o.gravel || 0x6a6359, roughness: 1 });
+    var white = K.mat('pl-paint', { color: 0xd8d8d2, roughness: 0.6 }), yel = K.mat('pl-yellow', { color: 0xc99a2a, roughness: 0.6 });
+    slab(asph, rw, 0.04, 0);
+    slab(grav, sh, 0.02, rw / 2 + sh / 2); slab(grav, sh, 0.02, -(rw / 2 + sh / 2));
+    slab(white, 0.15, 0.004, rw / 2 - 0.25, 0.04); slab(white, 0.15, 0.004, -(rw / 2 - 0.25), 0.04);
+    slab(yel, 0.1, 0.004, 0.11, 0.04); slab(yel, 0.1, 0.004, -0.11, 0.04);
+    g.position.set(at[0], 0, at[1]); if (o.rotY) g.rotation.y = o.rotY;
+    TXT.add(R, g);
+    return g;
   };
   N.sign = function (K, R, TXT, at, rotY, glow) {
     var sg = K.make('city_limit_sign', { glow: glow == null ? 0.8 : glow });
@@ -373,6 +411,33 @@
     return g;
   };
 
+  /* ONE LOT, ONE LENS, for the two frames that compare counts. Ranks of eleven at 2.6 m, 4 m
+   * apart, filled from the near rank, left to right, so 32 and 165 stand on the same ground in
+   * the same order and only the count differs. The first `near` ranks are the full kit model.
+   * N.lotView is the one camera both frames use. */
+  N.lot = function (K, THREE, TXT, R, count, o) {
+    o = o || {};
+    var files = 11, px = 2.6, pz = 4.0, near = o.near == null ? 2 : o.near, full = new THREE.Group(), far = [], drawn = 0;
+    for (var i = 0; i < count; i++) {
+      var c = i % files, r = Math.floor(i / files), x = -((files - 1) * px) / 2 + c * px, z = -r * pz;
+      if (r < near) { var u = N.pole(K, { yaw: -Math.PI / 2, face: 0, seed: 40 + i }); u.position.set(x, 0, z); full.add(u); }
+      else far.push([x, 0, z, 0, 1]);
+      drawn++;
+    }
+    TXT.add(R, full);
+    if (far.length) {
+      var P = N.lodParts(THREE), g = new THREE.Group();
+      [[P.pole, K.mat('pr-pole-lod', { color: 0x16181b, roughness: 0.45, metalness: 0.5 })],
+       [P.panel, K.mat('pr-panel-lod', { color: 0x1a2232, roughness: 0.12, metalness: 0.4 })],
+       [P.cam, K.mat('pr-cam-lod', { color: 0x202326, roughness: 0.5, metalness: 0.1 })]].forEach(function (pm) {
+        var im = K.instances(pm[0], pm[1], far, g); im.castShadow = true; im.receiveShadow = true;
+      });
+      TXT.add(R, g);
+    }
+    return drawn;
+  };
+  N.lotView = function (TXT, R) { TXT.frame(R, { from: [0, 7, 30], look: [0, 2.5, -20] }); };
+
   /* THE SKY BAND THE TYPE STANDS IN. A light wash toward the type, never over 0.45 alpha. On a
    * blue hour sky the type is light, so the wash DARKENS a little behind it rather than lifting. */
   N.atmosphere = function (cx, o) {
@@ -413,7 +478,7 @@
   N.post = function (cx, o) {
     o = o || {};
     N.atmosphere(cx, { a: o.a == null ? 0.2 : o.a });
-    N.soften(cx, o.type || ['.kick', '.hook', '.dek'], { blur: o.typeBlur || 12, feather: o.typeFeather || 70 });
+    N.soften(cx, o.type || ['.kick', '.hook', '.dek'], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
     N.soften(cx, ['.tx-site', '.src'], { blur: 9, pad: 14, feather: 40 });
     var y0 = N.H - (o.veilH || 220), v = cx.createLinearGradient(0, y0, 0, N.H);
     for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, 'rgba(6,9,18,' + (Math.min(0.45, o.veil == null ? 0.32 : o.veil) * e).toFixed(4) + ')'); }
@@ -461,10 +526,13 @@
     N.follow();
   };
   /* THE BOOT, once per frame: fonts, the shell, the engine and the kit with this deck's additions. */
-  N.boot = async function (THREE, init, initKit, o) {
+  N.boot = async function (THREE, bench, initKit, o) {
+    N.T = THREE;
     await document.fonts.ready;
     N.start(o);
-    var TXT = init(THREE), K = initKit(THREE, TXT);
+    /* the frame binds the bench itself (const TXT = init(THREE)), so print_ban can follow the sky
+     * and the kept snapshot to one context. A bare init function is still accepted. */
+    var TXT = typeof bench === 'function' ? bench(THREE) : bench, K = initKit(THREE, TXT);
     N.installKit(K, THREE, TXT);
     return { TXT: TXT, K: K, gl: N.glCanvas(), W: TXT.deckWorld() };
   };

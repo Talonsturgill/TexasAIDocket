@@ -131,7 +131,7 @@ job: >
   Stop the scroll on the object itself, and say the whole turn in the hook, the state stopped paying
   for the camera on the pole.
 
-claims: [c12, c15, c17, c1]
+claims: [c1, c12, c15, c17]
 numerals:
   - value_from: c15
   - value_from: c17
@@ -163,7 +163,7 @@ art:
 
 type:
   hook: "The state stopped paying for this."
-  dek: "A dollar added to Texas auto insurance in 2023 bought at least 3,200 Flock plate reader cameras. In late August the Governor ordered state agencies to pause the money."
+  dek: "A $1 fee added to Texas auto insurance in 2023 became at least 3,200 Flock cameras. In late August Governor Abbott ordered state agencies to pause funding them."
   labels: []
 
 verbatim: []
@@ -195,7 +195,7 @@ job: >
   Show what the thing is and what it records, in the city's own words, so every later frame is read
   as this object.
 
-claims: [c25, c26, c27]
+claims: [c25, c26]
 numerals: []
 
 depth:
@@ -224,7 +224,7 @@ art:
 
 type:
   hook: "It runs on sunlight and a cell signal."
-  dek: "College Station describes its cameras as solar powered and LTE connected. They photograph the rear of passing cars by day and by night."
+  dek: "College Station says it photographs the rear of passing vehicles by day and by night. It sorts each one by make, model and color so the data can be searched."
   labels: ["solar-powered", "LTE-connected", "the rear of passing vehicles", "make, model, and color"]
 
 verbatim:
@@ -293,7 +293,7 @@ art:
 
 type:
   hook: "One dollar. At least 3,200 cameras."
-  dek: "The Motor Vehicle Crime Prevention Authority put at least $30 million of the fee into Flock cameras, a Tribune analysis found."
+  dek: "A Tribune analysis found the Motor Vehicle Crime Prevention Authority put at least $30 million of the fee toward the state's Flock network."
   labels: []
 
 verbatim: []
@@ -322,7 +322,7 @@ job: >
   Say what happened after the pause, in places rather than cameras, one sign for each city or county
   the reporting counts.
 
-claims: [c1, c5, c6, c12]
+claims: [c1, c5]
 numerals:
   - value_from: c1
 
@@ -378,9 +378,9 @@ risks:
 slide: 5
 layout: FIGURE_SCALE
 primary_image:
-  subject: "the plate reader unbolted and lying whole on a dry caliche shoulder beside its bare footing and four anchor bolts, a worker in a vest standing beside it for scale, a white work pickup behind, and a surveyor's rod with 60 graduations laid on the ground"
-  rect: [0, 470, 1080, 880]
-  bleeds: [left, right, bottom]
+  subject: "the plate reader unbolted and lying whole on a dry caliche shoulder beside its bare footing and four anchor bolts, a worker in a vest bent over the bolts for scale, a white work pickup behind, and a surveyor's rod with 60 graduations standing by the footing, seen from a standing eye with a mesa on the horizon"
+  rect: [0, 0, 1080, 830]
+  bleeds: [left, right, top]
 accent: none
 job: >
   Show what a removal order does to the object, and the clock El Paso put on it.
@@ -419,7 +419,7 @@ art:
 
 type:
   hook: "El Paso gave it 60 days."
-  dek: "On September 15th the council directed the removal of every Flock fixed camera on city property, and no new contract with any provider of them."
+  dek: "On September 15th the council directed the removal of every Flock fixed camera under city control. It told the city manager not to sign or renew a contract with any such provider."
   labels: []
 
 verbatim: []
@@ -448,7 +448,7 @@ accent: none
 job: >
   The turn. The same object under the same light, and two councils giving it opposite answers.
 
-claims: [c20, c21, c22, c23, c7, c27, c28]
+claims: [c21, c22, c23, c7]
 numerals:
   - value_from: c21
   - value_from: c23
@@ -513,7 +513,7 @@ job: >
   Show a town that kept paying without the state, at the size of the cameras its missing grant was
   for.
 
-claims: [c8, c9, c10]
+claims: [c8, c9]
 numerals:
   - value_from: c9
   - value_from: c8
@@ -546,15 +546,15 @@ art:
     Lightest is the sky. Darkest is the poles. Frame median L* planned at 28.
 
 type:
-  hook: "Kyle kept paying, 6 to 1."
-  dek: "Its $205,000 grant for 2026 has not arrived. $80,000 of it would help pay for these 32 Flock cameras."
+  hook: "Kyle kept its contract, 6 to 1."
+  dek: "Its $205,000 grant for 2026 has not arrived. Of that, $80,000 would help pay for these 32 Flock cameras."
   labels: []
 
 verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
-  - 'the hook reads "Kyle kept paying, 6 to 1."'
+  - 'the hook reads "Kyle kept its contract, 6 to 1."'
   - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
   - "the four ranks of poles separate into rows at 432px"
   - "a green town limit sign stands at the near left corner"
@@ -576,7 +576,7 @@ job: >
   The other answer, put to voters, at the same scale as Kyle so the swipe from 32 to 165 is one
   scale.
 
-claims: [c2, c3, c4]
+claims: [c2, c3]
 numerals:
   - value_from: c3
   - value_from: c2
@@ -639,7 +639,7 @@ accent: none
 job: >
   End where the decision is made, in a room a reader can walk into, and name the next dates.
 
-claims: [c34, c35, c2, c3]
+claims: [c34, c2]
 numerals:
   - value_from: c34
   - computed_by: "compute.py, laredo_yes plus laredo_no, the votes cast on c2, drawn as dais chairs and never printed"
