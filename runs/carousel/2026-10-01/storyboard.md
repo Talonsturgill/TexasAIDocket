@@ -162,7 +162,7 @@ art:
 
 type:
   hook: "The state paused paying for this."
-  dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's network of Flock cameras. In late August Governor Abbott ordered state agencies to pause that funding as scrutiny over the \"AI-powered surveillance devices\" mounted."
+  dek: "A $1 fee on Texas auto insurance from 2023 helped build the state's Flock network. In late August Governor Abbott ordered agencies to pause that funding as scrutiny over the \"AI-powered surveillance devices\" mounted, the Tribune reported."
   labels: []
 
 verbatim: []
