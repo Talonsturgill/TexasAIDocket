@@ -19,7 +19,7 @@ the November 3rd ballot, called on August 11th, before the pause (c34, c35). Col
 describes the cameras as solar powered and LTE connected, photographing the rear of passing vehicles
 day and night and sorting make, model and color (c25, c26).
 
-The record carries this as tx-2026-0111 (the pause), tx-2026-0174 (El Paso), tx-2026-0180 (Leander),
+The record carries this as tx-2026-0111 (the pause), tx-2026-0147 (El Paso, passed as revised), tx-2026-0180 (Leander),
 tx-2026-0190 (College Station) and tx-2026-0048 (League City).
 
 **WHAT THE FACT CHECK CHANGED.**
@@ -47,8 +47,7 @@ decision. Nobody is cast as the villain.
 
 - From THE READER'S ROAD: the green town limit sign as the accent and a continuity motif. It is real
   roadside material, it marks where a town's own say begins, and it can't be confused with the
-  blue hour seam the way a warm accent would be. Also its close, "Your council decides this in
-  public."
+  blue hour seam the way a warm accent would be. Also its close, now "League City votes next."
 - From CONSEQUENCE AND SCALE: the empty council chamber, so the deck ends where the decision is made
   with nobody in it to read as a mannequin, and its discipline that a count is one rendered unit per
   camera.
@@ -110,9 +109,9 @@ sky, the cool white of a 4000K LED cobra head, and the amber seam on the west ho
 
     FULL_BLEED  DIAGRAM  FULL_BLEED  SPLIT_HORIZON  FIGURE_SCALE  OBJECT_AND_CAPTION  FULL_BLEED  FULL_BLEED  SPLIT_HORIZON
 
-Frames 7 and 8 were planned as GRID and then as two different views. Round 1's flow critic asked
-for one camera on both, so the count is compared and not the picture, and from round 3 they are a
-deliberate same camera pair on one lot: FULL_BLEED twice, the only repeat in the deck. Frame 9 is
+Frames 7 and 8 were planned as GRID, then as a same camera pair on one lot. All three judges
+named the pair as one picture shown twice in two scoring rounds, so frame 7 was recomposed as the
+deck's one close detail of a kept, switched on camera, and frame 8 alone carries the counted lot. Frame 9 is
 the value cut indoors and a SPLIT_HORIZON on the dais top line, so three frames in a row never
 share one structure.
 
@@ -163,7 +162,7 @@ art:
 
 type:
   hook: "The state paused paying for this."
-  dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's network of Flock cameras. In late August Governor Abbott ordered state agencies to pause funding them."
+  dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's network of Flock cameras. In late August Governor Abbott ordered state agencies to pause that funding as scrutiny over the \"AI-powered surveillance devices\" mounted."
   labels: []
 
 verbatim: []
@@ -380,7 +379,7 @@ risks:
 slide: 5
 layout: FIGURE_SCALE
 primary_image:
-  subject: "the plate reader unbolted and lying whole on a dry caliche shoulder beside its bare footing and four anchor bolts, a worker in a vest at the footing for scale, a white work pickup behind, and a surveyor's rod with 60 graduations standing by the footing, seen from a standing eye with a mesa on the horizon"
+  subject: "the plate reader still standing on its footing on a dry caliche shoulder, a surveyor's rod with 60 graduations standing beside it as the clock the item carried as filed, a worker in a vest pointing at it, a white work pickup behind, a mesa and a butte on the horizon"
   rect: [0, 0, 1080, 830]
   bleeds: [left, right, top]
 accent: none
@@ -420,18 +419,18 @@ art:
     planned at 28.
 
 type:
-  hook: "El Paso took up a 60 day clock."
-  dek: "As filed, the September 15th item called for removing every Flock fixed camera under city control within 60 days. The council passed it as revised."
+  hook: "El Paso voted on a 60 day clock."
+  dek: "As filed, the item called for removing every Flock fixed camera under city control within 60 days. The council passed it as revised on September 15th."
   labels: []
 
 verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
-  - 'the hook reads "El Paso took up a 60 day clock."'
+  - 'the hook reads "El Paso voted on a 60 day clock."'
   - "the code paints exactly the figure's count of bands on the rod, 60, and window.__txDrawn says so"
-  - "the pole lies on the ground with its panels and camera head still attached"
-  - "the footing shows four bolts standing up and no pole"
+  - "the plate reader stands on its footing with its panels and camera head"
+  - "no camera is shown taken down"
   - "one person stands at true height beside the pole, lit from the camera's side"
   - "the person's face is not the subject and the person is smaller than a fifth of the frame height"
 
@@ -507,7 +506,7 @@ risks:
 slide: 7
 layout: FULL_BLEED
 primary_image:
-  subject: "32 plate reader poles filling the near ranks of a lot, six to a rank at 1.8 m, on a mown verge, from the one camera frame 8 uses, the lit lamp at the lot's left edge and live oak past the empty ranks"
+  subject: "one plate reader at its own height on a Hill Country road in Kyle, the camera head switched on with its IR ring lit under the two panels, the panels against the sky, live oak and the road at the horizon below, the lamp far down the road"
   rect: [0, 520, 1080, 700]
   bleeds: [left, right]
 accent: none
@@ -520,33 +519,31 @@ numerals:
   - value_from: c9
   - value_from: c8
 
-data_in_art:
-  figure: kyle_cameras
-  drives: instance count, one pole per camera, ranks of six filled from the near rank
+data_in_art: none
 
 depth:
-  eye: 5.8
+  eye: 3.0
   horizon: 560
   cues: [RELATIVE_SIZE, TEXTURE_GRADIENT, AERIAL, CAST_SHADOW]
   subject_at: {X: 0, Z: -120}
 
 composition:
   structure: >
-      One camera shared with frame 8: eye 5.8 m, 14.8 m short of the near rank, fov 50, looking down the lot so ranks of six at 1.8 m recede to the vanishing point. The count is 32, filling the near six ranks, on a mown verge.
+    The one close detail in the deck: the camera at the head's own height a few metres off, looking a little up, so the panels stand against the sky and the switched on camera head is the largest object the deck shows.
   bands: >
-      Top third, the sky holding the hook and dek. Middle and lower thirds, the ranks of poles from the near rank, whose bases sit near y 1110, back toward the horizon, with live oak and juniper at the far edge and the lit lamp at the lot's left edge.
-  focal: "the near rank of plate readers, panels over camera heads"
+    Top third, the sky holding the hook and dek. Middle third, the panels and the lit camera head. Bottom third, the pole running down past the road, the live oak and the verge.
+  focal: "the camera head with its IR ring lit"
 
 art:
-  technique: "full kit models through rank eight, instanced units beyond, one lens held identical across frames 7 and 8"
-  why_this_technique: "a count compared across two frames has to be drawn at one scale or the eye compares sizes instead of counts"
+  technique: "a close detail of the kit model at its own height"
+  why_this_technique: "a kept camera is one that is on, and only a close look shows it is on"
   palette: "a mown verge, black powder coat, dark panel glass, cobalt sky, the lamp's warm pool"
   value_structure: >
     Lightest is the sky. Darkest is the poles. Frame median L* planned at 28.
 
 type:
   hook: "Kyle kept its contract, 6 to 1."
-  dek: "Its $205,000 grant for 2026 had not arrived, the Tribune reported. Of that, $80,000 would help pay for these 32 Flock cameras."
+  dek: "Its $205,000 grant for 2026 had not arrived, the Tribune reported. Of that, $80,000 would help pay for 32 Flock cameras."
   labels: []
 
 verbatim: []
@@ -554,22 +551,19 @@ verbatim: []
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
   - 'the hook reads "Kyle kept its contract, 6 to 1."'
-  - "the code draws exactly the figure's count of poles, 32, and window.__txDrawn says so"
-  - "the near three ranks separate into rows at 432px"
-  - "every one of the 32 poles stands wholly inside the frame"
-  - "the near rank's camera heads read as a separate shape below the panels at 432px"
-  - "frame 8 uses the identical camera and the near ranks line up between 7 and 8"
+  - "the camera head reads as a camera at 432px, separate from the panels"
+  - "no type crosses the panels or the camera head"
   - "the horizon is in frame above the poles"
 
 risks:
-  - "ranks of six on one lens read as a solar farm alone, so the camera heads must read under the panels on the near ranks"
+  - "a close camera can crop the head against the type, so the panels stay under the dek line"
 ```
 
 ```yaml
 slide: 8
 layout: FULL_BLEED
 primary_image:
-  subject: "165 plate reader poles filling the same lot as frame 7, six to a rank from the near rank back, on South Texas caliche, from the identical camera, mesquite past the far ranks and the lit lamp at the left edge"
+  subject: "165 plate reader poles filling a lot, six to a rank from the near rank back, on South Texas caliche, mesquite past the far ranks and the lit lamp at the left edge"
   rect: [0, 560, 1080, 720]
   bleeds: [left, right]
 accent: none
@@ -594,13 +588,13 @@ depth:
 
 composition:
   structure: >
-      One camera shared with frame 7: eye 5.8 m, 14.8 m short of the near rank, fov 50, looking down the lot so ranks of six at 1.8 m recede to the vanishing point. The count is 165, filling the lot to the vanishing point, on South Texas caliche.
+      One raised camera: eye 5.8 m, 14.8 m short of the near rank, fov 50, looking down the lot so ranks of six at 1.8 m recede to the vanishing point. The count is 165, filling the lot to the vanishing point, on South Texas caliche.
   bands: >
       Top third, the sky holding the hook and dek. Middle and lower thirds, the ranks of poles from the near rank, whose bases sit near y 1110, back toward the horizon, with mesquite at the far edge and the lit lamp at the lot's left edge.
   focal: "the near rank of plate readers, panels over camera heads"
 
 art:
-  technique: "full kit models through rank eight, instanced units beyond, one lens held identical across frames 7 and 8"
+  technique: "full kit models through rank eight, instanced units beyond, one raised lens over the whole lot"
   why_this_technique: "the same lens makes 165 a size beside 32 without a chart"
   palette: "South Texas caliche, black powder coat, dark panel glass, cobalt sky, the lamp's warm pool"
   value_structure: >
@@ -618,7 +612,7 @@ acceptance:
   - "the frame's median L* at 432px is between 20 and 40"
   - 'the hook reads "Laredo will ask its voters."'
   - "the code draws exactly the figure's count of poles, 165, and window.__txDrawn says so"
-  - "the near ranks line up with frame 7's, so only the count and the ground differ"
+  - "every near rank pole stands wholly inside the frame"
   - "mesquite stands at the edges of the lot"
   - "the near rank's camera heads read as a separate shape below the panels at 432px"
 
@@ -668,7 +662,7 @@ art:
     at 26.
 
 type:
-  hook: "League City decides next."
+  hook: "League City votes next."
   dek: "Its voters answer a nonbinding question on November 3rd. The council called it on August 11th."
   labels: []
 
@@ -676,7 +670,7 @@ verbatim: []
 
 acceptance:
   - "the frame's median L* at 432px is between 14 and 34"
-  - 'the hook reads "League City decides next."'
+  - 'the hook reads "League City votes next."'
   - "all nine dais chairs read at 432px"
   - "the dais reads as a council dais at 432px"
   - "the room has walls and a floor, never a flat colour behind the dais"

@@ -359,7 +359,7 @@
   /* THE HERO, the same call on every frame. */
   N.pole = function (K, o) {
     o = o || {};
-    return K.make('plate_reader', { state: o.state || 'on', yaw: o.yaw == null ? 0 : o.yaw, tilt: o.tilt == null ? 0.14 : o.tilt, face: o.face || 0, seed: o.seed || 1, footing: o.footing });
+    return K.make('plate_reader', { state: o.state || 'on', yaw: o.yaw == null ? 0 : o.yaw, tilt: o.tilt == null ? 0.14 : o.tilt, face: o.face || 0, seed: o.seed || 1, footing: o.footing, ir: o.ir || 0 });
   };
 
   /* LOW DETAIL POLES AS INSTANCED GEOMETRY, one mesh per material, the unit drawn to the same

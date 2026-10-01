@@ -23314,8 +23314,8 @@
    ]
   },
   {
-   "title": "El Paso orders every city-sited license plate reader taken down and bars its city manager from signing another one",
-   "summary": "The El Paso City Council passed two directions to the city manager on September 15th, 2026. The first orders the removal within 60 days of all Flock Safety fixed automated license plate reader cameras and related hardware. That covers city property, city right of way and anything otherwise within the city's control. It reaches that hardware whoever owns it. The second bars the city manager from entering, executing, renewing or extending any such contract, unless the council directs otherwise. That covers Flock Safety and any other provider of fixed networked automated license plate readers or substantially similar technology. It also orders the city attorney to draft and return a resolution to the council within 30 days to further effectuate that direction. Both items were sponsored by members of the city council rather than brought by staff, and the council's own agenda records both as amended and passed.",
+   "title": "El Paso passes two plate reader items as revised, filed to take city-sited readers down and bar new contracts",
+   "summary": "The El Paso City Council passed two items on September 15th, 2026, and its own meeting record marks each one approved as revised. The text of the revisions is not on that record. As filed, the first directed the city manager to remove within 60 days all Flock Safety fixed automated license plate reader cameras and related hardware on city property, city right of way or otherwise within the city's control. That reached the hardware whoever owns it. As filed, the second barred the city manager from entering, executing, renewing or extending any such contract with Flock Safety or any other provider of fixed networked plate readers unless the council directs otherwise, and gave the city attorney 30 days to return a resolution. Whether those terms survived the revisions is unconfirmed. Both items were sponsored by members of the council rather than brought by staff.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "El Paso City Council",
@@ -23346,7 +23346,7 @@
    "confidence": "high",
    "claims": [
     {
-     "text": "The council directed the city manager to take the cameras down within 60 days, whoever owns the hardware.",
+     "text": "As filed, the first item directed the city manager to take the cameras down within 60 days, whoever owns the hardware.",
      "verbatim_quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware located on or within City property, City right-of-way, or otherwise within the City's control, regardless of whether such cameras or hardware are owned by Flock Safety, the City of El Paso, or any third party, including by physically removing such equipment or coordinating its removal by the appropriate party.",
      "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
      "source_title": "El Paso City Council regular meeting agenda, September 15, 2026, item 25, file 26-1039",
@@ -23355,7 +23355,7 @@
      "id": "tx-2026-0174-c1"
     },
     {
-     "text": "A second direction bars the city manager from signing another such contract without the council saying so.",
+     "text": "As filed, a second item barred the city manager from signing another such contract without the council saying so.",
      "verbatim_quote": "Discussion and action directing the City Manager to refrain from entering into, executing, renewing, or extending any contract, agreement, or other arrangement with Flock Safety or any other provider for the acquisition, installation, operation, maintenance, or use of fixed, networked automated license plate reader (ALPR) cameras or substantially similar technology, unless otherwise directed by subsequent action of the City Council; and directing the City Attorney to draft and return to the City Council within 30 days a resolution to further effectuate this direction.",
      "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
      "source_title": "El Paso City Council regular meeting agenda, September 15, 2026, item 26, file 26-1038",
@@ -23365,7 +23365,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-20",
@@ -23385,6 +23385,11 @@
     {
      "date": "2026-09-29",
      "note": "El Paso's order that city-sited plate readers come down, and that the city manager sign no new one, still stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Reworded. The title and summary had stated the items as filed as though the council enacted them. The council's record marks both approved as revised and the revision text is not published, so every directive is now marked as filed. No source or quote changed.",
      "checked": true
     }
    ]
