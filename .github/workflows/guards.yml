@@ -1197,6 +1197,9 @@ jobs:
       - name: Site build self-test
         run: python3 scripts/site/site_build.py --self-test
 
+      - name: The document index preserves its reviewed source contract
+        run: python3 tests/test_document_demo.py
+
   freshness:
     # The published bytes against a fresh build of the same ledgers.
     #
@@ -1320,6 +1323,19 @@ jobs:
       # none of the published bytes, which house_style_check proves; this proves the route
       # still WORKS without it, that nothing of ours goes out in the body, and that the icon is
       # a real link rather than a control that does nothing when script does not run.
+      - name: The document demo filters sources and keeps review local
+        run: |
+          SITE=docs DEMO_SCREENSHOTS=out/document-demo-screenshots node tests/document_demo.mjs
+
+      - name: Keep the document demo visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: document-demo-screenshots
+          path: out/document-demo-screenshots
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: A message reaches the desk without the address being on the page
         run: SITE=docs node tests/contact.mjs
 

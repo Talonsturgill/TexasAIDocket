@@ -74,6 +74,7 @@ const structural = ['index.html', 'record/index.html', 'scan/index.html',
                     // page on the site whose whole job is to fetch, repeatedly, so it is the
                     // one a connect-src mistake silently kills. It was added with the page.
                     'scan/watch/index.html', 'videos/index.html',
+                    'services/index.html', 'services/document-demo/index.html',
                     'articles/index.html', 'grid/index.html', 'topic/index.html',
                     'place/index.html', 'questions/index.html', '404.html'];
 const sample = structural.map(r => resolve(SITE, r)).filter(existsSync);

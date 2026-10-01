@@ -36,6 +36,7 @@ import time
 # import renderer helpers from site_build, so the façade re-exports that stable surface.
 import connection_explorer
 import facility_explorer
+import document_demo
 
 from site_context import *
 from site_pages.watch import *
@@ -509,6 +510,10 @@ def build(out: Path, today: str) -> dict:
     w("scan/index.html", scan_page(today))
     w("scan/watch/index.html", watch_page(today))
     w("services/index.html", services_page(items, today))
+    demo_html, demo_numerals = document_demo.render(today)
+    w("document-demo.css", document_demo.CSS.read_text(encoding="utf-8"))
+    w("document-demo.js", document_demo.JS.read_text(encoding="utf-8"))
+    w("services/document-demo/index.html", demo_html, demo_numerals)
     w("services/thanks/index.html", services_thanks_page(today))
     w("privacy/index.html", privacy_page(today))
     w("about/index.html", about_page(today))
