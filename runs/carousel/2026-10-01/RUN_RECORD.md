@@ -161,6 +161,20 @@ waited longer than 11.2 seconds and the run never stalled. These waits are consi
 automatic permission check rather than a person. That reading is not established, and the counts
 are reported as the audit printed them.
 
+## The upgrade phase
+
+Commit 11db5c0, stamped `upgrade`, five paths all inside that lane by `ownership_check`.
+
+- `city_limit_sign` and `plate_reader` move into `assets/js/kit/civic.js`. The sign is built at the
+  fix the reader judge named in rounds 4 and 5. Proved on scratch copies of frames 1, 2 and 4, with
+  the accent gate's coverage held over its floor on all three.
+- A butte in `assets/js/kit/landscape.js` draws its proportions from its seed. Round 5's top
+  artwork defect was frame 5's buttes reading as one shape, and the kit was the cause.
+- Seven proposals are in `knowledge/carousel/UPGRADE_BACKLOG.md` under 2026-10-01. Items 3 to 7
+  are engine work in `assets/js/txthree.js`, which is `human` lane, and they head the email.
+
+The shipped deck was rendered before either kit change and does not use them.
+
 ## Craft memory
 
 - Confirmed: `acceptance-items-need-a-floor`, `read-the-repair-at-feed-scale` and
