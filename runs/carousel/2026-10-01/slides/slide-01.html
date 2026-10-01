@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-10-01, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's blueHour world. THE COVER. One plate reader on the parkway of a four lane road, seen low from behind its shoulder, its panels a dark T against the amber seam, a streetlight down the road and a sedan leaving down the lane it watches. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .hook { width:560px; }
+  .dek { width:600px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The state paused paying for this.</h1>
+<p class="dek" data-follow="30">A $1 fee added to Texas auto insurance in 2023 helped build the state's Flock network. In late August Governor Abbott ordered agencies to pause that funding as scrutiny over the "AI-powered surveillance devices" mounted, the Tribune reported.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-01-plates.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PL.boot(THREE, TXT, initKit, { kicker: "Flock plate readers", counter: "01 / 09", src: "c1 c12 c15 c16", fit: { min: 90, max: 104, maxLines: 3 } });
+
+
+  /* THE ROAD runs east and west along x, the seam and the lamp due west. The pole stands on the
+   * south parkway at the origin's shoulder, its camera aimed west down the near lane after the
+   * cars that pass it. The camera stands low and east of it, looking west and a little up, so the
+   * panels sit against the brightest band of sky. */
+  const R = PL.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 4000 });
+  PL.road(K, R, TXT, [-250, 0], { length: 900, lanes: 4, sidewalk: false, parkway: 2.2 });
+
+  const P = [0, 8.7];
+  const pole = PL.pole(K, { yaw: -Math.PI / 2 + 0.5, face: -Math.PI / 2, tilt: 0.12 });
+  pole.position.set(P[0], 0, P[1]); TXT.add(R, pole); TXT.contact(R, pole, { opacity: 0.75 });
+
+  /* the lamp far down the road to the west, where the declared key is, so the street reads lit */
+  PL.lamp(K, R, TXT, [-120, -6.5], 4, { lit: 3.4 });
+
+  /* a sedan leaving west in a westbound lane north of the centre line, its tail lamps toward the camera */
+  const car = K.make('sedan', { seed: 4, color: 0x8a8f96, metallic: true });
+  car.position.set(-32, 0, -1.8); car.rotation.y = -Math.PI / 2; TXT.add(R, car); TXT.contact(R, car);
+  car.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex && (m.material.color.getHex() & 0xff0000) > 0x900000 && m.material.color.g < 0.25 && m.material.color.b < 0.25) { m.material = m.material.clone(); m.material.emissive = new THREE.Color(0xff2a1a); m.material.emissiveIntensity = 4.0; } });
+
+  /* the town line far down the south shoulder, the deck's one accent */
+  const sign = PL.sign(K, R, TXT, [-11, 10.4], Math.PI / 2 - 0.3, 0.65, 0x22c060);
+  sign.traverse((m) => { if (m.isMesh) m.castShadow = false; });   /* contact only, no hard cast slab */
+
+  /* a distribution line along the north side of the road, its wires running into the seam */
+  const line = K.make('power_line', { structure: 'utility_pole', structures: Array.from({ length: 10 }, (_, i) => [8 - i * 46, -12.5, Math.PI / 2]), seed: 6 });
+  TXT.add(R, line);
+  /* juniper and live oak masses under the seam, the Balcones edge */
+  PL.trees(K, R, TXT, [[-210, 32, 'live_oak', 3], [-260, -28, 'ashe_juniper', 4], [-330, 40, 'live_oak', 5], [-180, -36, 'ashe_juniper', 6], [-420, -10, 'live_oak', 7], [-120, 30, 'ashe_juniper', 8], [-140, -24, 'mesquite', 9]]);
+
+  TXT.frame(R, { from: [7.85, 1.1, 11.26], look: [-0.9, 2.45, 9.7] });
+  TXT.sky(R);
+  TXT.deckRig(R, W.rig, { target: [0, 0, 6], distance: 40, shadowFar: 140, normalBias: 0.04 });
+  TXT.ground(R, { surface: 'caliche', color: PL.CALICHE, size: 6000, seed: 11 });
+  TXT.scatter(R, { kind: 'grass', count: 5000, area: [-200, 13.5, 3, 60], avoid: [[-1.2, 7.6, 1.2, 9.8]], seed: 3, scale: [0.16, 0.34], colors: [0x8a7d62, 0x6f6a52, 0x9a8c6c] });
+  TXT.scatter(R, { kind: 'grass', count: 5000, area: [-200, -60, 40, -10.4], seed: 4, scale: [0.18, 0.36], colors: [0x8a7d62, 0x6f6a52, 0x9a8c6c] });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-120, 7.9, 9, 13.4], avoid: [[-1.2, 7.6, 1.2, 9.8]], seed: 5, scale: [0.14, 0.3], colors: [0x8a7d62, 0x6f6a52, 0x9a8c6c] });
+  TXT.weather(R, { grime: 0.4 });
+  const cx = PL.develop(await TXT.snapshot(R), gl);
+
+  PL.post(cx, { a: 0.32, veil: 0.45, veilH: 300 });
+  TXDECK.finish(cx);
+  window.__txDrawn = { poles: 1, signs: 1 };
+  return true;
+})();
+</script>
+</body>
+</html>

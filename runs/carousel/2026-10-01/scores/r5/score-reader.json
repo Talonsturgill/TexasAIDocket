@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "S5 is the round's real gain. The faceted pickup, low-detail worker and striped rod are gone. The plate reader stands whole on its footing with a clear contact shadow (about y 1170 to 1190 at display scale). The lamp is lit across the road, and a far-west roadside at blue hour now reads as a place at an hour. Frames 1, 4, 5 and 6 pass a quick showstopper read at 432 px. Located defects that keep it at the 7 descriptor: (1) S5's 'broken tan ridge' is four identical cloned buttes in a row (x 470 to 1600, y 680 to 780). At full size it reads as a repeated asset, not a ridge. (2) The town limit sign faces on S1, S2 and S4 gained bolt dots but are still near-flat mint fills with no legend and no visible falloff. On S4 at feed size they still read more like blank panels than sheeting. (3) S7's sky band is closed. A dark floating gradient strip still sits on the horizon line (about y 1560 to 1660), where ground meets haze. (4) Machine QA still flags S9's lower third at 26%. The S9 safe-zone warning cleared."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.1,
+   "why": "This is a filmstrip with one blue-hour sky, the cobra-head lamp lit on every exterior frame, and one plate_reader in black powder coat. Its state carries the argument: standing (1, 2, 4, 5), multiplied (3), paired (6), close (7), counted (8), and in the chamber window (9). S5 now shares the roadside composition of 1, 2 and 4, so the frame that sat outside in rounds 1 to 4 has come in. Only its warm caliche keeps it slightly apart. S9 is the declared value cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every printed numeral traces to a claim: $1 and 2023 to c15, 3,200 to c17, $30 million to c16, 14 and 900 to c1, 60 and September 15th to c32, 4 to 2 to c23, 6 to 1 to c9, $205,000 / $80,000 / 32 to c8, 7 to 2 to c2, $1 million and 165 to c3, November 3rd and August 11th to c34. The caption traces the same way. S1's 'AI-powered surveillance devices' is verbatim from c12 and credited to the Tribune on the slide and in the caption. S5 states only what c32 supports, and its art now shows no removal. S9 matches c35. What keeps it off 9 and 10: (a) Kyle 6-1, Laredo 7-2, the 3,200 count and the pause rest on the Tribune where minutes, an MVCPA record or the order itself would be primary. (b) The S6 quote of c7 is still cut at 'it would take,' with no mark. Neither changes what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "A Texan learns, in order: what the device records (S2), who paid and how much (S1, S3), who paused it and why with the AI framing credited (S1 and the caption), and what six named places did, with margins and dates. The close says League City votes on a nonbinding question on November 3rd (S9). Short of the 10: a reader outside the six towns gets no next step, no county is named because none was fetched, and El Paso's outcome is deliberately left open at 'passed it as revised'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.7,
+   "why": "The cover earns the swipe, frame 2 pays, S6 is a declared turn, S7 (one kept camera) and S8 (a counted field put to voters) differ, and the close lands on a body and a date. Still cuttable or slow: the $1 fee is told twice (S1's dek, S3's hook). S4, S5 and Leander on S6 are three shut-off beats before the turn. The S1 dek is seven lines on the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Plain, specific, fair. Examples: 'It runs on sunlight and a cell signal.', 'El Paso voted on a 60 day clock.', 'League City votes next.' The police chief keeps his line, and attribution reads naturally. S1's dek is back to 'added to Texas auto insurance in 2023'. I found no house-rule breaks in the slide strings or the caption: no colons, semicolons, dashes, banned words or first person, 'can't' throughout, and no year on in-year dates. The one flat spot is the caption opener 'League City answers on November 3rd.', which is cryptic in the two-line preview for anyone outside League City."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "Unchanged. S3 and S8 are counted fields of identical instances, the device of yesterday's no. 38. S1 and S3 re-tell the spine of no. 12 (2026-08-30, tx-2026-0111), 32 days back and outside the window. League City's nonbinding ballot was no. 4's topic. Fresh: the roadside blue-hour world, the pole-as-state spine and the cover move."
+  }
+ ],
+ "weighted_score": 7.6,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Finish every kit prop to the hero's material standard before round 1 rather than across five rounds: no flat unshaded sign faces, no cloned terrain (S5's four identical buttes), no faceted trucks or stand-in workers. This deck spent rounds 2 to 5 repairing props, while the hero, light and world were right from round 1.",
+ "lens": "reader"
+}

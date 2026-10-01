@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The Supreme Court of Texas still has the argument on its calendar, with the court reporters' association in the proceeding.
 - 2026-09-29 · The Supreme Court of Texas docket still sets argument in the mandamus proceeding for October 6th.
 - 2026-09-30 · The court's docket still sets oral argument in the court reporters' mandamus proceeding for October 6th.
+- 2026-10-01 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers, and the court's published submission schedules do not yet list an October sitting for 2026.
 
 ## Evidence
 

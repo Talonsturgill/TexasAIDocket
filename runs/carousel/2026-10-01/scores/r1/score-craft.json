@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered in one blue-hour world with a sky, haze, a horizon and contact under the pole bases (slides 1, 3, 6, 7). The hero is built at true scale: pole against sedan on 1 and 2, pole against worker on 5. The 7 descriptor allows one weak frame and this deck has several. Slide 2 has a dark blurred ellipse behind 'the rear of passing vehicles' (about x 0-900, y 900-1080 at 1600 display). It reads as a smudge on the sky and as a type plate, and the label's leader line cuts through the green sign. Slide 4 makes 14 blank green rectangles its subject. The hero is a cropped sliver at the right edge, the signs' shadows are detached blue rectangles on the caliche, and the lower half is empty asphalt; machine_qa itself warns top-loaded, bottom third at 61%. Slide 5 uses a faceted low-poly pickup, a game-asset worker reaching into the truck instead of 'bent over the bolts' as the dossier asks, and a striped rod far from the footing that no reader will decode as 60 days. It also has two unexplained flat dark slabs beside the fallen pole and a bright horizontal streak in the haze band at y ~580. Slides 7 and 8 are near-identical: same camera, same front five ranks, same lamp and fence. Slide 3 is a third instanced pole field, so a third of the deck is one stamped picture. Value sits in one mid violet band, and the only real lights are the lamp heads. The grass is a repeated tuft sprite that reads as a stamped pattern at full size (foregrounds of 1 and 5). On the showstopper test, only 1 and 6 come close to a photograph of a place at an hour; 3, 7 and 8 read as clean CG. Slide 9's window view is a flat painted gradient, and a darker strip about 12 px deep runs along its top edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is a real filmstrip. The same plate_reader in one powder-coat material appears on 1 to 8. On 9 it reappears in the council chamber window beside the cobra-head lamp, a good payoff of the declared value cut. One blue-hour sky and one grade run through, and the streetlamp companion is on 1, 2, 3, 4, 6, 7, 8 and 9. Two continuity devices are declared (MOTIF_EVOLUTION, CAMERA_MOVE) and both work: the pole goes on, multiplied, off, unbolted, paired, kept, then seen through glass. A reader could describe the spine unprompted. Slide 5 sits outside: Far West mesas, a bright white faceted truck that is the lightest mass in the deck, and a warmer ground than the rest. That keeps it short of 9. Neither gate refuses it, so the 7 cap does not apply."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral on the slides and in the caption maps to a claim: $1 and 2023 c15, 3,200 c17, $30 million c16, 14 and 900 c1, 60 c32, 6 to 1 c9, 4 to 2 c23, $205,000, $80,000 and 32 c8, 7 to 2, $1 million and 165 c2/c3, November 3rd and August 11th c34. The verbatims match: c22 'in response to community concerns' and c7, cut at 'take' without changing its sense. The local decisions rest on primary sources (El Paso Legistar, Leander, College Station, League City). The statewide spine rests on Tribune reporting: 3,200, $30M, the Governor's order, 14/900 and the Laredo vote. MVCPA grant records and Laredo's own agenda were primary sources that existed. One looser phrasing: slide 4 says the money was 'rescinded' (c1's word), while slide 1 says 'pause' (c12). A reader gets both a pause and a rescission without being told which it is."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (the fee, the cameras, the Governor's pause), who decided (the Governor, then named councils with their vote splits), where (El Paso, Leander, Kyle, College Station, Laredo, League City) and two dates (League City on November 3rd, Laredo in May). The action is general. 'Your council decides this in public' (slide 9) gives most readers no body, meeting or deadline of their own. Only League City voters get a date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover hook 'The state stopped paying for this.' earns the swipe. Slide 2 is a how-it-works detour before the money pays off on 3. The turn at 6 ('Same pole. Two councils.') is declared and lands, and 9 closes on a date. The swipe from 7 to 8 shows almost the same picture twice. It is a deliberate same-camera count, but it reads as a stall. 4 and 5 are both 'turned off' beats, so one is close to cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain and specific: 'It runs on sunlight and a cell signal.', 'Same pole. Two councils.', 'El Paso gave it 60 days.' It treats the split even-handedly with no villain and no boosterism. Some lines are flat reportage, such as the slide 4 dek ('More than 900 Flock cameras went dark after the state money was rescinded...') and slide 9's civics-poster hook. No house-rule breaks found: no colons, semicolons, dashes, banned words or 'cannot'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "From ledger/carousel/artwork.json, several moves repeat recent decks. Counts drawn as instanced fields of identical units were used by no. 37 (813 genset units) and no. 38 (3,000 and 1,000 desks); here they fill frames 3, 7 and 8. A shared-camera pair for a count comparison was used by no. 38 (frames 3 and 6) and no. 35 (3 and 7); here it is 7 and 8. A camera on a pole as the chassis hero was no. 36's wildfire_camera_station, three decks back. No. 34 was a blue-hour Texas roadside. The council-chamber close echoes no. 36's hearing room. The palette, dusk violet with a green-sign accent, is fresh against nos. 35 to 38."
+  }
+ ],
+ "weighted_score": 7.06,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Stop turning every count into a field of identical instanced units. Here that is frames 3, 7 and 8, two of them almost the same picture, and it repeats nos. 37 and 38. Spend those frames on close, detailed shots of the one hero at a real Texas place: a dark pole on the Kyle roadside, a crew at the bare four-bolt footing in El Paso. Let the numerals carry the counts.",
+ "lens": "craft"
+}

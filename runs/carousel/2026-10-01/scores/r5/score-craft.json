@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Every frame now carries the hero as subject or echo, and the kit models are gone. Slide 5 is the plate reader standing whole on its four-bolt footing, contact shadow at y ~1150-1190. The lit cobra head is across the road and the buttes sit on the horizon. machine_qa reads its bands at 0.35 / 0.86 / 0.45 with no warning. Slide 7's mast now stops at y ~895, below the dek's last line (~815), and the empty band is closed, leaving clean panel cells against the sky. Slide 4 keeps its whole, grounded hero at the right. Frames 1, 4, 5, 6 and 7 now pass the showstopper test reasonably: a blue-hour place with a haze horizon and a hero at true scale. It sits a little above 7 rather than near 8 for five reasons. (1) Slide 5's buttes are one silhouette stamped four times at the same size and spacing (x ~460-1600, y ~680-780), which reads as a repeated asset. The road band at y ~960-1050 shows the same horizontal streaking as slide 6. (2) Slides 1, 2 and 4 still have blank green sign faces. The new bolt heads are a few dots at feed size. Faint blue footprint strips remain under slide 4's near three signs at y ~1340, ~1395 and ~1470. (3) Slides 3 and 8 are still instanced count fields. (4) Deck-wide, value stays in one mid violet band. The lamp heads are the only true lights, so no frame has a real dark against a real light. (5) The foreground grass on 1 and 5 is one repeated tuft sprite. Slide 7's live oak trunk is near white. Slide 9 keeps a darker strip about 12 px deep along its top edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "This is now a filmstrip. The same plate_reader in one material is the focal on 1, 2, 4, 5, 6 and 7, is multiplied on 3 and 8, and appears through the window on 9. One blue hour, one lamp companion and one grass run through every frame. The hero's state carries the spine in order: on, multiplied, off, under a clock, paired, close, multiplied, through glass. Slide 5 has rejoined the deck. Its pole-and-lamp pair now matches 1, 2 and 6, and only its warmer tan buttes sit slightly apart."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces: $1/2023 c15, 3,200 c17, $30M c16, 14/900 c1, 60 c32, 6 to 1 c9, 4 to 2 c23, $205,000/$80,000/32 c8, 7 to 2/$1M/165 c2/c3, November 3rd/August 11th c34. Slide 1's quote is attributed to the Tribune and matches c12 word for word. Slide 5 stays faithful to c32 ('as filed... passed it as revised'). Short of 10 because the statewide figures and the Governor's order rest on Tribune reporting where MVCPA records existed. Slide 4's 'rescinded' also sits against slide 1's 'pause'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6,
+   "why": "The deck names what happened, who decided and where, city by city. The close gives League City, its nonbinding question and November 3rd, and Laredo has May. El Paso's dek still leaves unclear what the revised item ordered. Readers outside the named cities get no act or date of their own."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "The cover earns the swipe, slide 6 turns, slide 7's close-up breaks the field rhythm and slide 9 lands on a dated vote. Slide 2 is a how-it-works detour before the money arrives on 3, and slides 4 and 5 are both turning-off beats."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The hooks are strong: 'It runs on sunlight and a cell signal.', 'Same pole. Two councils.', 'League City votes next.' The caption reads cleanly. Slide 5's dek ('As filed, the item called for...') still reads like a clerk's minute. The cover dek is long for slide 1, at six to seven lines. No house-rule breaks found in the slides or the caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "Unchanged since round 3. The counted instanced fields on 3 and 8 repeat a device nos. 37 (813 gensets) and 38 (3,000 desks) both used. A pole camera as chassis hero follows no. 36 by three decks, the blue-hour roadside echoes no. 34 and the hearing-room close echoes no. 36. The palette is fresh."
+  }
+ ],
+ "weighted_score": 7.5,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build every frame around the hero up close from the start, as slides 4, 5 and 7 ended up after four rounds, and never let a prop, a kit model or an instanced field carry a frame's subject or its count, because those were the faults the panel named in round 1 and the run spent the whole cap repairing.",
+ "lens": "craft"
+}

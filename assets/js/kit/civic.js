@@ -765,6 +765,330 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* ============ city_limit_sign, lifted from the 2026-10-01 chassis AT THE JUDGES' FIX ============
+   * Carousel no. 39 built this sign as a white slab with a green slab 14 mm in front of it, the
+   * green lit by one flat emissive fill. All three judges named the blank green face in all five
+   * rounds, and the reader judge named the fix in rounds 4 and 5: "a real retroreflective material
+   * (a lamp-side sheen falling off across the face, an inset white border with depth, visible bolts
+   * and a back-lit edge), so the cover's most saturated object reads at feed size as a Texas road
+   * sign instead of a green-screen placeholder." This is that sign:
+   *
+   *   SHEETING  prismatic sheeting over the whole aluminium face: a faint microprism lattice in the
+   *             colour map, a clearcoat for the film, and the light it RETURNS as an emissive map
+   *             that falls off across the face from the lamp side (`lit`, -1 the sign's own -x edge,
+   *             +1 its +x edge, 0 centred), never a flat fill. `glow` scales what it returns.
+   *   BORDER    a white border inset from the edge, its own extruded ring standing proud of the
+   *             sheeting with a bevel, so it catches the light as an edge and not as paint.
+   *   BOLTS     two per post through the web, each a domed head on a nylon washer, galvanized.
+   *   EDGE      the blank is extruded, so its mill finish aluminium edge is a metal rim that
+   *             returns the sky behind the sign. `rim` adds a faint emission to it for a frame
+   *             whose sky is too dark to rim it on its own (default 0).
+   *   LEGEND    "CITY LIMIT", stroked as paths in the face texture (never text rendering), the
+   *             line every Texas city limit sign carries. It names no town, because a deck that
+   *             has no source for a town's name must not invent one. legend: 'none' leaves the
+   *             face blank.
+   *
+   * THE ACCENT. The 2026-10-01 deck's accent gate (layout_check, pixels within 12 Lab of #3E8F68
+   * at 216 x 270) read this sheeting, and the blue hour cooled it off the hex until the frames
+   * passed `tint`, the hue the face RETURNS. The field keeps `color` as its diffuse and paints
+   * `tint` (default the same colour) into the emissive map, so a frame can pull the returned light
+   * back onto its accent without moving the sheeting's own colour.
+   *
+   * Front (the face) toward +z, footprint centred, base on the ground. Default 60 x 30 in, the
+   * size the chassis drew, bottom at 1.5 m. userData.face is the face centre. */
+  function rrect(w, h, rad) {
+    const s = new THREE.Shape(), x0 = -w / 2, y0 = -h / 2;
+    s.moveTo(x0 + rad, y0); s.lineTo(x0 + w - rad, y0); s.quadraticCurveTo(x0 + w, y0, x0 + w, y0 + rad);
+    s.lineTo(x0 + w, y0 + h - rad); s.quadraticCurveTo(x0 + w, y0 + h, x0 + w - rad, y0 + h);
+    s.lineTo(x0 + rad, y0 + h); s.quadraticCurveTo(x0, y0 + h, x0, y0 + h - rad);
+    s.lineTo(x0, y0 + rad); s.quadraticCurveTo(x0, y0, x0 + rad, y0);
+    return s;
+  }
+  function rrectPath(w, h, rad) {
+    const p = new THREE.Path(), x0 = -w / 2, y0 = -h / 2;
+    p.moveTo(x0 + rad, y0); p.lineTo(x0 + w - rad, y0); p.quadraticCurveTo(x0 + w, y0, x0 + w, y0 + rad);
+    p.lineTo(x0 + w, y0 + h - rad); p.quadraticCurveTo(x0 + w, y0 + h, x0 + w - rad, y0 + h);
+    p.lineTo(x0 + rad, y0 + h); p.quadraticCurveTo(x0, y0 + h, x0, y0 + h - rad);
+    p.lineTo(x0, y0 + rad); p.quadraticCurveTo(x0, y0, x0 + rad, y0);
+    return p;
+  }
+  // UVs over the sign's own face: u across the width, v up the height, 0 to 1
+  function faceUV(g, w, h) {
+    const p = g.attributes.position, uv = new Float32Array(p.count * 2);
+    for (let i = 0; i < p.count; i++) { uv[i * 2] = p.getX(i) / w + 0.5; uv[i * 2 + 1] = p.getY(i) / h + 0.5; }
+    g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    return g;
+  }
+  /* "CITY LIMIT" in uniform strokes, Highway Gothic proportions: stroke about a sixth of the cap
+   * height, square terminals. Each glyph is drawn inside a box `capH` tall, widths in cap heights. */
+  const GLYPH_W = { C: 0.68, I: 0.16, T: 0.62, Y: 0.66, L: 0.52, M: 0.78, ' ': 0.42 };
+  function strokeWord(x, word, x0, y0, capH) {
+    const sw = capH * 0.16, track = capH * 0.17;
+    // bevel joins and a clip to the cap box: a miter at the M's and the Y's sharp joins spiked
+    // above the cap line in the first proof (2026-10-01)
+    x.lineWidth = sw; x.lineCap = 'butt'; x.lineJoin = 'bevel';
+    let cx = x0;
+    for (const ch of word) {
+      const w = GLYPH_W[ch] * capH, L = cx + sw / 2, Rt = cx + w - sw / 2, T = y0 + sw / 2, B = y0 + capH - sw / 2, mx = cx + w / 2;
+      x.save(); x.beginPath(); x.rect(cx - sw, y0, w + 2 * sw, capH); x.clip();
+      x.beginPath();
+      if (ch === 'C') x.ellipse(mx, y0 + capH / 2, (w - sw) / 2, (capH - sw) / 2, 0, -0.3 * PI, 0.3 * PI, true);
+      else if (ch === 'I') { x.moveTo(mx, y0); x.lineTo(mx, y0 + capH); }
+      else if (ch === 'T') { x.moveTo(cx, T); x.lineTo(cx + w, T); x.moveTo(mx, y0); x.lineTo(mx, y0 + capH); }
+      else if (ch === 'Y') { x.moveTo(L, y0); x.lineTo(mx, y0 + capH * 0.5); x.lineTo(Rt, y0); x.moveTo(mx, y0 + capH * 0.48); x.lineTo(mx, y0 + capH); }
+      else if (ch === 'L') { x.moveTo(L, y0); x.lineTo(L, B); x.lineTo(cx + w, B); }
+      else if (ch === 'M') { x.moveTo(L, y0 + capH); x.lineTo(L, T); x.lineTo(mx, y0 + capH * 0.78); x.lineTo(Rt, T); x.lineTo(Rt, y0 + capH); }
+      x.stroke(); x.restore();
+      cx += w + (ch === ' ' ? 0 : track);
+    }
+    return cx - track;
+  }
+  function wordWidth(word, capH) {
+    let w = 0; for (const ch of word) w += GLYPH_W[ch] * capH + (ch === ' ' ? 0 : capH * 0.17);
+    return w - capH * 0.17;
+  }
+  /* The sheeting's two maps, painted on one canvas size (2:1 for the default sign, scaled with it).
+   * colour map: the sheeting colour, its microprism lattice and the white legend.
+   * emissive map: what it RETURNS, the tint and the legend, falling off from the lamp side. */
+  function signMaps(w, h, colour, tint, lit, legend) {
+    const key = [w, h, colour, tint, lit, legend].join('|');
+    const W = 1024, H = Math.max(64, Math.round(W * h / w)), pxm = W / w;
+    const cs = '#' + new THREE.Color(colour).getHexString(), ts = '#' + new THREE.Color(tint).getHexString();
+    function letters(x) {
+      if (legend !== 'city_limit') return;
+      const capH = Math.min(0.165, h * 0.22) * pxm, word = 'CITY LIMIT', ww = wordWidth(word, capH);
+      x.strokeStyle = '#f4f6f2';
+      strokeWord(x, word, (W - ww) / 2, (H - capH) / 2, capH);
+    }
+    const map = ctex('cls-map|' + key, W, H, (x) => {
+      x.fillStyle = cs; x.fillRect(0, 0, W, H);
+      // the microprism lattice: cube corner cells sealed in a diamond grid, read as a faint weave
+      x.strokeStyle = 'rgba(0,0,0,0.05)'; x.lineWidth = 1;
+      const p = Math.max(6, Math.round(0.012 * pxm));
+      for (let k = -H; k < W + H; k += p) { x.beginPath(); x.moveTo(k, 0); x.lineTo(k + H, H); x.moveTo(k, H); x.lineTo(k + H, 0); x.stroke(); }
+      speckle(x, W, H, hash(39), 0.025);
+      letters(x);
+    }, 1);
+    const emit = ctex('cls-emit|' + key, W, H, (x) => {
+      x.fillStyle = ts; x.fillRect(0, 0, W, H);
+      letters(x);
+      // the falloff: brightest toward the lamp side and a little above centre, as a prismatic face
+      // returns most along the line to its source, darkening across the face away from it
+      const cx = W * (0.5 + 0.5 * Math.max(-1, Math.min(1, lit))), cy = H * 0.35;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, Math.hypot(W, H) * 0.95);
+      g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.35, 'rgba(0,0,0,0.12)'); g.addColorStop(1, 'rgba(0,0,0,0.42)');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+    }, 1);
+    const gray = ctex('cls-sheen|' + key, W, H, (x) => {
+      x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+      const cx = W * (0.5 + 0.5 * Math.max(-1, Math.min(1, lit))), cy = H * 0.35;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, Math.hypot(W, H) * 0.95);
+      g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.35, 'rgba(0,0,0,0.12)'); g.addColorStop(1, 'rgba(0,0,0,0.42)');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+    }, 1);
+    [map, emit, gray].forEach((t) => { t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; });
+    return { map, emit, gray };
+  }
+
+  K.define('city_limit_sign', {
+    size: [1.52, 2.26, 0.06],
+    options: { w: 1.52, h: 0.76, bottom: 1.5, glow: 0.55, lit: -0.6, legend: 'city_limit', color: 0x3e8f68, tint: null, rim: 0 },
+    note: 'A TxDOT style green city limit sign (60 x 30 in by default, bottom at 1.5 m) on two galvanized U channel posts, at the judges\' fix of carousel no. 39: prismatic retroreflective sheeting whose returned light falls off across the face from the lamp side (lit -1..1 in the sign\'s own x, glow 0..1 scales it, tint is the returned hue, default the sheeting colour), an inset white border standing proud of the face with a bevel, two domed bolts on nylon washers per post, a mill finish aluminium blank whose edge rims against the sky (rim adds a faint emission), and the legend CITY LIMIT stroked as paths (legend: \'none\' for a blank face). It names no town. Front +z. userData.face.',
+    make(o) {
+      const G = new THREE.Group(), B = Builder();
+      const w = +o.w || 1.52, h = +o.h || 0.76, b = o.bottom == null ? 1.5 : +o.bottom, glow = +o.glow || 0;
+      const colour = o.color != null ? o.color : 0x3e8f68, tint = o.tint != null && o.tint !== 0 ? o.tint : colour;
+      const lit = o.lit == null ? -0.6 : +o.lit, rad = Math.min(w, h) * 0.05, cy = b + h / 2;
+      const T = 0.0032;                                                      // the blank, 0.125 in aluminium
+      const M = signMaps(w, h, colour, tint, lit, o.legend || 'none');
+      const alum = mat('cls-alum|' + (+o.rim || 0), { color: 0xc4c8cb, metalness: 0.9, roughness: 0.3,
+        emissive: 0xb8c8e0, emissiveIntensity: 0.6 * (+o.rim || 0) });
+      /* POLYGON OFFSET, NOT DISTANCE. The sheeting, border and washers sit a fraction of a millimetre
+       * proud of the blank, as they do in life, and a depth buffer at 50 m resolves about a
+       * millimetre and a half, so the first deck proof printed the posts and the border's back
+       * through the face as lines. Each layer is pulled toward the camera in depth instead. */
+      const off = (n) => ({ polygonOffset: true, polygonOffsetFactor: -n, polygonOffsetUnits: -n * 2 });
+      const sheet = mat('cls-sheet', Object.assign({ color: 0xffffff, map: M.map, roughness: 0.42, metalness: 0.0, clearcoat: 0.55,
+        clearcoatRoughness: 0.24, emissive: 0xffffff, emissiveMap: M.emit, emissiveIntensity: glow }, off(2)), true);
+      const white = mat('cls-border', Object.assign({ color: 0xf2f3ef, roughness: 0.36, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.2,
+        emissive: 0xffffff, emissiveMap: M.gray, emissiveIntensity: 0.55 * glow }, off(4)), true);
+      const steel = F.galv();
+      // the posts and their holes are pushed AWAY in depth, the same reason as above from the other
+      // side: frame 1 of no. 39 (near plane 0.05 m, the sign about 25 m out) printed each post's
+      // edge through the face as a one pixel line under the bolts even with the sheeting offset
+      const postM = mat('cls-post', Object.assign({ color: 0xa9adb0, metalness: 0.85, roughness: 0.42 }, off(-4)));
+      // the blank, extruded so its edge is real metal, then the sheeting on its face
+      B.geo(new THREE.ExtrudeGeometry(rrect(w, h, rad), { depth: T, bevelEnabled: false, curveSegments: 6 }), alum, 0, cy, -T);
+      B.geo(faceUV(new THREE.ShapeGeometry(rrect(w - 0.002, h - 0.002, rad), 6), w, h), sheet, 0, cy, 0.0004);
+      // the inset border: 1.25 in wide, 0.75 in in from the edge, proud of the sheeting with a bevel
+      const inset = 0.019, bw = 0.032, ow = w - 2 * inset, oh = h - 2 * inset, orad = Math.max(0.004, rad - inset);
+      const ring = rrect(ow, oh, orad); ring.holes.push(rrectPath(ow - 2 * bw, oh - 2 * bw, Math.max(0.003, orad - bw)));
+      B.geo(faceUV(new THREE.ExtrudeGeometry(ring, { depth: 0.0016, bevelEnabled: true, bevelThickness: 0.0012, bevelSize: 0.0016,
+        bevelSegments: 2, curveSegments: 6 }), w, h), white, 0, cy, 0.0006);
+      // two U channel posts, 3 lb/ft: a web facing the sign with its flanges turned back, holed every inch
+      // the posts stand PG behind the blank (a spacer's depth), far enough for the depth buffer to
+      // keep them behind it at distance
+      const pw = 0.064, pd = 0.033, pt = 0.005, top = b + h - 0.04, PG = 0.008;
+      const U = new THREE.Shape();
+      U.moveTo(-pw / 2, 0); U.lineTo(pw / 2, 0); U.lineTo(pw / 2 + 0.006, pd); U.lineTo(pw / 2 + 0.006 - pt, pd);
+      U.lineTo(pw / 2 - pt, pt); U.lineTo(-pw / 2 + pt, pt); U.lineTo(-pw / 2 - 0.006 + pt, pd); U.lineTo(-pw / 2 - 0.006, pd); U.lineTo(-pw / 2, 0);
+      const hole = mat('cls-hole', Object.assign({ color: 0x202326, roughness: 0.8 }, off(-4)));
+      const washer = mat('cls-washer', Object.assign({ color: 0xd9d7cf, roughness: 0.55 }, off(6)));
+      [-w * 0.3, w * 0.3].forEach((px) => {
+        B.geo(new THREE.ExtrudeGeometry(U, { depth: top, bevelEnabled: false }), postM, px, 0, -T - PG, -PI / 2, 0, 0);
+        for (let y = 0.15; y < top - 0.02; y += 0.0254) if (y < b - 0.02 || y > b + h) B.boxc(hole, 0.0095, 0.0095, 0.002, px, y, -T - PG + 0.0005);
+        // the bolts through the face, a domed head on a white nylon washer
+        [b + h * 0.22, b + h * 0.78].forEach((by) => {
+          B.geo(new THREE.CylinderGeometry(0.016, 0.016, 0.002, 16), washer, px, by, 0.0034, PI / 2, 0, 0);
+          // a bright zinc head, so it returns a point of sky: the face is lit mostly by what the
+          // sheeting returns, and a rough galvanized dome read as a dark hole in the first proof
+          B.geo(new THREE.SphereGeometry(0.0105, 14, 6, 0, PI * 2, 0, PI / 2), K.finish.chrome(), px, by, 0.0044, PI / 2, 0, 0);
+        });
+      });
+      B.flush(G);
+      G.userData.face = { x: 0, y: cy, z: 0.002 };
+      return G;
+    },
+  });
+
+  /* ============ plate_reader, lifted from the 2026-10-01 chassis as it shipped ============
+   * A solar powered automated license plate reader on its own pole, drawn to Flock Safety's own
+   * published specification for the Falcon (a village board packet, Long Grove, Illinois, read
+   * 2026-10-01): a DOT breakaway pole of 6061 aluminum in black, 2.875 in OD, 12 ft installed; dual
+   * solar panels 21.25 by 28 in each on the pole top; a camera body 8.75 by 5 by 2.875 in on band
+   * clamps. The judges named no defect in it across five rounds, so it is lifted unchanged.
+   *
+   * STATES, because a deck's story is the object's state:
+   *   on       the lens glass clear, the IR ring faintly lit when ir > 0 (dusk and night)
+   *   off      the same hardware with the ring dark. A switched off camera looks like a switched
+   *            on one, which a frame makes with a caption, never with an invented light
+   *   bagged   a black contractor bag over the camera head, tied at the clamp
+   *   removed  the camera and its clamps gone, the pole and panels standing, two clamp scars
+   *   stub     the pole cut away: the footing and four bolts, all a removal order leaves
+   * Anchored at the pole's foot (anchor 'base'), the lens toward +z before `yaw`. */
+  K.define('plate_reader', {
+    anchor: 'base',
+    size: [1.14, 4.35, 0.6],
+    options: { height: 12 * 0.3048, panels: 2, yaw: 0, tilt: 0.14, state: 'on', ir: 0, face: 0, footing: true },
+    note: 'A solar powered automated license plate reader on its own pole, drawn to Flock Safety\'s published Falcon specification: a black 2.875 in DOT breakaway aluminum pole 12 ft tall on a cast breakaway base and a concrete footing, dual 21.25 x 28 in solar panels on the pole top tilted toward `face`, a camera body 8.75 x 5 x 2.875 in on band clamps aimed along +z (yaw, tilt down), an LTE puck. state on|off|bagged|removed|stub; ir 0..1 lights the IR ring when on. userData.lens, .top, .head, .puck.',
+    make(o) {
+      const IN = 0.0254, st = o.state || 'on';
+      const M = {
+        pole: mat('pr-pole', { color: 0x16181b, roughness: 0.42, metalness: 0.55 }),
+        cast: mat('pr-cast', { color: 0x8d9094, roughness: 0.55, metalness: 0.7 }),
+        conc: mat('pr-conc', { color: 0xa9a59c, roughness: 0.92, metalness: 0.0 }),
+        bolt: mat('pr-bolt', { color: 0x6c6e70, roughness: 0.4, metalness: 0.85 }),
+        frame: mat('pr-frame', { color: 0xb9bcc0, roughness: 0.35, metalness: 0.8 }),
+        cell: mat('pr-cell', { color: 0x10151f, roughness: 0.18, metalness: 0.35 }),
+        backsheet: mat('pr-back', { color: 0xd8d8d2, roughness: 0.7 }),
+        housing: mat('pr-housing', { color: 0x202326, roughness: 0.5, metalness: 0.1 }),
+        hood: mat('pr-hood', { color: 0x2a2d31, roughness: 0.45, metalness: 0.1 }),
+        glass: mat('pr-glass', { color: 0x0b0f14, roughness: 0.06, metalness: 0.6 }),
+        ir: mat('pr-ir', { color: 0x2a0d0d, emissive: 0xff2a1a, emissiveIntensity: (st === 'on' ? (+o.ir || 0) : 0) * 2.2, roughness: 0.3 }),
+        clamp: mat('pr-clamp', { color: 0x9a9da1, roughness: 0.3, metalness: 0.9 }),
+        bag: mat('pr-bag', { color: 0x111214, roughness: 0.42, metalness: 0.0 }),
+        puck: mat('pr-puck', { color: 0xe4e4df, roughness: 0.55 }),
+        scar: mat('pr-scar', { color: 0x3a3d40, roughness: 0.6, metalness: 0.4 }),
+      };
+      const g = new THREE.Group();
+      const rbx = (w, h, d, r, m, x, y, z, parent) => { const bx = TXT.roundedBox(w, h, d, r, m); bx.position.set(x, y, z); parent.add(bx); return bx; };
+      const H = +o.height || 3.66, r = 2.875 * IN / 2;
+      if (st === 'stub') {
+        rbx(0.6, 0.05, 0.6, 0.01, M.conc, 0, 0.025, 0, g);
+        [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach((q) => {
+          K.cyl(0.0125, 0.0125, 0.08, M.bolt, q[0] * 0.18, 0.05, q[1] * 0.18, 10, g);
+          K.cyl(0.022, 0.022, 0.018, M.bolt, q[0] * 0.18, 0.06, q[1] * 0.18, 6, g);
+        });
+        g.userData.top = { x: 0, y: 0.13, z: 0 }; g.userData.keepOrigin = true;
+        return g;
+      }
+      // the footing flush with grade, the square cast breakaway base, four bolts, the pole socketed in
+      if (o.footing !== false) K.cyl(0.24, 0.26, 0.06, M.conc, 0, -0.03, 0, 24, g);
+      rbx(0.2, 0.012, 0.2, 0.004, M.cast, 0, 0.033, 0, g);
+      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.085, 0.2, 16), M.cast);
+      base.position.set(0, 0.139, 0); g.add(base);
+      [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach((s) => {
+        K.cyl(0.009, 0.009, 0.05, M.bolt, s[0] * 0.072, 0.039, s[1] * 0.072, 8, g);
+        K.cyl(0.015, 0.015, 0.012, M.bolt, s[0] * 0.072, 0.068, s[1] * 0.072, 6, g);
+      });
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(r, r, H - 0.22, 20, 1), M.pole);
+      pole.position.set(0, 0.22 + (H - 0.22) / 2, 0); g.add(pole);
+      K.cyl(r + 0.004, r + 0.004, 0.02, M.pole, 0, H - 0.01, 0, 20, g);
+      // the panels on a T bracket, side by side, tilted 35 degrees up toward their face
+      const face = +o.face || 0, pw = 21.25 * IN, ph = 28 * IN, tilt = 0.61;
+      const top = new THREE.Group(); top.position.set(0, H + 0.02, 0); top.rotation.y = face; g.add(top);
+      rbx(0.05, 0.05, 0.05, 0.008, M.frame, 0, 0.02, 0, top);
+      const n = +o.panels === 1 ? 1 : 2;
+      for (let i = 0; i < n; i++) {
+        const x = n === 1 ? 0 : (i === 0 ? -1 : 1) * (pw / 2 + 0.03);
+        // one panel: an aluminium frame, a dark cell field divided by thin busbars, a white backsheet
+        const p = new THREE.Group();
+        rbx(pw, ph, 0.035, 0.006, M.frame, 0, 0, 0, p);
+        rbx(pw - 0.03, ph - 0.03, 0.004, 0.001, M.cell, 0, 0, 0.0185, p);
+        rbx(pw - 0.02, ph - 0.02, 0.004, 0.001, M.backsheet, 0, 0, -0.0185, p);
+        for (let c = 1; c < 4; c++) rbx(0.003, ph - 0.04, 0.002, 0.0005, M.frame, -pw / 2 + c * pw / 4, 0, 0.0215, p);
+        for (let j = 1; j < 6; j++) rbx(pw - 0.04, 0.003, 0.002, 0.0005, M.frame, 0, -ph / 2 + j * ph / 6, 0.0215, p);
+        top.add(p);
+        p.rotation.x = -(PI / 2 - tilt);
+        p.position.set(x, 0.05 + Math.sin(tilt) * 0.02 + ph / 2 * Math.cos(tilt) * 0.2, 0);
+        K.bar([x * 0.2, 0.03, 0], [x, 0.05, 0], 0.012, M.frame, 8, top);
+      }
+      // the LTE puck on its mast, the battery pack under the panels on two clamps
+      K.bar([0, H + 0.04, 0], [0, H + 0.62, 0], 0.012, M.frame, 8, g);
+      K.cyl(0.055, 0.06, 0.04, M.puck, 0, H + 0.62, 0, 20, g);
+      g.userData.puck = { x: 0, y: H + 0.66, z: 0 };
+      rbx(0.14, 0.24, 0.09, 0.012, M.housing, 0, H - 0.35, -(r + 0.045), g);
+      rbx(0.15, 0.012, 0.1, 0.004, M.clamp, 0, H - 0.21, -(r + 0.045), g);
+      rbx(0.15, 0.012, 0.1, 0.004, M.clamp, 0, H - 0.49, -(r + 0.045), g);
+      // the band clamps at camera height, and the camera unless it was taken down
+      const yc = H - 0.75;
+      [yc - 0.06, yc + 0.06].forEach((y) => {
+        const band = new THREE.Mesh(new THREE.TorusGeometry(r + 0.004, 0.006, 6, 24), st === 'removed' ? M.scar : M.clamp);
+        band.rotation.x = PI / 2; band.position.y = y; g.add(band);
+      });
+      if (st !== 'removed') {
+        const yaw = +o.yaw || 0, L = 8.75 * IN, Hh = 5 * IN, Wd = 2.875 * IN;
+        const c = new THREE.Group();
+        rbx(Wd, Hh, L, 0.012, M.housing, 0, 0, 0, c);
+        rbx(Wd + 0.016, 0.008, L + 0.05, 0.003, M.hood, 0, Hh / 2 + 0.006, 0.02, c);
+        rbx(0.004, Hh * 0.55, L + 0.04, 0.001, M.hood, Wd / 2 + 0.006, Hh * 0.2, 0.018, c);
+        rbx(0.004, Hh * 0.55, L + 0.04, 0.001, M.hood, -Wd / 2 - 0.006, Hh * 0.2, 0.018, c);
+        const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.019, 0.019, 0.006, 24), M.glass);
+        lens.rotation.x = PI / 2; lens.position.set(0, 0.012, L / 2 + 0.002); c.add(lens);
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.026, 0.0035, 8, 28), M.ir);
+        ring.position.set(0, 0.012, L / 2 + 0.003); c.add(ring);
+        rbx(Wd * 0.8, 0.016, 0.02, 0.004, M.housing, 0, -Hh / 2 - 0.006, -L / 2 + 0.03, c);
+        c.rotation.order = 'YXZ'; c.rotation.y = yaw; c.rotation.x = -(+o.tilt || 0);
+        const arm = new THREE.Group(); arm.position.set(0, yc, 0); arm.rotation.y = yaw;
+        rbx(0.03, 0.03, r + 0.09, 0.006, M.clamp, 0, -Hh / 2 - 0.02, (r + 0.09) / 2, arm);
+        g.add(arm);
+        c.position.set(Math.sin(yaw) * (r + 0.11), yc, Math.cos(yaw) * (r + 0.11));
+        g.add(c);
+        if (st === 'bagged') {
+          // a contractor bag over the head: a soft bulb longer than the body, sagging below it,
+          // gathered at the clamp, and dented so it reads as film over a box
+          const bg = new THREE.SphereGeometry(1, 22, 16), pa = bg.attributes.position;
+          for (let k = 0; k < pa.count; k++) {
+            const bx = pa.getX(k), by = pa.getY(k), bz = pa.getZ(k);
+            const sq = 0.75 + 0.25 * Math.abs(by), dent = 1 + 0.06 * Math.sin(bx * 9 + bz * 5) * Math.cos(by * 7);
+            pa.setXYZ(k, bx * sq * dent, by < 0 ? by * 1.25 : by, bz * dent);
+          }
+          bg.computeVertexNormals();
+          const bag = new THREE.Mesh(bg, M.bag);
+          bag.scale.set(0.07, 0.1, 0.16); bag.rotation.y = yaw;
+          bag.position.copy(c.position); bag.position.y -= 0.015; g.add(bag);
+          const tie = new THREE.Mesh(new THREE.TorusGeometry(r + 0.01, 0.007, 6, 20), M.bag);
+          tie.rotation.x = PI / 2; tie.position.y = yc - 0.11; g.add(tie);
+        }
+        g.userData.head = c;
+        g.userData.lens = { x: c.position.x, y: c.position.y + 0.012, z: c.position.z };
+      }
+      g.userData.top = { x: 0, y: H + 0.4, z: 0 };
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
   // a park bench's cast iron end frame in the yz plane (front +z), extruded along x
   function benchEnd() {
     const s = new THREE.Shape();

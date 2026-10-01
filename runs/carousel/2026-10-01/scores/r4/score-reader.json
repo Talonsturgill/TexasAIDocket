@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.9,
+   "why": "Four located fixes landed. S4 now has the camera large on the right shoulder with its base at about y 1780 display, and the QA dead-zone warning cleared (bottom band 0.39). S7's mast stops well below the dek. S5's pole keeps a visible contact at about y 1150 to 1180, and the frame reads as a roadside at an hour: lamp lit, mesa horizon, worker pointing at the pole. S9's dek clears the window. Frames 1, 4, 5 and 6 would pass a quick showstopper read at 432 px. Four defects remain. (1) The town limit signs on S1 (x 330 to 545, y 1245 to 1355), S2 and S4 (fourteen of them) are still flat, unshaded mint fills inside a grey frame with no legend, sheen or bolts. The gate that requires the accent on three frames explains why they are there, not why they look unfinished. At feed size, on the cover, they read as green-screen placeholders. (2) S7 now leaves a dead band of empty sky between the dek and the panels (about y 830 to 1100), and a dark floating gradient strip sits at the horizon (about y 1640 to 1720) where the ground meets the haze. (3) S5's pickup is still faceted and low-poly, and the worker is a simple figure. (4) Machine QA has a new warning on S9: the dek is 'outside safe zone' (940 px wide at x 82, margin 80). S9's lower third is still flagged at 26%."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The filmstrip holds. There is one blue-hour sky, the cobra-head lamp on every exterior frame, and one plate_reader in black powder coat whose state carries the argument: standing on 1, 2, 4 and 5, multiplied on 3, paired on 6, close on 7, counted on 8, and in the chamber window on 9. S4's larger near camera now echoes the cover's composition. S5's warm caliche and mesas are still the one palette that sits apart. S9 is the declared value cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every printed numeral traces to a claim: $1/2023 c15, 3,200 c17, $30 million c16, 14/900 c1, 60/September 15th c32, 4 to 2 c23, 6 to 1 c9, $205,000/$80,000/32 c8, 7 to 2 c2, $1 million/165 c3, November 3rd/August 11th c34. The caption traces the same way. S1's quoted 'AI-powered surveillance devices' is verbatim from c12 and now credited to the Tribune on the slide and in the caption. S5 says only what c32 supports, and its art no longer depicts a removal. S9 matches c35. What keeps it off 9 and 10: (a) Kyle 6-1, Laredo 7-2, 3,200 and the pause itself rest on the Tribune where council minutes, an MVCPA record or a Governor's order exist. (b) The S6 quote of c7 is still cut at 'it would take,' with no mark; the source continues 'to do what this system is doing'. Neither changes what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "The caption now carries the reason and the AI framing, credited to the Tribune, so the feed preview and the cover both say why the state stopped. A Texan learns what the device records (S2), who paid and how much (S1, S3), who paused it and why (S1), what six named places did, with margins and dates, and when League City votes and that the vote is nonbinding (S9). The 10 descriptor is still out of reach. A reader outside the six towns gets no next step. No county is named because none was fetched. El Paso's outcome is deliberately left open after 'passed it as revised'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.7,
+   "why": "The cover earns the swipe, frame 2 pays, S6 is a declared turn, S7 (one kept camera) and S8 (a counted field put to voters) now differ, and the close lands on a body and a date. What remains cuttable or slow: the $1 fee is still told twice (S1's dek, S3's hook). S4, S5 and the Leander half of S6 are three shut-off beats before the turn. The S1 dek is still seven lines on the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.9,
+   "why": "Plain, specific and fair. Examples: 'It runs on sunlight and a cell signal.', 'El Paso voted on a 60 day clock.', 'League City votes next.' The police chief keeps his line, and attribution reads naturally ('the Tribune reported'). I found no house-rule breaks in the slide strings or the caption: no colons, semicolons, dashes, banned words or first person, 'can't' throughout, and no year on in-year dates. Flat spots: S1's 'A $1 fee on Texas auto insurance from 2023' is a clumsy rewrite of the earlier 'added in 2023'. The caption opener 'League City answers on November 3rd.' is still cryptic in the two-line preview for anyone outside League City."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "Unchanged from round 3. Counted fields of identical instances remain on S3 and S8, the device of yesterday's no. 38. S1 and S3 re-tell the spine of no. 12 (2026-08-30, tx-2026-0111), 32 days back and outside the window. League City's nonbinding ballot was no. 4's topic. The roadside blue-hour world, the pole-as-state spine and the cover move are fresh."
+  }
+ ],
+ "weighted_score": 7.56,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Keep the green accent but finish it: give every town limit sign face on S1, S2 and S4 a real retroreflective material (a lamp-side sheen falling off across the face, an inset white border with depth, visible bolts and a back-lit edge), so the cover's most saturated object reads at feed size as a Texas road sign instead of a green-screen placeholder.",
+ "lens": "reader"
+}

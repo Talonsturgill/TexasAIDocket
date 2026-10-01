@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The clerk's request to buy software that writes the court's minutes is still pending, with no disposition posted.
 - 2026-09-29 · The clerk's request is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. No disposition appears on the county's own site.
 - 2026-09-30 · The clerk's request is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site.
+- 2026-10-01 · Whether the clerk's request to buy minute writing software is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site.
 
 ## Evidence
 

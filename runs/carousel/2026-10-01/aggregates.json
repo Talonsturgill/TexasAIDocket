@@ -1,0 +1,145 @@
+{
+ "date": "2026-10-01",
+ "_note": "Every figure the detector reads as a count, declared with the claim it was quoted from or the rule that counted it. The drawn counts (the poles in frames 3, 7 and 8, the signs on frame 4, the rod's bands on frame 5, the dais chairs on frame 9) are set from figures.json by compute.py and asserted in each frame's own code. 900 and 3,200 are two different populations from two articles and the deck never sets one against the other.",
+ "aggregates": [
+  {
+   "phrase": "3,200 cameras",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3200,
+   "quoted_from": "c17",
+   "quote": "The Motor Vehicle Crime Prevention Authority, led by a board mostly appointed by Gov. Greg Abbott, has turned the $1 fee hike into at least 3,200 Flock cameras.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "14 cities and counties",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 14,
+   "quoted_from": "c1",
+   "quote": "At least 14 cities and counties have shut off more than 900 Flock cameras since state funding was rescinded in late August",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "900 Flock cameras",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 900,
+   "quoted_from": "c1",
+   "quote": "At least 14 cities and counties have shut off more than 900 Flock cameras since state funding was rescinded in late August",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "60 day",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c32",
+   "quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "32 Flock cameras",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 32,
+   "quoted_from": "c8",
+   "quote": "Kyle, a small city south of Austin, has not received its 2026 grant for $205,000, $80,000 of which would help pay for 32 Flock cameras.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "165 cameras",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 165,
+   "quoted_from": "c3",
+   "quote": "will ask voters for advice on whether to devote $1 million a year to keep 165 of the surveillance devices operating in city limits",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "3,200 Flock cameras",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3200,
+   "quoted_from": "c17",
+   "quote": "The Motor Vehicle Crime Prevention Authority, led by a board mostly appointed by Gov. Greg Abbott, has turned the $1 fee hike into at least 3,200 Flock cameras.",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "60 day",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c32",
+   "quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "14 cities and counties",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 14,
+   "quoted_from": "c1",
+   "quote": "At least 14 cities and counties have shut off more than 900 Flock cameras since state funding was rescinded in late August",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "900 Flock cameras",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 900,
+   "quoted_from": "c1",
+   "quote": "At least 14 cities and counties have shut off more than 900 Flock cameras since state funding was rescinded in late August",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "Two councils",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 2,
+   "rule": "the two councils this frame names, Leander (c21, c22) and College Station (c23), one caption under each pole",
+   "note": "a count of the councils drawn on the frame, not a figure from any source",
+   "from_claims": [
+    "c21",
+    "c23"
+   ]
+  },
+  {
+   "phrase": "Two answers",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 2,
+   "rule": "the two councils this frame names, Leander (c21, c22) and College Station (c23), one caption under each pole",
+   "note": "a count of the councils drawn on the frame, not a figure from any source",
+   "from_claims": [
+    "c21",
+    "c23"
+   ]
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "sources_block.py counting the distinct official document urls among the claim ids the deck prints: the Leander news flash, the College Station council blog, the El Paso Legistar meeting and the League City news flash",
+   "note": "the sources block's own tally of official documents"
+  },
+  {
+   "phrase": "three news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "sources_block.py counting the distinct news article urls among the claim ids the deck prints: three Texas Tribune articles, dated September 24th and August 28th (two)",
+   "note": "the sources block's own tally of news reports"
+  },
+  {
+   "phrase": "60 days",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 60,
+   "quoted_from": "c32",
+   "quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware",
+   "note": "the source's own figure, quoted, never computed"
+  }
+ ]
+}

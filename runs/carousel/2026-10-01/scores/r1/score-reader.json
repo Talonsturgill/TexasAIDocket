@@ -1,0 +1,51 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The world is real. The blue-hour roadside on frames 1, 4 and 6 reads as a place at an hour: amber seam on the horizon, lit cobra head, contact shadows at the pole base. A Texan at feed size knows it is a camera on a pole beside a road. Six located defects keep it off 7 and above. (1) The town limit signs on S1, S2 and S4 are flat, unshaded mint-green rectangles with no legend. At thumb size they read as green-screen placeholders, not TxDOT sheeting. S4 shows them fourteen times, and two far signs (around x 400 and 480 at display scale) carry stray dotted marks. (2) On S2 the label 'the rear of passing vehicles' sits on a dark blurred elliptical halo across the sky, roughly x 0 to 900 and y 900 to 1080. That is a plate under type, which is the rubric's 4 descriptor. (3) S5 has primitive models: a faceted low-poly pickup, a worker reaching into empty air at the truck's hood, and three long detached dark slabs radiating from the fallen pole that read as a shadow or geometry artifact. The 60-band surveyor rod reads as a striped post, not a clock. The mesas are generic and nothing about them says El Paso. (4) On S7 and S8 the counted fields read first as solar farms. The storyboard names this risk itself, and at 432 px the camera heads under the panels do not rescue it. (5) Machine QA warns of a dead lower zone on S4 (bottom third 24% craft density, an empty band of asphalt), S5 and S9. (6) S9's chamber has a flat wall and ranks of identical chairs and reads as a stock interior. The window showing the pole is the one fine touch."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "The contact sheet reads as a filmstrip. There is one blue-hour sky, one cobra-head streetlight on every exterior frame, and one plate_reader in one black powder-coat material. The pole's state changes from frame to frame: standing (1, 2), multiplied (3), beside the town line (4), unbolted (5), paired (6), counted (7, 8), and seen through the chamber window on 9, which is a continuity device a reader would notice unprompted. S7 and S8 share one camera, so the count reads at one scale. S9 is a declared value cut indoors. The one frame that sits outside is S5: warm brown ground, a mesa horizon and a high standing eye break the roadside's palette more than the argument needs."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every printed numeral traces to a claim: $1 and 2023 to c15, 3,200 to c17, $30 million to c16, 14 and 900 to c1, 60 and September 15th to c32, 4 to 2 to c23, 6 to 1 to c9, $205,000 / $80,000 / 32 to c8, 7 to 2 to c2, $1 million and 165 to c3, November 3rd and August 11th to c34. The same holds for the caption. Hedges are kept ('at least', 'more than'). The pause is correctly not dated, and League City is correctly not cast as a reaction to the pause. Points off: (a) The S1 hook 'The state stopped paying for this' is looser than its source. c12 says 'pause funding', and the deck's own dek says 'pause'. (b) Kyle 6-1, Laredo 7-2, the 3,200 count and the Governor's order all rest on the Tribune where council minutes or an MVCPA record exist. (c) The S9 hook 'Your council decides this in public' is a universal with no named set. Kendall County is a commissioners court, not a council, and c19's DPS tollway cameras answer to no council. (d) The S6 quote of c7 is cut at 'it would take,' with no mark, against the house rule that a verbatim quote is never touched. (e) Lead for the integrity judge: c32 and c33 are both 'approved as revised', and the quoted span is the agenda caption, not the adopted text. Whether the revision kept '60 days' and 'every' camera is not shown, and S5's hook and the caption both state it flat."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns a lot in one swipe: who paid (a $1 insurance fee), who built the network (MVCPA), who stopped it (Abbott), and how six named places answered (El Paso, Leander, College Station, Kyle, Laredo, League City), with bodies, margins and two dates to act on (League City November 3rd, Laredo in May). S2 makes the stake concrete: it photographs every passing car and sorts it by make, model and color for searching. Two misses. First, the deck never says WHY the Governor paused. c12's own sentence carries 'as scrutiny over the AI-powered surveillance devices has mounted', so S1 ends on a reversal with no reason. Second, for the large majority of Texans who live in none of these six places, the close 'Your council decides this in public' is a stake stated generally. It names no meeting, gives no way to find out whether their own city runs Flock, and does not compute El Paso's removal deadline. S9's dek also drops that League City's vote is nonbinding (c35), which S8 says plainly for Laredo."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe because 'this' points at the object. Frame 2 pays at once with what the thing is. S6 'Same pole. Two councils.' is a real, declared turn, and S7, S8 and S9 move from kept, to put to voters, to the room. Two soft spots. The $1 fee is told twice, in S1's dek and again as S3's hook, so S3 adds only the 3,200 figure. Then S4, S5 and the Leander half of S6 are three 'stopped' beats in a row before the split lands, so the turn arrives a frame late. The close lands on a place, not an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "On register and fair. 'It runs on sunlight and a cell signal.' sounds like a person. Nobody is cast as the villain: the police chief gets his line on the same frame as Leander's concerns. The places are specific Texas towns, not 'Texas cities'. No house-rule breaks found in the slide strings or the caption: no colons, semicolons, dashes, banned words or first person, 'can't' throughout, and no year on in-year dates. Flat lines: S7's 'Of that, $80,000 would help pay for these 32 Flock cameras.' is stiff. The caption opener 'League City answers on November 3rd.' is cryptic in the two-line feed preview for anyone outside League City."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The roadside blue-hour world, the pole hero and the cover's opening move are fresh. Three familiar moves stack up, though. (1) Frames 1 and 3 re-tell the spine of no. 12 (2026-08-30, tx-2026-0111: the $1 fee, MVCPA and the Governor's pause). That is 32 days ago, outside the window, and the 2026-09-20 run refused this same Flock split at 0.74 against no. 12. (2) The League City nonbinding ballot was no. 4's whole topic. (3) The counted field of identical instances drawn at true count (3,200 here, then 32 and 165 on one lens) is the device yesterday's no. 38 was built on (desks as 3,000, a thousand, 27,200). That is the same structural move one day apart, on three of nine frames."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the close and the cover for the reader who lives in none of the six towns: give S1's dek the Tribune's stated reason for the pause (c12, 'as scrutiny over the AI-powered surveillance devices has mounted'), and make S9 a real next step, with League City's nonbinding ballot question in its own words (c35) and El Paso's removal deadline computed from September 15th plus 60 days, instead of the unscoped 'Your council decides this in public'.",
+ "lens": "reader"
+}

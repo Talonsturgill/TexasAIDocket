@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The county's own court page still posts the agenda and video of the session where the resolution was adopted. The request to the Legislature has drawn no answer on the record.
 - 2026-09-27 · The county's request for authority over data centers still stands as adopted. The Legislature has given it no answer on the record.
 - 2026-09-30 · That the county's request for authority over data centers still stands is unconfirmed this time. Both published accounts sit on sites that bar automated readers, and the resolution itself was not found posted.
+- 2026-10-01 · That the county's request for authority over data centers still stands is unconfirmed. The published accounts sit on sites that bar automated readers, and the resolution itself has not been found posted.
 
 ## Evidence
 

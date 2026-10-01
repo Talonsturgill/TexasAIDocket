@@ -1,0 +1,139 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Cities, policing and public services",
+ "dek": {
+  "text": "The state built a network of Flock plate reader cameras with a fee on auto insurance, then paused the money. Texas towns are now deciding whether to pay for the cameras themselves.",
+  "claims": [
+   "c15",
+   "c17",
+   "c12"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[In {{number:c15}} the Legislature unanimously added ${{number:c15:1}} to Texans' auto insurance to fight catalytic converter theft](c15). [The Motor Vehicle Crime Prevention Authority turned that fee into at least {{number:c17:1}} Flock cameras](c17). [A Tribune analysis found the authority put at least ${{number:c16}} million of the fee toward the network](c16).",
+   "claims": [
+    "c15",
+    "c17",
+    "c16"
+   ]
+  },
+  {
+   "text": "[Then the Governor ordered every state agency to pause funding for Flock cameras, which the Tribune called AI-powered surveillance devices](c12). [His spokesman confirmed the order in an article dated {{date:c13}}](c13). [Any state agency providing money is making clear its funds can't be used for the cameras](c14). The camera on the pole is now a line in each town's own budget, and the towns are not answering alike.",
+   "claims": [
+    "c12",
+    "c13",
+    "c14"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Towns that switched them off",
+   "paragraphs": [
+    {
+     "text": "[At least {{number:c1}} cities and counties have shut off more than {{number:c1:1}} Flock cameras since the state money was rescinded in late August, the Tribune reported](c1). [Plano, Robinson and Kendall County ended their contracts entirely](c5). [Houston and Dallas shut their grant funded cameras and kept much of their networks running](c6). The two counts come from different articles and different populations, so neither is a share of the other.",
+     "claims": [
+      "c1",
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "[On {{date:c32}} the El Paso City Council passed an item as revised](c32). [As filed it called for removing every Flock fixed camera on city property and right of way within {{number:c32}} days](c32). [A second item also passed as revised. As filed it barred the city manager from entering or renewing any contract with Flock or any other provider of fixed plate reader cameras](c33). This record does not carry the text of either revision. [Leander's council directed the city to stop funding its Flock contract](c20). [Its police stopped using Flock cameras and Flock data as of {{date:c21}}](c21), [in the city's words \"in response to community concerns\"](c22).",
+     "claims": [
+      "c32",
+      "c33",
+      "c20",
+      "c21",
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Towns that kept paying",
+   "paragraphs": [
+    {
+     "text": "[Kyle's {{number:c8}} grant had not arrived when the Tribune reported on the city, and part of it would help pay for {{number:c8:3}} Flock cameras](c8). [Its council voted {{number:c9}} to {{number:c9:1}} to keep the contract anyway](c9).",
+     "claims": [
+      "c8",
+      "c9"
+     ]
+    },
+    {
+     "text": "[The College Station City Council voted {{number:c23}} to {{number:c23:1}} on {{date:c23}} to keep two Flock agreements](c23). [One covers cameras on state highway roads and the other cameras on other roads](c23). [Its police chief put the case plainly. \"You can't afford the number of cops it would take to do what this system is doing\"](c7). [The city says no search of the system can be made without reasonable suspicion](c27), [and that it keeps every search with no end date](c28). [It reports property crime fell over the same months and says the drop correlates with the cameras](c31). Correlation is the city's word, and it is not a finding that the cameras caused the drop.",
+     "claims": [
+      "c23",
+      "c7",
+      "c27",
+      "c28",
+      "c31"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Towns that will ask voters",
+   "paragraphs": [
+    {
+     "text": "[Laredo's council voted {{number:c2}} to {{number:c2:1}} to put the question to a nonbinding referendum in May](c2). [Voters will be asked whether to spend ${{number:c3}} million a year to keep {{number:c3:1}} cameras running in city limits](c3). [The mayor said the city's residents should have a chance to say whether local taxpayers fund the whole system](c4).",
+     "claims": [
+      "c2",
+      "c3",
+      "c4"
+     ]
+    },
+    {
+     "text": "[League City's council called its own vote before the pause, on {{date:c34}}](c34). [Its ballot asks, as a nonbinding statement of voter preference, whether police should keep using fixed plate reader cameras on public roadways](c35). [That election is on {{date:c36}}](c36).",
+     "claims": [
+      "c34",
+      "c35",
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't yet say",
+   "paragraphs": [
+    {
+     "text": "[The articles print no calendar date for the Governor's order, only that it came on a Thursday night](c13), [and none for Laredo's vote, only a Monday night](c2). [College Station describes the cameras as solar powered and LTE connected, photographing the rear of passing vehicles by day and by night](c25). [It says they sort each vehicle's make, model and color from the image](c26). This record carries no retention period for the camera images and no list of the cities and counties in the Tribune's count.",
+     "claims": [
+      "c13",
+      "c2",
+      "c25",
+      "c26"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0111",
+   "label": "The Governor's order pausing state money for Flock cameras"
+  },
+  {
+   "id": "tx-2026-0147",
+   "label": "El Paso's two plate reader items, passed as revised"
+  },
+  {
+   "id": "tx-2026-0190",
+   "label": "College Station's vote to keep its cameras"
+  },
+  {
+   "id": "tx-2026-0180",
+   "label": "Leander's decision to stop paying"
+  },
+  {
+   "id": "tx-2026-0048",
+   "label": "League City's November ballot question"
+  }
+ ]
+}

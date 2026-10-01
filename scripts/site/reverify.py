@@ -26,6 +26,25 @@ that need reading. Three outcomes matter and they are not the same kind of thing
               it means is exactly the judgment this script must not make.
   UNREACHABLE the page did not answer. That is a fact about the record's certainty rather than
               about the world, and it is never stamped as a successful check.
+              A url the crawl boundary refuses is reported here too, WITHOUT A REQUEST.
+
+THE BOUNDARY IS ASKED BEFORE ANY REQUEST (2026-10-01). Until this date the script fetched every
+due url without asking anything, and on September 29th, 30th and October 1st it fetched
+docs.tacc.utexas.edu, a host the registry excludes whole, and public.destinyhosted.com, whose
+robots.txt is `User-agent: *` / `Disallow: /` on one line, then stamped four items checked on
+the strength of those refused requests. Two runs withdrew the stamps by hand and wrote the
+defect up as a proposal. A url is now refused, never requested, when any of three things says so:
+
+  1. `crawl_boundary.forbidden(url)`, the registry's own boundary, the one reader of it.
+  2. the citing item's own `unreachable` block measuring a `robots` boundary on that host.
+  3. the host's live robots.txt, read with its directives split apart first, because Python's
+     `urllib.robotparser` reads a robots file written on a single line as allowing everything,
+     which is exactly how the September 30th helper fetched the Hays County agenda. The groups
+     that bind are `*`, this project's own token, `ClaudeBot` and `anthropic-ai`.
+
+A robots.txt that answers 4xx states no rule, which is the convention every crawler follows. One
+that answers 5xx or does not answer is read as refusing, because a boundary nobody could read is
+not a boundary that allows.
 
 **It never edits a claim, a quote, a status or a date.** The only field it writes is
 `last_verified`, and only for an item whose every claim came back UNCHANGED. Anything else is
@@ -82,6 +101,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+from urllib.parse import urlsplit
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -91,6 +111,8 @@ CACHE = REPO_ROOT / "ledger" / "reverify.json"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import docket_staleness as ds  # noqa: E402
 import docket_build as dk  # noqa: E402  the numeral machinery, one definition
+sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+import crawl_boundary  # noqa: E402  the one reader of the registry's boundary
 
 UA = ("TexasAIDocket/1.0 re-verification (+https://texasaidocket.com) "
       "one conditional request per source per two days")
@@ -206,8 +228,119 @@ def fetch(url: str, cached: dict, opener=None) -> tuple[str, bytes | None, dict]
         return UNREACHABLE, None, {"status": type(e).__name__}
 
 
+# --------------------------------------------------------------------------- the boundary
+# The robots groups that bind this project. Its own token, the wildcard, and the two agent names
+# the registry treats as naming this project when a host refuses them.
+ROBOTS_AGENTS = ("*", "texasaidocket", "claudebot", "anthropic-ai")
+_DIRECTIVE = re.compile(r"(?i)\b(user-agent|disallow|allow|crawl-delay|sitemap)\s*:")
+
+
+def robots_rules(text: str) -> list[tuple[str, str]]:
+    """`(kind, path)` pairs that bind this project, from a robots.txt body.
+
+    THE DIRECTIVES ARE SPLIT APART BEFORE ANYTHING IS PARSED. A file served as one line,
+    `User-agent: * Disallow: /`, is read by `urllib.robotparser` as a user agent named
+    `* Disallow: /` and no rule at all, which is a refusal read as permission.
+    """
+    flat = _DIRECTIVE.sub(lambda m: "\n" + m.group(1) + ":", text.replace("\r", "\n"))
+    groups: list[tuple[list[str], list[tuple[str, str]]]] = []
+    agents: list[str] = []
+    rules: list[tuple[str, str]] = []
+    last_was_agent = False
+    for raw in flat.split("\n"):
+        line = raw.split("#", 1)[0].strip()
+        if ":" not in line:
+            continue
+        key, val = (x.strip() for x in line.split(":", 1))
+        key = key.lower()
+        if key == "user-agent":
+            if not last_was_agent and (agents or rules):
+                groups.append((agents, rules))
+                agents, rules = [], []
+            agents.append(val.lower())
+            last_was_agent = True
+        elif key in ("allow", "disallow"):
+            rules.append((key, val))
+            last_was_agent = False
+        else:
+            last_was_agent = False
+    if agents or rules:
+        groups.append((agents, rules))
+    out: list[tuple[str, str]] = []
+    for ags, rs in groups:
+        if any(a == "*" or any(a.startswith(t) for t in ROBOTS_AGENTS if t != "*") for a in ags):
+            out.extend(rs)
+    return out
+
+
+def robots_refuses(rules: list[tuple[str, str]], path: str) -> bool:
+    """Longest match wins and an empty `Disallow:` refuses nothing, as RFC 9309 has it."""
+    best_len, verdict = -1, False
+    for kind, rule in rules:
+        if not rule:
+            continue
+        pat = re.escape(rule).replace(r"\*", ".*")
+        if pat.endswith(r"\$"):
+            pat = pat[:-2] + "$"
+        if re.match(pat, path, re.I) and len(rule) > best_len:
+            best_len, verdict = len(rule), kind == "disallow"
+    return verdict
+
+
+class Boundary:
+    """Asks, per url and before any request, whether this project may fetch it.
+
+    Returns the reason as a string when it may not, and None otherwise. None carries the same
+    caveat `crawl_boundary.forbidden` states: it is the absence of a refusal this code could
+    read, which is all a fetcher can honestly act on.
+    """
+
+    def __init__(self, opener=None, registry=None):
+        self.op = opener or urllib.request.urlopen
+        self.registry = crawl_boundary.rules() if registry is None else registry
+        self.robots: dict[str, list | str] = {}
+
+    def _robots(self, scheme: str, host: str):
+        key = f"{scheme}://{host}"
+        if key not in self.robots:
+            req = urllib.request.Request(key + "/robots.txt", headers={"User-Agent": UA})
+            try:
+                with self.op(req, timeout=TIMEOUT) as r:
+                    body = r.read().decode("utf-8", "replace")
+                self.robots[key] = robots_rules(body)
+            except urllib.error.HTTPError as e:
+                self.robots[key] = ([] if 400 <= e.code < 500 else
+                                    f"its robots.txt answered {e.code}, so it is read as refusing")
+            except Exception as e:  # noqa: BLE001
+                self.robots[key] = (f"its robots.txt did not answer ({type(e).__name__}), "
+                                    f"so it is read as refusing")
+        return self.robots[key]
+
+    def __call__(self, url: str, items: list) -> str | None:
+        why = crawl_boundary.forbidden(url, self.registry)
+        if why:
+            return why
+        try:
+            parts = urlsplit(url)
+            host = (parts.hostname or "").lower()
+        except ValueError:
+            return "the url can't be parsed, so it is not fetched"
+        for it in items:
+            block = it.get("unreachable")
+            if (isinstance(block, dict) and block.get("boundary") == "robots"
+                    and host in [str(h).lower() for h in (block.get("hosts") or [])]):
+                return f"{host} refuses this project in robots.txt, measured {block.get('checked')}"
+        rules = self._robots(parts.scheme or "https", host)
+        if isinstance(rules, str):
+            return f"{host}: {rules}"
+        path = (parts.path or "/") + (("?" + parts.query) if parts.query else "")
+        if robots_refuses(rules, path):
+            return f"{host} disallows this path to this project in robots.txt"
+        return None
+
+
 # --------------------------------------------------------------------------- the check
-def check(items: list, cache: dict, opener=None) -> tuple[list, dict, dict]:
+def check(items: list, cache: dict, opener=None, gate=None) -> tuple[list, dict, dict]:
     """Every claim on `items`, one fetch per distinct url. Returns (findings, fresh cache, stats)."""
     by_url: dict[str, list] = {}
     for it in items:
@@ -218,10 +351,22 @@ def check(items: list, cache: dict, opener=None) -> tuple[list, dict, dict]:
 
     fresh, findings = dict(cache), []
     stats = {"urls": len(by_url), "claims": sum(len(v) for v in by_url.values()),
-             "not_modified": 0, "fetched": 0, "unreachable": 0, "unreadable": 0}
+             "not_modified": 0, "fetched": 0, "unreachable": 0, "unreadable": 0,
+             "refused": 0}
+    gate = gate or Boundary(opener)
 
     for url, pairs in sorted(by_url.items()):
         prior = cache.get(url) or {}
+        # NEVER REQUESTED. A refused url withholds the stamp exactly as an unreachable one does,
+        # because nothing about the page was read.
+        why = gate(url, [it for it, _ in pairs])
+        if why:
+            stats["refused"] += 1
+            for it, c in pairs:
+                findings.append({"item": it["id"], "claim": c["id"], "url": url,
+                                 "state": UNREACHABLE,
+                                 "why": f"not requested. The crawl boundary refuses it: {why}"})
+            continue
         state, body, meta = fetch(url, prior, opener)
 
         if state == UNREACHABLE:
@@ -388,7 +533,8 @@ def report(findings: list, stats: dict, stamped: list | None) -> int:
     # claims nobody could check. A reader reconciling those two is a reader not reading either.
     print(f"reverify: {stats['urls']} url(s) behind {stats['claims']} claim(s). "
           f"{stats['not_modified']} answered 304, {stats['fetched']} sent a body, "
-          f"{stats['unreachable']} did not answer.")
+          f"{stats['unreachable']} did not answer, {stats.get('refused', 0)} refused by the "
+          f"crawl boundary and never requested.")
     if stamped is not None:
         print(f"          {len(stamped)} item(s) stamped as checked and unchanged.")
     if not any(groups.values()):
@@ -511,7 +657,7 @@ def self_test() -> int:  # noqa: C901
     def server(pages):
         """`pages` maps url to bytes, an int status, or a `304` sentinel."""
         def op(req, timeout=None):
-            v = pages[req.full_url]
+            v = pages.get(req.full_url, 404)
             if v == 304:
                 raise urllib.error.HTTPError(req.full_url, 304, "nm", {}, None)
             if isinstance(v, int):
@@ -634,7 +780,12 @@ def self_test() -> int:  # noqa: C901
         hits.append(req.full_url)
         return Resp(page, {"ETag": '"e1"'})
     f, _, st = check([two], {}, counting)
-    ok("two claims on one url are one request", len(hits) == 1 and st["claims"] == 2, str(hits))
+    # The host's robots.txt is asked once as well, since 2026-10-01, and is not the page.
+    pages_hit = [h for h in hits if not h.endswith("/robots.txt")]
+    ok("two claims on one url are one request", len(pages_hit) == 1 and st["claims"] == 2,
+       str(hits))
+    ok("...and the host's robots.txt is asked once", hits.count("https://e/robots.txt") == 1,
+       str(hits))
 
     print("\nthe stamp is an ITEM level statement, so one bad claim withholds it")
     mixed = {"id": "tx-6", "status": "open", "last_verified": "2026-08-20", "claims": [
@@ -734,6 +885,70 @@ def self_test() -> int:  # noqa: C901
     changed = {k for k in clean if clean[k] != before.get(k)}
     ok("only last_verified and the movement log move",
        changed <= {"last_verified", "history"}, str(changed))
+
+    # THE BOUNDARY, ASKED BEFORE ANY REQUEST (2026-10-01). Each case replays a real refused
+    # fetch that stamped an item: docs.tacc.utexas.edu (registry, whole host) and
+    # public.destinyhosted.com (a one line robots.txt), on September 29th, 30th and October 1st.
+    print("\na url the boundary refuses is never requested and never stamped")
+    asked: list[str] = []
+
+    def spy(pages):
+        inner = server(pages)
+
+        def op(req, timeout=None):
+            asked.append(req.full_url)
+            return inner(req, timeout)
+        return op
+
+    one_line = b"User-agent: * Disallow: /"
+    ok("a robots.txt on one line is read as refusing every path",
+       robots_refuses(robots_rules(one_line.decode()), "/agenda_publish.cfm"),
+       str(robots_rules(one_line.decode())))
+    ok("...where urllib.robotparser would have read it as allowing",
+       robots_rules("User-agent: *\nDisallow:") == [("disallow", "")]
+       and not robots_refuses(robots_rules("User-agent: *\nDisallow:"), "/x"))
+    named = "User-agent: Googlebot\nAllow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n"
+    ok("a ClaudeBot disallow binds this project", robots_refuses(robots_rules(named), "/a"))
+    ok("a group for another crawler does not",
+       not robots_refuses(robots_rules("User-agent: Googlebot\nDisallow: /\n"), "/a"))
+    ok("the longest rule wins",
+       not robots_refuses(robots_rules("User-agent: *\nDisallow: /p\nAllow: /p/ok\n"), "/p/ok/1"))
+
+    asked.clear()
+    agenda = "https://public.destinyhosted.com/agenda_publish.cfm?id=1"
+    hays = item("tx-h", agenda, quote, status="decided")
+    f3, _, st3 = check([hays], {}, spy({
+        "https://public.destinyhosted.com/robots.txt": one_line, agenda: page}))
+    ok("the refused page is not requested", agenda not in asked, str(asked))
+    ok("...it is reported unreachable, so the stamp is withheld",
+       [x["state"] for x in f3] == [UNREACHABLE] and apply([hays], f3, today) == [], str(f3))
+    ok("...and counted as refused", st3.get("refused") == 1, str(st3))
+
+    asked.clear()
+    tacc = "https://docs.tacc.utexas.edu/hpc/frontera/"
+    fr = item("tx-t", tacc, quote, status="decided")
+    f4, _, _ = check([fr], {}, spy({tacc: page}))
+    ok("a host the registry excludes is never requested, robots.txt included",
+       not any("tacc.utexas.edu" in u for u in asked), str(asked))
+    ok("...and the item is not stamped", apply([fr], f4, today) == [], str(f4))
+
+    asked.clear()
+    measured = item("tx-m", "https://m.example/a", quote)
+    measured["unreachable"] = {"hosts": ["m.example"], "boundary": "robots",
+                               "checked": "2026-09-28"}
+    f5, _, _ = check([measured], {}, spy({"https://m.example/a": page}))
+    ok("an item's own measured robots boundary refuses the request",
+       "https://m.example/a" not in asked and f5[0]["state"] == UNREACHABLE, str(f5))
+
+    asked.clear()
+    f6, _, _ = check([item("tx-5xx", "https://s.example/a", quote)], {},
+                     spy({"https://s.example/robots.txt": 503, "https://s.example/a": page}))
+    ok("a robots.txt that answers 5xx is read as refusing",
+       "https://s.example/a" not in asked and f6[0]["state"] == UNREACHABLE, str(f6))
+    f7, _, _ = check([item("tx-404", "https://n.example/a", quote)], {},
+                     server({"https://n.example/a": page}))
+    ok("a robots.txt that answers 404 states no rule, and the page is read",
+       f7[0]["state"] == UNCHANGED, str(f7))
 
     print("\nreverify self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

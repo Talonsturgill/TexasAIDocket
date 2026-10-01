@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-30",
+  "generated": "2026-10-01",
   "gates": [
    "banned words",
    "claims",
@@ -4186,6 +4186,10 @@
     {
      "date": "2026-09-30",
      "note": "That the county is out of the plate reader contract is unconfirmed this time. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote was found to read instead."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "That the county is out of the plate reader contract is still unconfirmed. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote has been posted to read instead."
     }
    ]
   },
@@ -5457,6 +5461,10 @@
     {
      "date": "2026-09-30",
      "note": "That the county's request for authority over data centers still stands is unconfirmed this time. Both published accounts sit on sites that bar automated readers, and the resolution itself was not found posted."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "That the county's request for authority over data centers still stands is unconfirmed. The published accounts sit on sites that bar automated readers, and the resolution itself has not been found posted."
     }
    ]
   },
@@ -14351,6 +14359,10 @@
     {
      "date": "2026-09-30",
      "note": "The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind a barrier to automated readers, and nothing on the record shows the court undoing it."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind barriers to automated readers, and nothing on the record shows the court undoing it."
     }
    ],
    "unreachable": {
@@ -17382,6 +17394,10 @@
     {
      "date": "2026-09-30",
      "note": "The department's account of the bridge demonstration is unconfirmed this time, because its site would not serve the page."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page."
     }
    ],
    "unreachable": {
@@ -18036,8 +18052,20 @@
      "date": "2026-09-30",
      "note": "The court's docket still sets oral argument in the court reporters' mandamus proceeding for October 6th.",
      "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers, and the court's published submission schedules do not yet list an October sitting for 2026."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "search.txcourts.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-01",
+    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around."
+   }
   },
   {
    "title": "Frontera's queues close permanently on October 1st, 2026",
@@ -18215,6 +18243,10 @@
     {
      "date": "2026-09-30",
      "note": "Whether Frontera's queues still close on October 1st is unconfirmed. The user guide could not be read, and no other published notice of the closing was found."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether Frontera's queues closed on October 1st as scheduled is unconfirmed. The center's user guide sits on a site that bars automated readers, and no other published notice of the closing has been found."
     }
    ]
   },
@@ -19345,7 +19377,7 @@
     }
    ],
    "id": "tx-2026-0139",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-09",
@@ -19389,6 +19421,11 @@
     {
      "date": "2026-09-30",
      "note": "The grid operator's calendar still carries the workshop on curtailing a large load under Senate Bill 6.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The grid operator's notice still sets the October 6th workshop on how a large load would be curtailed under Senate Bill 6.",
      "checked": true
     }
    ]
@@ -22539,6 +22576,10 @@
     {
      "date": "2026-09-30",
      "note": "The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county's own archive lists meeting dates without the item's text."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and nothing on the record shows the promise withdrawn."
     }
    ],
    "last_verified": "2026-09-26",
@@ -22668,6 +22709,10 @@
     {
      "date": "2026-09-30",
      "note": "The clerk's request is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the clerk's request to buy minute writing software is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site."
     }
    ],
    "last_verified": "2026-09-26",
@@ -22788,6 +22833,10 @@
     {
      "date": "2026-09-30",
      "note": "The surveillance policy item is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Whether the county has acted on its policy for AI in surveillance is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site."
     }
    ],
    "last_verified": "2026-09-26",
@@ -23265,8 +23314,8 @@
    ]
   },
   {
-   "title": "El Paso orders every city-sited license plate reader taken down and bars its city manager from signing another one",
-   "summary": "The El Paso City Council passed two directions to the city manager on September 15th, 2026. The first orders the removal within 60 days of all Flock Safety fixed automated license plate reader cameras and related hardware. That covers city property, city right of way and anything otherwise within the city's control. It reaches that hardware whoever owns it. The second bars the city manager from entering, executing, renewing or extending any such contract, unless the council directs otherwise. That covers Flock Safety and any other provider of fixed networked automated license plate readers or substantially similar technology. It also orders the city attorney to draft and return a resolution to the council within 30 days to further effectuate that direction. Both items were sponsored by members of the city council rather than brought by staff, and the council's own agenda records both as amended and passed.",
+   "title": "El Paso passes two plate reader items as revised, filed to take city-sited readers down and bar new contracts",
+   "summary": "The El Paso City Council passed two items on September 15th, 2026, and its own meeting record marks each one approved as revised. The text of the revisions is not on that record. As filed, the first directed the city manager to remove within 60 days all Flock Safety fixed automated license plate reader cameras and related hardware. That reached city property, city right of way and anything otherwise within the city's control, whoever owns the hardware. As filed, the second barred the city manager from entering, executing, renewing or extending any such contract unless the council directs otherwise. It reached Flock Safety and any other provider of fixed networked plate readers. It gave the city attorney 30 days to return a resolution. Whether those terms survived the revisions is unconfirmed. Both items were sponsored by members of the council rather than brought by staff.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "El Paso City Council",
@@ -23285,7 +23334,7 @@
     {
      "date": "2026-09-15",
      "kind": "decided",
-     "note": "Date of the council meeting that passed both directions"
+     "note": "Date of the council meeting that passed both items as revised"
     }
    ],
    "public_access": {
@@ -23297,7 +23346,7 @@
    "confidence": "high",
    "claims": [
     {
-     "text": "The council directed the city manager to take the cameras down within 60 days, whoever owns the hardware.",
+     "text": "As filed, the first item directed the city manager to take the cameras down within 60 days, whoever owns the hardware.",
      "verbatim_quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware located on or within City property, City right-of-way, or otherwise within the City's control, regardless of whether such cameras or hardware are owned by Flock Safety, the City of El Paso, or any third party, including by physically removing such equipment or coordinating its removal by the appropriate party.",
      "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
      "source_title": "El Paso City Council regular meeting agenda, September 15, 2026, item 25, file 26-1039",
@@ -23306,7 +23355,7 @@
      "id": "tx-2026-0174-c1"
     },
     {
-     "text": "A second direction bars the city manager from signing another such contract without the council saying so.",
+     "text": "As filed, a second item barred the city manager from signing another such contract without the council saying so.",
      "verbatim_quote": "Discussion and action directing the City Manager to refrain from entering into, executing, renewing, or extending any contract, agreement, or other arrangement with Flock Safety or any other provider for the acquisition, installation, operation, maintenance, or use of fixed, networked automated license plate reader (ALPR) cameras or substantially similar technology, unless otherwise directed by subsequent action of the City Council; and directing the City Attorney to draft and return to the City Council within 30 days a resolution to further effectuate this direction.",
      "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
      "source_title": "El Paso City Council regular meeting agenda, September 15, 2026, item 26, file 26-1038",
@@ -23316,7 +23365,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-20",
@@ -23336,6 +23385,11 @@
     {
      "date": "2026-09-29",
      "note": "El Paso's order that city-sited plate readers come down, and that the city manager sign no new one, still stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Reworded. The title and summary had stated the items as filed as though the council enacted them. The council's record marks both approved as revised and the revision text is not published, so every directive is now marked as filed. No source or quote changed.",
      "checked": true
     }
    ]
@@ -23501,7 +23555,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-20",
@@ -23541,6 +23595,11 @@
     {
      "date": "2026-09-30",
      "note": "Texas Southern still holds one of the regional nodes in the foundation's network, and the award's dates have not moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Texas Southern's regional node in the foundation's network still carries the award date and the October 1st start the award record gave it.",
      "checked": true
     }
    ]
@@ -24469,7 +24528,7 @@
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
    "id": "tx-2026-0187",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-01",
    "history": [
     {
      "date": "2026-09-24",
@@ -24483,6 +24542,11 @@
     {
      "date": "2026-09-30",
      "note": "The commission's order adopting the large load interconnection rule still reads as filed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The commission's adopted large load interconnection rule still reads as the order filed it, security requirement and dropped interconnection fee included.",
      "checked": true
     }
    ]
@@ -24999,6 +25063,11 @@
     {
      "date": "2026-09-28",
      "note": "Admitted on the commission's own rule and staff's pro forma, with a hearing report on how many utilities have filed."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The adopted wildfire plan rule and staff's pro forma still read as filed. The blueprint still lists cameras among measures a utility may use, with no requirement to deploy them.",
+     "checked": true
     }
    ],
    "claims": [
@@ -25157,7 +25226,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-09-28"
+   "last_verified": "2026-10-01"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -25201,6 +25270,11 @@
     {
      "date": "2026-09-28",
      "note": "Admitted on the commission's own order and the utility's first annual report under it."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "The commission's order still names AI camera fire detections among the metrics, and the utility's annual report under it still counts cameras rather than detections.",
+     "checked": true
     }
    ],
    "claims": [
@@ -25296,7 +25370,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-09-28"
+   "last_verified": "2026-10-01"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -25688,6 +25762,107 @@
     }
    ],
    "last_verified": "2026-09-30"
+  },
+  {
+   "title": "Amazon and Wiwynn say they will expand the El Paso County plant that builds the racks going into AI data centers",
+   "summary": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, the Taiwanese contract manufacturer's first plant in the United States. Wiwynn builds and integrates the server systems and racks that go into Amazon's data centers. Wiwynn's chief executive puts the investment at over 1.6 billion dollars and Amazon's vice president of Annapurna Labs states the number of advanced manufacturing roles it supports. Socorro is in El Paso County, which is the one corner of Texas that is not on the ERCOT grid.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Amazon.com, Inc. and Wiwynn Corporation",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "El Paso"
+    ],
+    "metro": "El Paso, TX",
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-10",
+     "kind": "filed",
+     "note": "Wiwynn's copy of the joint release carries this date"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "Neither release names a vote, a hearing or a public body acting on this. A resident who wants a say goes to the City of Socorro or El Paso County, either of which would hear a zoning or abatement matter if one is brought.",
+    "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Wiwynn's chief executive states the size of the investment in the Texas facility.",
+     "verbatim_quote": "Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c1"
+    },
+    {
+     "text": "Amazon states the number of manufacturing roles the investment supports.",
+     "verbatim_quote": "supporting the creation of nearly 1,000 advanced manufacturing roles that will help strengthen both the",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c2"
+    },
+    {
+     "text": "The release states what the plant makes for Amazon's data centers.",
+     "verbatim_quote": "Wiwynn supports Amazon's data center infrastructure by manufacturing and integrating server systems and racks",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c3"
+    },
+    {
+     "text": "The release names the town the plant is in.",
+     "verbatim_quote": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, Texas.",
+     "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c4"
+    },
+    {
+     "text": "Wiwynn's own copy of the joint release carries a date.",
+     "verbatim_quote": "Updated on September 10, 2026",
+     "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c5"
+    },
+    {
+     "text": "Wiwynn states the employment the plant is expected to reach.",
+     "verbatim_quote": "Together, the companies expect to create nearly 1,000 new advanced manufacturing jobs by the end of 2027.",
+     "source_url": "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+     "source_title": "Wiwynn news, Amazon and Wiwynn expand Texas manufacturing",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-01",
+     "id": "tx-2026-0146-c6"
+    }
+   ],
+   "confidence": "high",
+   "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
+   "id": "tx-2026-0146",
+   "last_verified": "2026-10-01",
+   "history": [
+    {
+     "date": "2026-09-11",
+     "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
+    },
+    {
+     "date": "2026-10-01",
+     "note": "Both copies of the release still announce the expansion. Wiwynn's copy carries a September 10th date, which is the day the record now gives for the announcement."
+    }
+   ]
   }
  ]
 }
