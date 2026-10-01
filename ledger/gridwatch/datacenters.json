@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-30",
+ "read": "2026-10-01",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "b4ce04cb616e37ec",
+ "digest": "2516cfe65dd83a56",
  "facilities": [
   {
    "name": "NADC",
@@ -2162,6 +2162,19 @@
    ],
    "operators": [
     "Vanguard US Serviceco, LLC"
+   ]
+  },
+  {
+   "name": "Clocktower Quanah",
+   "effective": "2026-08-24",
+   "owners": [
+    "Osprey Land Holdings LLC"
+   ],
+   "occupants": [
+    "Paile LLC"
+   ],
+   "operators": [
+    "Paile LLC"
    ]
   },
   {
