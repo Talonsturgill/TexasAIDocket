@@ -2556,4 +2556,83 @@
  ],
  "lane": "upgrade. assets/js/kit/interior.js, assets/js/kit/civic.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, nothing under examples/, nothing the daily lane owns, the dated chassis and the shipped slides untouched (the proofs used scratch copies)"
 }
+,
+"2026-10-01 upgrade": {
+ "run": "carousel no. 39, Flock plate readers (tx-2026-0111, 0174, 0180, 0190, 0048), shipped at the round cap at 7.428",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit lift: city_limit_sign into assets/js/kit/civic.js AT THE JUDGES' FIX, and plate_reader beside it as it shipped. The sign is prismatic sheeting whose returned light falls off across the face from the lamp side (an emissive map, never a flat fill: lit, glow, tint), an inset white border extruded proud of the face with a bevel, two domed zinc bolts on nylon washers per post, a mill finish aluminium blank whose edge rims against the sky (rim), U channel posts holed every inch, and the legend CITY LIMIT stroked as paths (legend: 'none' for blank). It names no town. Layers are separated in depth by polygon offset",
+   "why": "All three judges named the blank green sign faces in all five rounds, and the reader judge named the fix in rounds 4 and 5: 'a real retroreflective material (a lamp-side sheen falling off across the face, an inset white border with depth, visible bolts and a back-lit edge), so the cover's most saturated object reads at feed size as a Texas road sign instead of a green-screen placeholder.' The craft card's defect 2: 'Slides 1, 2 and 4 still have blank green sign faces. The new bolt heads are a few dots at feed size.' The chassis (assets/js/deck/2026-10-01-plates.js) built both models because the kit had neither",
+   "files": [
+    "assets/js/kit/civic.js",
+    "knowledge/carousel/ARSENAL.md",
+    "knowledge/carousel/UPGRADE_BACKLOG.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "60 x 30 in face, 1.5 m to its bottom, posts at 0.3 of the width": "the chassis's own sign, kept",
+    "plate_reader dimensions (2.875 in pole, 12 ft, 21.25 x 28 in panels, 8.75 x 5 x 2.875 in camera)": "Flock Safety's published Falcon specification, as the chassis recorded it, unchanged",
+    "1.25 in border inset 0.75 in, 0.125 in blank, 3 lb/ft U channel with holes at 1 in, nylon washers": "the common shape of a small Texas guide sign and its posts, art direction, not thresholds",
+    "falloff stops (0.12 at a third, 0.42 at the far corner)": "eased from a first cut (0.18, 0.62) that put frame 2's accent coverage at 0.192 percent, under layout_check's own 0.2 percent floor. The model keeping its colour, not the gate moving",
+    "declared size [1.52, 2.26, 0.06] and [1.14, 4.35, 0.6]": "measured by examples/kit/sizes.py's own page over sixteen seeds"
+   },
+   "verification": "node --check exit 0. examples/kit/build.py --family civic --names city_limit_sign,plate_reader --world blueHour rendered through .claude/skills/carousel-engine/render.py, exit 0, errors 0, read at full size. Frames 1, 2 and 4 of this deck re-rendered from scratch copies of the committed slides (the chassis's installKit returns when the kit defines both, so the kit's models drew): exit 0, errors 0, read at full size against the shipped frames. layout_check.accent_coverage on #3E8F68, shipped then kit: frame 1 0.514 then 0.53, frame 2 0.276 then 0.254, frame 4 0.645 then 0.365, all over the 0.2 percent floor. The deck proof caught two faults the harness could not: the posts and border printing through the face at deck distance (fixed with polygon offset, then a diagnostic render with the sign's shadow casting off proved the line was depth and not shadow) and dark bolt holes (zinc heads). examples/kit/sizes.py's own judge: 93 of 93 measured models pass, these two included. The power page timed out on HEAD too, see proposals. print_ban --assets exit 0. arsenal.py and --check exit 0",
+   "revert": "the upgrade commit touching assets/js/kit/civic.js",
+   "how_i_would_know_this_was_wrong": "A judge reads CITY LIMIT as invented text or as a stamp on every sign alike, which a deck about many towns could invite (legend: 'none' is the lever). The accent gate fails a frame that passed with the chassis's sign, because the legend and the falloff take accent pixels. A deck camera nearer or further than this deck's shows the layers fighting again, or the polygon offset pulls the border visibly in front of the face at a grazing angle. The bolts still read as dots, which they will at feed size."
+  },
+  {
+   "what": "A butte draws its proportions from its seed in assets/js/kit/landscape.js: rim width, cap thickness, talus reach and curve, a lopsided apron at its own bearing and an elongated plan. rim and talus pin either. The mesa path is unchanged",
+   "why": "Round 5's top ranked artwork defect: 'Slide 5's buttes are one silhouette stamped four times at the same size and spacing ... reads as a repeated asset.' Frame 5 placed five buttes with five seeds. The cause was the kit: kind 'butte' fixed the rim at 0.55 of the height, the cap, the talus reach and its curve, drew a round plan and ignored width, so every seed was one shape scaled by height",
+   "files": [
+    "assets/js/kit/landscape.js",
+    "knowledge/carousel/ARSENAL.md",
+    "knowledge/carousel/UPGRADE_BACKLOG.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "rim 0.32 to 1.17 heights, cap 0.6 to 1.5 of the declared cap, talus 1.0 to 2.6 heights, curve 1.3 to 2.5, apron asymmetry 0.15 to 0.65, elongation to 1.6": "art direction read off frame 5's re-render, not measurements. The upper rim range reads as a small mesa, and the note says so"
+   },
+   "verification": "The defect replayed as a measurement, on a scratch page rendered through the carousel engine against a clean worktree of HEAD and against this tree, seeds 40 to 44 at 300 m. Half width at half height, in heights: HEAD 0.96, 0.98, 0.99, 0.92, 0.95 (one silhouette), now 1.33, 1.90, 1.66, 1.16, 0.81. The same page's vertex checksum of K.make('mesa', { seed: 1 }) is 4089734.883 on both, 65664 vertices, so the mesa is unchanged. Frame 5 re-rendered from a scratch copy, exit 0, errors 0, read at full size against the shipped frame: a range of five different buttes. node --check exit 0. sizes.judge passes mesa",
+   "revert": "the upgrade commit touching assets/js/kit/landscape.js",
+   "how_i_would_know_this_was_wrong": "A judge reads the buttes as mesas or as a wall, which the upper rim range invites when a row is packed as tightly as frame 5's. A deck that called a butte at a seed it liked gets a different shape on its next render, because the seed now draws proportions. A row still reads as cloned, because what read as stamped was also the frame's even spacing and equal heights, which no model can fix."
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "blueHour preset glow terms (horizonGlow, glow, clouds) near the values this chassis declared, so the lower sky prints blue and not mauve",
+   "owner": "human",
+   "why": "Found building the chassis. UPGRADE_BACKLOG 2026-10-01 item 3"
+  },
+  {
+   "what": "Backlit grass translucency in TXT.scatter kind grass",
+   "owner": "human",
+   "why": "Frames 1 and 3 printed black stubble into the light, rounds 1 to 3. UPGRADE_BACKLOG 2026-10-01 item 4"
+  },
+  {
+   "what": "A pool of tuft geometries per TXT.scatter call",
+   "owner": "human",
+   "why": "One instanced tuft named in every round, frames 1 and 5. UPGRADE_BACKLOG 2026-10-01 item 5"
+  },
+  {
+   "what": "A probe frame helper reporting an accent surface's rendered Lab distance from the deck accent",
+   "owner": "human",
+   "why": "Frames 1, 2 and 4 tuned a sign's emissive tint across rounds. The kit sign now carries tint. UPGRADE_BACKLOG 2026-10-01 item 6"
+  },
+  {
+   "what": "TXT.interior's ceiling stops short of the open side or fades its front edge",
+   "owner": "human",
+   "why": "Frame 9, rounds 2 and 3: its front edge read as a rule behind the headline. UPGRADE_BACKLOG 2026-10-01 item 7"
+  },
+  {
+   "what": "The kit proof images kept under examples/kit/ as WebP",
+   "owner": "human",
+   "why": "out/ dies with the container. Fifth run asking. UPGRADE_BACKLOG 2026-10-01 item 8"
+  },
+  {
+   "what": "examples/kit/sizes.py's power page finishes inside render.py's 45 s load timeout",
+   "owner": "human",
+   "why": "It times out on HEAD as well, so sizes.py exits 1 before judging. Likely cause, not established: the measurement runs before the page's first await. UPGRADE_BACKLOG 2026-10-01 item 9"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/civic.js, assets/js/kit/landscape.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, examples/, runs/ or docs/, the dated chassis and the shipped slides untouched (the proofs used scratch copies in out/)"
+}
 }

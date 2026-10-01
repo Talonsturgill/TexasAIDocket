@@ -4999,3 +4999,107 @@ the shipped pane and the kit window) and `schoolproof/walk_off_on.png`. A mainta
 as WebP under `examples/kit/`.
 
 Frontier scan: not run this phase. The time went to three lifts, each proved on this deck's own frames.
+
+## 2026-10-01, carousel no. 39 (Flock plate readers), the upgrade phase. Two kit upgrades, seven proposals
+
+Round 5's craft card ranked five artwork defects. All three judges named the blank green sign faces in
+all five rounds, and the reader judge named the fix in rounds 4 and 5, so the sign went first. The
+craft judge's own first defect, the buttes, turned out to be the kit's too, and is in `upgrade` lane. The
+account is in `ledger/carousel/upgrades.json` under `2026-10-01 upgrade`. The proof images are in
+`out/2026-10-01/tmp/kitlift/proof/`, and they die with the container (item 8).
+
+### 1. KIT LIFT: `city_limit_sign` AT THE NAMED FIX, AND `plate_reader`, INTO `civic.js` (done)
+
+The chassis drew the sign as a white slab with a green slab 14 mm in front of it, lit by one flat
+emissive fill. The kit's sign is the reader judge's sentence, item by item: prismatic sheeting whose
+returned light falls off across the face from the lamp side (an emissive MAP, never a fill), an inset
+white border extruded proud of the face with a bevel, two domed bolts on nylon washers per post, a
+mill finish blank whose edge rims against the sky, and the legend CITY LIMIT stroked as paths. It names
+no town. `plate_reader` is lifted unchanged, because no judge named a defect in it. The chassis's
+`installKit` already returns when the kit defines both, so the dated chassis needed no edit.
+
+**Measured on this deck's own frames, from scratch copies of the committed slides.** The accent gate's
+coverage (pixels within 12 Lab of #3E8F68 at 216 x 270): frame 1 0.514 shipped, 0.53 with the kit sign.
+Frame 2 0.276 shipped, 0.254. Frame 4 0.645 shipped, 0.365. All three stay over the 0.2 percent floor.
+The first cut put frame 2 at 0.192, under the floor, because its falloff darkened the far side of the
+face off the hex. The falloff was eased until the face held, which is the model keeping its own colour
+and not the gate moving.
+
+**Two faults the proofs found that only a deck camera shows.** (a) Layers a fraction of a millimetre
+apart, as a real sign's are, fought in depth at deck distance: the posts and the border's back printed
+through the face as lines. The sheeting, border and washers now carry a negative polygon offset and the
+posts a positive one. (b) A rough galvanized dome read as a dark hole, because a backlit face is lit
+mostly by what its sheeting returns. The heads are bright zinc now. At feed size they are still dots,
+because a 21 mm bolt on a 1.52 m sign is a dot. A frame that wants them to read has to come closer.
+
+### 2. THE BUTTES WERE ONE SILHOUETTE, AND THAT WAS THE KIT'S (done, `landscape.js`)
+
+`K.make('mesa', { kind: 'butte' })` set the rim to 0.55 of the height and fixed the cap, the talus
+reach and the talus curve, and drew a round plan. `width` was not read for a butte. So every seed was
+one shape scaled by height, and the seed moved only noise along the rim. Measured on HEAD, seeds 40 to
+44 at 300 m: the half width at half height was 0.92 to 0.99 heights across all five. A butte now draws
+its rim, cap, talus reach and curve, a lopsided apron and an elongated plan from its seed. The same
+measure is 0.81 to 1.90. The mesa path is unchanged, and the proof is a vertex checksum identical on
+HEAD and here. Frame 5 re-rendered from a scratch copy reads as a range.
+
+### 3. ENGINE: `blueHour` prints the lower sky mauve (proposal, `assets/js/txthree.js` is `human`)
+
+Found while building this chassis. The preset's `horizonGlow: 1.2` and `glow: 0.9` lay its amber
+`haze: 0xd79a78` across a blue `horizon: 0x5f78a8`, and `clouds: 0.18` carries the mixture higher. The
+mix is mauve, the doctrine's own named failure. The chassis had to declare `horizonGlow: 0.3, glow: 0.4,
+clouds: 0.0` and a thinner fog to get a blue hour. **Proposal:** the preset's own glow terms near those
+values, with a probe frame rendered before and after and the horizon band's hue measured.
+
+### 4. ENGINE: backlit grass prints black (frames 1 and 3, rounds 1 to 3)
+
+`TXT.scatter` kind `grass` builds blades as `MeshStandardMaterial` with `side: DoubleSide` and no
+transmission. With the key behind the view both faces of a blade turn away from it, so a field seen
+into the light is black stubble. A grass blade is thin and transmits. **Proposal:** a cheap
+translucency term, the key's colour times a wrap of `max(0, -N.L)` weighted toward the view, by
+`onBeforeCompile` or `MeshPhysicalMaterial` with a low `transmission`, so a blade lit from behind
+glows at its edges. A self-test frame with the key behind the camera's view and a mean luminance on
+the scatter.
+
+### 5. ENGINE: the grass is one tuft (frames 1 and 5, every round)
+
+`TXT.scatter` builds ONE `tuftGeometry` per call and instances it, so every tuft on a frame is the same
+nine blades rotated and scaled. The craft judge named it every round ("one repeated tuft sprite").
+**Proposal:** a pool of tuft geometries per call, three to five from the same rng, each instance drawing
+one, and a blade count drawn per tuft. A chassis can work round it today by calling `TXT.scatter` two or
+three times over one area with different seeds and counts.
+
+### 6. ENGINE AND FRAME: an accent surface cools off its hex under blue hour (frames 1, 2 and 4)
+
+The blue key and fill pull a green toward cyan and down in value, so a sign at the accent hex left the
+accent gate's 12 Lab window. The frames passed an emissive `tint` (0x22c060) measured at thumb scale.
+The kit sign now carries `tint` as the hue it RETURNS, apart from its diffuse colour, so a frame keeps
+the lever without a hand built material. **The engine half (proposal):** a helper that reports an
+accent surface's rendered Lab distance from the deck's accent on the probe frame, so a director tunes
+it before round 1 and not across rounds.
+
+### 7. ENGINE: `TXT.interior`'s ceiling is a flat slab whose front edge reads as a rule behind type (frame 9, rounds 2 and 3)
+
+`TXT.interior` with `ceiling: true` adds one `roundedBox(w + t, t, d)` at the wall height. Its front
+edge is a hard horizontal line across the frame, and on frame 9 that line sat behind the headline.
+**Proposal:** a ceiling that stops short of the open side with a soffit or a light cove, or a
+`ceiling: 'fade'` that ramps its front edge into the room's haze.
+
+### 8. The proof images die with the container (proposal, `examples/kit/**` is `human`, fifth run)
+
+`out/2026-10-01/tmp/kitlift/proof/`: the sign on frames 1, 2 and 4, shipped beside kit, frame 5's buttes
+shipped beside kit, and the three harness pages.
+
+### 9. `examples/kit/sizes.py` can't finish: the `power` page times out (proposal, `examples/kit/**` is `human`)
+
+The `power` page hits `render.py`'s 45 s page load timeout, on HEAD as well as on this branch,
+measured in a clean worktree. So `sizes.py` exits 1 before it judges anything. The other 93 models
+were judged from the same run's report with `sizes.judge` and all 93 pass. **A likely cause, not
+established:** the page measures every model at sixteen seeds inside `renderReady` BEFORE its first
+`await`, so the work runs before the load event that `render.py` waits on. **Proposal:** an
+`await new Promise((r) => setTimeout(r, 0))` at the top of the measuring function, or one page per
+model, and confirm it by timing the `power` page.
+
+Not the model's: the "faint blue footprint strips" under frame 4's near signs. That frame turns the
+signs' shadow casting off, and the strips are still there in the re-render with the kit sign.
+
+Frontier scan: not run this phase. The time went to two lifts, each proved on this deck's own frames.

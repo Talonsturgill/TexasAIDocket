@@ -1030,20 +1030,37 @@ export function install(K, THREE, TXT) {
   K.define('mesa', {
     size: [1187.9, 94.1, 994.1],
     options: { kind: 'mesa', width: 500, height: 90, cap: 0.16, rock: 'red', aerial: 0.00022, scrub: 1 },
-    note: 'A caprock mesa (or kind:"butte") with a vertical cap ledge, a soft slope under it and a gullied talus apron that meets the ground. Far distance: 1 to 8 km. aerial is its own haze rate per metre (0 = use the scene fog). rock: red (Permian, Caprock Canyons) or tan (Trans-Pecos).',
+    note: 'A caprock mesa (or kind:"butte") with a vertical cap ledge, a soft slope under it and a gullied talus apron that meets the ground. Far distance: 1 to 8 km. aerial is its own haze rate per metre (0 = use the scene fog). rock: red (Permian, Caprock Canyons) or tan (Trans-Pecos). A butte draws its own proportions from its seed (rim width, cap, a lopsided talus and its curve, an elongated plan), so a row of buttes is a range and not one asset repeated; width is not read for a butte, rim (in heights, about 0.3 to 1.2) and talus (reach in heights, about 1 to 2.6) pin either. A seed near the top of the rim range reads as a small mesa.',
     make(o, r) {
       o = Object.assign({ kind: 'mesa', width: 500, height: 90, cap: 0.16, rock: 'red', aerial: 0.00022, scrub: 1 }, o);
       const g = new THREE.Group(), seed = 3000 + o.seed * 17;
       const H = o.height, butte = o.kind === 'butte';
-      const R0 = butte ? Math.max(H * 0.55, 30) : o.width / 2;
+      /* A BUTTE'S PROPORTIONS COME FROM ITS SEED (2026-10-01). Until then a butte's rim was 0.55 of its
+       * height, its cap, talus length and talus curve were constants and its plan was round, so every
+       * seed was ONE silhouette scaled by height: frame 5 of carousel no. 39 placed five with five
+       * seeds and the round 5 craft judge read "one silhouette stamped four times at the same size and
+       * spacing ... a repeated asset". Now each seed draws its own rim width (a spire to a broad
+       * block), cap thickness, talus reach and curve, and an elongated plan at its own bearing. The
+       * ranges are art direction read off the proofs, not measurements, and a mesa is untouched.
+       * `rim` (a fraction of the height) and `talus` (its reach in heights) pin either one. */
+      const vr = butte ? K.rng(seed * 31 + 7) : null;
+      const rimK = butte ? (o.rim != null ? +o.rim : 0.32 + 0.85 * vr()) : 0;
+      const capK = butte ? 0.6 + 0.9 * vr() : 1;
+      const talK = butte ? (o.talus != null ? +o.talus : 1.0 + 1.6 * vr()) : 2.1;
+      const tp = butte ? 1.3 + 1.2 * vr() : 1.9;                            // the talus curve, straighter to concave
+      // a lopsided apron: a real butte sheds a long talus on one side and a short steep one on the other
+      const asym = butte ? 0.15 + 0.5 * vr() : 0, bear2 = butte ? vr() * TAU : 0;
+      const ta = (th) => 1 + asym * Math.cos(th - bear2);
+      const elong = butte ? 0.6 * vr() : 0, bear = butte ? vr() * Math.PI : 0;
+      const R0 = butte ? Math.max(H * rimK, 30) : o.width / 2;
       const nA = noise2(seed), nB = noise2(seed + 1), nG = noise2(seed + 2);
-      const capT = H * o.cap, talusL = H * 2.1;
+      const capT = H * o.cap * capK, talusL = H * talK;
       const NT = 384;
       // plan shape: a lobed outline for a mesa, near round for a butte
       const rimR = (th) => {
         const c = Math.cos(th), s = Math.sin(th);
         const lobes = fbm(nA, c * 1.3 + 5, s * 1.3 + 5, 4);
-        const e = butte ? 1 : (1 + 0.35 * c * c);                    // longer than deep
+        const e = butte ? 1 + elong * Math.pow(Math.cos(th - bear), 2) : (1 + 0.35 * c * c);   // longer than deep
         // jitter sampled by the columns (about 38 cells round, 10 columns each) and PERIODIC in th:
         // nB(th * 40) put 1.5 columns in a cell, a sawtooth rim, and jumped at th = 0, which is the
         // right hand end of a mesa seen from the south (no. 36 "hard jagged cutoff at its right end")
@@ -1058,7 +1075,7 @@ export function install(K, THREE, TXT) {
       const h1 = H - capT;
       for (let i = 1; i <= 4; i++) { const t = i / 4; prof.push({ d: 1.2 + capT * 0.9 * t, h: h1 - capT * 0.9 * Math.pow(t, 0.8), gw: 0.3, band: 2 }); }
       const h2 = h1 - capT * 0.9, d2 = 1.2 + capT * 0.9;
-      for (let i = 1; i <= 16; i++) { const t = i / 16; prof.push({ d: d2 + talusL * t, h: h2 * Math.pow(1 - t, 1.9), gw: 1, band: 3 }); }
+      for (let i = 1; i <= 16; i++) { const t = i / 16; prof.push({ d: d2 + talusL * t, h: h2 * Math.pow(1 - t, tp), gw: 1, band: 3 }); }
       prof.push({ d: d2 + talusL * 1.12, h: -0.5, gw: 1, band: 4 });
       const rows = prof.length, pos = new Float32Array(NT * rows * 3 + 3), colr = new Float32Array(NT * rows * 3 + 3);
       // THE MAPPING FOLLOWS THE SURFACE (no. 36, 2026-09-28). A strip on the TOP is mapped in plan, so
@@ -1084,7 +1101,7 @@ export function install(K, THREE, TXT) {
           if (P.top != null) { rad = Rr * P.top; y = H + (fbm(nB, c * P.top * 3, s * P.top * 3, 3) - 0.5) * H * 0.04 + 0.3 * (1 - P.top); }
           else {
             const t = P.d / (d2 + talusL);
-            rad = Rr + P.d * (1 + (gul - 0.5) * 0.5 * P.gw);
+            rad = Rr + P.d * (1 + (gul - 0.5) * 0.5 * P.gw) * (P.band >= 3 ? ta(th) : 1);
             y = P.h;
             if (P.band >= 2 && P.band < 4) y *= 1 - (1 - gul) * 0.1 * P.gw * Math.sin(Math.PI * Math.min(1, t * 1.4));
             // was nB(th * 60), one cell a column: a sawtooth foot. It also fades out over the last 6 m
@@ -1137,7 +1154,7 @@ export function install(K, THREE, TXT) {
           const th = r() * TAU, onTop = r() < 0.3, Rr = rimR(th);
           let rad, y;
           if (onTop) { rad = Rr * Math.sqrt(r()) * 0.95; y = H; }
-          else { const t = 0.15 + r() * 0.85; rad = Rr + d2 + talusL * t; y = h2 * Math.pow(1 - t, 1.9); }
+          else { const t = 0.15 + r() * 0.85; rad = Rr + (d2 + talusL * t) * ta(th); y = h2 * Math.pow(1 - t, tp); }
           const s = 1.2 + r() * 2.2;
           list.push({ x: Math.cos(th) * rad, y: y + s * 0.3, z: Math.sin(th) * rad, ry: r() * TAU, sx: s, sy: s * 0.8, sz: s });
           cs.push(cols[Math.floor(r() * cols.length)].clone().multiplyScalar(0.8 + r() * 0.4));
@@ -1147,7 +1164,7 @@ export function install(K, THREE, TXT) {
         // fallen caprock blocks on the upper talus
         const bg = lump(seed + 11, 1, 1, 0.7, 1, 0.5), bl = [], bc = [];
         for (let i = 0; i < n * 0.4; i++) {
-          const th = r() * TAU, t = Math.pow(r(), 1.6) * 0.6, Rr = rimR(th), rad = Rr + d2 + talusL * t, y = h2 * Math.pow(1 - t, 1.9), s = 1.5 + r() * 4;
+          const th = r() * TAU, t = Math.pow(r(), 1.6) * 0.6, Rr = rimR(th), rad = Rr + (d2 + talusL * t) * ta(th), y = h2 * Math.pow(1 - t, tp), s = 1.5 + r() * 4;
           bl.push({ x: Math.cos(th) * rad, y: y + s * 0.2, z: Math.sin(th) * rad, ry: r() * TAU, rx: r() * 0.5, sx: s * 1.3, sy: s * 0.8, sz: s });
           bc.push(cCap.clone().multiplyScalar(0.75 + r() * 0.3));
         }
