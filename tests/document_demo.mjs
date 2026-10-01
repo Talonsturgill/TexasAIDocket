@@ -25,7 +25,7 @@ const check = (label, condition) => { assert.ok(condition, label); assertions++;
 try {
   for (const mode of [
     {name:'desktop-dark', width:1440, height:1000, colorScheme:'dark'},
-    {name:'mobile-light', width:390, height:844, colorScheme:'light', isMobile:true, hasTouch:true},
+    {name:'mobile-light-preference', width:390, height:844, colorScheme:'light', isMobile:true, hasTouch:true},
   ]) {
     const context = await browser.newContext({viewport:{width:mode.width,height:mode.height},colorScheme:mode.colorScheme,
       isMobile:mode.isMobile,hasTouch:mode.hasTouch,reducedMotion:'reduce'});
@@ -39,6 +39,8 @@ try {
     await page.waitForFunction(() => document.querySelector('#di-count').textContent.includes('5 of 5'));
     const count = () => page.locator('[data-entry]:visible').count();
     check(`${mode.name} starts with every source`, await count() === 5);
+    check(`${mode.name} reduced-motion hero actions are immediately visible`, await page.locator('.di-hero .ctarow').evaluate(el => getComputedStyle(el).opacity === '1'));
+    check(`${mode.name} source dates retain their year`, (await page.locator('.di-provenance').textContent()).includes('August 14th, 2026'));
     check(`${mode.name} has no horizontal overflow`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     const links = await page.locator('[data-source-link]').evaluateAll(nodes => nodes.map(n => n.href));
     check(`${mode.name} links exact official PDF pages`, links.every(u => u.startsWith('https://www.tceq.texas.gov/downloads/permitting/stormwater/general/multi-sector/2026-msgp-renewal.pdf#page=')) && links.map(u => u.split('=')[1]).join(',') === '48,49,65,65,69');
@@ -77,7 +79,18 @@ try {
     check(`${mode.name} existing contact fields remain`, await page.locator('#servicesform input[name="email"]').count() === 1 && await page.locator('#servicesform textarea[name="message"]').count() === 1);
     await page.goBack();
     check(`${mode.name} back returns to working demo`, await page.locator('#di-query').isVisible());
-    if (SCREENSHOTS) { fs.mkdirSync(SCREENSHOTS,{recursive:true}); await page.screenshot({path:path.join(SCREENSHOTS,mode.name+'.png'),fullPage:true}); }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    if (SCREENSHOTS) {
+      fs.mkdirSync(SCREENSHOTS,{recursive:true});
+      await page.screenshot({path:path.join(SCREENSHOTS,mode.name+'.png'),fullPage:true});
+      await page.screenshot({path:path.join(SCREENSHOTS,mode.name+'-top.png')});
+      await page.locator('#di-query').scrollIntoViewIfNeeded();
+      await page.screenshot({path:path.join(SCREENSHOTS,mode.name+'-index.png')});
+      await page.getByRole('button', {name:'Supporting records',exact:true}).click();
+      await page.locator('[data-entry="supporting-records"] summary').click();
+      await page.locator('[data-entry="supporting-records"]').scrollIntoViewIfNeeded();
+      await page.screenshot({path:path.join(SCREENSHOTS,mode.name+'-source.png')});
+    }
     csp.push(...await page.evaluate(() => window.demoCsp));
     check(`${mode.name} demo has no CSP violations`, csp.length === 0);
     check(`${mode.name} demo has no page errors`, errors.length === 0);

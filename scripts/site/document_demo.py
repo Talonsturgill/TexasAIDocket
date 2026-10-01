@@ -89,8 +89,10 @@ def render(today: str) -> tuple[str, set]:
         </article>''')
     options = "".join(f'<option value="{e(cat)}">{e(cat)}</option>'
                       for cat in dict.fromkeys(r["category"] for r in data["entries"]))
-    effective = ordinal(dt.date.fromisoformat(data["effective"]))
-    verified = ordinal(dt.date.fromisoformat(data["verified"]))
+    effective_date = dt.date.fromisoformat(data["effective"])
+    verified_date = dt.date.fromisoformat(data["verified"])
+    effective = f"{ordinal(effective_date)}, {effective_date.year}"
+    verified = f"{ordinal(verified_date)}, {verified_date.year}"
     version = hashlib.sha256(JS.read_bytes()).hexdigest()[:10]
     body = f'''
 <section class="hero rise di-hero">

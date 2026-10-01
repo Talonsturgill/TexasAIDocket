@@ -53,3 +53,6 @@
 @media(max-width:48rem) { .di-controls { grid-template-columns:repeat(2,minmax(0,1fr)); } .di-search { grid-column:1/-1; } .di-results { grid-template-columns:1fr; } .di-next { display:block; } .di-next .cta { margin-top:1rem; } }
 @media(max-width:34rem) { .di-workspace-head { display:block; } .di-local { text-align:left; } .di-provenance { grid-template-columns:1fr 1fr; gap:1rem; } .di-provenance>div:first-child { grid-column:1/-1; } .di-controls { grid-template-columns:1fr; } .di-hero h1 { font-size:clamp(2.3rem,10vw,3.2rem); } #di-review-count { margin-left:0; } }
 @media print { .di-controls,.di-review,.di-progress,.di-next { display:none; } .di-entry { break-inside:avoid; } .di-entry[hidden] { display:block; } .di-results { display:block; } }
+
+/* Shared entrance choreography must not hide the demo actions for reduced-motion readers. */
+@media(prefers-reduced-motion:reduce) { html.js .di-hero.rise > * { opacity:1; transform:none; animation:none; } }
