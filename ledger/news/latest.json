@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-01T07:21:16Z",
+  "checked_at": "2026-10-01T14:40:40Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "8c48fe27ae2bf8b3a08737e557471c1d6fe14a254e584da5e7775565810ca3f7",
+  "response_sha256": "4f1d4a29fb03f99da66f76e3ac0ae402114dc70dd4a0a144daa96bd8efbe5bf6",
   "articles": [
     {
       "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
@@ -48,184 +48,20 @@
     }
   ],
   "selected": {
-    "title": "New funding supports AI safety research and training at UT San Antonio",
-    "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-    "first_seen_at": "2026-09-27T15:14:02Z",
-    "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-    "feed": "https://www.tpr.org/index.rss",
-    "publisher": "Texas Public Radio",
+    "title": "Colovore files to develop data center in Fort Worth, Texas",
+    "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+    "first_seen_at": "2026-09-29T14:30:08Z",
+    "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+    "feed": "https://www.datacenterdynamics.com/en/rss/",
+    "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.078471,
-    "priority": 3
+    "score": 0.248736,
+    "priority": 1
   },
-  "expires_at": "2026-10-04T15:14:02Z",
+  "expires_at": "2026-10-06T14:30:08Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-01T01:23:00Z",
-      "selected": {
-        "title": "New funding supports AI safety research and training at UT San Antonio",
-        "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-        "first_seen_at": "2026-09-27T15:14:02Z",
-        "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.078471,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.078471,
-          "priority": 3
-        },
-        {
-          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-          "first_seen_at": "2026-09-30T11:59:59Z",
-          "summary": "Campus set to span at least six single-story buildings",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.571788,
-          "priority": 1
-        },
-        {
-          "title": "Colovore files to develop data center in Fort Worth, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-          "first_seen_at": "2026-09-29T14:30:08Z",
-          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.307322,
-          "priority": 1
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.012102,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.011513,
-          "priority": 3
-        },
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.01132,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-10-01T07:23:00Z",
-      "selected": {
-        "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-        "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-        "first_seen_at": "2026-09-24T20:11:43Z",
-        "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.011311,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-          "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-          "first_seen_at": "2026-09-24T20:11:43Z",
-          "summary": "Chancellor Brandon Creighton and Cody Campbell, who chairs Tech's Board of Regents, are identified by their official university titles on the invitation to the Sept. 29 fundraiser. Lubbock County Democrats are questioning whether their public positions — or university resources — were used to promote the event.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.011311,
-          "priority": 4
-        },
-        {
-          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-          "first_seen_at": "2026-09-30T11:59:59Z",
-          "summary": "Campus set to span at least six single-story buildings",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.571312,
-          "priority": 1
-        },
-        {
-          "title": "Colovore files to develop data center in Fort Worth, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-          "first_seen_at": "2026-09-29T14:30:08Z",
-          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.307066,
-          "priority": 1
-        },
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.078406,
-          "priority": 3
-        },
-        {
-          "title": "AT&T, Dallas Cowboys Amp Up Tech for Fans With Extended Stadium Partnership",
-          "url": "https://dallasinnovates.com/att-dallas-cowboys-amp-up-tech-for-fans-with-extended-stadium-partnership/",
-          "first_seen_at": "2026-09-24T22:30:27Z",
-          "summary": "From AI-powered fan engagement to boosted internet access, Dallas-based AT&T and the Dallas Cowboys kicked off several new or enhanced fan experiences this season at Arlington’s AT&T Stadium. A recent extension of the 30-year collaboration between AT&T and the Cowboys “continues a partnership that has grown alongside the evolution of sports, entertainment and fan engagement,” Cody Kuecker, lead manager of sponsorships at AT&T, told Dallas Innovates.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.012092,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
-          "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
-          "first_seen_at": "2026-09-24T20:46:52Z",
-          "summary": "Dallas entrepreneur Sloan Dean saw a problem with the hospitality industry’s operating model and set out to help fix it with AI. The result: AI Hospitality Group, a new startup that calls itself an AI-native hotel operator. The company, which recently launched, said its 60-plus back-office AI agents free up on-property staff to concentrate on in-person customer service.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.011504,
-          "priority": 3
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-01T13:23:00Z",
       "selected": {
@@ -236,7 +72,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.258211,
+        "score": 0.248736,
         "priority": 1
       },
       "stories": [
@@ -248,7 +84,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.258211,
+          "score": 0.248736,
           "priority": 1
         },
         {
@@ -259,7 +95,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.480414,
+          "score": 0.462785,
           "priority": 1
         },
         {
@@ -270,7 +106,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.065931,
+          "score": 0.063512,
           "priority": 3
         },
         {
@@ -281,7 +117,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.010168,
+          "score": 0.009795,
           "priority": 3
         },
         {
@@ -292,7 +128,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.009673,
+          "score": 0.009318,
           "priority": 3
         },
         {
@@ -303,7 +139,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.009511,
+          "score": 0.009162,
           "priority": 4
         }
       ]
@@ -389,19 +225,107 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-02T01:23:00Z",
+      "selected": {
+        "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+        "first_seen_at": "2026-09-30T11:59:59Z",
+        "summary": "Campus set to span at least six single-story buildings",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.339704,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+          "first_seen_at": "2026-09-30T11:59:59Z",
+          "summary": "Campus set to span at least six single-story buildings",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.339704,
+          "priority": 1
+        },
+        {
+          "title": "Colovore files to develop data center in Fort Worth, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+          "first_seen_at": "2026-09-29T14:30:08Z",
+          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.182582,
+          "priority": 1
+        },
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.04662,
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-02T07:23:00Z",
+      "selected": {
+        "title": "New funding supports AI safety research and training at UT San Antonio",
+        "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+        "first_seen_at": "2026-09-27T15:14:02Z",
+        "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.039203,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.039203,
+          "priority": 3
+        },
+        {
+          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+          "first_seen_at": "2026-09-30T11:59:59Z",
+          "summary": "Campus set to span at least six single-story buildings",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.285656,
+          "priority": 1
+        },
+        {
+          "title": "Colovore files to develop data center in Fort Worth, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+          "first_seen_at": "2026-09-29T14:30:08Z",
+          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.153533,
+          "priority": 1
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/copoint-ai-acquires-strategy-for-ai-adding-founder-brad-bush-as-vp/",
-      "title": "CoPoint AI Acquires Strategy for AI, Adding Founder Brad Bush as VP",
-      "shown_at": "2026-09-24T07:23:00Z"
-    },
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
-      "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
-      "shown_at": "2026-09-24T13:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/abbott-halts-new-texas-data-center-permits-pending-ercot-audit/",
       "title": "Abbott halts new Texas data center permits pending ERCOT audit",
@@ -531,6 +455,16 @@
       "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
       "title": "New funding supports AI safety research and training at UT San Antonio",
       "shown_at": "2026-10-01T01:23:00Z"
+    },
+    {
+      "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
+      "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
+      "shown_at": "2026-10-01T07:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+      "title": "Colovore files to develop data center in Fort Worth, Texas",
+      "shown_at": "2026-10-01T13:23:00Z"
     }
   ],
   "feeds": [
@@ -546,7 +480,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "858652216a1b54c2baf7e574b6bf7e986c271b3066e04e59f9acdad025235e9e"
+      "sha256": "416e2ca9a409e1227347f055470be693dbf755bc130b53963c976e4f5d2e44db"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -558,13 +492,13 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1240,
-      "sha256": "9062dd4c795b8c9c70f94408e23c220dd6eb5163b7111ea518f2b3784d286934"
+      "sha256": "852b24e877d405bd756f39a1be675007e54431f0b1c17006ba0b87ce468682c0"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "7e5b4ea39475da0e4f6c98ca682ff9192ac861befb924982a9f27d6f2644402a"
+      "sha256": "4cbabd7b8c1b4dbe8f1fdb8003827ca7a7829062da830fce0afb7aedd6e8ea0c"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -576,7 +510,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "283bf68b1b761278ade4db175b00e464c9fe88c5bcbf021fb64132822c56b7b8"
+      "sha256": "7c773cd831701ef03e0c13e9897beae0767a4f11077e4f700bf0e809f7f72873"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -585,19 +519,19 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "95b4006ceb525356b6148f8cb9405690954ec236d953a693b8c022580983e0f9"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "505b128cc2318b368766985f87c1a843eb4b6018833a7832c95c13d8c66ca5c6"
+      "sha256": "ea0157e5a40d2387289908eb327d2fcaccb610e4006fc32cb2e122bd0cb37eaf"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "3e26a6ab19a6d119e1cc958b786e00b6aa39bbe1f621a9e4576b80b966fd544e"
     },
     {
       "url": "https://www.tpr.org/index.rss",
@@ -607,7 +541,9 @@
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "5b3eb76428225a6e6b589f5211875d3838a6284867f74c4ab548445c25f8ced0"
     }
   ],
   "feed_state": {
@@ -615,7 +551,7 @@
       "etag": "\"c7b6b3f5f52d1146aa48479102f613d0\"",
       "last_modified": "Wed, 30 Sep 2026 22:06:03 GMT",
       "failures": 0,
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "sha256": "3bcd74756bf1ccc8c19b8efe63aed244cd02a283870ab9b9d4cc246563c477dc",
       "parser_version": 2
     },
@@ -623,52 +559,52 @@
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "858652216a1b54c2baf7e574b6bf7e986c271b3066e04e59f9acdad025235e9e",
-      "last_modified": "Thu, 01 Oct 2026 07:00:34 GMT"
+      "sha256": "416e2ca9a409e1227347f055470be693dbf755bc130b53963c976e4f5d2e44db",
+      "last_modified": "Thu, 01 Oct 2026 14:28:55 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "06cf570f6ea1ec3e35c70a558530df5a06b9aa6107d8b010e48d4773ca829c2c",
-      "etag": "\"1790837487\"",
-      "last_modified": "Thu, 01 Oct 2026 06:51:27 GMT"
+      "etag": "\"1790865188\"",
+      "last_modified": "Thu, 01 Oct 2026 14:33:08 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9062dd4c795b8c9c70f94408e23c220dd6eb5163b7111ea518f2b3784d286934"
+      "sha256": "852b24e877d405bd756f39a1be675007e54431f0b1c17006ba0b87ce468682c0"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7e5b4ea39475da0e4f6c98ca682ff9192ac861befb924982a9f27d6f2644402a",
-      "etag": "\"c6938ba9b8a927dc7b3c7a3eb141a944-gzip\"",
-      "last_modified": "Wed, 30 Sep 2026 23:34:33 GMT"
+      "sha256": "4cbabd7b8c1b4dbe8f1fdb8003827ca7a7829062da830fce0afb7aedd6e8ea0c",
+      "etag": "\"f2dbb62cb2a768c639bc487fd8f5d0ce-gzip\"",
+      "last_modified": "Thu, 01 Oct 2026 13:12:09 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "d1a84143c5aa266ba37ead1ac6f87cab718f024624926c0017c742f7c211f297"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "283bf68b1b761278ade4db175b00e464c9fe88c5bcbf021fb64132822c56b7b8",
-      "etag": "\"9fc15b5e2f757e7f707114f66ec60f08\"",
-      "last_modified": "Thu, 01 Oct 2026 02:29:49 GMT"
+      "sha256": "7c773cd831701ef03e0c13e9897beae0767a4f11077e4f700bf0e809f7f72873",
+      "etag": "\"efb8f82fe8d1c90880947ec6463c6ef6\"",
+      "last_modified": "Thu, 01 Oct 2026 13:00:45 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -680,40 +616,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-01T07:21:15Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "95b4006ceb525356b6148f8cb9405690954ec236d953a693b8c022580983e0f9",
       "etag": "W/\"e2434f4b7a28b7b5a60d0f862f79ad2f\"",
-      "last_modified": "Thu, 01 Oct 2026 02:06:54 GMT"
-    },
-    "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "last_modified": "Thu, 01 Oct 2026 02:06:54 GMT",
       "failures": 0,
-      "parser_version": 2,
-      "sha256": "505b128cc2318b368766985f87c1a843eb4b6018833a7832c95c13d8c66ca5c6",
-      "etag": "W/\"ee3d14e40e5a0311c9ad0ec5317d72e0\""
-    },
-    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Wed, 30 Sep 2026 13:57:15 GMT",
-      "failures": 0,
-      "ok_at": "2026-10-01T07:21:15Z",
-      "sha256": "e34966148b6de104bd0fc0fd55be6b64dbb1d3839d0c285991b442792fbbb00b",
+      "ok_at": "2026-10-01T14:40:38Z",
+      "sha256": "95b4006ceb525356b6148f8cb9405690954ec236d953a693b8c022580983e0f9",
       "parser_version": 2
     },
+    "https://www.techspot.com/backend.xml": {
+      "ok_at": "2026-10-01T14:40:38Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "ea0157e5a40d2387289908eb327d2fcaccb610e4006fc32cb2e122bd0cb37eaf",
+      "etag": "W/\"794dee42b212eb0a121382a01ff8d5c8\""
+    },
+    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
+      "ok_at": "2026-10-01T14:40:38Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "3e26a6ab19a6d119e1cc958b786e00b6aa39bbe1f621a9e4576b80b966fd544e",
+      "last_modified": "Thu, 01 Oct 2026 14:18:52 GMT"
+    },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-01T07:21:15Z",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "23580f088db6427519b3e60619765c8044de83681025a740920573d8651da78c"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"a4dd465317d216e4deb9172d4992d05e\"",
-      "last_modified": "Wed, 30 Sep 2026 20:38:41 GMT",
+      "ok_at": "2026-10-01T14:40:38Z",
       "failures": 0,
-      "ok_at": "2026-10-01T07:21:15Z",
-      "sha256": "873ec1308058f30f84b43bcb58d48a1e478cd8c724f714cd38bb3682328dbf21",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "5b3eb76428225a6e6b589f5211875d3838a6284867f74c4ab548445c25f8ced0",
+      "etag": "W/\"8f24d7c2228dbe04b6421948dee5ab5d\"",
+      "last_modified": "Thu, 01 Oct 2026 11:59:00 GMT"
     }
   }
 }
