@@ -544,11 +544,11 @@ def services_page(items: list, today: str) -> str:
         f'<h3>{h}</h3><p>{t}</p>'
         f'<p class="terms">{terms}</p></div>'
         for h, when, t, terms, lead in (
-            ("The Field Study", "1 to 2 weeks",
-             "Your operation studied from the inside and your competitors from the outside. "
-             "Then a ranked map of where AI actually pays for you. Most firms sell a slide "
-             "deck here. You get a working prototype of the best bet.",
-             "That answer comes back even if AI doesn't pay in your business yet.", True),
+            ("The Field Study", "A scoped paid pilot",
+             "Start with one recurring workflow. For document-heavy work, an approved packet becomes a source-linked "
+             "index that is tested against the questions your team already answers. "
+             "A named reviewer decides what the evidence supports.",
+             "A fixed scope, fee and schedule are agreed before work begins.", True),
             ("The Build", "Live inside a month, typically",
              "Whatever the Field Study surfaces, or what you already know you want. Shipped "
              "to production behind real quality gates. Improved on a schedule after that.",
@@ -581,8 +581,8 @@ def services_page(items: list, today: str) -> str:
   <p class="herolede">The data centers. The load. The water. It is all landing here first.
   The businesses that move first will own the decade.</p>
   <div class="ctarow">
-    <a class="cta solid" href="#start">Start here</a>
-    <a class="cta ghost" href="#ways">See the three ways in</a>
+    <a class="cta solid" href="#start">Discuss one workflow</a>
+    <a class="cta ghost" href="document-demo/">Try the document demo</a>
   </div>
 </section>
 
@@ -605,8 +605,31 @@ def services_page(items: list, today: str) -> str:
 <section data-reveal>
   <h2>What gets built</h2>
   <p class="sub">If the work happens on a screen it can probably be built. Bring a specific ask
-  or let the Field Study find the highest payers.</p>
+  or begin with a focused Field Study.</p>
   <div class="capgrid">{caps}</div>
+</section>
+
+<section id="field-study" data-reveal>
+  <h2>Find the source behind the answer</h2>
+  <p class="sub">A practical starting point for environmental and engineering teams that spend
+  time finding the right page or plan version. The Field Study tests one document workflow
+  before a larger build.</p>
+  <div class="holds">
+    <div class="hold"><h3>A packet you approve</h3><p>Choose the source documents and the
+      questions the workflow needs to answer. Agree what is in scope and who may use it.</p></div>
+    <div class="hold"><h3>An index you can inspect</h3><p>Find the passage behind an answer.
+      Keep its source and version attached. Questions the packet does not settle go into
+      a review queue.</p></div>
+    <div class="hold"><h3>A person who decides</h3><p>Name a reviewer before the pilot starts.
+      That person checks the evidence and decides what the work supports. The tool does not
+      approve a filing or determine compliance.</p></div>
+    <div class="hold"><h3>A measured next step</h3><p>Compare the workflow against your team's
+      baseline time and agreed test questions. Decide whether to expand it, revise it or stop.</p></div>
+  </div>
+  <p>One approved packet. One workflow. A source-linked prototype, an unresolved-question queue
+  and a review of the test results. Scope, fixed fee and timing are agreed after discovery.</p>
+  <div class="ctarow"><a class="cta solid" href="document-demo/">Try the public-source example</a>
+    <a class="cta ghost" href="#start">Discuss one workflow</a></div>
 </section>
 
 <section id="ways" data-reveal>

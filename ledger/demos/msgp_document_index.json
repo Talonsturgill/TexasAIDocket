@@ -1,0 +1,68 @@
+{
+  "title": "Public-source document index",
+  "source_title": "TCEQ Multi-Sector General Permit",
+  "permit": "TXR050000",
+  "effective": "2026-08-14",
+  "verified": "2026-10-01",
+  "pdf_pages": 230,
+  "source_url": "https://www.tceq.texas.gov/downloads/permitting/stormwater/general/multi-sector/2026-msgp-renewal.pdf",
+  "status_url": "https://www.tceq.texas.gov/permitting/stormwater/industrial/proposed-industrial-permit",
+  "method": "Manually checked selected passages against the official permit. Printed page numbers match one-based PDF page positions. Descriptions are navigation aids, not a complete permit summary or a determination of applicability.",
+  "entries": [
+    {
+      "id": "supporting-records",
+      "title": "Find the supporting records",
+      "section": "III.A.5",
+      "source_heading": "Additional Documentation Requirements",
+      "pages": [48, 49],
+      "category": "Supporting records",
+      "summary": "Locate the passage about supporting material kept with the stormwater plan, including correspondence, training and inspection records.",
+      "question": "Which referenced records are in the approved project packet? A source passage alone does not establish that a site holds them.",
+      "keywords": ["SWP3", "NOI", "acknowledgment", "training", "maintenance", "inspection", "corrective action", "correspondence"]
+    },
+    {
+      "id": "plan-versions",
+      "title": "Trace plan revisions",
+      "section": "III.A.6",
+      "source_heading": "SWP3 Review",
+      "pages": [49],
+      "category": "Plan versions",
+      "summary": "Locate the passage about reviewing the stormwater plan and dating its revisions.",
+      "question": "Which plan version is the team reviewing? No facility plan or revision history is included in this example.",
+      "keywords": ["SWP3", "version", "revision", "date", "update", "plan"]
+    },
+    {
+      "id": "retained-records",
+      "title": "Locate the retention passage",
+      "section": "III.D.5",
+      "source_heading": "Records Retention",
+      "pages": [65],
+      "category": "Retained records",
+      "summary": "Find the retention passage for monitoring and reporting records, application data and stormwater plan history. Read its conditions and exceptions in the source.",
+      "question": "Does another permit condition or agency direction change the retention decision? A qualified reviewer must check the full context.",
+      "keywords": ["retention", "retain", "retained", "archive", "history", "SWP3", "application", "reporting"]
+    },
+    {
+      "id": "monitoring-documents",
+      "title": "Find monitoring documentation",
+      "section": "III.D.6",
+      "source_heading": "Monitoring and Inspection Documentation",
+      "pages": [65, 66],
+      "category": "Monitoring",
+      "summary": "Locate the passage on documenting monitoring and inspection procedures in the stormwater plan.",
+      "question": "Which procedures and responsible people apply to this facility? This public permit does not identify the project team.",
+      "keywords": ["monitoring", "inspection", "procedure", "sampling", "outfall", "schedule", "SWP3"]
+    },
+    {
+      "id": "record-details",
+      "title": "Check the record detail passage",
+      "section": "III.E.5",
+      "source_heading": "Records Requirements",
+      "pages": [69, 70],
+      "category": "Record details",
+      "summary": "Locate the passage on retained records and monitoring record contents, including sampling details, analysis and quality-control records.",
+      "question": "What can the underlying project records substantiate? The index does not verify a sample, laboratory result or compliance conclusion.",
+      "keywords": ["calibration", "laboratory", "sample", "analysis", "quality", "results", "monitoring", "record contents"]
+    }
+  ]
+}

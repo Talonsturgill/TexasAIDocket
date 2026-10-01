@@ -82,6 +82,7 @@ const pages = [
   "construction/index.html", // dense year axis and filing tables
   "about/index.html",       // plain prose
   "services/index.html",    // marketing layout
+  "services/document-demo/index.html", // source index and review controls
   "data/index.html",        // link list
 ].filter((f) => { const ok = fs.existsSync(path.join(SITE, f));
                  if (!ok) console.log(`  ..    NOT BUILT, skipped: ${f}`);

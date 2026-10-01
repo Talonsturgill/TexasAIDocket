@@ -607,6 +607,9 @@ def _extra_sheet(name: str, p: str) -> str:
 
 @functools.lru_cache(maxsize=4)
 def _sheet_version(name: str) -> str:
+    if name == "document-demo.css":
+        body = Path(__file__).with_name("document_demo.css").read_text(encoding="utf-8")
+        return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
     body = {"home.css": theme.home_css, "record.css": theme.record_css,
             "facility.css": theme.facility_css, "finishing.css": theme.finishing_css}[name]()
     return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
