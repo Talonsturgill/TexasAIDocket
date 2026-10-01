@@ -258,7 +258,7 @@
         var back = K.mat('cls-back', { color: 0x8f9396, roughness: 0.5, metalness: 0.7 });
         var white = K.mat('cls-white', { color: 0xffffff, roughness: 0.4, emissive: 0xffffff, emissiveIntensity: 0.3 * (+o.glow || 0) });
         /* tint: the emissive's own hue, for a frame whose blue hour cools the sheeting off the accent */
-        var green = K.mat('cls-green-' + Math.round((+o.glow || 0) * 100) + '-' + (o.tint || 0), { color: N.ACCENT, roughness: 0.35, emissive: o.tint || N.ACCENT, emissiveIntensity: 0.7 * (+o.glow || 0) });
+        var green = K.mat('cls-green-' + Math.round((+o.glow || 0) * 100) + '-' + (o.tint || 0), { color: N.ACCENT, roughness: 0.22, metalness: 0.15, emissive: o.tint || N.ACCENT, emissiveIntensity: 0.7 * (+o.glow || 0) });
         [-w * 0.3, w * 0.3].forEach(function (x) {
           rbx(0.05, b + h - 0.04, 0.035, 0.004, post, x, (b + h - 0.04) / 2, -0.03, g);
         });
@@ -266,6 +266,11 @@
         rbx(w - 0.006, h - 0.006, 0.004, 0.008, white, 0, b + h / 2, 0.012, g);
         rbx(w - 0.16, h - 0.16, 0.004, 0.025, green, 0, b + h / 2, 0.026, g);
         [b + h * 0.25, b + h * 0.75].forEach(function (y) { rbx(w * 0.9, 0.03, 0.02, 0.004, back, 0, y, -0.016, g); });
+        /* four bolt heads through the face, so the panel reads as a mounted road sign */
+        var bolt = K.mat('cls-bolt', { color: 0xc8ccd0, roughness: 0.35, metalness: 0.9 });
+        [[-w * 0.3, b + h * 0.25], [w * 0.3, b + h * 0.25], [-w * 0.3, b + h * 0.75], [w * 0.3, b + h * 0.75]].forEach(function (q) {
+          var bh = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.01, 10), bolt); bh.rotation.x = Math.PI / 2; bh.position.set(q[0], q[1], 0.03); g.add(bh);
+        });
         g.userData.face = { x: 0, y: b + h / 2, z: 0.013 };
         return g;
       }

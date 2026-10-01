@@ -162,7 +162,7 @@ art:
 
 type:
   hook: "The state paused paying for this."
-  dek: "A $1 fee on Texas auto insurance from 2023 helped build the state's Flock network. In late August Governor Abbott ordered agencies to pause that funding as scrutiny over the \"AI-powered surveillance devices\" mounted, the Tribune reported."
+  dek: "A $1 fee added to Texas auto insurance in 2023 helped build the state's Flock network. In late August Governor Abbott ordered agencies to pause that funding as scrutiny over the \"AI-powered surveillance devices\" mounted, the Tribune reported."
   labels: []
 
 verbatim: []
@@ -379,7 +379,7 @@ risks:
 slide: 5
 layout: FIGURE_SCALE
 primary_image:
-  subject: "the plate reader still standing on its footing on a dry caliche shoulder, a surveyor's rod with 60 graduations standing beside it as the clock the item carried as filed, a worker in a vest pointing at it, a white work pickup behind, a mesa and a butte on the horizon"
+  subject: "the plate reader still standing whole on its footing at the shoulder of a far west road at blue hour, a broken tan ridge on the horizon, the lit lamp across the road"
   rect: [0, 0, 1080, 830]
   bleeds: [left, right, top]
 accent: none
@@ -390,9 +390,7 @@ claims: [c32]
 numerals:
   - value_from: c32
 
-data_in_art:
-  figure: el_paso_days
-  drives: graduation count on the rod, one painted band per day
+data_in_art: none
 
 depth:
   eye: 1.6
@@ -428,14 +426,12 @@ verbatim: []
 acceptance:
   - "the frame's median L* at 432px is between 20 and 38"
   - 'the hook reads "El Paso voted on a 60 day clock."'
-  - "the code paints exactly the figure's count of bands on the rod, 60, and window.__txDrawn says so"
   - "the plate reader stands on its footing with its panels and camera head"
   - "no camera is shown taken down"
-  - "one person stands at true height beside the pole, lit from the camera's side"
-  - "the person's face is not the subject and the person is smaller than a fifth of the frame height"
+  - "a broken tan ridge holds the horizon and the lit lamp stands across the road"
 
 risks:
-  - "a removal order is not a removal, so the dek says directed, and the frame is read as what the order calls for"
+  - "the items passed as revised and the revision text is unpublished, so the frame shows the camera still standing and the dek gives the 60 days as filed"
 ```
 
 ```yaml
