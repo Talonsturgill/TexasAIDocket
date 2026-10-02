@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-10-02-below-the-dark-mark",
+      "date": "2026-10-02",
+      "title": "Below the dark mark",
+      "caption": "Texas State researchers pair pavement images with depth maps to separate damage from stains. A prioritized repair report does not repair the road.",
+      "video": "/runs/2026-10-02/dispatch.mp4",
+      "poster": "/runs/2026-10-02/poster.png",
+      "video_mobile": "/runs/2026-10-02/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-10-02/poster-540.jpg",
+      "county": "Hays",
+      "beat": "the-road"
+    },
+    {
       "id": "2026-10-01-before-the-package-lands",
       "date": "2026-10-01",
       "title": "Before the package lands",
