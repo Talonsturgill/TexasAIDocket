@@ -19,9 +19,18 @@ You are a leaf worker: you never spawn another agent.
   "weighted_score": 7.12,
   "hard_fails": [],
   "ship": true,
-  "one_sentence_fix": "the single highest-value change, if this were done again"
+  "one_sentence_fix": "the single highest-value change, if this were done again",
+  "artwork_weakest_frames": [{"slide": 6, "problem": "what holds the art score down on this frame", "fix": "the one change that lifts it"}]
 }
 ```
+
+**`artwork_weakest_frames` is required whenever you score `artwork_craft` under 9**, from every
+lens and not only the craft judge. Name the frames your artwork score actually charges, by slide
+number, most damaging first, with ONE concrete change each: what to move, model, light or crop,
+never "improve the art". `panel.py` merges the three lists, and the round's work order and the
+CRAFT FLOOR (Phase 15) repair exactly these frames, so a vague entry wastes a round. Taken from
+the sibling product on 2026-10-03, where the same list has driven a repair cycle on every deck
+since September 26th.
 
 ## The rules
 

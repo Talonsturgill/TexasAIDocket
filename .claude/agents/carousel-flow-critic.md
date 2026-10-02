@@ -43,6 +43,33 @@ Only then, if you need to, a full-size render.
   one accent should appear on three to six frames, small, and nowhere else.
 - **Frames 7 to 9 against 1 to 3.** The close is where every judged deck went thin. If the
   last three frames carry less drawing than the first three, say so by number.
+- **Deck craft, the rubric's artwork test (2026-10-03, taken from the sibling product).** Open
+  the full renders for this one, not only the thumbs. `artwork_craft` was the lowest criterion,
+  or tied for it, on seven of the ten panel-scored decks from September 20th to October 2nd, and
+  its median across them was 6.48. The reason is structural: each pixel critic grades one frame
+  against its own dossier, so the panel was the first reader to apply the rubric's deck-level
+  art test, after the deck was finished. You are now the first. Grade against
+  `config/carousel/scoring_rubric.yaml` `artwork_craft` exactly as the judges will, the
+  showstopper test included. Its 7 is "one frame leans on a default, a primitive model, a dead
+  zone or a render artifact", so ONE weak frame caps the deck at 7: find the weakest frame
+  first. Then check the five causes the judges named on October 2nd and in
+  `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails", each by slide number:
+  a. the same SHOT on more than three frames: the same camera, set and composition with only
+     the type changed (the judges' "1/8 and 2/9 repeat compositions", and five frames on one
+     parapet). One hero and one world is the law, so what has to vary is the camera and the
+     hero's state, and the storyboard's CRAFT PLAN holds each shot to three frames;
+  b. a frame whose largest object is its least modelled one: a featureless slab, a bare wall,
+     a skyline of extruded boxes, a primitive standing in for a kit model, clean clay with no
+     dirt where it meets the ground;
+  c. a dead or eventless region, above all the lower third, or a hero too small to own the
+     frame (October 2nd's "hero under a tenth of the frame height on 2, 3, 4, 9");
+  d. a render artifact: a horizon band, banding, an object with no contact that floats, flat
+     2D bars laid over a render, a faceted stone, an unreadable silhouette;
+  e. no tonal arc across the contact sheet, or a value track that strobes light to dark to light
+     with cuts nobody declared.
+  Name, per weak frame, the ONE change that would lift it most. Predict the `artwork_craft`
+  score honestly. You are not grading effort. Cross-frame findings belong here, which is why this
+  sits with you and not with the per-slide critics.
 
 ## What you return
 
@@ -54,9 +81,21 @@ Only then, if you need to, a full-size render.
   "rhythm": "the density and weight pattern across the nine",
   "rotation": "the nine layouts as you read them off the sheet, and whether they read as one deck",
   "must_fix": [{"slides": [4, 5], "problem": "...", "fix": "..."}],
-  "cuttable": ["slides that could go with nothing lost"]
+  "cuttable": ["slides that could go with nothing lost"],
+  "craft": {
+    "predicted_artwork_score": 7.5,
+    "weakest_frames": [{"slide": 6, "score": 6.5, "cause": "a|b|c|d|e", "problem": "...", "fix": "the one change"}],
+    "cross_frame": [{"cause": "a|e", "slides": [1, 5, 8], "problem": "...", "fix": "..."}],
+    "showstopper_frame": 7
+  }
 }
 ```
+
+**A verdict of `ship` needs `craft.predicted_artwork_score` of 8.5 or more as well as a sound
+sequence, UNLESS the showrunner tells you this is the last flow round before the panel.** Then
+an art shortfall no longer earns a `revise`, because the panel's rounds and the CRAFT FLOOR
+carry it from there. Judge the sequence alone and still return the full `craft` block, because
+the showrunner repairs `weakest_frames` before the panel sees the deck.
 
 ## Standard
 

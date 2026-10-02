@@ -67,7 +67,8 @@ Treat cost as part of the spec.
 
 1. **Using the panel as a design loop.** Three judges per round, each reading nine full-size
    renders. A round is the single most expensive thing this routine can do and the 2026-08-27 run
-   did six. See the round rule in Phase 15. **Get the frame right before it is scored.**
+   did six. Every deck from September 20th to October 2nd used all five, and the cap is three
+   since October 3rd. See the round rule in Phase 15. **Get the frame right before it is scored.**
 2. **Re-rendering the whole deck to fix one frame.** `render.py --only 4,8` exists. A full
    re-render is nine headless browser passes and the reports that follow it.
 3. **Reading a whole file to change one line.** Grep for the string, edit it, and re-read only
@@ -155,8 +156,10 @@ and ERCOT keeps no archive. A day not collected is gone.** You may fix presentat
 
 **11. BOUNDED FAN-OUT, showrunner only.** Only you spawn agents, and only the fixed set each
 phase names: up to 6 scouts, 1 fact-checker, 3 treatment-directors, 2 caption-directors, 1
-caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 flow-critic, 1 scorer, 1
-upgrade-engineer. **A subagent is a leaf worker and never spawns its own.** This is a hard cap
+caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 flow-critic, 3 scorers a
+scoring round, 1 upgrade-engineer. The scouts and the pixel critics run on the smaller model tier
+(owner, 2026-10-02), and every other agent on the session's model. CLAUDE.md, "Which model a
+subagent runs", has the measurement and the owner's decision. **A subagent is a leaf worker and never spawns its own.** This is a hard cap
 whether or not anything has failed. There is no phase where spawning more agents is the answer to
 a problem.
 
@@ -1008,6 +1011,16 @@ carries dossiers written this way.
 **No code is written before the dossiers exist.** A slide planned while it is being coded is a
 slide that will be argued for rather than judged.
 
+**Beside the nine dossiers, write the deck's `## CRAFT PLAN` (2026-10-03, the sibling product's).**
+One row per frame: its shot, opening with `AERIAL`, `WIDE`, `MEDIUM`, `CLOSE` or `MACRO`, and its
+largest object with how that object is modelled, its material, light, contact and weathering.
+Then `Showstopper frame: NN` and `Tonal arc:`. No shot carries more than three frames, because one
+hero in one world is the law and the camera is what varies. The format and the reasons are THE
+CRAFT PLAN in `knowledge/carousel/SLIDE_DOSSIER_SPEC.md`. `dossier_check` below fails a storyboard
+without it. On October 2nd the craft judge named a featureless slab of coping and a bare wall, each
+the largest thing in its frame, and a hero under a tenth of the frame height on four frames, in
+round one and again in round five. Each was a planning decision nobody wrote down.
+
 ```
 python3 scripts/carousel/dossier_check.py --date <date>
 python3 scripts/carousel/figure_bearing.py --date <date> --plan
@@ -1223,9 +1236,29 @@ visible word and grade against the dossier's own checklist, **and against the pr
 is the subject the dossier named actually there, at the size it declared, readable as one thing
 at 432 px, rendered rather than placed, with no screen on it, AND does it pass THE SHOWSTOPPER
 TEST in `ILLUSTRATION_SYSTEM.md`: a photograph of a place at a time of day, standing in a world
-rather than a void, with contact and weathering where things meet the ground.** Fix what they find, re-render, re-review. Then 1
-`carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
-nine slides.
+rather than a void, with contact and weathering where things meet the ground.** Fix what they
+find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py`, and re-review ONLY
+those frames. **At most three pixel rounds.** After the third, keep the best version of any
+holdout and name it in the run record for the panel. Then 1 `carousel-flow-critic` on the contact
+sheet AND the full renders, which judges the deck as a sequence rather than as nine slides.
+
+**THE PIXEL CRITICS RUN ON THE SMALLER MODEL TIER, AND THE FLOW CRITIC CARRIES THE ART (owner,
+2026-10-02).** This is the sibling product's arrangement since September 25th. On September 27th
+the smaller tier caught every planted defect, the typo, the wrong figures, the dark dek, the wrong
+counter and the em dash, and found 4 of the 14 art defects the judges named where the session's
+model found 12 (CLAUDE.md, "Which model a subagent runs"). So the pixel critics are the
+mechanical pass, every word and every acceptance item, and the art judgement they miss is the
+flow critic's job on the session's model:
+
+**THE FLOW CRITIC RETURNS `craft`, THE DECK'S ARTWORK TEST (2026-10-03, the sibling's).** It grades
+the deck against `artwork_craft` the way the judges will, finds the weakest frame first, and checks
+five causes by slide number: one shot on more than three frames, a largest object left least
+modelled, a dead region or a hero too small to own its frame, a render artifact, and no tonal arc.
+**Repair `craft.weakest_frames` before the panel, one concrete change each**, then re-render those
+frames, re-run `qa.py` and re-review them. At most TWO flow rounds. Tell the flow critic which
+round it is in, and on the second say it is the last before the panel, so an art shortfall alone
+no longer earns a `revise`. Its `craft` block goes into the run record either way, because the
+panel will charge the same frames if they are not fixed.
 
 **TELL THE FLOW CRITIC THE CURRENT ROTATION RULE, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
 definition used to say "no two frames in a row laid out the same way, at least five layouts
@@ -1251,8 +1284,8 @@ above with its pitch brief.
 
 `scripts/carousel/layout_check.py --prose` reports any surface still carrying the old wording,
 the agent definitions included, and a finding there is fixed on the surface, never on the list.
-**Both critics run on every round, never only the first**, because a repair pass is where a frame
-quietly becomes the skeleton again.
+**Both critics run on every round, never only the first**, the pixel critics on the frames that
+round changed, because a repair pass is where a frame quietly becomes the skeleton again.
 
 When the last round settles, before anything is assembled:
 
@@ -1446,6 +1479,16 @@ stop editing it to actually just meet the standard."* A deck under the bar is ne
 The scale itself is the sibling's since the same day ("most good work is 7 to 8"), and the rubric's
 header carries the measurement that moved it.
 
+**THREE ROUNDS, NOT FIVE (owner, 2026-10-02: give this deck the sibling's updates).** Round 1's rung
+is 8.0, round 2's is 7.7, and round 3 is the cap, where the finished deck ships. The sibling
+scores at most twice and then runs one craft cycle. Measured on this deck's own score files from
+September 27th to October 2nd, round 5 added 0.003 to the total on average and round 4 added
+0.134, and the rubric's header carries the table. That is the price, stated so it stays a choice,
+and the CRAFT PLAN, the flow critic's craft pass and the CRAFT FLOOR below are what buy it back
+upstream of the panel. **Every repair round leads with `artwork_weakest_frames`**: `panel.py`
+merges the three judges' lists into `score.json` and appends the frames to the work order, most
+named first, and each gets one concrete change.
+
 `config/carousel/scoring_rubric.yaml` sets `max_rounds`. **Past that cap, a round may repair a
 HARD FAIL and nothing else.** Not a craft note, not a one-sentence fix, not a judge's taste. A
 hard fail is a claim about a promise this product made in public and it stops the deck at any
@@ -1557,6 +1600,24 @@ said. Two judges failing to notice something is not evidence it did not happen.
 ship, at 7.14 and at 7.44, because all three judges named a defect the previous round's own fix
 had created. `run_complete.py` enforces the ladder. Only the panel can tell you the deck is
 finished.
+
+### THE CRAFT FLOOR (2026-10-03, the sibling product's)
+
+**A total over its rung no longer finishes the run while the panel's `artwork_craft` median is
+under 8.5 and rounds remain.** `panel.py` then writes `ship: false`, `craft_floor: open` and a work
+order naming the frames in `artwork_weakest_frames`. Run ONE craft cycle: repair those frames, one
+concrete change each, re-render them, run `qa.py`, `print_ban.py` and `panel_ready.py`, and
+re-score with three fresh judges. That re-score is a round. `panel.py` closes the cycle on it and
+writes `craft_cycle` from its own two medians, so no number in it is typed, and the deck then
+ships on the ladder. `run_complete.py` refuses a run whose floor is open or whose record doesn't
+hold. One cycle, never more, and at the round cap it stands down and the deck ships as it is. If
+the cycle lowers the art median, `score.json` says so in `craft_note`, the repaired frames ship
+because the score was measured on them, and the run record names it. The sibling's art moved
++0.25 a cycle across its eight cycles from September 26th: a real lever and a small one.
+
+**Tell every judge to return `artwork_weakest_frames`** whenever it scores `artwork_craft` under
+9, by slide number, most damaging first, one concrete change each. Their definition already
+requires it. The work order is built from those words, so a vague entry wastes the round.
 
 If `score.json` carries a `note` about spread, the judges disagree by more than 0.75 and the
 deck is not understood yet. Read the outlier's reasoning before you touch a frame. If it carries

@@ -337,6 +337,172 @@ def check(dossiers: dict[int, dict], expected: int | None,
     return fails
 
 
+# THE CRAFT PLAN (2026-10-03, the sibling product's, on the owner's instruction to give this deck
+# its updates). The judges' art complaints are mostly decided in PLANNING and never written down, so
+# the panel was the first to notice them. On October 2nd the craft judge named a featureless dark
+# slab of coping and a bare wall, each the largest thing in its frame, a hero "under a tenth of the
+# frame height on 2, 3, 4, 9", and repeated compositions. So the storyboard now declares, before
+# any code, one row per frame:
+#
+#   ## CRAFT PLAN
+#   | slide | shot | largest object, and how it is modelled |
+#   |---|---|---|
+#   | 01 | MEDIUM, eye level, horizon on the upper third | the parapet coping, limestone weathered dark at its joints, raking west light and grime where it meets the roof |
+#   ...
+#   Showstopper frame: 06, the vial at macro scale against the city in haze
+#   Tonal arc: dark and quiet 01 to 03, lifts to the brightest on 06, settles on 09
+#
+# THE SHOT IS WHAT IS COUNTED, AND THAT IS THE ADAPTATION. The sibling holds each DRAWING TECHNIQUE
+# to three frames. This deck is one hero in one material under one rig, rendered on six frames or
+# more, so a technique cap would fight its own law. What ILLUSTRATION_SYSTEM.md says varies is the
+# camera and the state of the hero, so each row opens with one of SHOTS and no shot carries more
+# than CRAFT_PLAN_MAX_SHARE frames. A closed word list is deliberate: the sibling's free-text
+# technique families took seven review rounds to stop misreading, and a camera distance is a fact
+# the plan can state in one word.
+CRAFT_PLAN_FROM = "2026-10-03"
+CRAFT_PLAN_MAX_SHARE = 3
+SHOTS = ("AERIAL", "WIDE", "MEDIUM", "CLOSE", "MACRO")
+CRAFT_PLAN_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
+_SHOT_RE = re.compile(r"^\s*(" + "|".join(SHOTS) + r")\b", re.I)
+
+# The third cell has to say HOW the largest object is modelled, not only name it. A word list is
+# crude and deliberately so: it asks for a treatment to be named at all. The sibling's list, with
+# the words this deck's render uses for the same thing (weathering, grime, a kit model).
+MODELLING_RE = re.compile(
+    r"\b(lit|light|lighting|key[- ](?:lit|light|lighting)|rim[- ]?(?:lit|light|lighting)|raking|lee|"
+    r"shad(?:e|ed|ing|ow|ows)|cast|contact|occlu\w*|specular|gloss\w*|matte|material|pbr|metal\w*|"
+    r"resin|glass|depth|relief|textur\w*|grain|gradient|graded|glow|bevel\w*|emboss\w*|"
+    r"model(?:l)?ed|model(?:l)?ing|volume\w*|extru\w*|three\.js|3d|aerial perspective|haze|fog|"
+    r"weather\w*|grime|dirt\w*|dust\w*|worn|wear|patina|lichen|rust\w*|stain\w*|mottl\w*|"
+    r"roughness|bump|normal map|kit|k\.make|txt\.weather|txt\.contact)\b", re.I)
+
+# The cell reads "object, treatment". The treatment is what follows the object, from the first
+# separator on, so an object whose own name is a treatment word ("the glass", "a light pole") is
+# not read as its own modelling. No separator means only an object was named.
+_TREATMENT_SEP_RE = re.compile(
+    r",|;|:|\(|\s(?=(?:with|as|by|under|through|lit|drawn|rendered|model(?:l)?ed|"
+    r"shaded|carved|weathered|cast|casting|on a|in a|in an)\s)", re.I)
+
+# What makes depth, for the showstopper frame. Stricter than MODELLING_RE.
+DEPTH_RE = re.compile(
+    r"\b(depth|3d|pbr|three\.js|webgl|perspective|parallax|occlu\w*|cast shadow|contact shadow|"
+    r"shadow|aerial|haze|fog|atmospheric|volum\w*|foreground|background|layered|horizon|sky|"
+    r"distance|recession|recedes?|macro|bokeh|depth of field)\b", re.I)
+
+_NEGATION_RE = re.compile(r"\b(no|not|without|none|zero|never|lacks?|lacking|avoids?|"
+                          r"avoiding|nor|free of|omit\w*|skip\w*|n't)\b|n't\b|"
+                          r"\w-free\b|\w-less\b|\b(?:shadow|depth|texture|detail|"
+                          r"feature|shape|form|tone)less\b", re.I)
+_CLAUSE_SPLIT_RE = re.compile(r"[,;:().]|\s(?:but|while|whereas|although|though)\s", re.I)
+
+# A Tonal arc line that declares none is not an arc. An explicit "no arc" always fails, and a
+# uniform-tone phrase fails only when the line describes no progression.
+TONAL_ARC_PROGRESSION_RE = re.compile(
+    r"\b(then|lifts?|rises?|climbs?|builds?|peaks?|brightens?|darkens?|brightest|"
+    r"darkest|ramps?|drops?|falls?|opens?|closes?|until|towards?|settles?)\b|\bto (?:a |the )?"
+    r"(?:bright|dark|light|peak|high|low)", re.I)
+TONAL_ARC_NONE_RE = re.compile(
+    r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b", re.I)
+TONAL_ARC_DENIED_RE = re.compile(
+    r"\b(?:same|one|single|uniform|constant|even|flat|identical|unchanging|unchanged|"
+    r"unvaried|invariant|monotone|monotonous) (?:tones?|values?|key|tonality)\b|"
+    r"\b(?:tones?|values?|tonality) (?:stays?|remains?|is|are) (?:the )?"
+    r"(?:same|constant|uniform|flat|identical|unchanged)\b", re.I)
+
+
+def _affirms(rx, text: str) -> bool:
+    """True when `rx` names something in a clause nothing negates, so "no shading", "depth is not
+    used" and "shadow-free" deny rather than affirm. The sibling learned each case from review."""
+    return any(rx.search(c) and not _NEGATION_RE.search(c) for c in _CLAUSE_SPLIT_RE.split(text))
+
+
+def _treatment(obj: str) -> str:
+    """The modelling text after the object, or "" when either half is missing."""
+    m = _TREATMENT_SEP_RE.search(obj)
+    if not m or not re.search(r"[A-Za-z0-9]", obj[:m.start()]):
+        return ""
+    return obj[m.start():].strip(" ,;:(")
+
+
+def craft_plan_fails(text: str, slide_nos: list) -> list[str]:
+    """Every hole in the storyboard's `## CRAFT PLAN`, as one line each."""
+    m = CRAFT_PLAN_HEAD_RE.search(text)
+    if not m:
+        return ["deck: no '## CRAFT PLAN' section. Before the build, declare each frame's shot and "
+                "its largest object with how that object is modelled, the showstopper frame and "
+                "the tonal arc (knowledge/carousel/SLIDE_DOSSIER_SPEC.md, THE CRAFT PLAN)"]
+    nxt = re.search(r"^##\s", text[m.end():], re.M)
+    block = text[m.end(): m.end() + nxt.start()] if nxt else text[m.end():]
+    rows, dupes = {}, []
+    for line in block.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 3 and re.fullmatch(r"\d{1,2}", cells[0]):
+            n = int(cells[0])
+            if n in rows:
+                dupes.append(n)
+            rows[n] = (cells[1], cells[2])
+    fails = []
+    if dupes:
+        fails.append("deck: the CRAFT PLAN has more than one row for slide(s) %s. Keep one row per "
+                     "frame and edit it in place" % ", ".join("%02d" % n for n in sorted(set(dupes))))
+    missing = [n for n in slide_nos if n not in rows]
+    if missing:
+        fails.append("deck: the CRAFT PLAN has no row for slide(s) %s"
+                     % ", ".join("%02d" % n for n in missing))
+    stale = sorted(set(rows) - set(slide_nos))
+    if stale:
+        fails.append("deck: the CRAFT PLAN has row(s) for slide(s) %s, which the storyboard doesn't "
+                     "have. Remove them" % ", ".join("%02d" % n for n in stale))
+    share: dict = {}
+    for n, (shot, obj) in sorted(rows.items()):
+        sm = _SHOT_RE.match(shot)
+        if not sm:
+            fails.append("deck: CRAFT PLAN slide %02d opens its shot with '%s'. Open it with one of "
+                         "%s, then say the rest" % (n, shot[:30], ", ".join(SHOTS)))
+        else:
+            share.setdefault(sm.group(1).upper(), []).append(n)
+        if not obj:
+            fails.append("deck: CRAFT PLAN slide %02d names no largest object" % n)
+        elif not _treatment(obj) or not _affirms(MODELLING_RE, _treatment(obj)):
+            fails.append(
+                "deck: CRAFT PLAN slide %02d names its largest object ('%s') and not how it is "
+                "modelled. Write the object, then after a comma its material, light and contact "
+                "and where it is weathered. The largest thing drawn with the least care is the "
+                "judges' most repeated art complaint" % (n, obj[:60]))
+    for shot, ns in sorted(share.items()):
+        if len(ns) > CRAFT_PLAN_MAX_SHARE:
+            fails.append(
+                "deck: the CRAFT PLAN puts %d frames at %s (%s), over the %d allowed. One hero in "
+                "one world is the law, so the camera is what varies. Move the extra frames closer "
+                "or further" % (len(ns), shot, ", ".join("%02d" % n for n in sorted(ns)),
+                                CRAFT_PLAN_MAX_SHARE))
+    dm = re.search(r"^\s*[-*]?\s*Showstopper frame:\s*(\d{1,2})", block, re.M | re.I)
+    if not dm:
+        fails.append("deck: the CRAFT PLAN names no 'Showstopper frame: NN', the one frame planned "
+                     "to pass THE SHOWSTOPPER TEST outright")
+    elif int(dm.group(1)) not in slide_nos:
+        fails.append("deck: the CRAFT PLAN's showstopper frame %s is not a slide in this storyboard"
+                     % dm.group(1))
+    else:
+        dn = int(dm.group(1))
+        rest = block[dm.end():].split("\n", 1)[0]
+        row = rows.get(dn, ("", ""))
+        if not (_affirms(DEPTH_RE, rest) or _affirms(DEPTH_RE, row[0]) or _affirms(DEPTH_RE, _treatment(row[1]))):
+            fails.append("deck: the CRAFT PLAN names %02d as the showstopper frame and neither that "
+                         "line nor its row says what makes its depth (haze, a horizon, contact "
+                         "and cast shadow, occlusion, foreground against background)" % dn)
+    ta = re.search(r"^\s*[-*]?\s*Tonal arc:\s*(\S.{10,})$", block, re.M | re.I)
+    if not ta:
+        fails.append("deck: the CRAFT PLAN names no 'Tonal arc:' line. A deck that strobes light to "
+                     "dark to light was named by a judge on October 2nd")
+    elif TONAL_ARC_NONE_RE.search(ta.group(1)) or (
+            TONAL_ARC_DENIED_RE.search(ta.group(1))
+            and not TONAL_ARC_PROGRESSION_RE.search(ta.group(1))):
+        fails.append("deck: the CRAFT PLAN's 'Tonal arc:' declares no arc ('%s'). Say where the "
+                     "deck is darkest, where it lifts and where it peaks" % ta.group(1)[:60])
+    return fails
+
+
 def run(date: str, out_root: Path) -> int:
     d = out_root / date
     board = d / "storyboard.md"
@@ -362,6 +528,8 @@ def run(date: str, out_root: Path) -> int:
             pass
 
     fails = check(dossiers, expected, breathers)
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", date) and date >= CRAFT_PLAN_FROM and dossiers:
+        fails.extend(craft_plan_fails(board.read_text(encoding="utf-8"), sorted(dossiers)))
     if not fails:
         extra = "" if breathers is not None else ", breather cross-check skipped (no render yet)"
         print(f"dossiers: {len(dossiers)} slide(s) planned, every band answered{extra}")
@@ -538,6 +706,57 @@ def self_test() -> int:
     ok("check() surfaces it as a slide level failure",
        any("opposite places" in f for f in check({1: _bad_slide}, 1, None)),
        str(check({1: _bad_slide}, 1, None)))
+
+    # THE CRAFT PLAN (2026-10-03). A good plan, then each hole the gate exists for.
+    rows = [("01", "MEDIUM, eye level, horizon on the upper third",
+             "the parapet coping, limestone weathered dark at its joints with grime where it meets the roof"),
+            ("02", "WIDE, seated eye in the consult room",
+             "the desk, walnut veneer worn at the edge, window light raking across it"),
+            ("03", "CLOSE, the monitor at bench height", "the monitor, matte bezel with a contact shadow on the bench"),
+            ("04", "CLOSE, the page from above at 40 degrees", "the printed page, paper grain lit from the window"),
+            ("05", "MEDIUM, along the coping", "the two tape rules, vinyl with a soft specular sheen"),
+            ("06", "MACRO, the vial's base", "the vial, glass with condensation and its flies in contact with the food"),
+            ("07", "MEDIUM, the tray at eye level", "the vial tray, cardboard with worn corners and a cast shadow"),
+            ("08", "WIDE, the city behind the vial", "the coping again, weathered and lit raking from the west"),
+            ("09", "AERIAL, the roof from a drone at 40 m", "the roof, gravel ballast with dirt at the drains")]
+
+    def plan(rs=rows, extra="Showstopper frame: 06, the vial at macro scale against the city in haze\n"
+                            "Tonal arc: dark and quiet 01 to 03, lifts to the brightest on 06, settles on 09\n"):
+        return ("## The world\nprose\n\n## CRAFT PLAN\n| slide | shot | largest object |\n|---|---|---|\n"
+                + "".join(f"| {a} | {b} | {c} |\n" for a, b, c in rs) + extra + "\n## Next\n")
+    nine = list(range(1, 10))
+    ok("craft plan: a complete plan passes", craft_plan_fails(plan(), nine) == [],
+       str(craft_plan_fails(plan(), nine)))
+    ok("craft plan: no section at all fails", any("no '## CRAFT PLAN'" in f for f in craft_plan_fails("# x", nine)))
+    f = craft_plan_fails(plan(rows[:8]), nine)
+    ok("craft plan: a frame with no row fails", any("no row for slide(s) 09" in x for x in f), str(f))
+    f = craft_plan_fails(plan(rows + [("10", "WIDE, x", "a thing, lit")]), nine)
+    ok("craft plan: a row for a frame the storyboard lacks fails", any("10" in x and "doesn't" in x for x in f), str(f))
+    f = craft_plan_fails(plan(rows + [("03", "WIDE, again", "the monitor, lit")]), nine)
+    ok("craft plan: two rows for one frame fail", any("more than one row" in x for x in f), str(f))
+    bad = [(a, b, "the parapet coping") if a == "01" else (a, b, c) for a, b, c in rows]
+    f = craft_plan_fails(plan(bad), nine)
+    ok("craft plan: a largest object named with no modelling fails, the October 2nd slab",
+       any("slide 01" in x and "not how it is modelled" in x for x in f), str(f))
+    bad = [(a, b, "the glass") if a == "06" else (a, b, c) for a, b, c in rows]
+    ok("craft plan: an object whose own name is a treatment word is not its own modelling",
+       any("slide 06" in x for x in craft_plan_fails(plan(bad), nine)))
+    bad = [(a, b, "the wall, no shading and no texture") if a == "04" else (a, b, c) for a, b, c in rows]
+    ok("craft plan: a negated treatment is no treatment", any("slide 04" in x for x in craft_plan_fails(plan(bad), nine)))
+    bad = [(a, "WIDE" + b[b.index(","):], c) if a in ("01", "03", "05") else (a, b, c) for a, b, c in rows]
+    f = craft_plan_fails(plan(bad), nine)
+    ok("craft plan: one shot on more than three frames fails", any("5 frames at WIDE" in x for x in f), str(f))
+    bad = [(a, "eye level" + b[b.index(","):], c) if a == "02" else (a, b, c) for a, b, c in rows]
+    ok("craft plan: a shot that opens with no shot word fails",
+       any("slide 02 opens its shot" in x for x in craft_plan_fails(plan(bad), nine)))
+    f = craft_plan_fails(plan(extra="Tonal arc: dark 01 to 03, then lifts to a peak on 06\n"), nine)
+    ok("craft plan: no showstopper frame fails", any("Showstopper frame" in x for x in f), str(f))
+    f = craft_plan_fails(plan(extra="Showstopper frame: 12, in haze\nTonal arc: dark 01, then lifts to 06\n"), nine)
+    ok("craft plan: a showstopper frame that is not a slide fails", any("not a slide" in x for x in f), str(f))
+    f = craft_plan_fails(plan(extra="Showstopper frame: 06\nTonal arc: one tone throughout\n"), nine)
+    ok("craft plan: a tonal arc that declares one tone fails", any("declares no arc" in x for x in f), str(f))
+    f = craft_plan_fails(plan(extra="Showstopper frame: 06\nTonal arc: flat tone through 03, then lifts to a peak on 06\n"), nine)
+    ok("craft plan: a flat stretch inside a real arc passes", f == [], str(f))
 
     if failures:
         print(f"\ndossier_check self-test: {failures} FAILED", file=sys.stderr)
