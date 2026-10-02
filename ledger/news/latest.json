@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-01T23:17:21Z",
+  "checked_at": "2026-10-02T07:09:25Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "9325bef35edd92c7b89142c67751be7d6a184883f355d7222b0019badffaf20e",
+  "response_sha256": "d44baf65068fa3bbbb5a331b418fb873df86f0e9c1b4a504969acb1ac9943dbe",
   "articles": [
     {
       "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
@@ -48,102 +48,20 @@
     }
   ],
   "selected": {
-    "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-    "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-    "first_seen_at": "2026-10-01T20:34:13Z",
-    "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+    "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+    "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+    "first_seen_at": "2026-10-01T19:29:27Z",
+    "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.924479,
+    "score": 0.713958,
     "priority": 0
   },
-  "expires_at": "2026-10-08T20:34:13Z",
+  "expires_at": "2026-10-08T19:29:27Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-01T19:23:00Z",
-      "selected": {
-        "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-        "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-        "first_seen_at": "2026-10-01T20:34:13Z",
-        "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.924479,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-          "first_seen_at": "2026-10-01T20:34:13Z",
-          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.924479,
-          "priority": 0
-        },
-        {
-          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-          "first_seen_at": "2026-10-01T19:29:27Z",
-          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.896103,
-          "priority": 0
-        },
-        {
-          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-          "first_seen_at": "2026-10-01T18:50:07Z",
-          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.879296,
-          "priority": 1
-        },
-        {
-          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-          "first_seen_at": "2026-09-30T11:59:59Z",
-          "summary": "Campus set to span at least six single-story buildings",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.360884,
-          "priority": 1
-        },
-        {
-          "title": "Colovore files to develop data center in Fort Worth, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-          "first_seen_at": "2026-09-29T14:30:08Z",
-          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.193966,
-          "priority": 1
-        },
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.049527,
-          "priority": 3
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-02T01:23:00Z",
       "selected": {
@@ -154,7 +72,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.843511,
+        "score": 0.713958,
         "priority": 0
       },
       "stories": [
@@ -166,7 +84,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.843511,
+          "score": 0.713958,
           "priority": 0
         },
         {
@@ -177,7 +95,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.870222,
+          "score": 0.736567,
           "priority": 0
         },
         {
@@ -188,7 +106,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.827691,
+          "score": 0.700568,
           "priority": 1
         },
         {
@@ -199,7 +117,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.339704,
+          "score": 0.28753,
           "priority": 1
         },
         {
@@ -210,7 +128,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.182582,
+          "score": 0.15454,
           "priority": 1
         },
         {
@@ -221,7 +139,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.04662,
+          "score": 0.03946,
           "priority": 3
         }
       ]
@@ -389,14 +307,91 @@
           "priority": 3
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-02T19:23:00Z",
+      "selected": {
+        "title": "New funding supports AI safety research and training at UT San Antonio",
+        "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+        "first_seen_at": "2026-09-27T15:14:02Z",
+        "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.027721,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "New funding supports AI safety research and training at UT San Antonio",
+          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
+          "first_seen_at": "2026-09-27T15:14:02Z",
+          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.027721,
+          "priority": 3
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.517437,
+          "priority": 0
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.501555,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.492148,
+          "priority": 1
+        },
+        {
+          "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
+          "first_seen_at": "2026-09-30T11:59:59Z",
+          "summary": "Campus set to span at least six single-story buildings",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.201989,
+          "priority": 1
+        },
+        {
+          "title": "Colovore files to develop data center in Fort Worth, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+          "first_seen_at": "2026-09-29T14:30:08Z",
+          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.108564,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-      "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-      "shown_at": "2026-09-25T01:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/dallas-startup-ai-hospitality-group-raises-7-5m-to-manage-hotels-with-ai-agents/",
       "title": "Dallas Startup AI Hospitality Group Raises $7.5M to Manage Hotels With AI Agents",
@@ -526,6 +521,16 @@
       "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
       "title": "Colovore files to develop data center in Fort Worth, Texas",
       "shown_at": "2026-10-01T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+      "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+      "shown_at": "2026-10-01T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+      "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+      "shown_at": "2026-10-02T01:23:00Z"
     }
   ],
   "feeds": [
@@ -533,7 +538,7 @@
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "15b3699821aece6cc1a1c9957f5b807f9fc431bb234850b0889ff4da44f25e16"
+      "sha256": "b4749adb6e7cccd5a9ae7100a68283dc48c21efe9623be6cc9bb48b1d7d8ee6a"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -543,25 +548,25 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "04914fefe31578860ea327a3508fd9de322cd1973332b80a8559ffa0da552fea"
+      "sha256": "82a72aff8025b49108613f7039a977cafc574ab7a357f97a236ca53058f0e43b"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "c202b53d6f5eb88bf966fd548f1060d84dc107084dfb7b00628b2b7f7d038326"
+      "sha256": "f032b43f977c0e3df6e36c3133047ae5083a6b75b7cf2b0757420cb9c204b768"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1243,
-      "sha256": "0fef81c597a54422420bbfaec3bc5f79e5dec5ae3b9752bf35cde827ac426d72"
+      "sha256": "3e5074b01cc263482da14556f272297290ac23a03476921f741f568b06c12da3"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "43ec9ea62673382122aad3978bab39f0942d8218ec2ed7b6a79fda96e388ce08"
+      "sha256": "e15bf075f0bd432b41ec6dcba7122c96344499637a8f117219e092152b147ea8"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -573,25 +578,22 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "d26bd7ba9814fe3f0c38ac4dbc81fcef7c5f4869dc0ba50874b23511f8ade520"
+      "sha256": "c843b7fd115e514e75ee65659ec8772a921521298ae4a491b3d412300fd1db45"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-10-02T23:17:19Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-10-02T23:17:19Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "49066c7c3f1cacd289c7a98100642488ae453912d02db43b53a40fb707f7dcd8"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "3e0139b68fe42f41de43fc7e5e17e9baa100eb4b96e18e802c331dcd13341107"
+      "sha256": "314cc17cb6a12985ca2afd4644d87eb8c5e5e78696bab546a36a90257b008465"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -601,74 +603,72 @@
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "735af091fe6c7d4650e694a1644e71826bb147937b3ab6a0ec6392e5ff2b11ad"
+      "sha256": "28615da750e13ecbd7310071bbe7b951d76a60afc1b0509e2cb9d1ff8f6f14e2"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "afd7bc2381b2757055ea0c261062941d49fa7f109f79262f3fb78f7f78744f0b"
+      "status": "not_modified"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "15b3699821aece6cc1a1c9957f5b807f9fc431bb234850b0889ff4da44f25e16",
-      "etag": "\"4cf79f8ec7d10eb5cd2da053fc8e9582\"",
-      "last_modified": "Thu, 01 Oct 2026 21:14:15 GMT"
+      "sha256": "b4749adb6e7cccd5a9ae7100a68283dc48c21efe9623be6cc9bb48b1d7d8ee6a",
+      "etag": "\"5dc80955488e9ca628b2cff0d54a884b\"",
+      "last_modified": "Thu, 01 Oct 2026 23:28:16 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "04914fefe31578860ea327a3508fd9de322cd1973332b80a8559ffa0da552fea",
-      "last_modified": "Thu, 01 Oct 2026 17:50:29 GMT"
+      "sha256": "82a72aff8025b49108613f7039a977cafc574ab7a357f97a236ca53058f0e43b",
+      "last_modified": "Fri, 02 Oct 2026 07:00:55 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c202b53d6f5eb88bf966fd548f1060d84dc107084dfb7b00628b2b7f7d038326",
-      "etag": "\"1790896217\"",
-      "last_modified": "Thu, 01 Oct 2026 23:10:17 GMT"
+      "sha256": "f032b43f977c0e3df6e36c3133047ae5083a6b75b7cf2b0757420cb9c204b768",
+      "etag": "\"1790924124\"",
+      "last_modified": "Fri, 02 Oct 2026 06:55:24 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0fef81c597a54422420bbfaec3bc5f79e5dec5ae3b9752bf35cde827ac426d72"
+      "sha256": "3e5074b01cc263482da14556f272297290ac23a03476921f741f568b06c12da3"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "43ec9ea62673382122aad3978bab39f0942d8218ec2ed7b6a79fda96e388ce08",
-      "etag": "\"b4369ed6f6b6a05838e48afe1f063a10-gzip\"",
-      "last_modified": "Thu, 01 Oct 2026 18:03:27 GMT"
+      "sha256": "e15bf075f0bd432b41ec6dcba7122c96344499637a8f117219e092152b147ea8",
+      "etag": "\"c5c57ce60092c785be6747a9eb3eb159-gzip\"",
+      "last_modified": "Thu, 01 Oct 2026 23:49:09 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "d1a84143c5aa266ba37ead1ac6f87cab718f024624926c0017c742f7c211f297"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d26bd7ba9814fe3f0c38ac4dbc81fcef7c5f4869dc0ba50874b23511f8ade520",
-      "etag": "\"19104cbfd59c10336bbf35f8c566d5b9\"",
-      "last_modified": "Thu, 01 Oct 2026 23:13:00 GMT"
+      "sha256": "c843b7fd115e514e75ee65659ec8772a921521298ae4a491b3d412300fd1db45",
+      "etag": "\"3a9de2dd2975237915669c6ed25f21f0\"",
+      "last_modified": "Fri, 02 Oct 2026 02:47:02 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -680,40 +680,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-01T23:17:19Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "49066c7c3f1cacd289c7a98100642488ae453912d02db43b53a40fb707f7dcd8",
       "etag": "W/\"ff9cf2f676aad891bbdb7b789a538c3f\"",
-      "last_modified": "Thu, 01 Oct 2026 21:46:23 GMT"
+      "last_modified": "Thu, 01 Oct 2026 21:46:23 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-02T07:09:23Z",
+      "sha256": "49066c7c3f1cacd289c7a98100642488ae453912d02db43b53a40fb707f7dcd8",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3e0139b68fe42f41de43fc7e5e17e9baa100eb4b96e18e802c331dcd13341107",
-      "etag": "W/\"fe9bb6f4b2aacfe7ad0461e61ce2ca36\""
+      "sha256": "314cc17cb6a12985ca2afd4644d87eb8c5e5e78696bab546a36a90257b008465",
+      "etag": "W/\"31669d5207fc9ff4273e05a2c0f659f2\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Thu, 01 Oct 2026 14:18:52 GMT",
       "failures": 0,
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "sha256": "3e26a6ab19a6d119e1cc958b786e00b6aa39bbe1f621a9e4576b80b966fd544e",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-01T23:17:19Z",
+      "ok_at": "2026-10-02T07:09:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "735af091fe6c7d4650e694a1644e71826bb147937b3ab6a0ec6392e5ff2b11ad"
+      "sha256": "28615da750e13ecbd7310071bbe7b951d76a60afc1b0509e2cb9d1ff8f6f14e2"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-01T23:17:19Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "afd7bc2381b2757055ea0c261062941d49fa7f109f79262f3fb78f7f78744f0b",
       "etag": "W/\"57bda014b6ba2443f82a242da988d8e3\"",
-      "last_modified": "Thu, 01 Oct 2026 21:26:10 GMT"
+      "last_modified": "Thu, 01 Oct 2026 21:26:10 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-02T07:09:23Z",
+      "sha256": "afd7bc2381b2757055ea0c261062941d49fa7f109f79262f3fb78f7f78744f0b",
+      "parser_version": 2
     }
   }
 }
