@@ -254,9 +254,9 @@
     o = o || {};
     var T = N.T, g = new T.Group(), w = o.w || 2.4, y = N.SILL_Y;
     var ct = K.tex('concrete'); ct.repeat.set(1, 1);
-    var paint = K.mat('vl-sill2', { color: o.color || 0xd8d2c6, roughness: 0.8, map: ct });
+    var paint = K.mat('vl-sill3', { color: o.color || 0xe4d9c6, roughness: 0.72, map: ct, emissive: 0x3a2a18, emissiveIntensity: 0.35 });
     var alu = K.mat('vl-alu', { color: 0xaeb3b8, roughness: 0.35, metalness: 0.8 });
-    var top = TXT.roundedBox(w, 0.04, 0.32, 0.006, paint); K.uvBox(top.geometry, 0.45); top.position.set(0, y - 0.02, 0.16); top.receiveShadow = true; top.castShadow = true; g.add(top);
+    var top = TXT.roundedBox(w, 0.04, 0.32, 0.006, paint); K.uvBox(top.geometry, 0.14); top.position.set(0, y - 0.02, 0.16); top.receiveShadow = true; top.castShadow = true; g.add(top);
     var face = new T.Mesh(new T.BoxGeometry(w, y - 0.04, 0.3), K.mat('vl-wall', { color: 0x8e8a83, roughness: 0.9 }));
     face.position.set(0, (y - 0.04) / 2, 0.18); face.receiveShadow = true; g.add(face);
     (o.mullions || [-0.95, 0.95]).forEach(function (x) {
