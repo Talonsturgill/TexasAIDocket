@@ -86,7 +86,7 @@
     }
     function M() {
       return {
-        glass: K.mat('fv-glass3', { color: 0xf6f9fb, roughness: 0.02, metalness: 0, transparent: true, opacity: 0.26, envMapIntensity: 3.2, clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1, side: THREE.DoubleSide, depthWrite: false }, true),
+        glass: K.mat('fv-glass4', { color: 0xf6f9fb, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.17, envMapIntensity: 1.3, clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1, side: THREE.DoubleSide, depthWrite: false }, true),
         rim: K.mat('fv-rim', { color: 0xe8eef2, roughness: 0.08, metalness: 0, transmission: 0.7, thickness: 0.003, ior: 1.59, transparent: true }, true),
         food: K.mat('fv-food3', { color: 0xc89a55, roughness: 0.86, metalness: 0, emissive: 0x6a3a10, emissiveIntensity: 0.06, map: meal() }),
         foodTop: K.mat('fv-foodtop', { color: 0x8d5f22, roughness: 0.75, metalness: 0 }),
@@ -97,7 +97,7 @@
         leg: K.mat('fv-leg', { color: 0x2a1d12, roughness: 0.6 }),
         abdo: K.mat('fv-abdo2', { color: 0x2c1f14, roughness: 0.4 }),
         eye: K.mat('fv-eye', { color: 0x9e1b14, roughness: 0.35, metalness: 0.1 }),
-        wing: K.mat('fv-wing2', { color: 0xeef2f5, roughness: 0.15, metalness: 0, transparent: true, opacity: 0.6, side: THREE.DoubleSide, depthWrite: false }),
+        wing: K.mat('fv-wing3', { color: 0xb9c2c9, roughness: 0.25, metalness: 0, transparent: true, opacity: 0.78, side: THREE.DoubleSide, depthWrite: false }),
         tape: K.mat('fv-tape', { color: 0xf1efe8, roughness: 0.8 }),
         accent: K.mat('fv-accent5', { color: 0x14503a, emissive: 0x2fd896, emissiveIntensity: 0.85, roughness: 0.55 }),
         ink: K.mat('fv-ink', { color: 0x1f2a3a, roughness: 0.7 })
@@ -111,18 +111,19 @@
         var s = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), m); s.scale.set(sx, sy, sz); s.position.set(x, y, z); s.castShadow = true; f.add(s); return s;
       };
       sp(0.00042, 1, 1.25, 0.95, MM.body, 0, 0.0002, 0.0004);
-      sp(0.00048, 1, 1.9, 0.9, MM.abdo, 0, -0.00085, 0.00036);
+      sp(0.0005, 1.12, 1.4, 0.95, MM.abdo, 0, -0.00075, 0.00036);
       sp(0.00032, 1.15, 0.9, 1, MM.body, 0, 0.00078, 0.00038);
       sp(0.00024, 0.9, 1.1, 0.9, MM.eye, 0.00027, 0.00084, 0.00044);
       sp(0.00024, 0.9, 1.1, 0.9, MM.eye, -0.00027, 0.00084, 0.00044);
       [-1, 1].forEach(function (s) {
-        var wg = new THREE.Mesh(new THREE.CircleGeometry(0.00075, 14), MM.wing);
-        wg.scale.set(0.6, 1.45, 1); wg.position.set(s * 0.00042, -0.0008, 0.00088); wg.rotation.z = s * 0.38; wg.rotation.x = -0.12; f.add(wg);
+        /* the wings folded flat over the abdomen, a little apart at the tips, as a resting fly holds them */
+        var wg = new THREE.Mesh(new THREE.CircleGeometry(0.00075, 18), MM.wing);
+        wg.scale.set(0.5, 1.4, 1); wg.position.set(s * 0.0002, -0.00072, 0.00086); wg.rotation.z = s * 0.14; f.add(wg);
       });
       /* six legs under the thorax, out to the sides, so a fly on its back reads as one */
       for (var l = 0; l < 6; l++) {
-        var side = l < 3 ? -1 : 1, k = l % 3, lg = new THREE.Mesh(new THREE.CylinderGeometry(0.00007, 0.00005, 0.0013, 5), MM.leg);
-        lg.position.set(side * 0.00055, 0.00035 - k * 0.0004, 0.00005); lg.rotation.z = side * (1.05 + (k - 1) * 0.35); lg.rotation.x = 0.5; f.add(lg);
+        var side = l < 3 ? -1 : 1, k = l % 3, lg = new THREE.Mesh(new THREE.CylinderGeometry(0.00006, 0.00004, 0.0008, 5), MM.leg);
+        lg.position.set(side * 0.0004, 0.0003 - k * 0.00032, 0.0001); lg.rotation.z = side * (1.05 + (k - 1) * 0.35); lg.rotation.x = 0.5; f.add(lg);
       }
       if (onBack) f.rotation.y = Math.PI;
       return f;
@@ -130,7 +131,7 @@
 
     K.define('fly_vial', {
       size: [0.026, 0.11, 0.026],
-      options: { state: 'climbing', flies: 18, pupae: 4, plug: true, tape: false, tapeYaw: 0, droplets: 0, flyScale: 1.6, seed: 1 },
+      options: { state: 'climbing', flies: 18, pupae: 4, plug: true, tape: false, tapeYaw: 0, tapeArc: 3.84, climbTop: 0.42, droplets: 0, flyScale: 1.6, seed: 1 },
       note: 'A clear polystyrene fruit fly culture vial (25 mm across, 95 mm tall) with cornmeal food at its foot, a cellulose plug, pupae on the wall and adult flies about 2.5 mm long. state climbing \\ down \\ partial \\ empty sets where the adults are. tape true wraps a strip of the accent tape at the shoulder. Front +z.',
       make: function (o) {
         var MM = M(), g = new THREE.Group(), rng = K.rng(+o.seed || 1);
@@ -192,7 +193,7 @@
          * as a POSITION at thumb size: climbing in the top 40 percent, partial in a band 45 to 65
          * percent down, down on the food with a few on their backs */
         var st = o.state || 'climbing', nF = st === 'empty' ? 0 : (+o.flies || 0), PLUGF = H - 0.023, OPEN = PLUGF - FOOD;
-        var band = st === 'climbing' ? [PLUGF - OPEN * 0.42, PLUGF - 0.003] : st === 'partial' ? [PLUGF - OPEN * 0.68, PLUGF - OPEN * 0.43] : [FOOD + 0.002, FOOD + 0.007];
+        var band = st === 'climbing' ? [PLUGF - OPEN * (+o.climbTop || 0.42), PLUGF - 0.003] : st === 'partial' ? [PLUGF - OPEN * 0.68, PLUGF - OPEN * 0.43] : [FOOD + 0.002, FOOD + 0.007];
         var pFood = st === 'down' ? 0.85 : st === 'partial' ? 0.08 : 0.0, fs = +o.flyScale || 1.6;
         for (var f = 0; f < nF; f++) {
           var fa = (o.front ? (rng() - 0.5) * 2.2 : rng() * Math.PI * 2) + Math.PI / 2, onFood = rng() < pFood;
@@ -215,7 +216,7 @@
           /* wrapped 220 degrees round the glass and centred on tapeYaw (0 faces +z), so both its ends
            * turn out of sight past the silhouette; over the plug, where it hides no fly */
           var ty = +o.tapeYaw || 0;
-          var t = new THREE.Mesh(new THREE.CylinderGeometry(R_OUT + 0.00025, R_OUT + 0.00025, 0.008, 72, 1, true, ty - 1.92, 3.84), MM.accent);
+          var t = new THREE.Mesh(new THREE.CylinderGeometry(R_OUT + 0.00025, R_OUT + 0.00025, 0.008, 72, 1, true, ty - (+o.tapeArc || 3.84) / 2, +o.tapeArc || 3.84), MM.accent);
           t.position.y = H - 0.0125; g.add(t);
         }
         g.userData.mouth = { x: 0, y: H, z: 0 };
@@ -232,7 +233,7 @@
       note: 'A shallow cardboard vial flat, cols x rows wells at pitch metres, 12 mm deep. Vials stand sunk in it with their foot 6 mm above the bench.',
       make: function (o) {
         var g = new THREE.Group(), c = +o.cols || 10, r = +o.rows || 1, p = +o.pitch || 0.03;
-        var card = K.mat('vt-card', { color: 0x8c877c, roughness: 0.95 });
+        var card = K.mat('vt-card2', { color: 0xb08a5a, roughness: 0.95 });
         var b = TXT.roundedBox(c * p + 0.012, 0.012, r * p + 0.012, 0.002, card); b.position.y = 0.006; b.castShadow = true; b.receiveShadow = true; g.add(b);
         /* a dark well under each vial, so a vial reads as seated in the flat rather than on it */
         var well = K.mat('vt-well', { color: 0x2a2620, roughness: 1 });
@@ -283,7 +284,7 @@
       hb.position.set(Math.cos(ang) * dist, 0, Math.sin(ang) * dist); hb.rotation.y = Math.atan2(-Math.cos(ang), -Math.sin(ang)) + (rng() - 0.5) * 0.5; TXT.add(R, hb);
     }
     for (var t = 0; t < (o.trees || 40); t++) {
-      var td = 40 + rng() * 260, ta = Math.atan2(lk[1], lk[0]) + (rng() - 0.5) * 1.9;
+      var td = 160 + rng() * 260, ta = Math.atan2(lk[1], lk[0]) + (rng() - 0.5) * 1.9;
       var tr = K.make(rng() < 0.75 ? 'live_oak' : 'crape_myrtle', { seed: 30 + t, height: 9 + rng() * 6 });
       tr.position.set(Math.cos(ta) * td, 0, Math.sin(ta) * td); TXT.add(R, tr);
     }
@@ -364,7 +365,7 @@
   /* THE HERO, the same call on every frame. */
   N.vial = function (K, o) {
     o = o || {};
-    return K.make('fly_vial', { state: o.state || 'climbing', flies: o.flies == null ? 18 : o.flies, pupae: o.pupae == null ? 4 : o.pupae, tape: !!o.tape, tapeYaw: o.tapeYaw || 0, front: !!o.front, flyScale: o.flyScale || 1.6, seed: o.seed || 1, droplets: o.droplets == null ? 0 : o.droplets });
+    return K.make('fly_vial', { state: o.state || 'climbing', flies: o.flies == null ? 18 : o.flies, pupae: o.pupae == null ? 4 : o.pupae, tape: !!o.tape, tapeYaw: o.tapeYaw || 0, tapeArc: o.tapeArc || 3.84, climbTop: o.climbTop || 0.42, front: !!o.front, flyScale: o.flyScale || 1.6, seed: o.seed || 1, droplets: o.droplets == null ? 0 : o.droplets });
   };
 
   /* A world point to frame CSS px, through the frame's own camera. */
@@ -410,6 +411,8 @@
     o = o || {};
     var dek = document.querySelector('.dek'), bottom = o.to;
     if (bottom == null && dek) { var b = dek.getBoundingClientRect(); bottom = b.top + b.height; }
+    /* the band holds its full weight past the last line of type, so no line sits on the turn of the fade */
+    if (bottom != null) bottom += o.pad == null ? 80 : o.pad;
     var a = o.a == null ? 0.22 : Math.min(0.45, o.a), c = o.rgb || '24,22,30';
     if (bottom != null && a > 0) {
       var fade = o.fade || 180, g = cx.createLinearGradient(0, 0, 0, bottom + fade);
@@ -443,7 +446,7 @@
    * last. A dark band under the footer, never a box and never over 0.45. */
   N.post = function (cx, o) {
     o = o || {};
-    N.atmosphere(cx, { a: o.a == null ? 0.2 : o.a, to: o.to, fade: o.fade, rgb: o.rgb });
+    N.atmosphere(cx, { a: o.a == null ? 0.2 : o.a, to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
     N.soften(cx, o.type || ['.kick', '.hook', '.dek'], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
     N.soften(cx, ['.tx-site', '.src'], { blur: o.siteBlur || 9, pad: 14, feather: 40 });
     var y0 = N.H - (o.veilH || 220), v = cx.createLinearGradient(0, y0, 0, N.H);
