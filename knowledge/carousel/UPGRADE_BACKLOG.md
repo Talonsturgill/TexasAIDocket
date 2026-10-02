@@ -5042,7 +5042,7 @@ its rim, cap, talus reach and curve, a lopsided apron and an elongated plan from
 measure is 0.81 to 1.90. The mesa path is unchanged, and the proof is a vertex checksum identical on
 HEAD and here. Frame 5 re-rendered from a scratch copy reads as a range.
 
-### 3. ENGINE: `blueHour` prints the lower sky mauve (proposal, `assets/js/txthree.js` is `human`)
+### 3. ENGINE: `blueHour` prints the lower sky mauve (done 2026-10-03 by a maintainer session, see ILLUSTRATION_SYSTEM.md "What still fails")
 
 Found while building this chassis. The preset's `horizonGlow: 1.2` and `glow: 0.9` lay its amber
 `haze: 0xd79a78` across a blue `horizon: 0x5f78a8`, and `clouds: 0.18` carries the mixture higher. The
@@ -5050,7 +5050,7 @@ mix is mauve, the doctrine's own named failure. The chassis had to declare `hori
 clouds: 0.0` and a thinner fog to get a blue hour. **Proposal:** the preset's own glow terms near those
 values, with a probe frame rendered before and after and the horizon band's hue measured.
 
-### 4. ENGINE: backlit grass prints black (frames 1 and 3, rounds 1 to 3)
+### 4. ENGINE: backlit grass prints black (frames 1 and 3, rounds 1 to 3) (done 2026-10-03 by a maintainer session)
 
 `TXT.scatter` kind `grass` builds blades as `MeshStandardMaterial` with `side: DoubleSide` and no
 transmission. With the key behind the view both faces of a blade turn away from it, so a field seen
@@ -5060,7 +5060,7 @@ translucency term, the key's colour times a wrap of `max(0, -N.L)` weighted towa
 glows at its edges. A self-test frame with the key behind the camera's view and a mean luminance on
 the scatter.
 
-### 5. ENGINE: the grass is one tuft (frames 1 and 5, every round)
+### 5. ENGINE: the grass is one tuft (frames 1 and 5, every round) (done 2026-10-03 by a maintainer session)
 
 `TXT.scatter` builds ONE `tuftGeometry` per call and instances it, so every tuft on a frame is the same
 nine blades rotated and scaled. The craft judge named it every round ("one repeated tuft sprite").
