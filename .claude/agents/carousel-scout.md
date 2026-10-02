@@ -1,6 +1,7 @@
 ---
 name: carousel-scout
 description: Beat-specific researcher for the daily Texas AI carousel. Spawned in parallel, one per beat. Uses WebSearch and WebFetch, reads full pages before citing, returns structured JSON findings with sources and confidence. Never spawns further agents.
+model: sonnet
 tools: WebSearch, WebFetch, Read
 ---
 

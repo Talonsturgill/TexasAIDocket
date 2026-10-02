@@ -66,7 +66,33 @@
 #
 version: 2
 threshold: 8.0          # the top rung of the ladder below
-max_rounds: 5           # the last rung: at this many scoring rounds the finished deck ships
+max_rounds: 3           # the last rung: at this many scoring rounds the finished deck ships
+
+# FIVE ROUNDS BECAME THREE, 2026-10-03, on the owner's instruction to give this deck the sibling
+# product's updates: "It ran faster, better artwork, and the cost was better. So we got to resolve
+# all of those things and improve all of those aspects on the Texas one. in the same way that we
+# did on [the sibling]." The sibling scores at most twice and then runs one targeted craft cycle,
+# three scorings in all, and its art has risen about a quarter of a point per cycle since
+# September 26th.
+#
+# What the two rounds cut were buying, measured on this deck's own score files rather than
+# argued. Every deck from September 20th to October 2nd went the full five rounds, and none of
+# those on the ladder, from September 24th, cleared a rung before the cap. Round by round, the
+# five decks of September 27th to October 2nd:
+#
+#     deck      r1      r2      r3      r4      r5      r3 to r5
+#     09-27     6.756   7.200   7.260   7.372   7.446   +0.186
+#     09-28     6.564   6.852   7.006   7.130   7.088   +0.082
+#     09-29     7.010   7.240   7.354   7.596   7.538   +0.184
+#     10-01     7.108   7.200   7.310   7.394   7.428   +0.118
+#     10-02     7.170   7.230   7.304   7.410   7.418   +0.114
+#
+# Round 5 added 0.003 on average, which is nothing. Round 4 added 0.134, and the art median rose
+# 0.24 across the two. That is the honest price of the cut and it is stated so it stays a choice.
+# What is meant to buy it back sits upstream of the panel, where a repair costs a paragraph: the
+# storyboard's CRAFT PLAN (`dossier_check.py`), the flow critic's deck craft pass, and a work order
+# that leads with the frames the judges name in `artwork_weakest_frames`. If the next week's decks
+# ship lower than these, `max_rounds: 4` is the one line to change, and round 5 stays gone.
 
 # THE LADDER, the sibling's gate, adopted 2026-09-24 on the owner's instruction. The bar a deck
 # must clear steps down with the rounds of work it has had, and at `max_rounds` the finished deck
@@ -77,7 +103,7 @@ max_rounds: 5           # the last rung: at this many scoring rounds the finishe
 ladder_from: "2026-09-24"
 ladder:
   - {from_round: 1, threshold: 8.0}
-  - {from_round: 4, threshold: 7.7}
+  - {from_round: 2, threshold: 7.7}
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
 #

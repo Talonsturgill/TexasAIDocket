@@ -603,6 +603,11 @@ def _score(s) -> Row:
                        f"the finished deck ships"
                        + (f"; {threshold} top rung, shortfall named" if under_target else ""))
         if isinstance(val, (int, float)) and float(val) >= float(r):
+            # THE CRAFT FLOOR (2026-10-03). Over the rung with the art median under the floor and
+            # rounds left is ONE craft cycle owed, and `run_complete` says so on the completion row.
+            if s.get("craft_floor") == "open":
+                return Row("score", FAIL, f"{val} over this round's {r} rung, and the CRAFT FLOOR "
+                                          f"is open: one craft cycle on the named frames, then re-score")
             return Row("score", PASS, f"{val} over this round's {r} rung")
         return Row("score", FAIL, f"{val} under this round's {r} rung; KEEP EDITING, a work order")
     if owner_finished or capped:

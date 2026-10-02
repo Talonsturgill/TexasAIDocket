@@ -45,7 +45,7 @@
 | 10 | `caption_check.py` |
 | 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
-| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py` |
+| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
@@ -100,7 +100,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.rng(seed)` | seeded helpers (deterministic, never Math.random) |
 | `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each drawing what it meets among the things the camera draws, inside its near and far, in the ... |
 | `TXT.roundedBox(w, h, d, r, material, { segments })` | centred on the origin, y up. |
-| `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
+| `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...], variants, translucency })` | a seeded field, one InstancedMesh for scrub or rock and for grass a Group of one per tuft in its pool, whose blades transmit light from behind. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
 | `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |
@@ -466,8 +466,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/sensitive_paths.py` | no instruction file may tell a session to WRITE under `.claude/`. | --self-test | CI |  |
 | `.claude/skills/carousel-engine/assemble.py` | build the deliverables from rendered slides. | --slides-dir --render-dir --out-dir --title --width --height |  | 14 |
 | `.claude/skills/carousel-engine/bootstrap.sh` | idempotent dependency setup for the carousel engine. |  |  | 0 |
-| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 12b, 14b, 15 |
-| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 14b, 15 |
+| `.claude/skills/carousel-engine/qa.py` | machine QA over rendered slides. | --render-dir --self-test --safe-margin | CI self-test, gate table, shipped | 11, 12, 12b, 14b, 15 |
+| `.claude/skills/carousel-engine/render.py` | deterministic slide renderer for Texas AI Docket LinkedIn carousels. | --self-test --slides-dir --out-dir --scale --width --height --only --timeout --browser | CI self-test, gate table, shipped | costs, 10.5, 11, 12, 14b, 15 |
 
 **Record, site and instrument tools the routine names:**
 
@@ -503,9 +503,9 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `carousel-copywriter` | Read | Carries the caption room's winning post copy verbatim, writes the first-comment source block, the document title, and polishes the slide strings from the storyboard. |
 | `carousel-fact-checker` | WebFetch, Read | Adversarial validator that turns scout findings into a verified claims file. |
 | `carousel-flow-critic` | Read | Judges the deck as a SEQUENCE. |
-| `carousel-pixel-critic` | Read | Forensic reviewer of rendered slides. |
+| `carousel-pixel-critic` | Read, model sonnet | Forensic reviewer of rendered slides. |
 | `carousel-scorer` | Read | Grades the finished package against config/carousel/scoring_rubric.yaml. |
-| `carousel-scout` | WebSearch, WebFetch, Read | Beat-specific researcher for the daily Texas AI carousel. |
+| `carousel-scout` | WebSearch, WebFetch, Read, model sonnet | Beat-specific researcher for the daily Texas AI carousel. |
 | `carousel-treatment-director` | Read | One voice in the directors room. |
 | `carousel-upgrade-engineer` | Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch | The retro and upgrade phase. |
 
@@ -523,7 +523,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
-| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 14b, 15 |
+| Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 12, 14b, 15 |
 | Node | TXLAYOUT.check before dossiers; the article edition suite | artwork, 14b, 16 |
 
 ## THE DOCTRINE, `knowledge/`

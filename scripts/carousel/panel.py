@@ -460,7 +460,52 @@ def combine(judges: list, bar: float | None = None, want: dict | None = None) ->
     split = [k for k, m in merged.items() if m["judges"] and max(m["judges"]) - min(m["judges"]) >= 1.5]
     if split:
         verdict["contested"] = split
+    wf = weakest_frames(judges)
+    if wf:
+        verdict["artwork_weakest_frames"] = wf
     return verdict, probs
+
+
+def _slide_no(v):
+    """A slide number out of a judge's card: 6, "06" or "slide-06". None for anything else."""
+    import re
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, int):
+        return v if v >= 1 else None
+    if isinstance(v, float) and v.is_integer() and v >= 1:
+        return int(v)
+    m = re.fullmatch(r"\s*(?:slide[- ]?)?0*(\d{1,2})\s*", str(v), re.I) if isinstance(v, str) else None
+    return int(m.group(1)) if m and int(m.group(1)) >= 1 else None
+
+
+def weakest_frames(judges: list) -> list:
+    """Every judge's `artwork_weakest_frames`, merged by slide (2026-10-03, the sibling's list).
+
+    The frames named by the most judges come first, then the ones a judge put earliest, so the
+    work order starts where the panel agrees. Each frame keeps every judge's problem and fix,
+    because the repair is made from those words and a merge that kept one judge's would throw the
+    other two readings away.
+    """
+    by: dict = {}
+    for i, j in enumerate(judges, start=1):
+        rows = j.get("artwork_weakest_frames") if isinstance(j, dict) else None
+        if not isinstance(rows, list):
+            continue
+        for pos, r in enumerate(rows):
+            n = _slide_no(r.get("slide")) if isinstance(r, dict) else None
+            if n is None:
+                continue
+            e = by.setdefault(n, {"slide": n, "named_by": 0, "_first": pos, "notes": []})
+            if all(x["judge"] != i for x in e["notes"]):
+                e["named_by"] += 1
+            e["_first"] = min(e["_first"], pos)
+            e["notes"].append({"judge": i, "problem": str(r.get("problem") or "")[:400],
+                               "fix": str(r.get("fix") or "")[:400]})
+    out = sorted(by.values(), key=lambda e: (-e["named_by"], e["_first"], e["slide"]))
+    for e in out:
+        e.pop("_first")
+    return out
 
 
 def card_digests(judges: list) -> list:
@@ -566,6 +611,92 @@ def apply_ladder(verdict: dict, date: str) -> dict:
     return verdict
 
 
+def apply_craft_floor(verdict: dict, date: str, out_root: Path | None = None) -> dict:
+    """THE CRAFT FLOOR (2026-10-03, the sibling product's). `run_complete.py` carries the rule and
+    its reasons. This is the half that keeps the record: a deck over its rung with the art median
+    under the floor and rounds left gets `ship: false` and a work order for ONE craft cycle on the
+    frames the judges named, and the next counted round closes the cycle and writes `craft_cycle`
+    from the two medians. The state lives in `out/<date>/craft_cycle.json`, beside the round log,
+    so a re-combination of cards already scored can't close it. Nothing in it is typed by a run.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import run_complete as rc
+    import re
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(date)) or str(date) < rc.CRAFT_FLOOR_FROM:
+        return verdict
+    art, rounds = rc.art_of(verdict), verdict.get("rounds")
+    named = [e["slide"] for e in verdict.get("artwork_weakest_frames") or []]
+    state_p = Path(out_root or (REPO_ROOT / "out")) / date / "craft_cycle.json"
+    state = None
+    if state_p.exists():
+        try:
+            state = json.loads(state_p.read_text(encoding="utf-8"))
+        except ValueError:
+            state = None
+    state = state if isinstance(state, dict) and isinstance(state.get("opened_round"), int) else None
+    if state and "closed_round" not in state and isinstance(rounds, int) and rounds > state["opened_round"]:
+        state.update({"closed_round": rounds, "art_after": art})
+        state_p.write_text(json.dumps(state, indent=1) + "\n", encoding="utf-8")
+    if state and "closed_round" in state:
+        verdict["craft_floor"] = "closed"
+        verdict["craft_cycle"] = {k: state.get(k) for k in
+                                  ("frames", "art_before", "art_after", "opened_round", "closed_round")}
+        before = state.get("art_before")
+        if state.get("closed_round") == rounds and rc._num(before) and art is not None and art < before:
+            verdict["craft_note"] = (
+                f"the craft cycle moved the art median from {before} to {art}. The repaired frames "
+                f"ship, because this score was measured on them. Name it in the run record")
+        return verdict
+    if verdict.get("hard_fails"):
+        verdict["craft_floor"] = "waiting, because a hard fail is repaired first"
+        return verdict
+    if "rung" in verdict and verdict["rung"] is None:
+        verdict["craft_floor"] = "capped"
+        if art is not None and art < rc.CRAFT_FLOOR:
+            verdict["craft_note"] = (
+                f"at the round cap the craft floor stands down. The art median {art} is under "
+                f"{rc.CRAFT_FLOOR} and the deck ships as it is. Name it in the run record")
+        return verdict
+    if art is not None and art >= rc.CRAFT_FLOOR:
+        verdict["craft_floor"] = "met"
+        return verdict
+    if not verdict.get("ship"):
+        verdict["craft_floor"] = "pending, because a deck under its rung is sent back by the work order first"
+        if named and verdict.get("work_order"):
+            verdict["work_order"] += (
+                f". Start with the frames the judges charge the art for, in this order, slides "
+                f"{', '.join(str(n) for n in named)} (`artwork_weakest_frames`), one concrete "
+                f"change each")
+        return verdict
+    verdict["ship"] = False
+    verdict["craft_floor"] = "open"
+    if art is None:
+        verdict["work_order"] = (
+            f"CRAFT FLOOR. The median clears this round's rung and the score carries no "
+            f"`{rc.ART}` median, so the floor can't be read. Re-run the three judges with "
+            f"per-criterion scores")
+        return verdict
+    if state is None:
+        state = {"opened_round": rounds, "art_before": art,
+                 "weighted_before": verdict.get("weighted_score"), "frames": named}
+        state_p.parent.mkdir(parents=True, exist_ok=True)
+        state_p.write_text(json.dumps(state, indent=1) + "\n", encoding="utf-8")
+    frames = state.get("frames") or []
+    verdict["work_order"] = (
+        f"CRAFT FLOOR. The median {verdict.get('weighted_score')} clears this round's "
+        f"{verdict.get('rung')} rung and the art median {art} is under {rc.CRAFT_FLOOR}, with rounds "
+        f"left. Run ONE craft cycle. "
+        + (f"Repair slides {', '.join(str(n) for n in frames)}, the frames in "
+           f"`artwork_weakest_frames`, one concrete change each, most named first. "
+           if frames else
+           "No judge named a frame in `artwork_weakest_frames`, which their brief requires under "
+           "9, so repair the flow critic's `craft.weakest_frames` and say so in the run record. ")
+        + "Then re-render those frames, run qa.py, print_ban.py and panel_ready.py, and re-score "
+          "with three fresh judges. That re-score is a round, this module closes the cycle on it, "
+          "and the deck then ships on the ladder. One cycle, never more")
+    return verdict
+
+
 def run(date: str, paths: list, out: str | None) -> int:
     judges = []
     for p in paths:
@@ -597,6 +728,7 @@ def run(date: str, paths: list, out: str | None) -> int:
             print(f"  note  {verdict['rounds_note']}", file=sys.stderr)
     if verdict:
         apply_ladder(verdict, date)
+        apply_craft_floor(verdict, date)
     for p in probs:
         print(f"  note  {p}", file=sys.stderr)
     if not verdict:
@@ -605,7 +737,9 @@ def run(date: str, paths: list, out: str | None) -> int:
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(verdict, indent=1) + "\n", encoding="utf-8")
     rung_now = verdict.get("rung", verdict["threshold"]) if "rung" in verdict else verdict["threshold"]
-    if verdict["ship"] and "rung" in verdict and rung_now is None:
+    if verdict.get("craft_floor") == "open":
+        why = "CRAFT FLOOR: one craft cycle on the frames the judges named, then re-score"
+    elif verdict["ship"] and "rung" in verdict and rung_now is None:
         why = "SHIP (the round cap: the finished deck ships, shortfall named)" if verdict.get("shortfall") \
             else "SHIP (the round cap, no hard fail)"
     elif verdict["ship"]:
@@ -618,6 +752,10 @@ def run(date: str, paths: list, out: str | None) -> int:
         why = f"HOLD, under the {verdict['threshold']} bar"
     print(f"panel: {verdict['judges']} -> median {verdict['weighted_score']}, "
           f"spread {verdict['spread']}, round {verdict['rounds']}, {why}")
+    if verdict.get("craft_note"):
+        print(f"  note  {verdict['craft_note']}")
+    if verdict.get("work_order"):
+        print(f"  work order  {verdict['work_order']}")
     print(f"panel: written to {dest}")
     return 0
 
@@ -1059,6 +1197,74 @@ def self_test() -> int:
                       "ship": False, "hold_reason": "kept"}, "2026-09-23")
     ok("ladder: a deck dated before it keeps the old verdict untouched",
        v["ship"] is False and v.get("hold_reason") == "kept" and "rung" not in v, str(v))
+
+    # THE WEAKEST FRAMES AND THE CRAFT FLOOR (2026-10-03, the sibling's).
+    wf = weakest_frames([
+        {"artwork_weakest_frames": [{"slide": 6, "problem": "p", "fix": "f"}, {"slide": "04", "fix": "g"}]},
+        {"artwork_weakest_frames": [{"slide": "slide-04", "problem": "q"}, {"slide": 9}]},
+        {"artwork_weakest_frames": [{"slide": 4}, {"slide": True}, {"slide": 0}, "junk"]},
+    ])
+    ok("weakest frames: merged by slide, the most named first, a bool or a zero never a slide",
+       [e["slide"] for e in wf] == [4, 6, 9] and wf[0]["named_by"] == 3 and len(wf[0]["notes"]) == 3,
+       str(wf))
+    ff = REPO_ROOT / "out" / "tmp"
+    ff.mkdir(parents=True, exist_ok=True)
+    import tempfile as _tf
+    from run_complete import CRAFT_FLOOR as _CF, CRAFT_FLOOR_FROM as _CFF, ART as _ART
+    with _tf.TemporaryDirectory(dir=ff) as td:
+        root = Path(td)
+
+        def cv(score, rounds, art, fails=(), named=(6, 4)):
+            v = {"weighted_score": score, "rounds": rounds, "threshold": top, "hard_fails": list(fails),
+                 "ship": False, "criteria": {} if art is None else {_ART: {"score": art, "weight": 0.22}},
+                 "artwork_weakest_frames": [{"slide": n, "named_by": 1, "notes": []} for n in named]}
+            apply_ladder(v, _CFF)
+            return apply_craft_floor(v, _CFF, out_root=root)
+
+        v = cv(top, 1, _CF - 1.0)
+        ok("craft floor: over the rung with the art under it OPENS one cycle and holds the ship",
+           v["ship"] is False and v["craft_floor"] == "open" and "slides 6, 4" in v["work_order"], str(v))
+        st = json.loads((root / _CFF / "craft_cycle.json").read_text())
+        ok("...and records what it measured, not what a run typed",
+           st["opened_round"] == 1 and st["art_before"] == _CF - 1.0 and st["frames"] == [6, 4], str(st))
+        v = cv(top, 1, _CF - 0.2, named=(9,))
+        ok("...a re-combination in the same round neither closes it nor moves its frames",
+           v["craft_floor"] == "open" and "slides 6, 4" in v["work_order"], str(v))
+        v = cv(_rc.rung(2), 2, _CF - 0.5)
+        ok("the next counted round CLOSES it, and the deck ships on the ladder",
+           v["craft_floor"] == "closed" and v["ship"] is True
+           and v["craft_cycle"]["art_before"] == _CF - 1.0 and v["craft_cycle"]["art_after"] == _CF - 0.5
+           and v["craft_cycle"]["closed_round"] == 2, str(v))
+        ok("...and run_complete accepts the record panel.py wrote",
+           _rc.craft_cycle_problem(root, dict(v, rounds=2)) is None,
+           str(_rc.craft_cycle_problem(root, dict(v, rounds=2))))
+        v = cv(_rc.rung(2), 3, _CF - 0.5)
+        ok("...and it is never opened twice", v["craft_floor"] == "closed", str(v))
+        (root / _CFF / "craft_cycle.json").unlink()
+        cv(top, 1, _CF - 1.0)
+        v = cv(_rc.rung(2), 2, _CF - 1.5)
+        ok("a cycle that closes LOWER than it opened is said, never hidden",
+           v["craft_floor"] == "closed" and "craft_note" in v and str(_CF - 1.5) in v["craft_note"], str(v))
+        (root / _CFF / "craft_cycle.json").unlink()
+        v = cv(top, 1, _CF)
+        ok("craft floor: the art ON the floor is met and the deck ships", v["craft_floor"] == "met" and v["ship"] is True, str(v))
+        (root / _CFF / "craft_cycle.json").unlink(missing_ok=True)
+        v = cv(round(top - 0.5, 2), 1, 6.0)
+        ok("craft floor: under the rung it waits, and the work order leads with the named frames",
+           v["craft_floor"].startswith("pending") and "slides 6, 4" in v.get("work_order", "")
+           and not (root / _CFF / "craft_cycle.json").exists(), str(v))
+        v = cv(5.0, cap, 6.0)
+        ok("craft floor: at the cap it stands down and the deck ships, the shortfall said",
+           v["craft_floor"] == "capped" and v["ship"] is True and "craft_note" in v, str(v))
+        v = cv(top, 1, 6.0, fails=["an unverified fact"])
+        ok("craft floor: a hard fail comes first", v["craft_floor"].startswith("waiting") and v["ship"] is False, str(v))
+        v = cv(top, 1, None)
+        ok("craft floor: no art median holds the ship rather than passing it",
+           v["craft_floor"] == "open" and v["ship"] is False and "can't be read" in v["work_order"], str(v))
+        v = {"weighted_score": top, "rounds": 1, "threshold": top, "hard_fails": [], "ship": True,
+             "criteria": {_ART: {"score": 6.0}}}
+        ok("craft floor: a deck dated before it is untouched",
+           "craft_floor" not in apply_craft_floor(v, "2026-10-02", out_root=root), str(v))
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

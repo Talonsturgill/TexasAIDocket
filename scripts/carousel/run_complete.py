@@ -184,6 +184,99 @@ def rung(rounds) -> float | None:
     return bar
 
 
+# THE CRAFT FLOOR (2026-10-03), the sibling product's, taken on the owner's instruction to give this
+# deck its updates. A total over its rung no longer finishes a run while the panel's art median is
+# under CRAFT_FLOOR and rounds remain. The run owes ONE craft cycle on the frames the judges named in
+# `artwork_weakest_frames`, re-scored as a round. `panel.py` opens it, closes it on the next counted
+# round and writes `craft_cycle` from its own medians, so no number in the record is typed. At the
+# round cap it stands down and the deck ships as it is. Over the sibling's eight cycles from
+# September 26th the art moved +0.25 a cycle on average: a real lever and a small one, which is why
+# it is one cycle and never more. It reaches no deck dated before CRAFT_FLOOR_FROM.
+CRAFT_FLOOR = 8.5
+CRAFT_FLOOR_FROM = "2026-10-03"
+ART = "artwork_craft"
+
+
+def _num(x) -> bool:
+    return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
+def art_of(d: dict):
+    """The panel's art median, or None when the score carries no per-criterion medians."""
+    v = (d.get("criteria") or {}).get(ART) if isinstance(d.get("criteria"), dict) else None
+    s = v.get("score") if isinstance(v, dict) else None
+    return float(s) if _num(s) else None
+
+
+def _slide_count(run_dir: Path) -> int:
+    """The highest frame number the run's own files carry, the shipped webps or the working slides
+    and renders. 0 when it has none, and then a frame number is not range checked."""
+    import re
+    top = 0
+    for pat in ("slide-*.webp", "slides/slide-*.html", "render/slide-*.png"):
+        for f in run_dir.glob(pat):
+            m = re.fullmatch(r"slide-0*(\d+)", f.stem)
+            if m:
+                top = max(top, int(m.group(1)))
+    return top
+
+
+def craft_cycle_problem(run_dir: Path, d: dict) -> str | None:
+    """Why the recorded craft cycle does not hold, or None when it does."""
+    cc = d.get("craft_cycle")
+    if not isinstance(cc, dict):
+        return "`craft_cycle` is not a record"
+    frames = cc.get("frames")
+    if not isinstance(frames, list) or not all(isinstance(f, int) and not isinstance(f, bool)
+                                               for f in frames):
+        return "`frames` is not a list of slide numbers"
+    n = _slide_count(run_dir)
+    if n and any(f < 1 or f > n for f in frames):
+        return f"`frames` {frames} names a slide this run doesn't have, out of {n}"
+    for k in ("art_before", "art_after"):
+        if not _num(cc.get(k)) or not 0 <= float(cc[k]) <= 10:
+            return f"`{k}` is not a score from 0 to 10"
+    o, c, r = cc.get("opened_round"), cc.get("closed_round"), rounds_of(d)
+    if not (isinstance(o, int) and isinstance(c, int) and not isinstance(o, bool)
+            and not isinstance(c, bool) and o < c and (r is None or c <= r)):
+        return "it was not opened in one scoring round and re-scored in a later one"
+    art = art_of(d)
+    if c == r and (art is None or abs(art - float(cc["art_after"])) > 0.05):
+        return f"`art_after` {cc['art_after']} is not this score's own art median {art}"
+    return None
+
+
+def craft_floor_problem(run_dir: Path, d: dict) -> str | None:
+    """The CRAFT FLOOR, for a deck that otherwise finished. None when it holds or does not apply."""
+    import re
+    name = run_dir.name
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", name) or name < CRAFT_FLOOR_FROM:
+        return None
+    ov = d.get("owner_override") or {}
+    if d.get("hard_fails") or (ov.get("instruction") and ov.get("date")):
+        return None
+    got, n = score_of(d), rounds_of(d)
+    need = d["rung"] if "rung" in d else rung(n)
+    if need is None or not _num(got) or float(got) < need:
+        return None                                  # the cap, or KEEP EDITING already said
+    art = art_of(d)
+    if art is not None and art >= CRAFT_FLOOR:
+        return None
+    if "craft_cycle" in d:
+        bad = craft_cycle_problem(run_dir, d)
+        return None if bad is None else (
+            f"{name}: CRAFT FLOOR. The recorded craft cycle does not hold: {bad}. `panel.py` "
+            f"writes it from its own medians, so re-run the panel rather than editing the file")
+    if art is None:
+        return (f"{name}: CRAFT FLOOR. {got} clears this round's {need} rung and the score carries "
+                f"no `{ART}` median, so the floor can't be read. Re-run the three judges with "
+                f"per-criterion scores")
+    return (f"{name}: CRAFT FLOOR. {got} clears this round's {need} rung and the art median {art} "
+            f"is under {CRAFT_FLOOR} with rounds left. Run ONE craft cycle on the frames in "
+            f"`artwork_weakest_frames`, one concrete change each, then re-render, re-gate and "
+            f"re-score. That is a round, `panel.py` records it, and the deck then ships")
+
+
 def _check_ladder(run_dir: Path, d: dict) -> list[str]:
     name = run_dir.name
     got, n = score_of(d), rounds_of(d)
@@ -207,6 +300,10 @@ def _check_ladder(run_dir: Path, d: dict) -> list[str]:
                        f"round(s) is under this round's rung of {need}. A low score is a work "
                        f"order, never a reason to stop: fix the judges' named defects, re-render "
                        f"and re-score. At the round cap the finished deck ships whatever it scored")
+    if not bad:
+        cf = craft_floor_problem(run_dir, d)
+        if cf:
+            bad.append(cf)
     return bad
 
 
@@ -565,7 +662,9 @@ def self_test() -> int:
     # and the bar could not move without a second deliberate commit naming it.
     ok("...and it is the 8.0 this product is held to", bar == 8.0, str(bar))
     cap = max_rounds()
-    ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
+    # Pinned the same way. Five became three on 2026-10-03, the sibling's two scorings and one
+    # craft cycle, with the score files that priced it in the rubric's own header.
+    ok("...and the rubric declares the round cap beside it", cap == 3, str(cap))
 
     # THE RATCHET, and every case here is one the cap used to wave through.
     import tempfile as _tf
@@ -684,6 +783,56 @@ def self_test() -> int:
                                                         "hard_fails": []}))
         ok("a deck dated before the ladder keeps the rules it was judged under",
            any("DID NOT SHIP" in x for x in check(before, 8.0, cap5)), str(check(before, 8.0, cap5)))
+
+    # THE CRAFT FLOOR (2026-10-03). Every rung and the cap are read off the rubric, never typed.
+    with tempfile.TemporaryDirectory() as td:
+        cd = Path(td) / CRAFT_FLOOR_FROM
+        (cd / "slides").mkdir(parents=True)
+        for k in range(1, 10):
+            (cd / "slides" / f"slide-{k:02d}.html").write_text("x")
+
+        def cf(score, rounds, art, **extra):
+            doc = {"weighted_score": score, "rounds": rounds, "hard_fails": [], "rung": rung(rounds),
+                   "criteria": {} if art is None else {ART: {"score": art, "weight": 0.22}}}
+            doc.update(extra)
+            (cd / "score.json").write_text(json.dumps(doc))
+            return check(cd, float(top), cap5)
+
+        cyc = {"frames": [6, 4], "art_before": 7.0, "art_after": 7.5, "opened_round": 1, "closed_round": 2}
+        probs = cf(top, 1, CRAFT_FLOOR - 0.5)
+        ok("craft floor: over the rung with the art under the floor and rounds left is NOT done",
+           any("CRAFT FLOOR" in x and "ONE craft cycle" in x for x in probs), str(probs))
+        ok("craft floor: the same deck with the art on the floor is done", cf(top, 1, CRAFT_FLOOR) == [])
+        ok("craft floor: a valid recorded cycle closes it",
+           cf(top, 2, 7.5, craft_cycle=cyc) == [], str(cf(top, 2, 7.5, craft_cycle=cyc)))
+        ok("craft floor: AT THE CAP it stands down and the deck ships", cf(5.0, cap5, 6.0) == [])
+        probs = cf(round(top - 0.5, 2), 1, 6.0)
+        ok("craft floor: under the rung only KEEP EDITING is said, never both",
+           any("KEEP EDITING" in x for x in probs) and not any("CRAFT FLOOR" in x for x in probs), str(probs))
+        probs = cf(top, 2, 7.0, craft_cycle=cyc)
+        ok("craft floor: a cycle whose art_after is not the score's own median is refused",
+           any("art_after" in x for x in probs), str(probs))
+        probs = cf(top, 2, 7.5, craft_cycle=dict(cyc, frames=[6, 12]))
+        ok("craft floor: a cycle naming a frame the run doesn't have is refused",
+           any("doesn't have" in x for x in probs), str(probs))
+        probs = cf(top, 2, 7.5, craft_cycle=dict(cyc, opened_round=2))
+        ok("craft floor: a cycle opened and closed in one round is refused",
+           any("later one" in x for x in probs), str(probs))
+        probs = cf(top, 2, 7.5, craft_cycle=dict(cyc, art_before="7"))
+        ok("craft floor: a typed string is not a score", any("art_before" in x for x in probs), str(probs))
+        probs = cf(top, 1, None)
+        ok("craft floor: no art median fails closed rather than passing",
+           any("no `artwork_craft` median" in x for x in probs), str(probs))
+        # A HARD FAIL FOUND ON THE CLOSING ROUND is repaired and re-scored, so the art median moves
+        # on after `art_after` was taken. A recorded rung stands in for a ladder with rounds left.
+        ok("craft floor: a round after the closing one keeps the cycle valid at a new art median",
+           cf(top, 3, 7.0, craft_cycle=dict(cyc, closed_round=2), rung=top) == [],
+           str(cf(top, 3, 7.0, craft_cycle=dict(cyc, closed_round=2), rung=top)))
+        prev = cd.parent / "2026-10-02"
+        prev.mkdir()
+        (prev / "score.json").write_text(json.dumps({"weighted_score": top, "rounds": 1, "hard_fails": [],
+                                                      "rung": top, "criteria": {ART: {"score": 6.0}}}))
+        ok("craft floor: a deck dated before it is never reached back for", check(prev, float(top), cap5) == [])
 
     print("\nrun_complete self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

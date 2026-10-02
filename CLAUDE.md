@@ -758,6 +758,18 @@ The smaller tier cost about a third as much per critic and a quarter as much per
 was still the wrong trade. **Never pin a tier on a cost argument.** A change of tier needs the
 same measurement on this repo's own frames or beats, recorded here.
 
+**SUPERSEDED BY THE OWNER, 2026-10-02.** The owner looked at the sibling product's run that day and
+asked for its updates here: *"It ran faster, better artwork, and the cost was better. So we got to
+resolve all of those things and improve all of those aspects on the Texas one. in the same way
+that we did on the Alaska one."* The sibling has run `scout` and `pixel-critic` on `model: sonnet`
+since September 25th, so `carousel-scout` and `carousel-pixel-critic` now carry the same pin. The
+measurement above stands and is why the rest of the change exists: the smaller tier caught every
+planted mechanical defect and missed most art defects, so the art judgement moved to the flow
+critic's craft pass, the storyboard's CRAFT PLAN and the CRAFT FLOOR, all on the session's model
+(`prompts/daily_routine.md` Phases 9, 12 and 15). The scout risk is fewer and weaker findings, not
+wrong ones, because the fact-checker re-fetches every claim on the session's model. **To reverse
+either pin, delete its one `model:` line.** Every other agent still inherits the session's model.
+
 **The auto-compact window stays on `auto`.** Cache reads were 49 percent of the 2026-09-27 run's
 $184.52, so a smaller window looks like a saving. Claude Code's own text calls `auto` "strongly
 recommended for the best cost and performance" and warns that overriding it "may result in high

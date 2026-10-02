@@ -318,3 +318,47 @@ phrasing, because the phrasing is the only reason it was uncheckable.
 If the deck's dossiers could be produced by filling in the same template nine times, the deck
 will be one drawing nine times, and `bespoke_check.py` will say so in a number after the fact.
 The dossier stage is where that is cheap to fix.
+
+## THE CRAFT PLAN, one table for the whole deck (2026-10-03)
+
+Taken from the sibling product on the owner's instruction to give this deck its updates. Beside
+the nine dossiers, the storyboard carries one `## CRAFT PLAN` section, written before any code,
+and `dossier_check.py` holds every storyboard dated October 3rd or later to it:
+
+```
+## CRAFT PLAN
+| slide | shot | largest object, and how it is modelled |
+|---|---|---|
+| 01 | MEDIUM, eye level, horizon on the upper third | the parapet coping, limestone weathered dark at its joints, raking west light and grime where it meets the roof |
+| 02 | WIDE, seated eye in the consult room | the desk, walnut veneer worn at the edge, window light raking across it |
+...
+Showstopper frame: 06, the vial at macro scale against the city in haze
+Tonal arc: dark and quiet 01 to 03, lifts to the brightest on 06, settles on 09
+```
+
+**Why it exists.** The judges' art complaints are mostly decided in planning and never written
+down, so the panel was the first reader to notice them. On October 2nd the craft judge named a
+featureless dark slab of coping and a bare wall, each the largest thing in its frame, a hero
+"under a tenth of the frame height on 2, 3, 4, 9", and repeated compositions, in round one and
+again in round five.
+
+**The shot opens with one of five words**, `AERIAL`, `WIDE`, `MEDIUM`, `CLOSE` or `MACRO`, and
+**no shot carries more than three frames.** The sibling caps a drawing technique at three frames.
+This deck is one hero in one material under one rig, rendered on six frames or more, so what
+`ILLUSTRATION_SYSTEM.md` says varies is the camera and the state of the hero. A frame whose hero
+would sit under a tenth of the frame at `WIDE` is a frame to plan at `MEDIUM` or `CLOSE`.
+
+**The largest object cell names the object, then after a comma how it is modelled**: its
+material, its light, its contact with the ground and where it is weathered. "The parapet coping"
+alone fails. The largest thing in a frame drawn with the least care is the judges' most repeated
+art complaint, and naming its treatment is what makes somebody build it.
+
+**The showstopper frame** is the one planned to pass THE SHOWSTOPPER TEST outright, and the line
+or its row says what makes its depth. **The tonal arc** says where the deck is darkest, where it
+lifts and where it peaks. "One tone throughout" fails, because a deck that strobes or never moves
+was named by a judge on October 2nd. `deck_coherence.py` measures the rendered value track
+afterwards. This line is where it is decided.
+
+The flow critic grades the deck against this plan's causes before the panel sees it, and the
+judges name the frames that still fall short in `artwork_weakest_frames`, which is the work order
+for the next round and for the CRAFT FLOOR in `prompts/daily_routine.md` Phase 15.
