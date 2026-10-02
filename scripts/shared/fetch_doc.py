@@ -199,10 +199,55 @@ class _BoundaryRedirects(urllib.request.HTTPRedirectHandler):
         self.boundary = boundary
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        why = crawl_boundary.forbidden(newurl, self.boundary)
+        why = crawl_boundary.forbidden(newurl, self.boundary) or robots_refusal(newurl)
         if why:
             raise Refused(f"a {code} redirect to {newurl}: {why}")
         return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+# THE HOST'S OWN ROBOTS.TXT, ASKED LIVE (2026-10-02). The registry is a snapshot of the hosts
+# somebody wrote down, and most of the web is on no list. On October 2nd this file fetched a
+# county agenda on public.destinyhosted.com and a fox34.com story during re-verification, both
+# hosts whose robots.txt refuses this project and both already refused by `reverify.py`, which
+# asks robots.txt before every request. This asked only the registry. So it now asks the same
+# question with the same reader, `reverify.robots_rules` and `robots_refuses`, one definition.
+_ROBOTS: dict[str, list | str] = {}
+
+
+def robots_refusal(url: str, opener=None) -> str | None:
+    """The reason the host's robots.txt refuses `url` to this project, or None.
+
+    A robots.txt that answers 4xx refuses nothing (RFC 9309). One that answers 5xx or does not
+    answer at all is read as refusing, which is the same reading `reverify.Boundary` takes.
+    """
+    site_dir = str(REPO_ROOT / "scripts" / "site")
+    if site_dir not in sys.path:
+        sys.path.insert(0, site_dir)
+    from reverify import robots_refuses, robots_rules  # noqa: E402  the one robots reader
+    try:
+        parts = urllib.parse.urlsplit(url.strip())
+        host = (parts.hostname or "").lower()
+    except ValueError:
+        return "the url can't be parsed, so it is not fetched"
+    key = f"{parts.scheme or 'https'}://{host}"
+    if key not in _ROBOTS:
+        op = opener or urllib.request.urlopen
+        req = urllib.request.Request(key + "/robots.txt", headers={"User-Agent": user_agent()})
+        try:
+            with op(req, timeout=TIMEOUT) as r:
+                _ROBOTS[key] = robots_rules(r.read().decode("utf-8", "replace"))
+        except urllib.error.HTTPError as e:
+            _ROBOTS[key] = ([] if 400 <= e.code < 500 else
+                            f"its robots.txt answered {e.code}, so it is read as refusing")
+        except Exception as e:  # noqa: BLE001
+            _ROBOTS[key] = f"its robots.txt did not answer ({type(e).__name__}), so it is read as refusing"
+    rules = _ROBOTS[key]
+    if isinstance(rules, str):
+        return f"{host}: {rules}"
+    path = (parts.path or "/") + (("?" + parts.query) if parts.query else "")
+    if robots_refuses(rules, path):
+        return f"{host} disallows this path to this project in robots.txt"
+    return None
 
 
 def fetch(url: str, boundary: list[dict], opener=None) -> dict:
@@ -246,6 +291,9 @@ def fetch_doc(url: str, out_dir: Path, name: str | None = None, opener=None,
     if scheme not in ("http", "https"):
         return REFUSED, {"url": url, "status": "only an http or https url is fetched here, and a "
                                                "url without one has no host to judge"}
+    why = robots_refusal(url, opener)
+    if why:
+        return REFUSED, {"url": url, "status": why}
     got = fetch(url, b, opener)
     if got["state"] != OK:
         return got["state"], {"url": url, "status": got["status"]}
@@ -497,6 +545,17 @@ def self_test() -> int:
                "a registry that can't be read refuses everything, before any request")
         finally:
             crawl_boundary.rules = real_rules
+
+        print("the host's own robots.txt comes second")
+        pages["https://r.example/robots.txt"] = (b"User-agent: * Disallow: /agendas/", "text/plain")
+        pages["https://r.example/agendas/42.html"] = (b"<html><body>agenda</body></html>", "text/html")
+        pages["https://r.example/news/1.html"] = (b"<html><body>news</body></html>", "text/html")
+        n = len(calls)
+        code, rep = fetch_doc("https://r.example/agendas/42.html", d, opener=op, boundary=boundary)
+        ok(code == REFUSED and "https://r.example/agendas/42.html" not in calls[n:],
+           "a path the host's robots.txt disallows is refused and never requested")
+        code, rep = fetch_doc("https://r.example/news/1.html", d, opener=op, boundary=boundary)
+        ok(code == OK, "and a path it allows on the same host is fetched")
 
         print("reading what came back")
         code, rep = fetch_doc("https://x.gov/sb2807.pdf", d, opener=op, boundary=boundary)
