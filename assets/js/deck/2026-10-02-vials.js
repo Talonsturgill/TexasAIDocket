@@ -197,7 +197,7 @@
         var pFood = st === 'down' ? 0.85 : st === 'partial' ? 0.08 : 0.0, fs = +o.flyScale || 1.6;
         for (var f = 0; f < nF; f++) {
           var fa = (o.front ? (rng() - 0.5) * 2.2 : rng() * Math.PI * 2) + Math.PI / 2, onFood = rng() < pFood;
-          var ff = fly(MM, rng, st === 'down' && onFood && rng() < 0.35);
+          var ff = fly(MM, rng, o.backs !== false && st === 'down' && onFood && rng() < 0.35);
           ff.scale.setScalar(fs);
           if (onFood) {
             var fr = (0.35 + 0.65 * Math.sqrt(rng())) * (rin - 0.0018 * fs);
@@ -365,7 +365,7 @@
   /* THE HERO, the same call on every frame. */
   N.vial = function (K, o) {
     o = o || {};
-    return K.make('fly_vial', { state: o.state || 'climbing', flies: o.flies == null ? 18 : o.flies, pupae: o.pupae == null ? 4 : o.pupae, tape: !!o.tape, tapeYaw: o.tapeYaw || 0, tapeArc: o.tapeArc || 3.84, climbTop: o.climbTop || 0.42, front: !!o.front, flyScale: o.flyScale || 1.6, seed: o.seed || 1, droplets: o.droplets == null ? 0 : o.droplets });
+    return K.make('fly_vial', { state: o.state || 'climbing', flies: o.flies == null ? 18 : o.flies, pupae: o.pupae == null ? 4 : o.pupae, tape: !!o.tape, tapeYaw: o.tapeYaw || 0, tapeArc: o.tapeArc || 3.84, climbTop: o.climbTop || 0.42, backs: o.backs !== false, front: !!o.front, flyScale: o.flyScale || 1.6, seed: o.seed || 1, droplets: o.droplets == null ? 0 : o.droplets });
   };
 
   /* A world point to frame CSS px, through the frame's own camera. */
