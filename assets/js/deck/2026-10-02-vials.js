@@ -283,7 +283,7 @@
       var hb = K.make('hospital', { seed: 60 + i });
       hb.position.set(Math.cos(ang) * dist, 0, Math.sin(ang) * dist); hb.rotation.y = Math.atan2(-Math.cos(ang), -Math.sin(ang)) + (rng() - 0.5) * 0.5; TXT.add(R, hb);
     }
-    for (var t = 0; t < (o.trees || 40); t++) {
+    for (var t = 0; t < (o.trees == null ? 40 : o.trees); t++) {
       var td = 160 + rng() * 260, ta = Math.atan2(lk[1], lk[0]) + (rng() - 0.5) * 1.9;
       var tr = K.make(rng() < 0.75 ? 'live_oak' : 'crape_myrtle', { seed: 30 + t, height: 9 + rng() * 6 });
       tr.position.set(Math.cos(ta) * td, 0, Math.sin(ta) * td); TXT.add(R, tr);
