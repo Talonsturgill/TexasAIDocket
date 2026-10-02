@@ -93,11 +93,11 @@
         yeast: K.mat('fv-yeast', { color: 0xe9dcc0, roughness: 0.9 }),
         plug: K.mat('fv-plug2', { color: 0xece4d2, roughness: 1, metalness: 0, emissive: 0xf3d9a8, emissiveIntensity: 0.06 }),
         pupa: K.mat('fv-pupa3', { color: 0xb38d58, roughness: 0.55 }),
-        body: K.mat('fv-body3', { color: 0x5a4126, roughness: 0.4 }),
+        body: K.mat('fv-body4', { color: 0x7d5a30, roughness: 0.4 }),
         leg: K.mat('fv-leg', { color: 0x2a1d12, roughness: 0.6 }),
         abdo: K.mat('fv-abdo2', { color: 0x2c1f14, roughness: 0.4 }),
         eye: K.mat('fv-eye', { color: 0x9e1b14, roughness: 0.35, metalness: 0.1 }),
-        wing: K.mat('fv-wing3', { color: 0xb9c2c9, roughness: 0.25, metalness: 0, transparent: true, opacity: 0.78, side: THREE.DoubleSide, depthWrite: false }),
+        wing: K.mat('fv-wing4', { color: 0xd8dee2, roughness: 0.2, metalness: 0, transparent: true, opacity: 0.42, side: THREE.DoubleSide, depthWrite: false }),
         tape: K.mat('fv-tape', { color: 0xf1efe8, roughness: 0.8 }),
         accent: K.mat('fv-accent5', { color: 0x14503a, emissive: 0x2fd896, emissiveIntensity: 0.85, roughness: 0.55 }),
         ink: K.mat('fv-ink', { color: 0x1f2a3a, roughness: 0.7 })
@@ -118,7 +118,7 @@
       [-1, 1].forEach(function (s) {
         /* the wings folded flat over the abdomen, a little apart at the tips, as a resting fly holds them */
         var wg = new THREE.Mesh(new THREE.CircleGeometry(0.00075, 18), MM.wing);
-        wg.scale.set(0.5, 1.4, 1); wg.position.set(s * 0.0002, -0.00072, 0.00086); wg.rotation.z = s * 0.14; f.add(wg);
+        wg.scale.set(0.42, 1.25, 1); wg.position.set(s * 0.00022, -0.00068, 0.00086); wg.rotation.z = s * 0.16; f.add(wg);
       });
       /* six legs under the thorax, out to the sides, so a fly on its back reads as one */
       for (var l = 0; l < 6; l++) {
