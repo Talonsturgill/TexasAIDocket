@@ -1075,6 +1075,73 @@ const STEPPED = `async (T, TXT, cv) => {
   return { instanced, aniso, iso };
 }`;
 
+// THE GRASS LETS THE LIGHT THROUGH, AND IS MORE THAN ONE TUFT (2026-10-03). Carousel no. 39's craft
+// judge named "one repeated tuft sprite" in every round, and a field seen into the sun printed black
+// stubble on two frames for three rounds. A field at eye height in golden hour, looked at into the sun
+// and away from it: the grass pixels are the ones that change when the field is hidden. Measured on
+// 2026-10-03 through the engine before this, into the sun 52.6 and away 88.5, a ratio of 0.59; through
+// this one 85.3 and 89.8, 0.95.
+const GRASS = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.goldenHour);
+  const field = async (into) => {
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 40 });
+    const s = TXT.sunDir(W), az = new T.Vector3(s.x, 0, s.z).normalize().multiplyScalar(into ? 1 : -1);
+    TXT.frame(R, { from: [0, 1.6, 0], look: [az.x * 40, 0.2, az.z * 40] });
+    TXT.sky(R, W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'caliche', size: 900, tile: 5 });
+    const G = TXT.scatter(R, { kind: 'grass', count: 9000, area: [-25, -25, 25, 25], seed: 5, scale: [0.35, 0.7], nearRadius: 6 });
+    await TXT.snapshot(R);
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const read = () => { const b = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, b); return b; };
+    const withG = read();
+    G.visible = false; R.renderer.render(R.scene, R.camera);
+    const bare = read();
+    let sum = 0, n = 0;
+    for (let i = 0; i < withG.length; i += 4) {
+      if (Math.abs(withG[i] - bare[i]) + Math.abs(withG[i + 1] - bare[i + 1]) + Math.abs(withG[i + 2] - bare[i + 2]) > 12) {
+        sum += 0.2126 * withG[i] + 0.7152 * withG[i + 1] + 0.0722 * withG[i + 2]; n++;
+      }
+    }
+    const parts = G.isGroup ? G.children : [G];
+    return { lum: n ? sum / n : 0, px: n, tufts: new Set(parts.map((c) => c.geometry.uuid)).size,
+             placed: parts.reduce((a, c) => a + c.count, 0), instanced: parts.every((c) => c.isInstancedMesh) };
+  };
+  return { into: await field(true), away: await field(false) };
+}`;
+
+// THE SKY ABOVE A SUNSET IS NOT MAUVE (2026-10-03). The sun's glow was ADDED in its own orange over a
+// dim blue sky, which raised the red and left the blue, so looking at the sun the sky printed rose and
+// then mauve: blue hour measured hue 8, 356 and 343 at saturation 0.20 to 0.28 in the bands from 6 to
+// 40 percent of the frame over the horizon, and golden hour hue 5 at 0.13. Carousel no. 39's chassis
+// had to switch the glow nearly off. The bands are read here as mean colours, toward the sun.
+const SKYHUE = `async (T, TXT, cv) => {
+  const out = {};
+  for (const name of ['blueHour', 'goldenHour']) {
+    const W = Object.assign({}, TXT.worlds[name]);
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 50 });
+    const s = TXT.sunDir(W), az = new T.Vector3(s.x, 0, s.z).normalize();
+    TXT.frame(R, { from: [0, 1.6, 0], look: [az.x * 100, 1.6 + 100 * Math.tan(12 * Math.PI / 180), az.z * 100] });
+    TXT.sky(R, W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'caliche', size: 900, tile: 5 });
+    await TXT.snapshot(R);
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const b = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, b);
+    const v = new T.Vector3(az.x * 5000, 1.6, az.z * 5000).project(R.camera);
+    const hy = Math.round((v.y * 0.5 + 0.5) * H);
+    out[name] = [[0.06, 0.14], [0.14, 0.26], [0.26, 0.40]].map(([a, z]) => {
+      let r = 0, g = 0, bl = 0, n = 0;
+      for (let y = hy + Math.round(a * H); y < Math.min(H, hy + Math.round(z * H)); y++)
+        for (let x = Math.floor(Wd * 0.1); x < Math.floor(Wd * 0.9); x += 2) { const i = (y * Wd + x) * 4; r += b[i]; g += b[i + 1]; bl += b[i + 2]; n++; }
+      return [a, z, r / n, g / n, bl / n];
+    });
+  }
+  return out;
+}`;
+
 const PREINSTALLED = process.env.CHROME_PATH || process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(Object.assign(
   { args: ['--allow-file-access-from-files', '--enable-unsafe-swiftshader', '--force-color-profile=srgb'] },
@@ -1458,6 +1525,37 @@ check('the stepped page renders with no page error and no scene error',
   check(`...while the same wall without anisotropy is read at the longer step, the solid level: the pixels show ` +
         `${(is.gpuSky || 0).toFixed(4)} sky, the engine reads ${(is.sky || 0).toFixed(3)}, and the frame IS flagged`,
         is.gpuSky < 0.01 && is.sky === 0 && said(is, 'TXT: NO SKY IN FRAME'), JSON.stringify(is));
+}
+
+const gr = await run('grass', GRASS);
+check('the grass page renders with no page error and no scene error',
+      !gr.result.error && gr.pageErrors.length === 0, JSON.stringify({ error: gr.result.error, page: gr.pageErrors }));
+{
+  const a = gr.result.into || {}, b = gr.result.away || {};
+  const ratio = b.lum ? a.lum / b.lum : 0;
+  check(`grass seen into a low sun is lit through its blades: ${(a.lum || 0).toFixed(1)} into the sun against ` +
+        `${(b.lum || 0).toFixed(1)} away from it, a ratio of ${ratio.toFixed(2)}, at least 0.80 (0.59 before)`,
+        ratio >= 0.8 && a.px > 10000 && b.px > 10000, JSON.stringify(gr.result));
+  check(`the field draws from ${a.tufts} tufts, at least 3, every one instanced, and keeps all ${a.placed} it placed`,
+        a.tufts >= 3 && a.instanced === true && a.placed === b.placed && a.placed > 1000, JSON.stringify(gr.result));
+}
+
+const sh = await run('skyhue', SKYHUE);
+check('the sky hue page renders with no page error and no scene error',
+      !sh.result.error && sh.pageErrors.length === 0, JSON.stringify({ error: sh.result.error, page: sh.pageErrors }));
+{
+  const hs = (r, g, b) => { r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+    if (!d) return [0, 0]; let h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    h *= 60; if (h < 0) h += 360; return [h, d / mx]; };
+  // rose to mauve: from violet through magenta and pink to red, at a saturation a reader sees as colour
+  const mauve = ([h, sat]) => sat >= 0.12 && (h >= 285 || h <= 12);
+  for (const name of ['blueHour', 'goldenHour']) {
+    const bands = (sh.result[name] || []).map(([a, z, r, g, b]) => ({ a, z, hs: hs(r, g, b) }));
+    const bad = bands.filter((x) => mauve(x.hs));
+    check(`${name}, looking at the sun, prints no rose or mauve between 6 and 40 percent of the frame over the ` +
+          `horizon: ${bands.map((x) => `${Math.round(x.hs[0])} at ${x.hs[1].toFixed(2)}`).join(', ')}`,
+          bands.length === 3 && bad.length === 0, JSON.stringify(sh.result[name]));
+  }
 }
 
 await browser.close();

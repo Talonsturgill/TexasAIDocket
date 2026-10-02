@@ -1019,6 +1019,23 @@ which is the finding the judges made in words and the number that says the gate 
   model in the run record. The kit is `upgrade` lane since the same PR, so Phase 17 can lift it
   the same day. (2026-09-26)
 
+- **One tuft of grass, and grass gone black into the sun.** No. 39's craft judge named "one
+  repeated tuft sprite" in every round, and a field seen into the low sun printed black stubble on
+  frames 1 and 3 for three rounds. **Fixed in `txthree.js` (2026-10-03):** `TXT.scatter` grass draws
+  from a pool of five tufts with their own blade counts (`variants`), from its own random stream so
+  a chassis framed on the old placement keeps it, and its blades transmit the light behind them
+  (`translucency`, default 0.65), after the light's shadow, so a blade in a building's shadow stays
+  dark. Measured into the sun against away from it, the grass went from 0.59 of its front-lit value
+  to 0.95. `tests/txworld.mjs` holds both. Scrub and rock are unchanged. (2026-10-03)
+- **A mauve sky over the sunset.** The sun's glow was added in its own orange over a dim blue, so
+  looking at the sun the sky printed rose and then mauve, and no. 39's chassis switched blue hour's
+  glow nearly off and its clouds off to get a blue hour. **Fixed in `txthree.js` (2026-10-03):** the
+  glow and the halo turn yellow-white as they rise, which is how a real twilight runs from orange
+  to pale yellow to blue, and they are unchanged ON the horizon line, so the sky fog still meets the
+  dome at one value. Blue hour's clouds are off by default, because high cloud lit amber over deep
+  blue printed maroon. Looking at the sun, blue hour went from hue 8, 356 and 343 at saturation 0.20
+  to 0.28 to blue, and golden hour's rose-grey top band to a pale blue. `tests/txworld.mjs` holds it.
+  Set `clouds` on a copy of the preset if a deck wants them back. (2026-10-03)
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.
 - **A crowd as a mass.** Figures at the same tone as the furniture beside them merge into one

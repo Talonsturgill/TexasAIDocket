@@ -100,7 +100,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.rng(seed)` | seeded helpers (deterministic, never Math.random) |
 | `TXT.roomShare(R)` | the share of the frame the room TXT.interior built fills: a 17 by 17 grid of rays through the camera's own projection, each drawing what it meets among the things the camera draws, inside its near and far, in the ... |
 | `TXT.roundedBox(w, h, d, r, material, { segments })` | centred on the origin, y up. |
-| `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...] })` | one InstancedMesh, seeded. |
+| `TXT.scatter(R, { kind:'grass'\|'scrub'\|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]], seed, scale:[min,max], colors:[hex...], variants, translucency })` | a seeded field, one InstancedMesh for scrub or rock and for grass a Group of one per tuft in its pool, whose blades transmit light from behind. |
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
 | `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |

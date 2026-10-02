@@ -1446,7 +1446,9 @@ export function init(THREE) {
     blueHour: {    // the sun just gone: an amber seam under a deep blue, lamps start to matter
       el: [-2, 3], skyEl: -3, zenith: 0x071634, horizon: 0x5f78a8, haze: 0xd79a78, ground: 0x2c2f3c,
       sun: 0xff9a66, sunDisc: 0, glow: 0.9, horizonGlow: 1.2, span: 0.55,
-      clouds: 0.18, stars: 0.35, fogDensity: 0.006, exposure: 1.1, envIntensity: 0.55, tone: 'aces',
+      // NO CLOUD (2026-10-03): high cloud lit amber over a deep blue printed maroon, and carousel
+      // no. 39's chassis had to set this to 0 to get a blue hour at all
+      clouds: 0.0, stars: 0.35, fogDensity: 0.006, exposure: 1.1, envIntensity: 0.55, tone: 'aces',
       ink: 'light',
       rig: { key: { color: 0xffa877, i: 1.1, radius: 10 }, rim: { color: 0x9ab8ff, i: 1.0, pos: [-8, 6, -8] },
              fill: { color: 0x4c62a0, i: 0.45, pos: [-4, 4, 9] }, ambient: { color: 0x2a3456, i: 0.18 } } },
@@ -1599,9 +1601,18 @@ export function init(THREE) {
       float toward = 0.5 + 0.5 * dot(dz, sz);                     // 1 on the sun's side
       vec3 col = mix(uHorizon, uZenith, pow(clamp(h / uSpan, 0.0, 1.0), 0.6));
       col = mix(col, uHaze, exp(-max(h, 0.0) * 22.0) * 0.8);     // the haze band on the horizon
-      col += uSunColor * uHorizonGlow * pow(toward, 3.0) * exp(-abs(h) * 7.0);
-      col += uSunColor * uGlow * (0.035 * pow(max(cs, 0.0), 3.0) + 0.30 * pow(max(cs, 0.0), 48.0)
-                                  + 1.2 * pow(max(cs, 0.0), 900.0));
+      // THE GLOW TURNS YELLOW-WHITE AS IT RISES (2026-10-03). Added as the sun's own orange over a
+      // dim blue sky it raised the red and left the blue, so the sky above a sunset printed rose and
+      // then mauve: hue 356 to 343 from 14 to 40 percent of the frame over blue hour's horizon,
+      // looking at the sun, and a chassis on carousel no. 39 had to switch the glow nearly off.
+      // A real twilight goes orange, then pale yellow, then blue. Exactly the old colour ON the
+      // line, so the dome, horizonSky and the sky fog still meet there at one value.
+      float txSunL = dot(uSunColor, vec3(0.2126, 0.7152, 0.0722));
+      vec3 txTail = mix(uSunColor, vec3(txSunL) * vec3(1.0, 0.96, 0.78), smoothstep(0.0, 0.16, max(h, 0.0)));
+      col += txTail * uHorizonGlow * pow(toward, 3.0) * exp(-abs(h) * 7.0);
+      // the halo's wide terms take the same turn, and the sun's own core keeps its colour
+      col += txTail * uGlow * (0.035 * pow(max(cs, 0.0), 3.0) + 0.30 * pow(max(cs, 0.0), 48.0))
+           + uSunColor * uGlow * 1.2 * pow(max(cs, 0.0), 900.0);
       if (uSunDisc > 0.0) col += uSunColor * uSunDisc * smoothstep(0.99985, 0.99993, cs);
       if (uClouds > 0.0 && h > 0.0) {
         vec2 uv = d.xz / (h + 0.08);
@@ -2079,7 +2090,10 @@ export function init(THREE) {
 
   /* ---- scatter: the landscape a pad sits in ----------------------------------------------
    * TXT.scatter(R, { kind:'grass'|'scrub'|'rock', count, area:[x0,z0,x1,z1], avoid:[[x0,z0,x1,z1]],
-   *                  seed, scale:[min,max], colors:[hex...] }) — one InstancedMesh, seeded.
+   *                  seed, scale:[min,max], colors:[hex...], variants, translucency }): a seeded field,
+   * one InstancedMesh for scrub or rock and for grass a Group of one per tuft in its pool, whose
+   * blades transmit light from behind. `variants` sets the pool (default 5, 1 for the old single
+   * tuft) and `translucency` the light through a blade (default 0.65, 0 for none).
    * Grass is dry Texas bunchgrass, scrub is mesquite and creosote height, rock is caliche
    * cobble. It never goes inside an `avoid` rectangle, so a pad stays a pad. */
   function tuftGeometry(rng, blades) {
@@ -2135,15 +2149,52 @@ export function init(THREE) {
     g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
     return g;
   }
+  /* BLADES THAT LET THE LIGHT THROUGH (2026-10-03). A field seen into a low sun printed black
+   * stubble on carousel no. 39, frames 1 and 3 in rounds 1 to 3, because a grass blade is a thin
+   * sheet that transmits and a standard material has no term for light arriving from behind it.
+   * This adds one after every direct light in the material's own light loop, so the light's shadow
+   * is already folded into its colour and a blade in a building's shadow stays dark: the share of
+   * the light reaching the blade's far face, strongest when the camera looks into that light. */
+  const RE_DIRECT = 'RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );';
+  function grassMaterial(transl) {
+    const mat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, side: THREE.DoubleSide });
+    if (!(transl > 0)) return mat;
+    mat.onBeforeCompile = (sh) => {
+      sh.uniforms.uTxTransl = { value: transl };
+      sh.fragmentShader = sh.fragmentShader
+        .replace('#include <lights_physical_pars_fragment>', `#include <lights_physical_pars_fragment>
+uniform float uTxTransl;
+vec3 txTransl( vec3 L, vec3 lightColor, vec3 N, vec3 V, vec3 albedo ) {
+  float through = saturate( -dot( N, L ) );
+  float into = saturate( dot( -V, L ) );
+  return uTxTransl * through * ( 0.3 + 0.7 * into * into ) * lightColor * BRDF_Lambert( albedo );
+}`)
+        .replace('#include <lights_fragment_begin>', THREE.ShaderChunk.lights_fragment_begin.split(RE_DIRECT).join(RE_DIRECT
+          + '\n\t\treflectedLight.directDiffuse += txTransl( directLight.direction, directLight.color, geometryNormal, geometryViewDir, material.diffuseColor );'));
+    };
+    mat.customProgramCacheKey = () => 'txgrass';
+    return mat;
+  }
   TXT.scatter = function (R, o) {
     o = o || {};
     const kind = o.kind || 'grass', rng = TXT.rng(o.seed || 20260924);
     const area = o.area || [-40, -60, 40, 20], avoid = o.avoid || [], count = o.count || 1500;
-    let geo, mat, sc, cols, cast;
+    let geo, mat, sc, cols, cast, pool = null;
     if (kind === 'grass') {
       geo = tuftGeometry(rng, o.blades || 9); sc = o.scale || [0.55, 1.15]; cast = false;
       cols = o.colors || [0xb9a86a, 0xa39a5e, 0x8f8a52, 0xc4b27a, 0x7e7a48];
-      mat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, side: THREE.DoubleSide });
+      mat = grassMaterial(o.translucency != null ? o.translucency : 0.65);
+      /* A POOL OF TUFTS (2026-10-03). Every instance drew the same nine blades, and the craft judge
+       * named "one repeated tuft sprite" in every round of carousel no. 39. Rotation and scale do
+       * not hide one silhouette repeated nine thousand times. So the field draws from `variants`
+       * tufts with their own blade counts. They come from their own stream, so the placement below
+       * is the one every existing chassis was framed on, and the first tuft is the old one. */
+      const nv = Math.max(1, Math.min(8, Math.round(o.variants != null ? o.variants : 5)));
+      if (nv > 1) {
+        const vr = TXT.rng((o.seed || 20260924) + 7919), b = o.blades || 9;
+        pool = [geo];
+        for (let v = 1; v < nv; v++) pool.push(tuftGeometry(vr, Math.max(4, Math.round(b * (0.6 + 0.9 * vr())))));
+      }
     } else if (kind === 'scrub') {
       geo = lumpGeometry(rng, 2, 0.62, 0.55); sc = o.scale || [0.35, 1.1]; cast = true;
       cols = o.colors || [0x5f6440, 0x6d6c45, 0x545a3a, 0x77734b];
@@ -2154,6 +2205,7 @@ export function init(THREE) {
       mat = new THREE.MeshStandardMaterial({ roughness: 0.88 });   // smooth: a faceted stone reads as low poly
     }
     const mesh = new THREE.InstancedMesh(geo, mat, count);
+    const pick = pool ? TXT.rng((o.seed || 20260924) + 104729) : null, which = [];
     const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), t = new THREE.Vector3();
     const up = new THREE.Vector3(0, 1, 0), color = new THREE.Color();
     let placed = 0, tries = 0;
@@ -2175,13 +2227,33 @@ export function init(THREE) {
       m4.compose(t, q, s); mesh.setMatrixAt(placed, m4);
       color.set(cols[Math.floor(rng() * cols.length)]).multiplyScalar(0.85 + 0.3 * rng());
       mesh.setColorAt(placed, color);
+      if (pool) which.push(Math.floor(pick() * pool.length));
       placed++;
     }
     mesh.count = placed;
     mesh.castShadow = cast; mesh.receiveShadow = true;
     mesh.instanceMatrix.needsUpdate = true; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    R.scene.add(mesh);
-    return mesh;
+    if (!pool) { R.scene.add(mesh); return mesh; }
+    /* ONE InstancedMesh PER TUFT, in a group. The group takes a rotation or a visibility the way
+     * the single mesh did, and every child is still an InstancedMesh, which is what the weathering
+     * pass skips and what the sky and LOD measurements read instance by instance. */
+    const group = new THREE.Group();
+    group.userData.txScatter = kind;
+    pool.forEach((g, v) => {
+      const idx = []; for (let i = 0; i < placed; i++) if (which[i] === v) idx.push(i);
+      if (!idx.length) return;
+      const part = new THREE.InstancedMesh(g, mat, idx.length);
+      idx.forEach((i, j) => {
+        mesh.getMatrixAt(i, m4); part.setMatrixAt(j, m4);
+        mesh.getColorAt(i, color); part.setColorAt(j, color);
+      });
+      part.castShadow = cast; part.receiveShadow = true;
+      part.instanceMatrix.needsUpdate = true; if (part.instanceColor) part.instanceColor.needsUpdate = true;
+      group.add(part);
+    });
+    mesh.dispose();
+    R.scene.add(group);
+    return group;
   };
 
   return TXT;
