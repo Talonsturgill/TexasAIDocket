@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- 2026-10-02, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's goldenHour world. One fly vial on a laboratory window sill in Houston, the camera low and turned into the setting sun, the flies climbing its wall, the city melted behind it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Software pointed at a gene. Flies ran the test.</h1>
+<p class="dek" data-follow="28">Researchers at Texas Children's and Baylor name variants in BRSK1 as a likely diagnosis for a rare disorder that had gone unexplained.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "Texome Project, Houston", counter: "01 / 09", src: "c1 c2 c3 c8", fit: { min: 92, max: 124, maxLines: 3 } });
+  const Y = VL.SILL_Y;
+  const R = VL.stage(TXT, gl, W, { fov: 32 });
+  VL.sill(K, R, TXT, { w: 3.2, mullions: [-1.4, 1.4] });
+  const v = VL.vial(K, { state: 'climbing', flies: 26, seed: 4, tape: true, droplets: 24 });
+  v.position.set(0, Y, 0.12); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.7 });
+  VL.city(K, R, TXT, { look: [-0.15, -1] });
+  TXT.frame(R, { from: [0.08, Y + 0.045, 0.52], look: [0, Y + 0.104, 0.115] });
+  TXT.sky(R);
+  TXT.deckRig(R, VL.rigSpec(W, 0.3), VL.rigOpts([0, Y, 0.12]));
+  TXT.ground(R, { surface: 'asphalt', size: 9000, seed: 11 });
+  TXT.weather(R, { grime: 0.15, skip: [] });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  const a = VL.project(THREE, R, [0, Y + 0.112, 0.12]), b = VL.project(THREE, R, [0, Y, 0.12]);
+  const half = Math.abs(VL.project(THREE, R, [0.0135, Y + 0.05, 0.12])[0] - VL.project(THREE, R, [-0.0135, Y + 0.05, 0.12])[0]) / 2 + 4;
+  VL.post(cx, { a: 0.45, pad: 0 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

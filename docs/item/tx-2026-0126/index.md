@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs posted notice that 
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The senate committee's water hearing is still the only scheduled place that question gets asked.
 - 2026-09-26 · The Senate committee's hearing on data center cooling water is still where that question is scheduled to be asked.
 - 2026-09-29 · The Senate hearing is still where lawmakers are set to ask how much water data center cooling uses and whether local providers are told.
+- 2026-10-02 · The committee's meetings page lists the September 1st sitting the notice set, followed by a second on September 2nd. The notice itself sits on a path this project does not read.
 
 ## Evidence
 
@@ -62,4 +63,10 @@ Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/
 > If submitting written testimony, please provide 15 copies to the committee clerk with your name and/or the name of your organization on each copy, and email a digital copy to the clerk of the committee
 
 Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
+
+### The committee's meetings page lists the September 1st sitting the notice set.
+
+> September 1, 2026 9:00 AM
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 

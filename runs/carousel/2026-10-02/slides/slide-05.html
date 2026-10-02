@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-10-02, frame 5 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's goldenHour world. Two strips of lab tape along the coping, each filled with green to its own percentage of one length, the vial at their end. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.03em; color:#FBF7EF; white-space:nowrap; z-index:12; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A good pointer is still a pointer.</h1>
+<p class="dek" data-follow="28">On one confidence metric, AI-MARRVEL reached 98% precision and found 57% of diagnosable cases among 871. That is not its accuracy.</p>
+<div class="lab" id="lab-a">98% precision</div>
+<div class="lab" id="lab-b">57% of diagnosable cases found</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "What the score means", counter: "05 / 09", src: "c35", fit: { min: 90, max: 118, maxLines: 3 } });
+  const FIG = {"precision_pct": 98, "diagnosable_found_pct": 57};
+  const Y = VL.SILL_Y, L = 0.12, X0 = -0.095;
+  /* TWO TAPES AT ONE LENGTH. Two strips of white lab tape laid along the coping, each filled with
+   * the machine's green to its own percentage of the same length, so 98 and 57 are two lengths at
+   * one scale. They measure different things, which the labels say, and the vial stands at their
+   * end for a scale a reader knows. */
+  const R = VL.stage(TXT, gl, W, { fov: 34 });
+  VL.sill(K, R, TXT, { w: 3.2, mullions: [-1.5, 1.5] });
+  const white = K.mat('vl-tape-white', { color: 0xeeebe3, roughness: 0.75 });
+  const green = K.mat('vl-tape-green4', { color: 0x14503a, emissive: 0x2fd896, emissiveIntensity: 0.85, roughness: 1, metalness: 0, envMapIntensity: 0 });
+  const tapes = [[FIG.precision_pct, 0.05], [FIG.diagnosable_found_pct, 0.135]];
+  const meshes = tapes.map(([pct, z]) => {
+    const t = new THREE.Mesh(new THREE.BoxGeometry(1, 0.0004, 0.019), white); t.receiveShadow = true; TXT.add(R, t);
+    const f = new THREE.Mesh(new THREE.BoxGeometry(1, 0.0005, 0.017), green); f.receiveShadow = true; TXT.add(R, f);
+    return { pct, z, t, f };
+  });
+  const v = VL.vial(K, { state: 'empty', flies: 0, pupae: 0, seed: 41, tape: true });
+  v.position.set(X0 + L + 0.024, Y, 0.09); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.7 });
+  VL.city(K, R, TXT, { look: [-0.05, -1], seed: 15 });
+  TXT.frame(R, { from: [-0.02, Y + 0.085, 0.47], look: [-0.02, Y + 0.075, 0.09] });
+  /* both tapes project to the same screen start and end: the near tape is laid at X0..X0+L, and the
+   * far one is found, by bisection through this camera, at the world x that lands on the same pixel,
+   * so 98 and 57 read as lengths at one scale on the page and not only in the world */
+  const near = meshes[1], sx = (x, z) => VL.project(THREE, R, [x, Y, z])[0];
+  const match = (px, z) => { let lo = -1, hi = 1; for (let k = 0; k < 60; k++) { const m = (lo + hi) / 2; if (sx(m, z) < px) lo = m; else hi = m; } return (lo + hi) / 2; };
+  meshes.forEach((m) => {
+    const a0 = m === near ? X0 : match(sx(X0, near.z), m.z), a1 = m === near ? X0 + L : match(sx(X0 + L, near.z), m.z), len = a1 - a0;
+    m.t.scale.x = len; m.t.position.set(a0 + len / 2, Y + 0.0002, m.z);
+    m.f.scale.x = len * m.pct / 100; m.f.position.set(a0 + len * m.pct / 200, Y + 0.0006, m.z);
+    m.x0 = a0;
+  });
+  TXT.sky(R);
+  TXT.deckRig(R, VL.rigSpec(W, 0.5), VL.rigOpts([0, Y, 0.12]));
+  TXT.ground(R, { surface: 'asphalt', size: 9000, seed: 15 });
+  TXT.weather(R, { grime: 0.12 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  const lab = (id, z) => { const p = VL.project(THREE, R, [meshes.find((m) => m.z === z).x0, Y, z - 0.022]); const e = document.getElementById(id); e.style.left = Math.round(p[0]) + 'px'; e.style.top = Math.round(p[1] - e.offsetHeight) + 'px'; };
+  lab('lab-a', tapes[0][1]); lab('lab-b', tapes[1][1]);
+  const p0 = VL.project(THREE, R, [X0 - 0.03, Y + 0.12, 0.2]), p1 = VL.project(THREE, R, [X0 + L + 0.06, Y - 0.01, 0.26]);
+  VL.post(cx, { a: 0.45, rgb: '10,10,14', type: ['.kick', '.hook', '.dek', '.lab'] });
+  TXDECK.finish(cx);
+  window.__txDrawn = { tapes: 2, fills: tapes.map(t => t[0]) };
+  return true;
+})();
+</script>
+</body>
+</html>

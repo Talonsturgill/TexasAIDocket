@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The approved route from Somervell County to Howard County is unchanged, and the company's own project page still records the approval.
 - 2026-09-26 · The approval stands, and Oncor's own project page now plans the line for completion in 2029. The same page said 2028 when this line was admitted. Nothing on the page says why the year moved.
 - 2026-09-29 · Oncor's project page still describes the approved line from Somervell County to Howard County, with its planned completion unchanged since the last reading.
+- 2026-10-02 · The commission's approval of the line is unconfirmed this run. Oncor's project page did not answer and the order was not re-read.
 
 ## Evidence
 

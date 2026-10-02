@@ -11,7 +11,7 @@ Texas A&M's College of Engineering published on September 4th, 2026 that the Nat
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The screening tool still answers whether an alloy can exist before anybody tries to make it.
 - 2026-09-26 · The A&M screening tool still asks whether an alloy can exist before anyone tries to make it.
 - 2026-09-29 · The A&M tool still screens whether an alloy can exist before anyone makes it.
+- 2026-10-02 · The A&M screening tool is still funded to judge whether an alloy can exist before anyone makes it.
 
 ## Evidence
 

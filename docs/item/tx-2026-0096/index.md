@@ -1,6 +1,6 @@
 # Senate Water, Agriculture and Rural Affairs has held both sittings on data center cooling water and published no recommendation
 
-The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026 and again on Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The Legislature's upcoming meetings listing no longer carries either sitting, which is what a held hearing looks like on that page. No recommendation from the committee has been published, so what it will ask the Legislature to do about cooling water is not yet on the record.
+The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026 and again on Wednesday, September 2nd, 2026 at the Capitol. The Legislature's upcoming meetings listing no longer carries either sitting, which is what a held hearing looks like on that page. No recommendation from the committee has been published, so what it will ask the Legislature to do about cooling water is not yet on the record.
 
 - Topic: state-policy
 - Decided by: Texas Senate Committee on Water, Agriculture and Rural Affairs (legislature)
@@ -9,12 +9,12 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Public access: Write to the decider
 - Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
 - 2026-09-01 · hearing: Public hearing, held
-- 2026-09-02 · hearing: Second public hearing, hearing room E1.012, held
+- 2026-09-02 · hearing: Second public hearing, held
 
 ## How this decision moved
 
@@ -22,7 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-26 · Admitted. The committee's own charge names data centers and the Legislature's upcoming listing carries the date and the room.
 - 2026-08-27 · Checked, and the committee has added a day. The Legislature's listing now carries a second public hearing of the same committee on September 2nd. It sits in the same room as the first.
-- 2026-08-28 · The Senate committee still sits on September 1st in hearing room E1.012 at the Capitol, and the second sitting the next day is still listed. The charge on how much water high consumption cooling uses is still the reason it meets, and a Texan can still show up.
+- 2026-08-28 · The Senate committee still sits on September 1st at the Capitol, and the second sitting the next day is still listed. The charge on how much water high consumption cooling uses is still the reason it meets, and a Texan can still show up.
 - 2026-08-29 · The comment window is still open, closing September 2nd. The committee still meets on the interim charge that names data center cooling water, and the notice still says it hears public as well as invited testimony.
 - 2026-08-30 · The hearing is still set and the room is still open to file into. Data center cooling water remains on the committee's list, and the window closes September 2nd.
 - 2026-09-01 · The Senate water committee's data-center hearing remains open to written public submissions through its stated close.
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · Neither sitting is on the senate's list of upcoming meetings any more, so the committee has heard its subject twice and has nothing further scheduled. No recommendation has been published.
 - 2026-09-26 · The Senate committee has held both sittings on cooling water and still has published no recommendation.
 - 2026-09-29 · The Senate committee has published no recommendation from either of its sittings on data center cooling water.
+- 2026-10-02 · The committee's page still lists both September sittings and still carries no recommendation on cooling water. The room the first sitting used is no longer posted on any page the record can read, so the record no longer names it.
 
 ## Evidence
 
@@ -67,11 +68,11 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
-### The listing gives the room the September 1st hearing sits in.
+### The committee's own page lists the September 1st sitting among its hearings and events.
 
-> Water, Agriculture and Rural Affairs Type: Public Hearing Location: E1.012 (Hearing Room)
+> September 1, 2026
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://senate.texas.gov/cmte.php?c=700
 
 ### The Legislature's upcoming meetings listing carries a second sitting of the same committee the following day.
 

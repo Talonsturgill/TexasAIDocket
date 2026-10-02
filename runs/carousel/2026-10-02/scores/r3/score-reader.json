@@ -1,0 +1,12 @@
+{"judge": "reader", "lens": "reader", "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 7 and 8 work as places at an hour, the interiors on 2, 3 and 9 are believable. Frame 6 reads as a glowing cork with bead-like flies and a muddy skyline under its headline. Frame 5's cap is a cropped ghost blending into a building, smudge columns under the dek. Frame 4 is a page pinned to a wall. The parapet ground on 5, 7, 8 is a flat dark band with kit trees."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One hero with its tape, two declared worlds, bookends work, the value strobes less than recent decks. Frame 6 sits outside the deck."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.5, "why": "Every numeral traces and the fact check's refusals hold. The caption's 'Texome tests ... for free if they can't pay' is broader than frame 9's 'lists as candidates'. 'That is not its accuracy' is an inference. Frame 2's c50 supports only the wall art."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, where and what to do. The deck never says what the disorder looks like in a child (c11, c12 unused), so the closing question gives a reader nothing to recognise a family by. Texas focus (c47, c27) unused, what a likely diagnosis changes unsaid."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, frame 2 pays, the chain holds. Frame 5 is jargon to a feed reader and the one cuttable frame. The turn is weakened by frame 6's art."},
+  {"name": "voice", "weight": 0.1, "score": 7.3, "why": "Several strong plain lines, honest. Frame 9's 'lists as candidates' is an inverted bureaucratic construction, 'modeled three patient variants' lab register, little Texas texture."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "New subject, palette and hero. House-formula opening, fourth clinical deck since September 9th, familiar instrument and institutions."}
+ ],
+ "weighted_score": 7.41, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Put the condition's verified features (c11, c12, c13) on frame 8 and in the caption, and rebuild frame 6 so a vial wall and lying flies read at 432 px."}

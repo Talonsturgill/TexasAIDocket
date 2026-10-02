@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The Governor's own site refuses the automated fetcher in its exclusion file, so the directive is cited through the Texas Tribune, CBS News Texas and Troutman Pepper Locke instead. Three conditions the release set out and its closing line on incentives are not carried, since none of those three reproduces them.
 - 2026-09-26 · The Governor's directive still tells the environmental agency to issue no data center permits until the audit is done.
 - 2026-09-29 · TCEQ is still told to issue no data center permits until the grid audit is complete.
+- 2026-10-02 · TCEQ is still under orders to issue no data center permits until the grid audit is done.
 
 ## Evidence
 

@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · The sheriff's promise is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. The county's own site still carries the item, and nothing on the record shows the promise withdrawn.
 - 2026-09-30 · The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county's own archive lists meeting dates without the item's text.
 - 2026-10-01 · The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and nothing on the record shows the promise withdrawn.
+- 2026-10-02 · The sheriff's promise is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and nothing on the record shows the promise withdrawn.
 
 ## Evidence
 

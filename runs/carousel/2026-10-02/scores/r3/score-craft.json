@@ -1,0 +1,12 @@
+{"judge": "craft", "lens": "craft", "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Frames 2, 3 and 9 are strong interiors, frame 1 a credible cover, frame 7 carries the argument. Frame 6 exposes the fly model (spheres, bead eyes, grey disc wings, cork stool food), with a full-height seam and a dead middle left. Frame 5 has sprite trees on a flat dark plain and a cropped giant vial with streaked glass. Frame 4 is a sheet pinned to a flat wall. The hero is small on 2, 4 and 9. Exterior golden hour reads grey dusk, glass shows streaks on 1, 7, 8. Frame 2 shows no window and no floor junction."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "Clearly one deck with two working continuity devices and landing bookends. Undeclared 3 to 4 step, room light direction not held between 2 and 3, frame 8 reads as frame 1 repeated."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every numeral traces, bar ratio matches, primary sources, frame 5 careful. The caption compresses c39's individuals into families."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.8, "why": "What, who, where and what to do, no invented deadline. The stake is concrete only for the narrow set of families with an undiagnosed rare disease."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover says the whole turn, frame 2 pays, 9 closes on an action. Frame 8 is softest, repeating frame 1."},
+  {"name": "voice", "weight": 0.1, "score": 7.2, "why": "Plain and honest with good lines. Frame 9's dek opens on inverted eligibility syntax. Texas specificity stops at Houston."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "Fresh subject. goldenHour reused from no. 37, accent near no. 39's green, opening move repeats nos. 37 and 39."}
+ ],
+ "weighted_score": 7.24, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Remodel the fly and re-shoot frame 6 without the seam and the dead middle left, and replace frame 5's sprite trees and grey plain with the sunlit coping itself."}

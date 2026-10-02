@@ -1,0 +1,2030 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Software pointed at a gene. Flies ran the test.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 363,
+          "font_px": 123.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              869,
+              152
+            ],
+            [
+              80,
+              255,
+              723,
+              152
+            ],
+            [
+              80,
+              376,
+              590,
+              152
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Researchers at Texas Children's and Baylor name variants in BRSK1 as a likely diagnosis for a rare disorder that had gone unexplained.",
+          "x": 82,
+          "y": 541,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              541,
+              841,
+              42
+            ],
+            [
+              82,
+              584,
+              819,
+              42
+            ],
+            [
+              82,
+              627,
+              272,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texome Project, Houston",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17533,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 97.5,
+          "variance": 2170.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One child, and no answer.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 250,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              895,
+              158
+            ],
+            [
+              80,
+              258,
+              412,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The child was enrolled in the Texome Project, which offers free genetic testing to medically underserved people with rare, undiagnosed conditions. Standard analysis of the child and a parent did not reveal an answer.",
+          "x": 82,
+          "y": 428,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              428,
+              848,
+              42
+            ],
+            [
+              82,
+              471,
+              850,
+              42
+            ],
+            [
+              82,
+              513,
+              803,
+              42
+            ],
+            [
+              82,
+              556,
+              630,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where it began",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c7 c27 c50",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16073,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55.5,
+          "variance": 1540.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Then software flagged BRSK1.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 250,
+          "font_px": 127.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              755,
+              158
+            ],
+            [
+              80,
+              258,
+              831,
+              158
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI-MARRVEL, a classifier trained on over 3.5 million variants, highlighted a rare change in BRSK1 as a promising candidate.",
+          "x": 82,
+          "y": 428,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              428,
+              875,
+              42
+            ],
+            [
+              82,
+              471,
+              725,
+              42
+            ],
+            [
+              82,
+              513,
+              157,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "benchmarked methods",
+          "x": 256,
+          "y": 631,
+          "w": 299,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              256,
+              631,
+              299,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI-MARRVEL",
+          "x": 252,
+          "y": 741,
+          "w": 158,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              252,
+              741,
+              158,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "solved cases, three cohorts",
+          "x": 247,
+          "y": 913,
+          "w": 425,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              247,
+              913,
+              425,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The pointer",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c32 c33 c34",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16268,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 52.7,
+          "variance": 1405.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ten people. Seven unrelated families.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 227,
+          "font_px": 116,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              848,
+              143
+            ],
+            [
+              80,
+              249,
+              884,
+              143
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Shared through GeneMatcher, the finding drew in other families with rare variants in the same gene. Two of the ten had seizures.",
+          "x": 82,
+          "y": 405,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              405,
+              813,
+              42
+            ],
+            [
+              82,
+              448,
+              859,
+              42
+            ],
+            [
+              82,
+              491,
+              196,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "affected people",
+          "x": 418,
+          "y": 638,
+          "w": 236,
+          "h": 34,
+          "font_px": 25,
+          "weight": "800",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 23, 27)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              418,
+              638,
+              236,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "seizures",
+          "x": 420,
+          "y": 739,
+          "w": 126,
+          "h": 34,
+          "font_px": 25,
+          "weight": "800",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 23, 27)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              420,
+              739,
+              126,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "unrelated families",
+          "x": 415,
+          "y": 785,
+          "w": 284,
+          "h": 34,
+          "font_px": 25,
+          "weight": "800",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 23, 27)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              415,
+              785,
+              284,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The network",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10 c13 c37",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14148,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 78.6,
+          "variance": 1460.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A good pointer is still a pointer.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 230,
+          "font_px": 117.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              803,
+              145
+            ],
+            [
+              80,
+              250,
+              652,
+              145
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On one confidence metric, AI-MARRVEL reached 98% precision and found 57% of diagnosable cases among 871. That is not its accuracy.",
+          "x": 82,
+          "y": 408,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              408,
+              775,
+              42
+            ],
+            [
+              82,
+              451,
+              846,
+              42
+            ],
+            [
+              82,
+              494,
+              348,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "98% precision",
+          "x": 73,
+          "y": 1005,
+          "w": 213,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              73,
+              1005,
+              213,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "57% of diagnosable cases found",
+          "x": 79,
+          "y": 1105,
+          "w": 491,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              79,
+              1105,
+              491,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the score means",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c35",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18822,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 75.4,
+          "variance": 758
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "With the gene off, the flies had trouble moving.",
+          "x": 80,
+          "y": 150,
+          "w": 540,
+          "h": 374,
+          "font_px": 95.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              536,
+              117
+            ],
+            [
+              80,
+              232,
+              442,
+              117
+            ],
+            [
+              80,
+              325,
+              452,
+              117
+            ],
+            [
+              80,
+              419,
+              316,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The fly version of BRSK1 is called sugar-free frosting. Disabled, it also left the flies with shorter lives.",
+          "x": 82,
+          "y": 646,
+          "w": 430,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              646,
+              381,
+              42
+            ],
+            [
+              82,
+              689,
+              385,
+              42
+            ],
+            [
+              82,
+              731,
+              417,
+              42
+            ],
+            [
+              82,
+              774,
+              263,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The proof",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 c16 c17",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29226,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 68.4,
+          "variance": 959.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The patients' versions only partly fixed the flies.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 167,
+          "font_px": 85,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              752,
+              105
+            ],
+            [
+              80,
+              222,
+              860,
+              105
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The normal human gene largely corrected the flies. The team modeled three patient variants, and those restored the flies only partially.",
+          "x": 82,
+          "y": 345,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              345,
+              810,
+              42
+            ],
+            [
+              82,
+              387,
+              834,
+              42
+            ],
+            [
+              82,
+              430,
+              324,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "gene off",
+          "x": 84,
+          "y": 522,
+          "w": 133,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              522,
+              133,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "human gene",
+          "x": 271,
+          "y": 522,
+          "w": 166,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              271,
+              522,
+              166,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "patient variants",
+          "x": 629,
+          "y": 522,
+          "w": 266,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              629,
+              522,
+              266,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The test",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18 c19 c29 c51",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 477,
+          "y": 569,
+          "w": 570,
+          "h": 3,
+          "by": "brk",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 477,
+          "y": 569,
+          "w": 3,
+          "h": 16,
+          "by": "brk",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 1044,
+          "y": 569,
+          "w": 3,
+          "h": 16,
+          "by": "brk",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25406,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 78.3,
+          "variance": 989.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A likely diagnosis. Not a certain one.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 234,
+          "font_px": 119.5,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              875,
+              147
+            ],
+            [
+              80,
+              252,
+              844,
+              147
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Every affected person had some developmental delay. Common features included delayed speech and autism.",
+          "x": 82,
+          "y": 412,
+          "w": 860,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              412,
+              789,
+              42
+            ],
+            [
+              82,
+              455,
+              816,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What it adds up to",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c11 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20490,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 75,
+          "variance": 1183.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Families who can't pay can ask.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 237,
+          "font_px": 121,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(251, 247, 239)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              652,
+              149
+            ],
+            [
+              80,
+              253,
+              842,
+              149
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Candidates are underserved people with a suspected rare disease who can't pay for sequencing. Testing and follow-up are free, 5 visits in 2 years, in person or virtual. Write to texome-project@bcm.edu.",
+          "x": 82,
+          "y": 415,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              415,
+              849,
+              42
+            ],
+            [
+              82,
+              458,
+              845,
+              42
+            ],
+            [
+              82,
+              501,
+              844,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texome-project@bcm.edu.",
+          "x": 82,
+          "y": 543,
+          "w": 397,
+          "h": 42,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(244, 240, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              543,
+              397,
+              42
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "Where to write",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c39 c40 c42 c43 c50",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 235, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16222,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 83.6,
+          "variance": 2719.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

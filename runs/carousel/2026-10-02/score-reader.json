@@ -1,0 +1,12 @@
+{"judge": "reader", "lens": "reader", "round": 5,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frame 1 passes the place-and-hour test, 2, 3 and 9 believable interiors, frame 7 strongest. Box-extruded skyline, matching dome trees, frame 5's bars are slabs on the ground, frame 6 a blurred close-up with a dead band and toy red-ball eyes, frame 4 a chart pinned to a wall."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One hero in one material, two worlds sharing the light, the room bookends. Three sky-to-room cuts, the hero jumps in scale to a thumb-sized prop on 2 and 9, frame 8 nearly repeats frame 1."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.5, "why": "Every figure and drawn count traces, sources primary, every cited id in the first comment. The caption gives the hospital the researchers' finding, frame 7 draws climbing heights c18 and c19 do not describe, only abstracts read."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.8, "why": "What, who, where, how and what to do. Eligibility stays at 'underserved' with c38 unused, the Texas focus (c27, c47) is not said."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, 6 to 7 a real turn, 9 an action. Frame 5 breaks chronology and stalls a lay reader."},
+  {"name": "voice", "weight": 0.1, "score": 7.5, "why": "Plain, specific, unhyped, house rules hold. Generic kickers, little Texas register, frame 5's dek reads like an abstract."},
+  {"name": "variety", "weight": 0.1, "score": 6.5, "why": "Fresh object and instrument. Fourth Houston hospital deck in the window, opening and carried-object structure repeat."}
+ ],
+ "weighted_score": 7.43, "hard_fails": [], "ship": true,
+ "one_sentence_fix": "Say plainly what 98 and 57 measure or fold frame 5 into frame 3, and tell a family concretely whether they qualify with c38 and c47."}

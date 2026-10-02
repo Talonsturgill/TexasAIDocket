@@ -1,0 +1,12 @@
+{"judge": "integrity", "lens": "integrity", "round": 4,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Every frame rendered in a world, 1 and 7 strongest, 2 and 9 convincing rooms. The fly is still a primitive on four frames, frame 6 misreads as a cork with beads, frame 5's trees break the parapet logic, frame 4 a flat page, frame 9's third flag runs off the board."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One hero, one accent held to the machine's frames, both devices work, cuts land at world changes. Frame 6 and frame 4 sit slightly outside."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 7.5, "why": "Every numeral and drawn count checks and the fact check's discipline holds. The first comment is stale against round 4 (missing c11 and c12, carrying c23 and a c46-only entry), frame 6 draws flies on their backs that no claim states, journal links are Europe PMC REST JSON."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "What, who, where traced to c1, and a concrete next step in the source's own terms. No invented deadline."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, the turn lands on 6, close on an action. Frames 3 and 5 could fold into one."},
+  {"name": "voice", "weight": 0.1, "score": 7.5, "why": "Clean, house rules hold, honest lines. Frame 7's 'them' ambiguous, thin Texas specificity."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "First genetics deck with a new world. One object through every frame repeats nos. 38 and 39."}
+ ],
+ "weighted_score": 7.31, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Rebuild the fly as a real insect model and reframe frame 6, and regenerate the stale sources block."}

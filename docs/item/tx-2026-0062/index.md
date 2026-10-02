@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · Fort Worth's pause is still running and its grid filing requirements still apply to anything filed during it.
 - 2026-09-26 · Fort Worth's moratorium is still running, and its grid filing requirements still apply to what is filed in the meantime.
 - 2026-09-29 · Fort Worth's data center moratorium is in effect, and anyone filing in the meantime still owes the grid information the council adopted.
+- 2026-10-02 · Fort Worth's moratorium still reads as Community Impact reported it. KERA's account would not load, so its part of the entry is unconfirmed.
 
 ## Evidence
 

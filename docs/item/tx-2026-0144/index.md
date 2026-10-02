@@ -10,7 +10,7 @@ The Department of Energy published a request for information on September 9th, 2
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The federal comment window on securing the grid still closes October 9th, and the department still names growth in data centers and artificial intelligence as why demand rose.
 - 2026-09-26 · The energy department is still taking written responses on securing the grid through October 9th. The notice still names data centers and artificial intelligence among what raised the nation's need for reliable power.
 - 2026-09-29 · The comment window is still open, closing October 9th. The energy department's notice still names artificial intelligence among the reasons demand for reliable power grew.
+- 2026-10-02 · The energy department is still taking comment on securing the grid, until October 9th, and its notice still names AI among the drivers of demand.
 
 ## Evidence
 

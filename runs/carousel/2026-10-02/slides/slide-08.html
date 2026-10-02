@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- 2026-10-02, frame 8 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's goldenHour world. The opening vial again on the coping, off centre and from a little higher, flies spread up its wall and the green tape at its shoulder. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A likely diagnosis. Not a certain one.</h1>
+<p class="dek" data-follow="28">Every affected person had some developmental delay. Common features included delayed speech and autism.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "What it adds up to", counter: "08 / 09", src: "c3 c11 c12", fit: { min: 90, max: 120, maxLines: 3 } });
+  const Y = VL.SILL_Y, Z = 0.12;
+  /* THE OPENING VIAL AGAIN, frame 1's camera come closer and a little higher, the whole vial standing on the coping, the flies spread up the wall
+   * toward the plug and the machine's tape at its shoulder: the pointer and the proof on one object. */
+  const R = VL.stage(TXT, gl, W, { fov: 30 });
+  VL.sill(K, R, TXT, { w: 3.2, mullions: [-1.5, 1.5] });
+  const v = VL.vial(K, { state: 'climbing', flies: 30, seed: 21, tape: true, droplets: 20 });
+  v.position.set(0, Y, Z); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.7 });
+  VL.city(K, R, TXT, { look: [-0.2, -1], seed: 9 });
+  TXT.frame(R, { from: [0.04, Y + 0.09, Z + 0.38], look: [0.002, Y + 0.086, Z] });
+  TXT.sky(R);
+  TXT.deckRig(R, VL.rigSpec(W, 0.3), VL.rigOpts([0, Y, Z]));
+  TXT.ground(R, { surface: 'asphalt', size: 9000, seed: 13 });
+  TXT.weather(R, { grime: 0.15 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  const a = VL.project(THREE, R, [0, Y + 0.112, Z]), b = VL.project(THREE, R, [0, Y - 0.004, Z]);
+  const half = Math.abs(VL.project(THREE, R, [0.0135, Y + 0.05, Z])[0] - VL.project(THREE, R, [-0.0135, Y + 0.05, Z])[0]) / 2 + 4;
+  /* the far city softened above the plug's foot, uniformly: the plug is opaque, so its own edge is kept */
+  const pf = VL.project(THREE, R, [0, Y + 0.072, Z])[1];
+  VL.post(cx, { a: 0.45, rgb: '6,6,10', fade: 320, pad: 0, typeBlur: 22, typeFeather: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

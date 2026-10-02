@@ -1,0 +1,12 @@
+{"judge": "craft", "lens": "craft", "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Frames 1, 7 and 8 come close to the 10. Four weak frames. Frame 6, the turn, shows flies as chains of capsules with bead eyes, a hard vertical glass seam and a muddy left half. Frame 4's page stands upright on a flat unlit wall. Frame 5's vial is cut by the right edge and its plug merges into a facade, trees are cards with no contact, no shadow across the tapes. Frame 3's dek ends just above the bezel and the vial is a small prop. Frame 9 has an unexplained bright slab at the upper right. Vial walls show wavy vertical streaks on 1, 5, 7, 8. Frame 7's gene off label is outside the safe zone."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One hero, one accent, one key and grade, both declared devices work. The 4 to 5 cut is undeclared, the hero shrinks to a prop in the room frames, frame 6 sits outside both worlds."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every string carries claim ids that hold it, every encoding traces. Frame 9's 'Texome takes' is firmer than c39, the caption opener is an inference no quote states."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, where, how and what to do. The stake for the reader stays general."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, frame 5 a well-placed counter-image, 7 the payoff. Frame 4's sub-count could compress, frame 6's weakness softens the turn."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "Clean and honest with strong lines. Frame 8's dek is flat paper prose and 'That is not its accuracy.' is stiff. Little Texan voice."},
+  {"name": "variety", "weight": 0.1, "score": 6.5, "why": "Fresh subject. goldenHour as on no. 37, green accent after no. 39, canvas bars on a kit monitor repeat no. 35, cover move repeats nos. 37 and 39."}
+ ],
+ "weighted_score": 7.06, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Rebuild frame 6, the turn: pull the camera back to the distance frames 1, 7 and 8 hold the vial at, remove the glass seam and the mud in the left half."}

@@ -1,0 +1,239 @@
+{
+ "date": "2026-10-02",
+ "carousel_no": 40,
+ "document_title": "Software pointed at a gene. Flies ran the test.",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Software did not diagnose this child.\n\nThe child was enrolled in the Texome Project. Standard analysis found no answer. Then AI-MARRVEL flagged a rare change in a gene called BRSK1.\n\nThat flag was a lead. Testing it took families and flies.\n\nThrough GeneMatcher the study grew to 10 affected people from seven unrelated families. In flies the gene is sff, for \"sugar-free frosting.\" Switched off, the flies had trouble moving and lived shorter lives. The normal human gene largely corrected them. The three patient versions only partly did.\n\nEvery affected person had some developmental delay. Texas Children's calls the variants a likely diagnosis.\n\nTexome takes candidates from underserved families with a suspected rare disease who can't pay. Testing is free and visits can be virtual. Could a family you know write to texome-project@bcm.edu?\n\n#TexomeProject #TexasChildrens #BaylorMedicine",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texome Project, Houston",
+   "headline": "Software pointed at a gene. Flies ran the test.",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c8"
+   ],
+   "cite": "c1 c2 c3 c8",
+   "body": "Researchers at Texas Children's and Baylor name variants in BRSK1 as a likely diagnosis for a rare disorder that had gone unexplained.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Software pointed at a gene. Flies ran the test.",
+    "Researchers at Texas Children's and Baylor name variants in BRSK1 as a likely diagnosis for a rare disorder that had gone unexplained.",
+    "Texome Project, Houston",
+    "01 / 09",
+    "c1 c2 c3 c8"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Where it began",
+   "headline": "One child, and no answer.",
+   "claims": [
+    "c5",
+    "c7",
+    "c27",
+    "c50"
+   ],
+   "cite": "c5 c7 c27 c50",
+   "body": "The child was enrolled in the Texome Project, which offers free genetic testing to medically underserved people with rare, undiagnosed conditions. Standard analysis of the child and a parent did not reveal an answer.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "One child, and no answer.",
+    "The child was enrolled in the Texome Project, which offers free genetic testing to medically underserved people with rare, undiagnosed conditions. Standard analysis of the child and a parent did not reveal an answer.",
+    "Where it began",
+    "02 / 09",
+    "c5 c7 c27 c50"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The pointer",
+   "headline": "Then software flagged BRSK1.",
+   "claims": [
+    "c8",
+    "c32",
+    "c33",
+    "c34"
+   ],
+   "cite": "c8 c32 c33 c34",
+   "body": "AI-MARRVEL, a classifier trained on over 3.5 million variants, highlighted a rare change in BRSK1 as a promising candidate.",
+   "labels": [
+    "benchmarked methods",
+    "AI-MARRVEL",
+    "solved cases, three cohorts"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Then software flagged BRSK1.",
+    "AI-MARRVEL, a classifier trained on over 3.5 million variants, highlighted a rare change in BRSK1 as a promising candidate.",
+    "benchmarked methods",
+    "AI-MARRVEL",
+    "solved cases, three cohorts",
+    "The pointer",
+    "03 / 09",
+    "c8 c32 c33 c34"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The network",
+   "headline": "Ten people. Seven unrelated families.",
+   "claims": [
+    "c9",
+    "c10",
+    "c13",
+    "c37"
+   ],
+   "cite": "c9 c10 c13 c37",
+   "body": "Shared through GeneMatcher, the finding drew in other families with rare variants in the same gene. Two of the ten had seizures.",
+   "labels": [
+    "affected people",
+    "seizures",
+    "unrelated families"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Ten people. Seven unrelated families.",
+    "Shared through GeneMatcher, the finding drew in other families with rare variants in the same gene. Two of the ten had seizures.",
+    "affected people",
+    "seizures",
+    "unrelated families",
+    "The network",
+    "04 / 09",
+    "c9 c10 c13 c37"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "What the score means",
+   "headline": "A good pointer is still a pointer.",
+   "claims": [
+    "c35"
+   ],
+   "cite": "c35",
+   "body": "On one confidence metric, AI-MARRVEL reached 98% precision and found 57% of diagnosable cases among 871. That is not its accuracy.",
+   "labels": [
+    "98% precision",
+    "57% of diagnosable cases found"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "A good pointer is still a pointer.",
+    "On one confidence metric, AI-MARRVEL reached 98% precision and found 57% of diagnosable cases among 871. That is not its accuracy.",
+    "98% precision",
+    "57% of diagnosable cases found",
+    "What the score means",
+    "05 / 09",
+    "c35"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The proof",
+   "headline": "With the gene off, the flies had trouble moving.",
+   "claims": [
+    "c15",
+    "c16",
+    "c17"
+   ],
+   "cite": "c15 c16 c17",
+   "body": "The fly version of BRSK1 is called sugar-free frosting. Disabled, it also left the flies with shorter lives.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "With the gene off, the flies had trouble moving.",
+    "The fly version of BRSK1 is called sugar-free frosting. Disabled, it also left the flies with shorter lives.",
+    "The proof",
+    "06 / 09",
+    "c15 c16 c17"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The test",
+   "headline": "The patients' versions only partly fixed the flies.",
+   "claims": [
+    "c18",
+    "c19",
+    "c29",
+    "c51"
+   ],
+   "cite": "c18 c19 c29 c51",
+   "body": "The normal human gene largely corrected the flies. The team modeled three patient variants, and those restored the flies only partially.",
+   "labels": [
+    "gene off",
+    "human gene",
+    "patient variants"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The patients' versions only partly fixed the flies.",
+    "The normal human gene largely corrected the flies. The team modeled three patient variants, and those restored the flies only partially.",
+    "gene off",
+    "human gene",
+    "patient variants",
+    "The test",
+    "07 / 09",
+    "c18 c19 c29 c51"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What it adds up to",
+   "headline": "A likely diagnosis. Not a certain one.",
+   "claims": [
+    "c3",
+    "c11",
+    "c12"
+   ],
+   "cite": "c3 c11 c12",
+   "body": "Every affected person had some developmental delay. Common features included delayed speech and autism.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A likely diagnosis. Not a certain one.",
+    "Every affected person had some developmental delay. Common features included delayed speech and autism.",
+    "What it adds up to",
+    "08 / 09",
+    "c3 c11 c12"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Where to write",
+   "headline": "Families who can't pay can ask.",
+   "claims": [
+    "c39",
+    "c40",
+    "c42",
+    "c43",
+    "c50"
+   ],
+   "cite": "c39 c40 c42 c43 c50",
+   "body": "Candidates are underserved people with a suspected rare disease who can't pay for sequencing. Testing and follow-up are free, 5 visits in 2 years, in person or virtual. Write to texome-project@bcm.edu.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Families who can't pay can ask.",
+    "Candidates are underserved people with a suspected rare disease who can't pay for sequencing. Testing and follow-up are free, 5 visits in 2 years, in person or virtual. Write to texome-project@bcm.edu.",
+    "texome-project@bcm.edu.",
+    "Where to write",
+    "09 / 09",
+    "c39 c40 c42 c43 c50"
+   ]
+  }
+ }
+}

@@ -1799,3 +1799,22 @@ on the city's own news flash at `www.leaguecitytx.gov`, which is clean.
 
 **El Paso's Legistar meeting page marks both plate reader items approved as revised**, read by
 this run's fact check on October 1st. This run did not look for the revision text there.
+
+## 2026-10-02, daily run (carousel no. 40)
+
+**`fetch_doc.py` fetched two robots-disallowed urls during manual re-verification**: the Hays
+County agenda on public.destinyhosted.com and a fox34.com Lubbock story. It asked only the crawl
+boundary registry, never the host's live robots.txt. The copies were deleted unread and nothing
+from them was used. It now asks the host's own robots.txt through `reverify`'s parser before it
+fetches and again on every redirect, and its self-test replays a refusal.
+
+**The Texome Project's pages and Europe PMC's REST search render without JavaScript**, so the
+BRSK1 claims were read there. PubMed's eutils host refuses, and the abstract was read through
+Europe PMC's `webservices/rest/search` with the DOI.
+
+**genematcher.org, ai.nejm.org and keranews.org returned 403, and blogs.bcm.edu returned 503**
+to this run's fetches. GeneMatcher's description was read in its
+creators' published abstract through Europe PMC instead. Oncor's robots.txt timed out, so nothing was read from oncor.com.
+
+**The session's web search allowance was spent by the scout room**, so no craft refresh search
+ran this day.

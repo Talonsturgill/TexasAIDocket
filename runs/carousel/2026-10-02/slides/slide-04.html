@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-02, frame 4 of 9. Archetype DOCUMENT. RENDERED through txthree.js in a room TXT.interior builds. A printed sheet pinned over the desk carries one mark per affected individual, the two with seizures filled, and one ruled line per unrelated family, the marked vial on the desk below. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #lab-a, #lab-b, #lab-c { color:#14171b !important; text-shadow:none !important; font-weight:800; }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:25px; letter-spacing:0.03em; color:#FBF7EF; white-space:nowrap; z-index:12; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ten people. Seven unrelated families.</h1>
+<p class="dek" data-follow="28">Shared through GeneMatcher, the finding drew in other families with rare variants in the same gene. Two of the ten had seizures.</p>
+<div class="lab" id="lab-a">affected people</div>
+<div class="lab" id="lab-c">seizures</div>
+<div class="lab" id="lab-b">unrelated families</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "The network", counter: "04 / 09", src: "c9 c10 c13 c37", fit: { min: 96, max: 128, maxLines: 2 } });
+  const FIG = {"affected_individuals": 10, "families": 7, "seizures": 2};
+  /* TWO COUNTS FROM ONE SENTENCE, KEPT APART. A printed sheet pinned over the desk: a row of one
+   * mark per affected individual, the ones who had seizures filled, and below it one ruled line per
+   * unrelated family. Nothing ties a mark to a line, because the record does not say which people
+   * belong to which family. The vial stands on the desk beneath it, marked and not yet alive. */
+  const R = VL.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 60, fog: 0.0, exposure: 1.3 });
+  TXT.interior(R, VL.ROOM);
+  const rm = VL.room(K, R, TXT, { chair: false, papers: false, sunAt: [-2.4, 2.6, -0.6], sunTo: [0.3, 0.76, -1.1], winW: 0.2, winH: 0.16 });
+  const sheet = new THREE.Group();
+  const paper = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.56, 0.002), K.mat('vl-paper', { color: 0xf1ede3, roughness: 0.9 })); sheet.add(paper);
+  const ink = K.mat('vl-ink2', { color: 0x262a30, roughness: 0.6 }), ring = K.mat('vl-ring', { color: 0x3a3f46, roughness: 0.6 });
+  const pitch = 0.034, mx0 = -(FIG.affected_individuals - 1) * pitch / 2;
+  for (let i = 0; i < FIG.affected_individuals; i++) {
+    const filled = i < FIG.seizures;
+    const m = filled ? new THREE.Mesh(new THREE.CircleGeometry(0.012, 28), ink) : new THREE.Mesh(new THREE.RingGeometry(0.0095, 0.012, 28), ring);
+    m.position.set(mx0 + i * pitch, 0.1, 0.0016); sheet.add(m);
+  }
+  for (let j = 0; j < FIG.families; j++) {
+    const ln = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.003, 0.001), ring); ln.position.set(0, -0.02 - j * 0.032, 0.0015); sheet.add(ln);
+    const tick = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.012, 0.001), ink); tick.position.set(-0.17, -0.02 - j * 0.032, 0.0016); sheet.add(tick);
+  }
+  /* print the sheet carries around its two counts, unreadable at this distance */
+  const grey = K.mat('vl-print', { color: 0x8d8f93, roughness: 0.8 });
+      const pin = new THREE.Mesh(new THREE.SphereGeometry(0.006, 12, 8), K.mat('vl-pin', { color: 0x8c5a3c, roughness: 0.4 })); pin.position.set(0, 0.262, 0.004); sheet.add(pin);
+  sheet.position.set(0.14, 0.87, -2.185); sheet.rotation.z = 0.012; TXT.add(R, sheet);
+  const v = VL.vial(K, { state: 'empty', flies: 0, pupae: 0, seed: 71, tape: true });
+  v.position.set(0.22, rm.top, -1.5); v.rotation.y = -0.2; TXT.add(R, v); TXT.contact(R, v, { opacity: 0.4 });
+  TXT.frame(R, { from: [0.1, 1.08, -0.55], look: [0.08, 1.0, -2.2] });
+  TXT.deckRig(R, W.rig, { target: [0.2, 0.8, -1.2], distance: 9, shadowFar: 30 });
+  TXT.weather(R, { grime: 0.08 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  const w2s = (x, y) => { const p = new THREE.Vector3(x, y, 0.002); sheet.localToWorld(p); return VL.project(THREE, R, [p.x, p.y, p.z]); };
+  const put = (id, p, dx, dy) => { const e = document.getElementById(id); e.style.left = Math.round(p[0] + (dx || 0)) + 'px'; e.style.top = Math.round(p[1] + (dy || 0)) + 'px'; };
+  const la = document.getElementById('lab-a'), lb = document.getElementById('lab-b');
+  /* the two counts' labels printed on the page itself, each above its own row */
+  put('lab-a', w2s(mx0 - 0.012, 0.165), 0, 0);
+  put('lab-b', w2s(-0.17, 0.035), 0, 0);
+  put('lab-c', w2s(mx0 - 0.012, 0.08), 0, 4);
+  VL.post(cx, { a: 0.4, rgb: '20,18,16', pad: 0, fade: 90, type: ['.kick', '.hook', '.dek'] });
+  TXDECK.finish(cx);
+  window.__txDrawn = { marks: FIG.affected_individuals, filled: FIG.seizures, lines: FIG.families };
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{"judge": "craft", "lens": "craft", "round": 5,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame rendered in a real world, frame 7 best, frame 1 a credible cover. Frame 6 cannot be read as a vial and its flies read as ants in a ring over a dead lower left. Frame 5 looks like a game level with flat UI bars and a cropped vial. Frame 4 mostly dead wall with a pinned page. Frame 3's monitor floats and the dek sits on its edge. The hero is under a tenth of the frame height on 2, 3, 4, 9. The exterior coping has no contact or dirt."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.5, "why": "One hero, building, light and grade, both devices working, bookends hold. The value strobes with five hard cuts, only one declared. Frames 4 and 6 sit outside the look, 1/8 and 2/9 repeat compositions, frame 9 lost the chair."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 7.8, "why": "Every numeral traces, bar ratio and flags match, frame 5 careful. The caption opener is an editorial negative, frame 7's heights are positions no frame says are not a scale."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "What, who, where and what to do with eligibility, terms and address. The AI's role at its true size. Concrete and actionable."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.8, "why": "Cover earns the swipe, frame 2 pays, the turn at 6 and payoff at 7, close on an action. Frame 8's picture repeats frame 1."},
+  {"name": "voice", "weight": 0.1, "score": 7.5, "why": "Plain, on register, good lines. Thin Texas detail, frame 2's dek release-flat."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "New beat and a new outdoor-indoor split. The opening move repeats no. 39's."}
+ ],
+ "weighted_score": 7.17, "hard_fails": [], "ship": true,
+ "one_sentence_fix": "Bring the camera to the vial on frames 2, 3, 4 and 9 and re-stage frame 6 so the vial owns a third of each frame with its glass, plug and winged flies legible at 432 px.",
+ "artwork_defects": [
+  "1. Frame 6, the turn, fails as a picture: no glass wall, rim or plug reads, the food looks like a freestanding cork cylinder, the flies sit in a ring with no visible wings and read as ants or beads, the lower left half is a dead zone.",
+  "2. The hero does not own frames 2, 3, 4 and 9: the vial is 8 to 10 percent of the frame height.",
+  "3. Frame 5 looks like a game engine: scatter-card trees on a dark plane, a flat lavender parapet, tapes as UI bars, the vial cropped with no shadow across the tapes.",
+  "4. The exterior ground has no contact and no dirt: the coping on 1, 7 and 8 is a smooth plane with one highlight streak.",
+  "5. Frame 4 is mostly dead wall with a page pinned against nothing.",
+  "6. Frame 3's monitor floats with no neck above a black slab, and the dek sits against its top edge.",
+  "7. Frames 1/8 and 2/9 repeat two compositions, frame 9 lost the empty chair.",
+  "8. The value strobes, five hard cuts, one declared.",
+  "9. Type details: a descender touching on frame 5, mixed apostrophe glyphs between the display and dek faces."
+ ]}

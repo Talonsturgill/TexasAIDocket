@@ -1,0 +1,12 @@
+{"judge": "integrity", "lens": "integrity", "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Every frame a rendered place with the hero at true scale and type off plates. The flies read as bead clusters on 1, 6, 7, 8 and as ants on 6, the declared turn and weakest frame, split by a hard glass edge. Skyline on a pale haze strip with a hard seam onto a dark plane, trees as kit sprites, slide 4 flat. Slides 3 and 9 strongest."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One hero, one accent, two declared worlds and two continuity devices, bookends hold. Frame 6 sits outside the clean parapet light."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every numeral and drawn count traces. Slide 5's 'On one confidence metric' is not in c35's stored quote. The caption's 'The patients' versions only partly did' does not name the three modelled. Slide 2's flag schedule has no legend, slide 8 cites c23 which nothing on it says. c7's text drops 'with the condition'."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, where, how and a real next step with eligibility, cost, visits and address. c47's openness to other states is unused, and the caption closes on a question a reader can't act on."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, the chain holds, the close lands on an action. Frames 3 and 5 both about AI-MARRVEL's credentials, frame 5 soft."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "Clean, plain, strong lines, no house-rule breaks. Reads as a careful science explainer, flat caption lines."},
+  {"name": "variety", "weight": 0.1, "score": 6.5, "why": "Hero and technique new, no topic repeat. Fourth Houston clinical research deck in the window, instrument repeats nos. 19 and 23."}
+ ],
+ "weighted_score": 7.23, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Rebuild the fly so a single Drosophila reads as a fly and re-stage frame 6 so the downed flies are sharp and side-lit without the glass seam."}

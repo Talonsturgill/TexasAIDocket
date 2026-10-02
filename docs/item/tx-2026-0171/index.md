@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The water board is still enforcing the survey on the Governor's instruction, and the law behind it still has not changed.
 - 2026-09-26 · The water board is still enforcing the survey on the Governor's instruction, and the law behind it is unchanged.
 - 2026-09-29 · The water board is still enforcing the water use survey against data centers on the Governor's instruction, under an unchanged Water Code.
+- 2026-10-02 · The Governor's directive to the water board is unconfirmed this run. His office posts it on a site that bars automated readers.
 
 ## Evidence
 
