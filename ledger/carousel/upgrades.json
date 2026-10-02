@@ -2635,4 +2635,74 @@
  ],
  "lane": "upgrade. assets/js/kit/civic.js, assets/js/kit/landscape.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, examples/, runs/ or docs/, the dated chassis and the shipped slides untouched (the proofs used scratch copies in out/)"
 }
+,
+"2026-10-02 upgrade": {
+ "run": "carousel no. 40, the BRSK1 fly vials (tx-2026-0195), shipped at the round cap at 7.418 (panel medians 7.17, 7.23, 7.304, 7.41, 7.418), no hard fail in any round",
+ "actor": "upgrade",
+ "frontier_scan": "skipped. No WebSearch allowance was left in this session, so no external source was read and none is cited",
+ "upgrades": [
+  {
+   "what": "Kit lift: fly_vial and vial_tray from assets/js/deck/2026-10-02-vials.js into assets/js/kit/interior.js AT THE JUDGES' FIX. The fly is a Drosophila at macro: large faceted red eyes, aristate antennae, a bristled thorax with its scutellum, a tapered abdomen with dark tergite bands fading to the belly, six legs jointed at knee and ankle, and veined translucent iridescent wings folded over the abdomen past its tip. It is built once per page and instanced, five draw calls a vial. The glass reads by its edge (a Fresnel term raises opacity and reflection toward grazing view), a flared lip carries a rim ring, two vertical glints stand at `glint` radians. The food has a meniscus up the wall and a wet contact line. Down-state flies spread over the whole food surface with a minimum spacing rather than in a ring. vial_tray lifted unchanged, its declared size corrected to the default 10 by 1 flat",
+   "why": "Craft card defect 1, round 5: 'Frame 6, the turn, fails as a picture: no glass wall, rim or plug reads, the food looks like a freestanding cork cylinder, the flies sit in a ring with no visible wings and read as ants or beads.' Every judge in every round named the fly reading as beads or ants at full size (bodies as spheres, wings as discs, red bead eyes). The chassis's fly was eleven spheres, two discs and six single cylinders",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md",
+    "knowledge/carousel/UPGRADE_BACKLOG.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "vial 25 mm by 95 mm, food band 21 mm, wall 0.9 mm, plug, tape, droplets, the state bands": "the chassis's own, kept so the dated chassis builds the same scene",
+    "fly 2.5 mm long at flyScale 1, default flyScale 1.6": "the chassis's own: true body length and its legibility choice, kept",
+    "the fly's proportions, vein layout (costa, L2 to L5, two crossveins), meniscus height 1.6 mm, Fresnel exponent and glint opacities": "art direction drawn to the judges' sentence and read on the proof, not thresholds",
+    "declared sizes [0.026, 0.106, 0.026] and [0.312, 0.012, 0.042]": "measured by examples/kit/sizes.py over sixteen seeds"
+   },
+   "verification": "node --check assets/js/kit/interior.js exit 0. Proof pages from examples/kit/build.py's own page() with three macro narrowings in a scratch copy (out/2026-10-02/tmp/upgrade/proof.py: no 1.6 m camera floor, a 4 mm framing margin not 0.5 m, a 0.5 m shadow box, a near plane at 5 percent of the distance), rendered through .claude/skills/carousel-engine/render.py, 7 pages, exit 0, errors 0, each read at full size. The first proof FAILED and was fixed: a capped food cylinder stood at the meniscus's highest point and buried every fly on the food, which showed only as legs through the cap. Then scratch copies of the deck's own frames 3 and 6 re-rendered with the kit models (the chassis's installKit returns when the kit defines fly_vial), exit 0, errors 0: frame 6 now shows both glass walls, a rim at the food and flies with red eyes, banded abdomens and wings. examples/kit/sizes.py: 110 of 110 models declare the size they build, centred, exit 0. arsenal.py exit 0 and arsenal.py --check exit 0",
+   "revert": "the upgrade commit's hunks in assets/js/kit/interior.js from 'THE BENCH' to the end of the file, then re-run scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A judge still reads the flies as ants at feed size, because at thumb scale a fly is a few pixels whatever its anatomy and the fix for that is a closer camera, not a model. The Fresnel term prints a hard dark outline round the vial against a bright sky. The glints sit somewhere the frame's light could not put them, because `glint` is a fixed yaw a frame has to aim. A deck that calls more than a few dozen vials pays for 18 instanced flies per vial in triangles"
+  },
+  {
+   "what": "The kit monitor's stand is one piece: the neck rises from the foot block, upright, its face 6 mm into the rear housing, with a tilt hinge barrel where they meet",
+   "why": "Craft card defect 6: 'Frame 3's monitor floats with no neck above a black slab.' Measured in the model: the neck began 65 mm above the foot block's top and stood 11 mm behind the housing's back face, tilted away from it. The orchestrator also listed it as an engine finding, and it is the kit's own model, so it is in upgrade lane and made rather than proposed",
+   "files": [
+    "assets/js/kit/interior.js"
+   ],
+   "verification": "Two proof pages of K.make('monitor') (rear three-quarter and front three-quarter), and the deck's frame 3 re-rendered from a scratch copy, exit 0, errors 0, read at full size: the neck runs unbroken from the foot block to the housing. sizes.py: monitor measures [0.61, 0.47, 0.19] against a declared [0.62, 0.52, 0.2], within tolerance, centred. VL.screen in the dated chassis still finds the head group, because the hinge is a mesh with no x rotation",
+   "revert": "the 'THE STAND IS ONE PIECE' hunk in assets/js/kit/interior.js",
+   "how_i_would_know_this_was_wrong": "A deck camera low and behind a monitor sees the neck's top end inside the housing's rounded back edge. A frame that had worked round the floating neck by hiding it now shows a different silhouette from the one it was approved with"
+  }
+ ],
+ "not_done_and_why": "Defects 2 (the hero is 8 to 10 percent of the frame height), 5 (frame 4's dead wall), 7 (repeated compositions) and 8 (the value strobe) are compositions, and a chassis or a frame is where they are fixed, not the kit. Defect 3 (frame 5 as a game engine) and defect 4 (no contact or dirt on the exterior coping) need the engine's scatter and ground, which are human lane, so they are proposals. Defect 9 is type. No gate was added or changed, so GATE_LESSONS gets no entry",
+ "proposals_out_of_lane": [
+  {
+   "what": "A depth of field that keeps a transparent hero from leaving the world sharp through its own glass: the 2D blur masked by the hero's silhouette treats a transparent hero as opaque",
+   "owner": "human",
+   "why": "Found by the run on frame 6. UPGRADE_BACKLOG 2026-10-02 item 3"
+  },
+  {
+   "what": "TXT.interior's walls cast shadows, so a window light has to be a spot placed inside the wall, which no doc says",
+   "owner": "human",
+   "why": "The chassis's own comments record three rewrites of N.room's sun before it worked. UPGRADE_BACKLOG 2026-10-02 item 4"
+  },
+  {
+   "what": "qa.py's rule detector fires on the serif feet of a short heavy last line and on dark grounds under bold sans",
+   "owner": "human",
+   "why": "Found by the run. UPGRADE_BACKLOG 2026-10-02 item 5"
+  },
+  {
+   "what": "Ground contact and dirt at the coping: a scatter of grit and a darkened contact band where a model meets a TXT.ground surface",
+   "owner": "human",
+   "why": "Craft card defect 4, frames 1, 7 and 8. UPGRADE_BACKLOG 2026-10-02 item 6"
+  },
+  {
+   "what": "examples/kit/build.py framing for a model under a metre: no 1.6 m camera floor, a framing margin in proportion and a near plane in proportion",
+   "owner": "human",
+   "why": "This run had to narrow all three in a scratch copy to prove a 25 mm vial. UPGRADE_BACKLOG 2026-10-02 item 7"
+  },
+  {
+   "what": "The kit proof images kept under examples/kit/ as WebP",
+   "owner": "human",
+   "why": "out/ dies with the container. Sixth run asking. UPGRADE_BACKLOG 2026-10-02 item 8"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/interior.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, examples/, runs/, docs/ or ledger/docket.json, the dated chassis and the shipped slides untouched (the proofs used scratch copies in out/2026-10-02/tmp/upgrade/)"
+}
 }

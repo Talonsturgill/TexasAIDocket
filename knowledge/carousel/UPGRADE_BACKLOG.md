@@ -5103,3 +5103,84 @@ Not the model's: the "faint blue footprint strips" under frame 4's near signs. T
 signs' shadow casting off, and the strips are still there in the re-render with the kit sign.
 
 Frontier scan: not run this phase. The time went to two lifts, each proved on this deck's own frames.
+
+## 2026-10-02, carousel no. 40 (the BRSK1 fly vials, tx-2026-0195), the upgrade phase. Two kit upgrades, six proposals
+
+Round 5's craft card ranked nine artwork defects and put frame 6 first: no glass wall, rim or plug
+read, the food looked like a freestanding cork cylinder, and the flies sat in a ring with no visible
+wings and read as ants or beads. Every judge in every round named the fly. So the fly and the vial
+went first. The account is in `ledger/carousel/upgrades.json` under `2026-10-02 upgrade`. The proof
+images are in `out/2026-10-02/tmp/upgrade/render/` and `out/2026-10-02/tmp/upgrade/deck/render/`, and
+they die with the container (item 8).
+
+### 1. KIT LIFT: `fly_vial` AT THE NAMED FIX, AND `vial_tray`, INTO `interior.js` (done)
+
+The chassis's fly was eleven spheres, two discs and six single cylinders. The kit's fly is a
+Drosophila at macro: large faceted red eyes, aristate antennae, a bristled thorax with its
+scutellum, a tapered abdomen whose dark tergite bands fade toward the belly, six legs jointed at the
+knee and the ankle, and veined, iridescent wings folded over the abdomen past its tip. It is built
+once per page and instanced, so a vial costs five draw calls however many flies it holds. The glass
+reads by its edge: a Fresnel term in the material raises opacity and reflection toward grazing
+view, a flared lip carries a rim ring, and two vertical glints stand at `glint` radians, which a
+frame aims at its light. The food has a meniscus up the wall and a wet contact line. Flies on the
+food spread over the whole surface with a minimum spacing. The options are the chassis's own, and
+its `installKit` returns early when the kit defines `fly_vial`, so the dated chassis needed no edit.
+
+**One fault the first proof found.** The food body was a capped cylinder stood flat at the meniscus's
+highest point, so it buried every fly on the food 1.6 mm under a flat cap and only their legs showed
+through. The body is open at the top now and the meniscus is the top.
+
+**Measured on the deck's own frames, from scratch copies.** Frame 6 re-rendered with the kit model
+shows both glass walls, a rim at the food line and flies with red eyes, banded abdomens and wings.
+Near-wall flies show their bellies through the glass, which is right, since their backs face the axis.
+**What the model cannot fix:** the hero at 8 to 10 percent of the frame height on 2, 3, 4 and 9 is a
+camera. At thumb size a fly is a few pixels whatever its anatomy, so a frame that wants the fly to
+read has to come closer.
+
+### 2. THE MONITOR'S NECK FLOATED, AND THAT WAS THE KIT'S (done, `interior.js`)
+
+Measured in the model: the neck began 65 mm above the foot block and stood 11 mm behind the rear
+housing, tilted away from it. That is frame 3's "monitor floats with no neck above a black slab".
+The neck now rises upright from the foot block into the housing's back, with a tilt hinge barrel at
+the joint. Frame 3 was re-rendered from a scratch copy and the stand reads as one piece.
+
+### 3. ENGINE: a depth of field blur masked by a transparent hero's silhouette leaves the world sharp through the glass (proposal, `txthree.js` is `human`)
+
+Found by the run on frame 6. The 2D blur is masked by the hero's silhouette, and a transparent hero
+counts as opaque, so the out-of-focus city seen THROUGH the vial prints sharp inside a blurred frame.
+**Proposal:** weight the mask by the hero's alpha, or let a transparent material opt out of the mask.
+
+### 4. ENGINE: `TXT.interior`'s walls cast, so a window light has to be a spot inside the wall (proposal, `human`)
+
+The chassis's `N.room` records three rewrites of its sun before it worked: an unseen occluder in the
+wall plane, then a note that the wall casts nothing, then that it does. The walls do cast, so a
+directional key outside never reaches the room. **Proposal:** a `TXT.interior` option `window: { wall,
+at, size, sun }` that places the spot and the barred occluder itself, and one sentence in its
+docstring saying the walls cast.
+
+### 5. `qa.py`'s rule detector fires on serif feet and on dark grounds under bold sans (proposal, the engine skill is under `.claude/`)
+
+Found by the run. A short heavy last line's serif feet, and a dark ground under bold sans, both read
+as a drawn rule. A maintainer at a keyboard can make the edit. A fixture of each false positive
+belongs in its self-test, beside one true rule that must still fire, so the change can't weaken it.
+
+### 6. ENGINE: no contact or dirt where a model meets the ground (proposal, `human`)
+
+Craft card defect 4: the coping on frames 1, 7 and 8 is a smooth plane with one highlight streak.
+**Proposal:** `TXT.contact` gains an optional grit scatter and a darkened contact band on the
+receiving surface, scaled to the model's footprint.
+
+### 7. `examples/kit/build.py` can't frame a model under a metre (proposal, `examples/kit/**` is `human`)
+
+Its camera floor is 1.6 m, its framing margin 0.5 m, its shadow box 12 m and its near plane the
+engine's, all right for a house. A 25 mm vial printed as a near-plane cut ellipse. This run narrowed
+all four in a scratch copy (`out/2026-10-02/tmp/upgrade/proof.py`). **Proposal:** scale all four
+off the model's bounding radius.
+
+### 8. The proof images die with the container (proposal, `examples/kit/**` is `human`, sixth run)
+
+Not the model's: frame 5's scatter-card trees and flat parapet (defect 3), frame 4's dead wall
+(defect 5), the repeated compositions (defect 7) and the value strobe (defect 8) are compositions
+and engine scatter.
+
+Frontier scan: not run this phase. No WebSearch allowance was left in the session.

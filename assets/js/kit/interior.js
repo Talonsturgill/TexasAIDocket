@@ -2,7 +2,8 @@
  *
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
- * is about. Interior frames stand in a room built by TXT.interior; these models furnish it.
+ * is about, and the laboratory bench (fly_vial, vial_tray). Interior frames stand in a room built
+ * by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
  */
@@ -849,12 +850,19 @@ export function install(K, THREE, TXT) {
       led.position.set(sw / 2 - 0.02, -(sh + 0.03) / 2 + 0.008, 0.0065); head.add(led);
       const rear = TXT.roundedBox(sw * 0.7, sh * 0.72, 0.045, 0.02, body, { segments: 3 });
       rear.position.set(0, -0.01, -0.028); head.add(rear);
-      // stand
-      const neck = rbox(0.06, 0.3, 0.018, 0.006, body, 0, 0, 0, null, 2);
-      neck.position.set(0, y0 + 0.14, -0.07); neck.rotation.x = 0.12; g.add(neck);
+      // THE STAND IS ONE PIECE FROM THE BASE TO THE HOUSING (2026-10-02). The neck used to start
+      // 65 mm above the foot block and stand 11 mm behind the rear housing, tilted away from it, so
+      // carousel no. 40's frame 3 printed a monitor floating with no neck above a black slab. It now
+      // rises from the foot block, upright, its face buried in the housing's back, and a hinge
+      // barrel crosses where the two meet, as a real stand's tilt hinge does.
+      const hy = y0 + (sh + 0.03) / 2 - 0.01, rearBack = -0.028 - 0.0225;      // the housing's centre height and back face
+      const nTop = hy + 0.02, nz = rearBack - 0.009 + 0.006;                    // 6 mm into the housing
+      const neck = rbox(0.06, nTop - 0.012, 0.018, 0.006, body, 0, 0.012, nz, g, 2);
+      const hinge = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.075, 18), body);
+      hinge.rotation.z = Math.PI / 2; hinge.position.set(0, hy, nz - 0.002); hinge.castShadow = true; g.add(hinge);
       const base = TXT.roundedBox(0.25, 0.012, 0.19, 0.03, body, { segments: 3 });
       base.position.set(0, 0.006, -0.04); g.add(base);
-      rbox(0.07, 0.03, 0.05, 0.008, body, 0, 0.01, -0.06, g);
+      rbox(0.07, 0.03, 0.05, 0.008, body, 0, 0.006, nz, g);
       return centre(g);
     },
   });
@@ -1578,6 +1586,301 @@ export function install(K, THREE, TXT) {
       }
       g.userData.lightAt = [0, S + H / 2, GZ]; g.userData.lightNormal = [0, 0, 1];
       g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
+  /* ========================================================================== THE BENCH
+   * fly_vial and vial_tray, lifted 2026-10-02 from the chassis of carousel no. 40
+   * (assets/js/deck/2026-10-02-vials.js) AT THE JUDGES' NAMED FIX, not as the chassis shipped them.
+   * Every judge in all five rounds read the chassis fly as beads or ants at full size (bodies as
+   * spheres, wings as discs, red bead eyes), and the craft card's first defect was frame 6: "no
+   * glass wall, rim or plug reads, the food looks like a freestanding cork cylinder". So:
+   *   - THE FLY is a Drosophila at macro: a head with two large faceted red eyes and aristate
+   *     antennae, a bristled thorax with its scutellum, a tapered abdomen striped by dark tergite
+   *     bands, six legs each jointed at the knee and the ankle, and two veined translucent wings
+   *     folded over the abdomen past its tip. Built once per page and INSTANCED per vial, five
+   *     draw calls a vial however many flies it holds.
+   *   - THE GLASS reads by its edge: the wall's opacity rises toward grazing view (a Fresnel term
+   *     in the material), a flared lip carries a brighter rim ring at the mouth, and two vertical
+   *     glints stand on the wall at `glint` radians (0 faces +z; false for none).
+   *   - THE FOOD has a meniscus climbing the wall and a wet contact line where it meets the glass,
+   *     so it is food inside a vial and never a freestanding cylinder.
+   * Options are the chassis's own, so the dated chassis builds the same scene with the kit's
+   * models. A fly is 2.5 mm long at flyScale 1, true to the animal; the default 1.6 is the
+   * chassis's legibility choice, kept. */
+  const FLY_U = 0.00088;                       // one fly unit in metres: the template is drawn in
+  const FLY_FOOT = 0.6 * FLY_U;                // millimetre-like units, 2.85 long, so 2.5 mm
+  let FLY_T = null;
+  function flyTemplate() {
+    if (FLY_T) return FLY_T;
+    const V = (x, y, z) => new THREE.Vector3(x, y, z);
+    const parts = { body: [], abdo: [], eye: [], leg: [], wing: [] };
+    const sph = (list, r, sx, sy, sz, x, y, z, ws, hs) => {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(r, ws || 14, hs || 10)); m.scale.set(sx, sy, sz); m.position.set(x, y, z); list.push(m); return m;
+    };
+    const seg = (list, a, b, r0, r1) => {
+      const d = new THREE.Vector3().subVectors(b, a), len = d.length();
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0, len, 6, 1));
+      m.position.copy(a).addScaledVector(d, 0.5); m.quaternion.setFromUnitVectors(V(0, 1, 0), d.normalize()); list.push(m);
+    };
+    // head, eyes, thorax, scutellum: head toward +y, back toward +z, the surface it stands on at z = -0.6
+    sph(parts.body, 0.34, 1.1, 0.8, 0.95, 0, 1.06, 0.02);
+    sph(parts.body, 0.22, 1.3, 0.8, 1, 0, 0.82, 0.05);                       // the neck collar
+    sph(parts.body, 0.52, 0.95, 1.12, 0.88, 0, 0.38, 0.06, 18, 14);          // the thorax
+    sph(parts.body, 0.26, 1.05, 0.72, 0.5, 0, -0.14, 0.38);                  // the scutellum
+    for (const s of [-1, 1]) {
+      sph(parts.eye, 0.4, 0.68, 1.05, 1.05, s * 0.3, 1.07, 0.06, 18, 14);   // the eyes ARE most of the head
+      // antenna: a stub off the face and a fine arista swept up and out
+      seg(parts.leg, V(s * 0.09, 1.36, 0.14), V(s * 0.13, 1.48, 0.2), 0.04, 0.035);
+      seg(parts.leg, V(s * 0.13, 1.48, 0.2), V(s * 0.3, 1.62, 0.42), 0.012, 0.006);
+    }
+    // macrochaetae: the long black bristles of the thorax, swept back
+    [[0.18, 0.62], [-0.18, 0.62], [0.3, 0.35], [-0.3, 0.35], [0.22, 0.1], [-0.22, 0.1], [0.1, -0.1], [-0.1, -0.1], [0.36, 0.55], [-0.36, 0.55]].forEach(([x, y]) => {
+      const z = 0.06 + 0.45 * Math.sqrt(Math.max(0, 1 - (x / 0.5) ** 2 - ((y - 0.38) / 0.58) ** 2));
+      seg(parts.leg, V(x, y, z), V(x * 1.25, y - 0.32, z + 0.18), 0.018, 0.006);
+    });
+    // the abdomen, a lathe along -y listed tip first (so its faces point out), v = 0 at the tip,
+    // flattened a little top to bottom
+    const prof = [[0.001, -0.18], [0.3, -0.24], [0.44, -0.4], [0.5, -0.65], [0.48, -0.95], [0.4, -1.22], [0.26, -1.45], [0.1, -1.6], [0.001, -1.64]].reverse();
+    const ab = new THREE.Mesh(new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1])), 20));
+    ab.scale.set(1, 1, 0.86); ab.position.z = 0.04; parts.abdo.push(ab);
+    // six legs, each femur raised to a knee above the body line, then tibia and tarsus to the surface
+    const LEGS = [[0.22, 0.62, 0.62, 0.95, 0.85, 1.35, 0.9, 1.6], [0.28, 0.35, 0.85, 0.42, 1.3, 0.2, 1.5, 0.1], [0.25, 0.1, 0.8, -0.25, 1.1, -0.85, 1.2, -1.15]];
+    for (const s of [-1, 1]) for (const L of LEGS) {
+      const hip = V(s * L[0], L[1], -0.22), knee = V(s * L[2], L[3], 0.06), ank = V(s * L[4], L[5], -0.56), toe = V(s * L[6], L[7], -0.6);
+      seg(parts.leg, hip, knee, 0.06, 0.05); seg(parts.leg, knee, ank, 0.045, 0.035); seg(parts.leg, ank, toe, 0.03, 0.022);
+      sph(parts.leg, 0.05, 1, 1, 1, knee.x, knee.y, knee.z, 6, 5); sph(parts.leg, 0.036, 1, 1, 1, ank.x, ank.y, ank.z, 6, 5);
+    }
+    // the wings: a narrow root and a broad rounded tip, anterior edge outward, folded flat over the
+    // abdomen and past its tip, the pair nearly overlapping as a resting fly holds them
+    const sh = new THREE.Shape(); sh.moveTo(0, 0);
+    sh.splineThru([V(0.14, -0.4), V(0.34, -1.1), V(0.42, -1.75), V(0.3, -2.12), V(0.02, -2.24), V(-0.22, -2.05), V(-0.34, -1.5), V(-0.28, -0.8), V(-0.1, -0.22)].map((v) => new THREE.Vector2(v.x, v.y)));
+    sh.lineTo(0, 0);
+    const wg = new THREE.ShapeGeometry(sh, 16), wp = wg.attributes.position, wuv = wg.attributes.uv;
+    for (let i = 0; i < wp.count; i++) wuv.setXY(i, (wp.getX(i) + 0.4) / 0.85, (wp.getY(i) + 2.3) / 2.35);
+    for (const s of [-1, 1]) {
+      const w = new THREE.Mesh(wg); w.scale.x = s; w.position.set(s * 0.1, 0.08, s > 0 ? 0.5 : 0.53);
+      w.rotation.set(0.15, s * 0.1, s * 0.09); parts.wing.push(w);
+    }
+    // the abdomen's tergite bands: dark across the back, fading toward the belly (lathe u = 0 is +z).
+    // In canvas rows, measured from the FRONT of the abdomen (the texture's v = 0 is the tip and the
+    // canvas is flipped), each segment's posterior half is a band and the last segment is dark.
+    const abT = ltex('fly-abdo', (x, W, H) => {
+      x.fillStyle = '#a98250'; x.fillRect(0, 0, W, H);
+      for (let k = 0; k < 6; k++) {
+        const s0 = 0.12 + k * 0.135, b0 = k === 5 ? s0 : s0 + 0.135 * 0.5, b1 = Math.min(1, s0 + 0.135);
+        for (let c = 0; c < W; c++) {
+          const u = c / W, dors = Math.max(0, Math.cos(u * Math.PI * 2));
+          x.fillStyle = 'rgba(34,22,12,' + (0.85 * Math.pow(dors, 0.6)).toFixed(3) + ')';
+          x.fillRect(c, b0 * H, 1, (b1 - b0) * H);
+        }
+      }
+    }, {}, [128, 256]);
+    // the wing membrane, nearly clear, its veins drawn: costa on the leading edge, L2 to L5, two crossveins
+    const wT = ltex('fly-wing', (x, W, H) => {
+      x.clearRect(0, 0, W, H); x.fillStyle = 'rgba(196,204,212,0.4)'; x.fillRect(0, 0, W, H);
+      const P = (u, v) => [((u + 0.4) / 0.85) * W, (1 - (v + 2.3) / 2.35) * H];
+      const line = (pts, wdt, a) => { x.strokeStyle = 'rgba(52,38,24,' + Math.min(1, a * 1.15).toFixed(2) + ')'; x.lineWidth = wdt; x.beginPath(); pts.forEach((p, i) => { const q = P(p[0], p[1]); if (i) x.lineTo(q[0], q[1]); else x.moveTo(q[0], q[1]); }); x.stroke(); };
+      line([[0, 0], [0.14, -0.4], [0.34, -1.1], [0.42, -1.75], [0.3, -2.12]], 5, 0.85);     // costa
+      line([[0.02, -0.1], [0.12, -0.6], [0.24, -1.3], [0.36, -1.95]], 2.4, 0.7);           // L2
+      line([[0.0, -0.12], [0.04, -0.8], [0.1, -1.5], [0.12, -2.2]], 2.4, 0.7);             // L3
+      line([[-0.03, -0.14], [-0.06, -0.8], [-0.12, -1.5], [-0.14, -2.12]], 2.4, 0.7);      // L4
+      line([[-0.06, -0.16], [-0.18, -0.7], [-0.28, -1.3], [-0.33, -1.6]], 2.4, 0.65);      // L5
+      line([[0.05, -0.85], [-0.07, -0.86]], 2, 0.65);                                      // anterior crossvein
+      line([[-0.11, -1.25], [-0.25, -1.2]], 2, 0.65);                                      // posterior crossvein
+    }, {}, [256, 512]);
+    const eyeT = ltex('fly-eye', (x, W, H, r) => {
+      x.fillStyle = '#b5241a'; x.fillRect(0, 0, W, H);
+      for (let j = 0; j < H; j += 4) for (let i = (j / 4) % 2 ? 2 : 0; i < W; i += 4) { x.fillStyle = 'rgba(60,4,2,' + (0.25 + r() * 0.2).toFixed(2) + ')'; x.fillRect(i, j, 1.5, 1.5); }
+    }, {}, [128, 128]);
+    const MM = {
+      body: mat('fly-body', { color: 0x7a5630, roughness: 0.42 }),
+      abdo: mat('fly-abdo', { color: 0xffffff, roughness: 0.4, map: abT }),
+      eye: mat('fly-eye', { color: 0xffffff, roughness: 0.32, map: eyeT }),
+      leg: mat('fly-leg', { color: 0x4a321c, roughness: 0.6 }),
+      wing: mat('fly-wing', { color: 0xffffff, map: wT, transparent: true, roughness: 0.18, metalness: 0, side: THREE.DoubleSide, depthWrite: false,
+        iridescence: 0.55, iridescenceIOR: 1.35, clearcoat: 0.6, envMapIntensity: 1.4 }, true),
+    };
+    FLY_T = Object.keys(parts).map((k) => ({ k, mesh: K.merge(parts[k], MM[k]) }));
+    return FLY_T;
+  }
+  /* one InstancedMesh per fly material, a matrix per fly */
+  function flyInstances(mats, parent) {
+    if (!mats.length) return;
+    flyTemplate().forEach(({ k, mesh }) => {
+      const im = new THREE.InstancedMesh(mesh.geometry, mesh.material, mats.length);
+      mats.forEach((m, i) => im.setMatrixAt(i, m)); im.instanceMatrix.needsUpdate = true;
+      im.castShadow = k !== 'wing'; im.receiveShadow = k !== 'wing'; im.frustumCulled = false; parent.add(im);
+    });
+  }
+
+  let VIAL_GLASS = null;
+  const GLINT = new Map();
+  function vialGlass() {
+    if (VIAL_GLASS) return VIAL_GLASS;
+    const m = new THREE.MeshPhysicalMaterial({ color: 0xf6f9fb, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.1, envMapIntensity: 1.4,
+      clearcoat: 1, clearcoatRoughness: 0.03, specularIntensity: 1, side: THREE.DoubleSide, depthWrite: false });
+    // THE EDGE IS WHAT READS AS GLASS: opacity and reflection rise toward grazing view, so the wall
+    // draws its own two silhouette lines over whatever stands behind it
+    m.onBeforeCompile = (sh) => {
+      sh.fragmentShader = sh.fragmentShader.replace('#include <opaque_fragment>',
+        'float txFr = pow(1.0 - clamp(abs(dot(normalize(normal), normalize(vViewPosition))), 0.0, 1.0), 2.4);\n' +
+        'outgoingLight = outgoingLight * (1.0 + 1.6 * txFr) + vec3(0.03) * txFr;\n' +
+        'diffuseColor.a = mix(diffuseColor.a, 0.88, txFr);\n#include <opaque_fragment>');
+    };
+    m.customProgramCacheKey = () => 'kit-vial-glass-fresnel';
+    VIAL_GLASS = m;
+    return m;
+  }
+  let MEAL_T = null;
+  function mealTex() {
+    if (MEAL_T) return MEAL_T;
+    MEAL_T = ltex('fly-meal', (x, W, H, r) => {
+      x.fillStyle = '#c9c2b4'; x.fillRect(0, 0, W, H);
+      for (let i = 0; i < 5200; i++) { const v = r(); x.fillStyle = v < 0.45 ? 'rgba(255,248,230,0.55)' : v < 0.8 ? 'rgba(120,96,64,0.45)' : 'rgba(70,48,28,0.6)'; const z = 1 + r() * 2.4; x.fillRect(r() * W, r() * H, z, z); }
+    }, {}, [256, 256]).clone();
+    MEAL_T.needsUpdate = true; MEAL_T.repeat.set(5, 1.4);
+    return MEAL_T;
+  }
+
+  K.define('fly_vial', {
+    size: [0.026, 0.106, 0.026],
+    options: { state: 'climbing', flies: 18, pupae: 4, plug: true, tape: false, tapeYaw: 0, tapeArc: 3.84, climbTop: 0.42, droplets: 0, flyScale: 1.6, glint: 0.55, front: false, backs: true },
+    note: 'A clear polystyrene fruit fly culture vial (25 mm across, 95 mm tall): glass that reads by its edge and a rim at a flared lip, cornmeal food with a meniscus up the wall, a cellulose plug, pupae, and adult Drosophila at macro (red faceted eyes, bristled thorax, striped abdomen, jointed legs, veined wings folded over the abdomen), instanced. state climbing | down | partial | empty places the adults. flyScale 1 is the true 2.5 mm. glint radians (0 faces +z) or false. tape wraps the accent tape at the shoulder. Front +z.',
+    make(o) {
+      const g = new THREE.Group(), rng = K.rng(+o.seed || 1);
+      const R_OUT = 0.0125, H = 0.095, WALL = 0.0009, FOOD = 0.021, rin = R_OUT - WALL, MEN = 0.0016;
+      const foodAt = (r) => FOOD - 0.0004 + MEN * Math.pow(Math.min(1, r / rin), 6);   // the meniscus surface
+      const MM = {
+        rim: mat('fv-rim', { color: 0xf4f8fa, roughness: 0.05, metalness: 0, transparent: true, opacity: 0.55, clearcoat: 1, envMapIntensity: 1.6, depthWrite: false }, true),
+        food: mat('fv-food', { color: 0xc89a55, roughness: 0.86, emissive: 0x6a3a10, emissiveIntensity: 0.06, map: mealTex() }),
+        foodTop: mat('fv-foodtop', { color: 0x9c6a2c, roughness: 0.55, map: mealTex() }),
+        wet: mat('fv-wet', { color: 0x4a2c12, roughness: 0.3 }),
+        yeast: mat('fv-yeast', { color: 0xe9dcc0, roughness: 0.9 }),
+        plug: mat('fv-plug', { color: 0xece4d2, roughness: 1, emissive: 0xf3d9a8, emissiveIntensity: 0.06 }),
+        pupa: mat('fv-pupa', { color: 0x7e5a30, roughness: 0.5 }),
+        accent: mat('fv-accent', { color: 0x14503a, emissive: 0x2fd896, emissiveIntensity: 0.85, roughness: 0.55 }),
+      };
+      // the wall: a lathe with a rounded foot and a flared lip, and a brighter ring at the mouth
+      const prof = [[0.0001, 0], [R_OUT - 0.0015, 0], [R_OUT - 0.0004, 0.0003], [R_OUT, 0.0015], [R_OUT, H - 0.0014], [R_OUT + 0.0005, H - 0.0006], [R_OUT + 0.0005, H], [rin + 0.0003, H], [rin, H - 0.0012], [rin, 0.0018], [rin - 0.0012, 0.0011], [0.0001, 0.0011]];
+      const wall = new THREE.Mesh(new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1])), 64), vialGlass());
+      wall.castShadow = true; wall.renderOrder = 2; g.add(wall);
+      const lip = new THREE.Mesh(new THREE.TorusGeometry(R_OUT + 0.0002, 0.00055, 8, 72), MM.rim); lip.rotation.x = Math.PI / 2; lip.position.y = H - 0.0003; lip.renderOrder = 3; g.add(lip);
+      const foot = new THREE.Mesh(new THREE.TorusGeometry(R_OUT - 0.0006, 0.0005, 6, 64), MM.rim); foot.rotation.x = Math.PI / 2; foot.position.y = 0.0007; foot.renderOrder = 3; g.add(foot);
+      // the glints: two vertical strips of returned light on the wall, a broad one and a thin one
+      if (o.glint !== false && o.glint != null) {
+        const gT = ltex('fv-glint', (x, W, Hh) => {
+          const gr = x.createLinearGradient(0, 0, W, 0); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+          x.fillStyle = gr; x.fillRect(0, 0, W, Hh);
+          const fd = x.createLinearGradient(0, 0, 0, Hh); fd.addColorStop(0, 'rgba(0,0,0,1)'); fd.addColorStop(0.12, 'rgba(0,0,0,0)'); fd.addColorStop(0.88, 'rgba(0,0,0,0)'); fd.addColorStop(1, 'rgba(0,0,0,1)');
+          x.globalCompositeOperation = 'destination-out'; x.fillStyle = fd; x.fillRect(0, 0, W, Hh); x.globalCompositeOperation = 'source-over';
+        }, {}, [64, 256]);
+        [[0, 0.2, 0.32], [0.34, 0.06, 0.22]].forEach(([off, arc, op]) => {
+          if (!GLINT.has(op)) GLINT.set(op, new THREE.MeshBasicMaterial({ color: 0xffffff, map: gT, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.FrontSide }));
+          const gm = GLINT.get(op);
+          const yaw = +o.glint + off;
+          const gl = new THREE.Mesh(new THREE.CylinderGeometry(R_OUT + 0.00006, R_OUT + 0.00006, H - 0.006, 12, 1, true, yaw - arc / 2, arc), gm);
+          gl.position.y = H / 2; gl.renderOrder = 4; g.add(gl);
+        });
+      }
+      // the food: its body, a meniscus climbing the wall, the wet line where it meets the glass, yeast on top
+      // the body is OPEN at the top: a capped cylinder stood flat at the meniscus's highest point and
+      // buried every fly on the food under it (the first proof, 2026-10-02). The meniscus is the top.
+      const food = new THREE.Mesh(new THREE.CylinderGeometry(rin - 0.0001, rin - 0.0001, foodAt(rin) - 0.0011, 64, 1, true), MM.food);
+      food.position.y = 0.0011 + (foodAt(rin) - 0.0011) / 2; food.receiveShadow = true; g.add(food);
+      const men = []; for (let i = 0; i <= 12; i++) { const r = (rin - 0.0001) * i / 12; men.push(new THREE.Vector2(Math.max(0.00005, r), foodAt(r))); }
+      men.reverse();   // outer edge first, so the lathe's face points up
+      const top = new THREE.Mesh(new THREE.LatheGeometry(men, 64), MM.foodTop); top.receiveShadow = true; g.add(top);
+      const wet = new THREE.Mesh(new THREE.TorusGeometry(rin - 0.0001, 0.00022, 6, 72), MM.wet); wet.rotation.x = Math.PI / 2; wet.position.y = foodAt(rin) - 0.0001; g.add(wet);
+      for (let y = 0; y < 26; y++) {
+        const a = rng() * Math.PI * 2, rr = Math.sqrt(rng()) * (rin - 0.0018);
+        const gr = new THREE.Mesh(new THREE.SphereGeometry(0.00028 + rng() * 0.0002, 6, 5), MM.yeast);
+        gr.scale.y = 0.45; gr.position.set(Math.cos(a) * rr, foodAt(rr) + 0.0001, Math.sin(a) * rr); g.add(gr);
+      }
+      // the plug, pushed in a third of its length, its top a little proud and fibrous
+      if (o.plug !== false) {
+        const pl = new THREE.Mesh(new THREE.CylinderGeometry(rin * 1.01, rin * 0.99, 0.03, 64, 6), MM.plug);
+        const pos = pl.geometry.attributes.position;
+        for (let i = 0; i < pos.count; i++) {
+          const px = pos.getX(i), pz = pos.getZ(i), d = Math.hypot(px, pz);
+          if (d > 0.0001) { const k = 1 + (rng() - 0.5) * 0.02; pos.setX(i, px * k); pos.setZ(i, pz * k); }
+        }
+        pl.geometry.computeVertexNormals(); pl.position.y = H - 0.008; pl.castShadow = true; g.add(pl);
+        const cap = new THREE.Mesh(new THREE.SphereGeometry(rin * 1.02, 64, 16, 0, Math.PI * 2, 0, Math.PI / 2), MM.plug);
+        cap.scale.y = 0.28; cap.position.y = H + 0.007; cap.castShadow = true; g.add(cap);
+      }
+      // pupae on the wall a little above the food, segmented, as larvae climb to pupate
+      for (let p = 0; p < (+o.pupae || 0); p++) {
+        const pa = rng() * Math.PI * 2, py = FOOD + 0.004 + rng() * 0.01;
+        const pu = new THREE.Mesh(new THREE.CapsuleGeometry(0.00055, 0.0019, 4, 10), MM.pupa);
+        pu.scale.z = 0.8; pu.position.set(Math.cos(pa) * (rin - 0.00045), py, Math.sin(pa) * (rin - 0.00045));
+        pu.rotation.y = -pa + Math.PI / 2; pu.rotateZ((rng() - 0.5) * 0.6); g.add(pu);
+      }
+      // condensation on the inside of the wall, small clear beads denser low
+      const nd = o.droplets == null ? 0 : +o.droplets;
+      if (nd) {
+        const dm = mat('fv-drop', { color: 0xffffff, roughness: 0.05, metalness: 0, transparent: true, opacity: 0.55, envMapIntensity: 2.5 });
+        const dg = new THREE.SphereGeometry(1, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2); dg.rotateX(Math.PI / 2);
+        const im = new THREE.InstancedMesh(dg, dm, nd), mtx = new THREE.Matrix4(), qt = new THREE.Quaternion(), sc = new THREE.Vector3();
+        for (let q = 0; q < nd; q++) {
+          const qa = rng() * Math.PI * 2, qy = FOOD + 0.002 + Math.pow(rng(), 1.6) * (H - FOOD - 0.02), r2 = 0.0003 + Math.pow(rng(), 2) * 0.0006;
+          qt.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -qa + Math.PI / 2 + Math.PI); sc.set(r2, r2, r2 * 0.5);
+          mtx.compose(new THREE.Vector3(Math.cos(qa) * (rin - 0.00005), qy, Math.sin(qa) * (rin - 0.00005)), qt, sc); im.setMatrixAt(q, mtx);
+        }
+        g.add(im);
+      }
+      // the adults, by state, in bands between the food and the plug's foot, so the state reads as a
+      // POSITION at thumb size. Down: spread over the whole food surface, a few on their backs, never a ring
+      const st = o.state || 'climbing', nF = st === 'empty' ? 0 : (+o.flies || 0), PLUGF = H - 0.023, OPEN = PLUGF - FOOD;
+      const band = st === 'climbing' ? [PLUGF - OPEN * (+o.climbTop || 0.42), PLUGF - 0.003] : st === 'partial' ? [PLUGF - OPEN * 0.68, PLUGF - OPEN * 0.43] : [FOOD + 0.003, FOOD + 0.008];
+      const pFood = st === 'down' ? 0.85 : st === 'partial' ? 0.08 : 0.0, fs = +o.flyScale || 1.6, S = FLY_U * fs, LEN = 2.6 * S;
+      const placed = [], mats = [], d = new THREE.Object3D();
+      const clear = (x, y, z) => placed.every((q) => Math.hypot(q[0] - x, q[1] - y, q[2] - z) > LEN * 0.8);
+      for (let f = 0; f < nF; f++) {
+        const onFood = rng() < pFood, back = o.backs !== false && st === 'down' && onFood && rng() < 0.3;
+        let x = 0, y = 0, z = 0, fa = 0;
+        for (let t = 0; t < 24; t++) {
+          fa = (o.front ? (rng() - 0.5) * 2.2 : rng() * Math.PI * 2) + Math.PI / 2;
+          if (onFood) { const fr = Math.sqrt(rng()) * (rin - LEN * 0.55); x = Math.cos(fa) * fr; z = Math.sin(fa) * fr; y = foodAt(fr) + (back ? 0.45 * S : FLY_FOOT * fs); }
+          else { y = band[0] + rng() * (band[1] - band[0]); x = Math.cos(fa) * (rin - FLY_FOOT * fs); z = Math.sin(fa) * (rin - FLY_FOOT * fs); }
+          if (clear(x, y, z)) break;
+        }
+        placed.push([x, y, z]);
+        d.position.set(x, y, z); d.rotation.set(0, 0, 0); d.scale.setScalar(S);
+        if (onFood) { d.rotation.set(-Math.PI / 2, back ? Math.PI : 0, rng() * Math.PI * 2); }
+        else { d.rotation.y = -fa - Math.PI / 2; d.rotateZ((rng() - 0.5) * (st === 'climbing' ? 0.5 : 1.4)); }
+        d.updateMatrix(); mats.push(d.matrix.clone());
+      }
+      flyInstances(mats, g);
+      // the tape at the shoulder: a strip of the accent wrapped round the glass, centred on tapeYaw
+      if (o.tape) {
+        const ty = +o.tapeYaw || 0, arc = +o.tapeArc || 3.84;
+        const t = new THREE.Mesh(new THREE.CylinderGeometry(R_OUT + 0.00025, R_OUT + 0.00025, 0.008, 72, 1, true, ty - arc / 2, arc), MM.accent);
+        t.position.y = H - 0.0125; g.add(t);
+      }
+      g.userData.mouth = { x: 0, y: H, z: 0 };
+      g.userData.food = FOOD;
+      return g;
+    },
+  });
+
+  /* a vial tray: a cardboard flat with round wells, cols by rows at `pitch`, lifted unchanged
+   * (no judge named a defect in it). Vials stand sunk in it with their foot 6 mm above the bench. */
+  K.define('vial_tray', {
+    size: [0.312, 0.012, 0.042],
+    options: { cols: 10, rows: 1, pitch: 0.03 },
+    note: 'A shallow cardboard vial flat, cols x rows wells at pitch metres, 12 mm deep. userData.well(i, j) gives a well centre at the flat\'s mid height. Front +z.',
+    make(o) {
+      const g = new THREE.Group(), c = +o.cols || 10, r = +o.rows || 1, p = +o.pitch || 0.03;
+      const card = mat('vt-card', { color: 0xb08a5a, roughness: 0.95 });
+      const b = TXT.roundedBox(c * p + 0.012, 0.012, r * p + 0.012, 0.002, card); b.position.y = 0.006; b.castShadow = true; b.receiveShadow = true; g.add(b);
+      const well = mat('vt-well', { color: 0x2a2620, roughness: 1 });
+      for (let i = 0; i < c; i++) for (let j = 0; j < r; j++) {
+        const w = new THREE.Mesh(new THREE.CircleGeometry(0.0136, 28), well); w.rotation.x = -Math.PI / 2;
+        w.position.set(-(c - 1) * p / 2 + i * p, 0.0122, -(r - 1) * p / 2 + j * p); g.add(w);
+      }
+      g.userData.well = (i, j) => [-(c - 1) * p / 2 + i * p, 0.006, -(r - 1) * p / 2 + j * p];
       return g;
     },
   });
