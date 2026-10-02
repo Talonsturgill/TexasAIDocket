@@ -1,0 +1,143 @@
+<!doctype html>
+<!-- ATELIER 06 — Typographic machine.
+     Construction study: display language becomes chassis, baseline and moving linkage. Small
+     explanatory type remains separate and protected. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 82px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #5727e6; color: #f3ff4d; font-family: "Unbounded", sans-serif; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #f3ff4d; }
+  .title {
+    position: absolute; left: 82px; top: 145px; z-index: 14; width: 880px;
+    font-family: "Unbounded", sans-serif; font-size: 84px; line-height: .91;
+    font-weight: 840; letter-spacing: -.068em; text-transform: uppercase;
+  }
+  .title .work { color: #ff784e; }
+  .note {
+    position: absolute; right: 82px; top: 338px; z-index: 14; width: 400px;
+    font-family: "JetBrains Mono", monospace; font-size: 25px; line-height: 1.45;
+    text-align: right; color: #edf8ff; text-transform: uppercase; letter-spacing: .05em;
+  }
+  svg.scene { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+</style>
+</head>
+<body>
+  <div class="atelier-label">Code atelier · type as structure</div>
+  <div class="atelier-id">06</div>
+  <h1 class="title">Language does<br><span class="work">the work</span></h1>
+  <div class="note">glyph = chassis<br>baseline = rail<br>counter = aperture</div>
+
+  <svg class="scene" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6d38f4"/><stop offset=".55" stop-color="#5727e6"/><stop offset="1" stop-color="#30139e"/>
+      </linearGradient>
+      <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".24" stop-color="#b6c7ec"/><stop offset=".52" stop-color="#4e5989"/><stop offset=".72" stop-color="#eaf5ff"/><stop offset="1" stop-color="#626b99"/>
+      </linearGradient>
+      <filter id="hardShadow" x="-40%" y="-40%" width="180%" height="220%">
+        <feDropShadow dx="18" dy="25" stdDeviation="0" flood-color="#16094f" flood-opacity=".9"/>
+      </filter>
+      <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <rect width="1080" height="1350" fill="url(#room)"/>
+    <path d="M0 1090 C260 1005 726 1126 1080 985 L1080 1350 L0 1350Z" fill="#3514a9"/>
+    <ellipse cx="551" cy="1085" rx="485" ry="100" fill="#9c77ff" opacity=".35"/>
+
+    <!-- Rails establish one mechanical baseline and perspective. -->
+    <path d="M72 1006 L1005 920" stroke="#170b3f" stroke-width="48" stroke-linecap="round"/>
+    <path d="M73 991 L1005 905" stroke="url(#metal)" stroke-width="19" stroke-linecap="round"/>
+    <path d="M75 1037 L1007 951" stroke="#ff784e" stroke-width="13" stroke-linecap="round"/>
+    <g fill="#f3ff4d" stroke="#170b3f" stroke-width="5">
+      <circle cx="173" cy="1009" r="14"/><circle cx="364" cy="991" r="14"/><circle cx="556" cy="974" r="14"/>
+      <circle cx="748" cy="956" r="14"/><circle cx="937" cy="938" r="14"/>
+    </g>
+
+    <!-- Gear trains. Tooth geometry is generated below; they are cropped as working parts. -->
+    <g id="gears"></g>
+
+    <!-- Extruded word: repeated offset creates physical depth, main face remains vector type. -->
+    <g font-family="Unbounded" font-size="255" font-weight="900" letter-spacing="-24" data-decorative>
+      <text x="52" y="915" fill="#170b3f" stroke="#170b3f" stroke-width="22">RULE</text>
+      <text x="38" y="899" fill="#ff784e" stroke="#170b3f" stroke-width="9">RULE</text>
+      <text x="25" y="882" fill="#f3ff4d" stroke="#170b3f" stroke-width="8" filter="url(#hardShadow)">RULE</text>
+      <text x="25" y="875" fill="none" stroke="#ffffff" stroke-width="3" opacity=".72">RULE</text>
+    </g>
+
+    <!-- Linkages pass through counters and connect the type to the surrounding machine. -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M127 744 L287 697 L395 758" stroke="#170b3f" stroke-width="29"/>
+      <path d="M127 744 L287 697 L395 758" stroke="url(#metal)" stroke-width="13"/>
+      <circle cx="127" cy="744" r="19" fill="#ff784e" stroke="#170b3f" stroke-width="7"/>
+      <circle cx="287" cy="697" r="19" fill="#f3ff4d" stroke="#170b3f" stroke-width="7"/>
+      <circle cx="395" cy="758" r="19" fill="#ff784e" stroke="#170b3f" stroke-width="7"/>
+
+      <path d="M696 705 L820 641 L982 693" stroke="#170b3f" stroke-width="29"/>
+      <path d="M696 705 L820 641 L982 693" stroke="url(#metal)" stroke-width="13"/>
+      <circle cx="696" cy="705" r="19" fill="#ff784e" stroke="#170b3f" stroke-width="7"/>
+      <circle cx="820" cy="641" r="19" fill="#f3ff4d" stroke="#170b3f" stroke-width="7"/>
+      <circle cx="982" cy="693" r="19" fill="#ff784e" stroke="#170b3f" stroke-width="7"/>
+    </g>
+
+    <!-- A type-shaped aperture emits light rather than receiving a generic glow. -->
+    <ellipse cx="537" cy="790" rx="84" ry="43" fill="#ffffff" opacity=".28" filter="url(#softGlow)"/>
+    <path d="M475 790 L600 790" stroke="#ffffff" stroke-width="7" opacity=".92"/>
+
+  </svg>
+
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">TYPE PARTICIPATES · COPY STAYS CLEAR</span></div>
+
+<script>
+window.renderReady = document.fonts.ready.then(() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  const group = document.getElementById('gears');
+  function gear(cx, cy, radius, teeth, rotation, face) {
+    const pts = [];
+    for (let i=0; i<teeth*4; i++) {
+      const phase = i % 4; const outer = phase === 1 || phase === 2;
+      const r = radius * (outer ? 1 : .83);
+      const a = rotation + i * Math.PI * 2 / (teeth*4);
+      pts.push((cx + Math.cos(a)*r).toFixed(2) + ',' + (cy + Math.sin(a)*r).toFixed(2));
+    }
+    const p = document.createElementNS(ns,'polygon'); p.setAttribute('points',pts.join(' '));
+    p.setAttribute('fill',face); p.setAttribute('stroke','#170b3f'); p.setAttribute('stroke-width','8');
+    group.appendChild(p);
+    const hub = document.createElementNS(ns,'circle'); hub.setAttribute('cx',cx); hub.setAttribute('cy',cy);
+    hub.setAttribute('r',radius*.29); hub.setAttribute('fill','#5727e6'); hub.setAttribute('stroke','#170b3f');
+    hub.setAttribute('stroke-width','8'); group.appendChild(hub);
+    for(let i=0;i<6;i++) {
+      const a=rotation+i*Math.PI/3; const line=document.createElementNS(ns,'line');
+      line.setAttribute('x1',cx+Math.cos(a)*radius*.34); line.setAttribute('y1',cy+Math.sin(a)*radius*.34);
+      line.setAttribute('x2',cx+Math.cos(a)*radius*.72); line.setAttribute('y2',cy+Math.sin(a)*radius*.72);
+      line.setAttribute('stroke','#170b3f'); line.setAttribute('stroke-width','11'); line.setAttribute('stroke-linecap','round');
+      group.appendChild(line);
+    }
+  }
+  gear(72, 870, 128, 18, .02, '#ff784e');
+  gear(989, 828, 153, 20, .12, '#f3ff4d');
+  gear(855, 1020, 73, 14, .19, 'url(#metal)');
+});
+</script>
+</body>
+</html>
