@@ -157,7 +157,7 @@ and ERCOT keeps no archive. A day not collected is gone.** You may fix presentat
 **11. BOUNDED FAN-OUT, showrunner only.** Only you spawn agents, and only the fixed set each
 phase names: up to 6 scouts, 1 fact-checker, 3 treatment-directors, 2 caption-directors, 1
 caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 flow-critic, 3 scorers a
-scoring round, 1 upgrade-engineer. The scouts and the pixel critics run on the smaller model tier
+scoring round, 1 upgrade-engineer on a weekly pass day (Phase 17). The scouts and the pixel critics run on the smaller model tier
 (owner, 2026-10-02), and every other agent on the session's model. CLAUDE.md, "Which model a
 subagent runs", has the measurement and the owner's decision. **A subagent is a leaf worker and never spawns its own.** This is a hard cap
 whether or not anything has failed. There is no phase where spawning more agents is the answer to
@@ -1892,26 +1892,51 @@ the next run's directors room. **Go back and confirm or contradict the instincts
 in Phase 9**, because an instinct nobody ever revisits is one that will sit in the prompt forever
 on the strength of the day it was written.
 
-**THE ARTWORK DEFECT COMES FIRST (owner, 2026-09-26).** Before any gate, checker or doctrine
-work, the phase reads the last round's craft card and takes its top ranked artwork defect. When
-the fix is a model, which it has been on every deck since the kit arrived, the phase lifts the
-chassis's model into `assets/js/kit/<family>.js` AT THE JUDGE'S NAMED FIX, not as the chassis
-shipped it, because the defect is the reason the model scored as it did and a lift of the same
-geometry changes nothing. It follows the conventions in the header of `assets/js/txkit.js`, proves
-the model with `examples/kit/build.py` rendered through the carousel engine, reads the proof at
-full size, and runs `examples/kit/sizes.py`. **This outranks every other upgrade.** Four repair
-rounds on no. 34 moved artwork 5.5 to 6.0 because every judge ranked the same kit gap first in
-round 1 and in round 5, the kit was out of every lane but `human`, and the backlog proposal waited
-for a maintainer who never came. The engine (`assets/js/txthree.js`) and the registry
-(`assets/js/txkit.js`) stay `human`, so a fix that needs either is a backlog proposal, and it goes
-at the top of the email under its own heading so it can't sink into the backlog again.
+**THE MACHINE IS UPGRADED ONCE A WEEK, FROM THE WEEK'S OUTPUT (owner, 2026-10-02).** In their
+words, the daily automation should "only fix like the things that were broken during the run", and
+once a week a run should spend time "addressing the things that really need to be fixed based on
+the recurring themes that it saw during the week ... based on actual output". Until that day this
+phase spawned the upgrade engineer on every run to make up to three changes from what that ONE run
+saw, and one run is one sample. The week said otherwise: from September 26th to October 2nd
+`artwork_craft` was the lowest criterion on six decks of seven, and four art defects were named on
+six decks of seven, most of them in every round, which no single run's upgrade had reached.
 
-The spawn prompt for the engineer carries this paragraph and the craft card's ranked defects
-verbatim, because the agent reads its own file first and that file predates this rule.
+**EVERY RUN: fix what broke, queue the rest.** What broke in this run was fixed in the run, by the
+FAILURE PROTOCOL. Every other change to the machine this run found is QUEUED in
+`knowledge/carousel/MACHINE_QUEUE.md`, in its one-line format, with the evidence: the last round's
+top ranked artwork defect from the craft card, every engine defect the round rule wrote into the
+run record with its frames and rounds, every workaround this run made because the machine lacked
+something, and every gate that fired wrongly. **A defect already open is never added twice.** Raise
+its `repeat` count in place and add this run's date to its evidence, because the count is what
+makes a repeat offender jump the week.
 
-**The machine.** Spawn 1 `carousel-upgrade-engineer`. Zero to three bounded, verified upgrades,
-the artwork lift first when there is one, logged to `ledger/carousel/upgrades.json`. **Commit that work with the narrower lane declared on
-the commit itself:**
+**THEN ASK WHETHER THE WEEKLY PASS IS DUE:**
+
+```
+python3 scripts/carousel/machine_due.py --date <date>
+```
+
+Exit 1: no pass today. The email says how many items are queued and that the pass is weekly, and
+the phase moves on. Exit 0: run the weekly pass, here, before the merge, so its changes ride this
+pull request and pass this branch's CI.
+
+```
+python3 scripts/carousel/week_digest.py --date <date> --out out/<date>/week_digest.md
+```
+
+**The weekly pass.** Spawn 1 `carousel-upgrade-engineer` with `prompts/machine_weekly.md` as its
+brief, the digest's path and this paragraph. **The artwork comes first (owner, 2026-09-26):** when
+the week's top artwork theme is fixed by a model, the pass lifts the chassis's model into
+`assets/js/kit/<family>.js` AT THE JUDGES' NAMED FIX, proves it with `examples/kit/build.py`
+rendered through the carousel engine, reads the proof at full size and runs `examples/kit/sizes.py`.
+Four repair rounds on no. 34 moved artwork 5.5 to 6.0 because every judge ranked the same kit gap
+first in round 1 and in round 5. The engine (`assets/js/txthree.js`) and the registry
+(`assets/js/txkit.js`) stay `human`, so a theme that needs either is a backlog proposal with its
+counts, at the top of the email under its own heading. At most five changes, each logged to
+`ledger/carousel/upgrades.json`, and `config/carousel/machine_pass.json` records the pass. **Rerun
+every `verify` command the engineer returns and revert any change that fails it.** The pass's
+email lines go in the email under the machine's heading. **Commit the queue, and on a pass day
+every change, with the narrower lane declared on the commit itself:**
 
 ```
 TXDOCKET_ACTOR=upgrade git commit -m "..."
@@ -1942,10 +1967,11 @@ nothing to commit. When anything changed, a gate added, a doctrine file written,
 work brought in from `main` by Phase 16, `knowledge/carousel/ARSENAL.md` moves and goes into the
 `upgrade` commit. **It is generated and never hand-edited.** A stale arsenal is how the next run
 fails to find the thing this one built. A model the chassis had to build because the kit lacked
-it is lifted into `assets/js/kit/<family>.js` in the same `upgrade` commit, which the section
-before this one makes the phase's first job. Every engine defect the round rule wrote into the run
-record, with its frames and its rounds, is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` in
-that commit, because the engine stays `human` and only a maintainer can make that fix.
+it is QUEUED, and the weekly pass lifts it into `assets/js/kit/<family>.js` at the judges' named fix
+when the week shows it recurring. Every engine defect the round rule wrote into the run record, with
+its frames and its rounds, is queued too, and the weekly pass writes it up in
+`knowledge/carousel/UPGRADE_BACKLOG.md` with the week's counts, because the engine stays `human` and
+only a maintainer can make that fix.
 
 **A `claude/daily-` branch may carry `upgrade` commits and this is now stated in the map, not
 worked around.** Until 2026-08-16 CI pinned one actor per branch and checked the whole branch

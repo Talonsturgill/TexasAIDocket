@@ -775,6 +775,19 @@ $184.52, so a smaller window looks like a saving. Claude Code's own text calls `
 recommended for the best cost and performance" and warns that overriding it "may result in high
 token usage".
 
+## The machine is upgraded weekly, from the week's output (owner, 2026-10-02)
+
+*"Only fix like the things that were broken during the run"*, and once a week spend time
+*"addressing the things that really need to be fixed based on the recurring themes that it saw
+during the week ... based on actual output."* So a run fixes what broke in it and queues every
+other machine change in `knowledge/carousel/MACHINE_QUEUE.md`, and `scripts/carousel/machine_due.py`
+decides when the weekly pass runs: seven days after the last, or the next day when a queued defect
+has bitten two more runs. The pass reads `scripts/carousel/week_digest.py`'s count of the week's
+scores and recurring themes, by runs and by rounds, and works them in `prompts/machine_weekly.md`,
+inside that day's run and before its merge. Before this, each run's upgrade engineer saw one run;
+the first week counted showed `artwork_craft` lowest on six decks of seven and four art defects
+named on six decks of seven.
+
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 
 **No routine writes a lane stamp. Nothing is written to declare an actor, by any tool, at any

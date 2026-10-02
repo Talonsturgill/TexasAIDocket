@@ -761,6 +761,12 @@ jobs:
       - name: Completion self-test (a run cannot call itself done under the threshold)
         run: python3 scripts/carousel/run_complete.py --self-test
 
+      - name: Weekly machine pass due check self-test (weekly, early for a repeat offender, never twice a day)
+        run: python3 scripts/carousel/machine_due.py --self-test
+
+      - name: Week digest self-test (the week's scores and recurring themes, counted)
+        run: python3 scripts/carousel/week_digest.py --self-test
+
       - name: Machine QA self-test (replayed against real captured renders)
         run: python3 .claude/skills/carousel-engine/qa.py --self-test
 

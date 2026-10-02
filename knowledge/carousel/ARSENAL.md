@@ -18,10 +18,10 @@
 | world presets | 6 |
 | kit models | 110 in 10 families |
 | asset libraries | 21 |
-| carousel and shared tools | 67 |
+| carousel and shared tools | 69 |
 | record and site tools the routine names | 20 |
 | agents | 10 |
-| knowledge files | 41 |
+| knowledge files | 42 |
 | examples | 6 |
 
 ## BY PHASE, the tools the routine names in each section
@@ -52,7 +52,7 @@
 | 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py` |
 | 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `measure_shipped.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
-| 17 | `arsenal.py`, `instincts.py`, `prompt_audit.py`, `push.sh` |
+| 17 | `arsenal.py`, `instincts.py`, `machine_due.py`, `prompt_audit.py`, `push.sh`, `week_digest.py` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
 | 19 | `email_check.py`, `gate_status.py`, `gmail_draft.py`, `prompt_audit.py` |
 | failure | `push.sh` |
@@ -428,6 +428,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/layout_check.py` | Is there an IMAGE on this frame, and did the deck turn the page? | --run-dir --date --require --self-test --prose | CI, shipped | 9, artwork, 11, 12, 12b |
 | `scripts/carousel/ledger_check.py` | the variety ledgers are DERIVED, so they are re-derived and compared. | --date --ledger-dir --self-test --derive | shipped |  |
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
+| `scripts/carousel/machine_due.py` | is the weekly machine pass due today? | --date --self-test | CI self-test | 17 |
 | `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI | 16 |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
@@ -443,6 +444,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
+| `scripts/carousel/week_digest.py` | what the judges kept saying this week, counted, for the weekly machine pass. | --date --days --out --self-test | CI self-test | 17 |
 | `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
 | `scripts/shared/actor_stamp_shape.py` | no instruction file may tell a session to WRITE the actor stamp. | --root --self-test | CI |  |
 | `scripts/shared/attribution_strip.py` | no Claude or Anthropic attribution in a commit message, ever. |  | CI |  |
@@ -507,7 +509,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `carousel-scorer` | Read | Grades the finished package against config/carousel/scoring_rubric.yaml. |
 | `carousel-scout` | WebSearch, WebFetch, Read, model sonnet | Beat-specific researcher for the daily Texas AI carousel. |
 | `carousel-treatment-director` | Read | One voice in the directors room. |
-| `carousel-upgrade-engineer` | Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch | The retro and upgrade phase. |
+| `carousel-upgrade-engineer` | Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch | The weekly machine pass. |
 
 | skill | file | what it does |
 |---|---|---|
@@ -535,6 +537,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `knowledge/carousel/DESIGN_DOCTRINE.md` | Design doctrine, the visual standard | The rules that decide whether a frame is finished. |
 | `knowledge/carousel/FIELD_NOTES.md` | Field notes, lessons that cost something to learn | The living record of what has actually gone wrong here, and what the fix turned out to be. |
 | `knowledge/carousel/ILLUSTRATION_SYSTEM.md` | The illustration system, how a frame gets an IMAGE | Written 2026-09-11, the upgrade session after carousel no. 21, on the owner's instruction that the artwork was "very mediocre" and had to be a different order of thing by the next run. |
+| `knowledge/carousel/MACHINE_QUEUE.md` | Machine queue: what the weekly machine pass works on | Since 2026-10-03 a run fixes only what broke in its own run and queues every other machine change here, in Phase 17, under the `upgrade` stamp. |
 | `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` | Slide dossier spec, the planning format | A dossier is written for every slide BEFORE any code is written for it. |
 | `knowledge/carousel/TECHNIQUE_LIBRARY.md` | Technique library, the variety engine's palette | Named techniques the deck engine can actually execute, each with what it is for, what it costs, and how it fails. |
 | `knowledge/carousel/UPGRADE_BACKLOG.md` | Carousel upgrade backlog | Opened 2026-08-19, after a run whose deck was scored seven times and never once reached the threshold. |
