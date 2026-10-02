@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-01",
+  "generated": "2026-10-02",
   "gates": [
    "banned words",
    "claims",
@@ -26451,6 +26451,407 @@
     {
      "date": "2026-10-01",
      "note": "Both copies of the release still announce the expansion. Wiwynn's copy carries a September 10th date, which is the day the record now gives for the announcement."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0195",
+   "title": "Texas Children's and Baylor researchers name a likely genetic cause of a rare disorder after an AI tool flagged the gene",
+   "summary": "Researchers at the Duncan Neurological Research Institute at Texas Children's Hospital, Baylor College of Medicine and the Texome Project report in the American Journal of Human Genetics that variants in the gene BRSK1 are a likely diagnosis for a rare neurodevelopmental disorder. The work began with a child enrolled in the Texome Project, which provides free genetic testing for medically underserved people with rare and undiagnosed conditions. Standard genetic analysis of the child and a parent found no answer. An AI based tool called AI-MARRVEL then picked out a rare change in BRSK1 as a promising candidate. Other families answered through the GeneMatcher network and the team studied 10 affected individuals from seven unrelated families. Fruit flies did the confirming. Flies with the fly version of the gene disabled had trouble moving and lived shorter lives. The normal human gene largely corrected that and the patients' variants only partly did. The release describes a research finding and does not say the tool is used in routine diagnosis at the hospital.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Duncan Neurological Research Institute at Texas Children's Hospital, with Baylor College of Medicine and the Texome Project",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-28",
+     "kind": "filed",
+     "note": "Texas Children's release announcing the published study"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The study is published in the American Journal of Human Genetics. The Texome Project describes its genetic services on its own site for people who have no insurance or can't pay for genomic testing.",
+    "url": "https://www.texome.org/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0195-c1",
+     "text": "The researchers identify variants in BRSK1 as a likely diagnosis for a rare neurodevelopmental disorder.",
+     "verbatim_quote": "have identified variants in gene BRSK1 as a likely diagnosis for individuals with a rare and complex neurodevelopmental disorder who until now had not received an explanation for their condition.",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c2",
+     "text": "The study appears in the American Journal of Human Genetics.",
+     "verbatim_quote": "The study appears in the American Journal of Human Genetics.",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c3",
+     "text": "The work began with a child in the Texome Project, which provides free genetic testing for underserved people with rare undiagnosed conditions.",
+     "verbatim_quote": "The project began with a child enrolled in the Texome Project, a program that provides free genetic testing for medically underserved individuals with rare, undiagnosed conditions",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c4",
+     "text": "Standard analysis found no answer and the AI-MARRVEL tool highlighted a rare change in BRSK1.",
+     "verbatim_quote": "Standard genetic analyses of a parent and child with the condition did not reveal an answer, but when a new artificial intelligence-based tool called AI-MARRVEL analyzed the genomic data, it highlighted a rare change in the BRSK1 gene as a promising candidate for a genetic diagnosis.",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c5",
+     "text": "After sharing through GeneMatcher the team studied ten affected people from seven unrelated families.",
+     "verbatim_quote": "Altogether, we studied 10 affected individuals from seven unrelated families",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c6",
+     "text": "Flies with the fly gene disabled had trouble moving and lived shorter lives.",
+     "verbatim_quote": "When the fly gene was disabled, the flies developed difficulties moving, showed increased sensitivity to stressors that can trigger seizure-like behavior, became more vulnerable to heat-induced paralysis and lived shorter lives.",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c7",
+     "text": "The normal human gene largely corrected the flies.",
+     "verbatim_quote": "the human gene largely corrected the flies' movement and neurological problems",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c8",
+     "text": "The patients' variants only partly restored the flies.",
+     "verbatim_quote": "when we introduced the gene variants found in affected individuals, the neurological and movement problems were only partially restored",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c9",
+     "text": "The release is dated September 28th, 2026.",
+     "verbatim_quote": "HOUSTON (September 28, 2026)",
+     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0195-c10",
+     "text": "The Texome Project serves people who have no insurance or can't pay for genomic testing.",
+     "verbatim_quote": "The Texome Project seeks to address disparities in genomic medicine by making genetic services from leading experts in the field more accessible to participants who have no insurance or are unable to pay for genomic testing.",
+     "source_url": "https://www.texome.org/",
+     "source_title": "The Texome Project",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-02"
+    }
+   ],
+   "last_verified": "2026-10-02",
+   "confidence": "high",
+   "notes_for_editor": "Sourced to Texas Children's own release of the study and to the Texome Project's site. The journal article at doi.org/10.1016/j.ajhg.2026.09.005 rendered no text to the fetcher. A follow up should watch for the hospital or Baylor stating whether AI-MARRVEL is used in clinical diagnosis rather than research.",
+   "history": [
+    {
+     "date": "2026-10-02",
+     "note": "Admitted on the hospital's own account of the published study. An AI tool pointed at the gene. Families found through a research network and experiments in fruit flies are what made it a likely diagnosis."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0196",
+   "title": "The Fifteenth Court of Appeals leaves Bot Auto free to keep building driverless trucks while TuSimple's successor sues it over trade secrets",
+   "summary": "The Fifteenth Court of Appeals affirmed a Business Court ruling in Harris County that denied CreateAI Holdings a temporary injunction against Bot Auto TX. CreateAI was TuSimple, founded to build driverless 18-wheelers, and it changed its name in December 2024. It sued under the Texas Uniform Trade Secrets Act, saying Bot Auto misappropriated its autonomous vehicle technology. Bot Auto was started by TuSimple's fired co-founder and chief executive and is still developing autonomous trucking. The court found CreateAI unlikely to suffer an injury that money damages can't cover, because it no longer runs autonomous trucking in the United States. It has turned to AI entertainment for Asian markets. The court decided only the injunction, on what it called a preliminary record.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Fifteenth Court of Appeals",
+    "type": "court"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-15",
+     "kind": "decided",
+     "note": "Memorandum opinion affirming the denial of a temporary injunction"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "The appeal is decided and the opinion is public. The case itself continues in the Business Court under cause number 24-BC11A-0007, where filings are made by the parties rather than the public.",
+    "url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0196-c1",
+     "text": "The court filed its opinion affirming on September 15th, 2026.",
+     "verbatim_quote": "Affirmed and Memorandum Opinion filed September 15, 2026",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c2",
+     "text": "The appeal came from the Business Court in Harris County.",
+     "verbatim_quote": "On Appeal from the Business Court Division 11A Harris County, Texas Trial Court Cause No. 24-BC11A-0007",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c3",
+     "text": "CreateAI was an autonomous vehicle company and has pivoted to AI entertainment.",
+     "verbatim_quote": "was formerly an autonomous vehicle company that has since pivoted to AI-enhanced entertainment.",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c4",
+     "text": "Bot Auto is still developing autonomous trucking.",
+     "verbatim_quote": "Appellee Bot Auto is still actively engaged in the development of autonomous trucking technology",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c5",
+     "text": "The company was founded to build driverless 18-wheelers.",
+     "verbatim_quote": "At its founding in 2015, CreateAI focused on autonomous trucking, specifically to develop 18-wheelers capable of fully driverless",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c6",
+     "text": "It changed its name from TuSimple in December 2024.",
+     "verbatim_quote": "Formerly known as TuSimple Holdings, Inc., the petitioner company changed its name to CreateAI on December 11, 2024.",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c7",
+     "text": "It turned to AI entertainment for Asian markets.",
+     "verbatim_quote": "In December of 2024, it redirected its business to AI-powered digital entertainment crafted primarily for Asian markets.",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c8",
+     "text": "The company fired its co-founder and chief executive.",
+     "verbatim_quote": "the company fired its co-founder and CEO, Dr. Xiaodi Hou",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c9",
+     "text": "He started Bot Auto.",
+     "verbatim_quote": "Within the month, Dr. Hou started Bot Auto",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c10",
+     "text": "The court found money damages could cover any injury because CreateAI left U.S. autonomous trucking.",
+     "verbatim_quote": "Further, we find that CreateAI is unlikely to suffer imminent injury that cannot be compensated by money damages because it no longer maintains U.S. autonomous trucking operations.",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c11",
+     "text": "The court ruled on a preliminary record.",
+     "verbatim_quote": "Recognizing that this case is before us solely on a preliminary record",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0196-c12",
+     "text": "The suit is under the Texas Uniform Trade Secrets Act.",
+     "verbatim_quote": "the company sued Bot Auto under the Texas Uniform Trade Secrets Act",
+     "source_url": "https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf",
+     "source_title": "CreateAI Holdings, Inc. v. Bot Auto TX Inc., Fifteenth Court of Appeals, Memorandum Opinion",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    }
+   ],
+   "last_verified": "2026-10-02",
+   "confidence": "high",
+   "notes_for_editor": "Sourced to the opinion as CourtListener stores it. The PDF text sets the footnote marker against the company's name, so no quote starts at 'Appellant CreateAI'. A follow up should watch for a petition for review in the Supreme Court of Texas and for the Business Court's trial setting.",
+   "history": [
+    {
+     "date": "2026-10-02",
+     "note": "Admitted on the appeals court's own opinion. The company that sued has left driverless trucking, and the court said that is why money can answer its claim."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0197",
+   "title": "National Science Foundation makes Texas Southern University one of five regional nodes in an HBCU network for AI and quantum science",
+   "summary": "The National Science Foundation made a cooperative agreement with Texas Southern University in Houston under its Accelerating Research Translation program. It is Texas Southern's part of the HBCU AI - Quantum Innovation Network, which runs through five regional nodes with Clark Atlanta University as the lead institution. Texas Southern leads one of the five. The abstract says the network will build education, workforce preparation and research ties with industry, government, small businesses and community groups. It names regional meetings and workshops, shared training resources and pathways for students and faculty. The award record gives the start of the work as October 1st, 2026.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "U.S. National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-17",
+     "kind": "decided",
+     "note": "Award date on the NSF award record"
+    },
+    {
+     "date": "2026-10-01",
+     "kind": "effective",
+     "note": "Start date on the NSF award record"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The award record is public at the National Science Foundation and names the principal investigator at Texas Southern University and the program officer at NSF.",
+    "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2619041",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0197-c1",
+     "text": "The award is a collaborative research project for an HBCU network on AI and quantum science.",
+     "verbatim_quote": "Collaborative Research: The HBCU AI - Quantum Innovation Network (HAQIN)",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c2",
+     "text": "The project will set up a national network of HBCUs focused on AI and quantum science.",
+     "verbatim_quote": "This project will establish a national network of Historically Black Colleges and Universities (HBCUs) and partner organizations focused on artificial intelligence (AI) and quantum science.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c3",
+     "text": "Clark Atlanta leads and Texas Southern leads one of five regional nodes.",
+     "verbatim_quote": "the project will operate through five regional nodes led by Clark Atlanta University, Central State University, Norfolk State University, North Carolina Agricultural and Technical State University, and Texas Southern University.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c4",
+     "text": "The award is under the Accelerating Research Translation program.",
+     "verbatim_quote": "ART-Accelerating Rsrch Trnsltn",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c5",
+     "text": "The award was made on September 17th, 2026.",
+     "verbatim_quote": "\"date\":\"09/17/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c6",
+     "text": "The work starts on October 1st, 2026.",
+     "verbatim_quote": "\"startDate\":\"10/01/2026\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c7",
+     "text": "The awardee is Texas Southern University in Houston.",
+     "verbatim_quote": "\"awardeeCity\":\"HOUSTON\"",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0197-c8",
+     "text": "Activities include regional meetings, workshops, shared training and pathways for students and faculty.",
+     "verbatim_quote": "Project activities will include identifying institutional strengths and needs, supporting regional meetings and workshops, developing shared training resources, and creating practical pathways for students, faculty, and regional partners to engage in fast-growing technology fields.",
+     "source_url": "https://api.nsf.gov/services/v1/awards/2619041.json?printFields=id,title,awardeeName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText",
+     "source_title": "NSF Award 2619041, National Science Foundation award record",
+     "source_type": "primary_official",
+     "fetched": "2026-10-02"
+    }
+   ],
+   "last_verified": "2026-10-02",
+   "confidence": "high",
+   "notes_for_editor": "Sourced to NSF's public award API, because the nsf.gov award page renders with a script and shows no text to the fetcher. The record carries no dollar figure, since the API gives the estimated total and the obligation as bare fields and nothing published states them in prose.",
+   "history": [
+    {
+     "date": "2026-10-02",
+     "note": "Admitted on the foundation's own award record. Texas Southern now leads a regional node of a national HBCU network on AI and quantum science."
     }
    ]
   }
