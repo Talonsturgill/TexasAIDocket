@@ -1539,7 +1539,8 @@ export function init(THREE) {
       return m;
     }
     for (const root of R.scene.children.slice()) {
-      if (skip.has(root) || root.userData.txGround || root.isLight || root.isInstancedMesh) continue;
+      // a scatter is skipped as a whole, the grass Group included, before it is measured
+      if (skip.has(root) || root.userData.txGround || root.isLight || root.isInstancedMesh || root.userData.txScatter) continue;
       const box = new THREE.Box3().setFromObject(root);
       if (box.isEmpty()) continue;
       const base = box.min.y;
