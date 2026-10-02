@@ -30,6 +30,10 @@ export async function videoFit(browser, site, check) {
     const page = await context.newPage();
     await page.goto("http://video-fit.test/videos/");
     await page.locator(".stage .poster").waitFor();
+    // Let the real preload observer attach its source before installing the canvas.
+    // Keep that attribute while srcObject supplies the decoded test frames; clearing
+    // it lets a later observer callback reload the video and abort fixture play().
+    await page.waitForFunction(() => document.querySelector(".stage video").hasAttribute("src"));
     await page.evaluate(async () => {
       await document.querySelector(".stage .poster").decode();
       // A live canvas supplies actual decoded video dimensions, not mocked DOM values.
@@ -49,7 +53,6 @@ export async function videoFit(browser, site, check) {
       paint();
       const timer = setInterval(paint, 100);
       const video = document.querySelector(".stage video");
-      video.removeAttribute("src"); video.load(); video.dataset.src = "";
       video.srcObject = stream;
       window.__videoFitFixture = { canvas, stream, timer };
       await video.play();
