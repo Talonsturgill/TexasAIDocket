@@ -1,0 +1,125 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "affected_individuals": {
+  "value": 10,
+  "from": [
+   "c10"
+  ],
+  "basis": "affected individuals the study covered"
+ },
+ "families": {
+  "value": 7,
+  "from": [
+   "c10"
+  ],
+  "basis": "unrelated families those individuals came from"
+ },
+ "seizures": {
+  "value": 2,
+  "from": [
+   "c13"
+  ],
+  "basis": "affected individuals who experienced seizures"
+ },
+ "genematcher_individuals": {
+  "value": 9,
+  "from": [
+   "c28"
+  ],
+  "basis": "individuals the paper says were found through GeneMatcher after the first"
+ },
+ "variants_modeled": {
+  "value": 3,
+  "from": [
+   "c29"
+  ],
+  "basis": "patient missense variants modeled in fruit flies"
+ },
+ "training_variants_m": {
+  "value": 3.5,
+  "from": [
+   "c33"
+  ],
+  "basis": "millions of variants AI-MARRVEL's classifier was trained on, over"
+ },
+ "cohorts": {
+  "value": 3,
+  "from": [
+   "c34"
+  ],
+  "basis": "real-world cohorts in which AI-MARRVEL doubled the solved cases"
+ },
+ "precision_pct": {
+  "value": 98,
+  "from": [
+   "c35"
+  ],
+  "basis": "precision of AI-MARRVEL's confidence metric, percent, NOT overall accuracy"
+ },
+ "diagnosable_found_pct": {
+  "value": 57,
+  "from": [
+   "c35"
+  ],
+  "basis": "percent of diagnosable cases the confidence metric identified"
+ },
+ "metric_cases": {
+  "value": 871,
+  "from": [
+   "c35"
+  ],
+  "basis": "cases in the collection the confidence metric was tested on"
+ },
+ "texome_visits": {
+  "value": 5,
+  "from": [
+   "c43"
+  ],
+  "basis": "study visits a Texome participant makes"
+ },
+ "texome_years": {
+  "value": 2,
+  "from": [
+   "c43"
+  ],
+  "basis": "years the Texome visits span"
+ },
+ "gift_card_dollars": {
+  "value": 100,
+  "from": [
+   "c41"
+  ],
+  "basis": "dollars of the gift card after all the visits"
+ },
+ "texome_target_children": {
+  "value": 400,
+  "from": [
+   "c46"
+  ],
+  "basis": "children Texome plans to sequence, a target with a tilde, never a count served"
+ },
+ "followup_months_first": {
+  "value": 6,
+  "from": [
+   "c50"
+  ],
+  "basis": "months to the first Texome re-evaluation"
+ },
+ "solved_multiplier": {
+  "value": 2,
+  "from": [
+   "c34"
+  ],
+  "basis": "the paper's word 'doubling', as a factor, drawn as two lengths at one scale and never printed as a numeral",
+  "rule": "'doubling' in the quote, read as 2"
+ },
+ "first_plus_matched": {
+  "value": 10,
+  "from": [
+   "c27",
+   "c28"
+  ],
+  "basis": "the first Texome individual plus the nine found through GeneMatcher, computed only to assert it equals the release's 10, never printed",
+  "rule": "genematcher_individuals + 1"
+ }
+}

@@ -12,11 +12,11 @@
  },
  "introduction": [
   {
-   "text": "[The work began with a child enrolled in the Texome Project, a program that provides free genetic testing for medically underserved people with rare, undiagnosed conditions](c5). [Standard genetic analyses of the child and a parent did not reveal an answer](c7). [Then a new AI tool called AI-MARRVEL analyzed the genomic data and highlighted a rare change in the BRSK1 gene as a promising candidate for a diagnosis](c8).",
+   "text": "[The work began with a child enrolled in the Texome Project. The program provides free genetic testing for medically underserved people with rare and undiagnosed conditions](c5). [Standard genetic analyses of the child and a parent did not reveal an answer](c7). [Then a new AI tool called AI-MARRVEL analyzed the genomic data and highlighted a rare change in the BRSK1 gene as a promising candidate for a diagnosis](c8).",
    "claims": ["c5", "c7", "c8"]
   },
   {
-   "text": "[In a release dated {{date:c1}}, Texas Children's Hospital said its researchers, Baylor College of Medicine, the Texome Project and collaborators have identified BRSK1 variants as a likely diagnosis for a rare neurodevelopmental disorder](c3). [The study appears in the American Journal of Human Genetics](c4). The flag came from software. The case for it came from more families and from flies.",
+   "text": "[Texas Children's Hospital put out its release on {{date:c1}}](c1). [It says researchers there and at Baylor College of Medicine and the Texome Project have identified BRSK1 variants as a likely diagnosis for a rare neurodevelopmental disorder](c3). [The study appears in the American Journal of Human Genetics](c4). The flag came from software. The case for it came from more families and from flies.",
    "claims": ["c1", "c3", "c4"]
   }
  ],
@@ -25,11 +25,11 @@
    "heading": "What the software did",
    "paragraphs": [
     {
-     "text": "[AI-MARRVEL, described in a peer-reviewed paper in NEJM AI](c32), [uses a random forest classifier trained on over {{number:c33}} million variants from thousands of diagnosed cases](c33). [Its developers report that it doubled the number of solved cases against the methods it was benchmarked with, across three real world cohorts](c34).",
+     "text": "[AI-MARRVEL is described in a peer-reviewed paper in NEJM AI](c32). [It uses a random forest classifier trained on over {{number:c33}} million variants from thousands of diagnosed cases](c33). [Its developers report that it doubled the number of solved cases against the methods it was benchmarked with. The comparison covered three real world cohorts](c34).",
      "claims": ["c32", "c33", "c34"]
     },
     {
-     "text": "[On one confidence metric it reached {{number:c35}} percent precision and found {{number:c35:1}} percent of the diagnosable cases in a collection of {{number:c35:2}}](c35). Precision and the share of cases found measure different things. Neither is an accuracy figure for this child, and the tool's output was a candidate rather than a diagnosis.",
+     "text": "[On one confidence metric it reached {{number:c35}} percent precision and found {{number:c35:1}} percent of the diagnosable cases in a collection of {{number:c35:2}}](c35). Precision and the share of cases found measure different things. Neither is an accuracy figure for this child. The tool's output was a candidate rather than a diagnosis.",
      "claims": ["c35"]
     }
    ]
@@ -38,11 +38,11 @@
    "heading": "What the families and the flies added",
    "paragraphs": [
     {
-     "text": "[The researchers shared the finding through a research network called GeneMatcher, and other families reported rare variants in the same gene](c9). [GeneMatcher is a tool built to connect people interested in the same gene](c37). [The study grew to {{number:c10}} affected people from seven unrelated families](c10). [Every one of them showed some degree of developmental delay, though the severity varied](c11). [Common features included delayed speech and language, intellectual disability, autism, ADHD, anxiety, low muscle tone and microcephaly](c12). [Two of them had seizures](c13).",
+     "text": "[The researchers shared the finding through a research network called GeneMatcher. Other families then reported rare variants in the same gene](c9). [GeneMatcher is a tool built to connect people interested in the same gene](c37). [The study grew to {{number:c10}} affected people from seven unrelated families](c10). [Every one of them showed some degree of developmental delay. The severity varied](c11). [Common features included delayed speech and language, intellectual disability, autism, ADHD, anxiety, low muscle tone and microcephaly](c12). [Two of them had seizures](c13).",
      "claims": ["c9", "c37", "c10", "c11", "c12", "c13"]
     },
     {
-     "text": "[In fruit flies the gene's equivalent is called sff, for sugar-free frosting, and it is active mainly in neurons](c16). [With the fly gene disabled, the flies had trouble moving, were more prone to seizure-like behavior and lived shorter lives](c17). [The normal human gene largely corrected those problems](c18). [The team modeled three of the patients' variants in flies](c29), [and each of the three gave only a partial rescue](c51), [which suggests the variants reduce the protein's activity without removing it](c19).",
+     "text": "[In fruit flies the gene's equivalent is called sff, for sugar-free frosting. It is active mainly in neurons](c16). [With the fly gene disabled the flies had trouble moving. They were more prone to seizure-like behavior and lived shorter lives](c17). [The normal human gene largely corrected those problems](c18). [The team modeled three of the patients' variants in flies](c29). [Each of the three gave only a partial rescue](c51), [which suggests the variants reduce the protein's activity without removing it](c19).",
      "claims": ["c16", "c17", "c18", "c29", "c51", "c19"]
     }
    ]
@@ -51,7 +51,7 @@
    "heading": "What a family can do",
    "paragraphs": [
     {
-     "text": "[Texome takes as candidates people from underserved populations with a suspected rare disease who can't pay for DNA sequencing](c39). [Its genetic testing and follow-up consultations come at no cost](c40). [The study runs {{number:c43}} visits over {{number:c43:1}} years, in person or virtual](c43), [with re-evaluation of key genes at six months, one year and two years](c50). [The project asks anyone who thinks they may be eligible to write to texome-project@bcm.edu](c42).",
+     "text": "[Texome takes as candidates people from underserved populations with a suspected rare disease who can't pay for DNA sequencing](c39). [Its genetic testing and follow-up consultations come at no cost](c40). [The study runs {{number:c43}} visits over {{number:c43:1}} years in person or virtually](c43). [It re-evaluates key genes at six months, one year and two years](c50). [The project asks anyone who thinks they may be eligible to write to texome-project@bcm.edu](c42).",
      "claims": ["c39", "c40", "c43", "c50", "c42"]
     }
    ]
@@ -60,7 +60,7 @@
    "heading": "What the record can't show",
    "paragraphs": [
     {
-     "text": "[The paper's authors conclude that losing one working copy of BRSK1 leads to a neurodevelopmental syndrome whose features vary](c31). The release calls the variants a likely diagnosis, and this edition does not upgrade that to a certain one. [Texome states a plan to sequence about {{number:c46}} children with undiagnosed disorders](c46). The sources checked for this edition do not say how many it has reached.",
+     "text": "[The paper's authors conclude that losing one working copy of BRSK1 leads to a neurodevelopmental syndrome whose features vary](c31). The release calls the variants a likely diagnosis. This edition does not upgrade that to a certain one. [Texome states a plan to sequence about {{number:c46}} children with undiagnosed disorders](c46). The sources checked for this edition do not say how many it has reached.",
      "claims": ["c31", "c46"]
     }
    ]

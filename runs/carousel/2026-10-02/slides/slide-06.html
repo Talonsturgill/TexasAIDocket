@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-02, frame 6 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's goldenHour world. The vial at macro on the right, cropped top and bottom, the fly gene disabled and the flies down on the food. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .hook { width:540px; }
+  .dek { width:430px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">With the gene off, the flies had trouble moving.</h1>
+<p class="dek" data-follow="28">The fly version of BRSK1 is called sugar-free frosting. Disabled, it also left the flies with shorter lives.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "The proof", counter: "06 / 09", src: "c15 c16 c17", fit: { min: 70, max: 96, maxLines: 5 } });
+  const Y = VL.SILL_Y, Z = 0.12;
+  /* THE TURN, AT MACRO. The vial fills the frame on the right, cropped by the top and the bottom,
+   * the fly version of the gene disabled: the flies are down on the food and none near the plug, both walls in frame, the plug's foot
+   * at the top edge and the food's surface across the lower fifth. */
+  const R = VL.stage(TXT, gl, W, { fov: 30 });
+  VL.sill(K, R, TXT, { w: 3.2, mullions: [-1.5, 1.5] });
+  const v = VL.vial(K, { state: 'down', flies: 30, pupae: 2, seed: 31, tape: false, droplets: 0, flyScale: 1.6, front: true, backs: false });
+  v.position.set(0, Y, Z); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.7 });
+  VL.city(K, R, TXT, { look: [-0.05, -1], seed: 11 });
+  TXT.frame(R, { from: [-0.0135, Y + 0.056, Z + 0.118], look: [-0.0135, Y + 0.036, Z] });
+  /* the bounce off the white sill, from the camera's right, so the food's turned side does not fall to black */
+  { const b = new THREE.PointLight(0xffe2c0, 0.02, 0.4, 2); b.position.set(0.05, Y + 0.02, Z + 0.06); R.scene.add(b); }
+  TXT.sky(R);
+  TXT.deckRig(R, VL.rigSpec(W, 0.25), VL.rigOpts([0, Y, Z]));
+  TXT.ground(R, { surface: 'asphalt', size: 9000, seed: 14 });
+  TXT.weather(R, { grime: 0.15 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  const a = VL.project(THREE, R, [0, Y + 0.12, Z]), b = VL.project(THREE, R, [0, Y - 0.004, Z]);
+  const half = Math.abs(VL.project(THREE, R, [0.0135, Y + 0.05, Z])[0] - VL.project(THREE, R, [-0.0135, Y + 0.05, Z])[0]) / 2 + 4;
+  /* the far city softened, uniformly, inside the glass and out alike, down to just above the food */
+  const ft = VL.project(THREE, R, [0, Y + 0.021, Z + 0.012])[1];
+  VL.lensBlur(cx, ft - 140, ft - 80, 3);
+  VL.post(cx, { a: 0.45, rgb: '2,2,4' });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

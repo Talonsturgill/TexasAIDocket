@@ -1,0 +1,12 @@
+{"judge": "craft", "lens": "craft", "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame rendered and the type sits in quiet. Interiors 2, 3 and 9 are the strongest, with raking window light. Frame 4 is a flat card against a featureless wall with labels floating off the page. The exterior coping is a featureless dark slab and the skyline extruded boxes. Frame 5's empty vial stands beside the tapes with a ghostly glass. Frame 6 reads as a cork cake in grey mud. Golden hour barely reaches the hero on 1 and 8, flies sit in sticker-like columns. Showstopper at 432 px: 2, 3, 9 pass, 1, 7, 8 nearly, 4, 5, 6 fail."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One hero in one material, one accent, one type system, the vial-state motif and the camera bookends work. Two worlds rather than one, undeclared value cuts at 4 to 5 and 8 to 9, and frame 4's flat void sits outside the rendered register."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every numeral traces to a computed figure with a claim id. Frame 3's bar ratio is about 2.08 off solved_multiplier. Frame 5 scopes precision as not accuracy. Sources not re-fetched by this judge."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, where and what a reader can do are all there. No decision body or deadline exists to name, and eligibility is stated generally."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "The cover earns the swipe and frame 2 pays at once. Frame 5 interrupts the pointer-to-proof run, and frame 6's weak art undersells the turn."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "Clean and on register with good lines, honest without doom. Reads as a careful science explainer rather than distinctly Texan. Frame 4's dek is the flat line."},
+  {"name": "variety", "weight": 0.1, "score": 6.5, "why": "Subject and world fresh. A green accent two days running, and the opening and closing moves repeat no. 39."}
+ ],
+ "weighted_score": 7.06, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Put frame 4's page flat on the window-lit desk, give the exterior coping a textured sunlit top, and key the low sun onto the vial on 5 and 6 so the turn reads as a lit glass vial with downed flies."}

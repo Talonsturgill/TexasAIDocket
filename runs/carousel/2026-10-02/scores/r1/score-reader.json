@@ -1,0 +1,13 @@
+{"judge": "reader", "lens": "reader", "deck": "carousel no. 40, 2026-10-02, tx-2026-0195 (BRSK1 / AI-MARRVEL / Texome)", "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1 and 8 pass the showstopper test, frame 7 draws the result rather than captioning it, frame 3 reads as a real room. Frame 6 is a murky mid-band smear with blobby flies and the headline over the glass edge. Frame 4 is a flat grey sheet pinned in a brown void with placeholder-style bars, its labels hanging off the sheet. Frame 5's green slabs lie on the floor and the trees read as cut-outs. More than the one weak frame the 7 descriptor allows."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One vial with the accent band in every frame, one warm low sun, frames 2 and 9 rhyme. The value track strobes in reader order, the 4 to 5 cut is not on an argument turn, and frame 6 sits outside both worlds."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every numeral checked traces to a claim. Slide 5 refuses to call 98 percent an accuracy figure. Slide 9's headline and kicker drop c39's suspected-rare-disease condition, so a reader could take it as free testing for anyone who can't pay. Not a hard fail. Slide 9 draws c50's flags but cites c43 not c50."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A reader learns what happened and where and gets an action, the email. The action frame never says who the program is for, no frame says when this was published, and what a likely diagnosis changes for the families is never said."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "The cover earns the swipe and frame 2 pays at once. Frame 5 interrupts between the network and the fly test and could sit after frame 3."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "The best lines have a person's register. Several deks read as rewritten release text, little regional texture beyond Houston, and the caption's closing question reads more like an engagement prompt."},
+  {"name": "variety", "weight": 0.1, "score": 6.5, "why": "Not a topic repeat and the palette is fresh. One object carried through every frame repeats nos. 38 and 39, and the instrument family repeats nos. 19 and 23."}
+ ],
+ "weighted_score": 7.17, "hard_fails": [], "ship": false,
+ "ship_note": "No fault found. ship is false only because 7.17 is under the round 1 rung of 8.0.",
+ "one_sentence_fix": "Re-render frame 6 as a real place and rebuild frame 4's sheet as a document on the consult-room desk with its labels on the paper, and add c39's suspected rare disease condition to frame 9."}

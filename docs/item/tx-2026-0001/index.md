@@ -1,6 +1,6 @@
 # PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached
 
-The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and adding a new Section 25.252, and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The project index now stands at 67 filings. The commission next considers the proposal at an open meeting before adopting a final rule.
+The Public Utility Commission of Texas is amending its wholesale and investor owned utility retail transmission cost recovery rules for the ERCOT region. The commission published a proposal for publication amending Section 25.192 and Section 25.193 and adding a new Section 25.252, and set a comment deadline of August 11th, 2026. Utilities and data center developers filed comments on the deadline date. So did consumer advocates and ERCOT itself. The project index now stands at 70 filings. The commission next considers the proposal at an open meeting before adopting a final rule.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The rulemaking is still sitting between a closed comment file and a proposal, with nothing new posted to the project.
 - 2026-09-26 · The comment file closed on August 11th and the commission has not yet brought a proposal for adoption to an open meeting.
 - 2026-09-29 · The transmission cost recovery rule has not come to an open meeting for adoption, and the comment file that closed on August 11th has taken nothing new.
+- 2026-10-02 · Three filings reached the project on October 1st. One was voided the same day and another was the Texas Energy Buyers Alliance and JPI responding on the minimum billing demand study. The index now holds 70 filings and still carries no adoption order.
 
 ## Evidence
 
@@ -52,7 +53,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 67 filing(s).
+> 70 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

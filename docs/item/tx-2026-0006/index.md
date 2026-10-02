@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The act is still on the books as written, and enforcement still belongs to the attorney general alone.
 - 2026-09-26 · The act still stands as codified, and the attorney general is still the only party that can enforce it.
 - 2026-09-29 · The act reads as codified, and a person harmed under it still has no private right to sue. Enforcement rests with the attorney general alone.
+- 2026-10-02 · The act still reads as codified in Chapter 552, and the attorney general is still the only party who can enforce it.
 
 ## Evidence
 

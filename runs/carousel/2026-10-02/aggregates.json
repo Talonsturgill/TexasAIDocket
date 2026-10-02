@@ -1,0 +1,78 @@
+{
+ "date": "2026-10-02",
+ "_note": "Every count, span and ratio the deck states or draws, with the claim it was quoted from. The drawn counts (the ten marks and seven lines on frame 4, the three patient variant vials on frame 7, the two bars on frame 3, the two fills on frame 5, the five stickers on frame 9) are set from figures.json and asserted in each frame's code. The release's 10 and the paper's nine are never summed on a frame.",
+ "aggregates": [
+  {
+   "phrase": "Seven unrelated families",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c10",
+   "quote": "Altogether, we studied 10 affected individuals from seven unrelated families",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "three patient variants",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c29",
+   "quote": "We utilized Drosophila to model three missense variants",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "three cohorts",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c34",
+   "quote": "doubling the number of solved cases as compared with benchmarked methods, across three distinct real-world cohorts",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "2 years",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 2,
+   "quoted_from": "c43",
+   "quote": "The study consists of 5 visits (in-person or virtual) over a 2 year period",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "3.5 million variants",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3.5,
+   "quoted_from": "c33",
+   "quote": "uses a random-forest machine-learning classifier trained on over 3.5 million variants from thousands of diagnosed cases",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "Two of the ten",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 2,
+   "quoted_from": "c13",
+   "quote": "Two individuals experienced seizures.",
+   "note": "the source's 'Two individuals', of the 10 affected individuals c10 counts"
+  },
+  {
+   "phrase": "5 visits",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c43",
+   "quote": "The study consists of 5 visits (in-person or virtual) over a 2 year period",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "three patient versions",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c51",
+   "quote": "the three individual-derived alleles",
+   "note": "the source's own figure, quoted, never computed"
+  }
+ ]
+}

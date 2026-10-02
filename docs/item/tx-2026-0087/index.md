@@ -11,7 +11,7 @@ An agenda item asked the Denton City Council to approve a resolution on a morato
 - Public access: Public meeting
 - Take part: https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · Denton's moratorium resolution is still on the council's table with its hearing schedule attached.
 - 2026-09-26 · Denton's moratorium resolution and the hearing schedule it would require are still before the council.
 - 2026-09-29 · Denton's council still has the moratorium resolution and its schedule of required hearings before it.
+- 2026-10-02 · Denton's moratorium resolution and its hearing schedule are still before the council with no final action posted.
 
 ## Evidence
 

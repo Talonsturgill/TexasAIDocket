@@ -1,0 +1,12 @@
+{"judge": "integrity", "lens": "integrity", "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "All nine rendered, frame 3 strongest. Frame 6, the turn, is a heavy blur with a cork-drum hero and a dead lower left. Frame 5's vial a giant translucent column with a glass artifact, tapes flat stripes. Trees with no contact, low-poly skyline, grey-violet dusk. Hero about 2 percent of frames 2 and 9."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.4, "why": "One vial, one accent, two devices that work, true bookends. Two world switches plus frame 6's blur, the spine thins in the rooms."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.0, "why": "Every printed numeral and drawn quantity checks. Frame 3's 'flagged one gene' reads as exclusivity, frame 1's Houston kicker cites no claim carrying Houston, journal links are Europe PMC REST JSON."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.6, "why": "A real door with eligibility, cost, visits. The deck never says what the disorder looks like in a child."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.3, "why": "Cover earns the swipe, frame 2 pays, close lands. Frame 5 breaks chronology and would sit better after frame 3."},
+  {"name": "voice", "weight": 0.1, "score": 7.2, "why": "Good plain hooks, house rules hold. Frame 1 and 9 deks read as release or compliance copy, little regional texture."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "First fly-genetics deck, new instrument and palette. Hero-through-every-frame structure and lone-hero opening repeat."}
+ ],
+ "weighted_score": 7.35, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Re-render frame 6 as a legible vial on the sunlit coping with the downed flies readable on the food; change frame 3's hook so it does not imply exactly one gene, cite c1 for frame 1's Houston."}

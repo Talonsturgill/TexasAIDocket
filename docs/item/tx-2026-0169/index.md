@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · The clerk's request is unconfirmed on a fresh reading of the posted agenda, whose host bars every automated reader. No disposition appears on the county's own site.
 - 2026-09-30 · The clerk's request is still unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition appears on the county's own site.
 - 2026-10-01 · Whether the clerk's request to buy minute writing software is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site.
+- 2026-10-02 · The vendor now calls its product an AI minutes platform for local government. Whether the clerk's request is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county has posted no disposition.
 
 ## Evidence
 
@@ -58,9 +59,9 @@ Source (primary_official): https://public.destinyhosted.com/agenda_publish.cfm?i
 
 Source (primary_official): https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=136
 
-### The vendor states what its product does.
+### The vendor describes its product as an AI minutes platform for local government.
 
-> Govably uses AI to write official meeting minutes from any source
+> Govably is the most accurate, most comprehensive AI minutes platform for local government.
 
 Source (primary_corporate): https://www.govably.com/
 

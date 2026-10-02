@@ -1,0 +1,12 @@
+{"judge": "integrity", "lens": "integrity", "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 5 and 8 pass most of the showstopper test but read grey-blue dusk with little gold, box skyline and kit trees on a flat plane. Slide 6 reads as a cork stool with flies heaped like ants. Slide 4 is a flat card with UI-style marks and the vial small. On 2 and 9 the hero is a speck. Interiors well lit."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One hero in one material through nine frames, the tape motif changes state as declared, two declared worlds bookend cleanly, values hold. Slide 4 and slide 6 sit slightly outside."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 6.5, "why": "Every numeral traces and the drawn data measure right. Five places go past a claim: slide 7's dek joins c29's three variants to c19's partial restoration; slide 9 and the caption drop c39's suspected rare disease condition and slide 2 cuts c5's rare undiagnosed conditions; 'a Baylor classifier' rests on no quoted span; slide 9's five stickers sit evenly at 0, 6, 12, 18 and 24 months with no claim timing the visits; c5 and c24's claim texts overreach their quotes."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who, where and a concrete next step. Slide 8 states the limit honestly. The next step is aimed at the wrong set of families because the rare disease condition is missing."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "The cover earns the swipe, frame 2 pays at once, the turn at 6 lands and 7 to 9 is a real close. Frame 5 could move or go without loss."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "Clean, restrained, not boosterish, strong lines. Texas presence is institutional. Slide 8's dek is a flat paraphrase."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "No topic repeat and the first genetics story in the ledger. The hero carried through nine frames is the house structure since no. 36, and the instrument repeats nos. 19 and 23."}
+ ],
+ "weighted_score": 6.9, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "State Texome's eligibility on frame 9 and in the caption, and replace frame 7's join with a sentence one quote carries."}

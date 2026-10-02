@@ -1,0 +1,12 @@
+{"judge": "reader", "lens": "reader", "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 8 pass the place-at-an-hour test, frame 7 is the best image, interiors 2, 3, 9 have real raking sun. Frame 6 is mud-brown blur with the hero reading as a speckled cork, frame 4 is effectively a plate with the vial a prop, frame 5's bars lie flat with the vial cropped and lollipop trees, the skyline is box primitives, frame 9's vial is a few percent of the frame."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Clearly one deck, the vial changes state, the board returns with five dots. The value track strobes at the location cuts and frame 6's blur sits outside the look."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.5, "why": "Every numeral and every drawn count traces. Frame 9's 'Texome takes' renders c39's candidate description as acceptance, the caption's opening is the run's own framing, the first comment links Europe PMC REST JSON rather than a readable abstract."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, where and an action. Frame 9 omits that visits can be virtual (c43) and that Texome takes applicants from outside Texas (c47), so a family far from Houston assumes five trips. What a likely diagnosis changes is never said."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "Cover earns the swipe, frame 2 pays, the close lands on an action. Frame 5 is movable, frames 6 and 7 both show the gene-off state."},
+  {"name": "voice", "weight": 0.1, "score": 7.5, "why": "Clean, plain, two memorable lines, honest. Not distinctly Texan. The caption's last question is one the run can't answer and reads as bait or insinuation."},
+  {"name": "variety", "weight": 0.1, "score": 7.5, "why": "Diverges from the last four decks. Fourth medical deck in the window, house-default opening move."}
+ ],
+ "weighted_score": 7.48, "hard_fails": [], "ship": false,
+ "one_sentence_fix": "Print on frame 9 that visits can be virtual (c43) and that Texome takes applications from outside Texas (c47), and end the caption on texome-project@bcm.edu instead of the unanswerable question."}

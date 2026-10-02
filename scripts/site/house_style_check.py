@@ -319,6 +319,10 @@ _CITED = {
     # judgment against Pinnacle. The 2026-09-27 edition reports that comment window, so the
     # address is the fact the story turns on, carried from the notice's own words (claim c11).
     "ATR.Public-Comments-Tunney-Act-MB@usdoj.gov",
+    # The Texome Project's own contact address, printed on its For Patients page as the way a
+    # family asks whether it is eligible. The 2026-10-02 edition reports that free testing, so the
+    # address is the reader's one next step, carried from the program's own words (claim c42).
+    "texome-project@bcm.edu",
 }
 
 

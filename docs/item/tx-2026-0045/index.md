@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · Lubbock County's disclosure resolution still binds nobody, which is what the court voted for.
 - 2026-09-26 · Lubbock County's disclosure resolution still asks for disclosure and binds nobody to give it.
 - 2026-09-29 · The Lubbock County resolution still requests disclosure from large industrial projects and compels none.
+- 2026-10-02 · Lubbock County's disclosure resolution is unconfirmed this run. The only account of it sits on a site that bars automated readers.
 
 ## Evidence
 

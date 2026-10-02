@@ -1,16 +1,16 @@
-# PUCT opens the first five year review of the ERCOT system-wide offer caps, with comments due September 17th
+# PUCT's first five year review of the ERCOT system-wide offer caps closed to comment on September 17th
 
-The Public Utility Commission of Texas has opened Project 59550, the quinquennial review of the system-wide offer cap programs under 16 TAC Section 25.509(d). Commission staff filed a memorandum on August 20th, 2026 asking interested parties to answer questions about whether the caps and the emergency pricing program should change. The memorandum states that calendar year 2026 marks the first review period for these programs. It also states that ERCOT has never activated the emergency pricing program since it was adopted. Comments are due by September 17th, 2026 and anyone may file one through the commission's Interchange.
+The Public Utility Commission of Texas has opened Project 59550, the quinquennial review of the system-wide offer cap programs under 16 TAC Section 25.509(d). Commission staff filed a memorandum on August 20th, 2026 asking interested parties to answer questions about whether the caps and the emergency pricing program should change. The memorandum states that calendar year 2026 marks the first review period for these programs. It also states that ERCOT has never activated the emergency pricing program since it was adopted. Comments were due by September 17th, 2026, and the project's filing index now stands at 20 filings.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Comment window open
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The comment window shut on September 17th and the file filled the same day. Responses came from the grid operator, from generators and retailers, from industrial and municipal buyers, and from Google, which is the first time a hyperscaler has filed in this project. What the commission does with them has not been published.
 - 2026-09-26 · The comment window closed on September 17th. The commission has not yet acted on the offer cap review.
 - 2026-09-29 · The comment window closed on September 17th, and the commission's calendar has dropped the deadline now that it has passed. No order on the offer cap review has been posted.
+- 2026-10-02 · The comment deadline has passed and the commission's calendar no longer lists it. The project holds 20 filings and no staff recommendation on the offer caps has been filed.
 
 ## Evidence
 
@@ -87,11 +88,11 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59550_2_1
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59550_2_1676119.PDF
 
-### The commission's own calendar carries the deadline as a dated public entry.
+### The project's filing index stands at 20 filings after the deadline.
 
-> Public Comment Deadline - Thursday, September 17, 2026
+> 20 filing(s).
 
-Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
 ### The commission's market analysis staff filed the memo that opened the comment period.
 

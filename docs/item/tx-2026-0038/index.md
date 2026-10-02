@@ -11,7 +11,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The Harlingen effluent agreement still stands as the board approved it.
 - 2026-09-26 · The Harlingen effluent agreement for the proposed data center still stands as the waterworks board approved it.
 - 2026-09-29 · The effluent supply agreement between Harlingen Waterworks and RGV Property holds as the board approved it.
+- 2026-10-02 · Harlingen Waterworks' effluent agreement with RGV Property stands on the terms its board approved.
 
 ## Evidence
 

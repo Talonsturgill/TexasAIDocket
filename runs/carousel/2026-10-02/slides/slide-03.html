@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-10-02, frame 3 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in a room TXT.interior builds. A monitor on the desk shows two bars at one scale, AI-MARRVEL's solved cases against the methods it was benchmarked on, and the vial stands in front with the machine's green tape newly on it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:25px; letter-spacing:0.03em; color:#FBF7EF; white-space:nowrap; z-index:12; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Then software flagged BRSK1.</h1>
+<p class="dek" data-follow="28">AI-MARRVEL, a classifier trained on over 3.5 million variants, highlighted a rare change in BRSK1 as a promising candidate.</p>
+<div class="lab" id="lab-a">benchmarked methods</div>
+<div class="lab" id="lab-b">AI-MARRVEL</div>
+<div class="lab" id="lab-c">solved cases, three cohorts</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "The pointer", counter: "03 / 09", src: "c8 c32 c33 c34", fit: { min: 96, max: 128, maxLines: 2 } });
+  const FIG = {"solved_multiplier": 2, "cohorts": 3};
+  /* THE MACHINE'S ACT, AS LARGE AS IT WAS. A monitor on the desk carries two bars at one scale,
+   * the cases the methods it was benchmarked against solved and the cases AI-MARRVEL solved, the
+   * second drawn at solved_multiplier times the first. In front, the vial with the machine's mark
+   * newly on it and still no flies: nothing has been tested yet. */
+  const R = VL.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 60, fog: 0.0 });
+  TXT.interior(R, VL.ROOM);
+  const rm = VL.room(K, R, TXT, { chair: false, papers: true, sunAt: [-2.4, 3.0, -0.8], sunTo: [0.3, -0.25, -1.9] });
+  const mon = K.make('monitor', { inches: 27, screen: 'off', seed: 2 });
+  mon.position.set(0.18, rm.top, -1.5); TXT.add(R, mon); TXT.contact(R, mon, { opacity: 0.5 });
+  const sc = document.createElement('canvas'); sc.width = 1600; sc.height = 900; const g = sc.getContext('2d');
+  g.fillStyle = '#10161d'; g.fillRect(0, 0, 1600, 900);
+  g.fillStyle = '#1e2832'; for (let y = 120; y < 860; y += 45) g.fillRect(120, y, 1360, 2);
+  g.fillStyle = '#4a5a6c'; for (let x = 120; x <= 1480; x += 60) g.fillRect(x, 120, 2, 700);
+  const unit = 470, x0 = 200;
+  /* the axis both bars are read against, ticked at the unit, unnumbered */
+  g.fillStyle = '#9aa6b1'; g.fillRect(x0 - 6, 744, 1240, 4);
+  for (let k = 0; k <= 2 * FIG.solved_multiplier; k++) g.fillRect(x0 - 3 + k * unit / 2, 744, 4, 22);
+  g.fillStyle = '#7d8a96'; g.fillRect(x0, 300, unit, 120);                          /* benchmarked methods */
+  g.fillStyle = '#4FC79A'; g.fillRect(x0, 560, unit * FIG.solved_multiplier, 120);   /* AI-MARRVEL */
+  g.fillStyle = '#c9d2da'; g.fillRect(x0 - 6, 230, 6, 520);                          /* the baseline both start from */
+  VL.screen(THREE, mon, sc, 27, 0.8);
+  const v = VL.vial(K, { state: 'empty', flies: 0, pupae: 0, seed: 61, tape: true });
+  v.position.set(0.5, rm.top, -0.9); v.rotation.y = -0.3; TXT.add(R, v); TXT.contact(R, v, { opacity: 0.4 });
+  TXT.frame(R, { from: [0.75, rm.top + 0.28, 0.0], look: [0.2, rm.top + 0.36, -1.55] });
+  TXT.deckRig(R, W.rig, { target: [0.2, 0.8, -1.2], distance: 9, shadowFar: 30 });
+  TXT.weather(R, { grime: 0.08 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  /* the labels beside the bars they name, through the monitor's own transform */
+  const scr = VL.lastScreen;
+  const at = (u, w) => { const p = new THREE.Vector3((u / 1600 - 0.5) * 0.5977, (0.5 - w / 900) * 0.3362, 0.001); scr.localToWorld(p); return VL.project(THREE, R, [p.x, p.y, p.z]); };
+  const put = (id, p, dy) => { const e = document.getElementById(id); e.style.left = Math.round(p[0]) + 'px'; e.style.top = Math.round(p[1] + (dy || 0)) + 'px'; };
+  put('lab-a', at(x0 + 30, 300), -54); put('lab-b', at(x0 + 30, 560), -54);
+  put('lab-c', at(x0 + 30, 820), 6);
+  VL.post(cx, { a: 0.35, rgb: '10,9,8', type: ['.kick', '.hook', '.dek'] });
+  TXDECK.finish(cx);
+  window.__txDrawn = { bars: 2, ratio: FIG.solved_multiplier };
+  return true;
+})();
+</script>
+</body>
+</html>

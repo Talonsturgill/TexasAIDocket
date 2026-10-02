@@ -2533,6 +2533,63 @@
     "hex": "#1A2133",
     "note": "The deck's declared ground, a dark register deck."
    }
+  },
+  {
+   "date": "2026-10-02",
+   "carousel_no": 40,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, by out/2026-10-02/update_ledgers.py, and the gate suite by exit code.",
+   "register": "RENDERED, NOT PRINTED. One goldenHour world declared once in assets/js/deck/2026-10-02-vials.js, the sun raised to 12 degrees with a warmer horizon haze. One hero built in the chassis (fly_vial with climbing, down, partial and empty states, flies posed in bands by state, a wrapped accent tape, cornmeal food) and vial_tray, a parapet coping and city helper, and a consult room whose west window is seen by its barred sun patch.",
+   "structural_laws": [
+    "A 2D LENS BLUR MASKED BY THE HERO'S SILHOUETTE LEAVES THE WORLD SHARP THROUGH CLEAR GLASS. Blur a band uniformly, inside the glass and out, or not at all.",
+    "A ROOM'S WALLS CAST IN TXT.interior, SO A SUN OUTSIDE THEM NEVER ARRIVES. Put the spot inside the wall and cut the window into an unseen occluder half a metre in front of it.",
+    "A SUN PATCH OR A HORIZON EDGE BEHIND A LINE OF TYPE IS A STRIKE TO qa.py. Aim the patch below the dek and pad the type band past the last line.",
+    "A DARKER TYPE GROUND RAISES CONTRAST AND CAN TRIP THE RULE DETECTOR ON HEAVY SERIF LAST LINES. Reword a short last line rather than darken further.",
+    "A FLY AT TRUE SCALE IS A SPECK AT 432 PX. Scale it up, darken the body, fold the wings over the abdomen and pose the flies in bands, so the state reads as a position.",
+    "AN EMISSIVE ACCENT DRIFTS OFF ITS HEX UNDER A BRIGHTER SUN. Measure the lit pixels against the hex and saturate the emissive, not the base colour."
+   ],
+   "techniques": [
+    "one fly vial on a parapet coping at golden hour, downtown Houston low behind it",
+    "a consult room from the corner, an empty chair, the empty vial small on the desk, the visit schedule on the wall, the window's barred sun on the wall",
+    "a monitor carrying two bars at one scale, the marked vial on the desk edge cropped by the bottom",
+    "a page pinned on the wall with ten marks and seven ruled lines, the vial in front of its corner",
+    "two white tapes projected to one screen length with 98 and 57 filled in the accent, the vial at their end, the skyline behind",
+    "a macro on the food with the flies lying on it, the plug's foot at the top edge",
+    "five vials in a cardboard tray from close, one label baseline and a bracket over the three patient variant vials",
+    "the opening vial whole again on the coping, closer and from a little higher",
+    "the consult room again, the vial live with flies on the desk, five visit stickers under the schedule's rule"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     37.5,
+     20.9,
+     19.7,
+     30.1,
+     33.2,
+     31.7,
+     36.3,
+     34.1,
+     30.0
+    ],
+    "deck_median_L": 31.7,
+    "max_adjacent_delta": 16.6,
+    "mean_adjacent_delta": 5.46,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Frame 2 is the declared value cut."
+   },
+   "accent": {
+    "hex": "#4FC79A",
+    "name": "a bench marker green, the machine's mark",
+    "frames_above_floor": [
+     1,
+     3,
+     5,
+     8
+    ],
+    "note": "Only ever the tape on the vial, the AI-MARRVEL bar and the two tape fills. Never a fly."
+   },
+   "ground": {
+    "hex": "#20232B",
+    "note": "The deck's declared ground, a dark register deck."
+   }
   }
  ]
 }

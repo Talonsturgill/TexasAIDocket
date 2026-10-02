@@ -11,7 +11,7 @@ Texas State University published on August 24th, 2026 that its project on artifi
 - Public access: Write to the decider
 - Take part: https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-02
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The pavement method is still moving toward statewide use and the department has not adopted it.
 - 2026-09-26 · The Texas State pavement method is still moving toward statewide use, and the highway department has not adopted it.
 - 2026-09-29 · TxDOT has not adopted the Texas State pavement inspection method for statewide use, and the university still reports it moving that way.
+- 2026-10-02 · TxDOT has not adopted the Texas State pavement method statewide, and the university still describes it as heading that way.
 
 ## Evidence
 

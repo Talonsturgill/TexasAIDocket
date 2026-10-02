@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- 2026-10-02, frame 7 of 9. Archetype GRID. RENDERED through txthree.js in the deck's goldenHour world. A cardboard tray of five fly vials on the parapet coping: the gene off, the human gene, and the patients' variants, downtown in haze behind. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .brk { position:absolute; height:16px; border:3px solid #EFEBE4; border-bottom:none; z-index:12; }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.04em; color:#FBF7EF; white-space:nowrap; z-index:12; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The patients' versions only partly fixed the flies.</h1>
+<p class="dek" data-follow="28">The normal human gene largely corrected the flies. The team modeled three patient variants, and those restored the flies only partially.</p>
+<div class="lab" id="lab-off">gene off</div>
+<div class="lab" id="lab-human">human gene</div>
+<div class="lab" id="lab-pv">patient variants</div>
+<div class="brk" id="brk-pv"></div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "The test", counter: "07 / 09", src: "c18 c19 c29 c51", fit: { min: 80, max: 112, maxLines: 2 } });
+  const FIG = {"variants_modeled": 3};
+  const Y = VL.SILL_Y, Z = 0.13, P = 0.034;
+
+  /* THE RESCUE, SIDE BY SIDE. The gene off, the human gene and one vial per patient variant the
+   * team modeled, in one tray on the coping. Where the flies sit is a picture of "largely" and
+   * "partially", never a measurement, and nothing is drawn against their heights. */
+  const R = VL.stage(TXT, gl, W, { fov: 30 });
+  VL.sill(K, R, TXT, { w: 3.2, mullions: [-1.5, 1.5] });
+  const n = 2 + FIG.variants_modeled;
+  const tray = K.make('vial_tray', { cols: n, rows: 1, pitch: P });
+  tray.position.set(0, Y, Z); TXT.add(R, tray); TXT.contact(R, tray, { opacity: 0.75 });
+  const states = ['down', 'climbing'];
+  for (let i = 0; i < FIG.variants_modeled; i++) states.push('partial');
+  const vials = states.map((st, i) => {
+    const v = VL.vial(K, { state: st, flies: st === 'climbing' ? 30 : 26, pupae: 2, seed: 11 + i, tape: false, flyScale: 1.8, climbTop: 0.3, backs: false });
+    v.position.set(-(n - 1) * P / 2 + i * P, Y + 0.006, Z); v.rotation.y = i === 0 ? 0.05 : 0.4 + i * 0.7; TXT.add(R, v);
+    return v;
+  });
+  VL.city(K, R, TXT, { look: [-0.1, -1], seed: 7 });
+  TXT.frame(R, { from: [0.001, Y + 0.114, Z + 0.42], look: [-0.003, Y + 0.104, Z] });
+  TXT.sky(R);
+  TXT.deckRig(R, VL.rigSpec(W, 0.35), VL.rigOpts([0, Y, Z]));
+  TXT.ground(R, { surface: 'asphalt', size: 9000, seed: 12 });
+  TXT.weather(R, { grime: 0.12 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+
+  /* the labels under the vials they name, measured off this camera */
+  /* the labels on one line above the vials they name, measured off this camera, and a bracket
+   * over exactly the patient variant vials */
+  const at = (i) => VL.project(THREE, R, [-(n - 1) * P / 2 + i * P, Y + 0.118, Z]);
+  const hw = Math.abs(VL.project(THREE, R, [0.0135, Y + 0.09, Z])[0] - VL.project(THREE, R, [-0.0135, Y + 0.09, Z])[0]) / 2;
+  const top = Math.min(...[0, 1, 2, 3, 4].map((i) => at(i)[1]));
+  const base = top - 34;
+  const place = (id, x) => { const e = document.getElementById(id); e.style.left = Math.round(x - e.offsetWidth / 2) + 'px'; e.style.top = Math.round(base - e.offsetHeight) + 'px'; };
+  const a0 = at(0), a1 = at(1), aL = at(2), aR = at(n - 1);
+  place('lab-off', a0[0]); place('lab-human', a1[0]); place('lab-pv', (aL[0] + aR[0]) / 2);
+  const bk = document.getElementById('brk-pv');
+  bk.style.left = Math.round(aL[0] - hw) + 'px'; bk.style.width = Math.round(aR[0] - aL[0] + 2 * hw) + 'px'; bk.style.top = Math.round(base + 12) + 'px';
+  window.__txLeaders = [];
+
+  /* the far city, uniformly softened above the vial tops, inside the glass and out alike */
+  VL.lensBlur(cx, top - 70, top - 8, 2.5);
+  VL.post(cx, { a: 0.45, rgb: '10,10,14', to: base + 8, type: ['.kick', '.hook', '.dek', '.lab'], typeBlur: 22, typeFeather: 50 });
+  TXDECK.finish(cx);
+  window.__txDrawn = { vials: vials.length, patient_variant_vials: FIG.variants_modeled };
+  return true;
+})();
+</script>
+</body>
+</html>

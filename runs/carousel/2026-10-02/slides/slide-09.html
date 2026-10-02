@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-10-02, frame 9 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in a room TXT.interior builds. Frame 2's consult room from the same seat, the chair pulled back and empty, the vial on the desk with flies inside and its tape turned away, five visit stickers on the schedule. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Families who can't pay can ask.</h1>
+<p class="dek" data-follow="28">Candidates are underserved people with a suspected rare disease who can't pay for sequencing. Testing and follow-up are free, 5 visits in 2 years, in person or virtual. Write to <span style="white-space:nowrap">texome-project@bcm.edu.</span></p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-02-vials.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await VL.boot(THREE, TXT, initKit, { kicker: "Where to write", counter: "09 / 09", src: "c39 c40 c42 c43 c50", fit: { min: 96, max: 128, maxLines: 2 } });
+  const FIG = {"texome_years": 2, "followup_months_first": 6, "texome_visits": 5};
+  /* THE STUDY SCHEDULE ON THE WALL: a pale board with one rule across it, a tick per month of the
+   * study's years, and a flag at each follow up the program names. */
+  function schedule(R, x, y, z, FIG, stickers) {
+    const g = new THREE.Group();
+    const board = TXT.roundedBox(1.25, 0.56, 0.02, 0.008, K.mat('vl-board', { color: 0xe9e4d8, roughness: 0.85 })); g.add(board);
+    const ink = K.mat('vl-ink', { color: 0x2a2d33, roughness: 0.6 });
+    const months = FIG.texome_years * 12, x0 = -0.52, len = 1.04, yR = 0.06;
+    const rule = new THREE.Mesh(new THREE.BoxGeometry(len, 0.008, 0.004), ink); rule.position.set(0, yR, 0.012); g.add(rule);
+    for (let m = 0; m <= months; m++) { const t = new THREE.Mesh(new THREE.BoxGeometry(0.004, m % 12 ? 0.03 : 0.06, 0.004), ink); t.position.set(x0 + len * m / months, yR + (m % 12 ? 0.015 : 0.03), 0.012); g.add(t); }
+    const flagMat = K.mat('vl-flag3', { color: 0x2a2622, roughness: 0.6 });
+    [FIG.followup_months_first, 12, months].forEach((m) => {
+      const pole = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.14, 0.004), ink); pole.position.set(x0 + len * m / months, yR + 0.07, 0.014); g.add(pole);
+      const fl = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.04, 0.003), flagMat); fl.position.set(x0 + len * m / months + 0.03, yR + 0.12, 0.014); g.add(fl);
+    });
+    if (stickers) {
+      const st = K.mat('vl-sticker', { color: 0xd9a441, roughness: 0.5 });
+      for (let i = 0; i < stickers; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.003, 24), st); c.rotation.x = Math.PI / 2; c.position.set(x0 + 0.04 + i * 0.075, yR - 0.15, 0.013); g.add(c); }
+    }
+    g.position.set(x, y, z); TXT.add(R, g);
+    return g;
+  }
+
+  const R = VL.stage(TXT, gl, W, { fov: 46, near: 0.02, far: 60, fog: 0.0, exposure: 1.3 });
+  TXT.interior(R, VL.ROOM);
+  const rm = VL.room(K, R, TXT, { chairX: -0.5, chairZ: 1.05, chairYaw: 0.8 });
+  schedule(R, -0.4, 0.94, -2.17, FIG, FIG.texome_visits);
+  const v = VL.vial(K, { state: 'climbing', flies: 26, seed: 52, tape: true, tapeYaw: 3.36, tapeArc: 2.6, front: true });
+  v.position.set(0.3, rm.top, -0.97); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.4 });
+  TXT.frame(R, { from: [0.75, 1.15, -0.05], look: [-0.3, 1.12, -1.6] });
+  TXT.deckRig(R, W.rig, { target: [0.2, 0.8, -1.2], distance: 9, shadowFar: 30 });
+  TXT.weather(R, { grime: 0.1 });
+  const cx = VL.develop(await TXT.snapshot(R), gl);
+  VL.post(cx, { a: 0.4, rgb: '30,24,20' });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

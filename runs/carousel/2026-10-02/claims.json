@@ -1,0 +1,556 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Texas Children's Hospital dated its release on the BRSK1 study September 28th, 2026, with a Houston dateline.",
+   "quote": "HOUSTON (September 28, 2026)",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c2",
+   "text": "Researchers at the Duncan Neurological Research Institute at Texas Children's Hospital, Baylor College of Medicine and the Texome Project, with collaborating institutions, report the BRSK1 finding.",
+   "quote": "Researchers at the Duncan Neurological Research Institute (Duncan NRI) at Texas Children's Hospital, Baylor College of Medicine, the Texome Project and collaborating institutions",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c3",
+   "text": "The team identified variants in the gene BRSK1 as a likely diagnosis for a rare, complex neurodevelopmental disorder that had gone unexplained for the people who have it.",
+   "quote": "have identified variants in gene BRSK1 as a likely diagnosis for individuals with a rare and complex neurodevelopmental disorder who until now had not received an explanation for their condition",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c4",
+   "text": "The study is published in the American Journal of Human Genetics.",
+   "quote": "The study appears in the American Journal of Human Genetics",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c5",
+   "text": "The work started with one child enrolled in the Texome Project, which the Texas Children's release describes as free genetic testing for medically underserved people with rare, undiagnosed conditions.",
+   "quote": "The project began with a child enrolled in the Texome Project, a program that provides free genetic testing for medically underserved individuals with rare, undiagnosed conditions",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c6",
+   "text": "Hugo Bellen is a Distinguished Service Professor in Baylor's Department of Molecular and Human Genetics and chair in neurogenetics at the Duncan NRI, and a co-lead author of the study.",
+   "quote": "co-lead author Dr. Hugo Bellen, Distinguished Service Professor in the Department of Molecular and Human Genetics at Baylor and chair in neurogenetics at the Duncan NRI",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c7",
+   "text": "Standard genetic analyses of a parent and child with the condition found no answer.",
+   "quote": "Standard genetic analyses of a parent and child with the condition did not reveal an answer",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c8",
+   "text": "An AI tool called AI-MARRVEL then analyzed the genomic data and flagged a rare change in BRSK1 as a promising candidate diagnosis.",
+   "quote": "when a new artificial intelligence-based tool called AI-MARRVEL analyzed the genomic data, it highlighted a rare change in the BRSK1 gene as a promising candidate for a genetic diagnosis",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c9",
+   "text": "The researchers shared the finding through the GeneMatcher network, and other families reported rare variants in the same gene.",
+   "quote": "After sharing this finding through a research network called GeneMatcher, additional families reported rare variants in the same gene",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c10",
+   "text": "The study covered 10 affected people from seven unrelated families, according to first author Mingxi Deng, a postdoctoral fellow in the Bellen lab.",
+   "quote": "Altogether, we studied 10 affected individuals from seven unrelated families",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c11",
+   "text": "Every affected person had some developmental delay, though how severe it was and which symptoms appeared differed from person to person.",
+   "quote": "All affected individuals showed some degree of developmental delay, but the severity and specific symptoms varied",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c12",
+   "text": "Common features were delayed speech and language, intellectual disability, autism, ADHD, anxiety, low muscle tone and a smaller than average head.",
+   "quote": "Common features included delayed speech and language development, intellectual disability, autism spectrum disorder, attention-deficit/hyperactivity disorder, anxiety, low muscle tone and microcephaly",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c13",
+   "text": "Two of the affected people had seizures.",
+   "quote": "Two individuals experienced seizures.",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c14",
+   "text": "Relatives who carried the same variant had symptoms anywhere from mild to severe, which the researchers call variable expressivity.",
+   "quote": "Even among members of the same family carrying the same genetic variant, symptoms ranged from mild to severe.",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c15",
+   "text": "To test whether the variants disrupt the gene, the team used the lab fruit fly, which shares many biological pathways with humans.",
+   "quote": "Fruit flies share many biological pathways with humans",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c16",
+   "text": "The fly version of BRSK1 is called sff, short for sugar-free frosting, and it is active mostly in neurons, as in humans.",
+   "quote": "We studied the fly equivalent of BRSK1, called sff (sugar-free frosting), and found that this gene is active primarily in neurons",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c17",
+   "text": "Flies with the gene switched off had trouble moving, were more prone to seizure-like behavior and heat-induced paralysis, and died younger.",
+   "quote": "When the fly gene was disabled, the flies developed difficulties moving, showed increased sensitivity to stressors that can trigger seizure-like behavior, became more vulnerable to heat-induced paralysis and lived shorter lives",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c18",
+   "text": "Adding the normal human BRSK1 gene to flies lacking sff largely fixed their movement and neurological problems, showing the two genes do similar jobs.",
+   "quote": "the human gene largely corrected the flies' movement and neurological problems",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c19",
+   "text": "The patients' versions of the gene restored the flies only partly, which suggests the variants weaken the protein without wiping out its activity.",
+   "quote": "the neurological and movement problems were only partially restored, suggesting that these variants reduce but do not completely eliminate the protein's activity",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c20",
+   "text": "Losing BRSK1 activity raised levels of a protein that organizes microtubules, the internal scaffolding of neurons.",
+   "quote": "increased levels of a protein involved in organizing microtubules, a structural framework inside neurons",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c21",
+   "text": "Deng notes that microtubule disruption has been tied to several neurodevelopmental and neurological disorders.",
+   "quote": "Microtubule disruption has been linked to several neurodevelopmental and neurological disorders",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c22",
+   "text": "The release concludes the patient variants cause a disorder of developmental delay plus neurological and behavioral symptoms, with or without epilepsy.",
+   "quote": "a disorder characterized by developmental delays and a range of neurological and behavioral symptoms, with or without epilepsy",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c23",
+   "text": "Bellen credits the result to pairing AI-driven gene discovery with experiments in model organisms.",
+   "quote": "highlights the power of combining AI-driven gene discovery with experimental studies in model organisms",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c24",
+   "text": "Co-lead author Michael Wangler, an associate professor at Baylor and a Duncan NRI investigator, says the team wanted to build a program focused on families in Texas.",
+   "quote": "we wanted to build a program focused on families in Texas",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c25",
+   "text": "Wangler says the project learned along the way how AI can help interpret genomic data.",
+   "quote": "As the project progressed, we learned how artificial intelligence can help us interpret genomic data.",
+   "url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Texas Children's Hospital news release, September 28th, 2026"
+  },
+  {
+   "id": "c26",
+   "text": "The peer-reviewed paper is titled Monoallelic variants in BRSK1 are associated with a neurodevelopmental disorder with or without epilepsy.",
+   "quote": "Monoallelic variants in BRSK1 are associated with a neurodevelopmental disorder with or without epilepsy",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c27",
+   "text": "The paper itself says the first patient was found in the Texome Project using AI-MARRVEL, and describes Texome as serving financially disadvantaged people in Texas.",
+   "quote": "An individual with a variant in BRSK1 was identified in the Texome Project, which provides genomic diagnosis to financially disadvantaged individuals in Texas, using AI-MARRVEL",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c28",
+   "text": "The paper says nine more people carrying rare BRSK1 variants were found through GeneMatcher.",
+   "quote": "We subsequently found nine individuals harboring rare heterozygous BRSK1 variants through GeneMatcher",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c29",
+   "text": "The team modeled three of the patients' missense variants in fruit flies.",
+   "quote": "We utilized Drosophila to model three missense variants",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c30",
+   "text": "The paper names the raised protein as Futsch, the fly counterpart of MAP1B, which binds microtubules.",
+   "quote": "elevated levels of Futsch (MAP1B), a microtubule-associated protein",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c31",
+   "text": "The authors conclude that losing one working copy of BRSK1 leads to a neurodevelopmental syndrome whose features vary.",
+   "quote": "heterozygous loss of BRSK1 leads to a neurodevelopmental syndrome with variable phenotypes",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  },
+  {
+   "id": "c32",
+   "text": "AI-MARRVEL was described in a peer-reviewed paper in NEJM AI.",
+   "quote": "AI-MARRVEL - A Knowledge-Driven AI System for Diagnosing Mendelian Disorders",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1056%2Faioa2300009&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Mao et al., NEJM AI, DOI 10.1056/aioa2300009, abstract via Europe PMC"
+  },
+  {
+   "id": "c33",
+   "text": "AI-MARRVEL is a random forest machine learning classifier trained on more than 3.5 million variants from thousands of diagnosed cases.",
+   "quote": "uses a random-forest machine-learning classifier trained on over 3.5 million variants from thousands of diagnosed cases",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1056%2Faioa2300009&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Mao et al., NEJM AI, DOI 10.1056/aioa2300009, abstract via Europe PMC"
+  },
+  {
+   "id": "c34",
+   "text": "Across three real-world patient groups, AI-MARRVEL doubled the number of solved cases compared with the methods it was benchmarked against.",
+   "quote": "doubling the number of solved cases as compared with benchmarked methods, across three distinct real-world cohorts",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1056%2Faioa2300009&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Mao et al., NEJM AI, DOI 10.1056/aioa2300009, abstract via Europe PMC"
+  },
+  {
+   "id": "c35",
+   "text": "On a confidence metric built to pick diagnosable cases out of unsolved ones, AI-MARRVEL reached 98% precision and found 57% of diagnosable cases among 871 cases. That figure is not an overall diagnostic accuracy.",
+   "quote": "we designed a confidence metric on which AIM achieved a precision rate of 98% and identified 57% of diagnosable cases out of a collection of 871 cases",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1056%2Faioa2300009&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Mao et al., NEJM AI, DOI 10.1056/aioa2300009, abstract via Europe PMC"
+  },
+  {
+   "id": "c36",
+   "text": "An online version of AI-MARRVEL is available at ai.marrvel.org.",
+   "quote": "The online version of AIM is available at https://ai.marrvel.org",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1056%2Faioa2300009&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Mao et al., NEJM AI, DOI 10.1056/aioa2300009, abstract via Europe PMC"
+  },
+  {
+   "id": "c37",
+   "text": "GeneMatcher is a tool that connects people interested in the same gene.",
+   "quote": "GeneMatcher (genematcher.org) is a tool designed to connect individuals with an interest in the same gene.",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A35170833&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Hamosh et al., Human Mutation, PMID 35170833, abstract via Europe PMC"
+  },
+  {
+   "id": "c38",
+   "text": "The Texome Project states its mission as making expert genetic services reachable for people with no insurance or no way to pay for genomic testing.",
+   "quote": "making genetic services from leading experts in the field more accessible to participants who have no insurance or are unable to pay for genomic testing",
+   "url": "https://www.texome.org/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project home page"
+  },
+  {
+   "id": "c39",
+   "text": "Texome lists as candidates people from underserved populations with a suspected rare disease who can't pay for DNA sequencing.",
+   "quote": "Individuals from an underserved population with a suspected rare disease and without the means to pay for DNA sequencing",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c40",
+   "text": "Texome says its genetic testing and follow-up consultations are free.",
+   "quote": "The genetic testing and following consultations will come at no cost.",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c41",
+   "text": "Participants receive a $100 gift card after all 5 visits.",
+   "quote": "At the end of all 5 visits, you will receive a $100 gift card",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c42",
+   "text": "A family that thinks it may qualify can contact the Texome Project by email at texome-project@bcm.edu.",
+   "quote": "If you think you could be eligible or have questions please don't hesitate to contact us at texome-project@bcm.edu",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c43",
+   "text": "The Texome study runs 5 visits over 2 years, in person or virtual.",
+   "quote": "The study consists of 5 visits (in-person or virtual) over a 2 year period",
+   "url": "https://www.texome.org/about",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, About"
+  },
+  {
+   "id": "c44",
+   "text": "Texome is funded by the National Human Genome Research Institute.",
+   "quote": "We receive funding from National Human Genome Research Institute (1R01HG011795-01).",
+   "url": "https://www.texome.org/about",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, About"
+  },
+  {
+   "id": "c45",
+   "text": "The name Texome joins Texas and exome, the type of genetic analysis the study provides.",
+   "quote": "Our name comes from a combination of the words Texas and exome.",
+   "url": "https://www.texome.org/about",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, About"
+  },
+  {
+   "id": "c46",
+   "text": "Texome states a plan to sequence roughly 400 children with undiagnosed disorders, with their parents. That is a target, not a count of families served.",
+   "quote": "We will perform trio whole exome sequencing for diagnostic purposes in ~400 children with undiagnosed disorders.",
+   "url": "https://www.texome.org/for-providers",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "medium",
+   "document": "The Texome Project, For Providers"
+  },
+  {
+   "id": "c47",
+   "text": "Texome focuses on Texas but accepts applications from other states.",
+   "quote": "Though we are focused on populations in Texas, we are open to applications from other states as well.",
+   "url": "https://www.texome.org/for-providers",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Providers"
+  },
+  {
+   "id": "c48",
+   "text": "Texome says many people in the Houston area lack access to genomic medicine because it costs too much and insurance does not cover it.",
+   "quote": "many individuals in the Houston area are largely underserved and lack access to genomic medicine because of prohibitive cost and lack of insurance coverage",
+   "url": "https://www.texome.org/for-providers",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Providers"
+  },
+  {
+   "id": "c49",
+   "text": "Texome describes the tool it uses on exome data as using AI to find disease links people miss.",
+   "quote": "This tool is integrated with artificial intelligence to sift through all the data and identify disease relationships that humans can't always connect.",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "medium",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c50",
+   "text": "Texome follows participants with re-evaluation at 6 months, 1 year and 2 years.",
+   "quote": "at 6 months, 1 year and 2 years in which we will re-evaluate key genes in the context of the individual",
+   "url": "https://www.texome.org/for-patients",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "The Texome Project, For Patients"
+  },
+  {
+   "id": "c51",
+   "text": "In the fly test, all three patient-derived variants provided only a partial rescue.",
+   "quote": "the three individual-derived alleles (BRSK1<sup>p.Ile202Val</sup>, BRSK1<sup>p.Arg237Cys</sup>, and BRSK1<sup>p.Thr406Ile</sup>) provide only a partial rescue",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.ajhg.2026.09.005&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-02",
+   "confidence": "high",
+   "document": "Deng et al., American Journal of Human Genetics, DOI 10.1016/j.ajhg.2026.09.005, abstract via Europe PMC"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "Texome history and family counts from the BCM blog post of February 28th, 2025",
+   "reason": "The blog returned HTTP 503 on four attempts. Nothing from it is in the record."
+  },
+  {
+   "finding": "How many families the Texome Project has served",
+   "reason": "No fetched page gives a count served. The only figure is the ~400 children sequencing plan, kept as c46 and labelled a target."
+  },
+  {
+   "finding": "GeneMatcher description from genematcher.org",
+   "reason": "genematcher.org returned HTTP 403. The description in c37 comes from the 2022 Human Mutation abstract."
+  },
+  {
+   "finding": "GeneMatcher usage numbers (12,531 submitters from 94 countries)",
+   "reason": "Dated as of October 1, 2021, five years old, so kept out of the record."
+  },
+  {
+   "finding": "AI-MARRVEL description from ai.marrvel.org",
+   "reason": "The page is script rendered and showed only Loading."
+  },
+  {
+   "finding": "Any wording of 98% as AI-MARRVEL's diagnostic accuracy",
+   "reason": "98% is a precision rate on a confidence metric, not overall accuracy. c35 states it narrowly."
+  },
+  {
+   "finding": "Funders of the BRSK1 study",
+   "reason": "The release defers to the publication and the paper's full text was not fetched. No funder is named for the study."
+  },
+  {
+   "finding": "Texome FAQ claims about the lab and protections",
+   "reason": "The FAQ page came back only as a paraphrase, never verbatim."
+  },
+  {
+   "finding": "Size of an adult fruit fly",
+   "reason": "The NIGMS fact sheet returned 404 and no other primary source was fetched."
+  },
+  {
+   "finding": "Combined count of the first Texome patient plus the nine GeneMatcher individuals",
+   "reason": "Not computed. The release's 10 individuals (c10) and the paper's nine through GeneMatcher (c28) are each quoted as printed."
+  }
+ ]
+}

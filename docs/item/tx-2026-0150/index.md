@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-23 · The finding that imaging tools have largely skipped children still stands as published.
 - 2026-09-26 · The published finding that imaging AI has largely skipped children still stands.
 - 2026-09-29 · The paper by Texas Children's and UT Southwestern radiologists still finds imaging AI largely built without children.
+- 2026-10-02 · The panel's finding is unconfirmed this run. The abstract service bars automated readers and the article page shows no text to a reader without a script.
 
 ## Evidence
 
