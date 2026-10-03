@@ -162,29 +162,34 @@ that has a reason.
 **A worn ground** — every `TXT.ground` surface carries wear in its own shader, in WORLD space so the
 6 m texture tile never repeats: value drifting at 11 and 41 m, each concrete slab a shade of its
 own pour, grime along the saw cut joints, sparse clusters of oil stains on concrete and asphalt and
-damp on caliche and dirt, straw against green and the odd dusty bare patch on grass. Off with
+damp on caliche and dirt, straw against green and the odd dusty bare patch on grass. A stain has a
+soaked, ragged edge and a darker core, and fades out far off where it would shimmer. Off with
 `wear:false`; `wear:'interior'` keeps a floor clean of oil (and is what `TXT.interior` passes);
 an object of amounts tunes it (`{ macro, slab, joint, stain }`). A joint's grime is filtered to the
 pixel it falls in, so far slabs keep their joints without breaking into dotted hairlines.
 A deck's OWN pad wears where something stands on it: a plane that is flat, faces up, covers 30
 square metres or more, is matte and opaque and receives shadows takes the marks and a slow drift of
 value, and the full wear of a surface when the deck names it (`mesh.userData.txSurface = 'concrete'`).
-`mesh.userData.txWear = false` keeps a plane exactly as the deck made it. *Fails when:* the pad is a
-box lower than 25 cm, where the contact and the mark still go to the ground beneath it. Lay a pad
-as a plane, or as a `TXT.ground` at its own height (`y`).
+`mesh.userData.txWear = false` keeps a plane exactly as the deck made it. The ground never wins a
+depth tie: a pad, a plane or a kit road laid at its height draws over it, where the two used to
+fight in stripes along the edge they share. *Fails when:* the pad is a box lower than 25 cm, where
+the contact and the mark still go to the ground beneath it. Lay a pad as a plane, or as a
+`TXT.ground` at its own height (`y`). A thing sunk only a few centimetres to hide it can show
+through the ground far off, so sink it 10 cm or more.
 
 **The receiving surface** — `TXT.contact` now marks the GROUND as well as darkening it: a dirt band
 broken by noise around the thing's BASE (the bottom slice of the model, so a pole's foot and a
 tree's trunk, never its crossarm or its crown), scaled to that footprint. A vehicle (the kit's, or a
-chassis model named van, truck, trailer, bus, car) also drips oil under its engine end and polishes
-two tyre tracks fore and aft. Grass thins where things stand. On a hard ground, a thing at least
+chassis model named van, truck, trailer, bus, car) also drips oil under its body, between the wheels
+and most of it at the engine end, and polishes two tyre tracks fore and aft. Grass thins where things stand. On a hard ground, a thing at least
 35 cm across gets patchy grit at its base; a vehicle and a person never do. The 24 marks nearest
 the lens are drawn, laid when the frame renders, so a ground built after the contact still takes
 them. `TXT.contact(R, obj, { dirt:false })` opts one object out, `grit:false` keeps its grit off,
 `vehicle:true|false` overrides the guess, a number for `dirt` scales it. The band scales with the
 footprint all the way down, a van's a third of a metre and a vial's a couple of centimetres, and a
 mark stays on the surface at its own height. A thing with no ground under it, standing on a sill, a
-ledge or a dock OUTDOORS, takes its mark on that surface's top face. *Fails when:* the thing stands
+ledge or a dock OUTDOORS, takes its mark on that surface's top face, and a sill `TXT.weather` has
+grimed keeps its grime under the mark. *Fails when:* the thing stands
 indoors on a desk or a bench, which is deliberate, since a ring at a monitor's foot reads as a
 stain and not as weather.
 
@@ -196,6 +201,10 @@ SOFTNESS: 6 is the nominal low sun, 3 a high noon, 22 an overcast. A shadow fade
 { shadows:'vsm' })` or `'pcfsoft'` restores the old modes. The filter never runs narrower than the
 map can draw (1.5 texels, rising to 3 where a texel covers several pixels), and the widest
 penumbra is 10 texels, which is what keeps a frame of a thousand pebbles inside the render budget.
+A penumbra carries a fine grain at full size and never a hatch or a speck: the filter turns on
+white noise, and a pixel the first nine taps put at an edge is always filtered (the first cut drew
+speckled columns, hatched strap shadows and lit specks along thin casters, and a blind grader
+named each one).
 *Fails when:* the shadow box is too small for the subject, which now shows as a fade rather than a
 line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
 draws its sliver of shadow as a fine dark line.

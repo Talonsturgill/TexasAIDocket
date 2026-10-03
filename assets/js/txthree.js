@@ -112,25 +112,25 @@ export function init(THREE) {
    * Patches three's PCF branch of getShadow, once per page and from the pristine chunk (the shared
    * ShaderChunk, as installSkyFog does, so a second init(THREE) never patches a patched chunk).
    *
-   *   1. a blocker search: 12 taps on a golden angle disc, turned per pixel, find the mean depth of
-   *      what stands between this point and the sun;
-   *   2. the penumbra is that difference in depth times K, the light's own texels of penumbra per
+   *   1. nine taps decide whether this point is at a shadow's edge at all, and most points are not;
+   *   2. at an edge, a blocker search of 12 taps on a golden angle disc, turned per pixel, finds the
+   *      mean depth of what stands between this point and the sun;
+   *   3. the penumbra is that difference in depth times K, the light's own texels of penumbra per
    *      unit of depth, which pcssLight publishes through shadow.radius as a negative number;
-   *   3. 24 taps of percentage closer filtering over that penumbra.
+   *   4. 24 taps of percentage closer filtering over that penumbra.
    *
    * IT HAS TO FIT INSIDE A RENDER BUDGET. 09-29's frame 1, a thousand pebbles and a field of
-   * generators, is the heaviest frame on record. Timed in its own page (renders after the first,
+   * generators, is the heaviest frame on record. Timed in its own page (draws after the first,
    * which compiles), the first cut, a 24 texel search with 16 and 32 taps, drew 4.8 s slower than
-   * VSM's 22.5 s, because every pixel within 24 texels of a pebble's shadow took the whole path. The
-   * search now stops at 10 texels and the penumbra at the search (so a pixel the first five taps
-   * call lit can't sit inside one), with 12 and 24 taps, and that frame draws about 3 s slower than
-   * VSM. Rendered through main's render.py, its heaviest frames pass (1, 2 and 5 at 69, 43 and 57 s
-   * with another render running beside them).
+   * VSM, because every pixel within 24 texels of a pebble's shadow took the whole path. The search
+   * now stops at 10 texels. Timed the same way, alternated, nothing else rendering, six draws
+   * each: this filter 25.9 to 26.9 s a draw, VSM 23.7 to 24.6 s.
    *
-   * RECEIVER PLANE DEPTH BIAS. A low sun grazes the ground, and a tap 20 texels away on the
-   * ground's own plane is metres deeper in the map, so a flat bias either lets the ground shadow
-   * itself or lifts every contact off it. Each tap instead compares against the receiver's own
-   * plane, its slope in the map taken from screen derivatives, which is exact on a plane.
+   * Every tap compares against the receiver's own depth with one small bias, as the rig's bias and
+   * normal offset already lift it off itself. The first cut fitted the receiver's plane from screen
+   * derivatives for each tap, and no. 41's blind grader found speckled columns where that fit spans
+   * two surfaces. With the search held to 10 texels the ground does not shadow itself without it
+   * (checked on 09-29 frame 1 and no. 41 frames 1, 3, 5 and 6).
    * A light with a radius of zero or more (one a frame made itself, a lamp's spot) is filtered at
    * that fixed radius with the same disc, so it can't bleed either. */
   function installPcss() {
@@ -153,16 +153,24 @@ export function init(THREE) {
     const lib = `#if defined( SHADOWMAP_TYPE_PCF )
 	const vec2 TX_B12[ 12 ] = vec2[]( ${disc(12)} );
 	const vec2 TX_P24[ 24 ] = vec2[]( ${disc(24)} );
-	float txBlk( sampler2D m, vec4 c, vec2 rp, vec2 o ) {
-		return step( unpackRGBAToDepth( texture2D( m, c.xy + o ) ), c.z + clamp( dot( rp, o ), - 0.01, 0.01 ) - 0.00015 );
+	// one tap: 1 when something stands between this point and the sun there, and its depth summed
+	float txTap( sampler2D m, vec4 c, vec2 o, inout float s ) {
+		float d = unpackRGBAToDepth( texture2D( m, c.xy + o ) ), b = step( d, c.z - 0.00015 );
+		s += b * d;
+		return b;
 	}
 	#endif
 	`;
     const pcss = `#if defined( SHADOWMAP_TYPE_PCF )
 			vec2 txTexel = vec2( 1.0 ) / shadowMapSize;
-			float txDet = txDx.x * txDy.y - txDx.y * txDy.x;
-			vec2 txRp = abs( txDet ) > 1e-14 ? vec2( txDy.y * txDx.z - txDx.y * txDy.z, txDx.x * txDy.z - txDy.x * txDx.z ) / txDet : vec2( 0.0 );
-			float txAng = 6.2831853 * fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) );
+			// NO RECEIVER PLANE, AND WHITE NOISE (2026-10-03, after no. 41's blind grade). A plane fitted
+			// from screen derivatives is garbage where a 2 by 2 pixel quad spans two surfaces, a door
+			// post against a wall, a hub against a tyre, and it drew speckled columns there. Interleaved
+			// gradient noise has a diagonal grain that a single frame never averages away, and it drew
+			// hatching inside every strap's shadow. The disc turns on a hash with no direction instead.
+			vec3 txH3 = fract( vec3( gl_FragCoord.xyx ) * 0.1031 );
+			txH3 += dot( txH3, txH3.yzx + 33.33 );
+			float txAng = 6.2831853 * fract( ( txH3.x + txH3.y ) * txH3.z );
 			vec2 txCS = vec2( cos( txAng ), sin( txAng ) );
 			mat2 txRot = mat2( txCS.x, txCS.y, - txCS.y, txCS.x );
 			// A MAGNIFIED MAP NEEDS A WIDER FLOOR. Where one shadow texel covers many pixels, a sharp
@@ -182,30 +190,34 @@ export function init(THREE) {
 			float txFade = smoothstep( 0.0, 0.08, min( txEdge.x, txEdge.y ) );
 			if ( txFade <= 0.0 ) return 1.0;
 			if ( txK > 0.0 ) {
-				float txSearch = clamp( shadowCoord.z * txK, max( 2.0, txMin ), 10.0 ), txSum = 0.0, txN = 0.0;
-				// FIVE TAPS FIRST: the centre and four at the search radius. Nearly every pixel is either
-				// in full sun or deep in a shadow, and leaves here, so only an edge pays for the full search.
+				float txSearch = clamp( shadowCoord.z * txK, max( 2.0, txMin ), 10.0 ), txSum = 0.0;
+				// NINE TAPS FIRST: the centre, four at the search radius, and four between them at the
+				// narrowest filter's radius. Nearly every pixel is in full sun or deep in a shadow and leaves
+				// here, so only an edge pays for the search and the filter. The inner four keep a thin
+				// caster's sharp shadow, a strap or a rod, from being called lit by four taps that all
+				// landed past it, which drew a fringe of lit specks along every such edge.
 				vec2 txQ = txCS * txSearch * txTexel, txQp = vec2( - txQ.y, txQ.x );
-				float txPre = txBlk( shadowMap, shadowCoord, txRp, vec2( 0.0 ) ) + txBlk( shadowMap, shadowCoord, txRp, txQ )
-					+ txBlk( shadowMap, shadowCoord, txRp, - txQ ) + txBlk( shadowMap, shadowCoord, txRp, txQp ) + txBlk( shadowMap, shadowCoord, txRp, - txQp );
-				if ( txPre < 0.5 ) return 1.0;
-				if ( txPre > 4.5 ) return mix( 1.0, 1.0 - txFade, shadowIntensity );
-				vec2 txS = txSearch * txTexel;
-				for ( int i = 0; i < 12; i ++ ) {
-					vec2 o = ( txRot * TX_B12[ i ] ) * txS;
-					float d = unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) );
-					if ( d < shadowCoord.z + clamp( dot( txRp, o ), - 0.01, 0.01 ) - 0.00015 ) { txSum += d; txN += 1.0; }
-				}
-				// the whole disc lit, or the whole disc behind something: no penumbra, nothing to filter
+				vec2 txI = ( txCS + vec2( - txCS.y, txCS.x ) ) * ( 0.70710678 * txMin ) * txTexel, txIp = vec2( - txI.y, txI.x );
+				float txN = txTap( shadowMap, shadowCoord, vec2( 0.0 ), txSum )
+					+ txTap( shadowMap, shadowCoord, txQ, txSum ) + txTap( shadowMap, shadowCoord, - txQ, txSum )
+					+ txTap( shadowMap, shadowCoord, txQp, txSum ) + txTap( shadowMap, shadowCoord, - txQp, txSum )
+					+ txTap( shadowMap, shadowCoord, txI, txSum ) + txTap( shadowMap, shadowCoord, - txI, txSum )
+					+ txTap( shadowMap, shadowCoord, txIp, txSum ) + txTap( shadowMap, shadowCoord, - txIp, txSum );
 				if ( txN < 0.5 ) return 1.0;
-				if ( txN > 11.5 ) return mix( 1.0, 1.0 - txFade, shadowIntensity );
+				if ( txN > 8.5 ) return mix( 1.0, 1.0 - txFade, shadowIntensity );
+				// THOSE NINE SAW SUN AND SHADOW BOTH, so this pixel is at an edge and is always filtered. The
+				// search only measures how far away the casters are. It used to decide as well, and a search
+				// that missed every caster called the pixel lit while one that hit on every tap called it
+				// dark, which drew salt and pepper along every soft edge.
+				vec2 txS = txSearch * txTexel;
+				for ( int i = 0; i < 12; i ++ ) txN += txTap( shadowMap, shadowCoord, ( txRot * TX_B12[ i ] ) * txS, txSum );
 				txR = clamp( ( shadowCoord.z - txSum / txN ) * txK, txMin, txSearch );
 			}
 			float txLit = 0.0;
 			vec2 txP = txR * txTexel;
 			for ( int i = 0; i < 24; i ++ ) {
 				vec2 o = ( txRot * TX_P24[ i ] ) * txP;
-				txLit += step( shadowCoord.z + clamp( dot( txRp, o ), - 0.01, 0.01 ) - 0.00005, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
+				txLit += step( shadowCoord.z - 0.00015, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
 			}
 			shadow = mix( 1.0, txLit / 24.0, txFade );
 		`;
@@ -1895,6 +1907,13 @@ export function init(THREE) {
   function markGround(mesh) {
     const m = mesh.material;
     m.defines = Object.assign({}, m.defines, { TX_GROUND: '' });
+    /* THE GROUND NEVER WINS A TIE (2026-10-03). A thing laid flat at ground level, a kit highway at
+     * grade or a deck's own pad, shares the ground's depth along its edges, and the two fought
+     * there: no. 41 frame 4's streaked band at the median barrier's foot, which main drew too, was
+     * the Blackland ground showing through the pavement's edge in stripes. The ground's depth is
+     * pushed back by one step of its own slope, so whatever lies on it draws, at any distance. A
+     * thing sunk a few centimetres under the ground can now show through it far off. */
+    m.polygonOffset = true; m.polygonOffsetFactor = 1; m.polygonOffsetUnits = 1;
     m.needsUpdate = true;
     mesh.userData.txGround = true;
     return mesh;
@@ -2108,7 +2127,8 @@ export function init(THREE) {
     const u = m.userData || {}, mat = m.material;
     if (!m.isMesh || m.isInstancedMesh || u.txGround || u.txWear === false || !m.receiveShadow) return false;
     if (!mat || Array.isArray(mat) || !mat.isMeshStandardMaterial || mat.transparent || mat.opacity < 1 || mat.transmission > 0) return false;
-    if (!u.txAdopted && Object.prototype.hasOwnProperty.call(mat, 'onBeforeCompile')) return false;
+    // a material with a shader of its own is left alone, except TXT.weather's, which adoption keeps
+    if (!u.txAdopted && !(mat.userData && mat.userData.txWeathered) && Object.prototype.hasOwnProperty.call(mat, 'onBeforeCompile')) return false;
     return mat.roughness >= 0.5 && mat.metalness <= 0.3;
   }
   function flatPlane(m) {
@@ -2159,6 +2179,8 @@ export function init(THREE) {
     {
       vec2 w = vTxGW.xz;
       float sd = uTxWearB.w;
+      // metres of ground under one pixel, taken here where every pixel runs the same code
+      float txPx = length(fwidth(w));
       // 1. value that drifts in world space, at two scales, so the tile never repeats
       float m1 = txgF(w / 11.0 + sd), m2 = txgF(w / 41.0 - sd);
       diffuseColor.rgb *= 1.0 + uTxWearA.x * ((m1 - 0.5) * 1.3 + (m2 - 0.5) * 0.9);
@@ -2182,11 +2204,16 @@ export function init(THREE) {
         txgRough += 0.08 * jg;
       }
       #endif
-      // 3. stains in sparse clusters: oil on a slab or a lot, damp on caliche and dirt
+      // 3. stains in sparse clusters: oil on a slab or a lot, damp on caliche and dirt. A stain soaks
+      // in, so it has a ragged edge a pixel or two wide and a darker core: soft blobs a metre across
+      // read as a second shadow beside a truck (no. 41 frames 8 and 9, a blind grader). Far off, where
+      // a stain is a few pixels, it fades out rather than alias into striations (09-29 frame 3).
       if (uTxWearA.w > 0.0) {
-        float cl = smoothstep(0.56, 0.68, txgF(w / 23.0 + sd * 1.7));
+        float cl = smoothstep(0.56, 0.68, txgF(w / 23.0 + sd * 1.7)) * (1.0 - smoothstep(0.08, 0.3, txPx));
         if (cl > 0.0) {
-          float st = cl * smoothstep(0.6, 0.67, txgF(w / 1.1 - sd));
+          float f = txgF(w / 0.9 - sd) + 0.09 * (txgN(w * 4.3 + sd) - 0.5) + 0.04 * (txgN(w * 11.0 - sd) - 0.5);
+          float st = cl * smoothstep(0.62, 0.62 + clamp(txPx * 1.3, 0.012, 0.08), f)
+            * (0.55 + 0.45 * smoothstep(0.64, 0.74, f)) * (0.65 + 0.35 * txgN(w / 3.1 + 7.0));
           diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uTxStainCol, uTxWearA.w * st);
           txgRough -= uTxWearC.w * st;
         }
@@ -2225,10 +2252,15 @@ export function init(THREE) {
         float band = exp(-max(sdist, 0.0) / (B.y * (0.45 + 0.8 * n))) * inner;
         dirt = max(dirt, band * str * (0.75 + 0.5 * txgN(w * 6.1 * ns - float(i))));
         if (veh) {
-          // oil drips in blots with an edge, most of them under the engine end
-          float inside = 1.0 - smoothstep(-0.25, 0.1, sdist);
+          // oil drips under the body, between the wheels and most of it under the engine end, in small
+          // blots with a soaked edge and a darker core. Laid to the footprint's edge they ran as a band
+          // along a trailer's flank that a blind grader read as a second, dirtier shadow (no. 41 frame 1)
+          float inside = 1.0 - smoothstep(-0.45, -0.2, sdist);
+          float mid = 1.0 - smoothstep(0.45, 0.8, abs(l.x) / max(A.z, 0.2));
           float front = 0.55 + 0.45 * smoothstep(-A.w, A.w, l.y);
-          oil = max(oil, inside * front * smoothstep(0.57, 0.63, txgF(l * 1.4 + float(i) * 5.1)));
+          float fo = txgF(l * 2.2 + float(i) * 5.1) + 0.08 * (txgN(l * 8.0 + float(i)) - 0.5);
+          oil = max(oil, inside * mid * front * smoothstep(0.6, 0.6 + clamp(txPx * 2.4, 0.015, 0.1), fo)
+            * (0.6 + 0.4 * smoothstep(0.62, 0.72, fo)));
           // two tyre tracks a dual set wide, streaked along the way the wheels roll, fading fore and aft
           float track = max(A.z - 0.42, 0.2);
           float lane = 1.0 - smoothstep(0.18, 0.32, abs(abs(l.x) - track));
@@ -2239,7 +2271,8 @@ export function init(THREE) {
       }
       diffuseColor.rgb = mix(diffuseColor.rgb, uTxDirtCol, uTxDirtK.y * dirt) * (1.0 - uTxDirtK.x * dirt);
       diffuseColor.rgb *= 1.0 - 0.45 * uTxDirtK.z * oil;
-      txgRough -= 0.3 * uTxDirtK.z * oil;
+      // a little glossier, not a mirror: at 0.3 the stain under no. 41's bumper took the sky's blue
+      txgRough -= 0.12 * uTxDirtK.z * oil;
       diffuseColor.rgb = mix(diffuseColor.rgb * (1.0 - 0.3 * uTxDirtK.w * pol), uTxDirtCol, uTxWearC.z * pol);
       txgRough -= 0.22 * uTxDirtK.w * pol * (1.0 - uTxWearC.z) - 0.05 * dirt;
     }`;
@@ -2504,9 +2537,16 @@ export function init(THREE) {
     // a deck's texture has its own joints, at a spacing the engine can't know, so none are drawn
     const W = Object.assign({}, named || WEAR_ADOPT, { slab: 0, joint: 0, jointW: 0 });
     const WU = wearUniforms({ seed: 9001 + 17 * seed }, W, R, 6, 0);
-    const mat = m.material.clone();
-    mat.onBeforeCompile = (sh) => wearPatch(sh, WU);
-    mat.customProgramCacheKey = () => 'txwear-adopted';
+    /* A WEATHERED SURFACE KEEPS ITS WEATHER (2026-10-03). A frame calls TXT.weather after
+     * TXT.contact, so by the time a sill is adopted its material carries the weather's shader hook,
+     * and the test above refused it: no. 40's vial stood on its sill with no mark in every frame,
+     * and a blind grader found no difference to main on any of its nine. A clone drops the hook, so
+     * the adopted copy runs it first and the wear after it. */
+    const src = m.material, has = (k) => Object.prototype.hasOwnProperty.call(src, k);
+    const own = has('onBeforeCompile') ? src.onBeforeCompile : null, ownKey = has('customProgramCacheKey') ? src.customProgramCacheKey : null;
+    const mat = src.clone();
+    mat.onBeforeCompile = (sh, r) => { if (own) own.call(src, sh, r); wearPatch(sh, WU); };
+    mat.customProgramCacheKey = () => (ownKey ? ownKey.call(src) : '') + '|txwear-adopted';
     m.material = mat;
     Object.assign(m.userData, { txAdopted: true, txAdoptY: y, txWear: W });
   }

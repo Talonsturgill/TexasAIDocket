@@ -1076,7 +1076,10 @@ which is the finding the judges made in words and the number that says the gate 
   PCF, and stays with the van's liner hidden and with the carton texture gone. It was the variance
   shadow map bleeding light where a wall seen edge on from a low sun puts many depths under one
   texel. **Fixed in `txthree.js` (2026-10-03):** PCSS is the default, sharp at a thing's foot and
-  soft at the shadow's tip, and it can't bleed. **Still open:** where a low sun grazes along a low
+  soft at the shadow's tip, and it can't bleed. Its first cut traded the bleed for noise, and a blind
+  grader found it on two decks: a speckled column down a door post, hatching inside a strap's
+  shadow, lit specks along every thin caster. The filter now turns on white noise and filters every
+  pixel it finds at an edge, and those frames render clean. **Still open:** where a low sun grazes along a low
   kerb, contact hardening draws the kerb's sliver of shadow as a dark line one or two pixels wide
   with a faint step in it (09-29 frame 1, at full size only), finer than one shadow texel can draw
   clean. (2026-10-03)
@@ -1090,6 +1093,11 @@ which is the finding the judges made in words and the number that says the gate 
   drew forty hard edged discs, cut off at the tile's edge, and repeated them every 3 m on every kit
   concrete, pads, barriers and sills included. **Fixed in `txkit.js` (2026-10-03):** soft, faint
   blotches wrapped across the tile's edge. (2026-10-03)
+- **A streaked band where a road meets the ground.** No. 41 frame 4, a blind grader's "sawtooth dark
+  fringe along the foot of the median barrier", drawn on main too. The kit highway at grade lies at
+  the ground's own height along its edges, and the two surfaces fought for the pixel in stripes.
+  **Fixed in `txthree.js` (2026-10-03):** the ground never wins a depth tie, so anything laid flat on
+  it draws. (2026-10-03)
 - **A flat yellow polygon on a highway verge.** No. 41 frame 4, all three judges in every round. The
   kit highway built at grade (`embank` 0) laid its grassed side slopes 2 to 10 cm under the frame's
   own ground, and their 6 cm of noise poked patches up through it. **Fixed in `kit/landscape.js`

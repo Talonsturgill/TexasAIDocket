@@ -1485,8 +1485,9 @@ export function install(K, THREE, TXT) {
       const puv = pg.attributes.uv; for (let i = 0; i < puv.count; i++) puv.setXY(i, puv.getX(i) / 4, puv.getY(i) / 4);
       const pm = M('hw-pave-' + o.surface, { color: 0xffffff, vertexColors: true, map: concrete ? K.tex('concrete') : asphaltTex(), roughness: concrete ? 0.82 : 0.88 });
       const pave = new THREE.Mesh(pg, pm); g.add(pave);
-      // pavement edge: the slab has a face down to the slope
-      [-1, 1].forEach((sd) => { const e = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.3, L), pm); e.position.set(sd * (half - 0.1), E - 0.14, 0); g.add(e); });
+      // pavement edge: the slab has a face down to the slope. At grade there is no slope, and the face
+      // stood 1 cm proud of the frame's ground as a thin dark sliver along each verge (no. 41 frame 4)
+      if (E >= 0.1) [-1, 1].forEach((sd) => { const e = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.3, L), pm); e.position.set(sd * (half - 0.1), E - 0.14, 0); g.add(e); });
       // ---- markings
       const white = M('hw-white', { color: 0xe9e7df, roughness: 0.55 }), yellow = M('hw-yellow', { color: 0xe0a82a, roughness: 0.55 });
       const lines = [], ylines = [];
