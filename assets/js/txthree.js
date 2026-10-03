@@ -118,13 +118,13 @@ export function init(THREE) {
    *      unit of depth, which pcssLight publishes through shadow.radius as a negative number;
    *   3. 24 taps of percentage closer filtering over that penumbra.
    *
-   * IT HAS TO FIT INSIDE A RENDER BUDGET. render.py gives a page 45 s to its load event and 30 s
-   * after it, and 09-29's frame 1 already took 43.8 s and 27.8 s on the VSM engine. The first cut
-   * searched 24 texels with 16 and 32 taps, and timed in that frame's own page (four renders, the
-   * last three without compiling) it added 4.8 s of drawing to VSM's 22.5. Most of that was pixels
-   * within 24 texels of some pebble's shadow taking the whole path. The search now stops at 10
-   * texels, the penumbra at the search (so a pixel the first five taps call lit can't sit inside one),
-   * with 12 and 24 taps, and the same frame draws within about a second of VSM.
+   * IT HAS TO FIT INSIDE A RENDER BUDGET. 09-29's frame 1, a thousand pebbles and a field of
+   * generators, is the heaviest frame on record. Timed in its own page (renders after the first,
+   * which compiles), the first cut, a 24 texel search with 16 and 32 taps, drew 4.8 s slower than
+   * VSM's 22.5 s, because every pixel within 24 texels of a pebble's shadow took the whole path. The
+   * search now stops at 10 texels and the penumbra at the search (so a pixel the first five taps
+   * call lit can't sit inside one), with 12 and 24 taps, and that frame draws about 3 s slower than
+   * VSM, inside render.py's one 75 s budget.
    *
    * RECEIVER PLANE DEPTH BIAS. A low sun grazes the ground, and a tap 20 texels away on the
    * ground's own plane is metres deeper in the map, so a flat bias either lets the ground shadow
