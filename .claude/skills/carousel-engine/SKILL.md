@@ -277,8 +277,8 @@ chassis writes its own sky, ground texture or develop step again.
 
 `TXT.environment` does nothing after `TXT.sky` unless passed `force:true`, because the sky already
 lit the frame. Cost on no. 32's forty set yard: world 0.4 s, snapshot 6.2 s at the default 2048
-shadow map and 9.3 s at 4096, grade 1.2 s. render.py gives a page one 75 s budget since 2026-10-03:
-45 s to its load event and what is left after it, never under 30 s, with `load_ms` in its report.
+shadow map and 9.3 s at 4096, grade 1.2 s, against render.py's 30 s wait. Since 2026-10-03 its
+report carries `load_ms`, the load event against goto's 45 s, which waits for the scene's build.
 
 `examples/world-proof/` renders no. 32's own model and camera in four worlds beside the frame that
 shipped. `print_ban.py` counts frames that call `TXT.sky`: five of nine from 2026-09-24, and the

@@ -200,12 +200,13 @@ penumbra is 10 texels, which is what keeps a frame of a thousand pebbles inside 
 line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
 draws its sliver of shadow as a fine dark line.
 
-**The render budget** — `render.py` gives a page 75 s in all, 45 s to its load event and whatever
-is left after it, never less than 30 s (2026-10-03, when it was a fixed 45 and 30 and a page that
-loaded fast failed for drawing after its load). The report carries `load_ms` beside `render_ms`.
-A canvas painter that draws under a `filter` pays for the whole clip on every draw: the kit's genset
-weathering drew a few hundred streaks under `blur(1px)` and took 29 s of a 77 s frame, 34 ms a
-stroke. Draw the strokes on one layer and filter that once.
+**The render clocks** — `render.py` waits 45 s for a slide's load event, which comes only after
+the module's synchronous work (the scene built, the shaders compiled), and then races
+`renderReady` against a 30 s timer inside the page. The report carries `load_ms` beside
+`render_ms` (2026-10-03), because 09-29's frame 1 loaded at 43.8 s on main, 1.2 s inside the limit,
+and nothing said so. Most of that was one kit painter: a canvas `filter` pays for the whole clip on
+every draw, and the genset weathering drew a few hundred streaks under `blur(1px)`, 34 ms a stroke,
+29 s of the frame. Draw the strokes on one layer and filter that once (it loads in 11 s now).
 
 ---
 

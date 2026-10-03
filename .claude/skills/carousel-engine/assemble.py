@@ -26,7 +26,6 @@ import json
 import re
 import shutil
 import sys
-import time
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -61,14 +60,11 @@ def vector_pdf(slides_dir: Path, out_pdf: Path, width: int, height: int, title: 
                 resolved = resolve_html(s, resolved_dir)
                 page = browser.new_page(viewport={"width": width, "height": height},
                                         device_scale_factor=2)
-                t0 = time.time()
                 page.goto(resolved.as_uri(), wait_until="load", timeout=45000)
                 page.evaluate("() => document.fonts.ready.then(() => true)")
                 if page.evaluate("() => typeof window.renderReady !== 'undefined'"):
-                    # one 75 s budget, never under 30 s after the load, as render.py (2026-10-03)
-                    left = max(30000, 75000 - int((time.time() - t0) * 1000))
-                    page.evaluate("(ms) => Promise.race([window.renderReady, "
-                                  "new Promise((_, rej) => setTimeout(() => rej('timeout'), ms))])", left)
+                    page.evaluate("() => Promise.race([window.renderReady, "
+                                  "new Promise((_, rej) => setTimeout(() => rej('timeout'), 30000))])")
                 else:
                     page.wait_for_timeout(400)
                 page.pdf(path=str(tmp / (s.stem + ".pdf")),

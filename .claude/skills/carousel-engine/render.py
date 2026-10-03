@@ -1090,20 +1090,15 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
     try:
         page.goto(path.as_uri(), wait_until="load", timeout=timeout_ms)
-        rec["load_ms"] = int((time.time() - t0) * 1000)   # the load event, against the 45 s
+        # THE LOAD EVENT, against goto's 45 s (2026-10-03). A slide's load waits for its module's
+        # synchronous work, the scene built and the shaders compiled, and 09-29's frame 1 loaded at
+        # 43.8 s on main, 1.2 s inside the limit, with nothing in the report to say so.
+        rec["load_ms"] = int((time.time() - t0) * 1000)
         page.evaluate("() => document.fonts.ready.then(() => true)")
         has_ready = page.evaluate("() => typeof window.renderReady !== 'undefined'")
         if has_ready:
-            # ONE BUDGET, NOT TWO (2026-10-03). A slide's load event fires when its module first
-            # yields, which is after the scene is built and the shaders compiled and before the GPU
-            # draws, so the 45 s and the 30 s split one page's work at a point the page chose. When
-            # the kit's genset weathering went from 29 s to 1 s, 09-29's frame 1 loaded at 11 s
-            # instead of 43 s and finished at 45 s instead of 72 s, and failed, because all of its
-            # drawing now fell after the load. The race is now what is left of 75 s, and never less
-            # than 30 s, so every page that passed before still passes and no page runs longer.
-            left = max(30000, timeout_ms + 30000 - int((time.time() - t0) * 1000))
-            page.evaluate("(ms) => Promise.race([window.renderReady, "
-                          "new Promise((_, rej) => setTimeout(() => rej('renderReady timeout'), ms))])", left)
+            page.evaluate("() => Promise.race([window.renderReady, "
+                          "new Promise((_, rej) => setTimeout(() => rej('renderReady timeout'), 30000))])")
         else:
             page.wait_for_timeout(400)
         qa = page.evaluate(IN_PAGE_QA_JS.replace("__TEXT_WINDOW__", str(TEXT_WINDOW)))

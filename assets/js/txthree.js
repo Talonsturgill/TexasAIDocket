@@ -124,7 +124,8 @@ export function init(THREE) {
    * VSM's 22.5 s, because every pixel within 24 texels of a pebble's shadow took the whole path. The
    * search now stops at 10 texels and the penumbra at the search (so a pixel the first five taps
    * call lit can't sit inside one), with 12 and 24 taps, and that frame draws about 3 s slower than
-   * VSM, inside render.py's one 75 s budget.
+   * VSM. Rendered through main's render.py, its heaviest frames pass (1, 2 and 5 at 69, 43 and 57 s
+   * with another render running beside them).
    *
    * RECEIVER PLANE DEPTH BIAS. A low sun grazes the ground, and a tap 20 texels away on the
    * ground's own plane is metres deeper in the map, so a flat bias either lets the ground shadow
@@ -2331,16 +2332,20 @@ export function init(THREE) {
    * the bottom slice of the object (a fifth of its height, 6 to 50 cm): a pole's foot, a tree's
    * trunk, a desk's four legs, a truck's wheels. Measured on the object as TXT.contact holds it, at
    * the origin and unrotated. */
-  /* What a thing with no ground under it stands on: the highest matte, opaque, shadow receiving
-   * mesh that is not part of it, whose box takes in the footprint's centre and whose top is within
-   * 5 cm below to 3 cm above the thing's base. A box's top is a sill's or a ledge's face. A sloped
-   * or carved surface's box top can sit above the face itself, and the shader's 3 cm window then
-   * finds no face to mark, which is a mark missed rather than a mark in the air. */
+  /* What a thing with no ground under it stands on: the highest opaque mesh that is not part of it,
+   * whose box takes in the footprint's centre and whose top is within 5 cm below to 3 cm above the
+   * thing's base. A box's top is a sill's or a ledge's face. It takes the mark only when it is
+   * matte (supportMaterial), and when the highest top is glass or gloss it takes none, rather than
+   * the mark going to something lower that the thing does not stand on. A sloped or carved
+   * surface's box top can sit above the face itself, and the shader's 3 cm window then finds no
+   * face to mark, which is a mark missed rather than a mark in the air. */
   function supportUnder(R, obj, x, z, base) {
     let best = null;
     const bb = new THREE.Box3();
     R.scene.traverse((m) => {
-      if (!m.isMesh || !supportMaterial(m) || !m.geometry || !m.geometry.attributes.position) return;
+      if (!m.isMesh || m.isInstancedMesh || !m.visible || !m.geometry || !m.geometry.attributes.position) return;
+      const mat = m.material;
+      if (!mat || Array.isArray(mat) || mat.transparent || (m.userData && m.userData.txGround)) return;
       const g = m.geometry;
       if (!g.boundingBox) g.computeBoundingBox();
       m.updateWorldMatrix(true, false);
@@ -2350,7 +2355,7 @@ export function init(THREE) {
       for (let a = m; a; a = a.parent) if (a === obj) return;
       if (!best || top > best.y) best = { m, y: top };
     });
-    return best;
+    return best && supportMaterial(best.m) ? best : null;
   }
   function baseFootprint(obj, box) {
     if (box.isEmpty()) return null;
@@ -2584,24 +2589,26 @@ export function init(THREE) {
       y = under.length ? Math.max(...under) : wb.min.y;
       onGround = under.length > 0;
     }
-    // no ground under it: what it stands on, a sill or a ledge, takes its mark on its top face
+    // no ground under it: what it stands on, a sill or a ledge, takes its MARK on its top face. The
+    // contact stays at the base, where it always was: on no. 40's desk the highest matte top under
+    // the monitor was the desk's frame 6 mm below its glossy top, and a contact moved down to it
+    // vanished under the desk (10-02 frames 3 and 4, both graded down for it).
     let support = null;
     if (foot && !onGround && o.y == null) {
       const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
       support = supportUnder(R, obj, c.x, c.z, wb.min.y);
-      if (support) { y = support.y; onGround = true; }
     }
     /* THE GROUND TAKES THE MARK, a dock or a desk does not: a thing standing on a ground lays its
      * dirt band (and, a vehicle, its oil and tyre tracks) in that ground's shader, and its grit,
      * when the frame renders. See THE RECEIVING SURFACE. */
-    if (foot && onGround) {
+    if (foot && (onGround || support)) {
       const yaw = new THREE.Euler().setFromQuaternion(q, 'YXZ').y;
       const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
       const vehicle = o.vehicle != null ? !!o.vehicle : isVehicle(obj);
       const minor = Math.min(foot.hw, foot.hd) * 2;
       // a band scaled to the footprint: a van's reaches a third of a metre, a vial's a couple of centimetres
       const band = minor < 0.25 ? Math.max(0.012, 0.7 * minor) : Math.max(0.12, Math.min(0.65, 0.1 + 0.16 * Math.sqrt(minor)));
-      marksOf(R).list.push({ cx: c.x, cz: c.z, y, hw: foot.hw, hd: foot.hd, angle: yaw, vehicle, band,
+      marksOf(R).list.push({ cx: c.x, cz: c.z, y: support ? support.y : y, hw: foot.hw, hd: foot.hd, angle: yaw, vehicle, band,
         strength: (typeof o.dirt === 'number' ? o.dirt : 1) * (vehicle ? 0.75 : 1),
         grit: o.grit !== false && !support, support: support && support.m, seed: marksOf(R).list.length + 1 });
     }
