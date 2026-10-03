@@ -974,6 +974,31 @@ def check_value_arc(base: Path) -> list:
 
 # ------------------------------------------------------------------ driver
 
+def check_thirty_days(base: Path, date: str) -> list[str]:
+    """THE THIRTY DAY RULE ON THE DECK AS BUILT, binding since 2026-10-03.
+
+    Carousel no. 41 cleared selection on a new item and then built frames 8 and 9 and its close on
+    tx-2026-0188, the item carousel no. 34 told a week earlier. Two round 1 judges hard failed it,
+    which is a panel finding what one lookup says. `dedupe_check.frames_on_told_items` carries the
+    rule and its replay. Like `check_plan_matches`, a run with no copy yet has nothing to trace.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import datetime as _dt
+    import dedupe_check as dd
+    cp, clp = base / "copy.json", base / "claims.json"
+    if not cp.exists():
+        return []
+    try:
+        copy = json.loads(cp.read_text(encoding="utf-8"))
+        raw = json.loads(clp.read_text(encoding="utf-8"))
+        ledger = json.loads(dd.TOPICS.read_text(encoding="utf-8"))
+        ref = _dt.date.fromisoformat(date)
+    except (OSError, ValueError) as exc:
+        return [f"CANNOT RUN: {exc}"]
+    claims = raw.get("claims") if isinstance(raw, dict) else raw
+    return dd.frames_on_told_items(copy, claims, ledger, ref)
+
+
 def run(date: str, out_root: Path | None = None, articles: Path | None = None,
         assets: Path | None = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
@@ -1012,6 +1037,8 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None,
          check_quantifiers(base, articles)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
          f"planned value arc", check_value_arc(base)),
+        ("no close and no two frames rest on a story a deck told in the last thirty days",
+         check_thirty_days(base, date)),
     ]
     problems = [p for _, ps in groups for p in ps]
     for title, ps in groups:
@@ -1525,6 +1552,9 @@ def self_test() -> int:
         _edition("People appear elsewhere in the draft too.")
         ok("the smallest clean deck, with the repaired web edition, is ready to be scored",
            _run() == 0, "some other group is red on the fixture, so this case proves nothing")
+        ok("the thirty day rule is WIRED into run(), not only defined (GATE_LESSONS 14)",
+           "rest on a story a deck told in the last thirty days" in _printed(), _printed()[-400:])
+
 
         # MACHINE QA THAT ISN'T A READING OF THESE FRAMES (Codex, PR 369). Each case through run(),
         # on the deck the case above proved clean, so the QA file is the only thing that changed.
@@ -1667,6 +1697,27 @@ def self_test() -> int:
        not any(dash + f in src for f in ("allow", "skip", "force", "warn-only")))
     ok("the contrast floor is read from the rubric and not typed here",
        "rubric_contrast_floor" in src and "scoring_rubric.yaml" in src)
+
+    # THE THIRTY DAY RULE ON THE DECK AS BUILT (2026-10-03). Carousel no. 41's committed claims
+    # still carry no. 34's TxDMV claims, so round 1's frames 8 and 9 replay exactly.
+    with _tf.TemporaryDirectory() as _t:
+        _b41 = Path(_t)
+        _runs = REPO_ROOT / "runs" / "carousel" / "2026-10-03"
+        (_b41 / "claims.json").write_text((_runs / "claims.json").read_text(encoding="utf-8"),
+                                          encoding="utf-8")
+        _copy = json.loads((_runs / "copy.json").read_text(encoding="utf-8"))
+        (_b41 / "copy.json").write_text(json.dumps(_copy), encoding="utf-8")
+        ok("carousel no. 41 as shipped clears the thirty day rule",
+           not check_thirty_days(_b41, "2026-10-03"), str(check_thirty_days(_b41, "2026-10-03")))
+        _copy["slides"]["S8"]["claims"] = ["c33", "c34"]
+        _copy["slides"]["S9"]["claims"] = ["c35", "c36"]
+        (_b41 / "copy.json").write_text(json.dumps(_copy), encoding="utf-8")
+        ok("...and its round 1 close on carousel no. 34's item is CAUGHT before the panel",
+           any("tx-2026-0188" in p for p in check_thirty_days(_b41, "2026-10-03")),
+           str(check_thirty_days(_b41, "2026-10-03")))
+        (_b41 / "claims.json").unlink()
+        ok("...and a copy with no claims file beside it is a check that CANNOT RUN",
+           any("CANNOT RUN" in p for p in check_thirty_days(_b41, "2026-10-03")))
 
     if failures:
         print(f"\npanel_ready self-test: {failures} FAILED", file=sys.stderr)
