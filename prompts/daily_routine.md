@@ -873,18 +873,34 @@ undermining the site it links to.
 Run the pre-flight before you decide:
 
 ```
-python3 scripts/carousel/dedupe_check.py --entities "PUCT, Oncor, Hood County" \
+python3 scripts/carousel/dedupe_check.py --item tx-2026-0125 \
+                                         --entities "PUCT, Oncor" --places "Hood County" \
                                          --keywords "transmission, 765 kV"
 ```
 
-**Read the full entry it names, not the title.** In the sibling product a lead survived this gate
-because the showrunner read a ledger entry's truncated TITLE instead of its topic, angle, entities
-and keywords. It was a near-exact repeat of a deck eleven days old and was caught by luck, one
-step from publishing the same story twice inside the window.
+**`--item` is required**, the candidate's own docket item. Without it the thirty day rule can't
+run and the gate exits 2.
 
-The tool is a signal, not a verdict. Two genuinely different decisions can share every entity in
-Texas, so a LIKELY REPEAT means stop and read, never auto-reject. The thirty day rule stays your
-call, made after reading.
+**EXIT 3 IS THE THIRTY DAY RULE, AND IT IS BINDING (owner, 2026-10-03). Pick another story.** It
+fires when a deck in the window was built on the same docket item, when the candidate item's
+claims mostly cite documents a deck in the window already cited, or when the same company appears
+at the same place. Carousel no. 41 was Kodiak AI's Dallas to Houston lane seven days after carousel
+no. 34 was the same company on the same lane. This gate warned, the run read the warning and chose
+the story, two of three round 1 judges hard failed the window, and the deck shipped after five
+rounds with variety at 5.5. A REPEAT is not yours to overrule, and no reading of the entry changes
+it. Run the gate again on the next candidate, and say in writing which candidate it refused.
+
+**Below that tier, the tool is a signal, not a verdict.** Read the full entry it names, not the
+title. In the sibling product a lead survived this gate because the showrunner read a ledger
+entry's truncated TITLE instead of its topic, angle, entities and keywords. It was a near-exact
+repeat of a deck eleven days old, caught by luck one step from publishing the same story twice
+inside the window. Two genuinely different decisions can share every entity in Texas, so exit 1,
+a LIKELY REPEAT on words, means stop and read, never auto-reject.
+
+**The same rule is checked again before every panel round.** `panel_ready.py` fails a deck whose
+close, or two or more of its frames, cite claims from the docket item a deck in the window was
+built on. One frame of context is allowed. Material brought in after selection is how no. 41's
+frames 8 and 9 came to retell no. 34's close, and the repair is to replace that material.
 
 Say in writing why this story and not the others.
 
