@@ -245,7 +245,7 @@ export function init(THREE) {
    * sun, 22 for overcast. The getter is read by three every render, so it follows a shadow camera
    * the frame resizes after the rig, and a frame that sets radius sets this softness. */
   const PCSS_SUN = 0.45 * Math.PI / 180;
-  const PCSS_BIAS = 0.005;   // metres a sun's shadow may slide off its caster's foot, at most
+  const PCSS_BIAS = 0.02;    // metres a sun's shadow may slide off its caster's foot, at most
   function pcssLight(light) {
     const sh = light.shadow, cam = sh.camera, grow = 1 / (1 - 2 * PCSS_FADE);
     // the box a frame sets is the box it gets in full, and the fade is laid in a margin around it
@@ -261,8 +261,11 @@ export function init(THREE) {
      * draws the foot sharp, so two blind graders found it: no. 41 frame 4's barrier with "a thin lit
      * strip" at its foot and no. 37 frame 4's bar, whose shadow "starts a few pixels to the right of
      * the bar". The sun's bias never exceeds PCSS_BIAS metres now, and a small camera keeps the
-     * rig's own. Acne on a lit face is the back faces' and normalBias's job, and the ground casts
-     * nothing to shade itself with. */
+     * rig's own. 5 mm was tried first and graded blind: it seated those shadows and put acne, blue
+     * violet specks, down the louvre jambs of no. 37's generators, thin faces almost along a 9 degree
+     * sun that normalBias can't lift. 1 cm left faint specks there and 2 cm none, measured on frames
+     * 1 and 6, and at 2 cm no. 41 frame 4's barrier still sits in its shadow. The ground casts
+     * nothing, so it can't shade itself. */
     let bias = sh.bias;
     Object.defineProperty(sh, 'bias', {
       configurable: true, enumerable: true,

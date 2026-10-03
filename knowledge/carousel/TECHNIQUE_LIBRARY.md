@@ -219,11 +219,13 @@ it would in sun, and a crisp shadow shows every step of what it crosses: no. 41 
 shadow takes a tooth at each carton top, which VSM's blur hid and a blind grader marked down. Small
 shadows VSM bled away come back too, a hub's crescent in its own wheel, a door post down a bay, so
 a part that will catch one wants enough model to carry it. **A sun's shadow starts at its caster's
-foot:** the engine caps the sun's `bias` at 5 mm. three.js reads `bias` as a fraction of the shadow
+foot:** the engine caps the sun's `bias` at 2 cm. three.js reads `bias` as a fraction of the shadow
 camera's depth, so the rig's -0.0004 had grown to 6 cm at a `shadowFar` of 160 m and 32 cm at 800 m,
 and PCSS's sharp foot showed it as a thin lit strip, under no. 41 frame 4's barrier and no. 37 frame
 4's bar. A frame that sets its own `bias` is held to the same cap, and a small camera keeps the
-rig's.
+rig's. *Fails when* the cap is cut further: 5 mm put acne, blue violet specks, down the louvre
+jambs of no. 37's generators, thin faces lying almost along a 9 degree sun, and a blind grader
+marked two frames down for it.
 **A spot's bias is not a sun's.** three.js adds `shadow.bias` in the shadow camera's own depth,
 which for a SpotLight is perspective and crowded toward the near plane: -0.0004 at `near` 0.1 is
 about 4 cm at 3 m, and a thing smaller than that loses the start of its shadow. No. 40 frame 4's
