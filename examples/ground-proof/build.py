@@ -1,20 +1,22 @@
-"""Builds the ground-proof compares from three renders of the same archived slides.
+"""Builds the ground-proof compares from four renders of the same archived slides.
 
 MEASUREMENT, NOT A TEMPLATE. Every panel is a shipped deck's own slide HTML from runs/carousel/,
-rendered unchanged through three engines: `main` before 2026-10-03, item 1 (the worn ground and
-the receiving surface) and items 1 and 2 (plus PCSS shadows, the shadow box fade and the kit
-highway at grade). The frames differ in the engine alone, which is the only honest way to show
-what the engine changed. Render each set with the engine checked out at that state:
+rendered unchanged through four engines: `main` before 2026-10-03, item 1 (the worn ground and
+the receiving surface), items 1 and 2 (plus PCSS shadows, the shadow box fade and the kit highway
+at grade), and items 1 and 2 as the blind graders saw them, before the sun's bias cap. The frames
+differ in the engine alone, which is the only honest way to show what the engine changed. Render
+each set with the engine checked out at that state:
 
     python3 .claude/skills/carousel-engine/render.py --slides-dir runs/carousel/2026-10-03/slides --out-dir <set>/1003
 
 for 2026-10-03, 2026-10-02, 2026-09-30 and 2026-09-29, then
 
-    python3 examples/ground-proof/build.py --main <set> --item1 <set> --item12 <set>
+    python3 examples/ground-proof/build.py --main <set> --item1 <set> --item12 <set> --item12-graded <set>
 
 Writes `deck-<date>.webp` (every frame at the 432 px thumb, main | item 1 | items 1 and 2),
-`zoom-ground.webp`, `zoom-shadows.webp` and `zoom-worse.webp` (regions at full size, 1:1 with the 2160 px
-render, the last the regions on the frames the blind graders marked down) and
+`zoom-ground.webp`, `zoom-shadows.webp`, `zoom-worse.webp` and `zoom-bias.webp` (regions at full size, 1:1
+with the 2160 px render, `zoom-worse` the regions on the frames the blind graders marked down, through the
+renders they graded, and `zoom-bias` the sun's bias cap that came after) and
 `full-<deck>-<frame>.webp` (two whole frames at full size, main | items 1 and 2).
 """
 import argparse
@@ -42,12 +44,21 @@ ZOOM_SHADOWS = [("no. 41 frame 8, light inside the wall's shadow", "1003", 8, (5
                 ("no. 40 frame 9, blocks of light in the paper stacks' shadow", "1002", 9, (880, 1820, 2160, 2280)),
                 ("no. 40 frame 7, streaks down the glass", "1002", 7, (120, 1260, 1000, 2000))]
 # the regions the blind graders named on the frames items 1 and 2 made WORSE, shown as honestly as the
-# gains. The fifth field is the pair of sets: (0, 1) is main | item 1, (1, 2) is item 1 | items 1 and 2
+# gains, through the very renders they graded. The fifth field is the pair of sets: (0, 1) is main |
+# item 1, (1, 3) is item 1 | items 1 and 2 as graded, before the sun's bias cap
 ZOOM_WORSE = [("no. 40 frame 6, item 1, the adopted sill a few levels darker in the lower left", "1002", 6, (0, 1800, 1080, 2700), (0, 1)),
               ("no. 41 frame 1, grain in the wide penumbrae under the roof and the load bar", "1003", 1, (1300, 1440, 1880, 2140)),
               ("no. 41 frame 6, the load bar's shadow sharp on the cartons, teeth where the wall's shadow crosses their tops", "1003", 6, (1180, 1560, 1840, 2160)),
-              ("no. 41 frame 5, shadows the old filter bled away, crescents in the hubs and the door post down the bay", "1003", 5, (1500, 1180, 2060, 1740)),
+              ("no. 41 frame 5, crescents in the hubs, the door post down the bay", "1003", 5, (1500, 1180, 2060, 1740)),
               ("no. 40 frame 4, the vial's shadow starts off its base (the deck's own spot bias, see the README)", "1002", 4, (1380, 1880, 2160, 2460))]
+# the sun's bias cap, which came after items 1 and 2 were graded: the tiles it moved most, items 1
+# and 2 as graded | with the cap
+ZOOM_BIAS = [("no. 41 frame 4, the barrier's foot", "1003", 4, (0, 1800, 400, 2200)),
+             ("no. 37 frame 5, the door's hinge edge", "0929", 5, (900, 2200, 1300, 2600)),
+             ("no. 37 frame 4, the bar and its post", "0929", 4, (600, 1900, 1000, 2300)),
+             ("no. 41 frame 8, the cartons' feet", "1003", 8, (700, 1700, 1100, 2100)),
+             ("no. 41 frame 1, the door's lock brackets", "1003", 1, (1700, 1500, 2100, 1900)),
+             ("09-30 frame 8, the canopy's edge", "0930", 8, (1200, 1300, 1600, 1700))]
 
 
 def font(size):
@@ -118,16 +129,19 @@ def full_sheet(sets, key, n):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--main", required=True); ap.add_argument("--item1", required=True); ap.add_argument("--item12", required=True)
+    ap.add_argument("--item12-graded", required=True, help="items 1 and 2 as the blind graders saw them, before the bias cap")
     a = ap.parse_args()
-    sets = [Path(a.main), Path(a.item1), Path(a.item12)]
+    sets = [Path(a.main), Path(a.item1), Path(a.item12), Path(a.item12_graded)]
     for key, date, note in DECKS:
         deck_sheet(sets, key, date, note).save(HERE / f"deck-{date}.webp", quality=74, method=6)
     zoom_sheet(sets, ZOOM_GROUND, "Item 1, the worn ground and the receiving surface: main | item 1, 1:1", (0, 1)).save(
         HERE / "zoom-ground.webp", quality=80, method=6)
     zoom_sheet(sets, ZOOM_SHADOWS, "Item 2, PCSS and the highway at grade: item 1 | items 1 and 2, 1:1", (1, 2)).save(
         HERE / "zoom-shadows.webp", quality=80, method=6)
-    zoom_sheet(sets, ZOOM_WORSE, "What the blind graders marked down, before | after, 1:1", (1, 2)).save(
+    zoom_sheet(sets, ZOOM_WORSE, "What the blind graders marked down, before | after as graded, 1:1", (1, 3)).save(
         HERE / "zoom-worse.webp", quality=80, method=6)
+    zoom_sheet(sets, ZOOM_BIAS, "The sun's bias cap: items 1 and 2 as graded | with the cap, 1:1", (3, 2)).save(
+        HERE / "zoom-bias.webp", quality=80, method=6)
     for key, n in FULL:
         full_sheet(sets, key, n).save(HERE / f"full-{key}-{n:02d}.webp", quality=82, method=6)
     for p in sorted(HERE.glob("*.webp")):
