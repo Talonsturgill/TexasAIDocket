@@ -1081,10 +1081,12 @@ which is the finding the judges made in words and the number that says the gate 
   shadow, lit specks along every thin caster. The filter now turns on white noise and filters every
   pixel it finds at an edge, and those frames render clean. **Still open:** a wide penumbra still
   carries a grain at full size, which a blind grader marked down on the final cut (no. 41 frame 1,
-  "grainy, dithered dark shadow halos" in the cargo bay). Where a low sun grazes along a low
-  kerb, contact hardening draws the kerb's sliver of shadow as a dark line one or two pixels wide
-  with a faint step in it (09-29 frame 1, at full size only), finer than one shadow texel can draw
-  clean. (2026-10-03)
+  "grainy, dithered dark shadow halos" in the cargo bay). A long diagonal shadow edge on a ground
+  seen at a grazing angle shows its texel steps (no. 41 frame 3's road, the same round). Under an
+  overcast softness a thin caster's shadow still shows its parts as streaks (09-30 frame 1, the
+  chair's wire basket). Where a low sun grazes along a low kerb, contact hardening draws the kerb's
+  sliver of shadow as a dark line one or two pixels wide with a faint step in it (09-29 frame 1, at
+  full size only), finer than one shadow texel can draw clean. (2026-10-03)
 - **A shadow that starts off its caster's foot.** No. 41 frame 4 on the final cut, a blind grader:
   "a thin lit strip separates the barrier foot from its shadow, so the shadow looks detached". The
   sun's depth bias is 0.0004 of its shadow camera's depth, 6 cm of no. 41's 160 m and 32 cm of no.
