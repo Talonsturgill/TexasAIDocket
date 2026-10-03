@@ -2116,8 +2116,12 @@ export function init(THREE) {
     const g = m.geometry;
     if (!g || !g.attributes.position) return null;
     if (!g.boundingBox) g.computeBoundingBox();
+    // a flat geometry is thin along one of its own axes: a box, a person or a tree is turned away
+    // here, before any world transform, since TXT.contact asks this of every mesh in the scene
+    const lb = g.boundingBox;
+    if (Math.min(lb.max.x - lb.min.x, lb.max.y - lb.min.y, lb.max.z - lb.min.z) > 0.05) return null;
     m.updateWorldMatrix(true, false);
-    const bb = g.boundingBox.clone().applyMatrix4(m.matrixWorld);
+    const bb = lb.clone().applyMatrix4(m.matrixWorld);
     const dx = bb.max.x - bb.min.x, dz = bb.max.z - bb.min.z;
     if (bb.max.y - bb.min.y > 0.05 || dx * dz < 30 || Math.min(dx, dz) < 2) return null;
     const n = g.attributes.normal;
