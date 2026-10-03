@@ -616,7 +616,9 @@ def doc_address(url: str) -> str | None:
     host = s.netloc.lower().split(":")[0]
     host = host[4:] if host.startswith("www.") else host
     addr = host + s.path.rstrip("/")
-    return (addr + ("?" + s.query if s.query else "")).lower()
+    # ONLY THE HOST IS CASE FOLDED (Codex, PR 397). A path or a query value can be case sensitive,
+    # so /Reports/ABC.pdf and /reports/abc.pdf, or ?id=AbC and ?id=abc, stay two documents.
+    return addr + ("?" + s.query if s.query else "")
 
 
 def _addresses(rows) -> list[str]:
@@ -653,19 +655,28 @@ def _name(n) -> frozenset:
     return frozenset(w for w in terms(str(n or "")) if w not in GENERIC_ORG)
 
 
-def names_company(names, company: str | None) -> str | None:
-    """The first of `names` that names `company` in full, or None.
+COMPOUND = re.compile(r",|;|&|\band\b|\bwith\b", re.I)
 
-    IN FULL, ONE WAY. Every distinctive word of the company's name must be in the other name, so
-    "Kodiak AI" matches "Kodiak AI" and a deck naming "Dallas" does not match a company called
+
+def constituents(company: str | None) -> list[str]:
+    """The organisations a decider names. The record carries compound deciders such as
+    "Amazon.com, Inc. and Wiwynn Corporation", and a deck naming Amazon alone names one of them
+    (Codex, PR 397). A fragment with no distinctive word, "Inc." here, is not an organisation."""
+    return [p.strip() for p in COMPOUND.split(str(company or "")) if _name(p)]
+
+
+def names_company(names, company: str | None) -> str | None:
+    """The first of `names` that names one of `company`'s organisations in full, or None.
+
+    IN FULL, ONE WAY. Every distinctive word of the organisation's name must be in the other name,
+    so "Kodiak AI" matches "Kodiak AI" and a deck naming "Dallas" does not match a company called
     Dallas Anything.
     """
-    want = _name(company)
-    if not want:
-        return None
-    for n in names or []:
-        if want <= _name(n):
-            return str(n)
+    for part in constituents(company):
+        want = _name(part)
+        for n in names or []:
+            if want <= _name(n):
+                return str(n)
     return None
 
 
@@ -798,6 +809,11 @@ def frames_on_told_items(copy: dict, claims, ledger: dict, ref: _dt.date,
     """
     window = int(ledger.get("window_days") or 30)
     items = record_items() if items is None else items
+    if not items:
+        # FAIL CLOSED (Codex, PR 397). With no record, no claim without a docket_item can be traced,
+        # and a comparison that never ran must not read as a deck that passed it.
+        return [f"CANNOT RUN: {DOCKET} can't be read, so no frame could be traced to the story it "
+                f"tells"]
     told, told_at = {}, {}
     cited_by = Counter(a for i in items.values() if isinstance(i, dict)
                        for a in set(_addresses(i.get("claims"))))
@@ -954,9 +970,9 @@ def _report(cand_terms: set[str], ref: _dt.date, item: str | None = None,
         print(f"  [{band:>13}] {h['score']:.2f}  {h['date']}  {h['title']}")
         print(f"                   shared: {', '.join(h['shared'])}")
     if worst >= LIKELY:
-        print("\n  READ THAT ENTRY IN FULL before the directors room. This is a signal, not a "
-              "verdict: two different decisions can share every entity in Texas. The thirty day "
-              "rule is still the showrunner's call, made after reading.")
+        print("\n  READ THAT ENTRY IN FULL before the directors room. This word fingerprint is a "
+              "signal, not a verdict:\n  two different decisions can share every entity in Texas. "
+              "The thirty day rule below is the verdict,\n  and it binds whatever this line says.")
         return 1
     print("\n  Nothing at the repeat threshold. Read the top entry anyway if it is your lead.")
     return 0
@@ -1291,6 +1307,20 @@ def self_test() -> int:
        doc_address("https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1")
        != doc_address("https://ElPasoTexas.legistar.com/MeetingDetail.aspx?ID=2")
        and doc_address("https://www.kodiak.ai/news/x/") == doc_address("http://kodiak.ai/news/x"))
+    ok("only the host is case folded, so a case sensitive path or query is its own document "
+       "(Codex, PR 397)",
+       doc_address("https://Example.org/Reports/ABC.pdf") != doc_address("https://example.org/reports/abc.pdf")
+       and doc_address("https://x.org/d?id=AbC") != doc_address("https://x.org/d?id=abc")
+       and doc_address("https://WWW.Example.org/Reports/ABC.pdf") == doc_address("https://example.org/Reports/ABC.pdf"))
+    ok("a compound decider is matched by any one of its organisations, and 'Inc.' is none",
+       names_company(["Amazon.com"], "Amazon.com, Inc. and Wiwynn Corporation") == "Amazon.com"
+       and constituents("Amazon.com, Inc. and Wiwynn Corporation") == ["Amazon.com", "Wiwynn Corporation"])
+    ok("...and a deck naming neither organisation does not match it",
+       names_company(["Microsoft", "Inc."], "Amazon.com, Inc. and Wiwynn Corporation") is None)
+    ok("an unreadable record is a check that CANNOT RUN, never a clean one (Codex, PR 397)",
+       any("CANNOT RUN" in p for p in frames_on_told_items(
+           {"slides": {"S1": {"n": 1, "claims": ["c1"]}}}, [{"id": "c1", "url": "https://a.org/x"}],
+           {"window_days": 30, "entries": []}, _dt.date(2026, 10, 3), items={})))
     fx_items = {"tx-1": {"decider": {"name": "Acme Freight", "type": "company"},
                          "geography": {"counties": ["Ector"]}, "claims": []}}
     fx = {"window_days": 30, "entries": [{"date": "2026-09-30", "carousel_no": 9,
