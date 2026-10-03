@@ -1084,6 +1084,12 @@ which is the finding the judges made in words and the number that says the gate 
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
   cast shadows off). **Fixed in `txthree.js` (2026-10-03):** a shadow fades out over the last 8
   percent of the box. Size the box to the subject, because a fade still shows. (2026-10-03)
+- **A polka dot decal on concrete.** No. 41 frames 3, 4 and 7, both blind graders: "evenly
+  scattered round dark blots that read as a repeated decal" on the highway. Not shadows, not the
+  weather pass, not the ground beneath (each ruled out by turning it off): the kit's concrete tile
+  drew forty hard edged discs, cut off at the tile's edge, and repeated them every 3 m on every kit
+  concrete, pads, barriers and sills included. **Fixed in `txkit.js` (2026-10-03):** soft, faint
+  blotches wrapped across the tile's edge. (2026-10-03)
 - **A flat yellow polygon on a highway verge.** No. 41 frame 4, all three judges in every round. The
   kit highway built at grade (`embank` 0) laid its grassed side slopes 2 to 10 cm under the frame's
   own ground, and their 6 cm of noise poked patches up through it. **Fixed in `kit/landscape.js`

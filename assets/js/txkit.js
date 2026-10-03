@@ -312,10 +312,23 @@ function paintLimestone(x, N, r, o) {
   }
   noise(x, N, r, 0.1);
 }
+/* WEATHERED, NOT POLKA DOTTED (2026-10-03). This tile drew forty hard edged discs, cut off at the
+ * tile's edge, and every kit concrete repeated them every 3 m: no. 41's judges named "a repeated
+ * polka dot decal" on the highway in frames 3, 4 and 7, and the same tile is on pads, barriers and
+ * sills. The blotches are soft now, fainter, and wrapped across the edge so the repeat has no seam.
+ * The random numbers are drawn in the same order, four a blotch. */
 function paintConcrete(x, N, r, o) {
   x.fillStyle = o.color || '#a39f97'; x.fillRect(0, 0, N, N); noise(x, N, r, 0.1);
-  for (let i = 0; i < 40; i++) { x.fillStyle = 'rgba(0,0,0,' + (0.02 + r() * 0.05) + ')';
-    x.beginPath(); x.arc(r() * N, r() * N, 4 + r() * 40, 0, 6.3); x.fill(); }
+  for (let i = 0; i < 40; i++) {
+    const a = 0.012 + r() * 0.03, cx = r() * N, cy = r() * N, rad = 8 + r() * 44;
+    for (const ox of [-N, 0, N]) for (const oy of [-N, 0, N]) {
+      const px = cx + ox, py = cy + oy;
+      if (px + rad < 0 || px - rad > N || py + rad < 0 || py - rad > N) continue;
+      const g = x.createRadialGradient(px, py, 0, px, py, rad);
+      g.addColorStop(0, 'rgba(0,0,0,' + a + ')'); g.addColorStop(0.55, 'rgba(0,0,0,' + (a * 0.6) + ')'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      x.fillStyle = g; x.fillRect(px - rad, py - rad, rad * 2, rad * 2);
+    }
+  }
 }
 function paintCorrugated(x, N, r, o) {
   const base = o.color || '#9fa4a6', ribs = 12, w = N / ribs;
