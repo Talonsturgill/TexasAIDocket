@@ -2569,9 +2569,13 @@ export function init(THREE) {
       R.scene.traverse((m) => {
         if (m.userData && m.userData.txGround) { grounds.push(m.getWorldPosition(v).y); return; }
         // a pad the deck laid over the ground is what the thing stands on (THE RECEIVING SURFACE),
-        // unless it is part of the thing itself
+        // when the thing stands over it and is not part of it. Over it in plan as well as in height:
+        // 09-30's football field counted as the ground under the school beside it, lifted the
+        // school's contact above the entrance slab, and turned the slab dark grey.
         const f = flatPlane(m);
         if (!f) return;
+        const cx = (wb.min.x + wb.max.x) / 2, cz = (wb.min.z + wb.max.z) / 2;
+        if (cx < f.bb.min.x || cx > f.bb.max.x || cz < f.bb.min.z || cz > f.bb.max.z) return;
         for (let a = m; a; a = a.parent) if (a === obj) return;
         grounds.push(f.y);
       });
