@@ -1,5 +1,21 @@
 {
-  "last_pass": null,
-  "themes": [],
-  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py."
+  "last_pass": "2026-10-03",
+  "themes": [
+    {"theme": "primitive or low-poly model where a kit model belongs", "runs": 5, "rounds": 22,
+     "action": "fixed",
+     "what": "Read by sentence it was mostly the kit person (mannequin, game asset, low poly on 4 runs, 18 rounds). Fixed three causes in assets/js/kit/people.js: the cap (a helmet hemisphere with its bill an upright plank on the right side), long hair that swung out behind a bowed head, and brows floating pale off the skin. Proven before and after through the carousel engine, sizes.py 110 of 110."},
+    {"theme": "value strobe or undeclared tonal cut", "runs": 2, "rounds": 4,
+     "action": "fixed",
+     "what": "The digest ranked it second at 5 runs and 22 rounds by counting 'no strobe' and 'the declared value cut' as defects. scripts/carousel/week_digest.py now counts a sentence with no negator before the match, with self-test cases each way. The counts in this file are the recount."},
+    {"theme": "no contact, dirt or grime where things meet the ground", "runs": 5, "rounds": 16,
+     "action": "escalated",
+     "what": "The engine's TXT.ground and scatter (human). UPGRADE_BACKLOG 2026-10-03 item 4, with 2026-10-02 item 6."},
+    {"theme": "largest object unmodelled (slab, bare wall, clean clay)", "runs": 5, "rounds": 21,
+     "action": "deferred",
+     "what": "Read by sentence it is a different object on each deck (a pole, a door, a wall, a coping), so no one model fixes it. The pickup and the skyline are candidates for a later pass."},
+    {"theme": "accent surface off its hex (queue emissive-accent-reads-salmon, and 2026-10-01 backlog item 6)", "runs": 2, "rounds": null,
+     "action": "fixed",
+     "what": "ILLUSTRATION_SYSTEM.md 'What still fails' names it: albedo plus a small emissive, measured off the probe frame against layout_check's 12 Lab window before round 1. No theme in the digest matches it, so its rounds are not counted, and its runs are no. 39 (2026-10-01) and no. 41 (today)."}
+  ],
+  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Counts are from scripts/carousel/week_digest.py --date 2026-10-03 after this pass's recount, except the person's, counted by sentence in the pass's own scratch and recorded in ledger/carousel/upgrades.json."
 }

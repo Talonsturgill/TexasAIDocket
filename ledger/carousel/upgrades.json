@@ -2705,4 +2705,80 @@
  ],
  "lane": "upgrade. assets/js/kit/interior.js, the regenerated knowledge/carousel/ARSENAL.md, one knowledge/carousel/UPGRADE_BACKLOG.md section and this entry. Nothing under .claude/, examples/, runs/, docs/ or ledger/docket.json, the dated chassis and the shipped slides untouched (the proofs used scratch copies in out/2026-10-02/tmp/upgrade/)"
 }
+,
+"2026-10-03 weekly": {
+ "date": "2026-10-03",
+ "kind": "weekly machine pass, the first (prompts/machine_weekly.md)",
+ "read": "out/2026-10-03/week_digest.md (six shipped runs, 2026-09-27 to 2026-10-02, artwork_craft lowest on five, week mean 6.72), knowledge/carousel/MACHINE_QUEUE.md (nine items from no. 41), the backlog and this file's last entries, ILLUSTRATION_SYSTEM.md 'What still fails'",
+ "upgrades": [
+  {
+   "what": "The kit person: the cap is a six panel crown fitted to the head with its bill in front, long hair falls along the neck at any head pitch, and the brows sit half sunk on the skin, darker than the hair",
+   "theme": "primitive or low-poly model where a kit model belongs, 5 runs and 22 rounds in the recounted digest. Read by sentence it was mostly the kit person, named as a mannequin, a game asset or low poly on 4 runs and 18 rounds (2026-09-28 r1 to r5, 2026-09-29 r2 to r5, 2026-09-30 r1 to r5, 2026-10-01 r1, r3 to r5), counted by a sentence regex in the pass's scratch",
+   "why": "Head proofs of K.make('person') at full size through the carousel engine found three causes in the model. The cap's bill was a sphere band at the equator, rotated to the front and then set back to 0, so it printed as an upright plank on the wearer's right side, and the crown was a hemisphere about 2.4 cm proud of the scalp (no. 37's 'helmet-like hat'). curtainGeo built long hair rigid in the head's frame, so a head bowed to read (pitch 0.42 rad) swung it out behind the neck, which is no. 38's 'spike of hair mesh clips out behind her head' (r2) and 'hair clump detached behind the parent's neck' (r5 defect 2). Brows were offset along +z rather than the skin's normal, so the outer end stood proud with its own shadow, and their colour lerped toward the skin, so blonde and grey heads printed two pale bands",
+   "files": [
+    "assets/js/kit/people.js",
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md (the 'kit person as a mannequin' entry)"
+   ],
+   "verification": "Before and after pages through .claude/skills/carousel-engine/render.py, exit 0, errors 0, read at full size: the original people.js loaded from a scratch copy of the kit against the edited one, same seeds and cameras. Cap (seed 12, seed 5): helmet with a side plank before, fitted crown and front bill after. Parent (seed 12, female, hat none, pose read, the 2026-09-30 chassis's own call): hair out behind the neck before, hanging along the neck after. Pose look_up: hair cutting into the neck before, hanging after. Shipped 2026-09-30 frame 9 re-rendered from a scratch copy of its slide: the spike behind the parent's head is gone. examples/kit/sizes.py: 110 of 110 models declare the size they build, centred, exit 0. node --check exit 0. Today's chassis calls no person, so the live deck is untouched",
+   "revert": "the upgrade commit's hunks in assets/js/kit/people.js (the cap branch of hat(), the Hh argument, curtainGeo's hang and piv, the brow colour and the brow normal offset)",
+   "how_i_would_know_this_was_wrong": "A deck with a capped figure at the crown's scale finds the head poking through the crown, because the crown now clears the scalp by about a tenth of the head where it cleared by 2.4 cm. A seated or bowed figure with long hair shows the hair passing through a chair back or the shoulders, because it now hangs along the neck where it used to swing clear. A judge still calls the figure a mannequin at face scale, because the flat face value and the curtain's front edge ribbons are not fixed (UPGRADE_BACKLOG 2026-10-03 item 1)"
+  },
+  {
+   "what": "week_digest.py counts a sentence that names a theme without a negator in the four words before it, excludes a deck's declared value cut, and no longer matches a sources block or a glass seam",
+   "theme": "value strobe or undeclared tonal cut, which the digest ranked second at 5 runs and 22 rounds and which the recount puts at 2 runs and 4 rounds. The weekly pass ranks its work by this table",
+   "why": "The digest searched each card as one string, so 'the value holds with no strobe', 'nothing floats in a void' and 'the one declared value cut' counted as the defects they deny. Reading the evidence sentence by sentence found strobe named on 2026-09-29 r5 and 2026-10-02 r1, r2 and r5. Recount of the week: strobe 5/22 to 2/4, horizon band 5/18 to 5/9, void 4/9 to 3/7, primitive 5/23 to 5/22, type on art 5/14 to 4/13",
+   "files": [
+    "scripts/carousel/week_digest.py"
+   ],
+   "verification": "python3 scripts/carousel/week_digest.py --self-test exits 0 with ten new cases, each paired with a case that still goes red: no strobe against 'the value strobes', a declared cut against an undeclared one, 'nothing floats in a void' against 'no contact', a sources block against toy blocks, a glass seam against a strip on the horizon line. Replayed on the week: python3 scripts/carousel/week_digest.py --date 2026-10-03 --out out/2026-10-03/tmp/machine/week_digest_after.md",
+   "revert": "the upgrade commit's hunks in scripts/carousel/week_digest.py",
+   "how_i_would_know_this_was_wrong": "A judge names a defect in a sentence that also negates something near it ('not one frame, but the strobe') and the theme drops out of a week it was in. The declared-cut exclusion drops a sentence naming an undeclared cut beside a declared one, which it already does to 2026-09-29 r1 ('a hard value cut beside the declared one'). Horizon band still counts two praise lines and a type collision, so a pass that trusts its 5 runs without reading is misled"
+  },
+  {
+   "what": "ILLUSTRATION_SYSTEM.md 'What still fails' names an accent object lit by its own emissive: colour from albedo and a small emissive, measured off the probe frame against layout_check's 12 Lab window before round 1",
+   "theme": "queue item emissive-accent-reads-salmon (no. 41), and 2026-10-01 backlog item 6 (no. 39's sign cooled off its hex under blue hour): two runs that found the accent off its hex in the panel",
+   "why": "No. 41's ember beams at emissive 1.05 measured (220, 131, 93) against #B4664F (180, 102, 79) and read pink to three critics, and 0.72 fixed it. No. 39 needed a tint to bring a sign back. Both were tuned across rounds",
+   "files": [
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md (the 'accent object lit by its own emissive' entry)"
+   ],
+   "verification": "Doctrine, not a gate: no check changed. python3 scripts/shared/sensitive_paths.py and python3 scripts/carousel/word_ban.py --self-test still exit 0 on the edited file. The test that it worked is the next deck with an emissive accent passing layout_check's accent window on its probe frame",
+   "revert": "the 'An accent object lit by its own emissive' bullet in knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+   "how_i_would_know_this_was_wrong": "A third deck finds its accent off its hex in the panel, which says a line a director must remember does not hold and the probe-frame measurement belongs in a check (the engine helper in 2026-10-01 backlog item 6)"
+  }
+ ],
+ "not_done_and_why": "The dry van, the roadside furniture and the truck hub stay in today's chassis: the deck was mid-panel and its installKit returns early once the kit defines dry_van. The dossier acceptance check is one run and would have gone red on the live run. The largest-object theme is a different object on each deck. No gate was added or changed, so GATE_LESSONS gets no entry from this pass, and the digest's lesson is proposed for it (backlog item 3). No frontier scan: the weekly brief does not call for one",
+ "proposals_out_of_lane": [
+  {
+   "what": "Contact and dirt where a model meets a TXT.ground surface",
+   "owner": "human",
+   "why": "5 runs and 16 rounds in the recounted digest. UPGRADE_BACKLOG 2026-10-03 item 4"
+  },
+  {
+   "what": "A stormFront shelf edge visible at long and normal lenses",
+   "owner": "human",
+   "why": "No. 41, six frames, pixel rounds 1 and 2. UPGRADE_BACKLOG 2026-10-03 item 4"
+  },
+  {
+   "what": "VSM resolution and blur on small casters",
+   "owner": "human",
+   "why": "No. 41 frames 4, 6, 8 and 9. UPGRADE_BACKLOG 2026-10-03 item 4"
+  },
+  {
+   "what": "qa.py compares the rule strip against the canvas with the type hidden",
+   "owner": "human",
+   "why": "Two runs, 2026-10-02 and 2026-10-03. Under .claude/skills. UPGRADE_BACKLOG 2026-10-03 item 5"
+  },
+  {
+   "what": "Name the thumb path slide-0N-thumb.png in the pixel critic's definition or Phase 12's spawn text",
+   "owner": "human",
+   "why": "No. 41 pixel round 1, three of five critics. UPGRADE_BACKLOG 2026-10-03 item 6"
+  },
+  {
+   "what": "A GATE_LESSONS entry for the digest that counted praise as a defect",
+   "owner": "human",
+   "why": "knowledge/shared is human. UPGRADE_BACKLOG 2026-10-03 item 3"
+  }
+ ],
+ "lane": "upgrade. assets/js/kit/people.js, scripts/carousel/week_digest.py, knowledge/carousel/ILLUSTRATION_SYSTEM.md, knowledge/carousel/UPGRADE_BACKLOG.md, knowledge/carousel/MACHINE_QUEUE.md, config/carousel/machine_pass.json and this entry. Nothing under .claude/, examples/, runs/, docs/, assets/js/deck/ or ledger/docket.json. Proofs in out/2026-10-03/tmp/machine/"
+}
 }

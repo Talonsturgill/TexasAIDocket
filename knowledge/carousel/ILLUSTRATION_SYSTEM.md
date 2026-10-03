@@ -1036,6 +1036,25 @@ which is the finding the judges made in words and the number that says the gate 
   blue printed maroon. Looking at the sun, blue hour went from hue 8, 356 and 343 at saturation 0.20
   to 0.28 to blue, and golden hour's rose-grey top band to a pale blue. `tests/txworld.mjs` holds it.
   Set `clouds` on a copy of the preset if a deck wants them back. (2026-10-03)
+- **The kit person as a mannequin.** The most repeated model defect of the week to October 3rd:
+  the judges named the kit person as a mannequin, a game asset or low poly on four of six decks
+  (September 28th to October 1st), in every round of two of them. Three of its causes were the
+  kit's and are **fixed in `people.js` (weekly pass, 2026-10-03):** the cap was a hemisphere about
+  2.4 cm proud of the scalp with its bill an upright plank on the wearer's right side, and is now a
+  six panel crown fitted to the head with the bill in front; long hair was built rigid in the
+  head's frame, so a head bowed to read swung it out behind the neck as a spike (no. 38's frame 9,
+  rounds 2 and 5), and it now falls along the neck at any head pitch; the brows floated off the
+  skin and went pale on a blonde or grey head, and now sit half sunk on the skin, darker than the
+  hair. **Still the kit's, and open:** the long hair's two front edges show as thin ribbons beside
+  the jaw, and the face is one value under a warm key (2026-09-27 backlog item 2). Until they are
+  fixed, a person at the face's own scale is a risk a frame takes on purpose: crop to the
+  shoulder, turn them three quarters away, or keep them under a fifth of the frame. (2026-10-03)
+- **An accent object lit by its own emissive.** No. 41's ember beams at emissive 1.05 measured
+  (220, 131, 93) in sun against the accent #B4664F (180, 102, 79) and read pink to three critics.
+  At 0.72 they held. No. 39's sign went the other way under blue hour and needed a tint to come
+  back. Both runs found it in the panel. An accent surface takes its colour from its albedo and a
+  small emissive, and the director measures it off the probe frame against `layout_check`'s
+  12 Lab window before round 1, never across rounds. (2026-10-03)
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.
 - **A crowd as a mass.** Figures at the same tone as the furniture beside them merge into one
