@@ -1089,10 +1089,11 @@ which is the finding the judges made in words and the number that says the gate 
   "a thin lit strip separates the barrier foot from its shadow, so the shadow looks detached". The
   sun's depth bias is 0.0004 of its shadow camera's depth, 6 cm of no. 41's 160 m and 32 cm of no.
   37's 800 m. VSM's blur filled the strip, and PCSS draws a thing's foot sharp, so the strip shows.
-  Measured on that frame, a 3 mm bias seats the shadow. **Still open:** a small constant bias lets a
-  ground under a grazing sun shade itself, since each shadow texel toward a sun at 11 degrees is five
-  texel widths nearer to it, so the fix is a bias scaled by the slope. Meanwhile keep `shadowFar` as
-  short as the frame allows. (2026-10-03)
+  No. 37 frame 4's bar had the same strip. **Fixed in `txthree.js` (2026-10-03):** the sun's bias
+  never exceeds 5 mm. Rendered on all 36 frames of four decks, it moved at most 0.87 percent of a
+  frame's pixels, nearly all of them darker, and the tile that moved most on each frame is a shadow
+  reaching its caster's foot, never acne: a PCF map holds a caster's back faces, and the ground
+  casts nothing. (2026-10-03)
 - **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
   cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a

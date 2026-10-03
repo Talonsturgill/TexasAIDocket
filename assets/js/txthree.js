@@ -245,6 +245,7 @@ export function init(THREE) {
    * sun, 22 for overcast. The getter is read by three every render, so it follows a shadow camera
    * the frame resizes after the rig, and a frame that sets radius sets this softness. */
   const PCSS_SUN = 0.45 * Math.PI / 180;
+  const PCSS_BIAS = 0.005;   // metres a sun's shadow may slide off its caster's foot, at most
   function pcssLight(light) {
     const sh = light.shadow, cam = sh.camera, grow = 1 / (1 - 2 * PCSS_FADE);
     // the box a frame sets is the box it gets in full, and the fade is laid in a margin around it
@@ -253,6 +254,21 @@ export function init(THREE) {
       Object.defineProperty(cam, k, { configurable: true, enumerable: true, get() { return v * grow; }, set(x) { v = x; } });
     });
     cam.updateProjectionMatrix();
+    /* A SUN'S SHADOW STARTS AT ITS CASTER'S FOOT. three.js adds shadow.bias in the shadow camera's
+     * own depth, so the rig's -0.0004 is 6 cm of no. 41's 160 m camera and 32 cm of no. 37's 800 m
+     * one, and a PCF map holds the BACK faces of what casts, so the ground just behind a thing's
+     * foot lies that close to the face it is compared with. VSM's blur filled the strip, and PCSS
+     * draws the foot sharp, so two blind graders found it: no. 41 frame 4's barrier with "a thin lit
+     * strip" at its foot and no. 37 frame 4's bar, whose shadow "starts a few pixels to the right of
+     * the bar". The sun's bias never exceeds PCSS_BIAS metres now, and a small camera keeps the
+     * rig's own. Acne on a lit face is the back faces' and normalBias's job, and the ground casts
+     * nothing to shade itself with. */
+    let bias = sh.bias;
+    Object.defineProperty(sh, 'bias', {
+      configurable: true, enumerable: true,
+      get() { const c = sh.camera; return Math.max(bias, -PCSS_BIAS / Math.max(1e-3, c.far - c.near)); },
+      set(v) { bias = v; },
+    });
     let soft = sh.radius;
     Object.defineProperty(sh, 'radius', {
       configurable: true,
