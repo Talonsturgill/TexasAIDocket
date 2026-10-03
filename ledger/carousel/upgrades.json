@@ -2781,4 +2781,27 @@
  ],
  "lane": "upgrade. assets/js/kit/people.js, scripts/carousel/week_digest.py, knowledge/carousel/ILLUSTRATION_SYSTEM.md, knowledge/carousel/UPGRADE_BACKLOG.md, knowledge/carousel/MACHINE_QUEUE.md, config/carousel/machine_pass.json and this entry. Nothing under .claude/, examples/, runs/, docs/, assets/js/deck/ or ledger/docket.json. Proofs in out/2026-10-03/tmp/machine/"
 }
+,
+"2026-10-03 maintainer": {
+ "date": "2026-10-03",
+ "kind": "maintainer session, on the owner's instruction to make the thirty day rule strict",
+ "read": "knowledge/carousel/MACHINE_QUEUE.md item dedupe-misses-same-company-same-lane, runs/carousel/2026-10-03/RUN_RECORD.md, ledger/carousel/topics.json, every shipped deck's runs/carousel/<date>/claims.json and score.json, ledger/docket.json",
+ "upgrades": [
+  {
+   "what": "dedupe_check.py exits 3, a binding REPEAT, when a deck inside the window was built on the candidate's own docket item, when at least 0.55 of the candidate item's claims cite an address that deck's claims file cited, or when a company deciding one item is named by the other deck at a shared place. --item is required. panel_ready.py runs the same rule on the built deck and fails a close, or two or more frames, citing the item a deck in the window was built on, traced by a claim's docket_item or else by a document only that item cites. Replayed over every shipped deck that backstop flags one, no. 9's close on the comment window no. 6 had covered five days earlier, and passes no. 24's close on a commission calendar three items cite",
+   "theme": "variety, the lowest criterion on 3 of the week's 7 decks. No. 41 retold no. 34's Kodiak lane seven days later, was hard failed on the window in round 1 by two of three judges, and shipped with variety at 5.5",
+   "why": "The gate compared words and printed a signal, and the run read 'worth reading' at 0.50 and chose the story. The record already carried the item, the documents each deck cited and the decider's type, and nothing read them. Replayed over all 41 shipped decks the rule refuses two, no. 19 (the same Austin council item a day after no. 18) and no. 41, both at variety 5.5, and no other deck comes above 0.12 on documents. A first measurement that dropped the query string refused three more decks that had read different filings at a shared path, so addresses keep their query",
+   "files": [
+    "scripts/carousel/dedupe_check.py",
+    "scripts/carousel/panel_ready.py",
+    "prompts/daily_routine.md",
+    ".github/workflows/guards.yml"
+   ],
+   "verification": "python3 scripts/carousel/dedupe_check.py --self-test exits 0 with 29 new cases (72 in all, from 43) against the committed ledgers, among them no. 41 refused on documents and on company and place, no. 19 refused on its item, nos. 40 and 37 cleared, round 1 of no. 41 caught on frames 8 and 9 with and without docket_item on its claims, the shipped deck clean, no. 9's close caught and no. 24's passed. Turning off the documents band, the company rule or the reference date exclusion each turns the self-test red. panel_ready.py --self-test exits 0 and proves the group is wired into run()",
+   "revert": "git revert 4c8c9819",
+   "how_i_would_know_this_was_wrong": "A run whose every candidate exits 3 for a week, or a refused candidate a reader of both decks would call a different story. The refusal names the deck, the shared addresses and the shared company and places, so either is visible in the run record"
+  }
+ ],
+ "lane": "human, on tsturg/sharp-pascal-b2lbqg: prompts/daily_routine.md and .github/workflows/guards.yml are human, the two gates are upgrade"
+}
 }
