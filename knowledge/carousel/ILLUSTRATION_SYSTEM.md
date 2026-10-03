@@ -1079,10 +1079,20 @@ which is the finding the judges made in words and the number that says the gate 
   soft at the shadow's tip, and it can't bleed. Its first cut traded the bleed for noise, and a blind
   grader found it on two decks: a speckled column down a door post, hatching inside a strap's
   shadow, lit specks along every thin caster. The filter now turns on white noise and filters every
-  pixel it finds at an edge, and those frames render clean. **Still open:** where a low sun grazes along a low
+  pixel it finds at an edge, and those frames render clean. **Still open:** a wide penumbra still
+  carries a grain at full size, which a blind grader marked down on the final cut (no. 41 frame 1,
+  "grainy, dithered dark shadow halos" in the cargo bay). Where a low sun grazes along a low
   kerb, contact hardening draws the kerb's sliver of shadow as a dark line one or two pixels wide
   with a faint step in it (09-29 frame 1, at full size only), finer than one shadow texel can draw
   clean. (2026-10-03)
+- **A shadow that starts off its caster's foot.** No. 41 frame 4 on the final cut, a blind grader:
+  "a thin lit strip separates the barrier foot from its shadow, so the shadow looks detached". The
+  sun's depth bias is 0.0004 of its shadow camera's depth, 6 cm of no. 41's 160 m and 32 cm of no.
+  37's 800 m. VSM's blur filled the strip, and PCSS draws a thing's foot sharp, so the strip shows.
+  Measured on that frame, a 3 mm bias seats the shadow. **Still open:** a small constant bias lets a
+  ground under a grazing sun shade itself, since each shadow texel toward a sun at 11 degrees is five
+  texel widths nearer to it, so the fix is a bias scaled by the slope. Meanwhile keep `shadowFar` as
+  short as the frame allows. (2026-10-03)
 - **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
   cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a
@@ -1100,7 +1110,11 @@ which is the finding the judges made in words and the number that says the gate 
   fringe along the foot of the median barrier", drawn on main too. The kit highway at grade lies at
   the ground's own height along its edges, and the two surfaces fought for the pixel in stripes.
   **Fixed in `txthree.js` (2026-10-03):** the ground never wins a depth tie, so anything laid flat on
-  it draws. (2026-10-03)
+  it draws. **Still open:** the ground's wear showed through those stripes, and now it doesn't, so
+  the lanes are the kit's own asphalt. A road a vehicle stands on takes its marks and a slow drift,
+  and no road takes a stain. A blind grader read the stains that had showed through as "repeated oval dark stains ... stamped
+  rather than worn" (no. 41 frame 3), so a stain on a lane wants a drip trail's shape first.
+  (2026-10-03)
 - **A flat yellow polygon on a highway verge.** No. 41 frame 4, all three judges in every round. The
   kit highway built at grade (`embank` 0) laid its grassed side slopes 2 to 10 cm under the frame's
   own ground, and their 6 cm of noise poked patches up through it. **Fixed in `kit/landscape.js`

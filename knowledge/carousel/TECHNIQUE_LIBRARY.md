@@ -207,13 +207,30 @@ A penumbra carries a fine grain at full size and never a hatch or a speck: the f
 white noise, a penumbra wider than 3 texels takes 48 taps, and a pixel the first nine taps put at
 an edge is always filtered (the first cut drew
 speckled columns, hatched strap shadows and lit specks along thin casters, and a blind grader
-named each one).
+named each one). The grain is still there to find: a blind grader marked no. 41 frame 1 down for
+"grainy, dithered" halos where the van's roof and load bar shade the cartons.
 *Fails when:* the shadow box is too small for the subject, which now shows as a fade rather than a
 line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
 draws its sliver of shadow as a fine dark line. A soft band of shade VSM laid across a wall where
 depths meet in the light's view was its blur and not a shadow, and it is gone (09-30 frame 5's
 classroom wall, which a blind grader preferred with it): a frame that wants a gradient on a wall
-lights the wall for it.
+lights the wall for it. A thing a few centimetres off a surface now casts a crisp shadow on it, as
+it would in sun, and a crisp shadow shows every step of what it crosses: no. 41 frame 6's wall
+shadow takes a tooth at each carton top, which VSM's blur hid and a blind grader marked down. Small
+shadows VSM bled away come back too, a hub's crescent in its own wheel, a door post down a bay, so
+a part that will catch one wants enough model to carry it. A shadow can start a little off its
+caster's foot: the sun's `bias` is 0.0004 of its shadow camera's depth, 6 cm at a `shadowFar` of
+160 m and 32 cm at 800 m. VSM's blur filled that strip and PCSS's sharp foot shows it, as a thin lit
+line under no. 41 frame 4's barrier. Measured on that frame, a 3 mm bias seats the shadow, and it
+is not the default because a smaller bias lets a ground under a grazing sun shade itself. Keep
+`shadowFar` as short as the frame allows.
+**A spot's bias is not a sun's.** three.js adds `shadow.bias` in the shadow camera's own depth,
+which for a SpotLight is perspective and crowded toward the near plane: -0.0004 at `near` 0.1 is
+about 4 cm at 3 m, and a thing smaller than that loses the start of its shadow. No. 40 frame 4's
+vial under the window spot cast nothing at all through VSM and casts a shadow that starts a few
+centimetres off its base through PCSS. Measured on that frame: `bias` -0.00002 with `normalBias`
+0.003 seats the shadow at the base. Set a spot's bias near zero and take the acne out with
+`normalBias`, which is in metres.
 
 **The render clocks** — `render.py` waits 45 s for a slide's load event, which comes only after
 the module's synchronous work (the scene built, the shaders compiled), and then races

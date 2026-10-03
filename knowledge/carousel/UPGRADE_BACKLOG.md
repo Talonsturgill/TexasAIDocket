@@ -5258,7 +5258,8 @@ rendered with the type hidden. Two runs, so the queue item now carries `repeat: 
 No. 41 pixel round 1, three of five critics looked for `final/thumbs/slide-0N.png` and found
 nothing, because the files are `slide-0N-thumb.png`. Name that file name in
 `.claude/agents/carousel-pixel-critic.md` or in Phase 12's spawn text in
-`prompts/daily_routine.md`. Both are out of this lane.
+`prompts/daily_routine.md`. Both are out of this lane. **Done 2026-10-03 by a maintainer session**:
+the agent definition names `out/<date>/render/slide-0N.png` and `out/<date>/final/thumbs/slide-0N-thumb.png`.
 
 ### 7. DEFERRED, NOT REFUSED: TODAY'S CHASSIS MODELS (`dry_van`, `delineator`, `raised_pavement_marker`, a truck hub)
 
