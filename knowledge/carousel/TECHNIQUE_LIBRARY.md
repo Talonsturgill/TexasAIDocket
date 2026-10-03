@@ -196,18 +196,24 @@ stain and not as weather.
 **A sun's shadow** — PCSS replaced VSM as the default. The shadow is sharp where a thing touches the
 ground and widens with the distance from what casts it, as a real sun's does, and it can't bleed
 light the way a variance map did (no. 41's fibrous carton column). A rig's `radius` is now its
-SOFTNESS: 6 is the nominal low sun, 3 a high noon, 22 an overcast. A shadow fades out in the last
-8 percent of the light's shadow box rather than stopping in a straight line. `TXT.setup(c,
+SOFTNESS: 6 is the nominal low sun, 3 a high noon, 22 an overcast. Inside the shadow box a frame
+sets, every shadow keeps its full strength, and a caster longer than the box has its shadow fade
+out just past the box's edge rather than stop in a straight line (the engine widens the box by the
+fade's margin). A lamp's shadow never fades. `TXT.setup(c,
 { shadows:'vsm' })` or `'pcfsoft'` restores the old modes. The filter never runs narrower than the
 map can draw (1.5 texels, rising to 3 where a texel covers several pixels), and the widest
 penumbra is 10 texels, which is what keeps a frame of a thousand pebbles inside the render budget.
 A penumbra carries a fine grain at full size and never a hatch or a speck: the filter turns on
-white noise, and a pixel the first nine taps put at an edge is always filtered (the first cut drew
+white noise, a penumbra wider than 3 texels takes 48 taps, and a pixel the first nine taps put at
+an edge is always filtered (the first cut drew
 speckled columns, hatched strap shadows and lit specks along thin casters, and a blind grader
 named each one).
 *Fails when:* the shadow box is too small for the subject, which now shows as a fade rather than a
 line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
-draws its sliver of shadow as a fine dark line.
+draws its sliver of shadow as a fine dark line. A soft band of shade VSM laid across a wall where
+depths meet in the light's view was its blur and not a shadow, and it is gone (09-30 frame 5's
+classroom wall, which a blind grader preferred with it): a frame that wants a gradient on a wall
+lights the wall for it.
 
 **The render clocks** — `render.py` waits 45 s for a slide's load event, which comes only after
 the module's synchronous work (the scene built, the shaders compiled), and then races

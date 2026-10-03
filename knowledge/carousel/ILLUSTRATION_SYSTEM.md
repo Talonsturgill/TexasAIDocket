@@ -1085,8 +1085,11 @@ which is the finding the judges made in words and the number that says the gate 
   clean. (2026-10-03)
 - **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
-  cast shadows off). **Fixed in `txthree.js` (2026-10-03):** a shadow fades out over the last 8
-  percent of the box. Size the box to the subject, because a fade still shows. (2026-10-03)
+  cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a
+  margin the engine adds outside the box, so nothing inside the box a frame sets loses its shadow.
+  The first cut faded the box's own last 8 percent, and a blind grader found 09-30's school canopy
+  without its shadow on the walk and no. 41's cab without its shade. Size the box to the subject,
+  because a fade still shows. (2026-10-03)
 - **A polka dot decal on concrete.** No. 41 frames 3, 4 and 7, both blind graders: "evenly
   scattered round dark blots that read as a repeated decal" on the highway. Not shadows, not the
   weather pass, not the ground beneath (each ruled out by turning it off): the kit's concrete tile

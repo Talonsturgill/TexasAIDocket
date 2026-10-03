@@ -133,6 +133,7 @@ export function init(THREE) {
    * (checked on 09-29 frame 1 and no. 41 frames 1, 3, 5 and 6).
    * A light with a radius of zero or more (one a frame made itself, a lamp's spot) is filtered at
    * that fixed radius with the same disc, so it can't bleed either. */
+  const PCSS_FADE = 0.05;
   function installPcss() {
     const C = THREE.ShaderChunk;
     const base = C.__txShadowBase || (C.__txShadowBase = C.shadowmap_pars_fragment);
@@ -153,6 +154,7 @@ export function init(THREE) {
     const lib = `#if defined( SHADOWMAP_TYPE_PCF )
 	const vec2 TX_B12[ 12 ] = vec2[]( ${disc(12)} );
 	const vec2 TX_P24[ 24 ] = vec2[]( ${disc(24)} );
+	const vec2 TX_P48[ 48 ] = vec2[]( ${disc(48)} );
 	// one tap: 1 when something stands between this point and the sun there, and its depth summed
 	float txTap( sampler2D m, vec4 c, vec2 o, inout float s ) {
 		float d = unpackRGBAToDepth( texture2D( m, c.xy + o ) ), b = step( d, c.z - 0.00015 );
@@ -185,9 +187,12 @@ export function init(THREE) {
 			// THE SHADOW CAMERA'S EDGE IS NOT A SHADOW'S EDGE. A caster longer than the light's box (a
 			// median barrier, a fence, a building's long wall) had its shadow cut off in a straight
 			// line where the box ends, which is no. 41 frame 4's "hard rectangular cast" across the
-			// lanes. Inside the last 8 percent of the box the shadow fades out instead.
+			// lanes. The sun's shadow fades out over the last ${PCSS_FADE * 100} percent of its box, and
+			// pcssLight widens the box by that margin, so the fade lies outside the box a frame asked
+			// for. The first cut faded the box's own last 8 percent, and a blind grader found 09-30's
+			// classroom wall and school canopy without the shadows they had had. A lamp never fades.
 			vec2 txEdge = min( shadowCoord.xy, 1.0 - shadowCoord.xy );
-			float txFade = smoothstep( 0.0, 0.08, min( txEdge.x, txEdge.y ) );
+			float txFade = txK > 0.0 ? smoothstep( 0.0, ${PCSS_FADE.toFixed(3)}, min( txEdge.x, txEdge.y ) ) : 1.0;
 			if ( txFade <= 0.0 ) return 1.0;
 			if ( txK > 0.0 ) {
 				float txSearch = clamp( shadowCoord.z * txK, max( 2.0, txMin ), 10.0 ), txSum = 0.0;
@@ -213,11 +218,22 @@ export function init(THREE) {
 				for ( int i = 0; i < 12; i ++ ) txN += txTap( shadowMap, shadowCoord, ( txRot * TX_B12[ i ] ) * txS, txSum );
 				txR = clamp( ( shadowCoord.z - txSum / txN ) * txK, txMin, txSearch );
 			}
+			// A WIDE PENUMBRA TAKES TWICE THE TAPS. Its grain is the disc's own sampling, turned per pixel,
+			// and over a soft band on a smooth face, a box or a wall, 24 taps read as smoke to a blind
+			// grader (no. 41 frame 1). A contact edge, three texels or less, keeps 24.
 			float txLit = 0.0;
 			vec2 txP = txR * txTexel;
-			for ( int i = 0; i < 24; i ++ ) {
-				vec2 o = ( txRot * TX_P24[ i ] ) * txP;
-				txLit += step( shadowCoord.z - 0.00015, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
+			if ( txR > 3.0 ) {
+				for ( int i = 0; i < 48; i ++ ) {
+					vec2 o = ( txRot * TX_P48[ i ] ) * txP;
+					txLit += step( shadowCoord.z - 0.00015, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
+				}
+				txLit *= 0.5;
+			} else {
+				for ( int i = 0; i < 24; i ++ ) {
+					vec2 o = ( txRot * TX_P24[ i ] ) * txP;
+					txLit += step( shadowCoord.z - 0.00015, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
+				}
 			}
 			shadow = mix( 1.0, txLit / 24.0, txFade );
 		`;
@@ -230,7 +246,13 @@ export function init(THREE) {
    * the frame resizes after the rig, and a frame that sets radius sets this softness. */
   const PCSS_SUN = 0.45 * Math.PI / 180;
   function pcssLight(light) {
-    const sh = light.shadow;
+    const sh = light.shadow, cam = sh.camera, grow = 1 / (1 - 2 * PCSS_FADE);
+    // the box a frame sets is the box it gets in full, and the fade is laid in a margin around it
+    ['left', 'right', 'top', 'bottom'].forEach((k) => {
+      let v = cam[k];
+      Object.defineProperty(cam, k, { configurable: true, enumerable: true, get() { return v * grow; }, set(x) { v = x; } });
+    });
+    cam.updateProjectionMatrix();
     let soft = sh.radius;
     Object.defineProperty(sh, 'radius', {
       configurable: true,
