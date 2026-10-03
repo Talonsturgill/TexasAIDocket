@@ -27272,8 +27272,8 @@
   },
   {
    "id": "tx-2026-0198",
-   "title": "Kodiak names Interstate 45 from Dallas to Houston as its first driverless truck lane, with an observer aboard until its safety case is complete",
-   "summary": "Kodiak AI announced on September 25th, 2026 that its first driverless long-haul lane will run along Interstate 45 between the Dallas and Houston areas. It plans unsupervised service there by the end of 2026. Four days later it named IKEA as its launch shipper, on a leg of IKEA's route from its Baytown distribution center to its Frisco store. The company says its trucks now run between its Lancaster hub and Houston without human intervention. A safety observer still rides aboard. The observer leaves only after the company completes its safety case, the written argument that its driving system can operate safely on that road. The company measures that case by the share of its claims and evidence that are materially complete. It reported 84% in February, 86% through April, 91% in July and 93% at the end of August, and it expects to reach 100% by year end. Every figure here is the company's own, and none of it has been reviewed by a regulator.",
+   "title": "Kodiak names Interstate 45 from Dallas to Houston as its first driverless truck lane, and says it closes its safety case before the driver comes out",
+   "summary": "Kodiak AI announced on September 25th, 2026 that its first driverless long-haul lane will run along Interstate 45 between the Dallas and Houston areas. It plans unsupervised service there by the end of 2026. Four days later it named IKEA as its launch shipper, on a leg of IKEA's route from its Baytown distribution center to its Frisco store. The company says its trucks now run between its Lancaster hub and Houston without human intervention, and that the safety observer on those runs never touched the wheel. It says it closes its safety case before driverless launch. That case is the written argument that its driving system can operate safely on that road. The company measures that case by the share of its claims and evidence that are materially complete. It reported 84% in February, 86% through April, 91% in July and 93% at the end of August, and it expects to reach 100% by year end. Every figure here is the company's own, and none of it has been reviewed by a regulator.",
    "topic": "state-policy",
    "decider": {
     "name": "Kodiak AI",
@@ -27336,7 +27336,7 @@
     },
     {
      "id": "tx-2026-0198-c4",
-     "text": "A safety observer still rides aboard those runs.",
+     "text": "The company says the safety observer on those runs never touched the wheel.",
      "verbatim_quote": "During these end-to-end deliveries, the safety observer never touched the wheel, including on surface streets.",
      "source_url": "https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane",
      "source_title": "Kodiak AI, Kodiak AI Names Dallas-Houston As Long-Haul Driverless Launch Lane, September 25, 2026",
@@ -27441,6 +27441,15 @@
      "source_title": "Kodiak AI, Kodiak AI On Track For Year-End Driverless Long-Haul Launch as Safety Case Readiness Reaches 93%, September 8, 2026",
      "source_type": "primary_corporate",
      "fetched": "2026-10-03"
+    },
+    {
+     "id": "tx-2026-0198-c16",
+     "text": "The company says it closes its safety case in advance of the driverless launch.",
+     "verbatim_quote": "the testing and validation required to close its safety case in advance of driverless highway launch",
+     "source_url": "https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane",
+     "source_title": "Kodiak AI, Kodiak AI Names Dallas-Houston As Long-Haul Driverless Launch Lane, September 25, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-03"
     }
    ],
    "last_verified": "2026-10-03",
@@ -27449,7 +27458,7 @@
    "history": [
     {
      "date": "2026-10-03",
-     "note": "Admitted on the company's own announcements. The lane and the launch shipper are named, the observer is still aboard, and the company's readiness measure is its own account of its own safety case."
+     "note": "Admitted on the company's own announcements. The lane and the launch shipper are named, the observer is still on the runs, and the company's readiness measure is its own account of its own safety case."
     }
    ]
   },
