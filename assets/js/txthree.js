@@ -73,9 +73,24 @@ export function init(THREE) {
     renderer.setSize(w, h, false);                 // buffer becomes w*ratio x h*ratio
     renderer.shadowMap.enabled = true;
     /* SOFT SHADOWS THAT ARE SOFT (2026-09-24). PCFSoftShadowMap ignores shadow.radius, so every
-     * rig's radius was dead for two months and every cast shadow shipped hard edged. VSM honours
-     * radius and blurSamples. `shadows:'pcfsoft'` restores the old behaviour. */
-    renderer.shadowMap.type = opts.shadows === 'pcfsoft' ? THREE.PCFSoftShadowMap : THREE.VSMShadowMap;
+     * rig's radius was dead for two months and every cast shadow shipped hard edged. VSM honoured
+     * radius and blurSamples, and was the default until 2026-10-03.
+     *
+     * VSM BLED LIGHT INTO ITS SHADOWS, and the judges named it on every round of no. 41 (2026-10-03).
+     * Frame 8's load face in the van wall's shadow carried a lit, fibrous sawtooth that survived a
+     * 4096 map, a 7 m frustum and normalBias 0.08, and the run read it as z-fighting. Measured on
+     * the frame: it goes with shadows off and with PCF, and stays with the liner hidden and with
+     * the carton texture gone. A variance shadow map stores the mean and spread of depth, and where
+     * a wall seen edge on from a low sun puts a wide spread of depths under one texel, Chebyshev's
+     * bound lets light through. Frames 4 and 6 were the other half of the same complaint, "hard
+     * rectangular casts": VSM blurs every shadow by one radius, so a truck's shadow 20 m long is as
+     * sharp at its tip as at the tyres. So the default is now PCSS (installPcss below): the sun's
+     * shadow is sharp where a thing touches the ground and widens with the distance from what
+     * casts it, as a real sun's does, with no variance to bleed. `shadows:'vsm'` and
+     * `shadows:'pcfsoft'` restore the old modes. */
+    const mode = opts.shadows === 'vsm' || opts.shadows === 'pcfsoft' ? opts.shadows : 'pcss';
+    renderer.shadowMap.type = mode === 'vsm' ? THREE.VSMShadowMap : mode === 'pcfsoft' ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
+    if (mode === 'pcss') installPcss();
     // tone: 'aces' (default, the old look), 'agx' (graceful highlights: a sun that
     // rolls off instead of clipping yellow), 'neutral' (Khronos PBR Neutral, true brand colour)
     renderer.toneMapping = opts.tone === 'agx' ? THREE.AgXToneMapping
@@ -92,6 +107,127 @@ export function init(THREE) {
     camera.position.set(5, 4, 8); camera.lookAt(0, 0, 0);
     return { renderer, scene, camera, w, h };
   };
+
+  /* ---- PCSS: a sun's shadow, sharp at the foot and soft at the tip (2026-10-03) -------------
+   * Patches three's PCF branch of getShadow, once per page and from the pristine chunk (the shared
+   * ShaderChunk, as installSkyFog does, so a second init(THREE) never patches a patched chunk).
+   *
+   *   1. a blocker search: 12 taps on a golden angle disc, turned per pixel, find the mean depth of
+   *      what stands between this point and the sun;
+   *   2. the penumbra is that difference in depth times K, the light's own texels of penumbra per
+   *      unit of depth, which pcssLight publishes through shadow.radius as a negative number;
+   *   3. 24 taps of percentage closer filtering over that penumbra.
+   *
+   * IT HAS TO FIT INSIDE A RENDER BUDGET. render.py gives a page 45 s to its load event and 30 s
+   * after it, and 09-29's frame 1 already took 43.8 s and 27.8 s on the VSM engine. The first cut
+   * searched 24 texels with 16 and 32 taps, and timed in that frame's own page (four renders, the
+   * last three without compiling) it added 4.8 s of drawing to VSM's 22.5. Most of that was pixels
+   * within 24 texels of some pebble's shadow taking the whole path. The search now stops at 10
+   * texels, the penumbra at the search (so a pixel the first five taps call lit can't sit inside one),
+   * with 12 and 24 taps, and the same frame draws within about a second of VSM.
+   *
+   * RECEIVER PLANE DEPTH BIAS. A low sun grazes the ground, and a tap 20 texels away on the
+   * ground's own plane is metres deeper in the map, so a flat bias either lets the ground shadow
+   * itself or lifts every contact off it. Each tap instead compares against the receiver's own
+   * plane, its slope in the map taken from screen derivatives, which is exact on a plane.
+   * A light with a radius of zero or more (one a frame made itself, a lamp's spot) is filtered at
+   * that fixed radius with the same disc, so it can't bleed either. */
+  function installPcss() {
+    const C = THREE.ShaderChunk;
+    const base = C.__txShadowBase || (C.__txShadowBase = C.shadowmap_pars_fragment);
+    const at = base.indexOf('float getShadow(');
+    const top = base.indexOf('shadowCoord.z += shadowBias;', at);
+    const i0 = base.indexOf('#if defined( SHADOWMAP_TYPE_PCF )', at);
+    const i1 = base.indexOf('#elif defined( SHADOWMAP_TYPE_PCF_SOFT )', i0);
+    // a three.js whose chunk reads differently keeps its own PCF rather than a half patched one
+    if (at < 0 || top < 0 || i0 < 0 || i1 < 0 || !(top < i0)) { C.shadowmap_pars_fragment = base; return; }
+    const head = 'shadowCoord.z += shadowBias;\n\t\t#if defined( SHADOWMAP_TYPE_PCF )\n\t\t\tvec3 txDx = dFdx( shadowCoord.xyz ), txDy = dFdy( shadowCoord.xyz );\n\t\t#endif';
+    /* THE DISCS ARE CONSTANTS, TURNED ONCE A PIXEL. Each tap used to take its own sine and cosine,
+     * 82 of them at an edge and 10 on every lit pixel for the five tap test, and SwiftShader works a
+     * sine out in software. Now a pixel takes one, and a tap is a rotation of a constant. */
+    const disc = (n) => Array.from({ length: n }, (_, i) => {
+      const a = i * 2.3999632, r = Math.sqrt((i + 0.5) / n);
+      return `vec2( ${(Math.cos(a) * r).toFixed(6)}, ${(Math.sin(a) * r).toFixed(6)} )`;
+    }).join(', ');
+    const lib = `#if defined( SHADOWMAP_TYPE_PCF )
+	const vec2 TX_B12[ 12 ] = vec2[]( ${disc(12)} );
+	const vec2 TX_P24[ 24 ] = vec2[]( ${disc(24)} );
+	float txBlk( sampler2D m, vec4 c, vec2 rp, vec2 o ) {
+		return step( unpackRGBAToDepth( texture2D( m, c.xy + o ) ), c.z + clamp( dot( rp, o ), - 0.01, 0.01 ) - 0.00015 );
+	}
+	#endif
+	`;
+    const pcss = `#if defined( SHADOWMAP_TYPE_PCF )
+			vec2 txTexel = vec2( 1.0 ) / shadowMapSize;
+			float txDet = txDx.x * txDy.y - txDx.y * txDy.x;
+			vec2 txRp = abs( txDet ) > 1e-14 ? vec2( txDy.y * txDx.z - txDx.y * txDy.z, txDx.x * txDy.z - txDy.x * txDx.z ) / txDet : vec2( 0.0 );
+			float txAng = 6.2831853 * fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) );
+			vec2 txCS = vec2( cos( txAng ), sin( txAng ) );
+			mat2 txRot = mat2( txCS.x, txCS.y, - txCS.y, txCS.x );
+			// A MAGNIFIED MAP NEEDS A WIDER FLOOR. Where one shadow texel covers many pixels, a sharp
+			// edge shows the map's stair steps, and contact hardening made every foot and kerb edge
+			// sharp: 09-29's frame 1 drew a stepped dark hairline along its pad's kerb, where a texel
+			// covers about eleven pixels. The narrowest filter grows from 1.5 texels to 3 as a texel
+			// grows past three pixels, so an edge is never sharper than the map can draw.
+			float txTpp = max( length( txDx.xy ), length( txDy.xy ) ) * shadowMapSize.x;
+			float txMin = clamp( 0.35 / max( txTpp, 1e-4 ), 1.5, 3.0 );
+			float txK = shadowRadius < 0.0 ? - shadowRadius : 0.0;
+			float txR = max( shadowRadius, txMin );
+			// THE SHADOW CAMERA'S EDGE IS NOT A SHADOW'S EDGE. A caster longer than the light's box (a
+			// median barrier, a fence, a building's long wall) had its shadow cut off in a straight
+			// line where the box ends, which is no. 41 frame 4's "hard rectangular cast" across the
+			// lanes. Inside the last 8 percent of the box the shadow fades out instead.
+			vec2 txEdge = min( shadowCoord.xy, 1.0 - shadowCoord.xy );
+			float txFade = smoothstep( 0.0, 0.08, min( txEdge.x, txEdge.y ) );
+			if ( txFade <= 0.0 ) return 1.0;
+			if ( txK > 0.0 ) {
+				float txSearch = clamp( shadowCoord.z * txK, max( 2.0, txMin ), 10.0 ), txSum = 0.0, txN = 0.0;
+				// FIVE TAPS FIRST: the centre and four at the search radius. Nearly every pixel is either
+				// in full sun or deep in a shadow, and leaves here, so only an edge pays for the full search.
+				vec2 txQ = txCS * txSearch * txTexel, txQp = vec2( - txQ.y, txQ.x );
+				float txPre = txBlk( shadowMap, shadowCoord, txRp, vec2( 0.0 ) ) + txBlk( shadowMap, shadowCoord, txRp, txQ )
+					+ txBlk( shadowMap, shadowCoord, txRp, - txQ ) + txBlk( shadowMap, shadowCoord, txRp, txQp ) + txBlk( shadowMap, shadowCoord, txRp, - txQp );
+				if ( txPre < 0.5 ) return 1.0;
+				if ( txPre > 4.5 ) return mix( 1.0, 1.0 - txFade, shadowIntensity );
+				vec2 txS = txSearch * txTexel;
+				for ( int i = 0; i < 12; i ++ ) {
+					vec2 o = ( txRot * TX_B12[ i ] ) * txS;
+					float d = unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) );
+					if ( d < shadowCoord.z + clamp( dot( txRp, o ), - 0.01, 0.01 ) - 0.00015 ) { txSum += d; txN += 1.0; }
+				}
+				// the whole disc lit, or the whole disc behind something: no penumbra, nothing to filter
+				if ( txN < 0.5 ) return 1.0;
+				if ( txN > 11.5 ) return mix( 1.0, 1.0 - txFade, shadowIntensity );
+				txR = clamp( ( shadowCoord.z - txSum / txN ) * txK, txMin, txSearch );
+			}
+			float txLit = 0.0;
+			vec2 txP = txR * txTexel;
+			for ( int i = 0; i < 24; i ++ ) {
+				vec2 o = ( txRot * TX_P24[ i ] ) * txP;
+				txLit += step( shadowCoord.z + clamp( dot( txRp, o ), - 0.01, 0.01 ) - 0.00005, unpackRGBAToDepth( texture2D( shadowMap, shadowCoord.xy + o ) ) );
+			}
+			shadow = mix( 1.0, txLit / 24.0, txFade );
+		`;
+    const out = base.slice(0, top) + head + base.slice(top + 'shadowCoord.z += shadowBias;'.length, i0) + pcss + base.slice(i1);
+    C.shadowmap_pars_fragment = out.replace('float getShadow(', lib + 'float getShadow(');
+  }
+  /* A sun 0.45 degrees in effective radius at the rigs' nominal radius of 6 (the disc is 0.27, and
+   * haze and a low sun spread it), scaled by the radius a rig or frame gives: 3 for a high noon
+   * sun, 22 for overcast. The getter is read by three every render, so it follows a shadow camera
+   * the frame resizes after the rig, and a frame that sets radius sets this softness. */
+  const PCSS_SUN = 0.45 * Math.PI / 180;
+  function pcssLight(light) {
+    const sh = light.shadow;
+    let soft = sh.radius;
+    Object.defineProperty(sh, 'radius', {
+      configurable: true,
+      get() {
+        const c = sh.camera, w = Math.max(1e-3, (c.right - c.left) / (c.zoom || 1));
+        return -Math.max(1e-3, (c.far - c.near) * Math.tan(PCSS_SUN * soft / 6) * sh.mapSize.x / w);
+      },
+      set(v) { soft = v; },
+    });
+  }
 
   TXT.frame = function (R, o) {
     if (o.fov) { R.camera.fov = o.fov; R.camera.updateProjectionMatrix(); }
@@ -160,6 +296,7 @@ export function init(THREE) {
     key.shadow.radius = spec.key.radius != null ? spec.key.radius : 7;
     key.shadow.blurSamples = spec.key.blurSamples || 20;   // VSM only: smooth, not banded
     if (spec.key.mapSize) key.shadow.mapSize.set(spec.key.mapSize, spec.key.mapSize);
+    if (R.renderer.shadowMap.type === THREE.PCFShadowMap) pcssLight(key);
     R.scene.add(key); made.push(key);
     if (spec.rim) { const rim = new THREE.DirectionalLight(spec.rim.color, spec.rim.i);
       rim.position.set(...spec.rim.pos); R.scene.add(rim); made.push(rim); }
@@ -1143,6 +1280,7 @@ export function init(THREE) {
   // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   TXT.snapshot = async function (R, o) {
     o = o || {};
+    prepareSurfaces(R);                          // the contact marks, worn grass and grit (THE RECEIVING SURFACE)
     R.renderer.render(R.scene, R.camera);
     /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and
      * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
@@ -1345,8 +1483,9 @@ export function init(THREE) {
    *   - the ENVIRONMENT (IBL) rendered FROM THAT SKY, so a steel skin reflects the orange
    *     horizon at golden hour and the blue zenith at noon, rather than the grey studio room.
    *   - FOG in the horizon's own hue, so the ground dissolves into the sky at the horizon.
-   *   - SOFT SHADOWS that are actually soft (VSM, radius honoured) plus CONTACT shadows, the
-   *     dark core where a thing meets the ground, which is what stops it floating.
+   *   - SOFT SHADOWS that are actually soft (VSM then, PCSS since 2026-10-03, radius honoured)
+   *     plus CONTACT shadows, the dark core where a thing meets the ground, which is what stops it
+   *     floating, and since 2026-10-03 the dirt that ground holds (THE RECEIVING SURFACE).
    *   - a GROUND with tooth: a surface texture, roughness that varies, macro variation so the
    *     tiling never shows, reaching the horizon.
    *   - SCATTER: grass, scrub and stone, instanced and seeded, so a pad sits in a landscape.
@@ -1912,6 +2051,220 @@ export function init(THREE) {
     };
     return { map: mk(cMap, true), roughnessMap: mk(cRgh, false), bumpMap: mk(cBmp, false), S };
   }
+  /* ---- THE RECEIVING SURFACE (2026-10-03) ------------------------------------------------
+   * The judges named it on six of seven decks in the week to October 3rd, in 21 rounds: a model
+   * stands on a ground that is clean where it meets it, and the ground itself reads as one tile
+   * repeated to the horizon. No. 41's truck court was "an untextured tiled concrete plane" in
+   * every round, no. 40's coping "a smooth plane with one highlight streak", 09-30's lawn "one
+   * tiled grass texture" with "no dirt, wear, path or kerb". TXT.contact laid a dark core and
+   * TXT.weather grimed the object from its base up, and nothing touched the ground. Two things
+   * do now, both in the ground's own shader, so they are lit, shadowed and fogged as the ground:
+   *
+   *   WEAR, on every TXT.ground surface: value that drifts at 11 and 41 m in WORLD space (so the
+   *   6 m texture tile never repeats), each concrete slab a shade of its own pour, grime along the
+   *   saw cut joints, and sparse clusters of stains (oil on concrete and asphalt, damp on caliche
+   *   and dirt), with straw against green and a bare patch here and there on grass.
+   *   `wear:false` turns it off, `wear:'interior'` keeps a floor clean of oil, and an object of
+   *   amounts tunes it ({ macro, slab, joint, stain }).
+   *
+   *   MARKS, from TXT.contact: the ground under and around a thing's BASE (what it stands on, not
+   *   its crown or its crossarm) takes a dirt band broken by noise, scaled to the footprint. A
+   *   vehicle also drips oil under its engine and polishes two tyre tracks fore and aft. They are
+   *   laid when the frame renders, so a ground built after the contact still takes them, and the
+   *   nearest 24 to the camera are drawn. `dirt:false` on the contact opts one object out. */
+  const WEAR = {
+    concrete: { macro: 0.075, slab: 0.05, joint: 0.32, jointW: 0.06, stain: 0.6, stainCol: [0.56, 0.54, 0.51], sheen: 0.1,
+      straw: 0, bare: 0, dirt: 0x4b433b, dirtMix: 0.5, dirtDark: 0.08, oil: 1, polish: 1, track: 0, grit: [0x5e574f, 0x6f685f, 0x4a443d, 0x8a847a] },
+    asphalt: { macro: 0.09, slab: 0, joint: 0, jointW: 0, stain: 0.4, stainCol: [0.66, 0.66, 0.68], sheen: 0.1,
+      straw: 0, bare: 0, dirt: 0x6f665a, dirtMix: 0.32, dirtDark: 0, oil: 0.75, polish: 0.8, track: 0, grit: [0x7a7468, 0x8f887b, 0x5e5850, 0xa49c8e] },
+    caliche: { macro: 0.1, slab: 0, joint: 0, jointW: 0, stain: 0.3, stainCol: [0.80, 0.76, 0.70], sheen: 0,
+      straw: 0, bare: 0, dirt: 0x8a7860, dirtMix: 0.38, dirtDark: 0.04, oil: 0.55, polish: 0.55, track: 0, grit: [0xcfc4ad, 0xb8ab92, 0x9a8c74, 0xe0d8c6] },
+    dirt: { macro: 0.12, slab: 0, joint: 0, jointW: 0, stain: 0.28, stainCol: [0.80, 0.78, 0.75], sheen: 0,
+      straw: 0, bare: 0, dirt: 0x3a2e24, dirtMix: 0.3, dirtDark: 0.04, oil: 0.4, polish: 0.5, track: 0, grit: [0x4e4236, 0x5f5141, 0x6b5a48, 0x3e352c] },
+    // worn turf in a Texas October is dry and dusty, near the grass's own value: dark brown read as mud
+    grass: { macro: 0.1, slab: 0, joint: 0, jointW: 0, stain: 0, stainCol: [1, 1, 1], sheen: 0,
+      straw: 0.45, bare: 0.4, dirt: 0x8a7c64, dirtMix: 0.62, dirtDark: 0, oil: 0, polish: 0.3, track: 0.65, grit: null },
+    lawn: { macro: 0.08, slab: 0, joint: 0, jointW: 0, stain: 0, stainCol: [1, 1, 1], sheen: 0,
+      straw: 0.3, bare: 0.3, dirt: 0x7f7058, dirtMix: 0.6, dirtDark: 0, oil: 0, polish: 0.3, track: 0.65, grit: null },
+  };
+  // an interior floor: a sealed slab drifts in tone and greys at its joints, and nobody parks on it
+  // and no grit, which a blind grader read as stray pebbles on an office floor (09-30 frame 5)
+  const WEAR_INTERIOR = { macro: 0.045, slab: 0.035, joint: 0.18, stain: 0, oil: 0, polish: 0, bare: 0, grit: null, dirtMix: 0.15, dirtDark: 0.12 };
+  /* A PAD A DECK LAID ITSELF IS A RECEIVING SURFACE TOO (2026-10-03). Decks build their own flat
+   * grounds, a graded pad, a field, a lot, as a plain plane over TXT.ground. 09-29's pad hid the
+   * worker's dirt band and contact on the ground beneath it, so the wear changed nothing a reader
+   * could see, and the blind grader found no difference on any of its nine frames. A plane that is
+   * flat, faces up, covers 30 square metres or more, is opaque and matte and receives shadows, and
+   * has a contact's base standing on it, takes the marks too: TXT.contact puts its contact on it,
+   * and the snapshot gives it the wear shader on a clone of its material. Its surface is not known,
+   * so it takes the marks and a slow drift of value and no stains, joints or grit, unless the deck
+   * names it (`mesh.userData.txSurface = 'concrete'`). `mesh.userData.txWear = false` keeps a
+   * plane exactly as the deck made it. */
+  const WEAR_ADOPT = { macro: 0.06, slab: 0, joint: 0, jointW: 0, stain: 0, stainCol: [1, 1, 1], straw: 0, bare: 0,
+    track: 0, sheen: 0, dirt: 0x463d34, dirtMix: 0.25, dirtDark: 0.28, oil: 0.6, polish: 0.5, grit: null };
+  // a matte, opaque standard material the deck has not written its own shader into
+  function supportMaterial(m) {
+    const u = m.userData || {}, mat = m.material;
+    if (!m.isMesh || m.isInstancedMesh || u.txGround || u.txWear === false || !m.receiveShadow) return false;
+    if (!mat || Array.isArray(mat) || !mat.isMeshStandardMaterial || mat.transparent || mat.opacity < 1 || mat.transmission > 0) return false;
+    if (!u.txAdopted && Object.prototype.hasOwnProperty.call(mat, 'onBeforeCompile')) return false;
+    return mat.roughness >= 0.5 && mat.metalness <= 0.3;
+  }
+  function flatPlane(m) {
+    if (!supportMaterial(m)) return null;
+    const g = m.geometry;
+    if (!g || !g.attributes.position) return null;
+    if (!g.boundingBox) g.computeBoundingBox();
+    m.updateWorldMatrix(true, false);
+    const bb = g.boundingBox.clone().applyMatrix4(m.matrixWorld);
+    const dx = bb.max.x - bb.min.x, dz = bb.max.z - bb.min.z;
+    if (bb.max.y - bb.min.y > 0.05 || dx * dz < 30 || Math.min(dx, dz) < 2) return null;
+    const n = g.attributes.normal;
+    if (n && new THREE.Vector3().fromBufferAttribute(n, 0).transformDirection(m.matrixWorld).y < 0.9) return null;
+    return { y: bb.max.y, bb };
+  }
+  const TX_MARKS = 24;
+  function marksOf(R) {
+    if (!R._txMarks) R._txMarks = {
+      list: [], n: { value: 0 },
+      a: Array.from({ length: TX_MARKS }, () => new THREE.Vector4()),
+      b: Array.from({ length: TX_MARKS }, () => new THREE.Vector4()),
+    };
+    return R._txMarks;
+  }
+  function wearSpec(o) {
+    const base = WEAR[o.surface] || WEAR.caliche;
+    if (o.wear === false) return Object.assign({}, base, { macro: 0, slab: 0, joint: 0, stain: 0, straw: 0, bare: 0 });
+    if (o.wear === 'interior') return Object.assign({}, base, WEAR_INTERIOR);
+    return Object.assign({}, base, typeof o.wear === 'object' ? o.wear : {});
+  }
+  const GROUND_PARS = `
+    varying vec3 vTxGW;
+    uniform vec4 uTxWearA, uTxWearB, uTxWearC, uTxDirtK;
+    uniform vec3 uTxStainCol, uTxDirtCol;
+    uniform vec4 uTxMarkA[${TX_MARKS}], uTxMarkB[${TX_MARKS}];
+    uniform int uTxMarkN;
+    float txgRough;
+    float txgH(vec2 p) { vec3 q = fract(vec3(p.xyx) * 0.1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+    float txgN(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(txgH(i), txgH(i + vec2(1.0, 0.0)), f.x), mix(txgH(i + vec2(0.0, 1.0)), txgH(i + vec2(1.0, 1.0)), f.x), f.y); }
+    float txgF(vec2 p) { float s = 0.0, a = 0.5; for (int i = 0; i < 3; i++) { s += a * txgN(p); p = p * 2.03 + 17.13; a *= 0.5; } return s / 0.875; }`;
+  const GROUND_WEAR = `
+    txgRough = 0.0;
+    {
+      vec2 w = vTxGW.xz;
+      float sd = uTxWearB.w;
+      // 1. value that drifts in world space, at two scales, so the tile never repeats
+      float m1 = txgF(w / 11.0 + sd), m2 = txgF(w / 41.0 - sd);
+      diffuseColor.rgb *= 1.0 + uTxWearA.x * ((m1 - 0.5) * 1.3 + (m2 - 0.5) * 0.9);
+      txgRough += uTxWearA.x * 0.6 * (m1 - 0.5);
+      #ifdef USE_MAP
+      // 2. a slab poured on its own day, and the dirt a saw cut joint holds
+      if (uTxWearB.x > 0.0) {
+        vec2 sc = vMapUv * uTxWearB.x;
+        // a slab's own tone, held back where the rows crowd to a few pixels and read as bands
+        float crowd = smoothstep(0.06, 0.25, length(fwidth(sc)));
+        diffuseColor.rgb *= 1.0 + uTxWearA.y * 2.0 * (txgH(floor(sc) + sd) - 0.5) * (1.0 - 0.6 * crowd);
+        vec2 fj = abs(fract(sc) - 0.5);
+        float dj = (0.5 - max(fj.x, fj.y)) * uTxWearB.z / uTxWearB.x;
+        // THE JOINT IS FILTERED. Grime a few centimetres wide is thinner than a pixel far off, and
+        // sampled a point at a time it broke into dotted hairlines (no. 41 frame 9). Widened to the
+        // pixel it falls in, it keeps its average darkness and loses the dots.
+        float gw = uTxWearB.y * (0.5 + txgN(w * 1.7 + 3.0)), fd = fwidth(dj);
+        float jl = 1.0 - smoothstep(0.0, gw + fd, dj);
+        float jg = jl * jl * gw / (gw + fd) * (0.55 + 0.6 * txgN(w * 0.6));
+        diffuseColor.rgb *= 1.0 - uTxWearA.z * jg;
+        txgRough += 0.08 * jg;
+      }
+      #endif
+      // 3. stains in sparse clusters: oil on a slab or a lot, damp on caliche and dirt
+      if (uTxWearA.w > 0.0) {
+        float cl = smoothstep(0.56, 0.68, txgF(w / 23.0 + sd * 1.7));
+        if (cl > 0.0) {
+          float st = cl * smoothstep(0.6, 0.67, txgF(w / 1.1 - sd));
+          diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * uTxStainCol, uTxWearA.w * st);
+          txgRough -= uTxWearC.w * st;
+        }
+      }
+      // 4. grass: straw against green, and the odd bare patch
+      if (uTxWearC.x > 0.0) diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * vec3(1.18, 1.06, 0.72),
+        uTxWearC.x * smoothstep(0.35, 0.75, txgF(w / 7.0 + sd * 0.3)));
+      if (uTxWearC.y > 0.0) {
+        float bc = smoothstep(0.5, 0.62, txgF(w / 23.0 + 5.0));
+        if (bc > 0.0) diffuseColor.rgb = mix(diffuseColor.rgb, uTxDirtCol, uTxWearC.y * bc * smoothstep(0.62, 0.74, txgF(w / 3.3 - sd * 0.7)));
+      }
+      // 5. the marks TXT.contact laid: a dirt band at a base, oil and tyre tracks at a vehicle
+      float dirt = 0.0, oil = 0.0, pol = 0.0;
+      for (int i = 0; i < ${TX_MARKS}; i++) {
+        if (i >= uTxMarkN) break;
+        vec4 A = uTxMarkA[i], B = uTxMarkB[i];
+        // a mark belongs to the surface at its own height: a yard sunk below a dock, a pad laid
+        // over a ground, a floor under a mezzanine each take only their own. A thing standing on a
+        // ledge or a sill (a negative half width) marks only that top face, not the side below it.
+        bool sup = A.z < 0.0;
+        if (abs(vTxGW.y - B.z) > (sup ? 0.03 : 0.3)) continue;
+        bool veh = B.w < 0.0;
+        float str = abs(B.w);
+        vec2 d = w - A.xy;
+        float c = cos(B.x), s = sin(B.x);
+        vec2 l = vec2(c * d.x - s * d.y, s * d.x + c * d.y);
+        vec2 q = abs(l) - vec2(abs(A.z), A.w);
+        float reach = B.y * 3.5 + (veh ? 4.0 + A.w * 0.5 : 0.0);
+        if (max(q.x, q.y) > reach) continue;
+        float sdist = length(max(q, 0.0)) + min(max(q.x, q.y), 0.0);
+        // the band's breakup is sized to the band, so a vial's is as broken as a van's
+        float ns = max(1.0, 0.12 / B.y);
+        float n = txgN(w * 2.3 * ns + float(i) * 3.7);
+        // under the thing the band fades in from its edge; on grass it is trodden all the way across
+        float inner = sdist < 0.0 ? mix(smoothstep(-0.6, -0.1, sdist / B.y), 1.0, uTxWearC.z * 0.85) : 1.0;
+        float band = exp(-max(sdist, 0.0) / (B.y * (0.45 + 0.8 * n))) * inner;
+        dirt = max(dirt, band * str * (0.75 + 0.5 * txgN(w * 6.1 * ns - float(i))));
+        if (veh) {
+          // oil drips in blots with an edge, most of them under the engine end
+          float inside = 1.0 - smoothstep(-0.25, 0.1, sdist);
+          float front = 0.55 + 0.45 * smoothstep(-A.w, A.w, l.y);
+          oil = max(oil, inside * front * smoothstep(0.57, 0.63, txgF(l * 1.4 + float(i) * 5.1)));
+          // two tyre tracks a dual set wide, streaked along the way the wheels roll, fading fore and aft
+          float track = max(A.z - 0.42, 0.2);
+          float lane = 1.0 - smoothstep(0.18, 0.32, abs(abs(l.x) - track));
+          float along = exp(-max(abs(l.y) - A.w, 0.0) / (2.0 + A.w * 0.25));
+          float streak = 0.45 + 0.6 * txgN(vec2(l.x * 14.0, l.y * 0.35) + float(i) * 2.9);
+          pol = max(pol, lane * along * str * streak);
+        }
+      }
+      diffuseColor.rgb = mix(diffuseColor.rgb, uTxDirtCol, uTxDirtK.y * dirt) * (1.0 - uTxDirtK.x * dirt);
+      diffuseColor.rgb *= 1.0 - 0.45 * uTxDirtK.z * oil;
+      txgRough -= 0.3 * uTxDirtK.z * oil;
+      diffuseColor.rgb = mix(diffuseColor.rgb * (1.0 - 0.3 * uTxDirtK.w * pol), uTxDirtCol, uTxWearC.z * pol);
+      txgRough -= 0.22 * uTxDirtK.w * pol * (1.0 - uTxWearC.z) - 0.05 * dirt;
+    }`;
+  function wearUniforms(o, W, R, tile, jointsPerTile) {
+    const M = marksOf(R);
+    const sd = ((o.seed || 20260924) % 997) * 0.731;
+    return {
+      uTxWearA: { value: new THREE.Vector4(W.macro, W.slab, W.joint, W.stain) },
+      uTxWearB: { value: new THREE.Vector4(jointsPerTile, W.jointW || 0.06, tile, sd) },
+      uTxWearC: { value: new THREE.Vector4(W.straw, W.bare, W.track, W.sheen) },
+      uTxDirtK: { value: new THREE.Vector4(W.dirtDark, W.dirtMix, W.oil, W.polish) },
+      uTxStainCol: { value: new THREE.Vector3(W.stainCol[0], W.stainCol[1], W.stainCol[2]) },
+      uTxDirtCol: { value: new THREE.Color(W.dirt) },
+      uTxMarkA: { value: M.a }, uTxMarkB: { value: M.b }, uTxMarkN: M.n,
+    };
+  }
+
+  // the wear, the marks and the world position they are laid in, into a standard material's shader
+  function wearPatch(sh, WU) {
+    Object.assign(sh.uniforms, WU);
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vTxGW;')
+      .replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvTxGW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <common>', '#include <common>\n' + GROUND_PARS)
+      .replace('#include <color_fragment>', '#include <color_fragment>\n' + GROUND_WEAR)
+      .replace('#include <roughnessmap_fragment>',
+        '#include <roughnessmap_fragment>\nroughnessFactor = clamp(roughnessFactor + txgRough, 0.06, 1.0);');
+  }
+
   const _flatGround = TXT.ground;
   TXT.ground = function (R, o) {
     o = o || {};
@@ -1932,11 +2285,15 @@ export function init(THREE) {
       map: T.map, roughnessMap: T.roughnessMap, bumpMap: T.bumpMap,
       bumpScale: o.bumpScale != null ? o.bumpScale : T.S.bump, roughness: 1, metalness: 0,
       vertexColors: true, envMapIntensity: o.envMapIntensity != null ? o.envMapIntensity : 0.6 });
+    // whole joints per texture tile, as surfaceTextures draws them: the slab grid the wear reads
+    const jpt = (T.S.joints || o.joints) ? Math.max(1, Math.round(o.joints || T.S.joints)) : 0;
+    const WU = wearUniforms(o, wearSpec(o), R, tile, jpt);
     /* THE BUMP FADES WITH DISTANCE (2026-09-24). At a grazing angle the fine tooth aliases into
      * thin horizontal stripes, which no. 33's judges read as busy, streaked dirt behind the fence.
      * Relief belongs where a reader can see relief, so the bump fades out between about 18 and
      * 90 m from the camera and the colour map carries the distance. */
     mat.onBeforeCompile = (sh) => {
+      wearPatch(sh, WU);
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <bumpmap_pars_fragment>',
           'float txBumpS;\n' + THREE.ShaderChunk.bumpmap_pars_fragment.split('bumpScale *').join('txBumpS *'))
@@ -1945,7 +2302,10 @@ export function init(THREE) {
     };
     const g = new THREE.Mesh(geo, mat);
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
-    g.receiveShadow = true; markGround(g); R.scene.add(g);
+    g.receiveShadow = true; markGround(g);
+    g.userData.txSurface = o.surface;
+    g.userData.txWear = wearSpec(o);
+    R.scene.add(g);
     return g;
   };
 
@@ -1966,6 +2326,220 @@ export function init(THREE) {
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace;
     return t;
   }
+  /* THE BASE, NOT THE BOX. A pole's crossarm, a tree's crown and a streetlight's arm all widen a
+   * bounding box well past where the thing meets the ground, so the dirt is laid from what lies in
+   * the bottom slice of the object (a fifth of its height, 6 to 50 cm): a pole's foot, a tree's
+   * trunk, a desk's four legs, a truck's wheels. Measured on the object as TXT.contact holds it, at
+   * the origin and unrotated. */
+  /* What a thing with no ground under it stands on: the highest matte, opaque, shadow receiving
+   * mesh that is not part of it, whose box takes in the footprint's centre and whose top is within
+   * 5 cm below to 3 cm above the thing's base. A box's top is a sill's or a ledge's face. A sloped
+   * or carved surface's box top can sit above the face itself, and the shader's 3 cm window then
+   * finds no face to mark, which is a mark missed rather than a mark in the air. */
+  function supportUnder(R, obj, x, z, base) {
+    let best = null;
+    const bb = new THREE.Box3();
+    R.scene.traverse((m) => {
+      if (!m.isMesh || !supportMaterial(m) || !m.geometry || !m.geometry.attributes.position) return;
+      const g = m.geometry;
+      if (!g.boundingBox) g.computeBoundingBox();
+      m.updateWorldMatrix(true, false);
+      bb.copy(g.boundingBox).applyMatrix4(m.matrixWorld);
+      const top = bb.max.y;
+      if (top < base - 0.05 || top > base + 0.03 || x < bb.min.x || x > bb.max.x || z < bb.min.z || z > bb.max.z) return;
+      for (let a = m; a; a = a.parent) if (a === obj) return;
+      if (!best || top > best.y) best = { m, y: top };
+    });
+    return best;
+  }
+  function baseFootprint(obj, box) {
+    if (box.isEmpty()) return null;
+    const top = box.min.y + Math.max(0.06, Math.min(0.5, 0.2 * (box.max.y - box.min.y)));
+    let x0 = Infinity, z0 = Infinity, x1 = -Infinity, z1 = -Infinity;
+    const v = new THREE.Vector3(), bb = new THREE.Box3(), im = new THREE.Matrix4(), wm = new THREE.Matrix4();
+    obj.traverseVisible((m) => {
+      if (!m.isMesh || !m.geometry || !m.geometry.attributes.position || (m.userData && m.userData.txGround)) return;
+      const g = m.geometry;
+      if (!g.boundingBox) g.computeBoundingBox();
+      const n = m.isInstancedMesh ? m.count : 1;
+      for (let i = 0; i < n; i++) {
+        wm.copy(m.matrixWorld);
+        if (m.isInstancedMesh) { m.getMatrixAt(i, im); wm.multiply(im); }
+        bb.copy(g.boundingBox).applyMatrix4(wm);
+        if (bb.min.y > top) continue;
+        if (m.isInstancedMesh || bb.max.y <= top) {
+          x0 = Math.min(x0, bb.min.x); z0 = Math.min(z0, bb.min.z); x1 = Math.max(x1, bb.max.x); z1 = Math.max(z1, bb.max.z);
+          continue;
+        }
+        const P = g.attributes.position;
+        for (let k = 0; k < P.count; k++) {
+          v.fromBufferAttribute(P, k).applyMatrix4(wm);
+          if (v.y > top) continue;
+          if (v.x < x0) x0 = v.x; if (v.z < z0) z0 = v.z; if (v.x > x1) x1 = v.x; if (v.z > z1) z1 = v.z;
+        }
+      }
+    });
+    if (!isFinite(x0)) return null;
+    return { cx: (x0 + x1) / 2, cz: (z0 + z1) / 2, hw: Math.max(0.03, (x1 - x0) / 2), hd: Math.max(0.03, (z1 - z0) / 2) };
+  }
+  // a vehicle drips oil and polishes the ground it drives: the kit's vehicles, a chassis's van
+  const VEHICLE_RE = /(^|_)(van|truck|semi|pickup|sedan|suv|bus|trailer|car|tractor)(_|$)/;
+  function isVehicle(obj) {
+    let v = false;
+    obj.traverse((m) => {
+      if (v || !m.userData) return;
+      const k = m.userData.kit;
+      if (m.userData.txVehicle || (typeof k === 'string' && !/interior|recorder/.test(k) && VEHICLE_RE.test(k))) v = true;
+    });
+    return v;
+  }
+  function groundAt(R, y) {
+    let best = null;
+    const v = new THREE.Vector3();
+    R.scene.traverse((m) => {
+      const u = m.userData;
+      if (!u || !((u.txGround && u.txSurface) || u.txAdopted)) return;
+      const gy = u.txAdopted ? u.txAdoptY : m.getWorldPosition(v).y;
+      if (Math.abs(gy - y) < 0.06 && (!best || gy > best.y)) best = { m, y: gy };
+    });
+    return best;
+  }
+  const hash2 = (a, b) => { const s = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453; return s - Math.floor(s); };
+  // a mark's footprint in its own frame: signed distance to the rectangle, negative inside
+  function markDist(k, x, z) {
+    const dx = x - k.cx, dz = z - k.cz, c = Math.cos(k.angle), s = Math.sin(k.angle);
+    const qx = Math.abs(c * dx - s * dz) - k.hw, qz = Math.abs(s * dx + c * dz) - k.hd;
+    return Math.hypot(Math.max(qx, 0), Math.max(qz, 0)) + Math.min(Math.max(qx, qz), 0);
+  }
+  /* WORN GRASS: a tuft standing where a thing stands, or where feet and wheels go round it, is
+   * trampled, so the scatter thins there and the dirt band shows through. Idempotent. */
+  function thinGrass(R, marks) {
+    const m4 = new THREE.Matrix4(), w = new THREE.Vector3(), zero = new THREE.Matrix4().makeScale(0, 0, 0);
+    let part = 0;
+    R.scene.traverse((g) => {
+      if (!g.isInstancedMesh || !g.parent) return;
+      const tag = (g.userData && g.userData.txScatter) || (g.parent.userData && g.parent.userData.txScatter);
+      if (tag !== 'grass') return;
+      g.updateMatrixWorld(true);
+      part++;
+      let changed = false;
+      for (let i = 0; i < g.count; i++) {
+        g.getMatrixAt(i, m4);
+        w.setFromMatrixPosition(m4).applyMatrix4(g.matrixWorld);
+        for (const k of marks) {
+          if (Math.abs(w.y - k.y) > 0.4) continue;
+          const d = markDist(k, w.x, w.z), reach = k.band * 2.5;
+          if (d > reach) continue;
+          const p = (k.vehicle ? 0.97 : 0.88) * (d <= 0 ? 1 : Math.exp(-d / (k.band * 0.9)));
+          if (hash2(i + part * 7919, k.seed) < p) { g.setMatrixAt(i, zero); changed = true; break; }
+        }
+      }
+      if (changed) g.instanceMatrix.needsUpdate = true;
+    });
+  }
+  /* GRIT AT THE BASE: on a hard ground, the grit and crumbs that drift against a thing standing on
+   * it, in patchy deposits close in, scaled to the footprint's perimeter. Never round a vehicle,
+   * whose ground is its oil and tyre tracks (a ring of crumbs along a trailer read as a line of
+   * breadcrumbs in the first proof), and never round anything as small as a person. One draw call. */
+  function layGrit(R, marks) {
+    const P = [], C = [], col = new THREE.Color();
+    for (const k of marks) {
+      if (k.gritDone || !k.grit) continue;
+      k.gritDone = true;
+      if (k.vehicle || Math.min(k.hw, k.hd) * 2 < 0.35) continue;
+      const gr = groundAt(R, k.y), W = gr && gr.m.userData.txWear;
+      if (!W || !W.grit) continue;
+      const rng = TXT.rng(9173 + k.seed * 131), W2 = 2 * k.hw, D2 = 2 * k.hd, per = 2 * (W2 + D2);
+      const clusters = Math.min(160, Math.round(per * 2.6 * k.strength));
+      const c = Math.cos(k.angle), s = Math.sin(k.angle);
+      for (let j = 0; j < clusters; j++) {
+        // a deposit at a point on the edge, a little way out, and a handful of grains round it
+        let t = rng() * per, lx, lz, nx = 0, nz = 0;
+        if (t < W2) { lx = -k.hw + t; lz = -k.hd; nz = -1; }
+        else if ((t -= W2) < D2) { lx = k.hw; lz = -k.hd + t; nx = 1; }
+        else if ((t -= D2) < W2) { lx = k.hw - t; lz = k.hd; nz = 1; }
+        else { t -= W2; lx = -k.hw; lz = k.hd - t; nx = -1; }
+        const out = k.band * 0.7 * Math.pow(rng(), 2.2);
+        lx += nx * out; lz += nz * out;
+        const grains = 2 + Math.floor(rng() * 6), spread = 0.03 + 0.09 * rng();
+        for (let g = 0; g < grains; g++) {
+          const gx = lx + (rng() - 0.5) * spread * 2, gz = lz + (rng() - 0.5) * spread * 2;
+          const sz = 0.004 + 0.014 * Math.pow(rng(), 2.4) + (rng() < 0.05 ? 0.02 * rng() : 0);
+          P.push(k.cx + gx * c + gz * s, k.y + sz * 0.2, k.cz - gx * s + gz * c, sz, rng() * Math.PI * 2);
+          col.set(W.grit[Math.floor(rng() * W.grit.length)]).multiplyScalar(0.75 + 0.35 * rng());
+          C.push(col.r, col.g, col.b);
+        }
+      }
+    }
+    if (!P.length) return;
+    const count = P.length / 5;
+    const geo = lumpGeometry(TXT.rng(4242), 1, 0.55, 0.7);
+    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ roughness: 0.9 }), count);
+    const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
+    for (let i = 0; i < count; i++) {
+      q.setFromAxisAngle(up, P[i * 5 + 4]);
+      m4.compose(new THREE.Vector3(P[i * 5], P[i * 5 + 1], P[i * 5 + 2]), q, new THREE.Vector3(P[i * 5 + 3], P[i * 5 + 3], P[i * 5 + 3]));
+      mesh.setMatrixAt(i, m4);
+      mesh.setColorAt(i, col.setRGB(C[i * 3], C[i * 3 + 1], C[i * 3 + 2]));
+    }
+    mesh.castShadow = false; mesh.receiveShadow = true;
+    mesh.userData.txScatter = 'grit';
+    mesh.raycast = function () {};       // at ground level it can never be a roof or a wall
+    R.scene.add(mesh);
+  }
+  /* Run by TXT.snapshot before it renders, when every ground and every object is in place: the 24
+   * marks nearest the lens (ahead of it before behind it) go to the grounds' shaders, the grass
+   * under them thins, and the grit is laid. */
+  function adoptSurface(R, m, y, seed) {
+    const named = WEAR[m.userData.txSurface];
+    // a deck's texture has its own joints, at a spacing the engine can't know, so none are drawn
+    const W = Object.assign({}, named || WEAR_ADOPT, { slab: 0, joint: 0, jointW: 0 });
+    const WU = wearUniforms({ seed: 9001 + 17 * seed }, W, R, 6, 0);
+    const mat = m.material.clone();
+    mat.onBeforeCompile = (sh) => wearPatch(sh, WU);
+    mat.customProgramCacheKey = () => 'txwear-adopted';
+    m.material = mat;
+    Object.assign(m.userData, { txAdopted: true, txAdoptY: y, txWear: W });
+  }
+  function adoptPlanes(R, marks) {
+    let seed = 0;
+    R.scene.traverse((m) => {
+      const f = flatPlane(m);
+      if (!f || m.userData.txAdopted) return;
+      const on = marks.some((k) => !k.support && Math.abs(k.y - f.y) < 0.25 && k.cx >= f.bb.min.x && k.cx <= f.bb.max.x && k.cz >= f.bb.min.z && k.cz <= f.bb.max.z);
+      if (on) adoptSurface(R, m, f.y, seed++);
+    });
+    /* A LEDGE, A SILL OR A COPING a thing stands on outdoors takes its mark on its top face
+     * (2026-10-02 item 6: "the coping on frames 1, 7 and 8 is a smooth plane"). Never indoors,
+     * where a ring at a monitor's foot on a desk reads as a stain and not as weather. */
+    if (R.world && !R.room) for (const k of marks) {
+      const m = k.support;
+      if (m && !m.userData.txAdopted && m.userData.txWear !== false && supportMaterial(m)) adoptSurface(R, m, k.y, seed++);
+    }
+  }
+  function prepareSurfaces(R) {
+    const M = R._txMarks;
+    if (!M || !M.list.length) return;
+    const cam = R.camera, eye = new THREE.Vector3(), fwd = new THREE.Vector3();
+    cam.updateMatrixWorld(); eye.setFromMatrixPosition(cam.matrixWorld); cam.getWorldDirection(fwd);
+    const score = (k) => {
+      const r = Math.hypot(k.hw, k.hd), dx = k.cx - eye.x, dz = k.cz - eye.z;
+      const along = dx * fwd.x + (k.y - eye.y) * fwd.y + dz * fwd.z;
+      return (along < -r ? 1e6 : 0) + Math.max(0, Math.hypot(dx, dz) - r);
+    };
+    const use = M.list.slice().sort((A, B) => score(A) - score(B)).slice(0, TX_MARKS);
+    // b.z is the height of the surface the mark lies on, and a vehicle's mark carries its strength negative
+    // and a support's mark (a sill, a ledge) carries its half width negative
+    use.forEach((k, i) => {
+      const hw = Math.max(1e-3, k.hw);
+      M.a[i].set(k.cx, k.cz, k.support ? -hw : hw, k.hd);
+      M.b[i].set(k.angle, k.band, k.y, k.vehicle ? -Math.max(1e-3, k.strength) : k.strength);
+    });
+    M.n.value = use.length;
+    adoptPlanes(R, use);
+    thinGrass(R, use);
+    layGrit(R, use);
+  }
   TXT.contact = function (R, obj, o) {
     o = o || {};
     // A GROUND IS NOT AN OBJECT STANDING ON ONE. Terrain, a creek bed or a shoreline (tagged
@@ -1977,6 +2551,7 @@ export function init(THREE) {
     const q = obj.quaternion.clone(), p = obj.position.clone();
     obj.quaternion.identity(); obj.position.set(0, 0, 0); obj.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(obj);
+    const foot = o.dirt === false ? null : baseFootprint(obj, box);
     obj.quaternion.copy(q); obj.position.copy(p); obj.updateMatrixWorld(true);
     const size = new THREE.Vector3(); box.getSize(size);
     const ctr = new THREE.Vector3(); box.getCenter(ctr);
@@ -1988,13 +2563,43 @@ export function init(THREE) {
      * no such ground stands on a support, a dock, a slab or a desk, and the contact goes at the
      * base. With no tagged ground at all, y = 0 is the ground. `o.y` wins. */
     const wb = new THREE.Box3().setFromObject(obj);
-    let y = o.y;
+    let y = o.y, onGround = false;
     if (y == null) {
       const grounds = [], v = new THREE.Vector3();
-      R.scene.traverse((m) => { if (m.userData && m.userData.txGround) grounds.push(m.getWorldPosition(v).y); });
+      R.scene.traverse((m) => {
+        if (m.userData && m.userData.txGround) { grounds.push(m.getWorldPosition(v).y); return; }
+        // a pad the deck laid over the ground is what the thing stands on (THE RECEIVING SURFACE),
+        // unless it is part of the thing itself
+        const f = flatPlane(m);
+        if (!f) return;
+        for (let a = m; a; a = a.parent) if (a === obj) return;
+        grounds.push(f.y);
+      });
       if (!grounds.length) grounds.push(0);
       const under = grounds.filter((gy) => gy >= wb.min.y - 0.25 && gy < wb.max.y);
       y = under.length ? Math.max(...under) : wb.min.y;
+      onGround = under.length > 0;
+    }
+    // no ground under it: what it stands on, a sill or a ledge, takes its mark on its top face
+    let support = null;
+    if (foot && !onGround && o.y == null) {
+      const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
+      support = supportUnder(R, obj, c.x, c.z, wb.min.y);
+      if (support) { y = support.y; onGround = true; }
+    }
+    /* THE GROUND TAKES THE MARK, a dock or a desk does not: a thing standing on a ground lays its
+     * dirt band (and, a vehicle, its oil and tyre tracks) in that ground's shader, and its grit,
+     * when the frame renders. See THE RECEIVING SURFACE. */
+    if (foot && onGround) {
+      const yaw = new THREE.Euler().setFromQuaternion(q, 'YXZ').y;
+      const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
+      const vehicle = o.vehicle != null ? !!o.vehicle : isVehicle(obj);
+      const minor = Math.min(foot.hw, foot.hd) * 2;
+      // a band scaled to the footprint: a van's reaches a third of a metre, a vial's a couple of centimetres
+      const band = minor < 0.25 ? Math.max(0.012, 0.7 * minor) : Math.max(0.12, Math.min(0.65, 0.1 + 0.16 * Math.sqrt(minor)));
+      marksOf(R).list.push({ cx: c.x, cz: c.z, y, hw: foot.hw, hd: foot.hd, angle: yaw, vehicle, band,
+        strength: (typeof o.dirt === 'number' ? o.dirt : 1) * (vehicle ? 0.75 : 1),
+        grit: o.grit !== false && !support, support: support && support.m, seed: marksOf(R).list.length + 1 });
     }
     y += 0.004;
     const layers = o.layers || [{ spread: 0.10, opacity: 0.62 }, { spread: 0.55, opacity: 0.30 }];
@@ -2030,7 +2635,8 @@ export function init(THREE) {
     o = o || {};
     const w = o.w || 12, d = o.d || 10, h = o.h || 4.2, t = 0.2;
     const room = new THREE.Group();
-    TXT.ground(R, { surface: o.floor || 'concrete', size: Math.max(w, d) * 3, tile: o.tile || 3, joints: o.joints });
+    TXT.ground(R, { surface: o.floor || 'concrete', size: Math.max(w, d) * 3, tile: o.tile || 3, joints: o.joints,
+      wear: o.wear != null ? o.wear : 'interior' });
     const wall = new THREE.MeshStandardMaterial({ color: o.wall != null ? o.wall : 0xb9b3a7, roughness: 0.93, metalness: 0 });
     const skirt = new THREE.MeshStandardMaterial({ color: o.trim != null ? o.trim : 0x4a4640, roughness: 0.7, metalness: 0.05 });
     const back = TXT.roundedBox(w + t, h, t, 0.02, wall); back.position.set(0, h / 2, -d / 2);
@@ -2234,7 +2840,7 @@ vec3 txTransl( vec3 L, vec3 lightColor, vec3 N, vec3 V, vec3 albedo ) {
     mesh.count = placed;
     mesh.castShadow = cast; mesh.receiveShadow = true;
     mesh.instanceMatrix.needsUpdate = true; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
-    if (!pool) { R.scene.add(mesh); return mesh; }
+    if (!pool) { mesh.userData.txScatter = kind; R.scene.add(mesh); return mesh; }
     /* ONE InstancedMesh PER TUFT, in a group. The group takes a rotation or a visibility the way
      * the single mesh did, and every child is still an InstancedMesh, which is what the weathering
      * pass skips and what the sky and LOD measurements read instance by instance. */

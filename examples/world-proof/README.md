@@ -13,7 +13,9 @@ engine alone, which is the only honest way to show what the engine changed.
    under `assets/js/deck/` each improvised a sky, and no. 32's was near black with a two degree
    band. Every frame was an object in a void, which is the craft finding under thirty two decks.
 2. **Hard shadows the rigs never asked for.** Every rig set `shadow.radius`, and
-   `PCFSoftShadowMap` ignores it. VSM is now the default and radius works.
+   `PCFSoftShadowMap` ignores it. VSM became the default and radius worked. (Since 2026-10-03 the
+   default is PCSS, sharp at the foot and soft at the tip, and radius is its softness: see
+   `examples/ground-proof/`.)
 3. **Two tone curves.** The renderer mapped ACES, then `TXDECK.finish` ran a second filmic curve
    over the result. Pure white came out near 231 of 255 and the mids lifted, which is the murk.
    `TXT.snapshot` now marks the page and the grade skips its own curve on a rendered frame.

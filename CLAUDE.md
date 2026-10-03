@@ -346,7 +346,8 @@ reknowned."* Carousel no. 32 was rendered as ordered and every frame was still a
 because the engine gave a frame a flat background colour, hard shadows (`PCFSoftShadowMap` ignores
 `shadow.radius`) and a second filmic curve in the grade. `assets/js/txthree.js` now carries the
 world: `TXT.sky` (a real sky, IBL rendered from it, haze in its horizon hue), `TXT.ground` surfaces,
-`TXT.scatter`, `TXT.contact`, `TXT.weather`, `TXT.roundedBox`, VSM shadows and one tone curve.
+`TXT.scatter`, `TXT.contact`, `TXT.weather`, `TXT.roundedBox`, contact-hardening sun shadows (PCSS, which
+replaced VSM on 2026-10-03 because VSM bled light), a worn ground and one tone curve.
 `examples/world-proof/compare.webp` is no. 32's own model and camera before and after.
 `print_ban.py` counts frames that call `TXT.sky`, five of nine, and fails any rendered frame that
 stands in neither that world nor a room built by `TXT.interior`. THE SHOWSTOPPER TEST in

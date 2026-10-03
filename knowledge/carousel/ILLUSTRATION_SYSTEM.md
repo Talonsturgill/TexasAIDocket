@@ -677,7 +677,8 @@ model and camera four ways beside the frame that shipped, so the difference is t
    Seven chassis under `assets/js/deck/` each improvised a sky under deadline, and no. 32's was
    near black with a two degree band. No horizon, no light in the sky, no haze in depth.
 2. **Hard shadows nobody asked for.** Every rig set `shadow.radius` and `PCFSoftShadowMap` ignores
-   it, so for two months every cast shadow shipped hard edged. VSM is now the default.
+   it, so for two months every cast shadow shipped hard edged. VSM became the default, and on
+   2026-10-03 contact-hardening PCSS replaced it, because VSM bled light ("What still fails").
 3. **Two tone curves.** The renderer mapped ACES and `TXDECK.finish` ran a second filmic curve on
    top. Pure white came out near 231 of 255 and the mids lifted. That is the murk, measured.
    `TXT.snapshot` now marks the page and the grade skips its own curve on a rendered frame.
@@ -1055,6 +1056,39 @@ which is the finding the judges made in words and the number that says the gate 
   back. Both runs found it in the panel. An accent surface takes its colour from its albedo and a
   small emissive, and the director measures it off the probe frame against `layout_check`'s
   12 Lab window before round 1, never across rounds. (2026-10-03)
+- **A clean ground, tiled to the horizon.** The judges named it on six of seven decks in the week to
+  October 3rd, in 21 rounds: no. 41's truck court as "an untextured tiled concrete plane" in every
+  round, no. 40's coping "a smooth plane with one highlight streak", 09-30's lawn "one tiled grass
+  texture" with "no dirt, wear, path or kerb". TXT.contact darkened the ground and TXT.weather grimed
+  the object, and nothing touched the ground itself, which repeated one 6 m tile, every concrete slab
+  the same slab. **Fixed in `txthree.js` (2026-10-03):** every `TXT.ground` wears, in world space, and
+  TXT.contact marks the ground under a thing's base (TECHNIQUE_LIBRARY, THE GROUND AND THE SUN).
+  Proven in `examples/ground-proof/` on four decks. A deck's own flat pad laid as a plane over the
+  ground (09-29's generator pad hid the worker's band on the ground beneath it) takes the marks too,
+  and so does a sill or a ledge a thing stands on outdoors (no. 40's vial on its coping).
+  **Still open:** a pad built as a box lower than 25 cm still puts its contact and its mark on the
+  ground beneath it, so lay a pad as a plane or as a `TXT.ground` at its own height (`y`). No. 40's
+  coping still reads as a smooth plane, because its finish is the deck's material and not a ground.
+  (2026-10-03)
+- **Light inside a shadow, as a fibrous sawtooth.** No. 41 frames 8 and 9, every round: a lit,
+  hair-like band down the left carton column. The run read it as z-fighting and tried a 4096 map, a
+  7 m frustum and normalBias 0.08. Measured on the frame: it goes with the sun's shadows off and with
+  PCF, and stays with the van's liner hidden and with the carton texture gone. It was the variance
+  shadow map bleeding light where a wall seen edge on from a low sun puts many depths under one
+  texel. **Fixed in `txthree.js` (2026-10-03):** PCSS is the default, sharp at a thing's foot and
+  soft at the shadow's tip, and it can't bleed. **Still open:** where a low sun grazes along a low
+  kerb, contact hardening draws the kerb's sliver of shadow as a dark line one or two pixels wide
+  with a faint step in it (09-29 frame 1, at full size only), finer than one shadow texel can draw
+  clean. (2026-10-03)
+- **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
+  lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
+  cast shadows off). **Fixed in `txthree.js` (2026-10-03):** a shadow fades out over the last 8
+  percent of the box. Size the box to the subject, because a fade still shows. (2026-10-03)
+- **A flat yellow polygon on a highway verge.** No. 41 frame 4, all three judges in every round. The
+  kit highway built at grade (`embank` 0) laid its grassed side slopes 2 to 10 cm under the frame's
+  own ground, and their 6 cm of noise poked patches up through it. **Fixed in `kit/landscape.js`
+  (2026-10-03):** at grade there is no earthwork, and on an embankment the slope noise fades out as it
+  nears grade, so no island can surface. (2026-10-03)
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.
 - **A crowd as a mass.** Figures at the same tone as the furniture beside them merge into one

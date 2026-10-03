@@ -1457,8 +1457,14 @@ export function install(K, THREE, TXT) {
       // two strips (left and right), so the pavement box sits between them
       const straight = (t) => [0, L / 2 - t * L];
       const nE = noise2(6000 + o.seed);
-      [eprof.slice(0, 5), eprof.slice(5)].forEach((pr) => {
-        const geo = ribbon(straight, L, Math.round(L / 2), pr, (P, t, arc, x, z) => P.h + (Math.abs(P.s) > half + 0.7 ? (nE(x * 0.4, z * 0.4) - 0.5) * 0.12 : 0));
+      /* AT GRADE THERE IS NO EARTHWORK (2026-10-03). Under 0.1 m of embankment this whole profile
+       * lies 2 to 10 cm below the frame's own ground, and the slope noise, 6 cm either way, lifted
+       * patches of it up through that ground: carousel no. 41 frame 4's flat yellow-olive quad on
+       * the right verge, named by all three judges in every round. On an embankment the noise now
+       * fades out as the profile nears grade, so no island of slope can surface past the line where
+       * the slope meets the ground. */
+      if (E >= 0.1) [eprof.slice(0, 5), eprof.slice(5)].forEach((pr) => {
+        const geo = ribbon(straight, L, Math.round(L / 2), pr, (P, t, arc, x, z) => P.h + (Math.abs(P.s) > half + 0.7 ? (nE(x * 0.4, z * 0.4) - 0.5) * 0.12 * smooth(0.04, 0.16, P.h) : 0));
         const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / 7, uv.getY(i) / 7);
         const m = new THREE.Mesh(geo, M('hw-slope', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.97 })); m.userData.txGround = true; g.add(m);
       });

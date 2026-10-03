@@ -1944,7 +1944,15 @@ export function install(K, THREE, TXT) {
       x.beginPath(); x.moveTo(p0[0], p0[1]); x.quadraticCurveTo(pm[0], pm[1], p1[0], p1[1]); x.stroke();
     }
     const grime = (a) => 'rgba(58,47,37,' + a + ')', rust = (a) => 'rgba(126,70,36,' + a + ')', dustc = (a) => wxRGBA(dust, 1, a);
-    x.filter = 'blur(1px)';
+    /* THE STREAKS ARE BLURRED AS ONE LAYER (2026-10-03). Each was drawn under its own 1 px blur
+     * filter, and the canvas blurs a filtered draw across the whole clip, so every one of a few
+     * hundred streaks blurred a 2048 x 640 region: 34 ms a stroke, measured, and on 09-29's frame 1
+     * the six atlases of one colour took 29 s of a 77 s frame, leaving the page 1.2 s inside
+     * render.py's 45 s load limit. They are drawn in the same order with the same random numbers on
+     * a layer, which is blurred once. A blur is linear, so faint strokes come out the same, and
+     * where two overlap the difference is a fraction of a level. */
+    const xc = x, lay = f.roof ? null : document.createElement('canvas');
+    if (lay) { lay.width = xc.canvas.width; lay.height = xc.canvas.height; x = lay.getContext('2d'); x.setTransform(xc.getTransform()); }
     if (!f.roof) {
       // run-off from the drip edge, the full length of the top
       const k = f.k != null ? f.k : 1;          // streak intensity: a small dark tank streaks to wood grain at full
@@ -1963,7 +1971,7 @@ export function install(K, THREE, TXT) {
       // rust weeping from the fasteners at each seam
       (f.seams || []).forEach((sx) => { for (let i = 0; i < 2; i++) streak(sx + (r() - 0.5) * 0.03, fh * (0.35 + r() * 0.55), 0.08 + r() * 0.3, 0.004 + r() * 0.006, 0.12 + r() * 0.18, rust, 190); });
     }
-    x.filter = 'none';
+    if (lay) { x = xc; x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.filter = 'blur(1px)'; x.drawImage(lay, 0, 0); x.restore(); }
     if (f.roof) {
       // a roof is where the desert settles: a dust wash, drifts along the lee edge, soot at the stack
       x.fillStyle = C ? dustc(0.3) : grey(215, 0.6); x.fillRect(R[0], R[1], R[2], R[3]);
