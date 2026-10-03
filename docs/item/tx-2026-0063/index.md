@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-03
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The applications are still posted as pending with their public notices, which is the stage at which a neighbor can still ask for a contested hearing.
 - 2026-09-27 · The pending permit list still carries the data center applications with their public notices, so the window to ask for a contested hearing is still the live one.
 - 2026-09-30 · The agency's pending permit list still carries the data center applications with their published notices.
+- 2026-10-03 · The agency's list of pending air permits still carries the data center applications with their published notices.
 
 ## Evidence
 

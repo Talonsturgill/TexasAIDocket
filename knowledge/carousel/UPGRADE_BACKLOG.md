@@ -5184,3 +5184,84 @@ Not the model's: frame 5's scatter-card trees and flat parapet (defect 3), frame
 and engine scatter.
 
 Frontier scan: not run this phase. No WebSearch allowance was left in the session.
+
+## 2026-10-03, the first weekly machine pass. Three changes, eight proposals
+
+Read from `out/2026-10-03/week_digest.md` (six shipped runs, September 27th to October 2nd) and the
+nine items carousel no. 41 queued that morning. `artwork_craft` was the lowest criterion on five of
+six decks, week mean 6.72. The account is in `ledger/carousel/upgrades.json` under
+`2026-10-03 weekly`, and the pass is recorded in `config/carousel/machine_pass.json`. Proof images
+are in `out/2026-10-03/tmp/machine/` and die with the container (the proof-images proposal, now
+seven runs asking, is still open in the sections above).
+
+### 1. THE KIT PERSON: THE CAP, THE HANGING HAIR AND THE BROWS (done, `people.js`)
+
+The digest's top theme, "primitive or low-poly model where a kit model belongs" (5 runs, 22 rounds
+after item 2's recount), read sentence by sentence was mostly ONE model: the kit person called a
+mannequin, a game asset or low poly on four decks, every round of 2026-09-28 and 2026-09-30. Head
+proofs at full size found three causes in the model, each now fixed and proven before and after:
+the cap (a hemisphere 2.4 cm proud of the scalp with its bill an upright plank on the right side),
+long hair rigid in the head's frame (the spike behind no. 38's bowed parent, reproduced from her
+seed and pose), and brows floating pale off the skin. **Still open, in lane, for the next pass:**
+(a) the long hair's curtain front edges at `a0`/`a1` in `curtainGeo` print as thin ribbons beside
+the jaw; (b) the face reads as one value under a warm key, the 2026-09-27 item 2 measurement that
+was never made (sheen off, a cool fill, then the face tint, one at a time, cropped at 70 px).
+
+### 2. `week_digest.py` COUNTED PRAISE AS A DEFECT (done)
+
+The second ranked theme was value strobe at five runs and 22 rounds. Read sentence by sentence the
+judges named it on two runs and four rounds, because "the value holds with no strobe" and "the
+declared value cut" both matched. A theme now counts a sentence with no negator in the four words
+before the match, a declared cut is excluded, and "block" and "seam" no longer match a sources
+block or a glass seam. Ten self-test cases, in pairs so the theme can still go
+red. **Not exact:** "horizon band or seam" still counts two praise lines and a type collision
+(5 runs, 9 rounds, from 18). Read the evidence.
+
+### 3. PROPOSAL FOR `knowledge/shared/GATE_LESSONS.md` (`human`)
+
+A new entry: the instrument that ranks the machine's work counted a judge saying a defect was
+ABSENT as the defect, and the weekly pass would have spent its second slot on a theme two runs
+named. What to check instead is the sentence, with its negation, and a self-test case that reads
+praise beside one that reads the defect.
+
+### 4. ENGINE PROPOSALS WITH THE WEEK'S COUNTS (`assets/js/txthree.js` is `human`)
+
+- **Contact and dirt where a model meets the ground**, 5 runs and 16 rounds by the recount. It is
+  2026-10-02 item 6, now with a week behind it. The kit can't carry it, because every model meets
+  a `TXT.ground` it does not own.
+- **The `stormFront` sky reads as a flat gradient with no cloud edge**, no. 41 frames 1, 2, 5, 7, 8
+  and 9, pixel rounds 1 and 2 (queue `flat-sky-gradient`). A shelf edge visible at long and normal
+  lenses. One run so far.
+- **Sawtooth shadow edges on small casters**, no. 41 frames 8 and 9, and hard rectangular casts on
+  4 and 6 (queue `shadow-serration-hard-casts`). VSM resolution and blur for small casters. One run.
+
+### 5. `qa.py` READS A TIGHT SERIF HOOK AS A CANVAS RULE, SECOND RUN (`.claude/skills/`, maintainer)
+
+2026-10-02 item 5 (serif feet of a short heavy last line) and no. 41's slide 9 round 2 (touching
+serifs of a tight display hook, cleared with letter-spacing). Compare the strip against the canvas
+rendered with the type hidden. Two runs, so the queue item now carries `repeat: 1`.
+
+### 6. THE PIXEL CRITIC LOOKS FOR THE WRONG THUMB PATH (`.claude/agents/` or the routine, maintainer)
+
+No. 41 pixel round 1, three of five critics looked for `final/thumbs/slide-0N.png` and found
+nothing, because the files are `slide-0N-thumb.png`. Name that file name in
+`.claude/agents/carousel-pixel-critic.md` or in Phase 12's spawn text in
+`prompts/daily_routine.md`. Both are out of this lane.
+
+### 7. DEFERRED, NOT REFUSED: TODAY'S CHASSIS MODELS (`dry_van`, `delineator`, `raised_pavement_marker`, a truck hub)
+
+All three live in `assets/js/deck/2026-10-03-norther.js`, whose `installKit` returns early once the
+kit defines `dry_van`. The deck was still in its panel rounds when this pass ran, so a lift now
+would swap the models under a deck mid-panel, and a lift of `dry_van` alone would leave its two
+siblings undefined. Lift them from the SHIPPED chassis at the judges' named fixes (seams, grime, a
+lit floor, a reflector that reads at 432 px) in the next pass or the next run's Phase 17.
+
+### 8. DEFERRED: ACCEPTANCE LISTS A NEAR BLANK FRAME WOULD PASS (`dossier_check.py`, in lane)
+
+One run (no. 41). A `dossier_check` that requires a measurable acceptance item per frame would
+have gone red on the live run's own dossiers mid-panel. If a second deck shows it, ship it dated
+so it binds runs after the pass and never the run that ships it, with a self-test on a dossier
+whose acceptance list a blank frame satisfies.
+
+Frontier scan: not run. The weekly brief does not call for one and the session's budget went to
+the proofs.

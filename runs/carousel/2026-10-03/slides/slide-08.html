@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-03, frame 8 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's stormFront world. The van's open rear seen square on from the court, the low sun from behind the camera raking the bare oak floor and the kraft wall gold, the two ember beams across the face. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The work left.</h1>
+<p class="dek" data-follow="24">Kodiak founder and chief executive Don Burnette says the company has identified and scheduled the remaining work, and that it is concentrated on final engineering verification and validation.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "What Kodiak says is left", counter: "08 / 09", src: "c39", fit: { min: 90, max: 118, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 44, near: 0.05 });
+  /* inside the same van at the hub. The van's local frame maps to the world as (x, y, z) to
+     (-z, y, x): its rear opening faces east. ARM_OPEN bare places lie between the load face and
+     the doors, and the camera sits low over them, looking out at the low sun. */
+  const ARM_AUG = 93, ARM_OPEN = 100 - ARM_AUG;
+  const rig = NR.hubRig(K, R, TXT, { doors: 'open', swing: 0.5, load: ARM_AUG, bar: true });
+  TXT.ground(R, NR.COURT);
+  NR.hub(K, R, TXT, { warehouse: [160, 260], whYaw: -0.3, avoid: [[-80, -60, 90, 40]] });
+  NR.yard(K, R, TXT, [{ kind: 'van', at: [34, 24], yaw: 0.2, seed: 12 }, { kind: 'pickup', at: [46, -14], yaw: -2.2, opts: { trim: 'work', color: 0x6f7377 } }]);
+  /* the hub's west line, chain link on the court's edge and one service pole carrying its drop */
+  const edge = K.make('chain_link_fence', { length: 220, height: 2.4, color: 'galvanized' });
+  edge.position.set(-60, 0, 0); edge.rotation.y = Math.PI / 2; TXT.add(R, edge);
+  const svc = K.make('utility_pole', { transformer: true, streetlight: true, guy: true, guyDir: 1 });
+  svc.position.set(-56, 0, 14); TXT.add(R, svc);
+  /* tyre polish: two darker bands worn into the slab where every rig backs to this spot, running
+     from the lens to the doors in the wheel paths */
+  const polish = new THREE.MeshBasicMaterial({ color: 0x0c0a08, transparent: true, opacity: 0.22, depthWrite: false });
+  for (const lane of [-0.95, 0.95]) {
+    const strip = new THREE.Mesh(new THREE.PlaneGeometry(26, 0.62), polish);
+    strip.rotation.x = -Math.PI / 2; strip.position.set(21, 0.011, lane); R.scene.add(strip);
+  }
+  /* the camera stands on the court square behind the doors at a standing eye, the sun behind it,
+     looking in over the bare places at the load face */
+  const camLocal = [0.0, 5.0, NR.VAN.Z_DOOR - 7.5];
+  const lookLocal = [0.0, 3.2, NR.VAN.Z_DOOR + 1.0];
+  TXT.frame(R, { from: [-camLocal[2], camLocal[1], camLocal[0]], look: [-lookLocal[2], lookLocal[1], lookLocal[0]] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 7, 4096), NR.rigOpts([7, 1.3, 0], { normalBias: 0.08 }));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.4, siteBlur: 26, typeBlur: 22, typeFeather: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

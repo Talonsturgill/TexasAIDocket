@@ -1,0 +1,89 @@
+{
+ "round": 2,
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "All nine frames are rendered and every one carries the stormFront sky, so none fails as an object in a void. Frame 4 comes closest to THE SHOWSTOPPER TEST: horizon near the upper third, haze swallowing distant traffic and trees, delineator posts diminishing, the lidar housing at the bottom edge. Frame 7's raking warm light on the van flank is the best surface work. The 7 descriptor allows one frame on a default, a primitive or an artifact, and this deck has several. Frame 3 crops the kit tractor full bleed. Its hood is a blobby shell, the grille is flat slats, the windshield is a solid black void with no reflection, and behind the cab there is only a dark gradient with no horizon features. Frames 8 and 9 show sawtooth shadow-acne down the left edges of the carton stacks (frame 8 at about x 460 to 580 display px, frame 9 at the box faces left of the strap ends). On frame 6 the court still ends in a straight hard lip with an undifferentiated dark brown band beyond it, so it reads as a tabletop. Frame 9 has the same lip as a dark step under the warehouse, and frame 8 has it as a hard band directly behind the dek. Frame 5's bottom fifth is a near-black band that reads as a plate. Frame 4 still has a yellow-green polygon on the right verge (about x 1395 to 1600, y 1560 to 1790). Frame 2's truck is a flat-lit orthographic side view over a speckled noise strip. Across the deck the grade sits in one mid band and no frame has a true highlight. machine_qa band ratios run 0.83 to 1.52, and frame 7 is 1.02."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck. It has one hero in one material (the white 53 ft van and kit tractor), one slate stormFront sky and one warm-kraft-plus-ember-beam accent on every hub frame (1, 5, 6, 8, 9). The load-as-gauge motif genuinely changes state: lit doorway on 1, section with tapes on 5, roofless count on 6, load face on 8, beside a person on 9. The camera move around the van is real. Two frames sit outside. Frame 2's long-lens orthographic truck over illustrated grass reads as a different render style. Frame 9's van shell turns cool blue-grey against the cream of 1 and 7. The hub and road frames alternate (1 hub, 2 to 4 road, 5 and 6 hub, 7 road, 8 and 9 hub), so the world strobes between places rather than moving one way, though the values stay in one band."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 219 comes from c3 and c23, 84, 86, 91 and 93 from c27 and c7, 100 from c9, 3.5 million and 2019 from c12 and c11, 7 is computed as arm_target minus arm_aug, and 89 is computed as December 31st minus the run date (I checked 28 + 30 + 31 = 89). Frame 5's tape positions match the 84, 86, 91 and 93 percent scale against the doors at 100, to within about 10 px. Frame 7 states outright that every readiness figure is the company's own and quotes c17 verbatim. Frame 9 scopes the 3.5 million miles company-wide, as the fact check required (c12, rejected finding 2). The sources are all Kodiak's own pages, which is the only primary source for a self-reported measure. Two lines are looser than their sources. Frame 5's 'by month in 2026' reads c27's 'through April' as a single month reading. The caption's 'It isn't a safety rating' is an editorial inference from c8's definition rather than something any source says. No tx-2026-0188 claim is cited anywhere, so the round 1 repair holds."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what (a driverless lane with no one in the cab), who (Kodiak AI, IKEA as shipper), where (I-45 Dallas to Houston, the Lancaster hub, Baytown to Frisco) and the deadline (year end, 89 days on frame 4). What they can do next is missing. With the TxDMV concern route cut in the repair, no frame or caption line gives a reader an action, and the close is a question the release can't answer."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' earns the swipe, frame 2 pays at once with the lane and shipper, and frame 7 is a declared turn. The 93 is stated three times as the load picture, on frames 1 ('one stack per point'), 5 (the series) and 6 ('93 places loaded. 7 bare.'), so one of 1 and 6 could go without loss. Frame 9's question lands, though softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and on register, with no colons, semicolons, banned words or first person in slide strings or the caption. The place names are specific (Lancaster, Baytown, Frisco, Interstate 45), and 'The work left.' and 'Not closed yet.' are good hooks. Frame 1's 'This van is loaded to that measure, one stack per point' and frame 6's dek explain the metaphor rather than trusting it. Nothing in the copy sounds Texan beyond the place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Carousel no. 34, seven days earlier (topics.json, 2026-09-26), carried Kodiak AI, Interstate 45, Dallas to Houston and Lancaster, rendered the same class of hero (a sensored semi on the lane), and featured mirror pods. This deck's storyboard admits it had to steer away from that ('no. 34 featured mirror pods', 'every cab interior shot, which deck no. 34 spent three frames on'). The van-as-gauge concept is fresh. The company, the lane and the vehicle within a week are three familiar moves, not one. I do not call it a hard fail: the docket item (0198 vs 0188), the instrument and the angle differ."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make the hub a place rather than a slab: on frames 5, 6, 8 and 9, run the truck court with no visible lip into TXT.ground vertisol with scattered stubble, and on to the warehouse and a hazed horizon. Then take frame 3's primitive kit tractor out of full-bleed close crop (pull back to a long-lens medium against the corridor, with an environment reflection on the windshield) so that no frame's largest object is the deck's weakest model.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The kit tractor is cropped full bleed, so its primitive modelling is the whole frame: a blobby hood shell, flat grille slats, a pure black windshield with no reflection, toy mirror pods. Behind it is only a dark gradient with no horizon, fencerow or haze, so it doesn't read as a place.",
+   "fix": "Pull the camera back to a 12 m long-lens medium at front three-quarter so the cab fills about a third of the frame against the I-45 corridor, with a horizon, fencerow and haze, and give the windshield an environment-mapped glass material so it reflects the slate sky."
+  },
+  {
+   "slide": 6,
+   "problem": "From the crane the court ends in a straight hard lip with a featureless dark-brown band beyond it, so the rig sits on a tabletop in a void. That is the rubric's slab defect, still visible after the round 1 repair.",
+   "fix": "Extend the ground past the slab edge as TXT.ground vertisol with TXT.scatter stubble and the warehouse in haze, and flatten the pitch a few degrees so the horizon sits on the upper third, with no visible slab lip."
+  },
+  {
+   "slide": 8,
+   "problem": "Sawtooth shadow-acne runs down the left edge of the carton stacks (about x 460 to 580 display px), and the slab lip makes a hard dark band directly behind the dek, so the van floats on a strip.",
+   "fix": "Raise the sun's shadow.normalBias/bias on the VSM light for carton_stack until the serration clears, and continue the ground beyond the court so the band behind the dek becomes field and haze."
+  },
+  {
+   "slide": 9,
+   "problem": "The same serrated shadow artifact appears on the box faces. The court ends in a dark step under the warehouse at left (about y 900 to 975). The van shell renders cool blue-grey against the cream of frames 1 and 7, and the person is a low-detail mannequin.",
+   "fix": "Apply the same shadow bias fix, run the ground continuously to the warehouse, and warm the van's exposure and white balance to match frame 1's cream steel."
+  },
+  {
+   "slide": 5,
+   "problem": "The bottom fifth is a near-black band under the court that reads as a plate. The sky above the van is empty mid-grey. There are stray vertical light strips at the left edge (x 0 to 45).",
+   "fix": "Lower the camera horizon and extend the lit court to the bottom edge so the source line sits on concrete, and frame the van so its nose ends inside the frame with no stray geometry at the left."
+  },
+  {
+   "slide": 4,
+   "problem": "A yellow-green polygon still sits on the right verge (about x 1395 to 1600, y 1560 to 1790) and reads as a stray lit mesh. The right verge beyond the posts is otherwise a dead flat brown plane.",
+   "fix": "Delete that mesh or decal and scatter shoulder bunchgrass along the right verge so the ground carries texture to the posts."
+  },
+  {
+   "slide": 2,
+   "problem": "The truck is a flat-lit orthographic side view, almost a cutout, over a speckled noise strip where the far field should be.",
+   "fix": "Rake the low sun across the truck's east side with a visible cast on the road, and replace the speckle band with receding cotton-stubble rows that fade into haze."
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-10-03, frame 9 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's stormFront world. A Texan standing at the open rear of the van on the court, the floor above her waist, the bare places beside her and the stacks behind, lit from the east on the side the camera sees. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .hook { letter-spacing:0.012em; word-spacing:0.08em; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">More than 3.5 million miles. How many here?</h1>
+<p class="dek" data-follow="24">Kodiak counts more than 3.5 million autonomous miles since 2019. Its release doesn't say how many of them ran between Dallas and Houston, the lane it means to open with no one in the cab.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "What the release doesn't say", counter: "09 / 09", src: "c2 c12", fit: { min: 80, max: 112, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 36 });
+  /* the same van at the hub, nose west, rear to the east sun; the places beside her are arm_open,
+     left bare at the doors of a van loaded to arm_target less arm_open */
+  const ARM_TARGET = 100, ARM_OPEN = 7;
+  const rig = NR.hubRig(K, R, TXT, { doors: 'open', swing: 0.5, load: ARM_TARGET - ARM_OPEN, bar: true });
+  TXT.ground(R, NR.COURT);
+  NR.hub(K, R, TXT, { warehouse: [-297, -229], whYaw: -0.9, avoid: [[-80, -60, 90, 40]] });
+  NR.yard(K, R, TXT, [{ kind: 'van', at: [-4, 18], yaw: -Math.PI / 2, seed: 11 }]);
+  /* she stands a step back from the bumper on the north half of the opening, turned three quarter
+     to the lens and toward the east light */
+  const her = K.make('person', { seed: 14, role: 'resident', pose: 'stand', build: 'female', height: 1.68, hat: 'none' });
+  her.position.set(9.1, 0, 1.65); her.rotation.y = 0.74;
+  TXT.add(R, her); TXT.contact(R, her, { opacity: 0.8 });
+  TXT.frame(R, { from: [24.5, 4.3, 8.2], look: [7.6, 3.4, -0.2] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 8, 4096), NR.rigOpts([8, 1, 0], { normalBias: 0.08 }));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.4, typeBlur: 22, typeFeather: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

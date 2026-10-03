@@ -562,8 +562,16 @@ export function install(K, THREE, TXT) {
     };
   }
   /* Hair that falls below the skull: a thick curved slab around the back and sides of the
-   * head, open at the face, its lower edge layered. Rows run down, columns around. */
-  function curtainGeo(W, Hh, D, k, len, curly, ph) {
+   * head, open at the face, its lower edge layered. Rows run down, columns around.
+   * HANG (weekly pass 2026-10-03): the curtain is built in the head's frame, so a head bowed
+   * to read swung its lower edge out behind the neck as a rigid plate, which no. 38's judges
+   * named as "a spike of hair mesh" and "a hair clump detached behind the parent's neck".
+   * `hang` is the head's pitch against the neck (the torso's lean tilts the neck too, so it is
+   * left out), and `piv` is the top of the neck in the head's frame, the point the head turns
+   * about. The hair below the skull is turned back by `hang` about that point, progressively from
+   * the crown down, so it falls along the neck as it does when the head is upright, rather than
+   * through the neck (turned about the head's centre it cut 2 cm into it) or out behind it. */
+  function curtainGeo(W, Hh, D, k, len, curly, ph, hang, piv) {
     const NU = LOW ? 14 : 44, NV = LOW ? 6 : 22, th = (curly ? 0.034 : 0.024) * k;
     const yTop = 0.05 * Hh, pos = [], uv = [], idx = [];
     const a0 = 1.4, a1 = Math.PI * 2 - 1.4;                      // around the back
@@ -576,8 +584,13 @@ export function install(K, THREE, TXT) {
       const edge = smooth((a - a0) / 0.5) * smooth((a1 - a) / 0.5);
       const tt = th * (0.55 + 0.45 * edge) * (1 - 0.45 * v);
       const rr = R(a, y, 1) - (1 - edge) * 0.03 - (inner ? tt / (W * 1.1) : 0);
-      const x = Math.sin(a) * W * rr, z = Math.cos(a) * D * rr * 0.97 - 0.1 * D * smooth(-y / Hh);
-      pos.push(x, y, z); uv.push(a / (Math.PI * 2), -y / 0.25);
+      const x = Math.sin(a) * W * rr; let z = Math.cos(a) * D * rr * 0.97 - 0.1 * D * smooth(-y / Hh), yy = y;
+      if (hang) {
+        const ang = -hang * smooth((yTop - y) / (Hh * 0.9)), c = Math.cos(ang), sn = Math.sin(ang);
+        const py = piv ? piv[0] : yTop, pz = piv ? piv[1] : 0, dy = y - py, dz = z - pz;
+        yy = py + dy * c - dz * sn; z = pz + dy * sn + dz * c;
+      }
+      pos.push(x, yy, z); uv.push(a / (Math.PI * 2), -y / 0.25);
     };
     for (let side = 0; side < 2; side++)
       for (let v = 0; v <= NV; v++) for (let u = 0; u <= NU; u++) {
@@ -734,7 +747,7 @@ export function install(K, THREE, TXT) {
     return g;
   }
   /* ---- hats --------------------------------------------------------------------------- */
-  function hat(kind, W, D, top, mat, rr) {
+  function hat(kind, W, D, top, mat, rr, Hh) {
     const g = new THREE.Group();
     if (kind === 'cowboy') {
       const crownH = 0.12 * (W / 0.075);
@@ -769,15 +782,44 @@ export function install(K, THREE, TXT) {
       band.scale.z = (D * 1.07) / (W * 1.1); band.position.y = 0.012; g.add(band);
       g.position.y = top;
     } else if (kind === 'cap') {
-      const dome = new THREE.SphereGeometry(1, 36, 18, 0, Math.PI * 2, 0, Math.PI / 2);
-      dome.scale(W * 1.08, 0.1 * (W / 0.075), D * 1.06);
-      g.add(new THREE.Mesh(dome, mat));
-      const bill = new THREE.SphereGeometry(1, 24, 6, -Math.PI * 0.3, Math.PI * 0.6, Math.PI / 2 - 0.12, 0.12);
-      bill.scale(W * 1.12, 0.3, D * 1.75);
-      const bm = new THREE.Mesh(bill, K.mat('p-capbill-' + mat.uuid, { color: mat.color.getHex(), roughness: 0.8, side: THREE.DoubleSide }));
-      bm.rotation.y = Math.PI / 2; bm.position.y = 0.005;
-      bm.rotation.y = 0; g.add(bm);
-      const btn = new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 6), mat); btn.position.y = 0.1 * (W / 0.075); g.add(btn);
+      /* THE CAP FITS THE SKULL AND ITS BILL IS IN FRONT (weekly pass 2026-10-03). It was a
+       * hemisphere 0.1 m tall, which stood about 2.4 cm proud of the scalp and read as a helmet
+       * (no. 37's judges: "helmet-like"), and its bill was a sphere band near the equator, so it
+       * printed as an upright plank on the wearer's RIGHT side: the model rotated it to the front
+       * and then set the rotation back to 0. Now the crown is a lathe whose height is the head's
+       * own height above the band plus a tenth of the head, six sewn panels pressed in at the
+       * seams, and the bill is a crescent off the front of the band, pitched down and curved down
+       * at its sides, as a worn bill is. Hh is the head's half height (makePerson passes it). */
+      const hh = Hh || top / 0.32, crownH = (hh - top) + 0.1 * hh;
+      const prof = [[1.0, 0], [0.99, 0.3], [0.94, 0.55], [0.84, 0.75], [0.66, 0.9], [0.4, 0.98], [0.001, 1.0]];
+      const cr = new THREE.LatheGeometry(prof.map((q) => new THREE.Vector2(q[0], q[1] * crownH)), 96);
+      const cp = cr.attributes.position;
+      for (let i = 0; i < cp.count; i++) {
+        const x = cp.getX(i), y = cp.getY(i), z = cp.getZ(i), az = Math.atan2(x, z);
+        let dmin = 9;
+        for (let j = 0; j < 6; j++) { const d = Math.abs(Math.atan2(Math.sin(az - (j + 0.5) * Math.PI / 3), Math.cos(az - (j + 0.5) * Math.PI / 3))); dmin = Math.min(dmin, d); }
+        const seam = 1 - 0.018 * Math.exp(-(dmin * dmin) / 0.0016) * smooth(y / (crownH * 0.15));
+        cp.setXYZ(i, x * W * 1.08 * seam, y, z * D * 1.06 * seam);
+      }
+      cr.computeVertexNormals();
+      g.add(new THREE.Mesh(cr, mat));
+      // the band: a slightly proud ring at the base, the crown's own colour a shade down
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.012 * (hh / 0.117), 64, 1, true),
+        K.mat('p-capband-' + mat.uuid, { color: new THREE.Color(mat.color).multiplyScalar(0.82).getHex(), roughness: 0.85, side: THREE.DoubleSide }));
+      band.scale.set(W * 1.09, 1, D * 1.07); band.position.y = 0.006 * (hh / 0.117); g.add(band);
+      // the bill: a crescent from the band's front arc, tapering to nothing at its two ends
+      const Lb = 0.74 * D, NU = 28, NV = 7, bp = [], bi = [];
+      for (let v = 0; v <= NV; v++) for (let u = 0; u <= NU; u++) {
+        const uu = (u / NU) * 2 - 1, a = uu * 1.05, t = v / NV, tp = Math.pow(Math.cos(uu * Math.PI / 2), 0.6);
+        const ix = Math.sin(a) * W * 1.08, iz = Math.cos(a) * D * 1.06;
+        let nx = Math.sin(a) / W, nz = Math.cos(a) / D; const nl = Math.hypot(nx, nz); nx /= nl; nz /= nl;
+        const out = Lb * tp * t;
+        bp.push(ix + nx * out, 0.003 * (hh / 0.117) - out * 0.15 - 0.16 * Lb * uu * uu * t * tp, iz + nz * out);
+      }
+      for (let v = 0; v < NV; v++) for (let u = 0; u < NU; u++) { const a = v * (NU + 1) + u, b = a + NU + 1; bi.push(a, b, a + 1, b, b + 1, a + 1); }
+      const bill = new THREE.BufferGeometry(); bill.setAttribute('position', new THREE.Float32BufferAttribute(bp, 3)); bill.setIndex(bi); bill.computeVertexNormals();
+      g.add(new THREE.Mesh(bill, K.mat('p-capbill-' + mat.uuid, { color: mat.color.getHex(), roughness: 0.8, side: THREE.DoubleSide })));
+      const btn = new THREE.Mesh(new THREE.SphereGeometry(0.0065 * (hh / 0.117), 10, 6), mat); btn.position.y = crownH - 0.001; btn.scale.y = 0.5; g.add(btn);
       g.position.y = top;
     } else if (kind === 'hard') {
       const s = W / 0.075 * 0.8;
@@ -1380,7 +1422,9 @@ export function install(K, THREE, TXT) {
     }
     // eyes: sclera, iris and pupil caps, lids that give the almond, a lash line, brows
     const irisC = pick(r, [0x2a1a10, 0x3b2615, 0x4a3520, 0x2f3b45, 0x3b4a2c, 0x5a6a78]);
-    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(skinC), 0.35).getHex(), roughness: 0.85 });
+    // a brow is darker than the hair it goes with, and never paler than the skin under it: a blonde or
+    // grey head's brows lerped toward the skin printed as two pale bands across the forehead
+    const browM = K.mat('p-brow', { color: new THREE.Color(hairC).lerp(new THREE.Color(0x2a1d14), 0.45).lerp(new THREE.Color(skinC), 0.2).getHex(), roughness: 0.85 });
     if (LOW) {
       for (const s of [1, -1]) {
         const p = surf(s * 0.33, 0.07);
@@ -1434,8 +1478,14 @@ export function install(K, THREE, TXT) {
         const pts = [];
         for (let i = 0; i <= 8; i++) {
           const t = i / 8, ux = lerp(0.1, 0.6, t), uy = 0.185 + 0.05 * Math.sin(Math.PI * Math.min(1, t * 1.25)) - 0.03 * t;
-          const q = surf(s * ux, uy);
-          pts.push({ p: [q[0], q[1], q[2] + 0.0012 * k], rx: 0.0011 * k, ry: lerp(fem ? 0.0026 : 0.0034, 0.001, t) * k });
+          // ON the skin along its normal, half sunk. A +z offset left the outer end, where the brow
+          // ridge turns toward the temple, standing proud of the skin with its own shadow, which
+          // read as a sticker (weekly pass 2026-10-03, no. 36 to 38's "mask-like", "crude" face).
+          const q = surf(s * ux, uy), e = 0.01, qa = surf(s * ux + e, uy), qb = surf(s * ux - e, uy), qc = surf(s * ux, uy + e), qd = surf(s * ux, uy - e);
+          const nrm = V3(qa[0] - qb[0], qa[1] - qb[1], qa[2] - qb[2]).cross(V3(qc[0] - qd[0], qc[1] - qd[1], qc[2] - qd[2])).normalize();
+          if (nrm.z < 0) nrm.negate();
+          const off = 0.0004 * k;
+          pts.push({ p: [q[0] + nrm.x * off, q[1] + nrm.y * off, q[2] + nrm.z * off], rx: 0.0011 * k, ry: lerp(fem ? 0.0026 : 0.0034, 0.001, t) * k });
         }
         head.add(new THREE.Mesh(loft(pts, { seg: 8, per: 2, capStart: 'dome', capEnd: 'dome', ref: [0, 0, 1] }), browM));
       }
@@ -1458,7 +1508,7 @@ export function install(K, THREE, TXT) {
       const hT = hairThickness(style, k, ph[0]), hatted = hatKind !== 'none';
       // under a hat the crown is pressed flat, so no hair can come through the hat
       head.add(new THREE.Mesh(shellGeo(hg, hatted ? (ux, uy, uz) => Math.min(hT(ux, uy, uz), lerp(0.009, 0.0035, smooth((uy - 0.1) / 0.3)) * k) : hT), hairM));
-      if (longHair) head.add(new THREE.Mesh(curtainGeo(Wd, Hh, D, k, style === 'bob' ? 0.95 : 1.75 + 0.35 * r(), style === 'curlyLong', ph[1]), hairM));
+      if (longHair) head.add(new THREE.Mesh(curtainGeo(Wd, Hh, D, k, style === 'bob' ? 0.95 : 1.75 + 0.35 * r(), style === 'curlyLong', ph[1], headPitch, [neckTop.y - headC.y, neckTop.z - headC.z]), hairM));
       if (style === 'bun') {
         const bun = new THREE.Mesh(new THREE.SphereGeometry(1, LOW ? 10 : 20, LOW ? 8 : 14), hairM);
         if (hatKind === 'none') { bun.scale.set(0.036 * k, 0.03 * k, 0.034 * k); bun.position.set(0, Hh * 0.55, -D * 0.9); }
@@ -1488,7 +1538,7 @@ export function install(K, THREE, TXT) {
         : pick(r, [0x1f2b44, 0x7a1f25, 0x3f4a3a, 0xe8e4dc, 0x2a2a2a, 0xb05a22]);
       const hm = hatKind === 'hard' ? K.mat('p-hard', { color: hatC, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }, true)
         : K.mat('p-hat', { color: hatC, roughness: hatKind === 'cowboy' && (hatC === 0xd9c69a || hatC === 0xe0d2a8) ? 0.85 : 0.75 });
-      head.add(hat(hatKind, Wd * 1.03, D * 1.03, Hh * (hatKind === 'cowboy' ? 0.36 : hatKind === 'cap' ? 0.32 : 0.36), hm, r));
+      head.add(hat(hatKind, Wd * 1.03, D * 1.03, Hh * (hatKind === 'cowboy' ? 0.36 : hatKind === 'cap' ? 0.32 : 0.36), hm, r, Hh));
     }
     // the body pieces lean with the torso, about the hips
     const bodyPivot = new THREE.Group(); bodyPivot.position.y = pivY; body.position.y = -pivY;

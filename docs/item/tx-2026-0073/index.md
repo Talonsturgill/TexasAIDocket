@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The comment window closed on August 20th. Both committees have heard their subjects and neither has published a recommendation.
 - 2026-09-29 · The comment window closed on August 20th. Neither House committee has published what it concluded about data centers or AI in health care.
 - 2026-10-02 · Whether the two House committees took up data centers and AI in health care as noticed is unconfirmed this run. The notices sit on paths this project does not read.
+- 2026-10-03 · Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths this project does not read.
 
 ## Evidence
 

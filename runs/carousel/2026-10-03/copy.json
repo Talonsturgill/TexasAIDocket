@@ -1,0 +1,211 @@
+{
+ "date": "2026-10-03",
+ "carousel_no": 41,
+ "document_title": "Not closed yet.",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Kodiak AI scored itself at 93 percent at the end of August.\n\nThe figure is the share of claims and evidence in its driverless safety case the company calls materially complete. It isn't a safety rating.\n\nKodiak says it closes that case before trucks run unsupervised on the 219 mile leg from Dallas to Houston. It expects both by year end. Most of the leg is Interstate 45. It counts more than 1,300 loads and 750,000 autonomous miles for IKEA over four years, with a safety observer aboard.\n\nIts chief executive says the work left is identified and scheduled, concentrated on final engineering verification and validation.\n\nKodiak counts more than 3.5 million autonomous miles since 2019. How many ran between Dallas and Houston?\n\n#Interstate45 #KodiakAI #DriverlessTrucks",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Kodiak AI's own measure",
+   "headline": "Not closed yet.",
+   "claims": [
+    "c3",
+    "c7",
+    "c8",
+    "c38"
+   ],
+   "cite": "c3 c7 c8 c38",
+   "body": "Kodiak AI named Interstate 45 from Dallas to Houston its first driverless long-haul lane. It says it closes its safety case before that launch, and at the end of August it called 93 percent of it complete. This van is loaded to that measure, one stack per point.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Not closed yet.",
+    "Kodiak AI named Interstate 45 from Dallas to Houston its first driverless long-haul lane. It says it closes its safety case before that launch, and at the end of August it called 93 percent of it complete. This van is loaded to that measure, one stack per point.",
+    "Kodiak AI's own measure",
+    "01 / 09",
+    "c3 c7 c8 c38"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Dallas to Houston",
+   "headline": "219 miles, mostly Interstate 45.",
+   "claims": [
+    "c2",
+    "c3",
+    "c20",
+    "c23",
+    "c24"
+   ],
+   "cite": "c2 c3 c20 c23 c24",
+   "body": "IKEA will be the launch shipper, on a leg of its route from Baytown to Frisco. Kodiak plans to run it with no one in the cab.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "219 miles, mostly Interstate 45.",
+    "IKEA will be the launch shipper, on a leg of its route from Baytown to Frisco. Kodiak plans to run it with no one in the cab.",
+    "Dallas to Houston",
+    "02 / 09",
+    "c2 c3 c20 c23 c24"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Four years of IKEA freight",
+   "headline": "More than 1,300 loads for IKEA.",
+   "claims": [
+    "c21",
+    "c22"
+   ],
+   "cite": "c21 c22",
+   "body": "Kodiak says it has delivered more than 1,300 loads and logged more than 750,000 autonomous miles carrying IKEA goods over four years, with a safety observer aboard.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than 1,300 loads for IKEA.",
+    "Kodiak says it has delivered more than 1,300 loads and logged more than 750,000 autonomous miles carrying IKEA goods over four years, with a safety observer aboard.",
+    "Four years of IKEA freight",
+    "03 / 09",
+    "c21 c22"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Southbound, Interstate 45",
+   "headline": "89 days left in the year.",
+   "claims": [
+    "c2",
+    "c9"
+   ],
+   "cite": "c2 c9",
+   "body": "Kodiak says it expects to launch driverless operations by year end. One post along the road ahead for each day left after October 3rd.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "89 days left in the year.",
+    "Kodiak says it expects to launch driverless operations by year end. One post along the road ahead for each day left after October 3rd.",
+    "Southbound, Interstate 45",
+    "04 / 09",
+    "c2 c9"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Kodiak's readiness measure",
+   "headline": "84. 86. 91. 93.",
+   "claims": [
+    "c7",
+    "c8",
+    "c9",
+    "c27"
+   ],
+   "cite": "c7 c8 c9 c27",
+   "body": "The share of its safety case's claims and evidence Kodiak calls materially complete, by month in 2026. Each tape marks where the load stood. The doors are 100.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "84. 86. 91. 93.",
+    "The share of its safety case's claims and evidence Kodiak calls materially complete, by month in 2026. Each tape marks where the load stood. The doors are 100.",
+    "Kodiak's readiness measure",
+    "05 / 09",
+    "c7 c8 c9 c27",
+    "FEB 84",
+    "APR 86",
+    "JUL 91",
+    "AUG 93",
+    "DOORS 100"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "One stack per point",
+   "headline": "93 places loaded. 7 places bare.",
+   "claims": [
+    "c7",
+    "c8",
+    "c9"
+   ],
+   "cite": "c7 c8 c9",
+   "body": "One place on the floor for each point of Kodiak's own measure. The last 7 places are the share it didn't call complete at the end of August.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "93 places loaded. 7 places bare.",
+    "One place on the floor for each point of Kodiak's own measure. The last 7 places are the share it didn't call complete at the end of August.",
+    "One stack per point",
+    "06 / 09",
+    "c7 c8 c9"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The company's own account",
+   "headline": "Every readiness figure is Kodiak's own.",
+   "claims": [
+    "c8",
+    "c17",
+    "c18"
+   ],
+   "cite": "c8 c17 c18",
+   "body": "The readiness measure is the company's account of its own safety case. Its release lists closing that case by year end among forward looking statements it says \"are not predictions of actual performance.\"",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Every readiness figure is Kodiak's own.",
+    "The readiness measure is the company's account of its own safety case. Its release lists closing that case by year end among forward looking statements it says \"are not predictions of actual performance.\"",
+    "The company's own account",
+    "07 / 09",
+    "c8 c17 c18"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What Kodiak says is left",
+   "headline": "The work left.",
+   "claims": [
+    "c39"
+   ],
+   "cite": "c39",
+   "body": "Kodiak founder and chief executive Don Burnette says the company has identified and scheduled the remaining work, and that it is concentrated on final engineering verification and validation.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The work left.",
+    "Kodiak founder and chief executive Don Burnette says the company has identified and scheduled the remaining work, and that it is concentrated on final engineering verification and validation.",
+    "What Kodiak says is left",
+    "08 / 09",
+    "c39"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What the release doesn't say",
+   "headline": "More than 3.5 million miles. How many here?",
+   "claims": [
+    "c2",
+    "c12"
+   ],
+   "cite": "c2 c12",
+   "body": "Kodiak counts more than 3.5 million autonomous miles since 2019. Its release doesn't say how many of them ran between Dallas and Houston, the lane it means to open with no one in the cab.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than 3.5 million miles. How many here?",
+    "Kodiak counts more than 3.5 million autonomous miles since 2019. Its release doesn't say how many of them ran between Dallas and Houston, the lane it means to open with no one in the cab.",
+    "What the release doesn't say",
+    "09 / 09",
+    "c2 c12"
+   ]
+  }
+ }
+}

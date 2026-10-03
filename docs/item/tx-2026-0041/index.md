@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The conditional use permit for the Airport Drive data center still stands as the commission approved it, and the report of the vote reads as it did.
 - 2026-09-29 · The Wichita Falls conditional use permit for the DataNovaX site on Airport Drive stands as the commission approved it.
 - 2026-10-02 · The Wichita Falls permit for the data center is unconfirmed this run. The only account of the commission's vote sits on a site that bars automated readers.
+- 2026-10-03 · The Wichita Falls permit is still unconfirmed. The only account of the commission's vote bars automated readers, and the city's agenda center shows no record of it.
 
 ## Evidence
 

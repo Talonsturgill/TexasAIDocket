@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · The department's account of the bridge demonstration is unconfirmed this time, because its site would not serve the page.
 - 2026-10-01 · The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page.
 - 2026-10-02 · The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page.
+- 2026-10-03 · The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page.
 
 ## Evidence
 

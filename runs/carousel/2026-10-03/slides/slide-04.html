@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-03, frame 4 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's stormFront world. The view from the cab roof down the tractor's long white hood along southbound Interstate 45 under the front's cloud, one delineator post on the shoulder ahead for each day left in the year, the last one short of the horizon. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">89 days left in&nbsp;the&nbsp;year.</h1>
+<p class="dek" data-follow="24">Kodiak says it expects to launch driverless operations by year end. One post along the road ahead for each day left after October 3rd.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "Southbound, Interstate 45", counter: "04 / 09", src: "c2 c9", fit: { min: 96, max: 124, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 60, near: 0.05, exposure: 1.2 });
+  /* days_to_year_end from figures.json: December 31st minus the run date. One delineator post per
+     day on the outside shoulder, 4 m apart, the first just ahead of the hood */
+  const DAYS_TO_YEAR_END = 89, SPACING = 4, X_TRUCK = -7.14, X_POST = -12.1;
+  const rig = NR.rig(K, { lights: true, van: { doors: 'closed', load: 0 } });
+  rig.position.set(X_TRUCK, 0, 0);
+  TXT.add(R, rig); TXT.contact(R, rig, { opacity: 0.75 });
+  /* the rig is under and behind the lens here, and its shadow on the verge carried a lit wedge
+     through the gap between the cab and the sleeper, which read as a stray polygon */
+  rig.traverse(function (m) { m.castShadow = false; });
+  TXT.ground(R, NR.SOIL);
+  NR.road(K, R, TXT, { seg: 250, segs: 11, z0: 0 });
+  /* a farm road crossing over the interstate 600 m ahead, and the morning's other traffic */
+  const ov = K.make('highway', { seed: 31, length: 250, lanes: 2, surface: 'concrete', gantry: false, overpass: true, embank: 0, ground: 0x4a4636 });
+  ov.position.set(0, 0.002, 600); ov.children.forEach(function (c) { c.visible = true; }); TXT.add(R, ov);
+  for (let i = 0; i < DAYS_TO_YEAR_END; i++) {
+    const m = K.make('delineator', { seed: i + 1 });
+    m.rotation.y = Math.PI; m.scale.set(1.5, 1.35, 1.5); m.position.set(X_POST, 0.6, 16 + i * SPACING); TXT.add(R, m);
+  }
+  TXT.scatter(R, { kind: 'grass', count: 16000, area: [-120, -40, 120, 700], avoid: [[-12.4, -60, 12.4, 3000]], seed: 53, scale: 1.0 });
+  /* October prairie on the west verge, tall bunchgrass in blocks from the shoulder's edge outward */
+  for (let z = 110; z < 340; z += 24) for (const x of [-25.5, -49.5]) {
+    const pa = K.make('pasture', { seed: 300 + z + x, width: 24, depth: 24, season: 'fall' });
+    pa.position.set(x, 0, z); TXT.add(R, pa);
+  }
+  NR.yard(K, R, TXT, [{ kind: 'cedar_elm', at: [-60, 240], opts: { height: 13 } }, { kind: 'live_oak', at: [-72, 320], opts: { height: 11 } }, { kind: 'cedar_elm', at: [58, 300], opts: { height: 12 } }, { kind: 'mesquite', at: [40, 180] }, { kind: 'sedan', at: [-3.5, 160], yaw: 0, opts: { color: 0x3a4048 } }, { kind: 'pickup', at: [-7.0, 330], yaw: 0, opts: { color: 0x9a9ea2 } }, { kind: 'semi_truck', at: [-3.6, 470], yaw: 0, opts: { color: 0x7c1416 } }, { kind: 'suv', at: [3.6, 260], yaw: Math.PI, opts: { color: 0x22262c } }, { kind: 'sedan', at: [7.2, 120], yaw: Math.PI, opts: { color: 0xb8bcc0 } }]);
+  /* the camera high behind the cab, over the sleeper, looking south past the sensor bar down the hood and lane */
+  TXT.frame(R, { from: [X_TRUCK - 0.2, 5.8, -2.6], look: [X_TRUCK - 0.6, 4.1, 50] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 14), NR.rigOpts([-7, 1, 6]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.45, rgb: "6,6,10", pad: 170, typeBlur: 22, typeFeather: 50, siteBlur: 26 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

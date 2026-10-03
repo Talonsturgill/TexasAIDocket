@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-10-03, frame 6 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's stormFront world. The van at the hub with its roof lifted off, seen from a crane behind and above its open doors: the seven bare places nearest the lens, then 93 stack tops in two files running to the nose, the tractor and the court beyond under the front. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">93 places loaded. 7 places bare.</h1>
+<p class="dek" data-follow="24">One place on the floor for each point of Kodiak's own measure. The last 7 places are the share it didn't call complete at the end of August.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "One stack per point", counter: "06 / 09", src: "c7 c8 c9", fit: { min: 96, max: 124, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 44, exposure: 1.3 });
+  /* the same van at the hub with its roof lifted off. ARM_AUG stacks from the nose, ARM_OPEN places
+     bare at the doors: one place per percentage point of the company's measure */
+  const ARM_AUG = 93, ARM_OPEN = 100 - ARM_AUG;
+  const rig = NR.hubRig(K, R, TXT, { doors: 'open', swing: 0.5, roof: false, nearWall: 'left', load: ARM_AUG, bar: true });
+  TXT.ground(R, NR.COURT);
+  NR.hub(K, R, TXT, { warehouse: [-140, -330], whYaw: 0.6, avoid: [[-80, -60, 90, 40]] });
+  /* the court around it: a yard pickup */
+  NR.yard(K, R, TXT, [{ kind: 'pickup', at: [17, -11], yaw: -1.2, opts: { trim: 'work', color: 0x7d8186 } }]);
+  /* a block of 40 ft boxes stacked two high off the court's north side, at true scale */
+  [[-34, -30, 0], [-34, -27.4, 0], [-34, -30, 2.6], [-21.5, -30, 0]].forEach(function (b, k) {
+    const box = K.make('shipping_container', { seed: 70 + k, rust: 0.6 });
+    box.position.set(b[0], b[2], b[1]); box.rotation.y = Math.PI / 2; TXT.add(R, box);
+  });
+  /* oil where trucks stand: soft dark pools on the slab under the tandems and the landing gear of
+     every truck that parked here before, each a disc darkened toward its middle */
+  const stainTex = (function () {
+    const c = document.createElement('canvas'); c.width = c.height = 128;
+    const g = c.getContext('2d'), rg = g.createRadialGradient(64, 64, 4, 64, 64, 62);
+    rg.addColorStop(0, 'rgba(12,10,8,0.62)'); rg.addColorStop(0.6, 'rgba(18,15,12,0.32)'); rg.addColorStop(1, 'rgba(20,16,12,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c);
+  })();
+  const stainMat = new THREE.MeshBasicMaterial({ map: stainTex, transparent: true, depthWrite: false });
+  [[3.2, 0.9, 1.6], [3.4, -0.9, 1.4], [-2.5, 0.0, 1.1], [9.8, 1.2, 0.9], [-12.6, 0.6, 1.3], [5.1, 3.6, 0.8]].forEach(function (p) {
+    const pool = new THREE.Mesh(new THREE.CircleGeometry(p[2], 32), stainMat);
+    pool.rotation.x = -Math.PI / 2; pool.position.set(p[0], 0.012, p[1]); R.scene.add(pool);
+  });
+  /* the crane stands off the van's rear quarter, 13 m east of the doors and 14 m south, 14.5 m up, looking down the van's length on the diagonal */
+  TXT.frame(R, { from: [23.5, 14.5, 15.5], look: [-1.0, 6.0, -0.6] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 18), NR.rigOpts([0, 1, 0]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.42, typeBlur: 30, typeFeather: 70 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

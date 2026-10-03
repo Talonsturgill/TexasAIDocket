@@ -1,0 +1,87 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "deck": "carousel no. 41, 2026-10-03",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Every frame is rendered, with a ground, cast shadows and one low sun, and the hero (white 53 ft van, kraft stacks, ember load bars) is carried throughout. It mostly fails the showstopper test. Frames 1, 5, 6, 8 and 9 stand on the same empty brown tiled court that runs into a grey band with no horizon objects. The storyboard promised 'the warehouse in green-grey haze and the black prairie' on 01 and none of it is in the pixels. The models are primitive at the sizes they are shown. On 03 the tractor fills the frame with a blocky hood, a flat black windscreen, no road film and a tree clipped at the left edge. The cartons on 08 are identical untextured cubes. 04 is the best world frame (a lane with posts, trees and haze), but it has a stray yellow polygon on the shoulder at bottom right. 02 has the best ground (grass), but the truck reads as a flat profile cut-out over a speckled stubble strip. More than one frame leans on a default or a void, so this lands below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck. It has one hero in one material, one light from the east-southeast, and one slate-over-brown grade. The motif changes state in a way a reader could describe (loaded from the nose at 01, in section on 05, from the crane on 06, the bare floor on 08, a person beside it on 09). machine_qa band ratios run 0.83 to 1.59 with no strobe. 02 sits slightly outside: a flat side-on profile with a different grain, and the van's doors closed."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. 219 is from c3/c23 and 45 from c3. 89 is computed by days_to_year_end (Oct 3 to Dec 31, checked). 84/86/91/93 are from c27/c7, 100 from c9, and 7 is arm_open. 2807 is from c29, 3.5 and 2019 from c12/c11, and May 28th from c36. I re-read every quoted claim against tmp/src (kodiak_lane, kodiak_arm, kodiak_ikea, txdmv_av, txdmv_rules lines 314 to 319) and all are present. All five cited sources were fetched. Several phrasings are looser than their sources. (1) Caption line 3 says 'on 219 miles of Interstate 45', but c23 says 'primarily along Interstate 45', and slide 2 itself says 'mostly'. (2) The caption opens 'Kodiak AI scores itself at 93 percent', and frame 6 says 'doesn't yet call complete', both in the present tense. c7 is 'as of the end of August', and neither surface dates it, so a reader five weeks on takes 93 as today's number. (3) Frame 7 sets the forward-looking-statement disclaimer (c17) directly under 'Every readiness figure is Kodiak's own'. In both releases the disclaimer covers expectations such as closing the case by year end, not the historical 93, so the arrangement invites a reader to treat the 93 as disclaimed. (4) Frame 9's hook 'See one run unsafely?' is broader than c36's standard ('could result in serious bodily injury or death'). The source also adds that the department 'is unlikely to take administrative enforcement action in cases that do not meet this standard'. The dek restores the standard but the hook is what is read. No fabrication. It has more than the one loose phrasing the 7 descriptor allows."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (Kodiak plans to run driverless on I-45 by year end and grades its own safety case at 93), who (Kodiak AI, TxDMV), where (Lancaster hub, Dallas to Houston, IKEA's Baytown to Frisco route), the deadline (year end, 89 days) and an action (txmccs.txdmv.gov/truckstop). Two things are missing. No county is named, and nothing says whether Kodiak holds the TxDMV authorization frame 8 describes, which is the first question a reader asks after reading it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe ('Not closed yet.' over the lit open van), and frame 2 pays at once with the lane, length and shipper. The turn on 7 is declared and the close gives an action. The 93 is told three times (01 dek, 05, 06), so 06 or the cover's measure sentence could go without loss. Frame 8 arrives without a bridge from Kodiak's account to the state's terms."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain and on register. 'Not closed yet.', 'No fee. No expiry.' and 'See one run unsafely? Tell the state.' are good lines. It is honest about the company's self-grading without doom. There is one flat, machine-tell line, caption paragraph 4: 'The images show the 93 as a trailer loaded one stack per point', which narrates the art to the reader. The regional texture the storyboard planned (Blackland, post oak) reaches no string."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "The palette (slate, kraft, ember) and the open-van opening move are new. The subject matter is not. No. 34 on September 26th, seven days ago, was driverless trucks on the same Interstate 45 lane, with Kodiak and the Lancaster hub (its ledger places list Lancaster and Interstate 45). The storyboard itself says no. 34 spent three frames on cab interiors. This deck again puts the kit semi_truck on I-45 on four frames (02, 03, 04, 07), and frames 08 and 09 reprint no. 34's exact beats."
+  }
+ ],
+ "weighted_score": 6.51,
+ "hard_fails": [
+  "TOPIC REPEATED INSIDE THE 30 DAY WINDOW. Carousel no. 34 shipped on 2026-09-26 (ledger/carousel/topics.json) on docket item tx-2026-0188. Its topic reads: 'pays no fee and holds an authorization that does not expire. The City of Dallas asked the department to require crash history and the department answered that the statute does not allow it. Kodiak has named Dallas to Houston as its driverless launch lane'. Its angle ends 'where a Texan sends a concern'. Its keywords include Kodiak, Interstate 45, crash history, serious bodily injury and TxMCCS. This deck reprints that beat for beat, seven days later, on the same docket item. Frame 8 'No fee. No expiry.' plus crash history uses c29, c33, c34, c35 and c37, all docket_item tx-2026-0188. Frame 9 is the TxMCCS reporting route under 'serious bodily injury or death' (c36, tx-2026-0188). Caption paragraph 5 repeats all three. The cover and frame 2 also restate the Dallas to Houston lane naming that no. 34's topic already carried. The deck's lead docket item (tx-2026-0198) and its readiness-measure spine are genuinely new. Two of nine frames, a caption paragraph and the deck's only reader action are not. I could not read a dedupe log for this run: out/2026-10-03/tmp/g_dedupe.log does not exist, so no gate record shows this was weighed."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 8 and 9 and caption paragraph 5 around material no. 34 did not ship a week ago, such as the IKEA Baytown to Frisco leg (c20 to c24), the Permian record the long-haul case builds on (c14 to c16) and the next monthly readiness figure as the thing a reader can watch for. Then date the 93 as 'at the end of August' on the cover, frame 6 and the caption's first line, so the deck stops restating a dated self-grade as today's number.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The roofless van sits alone on a featureless brown tiled plane that fades into a grey band. There is no court dressing and no horizon, so the counting frame reads as an object in a void.",
+   "fix": "Raise the pitch so the horizon sits on the upper third behind the hook, and put the chassis warehouse with dock doors, two parked trailers and light poles in haze across it."
+  },
+  {
+   "slide": 3,
+   "problem": "At this crop the kit tractor reads as a primitive model: a blocky hood, a flat unlit black windscreen, no road film. A tree is clipped at the left edge.",
+   "fix": "Pull the chase camera back until the cab is about 60 percent of the frame width, with the lane and a fencerow behind. Give the glass an environment-reflective material, apply TXT.weather grime to the lower door and steps, and remove the clipped tree."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person stands well clear of the van on an empty court. The floor reads at her head, not her waist as the storyboard planned, and the van's interior is the only depth.",
+   "fix": "Move the camera to 1.2 m, 5 m off, and stand her against the ICC bumper beside the bare floor so the floor reads at her waist. Put the warehouse wall in haze behind her."
+  },
+  {
+   "slide": 1,
+   "problem": "The showstopper frame has none of the world its craft plan names. There is no warehouse, no prairie and no horizon, only an empty court running into grey, so the lit doorway has nothing to glow against.",
+   "fix": "Add the warehouse and the black Blackland horizon on the lower third behind the tractor, and darken the shelf cloud over it so the lit doorway is the frame's one light."
+  },
+  {
+   "slide": 8,
+   "problem": "The load face is identical untextured carton cubes on a bare court, and the doorway is the only built object in frame.",
+   "fix": "Give the carton_stack seeded lean and printed flute edges, and add the court's dock wall and a parked trailer edge in haze beyond the van's roofline."
+  },
+  {
+   "slide": 4,
+   "problem": "A stray yellow polygon lies on the shoulder at bottom right, a render artifact in an otherwise strong world frame.",
+   "fix": "Find and remove the stray ground decal or mesh placed at the lower right shoulder."
+  }
+ ]
+}

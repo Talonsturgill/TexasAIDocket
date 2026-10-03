@@ -1,0 +1,76 @@
+{
+ "round": 5,
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered in one world: a slate norther sky, haze, a concrete court, contact shadows. Slide 1 (the lit doorway against the slate shelf) and slide 4 (the road running to a hazed seam) come closest to a place at an hour. Several frames still lean on primitives and empty ground, which is below the 7 descriptor's 'one frame leans on a default'. Slide 3's tractor is a toy-like blocky hood and grille with a flat black windscreen, filling the frame. Slide 9's kit person is a crude figure standing on a featureless court plane. Slide 6's court is an untextured plane with two shipping containers floating behind the dek. Slide 4 has an unexplained yellow polygon lying in the lower-right verge. Slide 2's side-on truck reads flat, like a diagram over the grass."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One hero carries the deck: a white 53 ft van loaded from the nose, with ember load bars, in one material. One light, one grade and the slate sky run through all nine frames. The storyboard declares motif evolution (open at 1, section at 5, crane at 6, doorway at 8, beside a person at 9), and you can see it on the contact sheet as a filmstrip. Slide 2's flat side-on long lens over tall grass, and slide 4, which has no van, sit slightly outside. The turn to dark at 7 is declared."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "The round 4 repair holds. Slide 6 prints '93 places loaded. 7 places bare.' and cites c7 c8 c9, and figures.json arm_open = arm_target (c9) - arm_aug (c7). Slide 4's 89 is days_to_year_end, which checks out (October 4th to December 31st = 28+30+31). Every numeral on the slides and in the caption (93, 219, 45, 1,300, 750,000, four, 3.5 million, 2019, 84/86/91/93/100) traces to a claim or figures.json. The first comment's ID list is exactly the union of the slide cites (c2 c3 c7 c8 c9 c12 c17 c18 c20 c21 c22 c23 c24 c27 c38 c39), each placed under the right one of the three fetched pages. Slide 7 attributes every readiness figure to the company and quotes c17 verbatim. Three small looseness points. Slide 5's 'by month in 2026' flattens c27's 'through April'. The caption's 'scored itself' is a gloss on c7. Slide 3's 'for IKEA' rests on the page's context, because c21's quote doesn't contain the word."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened and where: Kodiak named I-45 Dallas to Houston, IKEA is the launch shipper on the Baytown to Frisco route, and the company calls its safety case 93 percent complete with a year-end target (slide 4, 89 days). 'Who decided' is a company, and no public body appears on any frame. Nothing tells the reader what to do next. The deck closes on a question put to Kodiak (slide 9 'How many here?'), and c36, the verified TxDMV Enforcement route for a concern about an automated vehicle, sits unused in claims.json. The stake for someone sharing I-45 with a driverless truck is never said outright, only implied by 'no one in the cab'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' over the open van earns the swipe, and slide 2 pays at once with the lane and the length. Slide 7 is a real turn ('Every readiness figure is Kodiak's own'). Slides 1, 5 and 6 all show the same 93, so slide 6 restates what 1 and 5 already said. Slide 3, the IKEA record, could be cut without loss. The question on slide 9 lands, but softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no house-rule breaks in the caption or the slides: no colons or semicolons, no em dashes, no banned words, contractions used. 'Kodiak AI scored itself at 93 percent' is a good plain line. Little of it is Texas-specific beyond the place names. The norther, the Blackland and the post oak country are in the storyboard, not the copy, so it reads like careful wire copy rather than a Texan who knows this road."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "No. 34, seven days earlier (09-26), was the same company, the same lane and the same truck hero. Its cover dek said 'Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026', and its slide 2 headline was '219 miles, Kodiak says'. This deck's slide 2 is '219 miles, mostly Interstate 45.' with 'no one in the cab' in the dek. The readiness measure, the IKEA post and the van-as-progress-bar device are new, and the opening move differs. A feed reader still sees the Kodiak I-45 truck twice in eight days. That is close to 'a re-skin of a recent deck', with a fresh device on top."
+  }
+ ],
+ "weighted_score": 7.03,
+ "weighted_score_working": "6.5*0.22=1.430 + 8.0*0.12=0.960 + 8.5*0.20=1.700 + 6.5*0.16=1.040 + 7.0*0.10=0.700 + 7.0*0.10=0.700 + 5.0*0.10=0.500 = 7.030",
+ "hard_fails": [],
+ "hard_fail_verification": "The round 4 hard fail is repaired. Slide 6 now cites c9, the claim carrying the 100 that the 7 is computed from. Machine QA has 0 fails and 12 warns. The two unmeasured rule-crossing warns, on slide 6 at y 439 and slide 8 at y 424, read clean by eye. No unfetched source, no placeholder, and no caption house-rule break. One lead, not a hard fail: the topic window. No. 34 (tx-2026-0188, TxDMV authorization) is a different docket item and the dedupe gate cleared it. But both decks rest on Kodiak's September 25th release, and no. 34 already printed this lane's naming and its 219 miles a week ago. A stricter reading of 'topic repeated inside the 30 day window' could call that a repeat. I am not calling it one, because this deck's subject, the safety case readiness measure, is distinct. I have charged it to variety instead.",
+ "ship": true,
+ "one_sentence_fix": "Don't pick a story that shares its company, its lane and its slide 2 headline figure with a deck shipped seven days earlier. If the readiness measure is the news, cut slide 3 (IKEA) and slide 6 (a third telling of 93), and spend those frames on c36's TxDMV Enforcement route, so a Texan on I-45 has something to do.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The tractor fills the frame and is a toy-like primitive: a blocky hood, a flat black windscreen and a box grille. It is the deck's most visible model, and it reads as CG at feed size.",
+   "fix": "Pull back to the planned medium three-quarter so the cab is under half the frame width, add road film and grime on the door and sill, and give the windscreen a sky reflection instead of flat black."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person is a crude figure standing on a featureless untextured court plane, and she reads as a cutout rather than a Texan at true scale.",
+   "fix": "Key the person from camera-side east light with a visible contact shadow, crop tighter so she and the van's rear frame own the frame, and give the court joints, oil stains and wear in the foreground."
+  },
+  {
+   "slide": 6,
+   "problem": "The crane view sits on an empty uniform court plane with two shipping containers floating behind the dek, and the seven bare places are a sliver nobody can count.",
+   "fix": "Drop the containers out of the dek's band, texture the court with joints and stains, and lower the crane angle so the bare oak places nearest the lens read as an area."
+  },
+  {
+   "slide": 4,
+   "problem": "An unexplained yellow polygon lies flat in the lower-right verge, and the dark verge is otherwise empty.",
+   "fix": "Remove the stray yellow mesh and fill the verge with the planned shoulder grass, lit from the sun's side."
+  }
+ ]
+}

@@ -2590,6 +2590,61 @@
     "hex": "#20232B",
     "note": "The deck's declared ground, a dark register deck."
    }
+  },
+  {
+   "date": "2026-10-03",
+   "carousel_no": 41,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-03/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. One norther world (stormFront sky, slate haze, low east sun at 11 degrees) declared once in assets/js/deck/2026-10-03-norther.js. One hero built in the chassis: the kit semi_truck with full sensors and a chassis dry_van (doors, 100 load places, decking beams in the accent, floor tapes, a near-wall cut), with delineators and raised pavement markers for the road.",
+   "structural_laws": [
+    "SEVEN PLACES OF A HUNDRED IN A 53 FT VAN IS A METRE OF FLOOR. From standing eye it is a sliver; raise the camera to 4.5 m or more, or drop the near wall, before asking a reader to see it.",
+    "AN EMISSIVE ACCENT IN SUN READS PINK. Albedo near the hex and an emissive at 0.7 brought the beams within the accent window.",
+    "INTO THE SUN THE WHITE TRUCK GOES BLACK. Shoot the turn from the lit side or behind the rig.",
+    "A FRONT THREE QUARTER OF THE CAB ON TWO FRAMES READS AS ONE DRAWING TO bespoke_check. Change the side of the truck the camera stands on, not the lens.",
+    "THE GROUND PATCH CHECK READS THE BAND AT A QUARTER OF THE HEIGHT. A long lens with an empty sky there fails it; tilt down until the horizon and the hero sit in that band."
+   ],
+   "techniques": [
+    "the open van's rear three quarter on the court at 4.7 m eye, the load face with two accent beams and the bare oak at the doors",
+    "a long lens across October prairie to the truck side on along the highway, the type on the near grass",
+    "a close crop of the cab's roof sensor bar and mirror pod from the next lane",
+    "the view over the cab's roof down the southbound lane, 89 delineators 4 m apart ending short of the haze",
+    "the van in section side on, the load from the nose, pale tapes at the earlier readings and an accent dimension line from the load face to the doors",
+    "the roofless van from a crane off its rear quarter, near wall dropped, both files of stacks and the bare places nearest",
+    "the closed rear doors running away up the lane, the flank raked by the low sun",
+    "the open rear square on from 5 m up, the bare oak band between sill and load face",
+    "a Texan at the van's rear corner on the court, the doors open behind her"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     33.4,
+     21.0,
+     20.0,
+     27.3,
+     35.8,
+     35.2,
+     21.3,
+     30.2,
+     32.2
+    ],
+    "deck_median_L": 30.2,
+    "max_adjacent_delta": 13.9,
+    "mean_adjacent_delta": 6.82,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Frame 7 is the declared value cut, the deck's darkest, at the turn."
+   },
+   "accent": {
+    "hex": "#B4664F",
+    "name": "dusk_ember, the decking beams across the load face",
+    "frames_above_floor": [
+     1,
+     8,
+     9
+    ],
+    "note": "Only ever the beams at the load face and the dimension line for the open places on frame 5."
+   },
+   "ground": {
+    "hex": "#1C2027",
+    "note": "The deck's declared ground, a dark register deck."
+   }
   }
  ]
 }

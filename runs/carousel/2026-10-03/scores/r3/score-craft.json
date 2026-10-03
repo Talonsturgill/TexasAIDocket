@@ -1,0 +1,86 @@
+{
+ "round": 3,
+ "lens": "craft",
+ "deck": "carousel no. 41, 2026-10-03",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "This round fixed real things. Frame 3 is now a medium three-quarter, so the sensor bar and roof fairing read against a horizon and sky. Frame 9's flank is warm at the rear and the warehouse sits behind it, which clears round 2's cold blue-grey van. Frame 6's court runs on in joints to the containers instead of stopping at a plinth lip. Frames 4 and 7 still pass THE SHOWSTOPPER TEST best. Frame 4 has haze swallowing distant traffic and trees, posts diminishing, and the lidar housing at the bottom edge. Frame 7 has the low sun raking the van flank against a dark sky. Two defects the brief lists as repaired are still in the pixels. (1) Frame 4 still has the flat yellow-olive polygon on the right verge at display x 1395 to 1590, y 1560 to 1780 (display is 1600x2000). All three round 2 judges named that shape, and the rig shadow change did not touch it. (2) Frame 8's serrated brown band still runs down the left carton column at display x 460 to 590, y 860 to 1490, after the move to a 4096 shadow map. No tyres show under the floor, so the van stands on its lamp boxes, two posts and the ICC bar. Frame 3's tractor is better framed and still a primitive model. The hood is a smooth shell, the windscreen a flat unlit black slab, the headlamps half-discs and the mirror pods blobs. It fills about 70 percent of the frame, so it remains the zoom subject. I can't find the ranch fence the brief describes. Left of the lane is a featureless dark plane. Frame 2 is unchanged: an orthographic, evenly lit side elevation over a speckle band at display y 590 to 660, in a different hand from the PBR frames. Frame 5 is still a toy cutaway. Its carton tiles repeat identically, its tapes are pale blocks hanging below the sill over the tyres (display x 1245 to 1365, y 1125 to 1170), and vertical strips sit at the left edge. The hub frames (1, 5, 6, 8, 9) put a clean jointed court under an undifferentiated slate murk, with no visible sun, no dirt at feed size and no horizon feature on 6 or 8. On frame 7 the dek's last line runs across the trailer's top edge at display y 750 to 790, so the type is not in quiet there. The 7 descriptor allows one frame on a primitive or an artifact. This deck has at least four: 2, 3, 4 and 8, with 5 close. Nothing is a template, a float in a flat gradient or type on a plate, so it sits well above 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "On the contact sheet this is one deck. It has one hero in one material: the white 53 ft van with kraft stacks and the ember load bar on every hub frame (1, 5, 6, 8, 9). It also has one slate sky over a warm brown ground and one grade. The motif changes state in reader order, which a reader could describe unprompted: open at the hub on 1, running on 2 to 4, in section on 5, roofless on 6, the closed doors at the turn on 7, the load face on 8 and a person beside it on 9. Frame 9's warm flank now matches 1 and 7, which removes one of round 2's two outliers. Frame 2's flat profile still sits outside the deck's rendering hand. The world alternates hub, road, hub, road, hub rather than moving one way. machine_qa band ratios run from 0.83 (frame 2) to 1.53 (frame 9), with no strobe, and frame 7 is the declared dark cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral on a slide and in the caption traces. 219 traces to c3 and c23, 45 to c3, and 84, 86 and 91 to c27. 93 traces to c7 and c26, and 100 to c9. 7 is arm_open = 100 - 93. 89 is days_to_year_end, and I checked 28 + 30 + 31. 1,300 traces to c21, 750,000 to c22, and 3.5 and 2019 to c12. The new frame 3 dek stays inside c21 and c22 and keeps 'with a safety observer aboard'. The cover now says 'first driverless long-haul lane', as c3's source does, which clears round 2's main lean. All three sources are Kodiak's own pages, the only primary source for a self-graded measure, and first_comment lists all three. Leans remain. (1) The cover's 'called 93 percent of it complete' drops 'materially' and 'claims and evidence', which frame 5 and the caption restore. (2) Frame 4's 'One post along the road ahead for each day left' can't be checked against the picture, because the posts merge into the vanishing point. (3) Frame 3 and the caption now print c22's 750,000 IKEA miles. The IKEA route overlaps the lane, so the caption's unscoped 'How many ran between Dallas and Houston?' sits close to a near-answer the deck itself carries. Frame 9 correctly scopes its question to 'Its release'. (4) 'It isn't a safety rating' is an inference from c8. None of these is fabricated, and none changes a fact a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what is planned (no one in the cab on I-45 by year end, frames 1, 2 and 4) and who is in it (Kodiak AI, with IKEA on its Baytown to Frisco route, frame 2). They learn the gate (a safety case the company grades itself, 84 to 93, frames 5 to 7) and who speaks for it (Don Burnette, frame 8). The deadline is concrete (89 days, frame 4). No public body appears on any frame or in the caption, no county is named, and the reader is given nothing to do or watch for, not even when the next monthly readiness figure is due. The 10 descriptor asks for the body and the next step, and both are missing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' over the open van earns the swipe, and frame 2 pays at once with 219 miles, IKEA and no one in the cab. Frame 3's IKEA record now sets up frame 9's question, which is a better arc than round 2's observer line. Frame 7 is a real, declared turn. The 93 of 100 is still told three times (1, 5, 6), so 6 could go without loss. Frame 8 puts the company's reassurance immediately before the close with nothing set against it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is plain, fair and unhyped. 'Not closed yet.', 'Every readiness figure is Kodiak's own.' and 'More than 3.5 million miles. How many here?' are good lines. I found no colons, semicolons, dashes, banned words, first person, years on dates, or 'And' or 'But' openers in the slide strings or the caption. There are flat spots. Frame 1's 'This van is loaded to that measure, one stack per point' and frame 6's dek narrate the artwork. Frame 7 ('forward looking statements') and frame 8 ('final engineering verification and validation') carry filing jargon. The Blackland and post oak ground in the storyboard reaches no string, so the copy's Texas texture is city names only."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "This round removed two of round 2's repeats. The cover kicker is now 'Kodiak AI's own measure', not no. 34's 'Interstate 45, Dallas to Houston', and frame 3 no longer reprints no. 34's 'observer never touched the wheel' line. The readiness series, the van-as-gauge device and the kraft-and-ember palette are new. Three familiar moves remain. It is the same company and lane as carousel no. 34, seven days earlier (topics.json, 2026-09-26). Frame 2's '219 miles' lead echoes no. 34's frame 2. The hero is again a sensor-roofed Class 8 tractor on I-45, on frames 2, 3, 4 and 7. The 10 descriptor wants all four axes to diverge, and the opening move and the hero class do not."
+  }
+ ],
+ "weighted_score": 6.83,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is the cap, and I found no hard fail, so the deck ships at its score. The shortfall against the 8.0 top rung (the round 2 rung was 7.7) has to be named in the email. machine_qa.json has 0 fails. It has 13 warns: 9 are SKY IN FRAME verdicts, and 4 are rules crossing the dek glyph band on frames 6 and 8 that it couldn't measure. I judged those by eye on the full renders and both deks read cleanly. Leads I weighed and did not fail. (a) The 30 day window against no. 34: the docket item (0198 vs 0188), the decision and the instrument all differ, the opening repeats round 2 named are gone, and I charged the rest to variety. (b) The caption's 'on 219 miles, mostly Interstate 45, from Dallas to Houston' is a comma-fenced qualifier. I read it as an appositive naming the road, not a hedge on the claim, but a judge holding the comma construction rule strictly could call it a caption house-rule break. (c) Every claim the brief made about this round's repairs is true in the pixels except two: frame 4's verge polygon and frame 8's carton serration are both still there.",
+ "one_sentence_fix": "Before a round's brief calls a frame repaired, crop the named defect region from the new PNG at full size beside the previous round's crop and confirm it changed. Frame 4's verge polygon and frame 8's carton serration have survived three rounds of briefs that said they were fixed, and each costs the art score a frame that would otherwise sit near the 7.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The serrated brown band still runs down the left carton column at display x 460 to 590, y 860 to 1490, after the 4096 shadow map and the tighter frustum. A resolution change that leaves it untouched says it is not shadow-map aliasing. No tyres show under the floor, so the van stands on lamp boxes, two posts and the ICC bar.",
+   "fix": "Re-render this frame with the sun's castShadow off. If the band survives, it is z-fighting between the carton side faces and the van's inner liner, or the flute-edge texture, so inset the carton_stack 2 cm from the wall. Then move the camera back about 2 m and lower it 0.3 m so the rear tandem and its contact shadow sit under the floor line."
+  },
+  {
+   "slide": 4,
+   "problem": "The flat yellow-olive quadrilateral is still on the right verge at display x 1395 to 1590, y 1560 to 1780, in the deck's best world frame. Removing the rig's cast on that shoulder did not remove it, so it is a separate mesh or decal.",
+   "fix": "Find the object in that screen region by raycasting from those pixels, and delete or hide it. Then scatter the shoulder bunchgrass already used on frame 2 along the right verge, so the ground carries texture out to the posts."
+  },
+  {
+   "slide": 3,
+   "problem": "The recomposition helped, but the kit tractor still fills about 70 percent of the frame. Its hood is a smooth shell with no seams or road film, its windscreen a flat unlit black slab, its headlamps half-discs and its mirror pods blobs. The ranch fence the brief describes is not visible anywhere, and left of the lane is a featureless dark plane.",
+   "fix": "Give the windscreen a glass material that reflects the slate sky and horizon via the IBL. Put TXT.weather road film on the lower door, steps and bumper. Swing the camera about 10 degrees further toward the side so the hood foreshortens and the fence posts enter the left third against the horizon."
+  },
+  {
+   "slide": 2,
+   "problem": "The truck is an evenly lit orthographic side elevation, close to a cutout, over a speckle-noise band (display y 590 to 660) where the far field should be. It reads as a different hand from every PBR frame.",
+   "fix": "Swing the long lens 15 to 20 degrees off perpendicular so the cab's front face and the low sun's rake on the east flank show, with a cast on the shoulder. Replace the speckle band with receding stubble rows that fade into the haze."
+  },
+  {
+   "slide": 5,
+   "problem": "It reads as a toy cutaway. The carton tiles repeat identically along the whole length. The month tapes are pale blocks hanging below the sill over the tyres (display x 1245 to 1365, y 1125 to 1170), not tapes on the floor. Stray vertical strips sit at the left edge.",
+   "fix": "Lay the four tapes flat on the oak floor inside the section and end the leaders at the sill. Seed per-stack lean and flute variation. Frame the tractor's rear fully in, or fully out, at the left edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Behind the hook the court dissolves into a murky dark band with no horizon feature. The new containers render soft and smeared, and the Blackland clay doesn't read at feed size, so the counting frame still floats under a void.",
+   "fix": "Lower the crane pitch until the warehouse used on frames 1 and 9 sits on the upper third behind the hook. Bring the containers into the same focus as the van."
+  }
+ ]
+}

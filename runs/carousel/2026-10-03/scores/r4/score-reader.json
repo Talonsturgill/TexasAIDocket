@@ -1,0 +1,77 @@
+{
+ "round": 4,
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Frame 01 is the deck's best image. The open van stands on jointed concrete with the warehouse in haze and a horizon on the lower third, and the lit doorway is the focal point. Frames 05 and 07 also hold. Frame 05 is a near-parallel section, and its FEB 84 to AUG 93 tapes sit where the scale puts them (84 percent of the interior is about x=1264 at 1600 px wide, and the tape is there). Frame 07's flank is rim-lit with real contact shadows. More than one frame falls short of the 7 descriptor's 'one frame leans on a default'. Frame 03 is a close crop on the kit tractor, where the hood is a box, the windshield is a flat black slab and the grille is a striped rectangle, so the camera sits closest to the most primitive model in the deck. Frame 04 has a yellow-green polygon on the right verge (about x 1400 to 1600, y 1560 to 1780 at 1600 wide), which is a render artifact, and the verge around it is bare. Frame 06 sits on a flat, untextured brown plane with a hazed teal container behind the dek, so it reads as a slab in a void and is no place at any hour. In frame 08 a fibrous brown hair texture runs up the van's left inner wall behind the stacks. Frame 09's person is a mannequin. The slate stormFront sky is the same flat grey in every frame and never reads as a photograph of a place."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "In the contact sheet the nine frames read as one filmstrip. One white 53 ft van in one material, one slate world, one grade and one low east light run through all of them. The spine can be told without prompting: the van is loaded to Kodiak's measure. It appears loaded on 01, in section with tapes on 05, counted from above on 06, empty at the doors on 08 and beside a person on 09. Three continuity devices are named in the storyboard and two visibly work, the load as a progress motif and the van seen from five sides at the hub. Frame 04 sits slightly outside because the van is absent and only a sliver of the roof fairing shows at the bottom edge. Frame 07's cut to the darkest frame is declared as the turn."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces. 93, 84, 86 and 91 come from c7 and c27. 100 is c9. 7 is arm_open, computed as 100 minus 93. 219 is c23 and c3. 1,300 and 750,000 are c21 and c22. 89 is days_to_year_end, which checks out by hand (28 days left in October, plus 30 and 31). 3.5 million and 2019 are c12 and c11. Every surface attributes ('Kodiak says', 'Kodiak's own measure'), and the turn on frame 07 says so outright. The three pages in the first comment are the three fetched URLs in claims.json. Two looser points. Frame 01's dek, 'called 93 percent of it complete', drops 'claims and evidence' and 'materially', although the caption and frame 05 restore both. Frame 09's 'How many here?' sits a little uneasily beside frame 03's 750,000 IKEA miles, because IKEA's route contains the lane. The frame's own scoping to 'Its release doesn't say' keeps it true."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "Read once in the feed, a Texan learns that Kodiak plans trucks with no one in the cab on the 219 miles of I-45 between Dallas and Houston by year end. IKEA is the shipper, and the 93 percent is the company's self-measure of its safety case, not a safety rating. The caption's second paragraph says that last part well. Two things are missing. The deck names no public body: nothing says whether the state must approve this or checks it. It also gives the reader nothing to do. Frame 07 ends on 'Every readiness figure is Kodiak's own', which raises the obvious question of who else looks at it, and no frame answers it. The answers are already verified in claims.json: c33 (TxDMV authorization is required since May 28th), c35 (it does not expire), c37 (TxDMV says the statute doesn't let it require crash history) and c36 (the Enforcement Division reporting route). The storyboard's own story paragraph uses all four, and the deck cuts them. No county is named either. Lancaster appears in the storyboard and not on a frame. That leaves the deck between the 7 ('one stake stated generally') and the 4."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover 'Not closed yet.' over an open van earns the swipe. Frame 02 pays at once with the lane, its length and its shipper. Frame 04's 89 days adds a clock, and frame 07 is a real turn. The close is a question. 93 is the headline content of 01, 05 and 06, and 01's dek already says 'one stack per point', so 06 could go without much loss. Frame 08 is a paraphrased CEO line that slows the run into the close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The voice is clean, measured and honest about the self-grading without sneering. 'Not closed yet.', 'The doors are 100.', 'Every readiness figure is Kodiak's own.' and 'It isn't a safety rating.' are good lines. A few lines are flat. 'This van is loaded to that measure, one stack per point.' explains the metaphor rather than trusting it. Frame 08's dek reads in press-release register. The regional specificity stops at Baytown, Frisco and 'Southbound, Interstate 45'. Nothing on any frame shows knowledge of the corridor that only someone who drives it would have."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Seven days earlier, no. 34 (2026-09-26) put Kodiak's Dallas to Houston lane on its cover ('Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026') and '219 miles, Kodiak says' on frame 2. This deck's frame 01 dek opens on the same lane-naming fact, and its frame 02 hook is '219 miles, mostly Interstate 45.' The docket item and the angle differ: tx-2026-0198 and the safety case here, tx-2026-0188 and the TxDMV authorization there. run_state records dedupe at 0.50 against no. 34, read and cleared, so this is not a hard fail. Even so, a feed reader sees the same company, lane, mileage and year-end promise twice in a week. The structure, one hero object carried through every frame, is also the move nos. 39 and 40 shipped. The slate stormFront palette is new against the last four decks."
+  }
+ ],
+ "weighted_score": 6.79,
+ "weighted_score_arithmetic": "0.22*6.2 + 0.12*8.0 + 0.20*7.8 + 0.16*6.0 + 0.10*7.0 + 0.10*7.0 + 0.10*5.5 = 1.364 + 0.960 + 1.560 + 0.960 + 0.700 + 0.700 + 0.550 = 6.794",
+ "hard_fails": [],
+ "hard_fail_review": "The round 3 hard fail is repaired. The caption now reads 'on the 219 mile leg from Dallas to Houston. It expects both by year end. Most of the leg is Interstate 45.' The comma pair is gone, and nothing replaces it. The caption's two remaining commas each set off a trailing phrase ('..., with a safety observer aboard.' and '..., concentrated on final engineering verification and validation.'). Neither comes after a coordinating conjunction or a relative pronoun, and neither fences off a hedge. The caption has no colon, semicolon, dash or emoji, no sentence opening with And or But, and none of the banned words (gap, matters, pattern). It has no first person and no year on a date in the post's own year. I checked the other hard fails one by one. Every numeral traces to a claim or to figures.json. machine_qa.json reports 0 fails and 13 warns. The warns are the sky verdict and three 'judge by eye' rule crossings on frames 06 and 08, and by eye both deks read clean. All three first-comment sources appear in claims.json, retrieved 2026-10-03. No frame is a placeholder. On the 30-day topic window, the dedupe gate cleared it at 0.50 against no. 34, and the docket item and decision differ, so I charge it under variety and do not list it as a hard fail. I found no other hard fail.",
+ "ship": true,
+ "one_sentence_fix": "Spend frame 08 or frame 09's dek on what the claims file already verified about the state: TxDMV authorization required (c33) that never expires (c35), a statute that won't let TxDMV require crash history (c37), and the Enforcement Division route for a concern (c36). That way, the Texan told on frame 07 that every figure is Kodiak's own learns who else is looking and what to do, instead of reading a CEO paraphrase.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "A close crop on the kit tractor. The camera is at its nearest to the most primitive model in the deck: the hood is a box, the windshield a flat black slab and the grille a striped rectangle, so the frame reads as a CG primitive at full size.",
+   "fix": "Pull the chase camera back to 30 to 40 m on a longer lens, so the whole rig sits at true scale in its lane with the verge and cedar elms behind it, and let the frame crop the van's tail rather than leaning on the hood."
+  },
+  {
+   "slide": 8,
+   "problem": "A fibrous brown hair texture runs up the van's left inner wall behind the stacks (about x 460 to 590, y 850 to 1490 at 1600 wide). The ground scatter appears to be penetrating the trailer, so the white liner reads as fur.",
+   "fix": "Add the van's footprint to the scatter's avoid rect (or drop the scatter near the van) so the inner wall renders as the white scuff liner."
+  },
+  {
+   "slide": 4,
+   "problem": "A yellow-green polygon sits on the right verge (about x 1400 to 1600, y 1560 to 1780 at 1600 wide), a render artifact. The verge around it is a bare dark plane, and the hood reads as an unexplained bump at the bottom edge.",
+   "fix": "Remove the stray plane or decal, scatter Blackland grass to the right edge, and lower the camera about half a metre so the roof fairing and lidar housing read as the truck's own nose across the bottom edge."
+  },
+  {
+   "slide": 6,
+   "problem": "The crane shot sits on a flat, untextured brown plane with a blurred band for a horizon, and a hazed teal container hangs behind the dek. It reads as a slab in a void, not a truck court.",
+   "fix": "Give the court the frame 01 concrete (TXT.ground with joints and oil stains), drop the teal container from behind the type, and bring the warehouse into the upper third so the frame has a place and a horizon."
+  }
+ ],
+ "notes_for_panel": "Reader-lens observations that move no score. In the render the body font draws apostrophes curly ('company’s', 'didn’t'), while slides/slide-07.html and copy.json carry straight ones. The source is clean, and whether this is the body font's glyph or a typesetting conversion in txtype.js is worth one look against the 'straight quotes only' rule. The storyboard says of the 3.5 million miles that 'The deck doesn't print them', but frame 09 does print them, scoped correctly. Paths read: /home/user/TexasAIDocket/out/2026-10-03/caption.txt, copy.json, claims.json, figures.json, first_comment.txt, storyboard.md, render/machine_qa.json, render/slide-01.png to slide-09.png, final/contact_sheet.png, final/thumbs/slide-05-thumb.png, slides/slide-07.html, run_state.json; /home/user/TexasAIDocket/ledger/carousel/topics.json; /home/user/TexasAIDocket/runs/carousel/2026-09-26/copy.json. I couldn't locate the r1 to r3 score cards under scores/ without a directory listing, so this card was scored without them."
+}

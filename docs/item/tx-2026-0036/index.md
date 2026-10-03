@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · That the county is out of the plate reader contract is unconfirmed this time. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote was found to read instead.
 - 2026-10-01 · That the county is out of the plate reader contract is still unconfirmed. Both published accounts of the vote sit on sites that bar automated readers, and no county record of the vote has been posted to read instead.
 - 2026-10-02 · That Guadalupe County has left its plate reader contract is still unconfirmed. Both published accounts bar automated readers and no county record of the vote has been posted.
+- 2026-10-03 · Guadalupe County's exit from its plate reader contract is still unconfirmed. Both published accounts bar automated readers, and the county's agenda page carries no record of the vote.
 
 ## Evidence
 

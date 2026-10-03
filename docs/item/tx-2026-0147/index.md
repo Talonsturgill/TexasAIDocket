@@ -1,6 +1,6 @@
-# El Paso City Council approves two plate reader items as revised, with the amendment text unpublished
+# El Paso City Council orders Flock plate reader cameras off city property and bars new contracts without a further vote
 
-The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting. The council's own record marks each one approved as revised. The amendments were made from the floor and their text is not published. The minutes are marked final and are not posted yet. What the revisions changed is not on a record a reader can reach today. As filed, the first item directed the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware went with it, whoever owned the equipment. As filed, the second barred the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gave the City Attorney 30 days to draft a resolution carrying that out. Whether those terms survived the amendments is unconfirmed. El Paso sits outside the ERCOT region.
+The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting. The published minutes now carry what each amendment changed. The first directs the City Manager to remove every Flock Safety fixed automated license plate reader camera and its hardware from city property and right of way. It sets 60 days, whoever owns the equipment. An amendment adopted without dissent lets the city bag or cover any camera it can't remove in time, for 30 more days. After that all of the hardware must come down. The second directs the City Manager not to enter, renew or extend any contract for fixed networked plate reader cameras or similar technology unless the council directs otherwise later. An amendment adds that such a direction follows a proposal from the City Manager, the police department or a member of the council. That amendment split the council evenly and the mayor broke the tie. The City Attorney has 30 days to bring back a resolution carrying out the second item. El Paso sits outside the ERCOT region.
 
 - Topic: surveillance-and-policing
 - Decided by: El Paso City Council (city)
@@ -11,7 +11,7 @@ The El Paso City Council took up two items filed by members of the council at it
 - Public access: Write to the decider
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-03
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · Both plate reader items remain approved as revised. The floor amendments are still unpublished, so what the council changed before voting is still not on the public record.
 - 2026-09-27 · The council's approval of both plate reader items still stands, and the text of the amendment is still unpublished.
 - 2026-09-30 · Both plate reader approvals still stand as the council voted them, and the amended text has still not been published.
+- 2026-10-03 · The council's minutes are now published and carry both amendments. Cameras the city can't remove in time may be covered for a further period before they come down. A later contract needs a proposal from the City Manager, the police department or a council member. The mayor broke a tie on that second amendment.
 
 ## Evidence
 
@@ -72,9 +73,45 @@ Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?I
 
 Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-### The page states that the written minutes are not yet available.
+### The council's meeting page now links the published minutes.
 
-> Published minutes: Not available
+> Published minutes: 09-15-2026 Regular City Council Meeting Minutes
 
 Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
+
+### The amendment to the removal item allows covered cameras for 30 more days if removal can't be finished in time.
+
+> If full removal of all Flock hardware is not possible within 60 days, enclosing the remaining cameras and all accessory hardware (with the exception of poles affixed to the ground) within fully opaque bags or covers that fully restrict their use is an acceptable interim alternative for an additional period of 30 days, after which all Flock hardware must be fully removed.
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
+
+### The removal item as amended carried without dissent.
+
+> Motion made by Representative Canales, seconded by Representative Limón, and unanimously carried to DIRECT the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
+
+### The amendment to the contract item names who may bring a later proposal.
+
+> following a proposal or recommendation brought forward by the City Manager, the El Paso Police Department, or a member of the City Council
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
+
+### The council split evenly on that amendment.
+
+> AYES: Representatives Chávez, Boyar Trejo, Niño, and Fierro NAYS: Representatives Acevedo, Maldonado-Rocha, Limón, and Canales
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
+
+### The mayor broke the tie.
+
+> Mayor Johnson broke the tie by voting
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
+
+### The contract item as amended carried without dissent.
+
+> Motion made by Representative Canales, seconded by Representative Limón, and unanimously carried to DIRECT the City Manager to refrain from entering into, executing, renewing, or extending any contract
+
+Source (primary_official): https://elpasotexas.legistar.com/View.ashx?M=M&ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2
 

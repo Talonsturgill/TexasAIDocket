@@ -1,0 +1,166 @@
+{
+ "date": "2026-10-03",
+ "_note": "Every count, span and ratio the deck states or draws, with the claim it was quoted from or the code that computed it. The drawn counts (93 stacks and the bare places on frames 1, 6, 8 and 9, the four tapes and the bracket on frame 5, the 89 posts on frame 4) are set from figures.json and asserted in each frame's code.",
+ "aggregates": [
+  {
+   "phrase": "45 from Dallas",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c3",
+   "quote": "219 miles apart along Interstate 45",
+   "note": "the interstate's own number, quoted, never computed"
+  },
+  {
+   "phrase": "45 from Dallas",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c3",
+   "quote": "219 miles apart along Interstate 45",
+   "note": "the interstate's own number, quoted, never computed"
+  },
+  {
+   "phrase": "219 miles",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 219,
+   "quoted_from": "c23",
+   "quote": "The initial driver-out leg will cover 219 miles",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "219 miles",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 219,
+   "quoted_from": "c23",
+   "quote": "The initial driver-out leg will cover 219 miles",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "89 days",
+   "slide": "slide-04.html",
+   "kind": "duration",
+   "value": 89,
+   "from_date": "2026-10-03",
+   "to_date": "2026-12-31",
+   "computed_by": "out/2026-10-03/compute.py days_to_year_end, date(2026, 12, 31) minus the run date 2026-10-03, the year end the company names in c2 and c9, giving 89"
+  },
+  {
+   "phrase": "93 places",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 93,
+   "quoted_from": "c7",
+   "quote": "stood at 93%",
+   "note": "one place per percentage point of the company's own measure, the measure quoted, never computed"
+  },
+  {
+   "phrase": "3.5 million autonomous miles",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3.5,
+   "quoted_from": "c12",
+   "quote": "the company has driven more than 3.5 million autonomous miles",
+   "note": "the source's own figure, company-wide, quoted, never computed"
+  },
+  {
+   "phrase": "3.5 million miles",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 3.5,
+   "quoted_from": "c12",
+   "quote": "the company has driven more than 3.5 million autonomous miles",
+   "note": "the source's own figure, company-wide, quoted, never computed"
+  },
+  {
+   "phrase": "3.5 million autonomous miles",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 3.5,
+   "quoted_from": "c12",
+   "quote": "the company has driven more than 3.5 million autonomous miles",
+   "note": "the source's own figure, company-wide, quoted, never computed"
+  },
+  {
+   "phrase": "1,300 loads",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 1300,
+   "quoted_from": "c21",
+   "quote": "Kodiak has delivered more than 1,300 loads",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "1,300 loads",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 1300,
+   "quoted_from": "c21",
+   "quote": "Kodiak has delivered more than 1,300 loads",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "750,000 autonomous miles",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 750000,
+   "quoted_from": "c22",
+   "quote": "logged more than 750,000 miles while autonomously carrying IKEA goods with a safety observer aboard",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "750,000 autonomous miles",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 750000,
+   "quoted_from": "c22",
+   "quote": "logged more than 750,000 miles while autonomously carrying IKEA goods with a safety observer aboard",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "four years",
+   "slide": "slide-03.html",
+   "kind": "duration",
+   "value": 4,
+   "quoted_from": "c21",
+   "quote": "Over the last four years",
+   "note": "the source's own span, quoted, never computed"
+  },
+  {
+   "phrase": "Four years",
+   "slide": "slide-03.html",
+   "kind": "duration",
+   "value": 4,
+   "quoted_from": "c21",
+   "quote": "Over the last four years",
+   "note": "the source's own span, quoted, never computed"
+  },
+  {
+   "phrase": "four years",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 4,
+   "quoted_from": "c21",
+   "quote": "Over the last four years",
+   "note": "the source's own span, quoted, never computed"
+  },
+  {
+   "phrase": "219 mile leg from Dallas",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 219,
+   "quoted_from": "c23",
+   "quote": "The initial driver-out leg will cover 219 miles",
+   "note": "the source's own figure, quoted, never computed"
+  },
+  {
+   "phrase": "7 places",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 7,
+   "computed_by": "out/2026-10-03/compute.py arm_open, arm_target 100 from c9 minus arm_aug 93 from c7, giving 7"
+  }
+ ]
+}

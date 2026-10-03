@@ -1,0 +1,208 @@
+{
+ "weighted_score": 6.966,
+ "judges": [
+  6.956,
+  7.07,
+  6.79
+ ],
+ "spread": 0.28,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.4,
+   "weight": 0.22,
+   "judges": [
+    6.4,
+    6.4,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.8,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    7.8,
+    8.4,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.0,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.9,
+    7.3,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    4.8,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A stray flat yellow-green polygon lies on the right shoulder at about x 1880 to 2160, y 2100 to 2400 (original px). It is a render artifact, and the two pairs of lollipop trees read as dropped-in cutouts.",
+     "fix": "Delete or re-texture the stray ground patch mesh, and replace the two tree pairs with TXT.scatter fencerow trees set back in the haze at the horizon."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat yellow-green polygon artifact at lower right (about x1400 to 1600, y1560 to 1780) on an otherwise strong frame.",
+     "fix": "Find and delete or re-material the stray ground or sign mesh at that shoulder position, and re-render."
+    },
+    {
+     "judge": 3,
+     "problem": "A yellow-green polygon sits on the right verge (about x 1400 to 1600, y 1560 to 1780 at 1600 wide), a render artifact. The verge around it is a bare dark plane, and the hood reads as an unexplained bump at the bottom edge.",
+     "fix": "Remove the stray plane or decal, scatter Blackland grass to the right edge, and lower the camera about half a metre so the roof fairing and lidar housing read as the truck's own nose across the bottom edge."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A dark streaked or hatched band runs down the left carton column at about x 620 to 800, y 1160 to 2010 (original px), which looks like shadow acne or a texture stretch. The cartons read as flat untextured blocks.",
+     "fix": "Raise the sun light's shadow normalBias/bias on the VSM map until the streaks clear, and add a small bevel and flute-edge normal to carton_stack."
+    },
+    {
+     "judge": 2,
+     "problem": "The left carton column carries a smeared, stretched texture strip (about x460 to 590). The dek straddles the hard horizon value step, and the top third is dead grey sky with a ghost pole behind the hook.",
+     "fix": "Fix the UVs and the texture repeat on the left stack's exposed side faces, or cull that face. Raise the camera to about 2.4 m and tilt down, so the van's roof edge and the court fill the type band and the horizon step drops below the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "A fibrous brown hair texture runs up the van's left inner wall behind the stacks (about x 460 to 590, y 850 to 1490 at 1600 wide). The ground scatter appears to be penetrating the trailer, so the white liner reads as fur.",
+     "fix": "Add the van's footprint to the scatter's avoid rect (or drop the scatter near the van) so the inner wall renders as the white scuff liner."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The close crop puts the primitive kit tractor at full size: a boxy hood, a flat slatted grille, a dead black windscreen with no reflection, and a flat gradient sky behind it. It is the clearest 'primitive model' charge in the deck.",
+     "fix": "Pull the chase camera back to a medium three quarter so the cab is under about 40 percent of the frame width, and give the windscreen and side glass an env-mapped glass material that reflects the sky."
+    },
+    {
+     "judge": 3,
+     "problem": "A close crop on the kit tractor. The camera is at its nearest to the most primitive model in the deck: the hood is a box, the windshield a flat black slab and the grille a striped rectangle, so the frame reads as a CG primitive at full size.",
+     "fix": "Pull the chase camera back to 30 to 40 m on a longer lens, so the whole rig sits at true scale in its lane with the verge and cedar elms behind it, and let the frame crop the van's tail rather than leaning on the hood."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The bottom 40 percent of the frame is an empty brown apron with nothing on it, and the van is a flat side elevation that reads as a toy cutaway. It is a dead zone under the deck's data frame.",
+     "fix": "Lower the camera so the apron foreshortens and the van sits on the lower third, and add joint stains, tyre scuffs and a darker contact under both tandems so the labels hang over a worked surface."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat orthographic section on an empty apron under a featureless gradient sky. The tractor stub is cut at the left edge, and the three floor tapes render as pale tabs hanging below the floor line, so they read as tags rather than tape on the oak floor.",
+     "fix": "Move the tapes up onto the visible oak floor inside the section as flat caliche strips at the 84, 86 and 91 positions. Drop the camera to about 1.2 m and swing it 8 to 10 degrees off square, so the floor plane and the tapes read in perspective, while the long lens keeps the scale near-parallel. Let the tractor either run fully off the left edge or come fully into frame."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The dek sits on a scrim that ghosts the green and red containers behind it (a plate, flagged three times by machine_qa). The seven bare places at the doors are a sliver and hard to count at 432 px.",
+     "fix": "Move the two containers out of the type band to the frame's right edge below y about 900 display, and remove the scrim. Swing the crane so the open-door end and its seven bare oak places sit nearest the lens, at a third of the frame width."
+    },
+    {
+     "judge": 3,
+     "problem": "The crane shot sits on a flat, untextured brown plane with a blurred band for a horizon, and a hazed teal container hangs behind the dek. It reads as a slab in a void, not a truck court.",
+     "fix": "Give the court the frame 01 concrete (TXT.ground with joints and oil stains), drop the teal container from behind the type, and bring the warehouse into the upper third so the frame has a place and a horizon."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The kit person stands in a stiff, symmetrical mannequin pose. As the deck's only human scale reference it reads as a placeholder figure.",
+     "fix": "Re-pose the figure with a weight shift and one hand on the swung door, and key it from the camera side at the low east sun so the face and coat read with form shading."
+    },
+    {
+     "judge": 2,
+     "problem": "The kit person reads as a low-poly game figure in flat clothing, which weakens the true-scale close.",
+     "fix": "Turn the figure three-quarter to the van with a weight shift, so the low sun rims her face and shoulder. Push the camera in so she stands at about a fifth of the frame height, not smaller, and add a darker contact under her shoes."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The truck is a flat side elevation on a thin road band with no aerial depth between it and the field. The planned cedar elm fencerow and Blackland vertisol are missing, and the lower two thirds are uniform repeating bunchgrass.",
+     "fix": "Put the cedar_elm fencerow from the storyboard behind the road at two haze depths. Rotate the truck 10 to 15 degrees toward camera so the cab's front face catches the low sun. Run a visible shoulder and ditch between road and field, so the truck has a ground it touches."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 4,
+ "rounds": 4,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 4,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.966, 1.034 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.4 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

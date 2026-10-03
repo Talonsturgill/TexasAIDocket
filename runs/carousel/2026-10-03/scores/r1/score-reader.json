@@ -1,0 +1,89 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "Every frame is rendered and three are real places. Frame 4 is the southbound carriageway with haze, trees, delineators and traffic. Frame 2 has the long-lens truck over October grass. Frame 7 has a rim-lit van on concrete. Five frames (1, 5, 6, 8, 9) stand on a tiled concrete apron that fades into a featureless grey-brown band. They have none of the warehouse, prairie or horizon the storyboard's CRAFT PLAN promised. They read as a 3D viewport, not a place at an hour, which is the rubric's 4 descriptor ('objects floating in a flat gradient'). The cover is the declared showstopper and fails the test. It has no hub, no horizon on the lower third, and the 7 bare places are not visible at 432 px, which the storyboard's own risk line admits. Frame 3's hood is a clay-smooth primitive with no seams or grime, and a half tree is cut by the left edge. On frame 8 no tandem shows under the floor, so the van reads as standing on its bumper and light boxes, and a sawtooth shadow runs down the left carton column. Frame 9's van turns blue-grey against the warm white on every other frame. Frame 4 has a yellow polygon decal artifact in the lower right verge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck. It has one tractor and van hero, one slate front with a low east-southeast key, and one kraft-and-ember load. The motif changes state across frames (open on 1, running on 2 to 4 and 7, section on 5, roofless count on 6, load face on 8, person on 9). The value track stays mid-dark with frame 7 declared as the darkest cut. One frame sits outside: frame 9's van material shifts to a cool blue-grey. The hub frames and road frames are also visibly two worlds, a void apron against a real highway."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "All sources are primary (two Kodiak releases, a Kodiak post, the TxDMV AVprogram page, adopted 43 TAC 220). Every numeral traces to a claim or to figures.json: 219 (c3, c23), 84/86/91/93 (c27, c7), 100 (c9), 7 (arm_open), and 89 (days_to_year_end, which I checked: Oct 3 to Dec 31 is 28+30+31). The rejected findings are honoured: no 3.5M miles on the route, no observer in the present tense. Three places are looser than the source. (1) The cover dek's 'The case isn't closed' is present tense on October 3rd, but the record only establishes 93 at the end of August plus an expectation in the September 25th release. (2) Frame 7 sets the forward-looking-statements disclaimer (c17) under 'the readiness measure', which implies the historical 93 is a forward-looking statement. (3) c37's quote field stops at 'do not allow the department to', and the words 'crash history' that frame 8 and the caption rest on appear only in the note."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what is happening: Kodiak plans unsupervised trucks on I-45 by year end. They learn who decided it (Kodiak names the lane, and the Legislature's SB 2807 and TxDMV set the terms), where (Lancaster to Houston, IKEA's Baytown to Frisco route), the deadline (89 days, frame 4) and what they can do (frame 9's Enforcement Division and txmccs.txdmv.gov/truckstop). The sharpest stake for a reader is frame 8: free, non-expiring authorization, and the state says it can't require crash history. It arrives at 8 of 9. No county is named (Dallas, Harris). The only action is a complaint channel for unsafe operation, with no comment window or vote, so the reader's lever is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Frame 2 pays at once (219 miles, IKEA, no one in the cab). The turn on 7 is declared and is a real change in how far to trust the figures. The close on 9 lands with a usable URL. The cover is the weak link for a feed reader. 'Not closed yet.' is cryptic until the dek, 'driverless' is not in the hook, and the picture doesn't show the open places. Frames 1, 5, 6 and 8 all show the loaded van, and 5 and 6 carry the same 93 of 100 twice, so one of them could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Mostly clean and on register: 'No fee. No expiry.', 'See one run unsafely? Tell the state.', 'Southbound, Interstate 45'. The caption's closing question on the 3.5 million miles is pointed and fair. Flat or machine lines: the caption's 'The images show the 93 as a trailer loaded one stack per point, 7 places bare at the open doors.' explains the artwork to the reader. The metaphor is explained again on frames 1, 5 and 6 ('one stack per point', 'One place on the floor for each point'). Frame 7's 'forward looking statements' is filing legalese carried into the copy. The copy names little Texas ground beyond city names. The Blackland and post oak in the storyboard reach the pixels but not the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.5,
+   "why": "Carousel no. 34 shipped on September 26th, seven days ago. Its topic already carried 'Kodiak has named Dallas to Houston as its driverless launch lane', and its close was the TxDMV authorization, no fee, no expiry, the crash-history answer to Dallas, and the TxMCCS reporting route. This deck's frames 8 and 9 and the caption's TxDMV paragraph are that same content and the same call to action. Its hero is again a Kodiak tractor on I-45 on a truck court (no. 34 used a truck yard and truck court). stormFront was the world of no. 36 on September 28th, and floor tapes with leaders echo no. 40's tapes. The ARM series, IKEA as shipper and the van-as-measure concept are new. The opening move is a negation ('Not closed yet.'), which the topics ledger has asked runs to stop leading with."
+  }
+ ],
+ "weighted_score": 6.73,
+ "hard_fails": [],
+ "ship": false,
+ "notes_for_panel": "No hard fail found. machine_qa.json shows 0 fails (9 sky-in-frame warns, which the report calls a verdict and not a defect). Every slide numeral traces to claims.json or figures.json. No colons, semicolons, dashes, banned words or year-bearing dates in the slide strings or caption. LEAD FOR THE INTEGRITY JUDGE, NOT A HARD FAIL FROM THIS LENS: the 30-day topic window. run_state.json records 'dedupe 0.50 vs no.34 read', so the gate passed. Overlap with no. 34 (2026-09-26) is still heavy: same lane, same company, same TxDMV program (tx-2026-0188 cited on c29 to c37), the same crash-history answer and the same reporting URL as the close. I judged the spine (ARM series, IKEA launch, the observer claim) new enough that it is not the same topic, and I charged the overlap to variety. A judge who reads the window rule as covering the close and the stake may reasonably fail it. ship:false here is a threshold dissent (6.73 against the round 1 bar of 8.0), not a fault.",
+ "one_sentence_fix": "Build the Lancaster hub as a real place on frames 1, 5, 6, 8 and 9: a warehouse dock wall, the black prairie to a hazed horizon on the lower third, and grime and oil on the court. Replace the tiled apron fading into a flat grey band, which holds five of nine frames, the cover among them, to the rubric's 'objects floating in a flat gradient' descriptor. Then drop the cover camera until the bare oak places between the load face and the doors read at 432 px.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "This is the showstopper and cover, but the van sits on a tiled apron in a featureless grey-brown haze with no warehouse, prairie or horizon. The tractor's cab is a dark blob, and the 7 bare places, which are the whole point of 'Not closed yet', are not visible at 432 px.",
+   "fix": "Put the kit warehouse dock wall and a black-prairie horizon in the haze on the lower third behind the van. Lower and swing the camera toward the doorway axis so the bare oak floor between the ember beam and the doors is an area at thumb size."
+  },
+  {
+   "slide": 8,
+   "problem": "No tandem shows under the floor, so the van appears to stand on its light boxes and ICC bar. A sawtooth shadow-map artifact runs down the left carton column, and the apron behind is void.",
+   "fix": "Raise the eye slightly and pull back so the rear tandem and its contact shadow sit under the floor. Fix the interior shadow aliasing with a tighter shadow camera or higher VSM resolution for this frame, and put the dock wall behind the van's roofline."
+  },
+  {
+   "slide": 6,
+   "problem": "A roofless van on a tiled void reads as a toy diorama. No horizon is in frame despite the storyboard's own risk note, and the court has no wear.",
+   "fix": "Pitch the crane up until the warehouse and prairie horizon sit on the upper third behind the hook. Add oil stains and tyre scuffs to the court so the van stands on a real truck court."
+  },
+  {
+   "slide": 3,
+   "problem": "The tractor hood is a clay-smooth primitive with no panel seams, rivets or road film. The planned focal (roof sensor bar and mirror pod) is a small strip, and a half tree is cut by the left edge.",
+   "fix": "Crop tighter on the roof sensor bar and mirror pod per the CRAFT PLAN, pushing the bare hood out of the bottom of the frame. Remove or move the clipped tree, and add road-film grime low on the door and hood."
+  },
+  {
+   "slide": 9,
+   "problem": "The van's material turns cool blue-grey against the warm white of every other frame. The kit person stands hands-on-hips facing the lens as a cutout, and the court is void.",
+   "fix": "Use frame 1's van material and white balance on frame 9. Turn the person three-quarter toward the open doors as if reading the load, and put the dock wall and horizon behind the van."
+  },
+  {
+   "slide": 5,
+   "problem": "The near-wall cutaway with identical repeated carton tiles reads as a toy, a ghost tractor is sliced by the left edge, and all five labels pile into the lower right corner.",
+   "fix": "Crop the tractor fully out at the kingpin and seed variation into the carton stacks (lean, flute edges, tape). Let the cut aluminium edge read as metal, and add the dock and horizon behind the section."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat yellow polygon decal floats on the right verge in the lower right, an obvious render artifact in the deck's best world frame.",
+   "fix": "Delete the stray decal mesh or replace it with a grass tuft patch matching the verge."
+  }
+ ]
+}

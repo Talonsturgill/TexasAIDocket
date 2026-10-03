@@ -1,0 +1,125 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Transportation",
+ "dek": {
+  "text": "Kodiak AI named Interstate 45 from Dallas to Houston its first driverless truck lane. The readiness figure it publishes is its own account of a safety case it says it hasn't closed.",
+  "claims": [
+   "c3",
+   "c7",
+   "c8",
+   "c38"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Kodiak AI published its release naming Dallas to Houston its driverless launch lane on {{date:c1}}](c1). [It says the lane will connect the Dallas-Fort Worth and Houston metro areas along Interstate 45](c3). [It plans unsupervised long-haul driverless service there by the end of the year](c2). [Its post naming the launch shipper says IKEA will be that partner later in the year](c20).",
+   "claims": [
+    "c1",
+    "c3",
+    "c2",
+    "c20"
+   ]
+  },
+  {
+   "text": "[Kodiak says it closes its safety case in advance of that launch](c38). [The figure it publishes for how far along that case is stood at {{number:c7}} percent as of the end of August](c7). Every reading of it comes from the company. No outside party in the sources checked for this edition has published one.",
+   "claims": [
+    "c38",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The lane",
+   "paragraphs": [
+    {
+     "text": "[Kodiak says the first driver-out leg will run {{number:c23}} miles between its Houston and Dallas-area facilities, most of it on Interstate 45](c23). [The leg is part of an established {{number:c24}} mile delivery route from the IKEA distribution center in Baytown to the IKEA store in Frisco](c24). [Kodiak says it has hauled freight between Dallas and Houston since 2019 with safety drivers in the cab](c11).",
+     "claims": [
+      "c23",
+      "c24",
+      "c11"
+     ]
+    },
+    {
+     "text": "[The company says it now consistently completes deliveries without human intervention between its hub in Lancaster and its Houston launch destination](c5). [It says the safety observer never touched the wheel on those runs, surface streets included](c6). That is a claim about what the observer did, not about whether one was aboard. [Across four years of IKEA loads Kodiak describes its miles as driven with a safety observer aboard](c22).",
+     "claims": [
+      "c5",
+      "c6",
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the readiness figure measures",
+   "paragraphs": [
+    {
+     "text": "[Kodiak defines its Autonomy Readiness Measure as the share of claims and evidence in its driverless safety case that are materially complete](c8). [It describes the safety case itself as a structured argument backed by evidence that its driving system can operate safely in a defined operating environment](c10). So the figure is a count of the company's own argument, graded by the company. It isn't a safety rating and it isn't a crash rate.",
+     "claims": [
+      "c8",
+      "c10"
+     ]
+    },
+    {
+     "text": "[Kodiak reported the measure at {{number:c27}} percent as of February, {{number:c27:1}} percent through April and {{number:c27:2}} percent as of July](c27). [It reached {{number:c26}} percent at the end of August](c26). [The company says it expects the measure to reach {{number:c9}} percent and to launch driverless operations by year end](c9). [Its release cautions that its forward looking statements are not predictions of actual performance](c17). [It lists closing the long-haul safety case and launching on Texas public highways among those statements](c18).",
+     "claims": [
+      "c27",
+      "c26",
+      "c9",
+      "c17",
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the company says is left",
+   "paragraphs": [
+    {
+     "text": "[Kodiak's chief executive says the company has identified and scheduled the remaining work, and that it is concentrated on final engineering verification and validation activities](c39). [He said the company is on track to finish its preparations and launch driverless highway service by the end of the year](c13). Neither release lists which claims in the safety case remain open.",
+     "claims": [
+      "c39",
+      "c13"
+     ]
+    },
+    {
+     "text": "[Kodiak says it began hauling freight with no one in the cab for Atlas Energy Solutions in the Permian Basin in December 2024](c14). [By June 30th, 2026 it says its driving system had been fitted to {{number:c15:2}} driverless trucks Atlas owns and operates](c15). That is industrial work on a different operating environment. The long-haul case for Interstate 45 is its own argument.",
+     "claims": [
+      "c14",
+      "c15"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't show",
+   "paragraphs": [
+    {
+     "text": "[Kodiak counts more than {{number:c12}} million autonomous miles since 2019. Its release does not say how many of them ran between Dallas and Houston](c12). The sources checked for this edition publish no independent reading of the safety case, no list of the claims still open and no crash record for the lane. When the company says the case is closed, the evidence that it is will be the company's own.",
+     "claims": [
+      "c12"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0198",
+   "label": "Kodiak's Interstate 45 launch lane and readiness measure, in the record"
+  },
+  {
+   "id": "tx-2026-0196",
+   "label": "The Fifteenth Court of Appeals and Bot Auto's driverless trucks"
+  },
+  {
+   "id": "tx-2026-0077",
+   "label": "The Senate Transportation hearing on driverless deployment under SB 2807"
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "round": 5,
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered in one stormFront world with haze and a ground, and slide 2 (side-on rig over the October grass) and slide 7 (raked flank running away) hold up as places. Several frames fail the showstopper test, though. Slide 3's tractor is a primitive model: slab hood, flat oversized grille, a blank black windscreen. On slide 9 the kit person stands like a cutout on an empty court, and the lower 40% of the frame is bare concrete. Slide 4 has a stray yellow-green polygon on the bottom-right shoulder, and the hood is only a nub at the bottom edge. Slide 6 floats two shipping containers behind the dek and leaves the van small on blank paving. Slide 5's 'tapes' are pale blocks hanging under the floor by the tyres, not tapes on the floor. That is more than the one default the 7 descriptor allows, and it sits above the 4 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "It reads as a filmstrip. The deck keeps one white 53 ft van and tractor, one slate norther, one low east light and one ember beam on frames 1, 5, 6, 8 and 9. The load as a progress indicator (open on 1, in section on 5, counted from the crane on 6, the bare floor on 8, beside a person on 9) is a motif that changes state. The turn to the darkest value on 7 is declared in the storyboard. Frame 3's close truck on a dark gradient sits slightly outside the hub world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "The round 4 hard fail is repaired. Slide 6 cites c7 c8 c9, its 7 is compute.py arm_open (c9's 100 minus c7's 93), and aggregates.json declares '7 places'. No other frame or the caption prints a 7. I checked every other numeral against tmp/src: 93 (c7, lane release line 35), 84/86/91 (c27, arm release line 29), 100 (c9), 219 and 'mostly Interstate 45' (c23, IKEA post line 34), 1,300 / 750,000 / four years (one sentence, IKEA post line 26), 3.5 million (c12), 89 (days_to_year_end, correct for Oct 3 to Dec 31) and 2026 (c27 text). Burnette's c39 quote is verbatim from arm release line 27, and slide 7's c17 quote is verbatim. Slide 7's universal names its set and is true. The rejected findings (observer still aboard, 3.5M on the route) are honoured. Three things sit short of 10. (1) '2019' on slide 9 and in the caption rests on c12's claim text, but c12's quote reads 'Over that time'. The year is in c11's sentence, which slide 9 does not cite and the first comment does not list. (2) The caption's 'It isn't a safety rating' and 'scored itself' are fair glosses of c8, but no claim states them. (3) Slide 6's 'didn't call complete' drops 'materially'. The drawn counts (93 stacks, 89 posts) can't be checked by eye at feed size and rest on code assertions."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (Kodiak named I-45 Dallas to Houston), who decided (Kodiak), where (I-45, Baytown to Frisco) and the deadline (year end, 89 days). No public body appears, and nothing tells a reader what they can do. The close is a question. The claims file already holds c36, TxDMV's Enforcement Division route for concerns about automated vehicles, and no frame or caption line uses it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "'Not closed yet.' earns the swipe, frame 2 pays at once with the lane, the turn on 7 ('Every readiness figure is Kodiak's own') changes how the reader holds the numbers, and 9 closes on an answerable question. Frame 6 largely restates the cover's 93 as a count, and frame 3 could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and attributed throughout, and on register ('Not closed yet.', 'How many here?'). The place names are specific (Lancaster, Baytown, Frisco, I-45 southbound). Some lines are device explanation rather than voice, for example slide 1's 'This van is loaded to that measure, one stack per point.' and slide 5's 'Each tape marks where the load stood.' Much of the deck carries the release's register."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The concept (a readiness measure as a load) and the 'Not closed yet.' opening are fresh. The subject is not. No. 34 shipped seven days earlier on the same company, the same Sept 25 lane release, I-45 Dallas to Houston and Lancaster, and its slide 2 hook was '219 miles, Kodiak says'. This deck's slide 2 is '219 miles, mostly Interstate 45.' The docket item (0198 vs 0188) and the instrument differ, so I do not call it a topic repeat, but a reader of the feed will see the same lane twice in a week."
+  }
+ ],
+ "weighted_score": 7.31,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Close slide 9 and the caption on what a Texan can do by printing c36's TxDMV Enforcement Division route beside the unanswered miles question. The claim is already verified in claims.json, and leaving it off is what holds story_and_stakes at 7.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The kit person reads as a cutout on an empty court. The swung door is missing, and the bottom 40% of the frame is bare concrete with no subject.",
+   "fix": "Move the camera in from 8 m to about 4.5 m at 1.4 m eye height so the open rear and the person fill the lower two thirds. Show the swung door folded against the side, and key her face from the camera side with a contact shadow under her shoes."
+  },
+  {
+   "slide": 3,
+   "problem": "The tractor is a primitive model: a slab hood, a flat oversized grille and an unlit black windscreen, filling the frame at a size where its lack of detail shows.",
+   "fix": "Crop to the CRAFT PLAN focal (roof sensor bar and mirror pod against the sky, from the chase-car three quarter). Give the windscreen an environment reflection so it isn't a black plate, and let the grille fall out of frame at the bottom-left."
+  },
+  {
+   "slide": 4,
+   "problem": "A stray yellow-green polygon sits on the bottom-right shoulder, and the 'roof fairing' is a small nub at the bottom edge, so there's no machine in the frame.",
+   "fix": "Delete the stray scatter/decal polygon and drop the camera about 0.4 m so the white fairing and black lidar housing cross the bottom 12% of the frame."
+  },
+  {
+   "slide": 6,
+   "problem": "Two shipping containers float half-transparent behind the dek, and the van is small on blank paving.",
+   "fix": "Remove both containers, or move them out of the type band behind the tractor, and tighten the crane framing so the roofless van spans about 80% of the frame width."
+  },
+  {
+   "slide": 5,
+   "problem": "The three earlier-reading tapes render as pale blocks hanging under the floor beside the rear tandem, not as tapes on the van floor, so the series looks like a chart bolted under the art.",
+   "fix": "Place the tapes on the interior floor at their computed positions, visible through the cut section, and raise the camera about 0.5 m so the floor plane reads."
+  }
+ ],
+ "integrity_notes": {
+  "repair_verified": "slide 6 '7' traces to compute.py arm_open (c9 minus c7), it is declared in aggregates.json, and slide 6 now cites c9. No other surface prints a 7.",
+  "leads_not_hard_fails": [
+   "slide 9 and caption '2019': c12's quote says 'Over that time'. The year comes from c11's sentence, which is uncited on the frame and absent from the first comment. Cite c11 on slide 9 or put 'since 2019' in c12's quote.",
+   "no. 34 (2026-09-26) shares the company, the lane, the Sept 25 release and a '219 miles' slide 2 hook. The docket item and angle differ, so I judge it outside the topic-repeat hard fail, but it should be named in the run record.",
+   "machine_qa WARN (0 fails): slides 6 and 8 have a rule crossing the dek glyph band that the QA could not measure. I judged it by eye and found nothing legible-breaking."
+  ]
+ }
+}

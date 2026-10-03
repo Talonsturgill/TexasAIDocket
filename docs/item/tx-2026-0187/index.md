@@ -9,7 +9,7 @@ The Public Utility Commission of Texas adopted new 16 TAC §25.194, the large lo
 - Public access: Closed
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58481&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-03
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · The commission's order adopting the large load interconnection rule still reads as filed.
 - 2026-10-01 · The commission's adopted large load interconnection rule still reads as the order filed it, security requirement and dropped interconnection fee included.
 - 2026-10-02 · The adopted large load rule still carries the security requirement and the dropped fee as the commission's order filed them.
+- 2026-10-03 · The commission's adopted large load interconnection rule still stands as ordered, security requirement included.
 
 ## Evidence
 

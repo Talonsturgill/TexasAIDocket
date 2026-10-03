@@ -47,11 +47,13 @@ THEMES = [
     ("largest object unmodelled (slab, bare wall, clean clay)",
      r"featureless|\bslab\b|bare wall|dead wall|smooth plane|clean clay|maquette|untextured"),
     ("primitive or low-poly model where a kit model belongs",
-     r"primitive|low.?poly|capsule|extruded box|game (?:level|engine|asset)|mannequin|faceless|blocks?\b"),
+     r"primitive|low.?poly|capsule|extruded box|game (?:level|engine|asset)|mannequin|faceless|"
+     r"\b(?:toy|tiny|small|cream|plain|box)[- ]?(?:like )?(?:cream )?blocks?\b|\bblocky\b|box towers?"),
     ("no contact, dirt or grime where things meet the ground",
      r"no contact|without contact|\bfloat(?:s|ing)?\b|no dirt|no grime|hovers?"),
     ("horizon band or seam",
-     r"horizon (?:band|line|strip)|reads as (?:sea|water)|\bseam\b"),
+     r"horizon (?:band|strip)|(?:band|strip|line)\b[^.]{0,40}\bhorizon|reads as (?:sea|water)|"
+     r"(?:sky|ground|haze|horizon|plain)\b[^.]{0,40}\bseam\b|\bseam\b[^.]{0,40}\b(?:sky|ground|haze|horizon|plain)"),
     ("object in a void, no sky, camera at the ground",
      r"\bvoid\b|no sky|top.?down|looks? (?:straight )?down"),
     ("dead or empty region",
@@ -59,7 +61,9 @@ THEMES = [
     ("repeated composition or shot",
      r"repeat(?:ed|s)? (?:composition|framing|shot|camera)|same (?:shot|composition|camera|framing)"),
     ("value strobe or undeclared tonal cut",
-     r"strob|value (?:cut|jump)|hard cuts?\b|undeclared cut"),
+     r"strob|value (?:cut|jump)|hard (?:value |tonal )?cuts?\b|undeclared cut",
+     # a judge naming the deck's DECLARED cut is describing the plan working, not a defect
+     r"^(?!.*(?:undeclared|(?:only|, ) ?one declared|not declared|no declared)).*(?:\bdeclared\b|storyboard)"),
     ("render artifact (banding, aliasing, facets, stripes)",
      r"banding|moir|artifact|aliasing|jagg|faceted|posteri"),
     ("flat 2D overlay on a rendered frame (bars, plates, stickers)",
@@ -72,7 +76,31 @@ THEMES = [
     ("type sitting on or fighting the art",
      r"\bdek\b[^.]{0,40}\b(?:sits|edge|over|on)|type (?:on|over|fights)|legib|contrast"),
 ]
-THEME_RX = [(n, re.compile(p, re.I)) for n, p in THEMES]
+THEME_RX = [(t[0], re.compile(t[1], re.I)) for t in THEMES]
+THEME_EXCLUDE = {t[0]: re.compile(t[2], re.I | re.S) for t in THEMES if len(t) > 2}
+
+# A NAMED DEFECT IS NOT A NEGATED ONE (weekly pass 2026-10-03). The first digest matched the
+# whole card at once, so a judge's "the value holds with no strobe" counted as a strobe, "nothing
+# floats in a void" counted as a void, and a deck's declared value cut counted as an undeclared
+# one. Value strobe ranked second of thirteen at five runs, and read sentence by sentence the
+# judges named it on two. So a theme now counts a SENTENCE, and a match with a negator in the
+# four words before it does not count. The theme's own words may carry a negator ("no contact"),
+# which is why the window is the words BEFORE the match and never the match itself.
+NEGATOR = re.compile(r"\b(?:no|not|nothing|never|without|none|neither|nor)\b|n't\b", re.I)
+SENTENCE = re.compile(r"(?<=[.;!?])\s+")
+
+
+def theme_named(name: str, rx: re.Pattern, text: str) -> bool:
+    """True when some sentence of `text` names the theme without negating it."""
+    ex = THEME_EXCLUDE.get(name)
+    for sent in SENTENCE.split(text):
+        if ex and ex.search(sent):
+            continue
+        for m in rx.finditer(sent):
+            before = sent[:m.start()].split()[-4:]
+            if not NEGATOR.search(" ".join(before)):
+                return True
+    return False
 
 
 def _num(x) -> bool:
@@ -125,7 +153,7 @@ def art_text(card: dict) -> str:
 
 def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict]:
     runs = run_dirs(root, date, days)
-    rows, crit_vals, lowest, theme_hits = [], {}, {}, {n: {} for n, _ in THEMES}
+    rows, crit_vals, lowest, theme_hits = [], {}, {}, {t[0]: {} for t in THEMES}
     hard, fixes, defects = [], [], []
     for run in runs:
         try:
@@ -146,7 +174,7 @@ def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict
         for c in cs:
             text = art_text(c["card"])
             for name, rx in THEME_RX:
-                if rx.search(text):
+                if theme_named(name, rx, text):
                     theme_hits[name].setdefault(run.name, set()).add(c["round"])
             for hf in c["card"].get("hard_fails") or []:
                 hard.append(f"{run.name} r{c['round']} {c['lens']}: {str(hf)[:300]}")
@@ -241,6 +269,41 @@ def self_test() -> int:
         ok("hard fails, fixes and the queue reach the digest verbatim",
            "a figure with no claim" in text and "bring the camera in" in text and "repeat: 1" in text)
         ok("a combined panel file is not read as a judge card", "| 2026-10-01 |" in text)
+        # THE NEGATION REPLAY (2026-10-03): the week of 2026-09-27 counted these as defects
+        ok("a judge saying the value holds with no strobe names no strobe",
+           not theme_named("value strobe or undeclared tonal cut", dict(THEME_RX)["value strobe or undeclared tonal cut"],
+                           "The value holds with no strobe. Canvas means hold, so nothing strobes."))
+        ok("a strobe the judge names still counts, so the theme can still go red",
+           theme_named("value strobe or undeclared tonal cut", dict(THEME_RX)["value strobe or undeclared tonal cut"],
+                       "The value strobes, five hard cuts, one declared."))
+        ok("the deck's declared value cut is not an undeclared one",
+           not theme_named("value strobe or undeclared tonal cut", dict(THEME_RX)["value strobe or undeclared tonal cut"],
+                           "Frame 9's interior is the one declared value cut."))
+        ok("an undeclared value cut counts",
+           theme_named("value strobe or undeclared tonal cut", dict(THEME_RX)["value strobe or undeclared tonal cut"],
+                       "Frame 5 an undeclared value cut mid deck."))
+        ok("'nothing floats in a void' names no void",
+           not theme_named("object in a void, no sky, camera at the ground",
+                           dict(THEME_RX)["object in a void, no sky, camera at the ground"],
+                           "This isn't a 4, since nothing floats in a void and there's no banding."))
+        ok("a defect whose own words carry a negator still counts ('no contact')",
+           theme_named("no contact, dirt or grime where things meet the ground",
+                       dict(THEME_RX)["no contact, dirt or grime where things meet the ground"],
+                       "The exterior ground has no contact and no dirt."))
+        ok("the sources block is not a primitive block",
+           not theme_named("primitive or low-poly model where a kit model belongs",
+                           dict(THEME_RX)["primitive or low-poly model where a kit model belongs"],
+                           "Regenerate the stale sources block and the text block."))
+        ok("toy blocks are a primitive",
+           theme_named("primitive or low-poly model where a kit model belongs",
+                       dict(THEME_RX)["primitive or low-poly model where a kit model belongs"],
+                       "Frame 3's field reads as shadowless toy blocks."))
+        ok("a glass seam is not a horizon band",
+           not theme_named("horizon band or seam", dict(THEME_RX)["horizon band or seam"],
+                           "Frame 6 shows a hard vertical glass seam."))
+        ok("a strip on the horizon line is a horizon band",
+           theme_named("horizon band or seam", dict(THEME_RX)["horizon band or seam"],
+                       "A dark floating gradient strip still sits on the horizon line."))
         e, _ = digest(root, "2026-08-01", 7, "")
         ok("an empty week says so rather than failing", "0 shipped run(s)" in e and "none matched" in e)
     live, _ = digest(RUNS, "2026-10-02", 7, "")

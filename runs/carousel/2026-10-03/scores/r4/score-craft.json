@@ -1,0 +1,104 @@
+{
+ "round": 4,
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame is rendered and most are in a world, with a slate norther sky, haze, one low east-southeast sun and contact shadows. Slide 4 (the POV down southbound I-45 with delineators receding into the hazed seam) and slide 7 (the rear three-quarter of the rig with the flank raked against the dark sky) come closest to THE SHOWSTOPPER TEST. More than one frame leans on a default, which puts the deck under the 7 descriptor. Slide 5: a flat orthographic section floats on a featureless apron under an empty gradient sky. A pale stub of the tractor is cut at the left edge, and the three 'floor tapes' render as small pale tabs hanging below the floor line (about x1245 to 1365, y1125 to 1170 at display scale), so they read as mud-flap tags. Slide 8: the left carton column carries a dark smeared, stretched texture strip (about x460 to 590). The dek straddles the hard horizon value step at y about 500 to 550. Above the hook there is only a dead grey sky, and a ghost pole shows behind 'The'. Slide 2: the truck is a flat side elevation sitting on a thin road band with no haze between it and the field. The planned cedar elm fencerow and vertisol are absent, and the lower two thirds are uniform bunchgrass texture. Slide 4: a flat yellow-green polygon sits at the lower right (about x1400 to 1600, y1560 to 1780), a render artifact. Slide 6: the green and red containers are ghosted under a scrim behind the dek, which works as a plate, and machine_qa flags three unmeasurable rule crossings on that dek line. Slide 9: the kit person reads as a low-poly game asset. Models throughout are clean CG with little grime, so the frames read as staged sets more than photographs of a place."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Clearly one deck. One hero (the white tractor and 53 ft dry van in one material), one overcast slate sky, one warm low key light and one grade across all nine frames on the contact sheet. The load works as a motif that changes state: open and lit (1), in section (5), counted from the crane (6), the load face (8), beside a person (9). The camera move round the van at the hub is real. The value turn to the dark slide 7 is declared in the storyboard. Slide 2's grass field and slide 4's POV sit slightly outside the hub-and-van stock. Slide 3 and slide 7 both drop into near-black skies, which makes the run 2-3-4 slightly strobey."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.4,
+   "why": "Every numeral traces. 93, 84, 86 and 91 come from c7, c26 and c27. 100 is c9. 7 is arm_open, computed as 100 minus 93. 219 is c3/c23. 1,300 and 750,000 are c21/c22. 3.5 million and 2019 are c12/c11. 89 is days_to_year_end, and Dec 31 minus Oct 3 does equal 89. The c17 quote on slide 7 is verbatim. Frame 7 owns the fact that every figure is the company's own, and the deck never calls the measure safety. Two looser spots. The cover's present-tense 'Not closed yet.' on October 3rd rests on an end-of-August figure. The sources are entirely corporate, which is unavoidable here but leaves no independent check anywhere in the deck. The storyboard still says the 3.5 million miles are 'never printed', which is stale: slide 9 and the caption print them, correctly scoped."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what (unsupervised trucks on the 219 mile Dallas to Houston leg), who (Kodiak AI, with IKEA as launch shipper), where (I-45, Baytown to Frisco) and when (by year end, 89 days). No public body is named and the reader is given nothing to do. claims.json carries c33 (TxDMV authorization required) and c36 (the TxDMV Enforcement Division concern route), but no slide and no caption line uses them, so the close is a question rather than a next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Slide 2 pays the cover at once with the lane. Slide 4 puts the deadline on the road, slide 5 shows the series, slide 7 is a real turn and slide 9 closes on a pointed question. Slide 6 ('93 places loaded. 7 bare.') restates what slides 1 and 5 already said and is cuttable. The cover hook 'Not closed yet.' is cryptic until the dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and on register, with no house-rule breaks found. The caption's new third paragraph has no comma-pair hedge. It is specific to Baytown, Frisco and Interstate 45 and fair to the company. Two lines are flat explainer: slide 1's 'This van is loaded to that measure, one stack per point.' and slide 6's 'One place on the floor for each point of Kodiak's own measure.' No Texan texture in the copy goes beyond place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.8,
+   "why": "Deck no. 34 on September 26th, seven days earlier, has keywords 'driverless trucks', 'Interstate 45' and 'Kodiak'. Its places are Dallas, Houston and Lancaster, and its instrument includes 'the companies' own releases on the Dallas to Houston lane', which is this deck's c1 to c18 source. The storyboard itself steers round no. 34's cab-interior frames and mirror pods, which concedes the overlap. The van-load device and the overcast norther are new treatments. But company, lane, source release and subject sit a week apart, so this reads close to a re-skin of a recent story."
+  }
+ ],
+ "weighted_score": 7.07,
+ "weighted_score_arithmetic": "6.4*0.22 + 7.8*0.12 + 8.4*0.20 + 7.0*0.16 + 7.2*0.10 + 7.3*0.10 + 4.8*0.10 = 1.408 + 0.936 + 1.680 + 1.120 + 0.720 + 0.730 + 0.480 = 7.074",
+ "hard_fails": [],
+ "hard_fail_review": {
+  "round3_caption_comma_pair": "CLEARED. The caption now reads '...on the 219 mile leg from Dallas to Houston. It expects both by year end. Most of the leg is Interstate 45.' with no hedge fenced by a comma pair. The remaining commas are single trailing modifiers ('over four years, with a safety observer aboard', 'identified and scheduled, concentrated on'). There are no colons, semicolons, dashes, banned words or And/But openers, and no year on an in-year date.",
+  "numerals": "Every caption and slide numeral traces to claims.json or to figures.json with a stated rule.",
+  "machine_qa": "verdict WARN, fails 0. The slide 6 and slide 8 rule-crossing warnings were judged by eye and the type stays legible, so they are charged to art and are not a fail.",
+  "topic_window_lead": "Not called a hard fail, but logged as a lead for the integrity judge. No. 34 (2026-09-26, tx-2026-0188) had the same company, the same I-45 Dallas to Houston lane and the same September 25th Kodiak release. Docket item, decision and angle differ: no. 34 was the state's authorization, this deck is the company's readiness measure plus the September 29th IKEA announcement, which postdates no. 34. dedupe_check was not runnable from this lens."
+ },
+ "ship": true,
+ "one_sentence_fix": "At selection, refuse or re-angle a story whose company, place and source release were a shipped deck's seven days earlier (no. 34 on 2026-09-26 drew Kodiak's same I-45 lane from the same September 25th release). If it is kept, carry the TxDMV authorization and Enforcement Division concern route (c33, c36) onto slide 9 and the caption, so the deck gives a Texan a step to take rather than a second look at the same lane.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A flat orthographic section on an empty apron under a featureless gradient sky. The tractor stub is cut at the left edge, and the three floor tapes render as pale tabs hanging below the floor line, so they read as tags rather than tape on the oak floor.",
+   "fix": "Move the tapes up onto the visible oak floor inside the section as flat caliche strips at the 84, 86 and 91 positions. Drop the camera to about 1.2 m and swing it 8 to 10 degrees off square, so the floor plane and the tapes read in perspective, while the long lens keeps the scale near-parallel. Let the tractor either run fully off the left edge or come fully into frame."
+  },
+  {
+   "slide": 8,
+   "problem": "The left carton column carries a smeared, stretched texture strip (about x460 to 590). The dek straddles the hard horizon value step, and the top third is dead grey sky with a ghost pole behind the hook.",
+   "fix": "Fix the UVs and the texture repeat on the left stack's exposed side faces, or cull that face. Raise the camera to about 2.4 m and tilt down, so the van's roof edge and the court fill the type band and the horizon step drops below the dek."
+  },
+  {
+   "slide": 2,
+   "problem": "The truck is a flat side elevation on a thin road band with no aerial depth between it and the field. The planned cedar elm fencerow and Blackland vertisol are missing, and the lower two thirds are uniform repeating bunchgrass.",
+   "fix": "Put the cedar_elm fencerow from the storyboard behind the road at two haze depths. Rotate the truck 10 to 15 degrees toward camera so the cab's front face catches the low sun. Run a visible shoulder and ditch between road and field, so the truck has a ground it touches."
+  },
+  {
+   "slide": 6,
+   "problem": "The dek sits on a scrim that ghosts the green and red containers behind it (a plate, flagged three times by machine_qa). The seven bare places at the doors are a sliver and hard to count at 432 px.",
+   "fix": "Move the two containers out of the type band to the frame's right edge below y about 900 display, and remove the scrim. Swing the crane so the open-door end and its seven bare oak places sit nearest the lens, at a third of the frame width."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat yellow-green polygon artifact at lower right (about x1400 to 1600, y1560 to 1780) on an otherwise strong frame.",
+   "fix": "Find and delete or re-material the stray ground or sign mesh at that shoulder position, and re-render."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person reads as a low-poly game figure in flat clothing, which weakens the true-scale close.",
+   "fix": "Turn the figure three-quarter to the van with a weight shift, so the low sun rims her face and shoulder. Push the camera in so she stands at about a fifth of the frame height, not smaller, and add a darker contact under her shoes."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/out/2026-10-03/render/slide-01.png .. slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-03/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-03/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-03/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-03/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-03/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-03/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-03/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-03/render/machine_qa.json",
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ]
+}

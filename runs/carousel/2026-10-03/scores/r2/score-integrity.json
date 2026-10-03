@@ -1,0 +1,86 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "deck": "carousel no. 41, 2026-10-03",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "This is better than round 1. Frame 1 now has the warehouse and a parked trailer in haze on the horizon, and so does frame 9. Frame 3's clipped tree is gone and frame 9's figure stands relaxed. Frames 4 and 7 are still the only frames that pass the showstopper test, as a road at an hour with haze in depth. Three defects round 1 named are still in the pixels. (1) Frame 4: the flat yellow polygon is still on the right verge at display x 1400 to 1600, y 1560 to 1760, although the brief lists frame 4 as repaired. (2) Frame 8: the sawtooth shadow still runs down the left carton column at display x 460 to 580, y 860 to 1480. No tandem shows under the floor, so the van stands on its light boxes and ICC bar. (3) Frame 9: the trailer's material is still cold blue-grey against the warm white on frames 1, 6, 7 and 8, and the stack edge shows the same sawtooth at about x 705 to 720. Frame 3's tractor is still the zoom subject: a rounded-box hood, a flat black windscreen, half-disc emissive headlamps and blob mirror pods. Frame 6's 'slab' is a hard-edged plinth with a dark band beyond it, so it reads as a tabletop rather than a court in the Blackland. Frame 2 is still a flat orthographic side elevation over a speckle band. More than one frame leans on a primitive or an artifact, so this is under the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck. It has one hero (the white van with kraft stacks and ember load bars), one low east-southeast key, one slate sky over a brown court and one grade. The motif changes state in reader order: open at the hub on 1, running on 2 to 4 and 7, in section on 5, roofless from the crane on 6, the load face on 8, a person beside it on 9. machine_qa band ratios run 0.83 to 1.52 with no strobe. Two frames sit outside. Frame 2 is a flat profile in a different hand, and frame 9's van has gone blue-grey."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Verified. Every numeral traces. 219 comes from c3 and c23, both quoted in tmp/src/kodiak_lane.txt line 38 and kodiak_ikea.txt line 34. 45 comes from c3. 84, 86 and 91 come from c27 (kodiak_arm.txt line 29), 93 from c7 (lane line 35) and 100 from c9. 7 is arm_open, computed as 100 minus 93. I checked 89 (days_to_year_end) as 28+30+31. 3.5 and 2019 come from c12 and c11 (lane line 38). The new c39 is verbatim at kodiak_arm.txt line 27. Frame 5's tapes are honest when measured on the pixels. With the interior running from about x 55 to 1490, 84, 86, 91 and 93 percent fall at x 1260, 1289, 1361 and 1390, and the tapes sit at about 1255, 1283, 1355 and 1385, with the load face at about 1395. All three sources are primary and fetched. No tx-2026-0188 claim is cited on any frame, in the caption, in the first comment or in the web edition. Round 1's repairs hold: the 93 is dated on frames 1 and 6 and in the caption, the caption says 'mostly Interstate 45', and frame 7 now scopes the disclaimer to closing the case by year end (c18). Four phrasings are still looser than their sources. (1) Frame 1 and the web dek say 'its first driverless truck lane'. The source says 'first driverless long-haul lane', and the same release says Kodiak has hauled with no one in the cab in the Permian since December 2024 (c14). No frame mentions that, so a feed reader is led to believe Kodiak has never run driverless. (2) Frame 1 says it 'called 93 percent of it complete' and drops 'materially' and 'claims and evidence', although frame 5 and the caption restore them. (3) The caption's unscoped close, 'How many ran between Dallas and Houston?', leaves out the run's own c22. That fetched IKEA post counts more than 750,000 autonomous miles carrying IKEA goods and says service begins on 'the same route we've safely tested in Texas for four years' (kodiak_ikea.txt lines 26 and 33). That is not the lane figure, but it is the closest answer the company gives, and the run holds it. Frame 9 itself is correctly scoped to 'Its release'. (4) Frame 4's dek says there is 'One post along the road ahead for each day left', and the posts merge into the vanishing point. Nobody can check 89 against the picture. Minor points: the caption's 'It isn't a safety rating' is an inference from c8 rather than a claim, and the web edition prints 'By June 30th' with no year on a site page. That is more than the one loose phrasing the 7 descriptor allows, but no figure is fabricated and only the first item could change what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what is happening: Kodiak plans to run trucks with no one in the cab on Interstate 45 by year end, and grades its own safety case at 93 at the end of August. They learn where (the Lancaster hub, Dallas to Houston, IKEA's Baytown to Frisco route) and the deadline (year end, 89 days on frame 4). Three things are missing. Removing the TxDMV close also removed the deck's only reader action, and nothing now tells a Texan what they can do or watch for, not even the next monthly readiness figure. No public body or decider appears, and no county is named. The chief executive is 'Kodiak's chief executive' on frame 8 and in the caption, but c13 and c39 both carry his name, Don Burnette. The stake itself, whether the self-measure is enough, is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' earns the swipe, and frame 2 pays at once with 219 miles, IKEA and no one in the cab. The turn on 7, 'Every readiness figure is Kodiak's own.', is declared and real. The close now lands as a question on 9 rather than a repeated action. Frames 5 and 6 carry the same 93 of 100 twice, so 6 could go without loss. Frame 8 hands the second-to-last frame to the company's own reassurance with nothing set against it, which softens the run into the close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean. I found no colons, semicolons, dashes, banned words, 'And' or 'But' openers, first person or years on dates in the slide strings or the caption. 'Not closed yet.' and 'More than 3.5 million miles. How many here?' are good lines. Three flat spots remain. Frame 1's 'This van is loaded to that measure, one stack per point.' and frame 6's 'One place on the floor for each point' narrate the artwork to the reader. Frame 7 carries the filing's own legalese, 'forward looking statements'. No Texas ground beyond city names reaches the copy, and the Blackland stays in the storyboard."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "The readiness-measure spine, the van-as-gauge device and the slate and kraft palette are new. The setup frames are not. Carousel no. 34 (runs/carousel/2026-09-26/copy.json), seven days ago, opened with S1 kicker 'Interstate 45, Dallas to Houston' and the year-end plan, then S2 '219 miles, Kodiak says' and S3 'Kodiak says the observer never touched the wheel.' about Lancaster to Houston. This deck opens with the identical cover kicker 'Interstate 45, Dallas to Houston'. Its frame 2 is '219 miles, mostly Interstate 45.', and frame 3's headline is 'Kodiak says the observer never touched the wheel.', which repeats no. 34's S3 sentence word for word, under 'Lancaster to Houston'. Frame 4 is the year-end plan. The hero is again a sensor-roofed Kodiak tractor on I-45, as it was on four frames of no. 34. Removing the TxDMV close cleared the repeated close, and the repeated opening is still there."
+  }
+ ],
+ "weighted_score": 6.56,
+ "hard_fails": [],
+ "ship": false,
+ "notes_for_panel": "I found no hard fail. machine_qa.json has 0 fails, and its 9 warns are sky-in-frame verdicts. Every numeral traces to claims.json or figures.json. Every quote I re-read against tmp/src is present, and every cited source was fetched. No tx-2026-0188 claim remains anywhere. The 30-day window is my lead, and I am not making it a hard fail. Frames 1 to 4 and caption paragraph 3 now restate no. 34's frames 1 to 3, with an identical cover kicker and the S3 sentence reprinted as frame 3's headline. On my reading this deck's TOPIC (Kodiak's self-graded safety case: 84 to 93, 7 open, the CEO's remaining work, the uncounted lane miles) is new. Five of nine frames, and frame 2's IKEA body, carry material no. 34 never printed. The overlap is the lane setup, not no. 34's subject, which was the TxDMV authorization. So I charged it to variety. Round 1's precedent failed two frames plus the close, and a judge who applies that precedent to the opening may reasonably fail this too. My ship: false is a threshold dissent (6.56 against the round 2 rung of 7.7), not a fault.",
+ "one_sentence_fix": "Rewrite frames 1 to 3 so the opening stops reprinting no. 34's first three frames: lead the cover on the readiness series rather than the 'Interstate 45, Dallas to Houston' lane kicker, replace frame 3's 'the observer never touched the wheel' headline with the Permian fact the deck leaves out (c14 to c15, driverless since December 2024, which also lets frame 1 say 'first driverless long-haul lane' as the source does), and set c22's 750,000 IKEA miles against frame 9's question. Then clear the three unrepaired render defects (frame 4's yellow polygon, frame 8's sawtooth shadow, frame 9's blue-grey van).",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The sawtooth shadow-map artifact still runs down the left carton column at display x 460 to 580, y 860 to 1480, as round 1 named it. No tandem shows under the floor, so the van stands on its light boxes and ICC bar on a bare court.",
+   "fix": "Raise the VSM shadow bias and normalBias, or the shadow-map resolution, on the carton stack for this frame. Raise the eye about 0.4 m and pull back until the rear tandem and its contact shadow sit under the floor."
+  },
+  {
+   "slide": 4,
+   "problem": "The flat yellow polygon decal is still on the right verge at display x 1400 to 1600, y 1560 to 1760, in the deck's best world frame. The delineator posts merge into the vanishing point, so the dek's 'one post for each day left' can't be checked against the picture.",
+   "fix": "Delete the stray ground mesh at the lower-right shoulder. Space the posts so the 89th stands clearly short of the horizon, with open shoulder beyond it."
+  },
+  {
+   "slide": 3,
+   "problem": "The low-poly tractor is still the zoom subject: a rounded-box hood, a flat unlit black windscreen, half-disc emissive headlamps and blob mirror pods, with no seams or road film.",
+   "fix": "Pull the camera back to a three-quarter view at 6 to 8 m so the hood is no longer the detail budget. Give the windscreen an environment-reflective glass material and put TXT.weather grime on the lower door, steps and bumper."
+  },
+  {
+   "slide": 9,
+   "problem": "The trailer's material is cold blue-grey against the warm white of frames 1, 6, 7 and 8, and the stack edge carries sawtooth shadow acne at about x 705 to 720. The lower-left third is empty court.",
+   "fix": "Apply frame 1's van material and white balance. Raise the shadow bias on the stack. Move the camera about 3 m right and lower so the van and figure fill the frame and the empty lower-left court crops out."
+  },
+  {
+   "slide": 6,
+   "problem": "The new slab has a hard diagonal edge over a dark band, so the rig reads as a model on a tabletop plinth rather than a truck court with the Blackland beyond it.",
+   "fix": "Lower the crane pitch until a hazed horizon with the warehouse and a fence line sits on the upper third behind the type, and let the court run out under it. Add oil stains and tyre scuffs under the tandems."
+  },
+  {
+   "slide": 2,
+   "problem": "The truck is a flat orthographic side elevation over a speckle-noise stubble band, and it reads as a cutout in a different hand from the PBR frames.",
+   "fix": "Swing the camera 15 to 20 degrees off the perpendicular with a long lens so the cab and trailer show their front faces and a real contact shadow on the shoulder. Replace the speckle band with the TXT.ground grass used in the foreground."
+  }
+ ]
+}

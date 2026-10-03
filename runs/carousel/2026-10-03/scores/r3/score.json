@@ -1,0 +1,229 @@
+{
+ "weighted_score": 6.76,
+ "judges": [
+  6.69,
+  6.83,
+  6.76
+ ],
+ "spread": 0.14,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.3,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    6.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "CAPTION HOUSE RULE (commas, construction: 'no hedge fenced off by a pair of commas'). caption.txt line 5 reads 'Kodiak says it closes that case before trucks run unsupervised on 219 miles, mostly Interstate 45, from Dallas to Houston.' The hedge 'mostly Interstate 45' sits between paired commas inside the clause, the same construction as CLAUDE.md's own forbidden example ('electricity and, in most cooling designs, water'). caption_check's log exits 0, so the gate does not catch this shape. Repair by splitting it: 'Kodiak says it closes that case before trucks run unsupervised the 219 miles from Dallas to Houston. Most of the way is Interstate 45.' Re-run caption_check and numeral_lint afterwards. This is a one-line repair. No claim is false."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "CAPTION HOUSE RULE (commas, construction: 'no hedge fenced off by a pair of commas'). caption.txt line 5 reads 'Kodiak says it closes that case before trucks run unsupervised on 219 miles, mostly Interstate 45, from Dallas to Houston.' The hedge 'mostly Interstate 45' sits between paired commas inside the clause, the same construction as CLAUDE.md's own forbidden example ('electricity and, in most cooling designs, water'). caption_check's log exits 0, so the gate does not catch this shape. Repair by splitting it: 'Kodiak says it closes that case before trucks run unsupervised the 219 miles from Dallas to Houston. Most of the way is Interstate 45.' Re-run caption_check and numeral_lint afterwards. This is a one-line repair. No claim is false."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "From the crane, the roofless van on an empty jointed slab reads as a toy cutaway. The cartons are a uniform block texture, and the two containers float behind the dek with no relation to the rig.",
+     "fix": "Drop the crane to about 10 m and park the van in a row of docked trailers at a dock face, so the 93 lit tops read against neighbouring closed roofs and the slab is a busy yard. Move the containers out from under the dek."
+    },
+    {
+     "judge": 2,
+     "problem": "Behind the hook the court dissolves into a murky dark band with no horizon feature. The new containers render soft and smeared, and the Blackland clay doesn't read at feed size, so the counting frame still floats under a void.",
+     "fix": "Lower the crane pitch until the warehouse used on frames 1 and 9 sits on the upper third behind the hook. Bring the containers into the same focus as the van."
+    },
+    {
+     "judge": 3,
+     "problem": "The roofless van sits on an endless tiled slab under a featureless dark horizon band. The teal container behind the dek is ghosted and semi-transparent, so the counting frame reads as a product shot in a void.",
+     "fix": "Lower the crane pitch until frame 1's warehouse sits across the horizon on the upper third, make the containers opaque and grounded with contact shadows, and move them out from under the dek."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The lower 45 percent of the frame is empty concrete under the labels and the van is cut off at the left, so the diagram floats in a void.",
+     "fix": "Bring the camera down and tighten so the van's floor sits on the lower third, with the dock face and a second trailer behind it. Set the FEB to DOORS labels on painted bay lines in the foreground, not on bare slab."
+    },
+    {
+     "judge": 2,
+     "problem": "It reads as a toy cutaway. The carton tiles repeat identically along the whole length. The month tapes are pale blocks hanging below the sill over the tyres (display x 1245 to 1365, y 1125 to 1170), not tapes on the floor. Stray vertical strips sit at the left edge.",
+     "fix": "Lay the four tapes flat on the oak floor inside the section and end the leaders at the sill. Seed per-stack lean and flute variation. Frame the tractor's rear fully in, or fully out, at the left edge."
+    },
+    {
+     "judge": 3,
+     "problem": "It is still a toy cutaway. The carton tiles are identical along the whole length, and the floor tapes are pale blocks hanging below the sill over the tyres rather than tapes on the floor.",
+     "fix": "Lay the four tapes flat on the oak floor inside the section, end the leaders at the sill, and seed per-stack lean and flute variation along the load."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The flat yellow-olive quadrilateral is still on the right verge at display x 1395 to 1590, y 1560 to 1780, in the deck's best world frame. Removing the rig's cast on that shoulder did not remove it, so it is a separate mesh or decal.",
+     "fix": "Find the object in that screen region by raycasting from those pixels, and delete or hide it. Then scatter the shoulder bunchgrass already used on frame 2 along the right verge, so the ground carries texture out to the posts."
+    },
+    {
+     "judge": 3,
+     "problem": "The flat yellow-green polygon on the right shoulder (display x 1400 to 1600, y 1560 to 1780) is still in the shipped render and thumb, although the round summary says it was removed. It sits in the deck's strongest world frame. The delineator posts also merge into the vanishing point, so 'one post per day' can't be counted.",
+     "fix": "Find and delete the actual ground mesh at that shoulder position, checked against the final thumb rather than the source, and widen the post spacing so the 89th post visibly stands before the horizon with open shoulder beyond it."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The serrated brown band still runs down the left carton column at display x 460 to 590, y 860 to 1490, after the 4096 shadow map and the tighter frustum. A resolution change that leaves it untouched says it is not shadow-map aliasing. No tyres show under the floor, so the van stands on lamp boxes, two posts and the ICC bar.",
+     "fix": "Re-render this frame with the sun's castShadow off. If the band survives, it is z-fighting between the carton side faces and the van's inner liner, or the flute-edge texture, so inset the carton_stack 2 cm from the wall. Then move the camera back about 2 m and lower it 0.3 m so the rear tandem and its contact shadow sit under the floor line."
+    },
+    {
+     "judge": 3,
+     "problem": "A striated sawtooth shadow artifact runs down the left carton column (display x 460 to 580, y 860 to 1480), the frame's detail budget is spent on flat identical carton faces, and no tandem shows under the floor, so the van stands on its light boxes and ICC bar.",
+     "fix": "Raise shadow bias and normalBias, or the VSM map resolution, on the carton_stack geometry, then lift the camera and pull it back about 2 m so the rear tandem and its contact shadow sit under the floor line."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The close crop shows off the kit tractor's primitives: a slab hood, a flat unreflective black windscreen and a cartoon grille. The ground is a dark featureless plane, and the ranch fence the brief mentions doesn't read.",
+     "fix": "Pull back to a wider chase shot that puts the rig on the lane with the fencerow and shoulder grass in frame. Give the windscreen an environment reflection of the sky so the glass stops reading as a black plate."
+    },
+    {
+     "judge": 2,
+     "problem": "The recomposition helped, but the kit tractor still fills about 70 percent of the frame. Its hood is a smooth shell with no seams or road film, its windscreen a flat unlit black slab, its headlamps half-discs and its mirror pods blobs. The ranch fence the brief describes is not visible anywhere, and left of the lane is a featureless dark plane.",
+     "fix": "Give the windscreen a glass material that reflects the slate sky and horizon via the IBL. Put TXT.weather road film on the lower door, steps and bumper. Swing the camera about 10 degrees further toward the side so the hood foreshortens and the fence posts enter the left third against the horizon."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The truck is an evenly lit orthographic side elevation, close to a cutout, over a speckle-noise band (display y 590 to 660) where the far field should be. It reads as a different hand from every PBR frame.",
+     "fix": "Swing the long lens 15 to 20 degrees off perpendicular so the cab's front face and the low sun's rake on the east flank show, with a cast on the shoulder. Replace the speckle band with receding stubble rows that fade into the haze."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat orthographic side elevation of the truck over a painterly grass band reads as a different illustrator from the rest of the deck. The truck's flank has almost no form shading.",
+     "fix": "Drop the lens from orthographic-looking to about 85 mm at a slight three-quarter from the field, so the sun rakes the flank and the cab and trailer gain form against the slate front."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The kit person stands stiff and pasted on beside the bumper, and the warehouse behind is a blank box.",
+     "fix": "Pose the figure with a hand on the swung door and weight on one leg, keyed from the camera side. Add dock doors, bumpers and lights to the warehouse wall so the place reads as a working hub."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit person stands front-on to the lens like a mannequin, clear of the van, with a crude face at feed size, and the warehouse behind is a flat untextured box.",
+     "fix": "Turn the figure three-quarter toward the open doors with one hand on the door's locking bar, so she reads the load rather than poses, and pull the camera back so her face is too small to read as a model."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The sky is a flat slate gradient with no cloud structure, so 'a norther at an hour' doesn't read. The warehouse is an undifferentiated box.",
+     "fix": "Give the stormFront sky a visible shelf-cloud edge with a lit seam under it on the horizon line, and line the warehouse with numbered dock doors and parked trailers."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The paper still reports the model scoring lower on the patients it was not built on.
 - 2026-09-29 · The paper still reports the MRI model scoring lower on patients outside the group it was built on.
 - 2026-10-02 · The study's result is unconfirmed this run. The abstract service bars automated readers and the article page shows no text to a reader without a script.
+- 2026-10-03 · The study's result is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script.
 
 ## Evidence
 
