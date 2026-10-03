@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-03
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The commission's order approving the line still stands on its original terms. The docket keeps taking filings after the order, so any count of them belongs to the day it is read.
 - 2026-09-27 · The commission's order approving the line still stands as issued. Filings keep reaching the docket without reopening it.
 - 2026-09-30 · The commission's approval of the line still stands as ordered, and the filing that carries it reads the same.
+- 2026-10-03 · The commission's approval of Oncor's line still stands as ordered, and the docket's filings read as they did.
 
 ## Evidence
 

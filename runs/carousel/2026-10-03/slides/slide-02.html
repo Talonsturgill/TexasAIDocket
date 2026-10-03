@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-03, frame 2 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's stormFront world. The whole truck side on along southbound Interstate 45 through a long lens from a disked Blackland field, the low sun on its east side and the slate front behind it, the type on the dark field below. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .hook { top:812px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">219 miles, mostly Interstate 45.</h1>
+<p class="dek" data-follow="22">IKEA will be the launch shipper, on a leg of its route from Baytown to Frisco. Kodiak plans to run it with no one in the cab.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "Dallas to Houston", counter: "02 / 09", src: "c2 c3 c20 c23 c24", fit: { min: 88, max: 112, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 10.2, exposure: 0.8 });
+  /* the rig running south in the right lane of the southbound carriageway, x = -7.14 */
+  const X_TRUCK = -7.14;
+  const rig = NR.rig(K, { lights: true, van: { doors: 'closed', load: 0 } });
+  rig.position.set(X_TRUCK, 0, 0);
+  TXT.add(R, rig); TXT.contact(R, rig, { opacity: 0.75 });
+  TXT.ground(R, { surface: 'dirt', size: 6000, tile: 3, seed: 17, color: 0x4e4234 });
+  NR.road(K, R, TXT, { seg: 300, segs: 3, z0: -450, barrier: false });
+  /* October cotton stubble beyond the highway on its west side, rows along the road, and the
+     near field left disked and bare under the type */
+  const cot = K.make('crop_rows', { seed: 5, crop: 'cotton', growth: 1, width: 40, length: 260, soil: 0x2e2a24 });
+  cot.position.set(-48, 0, -10); TXT.add(R, cot);
+  /* the near field east of the road, October prairie in blocks between the shoulder and the lens */
+  for (let x = 36; x < 150; x += 24) for (let z = -84; z < 96; z += 24) {
+    const pa = K.make('pasture', { seed: 500 + x + z, width: 24, depth: 24, season: 'fall' });
+    pa.position.set(x, 0, z); TXT.add(R, pa);
+  }
+  NR.yard(K, R, TXT, [{ kind: 'cedar_elm', at: [-60, -40], opts: { height: 13 } }, { kind: 'live_oak', at: [-150, 60], opts: { height: 11 } }]);
+  /* the camera on a farm-road rise in the field 160 m east, looking west across both carriageways */
+  TXT.frame(R, { from: [158, 4.2, -1.5], look: [-7.1, -4.4, -1.5] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 20), NR.rigOpts([-7, 1.5, -2]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.26, veil: 0.22, veilH: 560, typeBlur: 26, typeFeather: 60 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

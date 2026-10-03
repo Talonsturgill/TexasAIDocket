@@ -1,0 +1,248 @@
+{
+ "weighted_score": 6.66,
+ "judges": [
+  6.56,
+  6.94,
+  6.49
+ ],
+ "spread": 0.45,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    5.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 5.0,
+   "weight": 0.1,
+   "judges": [
+    5.0,
+    5.5,
+    5.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.56 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.49 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.56,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.56 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.94,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.49,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.49 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The low-poly tractor is still the zoom subject: a rounded-box hood, a flat unlit black windscreen, half-disc emissive headlamps and blob mirror pods, with no seams or road film.",
+     "fix": "Pull the camera back to a three-quarter view at 6 to 8 m so the hood is no longer the detail budget. Give the windscreen an environment-reflective glass material and put TXT.weather grime on the lower door, steps and bumper."
+    },
+    {
+     "judge": 2,
+     "problem": "The kit tractor is cropped full bleed, so its primitive modelling is the whole frame: a blobby hood shell, flat grille slats, a pure black windshield with no reflection, toy mirror pods. Behind it is only a dark gradient with no horizon, fencerow or haze, so it doesn't read as a place.",
+     "fix": "Pull the camera back to a 12 m long-lens medium at front three-quarter so the cab fills about a third of the frame against the I-45 corridor, with a horizon, fencerow and haze, and give the windshield an environment-mapped glass material so it reflects the slate sky."
+    },
+    {
+     "judge": 3,
+     "problem": "The close crop makes the low-poly tractor the zoom subject. It has a clay-smooth hood with no panel seams or road film, a flat unlit black windscreen, blob mirror pods and a flat grille plate. This is the deck's most primitive frame and it carries the slot's whole detail budget.",
+     "fix": "Replace the frame (see the fix line), or pull the chase camera back to a medium three-quarter at 6 to 8 m with the lane and a fencerow behind, so the roof sensor bar is the focal and the hood is not. Give the glass an environment-reflective material and put TXT.weather grime on the lower door and steps."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The sawtooth shadow-map artifact still runs down the left carton column at display x 460 to 580, y 860 to 1480, as round 1 named it. No tandem shows under the floor, so the van stands on its light boxes and ICC bar on a bare court.",
+     "fix": "Raise the VSM shadow bias and normalBias, or the shadow-map resolution, on the carton stack for this frame. Raise the eye about 0.4 m and pull back until the rear tandem and its contact shadow sit under the floor."
+    },
+    {
+     "judge": 2,
+     "problem": "Sawtooth shadow-acne runs down the left edge of the carton stacks (about x 460 to 580 display px), and the slab lip makes a hard dark band directly behind the dek, so the van floats on a strip.",
+     "fix": "Raise the sun's shadow.normalBias/bias on the VSM light for carton_stack until the serration clears, and continue the ground beyond the court so the band behind the dek becomes field and haze."
+    },
+    {
+     "judge": 3,
+     "problem": "A sawtooth shadow-map artifact still runs down the left carton column (display x 460 to 580, y 860 to 1480). No tandem shows under the floor, so the van reads as standing on its light boxes and ICC bar.",
+     "fix": "Raise shadow bias and normalBias, or the VSM resolution, on the carton_stack geometry. Lift the camera and pull it back about 2 m so the rear tandem and its contact shadow sit under the floor line."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The flat yellow polygon decal is still on the right verge at display x 1400 to 1600, y 1560 to 1760, in the deck's best world frame. The delineator posts merge into the vanishing point, so the dek's 'one post for each day left' can't be checked against the picture.",
+     "fix": "Delete the stray ground mesh at the lower-right shoulder. Space the posts so the 89th stands clearly short of the horizon, with open shoulder beyond it."
+    },
+    {
+     "judge": 2,
+     "problem": "A yellow-green polygon still sits on the right verge (about x 1395 to 1600, y 1560 to 1790) and reads as a stray lit mesh. The right verge beyond the posts is otherwise a dead flat brown plane.",
+     "fix": "Delete that mesh or decal and scatter shoulder bunchgrass along the right verge so the ground carries texture to the posts."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat yellow polygon still lies on the right shoulder (display x 1400 to 1600, y 1560 to 1780), in the deck's best world frame. The delineator posts also merge into the vanishing point, so the 'one post per day' count can't be read.",
+     "fix": "Delete the stray ground mesh. Shorten the post spacing so the 89th post visibly stands before the horizon with open shoulder beyond it."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The new slab has a hard diagonal edge over a dark band, so the rig reads as a model on a tabletop plinth rather than a truck court with the Blackland beyond it.",
+     "fix": "Lower the crane pitch until a hazed horizon with the warehouse and a fence line sits on the upper third behind the type, and let the court run out under it. Add oil stains and tyre scuffs under the tandems."
+    },
+    {
+     "judge": 2,
+     "problem": "From the crane the court ends in a straight hard lip with a featureless dark-brown band beyond it, so the rig sits on a tabletop in a void. That is the rubric's slab defect, still visible after the round 1 repair.",
+     "fix": "Extend the ground past the slab edge as TXT.ground vertisol with TXT.scatter stubble and the warehouse in haze, and flatten the pitch a few degrees so the horizon sits on the upper third, with no visible slab lip."
+    },
+    {
+     "judge": 3,
+     "problem": "The roofless van sits on an endless tiled slab whose horizon is a featureless dark band with murk above it. Unlike frames 1 and 9 it got no warehouse, so the counting frame reads as a product shot in a void.",
+     "fix": "Lower the crane pitch until the warehouse used on frames 1 and 9 sits across the horizon on the upper third behind the hook. Add oil stains and tyre scuffs to the court around the rig."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The trailer's material is cold blue-grey against the warm white of frames 1, 6, 7 and 8, and the stack edge carries sawtooth shadow acne at about x 705 to 720. The lower-left third is empty court.",
+     "fix": "Apply frame 1's van material and white balance. Raise the shadow bias on the stack. Move the camera about 3 m right and lower so the van and figure fill the frame and the empty lower-left court crops out."
+    },
+    {
+     "judge": 2,
+     "problem": "The same serrated shadow artifact appears on the box faces. The court ends in a dark step under the warehouse at left (about y 900 to 975). The van shell renders cool blue-grey against the cream of frames 1 and 7, and the person is a low-detail mannequin.",
+     "fix": "Apply the same shadow bias fix, run the ground continuously to the warehouse, and warm the van's exposure and white balance to match frame 1's cream steel."
+    },
+    {
+     "judge": 3,
+     "problem": "The van flank turns cool blue-grey against the warm white of every other frame. The kit person stands facing the lens like a mannequin, clear of the van.",
+     "fix": "Use frame 1's van material and white balance on frame 9. Turn the figure three-quarter toward the open doors at the bumper so she reads the load rather than poses."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The bottom fifth is a near-black band under the court that reads as a plate. The sky above the van is empty mid-grey. There are stray vertical light strips at the left edge (x 0 to 45).",
+     "fix": "Lower the camera horizon and extend the lit court to the bottom edge so the source line sits on concrete, and frame the van so its nose ends inside the frame with no stray geometry at the left."
+    },
+    {
+     "judge": 3,
+     "problem": "It reads as a toy cutaway. The carton tiles are identical along the whole length, the floor tapes are pale blocks hanging below the sill over the tyres, the ember bar floats at ground level, and a flat dark strip runs across the bottom under display y 1780.",
+     "fix": "Lay the three tapes flat on the oak floor inside the section and end the leaders at the sill. Seed lean and flute variation per stack. Extend the court through the bottom strip, or crop it."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The truck is a flat orthographic side elevation over a speckle-noise stubble band, and it reads as a cutout in a different hand from the PBR frames.",
+     "fix": "Swing the camera 15 to 20 degrees off the perpendicular with a long lens so the cab and trailer show their front faces and a real contact shadow on the shoulder. Replace the speckle band with the TXT.ground grass used in the foreground."
+    },
+    {
+     "judge": 2,
+     "problem": "The truck is a flat-lit orthographic side view, almost a cutout, over a speckled noise strip where the far field should be.",
+     "fix": "Rake the low sun across the truck's east side with a visible cast on the road, and replace the speckle band with receding cotton-stubble rows that fade into haze."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.66 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 3, 8, 4, 6, 9, 5, 2 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

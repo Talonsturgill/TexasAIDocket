@@ -1,0 +1,81 @@
+{
+ "round": 3,
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered and grounded, with contact shadows under the tandems on 1, 8 and 9 and a real road on 2, 4 and 7. Most frames still fail the showstopper test, though. Five of nine (1, 5, 6, 8, 9) stand on the same bare jointed slab under a flat slate gradient that has no cloud form. The warehouse on 1 and 9 is a blank box with a few window cutouts. Frame 5 gives roughly the lower 45 percent of the frame to empty concrete. Frame 6's roofless van seen from the crane reads as a toy cutaway, and the two containers sit half under the dek. Frame 3's close crop shows off the kit tractor's primitives: a slab hood, a flat black windscreen and a cartoon grille. I could not see the ranch fence the brief mentions at 432 px or at full size. Frame 9's kit person stands stiff and pasted on. The cartons are identical blocks with a tape stripe. That is several frames leaning on primitives and a void-like ground, which puts it below the 7 descriptor and well above the 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero in one material runs through the whole deck: the white tractor and 53 ft van, with the kraft load and the ember load bar on 1, 5, 6, 8 and 9. The light and grade stay the same, slate sky over warm ground. The motif changes state (open on 1, running on 2 to 4 and 7, in section on 5, counted on 6, the bare floor on 8, a person on 9), and the storyboard declares the cut to the darkest frame on 7. Frame 2's grass field is the frame that sits slightly outside. Coherence is clearly real, but the shared slab and sky also make 1, 8 and 9 hard to tell apart in the filmstrip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "I re-read every slide string and caption line against tmp/src. 93, 84, 86, 91, 219, 1,300, 750,000, 3.5 million and 2019 are verbatim in kodiak_lane.txt, kodiak_arm.txt and kodiak_ikea.txt. 7 = 100 - 93, and 89 = December 31st minus October 3rd, both in compute.py. The Burnette attribution on frame 8 is correct (kodiak_arm.txt line 27). The frame 9 absence is scoped to 'Its release' and holds across all three pages. Frame 7's quote is verbatim. Three things hold it under 10. (1) The cover dek says Kodiak 'called 93 percent of it complete'. The source says the share of claims and evidence that are 'materially complete', and only frames 5 and 6 and the caption restore that wording. (2) The IKEA post the deck cites on frame 3 also says 'Service will begin on the same route we've safely tested in Texas for four years without incident' (kodiak_ikea.txt line 33). No claim carries that line, and the close 'How many here?' plus the web edition's 'no crash record for the lane' are both written as though the company had said nothing about the route's history. (3) In the web edition, 'The long-haul case for Interstate 45 is its own argument' rests on kodiak_arm.txt line 28 but is in no claim. The sources are primary corporate pages, which fits company self-reports. A recordkeeping note, not a deck fault: storyboard.md still says the 3.5 million miles are something 'The deck doesn't print', and frame 9 prints them, correctly scoped."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what is happening: driverless trucks with no one in the cab on I-45 by year end, IKEA as shipper, Baytown to Frisco. They learn who is behind it (Kodiak, and its own 93 percent measure) and the deadline (year end, 89 days). The deck never says what a reader can do. TxDMV's concern route (c36) is verified in claims.json and unused, and the deck closes on a question instead. No public body appears on any frame. The stake on I-45 for the people driving it is never made concrete beyond 'no one in the cab'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "'Not closed yet.' earns the swipe, and frame 2 pays at once with the lane and the shipper. The declared turn on 7 ('Every readiness figure is Kodiak's own.') lands. The middle repeats itself, though. Frame 1's dek already explains 93 as 'one stack per point', and frame 6 ('93 places loaded. 7 bare.') restates it. Frames 5, 6 and 8 all show the same van load, so either 1's explanation or 6 could go without loss. The close lands as a question, not a resolution."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and restrained, with no boosterism and no doom. 'Not closed yet.' and 'The work left.' have a voice. 'Kodiak says' or 'Kodiak counts' opens or carries most bodies (frames 3, 4, 5, 8, 9 and the caption), so it reads as careful attribution more than as a Texan who knows I-45. Lancaster, Baytown and Frisco appear only once (Baytown and Frisco on frame 2), and the copy has no corridor texture. The caption's 'It isn't a safety rating.' is the one line with a point of view."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "This is the second deck in seven days on Kodiak's Dallas-to-Houston I-45 lane. No. 34 (2026-09-26) put 'Kodiak plans unsupervised driverless service on the Dallas to Houston lane by the end of 2026' on its cover and '219 miles, Kodiak says' on frame 2, and this deck's frame 2 headline is again '219 miles, mostly Interstate 45.' A semi truck is the hero again, and the Sept 25 release is again the central source. The angle (the company's self-measured readiness, plus IKEA) and the docket item (tx-2026-0198 vs tx-2026-0188) do differ, so I do not count it as a topic repeat. 'One object carried through every frame' is the same structural move as nos. 39 and 40."
+  }
+ ],
+ "weighted_score": 6.69,
+ "hard_fails": [
+  "CAPTION HOUSE RULE (commas, construction: 'no hedge fenced off by a pair of commas'). caption.txt line 5 reads 'Kodiak says it closes that case before trucks run unsupervised on 219 miles, mostly Interstate 45, from Dallas to Houston.' The hedge 'mostly Interstate 45' sits between paired commas inside the clause, the same construction as CLAUDE.md's own forbidden example ('electricity and, in most cooling designs, water'). caption_check's log exits 0, so the gate does not catch this shape. Repair by splitting it: 'Kodiak says it closes that case before trucks run unsupervised the 219 miles from Dallas to Houston. Most of the way is Interstate 45.' Re-run caption_check and numeral_lint afterwards. This is a one-line repair. No claim is false."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Take the hero rig off the bare jointed slab and the flat slate gradient: build the Lancaster hub as a working yard with a dock face, trailers backed into doors, light poles, yard tractors and a norther with real shelf-cloud form, because five of nine frames (1, 5, 6, 8, 9) stand in that same empty world, and artwork_craft at 0.22 is the criterion holding this deck under the bar.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "From the crane, the roofless van on an empty jointed slab reads as a toy cutaway. The cartons are a uniform block texture, and the two containers float behind the dek with no relation to the rig.",
+   "fix": "Drop the crane to about 10 m and park the van in a row of docked trailers at a dock face, so the 93 lit tops read against neighbouring closed roofs and the slab is a busy yard. Move the containers out from under the dek."
+  },
+  {
+   "slide": 5,
+   "problem": "The lower 45 percent of the frame is empty concrete under the labels and the van is cut off at the left, so the diagram floats in a void.",
+   "fix": "Bring the camera down and tighten so the van's floor sits on the lower third, with the dock face and a second trailer behind it. Set the FEB to DOORS labels on painted bay lines in the foreground, not on bare slab."
+  },
+  {
+   "slide": 3,
+   "problem": "The close crop shows off the kit tractor's primitives: a slab hood, a flat unreflective black windscreen and a cartoon grille. The ground is a dark featureless plane, and the ranch fence the brief mentions doesn't read.",
+   "fix": "Pull back to a wider chase shot that puts the rig on the lane with the fencerow and shoulder grass in frame. Give the windscreen an environment reflection of the sky so the glass stops reading as a black plate."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person stands stiff and pasted on beside the bumper, and the warehouse behind is a blank box.",
+   "fix": "Pose the figure with a hand on the swung door and weight on one leg, keyed from the camera side. Add dock doors, bumpers and lights to the warehouse wall so the place reads as a working hub."
+  },
+  {
+   "slide": 1,
+   "problem": "The sky is a flat slate gradient with no cloud structure, so 'a norther at an hour' doesn't read. The warehouse is an undifferentiated box.",
+   "fix": "Give the stormFront sky a visible shelf-cloud edge with a lit seam under it on the horizon line, and line the warehouse with numbered dock doors and parked trailers."
+  }
+ ]
+}

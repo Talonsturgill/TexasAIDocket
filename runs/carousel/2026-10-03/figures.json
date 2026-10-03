@@ -1,0 +1,162 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "lane_miles": {
+  "value": 219,
+  "from": [
+   "c3",
+   "c23"
+  ],
+  "basis": "miles between the Dallas-Fort Worth and Houston areas along I-45, the company's figure for the driver-out leg"
+ },
+ "ikea_route_miles": {
+  "value": 292,
+  "from": [
+   "c24"
+  ],
+  "basis": "miles of IKEA's Baytown to Frisco route the leg is part of"
+ },
+ "arm_feb": {
+  "value": 84,
+  "from": [
+   "c27"
+  ],
+  "basis": "readiness measure as of February 2026, percent"
+ },
+ "arm_apr": {
+  "value": 86,
+  "from": [
+   "c27"
+  ],
+  "basis": "readiness measure through April 2026, percent"
+ },
+ "arm_jul": {
+  "value": 91,
+  "from": [
+   "c27"
+  ],
+  "basis": "readiness measure as of July 2026, percent"
+ },
+ "arm_aug": {
+  "value": 93,
+  "from": [
+   "c7",
+   "c26"
+  ],
+  "basis": "readiness measure at the end of August 2026, percent of the safety case's claims and evidence materially complete"
+ },
+ "arm_target": {
+  "value": 100,
+  "from": [
+   "c9"
+  ],
+  "basis": "the readiness measure the company expects to reach before launch, percent"
+ },
+ "arm_open": {
+  "value": 7,
+  "from": [
+   "c7",
+   "c9"
+  ],
+  "basis": "percentage points of the safety case's claims and evidence not yet materially complete at the end of August, by the company's own measure",
+  "rule": "arm_target - arm_aug"
+ },
+ "ikea_loads": {
+  "value": 1300,
+  "from": [
+   "c21"
+  ],
+  "basis": "loads delivered for IKEA over four years, more than"
+ },
+ "ikea_miles": {
+  "value": 750000,
+  "from": [
+   "c22"
+  ],
+  "basis": "miles autonomously carrying IKEA goods with a safety observer aboard, more than"
+ },
+ "ikea_years": {
+  "value": 4,
+  "from": [
+   "c21"
+  ],
+  "basis": "years of the IKEA partnership"
+ },
+ "autonomous_miles_m": {
+  "value": 3.5,
+  "from": [
+   "c12"
+  ],
+  "basis": "millions of autonomous miles the company has driven since 2019, more than"
+ },
+ "route_since": {
+  "value": 2019,
+  "from": [
+   "c11"
+  ],
+  "basis": "year the company began hauling Dallas to Houston with safety drivers"
+ },
+ "atlas_trucks": {
+  "value": 35,
+  "from": [
+   "c15"
+  ],
+  "basis": "driverless trucks owned and operated by Atlas in the Permian as of June 30th, 2026"
+ },
+ "atlas_hours": {
+  "value": 40000,
+  "from": [
+   "c16"
+  ],
+  "basis": "cumulative hours of paid driverless operation in the Permian, more than"
+ },
+ "enforce_days": {
+  "value": 90,
+  "from": [
+   "c32"
+  ],
+  "basis": "days after the final rules took effect that TxDMV authorization became enforceable"
+ },
+ "leg_share_of_route": {
+  "value": 0.75,
+  "from": [
+   "c23",
+   "c24"
+  ],
+  "basis": "fraction of IKEA's route the driver-out leg covers, for drawing the leg as a length along the route at one scale; never printed",
+  "rule": "lane_miles / ikea_route_miles, rounded to 4 places"
+ },
+ "days_to_year_end": {
+  "value": 89,
+  "from": [
+   "c2",
+   "c9"
+  ],
+  "basis": "days from the run date to December 31st, the last day of the year the company names for its launch",
+  "rule": "date(2026,12,31) - run date"
+ },
+ "arm_series": {
+  "value": [
+   [
+    2,
+    84
+   ],
+   [
+    4,
+    86
+   ],
+   [
+    7,
+    91
+   ],
+   [
+    8,
+    93
+   ]
+  ],
+  "from": [
+   "c27",
+   "c7"
+  ],
+  "basis": "the readiness measure by month of 2026, month number and percent, for drawing as rendered heights at one scale; the month numbers come from the quote's month names"
+ }
+}

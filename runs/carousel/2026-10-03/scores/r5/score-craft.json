@@ -1,0 +1,91 @@
+{
+ "round": 5,
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "There is one real world in this deck: a slate norther, a low east sun, haze at the horizon and contact shadows under the tyres. Slide 4 (the I-45 POV with delineators, fencerow trees and distant cars in haze) and slide 2 (long lens over lit bunchgrass) come closest to a photograph of a place at an hour. Slide 7's raked flank is strong. The 7 descriptor allows ONE frame on a default, a primitive or an artifact, and several frames fail that. Slide 3 is a kit primitive cab: a rounded-box hood, a flat grille, a windshield rendered solid black with no reflection, and a sky-to-road void behind it with a heavy dark vignette at bottom right. Slides 5, 6, 8 and 9 stand on a bare tiled apron that reads as a ground plane, not a truck court. Slide 5's lower half is a dead zone holding only the labels. Slide 8 has a streaky brown shadow-acne texture down the interior left wall (display x 465 to 590, y 860 to 1490, about 630 to 800 by 1160 to 2010 in original pixels). Slide 9's person is a stiff kit mannequin with a crude face. Slide 4 has a flat yellow-green polygon on the right shoulder (display about 1395 to 1600 by 1560 to 1790). On slide 7 the dek's last line sits on the van's roof edge (display y about 760), so the type is on the subject and not in quiet."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is clearly one filmstrip. One hero runs through all nine frames (the white tractor and 53 ft dry van), under one slate stormFront sky, one grade and one kraft-and-ember material set. The load-as-measure motif changes state across 1, 5, 6, 8 and 9: open, in section, counted from the crane, square-on, then with a person beside it. The storyboard names a camera move and a value arc with a declared cut to the darkest frame at the turn (7). Slide 2 sits slightly outside: its stippled field band and flat side-on truck read as a different technique from the hub frames. machine_qa band ratios run 0.83 to 1.53 with no strobing between neighbours."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "The round 4 hard fail is repaired. Slide 6 now prints '93 places loaded. 7 places bare.' and cites c7 c8 c9. The 93 is c7, the 100 is c9, and the 7 is figures.json arm_open = arm_target - arm_aug, from c7 and c9. Every other numeral traces: 219 (c3/c23), 1,300 (c21), 750,000 (c22), four years (c21), 84/86/91 (c27), 93 (c7), DOORS 100 (c9), 89 (days_to_year_end; Dec 31 minus Oct 3 is 89, checked), October 3rd (run date), 3.5 million and 2019 (c12), 2026 (c27). Frame 7 names the set of its universal ('Every readiness figure is Kodiak's own'), and all are primary_corporate. Held below 10 for two reasons. All the readiness figures are company self-report, with no independent primary in the deck, which frame 7 discloses. The caption's 'It isn't a safety rating' is an editorial inference from c8's definition rather than a sourced sentence. A smaller point: frame 9's 'Its release doesn't say how many ran between Dallas and Houston' is correctly scoped to c12's release, but frame 3 prints 750,000 IKEA miles on a Baytown to Frisco route that largely runs that corridor, and the deck never separates the two."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What happened, who (Kodiak AI, CEO Don Burnette on frame 8), where (I-45, Dallas to Houston, Baytown to Frisco) and the deadline (year end, 89 days on frame 4) are all named. Nothing a Texan can DO is on any frame or in the caption. c36 (the TxDMV Enforcement Division concern route) is a verified claim in the file and goes unused. The stake 'not closed yet' stays abstract: the reader never learns what the open 7 points are or who checks them."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' over the open van earns the swipe, and frame 2 pays at once with the lane and its length. The turn at 7 ('Every readiness figure is Kodiak's own') is where understanding changes, and the close lands on a question. Frame 3 (IKEA loads) and frame 4 (89 days) could swap or tighten without loss. Frames 1, 6 and 8 make the same open-van point three times."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register. No colons, dashes or banned words in the caption or on the slides, and nothing boosterish or doom-laden. More than one line reads as release paraphrase rather than a Texan's sentence. Frame 8's dek is the CEO's quote restated whole. Frame 6's 'One place on the floor for each point of Kodiak's own measure' is mechanical. Lancaster, the hub the whole hub world is built on, never reaches a printed surface."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Carousel no. 34 shipped seven days ago (2026-09-26) on the same company, the same Dallas to Houston I-45 driverless lane, and overlapping keywords (driverless trucks, Interstate 45, Kodiak) and places (Dallas, Houston, Lancaster). This deck's subject differs, Kodiak's own readiness measure rather than the TxDMV authorization, and the storyboard deliberately refused no. 34's cab interiors. The van-as-gauge device and the stormFront palette are fresh. A feed reader will still see the second Kodiak I-45 truck deck in a week."
+  }
+ ],
+ "weighted_score": 6.986,
+ "weighted_score_working": "6.4*0.22 + 8.0*0.12 + 8.0*0.20 + 6.8*0.16 + 7.0*0.10 + 6.8*0.10 + 5.5*0.10 = 1.408 + 0.960 + 1.600 + 1.088 + 0.700 + 0.680 + 0.550 = 6.986",
+ "hard_fails": [],
+ "hard_fail_verification": "No hard fail stands. The round 4 fault (slide 6 printing a computed 7 without citing the claim carrying the 100) is repaired: slide 6 cites c7 c8 c9, c9 carries 100, and figures.json arm_open states the rule arm_target - arm_aug from c7 and c9. render/machine_qa.json reports fails: 0 (verdict WARN). Its 12 warns are 9 sky-in-frame verdicts and 3 unmeasurable drawn-rule crossings on slides 6 and 8. I judged those by eye at full size and saw no rule striking the dek glyphs. Every numeral on all nine slides and in the caption traces to a claim or a stated computation. The topic window: no. 34 (2026-09-26, tx-2026-0188) is the same lane and company inside 30 days. I read it as a different decision, the state's authorization against the company's self-measured safety case, and charge it under variety rather than as a repeat. The reader and integrity judges should look at that lead independently.",
+ "ship": true,
+ "one_sentence_fix": "Stop building the hub frames on the kit's bare tiled ground plane and kit primitives: give the truck court a real world on 5, 6, 8 and 9 (dock doors, parked trailers on their landing gear, oil stains and tyre tracks the CRAFT PLAN promised), and remodel the tractor's hood and glass and the person so slide 3 and slide 9 survive the zoom test. Those four frames are what hold artwork_craft at 6.4 in a deck whose world and coherence already work.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The CLOSE_CROP hero is the kit tractor at its most primitive: a rounded-box hood, a flat slatted grille, a windshield rendered solid black with no reflection, and behind the cab a dark slate-to-road void with no horizon detail and a heavy black vignette at bottom right. It is the frame that most plainly fails the zoom test.",
+   "fix": "Give the windshield and side glass a real glass material reflecting the sky through the IBL (not black), add a crowned hood panel with a lit chrome rim and road film on the bumper, and lower the camera so a hazed fencerow and the far lane sit on a horizon behind the cab instead of the black field."
+  },
+  {
+   "slide": 8,
+   "problem": "The van stands square-on in a void of tiled apron with no tractor, no landing gear and no world behind it beyond a flat dark band. The interior left wall carries a streaky brown shadow-acne texture (original px about 630 to 800 x, 1160 to 2010 y) that reads as a render fault.",
+   "fix": "Raise the VSM shadow bias (or swap the liner material) to kill the streaks on the interior wall, and pull the camera back and down about a metre so the warehouse wall and a hazed horizon sit behind the van's roof and the landing gear touches the court with a contact shadow."
+  },
+  {
+   "slide": 9,
+   "problem": "The figure-scale person is a stiff kit mannequin with a crude face and arms straight down. Her head clips the trailer floor corner, so the scale device reads as a cutout on an empty tiled plane.",
+   "fix": "Repose the figure in profile with weight on one leg and a hand on the door's locking bar, clear of the floor edge, and add scatter (a pallet, tyre tracks, an oil stain) on the court around her feet so the ground is a truck court and not a grid."
+  },
+  {
+   "slide": 6,
+   "problem": "The crane view puts the rig small on a huge flat tiled plane. Two shipping containers float in the mid ground with no context, one half hidden behind the dek, and the seven bare places, the frame's whole job, are a sliver at the rear.",
+   "fix": "Tighten the crane to fill about 70 percent of the frame width with the van, rotate so the bare oak places at the doors sit at the lower right third, and replace the floating containers with a dock face and parked trailers on their landing gear along the upper edge."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat yellow-green polygon artifact lies on the right shoulder (original px about 1880 to 2160 x, 2105 to 2415 y). The roof fairing and sensor puck at the bottom edge are cropped so tight they read as an unexplained grey blob.",
+   "fix": "Delete the stray shoulder mesh, then lower the camera about 0.4 m so the fairing and the lidar housing read as a recognisable object across the bottom edge."
+  },
+  {
+   "slide": 5,
+   "problem": "The lower half under the sectioned van is an empty apron holding only five small labels: a dead zone. The cartons read as a uniform tile texture rather than stacked kraft.",
+   "fix": "Raise the van to sit on the frame's lower third with the labels tucked under the tandem, and give the near stacks seeded lean and flute-edge variation so the section reads as a load and not a texture."
+  },
+  {
+   "slide": 7,
+   "problem": "The dek's last line ('predictions of actual performance') sits directly on the van's roof edge at the left (original y about 1025), so type is set on the subject rather than in quiet sky.",
+   "fix": "Drop the camera about 0.3 m or tilt it down so the van's roofline clears the dek by at least 60 px at 2160 wide."
+  }
+ ]
+}

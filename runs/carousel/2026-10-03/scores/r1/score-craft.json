@@ -1,0 +1,90 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.0,
+   "why": "Every frame is a real PBR render with a grade, a warm key against the slate norther, and type sitting in quiet the composition left for it. No plates anywhere, which is real credit. The SHOWSTOPPER TEST fails on five frames of nine, though. On 1, 5, 6, 8 and 9 the hero stands on an untextured tiled concrete plane that dissolves into a flat grey band. There is no horizon object, no warehouse, no prairie, no fence and no dirt or oil on the apron, which is the 4 descriptor's 'objects floating in a flat gradient'. Frame 1 is the storyboard's named showstopper and its planned 'warehouse in green-grey haze and black prairie to a horizon on the lower third' is not in the pixels. Its right edge also carries an unexplained dark rectangle cast by something off frame (around x 1520-1600, y 1020-1180 at display scale). Frame 3 makes the low-poly tractor the zoom subject: a rounded-box hood, a flat grille plate, half-disc emissive headlamps, blob mirror pods, and a tree clipped at the left edge. Render artifacts. On 8, a sawtooth shadow runs down the left carton column (display x 460-580, y 860-1480), and the same thing shows at the stack edge on 9. On 4, a flat yellow polygon sits on the shoulder at bottom right (display x 1400-1600, y 1560-1760). Frame 5 is a toy cutaway: tiled identical cartons, floor tapes drawn as pale blocks hanging below the sill across the tyres, an ember dimension bar floating at ground level, and the lower 40% dead court. Frame 2's truck is a flat orthographic side elevation that reads as a cutout, over a speckle-noise band. Frames 4 and 7 are the real places: a road, haze in depth, a lit flank and a barrier. Frame 7 is the deck's best image, and even it shows a slit between the closed rear door leaves (display x 190-215)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck. One hero in one material: the white van and its tractor, kraft stacks and the single ember load bar. One slate norther sky and one warm low key. The motif changes state frame to frame and you can track it: open at the hub (1), closed and running (2 to 4, 7), in section (5), from above (6), the doorway (8), beside a person (9). The planned value track holds, with a declared dark cut on 7. Frame 2 sits outside. Its flat side elevation and painterly grass band look like a different illustrator from the PBR hub frames, and the step from 1 at about 38 to 2 at 20 is an undeclared cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 219 is c3/c23. 84, 86, 91 and 93 are c27/c7. 100 is c9. 89 is computed as Dec 31 minus Oct 3, and I checked it: 28+30+31. 7 is arm_target minus arm_aug. The frame 5 tape positions sit at 84/86/91/93 of the interior length, measured on the pixels. Sources are primary. Three looser phrasings. S9's hook 'See one run unsafely?' widens c36's 'operating in ways that could result in serious bodily injury or death'. S3's dek hangs c6's 'surface streets included' on c5's 'without human intervention'. The caption says '219 miles of Interstate 45' where S2 and c23 say 'mostly'/'primarily'. Frame 4's art claims one post per day, but the posts are not countable and appear to run on into the horizon, against its own acceptance line."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (Kodiak named I-45 Dallas to Houston, IKEA Baytown to Frisco as shipper), who decided it, the deadline (year end, 89 days), that the 93 is the company's own self-measure (S7), and the state's thin terms (S8). S9 gives a real action with a URL. Two things are weaker. The stake leans on a company-run percentage whose meaning stays abstract. And the one action is the same reporting route carousel no. 34 already handed readers a week ago."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "'Not closed yet.' earns the swipe and S2 pays at once with the lane, its length and the shipper. The turn on S7 is declared and lands. S6 ('93 places loaded. 7 bare.') restates what S1's dek and S5's 'DOORS 100' already showed, and it is the frame that could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and on register, with no house-rule breaks I could find: no colons, semicolons, dashes, banned words or 'And'/'But' openers. Specific places are named: Lancaster, Baytown, Frisco, I-45. 'No fee. No expiry.' is good. Two flat spots. The caption line 'The images show the 93 as a trailer loaded one stack per point' describes the deck instead of saying something. And the Blackland and post oak country the storyboard built never reaches the copy, so the regional texture stays in a planning file."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.5,
+   "why": "Carousel no. 34 on September 26th, seven days ago, covered the same company (Kodiak AI), the same lane (I-45 Dallas to Houston, Lancaster), the same docket item for the state's terms (tx-2026-0188), the same no fee and no expiry, the same crash-history answer to Dallas and the same Enforcement Division close. Its hero was again a sensor-equipped Class 8 tractor (topics.json entry 34). The readiness-measure angle and the van-as-gauge device are new. Most of the rest is a re-skin of last week."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [
+  "A topic repeated inside the 30 day window. Carousel no. 34 (2026-09-26, tx-2026-0188) has this topic in its ledger entry: 'pays no fee and holds an authorization that does not expire. The City of Dallas asked the department to require crash history and the department answered that the statute does not allow it. Kodiak has named Dallas to Houston as its driverless launch lane'. Its angle closes on 'where a Texan sends a concern', and its keywords include crash history, serious bodily injury and TxMCCS. Seven days later this deck's frame 8 ('No fee. No expiry.' plus crash history, c29 to c37 from the same tx-2026-0188 sources), frame 9 (the Enforcement Division route, serious bodily injury or death, txmccs) and the caption's last two paragraphs restate that spine. Its frames 1 to 3 rest on the same September 25th Kodiak release no. 34 already used. The counter-argument, stated honestly: run_state records dedupe_check at 0.50 against no. 34, below its repeat line. The primary item tx-2026-0198 is new, and the readiness series and the IKEA leg (c19 to c24, dated September 29th) are genuinely new material. This ledger records in capitals, at least six times, that dedupe_check compares keywords and cannot see this kind of repeat. Read against the entries, two of nine frames, the closing action and the caption's state paragraph are last week's deck. Repair: replace S8 and S9 and the caption's TxDMV paragraph with material no. 34 did not carry, for example the IKEA Baytown to Frisco route of which the 219 mile leg is part (c24), or the company-wide 3.5 million miles question the caption already asks (c12). Or else re-select."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Replace frames 8 and 9 (and the caption's TxDMV paragraph), which restate carousel no. 34's no fee, no expiry, crash history and report-it close from seven days ago, with material no. 34 never carried, and build the hub world the storyboard promised behind frames 1, 5, 6, 8 and 9: the kit warehouse, a fence line and the Blackland field on a hazed horizon, with dirt and oil on the apron, because today those five frames stand on an endless tiled plane fading into flat grey.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "The named showstopper cover has no world. The court's grid runs into a flat grey band with no warehouse, prairie or horizon object. An unexplained dark rectangle and a pale streak sit at the right edge, cast by something off frame. The bare-floor focal is a sliver.",
+   "fix": "Place the kit warehouse and a fence line with Blackland field on the horizon at about y 900 (display), lost in the green-grey haze. Delete or move the off-frame occluder casting the rectangle at the right edge. Add TXT.contact oil stains and tyre scuffs on the court under the tandems."
+  },
+  {
+   "slide": 6,
+   "problem": "Product shot on an infinite tiled floor. There is no horizon content, the top fades into murk, and the van's near wall is missing as well as its roof, so it reads as an open-sided toy.",
+   "fix": "Lower the crane pitch until a horizon carrying the hub building and the field sits on the upper third behind the type. Put the near wall back so only the roof is lifted. Scatter a second parked trailer and apron stains around the rig so it stands in a yard."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person is a hands-on-hips mannequin standing in front of the bumper. The lower-left quarter is empty concrete, the van flank goes cold blue-grey against the deck's warm key, and the stack edge carries sawtooth shadow acne.",
+   "fix": "Move the camera about 3 m right and lower so the van and person fill the frame and the empty lower-left court is cropped out. Switch the figure to a relaxed standing pose beside the open door at the bumper. Raise the VSM shadow bias/normalBias to clear the sawtooth."
+  },
+  {
+   "slide": 5,
+   "problem": "Toy cutaway. Identical tiled carton texture runs the full length, the floor tapes are pale blocks hanging below the sill across the tyres, an ember bar floats at ground level, and the bottom 40% is dead court.",
+   "fix": "Lay the three tapes flat on the oak floor inside the section and end the leaders at the sill. Put the ember bar at the load face only. Raise the van to the lower third and tighten the label stack under it. Seed per-stack variation in carton texture and lean."
+  },
+  {
+   "slide": 3,
+   "problem": "Close crop makes the primitive tractor the zoom subject: a rounded-box hood, a flat grille plate, half-disc emissive headlamps and blob mirror pods. A tree is clipped against the left edge.",
+   "fix": "Pull back to a medium three-quarter at 6 to 8 m so the sensor bar reads and the low-poly hood is not the detail budget, or bevel and panel the hood and grille geometry. Move the cedar elm fully into frame or fully out."
+  },
+  {
+   "slide": 8,
+   "problem": "Sawtooth shadow artifact down the left carton column (display x 460-580, y 860-1480). The van sits on a void court, and the folded doors the storyboard calls for are not visible.",
+   "fix": "Fix the shadow-map bias, or raise VSM radius and resolution, on the stack geometry. Show the swung doors folded flat against the sides at the frame edges. Add the hub building on the haze line behind the roof."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat yellow polygon decal floats on the right shoulder (display x 1400-1600, y 1560-1760). The delineator posts merge into the vanishing point instead of visibly stopping short of the horizon.",
+   "fix": "Delete the stray ground decal. Shorten the post spacing so the 89th post stands clearly before the horizon, with open shoulder beyond it."
+  }
+ ]
+}

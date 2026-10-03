@@ -9,7 +9,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-03
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The reset hearing went ahead on September 22nd. A witness has published testimony it says was presented to the committee that day. What the committee does with the charge now waits on its interim report, and nothing has been published from the hearing itself.
 - 2026-09-27 · The committee's reset hearing on artificial intelligence and the workforce still stands on its posted date, with no published report after it.
 - 2026-09-30 · The committee's page still shows the reset hearing on artificial intelligence and the workforce, and no report from it has been posted.
+- 2026-10-03 · The reset hearing has been held. The committee's own meetings list carries the September 22nd sitting, and a witness's published testimony says it was given to the committee that day. No report from the hearing has been posted.
 
 ## Evidence
 
@@ -80,11 +81,11 @@ Source (primary_official): https://senate.texas.gov/cmte.php?c=525
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C525
 
-### The same listing carries an Economic Development public hearing on September 22nd.
+### The committee's own meetings listing carries the September 22nd sitting.
 
-> Tuesday, September 22, 2026 9:00 AM Economic Development
+> September 22, 2026 9:00 AM
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C525
 
 ### A witness's own published testimony says it was presented to the committee on the reset date.
 

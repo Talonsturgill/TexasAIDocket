@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The notice is still gone from the address it was posted to, and the city has since taken down its economic development notices page as well. The city's council meeting pages and archive carry no record of what the council decided.
 - 2026-09-27 · The city's notice of the amended agreement is still not posted anywhere on its site. The council video index still lists the item, and no outcome has been published.
 - 2026-09-30 · The city's notice of the amended agreement is still missing from its site. The council's video index still lists the item, and no outcome is published.
+- 2026-10-03 · The city's notice of the amended Compal agreement is still missing from its site, and no outcome has been published. The council's video index sits on a host that bars automated readers.
 
 ## Evidence
 

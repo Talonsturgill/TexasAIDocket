@@ -1,0 +1,86 @@
+{
+ "round": 4,
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame is rendered in one world: a grey stormFront sky, a low sun and a concrete court or Interstate 45, with contact shadows under the tandems on slides 1, 6 and 9. Slides 1, 2 and 7 are the strongest. Slide 2 has the lit truck side-on above a convincing grass field, and slide 7 has the flank raked by the sun. The deck does not pass the showstopper test, though. The skies are a featureless grey gradient with almost no haze in depth outside slide 4, and the materials read as clean game renders, not a photograph. The 7 descriptor allows one frame with a default, a primitive model, a dead zone or an artifact, and five frames have one. Slide 3's close crop exposes a primitive tractor (boxy hood, flat grille, an unreflective black windscreen). Slide 4 has a stray flat yellow-green polygon on the right shoulder and lollipop trees. Slide 5's bottom 40 percent is an empty apron under a flat side-elevation cutaway. Slide 8 has a dark streaked band down the left carton column. Slide 9's kit person stands in a stiff mannequin pose."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "It reads as a filmstrip. There is one hero, the white tractor and 53 ft van in one material, under one light and one grade, and the contact sheet shows no frame from outside the world. The load-as-progress motif changes state and does real work: open at the hub on 1, a section with tapes on 5, counted from the crane on 6, the face with the bare floor on 8, beside a person on 9. The storyboard declares slide 7 as the cut to the darkest frame, and it is the turn. Slide 2's warm field band and slide 4's road sit a little apart in palette but stay in the same weather. Machine QA reports 0 fails."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces to claims.json or compute.py: 219 (c3/c23), 93/91/86/84 (c7, c26, c27), 100 and 7 (arm_target minus arm_aug), 89 (Dec 31 minus Oct 3, checked by hand), 1,300 and 750,000 (c21/c22), 3.5 million and 2019 (c12). I re-read each quote against tmp/src/kodiak_lane.txt, kodiak_arm.txt and kodiak_ikea.txt and every one is verbatim. The slide 7 quote \"are not predictions of actual performance\" is verbatim in the Sept 25 forward-looking statements, alongside the c18 safety-case expectation. Slide 5's tape positions match the scale: on the van's 50 to 1495 px interior, 84/86/91/93 fall at about 1264/1293/1365/1394 px, and the leaders sit at 1255/1285/1357/1385. All sources are primary, and slide 7 says outright that every readiness figure is Kodiak's own. Three things are looser than the sources. (1) The close, slide 9 and the caption, asks how many of the 3.5 million miles ran Dallas to Houston. The deck's own IKEA source says the launch service 'will begin on the same route we've safely tested in Texas for four years', and the deck itself prints the 750,000 IKEA miles. So the unknown is framed more starkly than the record allows, even though 'Its release doesn't say' is literally true of that release. (2) Slide 5 says 'by month in 2026' for four reported readings, which is not a monthly series. (3) The storyboard's fact-check note says 'The deck doesn't print' the 3.5 million miles, and slide 9 and the caption both print it. It is correctly scoped as company-wide, but the note is stale."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "The what, who, where and when are clear: Kodiak names I-45 from Dallas to Houston, plans unsupervised trucks by year end, and grades its own safety case at 93 percent, with 89 days left. What the reader can do next is missing. claims.json carries a verified TxDMV route for reporting a dangerous automated vehicle (c36) and the state authorization facts (c29 to c37), and none of them reaches a frame or the caption. The deck is entirely the company's frame plus one caution on slide 7, so the stake for a Texan on I-45 is stated generally. No county is named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Not closed yet.' earns the swipe. Slide 2 pays at once with the lane. Slide 7 is a real turn, and the slide 9 question closes. Three frames carry the same 93-loaded idea, though: slide 1's dek ('one stack per point'), slide 5 and slide 6. Slide 8 is a thin CEO paraphrase under 'The work left.' At least one of 5 and 6 could merge without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "The copy is clean, attributed and careful ('It isn't a safety rating.', 'Every readiness figure is Kodiak's own.'). Texas specificity barely gets past 'Interstate 45', and the Blackland and post oak world lives only in the art. The repaired caption brought in a flat, slightly broken line. After 'Most of the leg is Interstate 45.' the next sentence opens 'It counts more than 1,300 loads...', and grammatically that 'It' now points at the leg, not Kodiak."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Carousel no. 34, seven days earlier (runs/carousel/2026-09-26/copy.json), was the same company and the same lane. Its cover was Kodiak's unsupervised Dallas to Houston service by end of 2026, and its slide 2 headline was '219 miles, Kodiak says'. This deck's slide 2 is '219 miles, mostly Interstate 45.', and its hero is again the truck. The structure is the house formula of the last four decks, one object carried through every frame (no. 38 the desk, no. 39 the plate reader, no. 40 the vial). The palette (slate, kraft, oak) and the readiness and IKEA news are fresh. That is more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.956,
+ "hard_fails": [],
+ "ship": true,
+ "hard_fail_audit": "No hard fail stands. (1) Round 3's paired-comma hedge is gone. The caption now reads 'Kodiak says it closes that case before trucks run unsupervised on the 219 mile leg from Dallas to Houston. It expects both by year end. Most of the leg is Interstate 45.', and I re-read every caption sentence and every slide dek and found no fenced hedge, no comma after a conjunction or relative pronoun, no colon or semicolon, no dash, no banned word, no And/But opener, no first person and no 'cannot'. Hashtags are present and the caption has straight quotes only. (2) Every numeral traces, as above. (3) render/machine_qa.json shows 0 fails. Its 13 warns are SKY IN FRAME notices plus rules crossing the dek glyph band on slides 6 and 8 that it 'COULD NOT BE MEASURED'. I judged those by eye: the container and roof edges sit behind 'Kodiak's own' and 'work, and that it is concentrated', and both lines read cleanly. (4) Every first_comment URL was fetched (tmp/src). (5) Topic repeat: I weighed no. 34 (tx-2026-0188, the TxDMV authorization, with the Kodiak lane as context) against this deck (tx-2026-0198, Kodiak's self-graded safety case and the IKEA launch, no TxDMV content). The subject decision, docket item and instrument differ, so I judge it not a repeat under the rule. The overlap is heavy, though, and it is charged in variety. A judge who reads the rule more broadly has a real case, and it is a lead worth reading.",
+ "non_blocking_findings": [
+  "Web edition /home/user/TexasAIDocket/ledger/articles/2026-10-03.json says 'By June 30th it says its driving system had been fitted...' with no year. The house rule keeps the year on site dates because a record page is an archive. Write 'June 30th, 2026'.",
+  "Caption sentence 4 starts 'It counts...' right after 'Most of the leg is Interstate 45.', so the antecedent is now the leg. Write 'Kodiak counts...' or move the IKEA sentence ahead of the Interstate 45 sentence.",
+  "The storyboard's fact-check bullet says the deck doesn't print the 3.5 million miles, and slide 9 and the caption do (correctly scoped). Update the note so the next run doesn't inherit it.",
+  "Body text on slides 5, 6, 7 and 9 renders apostrophes that look curly (company's, didn't, doesn't). copy.json's text nodes are straight ASCII, so this is a glyph-shape question for the body font, not a copy violation. It is worth confirming."
+ ],
+ "one_sentence_fix": "Don't run a second Kodiak Interstate 45 deck a week after no. 34 with the same 219 mile slide 2. If the readiness story has to run, cut the duplicate 93-loaded frame (5 or 6) and close on the verified TxDMV reporting route (c36), so a Texan on I-45 gets an action and not just the company's own number.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The close crop puts the primitive kit tractor at full size: a boxy hood, a flat slatted grille, a dead black windscreen with no reflection, and a flat gradient sky behind it. It is the clearest 'primitive model' charge in the deck.",
+   "fix": "Pull the chase camera back to a medium three quarter so the cab is under about 40 percent of the frame width, and give the windscreen and side glass an env-mapped glass material that reflects the sky."
+  },
+  {
+   "slide": 4,
+   "problem": "A stray flat yellow-green polygon lies on the right shoulder at about x 1880 to 2160, y 2100 to 2400 (original px). It is a render artifact, and the two pairs of lollipop trees read as dropped-in cutouts.",
+   "fix": "Delete or re-texture the stray ground patch mesh, and replace the two tree pairs with TXT.scatter fencerow trees set back in the haze at the horizon."
+  },
+  {
+   "slide": 5,
+   "problem": "The bottom 40 percent of the frame is an empty brown apron with nothing on it, and the van is a flat side elevation that reads as a toy cutaway. It is a dead zone under the deck's data frame.",
+   "fix": "Lower the camera so the apron foreshortens and the van sits on the lower third, and add joint stains, tyre scuffs and a darker contact under both tandems so the labels hang over a worked surface."
+  },
+  {
+   "slide": 8,
+   "problem": "A dark streaked or hatched band runs down the left carton column at about x 620 to 800, y 1160 to 2010 (original px), which looks like shadow acne or a texture stretch. The cartons read as flat untextured blocks.",
+   "fix": "Raise the sun light's shadow normalBias/bias on the VSM map until the streaks clear, and add a small bevel and flute-edge normal to carton_stack."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person stands in a stiff, symmetrical mannequin pose. As the deck's only human scale reference it reads as a placeholder figure.",
+   "fix": "Re-pose the figure with a weight shift and one hand on the swung door, and key it from the camera side at the low east sun so the face and coat read with form shading."
+  }
+ ]
+}

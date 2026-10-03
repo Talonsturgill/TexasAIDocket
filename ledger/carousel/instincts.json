@@ -300,7 +300,8 @@
         "2026-09-27",
         "2026-09-28",
         "2026-10-01",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-03"
       ],
       "contradicted": []
     },
@@ -599,7 +600,8 @@
         "2026-09-28",
         "2026-09-30",
         "2026-10-01",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-03"
       ],
       "contradicted": []
     },
@@ -778,7 +780,8 @@
         "2026-09-16",
         "2026-09-19",
         "2026-09-28",
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-03"
       ],
       "contradicted": []
     },
@@ -1220,6 +1223,22 @@
       "learned": "2026-10-02",
       "instinct": "Soften distance with one uniform band or the world's haze, never with a blur masked by a transparent hero's silhouette, because the world seen through the glass stays sharp.",
       "evidence": "2026-10-02: every round 1 pixel critic named the sharp city through the vial against a blurred city around it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "seven-places-is-a-metre",
+      "learned": "2026-10-03",
+      "instinct": "Before drawing a share as places in a container, compute the physical depth of the remainder and set the camera so that depth reads at 432px, because a small remainder seen from standing eye is a sliver.",
+      "evidence": "No. 41: 7 of 100 places in a 53 ft van is 1.1 m of floor; every pixel critic in rounds 1 and 2 called the bare floor a sliver until cameras rose to 4.7 to 5 m and the near wall came off.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "accent-from-albedo-not-glow",
+      "learned": "2026-10-03",
+      "instinct": "Give an accent object its colour through albedo with a small emissive and measure it off the render against the hex, because an emissive accent in sun reads pink.",
+      "evidence": "No. 41: beams at emissive 1.05 measured (220,131,93) against #B4664F and three critics called them salmon; 0.72 brought them in.",
       "confirmed": [],
       "contradicted": []
     }

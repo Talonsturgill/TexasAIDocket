@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- 2026-10-03, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's stormFront world. The van at the hub with its rear doors folded open, the low east sun shining into the doorway onto a load of carton stacks that stops short of the doors, the norther dark behind. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:840px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Not closed yet.</h1>
+<p class="dek" style="top:330px">Kodiak AI named Interstate 45 from Dallas to Houston its first driverless long-haul lane. It says it closes its safety case before that launch, and at the end of August it called 93 percent of it complete. This van is loaded to that measure, one stack per point.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "Kodiak AI's own measure", counter: "01 / 09", src: "c3 c7 c8 c38", fit: { min: 120, max: 150, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 34 });
+  /* the rig turned so its nose points west and the van's rear faces the low east sun; the van's
+     centre on the origin. 93 places loaded from the nose: arm_aug, with arm_open bare at the doors */
+  const ARM_AUG = 93;
+  const rig = NR.hubRig(K, R, TXT, { doors: 'open', load: ARM_AUG, bar: true });
+  TXT.ground(R, NR.COURT);
+  NR.hub(K, R, TXT, { warehouse: [-280, -125], whYaw: 0.4, avoid: [[-80, -40, 80, 40]] });
+  NR.yard(K, R, TXT, [{ kind: 'van', at: [-6, -16], yaw: -Math.PI / 2, seed: 11 }, { kind: 'pickup', at: [26, -22], yaw: 0.6, opts: { trim: 'work', color: 0x8a8f94 } }]);
+  /* the court's cobra-head lights in a row along its south side, arms reaching over the slab */
+  for (let i = 0; i < 4; i++) {
+    const lamp = K.make('streetlight', { height: 10.5, reach: 2.4 });
+    lamp.position.set(-14 - i * 34, 0, 22); lamp.rotation.y = Math.PI; TXT.add(R, lamp);
+  }
+  TXT.frame(R, { from: [20.8, 4.7, 5.4], look: [2.2, 3.9, 0.35] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 18), NR.rigOpts([2, 1, 0]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.36, siteBlur: 26, typeBlur: 22, typeFeather: 50 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

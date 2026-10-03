@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-03, frame 3 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's stormFront world. The tractor's cab and hood from a chase position in the next lane, a little ahead, the roof sensor bar, the mirror pod and the bumper radar that do the driving, the driver's door lit by the low sun, cropped by the frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">More than 1,300 loads for IKEA.</h1>
+<p class="dek" data-follow="24">Kodiak says it has delivered more than 1,300 loads and logged more than 750,000 autonomous miles carrying IKEA goods over four years, with a safety observer aboard.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "Four years of IKEA freight", counter: "03 / 09", src: "c21 c22", fit: { min: 80, max: 104, maxLines: 3 } });
+  const R = NR.stage(TXT, gl, W, { fov: 40 });
+  /* the rig running south in the right lane of the southbound carriageway, x = -7.14 */
+  const X_TRUCK = -7.14;
+  const rig = NR.rig(K, { lights: true, van: { doors: 'closed', load: 0 } });
+  rig.position.set(X_TRUCK, 0, 0);
+  TXT.add(R, rig); TXT.contact(R, rig, { opacity: 0.75 });
+  TXT.ground(R, NR.SOIL);
+  NR.road(K, R, TXT, { seg: 200, segs: 4, z0: -400 });
+  TXT.scatter(R, { kind: 'grass', count: 8000, area: [-300, -400, 300, 400], avoid: [[-24, -500, 24, 500]], seed: 61, scale: 1.0 });
+  NR.yard(K, R, TXT, [{ kind: 'cedar_elm', at: [-74, -10], opts: { height: 11 } }, { kind: 'live_oak', at: [-90, 30], opts: { height: 12 } }]);
+  /* the right of way's ranch fence on the west side, cut in runs at each field gate */
+  for (const run of [[-60, 70], [-150, 80], [24, 60]]) {
+    const wire = K.make('barbed_wire_fence', { length: run[1], strands: 4, spacing: 3.6 });
+    wire.position.set(-31, 0, run[0]); wire.rotation.y = Math.PI / 2; TXT.add(R, wire);
+  }
+  /* the chase camera in the left lane, a little ahead of the cab, looking back at it */
+  TXT.frame(R, { from: [-0.6, 2.3, 13.0], look: [-7.2, 2.7, 0.8] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 12), NR.rigOpts([-7, 1.5, 1]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.2, typeBlur: 22, typeFeather: 50, siteBlur: 26 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

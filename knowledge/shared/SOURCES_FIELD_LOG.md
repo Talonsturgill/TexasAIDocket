@@ -1818,3 +1818,25 @@ creators' published abstract through Europe PMC instead. Oncor's robots.txt time
 
 **The session's web search allowance was spent by the scout room**, so no craft refresh search
 ran this day.
+
+## 2026-10-03
+
+**www.faa.gov returned 403 to the re-verification fetcher** on the Zipline Texas metros draft
+environmental assessment page and its PDF (tx-2026-0186, six claims), while a request carrying an
+ordinary browser User-Agent got 200 the same morning. The claims were carried as unconfirmed for
+the day rather than read through the second request.
+
+**kodiak.ai news pages and txdmv.gov render their text without JavaScript.** The TxDMV adopted
+rules PDF for 43 TAC Chapter 220 was read through `scripts/shared/fetch_doc.py`. Its text carries
+the PDF's line numbers at the end of each line, so a quote that crosses a line break has to stop
+at the break.
+
+**The crawl boundary refused 24 hosts during re-verification**, every one by robots.txt or the
+registry's own off-limits list, among them capitol.texas.gov, lrl.texas.gov, gov.texas.gov,
+clinicaltrials.gov, eutils.ncbi.nlm.nih.gov, public.destinyhosted.com, search.txcourts.gov,
+tacc.utexas.edu, www.oncor.com and the local broadcasters ksat.com, kcbd.com, kltv.com,
+kwtx.com, kut.org, kgns.tv, kbtx.com, click2houston.com, abc13.com, newschannel6now.com and
+newschannel10.com. The affected items carry an unreachable block dated today.
+
+**elpasotexas.legistar.com published the minutes** the El Paso item (tx-2026-0147) was waiting
+on, readable from the MeetingDetail page.

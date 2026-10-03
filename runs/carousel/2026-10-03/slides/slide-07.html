@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-03, frame 7 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's stormFront world. The truck running north on Interstate 45 with its headlights on, seen low from the median side and close, the low sun behind its cab rim lighting the hood and the sensors, the Blackland verge in the near ground. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Every readiness figure is Kodiak's own.</h1>
+<p class="dek" data-follow="24">The readiness measure is the company's account of its own safety case. Its release lists closing that case by year end among forward looking statements it says "are not predictions of actual performance."</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "The company's own account", counter: "07 / 09", src: "c8 c17 c18", fit: { min: 90, max: 116, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 32, exposure: 0.72 });
+  /* the rig turned to run north (-z) in the right lane of the northbound carriageway, x = 7.1 */
+  const rig = NR.rig(K, { lights: true, van: { doors: 'closed', load: 0 } });
+  rig.rotation.y = Math.PI; rig.position.set(7.1, 0, 0);
+  TXT.add(R, rig); TXT.contact(R, rig, { opacity: 0.75 });
+  TXT.ground(R, { surface: 'grass', size: 6000, tile: 5, seed: 17, color: 0x4d4a32 });
+  NR.road(K, R, TXT, { seg: 200, segs: 4, z0: -500 });
+  TXT.scatter(R, { kind: 'grass', count: 7000, area: [-260, -600, 260, 300], avoid: [[-22, -700, 22, 400]], seed: 47, scale: 1.0 });
+  NR.yard(K, R, TXT, [{ kind: 'cedar_elm', at: [-70, -160], opts: { height: 12 } }, { kind: 'cedar_elm', at: [-84, -120], opts: { height: 10 } }, { kind: 'mesquite', at: [62, -210] }]);
+  /* the distribution line that follows the frontage road, one wood pole every 60 m up the east verge */
+  let zPole = 40;
+  while (zPole > -420) {
+    const up = K.make('utility_pole', { transformer: zPole === -80, guy: false, height: 11.5 });
+    up.position.set(24, 0, zPole); TXT.add(R, up); zPole -= 60;
+  }
+  /* the camera on the east verge behind the rig, looking north up the lane at the van's closed rear doors, the low sun on its east flank */
+  TXT.frame(R, { from: [14.5, 2.3, 31.0], look: [7.0, 3.3, 9.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 16), NR.rigOpts([7, 1, -4]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.58, rgb: '28,26,30' });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

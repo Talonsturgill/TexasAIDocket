@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-10-03, frame 5 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's stormFront world. The van at the hub square on its south side with that wall taken off, through a long lens from 90 m so every length along it is on one scale: stacks from the nose, three pale tapes where the load face stood earlier, the ember beams at the face, bare floor to the doors. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">84. 86. 91. 93.</h1>
+<p class="dek" data-follow="24">The share of its safety case's claims and evidence Kodiak calls materially complete, by month in 2026. Each tape marks where the load stood. The doors are 100.</p>
+<svg id="leads" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-03-norther.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NR.boot(THREE, TXT, initKit, { kicker: "Kodiak's readiness measure", counter: "05 / 09", src: "c7 c8 c9 c27", fit: { min: 96, max: 124, maxLines: 2 } });
+  const R = NR.stage(TXT, gl, W, { fov: 14.0 });
+  /* the measure by month, from figures.json: each tape sits at interior length x value / 100 from
+     the nose, on one scale, and the load face at ARM_AUG. The doors are ARM_TARGET. */
+  const ARM_FEB = 84, ARM_APR = 86, ARM_JUL = 91, ARM_AUG = 93, ARM_TARGET = 100;
+  const rig = NR.hubRig(K, R, TXT, { doors: 'open', swing: 0.5, nearWall: 'left', load: ARM_AUG, bar: true, tapes: [ARM_FEB, ARM_APR, ARM_JUL] });
+  TXT.ground(R, NR.COURT);
+  NR.hub(K, R, TXT, { warehouse: [-40, -420], whYaw: 0.1, avoid: [[-80, -60, 90, 120]] });
+  /* square on to the van's open south side from 92 m, a long lens near parallel, nose to doors in frame */
+  TXT.frame(R, { from: [0.3, 2.45, 92], look: [0.3, 2.95, 0] });
+  TXT.sky(R);
+  TXT.deckRig(R, NR.rigSpec(W, 16), NR.rigOpts([0, 1.5, 0]));
+  TXT.weather(R, { grime: 0.35, height: 1.4 });
+  const cx = NR.develop(await TXT.snapshot(R), gl);
+  NR.post(cx, { a: 0.4 });
+  /* the labels hang under the van at the positions the measure sets, read through the camera */
+  const V = NR.VAN, svg = document.getElementById('leads'), NS = 'http://www.w3.org/2000/svg';
+  const marks = [['FEB 84', ARM_FEB, false], ['APR 86', ARM_APR, false], ['JUL 91', ARM_JUL, false], ['AUG 93', ARM_AUG, true], ['DOORS 100', ARM_TARGET, false]];
+  const yRail = NR.project(THREE, R, [0, V.FL - 0.25, V.W / 2])[1];
+  window.__txLeaders = [];
+  marks.forEach(function (m, i) {
+    const zLocal = m[1] >= 100 ? V.Z_DOOR : NR.faceZ(m[1]);
+    const p = NR.project(THREE, R, [-zLocal, V.FL - 0.02, V.W / 2]);
+    /* each label hangs to the LEFT of its own leader, so the leftmost mark takes the row nearest the
+       van and no leader runs through an earlier label */
+    const row = i, ly = yRail + 100 + row * 52;
+    const l = document.createElementNS(NS, 'path');
+    l.setAttribute('d', 'M' + p[0].toFixed(1) + ' ' + (p[1] + 16).toFixed(1) + ' L' + p[0].toFixed(1) + ' ' + (ly - 2).toFixed(1) + ' L' + (p[0] - 10).toFixed(1) + ' ' + (ly - 2).toFixed(1));
+    l.setAttribute('stroke', '#E8E3DA'); l.setAttribute('stroke-width', '2.5'); l.setAttribute('fill', 'none');
+    svg.appendChild(l);
+    const d = document.createElement('div'); d.className = 'lab'; d.textContent = m[0];
+    document.body.appendChild(d);
+    d.style.left = 'auto'; d.style.right = (1080 - p[0] + 16).toFixed(0) + 'px';
+    d.style.top = (ly - 21).toFixed(0) + 'px';
+    if (m[2]) { d.style.fontSize = '34px'; d.style.fontWeight = '700'; }
+    window.__txLeaders.push({ target: 'the rail at ' + m[0], at: [p[0], p[1] + 16], to: [p[0], p[1] + 16] });
+  });
+  /* the open places, ARM_TARGET less ARM_AUG of the interior length, marked as a thin dimension
+     line along the bottom rail from the load face to the doors, on the same scale as the tapes */
+  const pa = NR.project(THREE, R, [-NR.faceZ(ARM_AUG), V.FL - 0.02, V.W / 2]), pb = NR.project(THREE, R, [-V.Z_DOOR, V.FL - 0.02, V.W / 2]);
+  const by = yRail + 34, br = document.createElementNS(NS, 'path');
+  br.setAttribute('d', 'M' + pa[0].toFixed(1) + ' ' + (by - 9) + ' L' + pa[0].toFixed(1) + ' ' + (by + 9) + ' M' + pa[0].toFixed(1) + ' ' + by + ' L' + pb[0].toFixed(1) + ' ' + by + ' M' + pb[0].toFixed(1) + ' ' + (by - 9) + ' L' + pb[0].toFixed(1) + ' ' + (by + 9));
+  br.setAttribute('stroke', '#B4664F'); br.setAttribute('stroke-width', '6'); br.setAttribute('fill', 'none'); br.setAttribute('stroke-linecap', 'butt');
+  svg.appendChild(br);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

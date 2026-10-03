@@ -1,0 +1,213 @@
+{
+ "weighted_score": 7.128,
+ "judges": [
+  7.31,
+  6.986,
+  7.03
+ ],
+ "spread": 0.324,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.4,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    6.8,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    5.5,
+    5.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The tractor is a primitive model: a slab hood, a flat oversized grille and an unlit black windscreen, filling the frame at a size where its lack of detail shows.",
+     "fix": "Crop to the CRAFT PLAN focal (roof sensor bar and mirror pod against the sky, from the chase-car three quarter). Give the windscreen an environment reflection so it isn't a black plate, and let the grille fall out of frame at the bottom-left."
+    },
+    {
+     "judge": 2,
+     "problem": "The CLOSE_CROP hero is the kit tractor at its most primitive: a rounded-box hood, a flat slatted grille, a windshield rendered solid black with no reflection, and behind the cab a dark slate-to-road void with no horizon detail and a heavy black vignette at bottom right. It is the frame that most plainly fails the zoom test.",
+     "fix": "Give the windshield and side glass a real glass material reflecting the sky through the IBL (not black), add a crowned hood panel with a lit chrome rim and road film on the bumper, and lower the camera so a hazed fencerow and the far lane sit on a horizon behind the cab instead of the black field."
+    },
+    {
+     "judge": 3,
+     "problem": "The tractor fills the frame and is a toy-like primitive: a blocky hood, a flat black windscreen and a box grille. It is the deck's most visible model, and it reads as CG at feed size.",
+     "fix": "Pull back to the planned medium three-quarter so the cab is under half the frame width, add road film and grime on the door and sill, and give the windscreen a sky reflection instead of flat black."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The kit person reads as a cutout on an empty court. The swung door is missing, and the bottom 40% of the frame is bare concrete with no subject.",
+     "fix": "Move the camera in from 8 m to about 4.5 m at 1.4 m eye height so the open rear and the person fill the lower two thirds. Show the swung door folded against the side, and key her face from the camera side with a contact shadow under her shoes."
+    },
+    {
+     "judge": 2,
+     "problem": "The figure-scale person is a stiff kit mannequin with a crude face and arms straight down. Her head clips the trailer floor corner, so the scale device reads as a cutout on an empty tiled plane.",
+     "fix": "Repose the figure in profile with weight on one leg and a hand on the door's locking bar, clear of the floor edge, and add scatter (a pallet, tyre tracks, an oil stain) on the court around her feet so the ground is a truck court and not a grid."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit person is a crude figure standing on a featureless untextured court plane, and she reads as a cutout rather than a Texan at true scale.",
+     "fix": "Key the person from camera-side east light with a visible contact shadow, crop tighter so she and the van's rear frame own the frame, and give the court joints, oil stains and wear in the foreground."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A stray yellow-green polygon sits on the bottom-right shoulder, and the 'roof fairing' is a small nub at the bottom edge, so there's no machine in the frame.",
+     "fix": "Delete the stray scatter/decal polygon and drop the camera about 0.4 m so the white fairing and black lidar housing cross the bottom 12% of the frame."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat yellow-green polygon artifact lies on the right shoulder (original px about 1880 to 2160 x, 2105 to 2415 y). The roof fairing and sensor puck at the bottom edge are cropped so tight they read as an unexplained grey blob.",
+     "fix": "Delete the stray shoulder mesh, then lower the camera about 0.4 m so the fairing and the lidar housing read as a recognisable object across the bottom edge."
+    },
+    {
+     "judge": 3,
+     "problem": "An unexplained yellow polygon lies flat in the lower-right verge, and the dark verge is otherwise empty.",
+     "fix": "Remove the stray yellow mesh and fill the verge with the planned shoulder grass, lit from the sun's side."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two shipping containers float half-transparent behind the dek, and the van is small on blank paving.",
+     "fix": "Remove both containers, or move them out of the type band behind the tractor, and tighten the crane framing so the roofless van spans about 80% of the frame width."
+    },
+    {
+     "judge": 2,
+     "problem": "The crane view puts the rig small on a huge flat tiled plane. Two shipping containers float in the mid ground with no context, one half hidden behind the dek, and the seven bare places, the frame's whole job, are a sliver at the rear.",
+     "fix": "Tighten the crane to fill about 70 percent of the frame width with the van, rotate so the bare oak places at the doors sit at the lower right third, and replace the floating containers with a dock face and parked trailers on their landing gear along the upper edge."
+    },
+    {
+     "judge": 3,
+     "problem": "The crane view sits on an empty uniform court plane with two shipping containers floating behind the dek, and the seven bare places are a sliver nobody can count.",
+     "fix": "Drop the containers out of the dek's band, texture the court with joints and stains, and lower the crane angle so the bare oak places nearest the lens read as an area."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The three earlier-reading tapes render as pale blocks hanging under the floor beside the rear tandem, not as tapes on the van floor, so the series looks like a chart bolted under the art.",
+     "fix": "Place the tapes on the interior floor at their computed positions, visible through the cut section, and raise the camera about 0.5 m so the floor plane reads."
+    },
+    {
+     "judge": 2,
+     "problem": "The lower half under the sectioned van is an empty apron holding only five small labels: a dead zone. The cartons read as a uniform tile texture rather than stacked kraft.",
+     "fix": "Raise the van to sit on the frame's lower third with the labels tucked under the tandem, and give the near stacks seeded lean and flute-edge variation so the section reads as a load and not a texture."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The van stands square-on in a void of tiled apron with no tractor, no landing gear and no world behind it beyond a flat dark band. The interior left wall carries a streaky brown shadow-acne texture (original px about 630 to 800 x, 1160 to 2010 y) that reads as a render fault.",
+     "fix": "Raise the VSM shadow bias (or swap the liner material) to kill the streaks on the interior wall, and pull the camera back and down about a metre so the warehouse wall and a hazed horizon sit behind the van's roof and the landing gear touches the court with a contact shadow."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The dek's last line ('predictions of actual performance') sits directly on the van's roof edge at the left (original y about 1025), so type is set on the subject rather than in quiet sky.",
+     "fix": "Drop the camera about 0.3 m or tilt it down so the van's roofline clears the dek by at least 60 px at 2160 wide."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 5,
+ "rounds": 5,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 5,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.128, 0.872 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

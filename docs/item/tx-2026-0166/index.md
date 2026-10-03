@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-24 · The trial is still listed as recruiting at the same Texas campuses. A phone held against the abdomen is still the method under test.
 - 2026-09-27 · The trial of a phone microphone counting fetal movement still stands as the universities described it.
 - 2026-09-30 · The universities still describe the three campus trial of a phone microphone counting fetal movement as they first did.
+- 2026-10-03 · The three campus trial is unconfirmed this run. Its registry entry sits on a path this project does not read, and the universities' accounts did not load.
 
 ## Evidence
 
