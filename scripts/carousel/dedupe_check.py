@@ -25,6 +25,16 @@ company. Only a person reading both can say whether the STORY repeats.
 So the exit codes are graded rather than binary, and the loudest one still says "read this",
 never "reject this".
 
+EXCEPT THE THIRTY DAY RULE ITSELF, WHICH IS BINDING SINCE 2026-10-03, ON THE OWNER'S INSTRUCTION
+
+Carousel no. 41 was Kodiak AI's Dallas to Houston lane seven days after carousel no. 34 was
+Kodiak AI's Dallas to Houston lane. This gate said "worth reading" at 0.50, the run read it and
+chose the story, two of three round 1 judges hard failed the window, and the deck shipped after
+five rounds with variety at 5.5. So three measured things are now a REPEAT, exit 3, and a REPEAT
+is not a signal: the routine picks another story. The same docket item, the same documents, or the
+same company at the same place, inside the window. See the block comment above `thirty_day_rule`,
+which carries what it was measured on. Everything else here still prints and decides nothing.
+
 THE STANDING NOTES, ADDED 2026-09-04, AND THE DEFECT IS THE PREVIOUS RUN TALKING TO A WALL
 
 `ledger/carousel/topics.json` carries an `angle_note` on some entries, written by the run that
@@ -74,12 +84,16 @@ beside the beat. See the block comment above `registrable`. It never moves the e
 is described, and the report says so rather than printing a clean line about a comparison that
 did not happen.
 
-    dedupe_check.py --entities "PUCT, Oncor, Hood County" --keywords "transmission, 765 kV"
-    dedupe_check.py --desc "free text description of the candidate"
+    dedupe_check.py --item tx-2026-0125 --entities "PUCT, Oncor" --places "Hood County" \
+                    --keywords "transmission, 765 kV"
     dedupe_check.py --item tx-2026-0125 --desc "the candidate"
     dedupe_check.py --self-test
 
-Exit 0 nothing close, 1 a likely repeat to read before proceeding, 2 the ledger cannot be read.
+**`--item` IS REQUIRED.** The thirty day rule compares the candidate's own docket item, so a run
+without one has not been checked against the rule, and says so with exit 2 rather than a clean line.
+
+Exit 0 nothing close, 1 a likely repeat to read before proceeding, 2 the ledger or the record
+can't be read or no `--item` was given, 3 THE THIRTY DAY RULE IS BROKEN. Pick another story.
 """
 from __future__ import annotations
 
@@ -88,7 +102,9 @@ import datetime as _dt
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
+from urllib.parse import urlsplit
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TOPICS = REPO_ROOT / "ledger" / "carousel" / "topics.json"
@@ -537,6 +553,310 @@ def print_source_report(history: list[dict], cand: dict | None, item: str | None
           "at all, so this can miss.\n")
 
 
+# --------------------------------------------------------------------------- the thirty day rule
+#
+# THE BINDING TIER, ADDED 2026-10-03 ON THE OWNER'S INSTRUCTION, AND IT REVERSES THIS FILE'S OLDEST
+# ARGUMENT ON PURPOSE.
+#
+# Everything above prints and leaves the call to the showrunner, and carousel no. 41 is what that
+# cost. It was Kodiak AI's Dallas to Houston lane seven days after carousel no. 34 was Kodiak AI's
+# Dallas to Houston lane. The fingerprint read 0.50 against the 0.55 band, the run read the entry
+# and chose the story anyway, two of three round 1 judges hard failed the thirty day window, and
+# the deck shipped after five rounds with variety at 5.5. Measured afterwards, 12 of the 16 claims
+# on its docket item cite an address no. 34 had already cited, and its decider is a company no. 34
+# named, at places no. 34 named. Three facts the record already held, and nothing read them.
+#
+# The owner's answer was to make the thirty day rule strict. So a candidate is a REPEAT, exit 3,
+# when a deck inside the window was built on
+#
+#   THE SAME ITEM       the candidate's own docket item
+#   THE SAME DOCUMENTS  addresses that at least LIKELY of the candidate item's claims cite, read
+#                       out of that deck's own committed claims file
+#   THE SAME COMPANY    the company that decides the candidate's item, named by that deck, or a
+#   AT THE SAME PLACE   company that decided that deck's item, named by the candidate, with a place
+#                       the two share
+#
+# WHAT IT WAS MEASURED ON, BEFORE IT WAS TRUSTED. Every shipped deck, each against the decks in the
+# thirty days before it, through this function, on the day it was written. It refuses two of forty
+# one. No. 19 was built on the same Austin council item as no. 18 a day earlier, and no. 41 is the
+# Kodiak pair. Both scored variety 5.5. The company rule fires on no. 41 alone, which the documents
+# rule catches too, and it stays because it is the one that still fires when a company's next
+# release is a new document about the same lane. The self-test replays both refusals and two
+# passes against the committed ledgers.
+#
+# WHY A COMPANY AND NOT ANY DECIDER. The Public Utility Commission is named by ten decks, and two of
+# its decisions about one county inside a month are two decisions. A company's own plan told twice
+# in a month is one story. The decider's type is read off the record, so no list typed here decides
+# who counts.
+#
+# WHY LIKELY AND NOT A NEW NUMBER. It is this file's own band for "over half in common". The two
+# decks it refuses sit at 0.75 and 1.00 of their claims on a window deck's documents, and no other
+# deck in the corpus comes above 0.12, so the band was not tuned to the answer.
+#
+# WHAT IT CAN'T SEE, said so the next reader does not assume it. A deck in the window with no
+# readable claims file is not compared on documents, and it is named rather than counted as clean.
+# A statewide item with no counties shares a place only through `--places`. A company named by a
+# shorter name than the record's ("Oncor" against "Oncor Electric Delivery") is not matched, and the
+# documents rule is what catches that pair.
+GENERIC_ORG = {"inc", "llc", "corp", "corporation", "company", "ltd", "group", "holdings"}
+NOT_A_PLACE = {"", "texas", "statewide"}
+
+
+def doc_address(url: str) -> str | None:
+    """One document's address: host without `www.`, path without a trailing slash, and the query.
+
+    THE QUERY IS KEPT. Legistar serves every meeting from one path and tells them apart by `ID=`,
+    and so do the NSF award search and the utility commission's filings. The first measurement of
+    this rule dropped the query and refused three more decks (no. 6, no. 13 and no. 30), each of
+    which had read a DIFFERENT filing or award at an address it shared with an earlier deck.
+    """
+    s = urlsplit(str(url).strip())
+    if s.scheme not in {"http", "https"} or not s.netloc:
+        return None
+    host = s.netloc.lower().split(":")[0]
+    host = host[4:] if host.startswith("www.") else host
+    addr = host + s.path.rstrip("/")
+    return (addr + ("?" + s.query if s.query else "")).lower()
+
+
+def _addresses(rows) -> list[str]:
+    out = []
+    for c in rows or []:
+        if isinstance(c, dict):
+            a = doc_address(str(c.get("url") or c.get("source_url") or ""))
+            if a:
+                out.append(a)
+    return out
+
+
+def deck_addresses(date: str, runs: Path | None = None) -> set[str] | None:
+    """Every address a shipped deck's own claims file cites, or None if it can't be read."""
+    try:
+        raw = json.loads(((runs or RUNS) / date / "claims.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    rows = raw.get("claims") if isinstance(raw, dict) else raw
+    return set(_addresses(rows)) if isinstance(rows, list) else None
+
+
+def record_items() -> dict:
+    """Docket item id to the item, or an empty map if the record can't be read."""
+    try:
+        raw = json.loads(DOCKET.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    items = raw.get("items") if isinstance(raw, dict) else raw
+    return {str(i["id"]): i for i in items or [] if isinstance(i, dict) and i.get("id")}
+
+
+def _name(n) -> frozenset:
+    return frozenset(w for w in terms(str(n or "")) if w not in GENERIC_ORG)
+
+
+def names_company(names, company: str | None) -> str | None:
+    """The first of `names` that names `company` in full, or None.
+
+    IN FULL, ONE WAY. Every distinctive word of the company's name must be in the other name, so
+    "Kodiak AI" matches "Kodiak AI" and a deck naming "Dallas" does not match a company called
+    Dallas Anything.
+    """
+    want = _name(company)
+    if not want:
+        return None
+    for n in names or []:
+        if want <= _name(n):
+            return str(n)
+    return None
+
+
+def place_key(p) -> str:
+    """'Dallas County' and 'Dallas' are one place for this purpose, and so are case and commas."""
+    p = re.sub(r"[^a-z0-9 ]", " ", str(p or "").lower())
+    return " ".join(re.sub(r"\bcounty\b", " ", p).split())
+
+
+def _places(raw) -> set[str]:
+    return {k for k in map(place_key, raw or []) if k not in NOT_A_PLACE}
+
+
+def item_places(item: dict) -> set[str]:
+    geo = item.get("geography") or {}
+    raw = list(geo.get("counties") or []) if isinstance(geo, dict) else []
+    if isinstance(geo, dict) and isinstance(geo.get("metro"), str):
+        raw.append(geo["metro"])
+    return _places(raw)
+
+
+def company_of(item: dict) -> str | None:
+    """The item's decider when the record types it a company, else None."""
+    d = item.get("decider") or {}
+    if isinstance(d, dict) and str(d.get("type") or "") == "company" and d.get("name"):
+        return str(d["name"])
+    return None
+
+
+def thirty_day_rule(item_id: str, ref: _dt.date, ledger: dict, items: dict,
+                    entities=(), places=(), runs: Path | None = None) -> dict:
+    """The decks inside the window the candidate repeats, and the ones it could not be compared to.
+
+    THE WINDOW EXCLUDES THE REFERENCE DATE ITSELF. A run that writes its own ledger entry and then
+    checks again would otherwise find itself, on the same item, and refuse its own deck.
+    """
+    window = int(ledger.get("window_days") or 30)
+    cand = items.get(item_id) or {}
+    addrs = _addresses(cand.get("claims"))
+    company = company_of(cand)
+    cplaces = item_places(cand) | _places(places)
+    cnames = [*entities, (cand.get("decider") or {}).get("name") or ""]
+    out = {"repeats": [], "uncompared": [], "checked": 0}
+    for e in ledger.get("entries") or []:
+        date = str(e.get("date") or "")[:10]
+        try:
+            gap = (ref - _dt.date.fromisoformat(date)).days
+        except ValueError:
+            gap = None              # undated is inside, as `in_window` holds, so a bad date hides nothing
+        if gap is not None and not 0 < gap <= window:
+            continue
+        out["checked"] += 1
+        other = str(e.get("docket_item") or "")
+        oitem = items.get(other) or {}
+        why = []
+        if other and other == item_id:
+            why.append(f"the same docket item, {item_id}")
+        seen = deck_addresses(date, runs) if gap is not None else None
+        if seen is None:
+            out["uncompared"].append(date or "undated")
+        elif addrs:
+            hit = [a for a in addrs if a in seen]
+            if len(hit) / len(addrs) >= LIKELY:
+                top = ", ".join(f"{a} ({n})" for a, n in Counter(hit).most_common(3))
+                why.append(f"the same documents, {len(hit)} of the {len(addrs)} claims on {item_id} "
+                           f"cite an address this deck cited: {top}")
+        shared = sorted(cplaces & (item_places(oitem) | _places(e.get("places"))))
+        if shared:
+            ocompany = company_of(oitem)
+            if company and names_company([*(e.get("entities") or []), ocompany or ""], company):
+                why.append(f"the same company at the same place, {company} at {', '.join(shared)}")
+            elif ocompany and names_company(cnames, ocompany):
+                why.append(f"the same company at the same place, {ocompany} at {', '.join(shared)}")
+        if why:
+            out["repeats"].append({"date": date or "undated", "no": e.get("carousel_no"),
+                                   "item": other or None,
+                                   "title": (e.get("title") or e.get("topic") or "")[:70],
+                                   "why": why})
+    return out
+
+
+def print_thirty_day(rule: dict, item: str) -> None:
+    print(f"THE THIRTY DAY RULE, binding since 2026-10-03, for {item}. The same item, the same "
+          f"documents, or\nthe same company at the same place, inside the window.\n")
+    for r in rule["repeats"]:
+        print(f"  REPEAT  {r['date']}  carousel no. {r['no']}  {r['title']}")
+        for w in r["why"]:
+            for line in _wrap(w, 84):
+                print(f"          {line}")
+    if rule["repeats"]:
+        print("\n  PICK ANOTHER STORY. This is not a signal to read and weigh, and it is not the "
+              "showrunner's call.\n  Carousel no. 41 read this gate's warning, chose the repeat, "
+              "and spent five panel rounds on it.")
+    else:
+        print(f"  {item} clears it against the {rule['checked']} deck(s) in the window.")
+    if rule["uncompared"]:
+        print(f"\n  {len(rule['uncompared'])} deck(s) in the window have no readable claims file, "
+              f"so their documents were not compared: {', '.join(rule['uncompared'])}. A row that "
+              f"can't be read is not a row that agrees.")
+    print()
+
+
+def frames_on_told_items(copy: dict, claims, ledger: dict, ref: _dt.date,
+                         items: dict | None = None) -> list[str]:
+    """A BUILT deck whose close, or two or more of its frames, rests on a story the window told.
+
+    Selection is where the rule is meant to bite. This is the backstop `panel_ready.py` runs before
+    every panel round, for the material a run brings in AFTER selection. Carousel no. 41 picked a
+    new item and then built frames 8 and 9 on tx-2026-0188, the item carousel no. 34 told a week
+    before, and two judges hard failed it in round 1. One frame of context is allowed. The close,
+    or a second frame, is the old story told again.
+
+    A CLAIM IS TRACED TO A STORY TWO WAYS. By its own `docket_item` when it carries one, and
+    otherwise by its address: a claim citing a document that the told item's record claims cite,
+    and that no other item in the record cites, is that story's material. Three of the forty two claims
+    files under runs/ carry `docket_item` and nothing requires it, so a check keyed on the field
+    alone could not run on an ordinary deck. On no. 41's claims file the two ways agree claim for
+    claim.
+
+    ONE ITEM'S DOCUMENT, NEVER A HUB. The first cut traced by any address the told item cited, and
+    replayed over every shipped deck it flagged carousel no. 24's close for citing the utility
+    commission's meeting calendar, which carousel no. 3's item also cites and so do two other
+    items. Judges scored no. 24's variety 7.8. A document three stories cite is a calendar, not a
+    story, so an address is traced only when exactly one record item cites it. TxDMV's program
+    page, which no. 41's round 1 close stood on, is cited by one.
+
+    Replayed over every shipped deck with the hub rule, it flags one, carousel no. 9 on
+    2026-08-27. Its close pointed the reader at the utility commission's comment window on Project
+    58482, the item carousel no. 6 was built on five days earlier, which is no. 41's round 1 fault.
+    """
+    window = int(ledger.get("window_days") or 30)
+    items = record_items() if items is None else items
+    told, told_at = {}, {}
+    cited_by = Counter(a for i in items.values() if isinstance(i, dict)
+                       for a in set(_addresses(i.get("claims"))))
+    for e in ledger.get("entries") or []:
+        try:
+            gap = (ref - _dt.date.fromisoformat(str(e.get("date") or "")[:10])).days
+        except ValueError:
+            continue
+        it = str(e.get("docket_item") or "")
+        if 0 < gap <= window and it and it not in told:
+            told[it] = e
+            for a in _addresses((items.get(it) or {}).get("claims")):
+                if cited_by[a] == 1:
+                    told_at.setdefault(a, it)
+    of = {}
+    for c in claims or []:
+        if not isinstance(c, dict):
+            continue
+        own = str(c.get("docket_item") or "")
+        addr = doc_address(str(c.get("url") or c.get("source_url") or "")) or ""
+        of[str(c.get("id"))] = own or told_at.get(addr, "")
+    slides = copy.get("slides") or {}
+    keyed = slides.items() if isinstance(slides, dict) else enumerate(slides, 1)
+
+    def frame_no(key, s) -> int:
+        # `n` where the copy carries it. Decks before it carried one key their slides S1 to S9 or
+        # name the file, and reading 0 for every frame made each one the close.
+        for v in (s.get("n"), s.get("file"), key):
+            m = re.search(r"\d+", str(v or ""))
+            if m and int(m.group()):
+                return int(m.group())
+        return 0
+    rows = [dict(s, n=frame_no(k, s)) for k, s in keyed if isinstance(s, dict)]
+    nums = [s["n"] for s in rows]
+    if not nums:
+        return ["CANNOT RUN: copy.json carries no slides, so no frame's claims could be read"]
+    if not of:
+        return ["CANNOT RUN: claims.json carries no claims, so no frame could be traced to the "
+                "story it tells"]
+    last, hits = max(nums), {}
+    for s in rows:
+        if not isinstance(s, dict):
+            continue
+        for c in s.get("claims") or []:
+            it = of.get(str(c))
+            if it in told:
+                hits.setdefault(it, set()).add(int(s.get("n") or 0))
+    problems = []
+    for it, frames in sorted(hits.items()):
+        if len(frames) >= 2 or last in frames:
+            e = told[it]
+            where = ", ".join(str(n) for n in sorted(frames))
+            close = " including the close" if last in frames else ""
+            problems.append(f"frame(s) {where}{close} rest on {it}, the item carousel no. "
+                            f"{e.get('carousel_no')} was built on, {e.get('date')}, inside the "
+                            f"thirty day window. Replace that material. The rule is binding")
+    return problems
+
+
 def print_standing_notes(notes: list[dict]) -> None:
     """First, before the verdict, because a lesson printed under a verdict is a lesson skipped."""
     if not notes:
@@ -568,7 +888,28 @@ def _wrap(text: str, width: int = 88) -> list[str]:
 
 
 def run(cand_terms: set[str], ref: _dt.date, item: str | None = None,
-        beat: str | None = None) -> int:
+        beat: str | None = None, entities=(), places=()) -> int:
+    code = _report(cand_terms, ref, item, beat)
+    # THE THIRTY DAY RULE, LAST, because it is the verdict and the run reads top down.
+    try:
+        ledger = json.loads(TOPICS.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return 2
+    items = record_items()
+    if not item or item not in items:
+        why = (f"{item} is not in the record" if item and items else
+               f"{DOCKET} can't be read" if item else "no --item was given")
+        print(f"THE THIRTY DAY RULE WAS NOT CHECKED, because {why}. It compares the candidate's "
+              f"own docket item,\nso pass --item with an admitted item. A rule that could not run "
+              f"is not a rule that passed.", file=sys.stderr)
+        return 2
+    rule = thirty_day_rule(item, ref, ledger, items, entities, places)
+    print_thirty_day(rule, item)
+    return 3 if rule["repeats"] else code
+
+
+def _report(cand_terms: set[str], ref: _dt.date, item: str | None = None,
+            beat: str | None = None) -> int:
     try:
         ledger = json.loads(TOPICS.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -896,6 +1237,154 @@ def self_test() -> int:
     ok("an item the record does not hold reports None rather than an empty comparison",
        item_hosts("tx-9999-9999") is None)
 
+    # ---- THE THIRTY DAY RULE (2026-10-03), BINDING ---------------------------------------
+    #
+    # AGAINST THE COMMITTED LEDGERS FIRST, because the pair this exists for is real. Carousel no. 41
+    # was Kodiak AI's Dallas to Houston lane seven days after carousel no. 34, the fingerprint said
+    # 0.50 and "worth reading", and the deck spent five panel rounds on the repeat.
+    items = record_items()
+    ok(f"the record resolves for the rule ({len(items)} item(s))", bool(items))
+    led = real_t or {"window_days": 30, "entries": []}
+    by_date = {str(e.get("date"))[:10]: e for e in led.get("entries") or []}
+    e41 = by_date.get("2026-10-03", {})
+    r41 = thirty_day_rule("tx-2026-0198", _dt.date(2026, 10, 3), led, items,
+                          e41.get("entities") or [], e41.get("places") or [])
+    vs34 = [r for r in r41["repeats"] if r["no"] == 34]
+    ok("CAROUSEL NO. 41 IS REFUSED against carousel no. 34", bool(vs34), str(r41["repeats"]))
+    ok("...on the same documents, the Kodiak release no. 34 had already cited",
+       bool(vs34) and any("same documents" in w and "kodiak.ai/news" in w for w in vs34[0]["why"]),
+       str(vs34))
+    ok("...and on the same company at the same place, Kodiak AI on the lane",
+       bool(vs34) and any("same company" in w and "Kodiak AI" in w for w in vs34[0]["why"]),
+       str(vs34))
+    bare = thirty_day_rule("tx-2026-0198", _dt.date(2026, 10, 3), led, items)
+    ok("...and the company rule needs no --entities or --places, because the record carries both",
+       any(r["no"] == 34 and any("same company" in w for w in r["why"]) for r in bare["repeats"]),
+       str(bare["repeats"]))
+    ok("the reference date is outside its own window, so a run that rechecks after writing its "
+       "ledger entry does not refuse itself",
+       not any(r["date"] == "2026-10-03" for r in r41["repeats"]), str(r41["repeats"]))
+    e19 = by_date.get("2026-09-09", {})
+    r19 = thirty_day_rule(str(e19.get("docket_item")), _dt.date(2026, 9, 9), led, items)
+    ok("carousel no. 19, on the same Austin council item as no. 18 a day earlier, is refused",
+       any(r["no"] == 18 and "the same docket item" in r["why"][0] for r in r19["repeats"]),
+       str(r19["repeats"]))
+
+    # THE DISCRIMINATION, because a rule that refused everything would pass every case above.
+    # Carousel no. 40 is a Houston hospital study the day before no. 41. No. 37 is a utility
+    # commission deck, and ten decks name the commission, which is why the company rule reads the
+    # decider's TYPE and never a bare shared name.
+    for d in ("2026-10-02", "2026-09-29"):
+        e = by_date.get(d, {})
+        r = thirty_day_rule(str(e.get("docket_item")), _dt.date.fromisoformat(d), led, items,
+                            e.get("entities") or [], e.get("places") or [])
+        ok(f"carousel no. {e.get('carousel_no')} ({d}) clears the rule", not r["repeats"],
+           str(r["repeats"]))
+
+    ok("a company is matched in full and one way, so a deck naming Dallas is not Dallas Widgets",
+       names_company(["Dallas", "City of Dallas"], "Dallas Widgets LLC") is None
+       and names_company(["Kodiak AI", "IKEA"], "Kodiak AI") == "Kodiak AI")
+    ok("a county and its city are one place, and Texas is no place",
+       place_key("Dallas County") == place_key("Dallas") == "dallas"
+       and not _places(["Texas", "statewide"]))
+    ok("an address keeps its query, so two council meetings at one path are two documents",
+       doc_address("https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1")
+       != doc_address("https://ElPasoTexas.legistar.com/MeetingDetail.aspx?ID=2")
+       and doc_address("https://www.kodiak.ai/news/x/") == doc_address("http://kodiak.ai/news/x"))
+    fx_items = {"tx-1": {"decider": {"name": "Acme Freight", "type": "company"},
+                         "geography": {"counties": ["Ector"]}, "claims": []}}
+    fx = {"window_days": 30, "entries": [{"date": "2026-09-30", "carousel_no": 9,
+                                          "docket_item": "tx-2", "entities": ["Acme Freight"],
+                                          "places": ["Midland"]}]}
+    ok("the same company at a DIFFERENT place is not a repeat",
+       not thirty_day_rule("tx-1", _dt.date(2026, 10, 3), fx, fx_items, runs=Path("/nonexistent"))
+       ["repeats"])
+    fx["entries"][0]["places"] = ["Ector County"]
+    ok("...and the same company at the same place is",
+       bool(thirty_day_rule("tx-1", _dt.date(2026, 10, 3), fx, fx_items,
+                            runs=Path("/nonexistent"))["repeats"]))
+    ok("...and a window deck with no claims file is named as not compared, never counted clean",
+       thirty_day_rule("tx-1", _dt.date(2026, 10, 3), fx, fx_items,
+                       runs=Path("/nonexistent"))["uncompared"] == ["2026-09-30"])
+
+    # THE BACKSTOP A BUILT DECK MEETS IN panel_ready.py. No. 41 picked a new item and then built
+    # frames 8 and 9 on tx-2026-0188, no. 34's item, which two round 1 judges hard failed. The
+    # committed claims file still carries those claims, so round 1's citations replay exactly.
+    try:
+        c41 = json.loads((RUNS / "2026-10-03" / "claims.json").read_text(encoding="utf-8"))["claims"]
+        copy41 = json.loads((RUNS / "2026-10-03" / "copy.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError, KeyError):
+        c41, copy41 = None, None
+    ok("no. 41's committed claims and copy resolve", bool(c41) and bool(copy41))
+    if c41 and copy41:
+        ref41 = _dt.date(2026, 10, 3)
+        ok("the shipped deck, after its repair, rests on nothing the window told",
+           not frames_on_told_items(copy41, c41, led, ref41),
+           str(frames_on_told_items(copy41, c41, led, ref41)))
+        r1 = json.loads(json.dumps(copy41))
+        r1["slides"]["S8"]["claims"] = ["c33", "c34"]
+        r1["slides"]["S9"]["claims"] = ["c35", "c36"]
+        got = frames_on_told_items(r1, c41, led, ref41)
+        ok("ROUND 1's frames 8 and 9 on TxDMV's authorization are CAUGHT before the panel",
+           any("tx-2026-0188" in p and "no. 34" in p and "the close" in p for p in got), str(got))
+        one = json.loads(json.dumps(copy41))
+        one["slides"]["S4"]["claims"] = ["c2", "c33"]
+        ok("...one middle frame of context is allowed",
+           not frames_on_told_items(one, c41, led, ref41))
+        close = json.loads(json.dumps(copy41))
+        close["slides"]["S9"]["claims"] = ["c2", "c35"]
+        ok("...and the close alone is not",
+           bool(frames_on_told_items(close, c41, led, ref41)))
+        ok("a copy with no slides is a check that CANNOT RUN, never a clean one",
+           any("CANNOT RUN" in p for p in frames_on_told_items({"slides": {}}, c41, led, ref41)))
+        bare41 = [{k: v for k, v in c.items() if k != "docket_item"} for c in c41]
+        ok("...and round 1 is caught BY ADDRESS when the claims carry no docket_item, as 39 of "
+           "the 42 claims files under runs/ don't",
+           any("tx-2026-0188" in p for p in frames_on_told_items(r1, bare41, led, ref41)),
+           str(frames_on_told_items(r1, bare41, led, ref41)))
+        ok("...and the shipped deck is still clean that way",
+           not frames_on_told_items(copy41, bare41, led, ref41))
+        nless = json.loads(json.dumps(r1))
+        for v in nless["slides"].values():
+            v.pop("n", None)
+        ok("a copy whose slides carry no `n` reads the frame from its key, so not every frame is "
+           "the close", any("9 including the close" in p and "8" in p
+                            for p in frames_on_told_items(nless, c41, led, ref41)),
+           str(frames_on_told_items(nless, c41, led, ref41)))
+
+    # A HUB IS NOT A STORY. Carousel no. 24's close cites the utility commission's meeting
+    # calendar, which no. 3's item cites and two other items cite too. Its variety scored 7.8.
+    try:
+        c24 = json.loads((RUNS / "2026-09-14" / "claims.json").read_text(encoding="utf-8"))
+        copy24 = json.loads((RUNS / "2026-09-14" / "copy.json").read_text(encoding="utf-8"))
+        c9 = json.loads((RUNS / "2026-08-27" / "claims.json").read_text(encoding="utf-8"))
+        copy9 = json.loads((RUNS / "2026-08-27" / "copy.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        c24 = copy24 = c9 = copy9 = None
+    ok("no. 24's and no. 9's committed claims and copy resolve", bool(c24 and copy9))
+    if c24 and copy24:
+        rows24 = c24.get("claims") if isinstance(c24, dict) else c24
+        ok("carousel no. 24's close on a calendar three items cite is NOT a told story",
+           not frames_on_told_items(copy24, rows24, led, _dt.date(2026, 9, 14)),
+           str(frames_on_told_items(copy24, rows24, led, _dt.date(2026, 9, 14))))
+    if c9 and copy9:
+        rows9 = c9.get("claims") if isinstance(c9, dict) else c9
+        got9 = frames_on_told_items(copy9, rows9, led, _dt.date(2026, 8, 27))
+        ok("carousel no. 9's close on no. 6's comment window five days later IS caught",
+           any("tx-2026-0002" in p and "the close" in p for p in got9), str(got9))
+
+    # WIRED, NOT ONLY DEFINED (GATE_LESSONS 14): the exit code a run reads.
+    import contextlib
+    import io
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+        code41 = run(terms("Kodiak AI, IKEA", "driverless, safety case"), _dt.date(2026, 10, 3),
+                     "tx-2026-0198", None, ["Kodiak AI", "IKEA"], [])
+        code_none = run(terms("Kodiak AI", "driverless"), _dt.date(2026, 10, 3))
+    ok("run() exits 3 on carousel no. 41, which the routine treats as binding", code41 == 3,
+       f"exit {code41}")
+    ok("...and exits 2 without --item, because the rule could not run", code_none == 2,
+       f"exit {code_none}")
+
     if failures:
         print(f"\ndedupe_check self-test: {failures} FAILED", file=sys.stderr)
         return 1
@@ -913,12 +1402,16 @@ def main() -> int:
     ap.add_argument("--item", help="the docket item this candidate is built on, e.g. "
                                    "tx-2026-0125. Its beat is compared against the window's")
     ap.add_argument("--beat", help="the beat itself, where the item is not admitted yet")
+    ap.add_argument("--places", default="", help="places the candidate is about, comma "
+                                                 "separated, beyond its item's own counties")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
     ref = _dt.date.fromisoformat(a.date) if a.date else _dt.date.today()
-    return run(terms(a.entities, a.keywords, a.desc), ref, a.item, a.beat)
+    split = lambda s: [x.strip() for x in s.split(",") if x.strip()]   # noqa: E731
+    return run(terms(a.entities, a.keywords, a.desc), ref, a.item, a.beat,
+               split(a.entities), split(a.places))
 
 
 if __name__ == "__main__":

@@ -503,9 +503,11 @@ jobs:
 
       - name: Dedupe pre-flight self-test (reads the whole entry, not the title)
         run: |
-          # The thirty day rule is a semantic judgement, and judgements are made by reading. A
-          # sibling run nearly repeated a story eleven days old because the showrunner read a
-          # ledger entry's truncated title rather than its angle and entities.
+          # The word fingerprint is a signal, read in full. A sibling run nearly repeated a story
+          # eleven days old because the showrunner read a ledger entry's truncated title. The
+          # thirty day rule itself is binding since 2026-10-03 (exit 3): the same item, the same
+          # documents, or the same company at the same place. Carousel no. 41 retold no. 34's
+          # Kodiak lane a week later, and this replays that pair against the committed ledgers.
           python3 scripts/carousel/dedupe_check.py --self-test
 
       - name: Dossier gate self-test (the plan, before anything is drawn)
