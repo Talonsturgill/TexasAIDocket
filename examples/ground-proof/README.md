@@ -27,7 +27,7 @@ a thing's foot, soft at the tip, and it can't bleed light, which is what no. 41'
 column was. Nine taps decide whether a pixel is at a shadow's edge, the disc turns on white noise,
 a penumbra wider than 3 texels takes 48 taps, and the sun's shadow box grows by a margin it fades
 out in, so a caster longer than the box no longer cuts off in a straight line. The sun's depth bias
-never exceeds 5 mm, so a shadow starts at its caster's foot. The ground loses every depth tie, which
+never exceeds 2 cm, so a shadow starts at its caster's foot. The ground loses every depth tie, which
 takes out the streaked band where no. 41's highway met its ground. The kit highway at grade has no
 earthwork and no edge face (the flat yellow-olive verge polygon), and the kit concrete tile's forty
 hard edged discs are soft blotches wrapped across the tile (the polka dots on no. 41's lanes).
@@ -63,8 +63,8 @@ Two whole frames at full size, main | items 1 and 2:
 
 ## How the frames were graded
 
-Blind, by fresh agents that had seen none of this work: one per deck for each of the three
-comparisons below, 108 frame pairs in all. Each got the rubric's `artwork_craft` descriptors
+Blind, by fresh agents that had seen none of this work: one per deck for each comparison below,
+135 frame pairs in all. Each got the rubric's `artwork_craft` descriptors
 verbatim (10, 7 and 4, and "most good work is 7 to 8") and the SHOWSTOPPER TEST from
 `ILLUSTRATION_SYSTEM.md`, and a sheet per frame with the two versions side by side at 900 px as A
 and B, both whole frames at full size in a folder beside it to crop. Which side was which was
@@ -72,9 +72,9 @@ shuffled per frame by a seeded key, moved out of every folder a grader could ope
 one started. A grader named each version's defects and strengths, scored each 1 to 10 to one
 decimal, and said in a sentence what differs. The key was applied after the last one came back.
 
-Graders are not calibrated against each other: no. 41 on main scored 6.47 under one and 6.33
-under another. So the number to read is the difference inside one grader's sheet, never a score
-set against another grader's.
+Graders are not calibrated against each other. The same nine item 1 renders of no. 41 scored
+5.73 under the item 1 grader and 6.20 under the item 2 grader. So the number to read is the
+difference inside one grader's sheet, never a score set against another grader's.
 
 ## Item 1, main against item 1
 
@@ -83,7 +83,7 @@ set against another grader's.
 | no. 41 | 5.59 | 5.73 | +0.14 | 7 | 2 | 0 |
 | no. 40 | 6.07 | 6.09 | +0.02 | 3 | 5 | 1 |
 | no. 38 | 5.82 | 5.89 | +0.07 | 6 | 3 | 0 |
-| no. 37 | 5.97 | 6.02 | +0.06 | 4 | 5 | 0 |
+| no. 37 | 5.97 | 6.02 | +0.05 | 4 | 5 | 0 |
 | all 36 frames | 5.86 | 5.93 | +0.07 | | | |
 
 Worse:
@@ -98,9 +98,9 @@ Graded before the sun's bias cap below, on the renders `zoom-worse.webp` shows.
 |---|---|---|---|---|---|---|
 | no. 41 | 6.20 | 6.36 | +0.16 | 4 | 1 | 4 |
 | no. 40 | 5.57 | 6.01 | +0.44 | 9 | 0 | 0 |
-| no. 38 | 5.66 | 5.64 | -0.01 | 4 | 1 | 4 |
+| no. 38 | 5.66 | 5.64 | -0.02 | 4 | 1 | 4 |
 | no. 37 | 6.37 | 6.40 | +0.03 | 3 | 3 | 3 |
-| all 36 frames | 5.95 | 6.10 | +0.16 | | | |
+| all 36 frames | 5.95 | 6.10 | +0.15 | | | |
 
 Worse:
 
@@ -123,14 +123,37 @@ barrier ("a thin lit strip separates the barrier foot from its shadow") and no. 
 and no. 37 frame 5's strip of light along a door's hinge is the same fault. three.js reads a
 shadow's bias as a fraction of the shadow camera's depth, so the rig's -0.0004 had grown to 6 cm of
 no. 41's 160 m camera and 32 cm of no. 37's 800 m one, and PCSS's sharp foot showed what VSM's blur
-had filled. The sun's bias now never exceeds 5 mm. Across the 36 frames it moves at most 0.87
-percent of a frame's pixels, nearly all of them darker, and each frame's most changed tile is a
-shadow reaching its caster. Graded blind the same way, items 1 and 2 as graded against the same
-with the cap:
+had filled.
 
-{{BIAS_TABLE}}
+A first cap of 5 mm was graded blind the same way, items 1 and 2 as graded against the same with
+that cap: no. 41 +0.04, no. 40 +0.00, no. 38 +0.01, no. 37 -0.02, 6 frames better and 3 worse. It seated those shadows, and on no. 37 it put blue violet specks at the louvre
+blade ends down the generators' jambs, which the grader marked down on frames 1 and 6. `specks.py`
+counts them over the louvres as the pixels more than 12 levels bluer than the uncapped render.
+Frame 6 has 537 at 5 mm, 457 at 1 cm and 272 at 2 cm. Frame 1 has 4,185 at 5 mm, 4,027 at 1 cm, 3,776 at 2 cm, 2,903 at 5 cm and 5,361 at 2 cm on a 4096 map. They shrink as the bias grows and grow with
+the map, which a shadow does and acne doesn't. They are the shadows of louvre blades the kit lets
+jut past their frame, the "comb teeth" a grader named, lit by a dusk sky. A larger cap would lift
+the feet again, so the cap is 2 cm, where no. 41 frame 4's barrier still sits in its shadow, and
+the specks are the louvre model's to fix. Across the 36 frames the cap moves at most 0.65
+percent of a frame's pixels. It binds on none of no. 40's frames, so all nine render
+identically and no. 40 was not graded again. Graded blind, items 1 and 2 as graded against the same
+with the 2 cm cap:
 
-{{BIAS_WORSE}}
+| deck | before | after | change | frames better | same | worse |
+|---|---|---|---|---|---|---|
+| no. 41 | 6.32 | 6.33 | +0.01 | 1 | 8 | 0 |
+| no. 38 | 5.79 | 5.81 | +0.02 | 2 | 7 | 0 |
+| no. 37 | 6.23 | 6.27 | +0.04 | 3 | 4 | 2 |
+| all 27 frames | 6.11 | 6.14 | +0.03 | | | |
+
+Worse:
+
+- no. 37 frame 5, 5.4 to 5.3: the cap took the lit strip off the door's hinge edge, and the grader read the black leaf without it as a cut out.
+- no. 37 frame 6, 6.9 to 6.8: blue grey dashes along the inner edges of both louvre jambs, the blade shadows the 5 mm cap drew, halved and still there.
+
+The graders disagree about no. 37 frame 5's hinge. The item 2 grader marked the frame down for the
+strip of light there, and the graders of both caps marked it down for losing it. The strip was
+light the old bias let through, and with the cap the door leaf's shadow reaches the hinge. A frame
+that wants a black door leaf parted from a dark wall lights that edge.
 
 ![bias cap zoom](zoom-bias.webp)
 
@@ -154,7 +177,7 @@ frames 5 to 9 worse: speckled columns, hatching inside a strap's shadow, lit spe
 casters, stipple. The second dropped the plane, turned on white noise and let nine taps decide where
 an edge is. No. 41 went +0.14 with frames 1, 3 and 6 worse, and no. 38 -0.02 with frames 5 and 8
 worse. Two of those were the fade, which ran over the box's own last 8 percent and took no. 41's
-cab shade (frame 3, -0.3) and 09-30's canopy shadow on the walk (frame 8, -0.1). 09-30 frame 5
+cab shade (frame 3, -0.3) and no. 38's canopy shadow on the walk (frame 8, -0.1). No. 38 frame 5
 (-0.3) lost the soft band VSM had laid across its wall, and no. 41 frames 1 and 6 (-0.1 each) were
 grain on the load and a sawtoothed rail shadow on the carton tops. The final cut fades in a margin
 outside the box, never a lamp's shadow, and filters a penumbra wider than 3 texels with 48 taps.
@@ -168,6 +191,8 @@ loads in 0.2 s. `total` is the slide's whole render. No. 40 frames 2 to 6
 come from a second pass, because the first rendered them while the disk was full, which crashed two
 of main's, and while old worktrees were being deleted. No. 37 is faster on this branch because the
 kit's generator weathering now filters its streaks once, and most of its frames carry generators.
+The bias cap came after these clocks. It is a getter three.js reads once per shadowed light per
+draw.
 
 | deck | frame | main load | main total | branch load | branch total | change |
 |---|---|---|---|---|---|---|
@@ -215,7 +240,7 @@ kit's generator weathering now filters its streaks once, and most of its frames 
 - no. 37, 2026-09-29: 365 s on main and 246 s on this branch, -27.6 to +2.5 s a frame and -13.2 s on average. The slowest load is 37.3 s on main and 9.4 s here.
 - The 27 frames of nos. 41, 40 and 38 take +5.0 s a frame on a main average of 24.6 s, +20 percent.
 
-Timed inside the page on 09-29 frame 1, drawn three more times after its first draw, twice on each engine, item 1's VSM draws the frame in 23.8 to 27.2 s and PCSS in 27.1 to 28.8 s. The first draw, which compiles the shaders, takes 31.2 to 32.0 s on VSM and 36.5 to 37.4 s on PCSS.
+Timed inside the page on no. 37 frame 1, drawn three more times after its first draw, twice on each engine, item 1's VSM draws the frame in 23.8 to 27.2 s and PCSS in 27.1 to 28.8 s. The first draw, which compiles the shaders, takes 31.2 to 32.0 s on VSM and 36.5 to 37.4 s on PCSS.
 
 ## What is still open
 
@@ -238,13 +263,22 @@ Timed inside the page on 09-29 frame 1, drawn three more times after its first d
 - **The kit highway's lanes are clean.** The ground loses its depth tie with the road now, so its
   stains no longer show through. A grader had read those stains as "repeated oval dark stains ...
   stamped rather than worn", so an asphalt stain wants a drip trail's shape before a lane takes it.
-- **09-30 frame 5's wall** lost the soft band VSM laid across it, which a grader preferred. A frame
+- **No. 38 frame 5's wall** lost the soft band VSM laid across it, which a grader preferred. A frame
   that wants a gradient on a wall lights the wall for it.
 - **A spotlight's bias** starts no. 40 frame 4's vial shadow a few centimetres off its base. It is
-  the deck's own light, and TECHNIQUE_LIBRARY now says how to set one.
+  the deck's own light, and TECHNIQUE_LIBRARY now says how to set one. The same window spot leaves a
+  fine crosshatch in the shadow on the desk beside no. 40's paper stacks (frames 2 and 9), finer
+  than the blocks VSM drew there and still visible at full size.
 - **A pad built as a box lower than 25 cm** still puts its contact and mark on the ground beneath
   it, **no. 40's coping** reads as a smooth slab between marks, **a low sun along a low kerb** draws
   the kerb's sliver of shadow as a fine dark line, and **the far end of no. 41 frame 4's barrier
   shadow** shows a comb where the shadow is far off.
+- **The 2 cm cap drew a faint dashed line along no. 41 frame 4's far shoulder**, where the barrier's
+  toe meets it. A blind grader found it at 2x and scored the frame the same with and without it.
+- **No. 37's louvre blades jut past their frames**, the "comb teeth" a grader named, and under the
+  2 cm cap their ends still lay blue violet specks down the jambs of frames 1 and 6. `mggLouvres` in
+  `assets/js/kit/power.js` tilts a 7 cm blade 0.55 rad about a line 2.5 cm out from the face, so
+  its front edge stands 2.3 cm proud of a frame whose front is 3.5 cm out. The fix is the
+  kit's louvre panel, which item 4 would take.
 - **The optional `qa.py` rule for a display hook's touching serifs was not done.** The pixel
   critic's definition now names the thumbs `slide-0N-thumb.png`.
