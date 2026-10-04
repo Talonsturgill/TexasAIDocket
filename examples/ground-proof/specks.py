@@ -1,10 +1,12 @@
 """Counts the blue violet specks at the louvre blade ends of carousel no. 37's generators, at each
 sun bias tried, so the README's account of the bias cap can be checked rather than believed.
 
-A speck pixel is blue over red by more than 4 levels at a mid luma (45 to 200). The count is taken
-inside the louvre region of a frame and reported as the number ADDED over the uncapped render, the
-one the item 2 graders saw. Frame 6's region is its right louvre panel and door, frame 1's the band
-of the left generator row.
+A speck pixel is one whose blue minus red rose by more than 12 levels over the uncapped render, the
+one the item 2 graders saw. A shadow lit only by a dusk sky turns a cream jamb bluer, and a pixel
+can turn bluer without turning blue, which is why the first count of this, blue over red alone,
+read frame 6 as cleared at 2 cm while a blind grader still saw "blue-grey speckled dashes" there.
+The count is taken over the louvre panels only: frame 6's two panels and frame 1's left row of
+units, which keeps out frame 1's pad, whose contact shadow the cap seats on purpose.
 
 It reads, under --root:
 
@@ -28,12 +30,13 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+BLUER = 12      # levels of blue minus red gained over the uncapped render
 RUNS = {
-    "06": ((1700, 1500, 2160, 2100), [
+    "06": ((950, 1550, 2100, 2050), [
         ("5 mm", "i12b/0929/slide-06.png"),
         ("1 cm", "probe/cap0.01_2026-09-29_slide-06/render/slide-06.png"),
         ("2 cm", "i12c/0929/slide-06.png")]),
-    "01": ((0, 1000, 2160, 2200), [
+    "01": ((0, 1150, 1050, 1900), [
         ("5 mm", "i12b/0929/slide-01.png"),
         ("1 cm", "probe/cap0.01_2026-09-29_slide-01/render/slide-01.png"),
         ("2 cm", "i12c/0929/slide-01.png"),
@@ -42,11 +45,9 @@ RUNS = {
 }
 
 
-def count(path, box):
+def blue_minus_red(path, box):
     a = np.asarray(Image.open(path).convert("RGB"), dtype=np.int16)[box[1]:box[3], box[0]:box[2]]
-    r, b = a[..., 0], a[..., 2]
-    luma = a.sum(axis=2) / 3
-    return int(((b > r + 4) & (luma > 45) & (luma < 200)).sum())
+    return a[..., 2] - a[..., 0]
 
 
 def main():
@@ -60,8 +61,8 @@ def main():
         raise SystemExit("the 2 cm probe and the engine's 2 cm render differ, so the probes measured something else")
     out = {}
     for frame, (box, runs) in RUNS.items():
-        base = count(a.root / f"i12f/0929/slide-{frame}.png", box)
-        out[frame] = {name: count(a.root / p, box) - base for name, p in runs}
+        base = blue_minus_red(a.root / f"i12f/0929/slide-{frame}.png", box)
+        out[frame] = {name: int(((blue_minus_red(a.root / p, box) - base) > BLUER).sum()) for name, p in runs}
         print(f"frame {int(frame)}: " + ", ".join(f"{v} at {k}" for k, v in out[frame].items()))
     if a.json:
         a.json.write_text(json.dumps(out, indent=1) + "\n")

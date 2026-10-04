@@ -224,11 +224,11 @@ camera's depth, so the rig's -0.0004 had grown to 6 cm at a `shadowFar` of 160 m
 and PCSS's sharp foot showed it as a thin lit strip, under no. 41 frame 4's barrier and no. 37 frame
 4's bar. A frame that sets its own `bias` is held to the same cap, and a small camera keeps the
 rig's. *Fails when* a part juts a centimetre or two past what holds it: the cap gives that part its
-shadow too. No. 37's louvre blades stick past their frame, and under its dusk sky their ends lay
-blue violet specks down the jambs. 5 mm put them on frames 1 and 6 and a blind grader marked both
-down. 2 cm clears frame 6 and leaves most of frame 1's, which shorten as the bias grows and sharpen
-on a finer map, as a shadow does and acne doesn't. Model the part inside its frame. A larger cap
-lifts the feet again.
+shadow too. No. 37's louvre blades stand 2.3 cm proud of their frame, and under its dusk sky their
+ends lay blue violet specks down the jambs. 5 mm put them on frames 1 and 6 and a blind grader
+marked both down. 2 cm halves frame 6's, which a grader still marked down, and leaves most of
+frame 1's. They shrink as the bias grows and grow on a finer map, as a shadow does and acne
+doesn't. Model the part inside its frame. A larger cap lifts the feet again.
 **A spot's bias is not a sun's.** three.js adds `shadow.bias` in the shadow camera's own depth,
 which for a SpotLight is perspective and crowded toward the near plane: -0.0004 at `near` 0.1 is
 about 4 cm at 3 m, and a thing smaller than that loses the start of its shadow. No. 40 frame 4's
