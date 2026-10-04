@@ -19,7 +19,7 @@ for s in rep["slides"]:
     src = re.search(r'src: "([^"]*)"', html).group(1)
     labels = [re.sub(r"<br\s*/?>", " ", l) for l in re.findall(r"<div class=\"lab\" id=\"[^\"]*\"[^>]*>(.*?)</div>", html)]
     strings = [t["text"] for t in s["text_nodes"]]
-    slides["S%d" % n] = {"n": n, "file": s["file"], "kicker": kicker, "headline": grab("hook").replace("&#39;", "'").replace("&nbsp;", " "),
+    slides["S%d" % n] = {"n": n, "file": s["file"], "kicker": kicker, "headline": re.sub(r"<br\s*/?>", " ", grab("hook")).replace("&#39;", "'").replace("&nbsp;", " "),
                       "claims": src.split(), "cite": src, "body": re.sub(r"<[^>]+>", "", grab("dek")).replace("&#39;", "'").replace("\\'", "'"),
                       "labels": labels, "strings": strings}
 out = {"date": "2026-10-04", "carousel_no": 42, "document_title": title,
