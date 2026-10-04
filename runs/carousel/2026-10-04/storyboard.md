@@ -98,9 +98,10 @@ rimrock for Fort Davis, Gulf haze for Aldine.
 2. **Camera move.** Street eye in Austin (1), into the rooms (2, 3), back out at standing eye on a
    campus walk (4), down to a long lens on a lot (5), close under a walkway (6), up over Aldine
    (7), into a room (8), and back to street eye at a stop (9).
-3. **Value arc.** Noon opens bright on 1. The rooms on 2 and 3 step down to mid. The walk and the
-   lot on 4 and 5 lift to the deck's brightest. Frame 6 drops into the walkway's shade, the darkest.
-   Aldine lifts on 7, the room settles to mid on 8, and the stop closes bright on 9.
+3. **Value arc.** Noon opens bright on 1. The board room on 2 steps down to mid. Frame 3 settles
+   lowest, the oak desk the emails are read on, where the story turns from a vote to a route. The walk and the lot on 4 and 5 lift
+   back into noon, 6 holds bright on the clock, Aldine lifts on 7, the room settles on 8, and the
+   stop closes bright on 9.
 
 ## The rotation
 
@@ -114,7 +115,7 @@ rimrock for Fort Davis, Gulf haze for Aldine.
 |---|---|---|
 | 01 | WIDE, standing eye 1.6 m on the east sidewalk of Congress Avenue, horizon on the lower third | the school bus at the near kerb, chrome yellow paint lit full on its east flank by the noon sun, the stop arm out, road dust darkening its skirts and tyres from TXT.weather, a contact under each axle on the asphalt, the Capitol hazed at the street's end |
 | 02 | MEDIUM, seated eye 1.2 m from the public rows, long lens | the block of thirteen exec office chairs, black leather catching the window light on their backs, each a little askew, contacts on the carpeted floor, the dais and blank seal behind in the room's pale limestone |
-| 03 | CLOSE, seated eye at a desk by a lit window | the letter sheet on the walnut desk, bright paper in the window light with a soft curl and a contact line where it lies, the document stacks and a dark monitor beyond it in shallow focus |
+| 03 | CLOSE, high over a desk, looking down | the letter sheet on the oak desk, bright paper with a soft curl at its far corners and a cast shadow where it lies, the oak's grain raked by the light, a paper stack at the edge |
 | 04 | WIDE, standing eye 1.6 m on a campus walk | the covered walkway, a ribbed galvanized deck on dark posts throwing a black band of noon shade across broom finished concrete, the brick wing behind with its windows, seven walkers small in the light beyond the shade, each with a short shadow at the feet |
 | 05 | WIDE, long lens at 1.2 m from 70 m, horizon at a third | ten school buses nose on in a row, chrome yellow under dust, five stop arms out as red octagons, three folded with the accent card, two set back in haze, short black pools under each bumper on the asphalt lot |
 | 06 | CLOSE, 0.7 m off the clock, looking up under the walkway | the school clock, black moulded case and white face with its two hour sector, hung from the walkway's edge beam, the ribbed deck black above it, the bus flank and the Davis Mountains rimrock in bleached light behind |
@@ -123,7 +124,7 @@ rimrock for Fort Davis, Gulf haze for Aldine.
 | 09 | MEDIUM, standing eye 1.6 m at a neighbourhood stop | the school bus with its stop arm out at the kerb, chrome yellow under dust, a parent beside it at true scale three quarters away, a live oak's black pool of shade and a brick ranch house behind |
 
 Showstopper frame: 05, ten buses nose on under a white noon sky, five red arms out in a row like a sentence and three folded, two standing back in the heat haze, the lot's depth built from the bus sizes stepping back and the haze on the far pair
-Tonal arc: bright noon on 01, the rooms on 02 and 03 step down to mid, 04 and 05 lift to the deck's brightest, 06 drops into the walkway shade as the darkest frame, 07 lifts again, 08 settles to mid, and 09 closes bright.
+Tonal arc: bright noon on 01, the board room on 02 steps down to mid, 03 settles lowest on the oak desk where the emails are, 04 and 05 lift back into noon, 06 holds bright on the clock, 07 lifts again, 08 settles to mid in the room, and 09 closes bright.
 
 ---
 
@@ -225,7 +226,7 @@ composition:
 art:
   technique: "physically based render, TXT.interior hearing room with the kit hearing_dais, seal_plaque and office_chair"
   why_this_technique: "empty chairs count votes without assigning a real person to a side"
-  palette: "Austin limestone wall, black leather, walnut dais, a blue grey carpet"
+  palette: "Austin limestone wall, black leather, oak dais, a blue grey carpet"
   value_structure: >
     Lightest is the window lit wall. Darkest is the chair leather and the shade under the dais.
     Frame median L* planned at 76.
@@ -252,7 +253,7 @@ risks:
 slide: 3
 layout: DOCUMENT
 primary_image:
-  subject: "a single letter sheet lying in window light on a walnut desk, carrying the one line the reporting quotes from the commissioner's reply"
+  subject: "a single letter sheet lying in window light on a oak desk, carrying the one line the reporting quotes from the commissioner's reply"
   rect: [0, 560, 1080, 790]
   bleeds: [left, right, bottom]
 accent: none
@@ -275,16 +276,16 @@ composition:
     a page and the line on it is legible.
   bands: >
     Top third, the room's wall and the hook. Middle third, the dek and the window. Bottom third,
-    the sheet lit by the window in the foreground, its soft shadow on the walnut and its one line.
+    the sheet lit by the window in the foreground, its soft shadow on the oak and its one line.
   focal: "the quoted line on the sheet"
 
 art:
   technique: "physically based render, TXT.interior office with the kit desk, document_stack and monitor, a letter sheet in the chassis"
   why_this_technique: "a page on a desk is the honest shape of an email the public saw only because records were requested"
-  palette: "walnut, bright paper, limestone, a dark monitor"
+  palette: "oak, bright paper, limestone, a dark monitor"
   value_structure: >
-    Lightest is the sheet and the wall. Darkest is the walnut and the desk's shadow.
-    Frame median L* planned at 72.
+    Lightest is the sheet. Darkest is the grain and the shadow under the sheet.
+    Frame median L* planned at 58.
 
 type:
   hook: "The commissioner wrote back."
@@ -299,7 +300,7 @@ acceptance:
   - "the quoted line is legible on the sheet and matches c10 word for word"
   - "the attribution names Morath and the newsrooms, and no email header is drawn"
   - "the sheet casts a soft contact on the desk"
-  - "the frame's median L* at 432px is between 60 and 82"
+  - "the frame's median L* at 432px is between 46 and 72"
 
 risks:
   - "a page with type on it can read as a plate, so the type is set on the rendered sheet's own surface and nowhere else"
@@ -597,7 +598,7 @@ art:
     Frame median L* planned at 78.
 
 type:
-  hook: "Claimed 50% to 60%.<br>Passed, 21%."
+  hook: "Claimed 50% to 60%. Passed, 21%."
   dek: "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F."
   labels: ["AN ALPHA LEADER CLAIMED 50% TO 60%", "PASSED 21%", "AT GRADE LEVEL, DOWN FROM 10% TO ZERO"]
 

@@ -32,10 +32,10 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The emails", counter: "03 / 09", src: "c9 c10 c11", fit: { min: 90, max: 116, maxLines: 2 }, light: true });
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The emails", counter: "03 / 09", src: "c9 c10 c11", fit: { min: 90, max: 116, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 38, exposure: 1.05, fog: 0.0003, near: 0.02, far: 200 });
   NB.room(TXT, R, { w: 6.5, d: 5.5, h: 6.0, wall: 0xb7ac98, floor: 0x5f6266, windowW: 0.9, windowH: 0.75, windowX: -1.55, windowY: 1.25 });
-  const desk = K.make('desk', { w: 1.8, d: 0.9, pedestal: 'right', wood: 0x5a3820 }); desk.position.set(0, 0, -1.95); TXT.add(R, desk); TXT.contact(R, desk, { opacity: 0.6 });
+  const desk = K.make('desk', { w: 1.8, d: 0.9, pedestal: 'right', wood: 0xb08a5c }); desk.position.set(0, 0, -1.95); TXT.add(R, desk); TXT.contact(R, desk, { opacity: 0.6 });
   const top = 0.76;
   const sheet = K.make('letter_sheet', { curl: 0.007 }); sheet.position.set(-0.02, top + 0.001, -1.7); sheet.rotation.y = 0.0; TXT.add(R, sheet);
   const stack = K.make('document_stack', { count: 2, seed: 5 }); stack.position.set(-0.62, top, -2.12); TXT.add(R, stack);
@@ -49,7 +49,7 @@ window.renderReady = (async () => {
   const L = Math.min(...xs), Rr = Math.max(...xs), T = Math.min(...ys), B = Math.max(...ys);
   const pg = document.getElementById('page'); pg.style.left = (L + (Rr - L) * 0.13) + 'px'; pg.style.top = (T + (B - T) * 0.12) + 'px'; pg.style.width = ((Rr - L) * 0.74) + 'px';
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.3, rgb: '24,16,10', veil: 0.4, veilRgb: '24,16,10' });
+  NB.post(cx, { a: 0.3, rgb: '238,226,206' });
   TXDECK.finish(cx);
   return true;
 })();
