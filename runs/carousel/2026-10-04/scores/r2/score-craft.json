@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.9,
+   "why": "Only 5 and 7 come close to the showstopper test. 3 is the weakest: stretched procedural grain with a heavy blur behind the hook, the letter a flat trapezoid that reads as a plate, no window or room. 8 is rounded boxes before an oversized blurred wall with the glass column cropped. 6 a box clock against a flat sky with a floating grey slab. 2's ten chairs an uncountable tangle with a dead grey pilaster on the left and 40 percent empty tile. 4 mannequins on a void plane with pebble decals, two faces toward camera and an orphan shadow at the left horizon. 9 a fender sheet out of the front wheel arch. A grey wash on the near ground on 1, 5, 7 and 9, and glow halos on every hook and dek."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One deck: one sky, limestone and oak interiors, one type system, one disciplined accent, no value strobe (band ratios 0.99 to 1.61). The bus material shifts between 1 and 9 and the hero sits out five frames. The stop arm doesn't read at feed size. Camera move and value arc work."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, 2025 computed as vote_year from c44, machine QA 0 fails, the fact check's lines held. Held to 8 because every pilot fact and the vote rest on journalism by stated choice, and c44, a voucher story, is the sole support for 'summer of 2025' and is missing from the first comment's claim list."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Bodies, districts by name and what each pilot does are concrete; two real actions at the close; Houston's withheld contract a strong stake. No date a reader can act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays, 3 turns, 5 is the build, 8 lands the claim against the result, 9 acts. 4 could merge into 3; 6 and 7 do the same job."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and Texan in its particulars. Attribution on nearly every frame gives a wire cadence. 5's hook reads like a table."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "highNoon and the bus are new against the last four decks and the topic is clean. No. 38's campus and parent close, no. 39's empty chamber and the instanced count repeat."
+  }
+ ],
+ "weighted_score": 7.142,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 3, 8 and 6 as places rather than props: desk and table at a 1.2 m seated eye toward a sill-height window throwing a sun patch on real-scale oak with no frame-wide blur, and the clock on the walkway's edge beam over a ground line with the rimrock on the lower third.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Top-down procedural grain smeared by blur behind the hook; the letter reads as a type plate; no window, wall depth or hour.",
+   "fix": "Seated eye at 1.2 m across the desk toward a sill-height window; true-scale oak; no global blur; the sheet with thickness, a curl and the sun patch."
+  },
+  {
+   "slide": 8,
+   "problem": "Rounded boxes before an oversized blurred wall; the glass column cropped; the bottom 350 px a blurred table edge; no light direction.",
+   "fix": "Shoot along the table with all three columns inside the frame; a sill-height window's sun patch between them; true block scale; no wall blur."
+  },
+  {
+   "slide": 6,
+   "problem": "A box clock against a flat sky with a floating grey slab at the bottom; no ground, no place.",
+   "fix": "Back off and look up under the walkway so the clock hangs from the deck's edge beam over a ground line with the rimrock; delete the grey slab."
+  },
+  {
+   "slide": 2,
+   "problem": "Ten chairs an uncountable tangle with the leftmost cropped; a dead grey pilaster on the left 130 px; 40 percent empty tile.",
+   "fix": "Two clean rows of five fully in frame filling the bottom third; crop out the pilaster; a window's sun patch on the limestone."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequins on a void plane with pebble decals; two faces toward camera; an orphan shadow at the left horizon.",
+   "fix": "The walkway's shade band across the foreground; broom-finish concrete with joints; all seven turned away; delete the orphan shadow."
+  },
+  {
+   "slide": 9,
+   "problem": "A fender sheet out of the front wheel arch near x 620 to 840, y 1570 of the 1600 px view.",
+   "fix": "Fix the front fender so the arch closes on the wheel and pan left to bring the oak's crown behind the parent."
+  }
+ ]
+}

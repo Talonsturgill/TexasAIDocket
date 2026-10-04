@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-01 · Whether Frontera's queues closed on October 1st as scheduled is unconfirmed. The center's user guide sits on a site that bars automated readers, and no other published notice of the closing has been found.
 - 2026-10-02 · Whether Frontera's queues closed as scheduled is still unconfirmed. The center's user guide sits on a site that bars automated readers and no other notice of the closing has been found.
 - 2026-10-03 · Whether Frontera's queues closed on schedule is still unconfirmed. The center's user guide sits on a site that bars automated readers, and no other notice of the closing has been found.
+- 2026-10-04 · Whether Frontera's queues closed on schedule is still unconfirmed. The center's user guide sits on a site that bars automated readers.
 
 ## Evidence
 

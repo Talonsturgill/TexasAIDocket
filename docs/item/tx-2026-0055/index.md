@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Conroe's Flock contract stays off the November ballot. The council has not brought the question back.
 - 2026-10-02 · Conroe's failed vote to put the cameras on the ballot is unconfirmed this run. Both accounts of it sit on sites that bar automated readers.
 - 2026-10-03 · Conroe's failed vote to put the cameras on the ballot is still unconfirmed. Both accounts bar automated readers and the city's agenda site did not answer.
+- 2026-10-04 · Conroe's failed vote to put the cameras on the ballot is still unconfirmed. The city now lists minutes for its August 13th meeting, but the file sits on a host that bars automated readers, as do both published accounts.
 
 ## Evidence
 

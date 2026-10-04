@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-03",
+    "generated": "2026-10-04",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -92,7 +92,7 @@
     "https://api.nsf.gov/services/v1/awards.json?id=2619041&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText": {
       "etag": null,
       "last_modified": null,
-      "hash": "2750fec052363b64ea4927cd447d4beeecca140a6face9f6c65fdaaee8431ad0",
+      "hash": "aba360735b23abb6ab21c7853f0675c889f6b8ba7764e45107c62ba306480630",
       "proven": [
         "tx-2026-0175-c1",
         "tx-2026-0175-c2",
@@ -381,8 +381,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Sat, 03 Oct 2026 06:20:47 GMT",
-      "hash": "a3a1dbffb9a8200574255d674b5b4741ef1974b33313e1a08f65d6ce6e7f967d",
+      "last_modified": "Sun, 04 Oct 2026 06:19:41 GMT",
+      "hash": "a8c6be1c8f346311a756bbc3b83ce464f80dabbd07a2b295df0ad769e75f99a6",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -397,8 +397,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Sat, 03 Oct 2026 06:20:47 GMT",
-      "hash": "a924099184d7aaaeb4741345311e2306bf7cbcb5a2eefa5d5f774cd0939b70d0",
+      "last_modified": "Sun, 04 Oct 2026 06:19:41 GMT",
+      "hash": "f0e6f047ac4e6a9a9de538b4f21f7997aec22b269b1cf69d243d5c0d386139ce",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -507,7 +507,7 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "6f8fad7bf6bf0152ca84c62255cdf70a2c251d19d2805fc3464518cd6fdbaf37",
+      "hash": "abac41fa344b512992aecb6ab29c742fc2e8541f799c0370a9518d8fc5086db3",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -1337,7 +1337,7 @@
     "https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "79ff75d3213a7182bc5c74923f08c40539f2c21d8f5913638369c3d24d43121f",
+      "hash": "b5ec72df3fd978a1717f083dc46744e830c499b057e71fa8ac7fae5adbbaa434",
       "proven": [
         "tx-2026-0191-c14"
       ]
@@ -1708,6 +1708,17 @@
         "tx-2026-0075-c5"
       ]
     },
+    "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "67763cd307a85a41846555a24c72d812a51daee3ff560482e2b4452ea21f32aa",
+      "proven": [
+        "tx-2026-0146-c1",
+        "tx-2026-0146-c2",
+        "tx-2026-0146-c3",
+        "tx-2026-0146-c4"
+      ]
+    },
     "https://www.aect.net/southwest-power-pool-spp": {
       "etag": "W/\"df323c5dd9f54116529424f7ef039465--gzip\"",
       "last_modified": null,
@@ -1884,7 +1895,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "156f93d36793770294f790605441d7a33739e9e51c5f6070fb5a00243410e666",
+      "hash": "e17de12ca540bc77a1ddcc280b0703478da12682d9026c856ed60cf7a53bfd3e",
       "proven": [
         "tx-2026-0139-c1",
         "tx-2026-0139-c2",
@@ -2057,8 +2068,8 @@
     },
     "https://www.hayscountytx.gov/Archive.aspx?AMID=71": {
       "etag": null,
-      "last_modified": "Sat, 03 Oct 2026 06:21:36 GMT",
-      "hash": "d4fd56716f89efa93ef07f6b2c06dc2978c201898619232014c61252223cbf1f",
+      "last_modified": "Sun, 04 Oct 2026 06:19:56 GMT",
+      "hash": "7a81e402b6aa07711eaece999e7302cb69be8342963c57193b21bfcc343f82ae",
       "proven": [
         "tx-2026-0168-c7",
         "tx-2026-0169-c6",
@@ -2342,7 +2353,7 @@
     "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/": {
       "etag": null,
       "last_modified": null,
-      "hash": "d92dc73cbd0cc8f1020e1069b7c34963dbc98352eb9013674dc68e9d5af92758",
+      "hash": "b3f1739263b5f410591f3a39b5afbae7bc58c7f5a3741736fd0e844e402a5b84",
       "proven": [
         "tx-2026-0191-c15",
         "tx-2026-0192-c9"
@@ -2509,8 +2520,8 @@
     },
     "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/": {
       "etag": null,
-      "last_modified": "Tue, 22 Sep 2026 21:17:30 GMT",
-      "hash": "6bcdf96feb9783cd5fba61c15139e3ba5bbb9ab193646cab52cfc242189db34d",
+      "last_modified": "Sun, 04 Oct 2026 00:45:47 GMT",
+      "hash": "279de4420f865e4673d6c14bdd6a16775f0c2bf257cff209e1784a759192010f",
       "proven": [
         "tx-2026-0191-c10",
         "tx-2026-0191-c11",
@@ -2676,6 +2687,15 @@
         "tx-2026-0029-c5",
         "tx-2026-0029-c6",
         "tx-2026-0029-c7"
+      ]
+    },
+    "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
+      "etag": null,
+      "last_modified": "Thu, 01 Oct 2026 08:26:26 GMT",
+      "hash": "1bd03a0dc721ebd5b70f2395f947c8c5341c6c215f03615be414cc9cd2d3732c",
+      "proven": [
+        "tx-2026-0146-c5",
+        "tx-2026-0146-c6"
       ]
     },
     "https://www.yahoo.com/news/articles/proposed-harlingen-data-center-4-213100276.html": {

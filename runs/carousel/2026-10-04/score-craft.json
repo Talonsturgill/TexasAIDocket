@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "Every frame a real render in one world; 1, 5 and 7 have true scale and haze. None passes the showstopper test: the exposed-down highNoon sky renders as a flat blue-grey gradient with no bleached horizon and reads overcast; a pale wash fades the foot of 1, 3, 5, 7, 8 and 9. 2 is mostly flat wall, the seal a dark hole, a grey slab on the left, the ten chairs one mass at 432 px. 6 a clock on a plain slab with a painted shadow, a sky band, no ground. 4 mannequins on a plain fading to fog. 8 primitive boxes with the glass column vanishing. 9 glossy plastic bus with a fender blade and the arm flush."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One chassis world, grade and sky; the bus on 1, 5, 7 and 9; CAMERA_MOVE works. The stop arm state doesn't read; the bus material shifts from ochre on 1 to chrome yellow; hue strobes between sky and limestone."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, including 2025 from vote_year and the 2 from approached_unnamed; c39 never without c40; the Valenta link refused. The vote keeps the Tribune's attributed 10 to 3 where minutes exist."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Who, what and where, with an action on 9. No deadline exists. Slide 1's dek is long; the stake for an unnamed district is general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe; 3 turns; 5 counts; 8 is the sharpest beat; 9 acts. 1 and 2 restate the same no; 4 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register; attribution heavy; 6's and 7's deks are flat summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "highNoon and the bus are new; no. 38's light school register and parent close, the chairs of 36 and 39, and lot counts of 34 and 39 repeat."
+  }
+ ],
+ "weighted_score": 7.04,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "When the light deck cap is spent, pitch a world dark by nature (a bus barn at first light, a lit hearing room at evening) instead of dimming noon, and take the footer wash out of the chassis grade.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "70 percent flat wall; the seal a dark hole; a grey slab on the left; the ten chairs one black mass.",
+   "fix": "A three quarter view from the aisle end with 1.2 m between chairs, a raking window patch on the wall, and the kit seal_plaque in bronze."
+  },
+  {
+   "slide": 6,
+   "problem": "A clock on a plain slab with a painted shadow; the sector reads as a sticker; a sky band; no ground.",
+   "fix": "Pull back to show the walkway, a bus flank and the rimrock; a real shadow on a chamfered surround; the sector lit with an emissive."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequins on an empty plain fading to fog; no shade band.",
+   "fix": "Camera under the walkway deck with its shadow across the foreground; walkers at half size in the sun beyond; a wing and kerb across the back."
+  },
+  {
+   "slide": 8,
+   "problem": "Primitive boxes; the glass column vanishes; the foreground washed grey.",
+   "fix": "A lit frosted edge and stone caps on the glass; a window sun patch across the table; a darker near edge."
+  },
+  {
+   "slide": 3,
+   "problem": "Cross-hatched procedural oak; the sheet flat with no readable contact; a featureless wall.",
+   "fix": "Straight-grain veneer; a 6 mm curl casting a crescent shadow; a bright window frame behind the sheet."
+  },
+  {
+   "slide": 9,
+   "problem": "Glossy plastic bus with a fender blade; the arm flush; the parent in the road.",
+   "fix": "Rougher paint with dust; fix the fender; swing the arm out; the parent on the kerb in the oak's shadow."
+  },
+  {
+   "slide": 1,
+   "problem": "An ochre bus with flat windows; low-poly cars; the foot washed grey.",
+   "fix": "Turn the bus so its flank takes the key; window interiors; darker near asphalt in place of the wash."
+  }
+ ]
+}

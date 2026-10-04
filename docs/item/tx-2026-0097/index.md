@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · State and local employees are still in the first annual cycle of required artificial intelligence training, on unchanged terms.
 - 2026-10-02 · That the training requirement stands is unconfirmed this run. The bill's history sits on a path this project does not read.
 - 2026-10-03 · That the training requirement stands is still unconfirmed. The bill's history sits on a path this project does not read.
+- 2026-10-04 · That the training requirement stands is still unconfirmed. The bill's history sits on a path that bars automated readers.
 
 ## Evidence
 

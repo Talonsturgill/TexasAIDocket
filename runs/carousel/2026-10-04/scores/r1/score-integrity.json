@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame rendered, 1, 5, 7 and 9 closest to a place at an hour, 5 the best frame. 8 is plain boxes before a tiled wall and a blank black-framed window; 6 a clock on a slab against an empty sky with no rimrock or bus; 2 a flat frontal wall with a disc seal and a blank screen; 4 a side-on frieze of mannequins. High noon gives little form modelling."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One highNoon world, one vernacular, one accent on 5, 6 and 8, the bus on 1, 5, 7 and 9. The stop arm device barely works and the declared bus on 6 is missing. Exteriors and interiors alternate as two stocks."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces through compute.py to a claim quote, drawn counts match, Valenta never joined to Alpha, every 10 to 3 attributed, c39 only beside c40, floors stated. Deductions: 'Declined, 5' looser than c19's 'did not pursue an agreement'; Texas Prep figures rest on journalism where TEA's own results exist, and 8 omits c41's 'rose slightly from 19%'; 3 dates the quote September 2025 by joining c10 to c9. Off deck: the web edition's 'The pilots didn't need that board' has no claim, and tx-2026-0200 leans toward the Valenta join in its key dates and notes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Names who decided at each step and closes on a real step. Never says when the board said no, though c44's 'last summer' could date it. The action names no meeting or deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays, 3 turns, 5 gathers, 9 lands. 4 could be cut. 8 answers 2's test gains six frames later."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. 4's 'The campus drawn is no particular school' and 5's set-back explanation are the machine explaining its drawing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "highNoon breaks three dark decks, but no. 38 four days ago was a TEA school deck with a parent at the close, the one-object-per-unit count repeats from 38, 39 and 41, and the cover's vehicle on a receding road echoes yesterday."
+  }
+ ],
+ "weighted_score": 6.976,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slides 6 and 8 as places rather than props (the clock under a real walkway with the rimrock and the bus flank, the columns on the table in depth with a real exterior), and change slide 5's 'Declined, 5' to c19's own 'did not pursue' wording.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Primitive boxes against a tiled wall with a blank black-framed window; reads as a chart in a void room.",
+   "fix": "Columns receding on the table on a three-quarter camera at seated eye, and a lit exterior through the window."
+  },
+  {
+   "slide": 6,
+   "problem": "The clock floats against an empty sky with no ground or Fort Davis.",
+   "fix": "Pull back so the clock hangs from the walkway's edge beam, rimrock on the horizon, bus flank in the lower band."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat frontal elevation; blank seal and screen; chairs in a strip at the bottom.",
+   "fix": "Swing the camera 25 to 35 degrees off axis at seated eye so the dais and chair blocks recede, lit from a side window."
+  },
+  {
+   "slide": 4,
+   "problem": "A side-on frieze of mannequins; the shade band does no work.",
+   "fix": "Turn the camera down the walk so the seven recede out of the shade band into sun."
+  }
+ ]
+}

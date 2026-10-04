@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-04, frame 6 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's highNoon world. A Fort Davis campus entry at noon: the school clock over the doors in its cast stone surround, the vestibule cropped by the top and right edges, the clock's face carrying a sector two hours wide in the accent for Alpha's full model. Mesquite on the caliche and the Davis Mountains rimrock beyond the roof. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Extra help, not a two hour day.</h1>
+<p class="dek" data-follow="22">Fort Davis ISD enrolls around 800 students. It will use the model in its K-8 classrooms for students who need extra help in reading and math. Alpha's full model has AI teach all students basic subjects in two hours a day.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"model_hours": 2, "day_hours_on_dial": 12, "model_dial_degrees": 60};
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Fort Davis ISD", counter: "06 / 09", src: "c18 c23 c34 c35", fit: { min: 84, max: 104, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 19, exposure: 0.96, fog: 0.0006, far: 20000 });
+  TXT.ground(R, { surface: 'caliche', size: 9000, tile: 6, seed: 23, color: 0xd8c9a8 });
+  /* the campus wing, its entry vestibule at x -15.5 on the south face, the clock over the doors in
+   * a cast stone surround; the sector is model_hours of day_hours_on_dial, a sweep of model_dial_degrees */
+  const sc = K.make('school', { length: 57, brick: '#c49460', seed: 12 }); sc.remove(sc.children[sc.children.length - 1]);
+  NB.facadeClock(K, sc, { d: 0.8, y: 4.42, hour: 12, minute: 4, sector: [8, FIG.model_hours] });
+  TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
+  /* the clock's own meshes cast no mapped shadow on its plate, its painted falloff stands in (the chassis says why) */
+  sc.traverse(o => { if (o.userData && o.userData.noCast) o.traverse(m => { if (m.isMesh && !m.userData.keepCast) m.castShadow = false; }); });
+  /* mesquite on the caliche, and the Davis Mountains rimrock beyond the roof */
+  [[8, 15, 'mesquite', 3], [-36, 18, 'mesquite', 6], [20, -40, 'ashe_juniper', 4]].forEach(([x, z, k, s2]) => { const t = K.make(k, { seed: s2 }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
+  const mesa = K.make('mesa', { kind: 'mesa', seed: 5 }); mesa.position.set(-500, 0, -2400); TXT.add(R, mesa);
+  const butte = K.make('mesa', { kind: 'butte', seed: 9 }); butte.position.set(900, 0, -3200); TXT.add(R, butte);
+  TXT.frame(R, { from: [-9.6, 1.6, 20.5], look: [-15.2, 5.04, 10.3] });
+  TXT.scatter(R, { kind: 'scrub', count: 900, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 5, scale: 1.0 });
+  TXT.scatter(R, { kind: 'grass', count: 2200, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 8, scale: 0.9, colors: [0xb59f6e, 0xc4ae7a, 0xa8925f] });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 8, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90, normalBias: 0.05 }));
+  TXT.weather(R, { grime: 0.5, height: 2.2, mottle: 0.6 });
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { a: 0.28 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

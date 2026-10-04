@@ -11,7 +11,7 @@ Angelina County Commissioners Court voted unanimously on July 14th, 2026 to adop
 - Public access: Public meeting
 - Take part: https://www.angelinacounty.net/comcourt/
 
-- Last checked: 2026-09-27
+- Last checked: 2026-10-04
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · Angelina County's request for authority over data centers is still unconfirmed. The accounts of it bar automated readers and the resolution itself has not been found posted.
 - 2026-10-03 · The resolution is still unconfirmed in its adopted form. The county's agenda for the court's July session carries it as an item, and the accounts of the vote bar automated readers.
 - 2026-10-03 · The county's July 14th minutes record approval of Resolution 010-26 on limited county authority over emerging technologies. It includes data centers and battery storage facilities. Four voted for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced.
+- 2026-10-04 · The court's own minutes of its July 14th session now carry the vote. They record the motion to approve Resolution 010-26 and no member voting against it.
 
 ## Evidence
 
@@ -74,4 +75,10 @@ Source (journalism): https://www.kltv.com/2026/07/14/angelina-county-commissione
 > "Just because it's rural East Texas and rural areas outside of a city, I don't think they should just have unfettered access to do whatever they want."
 
 Source (journalism): https://lufkindailynews.com/news/local/angelina-county-seeks-greater-authority-over-data-center-development/article_fd27c36a-51de-595b-9bf4-58e8634b6641.html
+
+### The court's own minutes of its July 14th regular session record the motion to approve Resolution 010-26, seconded, carried with no member voting against.
+
+> Kermit Kennedy made a motion to approve a Resolution #010-26 Supporting the Limited Regulatory Authority of Counties in Rural Areas on Emerging Technologies including Data Centers and Battery Storage Facilities.
+
+Source (primary_official): https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf
 

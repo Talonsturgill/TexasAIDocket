@@ -1,0 +1,94 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.3,
+   "why": "Every frame rendered under one noon sun, but few pass the showstopper test. 6 is a clock on a plate against a flat gradient with no place. 3 is procedural grain and a muddy shadow blob with a sliver of room. 2 is a flat stone wall, a blank seal and a blown window, and the ten chairs read as five at thumb. 4 is seven profile mannequins in single file. 8 is primitive boxes before a blotchy wall and a window that reads as a monitor. 7 has flat grass, card box towers and banding in the sky. On 1, 5 and 9 a grey wash fogs the near ground. Best: 9 and 5."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "Reads as one deck under one highNoon light with the bus on 1, 5, 7 and 9. 3 sits outside as full bleed orange wood, 7's grade is hazier, and the bus paint shifts from matte mustard on 1 to chrome yellow on 9. The declared value dip at 3 reads as a hue change."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces to claims.json and figures.json. Attribution is careful. The vote uses the Tribune's 10 to 3 where the SBOE minutes (c2, 10-3-1) were fetched, openly attributed. 3 draws a paper letter for an email, kept honest by the attribution."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "Names the body, the people, the actor, the eight named districts, Houston's withheld contract and the result at Texas Preparatory School. 9 gives a concrete step. 'What a pilot must prove' is the one general stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover lands and 2 pays the count. Turn at 3, count at 5, 6 and 7 on the pilots, 8 the claim against the result, 9 the close. 4 could merge into 3. The cover dek front-loads."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. 'The campus drawn is no particular school' on 4 and 'The 2 set back stand for approached districts it does not name' on 5 read as gate disclaimers. 'The Tribune reports' repeats on 1 and 2. 9's hook is the best line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "highNoon and the magenta accent are new after three dark decks. The same kit hero in a chassis world, and no. 38 was also a light school deck with a parent at the close, which 9 repeats."
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slides 6, 3 and 2 as places rather than objects on a backdrop (the clock under the walkway's edge beam with the rimrock on the horizon, the sheet from a seated-eye oblique with real oak, the ten chairs in one countable row with a sunlit window patch), and delete the grey footer wash that fogs the near ground on 1, 5 and 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A clock on a plate against a flat gradient with no ground, horizon or place; a band of dashes at the stone to brick joint near y 1790.",
+   "fix": "Pull the camera back under the covered walkway so its ribbed deck crosses the top of the art band in shade, the clock hangs from its edge beam, and the rimrock sits hazed on a lower-third horizon."
+  },
+  {
+   "slide": 3,
+   "problem": "Procedural grain and a muddy shadow blob; the room is a sliver; the hook needs halos on busy grain.",
+   "fix": "Seated-eye oblique across the desk so the wall and window take the type; real oak albedo; raked window light for a crisp short shadow."
+  },
+  {
+   "slide": 2,
+   "problem": "Ten chairs in two overlapping rows read as five at thumb; blank seal; blown window; no depth.",
+   "fix": "All thirteen chairs in one row on a long lens, ten and three across the aisle, and a sunlit window patch on the floor."
+  },
+  {
+   "slide": 4,
+   "problem": "Seven profile mannequins in single file parallel to the picture plane; no shade band; pebble dots.",
+   "fix": "Camera under the walkway edge so its shade crosses the foreground; walkers receding on a diagonal."
+  },
+  {
+   "slide": 8,
+   "problem": "Primitive boxes before a blotchy wall; the window reads as a monitor.",
+   "fix": "A real exterior and a sun patch on the oak; flatten the wall mottling behind the type."
+  },
+  {
+   "slide": 7,
+   "problem": "Banding in the sky and halo; flat green ground; card box skyline.",
+   "fix": "Full bit depth; mown grass, lots and drives; lit tower faces at the haze value."
+  },
+  {
+   "slide": 1,
+   "problem": "Grey wash fogs the near asphalt (also 5, 9); the bus reads matte mustard; clone trees.",
+   "fix": "Delete the footer scrim and set the footer type light on the dark asphalt; match the bus paint to 9."
+  },
+  {
+   "slide": 9,
+   "problem": "A fender panel across the front tyre; a smear in the oak crown at the dek's end.",
+   "fix": "Fix the fender skirt; drop the oak's crown below the dek band."
+  }
+ ]
+}

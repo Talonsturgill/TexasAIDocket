@@ -12,7 +12,7 @@ The Public Utility Commission of Texas approved the system resiliency plan of So
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=57941&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-10-01
+- Last checked: 2026-10-04
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-28 · Admitted on the commission's own order and the utility's first annual report under it.
 - 2026-10-01 · The commission's order still names AI camera fire detections among the metrics, and the utility's annual report under it still counts cameras rather than detections.
+- 2026-10-04 · Xcel's filing still counts cameras where the commission asked for detections, and the order approving the plan stands.
 
 ## Evidence
 

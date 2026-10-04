@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame rendered through the kit; 5 and 7 are real places. The rest lean on primitives against an empty blue-grey gradient: 6 a slab clock on a brick fragment with no ground; 4 helmet-haired mannequins on a blank plane into fog; 9 a mannequin parent on the gutter line and the arm folded flat though the motif says out; 1 the bus flank in muddy shade reading brown, low-poly cars; 8 a bar chart before a blurred wall."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One noon light and one hero on 1, 5, 7 and 9, one interior on 2, 3 and 8. The arm motif fails on 9. Hue alternates exterior and interior. 6 and 8 sit outside the bus world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every quote verbatim in the fetched texts and every numeral traced; every 10 to 3 attributed; Valenta never joined; c39 only with c40; 'summer of 2025' supported. Held below 8: frame 5's 2 assumes the five decliners sit inside the at least 10; frame 3 places the undated offer straight after the September 2025 reply; frame 1 compresses c12; the deck rests on journalism where TEA's own results exist. Off deck, the web edition's intro states the 10 to 3 without 'the Tribune reports'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.7,
+   "why": "What happened, who and where, and a concrete step on 9. The close's 'what a pilot must prove' is general; frame 7's withheld contract was the sharper stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe, 2 pays, 3 turns. 4 could go; 8 turns back to the charter question just before the close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, specific, no rule broken. Repeated attribution reads like a wire rewrite; 9's hook leans on a metaphor; 4's hook is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "No topic repeat, but the second TEA deck in five days, the one-object count move of the last four decks, and a vehicle on a Texas road like no. 41."
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build each exterior frame as a place rather than kit objects against a flat gradient, with cloud and a sun the shadows agree with, ground with contact, and a background to a horizon, starting with frame 6 and frames 4 and 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A slab clock against an empty gradient sky; no ground, beam or rimrock.",
+   "fix": "Under the covered walkway so the clock hangs from a modelled edge beam, the rimrock and a clouded sky behind, the walk with its shade band at the foot."
+  },
+  {
+   "slide": 4,
+   "problem": "Helmet-haired mannequins on a blank plane fading to fog; no campus; no shade band.",
+   "fix": "Camera behind the walkway's shade band at 1.6 m; extend the campus to the horizon; fabric and hair on the walkers."
+  },
+  {
+   "slide": 9,
+   "problem": "A mannequin parent on the gutter line; the arm folded flat; a flat sky.",
+   "fix": "Swing the arm out; the parent on the kerb with a contact shadow; an oak's shade pool on the sidewalk."
+  },
+  {
+   "slide": 1,
+   "problem": "The bus flank in muddy shade reads brown; low-poly cars; an empty sky.",
+   "fix": "Light the east flank full; higher-detail vehicles or crop them out."
+  },
+  {
+   "slide": 8,
+   "problem": "A bar chart before a blurred wall; the solid 10% box reads as a present value.",
+   "fix": "The 10% before column as a ghost glass column; a raking window light across the oak."
+  }
+ ]
+}
