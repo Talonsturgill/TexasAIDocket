@@ -1,0 +1,238 @@
+{
+ "weighted_score": 7.038,
+ "judges": [
+  7.19,
+  7.142,
+  7.03
+ ],
+ "spread": 0.16,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.4,
+    5.9,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.2,
+    6.8,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    7.8,
+    7.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.4,
+   "weight": 0.1,
+   "judges": [
+    7.4,
+    7.5,
+    7.3
+   ]
+  },
+  "voice": {
+   "score": 7.4,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.3,
+    7.4
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.19 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.142 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.03 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.19,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.19 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.142,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.142 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.03,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.03 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Stretched oak grain; the sheet floats on a wood field.",
+     "fix": "True-scale grain, and the paper stack and a monitor edge at the margin."
+    },
+    {
+     "judge": 2,
+     "problem": "Top-down procedural grain smeared by blur behind the hook; the letter reads as a type plate; no window, wall depth or hour.",
+     "fix": "Seated eye at 1.2 m across the desk toward a sill-height window; true-scale oak; no global blur; the sheet with thickness, a curl and the sun patch."
+    },
+    {
+     "judge": 3,
+     "problem": "Grain stretched into streaks, no room, the sheet a plate, the pen without contact.",
+     "fix": "Seated eye at 1.2 m so the window and wall fill the top third; oak at true board grain; contacts on the pen and sheet."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequins with faces front on, blank concrete with dot pebbles, no shade band, dead sky.",
+     "fix": "Camera under the walkway behind the party so its shade crosses the foreground and all seven walk away; broom finish and a joint for the pebbles."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequins on a void plane with pebble decals; two faces toward camera; an orphan shadow at the left horizon.",
+     "fix": "The walkway's shade band across the foreground; broom-finish concrete with joints; all seven turned away; delete the orphan shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Mirrored-stride mannequins on a bare plain with dot pebbles; no dark.",
+     "fix": "The walkway's shade band across the foreground; no rock scatter on the walk; every walker turned away."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Three untextured boxes on a table read as a 3D bar chart.",
+     "fix": "Cast stone and tinted glass with bevels; a window raking light across the oak; the table edge in perspective."
+    },
+    {
+     "judge": 2,
+     "problem": "Rounded boxes before an oversized blurred wall; the glass column cropped; the bottom 350 px a blurred table edge; no light direction.",
+     "fix": "Shoot along the table with all three columns inside the frame; a sill-height window's sun patch between them; true block scale; no wall blur."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive boxes before a blank wall; the 10 block beside the footprint reads ambiguously.",
+     "fix": "A classroom table with side windows casting shadows; a tinted glass edge; the 10 block as a ghost outline over the footprint."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat box clock against bare sky and brick; nothing places it in Fort Davis.",
+     "fix": "Pull back and lower so the rimrock and grama sit behind the entry; hang the clock from the walkway's edge beam."
+    },
+    {
+     "judge": 2,
+     "problem": "A box clock against a flat sky with a floating grey slab at the bottom; no ground, no place.",
+     "fix": "Back off and look up under the walkway so the clock hangs from the deck's edge beam over a ground line with the rimrock; delete the grey slab."
+    },
+    {
+     "judge": 3,
+     "problem": "A slab clock on a brick corner against a gradient sky; a grey slab across the bottom.",
+     "fix": "Drop and widen so the clock hangs on the entry facade with the rimrock and a bus flank behind; crop the grey slab."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Ten chairs an uncountable tangle with the leftmost cropped; a dead grey pilaster on the left 130 px; 40 percent empty tile.",
+     "fix": "Two clean rows of five fully in frame filling the bottom third; crop out the pilaster; a window's sun patch on the limestone."
+    },
+    {
+     "judge": 3,
+     "problem": "The bottom 40 percent empty tile.",
+     "fix": "Lower and tilt the camera so the chair blocks sit on the lower third and crop the empty floor."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A fender sheet out of the front wheel arch near x 620 to 840, y 1570 of the 1600 px view.",
+     "fix": "Fix the front fender so the arch closes on the wheel and pan left to bring the oak's crown behind the parent."
+    },
+    {
+     "judge": 3,
+     "problem": "A geometry spike at the front wheel arch; the arm flush to the body.",
+     "fix": "Repair the fender mesh; swing the arm out perpendicular to the bus side."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A halo ring in the upper sky; fog on the nearest road, so the haze runs backwards.",
+     "fix": "Remove the foreground fog so haze rises only with distance; dither the sky to kill the ring."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.038 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 3, 4, 8, 6, 2, 9, 7 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

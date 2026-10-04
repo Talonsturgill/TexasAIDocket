@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame rendered in a world; 1 and 5 read at 432 px as places. 6 a box clock in empty sky with no Fort Davis; 4 kit mannequins on a blank apron with the left half empty haze; 8 primitive boxes against a flat wall; 2 the ten chairs overlap and the seal is a blank disk; 9 a mannequin parent and the fender flare sliver. Flat noon light on most frames."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck: one sky, one palette, one accent, one type system, no value strobe, the camera move working. The stop arm motif can't be read at feed size and the bus is absent from five frames; 8 sits slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces; the quote on 3 matches c10; attribution is disciplined; floors stated. The board vote rests on the Tribune where minutes exist. The first comment's Tribune list omits c31, which the caption uses."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decided and where; a real step on 9 with TimeBack named. Alpha is never introduced before 6, and the order of the vote and the help is left to inference from dates."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe, 2 pays, 5 is the count, 8 the real turn, 9 an action. 6 and 7 could merge; 4 adds least."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and Texas specific. Attribution in 2's headline, 5 as a scoreboard, the caption opening on its weakest fact; the caption's closing question is good."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.7,
+   "why": "Fresh concept and palette, the first bus hero. TEA again after no. 38, the Tribune again after no. 39, and a vehicle on a Texas road near no. 41's."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make the cover dek tell the story in the order a cold reader needs: who Alpha is, and that TEA staff helped the platform reach districts after the board with the final say on charters voted it down.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A box clock in empty sky over a cropped wall; nothing places it in Fort Davis.",
+   "fix": "Camera under the walkway, the clock from the edge beam, a parked bus and the rimrock on a lower-third horizon."
+  },
+  {
+   "slide": 4,
+   "problem": "Kit mannequins on a blank apron; the left half empty haze; no shade band.",
+   "fix": "The walkway's shade band across the foreground; walkers smaller and further back; a second wing to close the left."
+  },
+  {
+   "slide": 8,
+   "problem": "Primitive boxes against a flat wall; no light source or depth.",
+   "fix": "A window raking noon light and long column shadows across the oak; the table in perspective with a chair back."
+  },
+  {
+   "slide": 2,
+   "problem": "The ten chairs overlap; the seal a blank disk.",
+   "fix": "Two clean rows of five with floor between; a carved limestone medallion."
+  },
+  {
+   "slide": 9,
+   "problem": "A mannequin parent; the fender flare sliver.",
+   "fix": "Fix or hide the flare; move and turn the parent; the oak's shade pool under her."
+  }
+ ]
+}

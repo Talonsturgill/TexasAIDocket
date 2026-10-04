@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Every frame rendered in a sky or room; 5 comes close to the 10. 6 is a box clock in open sky with no ground or horizon, the rubric's 'objects floating in a flat gradient'. 4 has mannequins, a white void on the left, an orphan shadow and a trunkless tree, no shade band. 8 a bar chart with wall blocks as wide as the columns. 3 the sheet near frontal against a steeply receding desk, wavy grain. 1 a dull mustard bus and blocky cars. A grey footer scrim on 1, 5, 7 and 9; banding around 7's headline glow. Value structure real on 5, 7 and 9, one mid band on 2, 6 and 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One sky across the exteriors and one room language inside, but three hue cuts. The bus on 4 frames with two different paints; the arm reads on 1 and 9 only. CAMERA_MOVE is real."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; the refusals hold on the frames. The vote leans on journalism where the minutes exist. The first comment omits c31 and c21 the caption uses. Slide 8's accent column reads about 22.5 against 21, at the edge of tolerance."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Names the body, the person, the districts and each pilot's scope, with Houston's withholding request a real stake and a reader action on 9. No date or meeting named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays, 3 turns, 9 hands it to the reader. 6 and 7 do the same job."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean, specific and on register; attributions on 1 and 2 read like wire copy; 5's hook is a tally."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New palette, but a vehicle carried down a Texas road from a street-level opening repeats no. 41, and no. 38 was a TEA deck four days ago."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frames 6 and 4 as places at noon and give the bus one material: the clock on the walkway edge beam with the rimrock on a low horizon and the bus flank behind, the walkers seen from under the walkway's shade band with the campus to a horizon, and frame 9's chrome yellow on frame 1.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A box clock floats in open sky with no ground, horizon or place.",
+   "fix": "Camera at 1.6 m under the walkway; the clock on the deck's edge beam; the rimrock on the lower third and a bus flank behind."
+  },
+  {
+   "slide": 4,
+   "problem": "A white void on the left, an orphan shadow, a trunkless tree, no shade band, mannequins.",
+   "fix": "Camera under the walkway so its shade crosses the bottom third; extend the campus to a horizon; walkers smaller beyond the shade."
+  },
+  {
+   "slide": 8,
+   "problem": "Blocks on a shelf before coursing as wide as the columns; no room or light source; the glass band disappears into the wall.",
+   "fix": "Pull back and lower to show the room; a window raking light; true 0.6 m blocks; a tinted glass edge."
+  },
+  {
+   "slide": 3,
+   "problem": "The sheet reads near frontal against a steeply receding desk; wavy grain; a blank wall.",
+   "fix": "Lay the sheet flat in the desk plane with matching foreshortening; straight rift oak; a window or monitor edge behind."
+  },
+  {
+   "slide": 1,
+   "problem": "A dull mustard bus unlike 9's chrome yellow; blocky cars; a stamped crack decal; a grey footer scrim.",
+   "fix": "Frame 9's bus material with dust; a darker asphalt foreground in place of the scrim."
+  },
+  {
+   "slide": 7,
+   "problem": "Elliptical banding around the headline glow; flat grass; the skyline on a detached haze strip.",
+   "fix": "Dither or remove the halo gradient; a ground gradient so haze builds into the skyline."
+  }
+ ]
+}

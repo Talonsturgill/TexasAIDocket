@@ -1,0 +1,219 @@
+{
+ "weighted_score": 7.15,
+ "judges": [
+  7.09,
+  6.94,
+  7.1
+ ],
+ "spread": 0.16,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    5.5,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    7.5,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.3
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.7
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A clock on a plaque against plain sky; no ground, horizon or Fort Davis.",
+     "fix": "Pull back and lower so the clock hangs from the walkway's edge beam with the rimrock on a lower-third horizon behind a sunlit entry."
+    },
+    {
+     "judge": 2,
+     "problem": "A box clock floats in open sky with no ground, horizon or place.",
+     "fix": "Camera at 1.6 m under the walkway; the clock on the deck's edge beam; the rimrock on the lower third and a bus flank behind."
+    },
+    {
+     "judge": 3,
+     "problem": "A box clock in empty sky over a cropped wall; nothing places it in Fort Davis.",
+     "fix": "Camera under the walkway, the clock from the edge beam, a parked bus and the rimrock on a lower-third horizon."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The left half a dead zone; mannequins on a blank slab; no shade band.",
+     "fix": "Camera under the walkway's edge so its shade band crosses the foreground; fill the left with the oak's canopy and shade and gritted concrete."
+    },
+    {
+     "judge": 2,
+     "problem": "A white void on the left, an orphan shadow, a trunkless tree, no shade band, mannequins.",
+     "fix": "Camera under the walkway so its shade crosses the bottom third; extend the campus to a horizon; walkers smaller beyond the shade."
+    },
+    {
+     "judge": 3,
+     "problem": "Kit mannequins on a blank apron; the left half empty haze; no shade band.",
+     "fix": "The walkway's shade band across the foreground; walkers smaller and further back; a second wing to close the left."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Blocks on a shelf before coursing as wide as the columns; no room or light source; the glass band disappears into the wall.",
+     "fix": "Pull back and lower to show the room; a window raking light; true 0.6 m blocks; a tinted glass edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive boxes against a flat wall; no light source or depth.",
+     "fix": "A window raking noon light and long column shadows across the oak; the table in perspective with a chair back."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A yellow sliver under the front bumper; the parent's head reads as a helmet; no shade pool at the kerb.",
+     "fix": "Fix or hide the fender mesh; another head preset; the oak's shade pool at her feet."
+    },
+    {
+     "judge": 3,
+     "problem": "A mannequin parent; the fender flare sliver.",
+     "fix": "Fix or hide the flare; move and turn the parent; the oak's shade pool under her."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A blank disc on a flat wall; no window light.",
+     "fix": "A tall window bay at the right raking light across the chairs."
+    },
+    {
+     "judge": 3,
+     "problem": "The ten chairs overlap; the seal a blank disk.",
+     "fix": "Two clean rows of five with floor between; a carved limestone medallion."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A boxy bus with its arm out in a traffic lane among low-poly cars.",
+     "fix": "Park the bus at the kerb with the door open, crop it larger, dust and panel detail on the flank."
+    },
+    {
+     "judge": 2,
+     "problem": "A dull mustard bus unlike 9's chrome yellow; blocky cars; a stamped crack decal; a grey footer scrim.",
+     "fix": "Frame 9's bus material with dust; a darker asphalt foreground in place of the scrim."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The sheet reads near frontal against a steeply receding desk; wavy grain; a blank wall.",
+     "fix": "Lay the sheet flat in the desk plane with matching foreshortening; straight rift oak; a window or monitor edge behind."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Elliptical banding around the headline glow; flat grass; the skyline on a detached haze strip.",
+     "fix": "Dither or remove the halo gradient; a ground gradient so haze builds into the skyline."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.15, 0.85 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.0 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Rendered throughout. Frames 1, 5, 7 and 9 are places at noon. 6 is a clock on a box against an empty sky with no Fort Davis; 8 a flat wall with a blank black-framed window and plain boxes; 2 a flat wall with a disc seal and a blank screen, ten chairs reading as five; 4 low-poly mannequins in identical strides with no shade band; 9 a foliage smear beside the dek. A game-engine look rather than a magazine spread."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One highNoon world and palette, the bus on 1, 5, 7 and 9. The stop arm motif reads only on 1 and 9. Hue alternates blue and tan on 1 to 4. One device working, the motif half."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces (c7, c16, c17, c19, figures.json, c23, c24, c33, c39 with c40, c28, c41, c42, c43, c9). The deck uses the Tribune's 10 to 3 where the SBOE minutes record 10-3-1 (c2). 'Declined, 5' is a touch firmer than c19's 'did not pursue an agreement'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A reader learns who acted, which districts piloted and declined, Houston's withheld contract, and a real step on 9. The deck never dates the board's vote, so the order the story depends on is untold, and Alpha is explained only on 6."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays the count, 3 turns, 9 closes on an action. 6 and 7 could merge. 8 pays 2's test gains six frames later."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Good Texas specifics. Machine disclaimers on 4 and 5. Attribution in 2's headline and 'the Tribune reports' three times. The caption's first line does not hook until line 2."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Topic clean in the window. No. 38 was TEA on a campus with a school object, and no. 41 yesterday carried a yellow vehicle hero on a Texas road."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 6, 8 and 2 as real places (a Fort Davis entry with the rimrock on a horizon, a classroom without the blank black window, a hearing room at three quarters so ten chairs read as ten), and give frame 2's dek a clause on what Alpha's model is and that the board's no came before the September 2025 emails.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A clock on a box against empty sky, no ground, no Fort Davis.",
+   "fix": "Drop the camera so a horizon sits on the lower third with the rimrock behind the entry, the clock under the walkway's noon shade."
+  },
+  {
+   "slide": 8,
+   "problem": "A blank black-framed window as a dead zone; plain boxes; no room.",
+   "fix": "Delete the black window frame and pull back to show a classroom with a real window off frame throwing shadows across the oak."
+  },
+  {
+   "slide": 2,
+   "problem": "Flat wall, disc seal, blank screen; ten chairs read as five.",
+   "fix": "A three-quarter angle from the gallery so the ten separate and the aisle opens."
+  },
+  {
+   "slide": 4,
+   "problem": "Side-on mannequins in identical strides; no shade band.",
+   "fix": "Push the party into depth beyond a black band of walkway shade, turned away."
+  },
+  {
+   "slide": 9,
+   "problem": "A translucent foliage smear beside the dek's end, x 1290 to 1450, y 740 to 840 of the 1600 px view.",
+   "fix": "Cull or re-seed the oak so the crown ends cleanly behind the dek's right edge."
+  }
+ ]
+}

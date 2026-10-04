@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame stands in a sky or a room; 5 is a showstopper candidate (3, 5, 2, 10 counted at full size); 1 and 9 read as a street at noon. 4 shows kit mannequins with lead faces front on, dot pebbles, no shade band and 40 percent dead sky; 7 a halo ring in the sky and fog on the nearest road; 6 a box clock with no Fort Davis; 8 a 3D bar chart; 3 stretched grain."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One highNoon light; the bus a real spine on 1, 5, 7 and 9 with the arm changing state. The interiors sit in a different stock and 6 has no bus or place link."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every printed numeral traced, the Valenta join refused, c39 only beside c40, frame 8's columns measured at one scale. Held under 8: 5's hook drops 'at least' on both counts; the caption's 'final say on charters' widens 'such charter decisions'; the first comment omitted c44 and the storyboard said c44 is not used; c23's antecedent should be rechecked (the run's fetched Tribune text reads 'Fort Davis, which enrolls around 800 students')."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decided and where, and a concrete step on 9. The commissioner's support for the rejected bid (c6) is cited on 1 and never stated."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "Cover earns the swipe, 2 pays, 3 turns, 5 is the payload, 9 closes. 4 could fold into 3; 8 arrives six frames after 2's doubts."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and plain, with heavy attribution scaffolding. No house rule breaks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The count carried as states of a vehicle repeats no. 41's; no. 38 was also a TEA deck. Topic, noon palette and lot are fresh."
+  }
+ ],
+ "weighted_score": 7.19,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 4, 7 and 6 as places: all seven walkers turned away under the walkway's shade on 4, the inverted foreground fog and the sky halo ring off 7, and the rimrock behind the clock on 6, and confirm in the fetched Tribune text that 'enrolls around 800' is said of Fort Davis ISD.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Mannequins with faces front on, blank concrete with dot pebbles, no shade band, dead sky.",
+   "fix": "Camera under the walkway behind the party so its shade crosses the foreground and all seven walk away; broom finish and a joint for the pebbles."
+  },
+  {
+   "slide": 7,
+   "problem": "A halo ring in the upper sky; fog on the nearest road, so the haze runs backwards.",
+   "fix": "Remove the foreground fog so haze rises only with distance; dither the sky to kill the ring."
+  },
+  {
+   "slide": 6,
+   "problem": "A flat box clock against bare sky and brick; nothing places it in Fort Davis.",
+   "fix": "Pull back and lower so the rimrock and grama sit behind the entry; hang the clock from the walkway's edge beam."
+  },
+  {
+   "slide": 8,
+   "problem": "Three untextured boxes on a table read as a 3D bar chart.",
+   "fix": "Cast stone and tinted glass with bevels; a window raking light across the oak; the table edge in perspective."
+  },
+  {
+   "slide": 3,
+   "problem": "Stretched oak grain; the sheet floats on a wood field.",
+   "fix": "True-scale grain, and the paper stack and a monitor edge at the margin."
+  }
+ ]
+}

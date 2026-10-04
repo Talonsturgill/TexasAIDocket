@@ -1,0 +1,133 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'SCHOOL BUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'STOP' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3487,
+        0.3067,
+        0.7831
+      ],
+      "band_ratio": 1.5874
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "worst-point contrast 4.5 on 'Voted down 10 to 3, the Tribune reports.' (box mean 8.5) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "bands": [
+        0.7185,
+        0.5567,
+        0.7684
+      ],
+      "band_ratio": 1.1215
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3151,
+        0.5609,
+        0.8254
+      ],
+      "band_ratio": 1.4258
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2563,
+        0.3046,
+        0.6379
+      ],
+      "band_ratio": 1.5542
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'SCHOOL BUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'STOP' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2794,
+        0.4013,
+        0.8382
+      ],
+      "band_ratio": 1.6077
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3908,
+        0.3088,
+        0.6691
+      ],
+      "band_ratio": 1.4362
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'SCHOOL BUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'STOP' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.542,
+        0.4622,
+        0.8125
+      ],
+      "band_ratio": 1.3212
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.5336,
+        0.3004,
+        0.4779
+      ],
+      "band_ratio": 1.0883
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'SCHOOL BUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'STOP' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.25,
+        0.3824,
+        0.682
+      ],
+      "band_ratio": 1.5182
+    }
+  ],
+  "fails": 0,
+  "warns": 18,
+  "verdict": "WARN"
+}
