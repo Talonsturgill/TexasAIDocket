@@ -39,7 +39,7 @@
 | 5 | `docket_build.py`, `docket_ingest.py`, `site_build.py` |
 | 6 | `claims_check.py` |
 | 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
-| 8 | `dedupe_check.py` |
+| 8 | `dedupe_check.py`, `panel_ready.py` |
 | 9 | `instincts.py`, `layout_check.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py` |
 | 10 | `caption_check.py` |
@@ -415,7 +415,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
 | `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
-| `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --self-test | CI self-test | 8 |
+| `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --places --self-test | CI self-test | 8 |
 | `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
@@ -433,7 +433,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
-| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 12b, 14b, 15 |
+| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 8, 12b, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b, 14b, 15 |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |
