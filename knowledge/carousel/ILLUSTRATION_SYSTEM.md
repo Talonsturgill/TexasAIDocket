@@ -1097,8 +1097,9 @@ which is the finding the judges made in words and the number that says the gate 
   graded first. It seated the same shadows and put blue violet specks at the louvre blade ends of
   no. 37's generators, and a blind grader marked frames 1 and 6 down for them. **Still open:** 2 cm
   clears frame 6 and leaves most of frame 1's. They shorten as the bias grows and sharpen on a
-  4096 map, so they are the shadows of blades the kit lets jut past their frame, under a dusk sky,
-  and the fix is the louvre model rather than the cap. (2026-10-03)
+  4096 map, so they are the shadows of blades the kit lets jut past their frame, under a dusk sky.
+  `mggLouvres` in `kit/power.js` stands each blade 2.3 cm proud of its frame, and the fix is that
+  model rather than the cap. (2026-10-03)
 - **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
   cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a
