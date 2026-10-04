@@ -59,7 +59,8 @@ ZOOM_BIAS = [("no. 41 frame 4, the barrier's foot", "1003", 4, (0, 1800, 400, 22
              ("no. 41 frame 8, the cartons' feet", "1003", 8, (700, 1700, 1100, 2100)),
              ("no. 41 frame 1, the door's lock brackets", "1003", 1, (1700, 1500, 2100, 1900)),
              ("no. 38 frame 8, the canopy's edge", "0930", 8, (1200, 1300, 1600, 1700)),
-             ("no. 37 frame 1, specks the louvre blades cast", "0929", 1, (700, 1400, 1100, 1800))]
+             ("no. 37 frame 1, specks the louvre blades cast", "0929", 1, (700, 1400, 1100, 1800)),
+             ("no. 37 frame 6, specks down a louvre jamb", "0929", 6, (1760, 1650, 2160, 2050))]
 
 
 def font(size):
