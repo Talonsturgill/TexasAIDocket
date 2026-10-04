@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-10-04, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's highNoon world. A school bus stopped in the westbound lane of a neighbourhood street with its stop arm out toward the camera, a parent waiting on the near sidewalk, a live oak and brick ranch houses behind. The choice sits with the reader's own district. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ask the district that runs this bus.</h1>
+<p class="dek" data-follow="26">TEA says it left the choice to each district. Alpha's platform is now often called TimeBack. Ask at your school board's next meeting whether yours was approached about it and what a pilot must prove. A public information request asks it in writing.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Your district", counter: "09 / 09", src: "c13 c22", fit: { min: 90, max: 116, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 32, exposure: 0.94, fog: 0.0016 });
+  TXT.ground(R, { surface: 'lawn', size: 1200, tile: 5, seed: 41, color: 0x8b8a55 });
+  /* a two lane neighbourhood street running east to west, laid along x */
+  const rd = K.make('road', { seed: 5, length: 160, lanes: 2, sidewalk: true, parkway: 1.8 }); rd.position.set(0, 0, 0); TXT.add(R, rd);
+  /* the bus stopped in the westbound lane, nose west, its driver side and stop arm toward the camera */
+  const bus = NB.bus(K, { arm: true, seed: 11 });
+  bus.rotation.y = -Math.PI / 2; bus.position.set(1.0, 0.06, -1.8); TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.85 });
+  /* the parent on the near sidewalk, turned three quarters away toward the bus */
+  const p = K.make('person', { seed: 8, role: 'resident', pose: 'stand', build: 'female', hat: 'none', shirt: 0x6f7f8c, trousers: 0x3b3f46 });
+  p.rotation.y = Math.PI + 0.85; p.position.set(-6.2, 0.2, 5.6); TXT.add(R, p); TXT.contact(R, p, { opacity: 0.7 });
+  /* the neighbourhood behind: brick ranch houses on their lawns, live oaks, a cedar elm */
+  [[-26, -24, 3], [2, -26, 7], [30, -25, 12]].forEach(([x, z, s]) => { const h = K.make('ranch_house', { seed: s, material: 'brick' }); h.position.set(x, 0, z); TXT.add(R, h); TXT.contact(R, h, { opacity: 0.6 }); });
+  [[-24, -17, 4, 'live_oak'], [24, -16, 9, 'live_oak'], [-40, -10, 2, 'cedar_elm']].forEach(([x, z, s, k]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
+  TXT.frame(R, { from: [-11.5, 1.6, 15.5], look: [3.5, 5.25, -14] });
+  TXT.scatter(R, { kind: 'grass', count: 4000, area: [-80, -60, 80, 40], avoid: [[-90, -6, 90, 7.5]], seed: 7, scale: 0.8 });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 60), NB.rigOpts([0, 0, -6]));
+  TXT.weather(R, { grime: 0.42, height: 1.0 });
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { footWash: 0.42, a: 0.16 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{
+ "date": "2026-10-04",
+ "_note": "Every count and duration the aggregate gate reads as a number the deck states, with the claim it was quoted from. The drawn counts (13 chairs on frame 2, 7 walkers on frame 4, 10 buses on frame 5, the two hour sector on frame 6, 4 wings on frame 7, the columns on frame 8) are set from figures.json in each frame's code.",
+ "aggregates": [
+  {
+   "phrase": "six others",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 6,
+   "quoted_from": "c33",
+   "quote": "Emails show the commissioner visited Alpha’s campuses again with six other TEA leaders. His staff coordinated to go on the same day as Houston Superintendent Mike Miles.",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "two hour",
+   "slide": "slide-06.html",
+   "kind": "duration",
+   "value": 2,
+   "quoted_from": "c34",
+   "quote": "using it to teach all students basic subjects in two hours a day while the human teachers, which Alpha calls guides, focus on motivation and emotional support",
+   "note": "the source's own duration, quoted"
+  },
+  {
+   "phrase": "two hours",
+   "slide": "slide-06.html",
+   "kind": "duration",
+   "value": 2,
+   "quoted_from": "c34",
+   "quote": "using it to teach all students basic subjects in two hours a day while the human teachers, which Alpha calls guides, focus on motivation and emotional support",
+   "note": "the source's own duration, quoted"
+  },
+  {
+   "phrase": "800 students",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 800,
+   "quoted_from": "c23",
+   "quote": "which enrolls around 800 students, said it will deploy the model in its K-8 classrooms for students who need additional help in reading and math",
+   "note": "the source's own figure, quoted with its 'around'"
+  },
+  {
+   "phrase": "8 classrooms for students",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c23",
+   "quote": "which enrolls around 800 students, said it will deploy the model in its K-8 classrooms for students who need additional help in reading and math",
+   "note": "the 8 is the upper grade of the source's K-8 range, never a count of classrooms"
+  },
+  {
+   "phrase": "300 students",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 300,
+   "quoted_from": "c24",
+   "quote": "Aldine will deploy the online platform to roughly 300 students across four middle school campuses that require support in math.",
+   "note": "the source's own figure, quoted with its 'roughly'"
+  },
+  {
+   "phrase": "10 districts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c16",
+   "quote": "state education officials and Alpha affiliates approached at least 10 school districts about the AI program",
+   "note": "the source's own floor, quoted with its 'at least'"
+  },
+  {
+   "phrase": "six other TEA leaders",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 6,
+   "quoted_from": "c33",
+   "quote": "Emails show the commissioner visited Alpha’s campuses again with six other TEA leaders. His staff coordinated to go on the same day as Houston Superintendent Mike Miles.",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "four middle schools",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c24",
+   "quote": "Aldine will deploy the online platform to roughly 300 students across four middle school campuses that require support in math.",
+   "note": "the source's own count of campuses, quoted"
+  }
+ ]
+}

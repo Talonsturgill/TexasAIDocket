@@ -1,0 +1,218 @@
+{
+ "weighted_score": 7.138,
+ "judges": [
+  6.93,
+  7.04,
+  7.17
+ ],
+ "spread": 0.24,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    5.8,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.3,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "judges": [
+    7.7,
+    7.8,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.0,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.3,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A slab clock against an empty gradient sky; no ground, beam or rimrock.",
+     "fix": "Under the covered walkway so the clock hangs from a modelled edge beam, the rimrock and a clouded sky behind, the walk with its shade band at the foot."
+    },
+    {
+     "judge": 2,
+     "problem": "A clock on a plain slab with a painted shadow; the sector reads as a sticker; a sky band; no ground.",
+     "fix": "Pull back to show the walkway, a bus flank and the rimrock; a real shadow on a chamfered surround; the sector lit with an emissive."
+    },
+    {
+     "judge": 3,
+     "problem": "A clock on a slab against empty sky; no ground, horizon, Fort Davis or bus.",
+     "fix": "Pull back so the clock hangs from the walkway's edge beam over concrete, the rimrock and grama on the lower third and a bus flank at the right edge."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Helmet-haired mannequins on a blank plane fading to fog; no campus; no shade band.",
+     "fix": "Camera behind the walkway's shade band at 1.6 m; extend the campus to the horizon; fabric and hair on the walkers."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequins on an empty plain fading to fog; no shade band.",
+     "fix": "Camera under the walkway deck with its shadow across the foreground; walkers at half size in the sun beyond; a wing and kerb across the back."
+    },
+    {
+     "judge": 3,
+     "problem": "Helmet-haired mannequins on a featureless apron; an off-frame shadow; no shade band.",
+     "fix": "Camera under the covered walk with its shade band across the foreground; walkers smaller and turned away; grit and joints on the walk."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A bar chart before a blurred wall; the solid 10% box reads as a present value.",
+     "fix": "The 10% before column as a ghost glass column; a raking window light across the oak."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitive boxes; the glass column vanishes; the foreground washed grey.",
+     "fix": "A lit frosted edge and stone caps on the glass; a window sun patch across the table; a darker near edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Blocks on a shelf before a blank wall; the 10 block reads as current; a smudge in the glass base.",
+     "fix": "The long oak table with a raking window; labels on the block and the empty footprint; remove the smudge."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mannequin parent on the gutter line; the arm folded flat; a flat sky.",
+     "fix": "Swing the arm out; the parent on the kerb with a contact shadow; an oak's shade pool on the sidewalk."
+    },
+    {
+     "judge": 2,
+     "problem": "Glossy plastic bus with a fender blade; the arm flush; the parent in the road.",
+     "fix": "Rougher paint with dust; fix the fender; swing the arm out; the parent on the kerb in the oak's shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "A mannequin parent on the asphalt in profile; the bus reads as a toy.",
+     "fix": "The parent on the kerb, turned away, with a shadow; the oak's shade across the kerb."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "70 percent flat wall; the seal a dark hole; a grey slab on the left; the ten chairs one black mass.",
+     "fix": "A three quarter view from the aisle end with 1.2 m between chairs, a raking window patch on the wall, and the kit seal_plaque in bronze."
+    },
+    {
+     "judge": 3,
+     "problem": "A dark disc that reads as a hole; a grey slab on the left.",
+     "fix": "A lit carved seal with a cast shadow; crop the slab; rake window light across the wall."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The bus flank in muddy shade reads brown; low-poly cars; an empty sky.",
+     "fix": "Light the east flank full; higher-detail vehicles or crop them out."
+    },
+    {
+     "judge": 2,
+     "problem": "An ochre bus with flat windows; low-poly cars; the foot washed grey.",
+     "fix": "Turn the bus so its flank takes the key; window interiors; darker near asphalt in place of the wash."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Cross-hatched procedural oak; the sheet flat with no readable contact; a featureless wall.",
+     "fix": "Straight-grain veneer; a 6 mm curl casting a crescent shadow; a bright window frame behind the sheet."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 4,
+ "rounds": 4,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 4,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.138, 0.862 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.0 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

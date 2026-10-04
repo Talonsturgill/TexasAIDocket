@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the quiet decision",
   "the two things",
   "the plain question",
   "the deadline",
-  "the correction"
+  "the correction",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -731,15 +731,34 @@
    ],
    "critic_note": "The critic chose the candidate opening on the number that is wrong, and its required edits were applied before caption_check passed. The copywriter's concern that 'current' placed the observer aboard in the present tense was taken and the word cut.",
    "move_note": "Opens on the company's own 93, says what it measures and what it isn't, climbs through the lane, the state's terms and the reporting channel, and closes on how many of the company's miles ran on this lane."
+  },
+  {
+   "date": "2026-10-04",
+   "carousel_no": 42,
+   "opening_move": "the object",
+   "structure": "Two columns",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "TEA staff helped with a one-page explainer.",
+   "words": 135,
+   "commas": 4,
+   "commas_per_100w": 2.96,
+   "chars": 882,
+   "hashtags": [
+    "#TexasSBOE",
+    "#AldineISD",
+    "#FortDavisISD"
+   ],
+   "critic_note": "The critic chose the candidate opening on the one-page explainer, the object the emails describe, over the before and after candidate.",
+   "move_note": "Opens on the explainer TEA staff helped with, sets the board's vote beside what the agency did, counts the districts approached, piloting and declining, and closes on the Governor's office's standard by asking who in a reader's district decides what counts as proof."
   }
  ],
  "structures_recent": [
-  "Question and answer",
   "Zoom in",
-  "Pivot"
+  "Pivot",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what is still not public, and how big that is"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

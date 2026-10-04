@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-04, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's highNoon world. Congress Avenue at noon looking north to the Capitol, a school bus at the east kerb with its stop arm out toward the street, the board's no at the Capitol's door. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The state board said no.</h1>
+<p class="dek" data-follow="26">The Tribune reports the board voted down the Alpha leaders' AI charter bid. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Alpha's AI and Texas public schools", counter: "01 / 09", src: "c6 c7 c12", fit: { min: 96, max: 124, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 34, exposure: 0.94, fog: 0.0009 });
+  TXT.ground(R, { surface: 'concrete', size: 3000, tile: 6, seed: 9, color: 0xc9c2b4 });
+  /* Congress Avenue running north to the Capitol: four lanes of the kit road laid along z */
+  for (let i = 0; i < 9; i++) {
+    const rd = K.make('road', { seed: 3 + i, length: 80, lanes: 4, sidewalk: true, parkway: 1.2 });
+    rd.rotation.y = Math.PI / 2; rd.position.set(0, 0, 30 - i * 80); TXT.add(R, rd);
+  }
+  const cap = K.make('capitol', {}); cap.position.set(0, 0, -760); TXT.add(R, cap); TXT.contact(R, cap, { opacity: 0.5 });
+  /* live oaks and lamps along both sidewalks */
+  for (let z = 10; z > -660; z -= 34) {
+    for (const sx of [-1, 1]) {
+      const t = K.make('live_oak', { seed: (z * 7 + sx * 13) & 63, height: 9, spread: 11 }); t.position.set(sx * 15.5, 0, z + (sx > 0 ? 9 : 0)); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 });
+      if (((z / 34) | 0) % 2 === 0) { const sl = K.make('streetlight', { height: 9.1 }); sl.position.set(sx * 9.6, 0, z - 14); sl.rotation.y = sx > 0 ? -Math.PI / 2 : Math.PI / 2; TXT.add(R, sl); }
+    }
+  }
+  /* the bus at the east kerb, nose north, its stop arm out on its driver side toward the street */
+  const bus = NB.bus(K, { arm: true, seed: 11 });
+  bus.rotation.y = Math.PI; bus.position.set(3.2, 0.06, -6.5); TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.85 });
+  /* a few cars parked down the west kerb and one far off northbound, the avenue in use at noon */
+  [['sedan', -5.4, -30, 0], ['suv', -5.4, -52, 0], ['pickup', -5.4, -96, 0], ['sedan', 1.9, -140, Math.PI]].forEach(([k, x, z, y], i) => { const v = K.make(k, { seed: 21 + i }); v.rotation.y = y; v.position.set(x, 0.06, z); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.8 }); });
+  TXT.frame(R, { from: [-1.1, 1.6, 7.0], look: [12.1, 14.6, -120] });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 40), NB.rigOpts([3, 0, -20]));
+  TXT.weather(R, { grime: 0.16, height: 0.7 });
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { footWash: 0.5, a: 0.16, siteBlur: 30 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

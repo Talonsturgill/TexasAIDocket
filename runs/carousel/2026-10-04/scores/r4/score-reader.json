@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame rendered in the noon world; 5 the strongest, 7 reads as a place. 6 a clock on a slab against empty sky with no ground or Fort Davis; 8 blocks on a shelf before a blank wall with a smudge in the glass base; 4 helmet-haired mannequins on an empty apron with an off-frame shadow and no shade band; 2 a dark disc that reads as a hole and a grey slab on the left; 1 a pink box Capitol and cloned trees. Flat noon light gives most frames a mid band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One type system, haze and noon; two palettes alternate. The bus on four frames, the arm state reading on 1, 5 and 9, none on 6. Two devices working, 6 outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, the 2 and 2025 computed; attribution careful; c39 never without c40; floors stated. Frame 1's 'helped connect the same AI platform' and frame 8's 'brought this Austin charter to that pass rate' run a little loose."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decided and where, two concrete actions and the TimeBack name. Alpha is not explained until 6; c6 is on no frame; 'Back again' points at an unshown first visit."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "2 pays the cover, 3 turns, 5 is the climax, 9 acts. 8 would sit better after 2; 4 could fold into 3."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, local and on register. 5's hook is a tally; attribution opens five deks; 9's hook leans on a metaphor; the caption opens weakly."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New topic, but a yellow vehicle on a Texas road a day after no. 41, a TEA beat four days after no. 38, and the pale sky house look."
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frames 6, 8 and 4 as places on ground: the clock under the walkway deck with the rimrock and grama behind and a bus flank, the columns on the oak table with window shadows, and the camera under the covered walk with small walkers turned away.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A clock on a slab against empty sky; no ground, horizon, Fort Davis or bus.",
+   "fix": "Pull back so the clock hangs from the walkway's edge beam over concrete, the rimrock and grama on the lower third and a bus flank at the right edge."
+  },
+  {
+   "slide": 8,
+   "problem": "Blocks on a shelf before a blank wall; the 10 block reads as current; a smudge in the glass base.",
+   "fix": "The long oak table with a raking window; labels on the block and the empty footprint; remove the smudge."
+  },
+  {
+   "slide": 4,
+   "problem": "Helmet-haired mannequins on a featureless apron; an off-frame shadow; no shade band.",
+   "fix": "Camera under the covered walk with its shade band across the foreground; walkers smaller and turned away; grit and joints on the walk."
+  },
+  {
+   "slide": 2,
+   "problem": "A dark disc that reads as a hole; a grey slab on the left.",
+   "fix": "A lit carved seal with a cast shadow; crop the slab; rake window light across the wall."
+  },
+  {
+   "slide": 9,
+   "problem": "A mannequin parent on the asphalt in profile; the bus reads as a toy.",
+   "fix": "The parent on the kerb, turned away, with a shadow; the oak's shade across the kerb."
+  }
+ ]
+}

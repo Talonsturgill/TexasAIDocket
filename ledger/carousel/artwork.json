@@ -2645,6 +2645,61 @@
     "hex": "#1C2027",
     "note": "The deck's declared ground, a dark register deck."
    }
+  },
+  {
+   "date": "2026-10-04",
+   "carousel_no": 42,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-04/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A noon deck exposed down to hold the light deck cap. One noonbell world (highNoon sky, pale haze, sun at elevation 58) declared once in assets/js/deck/2026-10-04-noonbell.js. One hero, the kit school_bus unlettered with a white roof, its stop arm out for a no and folded with the accent card for a pilot. Chassis models for the school clock, the measured column, the letter sheet, and limestone ashlar on the rooms' back walls.",
+   "structural_laws": [
+    "A ROOM BUILT INSIDE A CHASSIS HELPER IS INVISIBLE TO print_ban. Call TXT.interior in the slide and hand the room to the helper.",
+    "A KIT MODEL'S size IS NOT ITS TOP. The conference table's size[1] is 1.0 m and its top 0.74 m; measure the top off the model's own box before standing anything on it.",
+    "A CANVAS MAP ON A ROUNDED BOX LANDS AT THE WRONG SCALE. Put a drawn wall on a plane of the wall's own size.",
+    "THE BOTTOM VEIL PEAKS BELOW THE FOOTER. Over asphalt or shadow, a feathered wash centred on the footer row is what clears 4.5.",
+    "A HIGH SUN HIDES EVERY SHADOW BEHIND ITS CASTER FROM A STANDING EYE. Raise the camera over a table or a desk so the top receives what stands on it."
+   ],
+   "techniques": [
+    "the bus at the kerb of Congress Avenue in the near right, stop arm out, the Capitol hazed at the avenue's end",
+    "an empty hearing room in limestone, ten chairs and three either side of an aisle before the dais",
+    "a near overhead oak desk, one letter sheet with the quoted line, a ballpoint for scale",
+    "seven walkers in profile along a school's canopy walk, a long lens across the walk",
+    "ten buses nose on in a lot from 10 m up, three on accent bays, five with arms out, two set back",
+    "a campus clock in its cast stone surround against the sky, a two hour sector in the accent",
+    "aerial down an Aldine street to four middle school wings and Houston's towers in haze",
+    "columns at one scale on an oak table in a limestone room, a glass band for the claim and a solid accent column for the result",
+    "the bus's front three quarter at a residential kerb, a parent beside it turned away"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     54.6,
+     58.1,
+     61.1,
+     63.1,
+     57.8,
+     59.7,
+     58.1,
+     57.6,
+     57.0
+    ],
+    "deck_median_L": 58.1,
+    "max_adjacent_delta": 5.3,
+    "mean_adjacent_delta": 2.3,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Exposed down deck-wide at the round cap (N.EXPOSURE 0.47 in the chassis) so the deck median sits under the ledger's light line of 60, because no. 38 on 2026-09-30 was this window's one light deck."
+   },
+   "accent": {
+    "hex": "#C2477A",
+    "name": "the platform, a magenta",
+    "frames_above_floor": [
+     5,
+     6,
+     8
+    ],
+    "note": "The pilot bays and windshield cards on frame 5, the two hour sector on frame 6 and the passed column on frame 8."
+   },
+   "ground": {
+    "hex": "#E7E3DA",
+    "note": "The deck's declared ground, a light noon deck with dark type."
+   }
   }
  ]
 }

@@ -39,7 +39,7 @@
 | 5 | `docket_build.py`, `docket_ingest.py`, `site_build.py` |
 | 6 | `claims_check.py` |
 | 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
-| 8 | `dedupe_check.py` |
+| 8 | `dedupe_check.py`, `panel_ready.py` |
 | 9 | `instincts.py`, `layout_check.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py` |
 | 10 | `caption_check.py` |
@@ -382,7 +382,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -415,7 +415,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
 | `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
-| `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --self-test | CI self-test | 8 |
+| `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --places --self-test | CI self-test | 8 |
 | `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
@@ -433,7 +433,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
-| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 12b, 14b, 15 |
+| `scripts/carousel/panel_ready.py` | the deck is not scored until the run believes it is finished. | --date --out --self-test | shipped | state, 8, 12b, 14b, 15 |
 | `scripts/carousel/plan_render_check.py` | the plan has to describe the frame that shipped. | --date --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/print_ban.py` | the print screen is DELETED, and this is what keeps it deleted. | --assets --run-dir --date --self-test | CI, shipped | state, artwork, 10.5, 11, 12b, 14b, 15 |
 | `scripts/carousel/quantifier_check.py` | A quantifier is a claim about a set, and this deck's sets are measurements. | --self-test | gate table, shipped |  |

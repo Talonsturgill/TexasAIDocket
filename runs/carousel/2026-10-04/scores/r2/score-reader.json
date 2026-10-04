@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Rendered into the noon world; 1, 5 and 7 closest to the showstopper test. 3 is stretched grain with no room and a sheet that reads as a plate; 8 primitive boxes before a blank wall, the 10 block beside the footprint ambiguous; 6 a slab clock on a brick corner against a gradient sky with a grey slab at the bottom; 4 mannequins with mirrored strides on a bare plain with dot pebbles and no shade band; 9 a geometry spike at the front wheel arch and the arm flush; 2 the bottom 40 percent empty tile. A grey fog band under the footer on 1, 5, 7 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One declared world, one type system, the accent carried across 5, 6 and 8. The bus is a recurring prop rather than a spine and the arm state doesn't read. Interiors strobe in hue against the blue exteriors."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Traceable throughout; the Valenta join refused, 10 to 3 attributed, c39 with c40, the 2 computed and floors printed. Frame 3's dek places the introduction offer right after the September 2025 reply though c9 and c11 don't date the offer. The web edition's 'So the terms of the Houston arrangement aren't public' is unclaimed and its dek's 'then' asserts a sequence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Who decided, who went around it, where, how each pilot is used and how the one school with scores did. A concrete step on 9, though no frame names TimeBack (c13), the word a parent must ask about, and c30's red flag line is on no frame."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe; 2 re-says the cover with the tally; the turn lands on 5; 6 and 7 could fold; 8 arrives six frames after 2's doubts; 9 lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "Specific and Texan; 9's hook the best line. The caption's first line tells a feed reader little; 5's set-back line is method narration; repeated attributions are heavy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Noon light is new. The second TEA and public school deck in five days, the third of five on Tribune reporting, and the one-object counted-out move of 39 to 41."
+  }
+ ],
+ "weighted_score": 7.03,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 3, 6 and 8 as noon rooms and facades with depth, and name TimeBack (c13) on frame 9 so a parent knows the word to ask their board about.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Grain stretched into streaks, no room, the sheet a plate, the pen without contact.",
+   "fix": "Seated eye at 1.2 m so the window and wall fill the top third; oak at true board grain; contacts on the pen and sheet."
+  },
+  {
+   "slide": 8,
+   "problem": "Primitive boxes before a blank wall; the 10 block beside the footprint reads ambiguously.",
+   "fix": "A classroom table with side windows casting shadows; a tinted glass edge; the 10 block as a ghost outline over the footprint."
+  },
+  {
+   "slide": 6,
+   "problem": "A slab clock on a brick corner against a gradient sky; a grey slab across the bottom.",
+   "fix": "Drop and widen so the clock hangs on the entry facade with the rimrock and a bus flank behind; crop the grey slab."
+  },
+  {
+   "slide": 4,
+   "problem": "Mirrored-stride mannequins on a bare plain with dot pebbles; no dark.",
+   "fix": "The walkway's shade band across the foreground; no rock scatter on the walk; every walker turned away."
+  },
+  {
+   "slide": 9,
+   "problem": "A geometry spike at the front wheel arch; the arm flush to the body.",
+   "fix": "Repair the fender mesh; swing the arm out perpendicular to the bus side."
+  },
+  {
+   "slide": 2,
+   "problem": "The bottom 40 percent empty tile.",
+   "fix": "Lower and tilt the camera so the chair blocks sit on the lower third and crop the empty floor."
+  }
+ ]
+}

@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "gates": [
    "banned words",
    "claims",
@@ -2773,7 +2773,7 @@
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-09-30",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-08-18",
@@ -2857,6 +2857,10 @@
     {
      "date": "2026-10-03",
      "note": "The city's notice of the amended Compal agreement is still missing from its site, and no outcome has been published. The council's video index sits on a host that bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The city's notice of the amended Compal agreement is still gone from its site, and no outcome of the council item has been published."
     }
    ]
   },
@@ -4166,8 +4170,8 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "Guadalupe County Commissioners Court meets in Seguin and publishes agendas and minutes on the county website. The county page states that members of the public may participate and address the governmental body during any telephonic meeting, and it publishes the Zoom connection details alongside the agendas.",
-    "url": "https://www.guadalupetx.gov/page/commcourt.agendas",
+    "how": "Guadalupe County Commissioners Court meets in Seguin. The county publishes its minutes, agendas and meeting video through the archive its agendas page links as Commissioners Court Minutes, Agendas and Videos. The county page states that members of the public may participate and address the governmental body during any telephonic meeting, and it publishes the Zoom connection details alongside the agendas.",
+    "url": "https://guadalupe.granicus.com/ViewPublisher.php?view_id=1",
     "closes": null
    },
    "claims": [
@@ -4315,16 +4319,21 @@
     {
      "date": "2026-10-03",
      "note": "The cited Seguin Gazette and KSAT accounts remain unconfirmed. Live robots rules exclude project readers. The county's accessible agenda page contains no quoted contract decision. Its embedded meeting archive also refuses automated access. These are source-access measurements, not a new verification of the termination or the sheriff's quotations."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "That Guadalupe County has left its plate reader contract is still unconfirmed. The county keeps its minutes and meeting video in an archive that bars automated readers, as do both published accounts of the vote."
     }
    ],
    "unreachable": {
     "hosts": [
+     "guadalupe.granicus.com",
      "seguingazette.com",
      "www.ksat.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-03",
-    "note": "Claim-source boundary v1.\nCounty page https://www.guadalupetx.gov/page/commcourt.agendas checked 2026-10-03 SHA256 8639f264fe96330e98871377cc2e8ad013d1e0c6c95c5b77b15d1aad73f903e5 contains no cited quotations.\nSource https://seguingazette.com/news/sheriff-ends-county-s-flock-safety-contract/article_6747d32d-f659-4c2c-b14a-cac72fd18913.html checked 2026-10-03 robots https://seguingazette.com/robots.txt SHA256 82e73ca73ea5ffe6579928c664f17b92811c4d1cd0a49902e280acefcda0a129 refuses project readers.\nSource https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/ checked 2026-10-03 robots https://www.ksat.com/robots.txt SHA256 ad3b8907adf571e551fa096c5327e003a844b385d4d96237a220ef92c05d34ff refuses project readers."
+    "checked": "2026-10-04",
+    "note": "guadalupe.granicus.com, where the county's agendas page links its minutes, agendas and videos, disallows this project's path in robots.txt, measured 2026-10-04. seguingazette.com and www.ksat.com, the two published accounts of the vote, disallow it too. www.guadalupetx.gov answers and carries no record of the vote. Nothing was routed around."
    }
   },
   {
@@ -5158,6 +5167,10 @@
     {
      "date": "2026-10-03",
      "note": "The Wichita Falls permit is still unconfirmed. The only account of the commission's vote bars automated readers, and the city's agenda center shows no record of it."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The Wichita Falls permit is still unconfirmed. A search of the city's agenda center returns no record of it, and the only published account bars automated readers."
     }
    ]
   },
@@ -5485,6 +5498,10 @@
     {
      "date": "2026-10-03",
      "note": "Archer County's denial of the abatement is still unconfirmed. The only account of the vote bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Archer County's denial of the abatement is still unconfirmed. The only account of the vote bars automated readers."
     }
    ],
    "unreachable": {
@@ -5571,10 +5588,19 @@
      "source_type": "journalism",
      "fetched": "2026-08-14",
      "id": "tx-2026-0044-c5"
+    },
+    {
+     "text": "The court's own minutes of its July 14th regular session record the motion to approve Resolution 010-26, seconded, carried with no member voting against.",
+     "verbatim_quote": "Kermit Kennedy made a motion to approve a Resolution #010-26 Supporting the Limited Regulatory Authority of Counties in Rural Areas on Emerging Technologies including Data Centers and Battery Storage Facilities.",
+     "source_url": "https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf",
+     "source_title": "Angelina County Commissioners Court minutes, regular session of July 14, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0044-c6"
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-09-27",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-08-19",
@@ -5660,6 +5686,10 @@
     {
      "date": "2026-10-03",
      "note": "The county's July 14th minutes record approval of Resolution 010-26 on limited county authority over emerging technologies. It includes data centers and battery storage facilities. Four voted for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The court's own minutes of its July 14th session now carry the vote. They record the motion to approve Resolution 010-26 and no member voting against it."
     }
    ],
    "unreachable": {
@@ -5835,6 +5865,10 @@
     },
     {
      "date": "2026-10-03",
+     "note": "Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
      "note": "Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers."
     }
    ],
@@ -7470,6 +7504,10 @@
     {
      "date": "2026-10-03",
      "note": "Conroe's failed vote to put the cameras on the ballot is still unconfirmed. Both accounts bar automated readers and the city's agenda site did not answer."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Conroe's failed vote to put the cameras on the ballot is still unconfirmed. The city now lists minutes for its August 13th meeting, but the file sits on a host that bars automated readers, as do both published accounts."
     }
    ]
   },
@@ -10663,6 +10701,10 @@
     {
      "date": "2026-10-03",
      "note": "Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths this project does not read."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths that bar automated readers."
     }
    ],
    "unreachable": {
@@ -13436,6 +13478,10 @@
     {
      "date": "2026-10-03",
      "note": "That the training requirement stands is still unconfirmed. The bill's history sits on a path this project does not read."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "That the training requirement stands is still unconfirmed. The bill's history sits on a path that bars automated readers."
     }
    ],
    "unreachable": {
@@ -14892,6 +14938,10 @@
     {
      "date": "2026-10-03",
      "note": "The RELLIS assignment is still unconfirmed. The county's notice and the only published account remain behind barriers to automated readers."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The RELLIS assignment is still unconfirmed. The county's notice and the only published account both stay behind barriers to automated readers."
     }
    ],
    "unreachable": {
@@ -16818,6 +16868,10 @@
     {
      "date": "2026-10-03",
      "note": "The commission's approval of the line is still unconfirmed. Oncor's project page did not answer again and the order was not re-read."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The commission's approval of the line is still unconfirmed. Oncor's project page did not answer again and the order was not re-read."
     }
    ]
   },
@@ -16945,6 +16999,10 @@
     },
     {
      "date": "2026-10-03",
+     "note": "The technology agency's account of how it is carrying out the four AI laws is still unconfirmed. Its site bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
      "note": "The technology agency's account of how it is carrying out the four AI laws is still unconfirmed. Its site bars automated readers."
     }
    ],
@@ -18032,6 +18090,10 @@
     {
      "date": "2026-10-03",
      "note": "The department's account of the bridge demonstration is still unconfirmed, because its site again would not serve the page."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The department's account of the bridge demonstration is still unconfirmed. Its site still would not serve the page."
     }
    ],
    "unreachable": {
@@ -18714,6 +18776,10 @@
     {
      "date": "2026-10-03",
      "note": "Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers."
     }
    ],
    "unreachable": {
@@ -18913,6 +18979,10 @@
     {
      "date": "2026-10-03",
      "note": "Whether Frontera's queues closed on schedule is still unconfirmed. The center's user guide sits on a site that bars automated readers, and no other notice of the closing has been found."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Whether Frontera's queues closed on schedule is still unconfirmed. The center's user guide sits on a site that bars automated readers."
     }
    ],
    "unreachable": {
@@ -20091,7 +20161,7 @@
     }
    ],
    "id": "tx-2026-0139",
-   "last_verified": "2026-10-03",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-09",
@@ -20150,6 +20220,11 @@
     {
      "date": "2026-10-03",
      "note": "The grid operator's workshop on curtailing a large load is still set as noticed, with no change to the date.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The grid operator's October 6th workshop on curtailment is still set, and nothing has moved on it since it was noticed.",
      "checked": true
     }
    ]
@@ -20906,7 +20981,7 @@
    "confidence": "high",
    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
    "id": "tx-2026-0144",
-   "last_verified": "2026-10-03",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-11",
@@ -20969,6 +21044,11 @@
     {
      "date": "2026-10-03",
      "note": "The energy department's comment window is still open, closing October 9th. The notice still names AI as a driver of demand growth.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The department is still taking comment on securing the grid, and the window still closes October 9th.",
      "checked": true
     }
    ]
@@ -21772,7 +21852,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-13",
@@ -21810,6 +21890,10 @@
     {
      "date": "2026-10-03",
      "note": "The panel's finding is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The panel's recommendations still read as published in the abstract, including its call for an implementation framework and for reimbursement that allows the work to continue."
     }
    ]
   },
@@ -21911,7 +21995,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0151",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-13",
@@ -21949,6 +22033,10 @@
     {
      "date": "2026-10-03",
      "note": "The study's result is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The study's result still reads as published. The abstract still reports limited standalone discrimination for survival and still advises cautious use of the score as an exploratory marker."
     }
    ]
   },
@@ -23332,8 +23420,20 @@
     {
      "date": "2026-10-03",
      "note": "The three campus trial is unconfirmed this run. Its registry entry sits on a path this project does not read, and the universities' accounts did not load."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The three campus trial is still unconfirmed. Its registry record is served only through a path that bars automated readers."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "clinicaltrials.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-04",
+    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around."
+   }
   },
   {
    "title": "Hays County posts the sheriff's promise not to switch on AI report writing without coming back to the court",
@@ -23499,6 +23599,10 @@
     {
      "date": "2026-10-03",
      "note": "The sheriff's promise is still unconfirmed. The posted agenda bars every automated reader, and nothing on the record shows the promise withdrawn."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The sheriff's promise is still unconfirmed. The posted agenda bars every automated reader, and nothing on the record shows the promise withdrawn."
     }
    ],
    "last_verified": "2026-09-26",
@@ -23640,6 +23744,10 @@
     {
      "date": "2026-10-03",
      "note": "The vendor now says its product writes the minutes and the government's own staff have the final word on them. Whether the clerk's request is still before the court is unconfirmed, because the posted agenda bars every automated reader."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Whether the clerk's request is still before the court is unconfirmed. The posted agenda bars every automated reader and no disposition has been published."
     }
    ],
    "last_verified": "2026-09-26",
@@ -23772,6 +23880,10 @@
     {
      "date": "2026-10-03",
      "note": "Whether the county has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda bars every automated reader and no disposition has been posted."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Whether the county has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda bars every automated reader and no disposition has been published."
     }
    ],
    "last_verified": "2026-09-26",
@@ -23913,6 +24025,10 @@
     },
     {
      "date": "2026-10-03",
+     "note": "The Governor's directive to the water board is still unconfirmed. His office posts it on a site that bars automated readers."
+    },
+    {
+     "date": "2026-10-04",
      "note": "The Governor's directive to the water board is still unconfirmed. His office posts it on a site that bars automated readers."
     }
    ],
@@ -24331,7 +24447,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-10-01",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-20",
@@ -24356,6 +24472,11 @@
     {
      "date": "2026-10-01",
      "note": "Reworded. The title and summary had stated the items as filed as though the council enacted them. The council's record marks both approved as revised and the revision text is not published, so every directive is now marked as filed. No source or quote changed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "El Paso's two plate reader items still stand as the council passed them in revised form.",
      "checked": true
     }
    ]
@@ -24526,7 +24647,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-10-01",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-20",
@@ -24571,6 +24692,11 @@
     {
      "date": "2026-10-01",
      "note": "Texas Southern's regional node in the foundation's network still carries the award date and the October 1st start the award record gave it.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The foundation's award still names Texas Southern University as the lead, and the award page reads as it did.",
      "checked": true
     }
    ]
@@ -25416,6 +25542,10 @@
      "date": "2026-10-03",
      "note": "The comment window is still open, closing October 11th. The agency's review page and the draft assessment still read as published.",
      "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The comment window is still open and closes October 11th. The agency's review page did not answer, so whether the draft assessment still reads as published is unconfirmed this time."
     }
    ]
   },
@@ -25529,7 +25659,7 @@
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
    "id": "tx-2026-0187",
-   "last_verified": "2026-10-03",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-24",
@@ -25558,6 +25688,11 @@
     {
      "date": "2026-10-03",
      "note": "The commission's adopted large load interconnection rule still stands as ordered, security requirement included.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The commission's large load rule still stands as adopted, with the security requirement it set for new loads unchanged.",
      "checked": true
     }
    ]
@@ -26094,6 +26229,11 @@
      "date": "2026-10-01",
      "note": "The adopted wildfire plan rule and staff's pro forma still read as filed. The blueprint still lists cameras among measures a utility may use, with no requirement to deploy them.",
      "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "The wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -26252,7 +26392,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-10-01"
+   "last_verified": "2026-10-04"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -26300,6 +26440,11 @@
     {
      "date": "2026-10-01",
      "note": "The commission's order still names AI camera fire detections among the metrics, and the utility's annual report under it still counts cameras rather than detections.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Xcel's filing still counts cameras where the commission asked for detections, and the order approving the plan stands.",
      "checked": true
     }
    ],
@@ -26396,7 +26541,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-10-01"
+   "last_verified": "2026-10-04"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -26888,7 +27033,7 @@
    "confidence": "high",
    "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
    "id": "tx-2026-0146",
-   "last_verified": "2026-10-01",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-09-11",
@@ -26897,6 +27042,11 @@
     {
      "date": "2026-10-01",
      "note": "Both copies of the release still announce the expansion. Wiwynn's copy carries a September 10th date, which is the day the record now gives for the announcement."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Amazon and Wiwynn's stated expansion of the El Paso County plant still reads as announced.",
+     "checked": true
     }
    ]
   },
@@ -27636,6 +27786,379 @@
     {
      "date": "2026-10-03",
      "note": "Admitted on the foundation's own award record. The platform's work began on September 15th and nothing it has produced is on the record yet."
+    }
+   ]
+  },
+  {
+   "title": "State education staff helped Alpha School's AI platform into pilots in Houston, Aldine and Fort Davis",
+   "summary": "Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect Alpha School's AI learning platform with public school districts. Education Commissioner Mike Morath and his staff visited Alpha campuses, helped with a one page explainer for districts and connected Alpha associates with district leaders. The newsrooms report that at least 10 districts were approached and at least three launched pilots. Those three are Houston ISD, Fort Davis ISD in West Texas and Aldine ISD near Houston, and all three say they will use the software for supplemental learning. Fort Davis will use it in its K-8 classrooms for students who need help in reading and math. Aldine will deploy it to roughly 300 students at four middle schools who need support in math. Houston ISD says it plans to use the tool with students who have strong test scores and is not paying Alpha. It asked the attorney general to withhold the contract from the newsrooms. TEA says it has no formal partnership with Alpha and left the decision to the districts. The State Board of Education had voted down the Alpha leaders' bid for a Texas charter that would use the same technology. The board's own minutes from June 2025 record a veto of one charter proposed on a two hour learning model, Valenta Academy in Bastrop. Neither the minutes nor the reporting names Alpha as its applicant.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Houston ISD, Aldine ISD and Fort Davis ISD",
+    "type": "school-district"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris",
+     "Jeff Davis"
+    ],
+    "on_ercot": null,
+    "metro": "Houston-Pasadena-The Woodlands, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-10-01",
+     "kind": "decided",
+     "note": "The Texas Tribune and ProPublica reported the three district pilots and the agency emails behind them"
+    },
+    {
+     "date": "2025-06-27",
+     "kind": "decided",
+     "note": "The State Board of Education adopted the veto of Valenta Academy, a Bastrop charter proposed on a two hour learning model"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "Each of the three districts is governed by a board that meets in public and posts its agendas. Fort Davis ISD lists its board meetings on its own site. A resident with a view on the pilot can raise it with the district or speak during a board meeting's public comment.",
+    "url": "https://fdisd.com/page/board-meetings",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "The pilots, the emails and every district figure rest on The Texas Tribune and ProPublica, whose reporting draws on agency emails obtained through public information requests. No district or agency document naming the pilot was found. The State Board of Education minutes are the primary record of the June 2025 veto of Valenta Academy. Two Community Impact accounts describe Valenta as a two hour learning model using adaptive AI, and the Tribune says the board voted the Alpha leaders' bid down 10 to 3. The reports cited here don't name Valenta as Alpha's, so the record never says it was. Texas Preparatory School's 21 percent is the Tribune's figure for the share that passed, and ProPublica reports it rose from 19 percent.",
+   "claims": [
+    {
+     "text": "At least three of those districts launched pilot programs using the AI tool. They are Houston, Fort Davis in West Texas, and Aldine near Houston.",
+     "verbatim_quote": "at least three of those districts — Houston; Fort Davis, in West Texas; and Aldine, near Houston — launched pilot programs incorporating the AI tool",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c1"
+    },
+    {
+     "text": "Emails show state education officials and Alpha affiliates approached at least 10 school districts about the AI program.",
+     "verbatim_quote": "state education officials and Alpha affiliates approached at least 10 school districts about the AI program",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c2"
+    },
+    {
+     "text": "Emails obtained through public information requests show TEA staff helped with a one-page explainer for school districts and connected Alpha-linked companies with district leaders.",
+     "verbatim_quote": "helped with a one-page explainer about the program to share with school districts and connected them with district leaders",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c3"
+    },
+    {
+     "text": "Emails show Morath visited Alpha's campuses again with six other TEA leaders, and his staff timed the visit for the same day as Houston Superintendent Mike Miles.",
+     "verbatim_quote": "Emails show the commissioner visited Alpha’s campuses again with six other TEA leaders. His staff coordinated to go on the same day as Houston Superintendent Mike Miles.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c4"
+    },
+    {
+     "text": "Morath answered an email from Alpha School associates in September 2025 who wanted to discuss using their AI program in Texas classrooms.",
+     "verbatim_quote": "In September 2025, Morath responded to an email from associates of a private school chain called Alpha School",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c5"
+    },
+    {
+     "text": "Morath's reply asked to schedule a follow-up discussion.",
+     "verbatim_quote": "I’d love to schedule a follow-up discussion",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c6"
+    },
+    {
+     "text": "The Tribune reports Morath offered to personally introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.",
+     "verbatim_quote": "Morath offered to personally introduce an Alpha leader to the superintendent he appointed to lead the yearslong state takeover of Houston Independent School District",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c7"
+    },
+    {
+     "text": "Studient is one of the companies connected to Alpha, and it uses Alpha's AI technology, which is now often called TimeBack.",
+     "verbatim_quote": "Studient, a company that uses Alpha’s AI technology, now often called TimeBack",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c8"
+    },
+    {
+     "text": "Andrew Hodge, TEA's associate commissioner of system innovation, emailed Joe Liemandt on November 5th asking to discuss piloting a few supplemental Tier 3 instances of Alpha's model in Texas.",
+     "verbatim_quote": "possibilities for piloting a few supplemental (you called this Tier 3 in your outline) instances in the state",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c9"
+    },
+    {
+     "text": "Michael Strange, a member of Hodge's team who oversees TEA's blended learning programs, sent Alpha associates a to-do list that included drafting a one-page explainer of the pilot program for districts.",
+     "verbatim_quote": "which included him drafting a one-page explainer of the pilot program to share with districts",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c10"
+    },
+    {
+     "text": "TEA staffer Michael Strange praised the progress Alpha and Studient officials were making on securing pilots with Fort Davis and Aldine by the middle of June.",
+     "verbatim_quote": "By mid-June, Strange applauded their progress securing pilots with Fort Davis and Aldine.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c11"
+    },
+    {
+     "text": "All three districts said they will use the software for supplemental learning rather than adopt Alpha's full model.",
+     "verbatim_quote": "All three districts with pilot programs said they will use the AI software for supplemental learning rather than fully implementing the Alpha School model",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c12"
+    },
+    {
+     "text": "Fort Davis ISD enrolls around 800 students and will deploy the model in its K-8 classrooms for students needing extra help in reading and math, according to its deputy superintendent Michelle Hartmann.",
+     "verbatim_quote": "which enrolls around 800 students, said it will deploy the model in its K-8 classrooms for students who need additional help in reading and math",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c13"
+    },
+    {
+     "text": "Michelle Hartmann, deputy superintendent at Fort Davis ISD, said the district sees the pilot as an added layer of intervention.",
+     "verbatim_quote": "We’re excited because we see it as an opportunity to provide an extra layer of intervention",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c14"
+    },
+    {
+     "text": "Aldine ISD will use the platform with roughly 300 students at four middle school campuses who need support in math.",
+     "verbatim_quote": "Aldine will deploy the online platform to roughly 300 students across four middle school campuses that require support in math.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c15"
+    },
+    {
+     "text": "Houston ISD's press office said the district will use the Alpha technology with high-scoring students to test whether the approach can speed up academic growth.",
+     "verbatim_quote": "Houston ISD plans to use the Alpha technology for students with strong test scores “to evaluate whether this instructional approach can accelerate academic growth",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c16"
+    },
+    {
+     "text": "Houston ISD's press office said the district is not paying Alpha for the pilot.",
+     "verbatim_quote": "The office said Houston ISD wasn’t paying Alpha for the pilot but did not provide more details.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c17"
+    },
+    {
+     "text": "Houston ISD asked the Texas attorney general to let it withhold the pilot contract from reporters under the public records act.",
+     "verbatim_quote": "The district asked the Texas attorney general to withhold the contract from the newsrooms under the state’s public records act.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c18"
+    },
+    {
+     "text": "TEA said in a written statement that it has no formal partnership with Alpha.",
+     "verbatim_quote": "there is no formal partnership between TEA and Alpha Schools",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c19"
+    },
+    {
+     "text": "TEA's statement said its officials connected interested district leaders with the program and left the decision to use it to the districts.",
+     "verbatim_quote": "connected district leaders who were interested in Alpha’s program but left the decision up to them on whether to use it",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c20"
+    },
+    {
+     "text": "Ector County, Fort Bend, Irving, Pecos and Pflugerville confirmed they were approached about partnering with Alpha and did not pursue an agreement.",
+     "verbatim_quote": "at least five school districts — Ector County, Fort Bend, Irving, Pecos and Pflugerville — that confirmed they were approached about partnering with Alpha but did not pursue an agreement",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c21"
+    },
+    {
+     "text": "Ector County was the only one of the five to give a reason, saying its school day isn't structured to support the pilot.",
+     "verbatim_quote": "determined our school day is not currently structured to effectively implement or support the pilot",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c22"
+    },
+    {
+     "text": "The Texas Tribune and ProPublica reported on October 1st, 2026 that Education Commissioner Mike Morath had supported Alpha leaders' bid to open a Texas charter school using the same AI technology.",
+     "verbatim_quote": "he had supported Alpha leaders’ bid to open a charter school in Texas that would use the same technology",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c23"
+    },
+    {
+     "text": "The Tribune reports the State Board of Education, which has the final say on charter decisions, voted the Alpha leaders' charter bid down 10 to 3.",
+     "verbatim_quote": "Then the Texas State Board of Education, which has the final say on such charter decisions, voted it down 10 to 3.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c24"
+    },
+    {
+     "text": "According to the Tribune, board members cited concerns about AI teaching, student screen time and the test score gains Alpha leaders presented.",
+     "verbatim_quote": "Board members cited concerns about the company’s use of AI to teach and students’ screen time, as well as lingering questions about the drastic student test improvements Alpha leaders presented.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c25"
+    },
+    {
+     "text": "On June 27th, 2025, the Texas State Board of Education voted on a recommendation to veto the proposed Valenta Academy charter school in Bastrop.",
+     "verbatim_quote": "that they veto the proposed Generation 30 Subchapter D Open- Enrollment Charter School Valenta Academy (Bastrop) as recommended by the Commissioner.",
+     "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/06-27-2025-sboemins.pdf",
+     "source_title": "Texas State Board of Education minutes, June 27, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c26"
+    },
+    {
+     "text": "The State Board of Education's minutes record the Valenta Academy veto recommendation as adopted on a roll call vote of 10-3-1.",
+     "verbatim_quote": "which was adopted 10-3-1",
+     "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/06-27-2025-sboemins.pdf",
+     "source_title": "Texas State Board of Education minutes, June 27, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c27"
+    },
+    {
+     "text": "Two days earlier, on June 25th, 2025, the board's Committee of the Full Board voted 10-3 for a motion to recommend vetoing the Valenta Academy charter.",
+     "verbatim_quote": "The motion was adopted 10-3.",
+     "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/2025-06-25-cofbmins-final.pdf",
+     "source_title": "Texas State Board of Education, Committee of the Full Board report, June 25, 2025",
+     "source_type": "primary_official",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c28"
+    },
+    {
+     "text": "Community Impact reported in July 2025 that Valenta Academy's programming was proposed to follow a two-hour learning model.",
+     "verbatim_quote": "Programming at Valenta Academy was proposed to be based on the two-hour learning model",
+     "source_url": "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-will-not-open-in-bastrop-after-tea-veto/",
+     "source_title": "Valenta Academy will not open in Bastrop, Community Impact, July 2025",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c29"
+    },
+    {
+     "text": "A Valenta Academy spokesperson told Community Impact in December 2024 that the school would use adaptive artificial intelligence for self-driven, accelerated learning.",
+     "verbatim_quote": "utilizes adaptive artificial intelligence (AI) to enable a self-driven, accelerated learning experience for students",
+     "source_url": "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-to-bring-new-way-of-learning-to-bastrop-children/",
+     "source_title": "Valenta Academy to bring new way of learning to Bastrop children, Community Impact, December 2024",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c30"
+    },
+    {
+     "text": "In Alpha's full model, AI teaches all students their basic subjects in two hours a day, and human teachers called guides focus on motivation and emotional support.",
+     "verbatim_quote": "using it to teach all students basic subjects in two hours a day while the human teachers, which Alpha calls guides, focus on motivation and emotional support",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c31"
+    },
+    {
+     "text": "The Tribune reports that at Texas Preparatory School in Austin, an existing Texas school that used the AI program, TEA's own test data showed just 21% of students passed, and TEA then rated the charter F for a third year running.",
+     "verbatim_quote": "Last year, state test scores compiled by his agency showed just 21% of students passed. The TEA then gave the charter its third consecutive F rating",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c32"
+    },
+    {
+     "text": "State Board of Education vice chair Pam Little, a Republican who voted against the charter, told the Tribune she wants no AI in schools, especially in the lower grades.",
+     "verbatim_quote": "I don’t want anything AI in our schools, especially at the lower grades",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c33"
+    },
+    {
+     "text": "Board member Gustavo Reveles, a Democrat who voted against the charter, said TEA's help bringing the tool into public schools raises a red flag about getting around the board's concern.",
+     "verbatim_quote": "It certainly raises a red flag that perhaps there’s ways to circumvent that concern",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c34"
+    },
+    {
+     "text": "Andrew Mahaleris, Governor Greg Abbott's press secretary, said in a statement that any classroom tool must keep teachers central, limit screen time and show results.",
+     "verbatim_quote": "Any tool a district deploys must keep teachers at the center of the classroom, limit unnecessary screen time, and prove results for students.",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c35"
+    },
+    {
+     "text": "The Tribune says the full extent of TEA's involvement and the number of districts using the program are still unknown, and TEA is still fighting release of more communications.",
+     "verbatim_quote": "remains unclear. The TEA has not responded to questions about its efforts for months, initially failed to provide some of Morath’s emails in response to public information requests and continues fighting the release of additional communications",
+     "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+     "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-04",
+     "id": "tx-2026-0200-c36"
+    }
+   ],
+   "id": "tx-2026-0200",
+   "last_verified": "2026-10-04",
+   "history": [
+    {
+     "date": "2026-10-04",
+     "note": "Admitted on The Texas Tribune and ProPublica's account of the agency emails and the district pilots. The State Board of Education's own minutes of its June 2025 charter vetoes are cited beside it."
     }
    ]
   }

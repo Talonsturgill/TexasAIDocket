@@ -301,7 +301,8 @@
         "2026-09-28",
         "2026-10-01",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04"
       ],
       "contradicted": []
     },
@@ -601,7 +602,8 @@
         "2026-09-30",
         "2026-10-01",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04"
       ],
       "contradicted": []
     },
@@ -781,7 +783,8 @@
         "2026-09-19",
         "2026-09-28",
         "2026-09-29",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04"
       ],
       "contradicted": []
     },
@@ -1239,6 +1242,38 @@
       "learned": "2026-10-03",
       "instinct": "Give an accent object its colour through albedo with a small emissive and measure it off the render against the hex, because an emissive accent in sun reads pink.",
       "evidence": "No. 41: beams at emissive 1.05 measured (220,131,93) against #B4664F and three critics called them salmon; 0.72 brought them in.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "world-calls-live-in-the-slide",
+      "learned": "2026-10-04",
+      "instinct": "Call TXT.interior and TXT.sky in the slide's own source and hand the result to the chassis helper, because print_ban reads only the slide and a room built inside a helper reads to it as a void.",
+      "evidence": "No. 42, print_ban --assets failed frames 2, 3 and 8 at pixel round 2 though all three stood in rooms, because NB.room called TXT.interior inside the chassis.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "type-on-a-surface-by-homography",
+      "learned": "2026-10-04",
+      "instinct": "Set DOM type that lies on a receding surface through a homography from the surface's own projected corners, so the lines foreshorten with the paper instead of floating square over it.",
+      "evidence": "No. 42 frame 3, judges in two panel rounds read the overhead sheet's axis-aligned type as a plate. The round 2 recompose mapped the page block onto the sheet's text area by CSS matrix3d and the frame passed every gate.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stand-things-on-the-measured-top",
+      "learned": "2026-10-04",
+      "instinct": "Measure a kit model's top off its own bounding box before standing anything on it, because a model's size can include parts above the surface.",
+      "evidence": "No. 42 frame 8, conference_table's size[1] is 1.0 m and its top 0.74 m, so the measured columns floated 0.26 m over the table through pixel round 2.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "light-cap-before-the-world",
+      "learned": "2026-10-04",
+      "instinct": "Read the light deck cap off artwork.json before the directors pitch a world, and when the window's one light deck is spent, pitch a world dark by nature rather than dim a bright one after the panel.",
+      "evidence": "No. 42 pitched highNoon with no. 38's light deck still in the window, measured L* 68.0 at the cap, failed shipped_check, and was exposed down deck-wide after three panel rounds; the verification judges read the dimmed noon as overcast.",
       "confirmed": [],
       "contradicted": []
     }

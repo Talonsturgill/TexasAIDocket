@@ -12,7 +12,7 @@ The City of Taylor published a public notice for its City Council. The council w
 - Comment closes: 2026-08-13
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2066
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-04
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The city's notice of the amended agreement is still not posted anywhere on its site. The council video index still lists the item, and no outcome has been published.
 - 2026-09-30 · The city's notice of the amended agreement is still missing from its site. The council's video index still lists the item, and no outcome is published.
 - 2026-10-03 · The city's notice of the amended Compal agreement is still missing from its site, and no outcome has been published. The council's video index sits on a host that bars automated readers.
+- 2026-10-04 · The city's notice of the amended Compal agreement is still gone from its site, and no outcome of the council item has been published.
 
 ## Evidence
 

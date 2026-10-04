@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "All nine rendered and mostly in a world; 5 the best frame; 1, 3 and 7 competent. 6 a clock on a plaque against plain sky with nothing of Fort Davis; 4's left half flat concrete and sky with mannequins and no shade band; 9 a yellow sliver under the front bumper; 2 a blank disc on a flat wall with no window light; 1 a boxy bus with its arm out in a traffic lane; 7 a halo around the headline. Raster SCHOOL BUS and STOP text on 1, 5, 7 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One noon world, one accent used only for the platform, one type system, the bus with its arm state. Exteriors and limestone interiors alternate as a mild strobe; the bus is absent from five frames and 6 sits outside the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces; the 2 set back holds as a floor; c39 only beside c40; Valenta never joined; quotes match tt_alpha.txt word for word. Deductions: 6's hook 'not a two hour day' is looser than c34; 1's dek compresses c12; 8 omits c41's rise; the caption's Abbott line (c31) is not in the first comment's id line."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decided and where, concrete stakes on 7 and 8, and a real step on 9. The cover leads with the 2025 vote and the new fact sits in the dek."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover poses the no and 2 pays it; the turn at 3, the count at 5, 8 a strong penultimate punch. 4 could fold into 3; 5's hook a stat row."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain, specific and Texan; house rules hold; apostrophes straight in source. 5's stat row and the attribution scaffolding read like a wire story."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat, but a vehicle hero carried through the deck ending on a Texan beside it repeats no. 41, and no. 38 was a TEA deck."
+  }
+ ],
+ "weighted_score": 7.09,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Re-shoot frame 6 as a place (the clock under the walkway's edge beam over a sunlit entry with the rimrock on a lower-third horizon) and frame 4 with the walkers stepping out of the walkway's shade band, and change frame 6's hook so it no longer implies a two-hour school day.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A clock on a plaque against plain sky; no ground, horizon or Fort Davis.",
+   "fix": "Pull back and lower so the clock hangs from the walkway's edge beam with the rimrock on a lower-third horizon behind a sunlit entry."
+  },
+  {
+   "slide": 4,
+   "problem": "The left half a dead zone; mannequins on a blank slab; no shade band.",
+   "fix": "Camera under the walkway's edge so its shade band crosses the foreground; fill the left with the oak's canopy and shade and gritted concrete."
+  },
+  {
+   "slide": 9,
+   "problem": "A yellow sliver under the front bumper; the parent's head reads as a helmet; no shade pool at the kerb.",
+   "fix": "Fix or hide the fender mesh; another head preset; the oak's shade pool at her feet."
+  },
+  {
+   "slide": 2,
+   "problem": "A blank disc on a flat wall; no window light.",
+   "fix": "A tall window bay at the right raking light across the chairs."
+  },
+  {
+   "slide": 1,
+   "problem": "A boxy bus with its arm out in a traffic lane among low-poly cars.",
+   "fix": "Park the bus at the kerb with the door open, crop it larger, dust and panel detail on the flank."
+  }
+ ]
+}
