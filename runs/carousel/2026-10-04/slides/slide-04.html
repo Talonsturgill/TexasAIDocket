@@ -39,13 +39,12 @@ window.renderReady = (async () => {
     const p = K.make('person', { seed: 70 + i, role: 'official', pose: 'walk', hat: 'none', height: 1.7 + ((i * 37) % 9) / 100, shirt: COATS[i], trousers: LEGS[i] });
     p.rotation.y = -Math.PI / 2 + 0.35 + ((i * 53) % 7 - 3) * 0.05; p.position.set(-6.0 + i * 1.42 + (i % 2) * 0.25 + ((i * 29) % 5 - 2) * 0.12, 0, 16.2 + (i % 2) * 1.0 + ((i * 41) % 5 - 2) * 0.35);
     /* a stride out of step with its neighbour: every other walker mirrored, so the legs alternate down the file */
-    if (i % 2) p.scale.z = -1;
+    if (i % 2) p.scale.x = -1;
     TXT.add(R, p); TXT.contact(R, p, { opacity: 0.75 });
   }
   [[-34, 20, 'live_oak', 4], [26, 24, 'live_oak', 8], [44, -30, 'pecan', 2], [-50, -26, 'cedar_elm', 5]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
   TXT.frame(R, { from: [14, 1.7, 25], look: [-8, 4.4, 14] });
   TXT.scatter(R, { kind: 'grass', count: 2500, area: [-120, -120, 120, 80], avoid: [[-40, -12, 40, 60]], seed: 4, scale: 0.9 });
-  TXT.scatter(R, { kind: 'rock', count: 260, area: [-14, 18.5, 14, 31], avoid: [[-12, 28.5, 12, 40]], seed: 12, scale: [0.02, 0.05], colors: [0x8a7f6c, 0x6e6658, 0x9a8f7a] });
   TXT.sky(R);
   TXT.deckRig(R, NB.rigSpec(W, 60), NB.rigOpts([0, 0, 10], { distance: 120 }));
   TXT.weather(R, { grime: 0.45, height: 1.4, mottle: 0.5 });

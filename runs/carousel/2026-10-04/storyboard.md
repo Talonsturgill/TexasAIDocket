@@ -29,7 +29,7 @@ The record carries this as tx-2026-0200.
   the tool.
 - **The 10 is "at least".** The 2 standing back on frame 5 are a computed floor, approached
   districts the reporting names neither way (approached_unnamed), never "two unknown districts".
-- **c39 never appears without c40.** c44 is about vouchers and is not used.
+- **c39 never appears without c40.** c44 dates the board's vote on frame 2 and is never used for the pilots.
 - **The buses are a drawing of the count,** one bus per district, and the deck says so. No bus is
   lettered with a district's name. The names are DOM type.
 
@@ -626,7 +626,7 @@ accent: none
 job: >
   Hand the decision to the reader's own district, and name the step a reader can take.
 
-claims: [c22]
+claims: [c13, c22]
 numerals: []
 
 depth:
@@ -655,7 +655,7 @@ art:
 
 type:
   hook: "Ask the district that runs this bus."
-  dek: "TEA says it left the choice to each district. Ask at your school board's next meeting whether yours was approached about Alpha's platform and what a pilot must prove. A public information request asks it in writing."
+  dek: "TEA says it left the choice to each district. Alpha's platform is now often called TimeBack. Ask at your school board's next meeting whether yours was approached about it and what a pilot must prove. A public information request asks it in writing."
   labels: []
 
 verbatim: []

@@ -13,7 +13,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Ask the district that runs this bus.</h1>
-<p class="dek" data-follow="26">TEA says it left the choice to each district. Ask at your school board's next meeting whether yours was approached about Alpha's platform and what a pilot must prove. A public information request asks it in writing.</p>
+<p class="dek" data-follow="26">TEA says it left the choice to each district. Alpha's platform is now often called TimeBack. Ask at your school board's next meeting whether yours was approached about it and what a pilot must prove. A public information request asks it in writing.</p>
 
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -28,7 +28,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Your district", counter: "09 / 09", src: "c22", fit: { min: 90, max: 116, maxLines: 2 } });
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Your district", counter: "09 / 09", src: "c13 c22", fit: { min: 90, max: 116, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 32, exposure: 0.94, fog: 0.0016 });
   TXT.ground(R, { surface: 'lawn', size: 1200, tile: 5, seed: 41, color: 0x8b8a55 });
   /* a two lane neighbourhood street running east to west, laid along x */

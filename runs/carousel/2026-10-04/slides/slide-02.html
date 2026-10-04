@@ -43,7 +43,7 @@ window.renderReady = (async () => {
   const PX = 0.95, PZ = 1.15;
   for (let i = 0; i < FIG.board_for; i++) { const row = Math.floor(i / 5); chair(-4.9 + (i % 5) * PX, -0.2 + row * PZ, 10 + i); }
   for (let j = 0; j < FIG.board_against; j++) chair(1.55 + j * PX, 0.4, 40 + j);
-  TXT.frame(R, { from: [7.2, 2.6, 18.5], look: [-1.4, 3.0, -2] });
+  TXT.frame(R, { from: [7.2, 2.6, 18.5], look: [-1.4, 3.8, -2] });
   TXT.deckRig(R, NB.rigSpec(W, 20), NB.rigOpts([0, 0, -1], { distance: 40 }));
   TXT.weather(R, { grime: 0.12, height: 0.5 });
   const place = (id, p, dx, dy) => { const q = NB.project(THREE, R, p), el = document.getElementById(id); el.style.left = (q[0] + dx) + 'px'; el.style.top = (q[1] + dy) + 'px'; };
