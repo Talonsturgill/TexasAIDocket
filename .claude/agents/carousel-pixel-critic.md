@@ -13,7 +13,10 @@ You are a leaf worker: you never spawn another agent.
 ## Method, in this order
 
 1. **Read the full-size PNG.** Then read the 432px thumb, which is roughly how it arrives on a
-   phone. A slide that only works at full size does not work.
+   phone. A slide that only works at full size does not work. The full-size frames are
+   `out/<date>/render/slide-0N.png` and `assemble.py` writes the thumbs as
+   `out/<date>/final/thumbs/slide-0N-thumb.png`, with `-thumb` in the name (2026-10-03: three of
+   five critics on carousel no. 41 looked for `final/thumbs/slide-0N.png` and found nothing).
 2. **Transcribe every visible word, FROM THE THUMB.** All of it, in reading order. This is not
    busywork: it is the only way to catch a line that clipped, a label that ran under art, a word
    the renderer dropped, or type that is present but unreadable. If you cannot read it, write

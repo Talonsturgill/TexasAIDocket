@@ -677,7 +677,8 @@ model and camera four ways beside the frame that shipped, so the difference is t
    Seven chassis under `assets/js/deck/` each improvised a sky under deadline, and no. 32's was
    near black with a two degree band. No horizon, no light in the sky, no haze in depth.
 2. **Hard shadows nobody asked for.** Every rig set `shadow.radius` and `PCFSoftShadowMap` ignores
-   it, so for two months every cast shadow shipped hard edged. VSM is now the default.
+   it, so for two months every cast shadow shipped hard edged. VSM became the default, and on
+   2026-10-03 contact-hardening PCSS replaced it, because VSM bled light ("What still fails").
 3. **Two tone curves.** The renderer mapped ACES and `TXDECK.finish` ran a second filmic curve on
    top. Pure white came out near 231 of 255 and the mids lifted. That is the murk, measured.
    `TXT.snapshot` now marks the page and the grade skips its own curve on a rendered frame.
@@ -1055,6 +1056,80 @@ which is the finding the judges made in words and the number that says the gate 
   back. Both runs found it in the panel. An accent surface takes its colour from its albedo and a
   small emissive, and the director measures it off the probe frame against `layout_check`'s
   12 Lab window before round 1, never across rounds. (2026-10-03)
+- **A clean ground, tiled to the horizon.** The judges named it on six of seven decks in the week to
+  October 3rd, in 21 rounds: no. 41's truck court as "an untextured tiled concrete plane" in every
+  round, no. 40's coping "a smooth plane with one highlight streak", no. 38's lawn "one tiled grass
+  texture" with "no dirt, wear, path or kerb". TXT.contact darkened the ground and TXT.weather grimed
+  the object, and nothing touched the ground itself, which repeated one 6 m tile, every concrete slab
+  the same slab. **Fixed in `txthree.js` (2026-10-03):** every `TXT.ground` wears, in world space, and
+  TXT.contact marks the ground under a thing's base (TECHNIQUE_LIBRARY, THE GROUND AND THE SUN).
+  Proven in `examples/ground-proof/` on four decks. A deck's own flat pad laid as a plane over the
+  ground (09-29's generator pad hid the worker's band on the ground beneath it) takes the marks too,
+  and so does a sill or a ledge a thing stands on outdoors (no. 40's vial on its coping).
+  **Still open:** a pad built as a box lower than 25 cm still puts its contact and its mark on the
+  ground beneath it, so lay a pad as a plane or as a `TXT.ground` at its own height (`y`). No. 40's
+  coping still reads as a smooth plane, because its finish is the deck's material and not a ground.
+  (2026-10-03)
+- **Light inside a shadow, as a fibrous sawtooth.** No. 41 frames 8 and 9, every round: a lit,
+  hair-like band down the left carton column. The run read it as z-fighting and tried a 4096 map, a
+  7 m frustum and normalBias 0.08. Measured on the frame: it goes with the sun's shadows off and with
+  PCF, and stays with the van's liner hidden and with the carton texture gone. It was the variance
+  shadow map bleeding light where a wall seen edge on from a low sun puts many depths under one
+  texel. **Fixed in `txthree.js` (2026-10-03):** PCSS is the default, sharp at a thing's foot and
+  soft at the shadow's tip, and it can't bleed. Its first cut traded the bleed for noise, and a blind
+  grader found it on two decks: a speckled column down a door post, hatching inside a strap's
+  shadow, lit specks along every thin caster. The filter now turns on white noise and filters every
+  pixel it finds at an edge, and those frames render clean. **Still open:** a wide penumbra still
+  carries a grain at full size, which a blind grader marked down on the final cut (no. 41 frame 1,
+  "grainy, dithered dark shadow halos" in the cargo bay). A long diagonal shadow edge on a ground
+  seen at a grazing angle shows its texel steps (no. 41 frame 3's road, the same round). Under an
+  overcast softness a thin caster's shadow still shows its parts as streaks (no. 38 frame 1, the
+  chair's wire basket). Where a low sun grazes along a low kerb, contact hardening draws the kerb's
+  sliver of shadow as a dark line one or two pixels wide with a faint step in it (09-29 frame 1, at
+  full size only), finer than one shadow texel can draw clean. (2026-10-03)
+- **A shadow that starts off its caster's foot.** No. 41 frame 4 on the final cut, a blind grader:
+  "a thin lit strip separates the barrier foot from its shadow, so the shadow looks detached". The
+  sun's depth bias is 0.0004 of its shadow camera's depth, 6 cm of no. 41's 160 m and 32 cm of no.
+  37's 800 m. VSM's blur filled the strip, and PCSS draws a thing's foot sharp, so the strip shows.
+  No. 37 frame 4's bar had the same strip. **Fixed in `txthree.js` (2026-10-03):** the sun's bias
+  never exceeds 2 cm. Rendered on all 36 frames of four decks, it moved at most 0.65 percent of a
+  frame's pixels, nearly all of them darker, and left every frame of no. 40 as it was. 5 mm was
+  graded first. It seated the same shadows and put blue violet specks at the louvre blade ends of
+  no. 37's generators, and a blind grader marked frames 1 and 6 down for them. **Still open:** 2 cm
+  halves frame 6's, which the 2 cm grader still marked down 0.1, and leaves most of frame 1's. They
+  shrink as the bias grows and grow on a 4096 map, so they are the shadows of blades the kit lets
+  jut past their frame, under a dusk sky. `mggLouvres` in `kit/power.js` stands each blade 2.3 cm
+  proud of its frame, and the fix is that model rather than the cap. The cap also took the lit
+  strip off no. 37 frame 5's door hinge, which was light the bias let through, and two blind
+  graders preferred the frame with it, where it parted a black leaf from a dark wall. A frame that
+  wants that edge lights it. (2026-10-03)
+- **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
+  lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
+  cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a
+  margin the engine adds outside the box, so nothing inside the box a frame sets loses its shadow.
+  The first cut faded the box's own last 8 percent, and a blind grader found no. 38's school canopy
+  without its shadow on the walk and no. 41's cab without its shade. Size the box to the subject,
+  because a fade still shows. (2026-10-03)
+- **A polka dot decal on concrete.** No. 41 frames 3, 4 and 7, both blind graders: "evenly
+  scattered round dark blots that read as a repeated decal" on the highway. Not shadows, not the
+  weather pass, not the ground beneath (each ruled out by turning it off): the kit's concrete tile
+  drew forty hard edged discs, cut off at the tile's edge, and repeated them every 3 m on every kit
+  concrete, pads, barriers and sills included. **Fixed in `txkit.js` (2026-10-03):** soft, faint
+  blotches wrapped across the tile's edge. (2026-10-03)
+- **A streaked band where a road meets the ground.** No. 41 frame 4, a blind grader's "sawtooth dark
+  fringe along the foot of the median barrier", drawn on main too. The kit highway at grade lies at
+  the ground's own height along its edges, and the two surfaces fought for the pixel in stripes.
+  **Fixed in `txthree.js` (2026-10-03):** the ground never wins a depth tie, so anything laid flat on
+  it draws. **Still open:** the ground's wear showed through those stripes, and now it doesn't, so
+  the lanes are the kit's own asphalt. A road a vehicle stands on takes its marks and a slow drift,
+  and no road takes a stain. A blind grader read the stains that had showed through as "repeated oval dark stains ... stamped
+  rather than worn" (no. 41 frame 3), so a stain on a lane wants a drip trail's shape first.
+  (2026-10-03)
+- **A flat yellow polygon on a highway verge.** No. 41 frame 4, all three judges in every round. The
+  kit highway built at grade (`embank` 0) laid its grassed side slopes 2 to 10 cm under the frame's
+  own ground, and their 6 cm of noise poked patches up through it. **Fixed in `kit/landscape.js`
+  (2026-10-03):** at grade there is no earthwork, and on an embankment the slope noise fades out as it
+  nears grade, so no island can surface. (2026-10-03)
 - **A subject at the wrong distance.** A 60 m school at Z 58 is 30 px tall on a phone. Bring
   the subject in until it owns its rect, and let something else carry the distance.
 - **A crowd as a mass.** Figures at the same tone as the furniture beside them merge into one

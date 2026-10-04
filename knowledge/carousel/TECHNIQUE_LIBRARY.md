@@ -146,9 +146,105 @@ cooling tower. *Fails when:* used for terrain, which it is not built for.
 per deck at most. *Fails when:* the step count is tuned for the full-size render and the thumbnail
 gets a different surface.
 
-**Three.js bench** — `txthree.js`, GPU through SwiftShader. The heaviest thing here. **Budget one
-slide.** *Fails when:* it is used because it is impressive rather than because the claim needs it,
-which the `why_this_technique` field exists to catch.
+**Three.js bench** — `txthree.js`, GPU through SwiftShader, and since 2026-09-23 the surface of at
+least six frames of nine (ILLUSTRATION_SYSTEM.md, THE RENDER). *Fails when:* it is used because it is
+impressive rather than because the claim needs it, which the `why_this_technique` field exists to
+catch. (This entry said "budget one slide" until 2026-10-03, which THE RENDER replaced.)
+
+---
+
+## THE GROUND AND THE SUN — what every rendered frame inherits (2026-10-03)
+
+Three engine defaults a frame gets without asking. Each answers a defect the judges named across a
+week of decks, each is measured in `examples/ground-proof/`, and each has an opt out for the frame
+that has a reason.
+
+**A worn ground** — every `TXT.ground` surface carries wear in its own shader, in WORLD space so the
+6 m texture tile never repeats: value drifting at 11 and 41 m, each concrete slab a shade of its
+own pour, grime along the saw cut joints, sparse clusters of oil stains on concrete and asphalt and
+damp on caliche and dirt, straw against green and the odd dusty bare patch on grass. A stain has a
+soaked, ragged edge and a darker core, and fades out far off where it would shimmer. Off with
+`wear:false`, which takes the marks and grit off that ground too and draws it as it was before the
+wear existed; `wear:'interior'` keeps a floor clean of oil (and is what `TXT.interior` passes);
+an object of amounts tunes it (`{ macro, slab, joint, stain }`). A joint's grime is filtered to the
+pixel it falls in, so far slabs keep their joints without breaking into dotted hairlines.
+A deck's OWN pad wears where something stands on it: a plane that is flat, faces up, covers 30
+square metres or more, is matte and opaque and receives shadows takes the marks and a slow drift of
+value, and the full wear of a surface when the deck names it (`mesh.userData.txSurface = 'concrete'`).
+`mesh.userData.txWear = false` keeps a plane exactly as the deck made it. The ground never wins a
+depth tie: a pad, a plane or a kit road laid at its height draws over it, where the two used to
+fight in stripes along the edge they share. *Fails when:* the pad is a box lower than 25 cm, where
+the contact and the mark still go to the ground beneath it. Lay a pad as a plane, or as a
+`TXT.ground` at its own height (`y`). A thing sunk only a few centimetres to hide it can show
+through the ground far off, so sink it 10 cm or more.
+
+**The receiving surface** — `TXT.contact` now marks the GROUND as well as darkening it: a dirt band
+broken by noise around the thing's BASE (the bottom slice of the model, so a pole's foot and a
+tree's trunk, never its crossarm or its crown), scaled to that footprint. A vehicle (the kit's, or a
+chassis model named van, truck, trailer, bus, car) also drips oil under its body, between the wheels
+and most of it at the engine end, and polishes two tyre tracks fore and aft. Grass thins where things stand. On a hard ground, a thing at least
+35 cm across gets patchy grit at its base; a vehicle and a person never do. The 24 marks nearest
+the lens are drawn, laid when the frame renders, so a ground built after the contact still takes
+them. `TXT.contact(R, obj, { dirt:false })` opts one object out, `grit:false` keeps its grit off,
+`vehicle:true|false` overrides the guess, a number for `dirt` scales it. The band scales with the
+footprint all the way down, a van's a third of a metre and a vial's a couple of centimetres, and a
+mark stays on the surface at its own height. A thing with no ground under it, standing on a sill, a
+ledge or a dock OUTDOORS, takes its mark on that surface's top face, and a sill `TXT.weather` has
+grimed keeps its grime under the mark. *Fails when:* the thing stands
+indoors on a desk or a bench, which is deliberate, since a ring at a monitor's foot reads as a
+stain and not as weather.
+
+**A sun's shadow** — PCSS replaced VSM as the default. The shadow is sharp where a thing touches the
+ground and widens with the distance from what casts it, as a real sun's does, and it can't bleed
+light the way a variance map did (no. 41's fibrous carton column). A rig's `radius` is now its
+SOFTNESS: 6 is the nominal low sun, 3 a high noon, 22 an overcast. Inside the shadow box a frame
+sets, every shadow keeps its full strength, and a caster longer than the box has its shadow fade
+out just past the box's edge rather than stop in a straight line (the engine widens the box by the
+fade's margin). A lamp's shadow never fades. `TXT.setup(c,
+{ shadows:'vsm' })` or `'pcfsoft'` restores the old modes. The filter never runs narrower than the
+map can draw (1.5 texels, rising to 3 where a texel covers several pixels), and the widest
+penumbra is 10 texels, which is what keeps a frame of a thousand pebbles inside the render budget.
+A penumbra carries a fine grain at full size and never a hatch or a speck: the filter turns on
+white noise, a penumbra wider than 3 texels takes 48 taps, and a pixel the first nine taps put at
+an edge is always filtered (the first cut drew
+speckled columns, hatched strap shadows and lit specks along thin casters, and a blind grader
+named each one). The grain is still there to find: a blind grader marked no. 41 frame 1 down for
+"grainy, dithered" halos where the van's roof and load bar shade the cartons.
+*Fails when:* the shadow box is too small for the subject, which now shows as a fade rather than a
+line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
+draws its sliver of shadow as a fine dark line. A soft band of shade VSM laid across a wall where
+depths meet in the light's view was its blur and not a shadow, and it is gone (no. 38 frame 5's
+classroom wall, which a blind grader preferred with it): a frame that wants a gradient on a wall
+lights the wall for it. A thing a few centimetres off a surface now casts a crisp shadow on it, as
+it would in sun, and a crisp shadow shows every step of what it crosses: no. 41 frame 6's wall
+shadow takes a tooth at each carton top, which VSM's blur hid and a blind grader marked down. Small
+shadows VSM bled away come back too, a hub's crescent in its own wheel, a door post down a bay, so
+a part that will catch one wants enough model to carry it. **A sun's shadow starts at its caster's
+foot:** the engine caps the sun's `bias` at 2 cm. three.js reads `bias` as a fraction of the shadow
+camera's depth, so the rig's -0.0004 had grown to 6 cm at a `shadowFar` of 160 m and 32 cm at 800 m,
+and PCSS's sharp foot showed it as a thin lit strip, under no. 41 frame 4's barrier and no. 37 frame
+4's bar. A frame that sets its own `bias` is held to the same cap, and a small camera keeps the
+rig's. *Fails when* a part juts a centimetre or two past what holds it: the cap gives that part its
+shadow too. No. 37's louvre blades stand 2.3 cm proud of their frame, and under its dusk sky their
+ends lay blue violet specks down the jambs. 5 mm put them on frames 1 and 6 and a blind grader
+marked both down. 2 cm halves frame 6's, which a grader still marked down, and leaves most of
+frame 1's. They shrink as the bias grows and grow on a finer map, as a shadow does and acne
+doesn't. Model the part inside its frame. A larger cap lifts the feet again.
+**A spot's bias is not a sun's.** three.js adds `shadow.bias` in the shadow camera's own depth,
+which for a SpotLight is perspective and crowded toward the near plane: -0.0004 at `near` 0.1 is
+about 4 cm at 3 m, and a thing smaller than that loses the start of its shadow. No. 40 frame 4's
+vial under the window spot cast nothing at all through VSM and casts a shadow that starts a few
+centimetres off its base through PCSS. Measured on that frame: `bias` -0.00002 with `normalBias`
+0.003 seats the shadow at the base. Set a spot's bias near zero and take the acne out with
+`normalBias`, which is in metres.
+
+**The render clocks** — `render.py` waits 45 s for a slide's load event, which comes only after
+the module's synchronous work (the scene built, the shaders compiled), and then races
+`renderReady` against a 30 s timer inside the page. The report carries `load_ms` beside
+`render_ms` (2026-10-03), because 09-29's frame 1 loaded at 43.8 s on main, 1.2 s inside the limit,
+and nothing said so. Most of that was one kit painter: a canvas `filter` pays for the whole clip on
+every draw, and the genset weathering drew a few hundred streaks under `blur(1px)`, 34 ms a stroke,
+29 s of the frame. Draw the strokes on one layer and filter that once (it loads in 11 s now).
 
 ---
 

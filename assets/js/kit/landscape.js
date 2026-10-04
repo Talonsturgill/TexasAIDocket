@@ -1441,7 +1441,9 @@ export function install(K, THREE, TXT) {
     note: 'A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an overhead truss with blank green panels over the right carriageway; overpass adds a crossing bridge on round columns and bent caps with MSE walled approaches.',
     make(o, r) {
       o = Object.assign({ length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6, ground: 0x6d7a3c }, o);
-      const g = new THREE.Group(), L = o.length, E = o.embank, LW = 3.66, SI = 1.2, SO = 3.0, MED = 0.9;
+      // under 0.1 m of embankment the road is laid at grade, pavement and all, so a small embank never
+      // floats a road with no slope or edge under it (Codex, #398)
+      const g = new THREE.Group(), L = o.length, E = o.embank >= 0.1 ? o.embank : 0, LW = 3.66, SI = 1.2, SO = 3.0, MED = 0.9;
       const CW = SI + o.lanes * LW + SO;                         // one carriageway
       const half = MED / 2 + CW;                                 // edge of pavement
       const slope = 4 * E + 3;                                   // side slope and ditch
@@ -1457,8 +1459,14 @@ export function install(K, THREE, TXT) {
       // two strips (left and right), so the pavement box sits between them
       const straight = (t) => [0, L / 2 - t * L];
       const nE = noise2(6000 + o.seed);
-      [eprof.slice(0, 5), eprof.slice(5)].forEach((pr) => {
-        const geo = ribbon(straight, L, Math.round(L / 2), pr, (P, t, arc, x, z) => P.h + (Math.abs(P.s) > half + 0.7 ? (nE(x * 0.4, z * 0.4) - 0.5) * 0.12 : 0));
+      /* AT GRADE THERE IS NO EARTHWORK (2026-10-03). Under 0.1 m of embankment this whole profile
+       * lies 2 to 10 cm below the frame's own ground, and the slope noise, 6 cm either way, lifted
+       * patches of it up through that ground: carousel no. 41 frame 4's flat yellow-olive quad on
+       * the right verge, named by all three judges in every round. On an embankment the noise now
+       * fades out as the profile nears grade, so no island of slope can surface past the line where
+       * the slope meets the ground. */
+      if (E >= 0.1) [eprof.slice(0, 5), eprof.slice(5)].forEach((pr) => {
+        const geo = ribbon(straight, L, Math.round(L / 2), pr, (P, t, arc, x, z) => P.h + (Math.abs(P.s) > half + 0.7 ? (nE(x * 0.4, z * 0.4) - 0.5) * 0.12 * smooth(0.04, 0.16, P.h) : 0));
         const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / 7, uv.getY(i) / 7);
         const m = new THREE.Mesh(geo, M('hw-slope', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.97 })); m.userData.txGround = true; g.add(m);
       });
@@ -1479,8 +1487,9 @@ export function install(K, THREE, TXT) {
       const puv = pg.attributes.uv; for (let i = 0; i < puv.count; i++) puv.setXY(i, puv.getX(i) / 4, puv.getY(i) / 4);
       const pm = M('hw-pave-' + o.surface, { color: 0xffffff, vertexColors: true, map: concrete ? K.tex('concrete') : asphaltTex(), roughness: concrete ? 0.82 : 0.88 });
       const pave = new THREE.Mesh(pg, pm); g.add(pave);
-      // pavement edge: the slab has a face down to the slope
-      [-1, 1].forEach((sd) => { const e = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.3, L), pm); e.position.set(sd * (half - 0.1), E - 0.14, 0); g.add(e); });
+      // pavement edge: the slab has a face down to the slope. At grade there is no slope, and the face
+      // stood 1 cm proud of the frame's ground as a thin dark sliver along each verge (no. 41 frame 4)
+      if (E >= 0.1) [-1, 1].forEach((sd) => { const e = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.3, L), pm); e.position.set(sd * (half - 0.1), E - 0.14, 0); g.add(e); });
       // ---- markings
       const white = M('hw-white', { color: 0xe9e7df, roughness: 0.55 }), yellow = M('hw-yellow', { color: 0xe0a82a, roughness: 0.55 });
       const lines = [], ylines = [];

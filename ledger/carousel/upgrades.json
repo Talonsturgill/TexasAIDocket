@@ -2804,4 +2804,106 @@
  ],
  "lane": "human, on tsturg/sharp-pascal-b2lbqg: prompts/daily_routine.md and .github/workflows/guards.yml are human, the two gates are upgrade"
 }
+,
+"2026-10-03 maintainer, artwork": {
+ "date": "2026-10-03",
+ "kind": "maintainer session, on the owner's brief to raise artwork_craft at its root by fixing the engine and kit defects the judges name. The rubric, the 8.0 bar, the judges and every gate threshold are untouched",
+ "read": "knowledge/carousel/MACHINE_QUEUE.md, knowledge/carousel/UPGRADE_BACKLOG.md 2026-10-02 item 6 and 2026-10-03 items 4 to 7, the panel and pixel rounds of nos. 37, 38, 40 and 41 under runs/carousel/, config/carousel/scoring_rubric.yaml's artwork_craft descriptors, THE SHOWSTOPPER TEST in knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+ "upgrades": [
+  {
+   "what": "A worn receiving surface. Every TXT.ground wears in its own shader, in world space so its tile never repeats: value drifting at 11 and 41 m, a shade per concrete pour, grime in the saw cut joints, oil stains with a soaked edge that fade out far off. TXT.contact marks the ground under a thing's base: a dirt band scaled to the footprint, a vehicle's oil under its body and two polished tyre tracks, grit at the base of a thing 35 cm or more across on a hard ground. A deck's own flat pad, and a sill or ledge a thing stands on outdoors, takes the marks, a weathered one keeping its weather. On by default. wear:false, wear:'interior', dirt:false, grit:false and userData.txWear = false opt out",
+   "theme": "a clean ground and no contact or dirt where a model meets it, named on six of the seven decks in the week to October 3rd (ILLUSTRATION_SYSTEM, What still fails)",
+   "why": "TXT.contact darkened the ground and TXT.weather grimed the object, and nothing touched the ground itself, which repeated one 6 m tile, every concrete slab the same slab. The first cut changed nothing a grader could see on no. 40 or no. 37, because their things stand on a deck's own pad and a sill and the mark went to the ground hidden beneath, so the pad and the sill are adopted",
+   "files": [
+    "assets/js/txthree.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "11 and 41 m drift": "the shader's two value octaves, set in this change. The wear is computed in world space, so it never repeats with the 6 m texture tile",
+    "35 cm grit floor, 30 square metre pad floor, 24 marks": "set in this change and stated in TECHNIQUE_LIBRARY, THE GROUND AND THE SUN. None is a gate threshold"
+   },
+   "verification": "Blind A/B, main against item 1, by fresh graders on all 36 frames of nos. 41, 40, 38 and 37: no. 41 5.59 to 5.73 (+0.14), no. 40 6.07 to 6.09 (+0.02), no. 38 5.82 to 5.89 (+0.07), no. 37 5.97 to 6.02 (+0.05). 20 frames better, 15 the same and 1 worse, all 36 frames 5.86 to 5.93 (+0.07). The one frame worse is no. 40 frame 6 (6.6 to 6.5), where the adopted sill came out a few levels darker in the lower left. Compares in examples/ground-proof/",
+   "revert": "git revert -m 1 the merge commit of this pull request, or the txthree.js hunks of f15d5cae5, ffd7cfadf, bfb83bf4f, 368bc47a6 and 2f5221e07",
+   "how_i_would_know_this_was_wrong": "A judge naming stains, rings or grit as decals or as noise on the next decks, or a ground that reads dirtier than its world. The oil already read as 'repeated oval dark stains ... stamped rather than worn' where it showed through a kit road, so a lane takes no stains today"
+  },
+  {
+   "what": "PCSS replaced VSM as the sun's shadow: sharp at a thing's foot, soft at the tip, no light bleed. Nine taps decide whether a pixel is at an edge, the disc turns on white noise, a penumbra wider than 3 texels takes 48 taps, the sun's box grows by a margin it fades out in, and the sun's bias never exceeds 2 cm. shadows:'vsm' and 'pcfsoft' restore the old modes",
+   "theme": "render artifacts the judges named on no. 41: a fibrous sawtooth of light inside the van wall's shadow (frames 8 and 9, every round) and hard rectangular casts (frames 4 and 6)",
+   "why": "A variance shadow map stores the mean and spread of depth, and where a wall seen edge on from a low sun puts many depths under one texel, Chebyshev's bound lets light through, which no 4096 map, 7 m frustum or normalBias 0.08 cured. VSM also blurred every shadow by one radius, so a long cast was as sharp at its tip as at its foot",
+   "files": [
+    "assets/js/txthree.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "9, 12, 24 and 48 taps, the 3 texel switch to 48, the 10 texel cap, the 1.5 to 3 texel floor": "set in this change across four graded cuts; each cut's losses are in examples/ground-proof/README.md",
+    "the 5 percent fade margin": "the first cut faded the box's own last 8 percent and lost no. 41's cab shade and no. 38's canopy shadow, so the box now grows by 1 / (1 - 2 x 0.05) and fades outside the box a frame sets",
+    "the 2 cm bias cap": "three.js reads bias as a fraction of the shadow camera's depth, so the rig's -0.0004 is 0.0004 x 159.5 m = 6.4 cm on no. 41 and 0.0004 x 799.5 m = 32 cm on no. 37. A 5 mm cap was graded blind first and put blue violet specks at the louvre blade ends of no. 37's generators, marked down on frames 1 and 6. Counted by examples/ground-proof/specks.py over the louvres as pixels more than 12 levels bluer than the uncapped render, frame 6 has 537, 457 and 272 at 5 mm, 1 cm and 2 cm, and frame 1 has 4185, 4027, 3776 and 2903 at 5 mm, 1, 2 and 5 cm and 5361 at 2 cm on a 4096 map. They shrink with the bias and grow with the map, so they are the shadows of blades that mggLouvres stands 2.3 cm proud of their frame. 2 cm keeps no. 41 frame 4's barrier seated, and a larger cap would lift it again"
+   },
+   "verification": "Blind A/B, item 1 against items 1 and 2, by fresh graders on all 36 frames: no. 41 6.20 to 6.36 (+0.16), no. 40 5.57 to 6.01 (+0.44), no. 38 5.66 to 5.64 (-0.02), no. 37 6.37 to 6.40 (+0.03). 20 frames better, 5 the same and 11 worse, all 36 frames 5.95 to 6.10 (+0.15). The bias cap, graded on its own on top, at 5 mm: no. 41 6.39 to 6.43 (+0.04), no. 40 5.71 to 5.71 (+0.00), no. 38 5.39 to 5.40 (+0.01), no. 37 6.70 to 6.68 (-0.02). 6 frames better, 27 the same and 3 worse, all 36 frames 6.05 to 6.06 (+0.01), and at 2 cm: no. 41 6.32 to 6.33 (+0.01), no. 38 5.79 to 5.81 (+0.02), no. 37 6.23 to 6.27 (+0.04). 6 frames better, 19 the same and 2 worse, all 27 frames 6.11 to 6.14 (+0.03). Rendered on all 36 frames, the 2 cm cap moved at most 0.65 percent of a frame's pixels, nearly all darker, and no frame of no. 40, which was not graded again. Render time measured frame by frame against main",
+   "revert": "git revert -m 1 the merge commit of this pull request, or the PCSS hunks of f15d5cae5, 2f5221e07, 72e5a6040, 9b3cb5745 and 40cb4dd33. TXT.setup(c, { shadows:'vsm' }) restores the old filter for one frame",
+   "how_i_would_know_this_was_wrong": "Grain or teeth in a shadow named on more decks than the bleed was, which is the trade the graders already priced: no. 41 frames 1, 5 and 6 and no. 38 frames 1, 2, 5 and 8 got worse while no. 40 gained on every frame. An overcast deck reads flatter, because VSM's false soft bands are gone, so a frame that wants a gradient on a wall lights it"
+  },
+  {
+   "what": "The ground never wins a depth tie (polygonOffset factor 1, units 1 on every TXT.ground), and the kit highway at grade has no earthwork and no edge face",
+   "theme": "no. 41 frame 4: a streaked band where the highway met its ground, and a flat yellow-olive verge polygon named by all three judges in every round",
+   "why": "The kit road at grade lay at the ground's own height, and the two fought for the pixel in stripes. Its grassed side slopes sat 2 to 10 cm under the frame's ground and their noise poked patches up through it",
+   "files": [
+    "assets/js/txthree.js",
+    "assets/js/kit/landscape.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "factor 1, units 1": "one step of depth offset, about 3 cm of world at 100 m from the lens",
+    "grade below 0.1 m": "the kit's own test for a road with no embankment"
+   },
+   "verification": "No. 41 frame 4 went from 5.0 to 6.1 in the item 2 grade. A side effect: a deck pad or kit road at the ground's height now shows its own surface, so the stains item 1 had shown through no. 41's lanes and no. 37's pad are gone, which two graders marked down",
+   "revert": "the markGround polygonOffset lines of 2f5221e07 and the landscape.js hunks of f15d5cae5 and 2f5221e07",
+   "how_i_would_know_this_was_wrong": "A thing sunk only a few centimetres into the ground to hide it showing through far off, which is why TECHNIQUE_LIBRARY says to sink it 10 cm"
+  },
+  {
+   "what": "The kit concrete tile draws soft, faint blotches wrapped across the tile's edge instead of forty hard edged discs cut off at it",
+   "theme": "no. 41 frames 3, 4 and 7, both blind graders of the first round: evenly scattered round dark blots read as a repeated decal",
+   "why": "The tile repeated every 3 m on every kit concrete, pads, barriers and sills included",
+   "files": [
+    "assets/js/txkit.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "none": "no threshold; the blotch field is drawn once into the tile"
+   },
+   "verification": "The polka dots are gone from no. 41 frame 4's lanes and barrier in zoom-shadows.webp and from the item 2 graders' findings",
+   "revert": "git revert 6739f16b6",
+   "how_i_would_know_this_was_wrong": "A judge reading kit concrete as flat and new again"
+  },
+  {
+   "what": "render.py's report carries each slide's load time beside its render time, and the kit's generator weathering draws its streaks on one layer and filters it once",
+   "theme": "one render budget: 09-29 frame 1 loaded at 43.8 s on main, 1.2 s inside the 45 s limit, and nothing said so",
+   "why": "A canvas filter pays for the whole clip on every draw, and the genset weathering drew a few hundred streaks under blur(1px), 34 ms a stroke, 29 s of the frame",
+   "files": [
+    ".claude/skills/carousel-engine/render.py",
+    ".claude/skills/carousel-engine/SKILL.md",
+    "assets/js/kit/power.js"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "34 ms a stroke, 29 s, 43.8 s": "measured in the page on 09-29 frame 1 on main, 2026-10-03"
+   },
+   "verification": "no. 41, 2026-10-03: 242 s on main and 285 s on this branch, +1.2 to +7.2 s a frame and +4.8 s on average. The slowest load is 0.2 s on main and 0.2 s here. no. 40, 2026-10-02: 214 s on main and 263 s on this branch, +3.1 to +8.4 s a frame and +5.5 s on average. The slowest load is 30.1 s on main and 36.2 s here. no. 38, 2026-09-30: 208 s on main and 249 s on this branch, +2.6 to +6.4 s a frame and +4.6 s on average. The slowest load is 8.5 s on main and 9.3 s here. no. 37, 2026-09-29: 365 s on main and 246 s on this branch, -27.6 to +2.5 s a frame and -13.2 s on average. The slowest load is 37.3 s on main and 9.4 s here. The 27 frames of nos. 41, 40 and 38 take +5.0 s a frame on a main average of 24.6 s, +20 percent.",
+   "revert": "the render.py, SKILL.md and power.js hunks of f15d5cae5 and bfb83bf4f",
+   "how_i_would_know_this_was_wrong": "A generator whose weathering reads softer or patterned, which no grader named on no. 37"
+  },
+  {
+   "what": "The pixel critic's definition names the thumbs, out/<date>/final/thumbs/slide-0N-thumb.png",
+   "theme": "no. 41 pixel round 1: three of five critics looked for final/thumbs/slide-0N.png and found nothing",
+   "why": "A critic that can't find the thumb grades the full size frame alone, and the thumb is what a reader receives",
+   "files": [
+    ".claude/agents/carousel-pixel-critic.md"
+   ],
+   "every_quantity_and_where_it_came_from": {
+    "none": "a file name"
+   },
+   "verification": "assemble.py writes slide-0N-thumb.png, read in its own source",
+   "revert": "the carousel-pixel-critic.md hunk of 72e5a6040",
+   "how_i_would_know_this_was_wrong": "A critic still reporting a missing thumb"
+  }
+ ],
+ "lane": "human, on tsturg/hopeful-johnson-5mmhbb: assets/js/txthree.js, assets/js/txkit.js, assets/js/kit/landscape.js, assets/js/kit/power.js, .claude/skills/carousel-engine/render.py and SKILL.md, .claude/agents/carousel-pixel-critic.md, CLAUDE.md, examples/ground-proof/, examples/world-proof/README.md, four knowledge/carousel files and this entry. Nothing under runs/, docs/ or ledger/docket.json, and prompts/daily_routine.md untouched",
+ "what_was_not_done_and_why": "Item 3, the stormFront sky's structure at a long lens, is prototyped and not graded, so it is not in this change. Item 4, the kit models at close range (the tractor's hubs and mirror glass, the person's face and hair, and lifting dry_van, delineator, raised_pavement_marker and the truck hub into the kit) is not started. At 2 cm no. 37 keeps half of frame 6's louvre blade specks and most of frame 1's, and a grader marked frame 6 down 0.1 for them. The fix is mggLouvres in assets/js/kit/power.js, which stands each blade 2.3 cm proud of its frame, not a larger cap. The cap also took off the lit strip at no. 37 frame 5's door hinge, light the old bias let through, and two graders preferred the frame with it. The optional qa.py rule for a display hook's touching serifs is not done. Every open defect the graders found is listed in examples/ground-proof/README.md",
+ "proposals_out_of_lane": []
+}
 }

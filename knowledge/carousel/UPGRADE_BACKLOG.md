@@ -5164,11 +5164,19 @@ Found by the run. A short heavy last line's serif feet, and a dark ground under 
 as a drawn rule. A maintainer at a keyboard can make the edit. A fixture of each false positive
 belongs in its self-test, beside one true rule that must still fire, so the change can't weaken it.
 
-### 6. ENGINE: no contact or dirt where a model meets the ground (proposal, `human`)
+### 6. ENGINE: no contact or dirt where a model meets the ground (done 2026-10-03 by a maintainer session)
 
 Craft card defect 4: the coping on frames 1, 7 and 8 is a smooth plane with one highlight streak.
 **Proposal:** `TXT.contact` gains an optional grit scatter and a darkened contact band on the
 receiving surface, scaled to the model's footprint.
+
+**Shipped, on by default:** every `TXT.ground` wears in its own shader, `TXT.contact` lays a dirt
+band scaled to the footprint (oil and tyre polish under a vehicle, grit at a hard ground's base,
+trampled grass), a deck's own flat pad takes the marks, and a thing standing on a sill or a ledge
+outdoors marks that top face. Opt outs are `wear:false`, `dirt:false`, `grit:false` and
+`userData.txWear = false`. Proof and blind scores in `examples/ground-proof/`. This coping still
+reads smooth, because its finish is the deck's material: the vial's mark lands on it, but at the
+frame's grazing camera the band is a few pixels.
 
 ### 7. `examples/kit/build.py` can't frame a model under a metre (proposal, `examples/kit/**` is `human`)
 
@@ -5228,12 +5236,16 @@ praise beside one that reads the defect.
 
 - **Contact and dirt where a model meets the ground**, 5 runs and 16 rounds by the recount. It is
   2026-10-02 item 6, now with a week behind it. The kit can't carry it, because every model meets
-  a `TXT.ground` it does not own.
+  a `TXT.ground` it does not own. **Done 2026-10-03 by a maintainer session** (2026-10-02 item 6).
 - **The `stormFront` sky reads as a flat gradient with no cloud edge**, no. 41 frames 1, 2, 5, 7, 8
   and 9, pixel rounds 1 and 2 (queue `flat-sky-gradient`). A shelf edge visible at long and normal
   lenses. One run so far.
 - **Sawtooth shadow edges on small casters**, no. 41 frames 8 and 9, and hard rectangular casts on
   4 and 6 (queue `shadow-serration-hard-casts`). VSM resolution and blur for small casters. One run.
+  **Done 2026-10-03 by a maintainer session**, and not by resolution: the sawtooth was VSM bleeding
+  light (it went with PCF and stayed with the liner hidden), so PCSS replaced VSM, and the hard cast
+  on frame 4 was the barrier's shadow cut off at the light's box, which now fades. The `stormFront`
+  bullet above is still open.
 
 ### 5. `qa.py` READS A TIGHT SERIF HOOK AS A CANVAS RULE, SECOND RUN (`.claude/skills/`, maintainer)
 
@@ -5246,7 +5258,8 @@ rendered with the type hidden. Two runs, so the queue item now carries `repeat: 
 No. 41 pixel round 1, three of five critics looked for `final/thumbs/slide-0N.png` and found
 nothing, because the files are `slide-0N-thumb.png`. Name that file name in
 `.claude/agents/carousel-pixel-critic.md` or in Phase 12's spawn text in
-`prompts/daily_routine.md`. Both are out of this lane.
+`prompts/daily_routine.md`. Both are out of this lane. **Done 2026-10-03 by a maintainer session**:
+the agent definition names `out/<date>/render/slide-0N.png` and `out/<date>/final/thumbs/slide-0N-thumb.png`.
 
 ### 7. DEFERRED, NOT REFUSED: TODAY'S CHASSIS MODELS (`dry_van`, `delineator`, `raised_pavement_marker`, a truck hub)
 

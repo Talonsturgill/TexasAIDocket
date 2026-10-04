@@ -1090,6 +1090,10 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
     try:
         page.goto(path.as_uri(), wait_until="load", timeout=timeout_ms)
+        # THE LOAD EVENT, against goto's 45 s (2026-10-03). A slide's load waits for its module's
+        # synchronous work, the scene built and the shaders compiled, and 09-29's frame 1 loaded at
+        # 43.8 s on main, 1.2 s inside the limit, with nothing in the report to say so.
+        rec["load_ms"] = int((time.time() - t0) * 1000)
         page.evaluate("() => document.fonts.ready.then(() => true)")
         has_ready = page.evaluate("() => typeof window.renderReady !== 'undefined'")
         if has_ready:
