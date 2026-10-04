@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-04T07:04:35Z",
+  "checked_at": "2026-10-04T13:20:13Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "d4d3ff433569acb087fca212c33404a08a09cf3eaf25b9bb37ccdfc37025423d",
+  "response_sha256": "4e70b02aebc1f8a07200b9deeea535b762b6709dac3210ba6fb427fe16759d3d",
   "articles": [
     {
       "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
@@ -62,113 +62,20 @@
     }
   ],
   "selected": {
-    "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-    "first_seen_at": "2026-10-02T12:08:57Z",
-    "summary": "Set to be largest facility yet at the campus",
+    "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+    "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+    "first_seen_at": "2026-10-02T10:09:00Z",
+    "summary": "Will feature two data centers, likely connected to project in Childress",
     "feed": "https://www.datacenterdynamics.com/en/rss/",
     "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.289446,
+    "score": 0.228017,
     "priority": 1
   },
-  "expires_at": "2026-10-09T12:08:57Z",
+  "expires_at": "2026-10-09T10:09:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-04T01:23:00Z",
-      "selected": {
-        "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-        "first_seen_at": "2026-10-02T12:08:57Z",
-        "summary": "Set to be largest facility yet at the campus",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.289446,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.289446,
-          "priority": 1
-        },
-        {
-          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-          "first_seen_at": "2026-10-01T20:34:13Z",
-          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.184571,
-          "priority": 0
-        },
-        {
-          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-          "first_seen_at": "2026-10-01T19:29:27Z",
-          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.178905,
-          "priority": 0
-        },
-        {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.273207,
-          "priority": 1
-        },
-        {
-          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-          "first_seen_at": "2026-10-01T18:50:07Z",
-          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.17555,
-          "priority": 1
-        },
-        {
-          "title": "New funding supports AI safety research and training at UT San Antonio",
-          "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
-          "first_seen_at": "2026-09-27T15:14:02Z",
-          "summary": "A newly funded UT San Antonio research project aims to teach students how to identify and fix security vulnerabilities in AI-generated code, with a focus on making increasingly autonomous AI agents safer.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.009888,
-          "priority": 3
-        },
-        {
-          "title": "Colovore files to develop data center in Fort Worth, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
-          "first_seen_at": "2026-09-29T14:30:08Z",
-          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.038725,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-04T07:23:00Z",
       "selected": {
@@ -179,7 +86,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.270796,
+        "score": 0.228017,
         "priority": 1
       },
       "stories": [
@@ -191,7 +98,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.270796,
+          "score": 0.228017,
           "priority": 1
         },
         {
@@ -202,7 +109,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.182942,
+          "score": 0.154041,
           "priority": 0
         },
         {
@@ -213,7 +120,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.177326,
+          "score": 0.149313,
           "priority": 0
         },
         {
@@ -224,7 +131,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.286891,
+          "score": 0.241569,
           "priority": 1
         },
         {
@@ -235,7 +142,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.174001,
+          "score": 0.146513,
           "priority": 1
         },
         {
@@ -246,7 +153,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.009801,
+          "score": 0.008252,
           "priority": 3
         },
         {
@@ -257,7 +164,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.038383,
+          "score": 0.03232,
           "priority": 4
         }
       ]
@@ -436,14 +343,91 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-05T01:23:00Z",
+      "selected": {
+        "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+        "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+        "first_seen_at": "2026-10-01T20:34:13Z",
+        "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.108778,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.108778,
+          "priority": 3
+        },
+        {
+          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+          "first_seen_at": "2026-10-02T12:08:57Z",
+          "summary": "Set to be largest facility yet at the campus",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.170587,
+          "priority": 1
+        },
+        {
+          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+          "first_seen_at": "2026-10-02T10:09:00Z",
+          "summary": "Will feature two data centers, likely connected to project in Childress",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.161016,
+          "priority": 1
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.105439,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.103461,
+          "priority": 4
+        },
+        {
+          "title": "Colovore files to develop data center in Fort Worth, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
+          "first_seen_at": "2026-09-29T14:30:08Z",
+          "summary": "Liquid cooled data center firm details second facility in the Lone Star State",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.022823,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/new-era-signs-20-year-gas-ppa-with-vistra-subsidiary-to-power-250mw-data-center-in-ector-county-texas/",
-      "title": "New Era signs 20-year gas PPA with Vistra subsidiary to power 250MW data center in Ector County, Texas",
-      "shown_at": "2026-09-27T07:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/google-backed-battery-storage-pilot-in-texas-demonstrates-how-bess-can-improve-hourly-carbon-free-matching-for-data-centers/",
       "title": "Google-backed battery storage pilot in Texas demonstrates how BESS can improve hourly carbon-free matching for data centers",
@@ -583,6 +567,11 @@
       "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
       "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
       "shown_at": "2026-10-04T01:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+      "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+      "shown_at": "2026-10-04T07:23:00Z"
     }
   ],
   "feeds": [
@@ -596,7 +585,9 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "77fed2c25d640d4d279eefbcece86f946a1f63af84dc5bc34aed901116adc557"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -608,7 +599,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1245,
-      "sha256": "638218fe252852068ca794e0f8c366fffe9dd2d26fb464bafb9ac0625afe06b9"
+      "sha256": "8d6195e50efbce440fbe803a866d51f704cf75e9c97909758ce7b67fb1b6d580"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -622,15 +613,12 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "ok",
-      "items": 30,
-      "sha256": "ccd850ed1bd01da62a0368a3ad629eb3e201b232e25125f99804fd8265e7e82a"
+      "status": "not_modified"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-10-05T07:04:31Z",
-      "reason": "syntax error: line 1, column 0"
+      "status": "backoff",
+      "retry_at": "2026-10-05T07:04:31Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
@@ -638,7 +626,9 @@
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "2bc8dc5a06c5ab0293554a1843004590022932b8ef88083d8c2ffcd1adffe276"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -660,7 +650,7 @@
       "etag": "\"5dc80955488e9ca628b2cff0d54a884b\"",
       "last_modified": "Thu, 01 Oct 2026 23:28:16 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "b4749adb6e7cccd5a9ae7100a68283dc48c21efe9623be6cc9bb48b1d7d8ee6a",
       "parser_version": 2
     },
@@ -668,52 +658,52 @@
       "etag": "\"6ab0c851-a202\"",
       "last_modified": "Mon, 21 Sep 2026 06:01:53 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "09eb8836b29d8575f4fa75ce5b19b18080ffe6626155ae5b36b41d2862710c2a",
       "parser_version": 2
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Sat, 03 Oct 2026 15:00:51 GMT",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "parser_version": 2,
       "sha256": "77fed2c25d640d4d279eefbcece86f946a1f63af84dc5bc34aed901116adc557",
-      "parser_version": 2
+      "last_modified": "Sat, 03 Oct 2026 15:00:51 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "09714a612382a9aab755274a471781d0330f9216e8c1f021e376481e74eeeb77",
-      "etag": "\"1791095820\"",
-      "last_modified": "Sun, 04 Oct 2026 06:37:00 GMT"
+      "etag": "\"1791119280\"",
+      "last_modified": "Sun, 04 Oct 2026 13:08:00 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "638218fe252852068ca794e0f8c366fffe9dd2d26fb464bafb9ac0625afe06b9"
+      "sha256": "8d6195e50efbce440fbe803a866d51f704cf75e9c97909758ce7b67fb1b6d580"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"bc86013ec199087dc437b62e49d80898-gzip\"",
       "last_modified": "Fri, 02 Oct 2026 13:00:39 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "1f37138e6761f097eb189c9909189a65341f77595d5f1fe09aa2d7da28f2de8d",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "99d33b9b7fdc8a5e93aa8d6f6cad28e08380b424f28cc0707532f5d6c9775d6f"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-04T07:04:31Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "ccd850ed1bd01da62a0368a3ad629eb3e201b232e25125f99804fd8265e7e82a",
       "etag": "\"1dac55510300e7c4975ccefb6ce38213\"",
-      "last_modified": "Sun, 04 Oct 2026 03:07:55 GMT"
+      "last_modified": "Sun, 04 Oct 2026 03:07:55 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-04T13:20:11Z",
+      "sha256": "ccd850ed1bd01da62a0368a3ad629eb3e201b232e25125f99804fd8265e7e82a",
+      "parser_version": 2
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -728,26 +718,26 @@
       "etag": "W/\"880f9c4331fcd3bf262186e1198e9e35\"",
       "last_modified": "Sat, 03 Oct 2026 21:01:30 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "dd203bdf184725418fc6641650fe6c1e34916ca31d2c269c7b33ed7502309444",
       "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "etag": "W/\"ac6c47ec82affce81aeae0990052f2ad\"",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
-      "sha256": "9c5e92624f7f18158acfc96407f13b25876da6ca06f8b3dd2f04b32bf4f8af4e",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "2bc8dc5a06c5ab0293554a1843004590022932b8ef88083d8c2ffcd1adffe276",
+      "etag": "W/\"95341914ba5d3fc2865d58716a21cb9f\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Sat, 03 Oct 2026 14:05:26 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "057e963f5e3c1114459bc2d7cf2ebdf721d29560df436ccd476b8ec3f4591df0",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "aff4724172ca25ce567f0ef756b22d53c3f685c8a0708a9f7b9f39eecac11b68"
@@ -756,7 +746,7 @@
       "etag": "W/\"ff1c02b52719fd2cb93d4eca5d92d248\"",
       "last_modified": "Fri, 02 Oct 2026 14:53:01 GMT",
       "failures": 0,
-      "ok_at": "2026-10-04T07:04:31Z",
+      "ok_at": "2026-10-04T13:20:11Z",
       "sha256": "3ec2561fbcc819fad29346392c97c6abda78bc5ac67f84200ada57086537027f",
       "parser_version": 2
     }
