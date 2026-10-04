@@ -309,13 +309,11 @@
     if (room && o.ashlar !== false) R.scene.add(N.ashlar(null, { w: o.w || 12, h: o.h || 6, wall: o.wall, z: -(o.d || 9) / 2 }));
     var T = N.T, d = o.d || 9, ww = o.windowW || 2.6, wh = o.windowH || 2.2;
     /* the window, set where the frame wants it on the back wall: a lit pane in a dark frame with a sill */
-    /* the pane shows the noon outside, a bleached sky over a live oak line and a sunlit verge, so
-     * the window reads as a view and a source and never as a blank panel */
+    /* the pane shows the noon outside as the deck's own sky, blue at the head going to the bleached
+     * horizon value at the sill, so the window reads as a source and never as a blank panel or a
+     * painted view */
     var vc = document.createElement("canvas"); vc.width = 256; vc.height = 256; var vx = vc.getContext("2d");
-    var sg = vx.createLinearGradient(0, 0, 0, 256); sg.addColorStop(0, "#c9d6e2"); sg.addColorStop(0.55, "#f1efe6"); sg.addColorStop(0.62, "#f1efe6"); vx.fillStyle = sg; vx.fillRect(0, 0, 256, 256);
-    var vs = 20261004; function vr() { vs = (Math.imul(vs, 1103515245) + 12345) & 0x7fffffff; return vs / 0x7fffffff; }
-    vx.fillStyle = "#6e7a5a"; for (var k = 0; k < 26; k++) { vx.beginPath(); vx.arc(vr() * 256, 150 + vr() * 18, 14 + vr() * 22, 0, 6.283); vx.fill(); }
-    vx.fillStyle = "#a9a27c"; vx.fillRect(0, 168, 256, 88);
+    var sg = vx.createLinearGradient(0, 0, 0, 256); sg.addColorStop(0, "#b9cadb"); sg.addColorStop(0.7, "#e9ebe6"); sg.addColorStop(1, "#f4f1e8"); vx.fillStyle = sg; vx.fillRect(0, 0, 256, 256);
     var vt = new T.CanvasTexture(vc); vt.colorSpace = T.SRGBColorSpace;
     var pane = new T.Mesh(new T.PlaneGeometry(ww, wh), new T.MeshBasicMaterial({ map: vt, toneMapped: true }));
     pane.material.color.setScalar(o.windowI ? o.windowI / 2.4 * 1.15 : 1.15); pane.position.set(o.windowX || 0, o.windowY || 2.2, -d / 2 + 0.115); R.scene.add(pane);
