@@ -33,7 +33,7 @@ ZOOM_GROUND = [("no. 41 frame 1, the court at the van's tandems", "1003", 1, (30
                ("no. 41 frame 6, the court round the rig", "1003", 6, (1100, 1500, 2100, 2300)),
                ("no. 41 frame 9, the court at the person", "1003", 9, (300, 1700, 1300, 2500)),
                ("09-29 frame 1, the worker on the deck's own pad", "0929", 1, (1150, 1650, 1650, 1950)),
-               ("09-30 frame 4, the lawn at the desks", "0930", 4, (60, 1700, 1460, 2350))]
+               ("no. 38 frame 4, the lawn at the desks", "0930", 4, (60, 1700, 1460, 2350))]
 ZOOM_SHADOWS = [("no. 41 frame 8, light inside the wall's shadow", "1003", 8, (560, 1100, 1260, 1900)),
                 ("no. 41 frame 1, the straps' shadows on the load", "1003", 1, (1300, 1440, 1880, 2140)),
                 ("no. 41 frame 5, the door post's shadow down the bay", "1003", 5, (1760, 1180, 2140, 1640)),
@@ -58,7 +58,8 @@ ZOOM_BIAS = [("no. 41 frame 4, the barrier's foot", "1003", 4, (0, 1800, 400, 22
              ("no. 37 frame 4, the bar and its post", "0929", 4, (600, 1900, 1000, 2300)),
              ("no. 41 frame 8, the cartons' feet", "1003", 8, (700, 1700, 1100, 2100)),
              ("no. 41 frame 1, the door's lock brackets", "1003", 1, (1700, 1500, 2100, 1900)),
-             ("09-30 frame 8, the canopy's edge", "0930", 8, (1200, 1300, 1600, 1700))]
+             ("no. 38 frame 8, the canopy's edge", "0930", 8, (1200, 1300, 1600, 1700)),
+             ("no. 37 frame 1, specks the louvre blades cast", "0929", 1, (700, 1400, 1100, 1800))]
 
 
 def font(size):

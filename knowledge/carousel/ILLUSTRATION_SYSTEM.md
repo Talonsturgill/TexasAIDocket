@@ -1058,7 +1058,7 @@ which is the finding the judges made in words and the number that says the gate 
   12 Lab window before round 1, never across rounds. (2026-10-03)
 - **A clean ground, tiled to the horizon.** The judges named it on six of seven decks in the week to
   October 3rd, in 21 rounds: no. 41's truck court as "an untextured tiled concrete plane" in every
-  round, no. 40's coping "a smooth plane with one highlight streak", 09-30's lawn "one tiled grass
+  round, no. 40's coping "a smooth plane with one highlight streak", no. 38's lawn "one tiled grass
   texture" with "no dirt, wear, path or kerb". TXT.contact darkened the ground and TXT.weather grimed
   the object, and nothing touched the ground itself, which repeated one 6 m tile, every concrete slab
   the same slab. **Fixed in `txthree.js` (2026-10-03):** every `TXT.ground` wears, in world space, and
@@ -1083,7 +1083,7 @@ which is the finding the judges made in words and the number that says the gate 
   carries a grain at full size, which a blind grader marked down on the final cut (no. 41 frame 1,
   "grainy, dithered dark shadow halos" in the cargo bay). A long diagonal shadow edge on a ground
   seen at a grazing angle shows its texel steps (no. 41 frame 3's road, the same round). Under an
-  overcast softness a thin caster's shadow still shows its parts as streaks (09-30 frame 1, the
+  overcast softness a thin caster's shadow still shows its parts as streaks (no. 38 frame 1, the
   chair's wire basket). Where a low sun grazes along a low kerb, contact hardening draws the kerb's
   sliver of shadow as a dark line one or two pixels wide with a faint step in it (09-29 frame 1, at
   full size only), finer than one shadow texel can draw clean. (2026-10-03)
@@ -1092,15 +1092,18 @@ which is the finding the judges made in words and the number that says the gate 
   sun's depth bias is 0.0004 of its shadow camera's depth, 6 cm of no. 41's 160 m and 32 cm of no.
   37's 800 m. VSM's blur filled the strip, and PCSS draws a thing's foot sharp, so the strip shows.
   No. 37 frame 4's bar had the same strip. **Fixed in `txthree.js` (2026-10-03):** the sun's bias
-  never exceeds 5 mm. Rendered on all 36 frames of four decks, it moved at most 0.87 percent of a
-  frame's pixels, nearly all of them darker, and the tile that moved most on each frame is a shadow
-  reaching its caster's foot, never acne: a PCF map holds a caster's back faces, and the ground
-  casts nothing. (2026-10-03)
+  never exceeds 2 cm. Rendered on all 36 frames of four decks, it moved at most 0.65 percent of a
+  frame's pixels, nearly all of them darker, and left every frame of no. 40 as it was. 5 mm was
+  graded first. It seated the same shadows and put blue violet specks at the louvre blade ends of
+  no. 37's generators, and a blind grader marked frames 1 and 6 down for them. **Still open:** 2 cm
+  clears frame 6 and leaves most of frame 1's. They shorten as the bias grows and sharpen on a
+  4096 map, so they are the shadows of blades the kit lets jut past their frame, under a dusk sky,
+  and the fix is the louvre model rather than the cap. (2026-10-03)
 - **A shadow that ends in a straight line.** No. 41 frame 4's "hard rectangular cast" across the left
   lanes was the median barrier's shadow, cut off where the light's shadow box ended (it goes with
   cast shadows off). **Fixed in `txthree.js` (2026-10-03):** the sun's shadow fades out in a
   margin the engine adds outside the box, so nothing inside the box a frame sets loses its shadow.
-  The first cut faded the box's own last 8 percent, and a blind grader found 09-30's school canopy
+  The first cut faded the box's own last 8 percent, and a blind grader found no. 38's school canopy
   without its shadow on the walk and no. 41's cab without its shade. Size the box to the subject,
   because a fade still shows. (2026-10-03)
 - **A polka dot decal on concrete.** No. 41 frames 3, 4 and 7, both blind graders: "evenly

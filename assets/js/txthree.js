@@ -261,11 +261,14 @@ export function init(THREE) {
      * draws the foot sharp, so two blind graders found it: no. 41 frame 4's barrier with "a thin lit
      * strip" at its foot and no. 37 frame 4's bar, whose shadow "starts a few pixels to the right of
      * the bar". The sun's bias never exceeds PCSS_BIAS metres now, and a small camera keeps the
-     * rig's own. 5 mm was tried first and graded blind: it seated those shadows and put acne, blue
-     * violet specks, down the louvre jambs of no. 37's generators, thin faces almost along a 9 degree
-     * sun that normalBias can't lift. 1 cm left faint specks there and 2 cm none, measured on frames
-     * 1 and 6, and at 2 cm no. 41 frame 4's barrier still sits in its shadow. The ground casts
-     * nothing, so it can't shade itself. */
+     * rig's own. 5 mm was tried first and graded blind: it seated those shadows and put blue violet
+     * specks at the blade ends down the louvre jambs of no. 37's generators, and a grader marked two
+     * frames down. Counted as pixels bluer than the uncapped render, frame 6 has 91, 61 and 1 at 5 mm,
+     * 1 cm and 2 cm, and frame 1 has 1674, 1567, 1410 and 916 at 5 mm, 1, 2 and 5 cm, and 3845 at 2 cm
+     * on a 4096 map. They shorten with the bias and sharpen with the map, as a shadow does and acne
+     * doesn't: the shadows of blades the kit lets jut past their frame, lit by a dusk sky. That is the
+     * louvre model's to fix, and a larger cap would lift the feet again. At 2 cm no. 41 frame 4's
+     * barrier still sits in its shadow. The ground casts nothing, so it can't shade itself. */
     let bias = sh.bias;
     Object.defineProperty(sh, 'bias', {
       configurable: true, enumerable: true,

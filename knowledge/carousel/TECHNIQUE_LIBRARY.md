@@ -212,7 +212,7 @@ named each one). The grain is still there to find: a blind grader marked no. 41 
 *Fails when:* the shadow box is too small for the subject, which now shows as a fade rather than a
 line, but still shows: size it to the subject with `shadowSize`. A low sun grazing along a low kerb
 draws its sliver of shadow as a fine dark line. A soft band of shade VSM laid across a wall where
-depths meet in the light's view was its blur and not a shadow, and it is gone (09-30 frame 5's
+depths meet in the light's view was its blur and not a shadow, and it is gone (no. 38 frame 5's
 classroom wall, which a blind grader preferred with it): a frame that wants a gradient on a wall
 lights the wall for it. A thing a few centimetres off a surface now casts a crisp shadow on it, as
 it would in sun, and a crisp shadow shows every step of what it crosses: no. 41 frame 6's wall
@@ -223,9 +223,12 @@ foot:** the engine caps the sun's `bias` at 2 cm. three.js reads `bias` as a fra
 camera's depth, so the rig's -0.0004 had grown to 6 cm at a `shadowFar` of 160 m and 32 cm at 800 m,
 and PCSS's sharp foot showed it as a thin lit strip, under no. 41 frame 4's barrier and no. 37 frame
 4's bar. A frame that sets its own `bias` is held to the same cap, and a small camera keeps the
-rig's. *Fails when* the cap is cut further: 5 mm put acne, blue violet specks, down the louvre
-jambs of no. 37's generators, thin faces lying almost along a 9 degree sun, and a blind grader
-marked two frames down for it.
+rig's. *Fails when* a part juts a centimetre or two past what holds it: the cap gives that part its
+shadow too. No. 37's louvre blades stick past their frame, and under its dusk sky their ends lay
+blue violet specks down the jambs. 5 mm put them on frames 1 and 6 and a blind grader marked both
+down. 2 cm clears frame 6 and leaves most of frame 1's, which shorten as the bias grows and sharpen
+on a finer map, as a shadow does and acne doesn't. Model the part inside its frame. A larger cap
+lifts the feet again.
 **A spot's bias is not a sun's.** three.js adds `shadow.bias` in the shadow camera's own depth,
 which for a SpotLight is perspective and crowded toward the near plane: -0.0004 at `near` 0.1 is
 about 4 cm at 3 m, and a thing smaller than that loses the start of its shadow. No. 40 frame 4's
