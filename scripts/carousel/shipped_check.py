@@ -961,8 +961,8 @@ def g_print_ban(d: Path):
 def g_value_register(d: Path):
     """A shipped deck is not the faded look the owner rejected on 2026-10-04.
 
-    "the Alaska one, when I look at it, it just kind of like wows me ... The Texas one, it's okay,
-    but it's just more like faded colors." `value_register` measures it: the mean share of a deck's
+    The owner's words are quoted in full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art
+    "wows me" and ours is "more like faded colors". `value_register` measures it: the mean share of a deck's
     frames sitting in the mid tones, L* 30 to 70, which is 0.131 over the sibling's twelve decks and
     was 0.418 over the ten Texas decks before it. The light deck half of that script is not asked
     here, because `ledger_check` already counts the cap at ship. Decks on or before VALUE_SINCE were

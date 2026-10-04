@@ -1339,9 +1339,9 @@ export function init(THREE) {
   // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
   // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   /* ---- THE STAGE: the subject lit, everything behind it gone to the dark (2026-10-04) ---------
-   * The owner, on carousel no. 42 beside the sibling's no. 78: "the Alaska one, when I look at it, it
-   * just kind of like wows me ... It's more like bold. The Texas one ... it's just more like faded
-   * colors." Measured over ten Texas decks against twelve of the sibling's, the difference is value,
+   * The owner, on carousel no. 42 beside the sibling's no. 78, quoted in full in
+   * ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art "wows me ... It's more like bold", and ours
+   * is "more like faded colors". Measured over ten Texas decks against twelve of the sibling's, the difference is value,
    * not colour: 42 percent of a Texas frame sat in the mid tones (L* 30 to 70) against 13, and 19
    * percent was near black (L* under 15) against 61. A sun or a flood is a directional light, so it
    * lights the whole ground the same out to the horizon, and every daylight world fogged that ground
@@ -1410,7 +1410,7 @@ export function init(THREE) {
     if (R.world) return R.world;
     try { return declaredWorld(); } catch (e) { return null; }
   }
-  function poolDecal(box, S) {
+  function poolDecal(box, S, y) {
     const ctr = box.getCenter(new THREE.Vector3()), sz = box.getSize(new THREE.Vector3());
     const rx = Math.max(0.6, sz.x / 2), rz = Math.max(0.6, sz.z / 2);
     const inner = S.poolInner != null ? S.poolInner : 1.25, outer = S.poolOuter != null ? S.poolOuter : 3.2;
@@ -1432,11 +1432,48 @@ export function init(THREE) {
     const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x000000, map: tex, transparent: true,
       depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
     m.rotation.x = -Math.PI / 2;
-    m.position.set(ctr.x, Math.max(0, box.min.y) + 0.004, ctr.z);
+    m.position.set(ctr.x, y + 0.004, ctr.z);
     m.renderOrder = 0.5;                                           // under the contact marks (1)
     m.userData.txPool = true;
     return m;
   }
+  /* THE SURFACE THE SUBJECT STANDS ON (Codex, PR 402): the highest tagged ground, or flat thing a
+   * subject can stand on (a pad, a road, a dock's deck), under the subject's centre and no higher
+   * than its foot. Null when nothing is there, and then no pool is laid: a pool at world y 0 floats
+   * over a ground laid lower and hides under one laid higher. */
+  function receivingY(R, box) {
+    const c = box.getCenter(new THREE.Vector3()), base = box.min.y, tb = new THREE.Box3(), sz = new THREE.Vector3();
+    const wp = new THREE.Vector3();
+    let best = null;
+    R.scene.traverse((m) => {
+      if (!m.isMesh || !m.visible || m.isInstancedMesh) return;
+      const u = m.userData || {};
+      if (u.txPool || u.txSky) return;
+      let top = null;
+      if (u.txGround) top = m.getWorldPosition(wp).y;
+      else {
+        tb.setFromObject(m);
+        if (tb.isEmpty()) return;
+        tb.getSize(sz);
+        if (sz.y >= 0.35 || c.x < tb.min.x || c.x > tb.max.x || c.z < tb.min.z || c.z > tb.max.z) return;
+        top = tb.max.y;
+      }
+      if (top > base + 0.05) return;
+      if (best === null || top > best) best = top;
+    });
+    return best;
+  }
+  // the fog a frame set up, kept so a stage can be taken off again
+  function fogBefore(R) {
+    if (!('_txFogBefore' in R)) R._txFogBefore = R.scene.fog || null;
+    return R._txFogBefore;
+  }
+  /* TXT.unstage(R) — takes a stage off: the pool out of the scene and the frame's own fog back. */
+  TXT.unstage = function (R) {
+    if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
+    if ('_txFogBefore' in R) R.scene.fog = R._txFogBefore;
+    R._txStaged = null;
+  };
   /* TXT.stage(R, subject, o) — the subject lit where it stands, the ground beside it and the world
    * behind it gone to the dark. o: behind, depth, pool (darkness, or false), poolInner, poolOuter. */
   TXT.stage = function (R, subject, o) {
@@ -1464,21 +1501,30 @@ export function init(THREE) {
       near = dist * (1 + S.behind);
     }
     const far = near + Math.max(2, S.depth * dist);
-    R.scene.fog = new THREE.Fog(R.scene.fog ? R.scene.fog.color : new THREE.Color(W.haze != null ? W.haze : 0x000000), near, far);
-    if (box && !box.isEmpty() && S.pool !== false && S.pool !== 0 && box.min.y > -0.5 && box.min.y < 0.35) {
-      R._txPool = poolDecal(box, S);
-      R.scene.add(R._txPool);
+    const was = fogBefore(R);
+    R.scene.fog = new THREE.Fog(was ? was.color : new THREE.Color(W.haze != null ? W.haze : 0x000000), near, far);
+    if (box && !box.isEmpty() && S.pool !== false && S.pool !== 0) {
+      const y = receivingY(R, box);
+      if (y !== null && box.min.y - y < 0.35) {
+        R._txPool = poolDecal(box, S, y);
+        R.scene.add(R._txPool);
+      }
     }
-    R._txStaged = { near, far, subject: subj ? (Array.isArray(subj) ? 'group' : (subj.name || subj.type)) : null, pool: !!R._txPool };
+    R._txStaged = { near, far, subject: subj ? (Array.isArray(subj) ? 'group' : (subj.name || subj.type)) : null,
+                    pool: !!R._txPool, poolY: R._txPool ? R._txPool.position.y : null, auto: !!o.auto };
     return R._txStaged;
   };
 
   TXT.snapshot = async function (R, o) {
     o = o || {};
     prepareSurfaces(R);                          // the contact marks, worn grass and grit (THE RECEIVING SURFACE)
-    if (!R._txStaged && o.stage !== false && (R.world || R.room)) {
-      const SW = stageWorld(R);
-      if (SW && SW.stage) TXT.stage(R);
+    /* AN AUTOMATIC STAGE IS REDONE ON EVERY SNAPSHOT (Codex, PR 402), so a frame that previews and
+     * then moves its camera or its subject is staged on what its kept snapshot shows, and
+     * {stage:false} takes an automatic stage off. A stage the frame set with TXT.stage is its own. */
+    if (!R._txStaged || R._txStaged.auto) {
+      const SW = (R.world || R.room) ? stageWorld(R) : null;
+      if (o.stage !== false && SW && SW.stage) TXT.stage(R, null, { auto: true });
+      else if (R._txStaged) TXT.unstage(R);
     }
     R.renderer.render(R.scene, R.camera);
     /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and

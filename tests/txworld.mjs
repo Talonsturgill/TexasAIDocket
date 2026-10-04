@@ -1201,6 +1201,31 @@ const STAGE = `async (T, TXT, cv) => {
            golden: await shoot('goldenHour', true), cab: await shoot('lastLight', true, true) };
 }`;
 
+// THE STAGE ON A RAISED GROUND AND ACROSS SNAPSHOTS (Codex, PR 402). A box on a ground laid at y 1
+// gets its pool at that ground, not at world y 0. Two snapshots on one renderer with the camera
+// moved between them stage twice, on what each one shows, and a third with stage:false takes the
+// automatic stage off and gives the frame its own fog back.
+const STAGE2 = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.lastLight);
+  const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+  TXT.frame(R, { from: [10, 2.6, 12], look: [0, 1.8, 0] });
+  TXT.sky(R, W);
+  const s = TXT.sunDir(W);
+  TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+               fill: W.rig.fill, ambient: W.rig.ambient });
+  TXT.ground(R, { surface: 'concrete', size: 600, tile: 3, y: 1 });
+  const box = new T.Mesh(new T.BoxGeometry(4, 2, 2), new T.MeshStandardMaterial({ color: 0xd8d0c0 }));
+  box.name = 'subject'; box.position.set(0, 2, 0); TXT.add(R, box);
+  await TXT.snapshot(R);
+  const first = Object.assign({}, R._txStaged);
+  TXT.frame(R, { from: [24, 2.6, 30], look: [0, 1.8, 0] });
+  await TXT.snapshot(R);
+  const second = Object.assign({}, R._txStaged);
+  await TXT.snapshot(R, { stage: false });
+  return { first, second, after: R._txStaged, fogExp2: !!(R.scene.fog && R.scene.fog.isFogExp2),
+           pools: R.scene.children.filter((c) => c.userData && c.userData.txPool).length };
+}`;
+
 async function run(name, scene) {
   const file = join(scratch, `${name}.html`);
   writeFileSync(file, page_html(scene));
@@ -1635,6 +1660,19 @@ check('the stage page renders with no page error and no scene error',
         cb.subject === 'subject', JSON.stringify(cb));
   check(`a world without a stage is never staged: goldenHour reads ${JSON.stringify(g.staged)}`,
         g.staged === null && g.ok, JSON.stringify(g));
+}
+
+const s2 = await run('stage2', STAGE2);
+check('the second stage page renders with no page error and no scene error',
+      !s2.result.error && s2.pageErrors.length === 0, JSON.stringify({ error: s2.result.error, page: s2.pageErrors }));
+{
+  const r = s2.result, a = r.first || {}, b = r.second || {};
+  check(`a subject on a ground laid at y 1 gets its pool at that ground: y ${a.poolY}`,
+        a.pool === true && Math.abs(a.poolY - 1.004) < 0.02, JSON.stringify(a));
+  check(`an automatic stage is redone when the camera moves: the fog starts at ${(a.near || 0).toFixed(1)} m, ` +
+        `then at ${(b.near || 0).toFixed(1)} m`, a.auto === true && b.auto === true && b.near > a.near * 1.5, JSON.stringify(r));
+  check(`stage:false takes it off: no stage, ${r.pools} pools and the frame's own exponential fog back`,
+        r.after === null && r.pools === 0 && r.fogExp2 === true, JSON.stringify(r));
 }
 
 await browser.close();

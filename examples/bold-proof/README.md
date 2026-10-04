@@ -1,8 +1,9 @@
 # Bold proof, 2026-10-04
 
-The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning: *"the Alaska one,
-when I look at it, it just kind of like wows me. It amazes me. It's more like bold. The Texas one,
-it's okay, but it's just more like faded colors and stuff."*
+The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning, quoted in full in
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md`, THE STAGE: the sibling's art *"just kind of like wows
+me. It amazes me. It's more like bold. The Texas one, it's okay, but it's just more like faded
+colors and stuff."*
 
 This folder is the engine half of the answer, measured. Three shipped decks, nos. 40, 41 and 42,
 re-rendered through main's engine (before) and through the staged engine (after), from the same

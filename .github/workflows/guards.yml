@@ -631,8 +631,8 @@ jobs:
 
       - name: The faded look is measured, and the measure holds
         run: |
-          # Owner, 2026-10-04: "the Alaska one ... it's more like bold. The Texas one ... it's just
-          # more like faded colors." Faded is the mid tone share of a frame, L* 30 to 70: 0.418 over
+          # Owner, 2026-10-04, quoted in full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's
+          # art is "more like bold" and ours "more like faded colors". Faded is the mid tone share of a frame, L* 30 to 70: 0.418 over
           # ten Texas decks against 0.131 over the sibling's twelve. The self-test replays a faded
           # frame, a bold one, the light deck cap looked ahead at the probe, and the two shipped
           # decks it was calibrated on. shipped_check runs it on every shipped deck.

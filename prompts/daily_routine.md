@@ -1275,8 +1275,10 @@ at 432 px, rendered rather than placed, with no screen on it, AND does it pass T
 TEST in `ILLUSTRATION_SYSTEM.md`: one subject filling the frame on a dark field, bold in value with
 true blacks and one bright edge, standing somewhere rather than in a void, with contact and
 weathering where things meet the ground.** Fix what they
-find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py`, and re-review ONLY
-those frames. **At most three pixel rounds.** After the third, keep the best version of any
+find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py` and
+`value_register.py --render-dir out/<date>/render --date <date>`, and re-review ONLY those frames.
+A repair that changes an exposure, a wash or a camera can move a deck back into the mid tones, and
+the register measures the frames as they are now, not as they were before the round. **At most three pixel rounds.** After the third, keep the best version of any
 holdout and name it in the run record for the panel. Then 1 `carousel-flow-critic` on the contact
 sheet AND the full renders, which judges the deck as a sequence rather than as nine slides.
 
@@ -1446,6 +1448,7 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/print_ban.py --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
@@ -1577,12 +1580,13 @@ the `upgrade` commit, because that file is `upgrade` lane and the daily lane can
 `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
 before the first render, because a defect it names is a round spent twice.
 
-**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py` and
-`panel_ready.py` again, and spawn nothing while any of them is red.**
+**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py`,
+`value_register.py` and `panel_ready.py` again, and spawn nothing while any of them is red.**
 
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/print_ban.py --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
@@ -1644,8 +1648,8 @@ finished.
 **A total over its rung no longer finishes the run while the panel's `artwork_craft` median is
 under 8.5 and rounds remain.** `panel.py` then writes `ship: false`, `craft_floor: open` and a work
 order naming the frames in `artwork_weakest_frames`. Run ONE craft cycle: repair those frames, one
-concrete change each, re-render them, run `qa.py`, `print_ban.py` and `panel_ready.py`, and
-re-score with three fresh judges. That re-score is a round. `panel.py` closes the cycle on it and
+concrete change each, re-render them, run `qa.py`, `print_ban.py`, `value_register.py` and
+`panel_ready.py`, and re-score with three fresh judges. That re-score is a round. `panel.py` closes the cycle on it and
 writes `craft_cycle` from its own two medians, so no number in it is typed, and the deck then
 ships on the ladder. `run_complete.py` refuses a run whose floor is open or whose record doesn't
 hold. One cycle, never more, and at the round cap it stands down and the deck ships as it is. If

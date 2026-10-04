@@ -8,10 +8,9 @@
 
 WHY THIS EXISTS
 
-The owner, on October 4th, beside the sibling product's deck of the same morning: "the alaska
-artwork, i still like it way more than the texas one ... the Alaska one, when I look at it, it just
-kind of like wows me ... It's more like bold. The Texas one, it's okay, but it's just more like
-faded colors and stuff."
+The owner, on October 4th, beside the sibling product's deck of the same morning, quoted in full
+in knowledge/carousel/ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art "wows me ... It's more
+like bold. The Texas one, it's okay, but it's just more like faded colors and stuff."
 
 Faded is a measurement, and it is not the one anybody guessed. Measured on every shipped frame of
 the ten Texas decks from September 24th to October 4th and the twelve sibling decks from September

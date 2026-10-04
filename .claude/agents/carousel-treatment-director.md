@@ -50,8 +50,8 @@ stock or a print register. Every frame is RENDERED: one HERO OBJECT modelled onc
 material, one rig, a soft shadow on a ground it touches, through `txthree.js`. Pitch the hero
 object first, in metres, then nine cameras and states of it.
 
-**THEN PITCH THE WORLD IT STANDS IN, AND START DARK (2026-10-04, owner: "the Alaska one ... wows
-me ... It's more like bold. The Texas one ... it's just more like faded colors").** Name ONE world
+**THEN PITCH THE WORLD IT STANDS IN, AND START DARK (2026-10-04, owner, on the sibling's art
+beside ours: "It's more like bold. The Texas one ... it's just more like faded colors").** Name ONE world
 from the table in `ILLUSTRATION_SYSTEM.md`, THE WORLD, the declared light it wants, and why THIS
 story wants that light. The default is `lastLight`, a STAGED world: a near black sky, one subject
 filling the frame in a pool of light, the world behind it gone dark. `floodlit` is its night

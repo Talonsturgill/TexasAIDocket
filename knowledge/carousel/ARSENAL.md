@@ -14,7 +14,7 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 29 |
+| engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
 | kit models | 110 in 10 families |
 | asset libraries | 21 |
@@ -45,12 +45,12 @@
 | 10 | `caption_check.py` |
 | 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py`, `value_register.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
-| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py` |
+| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py`, `value_register.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
-| 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py` |
-| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py` |
+| 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
+| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py`, `value_register.py` |
 | 16 | `article_check.py`, `docket_build.py`, `house_style_check.py`, `measure_shipped.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
 | 17 | `arsenal.py`, `instincts.py`, `machine_due.py`, `prompt_audit.py`, `push.sh`, `week_digest.py` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
@@ -109,6 +109,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.stage(R, subject, o)` | the subject lit where it stands, the ground beside it and the world behind it gone to the dark. o: behind, depth, pool (darkness, or false), poolInner, poolOuter. |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
+| `TXT.unstage(R)` | takes a stage off: the pool out of the scene and the frame's own fog back. |
 | `TXT.weather(R, { grime, height, mottle, skip })` | patches every standard material in the scene once: albedo darkens toward the ground over `height` metres (splash, dust, the dark base every real object has), and a seeded world-space mottle breaks roughness and colour ... |
 | `TXT.webglOK()` | Probe on a THROWAWAY canvas, never the render target: getContext fixes a canvas's context attributes forever, so probing the target would strip preserveDrawingBuffer from the renderer and blind the QA sampler (found by ... |
 
@@ -447,7 +448,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI | nonnegotiables |
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
-| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | artwork, 10.5, 11 |
+| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | artwork, 10.5, 11, 12, 14b, 15 |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
 | `scripts/carousel/week_digest.py` | what the judges kept saying this week, counted, for the weekly machine pass. | --date --days --out --self-test | CI self-test | 17 |
 | `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
@@ -586,7 +587,7 @@ Measurements and plumbing, never a subject or a palette to copy.
 
 | example | what it is | open |
 |---|---|---|
-| `examples/bold-proof/` | Bold proof, 2026-10-04. The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning: *"the sibling one, when I look at it, it just kind of like wows me. | beside-the-sibling.webp, deck-40.webp, deck-41.webp, deck-42.webp |
+| `examples/bold-proof/` | Bold proof, 2026-10-04. The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning, quoted in full in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, THE STAGE: the sibling's art *"just kind of like wows me. | beside-the-sibling.webp, deck-40.webp, deck-41.webp, deck-42.webp |
 | `examples/demo-deck/` |  | slides |
 | `examples/figure-bearing/` | Emit the three frames of the FIGURE BEARING reference. | contact_sheet.webp, slide-01.webp, slide-02.webp, slide-03.webp, build.py, figures.json, slides, storyboard.md |
 | `examples/ground-proof/` | ground-proof, the engine's ground and sun measured on four shipped decks. This is a measurement of the ENGINE, never a subject or a palette to copy. | deck-2026-09-29.webp, deck-2026-09-30.webp, deck-2026-10-02.webp, deck-2026-10-03.webp, full-0929-01.webp, full-1003-08.webp, build.py |
