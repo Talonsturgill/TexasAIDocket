@@ -33,7 +33,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "State Board of Education", counter: "02 / 09", src: "c7 c8 c44", fit: { min: 90, max: 112, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 30, exposure: 1.05, fog: 0.0004, far: 400 });
-  const roomO = { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.6, windowY: 4.35 };
+  const roomO = { w: 18, d: 13, h: 13.0, wall: 0xcdc3ae, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.6, windowY: 4.35 };
   const room = TXT.interior(R, NB.roomSpec(roomO)); NB.room(TXT, R, roomO, room);
   const dais = K.make('hearing_dais', { seats: 15, curve: 0, chairs: false, mics: true, plates: true, seed: 3 }); dais.position.set(0, 0, -5.0); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.6 });
   const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(-1.6, 3.15, -6.38); TXT.add(R, seal);
@@ -50,7 +50,7 @@ window.renderReady = (async () => {
   place('lab-for', [-4.9 + 2 * PX, 2.2, -0.2], -135, -60);
   place('lab-against', [1.55 + PX, 2.2, 0.4], -205, -60);
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.14, type: ['.kick', '.hook', '.dek', '.lab'] });
+  NB.post(cx, { footWash: 0.3, a: 0.14, type: ['.kick', '.hook', '.dek', '.lab'] });
   TXDECK.finish(cx);
   return true;
 })();

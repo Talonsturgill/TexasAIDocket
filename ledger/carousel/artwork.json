@@ -2650,7 +2650,7 @@
    "date": "2026-10-04",
    "carousel_no": 42,
    "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-04/update_ledgers.py.",
-   "register": "RENDERED, NOT PRINTED. One noonbell world (highNoon sky, pale haze, sun at elevation 58) declared once in assets/js/deck/2026-10-04-noonbell.js. One hero, the kit school_bus unlettered with a white roof, its stop arm out for a no and folded with the accent card for a pilot. Chassis models for the school clock, the measured column, the letter sheet, and limestone ashlar on the rooms' back walls.",
+   "register": "RENDERED, NOT PRINTED. A noon deck exposed down to hold the light deck cap. One noonbell world (highNoon sky, pale haze, sun at elevation 58) declared once in assets/js/deck/2026-10-04-noonbell.js. One hero, the kit school_bus unlettered with a white roof, its stop arm out for a no and folded with the accent card for a pilot. Chassis models for the school clock, the measured column, the letter sheet, and limestone ashlar on the rooms' back walls.",
    "structural_laws": [
     "A ROOM BUILT INSIDE A CHASSIS HELPER IS INVISIBLE TO print_ban. Call TXT.interior in the slide and hand the room to the helper.",
     "A KIT MODEL'S size IS NOT ITS TOP. The conference table's size[1] is 1.0 m and its top 0.74 m; measure the top off the model's own box before standing anything on it.",
@@ -2671,20 +2671,20 @@
    ],
    "value": {
     "per_frame_median_L": [
-     64.1,
-     66.7,
-     68.0,
-     74.7,
-     66.3,
-     69.8,
-     69.3,
-     67.1,
-     68.3
+     54.6,
+     58.1,
+     61.1,
+     63.1,
+     57.8,
+     59.7,
+     58.1,
+     57.6,
+     57.0
     ],
-    "deck_median_L": 68.0,
-    "max_adjacent_delta": 8.4,
-    "mean_adjacent_delta": 3.3,
-    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A noon deck held in one mid band, the rooms and the desk stepping down from the exteriors."
+    "deck_median_L": 58.1,
+    "max_adjacent_delta": 5.3,
+    "mean_adjacent_delta": 2.3,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Exposed down deck-wide at the round cap (N.EXPOSURE 0.47 in the chassis) so the deck median sits under the ledger's light line of 60, because no. 38 on 2026-09-30 was this window's one light deck."
    },
    "accent": {
     "hex": "#C2477A",

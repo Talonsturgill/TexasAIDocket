@@ -6,54 +6,57 @@
       "warns": [
         "canvas raster text 'SCHOOL BUS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
         "canvas raster text 'STOP' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
-        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "worst-point contrast 4.5 on '01 / 09' (box mean 4.9) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.3487,
-        0.3067,
-        0.7831
+        0.3739,
+        0.4601,
+        0.7206
       ],
-      "band_ratio": 1.5874
+      "band_ratio": 1.3663
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [
         "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
-        "worst-point contrast 4.5 on 'Voted down 10 to 3, the Tribune reports.' (box mean 8.5) -- below the rubric's 4.5 line somewhere along the run of the text"
+        "worst-point contrast 4.5 on 'Voted down 10 to 3, the Tribune reports.' (box mean 7.5) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.7185,
-        0.5567,
-        0.7684
+        0.7332,
+        0.6429,
+        0.7555
       ],
-      "band_ratio": 1.1215
+      "band_ratio": 1.0603
     },
     {
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "worst-point contrast 4.5 on '03 / 09' (box mean 6.0) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.3151,
-        0.5609,
-        0.8254
+        0.3739,
+        0.645,
+        0.8162
       ],
-      "band_ratio": 1.4258
+      "band_ratio": 1.3143
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [
-        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "worst-point contrast 4.5 on '04 / 09' (box mean 4.8) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.2563,
-        0.3046,
-        0.6379
+        0.313,
+        0.3466,
+        0.796
       ],
-      "band_ratio": 1.5542
+      "band_ratio": 1.594
     },
     {
       "file": "slide-05.html",
@@ -64,11 +67,11 @@
         "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
       ],
       "bands": [
-        0.2794,
-        0.4013,
-        0.8382
+        0.2962,
+        0.4475,
+        0.8051
       ],
-      "band_ratio": 1.6077
+      "band_ratio": 1.5208
     },
     {
       "file": "slide-06.html",
@@ -77,11 +80,11 @@
         "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
       ],
       "bands": [
-        0.3908,
-        0.3088,
-        0.6691
+        0.4076,
+        0.395,
+        0.6801
       ],
-      "band_ratio": 1.4362
+      "band_ratio": 1.3531
     },
     {
       "file": "slide-07.html",
@@ -92,24 +95,25 @@
         "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
       ],
       "bands": [
-        0.542,
-        0.4622,
-        0.8125
+        0.6324,
+        0.5315,
+        0.8382
       ],
-      "band_ratio": 1.3212
+      "band_ratio": 1.2416
     },
     {
       "file": "slide-08.html",
       "fails": [],
       "warns": [
-        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "worst-point contrast 4.5 on 'AT GRADE LEVEL, DOWN FROM 10% TO ZERO' (box mean 5.1) -- below the rubric's 4.5 line somewhere along the run of the text"
       ],
       "bands": [
-        0.5336,
-        0.3004,
-        0.4779
+        0.5462,
+        0.3403,
+        0.4908
       ],
-      "band_ratio": 1.0883
+      "band_ratio": 1.0657
     },
     {
       "file": "slide-09.html",
@@ -120,14 +124,14 @@
         "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
       ],
       "bands": [
-        0.25,
-        0.3824,
-        0.682
+        0.3424,
+        0.5273,
+        0.7022
       ],
-      "band_ratio": 1.5182
+      "band_ratio": 1.3197
     }
   ],
   "fails": 0,
-  "warns": 18,
+  "warns": 22,
   "verdict": "WARN"
 }

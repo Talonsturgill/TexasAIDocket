@@ -48,7 +48,7 @@ window.renderReady = (async () => {
   }
   /* the bays the pilots pulled forward into, painted in the accent on the asphalt, one for each of
    * pilot_districts: the frame's mark for a district running the platform */
-  const padMat = new THREE.MeshBasicMaterial({ color: 0xc2477a });
+  const padMat = new THREE.MeshBasicMaterial({ color: 0xc2477a, toneMapped: false });
   for (let i = 0; i < FIG.pilot_districts; i++) { const pad = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 14.2), padMat); pad.rotation.x = -Math.PI / 2; pad.position.set(i * PITCH, 0.014, 8.5 + 0.9); pad.receiveShadow = true; R.scene.add(pad); }
   /* painted stall lines for the front row, a pipe fence and trees beyond the lot */
   const paint = new THREE.MeshStandardMaterial({ color: 0xe8e4d8, roughness: 0.8 });
@@ -67,7 +67,7 @@ window.renderReady = (async () => {
   place('lab-pilot', [PITCH, 3.3, 8.5], -150, document.querySelector('.dek').getBoundingClientRect().bottom + 22);
   place('lab-no', [5 * PITCH, 3.3, 0], -60, document.querySelector('.dek').getBoundingClientRect().bottom + 22);
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { footWash: 0.42, a: 0.16, veilH: 170, type: ['.kick', '.hook', '.dek', '.lab'] });
+  NB.post(cx, { footWash: 0.42, a: 0.24, veilH: 170, type: ['.kick', '.hook', '.dek', '.lab'] });
   TXDECK.finish(cx);
   return true;
 })();

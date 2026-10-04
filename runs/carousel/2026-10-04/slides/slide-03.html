@@ -68,7 +68,7 @@ window.renderReady = (async () => {
   const h = bv.map((v, i) => v / A[i][i]);
   pg.style.transform = 'matrix3d(' + [h[0], h[3], 0, h[6], h[1], h[4], 0, h[7], 0, 0, 1, 0, h[2], h[5], 0, 1].join(',') + ')';
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.3, rgb: '238,226,206' });
+  NB.post(cx, { footWash: 0.3, a: 0.3, rgb: '238,226,206' });
   TXDECK.finish(cx);
   return true;
 })();

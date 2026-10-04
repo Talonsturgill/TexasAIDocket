@@ -112,6 +112,9 @@
       paper: K.mat("nb-paper", { color: 0xf4f1e9, roughness: 0.82, metalness: 0 }),
       base: K.mat("nb-base", { color: 0x2c2e30, roughness: 0.7, metalness: 0.1 })
     };
+    /* the accent's radiance is lifted by the inverse of the deck's exposure, so the lit column
+     * reaches the tone curve exactly as it did before the deck was exposed down */
+    var k = 1 / N.EXPOSURE; N._m.sector.color.multiplyScalar(k); N._m.sector.emissiveIntensity *= k;
     return N._m;
   };
 
@@ -146,7 +149,8 @@
         if (o.sector) {
           var a0 = Math.PI / 2 - o.sector[0] / 12 * Math.PI * 2, sweep = o.sector[1] / 12 * Math.PI * 2;
           var sg = new THREE.RingGeometry(R * 0.2, R * 0.86, 64, 1, a0 - sweep, sweep);
-          var sm = new THREE.Mesh(sg, M.sector); sm.position.z = fz + 0.0012; g.add(sm);
+          /* the sector is enamel painted on the face, its hex held off the tone curve so the deck's one accent reads as itself */
+          var sm = new THREE.Mesh(sg, new THREE.MeshBasicMaterial({ color: 0xc2477a, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 })); sm.position.z = fz + 0.0012; g.add(sm);
         }
         /* minute ticks and hour bars, raised a hair off the face */
         for (var i = 0; i < 60; i++) {
@@ -381,7 +385,8 @@
    * last. A pale band under the footer, never a box and never over 0.45. */
   N.post = function (cx, o) {
     o = o || {};
-    N.atmosphere(cx, { a: o.a == null ? 0.18 : o.a, to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
+    /* the type band lifts by the same step the exposure took away, so dark type keeps 4.5 */
+    N.atmosphere(cx, { a: Math.min(0.45, (o.a == null ? 0.18 : o.a) + 0.17), to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
     N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
     N.soften(cx, [".tx-site", ".src"], { blur: o.siteBlur || 18, pad: 18, feather: 70 });
     var y0 = N.H - (o.veilH || 250), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
@@ -438,9 +443,14 @@
     N.installKit(K, THREE, TXT);
     return { TXT: TXT, K: K, gl: N.glCanvas(), W: TXT.deckWorld() };
   };
+  /* THE DECK'S EXPOSURE, ONE NUMBER FOR ALL NINE. brand.yaml allows a light deck once per eight
+   * runs and no. 38 on September 30th was one, measured at L* 60.6. At the round cap this deck
+   * measured L* 68.0, so every frame is exposed down together to hold the deck median under the
+   * ledger's 60 line, through the renderer's own tone curve rather than a multiply on the pixels. */
+  N.EXPOSURE = 0.47;
   N.stage = function (TXT, gl, W, o) {
     o = o || {};
-    return TXT.setup(gl, { w: N.W, h: N.H, fog: [W.haze, o.fog == null ? W.fogDensity : o.fog], exposure: W.exposure * (o.exposure || 1),
+    return TXT.setup(gl, { w: N.W, h: N.H, fog: [W.haze, o.fog == null ? W.fogDensity : o.fog], exposure: W.exposure * N.EXPOSURE * (o.exposure || 1),
                            tone: W.tone, fov: o.fov || 30, near: o.near || 0.05, far: o.far || 12000 });
   };
   N.follow = function () {

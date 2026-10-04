@@ -50,7 +50,7 @@ window.renderReady = (async () => {
   TXT.deckRig(R, NB.rigSpec(W, 8, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90, normalBias: 0.05 }));
   TXT.weather(R, { grime: 0.5, height: 2.2, mottle: 0.6 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.14 });
+  NB.post(cx, { a: 0.28 });
   TXDECK.finish(cx);
   return true;
 })();

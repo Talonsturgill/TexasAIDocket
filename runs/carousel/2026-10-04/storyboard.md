@@ -167,7 +167,7 @@ art:
   palette: "bleached sky, Austin limestone and asphalt, chrome yellow, one red arm"
   value_structure: >
     Lightest is the sky and the sunlit flank. Darkest is the shade under the bus and its tyres.
-    Frame median L* planned at 70.
+    Frame median L* planned at 55.
 
 type:
   hook: "The state board said no."
@@ -182,7 +182,7 @@ acceptance:
   - "the Capitol's dome stands at the avenue's far end, hazed lighter than the bus"
   - "the bus's tyres touch the asphalt with a contact shadow darker than the road beside them"
   - "the hook reads 'The state board said no.' in dark type on the sky"
-  - "the frame's median L* at 432px is between 58 and 80"
+  - "the frame's median L* at 432px is between 44 and 66"
 
 risks:
   - "the Capitol at 600 m can shrink to a bump, so the lens is long enough that its dome clears the roofline"
@@ -229,7 +229,7 @@ art:
   palette: "Austin limestone wall, black leather, oak dais, a blue grey carpet"
   value_structure: >
     Lightest is the window lit wall. Darkest is the chair leather and the shade under the dais.
-    Frame median L* planned at 76.
+    Frame median L* planned at 56.
 
 type:
   hook: "Voted down 10 to 3, the Tribune reports."
@@ -243,7 +243,7 @@ acceptance:
   - "every chair stands on the floor with a contact shadow"
   - "no person is seated in any chair"
   - "the hook reads 'Voted down 10 to 3, the Tribune reports.' and names the Tribune"
-  - "the frame's median L* at 432px is between 66 and 86"
+  - "the frame's median L* at 432px is between 44 and 68"
 
 risks:
   - "thirteen chairs on a long lens can merge into one black mass, so they stand at a pitch with floor between them"
@@ -595,7 +595,7 @@ art:
   palette: "limestone wall, oak, glass, one accent column, cast stone"
   value_structure: >
     Lightest is the wall and the glass band. Darkest is the table's shade and the columns' contacts.
-    Frame median L* planned at 78.
+    Frame median L* planned at 55.
 
 type:
   hook: "Claimed 50% to 60%. Passed, 21%."
@@ -609,7 +609,7 @@ acceptance:
   - "the glass band spans a range, not a point"
   - "every column stands on the table with a contact shadow"
   - "each label sits beside its own column"
-  - "the frame's median L* at 432px is between 66 and 88"
+  - "the frame's median L* at 432px is between 44 and 68"
 
 risks:
   - "glass on a pale wall can vanish, so the band carries a visible edge and a tint"

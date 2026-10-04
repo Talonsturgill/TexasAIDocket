@@ -20,8 +20,8 @@ put('topics', {
  "date": D, "carousel_no": N, "docket_item": "tx-2026-0200",
  "related_items": ["tx-2026-0194"],
  "instrument": "The Texas Tribune and ProPublica's October 1st, 2026 report on TEA's help for Alpha School's AI platform, their September 2nd, 2026 report on Alpha and vouchers, and the State Board of Education's June 2025 minutes.",
- "topic": "The State Board of Education voted the Alpha leaders' AI charter bid down 10 to 3, the Tribune reports. Emails obtained by the Tribune and ProPublica show Texas Education Agency staff then helped Alpha's platform reach districts: the commissioner offered an introduction to Houston ISD's appointed superintendent, staff drafted a to-do list including a one-page explainer for districts, and at least 10 districts were approached. Houston, Aldine and Fort Davis launched supplemental pilots, five districts declined, and the one charter with scores fell short of the passing rate an Alpha leader claimed.",
- "angle": "A noon school day carried by a yellow school bus: the bus on Congress Avenue under the Capitol, an empty hearing room with ten chairs and three, the commissioner's quoted line on a sheet on an oak desk, seven walkers for the return visit, ten buses on a lot with the three pilots on accent bays and five stop arms out, a Fort Davis clock with a two hour sector, four middle schools along an Aldine street, columns at one scale for the claim and the results, and the bus at a kerb with a parent beside it for the question a reader can ask.",
+ "topic": "The State Board of Education voted the Alpha leaders' AI charter bid down 10 to 3, the Tribune reports. Emails obtained by the Tribune and ProPublica show Texas Education Agency staff then helped Alpha's platform reach districts: the commissioner offered an introduction to Houston ISD's appointed superintendent, staff drafted a to-do list including a single-page explainer for districts, and at least 10 districts were approached. Houston, Aldine and Fort Davis launched supplemental pilots, 5 districts did not pursue it, and the only charter with scores fell short of the passing rate an Alpha leader claimed.",
+ "angle": "A noon school day carried by a yellow school bus: the bus on Congress Avenue under the Capitol, an empty hearing room with 10 chairs and 3, the commissioner's quoted line on a sheet on an oak desk, 7 walkers for the return visit, 10 buses on a lot with the 3 pilots on accent bays and 5 stop arms out, a Fort Davis clock with a 2 hour sector, 4 middle schools along an Aldine street, columns at the same scale for the claim and the results, and the bus at a kerb with a parent beside it for the question a reader can ask.",
  "angle_note": "Every 10 to 3 is the Tribune's. The Valenta veto in the board's minutes is never joined to Alpha on the deck. The 50 to 60 percent is always Alpha's claim and never appears without ProPublica's report that TEA's results don't back it. Counts of districts are floors.",
  "entities": ["Alpha School", "Texas Education Agency", "Mike Morath", "State Board of Education", "Houston ISD", "Aldine ISD", "Fort Davis ISD", "Texas Preparatory School"],
  "places": ["Austin", "Houston", "Aldine", "Fort Davis", "Ector County", "Fort Bend", "Irving", "Pecos", "Pflugerville"],
@@ -31,7 +31,7 @@ put('topics', {
 put('artwork', {
  "date": D, "carousel_no": N,
  "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-04/update_ledgers.py.",
- "register": "RENDERED, NOT PRINTED. One noonbell world (highNoon sky, pale haze, sun at elevation 58) declared once in assets/js/deck/2026-10-04-noonbell.js. One hero, the kit school_bus unlettered with a white roof, its stop arm out for a no and folded with the accent card for a pilot. Chassis models for the school clock, the measured column, the letter sheet, and limestone ashlar on the rooms' back walls.",
+ "register": "RENDERED, NOT PRINTED. A noon deck exposed down to hold the light deck cap. One noonbell world (highNoon sky, pale haze, sun at elevation 58) declared once in assets/js/deck/2026-10-04-noonbell.js. One hero, the kit school_bus unlettered with a white roof, its stop arm out for a no and folded with the accent card for a pilot. Chassis models for the school clock, the measured column, the letter sheet, and limestone ashlar on the rooms' back walls.",
  "structural_laws": [
   "A ROOM BUILT INSIDE A CHASSIS HELPER IS INVISIBLE TO print_ban. Call TXT.interior in the slide and hand the room to the helper.",
   "A KIT MODEL'S size IS NOT ITS TOP. The conference table's size[1] is 1.0 m and its top 0.74 m; measure the top off the model's own box before standing anything on it.",
@@ -49,14 +49,14 @@ put('artwork', {
   "columns at one scale on an oak table in a limestone room, a glass band for the claim and a solid accent column for the result",
   "the bus's front three quarter at a residential kerb, a parent beside it turned away"],
  "value": {"per_frame_median_L": meds, "deck_median_L": round(statistics.median(meds), 1), "max_adjacent_delta": round(max(adj), 1), "mean_adjacent_delta": round(sum(adj) / len(adj), 2),
-           "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A noon deck held in one mid band, the rooms and the desk stepping down from the exteriors."},
+           "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. Exposed down deck-wide at the round cap (N.EXPOSURE 0.47 in the chassis) so the deck median sits under the ledger's light line of 60, because no. 38 on 2026-09-30 was this window's one light deck."},
  "accent": {"hex": "#C2477A", "name": "the platform, a magenta", "frames_above_floor": accent,
             "note": "The pilot bays and windshield cards on frame 5, the two hour sector on frame 6 and the passed column on frame 8."},
  "ground": {"hex": "#E7E3DA", "note": "The deck's declared ground, a light noon deck with dark type."}})
 
 put('captions', {
  "date": D, "carousel_no": N, "opening_move": "the object", "structure": "Two columns",
- "closing_move": "ask the reader the one question the decision leaves open",
+ "closing_move": "ask the one question the decision leaves open",
  "first_line": cap.splitlines()[0], "words": words, "commas": commas,
  "commas_per_100w": round(100 * commas / words, 2) if words else 0.0, "chars": len(cap.rstrip('\n')),
  "hashtags": re.findall(r'#\w+', cap),
