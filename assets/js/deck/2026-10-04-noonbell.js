@@ -164,7 +164,7 @@
         var mAng = o.minute / 60 * Math.PI * 2, hAng = ((o.hour % 12) + o.minute / 60) / 12 * Math.PI * 2;
         hand(R * 0.55, R * 0.07, hAng, fz + 0.006, M.ink, R * 0.12);
         hand(R * 0.82, R * 0.045, mAng, fz + 0.009, M.ink, R * 0.14);
-        hand(R * 0.86, R * 0.012, mAng + 0.9, fz + 0.012, M.ink, R * 0.2);
+        hand(R * 0.86, R * 0.012, mAng + 3.3, fz + 0.012, M.ink, R * 0.2);
         var hub = new THREE.Mesh(new THREE.CylinderGeometry(R * 0.05, R * 0.05, 0.008, 24), M.hub); hub.rotation.x = Math.PI / 2; hub.position.z = fz + 0.013; g.add(hub);
         /* the domed lens */
         var lens = new THREE.Mesh(new THREE.SphereGeometry(R * 1.02, 48, 12, 0, Math.PI * 2, 0, 0.32), M.lens);
@@ -256,6 +256,27 @@
     return c;
   };
 
+
+  /* A ROOM IN THE DECK'S LIGHT. TXT.interior builds the walls and a lit window; the deck's rooms
+   * are limestone and the window is on the back wall so the light has a source a reader sees.
+   * A darker floor is laid a hair above the room's own, so the frame steps down from the noon
+   * exteriors instead of bleaching. o: w, d, h, wall, floor (hex), windowX. */
+  N.room = function (TXT, R, o) {
+    o = o || {};
+    var room = TXT.interior(R, { w: o.w || 12, d: o.d || 9, h: o.h || 6, floor: "concrete", wall: o.wall || 0xb9ae9b, window: null, light: o.light || 0.7 });
+    var T = N.T, d = o.d || 9, ww = o.windowW || 2.6, wh = o.windowH || 2.2;
+    /* the window, set where the frame wants it on the back wall: a lit pane in a dark frame with a sill */
+    var pane = new T.Mesh(new T.PlaneGeometry(ww, wh), new T.MeshBasicMaterial({ color: 0xfff1da, toneMapped: true }));
+    pane.material.color.multiplyScalar(o.windowI || 2.4); pane.position.set(o.windowX || 0, o.windowY || 2.2, -d / 2 + 0.115); R.scene.add(pane);
+    var fm = new T.MeshStandardMaterial({ color: 0x3a3632, roughness: 0.6, metalness: 0.3 });
+    [[ww + 0.16, 0.08, 0, wh / 2 + 0.04], [ww + 0.16, 0.12, 0, -wh / 2 - 0.06], [0.08, wh, -ww / 2 - 0.04, 0], [0.08, wh, ww / 2 + 0.04, 0], [0.05, wh, 0, 0]].forEach(function (b) {
+      var m = new T.Mesh(new T.BoxGeometry(b[0], b[1], 0.06), fm); m.position.set((o.windowX || 0) + b[2], (o.windowY || 2.2) + b[3], -d / 2 + 0.13); m.castShadow = true; R.scene.add(m);
+    });
+    var floor = new T.Mesh(new T.PlaneGeometry(80, 80), new T.MeshStandardMaterial({ color: o.floor || 0x6b6f73, roughness: 0.92, metalness: 0 }));
+    floor.rotation.x = -Math.PI / 2; floor.position.y = 0.003; floor.receiveShadow = true; R.scene.add(floor);
+    return room;
+  };
+
   /* ---------------------------------------------------------------- the frame shell */
   N.project = function (THREE, R, p) {
     R.camera.updateMatrixWorld(true);
@@ -311,8 +332,8 @@
     N.atmosphere(cx, { a: o.a == null ? 0.18 : o.a, to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
     N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
     N.soften(cx, [".tx-site", ".src"], { blur: o.siteBlur || 18, pad: 18, feather: 70 });
-    var y0 = N.H - (o.veilH || 200), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
-    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.36 : o.veil) * e).toFixed(4) + ")"); }
+    var y0 = N.H - (o.veilH || 250), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.45 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
     N.dither(cx);
   };

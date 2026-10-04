@@ -170,7 +170,7 @@ art:
 
 type:
   hook: "The state board said no."
-  dek: "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts."
+  dek: "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts."
   labels: []
 
 verbatim: []
@@ -231,7 +231,7 @@ art:
     Frame median L* planned at 76.
 
 type:
-  hook: "Down 10 to 3, the Tribune reports."
+  hook: "Voted down 10 to 3, the Tribune reports."
   dek: "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented."
   labels: ["10 IN THE MAJORITY", "3 IN THE MINORITY"]
 
@@ -241,7 +241,7 @@ acceptance:
   - "two blocks of chairs read at 432px, ten on the left and three on the right, with a clear aisle between"
   - "every chair stands on the floor with a contact shadow"
   - "no person is seated in any chair"
-  - "the hook reads 'Down 10 to 3, the Tribune reports.' and names the Tribune"
+  - "the hook reads 'Voted down 10 to 3, the Tribune reports.' and names the Tribune"
   - "the frame's median L* at 432px is between 66 and 86"
 
 risks:
@@ -356,7 +356,7 @@ verbatim: []
 acceptance:
   - "seven separate people read at 432px, each standing on the walk with a short shadow at the feet"
   - "no face is shown front on and every walker is under a fifth of the frame height"
-  - "the walkway's shade reads as a black band across the near ground"
+  - "the walkway's shade reads as a dark band along the wing behind the walkers, and the near walk carries grit and wear"
   - "no school bus is in the frame"
   - "the frame's median L* at 432px is between 50 and 76"
 
@@ -412,7 +412,7 @@ art:
 
 type:
   hook: "Approached, at least 10. Piloted, 3. Declined, 5."
-  dek: "One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them."
+  dek: "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them."
   labels: ["PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS", "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"]
 
 verbatim: []
@@ -535,14 +535,14 @@ art:
 
 type:
   hook: "Aldine's pilot spans four middle schools."
-  dek: "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract."
+  dek: "Aldine will use the platform with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract."
   labels: []
 
 verbatim: []
 
 acceptance:
   - "four school buildings read at 432px, stepping back along a street"
-  - "a yellow bus with the accent card stands at the near kerb with a contact shadow"
+  - "a yellow bus stands at the near kerb with a contact shadow and reads as a bus at 432px"
   - "a city skyline stands hazed on the horizon"
   - "the hook sits on the sky above the horizon"
   - "the frame's median L* at 432px is between 52 and 76"
@@ -597,14 +597,14 @@ art:
     Frame median L* planned at 78.
 
 type:
-  hook: "Claimed 50% to 60%. Passed, 21%."
+  hook: "Claimed 50% to 60%.<br>Passed, 21%."
   dek: "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F."
-  labels: ["CLAIMED 50% TO 60%", "PASSED 21%", "AT GRADE LEVEL, DOWN FROM 10% TO ZERO"]
+  labels: ["AN ALPHA LEADER CLAIMED 50% TO 60%", "PASSED 21%", "AT GRADE LEVEL, DOWN FROM 10% TO ZERO"]
 
 verbatim: []
 
 acceptance:
-  - "the accent column stands at about a fifth of the glass band's scale height and reads at 432px"
+  - "the accent column height equals 21 on the same scale as the glass band's 50 to 60 span, within 5 percent, and reads at 432px"
   - "the glass band spans a range, not a point"
   - "every column stands on the table with a contact shadow"
   - "each label sits beside its own column"
@@ -625,7 +625,7 @@ accent: none
 job: >
   Hand the decision to the reader's own district, and name the step a reader can take.
 
-claims: [c12, c22, c32]
+claims: [c22]
 numerals: []
 
 depth:
@@ -654,7 +654,7 @@ art:
 
 type:
   hook: "Ask the district that runs this bus."
-  dek: "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more."
+  dek: "TEA says it left the choice to each district. Ask at your school board's next meeting whether yours was approached about Alpha's platform and what a pilot must prove. A public information request asks it in writing."
   labels: []
 
 verbatim: []

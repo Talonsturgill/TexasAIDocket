@@ -16,12 +16,12 @@
     "c12"
    ],
    "cite": "c6 c7 c12",
-   "body": "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts.",
+   "body": "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "The state board said no.",
-    "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts.",
+    "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts.",
     "Alpha's AI and Texas public schools",
     "01 / 09",
     "c6 c7 c12"
@@ -31,7 +31,7 @@
    "n": 2,
    "file": "slide-02.html",
    "kicker": "State Board of Education",
-   "headline": "Down 10 to 3, the Tribune reports.",
+   "headline": "Voted down 10 to 3, the Tribune reports.",
    "claims": [
     "c7",
     "c8"
@@ -44,7 +44,7 @@
    ],
    "strings": [
     "texasaidocket.com",
-    "Down 10 to 3, the Tribune reports.",
+    "Voted down 10 to 3, the Tribune reports.",
     "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
     "10 IN THE MAJORITY",
     "3 IN THE MINORITY",
@@ -71,7 +71,7 @@
     "The commissioner wrote back.",
     "Mike Morath answered Alpha School associates in September 2025. He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.",
     "\"I'd love to schedule a follow-up discussion\"",
-    "MIKE MORATH, SEPTEMBER 2025 AS QUOTED BY THE TRIBUNE AND PROPUBLICA",
+    "MIKE MORATH, SEPTEMBER 2025, AS QUOTED BY THE TRIBUNE AND PROPUBLICA",
     "The emails",
     "03 / 09",
     "c9 c10 c11"
@@ -109,7 +109,7 @@
     "c22"
    ],
    "cite": "c16 c17 c19 c22",
-   "body": "One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them.",
+   "body": "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them.",
    "labels": [
     "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
     "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"
@@ -117,7 +117,7 @@
    "strings": [
     "texasaidocket.com",
     "Approached, at least 10. Piloted, 3. Declined, 5.",
-    "One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them.",
+    "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them.",
     "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
     "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE",
     "The districts",
@@ -128,7 +128,7 @@
   "S6": {
    "n": 6,
    "file": "slide-06.html",
-   "kicker": "Fort Davis ISD, Jeff Davis County",
+   "kicker": "Fort Davis ISD",
    "headline": "Extra help, not a two hour day.",
    "claims": [
     "c18",
@@ -143,7 +143,7 @@
     "texasaidocket.com",
     "Extra help, not a two hour day.",
     "Fort Davis ISD enrolls around 800 students. It will use the model in its K-8 classrooms for students who need extra help in reading and math. Alpha's full model has AI teach all students basic subjects in two hours a day.",
-    "Fort Davis ISD, Jeff Davis County",
+    "Fort Davis ISD",
     "06 / 09",
     "c18 c23 c34 c35"
    ]
@@ -151,7 +151,7 @@
   "S7": {
    "n": 7,
    "file": "slide-07.html",
-   "kicker": "Aldine ISD and Houston ISD, Harris County",
+   "kicker": "Aldine ISD and Houston ISD",
    "headline": "Aldine's pilot spans four middle schools.",
    "claims": [
     "c24",
@@ -160,13 +160,13 @@
     "c27"
    ],
    "cite": "c24 c25 c26 c27",
-   "body": "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
+   "body": "Aldine will use the platform with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "Aldine's pilot spans four middle schools.",
-    "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
-    "Aldine ISD and Houston ISD, Harris County",
+    "Aldine will use the platform with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
+    "Aldine ISD and Houston ISD",
     "07 / 09",
     "c24 c25 c26 c27"
    ]
@@ -175,7 +175,7 @@
    "n": 8,
    "file": "slide-08.html",
    "kicker": "Texas Preparatory School, Austin",
-   "headline": "Claimed 50% to 60%. Passed, 21%.",
+   "headline": "Claimed 50% to 60%.<br>Passed, 21%.",
    "claims": [
     "c28",
     "c39",
@@ -186,7 +186,7 @@
    "cite": "c28 c39 c40 c42 c43",
    "body": "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F.",
    "labels": [
-    "CLAIMED 50% TO 60%",
+    "AN ALPHA LEADER CLAIMED 50% TO 60%",
     "PASSED 21%",
     "AT GRADE LEVEL, DOWN FROM 10% TO ZERO"
    ],
@@ -194,7 +194,7 @@
     "texasaidocket.com",
     "Claimed 50% to 60%. Passed, 21%.",
     "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F.",
-    "CLAIMED 50% TO 60%",
+    "AN ALPHA LEADER CLAIMED 50% TO 60%",
     "PASSED 21%",
     "AT GRADE LEVEL, DOWN FROM 10% TO ZERO",
     "Texas Preparatory School, Austin",
@@ -208,20 +208,18 @@
    "kicker": "Your district",
    "headline": "Ask the district that runs this bus.",
    "claims": [
-    "c12",
-    "c22",
-    "c32"
+    "c22"
    ],
-   "cite": "c12 c22 c32",
-   "body": "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more.",
+   "cite": "c22",
+   "body": "TEA says it left the choice to each district. Ask at your school board's next meeting whether yours was approached about Alpha's platform and what a pilot must prove. A public information request asks it in writing.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "Ask the district that runs this bus.",
-    "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more.",
+    "TEA says it left the choice to each district. Ask at your school board's next meeting whether yours was approached about Alpha's platform and what a pilot must prove. A public information request asks it in writing.",
     "Your district",
     "09 / 09",
-    "c12 c22 c32"
+    "c22"
    ]
   }
  }

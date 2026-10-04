@@ -30,21 +30,23 @@ const FIG = {"tea_party": 7};
 window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The return visit", counter: "04 / 09", src: "c33", fit: { min: 90, max: 116, maxLines: 2 } });
-  const R = NB.stage(TXT, gl, W, { fov: 35, exposure: 0.95, fog: 0.0014 });
+  const R = NB.stage(TXT, gl, W, { fov: 37, exposure: 0.95, fog: 0.0014 });
   TXT.ground(R, { surface: 'concrete', size: 900, tile: 5, seed: 31, color: 0xcdc6b8, joints: true });
   const sc = K.make('school', { length: 57, brick: '#cfae80', seed: 21 }); sc.remove(sc.children[sc.children.length - 1]); TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
   /* the party, one figure for each of tea_party, walking west along the walk in single file and pairs */
   for (let i = 0; i < FIG.tea_party; i++) {
-    const p = K.make('person', { seed: 70 + i, role: 'official', pose: 'walk', hat: 'none' });
+    const COATS = [0x2f3642, 0x5a4a3c, 0x6f7480, 0x3d4a3a, 0x8a7a66, 0x262a30, 0x4b5566], LEGS = [0x23262b, 0x3a3d42, 0x2d2a26, 0x4a4e55, 0x1f2226, 0x5b5348, 0x30343a];
+    const p = K.make('person', { seed: 70 + i, role: 'official', pose: 'walk', hat: 'none', height: 1.7 + ((i * 37) % 9) / 100, shirt: COATS[i], trousers: LEGS[i] });
     p.rotation.y = -Math.PI / 2 + 0.35; p.position.set(-6.0 + i * 1.42 + (i % 2) * 0.25, 0, 16.2 + (i % 2) * 1.0);
     TXT.add(R, p); TXT.contact(R, p, { opacity: 0.75 });
   }
   [[-34, 20, 'live_oak', 4], [26, 24, 'live_oak', 8], [44, -30, 'pecan', 2], [-50, -26, 'cedar_elm', 5]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
-  TXT.frame(R, { from: [2.6, 1.6, 40], look: [-1.8, 5.6, 8] });
+  TXT.frame(R, { from: [-1.6, 1.6, 34], look: [-1.8, 5.0, 8] });
   TXT.scatter(R, { kind: 'grass', count: 2500, area: [-120, -120, 120, 80], avoid: [[-40, -12, 40, 60]], seed: 4, scale: 0.9 });
+  TXT.scatter(R, { kind: 'rock', count: 260, area: [-14, 18.5, 14, 31], avoid: [[-12, 28.5, 12, 40]], seed: 12, scale: [0.02, 0.05], colors: [0x8a7f6c, 0x6e6658, 0x9a8f7a] });
   TXT.sky(R);
   TXT.deckRig(R, NB.rigSpec(W, 60), NB.rigOpts([0, 0, 10], { distance: 120 }));
-  TXT.weather(R, { grime: 0.3, height: 1.2 });
+  TXT.weather(R, { grime: 0.45, height: 1.4, mottle: 0.5 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
   NB.post(cx, { a: 0.16 });
   TXDECK.finish(cx);

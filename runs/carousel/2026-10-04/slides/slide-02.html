@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 2026-10-04, frame 2 of 9. Archetype DIAGRAM. RENDERED through txthree.js in a TXT.interior hearing room lit by the deck's rig and its window. Thirteen empty exec chairs on the floor before a dais: a block of ten and a block of three with an aisle between, one chair for each member the Tribune's tally counts. No member is drawn. -->
+<!-- 2026-10-04, frame 2 of 9. Archetype DIAGRAM. RENDERED through txthree.js in a TXT.interior hearing room lit by the deck's rig and its window. Thirteen empty exec chairs on a blue grey floor before a dais and a blank seal, a lit window in the back wall: a block of ten and a block of three with an aisle between, one chair for each member the Tribune's tally counts. No member is drawn. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">Down 10 to 3, the Tribune reports.</h1>
+<h1 class="hook" id="hook">Voted down 10 to 3, the Tribune reports.</h1>
 <p class="dek" data-follow="26">The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.</p>
 <div class="lab" id="lab-for">10 IN THE MAJORITY</div>
 <div class="lab" id="lab-against">3 IN THE MINORITY</div>
@@ -33,21 +33,21 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "State Board of Education", counter: "02 / 09", src: "c7 c8", fit: { min: 90, max: 112, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 30, exposure: 1.05, fog: 0.0004, far: 400 });
-  TXT.interior(R, { w: 18, d: 13, h: 13.0, floor: 'concrete', wall: 0xd6cdbd, window: 'left', light: 0.85 });
+  NB.room(TXT, R, { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.2, windowY: 2.75 });
   const dais = K.make('hearing_dais', { seats: 15, curve: 0, mics: true, plates: true, seed: 3 }); dais.position.set(0, 0, -5.0); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.6 });
-  const flags = K.make('flags_pair', {}); flags.position.set(5.9, 0, -5.6); TXT.add(R, flags); TXT.contact(R, flags, { opacity: 0.5 });
+  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(-1.6, 2.5, -6.38); TXT.add(R, seal);
   /* one chair for each member in the Tribune's tally: board_for in two rows on the left, an aisle,
    * board_against on the right, all empty, facing the room */
   const chair = (x, z, s) => { const c = K.make('office_chair', { style: 'exec', seed: s }); c.position.set(x, 0, z); c.rotation.y = (s % 3 - 1) * 0.06; TXT.add(R, c); TXT.contact(R, c, { opacity: 0.7 }); return c; };
   const PX = 0.95, PZ = 1.15;
-  for (let i = 0; i < FIG.board_for; i++) { const row = Math.floor(i / 5); chair(-4.6 + (i % 5) * PX + row * PX / 2, -0.2 + row * PZ, 10 + i); }
+  for (let i = 0; i < FIG.board_for; i++) { const row = Math.floor(i / 5); chair(-4.9 + (i % 5) * PX, -0.2 + row * PZ, 10 + i); }
   for (let j = 0; j < FIG.board_against; j++) chair(1.55 + j * PX, 0.4, 40 + j);
-  TXT.frame(R, { from: [-0.5, 3.0, 23], look: [-0.5, 2.05, -2] });
+  TXT.frame(R, { from: [-0.6, 2.9, 22], look: [-0.6, 2.15, -2] });
   TXT.deckRig(R, NB.rigSpec(W, 20), NB.rigOpts([0, 0, -1], { distance: 40 }));
   TXT.weather(R, { grime: 0.12, height: 0.5 });
   const place = (id, p, dx, dy) => { const q = NB.project(THREE, R, p), el = document.getElementById(id); el.style.left = (q[0] + dx) + 'px'; el.style.top = (q[1] + dy) + 'px'; };
-  place('lab-for', [-4.6 + 2.25 * PX, 2.3, -0.2], -135, -60);
-  place('lab-against', [1.55 + PX, 2.3, 0.4], -125, -60);
+  place('lab-for', [-4.9 + 2 * PX, 2.2, -0.2], -135, -60);
+  place('lab-against', [1.55 + PX, 2.2, 0.4], -125, -60);
   const cx = NB.develop(await TXT.snapshot(R), gl);
   NB.post(cx, { a: 0.14, type: ['.kick', '.hook', '.dek', '.lab'] });
   TXDECK.finish(cx);
