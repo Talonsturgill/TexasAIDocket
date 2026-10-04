@@ -33,21 +33,22 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "State Board of Education", counter: "02 / 09", src: "c7 c8", fit: { min: 90, max: 112, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 30, exposure: 1.05, fog: 0.0004, far: 400 });
-  NB.room(TXT, R, { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.2, windowY: 2.75 });
+  const roomO = { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.6, windowY: 4.35 };
+  const room = TXT.interior(R, NB.roomSpec(roomO)); NB.room(TXT, R, roomO, room);
   const dais = K.make('hearing_dais', { seats: 15, curve: 0, mics: true, plates: true, seed: 3 }); dais.position.set(0, 0, -5.0); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.6 });
-  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(-1.6, 2.5, -6.38); TXT.add(R, seal);
+  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(-1.6, 3.15, -6.38); TXT.add(R, seal);
   /* one chair for each member in the Tribune's tally: board_for in two rows on the left, an aisle,
    * board_against on the right, all empty, facing the room */
   const chair = (x, z, s) => { const c = K.make('office_chair', { style: 'exec', seed: s }); c.position.set(x, 0, z); c.rotation.y = (s % 3 - 1) * 0.06; TXT.add(R, c); TXT.contact(R, c, { opacity: 0.7 }); return c; };
   const PX = 0.95, PZ = 1.15;
   for (let i = 0; i < FIG.board_for; i++) { const row = Math.floor(i / 5); chair(-4.9 + (i % 5) * PX, -0.2 + row * PZ, 10 + i); }
   for (let j = 0; j < FIG.board_against; j++) chair(1.55 + j * PX, 0.4, 40 + j);
-  TXT.frame(R, { from: [-0.6, 2.9, 22], look: [-0.6, 2.15, -2] });
+  TXT.frame(R, { from: [-0.6, 2.9, 22], look: [-0.6, 3.35, -2] });
   TXT.deckRig(R, NB.rigSpec(W, 20), NB.rigOpts([0, 0, -1], { distance: 40 }));
   TXT.weather(R, { grime: 0.12, height: 0.5 });
   const place = (id, p, dx, dy) => { const q = NB.project(THREE, R, p), el = document.getElementById(id); el.style.left = (q[0] + dx) + 'px'; el.style.top = (q[1] + dy) + 'px'; };
   place('lab-for', [-4.9 + 2 * PX, 2.2, -0.2], -135, -60);
-  place('lab-against', [1.55 + PX, 2.2, 0.4], -125, -60);
+  place('lab-against', [1.55 + PX, 2.2, 0.4], -205, -60);
   const cx = NB.develop(await TXT.snapshot(R), gl);
   NB.post(cx, { a: 0.14, type: ['.kick', '.hook', '.dek', '.lab'] });
   TXDECK.finish(cx);

@@ -57,7 +57,7 @@ window.renderReady = (async () => {
   /* the campus the lot serves, a brick wing beyond the fence, drawn as no particular school */
   const sc = K.make('school', { length: 57, brick: '#c49460', seed: 6 }); sc.position.set(14, 0, -66); TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
   [[-22, -44, 'live_oak', 3], [56, -46, 'live_oak', 7], [-46, -70, 'cedar_elm', 2], [78, -80, 'pecan', 8]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
-  TXT.frame(R, { from: [13.2, 10, 55], look: [13.2, 7.4, -40] });
+  TXT.frame(R, { from: [13.2, 10, 55], look: [13.2, 14.2, -40] });
   TXT.scatter(R, { kind: 'grass', count: 3000, area: [-140, -220, 180, -36], seed: 9, scale: 0.9 });
   TXT.sky(R);
   TXT.deckRig(R, NB.rigSpec(W, 130, 4096), NB.rigOpts([14, 0, -4], { distance: 160, shadowFar: 360 }));
@@ -67,7 +67,7 @@ window.renderReady = (async () => {
   place('lab-pilot', [PITCH, 3.3, 8.5], -150, document.querySelector('.dek').getBoundingClientRect().bottom + 22);
   place('lab-no', [5 * PITCH, 3.3, 0], -60, document.querySelector('.dek').getBoundingClientRect().bottom + 22);
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.16, type: ['.kick', '.hook', '.dek', '.lab'] });
+  NB.post(cx, { footWash: 0.42, a: 0.16, veilH: 170, type: ['.kick', '.hook', '.dek', '.lab'] });
   TXDECK.finish(cx);
   return true;
 })();

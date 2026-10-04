@@ -48,7 +48,7 @@ window.renderReady = (async () => {
   TXT.deckRig(R, NB.rigSpec(W, 60), NB.rigOpts([0, 0, -6]));
   TXT.weather(R, { grime: 0.42, height: 1.0 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.16 });
+  NB.post(cx, { footWash: 0.42, a: 0.16 });
   TXDECK.finish(cx);
   return true;
 })();

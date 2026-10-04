@@ -103,7 +103,7 @@
       face: K.mat("nb-face", { color: 0xffffff, roughness: 0.62, metalness: 0, map: N.faceTex(THREE) }),
       ink: K.mat("nb-ink", { color: 0x121314, roughness: 0.5, metalness: 0.05 }),
       hub: K.mat("nb-hub", { color: 0x0d0d0e, roughness: 0.3, metalness: 0.6 }),
-      sector: K.mat("nb-sector", { color: 0xc2477a, roughness: 0.55, metalness: 0, emissive: 0x6a1838, emissiveIntensity: 0.35 }),
+      sector: K.mat("nb-sector", { color: 0xc2477a, roughness: 0.55, metalness: 0, emissive: 0x6a1838, emissiveIntensity: 0.35, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }),
       lens: K.mat("nb-lens", { color: 0xffffff, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.12 }, true),
       castStone: K.mat("nb-cast", { color: 0xddd3bd, roughness: 0.88, metalness: 0 }),
       card: K.mat("nb-card2", { color: 0x8e2a52, roughness: 0.85, metalness: 0, emissive: 0x2a0816, emissiveIntensity: 0.3, side: 2 }),
@@ -146,14 +146,14 @@
         if (o.sector) {
           var a0 = Math.PI / 2 - o.sector[0] / 12 * Math.PI * 2, sweep = o.sector[1] / 12 * Math.PI * 2;
           var sg = new THREE.RingGeometry(R * 0.2, R * 0.86, 64, 1, a0 - sweep, sweep);
-          var sm = new THREE.Mesh(sg, M.sector); sm.position.z = fz + 0.0008; g.add(sm);
+          var sm = new THREE.Mesh(sg, M.sector); sm.position.z = fz + 0.0012; g.add(sm);
         }
         /* minute ticks and hour bars, raised a hair off the face */
         for (var i = 0; i < 60; i++) {
           var hr = i % 5 === 0, len = hr ? R * 0.15 : R * 0.05, wid = hr ? R * 0.035 : R * 0.012;
           var t = new THREE.Mesh(new THREE.BoxGeometry(wid, len, 0.0012), M.ink);
           var ang = i / 60 * Math.PI * 2, rr = R * 0.93 - len / 2;
-          t.position.set(Math.sin(ang) * rr, Math.cos(ang) * rr, fz + 0.0012); t.rotation.z = -ang; g.add(t);
+          t.position.set(Math.sin(ang) * rr, Math.cos(ang) * rr, fz + 0.0026); t.rotation.z = -ang; g.add(t);
         }
         /* the hands: hour, minute and a slim sweep hand, on a hub */
         function hand(len, wid, ang, z, mat, tail) {
@@ -260,10 +260,43 @@
   /* A ROOM IN THE DECK'S LIGHT. TXT.interior builds the walls and a lit window; the deck's rooms
    * are limestone and the window is on the back wall so the light has a source a reader sees.
    * A darker floor is laid a hair above the room's own, so the frame steps down from the noon
-   * exteriors instead of bleaching. o: w, d, h, wall, floor (hex), windowX. */
-  N.room = function (TXT, R, o) {
+   * exteriors instead of bleaching. o: w, d, h, wall, floor (hex), windowX. The frame calls
+   * TXT.interior itself with N.roomSpec(o), so the room it stands in is in its own source, and
+   * hands the room here for the window and the floor. */
+  N.roomSpec = function (o) {
     o = o || {};
-    var room = TXT.interior(R, { w: o.w || 12, d: o.d || 9, h: o.h || 6, floor: "concrete", wall: o.wall || 0xb9ae9b, window: null, light: o.light || 0.7 });
+    return { w: o.w || 12, d: o.d || 9, h: o.h || 6, floor: "concrete", wall: o.wall || 0xb9ae9b, window: null, light: o.light || 0.7 };
+  };
+  /* THE WALL IS LIMESTONE ASHLAR, the stone of a Texas public building: courses of sawn block in
+   * the wall's own tone, each block a shade off its neighbours, with a recessed mortar joint. Drawn
+   * once to a canvas at the wall's own size, so a course reads the same height in every room. */
+  N.ashlar = function (mesh, o) {
+    var T = N.T, w = o.w || 12, h = o.h || 6, ppm = Math.max(40, Math.min(150, Math.floor(3600 / Math.max(w, h))));
+    var c = document.createElement("canvas"); c.width = Math.round(w * ppm); c.height = Math.round(h * ppm);
+    var x = c.getContext("2d"), hx = o.wall || 0xb9ae9b, base = [(hx >> 16) & 255, (hx >> 8) & 255, hx & 255], s = 20261004;
+    function rnd() { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x7fffffff; }
+    /* the tone is the wall's own sRGB hex scaled, written to the canvas as sRGB */
+    function tone(k) { return "rgb(" + base.map(function (v) { return Math.round(Math.min(255, v * k)); }).join(",") + ")"; }
+    var ch = 0.45 * ppm, joint = Math.max(2, Math.round(0.018 * ppm));
+    x.fillStyle = tone(0.8); x.fillRect(0, 0, c.width, c.height);
+    for (var row = 0, y = c.height; y > -ch; row++, y -= ch) {
+      var bx = -(row % 2) * 0.45 * ppm;
+      while (bx < c.width) {
+        var bw = (0.7 + rnd() * 0.5) * ppm;
+        x.fillStyle = tone(0.93 + rnd() * 0.12); x.fillRect(bx + joint / 2, y - ch + joint / 2, bw - joint, ch - joint);
+        for (var k = 0; k < 14; k++) { x.fillStyle = "rgba(60,48,36," + (rnd() * 0.05).toFixed(3) + ")"; x.beginPath(); x.arc(bx + rnd() * bw, y - rnd() * ch, (0.01 + rnd() * 0.05) * ppm, 0, 6.283); x.fill(); }
+        bx += bw;
+      }
+    }
+    var t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.anisotropy = 8;
+    /* a face of the wall's own size a centimetre in front of it, so the block size is known */
+    var face = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshStandardMaterial({ color: 0xffffff, map: t, roughness: 0.93, metalness: 0 }));
+    face.position.set(0, h / 2, (o.z || 0) + 0.11); face.receiveShadow = true; face.castShadow = false;
+    return face;
+  };
+  N.room = function (TXT, R, o, room) {
+    o = o || {};
+    if (room && o.ashlar !== false) R.scene.add(N.ashlar(null, { w: o.w || 12, h: o.h || 6, wall: o.wall, z: -(o.d || 9) / 2 }));
     var T = N.T, d = o.d || 9, ww = o.windowW || 2.6, wh = o.windowH || 2.2;
     /* the window, set where the frame wants it on the back wall: a lit pane in a dark frame with a sill */
     var pane = new T.Mesh(new T.PlaneGeometry(ww, wh), new T.MeshBasicMaterial({ color: 0xfff1da, toneMapped: true }));
@@ -272,8 +305,8 @@
     [[ww + 0.16, 0.08, 0, wh / 2 + 0.04], [ww + 0.16, 0.12, 0, -wh / 2 - 0.06], [0.08, wh, -ww / 2 - 0.04, 0], [0.08, wh, ww / 2 + 0.04, 0], [0.05, wh, 0, 0]].forEach(function (b) {
       var m = new T.Mesh(new T.BoxGeometry(b[0], b[1], 0.06), fm); m.position.set((o.windowX || 0) + b[2], (o.windowY || 2.2) + b[3], -d / 2 + 0.13); m.castShadow = true; R.scene.add(m);
     });
-    var floor = new T.Mesh(new T.PlaneGeometry(80, 80), new T.MeshStandardMaterial({ color: o.floor || 0x6b6f73, roughness: 0.92, metalness: 0 }));
-    floor.rotation.x = -Math.PI / 2; floor.position.y = 0.003; floor.receiveShadow = true; R.scene.add(floor);
+    /* the floor: the concrete surface with its tooth and joints, in the frame's darker tone */
+    TXT.ground(R, { surface: "concrete", color: o.floor || 0x6b6f73, size: 60, tile: o.tile || 2.5, y: 0.003, seed: o.seed });
     return room;
   };
 
@@ -335,6 +368,16 @@
     var y0 = N.H - (o.veilH || 250), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
     for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.45 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
+    /* THE FOOTER ROW'S WASH, for a frame whose ground under the footer is asphalt or shadow: a
+     * feathered band across the whole width, peaking on the footer's own line, so the citation
+     * and the site line clear 4.5 without a plate behind either */
+    if (o.footWash) {
+      var f = document.querySelector(".tx-site"), sc = N.H / document.body.clientHeight, fr = f ? f.getBoundingClientRect() : null;
+      var mid = fr ? (fr.top + fr.height / 2) * sc : N.H - 110, half = 120;
+      var fw = cx.createLinearGradient(0, mid - half, 0, mid + half);
+      [[0, 0], [0.3, 1], [0.7, 1], [1, 0]].forEach(function (p) { fw.addColorStop(p[0], "rgba(" + rgb + "," + (o.footWash * p[1]).toFixed(4) + ")"); });
+      cx.fillStyle = fw; cx.fillRect(0, mid - half, N.W, half * 2);
+    }
     N.dither(cx);
   };
   N.dither = function (cx) {

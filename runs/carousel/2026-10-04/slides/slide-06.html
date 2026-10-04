@@ -41,11 +41,11 @@ window.renderReady = (async () => {
   [[8, 15, 'mesquite', 3], [-36, 18, 'mesquite', 6], [20, -40, 'ashe_juniper', 4]].forEach(([x, z, k, s2]) => { const t = K.make(k, { seed: s2 }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
   const mesa = K.make('mesa', { kind: 'mesa', seed: 5 }); mesa.position.set(-500, 0, -2400); TXT.add(R, mesa);
   const butte = K.make('mesa', { kind: 'butte', seed: 9 }); butte.position.set(900, 0, -3200); TXT.add(R, butte);
-  TXT.frame(R, { from: [-9.6, 1.6, 20.5], look: [-15.2, 5.2, 10.3] });
+  TXT.frame(R, { from: [-9.6, 1.6, 20.5], look: [-15.2, 5.04, 10.3] });
   TXT.scatter(R, { kind: 'scrub', count: 900, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 5, scale: 1.0 });
   TXT.scatter(R, { kind: 'grass', count: 2200, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 8, scale: 0.9, colors: [0xb59f6e, 0xc4ae7a, 0xa8925f] });
   TXT.sky(R);
-  TXT.deckRig(R, NB.rigSpec(W, 14, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90 }));
+  TXT.deckRig(R, NB.rigSpec(W, 8, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90 }));
   TXT.weather(R, { grime: 0.5, height: 2.2, mottle: 0.6 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
   NB.post(cx, { a: 0.14 });
