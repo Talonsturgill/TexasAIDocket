@@ -4,7 +4,7 @@ Effort at wake: `high` (as the repo's settings carry it). The no-stall hook logg
 06:15:31 UTC and judged the session unattended from SessionStart, with the host's
 `CLAUDE_CODE_SESSION_ATTENDED=0`. It refused nothing.
 
-## DISPOSITION: SHIPPED AT THE ROUND CAP, 7.15, 0.55 UNDER THE 7.7 RUNG AND 0.85 UNDER THE 8.0 TOP RUNG
+## DISPOSITION: SHIPPED AT THE ROUND CAP, 7.138 ON A VERIFICATION ROUND, 0.562 UNDER THE 7.7 RUNG AND 0.862 UNDER THE 8.0 TOP RUNG
 
 Carousel no. 42, "The state board said no", is nine frames rendered in one noonbell world
 (highNoon sky, pale haze, sun at elevation 58) with one hero, the kit school bus. Its stop arm is
@@ -18,7 +18,7 @@ The deck went through these reviews:
 - two flow critic rounds
 - three panel rounds of three judges
 
-The panel medians were 6.96, 7.038 and 7.15. No judge in any round found a hard fail. Round 3 is the cap on the ladder (8.0, 7.7, then ship), so the deck ships with the shortfall named.
+The panel medians were 6.96, 7.038 and 7.15. A fourth round of three fresh judges then verified the deck that ships, after its exposure repair (below), at 7.138 with a spread of 0.24. No judge in any of the four rounds found a hard fail. Round 3 is the cap on the ladder (8.0, 7.7, then ship), so the deck ships with the shortfall named.
 
 **The craft floor stood down at the cap.** The panel's `artwork_craft` median was 6.0 against the
 8.5 floor. `score.json` carries `craft_floor: capped`.
@@ -105,10 +105,12 @@ The deck now measures L* 58.1 at 432 px off the renders, and `measurements.json`
 shipped frames. Frames 1, 2 and 8 had their L* bands rewritten to 44 to 66 or 44 to 68, the band
 following the frame.
 
-**What a reader should know.** The panel scored the lighter render. The shipped frames are the same
-compositions under a lower exposure, and every gate, panel_ready included, passes on them. No judge
-re-scored them. The 7.15 stands as the score measured on the lighter version, said here and in the
-email rather than presented as a score of the deck that ships.
+**Verified, as a hard fail repair past the cap is.** A fourth round of three fresh judges scored
+the darker frames at 6.93, 7.04 and 7.17, for a median of 7.138, with no hard fail. That is the
+score of the deck that ships. The craft judge's one sentence fix is the lesson: when the light deck
+cap is spent, the directors should pitch a world dark by nature rather than dim a noon. Round 4's
+integrity judge found the web edition stating the 10 to 3 without "the Tribune reports", and that
+line now carries it.
 
 `ledger_check` also caught four ledger faults:
 - the caption ledger's closing move was a freehand name, now the menu's "ask the one question the
@@ -214,7 +216,7 @@ The Phase 7 once-over ran and every check exited 0.
 decision of 1.5 to 4.0 s, with a median of 1.9 s. Every earlier run read 4 to 43 ms for an
 auto-approval.
 
-This session ran in auto mode, which classifies each call before it runs. 436 decisions that each
+This session ran in auto mode, which classifies each call before it runs. Measured before the payload was built, the debug log marks every one of the 483 decisions over a second as "[auto-mode] new action being classified", the longest 12.6 s on a 4,032 character command. 436 decisions that each
 came back in four seconds or less are not a person answering a dialog. The waits fit that
 classifier, and the no-stall hook logged no dialog waiting. The audit can't tell the two apart, so
 the reading stands here as measured, and the gap is queued as `prompt-audit-reads-auto-mode-as-human`.
@@ -278,7 +280,7 @@ These went to `knowledge/carousel/MACHINE_QUEUE.md`, in the upgrade commits:
 | qa             | WARN   | 0 fail(s), 13 warn(s) |
 | aggregates     | PASS   | 9 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 6.8 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | WARN   | 7.138 at the round cap after 4 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 87 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 1 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |

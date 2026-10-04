@@ -1268,6 +1268,14 @@
       "evidence": "No. 42 frame 8, conference_table's size[1] is 1.0 m and its top 0.74 m, so the measured columns floated 0.26 m over the table through pixel round 2.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "light-cap-before-the-world",
+      "learned": "2026-10-04",
+      "instinct": "Read the light deck cap off artwork.json before the directors pitch a world, and when the window's one light deck is spent, pitch a world dark by nature rather than dim a bright one after the panel.",
+      "evidence": "No. 42 pitched highNoon with no. 38's light deck still in the window, measured L* 68.0 at the cap, failed shipped_check, and was exposed down deck-wide after three panel rounds; the verification judges read the dimmed noon as overcast.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
