@@ -51,8 +51,8 @@ is item 1 | items 1 and 2, so each sheet shows one item's change alone:
 ![item 1 zoom](zoom-ground.webp)
 ![item 2 zoom](zoom-shadows.webp)
 
-The regions on every frame a blind grader marked down, through the renders they graded, shown as
-plainly as the gains:
+A selection of the frames a blind grader marked down, the regions the grader named, through the
+renders they graded. Every worse frame is listed with its grader's reason under the tables below:
 
 ![marked down](zoom-worse.webp)
 
@@ -156,6 +156,16 @@ light the old bias let through, and with the cap the door leaf's shadow reaches 
 that wants a black door leaf parted from a dark wall lights that edge.
 
 ![bias cap zoom](zoom-bias.webp)
+
+## After review
+
+Codex reviewed the pull request and found six faults, all fixed in the same change: a contact given
+an explicit height laid no mark, `wear:false` left the marks and grit on, grit could take the wrong
+surface's colours where a pad and the ground share a height, an embankment under 0.1 m floated the
+road, the deck sheets pasted a fourth render over the next frame, and `zoom-worse.webp` was
+described as every worse frame when it is a selection. All 36 frames were rendered again on the
+fixed engine. 35 of 36 are identical to the frames graded above, and no. 41 frame 4 moves 11 pixels by at most 5 levels. So every
+grade here stands for the engine as it merges, and the compares are drawn from that last render.
 
 ## The cuts before these, graded the same way
 
