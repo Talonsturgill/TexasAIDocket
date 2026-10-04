@@ -2906,4 +2906,57 @@
  "what_was_not_done_and_why": "Item 3, the stormFront sky's structure at a long lens, is prototyped and not graded, so it is not in this change. Item 4, the kit models at close range (the tractor's hubs and mirror glass, the person's face and hair, and lifting dry_van, delineator, raised_pavement_marker and the truck hub into the kit) is not started. At 2 cm no. 37 keeps half of frame 6's louvre blade specks and most of frame 1's, and a grader marked frame 6 down 0.1 for them. The fix is mggLouvres in assets/js/kit/power.js, which stands each blade 2.3 cm proud of its frame, not a larger cap. The cap also took off the lit strip at no. 37 frame 5's door hinge, light the old bias let through, and two graders preferred the frame with it. The optional qa.py rule for a display hook's touching serifs is not done. Every open defect the graders found is listed in examples/ground-proof/README.md",
  "proposals_out_of_lane": []
 }
+,
+"2026-10-04 maintainer, bold": {
+ "date": "2026-10-04",
+ "kind": "maintainer session, on the owner's word that the sibling's artwork is bold and ours faded, and that ours runs about three hours longer. Not a scoring change: the bar, the ladder, the judges, the rounds and every existing gate threshold are untouched. The artwork criterion's description of a 10 changed to the bold standard the owner set",
+ "read": "runs/carousel/2026-10-04 and the sibling's runs/2026-10-05 (read only), ten Texas decks and twelve sibling decks measured frame by frame, both engines, both doctrines, the routine, the rubric, the agents, the timing of both runs from git, the GitHub API and the routines API",
+ "upgrades": [
+  {
+   "what": "Two staged worlds in txthree.js, lastLight (the default) and floodlit, and TXT.stage: a linear fog from just past the subject in the sky's own hue, a pool of light on the ground under the subject, a veil that keeps far silhouettes faint, and a room in a staged world with its studio fill at 0.2. A staged world stages every snapshot by itself on the largest thing near where the camera is aimed",
+   "theme": "the owner, 2026-10-04: the Texas artwork reads faded and the sibling's bold. Measured over ten decks against twelve: 0.418 of a frame in the mid tones against 0.131",
+   "files": [
+    "assets/js/txthree.js",
+    "tests/txworld.mjs"
+   ],
+   "verification": "Mid tone share, before to after, on three shipped decks re-rendered: no. 40 0.407 to 0.205, no. 41 0.477 to 0.134, no. 42 0.698 to 0.173, against the sibling's 0.139 and 0.129. Blind, three graders, 81 verdicts: after judged bolder 69 times, better 64 to 9 with 8 the same, closer to the sibling 69 times, mean score 6.21 to 6.83. tests/txworld.mjs holds the stage on a rendered scene. examples/bold-proof/",
+   "revert": "git revert -m 1 the merge commit of this pull request",
+   "how_i_would_know_this_was_wrong": "A judge or the owner naming frames as too dark to read, subjects lost in the dark, or decks that all look alike"
+  },
+  {
+   "what": "scripts/carousel/value_register.py: the mid tone share of a probe frame (at most 0.50) and of a deck (at most 0.35 on the mean), and the light deck cap looked ahead on the probe. In the routine at Phase 10.5 and Phase 11, in shipped_check for every deck after 2026-10-04, and its self-test in CI",
+   "theme": "the faded look, and no. 42's 44 minutes repairing the light deck cap after three panel rounds",
+   "files": [
+    "scripts/carousel/value_register.py",
+    "scripts/carousel/shipped_check.py",
+    ".github/workflows/guards.yml"
+   ],
+   "verification": "Calibrated on the decks it was written from: 2 of the sibling's 107 frames over the probe line and none of its 12 decks over the deck line, 30 of 90 Texas frames and 8 of 10 Texas decks. Self-test replays a faded frame, a bold one, the cap looked ahead, and the two shipped decks it was calibrated on",
+   "revert": "git revert -m 1 the merge commit of this pull request",
+   "how_i_would_know_this_was_wrong": "A deck the owner calls bold failing it, or a deck he calls faded passing it"
+  },
+  {
+   "what": "Doctrine: THE STAGE in ILLUSTRATION_SYSTEM.md, the world table led by lastLight, the subject at a third to two thirds of the frame, light type on the dark field, a wash that may only darken, THE SHOWSTOPPER TEST rewritten to the bold standard, and the same in the routine, the rubric's artwork description, SLIDE_DOSSIER_SPEC, CLAUDE.md and the pixel critic, flow critic and treatment director",
+   "theme": "the routine had ordered a photograph of a place with haze in the distance, which is the look the owner rejected",
+   "files": [
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+    "prompts/daily_routine.md",
+    "config/carousel/scoring_rubric.yaml",
+    "knowledge/carousel/SLIDE_DOSSIER_SPEC.md",
+    "CLAUDE.md",
+    ".claude/agents/carousel-pixel-critic.md",
+    ".claude/agents/carousel-flow-critic.md",
+    ".claude/agents/carousel-treatment-director.md",
+    "knowledge/carousel/ARSENAL.md",
+    "knowledge/carousel/MACHINE_QUEUE.md"
+   ],
+   "verification": "The first deck after the merge is the proof the doctrine half needs, and value_register measures it",
+   "revert": "git revert -m 1 the merge commit of this pull request",
+   "how_i_would_know_this_was_wrong": "The next decks still composed as wide places, or nine near identical dark frames"
+  }
+ ],
+ "lane": "human, on tsturg/hopeful-johnson-5mmhbb. Nothing under runs/ or docs/ and not ledger/docket.json. The sibling's repository was read, never written",
+ "what_was_not_done_and_why": "The review structure, three pixel rounds, two flow rounds and three panels of three judges, costs about 35 to 40 minutes a day against the sibling's single ladder by editing round, and CI takes about 24 minutes against the sibling's 3. Both are the owner's to decide and are reported in the pull request with their numbers rather than changed here",
+ "proposals_out_of_lane": []
+}
 }

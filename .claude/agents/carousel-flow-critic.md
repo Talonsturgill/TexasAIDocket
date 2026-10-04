@@ -50,7 +50,10 @@ Only then, if you need to, a full-size render.
   against its own dossier, so the panel was the first reader to apply the rubric's deck-level
   art test, after the deck was finished. You are now the first. Grade against
   `config/carousel/scoring_rubric.yaml` `artwork_craft` exactly as the judges will, the
-  showstopper test included. Its 7 is "one frame leans on a default, a primitive model, a dead
+  showstopper test included, which since 2026-10-04 asks whether each frame is BOLD: one subject
+  filling it on a dark field, true blacks and one bright edge, little in the grey middle. Read the
+  contact sheet beside the sibling's (`examples/bold-proof/`) and name every frame that reads
+  faded beside it. Its 7 is "one frame leans on a default, a primitive model, a dead
   zone or a render artifact", so ONE weak frame caps the deck at 7: find the weakest frame
   first. Then check the five causes the judges named on October 2nd and in
   `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails", each by slide number:

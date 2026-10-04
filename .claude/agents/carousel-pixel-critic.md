@@ -107,14 +107,19 @@ the owner rejected, and it is a must-fix whatever else is right with it. Frames 
 solid objects with a material, one light, a soft shadow and a contact. Every dossier now declares `layout`, `primary_image` and `accent`.
 Grade them off the thumb:
 
-- **THE SHOWSTOPPER TEST (2026-09-24), first, with the type covered.** Is it a photograph of a
-  PLACE at a TIME OF DAY: a real sky or a deliberate interior, a horizon on a third, haze in the
-  distance, light from the side its shadows say, a contact and dirt where things meet the ground?
-  A render in front of a flat background colour is an object in a void, and that is a must-fix on
-  its own: the fix is `TXT.sky` and the world in `ILLUSTRATION_SYSTEM.md`, THE WORLD, never a
-  gradient painted behind it. Clean clay (no grime at the base), a hard edged shadow with no
-  contact, scatter under the type and faceted stones are must-fixes too. Say which world the
-  frame is in and whether its light agrees with the deck's.
+- **THE SHOWSTOPPER TEST (rewritten 2026-10-04), first, with the type covered.** Is it BOLD, the
+  way the sibling's decks are: ONE subject filling a third to two thirds of the frame, lit from
+  the side its shadows say, in a pool of light on a dark field, true blacks and one bright edge,
+  little in the grey middle, a sky or a deliberate interior gone dark behind it, a contact and dirt
+  where things meet the ground? The owner rejected the other look in so many words: "the Texas
+  one ... it's just more like faded colors." A frame that lives in the grey middle (a pale sky,
+  a lit ground running to a hazy horizon, a pale wash over the art, a limestone room lit face on)
+  is a must-fix, and so is a render in front of a flat background colour, which is an object in a
+  void. The fix is the light: the deck's staged world, `TXT.stage(R, subject)`, the subject
+  closer and larger, the wash off. Never a darker grade over the same frame. Clean clay (no grime
+  at the base), a hard edged shadow with no contact, scatter under the type and faceted stones
+  are must-fixes too. Say which world the frame is in, whether its light agrees with the deck's,
+  and quote the frame's line from `value_register.py` when the run has printed one.
 - **Is the subject the dossier named actually there**, at the place and size its rect declares,
   and can you say what it IS at 432 px in one word: a bus, a dais, a page, a person at a desk?
   If the answer is a headline over a small shape, that is a must-fix on its own, whatever the

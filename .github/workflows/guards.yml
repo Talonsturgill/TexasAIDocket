@@ -629,6 +629,15 @@ jobs:
           python3 scripts/carousel/print_ban.py --self-test
           python3 scripts/carousel/print_ban.py --assets
 
+      - name: The faded look is measured, and the measure holds
+        run: |
+          # Owner, 2026-10-04: "the Alaska one ... it's more like bold. The Texas one ... it's just
+          # more like faded colors." Faded is the mid tone share of a frame, L* 30 to 70: 0.418 over
+          # ten Texas decks against 0.131 over the sibling's twelve. The self-test replays a faded
+          # frame, a bold one, the light deck cap looked ahead at the probe, and the two shipped
+          # decks it was calibrated on. shipped_check runs it on every shipped deck.
+          python3 scripts/carousel/value_register.py --self-test
+
       - name: The figure bearing reference plans its cameras
         run: |
           # The planning half, at the storyboard. A depth block that names no cues, or names one

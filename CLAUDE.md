@@ -351,8 +351,32 @@ replaced VSM on 2026-10-03 because VSM bled light), a worn ground and one tone c
 `examples/world-proof/compare.webp` is no. 32's own model and camera before and after.
 `print_ban.py` counts frames that call `TXT.sky`, five of nine, and fails any rendered frame that
 stands in neither that world nor a room built by `TXT.interior`. THE SHOWSTOPPER TEST in
-`ILLUSTRATION_SYSTEM.md` is the artwork 10: a frame that reads as a photograph of a place at a
-time of day. It is a target the critics hold every frame to, not a cap.
+`ILLUSTRATION_SYSTEM.md` is the artwork 10. It is a target the critics hold every frame to, not a
+cap, and since 2026-10-04 it asks for a BOLD frame rather than a photograph of a place.
+
+**AND EVERY DECK IS BOLD, THE WAY THE SIBLING'S IS (owner, 2026-10-04).** *"the alaska artwork, i
+still like it way more than the texas one ... the Alaska one, when I look at it, it just kind of
+like wows me ... It's more like bold. The Texas one, it's okay, but it's just more like faded
+colors and stuff."* Measured over ten Texas decks against twelve of the sibling's: 0.418 of a
+Texas frame sat in the mid tones (L* 30 to 70) against 0.131, and 0.188 was near black against
+0.610. The colour was never the difference. The world above had ordered "a photograph of a place
+at a time of day ... haze in the distance", every daylight world fogged the ground toward a bright
+horizon, and chassis lifted the art with pale washes to seat dark type. brand.yaml has said since
+August that the default register is dark. So:
+
+- `TXT.worlds.lastLight`, the default, and `floodlit` are STAGED worlds. `TXT.stage(R, subject)`
+  lights the subject in a pool on the ground and fogs the world behind it into the dark sky.
+- One subject fills a third to two thirds of the frame. The type is light, on the dark field. A
+  wash may only darken. A room is dark around one source.
+- `scripts/carousel/value_register.py` measures it on the probe frame and on all nine, and
+  `shipped_check` holds every deck after October 4th to it in CI. It also counts the light deck
+  cap at the probe, which no. 42 found at ship and paid 44 minutes for.
+- `examples/bold-proof/` is three shipped decks re-rendered through the staged engine beside what
+  they shipped. `ILLUSTRATION_SYSTEM.md`, THE STAGE, is the account.
+
+**The cure for a faded frame is the light, never the grade.** Do not answer this by darkening a
+grade, adding a vignette or lowering exposure over a mid tone frame. That makes a muddier mid tone
+frame, and no. 42 already tried it at ship.
 
 **THE SCORE IS ON THE SIBLING'S SCALE (owner, 2026-09-24).** *"Alaska just passes the ship gate
 every day. That's the difference."* Measured the same evening: the sibling's shipped 8.67 deck

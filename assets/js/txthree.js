@@ -293,6 +293,7 @@ export function init(THREE) {
     if (o.from) R.camera.position.set(o.from[0], o.from[1], o.from[2]);
     const l = o.look || [0, 0, 0];
     R.camera.lookAt(l[0], l[1], l[2]);
+    R._txLook = l.slice(0, 3);
   };
 
   TXT.add = function (R, obj, o) {
@@ -1337,9 +1338,148 @@ export function init(THREE) {
   //      frame was wrongly judged dead, forcing the flat Canvas fallback).
   // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
   // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
+  /* ---- THE STAGE: the subject lit, everything behind it gone to the dark (2026-10-04) ---------
+   * The owner, on carousel no. 42 beside the sibling's no. 78: "the Alaska one, when I look at it, it
+   * just kind of like wows me ... It's more like bold. The Texas one ... it's just more like faded
+   * colors." Measured over ten Texas decks against twelve of the sibling's, the difference is value,
+   * not colour: 42 percent of a Texas frame sat in the mid tones (L* 30 to 70) against 13, and 19
+   * percent was near black (L* under 15) against 61. A sun or a flood is a directional light, so it
+   * lights the whole ground the same out to the horizon, and every daylight world fogged that ground
+   * toward a bright haze. The sibling's renders fog in the dark sky's own hue from about 9 to 30 m,
+   * so one lit thing stands on a dark field.
+   *
+   * TXT.stage(R, subject, { behind, depth, pool, poolInner, poolOuter }) does that here, in two parts.
+   *   1. A linear fog that starts `behind` (a fraction of the subject's distance) past the subject's
+   *      far side and is whole `depth` subject distances later. Under TXT.sky the fog is the sky's own
+   *      horizon colour in each view direction (installSkyFog), and a staged world caps it at
+   *      `stage.veil` on anything standing, so a skyline far off stays as a faint silhouette.
+   *   2. THE POOL. A dark decal on the ground with an elliptical hole under the subject, `poolInner`
+   *      to `poolOuter` half sizes, at `pool` darkness (0.86 by default, false for none). It keeps the
+   *      light where the subject stands and takes the lit grey band beside it out of the frame. It is
+   *      laid only when the subject stands within 35 cm of the ground.
+   * `subject` is an object or an array of them (a cab and its trailer). Without one the stage takes
+   * the largest thing on screen that stands: grounds, scatter, a room, a pool, anything flatter than
+   * 35 cm and land cover twelve times wider than it is tall are never subjects. A world with `stage`
+   * set stages every snapshot whose frame did not call this, and an interior stages in the deck's
+   * declared world. A frame may call it again, and the later call replaces the earlier. */
+  const _stBox = () => new THREE.Box3();
+  const STAGE_MIN_AREA = 0.03;      // a subject covers at least this share of the frame's box
+  const corner = (box, i, v) => v.set(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z);
+  function onScreenArea(cam, box) {
+    const pts = [], v = new THREE.Vector3();
+    for (let i = 0; i < 8; i++) {
+      corner(box, i, v);
+      if (v.clone().applyMatrix4(cam.matrixWorldInverse).z > -cam.near) continue;   // behind the lens
+      pts.push(v.clone().project(cam));
+    }
+    if (!pts.length) return 0;
+    const cl = (x) => Math.max(-1, Math.min(1, x));
+    let x0 = 1, x1 = -1, y0 = 1, y1 = -1;
+    for (const q of pts) { x0 = Math.min(x0, cl(q.x)); x1 = Math.max(x1, cl(q.x)); y0 = Math.min(y0, cl(q.y)); y1 = Math.max(y1, cl(q.y)); }
+    return Math.max(0, x1 - x0) * Math.max(0, y1 - y0) / 4;
+  }
+  // The subject is what fills the frame NEAR WHERE THE CAMERA IS AIMED: on-screen area over the square
+  // of one plus the thing's distance from the look point in its own half diagonals, so a building 60 m behind the
+  // subject, larger on screen than the subject, does not take the stage from it (tests/txworld.mjs).
+  function stageSubject(R) {
+    const cam = R.camera; cam.updateMatrixWorld(true);
+    const look = R._txLook ? new THREE.Vector3(R._txLook[0], R._txLook[1], R._txLook[2]) : null;
+    let best = null, bestS = 0, bestA = 0;
+    const sz = new THREE.Vector3();
+    for (const c of R.scene.children) {
+      if (!c.visible || c.isLight || c.isCamera) continue;
+      const u = c.userData || {};
+      if (u.txSky || u.txGround || u.txScatter || u.txPool || c === R.room) continue;
+      const box = _stBox().setFromObject(c);
+      if (box.isEmpty()) continue;
+      box.getSize(sz);
+      if (sz.y < 0.35 || Math.max(sz.x, sz.z) > 12 * sz.y) continue;
+      // a thing the camera stands in or on (the cab of a frame shot from the driver's seat) is the
+      // foreground, never the subject: staged on it, no. 41 frame 4 fogged the whole road (graded 4.87)
+      if (box.containsPoint(cam.position)) continue;
+      const a = onScreenArea(cam, box);
+      const off = look ? box.distanceToPoint(look) / Math.max(0.5, sz.length() / 2) : 0;
+      const score = a / ((1 + off) * (1 + off));
+      if (score > bestS) { bestS = score; best = c; bestA = a; }
+    }
+    // NOTHING LARGE ON SCREEN is no subject: the stage falls back to where the camera is aimed
+    return bestA >= STAGE_MIN_AREA ? best : null;
+  }
+  // the world a frame stands in: its own sky's, or for an interior, which has none, the deck's
+  function stageWorld(R) {
+    if (R.world) return R.world;
+    try { return declaredWorld(); } catch (e) { return null; }
+  }
+  function poolDecal(box, S) {
+    const ctr = box.getCenter(new THREE.Vector3()), sz = box.getSize(new THREE.Vector3());
+    const rx = Math.max(0.6, sz.x / 2), rz = Math.max(0.6, sz.z / 2);
+    const inner = S.poolInner != null ? S.poolInner : 1.25, outer = S.poolOuter != null ? S.poolOuter : 3.2;
+    const dark = typeof S.pool === 'number' ? S.pool : 0.86;
+    const N = 256, c = document.createElement('canvas'); c.width = c.height = N;
+    const x = c.getContext('2d'), img = x.createImageData(N, N);
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const d = Math.hypot((i + 0.5) / N * 2 - 1, (j + 0.5) / N * 2 - 1) * outer;   // in half sizes
+      const t = Math.min(1, Math.max(0, (d - inner) / (outer - inner)));
+      img.data[(j * N + i) * 4 + 3] = Math.round(t * t * (3 - 2 * t) * dark * 255);
+    }
+    x.putImageData(img, 0, 0);
+    const tex = new THREE.CanvasTexture(c);
+    tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;            // past `outer` it stays at full dark
+    const big = 400, geo = new THREE.PlaneGeometry(big, big), uv = geo.attributes.uv;
+    for (let i = 0; i < uv.count; i++) {                           // the canvas spans the ellipse to `outer`
+      uv.setXY(i, 0.5 + (uv.getX(i) - 0.5) * big / (2 * outer * rx), 0.5 + (uv.getY(i) - 0.5) * big / (2 * outer * rz));
+    }
+    const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x000000, map: tex, transparent: true,
+      depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
+    m.rotation.x = -Math.PI / 2;
+    m.position.set(ctr.x, Math.max(0, box.min.y) + 0.004, ctr.z);
+    m.renderOrder = 0.5;                                           // under the contact marks (1)
+    m.userData.txPool = true;
+    return m;
+  }
+  /* TXT.stage(R, subject, o) — the subject lit where it stands, the ground beside it and the world
+   * behind it gone to the dark. o: behind, depth, pool (darkness, or false), poolInner, poolOuter. */
+  TXT.stage = function (R, subject, o) {
+    o = o || {};
+    const W = stageWorld(R) || {};
+    const S = Object.assign({ behind: 0.04, depth: 1.1 }, W.stage || {}, o);
+    const cam = R.camera; cam.updateMatrixWorld(true);
+    if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
+    const subj = subject || stageSubject(R);
+    const box = !subj ? null : Array.isArray(subj)
+      ? subj.reduce((b, x) => b.union(_stBox().setFromObject(x)), _stBox()) : _stBox().setFromObject(subj);
+    let near, dist;
+    if (box && !box.isEmpty()) {
+      let far = 0;
+      const v = new THREE.Vector3();
+      for (let i = 0; i < 8; i++) far = Math.max(far, -corner(box, i, v).applyMatrix4(cam.matrixWorldInverse).z);
+      dist = Math.max(1, -box.getCenter(new THREE.Vector3()).applyMatrix4(cam.matrixWorldInverse).z);
+      near = Math.max(far, dist) * (1 + S.behind);
+      // and never nearer than most of the way to where the camera is aimed, which a photographer
+      // keeps in the light
+      if (R._txLook) near = Math.max(near, 0.6 * cam.position.distanceTo(new THREE.Vector3(R._txLook[0], R._txLook[1], R._txLook[2])));
+    } else {
+      const l = R._txLook || [0, 0, 0];
+      dist = Math.max(1, cam.position.distanceTo(new THREE.Vector3(l[0], l[1], l[2])));
+      near = dist * (1 + S.behind);
+    }
+    const far = near + Math.max(2, S.depth * dist);
+    R.scene.fog = new THREE.Fog(R.scene.fog ? R.scene.fog.color : new THREE.Color(W.haze != null ? W.haze : 0x000000), near, far);
+    if (box && !box.isEmpty() && S.pool !== false && S.pool !== 0 && box.min.y > -0.5 && box.min.y < 0.35) {
+      R._txPool = poolDecal(box, S);
+      R.scene.add(R._txPool);
+    }
+    R._txStaged = { near, far, subject: subj ? (Array.isArray(subj) ? 'group' : (subj.name || subj.type)) : null, pool: !!R._txPool };
+    return R._txStaged;
+  };
+
   TXT.snapshot = async function (R, o) {
     o = o || {};
     prepareSurfaces(R);                          // the contact marks, worn grass and grit (THE RECEIVING SURFACE)
+    if (!R._txStaged && o.stage !== false && (R.world || R.room)) {
+      const SW = stageWorld(R);
+      if (SW && SW.stage) TXT.stage(R);
+    }
     R.renderer.render(R.scene, R.camera);
     /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and
      * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
@@ -1552,11 +1692,11 @@ export function init(THREE) {
    *
    * USAGE, the whole stage in five calls (the depth gate reads frame, ground, deckRig, add):
    *
-   *   // the chassis, once:  TXDECK.declare({ ..., light:{az:-62, el:8}, sky:'goldenHour' })
+   *   // the chassis, once:  TXDECK.declare({ ..., light:{az:-62, el:9}, sky:'lastLight' })
    *   const W = TXT.deckWorld();                             // the deck's one world, resolved
    *   const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure,
    *                             tone:W.tone, fov:38 });
-   *   TXT.frame(R, { from:[-14, 1.6, 22], look:[0, 3, 0] });
+   *   TXT.frame(R, { from:[-14, 1.6, 22], look:[0, 3, 0] });   // aim at the subject: the stage reads it
    *   TXT.sky(R, W);                                        // sky + IBL from the sky + fog tint
    *   TXT.deckRig(R, W.rig, { target:[0,0,0], distance:60 });   // the sun IS the deck's light
    *   TXT.ground(R, { surface:'caliche', size:900 });
@@ -1564,11 +1704,15 @@ export function init(THREE) {
    *                                                         // after TXT.frame: it thins with distance
    *                                                         // from wherever the camera is at the call
    *   const hero = TXT.add(R, myObject);  TXT.contact(R, hero);
+   *   TXT.stage(R, hero);                                   // lit where it stands, dark behind it
    *   const shot = await TXT.snapshot(R);
    *
    * The sun sits where TXDECK.declare's light says, so the glow in the sky, the key light, the
    * cast shadows and the warm side of every object agree by construction on all nine frames.
-   * Choose the declared elevation to suit the world: golden hour wants el 4 to 14, noon 55+.
+   * Choose the declared elevation to suit the world: the last light wants el 3 to 16, a flood 25
+   * to 60, golden hour 4 to 14, noon 55+. A staged world (lastLight, floodlit) stages every
+   * snapshot by itself on the largest thing near where the camera is aimed. TXT.stage(R, hero)
+   * names the subject outright, which is better whenever the frame knows it.
    *
    * COST, measured 2026-09-24 in this container on no. 32's forty set yard: building the world
    * takes 0.4 s, the snapshot 6.2 s at the rig's default 2048 shadow map and 9.3 s at 4096, the
@@ -1671,6 +1815,30 @@ export function init(THREE) {
       ink: 'dark',
       rig: { key: { color: 0xf2f0ea, i: 1.4, radius: 22 }, rim: { color: 0xdfe6ee, i: 0.4, pos: [-8, 5, -8] },
              fill: { color: 0xc9d0d8, i: 0.5, pos: [-4, 3, 9] }, ambient: { color: 0x9aa2ac, i: 0.3 } } },
+    /* THE STAGED WORLDS (2026-10-04). brand.yaml has made Big Bend at dusk the default register since
+     * August, and from September 24th every deck stood in a daylight world instead: ten decks measured
+     * a mean deck median of L* 32.6 against the sibling's 12.8. These two are dark and `stage` is set,
+     * so every snapshot stands its subject in a pool of light with the world behind it gone to the sky
+     * (TXT.stage). The fog is linear and set per frame, so `fogDensity` here is only a frame's
+     * fallback. The rims sit low so they edge a silhouette and do not light the ground. The fill and
+     * ambient keep every shadow a deep navy, never black (the sibling's doctrine), about 3 percent of the key
+     * as the sibling's hemisphere fill is. At a hundredth of that, the
+     * blind graders of the proof found dead black thirds, faceless figures and a truck's shadow cut
+     * across a road as a jagged wedge. */
+    lastLight: {   // THE HOUSE REGISTER: the sun just down, a near black sky, one warm seam low on the key's side
+      el: [3, 16], skyEl: -2, zenith: 0x040509, horizon: 0x101626, haze: 0x1c2436, ground: 0x111318,
+      sun: 0xffbe86, sunDisc: 0, glow: 0.4, horizonGlow: 0.22, span: 0.4,
+      clouds: 0.0, stars: 0.2, fogDensity: 0.004, exposure: 1.1, envIntensity: 0.8, tone: 'aces',
+      ink: 'light', stage: { behind: 0.04, depth: 1.1, veil: 0.88 },
+      rig: { key: { color: 0xffd6a8, i: 4.6, radius: 5 }, rim: { color: 0x9fb4ff, i: 1.8, pos: [-8, 1.4, -8] },
+             fill: { color: 0x8a9acc, i: 0.5, pos: [-4, 3, 9] }, ambient: { color: 0x5a6890, i: 0.4 } } },
+    floodlit: {    // a pad at night under one LED flood: a black sky, a cold key from high on one side
+      el: [25, 60], skyEl: -12, zenith: 0x020306, horizon: 0x080b12, haze: 0x0e121b, ground: 0x0c0d10,
+      sun: 0xdfe6ff, sunDisc: 0, glow: 0.25, horizonGlow: 0.25, span: 0.4,
+      clouds: 0.0, stars: 0.45, fogDensity: 0.004, exposure: 1.1, envIntensity: 0.6, tone: 'aces',
+      ink: 'light', stage: { behind: 0.04, depth: 0.9, veil: 0.9 },
+      rig: { key: { color: 0xf0f3ff, i: 3.4, radius: 6 }, rim: { color: 0x9fb4ff, i: 1.4, pos: [-8, 1.4, -8] },
+             fill: { color: 0x8090c0, i: 0.42, pos: [-4, 3, 9] }, ambient: { color: 0x56637f, i: 0.36 } } },
     stormFront: {  // a West Texas squall line: a bruised sky, one shaft of low sun under it
       el: [6, 16], zenith: 0x17212c, horizon: 0x7d8a8c, haze: 0xd6b48a, ground: 0x4d4a40,
       sun: 0xffd29a, sunDisc: 0, glow: 1.0, horizonGlow: 1.0, span: 0.35,
@@ -1905,6 +2073,8 @@ export function init(THREE) {
     const n = (x) => Number(x || 0).toFixed(6);
     const sd = sunDir.clone().normalize();
     const fade = W.horizonFade != null ? W.horizonFade : 0.025;
+    // the most a fog may take from a thing standing in it: 1 everywhere but a staged world
+    const veil = W.stage && W.stage.veil != null ? W.stage.veil : 1;
     C.fog_pars_vertex = base.pv + '\n#ifdef USE_FOG\n  varying vec3 vTxFogDir;\n#endif\n';
     // row vector times the view matrix is its inverse rotation: the ray from the eye, in world space
     C.fog_vertex = base.v + '\n#ifdef USE_FOG\n  vTxFogDir = (vec4(mvPosition.xyz, 0.0) * viewMatrix).xyz;\n#endif\n';
@@ -1929,7 +2099,7 @@ export function init(THREE) {
     #ifdef TX_GROUND
       return max(f, 1.0 - smoothstep(0.0, ${n(fade)}, -normalize(vTxFogDir).y));
     #else
-      return f;
+      return min(f, ${n(veil)});
     #endif
   }
   // A hook that replaces fog_fragment with its own mix toward fogColor (the kit's aerial() haze on
@@ -1971,7 +2141,7 @@ export function init(THREE) {
    * TXT.sky THROWS when a frame hands it a different world, so nine frames can't stand under two
    * skies. A deck that declares no sky may still pass a world to TXT.sky, as before. */
   const WORLD_KEYS = ['zenith', 'horizon', 'haze', 'ground', 'sun', 'sunDisc', 'glow', 'horizonGlow',
-    'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed', 'horizonFade'];
+    'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed', 'horizonFade', 'stage'];
   const worldKey = (W) => JSON.stringify(WORLD_KEYS.map(k => (W[k] === undefined ? null : W[k])));
   function deckDeclared() {
     const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
@@ -2776,7 +2946,10 @@ export function init(THREE) {
     }
     room.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = true; } });
     R.scene.add(room);
-    if (!R.world) TXT.environment(R, { intensity: o.light != null ? o.light : 0.55 });
+    // a room in a staged world is lit by its window and the deck's key, with the studio fill turned
+    // down, so it stands dark around what the light reaches rather than evenly bright
+    const SWr = stageWorld(R);
+    if (!R.world) TXT.environment(R, { intensity: o.light != null ? o.light : (SWr && SWr.stage ? (SWr.stage.room != null ? SWr.stage.room : 0.2) : 0.55) });
     if (!R.scene.background) R.scene.background = new THREE.Color(o.wall != null ? o.wall : 0xb9b3a7).multiplyScalar(0.25);
     R.room = room;
     return room;

@@ -1149,6 +1149,58 @@ const browser = await chromium.launch(Object.assign(
 const scratch = join(ROOT, 'out', 'txworld');
 mkdirSync(scratch, { recursive: true });
 
+// A STAGED WORLD (2026-10-04): the subject lit, the ground beside it and the world behind it gone to
+// the dark (TXT.stage). A 6 x 3 x 2.4 m box on a concrete ground in lastLight, from 23 m at 1.6 m,
+// with a building 60 m straight behind it, a flat pad under it and a field off to the left, which is
+// land cover and never the subject. Rendered staged, then with stage:false on the same camera, then
+// the same scene in goldenHour, which has no stage and must not get one. Every sampled point is found
+// on screen first and reported off screen as null, so no check can pass on a point it never read.
+const STAGE = `async (T, TXT, cv) => {
+  const shoot = async (name, staged, cab) => {
+    const W = Object.assign({}, TXT.worlds[name]);
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+    const eye = [14, 1.6, 18];
+    TXT.frame(R, { from: eye, look: [0, 1.3, 0] });
+    TXT.sky(R, W);
+    const s = TXT.sunDir(W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 rim: W.rig.rim, fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'concrete', size: 900, tile: 3 });
+    const mat = (c) => new T.MeshStandardMaterial({ color: c, roughness: 0.7 });
+    const pad = new T.Mesh(new T.BoxGeometry(40, 0.1, 40), mat(0x8f8b84)); pad.position.set(0, -0.045, 0); TXT.add(R, pad);
+    const field = new T.Mesh(new T.BoxGeometry(60, 1.0, 60), mat(0x6d6a3c)); field.position.set(-60, 0.5, -10); TXT.add(R, field);
+    const box = new T.Mesh(new T.BoxGeometry(6, 3, 2.4), mat(0xd8d0c0)); box.name = 'subject'; box.position.set(0, 1.5, 0); TXT.add(R, box);
+    const dh = new T.Vector3(-eye[0], 0, -eye[2]).normalize();
+    const far = new T.Mesh(new T.BoxGeometry(30, 24, 10), mat(0xd0c8b8)); far.position.set(dh.x * 60, 12, dh.z * 60);
+    far.lookAt(eye[0], 12, eye[2]); TXT.add(R, far);
+    if (cab) {   // the camera in a cab: a hood below the lens and a roof above it, one object around the eye
+      const c = new T.Group(), hood = new T.Mesh(new T.BoxGeometry(2.4, 1.0, 2.4), mat(0x2a2c30)), roof = hood.clone();
+      hood.position.set(eye[0] + dh.x * 1.6, 0.8, eye[2] + dh.z * 1.6); roof.position.set(eye[0], 3.2, eye[2]);
+      c.add(hood, roof); TXT.add(R, c);
+    }
+    const shot = await TXT.snapshot(R, staged ? {} : { stage: false });
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const px = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    const L = (i) => { const y = 0.2126 * lin(px[i]) + 0.7152 * lin(px[i + 1]) + 0.0722 * lin(px[i + 2]);
+      return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y; };
+    let mid = 0, dark = 0, n = 0;
+    for (let i = 0; i < px.length; i += 16) { const l = L(i); n++; if (l < 15) dark++; else if (l <= 70) mid++; }
+    const patch = (nx, ny) => { const x = Math.round((nx + 1) / 2 * Wd), y = Math.round((ny + 1) / 2 * H);
+      if (x < 6 || y < 6 || x >= Wd - 6 || y >= H - 6) return null; let t = 0, k = 0;
+      for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { t += L(((y + dy) * Wd + x + dx) * 4); k++; }
+      return t / k; };
+    const at = (p) => { const v = new T.Vector3(p[0], p[1], p[2]).project(R.camera); return v.z < 1 ? patch(v.x, v.y) : null; };
+    // the ground 15 m behind the subject and 8 m to its side, clear of the box on screen
+    const side = new T.Vector3(dh.z, 0, -dh.x);
+    const beside = at([dh.x * 15 + side.x * 8, 0, dh.z * 15 + side.z * 8]);
+    return { ok: shot.ok, mid: mid / n, dark: dark / n, box: at([0, 1.5, 1.2]), beside,
+             behind: at([dh.x * 55, 16, dh.z * 55]), staged: R._txStaged || null };
+  };
+  return { staged: await shoot('lastLight', true), plain: await shoot('lastLight', false),
+           golden: await shoot('goldenHour', true), cab: await shoot('lastLight', true, true) };
+}`;
+
 async function run(name, scene) {
   const file = join(scratch, `${name}.html`);
   writeFileSync(file, page_html(scene));
@@ -1556,6 +1608,33 @@ check('the sky hue page renders with no page error and no scene error',
           `horizon: ${bands.map((x) => `${Math.round(x.hs[0])} at ${x.hs[1].toFixed(2)}`).join(', ')}`,
           bands.length === 3 && bad.length === 0, JSON.stringify(sh.result[name]));
   }
+}
+
+const sg = await run('stage', STAGE);
+check('the stage page renders with no page error and no scene error',
+      !sg.result.error && sg.pageErrors.length === 0, JSON.stringify({ error: sg.result.error, page: sg.pageErrors }));
+{
+  const a = sg.result.staged || {}, b = sg.result.plain || {}, g = sg.result.golden || {};
+  const st = a.staged || {};
+  check(`a staged world stages its snapshot on the subject, never the pad or the field: it took ` +
+        `${JSON.stringify(st.subject)} and laid ${st.pool ? 'a' : 'no'} pool, the fog from ${(st.near || 0).toFixed(1)} m to ${(st.far || 0).toFixed(1)} m`,
+        st.subject === 'subject' && st.pool === true && st.near > 22 && st.near < 30, JSON.stringify(st));
+  check(`staged, ${(a.mid * 100).toFixed(1)} percent of the frame sits in the mid tones and ${(a.dark * 100).toFixed(1)} ` +
+        `is near black, against ${(b.mid * 100).toFixed(1)} and ${(b.dark * 100).toFixed(1)} unstaged`,
+        a.mid < 0.3 && a.dark > 0.4 && b.mid - a.mid > 0.15, JSON.stringify({ a, b }));
+  const num = (x) => typeof x === 'number' && x >= 0;
+  const f = (x) => (num(x) ? x.toFixed(1) : String(x));
+  check(`the subject keeps its light: L* ${f(a.box)} staged against ${f(b.box)}`,
+        num(a.box) && num(b.box) && a.box > 50 && a.box >= b.box * 0.85, JSON.stringify({ a: a.box, b: b.box }));
+  check(`the ground behind it, off to the side, goes to the dark: L* ${f(a.beside)} staged against ${f(b.beside)}`,
+        num(a.beside) && num(b.beside) && b.beside > 20 && a.beside < b.beside * 0.5, JSON.stringify({ a: a.beside, b: b.beside }));
+  check(`the building 60 m behind it goes to the sky: L* ${f(a.behind)} staged against ${f(b.behind)}`,
+        num(a.behind) && num(b.behind) && b.behind > 20 && a.behind < b.behind * 0.6, JSON.stringify({ a: a.behind, b: b.behind }));
+  const cb = (sg.result.cab || {}).staged || {};
+  check(`a camera standing in a cab never stages on the cab: it took ${JSON.stringify(cb.subject)}`,
+        cb.subject === 'subject', JSON.stringify(cb));
+  check(`a world without a stage is never staged: goldenHour reads ${JSON.stringify(g.staged)}`,
+        g.staged === null && g.ok, JSON.stringify(g));
 }
 
 await browser.close();

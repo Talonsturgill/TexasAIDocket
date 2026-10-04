@@ -14,15 +14,15 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 28 |
-| world presets | 6 |
+| engine calls (`TXT.*`) | 29 |
+| world presets | 8 |
 | kit models | 110 in 10 families |
 | asset libraries | 21 |
-| carousel and shared tools | 69 |
+| carousel and shared tools | 70 |
 | record and site tools the routine names | 20 |
 | agents | 10 |
 | knowledge files | 42 |
-| examples | 6 |
+| examples | 8 |
 
 ## BY PHASE, the tools the routine names in each section
 
@@ -41,10 +41,10 @@
 | 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
 | 8 | `dedupe_check.py`, `panel_ready.py` |
 | 9 | `instincts.py`, `layout_check.py` |
-| artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py` |
+| artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py`, `value_register.py` |
 | 10 | `caption_check.py` |
-| 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py` |
-| 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py` |
+| 10.5 | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `render.py`, `value_register.py` |
+| 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
@@ -64,11 +64,11 @@
 **The whole stage, in the engine's own words** (quoted from its header):
 
 ```js
-// the chassis, once:  TXDECK.declare({ ..., light:{az:-62, el:8}, sky:'goldenHour' })
+// the chassis, once:  TXDECK.declare({ ..., light:{az:-62, el:9}, sky:'lastLight' })
 const W = TXT.deckWorld();                             // the deck's one world, resolved
 const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure,
                           tone:W.tone, fov:38 });
-TXT.frame(R, { from:[-14, 1.6, 22], look:[0, 3, 0] });
+TXT.frame(R, { from:[-14, 1.6, 22], look:[0, 3, 0] });   // aim at the subject: the stage reads it
 TXT.sky(R, W);                                        // sky + IBL from the sky + fog tint
 TXT.deckRig(R, W.rig, { target:[0,0,0], distance:60 });   // the sun IS the deck's light
 TXT.ground(R, { surface:'caliche', size:900 });
@@ -76,6 +76,7 @@ TXT.scatter(R, { kind:'grass', count:2600, area:[-60,-80,60,30], avoid:[[-8,-6,8
                                                       // after TXT.frame: it thins with distance
                                                       // from wherever the camera is at the call
 const hero = TXT.add(R, myObject);  TXT.contact(R, hero);
+TXT.stage(R, hero);                                   // lit where it stands, dark behind it
 const shot = await TXT.snapshot(R);
 ```
 
@@ -104,7 +105,8 @@ const shot = await TXT.snapshot(R);
 | `TXT.setup(canvas, opts)` | Returns R = {renderer, scene, camera, w, h} |
 | `TXT.sky(R, world)` | the dome, the IBL from it, and the fog in its horizon's hue. world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). |
 | `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |
-| `await TXT.snapshot(R, o)` | Renders one still, waits a paint tick, then ASSERTS the frame is not black (research-documented headless failure modes: first-paint race and silent 2D fallback). |
+| `await TXT.snapshot(R, o)` |  |
+| `TXT.stage(R, subject, o)` | the subject lit where it stands, the ground beside it and the world behind it gone to the dark. o: behind, depth, pool (darkness, or false), poolInner, poolOuter. |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
 | `TXT.weather(R, { grime, height, mottle, skip })` | patches every standard material in the scene once: albedo darkens toward the ground over `height` metres (splash, dust, the dark base every real object has), and a seeded world-space mottle breaks roughness and colour ... |
@@ -119,6 +121,8 @@ const shot = await TXT.snapshot(R);
 | `nightSodium` | Texas at night: a black sky, the city glow on one horizon, sodium on the pad. el is the LAMP |
 | `highNoon` | bleached and hard: a white sky at the horizon, short black shadows |
 | `overcast` | a lid of cloud: no disc, shadows gone soft, colour honest and quiet |
+| `lastLight` | THE HOUSE REGISTER: the sun just down, a near black sky, one warm seam low on the key's side |
+| `floodlit` | a pad at night under one LED flood: a black sky, a cold key from high on one side |
 | `stormFront` | a West Texas squall line: a bruised sky, one shaft of low sun under it |
 
 **Ground surfaces** (`TXT.ground(R, { surface })`): `caliche`, `dirt`, `asphalt`, `concrete`, `grass`, `lawn`.
@@ -429,7 +433,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/ledger_check.py` | the variety ledgers are DERIVED, so they are re-derived and compared. | --date --ledger-dir --self-test --derive | shipped |  |
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/machine_due.py` | is the weekly machine pass due today? | --date --self-test | CI self-test | 17 |
-| `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI | 16 |
+| `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI, shipped | 16 |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
@@ -443,6 +447,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI | nonnegotiables |
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
+| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | artwork, 10.5, 11 |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
 | `scripts/carousel/week_digest.py` | what the judges kept saying this week, counted, for the weekly machine pass. | --date --days --out --self-test | CI self-test | 17 |
 | `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
@@ -581,8 +586,10 @@ Measurements and plumbing, never a subject or a palette to copy.
 
 | example | what it is | open |
 |---|---|---|
+| `examples/bold-proof/` | Bold proof, 2026-10-04. The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning: *"the sibling one, when I look at it, it just kind of like wows me. | beside-the-sibling.webp, deck-40.webp, deck-41.webp, deck-42.webp |
 | `examples/demo-deck/` |  | slides |
 | `examples/figure-bearing/` | Emit the three frames of the FIGURE BEARING reference. | contact_sheet.webp, slide-01.webp, slide-02.webp, slide-03.webp, build.py, figures.json, slides, storyboard.md |
+| `examples/ground-proof/` | ground-proof, the engine's ground and sun measured on four shipped decks. This is a measurement of the ENGINE, never a subject or a palette to copy. | deck-2026-09-29.webp, deck-2026-09-30.webp, deck-2026-10-02.webp, deck-2026-10-03.webp, full-0929-01.webp, full-1003-08.webp, build.py |
 | `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | cab-proof.webp, proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
