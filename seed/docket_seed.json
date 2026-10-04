@@ -13044,5 +13044,378 @@
     "note": "Admitted on the foundation's own award record. The platform's work began on September 15th and nothing it has produced is on the record yet."
    }
   ]
+ },
+ {
+  "title": "State education staff helped Alpha School's AI platform into pilots in Houston, Aldine and Fort Davis",
+  "summary": "Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect Alpha School's AI learning platform with public school districts. Education Commissioner Mike Morath and his staff visited Alpha campuses, helped with a one page explainer for districts and connected Alpha associates with district leaders. The newsrooms report that at least 10 districts were approached and at least three launched pilots. Those three are Houston ISD, Fort Davis ISD in West Texas and Aldine ISD near Houston, and all three say they use the software for supplemental learning. Fort Davis is using it in its K-8 classrooms for students who need help in reading and math. Aldine is using it with roughly 300 students at four middle schools who need support in math. Houston ISD says it uses the tool with students who have strong test scores and is not paying Alpha. It asked the attorney general to withhold the contract from the newsrooms. TEA says it has no formal partnership with Alpha and left the decision to the districts. The State Board of Education had voted down the Alpha leaders' bid for a Texas charter that would use the same technology. The board's own minutes from June 2025 record a veto of one charter proposed on a two hour learning model, Valenta Academy in Bastrop. Neither the minutes nor the reporting names Alpha as its applicant.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "Houston ISD, Aldine ISD and Fort Davis ISD",
+   "type": "school-district"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris",
+    "Jeff Davis"
+   ],
+   "on_ercot": false,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-01",
+    "kind": "decided",
+    "note": "The Texas Tribune and ProPublica reported the three district pilots and the agency emails behind them"
+   },
+   {
+    "date": "2025-06-27",
+    "kind": "decided",
+    "note": "The State Board of Education adopted the veto of Valenta Academy, a Bastrop charter proposed on a two hour learning model"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "Each of the three districts is governed by a board that meets in public and posts its agendas. Fort Davis ISD lists its board meetings on its own site. A resident with a view on the pilot can raise it with the district or speak during a board meeting's public comment.",
+   "url": "https://fdisd.com/page/board-meetings",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "The pilots, the emails and every district figure rest on The Texas Tribune and ProPublica, whose reporting draws on agency emails obtained through public information requests. No district or agency document naming the pilot was found. The State Board of Education minutes are the primary record of the June 2025 veto of Valenta Academy. Two Community Impact accounts describe Valenta as a two hour learning model using adaptive AI, and the Tribune says the board voted the Alpha leaders' bid down 10 to 3, which matches the committee's 10-3 on Valenta. No source names Valenta as Alpha's, so the record never says it was. Texas Preparatory School's 21 percent is the Tribune's figure for the share that passed, and ProPublica reports it rose from 19 percent.",
+  "claims": [
+   {
+    "text": "At least three of those districts launched pilot programs using the AI tool. They are Houston, Fort Davis in West Texas, and Aldine near Houston.",
+    "verbatim_quote": "at least three of those districts — Houston; Fort Davis, in West Texas; and Aldine, near Houston — launched pilot programs incorporating the AI tool",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c1"
+   },
+   {
+    "text": "Emails show state education officials and Alpha affiliates approached at least 10 school districts about the AI program.",
+    "verbatim_quote": "state education officials and Alpha affiliates approached at least 10 school districts about the AI program",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c2"
+   },
+   {
+    "text": "Emails obtained through public information requests show TEA staff helped with a one-page explainer for school districts and connected Alpha-linked companies with district leaders.",
+    "verbatim_quote": "helped with a one-page explainer about the program to share with school districts and connected them with district leaders",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c3"
+   },
+   {
+    "text": "Emails show Morath visited Alpha's campuses again with six other TEA leaders, and his staff timed the visit for the same day as Houston Superintendent Mike Miles.",
+    "verbatim_quote": "Emails show the commissioner visited Alpha’s campuses again with six other TEA leaders. His staff coordinated to go on the same day as Houston Superintendent Mike Miles.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c4"
+   },
+   {
+    "text": "Morath answered an email from Alpha School associates in September 2025 who wanted to discuss using their AI program in Texas classrooms.",
+    "verbatim_quote": "In September 2025, Morath responded to an email from associates of a private school chain called Alpha School",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c5"
+   },
+   {
+    "text": "Morath's reply asked to schedule a follow-up discussion.",
+    "verbatim_quote": "I’d love to schedule a follow-up discussion",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c6"
+   },
+   {
+    "text": "The Tribune reports Morath offered to personally introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.",
+    "verbatim_quote": "Morath offered to personally introduce an Alpha leader to the superintendent he appointed to lead the yearslong state takeover of Houston Independent School District",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c7"
+   },
+   {
+    "text": "Studient is one of the companies connected to Alpha, and it uses Alpha's AI technology, which is now often called TimeBack.",
+    "verbatim_quote": "Studient, a company that uses Alpha’s AI technology, now often called TimeBack",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c8"
+   },
+   {
+    "text": "Andrew Hodge, TEA's associate commissioner of system innovation, emailed Joe Liemandt on November 5th asking to discuss piloting a few supplemental Tier 3 instances of Alpha's model in Texas.",
+    "verbatim_quote": "possibilities for piloting a few supplemental (you called this Tier 3 in your outline) instances in the state",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c9"
+   },
+   {
+    "text": "Michael Strange, a member of Hodge's team who oversees TEA's blended learning programs, sent Alpha associates a to-do list that included drafting a one-page explainer of the pilot program for districts.",
+    "verbatim_quote": "which included him drafting a one-page explainer of the pilot program to share with districts",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c10"
+   },
+   {
+    "text": "TEA staffer Michael Strange praised the progress Alpha and Studient officials were making on securing pilots with Fort Davis and Aldine by the middle of June.",
+    "verbatim_quote": "By mid-June, Strange applauded their progress securing pilots with Fort Davis and Aldine.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c11"
+   },
+   {
+    "text": "All three districts said they will use the software for supplemental learning rather than adopt Alpha's full model.",
+    "verbatim_quote": "All three districts with pilot programs said they will use the AI software for supplemental learning rather than fully implementing the Alpha School model",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c12"
+   },
+   {
+    "text": "Fort Davis ISD enrolls around 800 students and will deploy the model in its K-8 classrooms for students needing extra help in reading and math, according to its deputy superintendent Michelle Hartmann.",
+    "verbatim_quote": "which enrolls around 800 students, said it will deploy the model in its K-8 classrooms for students who need additional help in reading and math",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c13"
+   },
+   {
+    "text": "Michelle Hartmann, deputy superintendent at Fort Davis ISD, said the district sees the pilot as an added layer of intervention.",
+    "verbatim_quote": "We’re excited because we see it as an opportunity to provide an extra layer of intervention",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c14"
+   },
+   {
+    "text": "Aldine ISD will use the platform with roughly 300 students at four middle school campuses who need support in math.",
+    "verbatim_quote": "Aldine will deploy the online platform to roughly 300 students across four middle school campuses that require support in math.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c15"
+   },
+   {
+    "text": "Houston ISD's press office said the district will use the Alpha technology with high-scoring students to test whether the approach can speed up academic growth.",
+    "verbatim_quote": "Houston ISD plans to use the Alpha technology for students with strong test scores “to evaluate whether this instructional approach can accelerate academic growth",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c16"
+   },
+   {
+    "text": "Houston ISD's press office said the district is not paying Alpha for the pilot.",
+    "verbatim_quote": "The office said Houston ISD wasn’t paying Alpha for the pilot but did not provide more details.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c17"
+   },
+   {
+    "text": "Houston ISD asked the Texas attorney general to let it withhold the pilot contract from reporters under the public records act.",
+    "verbatim_quote": "The district asked the Texas attorney general to withhold the contract from the newsrooms under the state’s public records act.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c18"
+   },
+   {
+    "text": "TEA said in a written statement that it has no formal partnership with Alpha.",
+    "verbatim_quote": "there is no formal partnership between TEA and Alpha Schools",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c19"
+   },
+   {
+    "text": "TEA's statement said its officials connected interested district leaders with the program and left the decision to use it to the districts.",
+    "verbatim_quote": "connected district leaders who were interested in Alpha’s program but left the decision up to them on whether to use it",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c20"
+   },
+   {
+    "text": "Ector County, Fort Bend, Irving, Pecos and Pflugerville confirmed they were approached about partnering with Alpha and did not pursue an agreement.",
+    "verbatim_quote": "at least five school districts — Ector County, Fort Bend, Irving, Pecos and Pflugerville — that confirmed they were approached about partnering with Alpha but did not pursue an agreement",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c21"
+   },
+   {
+    "text": "Ector County was the only one of the five to give a reason, saying its school day isn't structured to support the pilot.",
+    "verbatim_quote": "determined our school day is not currently structured to effectively implement or support the pilot",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c22"
+   },
+   {
+    "text": "The Texas Tribune and ProPublica reported on October 1st, 2026 that Education Commissioner Mike Morath had supported Alpha leaders' bid to open a Texas charter school using the same AI technology.",
+    "verbatim_quote": "he had supported Alpha leaders’ bid to open a charter school in Texas that would use the same technology",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c23"
+   },
+   {
+    "text": "The Tribune reports the State Board of Education, which has the final say on charter decisions, voted the Alpha leaders' charter bid down 10 to 3.",
+    "verbatim_quote": "Then the Texas State Board of Education, which has the final say on such charter decisions, voted it down 10 to 3.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c24"
+   },
+   {
+    "text": "According to the Tribune, board members cited concerns about AI teaching, student screen time and the test score gains Alpha leaders presented.",
+    "verbatim_quote": "Board members cited concerns about the company’s use of AI to teach and students’ screen time, as well as lingering questions about the drastic student test improvements Alpha leaders presented.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c25"
+   },
+   {
+    "text": "On June 27th, 2025, the Texas State Board of Education voted on a recommendation to veto the proposed Valenta Academy charter school in Bastrop.",
+    "verbatim_quote": "that they veto the proposed Generation 30 Subchapter D Open- Enrollment Charter School Valenta Academy (Bastrop) as recommended by the Commissioner.",
+    "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/06-27-2025-sboemins.pdf",
+    "source_title": "Texas State Board of Education minutes, June 27, 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c26"
+   },
+   {
+    "text": "The State Board of Education's minutes record the Valenta Academy veto recommendation as adopted on a roll call vote of 10-3-1.",
+    "verbatim_quote": "which was adopted 10-3-1",
+    "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/06-27-2025-sboemins.pdf",
+    "source_title": "Texas State Board of Education minutes, June 27, 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c27"
+   },
+   {
+    "text": "Two days earlier, on June 25th, 2025, the board's Committee of the Full Board voted 10-3 for a motion to recommend vetoing the Valenta Academy charter.",
+    "verbatim_quote": "The motion was adopted 10-3.",
+    "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-meetings/2025-06-25-cofbmins-final.pdf",
+    "source_title": "Texas State Board of Education, Committee of the Full Board report, June 25, 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c28"
+   },
+   {
+    "text": "Community Impact reported in July 2025 that Valenta Academy's programming was proposed to follow a two-hour learning model.",
+    "verbatim_quote": "Programming at Valenta Academy was proposed to be based on the two-hour learning model",
+    "source_url": "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-will-not-open-in-bastrop-after-tea-veto/",
+    "source_title": "Valenta Academy will not open in Bastrop, Community Impact, July 2025",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c29"
+   },
+   {
+    "text": "A Valenta Academy spokesperson told Community Impact in December 2024 that the school would use adaptive artificial intelligence for self-driven, accelerated learning.",
+    "verbatim_quote": "utilizes adaptive artificial intelligence (AI) to enable a self-driven, accelerated learning experience for students",
+    "source_url": "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-to-bring-new-way-of-learning-to-bastrop-children/",
+    "source_title": "Valenta Academy to bring new way of learning to Bastrop children, Community Impact, December 2024",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c30"
+   },
+   {
+    "text": "In Alpha's full model, AI teaches all students their basic subjects in two hours a day, and human teachers called guides focus on motivation and emotional support.",
+    "verbatim_quote": "using it to teach all students basic subjects in two hours a day while the human teachers, which Alpha calls guides, focus on motivation and emotional support",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c31"
+   },
+   {
+    "text": "The Tribune reports that at Texas Preparatory School in Austin, an existing Texas school that used the AI program, TEA's own test data showed just 21% of students passed, and TEA then rated the charter F for a third year running.",
+    "verbatim_quote": "Last year, state test scores compiled by his agency showed just 21% of students passed. The TEA then gave the charter its third consecutive F rating",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c32"
+   },
+   {
+    "text": "State Board of Education vice chair Pam Little, a Republican who voted against the charter, told the Tribune she wants no AI in schools, especially in the lower grades.",
+    "verbatim_quote": "I don’t want anything AI in our schools, especially at the lower grades",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c33"
+   },
+   {
+    "text": "Board member Gustavo Reveles, a Democrat who voted against the charter, said TEA's help bringing the tool into public schools raises a red flag about getting around the board's concern.",
+    "verbatim_quote": "It certainly raises a red flag that perhaps there’s ways to circumvent that concern",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c34"
+   },
+   {
+    "text": "Andrew Mahaleris, Governor Greg Abbott's press secretary, said in a statement that any classroom tool must keep teachers central, limit screen time and show results.",
+    "verbatim_quote": "Any tool a district deploys must keep teachers at the center of the classroom, limit unnecessary screen time, and prove results for students.",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c35"
+   },
+   {
+    "text": "The Tribune says the full extent of TEA's involvement and the number of districts using the program are still unknown, and TEA is still fighting release of more communications.",
+    "verbatim_quote": "remains unclear. The TEA has not responded to questions about its efforts for months, initially failed to provide some of Morath’s emails in response to public information requests and continues fighting the release of additional communications",
+    "source_url": "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/",
+    "source_title": "How Mike Morath's agency helped get an AI tool in Texas public school classrooms, The Texas Tribune and ProPublica, October 1, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-04",
+    "id": "tx-2026-0200-c36"
+   }
+  ],
+  "id": "tx-2026-0200",
+  "last_verified": "2026-10-04",
+  "history": [
+   {
+    "date": "2026-10-04",
+    "note": "Admitted on The Texas Tribune and ProPublica's account of the agency emails and the district pilots, with the State Board of Education's own minutes of its June 2025 charter vetoes."
+   }
+  ]
  }
 ]
