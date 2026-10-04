@@ -13,7 +13,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">Voted down 10 to 3, the Tribune reports.</h1>
-<p class="dek" data-follow="26">The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.</p>
+<p class="dek" data-follow="26">ProPublica dates the vote to the summer of 2025. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.</p>
 <div class="lab" id="lab-for">10 IN THE MAJORITY</div>
 <div class="lab" id="lab-against">3 IN THE MINORITY</div>
 
@@ -31,7 +31,7 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 const FIG = {"board_for": 10, "board_against": 3};
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "State Board of Education", counter: "02 / 09", src: "c7 c8", fit: { min: 90, max: 112, maxLines: 2 } });
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "State Board of Education", counter: "02 / 09", src: "c7 c8 c44", fit: { min: 90, max: 112, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 30, exposure: 1.05, fog: 0.0004, far: 400 });
   const roomO = { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.6, windowY: 4.35 };
   const room = TXT.interior(R, NB.roomSpec(roomO)); NB.room(TXT, R, roomO, room);
@@ -43,7 +43,7 @@ window.renderReady = (async () => {
   const PX = 0.95, PZ = 1.15;
   for (let i = 0; i < FIG.board_for; i++) { const row = Math.floor(i / 5); chair(-4.9 + (i % 5) * PX, -0.2 + row * PZ, 10 + i); }
   for (let j = 0; j < FIG.board_against; j++) chair(1.55 + j * PX, 0.4, 40 + j);
-  TXT.frame(R, { from: [-0.6, 2.9, 22], look: [-0.6, 3.35, -2] });
+  TXT.frame(R, { from: [7.2, 2.6, 18.5], look: [-1.4, 3.0, -2] });
   TXT.deckRig(R, NB.rigSpec(W, 20), NB.rigOpts([0, 0, -1], { distance: 40 }));
   TXT.weather(R, { grime: 0.12, height: 0.5 });
   const place = (id, p, dx, dy) => { const q = NB.project(THREE, R, p), el = document.getElementById(id); el.style.left = (q[0] + dx) + 'px'; el.style.top = (q[1] + dy) + 'px'; };

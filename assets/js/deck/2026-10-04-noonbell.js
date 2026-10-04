@@ -261,7 +261,8 @@
     o = o || {};
     var L = o.length || 57, ex = -L / 2 + 13;
     var c = K.make("school_clock", { d: o.d || 1.0, hour: o.hour == null ? 12 : o.hour, minute: o.minute || 0, sector: o.sector || null, surround: true, seed: 3 });
-    c.position.set(ex, o.y || 4.75, 7 + 3.2 + 0.13);
+    /* over the entry vestibule by default; o.x and o.z hang it elsewhere on the facade */
+    c.position.set(o.x != null ? o.x : ex, o.y || 4.75, o.z != null ? o.z : 7 + 3.2 + 0.13);
     school.add(c);
     return c;
   };
@@ -294,7 +295,7 @@
       while (bx < c.width) {
         var bw = (0.7 + rnd() * 0.5) * ppm;
         x.fillStyle = tone(0.93 + rnd() * 0.12); x.fillRect(bx + joint / 2, y - ch + joint / 2, bw - joint, ch - joint);
-        for (var k = 0; k < 14; k++) { x.fillStyle = "rgba(60,48,36," + (rnd() * 0.05).toFixed(3) + ")"; x.beginPath(); x.arc(bx + rnd() * bw, y - rnd() * ch, (0.01 + rnd() * 0.05) * ppm, 0, 6.283); x.fill(); }
+        for (var k = 0; k < 14; k++) { x.fillStyle = "rgba(60,48,36," + (rnd() * 0.02).toFixed(3) + ")"; x.beginPath(); x.arc(bx + rnd() * bw, y - rnd() * ch, (0.01 + rnd() * 0.05) * ppm, 0, 6.283); x.fill(); }
         bx += bw;
       }
     }
@@ -312,6 +313,7 @@
     /* the pane shows the noon outside as the deck's own sky, blue at the head going to the bleached
      * horizon value at the sill, so the window reads as a source and never as a blank panel or a
      * painted view */
+    if (o.window !== false) {
     var vc = document.createElement("canvas"); vc.width = 256; vc.height = 256; var vx = vc.getContext("2d");
     var sg = vx.createLinearGradient(0, 0, 0, 256); sg.addColorStop(0, "#b9cadb"); sg.addColorStop(0.7, "#e9ebe6"); sg.addColorStop(1, "#f4f1e8"); vx.fillStyle = sg; vx.fillRect(0, 0, 256, 256);
     var vt = new T.CanvasTexture(vc); vt.colorSpace = T.SRGBColorSpace;
@@ -321,6 +323,7 @@
     [[ww + 0.16, 0.08, 0, wh / 2 + 0.04], [ww + 0.16, 0.12, 0, -wh / 2 - 0.06], [0.08, wh, -ww / 2 - 0.04, 0], [0.08, wh, ww / 2 + 0.04, 0], [0.05, wh, 0, 0]].forEach(function (b) {
       var m = new T.Mesh(new T.BoxGeometry(b[0], b[1], 0.06), fm); m.position.set((o.windowX || 0) + b[2], (o.windowY || 2.2) + b[3], -d / 2 + 0.13); m.castShadow = true; R.scene.add(m);
     });
+    }
     /* the floor: the concrete surface with its tooth and joints, in the frame's darker tone */
     TXT.ground(R, { surface: "concrete", color: o.floor || 0x6b6f73, size: 60, tile: o.tile || 2.5, y: 0.003, seed: o.seed });
     return room;

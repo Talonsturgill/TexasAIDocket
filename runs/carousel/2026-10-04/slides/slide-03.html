@@ -41,7 +41,7 @@ window.renderReady = (async () => {
   desk.traverse(o => { if (o.isMesh && o.material && o.material.map && !o.material.userData.nbTight) { const m = o.material.clone(); m.map = m.map.clone(); m.map.repeat.multiplyScalar(1.7); m.color.setScalar(0.8); m.map.wrapS = m.map.wrapT = THREE.RepeatWrapping; m.map.needsUpdate = true; m.userData.nbTight = true; o.material = m; } });
   const top = 0.76;
   const sheet = K.make('letter_sheet', { curl: 0.007 }); sheet.position.set(-0.02, top + 0.001, -1.7); sheet.rotation.y = 0.0; TXT.add(R, sheet);
-  TXT.contact(R, sheet, { opacity: 0.55, y: top - 0.0035, layers: [{ spread: 0.03, opacity: 0.5 }, { spread: 0.16, opacity: 0.22 }] });
+  TXT.contact(R, sheet, { opacity: 0.55, y: top - 0.0035, layers: [{ spread: 0.025, opacity: 0.5 }, { spread: 0.07, opacity: 0.14 }] });
   /* a ballpoint lying beside the page, the scale a reader measures the sheet by, casting the deck's one light */
   const pen = new THREE.Group();
   const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.128, 20), new THREE.MeshStandardMaterial({ color: 0x1d2430, roughness: 0.35, metalness: 0.2 }));

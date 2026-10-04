@@ -58,6 +58,9 @@ put("tprep_f_ratings", num("c43", r"its (third) consecutive F"), ["c28", "c43"],
 put("alpha_claim_low", num("c39", r"to (\d+)% to \d+% of students passing"), ["c39"], "low end of the passing share an Alpha leader claimed, percent")
 put("alpha_claim_high", num("c39", r"to \d+% to (\d+)% of students passing"), ["c39"], "high end of that claimed share, percent")
 put("states_rejected", num("c37", r"at least (\w+) states"), ["c37"], "states that rejected Alpha's charter pitch, at least")
+put("vote_year", int(re.search(r"(\d{4})$", C["c44"]["document"].split(".")[0]).group(1)) - 1 if re.search(r"application last summer", C["c44"]["quote"]) else None, ["c44"],
+    "year of the board vote ProPublica places 'last summer' in its report of September 2nd, 2026", rule="the report's year - 1, the summer before a September report")
+assert F["vote_year"]["value"] is not None
 put("tprep_fail", 100 - F["tprep_pass"]["value"], ["c28"], "percent who did not pass, for drawing the remainder of a hundred; never printed", rule="100 - tprep_pass")
 
 json.dump(F, open(HERE / "figures.json", "w"), indent=1)

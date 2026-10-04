@@ -34,10 +34,11 @@
    "headline": "Voted down 10 to 3, the Tribune reports.",
    "claims": [
     "c7",
-    "c8"
+    "c8",
+    "c44"
    ],
-   "cite": "c7 c8",
-   "body": "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
+   "cite": "c7 c8 c44",
+   "body": "ProPublica dates the vote to the summer of 2025. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
    "labels": [
     "10 IN THE MAJORITY",
     "3 IN THE MINORITY"
@@ -45,12 +46,12 @@
    "strings": [
     "texasaidocket.com",
     "Voted down 10 to 3, the Tribune reports.",
-    "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
+    "ProPublica dates the vote to the summer of 2025. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
     "10 IN THE MAJORITY",
     "3 IN THE MINORITY",
     "State Board of Education",
     "02 / 09",
-    "c7 c8"
+    "c7 c8 c44"
    ]
   },
   "S3": {
@@ -86,12 +87,12 @@
     "c33"
    ],
    "cite": "c33",
-   "body": "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school.",
+   "body": "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "Back again, with six others.",
-    "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school.",
+    "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles.",
     "The return visit",
     "04 / 09",
     "c33"
@@ -101,7 +102,7 @@
    "n": 5,
    "file": "slide-05.html",
    "kicker": "The districts",
-   "headline": "Approached, at least 10. Piloted, 3. Declined, 5.",
+   "headline": "Approached, at least 10. Piloted, 3. Didn't pursue it, 5.",
    "claims": [
     "c16",
     "c17",
@@ -109,17 +110,17 @@
     "c22"
    ],
    "cite": "c16 c17 c19 c22",
-   "body": "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them.",
+   "body": "One bus per district in the reporting, and every count is a floor. The 2 set back are approached districts the reporting doesn't name. TEA says it connected interested district leaders and left the choice to them.",
    "labels": [
     "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
-    "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"
+    "DIDN'T PURSUE IT ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"
    ],
    "strings": [
     "texasaidocket.com",
-    "Approached, at least 10. Piloted, 3. Declined, 5.",
-    "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them.",
+    "Approached, at least 10. Piloted, 3. Didn't pursue it, 5.",
+    "One bus per district in the reporting, and every count is a floor. The 2 set back are approached districts the reporting doesn't name. TEA says it connected interested district leaders and left the choice to them.",
     "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
-    "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE",
+    "DIDN'T PURSUE IT ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE",
     "The districts",
     "05 / 09",
     "c16 c17 c19 c22"

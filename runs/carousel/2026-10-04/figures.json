@@ -170,6 +170,14 @@
   ],
   "basis": "states that rejected Alpha's charter pitch, at least"
  },
+ "vote_year": {
+  "value": 2025,
+  "from": [
+   "c44"
+  ],
+  "basis": "year of the board vote ProPublica places 'last summer' in its report of September 2nd, 2026",
+  "rule": "the report's year - 1, the summer before a September report"
+ },
  "tprep_fail": {
   "value": 79,
   "from": [

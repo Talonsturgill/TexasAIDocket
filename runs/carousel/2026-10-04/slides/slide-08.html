@@ -35,7 +35,7 @@ window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Texas Preparatory School, Austin", counter: "08 / 09", src: "c28 c39 c40 c42 c43", fit: { min: 88, max: 112, maxLines: 2 } });
   const R = NB.stage(TXT, gl, W, { fov: 26, exposure: 1.02, fog: 0.0004, far: 400 });
-  const roomO = { w: 14, d: 8, h: 5.0, wall: 0xb3a893, floor: 0x5d6168, windowW: 0.72, windowH: 0.5, windowX: 1.02, windowY: 1.15 };
+  const roomO = { w: 14, d: 8, h: 5.0, wall: 0xb3a893, floor: 0x5d6168, windowW: 0.72, windowH: 0.5, windowX: 1.02, windowY: 1.15, window: false };
   const room = TXT.interior(R, NB.roomSpec(roomO)); NB.room(TXT, R, roomO, room);
   const table = K.make('conference_table', { seats: 8, shape: 'rect', chairs: false, wood: 0x6a4428 }); table.position.set(0, 0, 0.1); TXT.add(R, table); TXT.contact(R, table, { opacity: 0.6 });
   /* the top the columns stand on, measured off the model; the flush power box in the table's centre is hidden, a plate the reader would take for a fifth figure */

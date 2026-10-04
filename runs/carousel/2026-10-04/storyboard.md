@@ -199,7 +199,7 @@ accent: none
 job: >
   Draw the board's vote as a count a reader can count, without seating thirteen real members on a side.
 
-claims: [c7, c8]
+claims: [c7, c8, c44]
 numerals:
   - value_from: c7
 
@@ -233,7 +233,7 @@ art:
 
 type:
   hook: "Voted down 10 to 3, the Tribune reports."
-  dek: "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented."
+  dek: "ProPublica dates the vote to the summer of 2025. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented."
   labels: ["10 IN THE MAJORITY", "3 IN THE MINORITY"]
 
 verbatim: []
@@ -349,7 +349,7 @@ art:
 
 type:
   hook: "Back again, with six others."
-  dek: "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school."
+  dek: "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles."
   labels: []
 
 verbatim: []
@@ -412,9 +412,9 @@ art:
     Frame median L* planned at 62.
 
 type:
-  hook: "Approached, at least 10. Piloted, 3. Declined, 5."
-  dek: "One bus per district in the reporting, and every count is a floor. The 2 set back stand for approached districts it does not name. TEA says it connected interested district leaders and left the choice to them."
-  labels: ["PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS", "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"]
+  hook: "Approached, at least 10. Piloted, 3. Didn't pursue it, 5."
+  dek: "One bus per district in the reporting, and every count is a floor. The 2 set back are approached districts the reporting doesn't name. TEA says it connected interested district leaders and left the choice to them."
+  labels: ["PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS", "DIDN'T PURSUE IT ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"]
 
 verbatim: []
 

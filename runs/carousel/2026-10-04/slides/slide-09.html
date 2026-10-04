@@ -41,7 +41,7 @@ window.renderReady = (async () => {
   p.rotation.y = Math.PI + 0.85; p.position.set(-6.2, 0.2, 5.6); TXT.add(R, p); TXT.contact(R, p, { opacity: 0.7 });
   /* the neighbourhood behind: brick ranch houses on their lawns, live oaks, a cedar elm */
   [[-26, -24, 3], [2, -26, 7], [30, -25, 12]].forEach(([x, z, s]) => { const h = K.make('ranch_house', { seed: s, material: 'brick' }); h.position.set(x, 0, z); TXT.add(R, h); TXT.contact(R, h, { opacity: 0.6 }); });
-  [[-24, -17, 4, 'live_oak'], [16, -12, 9, 'live_oak'], [-40, -10, 2, 'cedar_elm']].forEach(([x, z, s, k]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
+  [[-24, -17, 4, 'live_oak'], [24, -16, 9, 'live_oak'], [-40, -10, 2, 'cedar_elm']].forEach(([x, z, s, k]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
   TXT.frame(R, { from: [-11.5, 1.6, 15.5], look: [3.5, 5.25, -14] });
   TXT.scatter(R, { kind: 'grass', count: 4000, area: [-80, -60, 80, 40], avoid: [[-90, -6, 90, 7.5]], seed: 7, scale: 0.8 });
   TXT.sky(R);
