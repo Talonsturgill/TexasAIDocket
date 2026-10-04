@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The agency's draft assessment and review page still stand as published. The comment window is still open until October 11th.
 - 2026-09-30 · The agency's review page and the draft assessment still read as published, and the comment window is still open until October 11th.
 - 2026-10-03 · The comment window is still open, closing October 11th. The agency's review page and the draft assessment still read as published.
+- 2026-10-04 · The comment window is still open and closes October 11th. The agency's review page did not answer, so whether the draft assessment still reads as published is unconfirmed this time.
 
 ## Evidence
 

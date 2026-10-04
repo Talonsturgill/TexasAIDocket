@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-01 · Whether the clerk's request to buy minute writing software is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and no disposition has been found on the county's own site.
 - 2026-10-02 · The vendor now calls its product an AI minutes platform for local government. Whether the clerk's request is still before the court is unconfirmed. The posted agenda sits on a host that bars every automated reader, and the county has posted no disposition.
 - 2026-10-03 · The vendor now says its product writes the minutes and the government's own staff have the final word on them. Whether the clerk's request is still before the court is unconfirmed, because the posted agenda bars every automated reader.
+- 2026-10-04 · Whether the clerk's request is still before the court is unconfirmed. The posted agenda bars every automated reader and no disposition has been published.
 
 ## Evidence
 
