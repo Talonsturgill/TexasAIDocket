@@ -164,7 +164,8 @@ that has a reason.
 own pour, grime along the saw cut joints, sparse clusters of oil stains on concrete and asphalt and
 damp on caliche and dirt, straw against green and the odd dusty bare patch on grass. A stain has a
 soaked, ragged edge and a darker core, and fades out far off where it would shimmer. Off with
-`wear:false`; `wear:'interior'` keeps a floor clean of oil (and is what `TXT.interior` passes);
+`wear:false`, which takes the marks and grit off that ground too and draws it as it was before the
+wear existed; `wear:'interior'` keeps a floor clean of oil (and is what `TXT.interior` passes);
 an object of amounts tunes it (`{ macro, slab, joint, stain }`). A joint's grime is filtered to the
 pixel it falls in, so far slabs keep their joints without breaking into dotted hairlines.
 A deck's OWN pad wears where something stands on it: a plane that is flat, faces up, covers 30

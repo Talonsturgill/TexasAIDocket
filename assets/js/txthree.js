@@ -2130,7 +2130,7 @@ export function init(THREE) {
    *   6 m texture tile never repeats), each concrete slab a shade of its own pour, grime along the
    *   saw cut joints, and sparse clusters of stains (oil on concrete and asphalt, damp on caliche
    *   and dirt), with straw against green and a bare patch here and there on grass.
-   *   `wear:false` turns it off, `wear:'interior'` keeps a floor clean of oil, and an object of
+   *   `wear:false` turns it off, marks and grit too, `wear:'interior'` keeps a floor clean of oil, and an object of
    *   amounts tunes it ({ macro, slab, joint, stain }).
    *
    *   MARKS, from TXT.contact: the ground under and around a thing's BASE (what it stands on, not
@@ -2205,7 +2205,6 @@ export function init(THREE) {
   }
   function wearSpec(o) {
     const base = WEAR[o.surface] || WEAR.caliche;
-    if (o.wear === false) return Object.assign({}, base, { macro: 0, slab: 0, joint: 0, stain: 0, straw: 0, bare: 0 });
     if (o.wear === 'interior') return Object.assign({}, base, WEAR_INTERIOR);
     return Object.assign({}, base, typeof o.wear === 'object' ? o.wear : {});
   }
@@ -2377,7 +2376,8 @@ export function init(THREE) {
      * Relief belongs where a reader can see relief, so the bump fades out between about 18 and
      * 90 m from the camera and the colour map carries the distance. */
     mat.onBeforeCompile = (sh) => {
-      wearPatch(sh, WU);
+      // `wear:false` leaves the shader as it was before 2026-10-03: no wear, no marks (Codex, #398)
+      if (o.wear !== false) wearPatch(sh, WU);
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <bumpmap_pars_fragment>',
           'float txBumpS;\n' + THREE.ShaderChunk.bumpmap_pars_fragment.split('bumpScale *').join('txBumpS *'))
@@ -2388,7 +2388,7 @@ export function init(THREE) {
     g.rotation.x = -Math.PI / 2; g.position.y = o.y || 0;
     g.receiveShadow = true; markGround(g);
     g.userData.txSurface = o.surface;
-    g.userData.txWear = wearSpec(o);
+    g.userData.txWear = o.wear === false ? false : wearSpec(o);
     R.scene.add(g);
     return g;
   };
@@ -2535,7 +2535,9 @@ export function init(THREE) {
       if (k.gritDone || !k.grit) continue;
       k.gritDone = true;
       if (k.vehicle || Math.min(k.hw, k.hd) * 2 < 0.35) continue;
-      const gr = groundAt(R, k.y), W = gr && gr.m.userData.txWear;
+      // the surface the mark was laid on, once it is a worn ground or an adopted pad; else by height
+      const own = k.surface && (k.surface.userData.txAdopted || k.surface.userData.txSurface) ? k.surface : null;
+      const gr = own ? { m: own } : groundAt(R, k.y), W = gr && gr.m.userData.txWear;
       if (!W || !W.grit) continue;
       const rng = TXT.rng(9173 + k.seed * 131), W2 = 2 * k.hw, D2 = 2 * k.hd, per = 2 * (W2 + D2);
       const clusters = Math.min(160, Math.round(per * 2.6 * k.strength));
@@ -2658,40 +2660,52 @@ export function init(THREE) {
      * no such ground stands on a support, a dock, a slab or a desk, and the contact goes at the
      * base. With no tagged ground at all, y = 0 is the ground. `o.y` wins. */
     const wb = new THREE.Box3().setFromObject(obj);
-    let y = o.y, onGround = false;
+    // every surface it could stand on, each with the mesh it came from, so the mark's grit is the
+    // grit of the surface under it and not of another one at the same height (Codex, #398)
+    const grounds = [], v = new THREE.Vector3();
+    R.scene.traverse((m) => {
+      if (m.userData && m.userData.txGround) { grounds.push({ y: m.getWorldPosition(v).y, m, pad: false }); return; }
+      // a pad the deck laid over the ground is what the thing stands on (THE RECEIVING SURFACE),
+      // when the thing stands over it and is not part of it. Over it in plan as well as in height:
+      // 09-30's football field counted as the ground under the school beside it, lifted the
+      // school's contact above the entrance slab, and turned the slab dark grey.
+      const f = flatPlane(m);
+      if (!f) return;
+      const cx = (wb.min.x + wb.max.x) / 2, cz = (wb.min.z + wb.max.z) / 2;
+      if (cx < f.bb.min.x || cx > f.bb.max.x || cz < f.bb.min.z || cz > f.bb.max.z) return;
+      for (let a = m; a; a = a.parent) if (a === obj) return;
+      grounds.push({ y: f.y, m, pad: true });
+    });
+    // of the surfaces at one height, a deck's pad is the one on top: the ground loses every depth tie
+    const top = (list, h) => list.filter((g) => Math.abs(g.y - h) < 0.06).sort((A, B) => B.pad - A.pad)[0] || null;
+    let y = o.y, onGround = false, surface = null;
     if (y == null) {
-      const grounds = [], v = new THREE.Vector3();
-      R.scene.traverse((m) => {
-        if (m.userData && m.userData.txGround) { grounds.push(m.getWorldPosition(v).y); return; }
-        // a pad the deck laid over the ground is what the thing stands on (THE RECEIVING SURFACE),
-        // when the thing stands over it and is not part of it. Over it in plan as well as in height:
-        // 09-30's football field counted as the ground under the school beside it, lifted the
-        // school's contact above the entrance slab, and turned the slab dark grey.
-        const f = flatPlane(m);
-        if (!f) return;
-        const cx = (wb.min.x + wb.max.x) / 2, cz = (wb.min.z + wb.max.z) / 2;
-        if (cx < f.bb.min.x || cx > f.bb.max.x || cz < f.bb.min.z || cz > f.bb.max.z) return;
-        for (let a = m; a; a = a.parent) if (a === obj) return;
-        grounds.push(f.y);
-      });
-      if (!grounds.length) grounds.push(0);
-      const under = grounds.filter((gy) => gy >= wb.min.y - 0.25 && gy < wb.max.y);
-      y = under.length ? Math.max(...under) : wb.min.y;
+      if (!grounds.length) grounds.push({ y: 0, m: null, pad: false });
+      const under = grounds.filter((g) => g.y >= wb.min.y - 0.25 && g.y < wb.max.y);
+      y = under.length ? Math.max(...under.map((g) => g.y)) : wb.min.y;
       onGround = under.length > 0;
+      if (onGround) surface = top(under, y);
+    } else {
+      // A HEIGHT THE FRAME GIVES IS STILL A SURFACE (Codex, #398): an elevated road or a deck named
+      // with `y` takes its mark when a ground or a pad lies there, as one found by search does
+      surface = top(grounds, y);
+      onGround = !!surface;
     }
     // no ground under it: what it stands on, a sill or a ledge, takes its MARK on its top face. The
     // contact stays at the base, where it always was: on no. 40's desk the highest matte top under
     // the monitor was the desk's frame 6 mm below its glossy top, and a contact moved down to it
     // vanished under the desk (10-02 frames 3 and 4, both graded down for it).
     let support = null;
-    if (foot && !onGround && o.y == null) {
+    if (foot && !onGround) {
       const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
-      support = supportUnder(R, obj, c.x, c.z, wb.min.y);
+      support = supportUnder(R, obj, c.x, c.z, o.y != null ? o.y : wb.min.y);
     }
+    // a ground built with wear:false is drawn exactly as it was before the wear existed, marks included
+    const inert = surface && surface.m && surface.m.userData.txWear === false;
     /* THE GROUND TAKES THE MARK, a dock or a desk does not: a thing standing on a ground lays its
      * dirt band (and, a vehicle, its oil and tyre tracks) in that ground's shader, and its grit,
      * when the frame renders. See THE RECEIVING SURFACE. */
-    if (foot && (onGround || support)) {
+    if (foot && ((onGround && !inert) || support)) {
       const yaw = new THREE.Euler().setFromQuaternion(q, 'YXZ').y;
       const c = new THREE.Vector3(foot.cx, 0, foot.cz).applyQuaternion(q).add(p);
       const vehicle = o.vehicle != null ? !!o.vehicle : isVehicle(obj);
@@ -2700,7 +2714,8 @@ export function init(THREE) {
       const band = minor < 0.25 ? Math.max(0.012, 0.7 * minor) : Math.max(0.12, Math.min(0.65, 0.1 + 0.16 * Math.sqrt(minor)));
       marksOf(R).list.push({ cx: c.x, cz: c.z, y: support ? support.y : y, hw: foot.hw, hd: foot.hd, angle: yaw, vehicle, band,
         strength: (typeof o.dirt === 'number' ? o.dirt : 1) * (vehicle ? 0.75 : 1),
-        grit: o.grit !== false && !support, support: support && support.m, seed: marksOf(R).list.length + 1 });
+        grit: o.grit !== false && !support, support: support && support.m, surface: surface && surface.m,
+        seed: marksOf(R).list.length + 1 });
     }
     y += 0.004;
     const layers = o.layers || [{ spread: 0.10, opacity: 0.62 }, { spread: 0.55, opacity: 0.30 }];

@@ -15,7 +15,7 @@ for 2026-10-03, 2026-10-02, 2026-09-30 and 2026-09-29, then
 
 Writes `deck-<date>.webp` (every frame at the 432 px thumb, main | item 1 | items 1 and 2),
 `zoom-ground.webp`, `zoom-shadows.webp`, `zoom-worse.webp` and `zoom-bias.webp` (regions at full size, 1:1
-with the 2160 px render, `zoom-worse` the regions on the frames the blind graders marked down, through the
+with the 2160 px render, `zoom-worse` a selection of the frames the blind graders marked down, through the
 renders they graded, and `zoom-bias` the sun's bias cap that came after) and
 `full-<deck>-<frame>.webp` (two whole frames at full size, main | items 1 and 2).
 """
@@ -40,17 +40,17 @@ ZOOM_SHADOWS = [("no. 41 frame 8, light inside the wall's shadow", "1003", 8, (5
                 ("no. 41 frame 3, the lamp's shadow on the fascia, against a low sun", "1003", 3, (330, 1500, 940, 1900)),
                 ("no. 41 frame 4, the verge polygon and the barrier's cut shadow", "1003", 4, (0, 1650, 2160, 2450)),
                 ("no. 41 frame 6, the van's cast, sharp at the foot, soft at the tip", "1003", 6, (300, 1150, 1300, 1950)),
-                ("09-29 frame 2, long golden hour casts", "0929", 2, (0, 1500, 1400, 2300)),
+                ("no. 37 frame 2, long golden hour casts", "0929", 2, (0, 1500, 1400, 2300)),
                 ("no. 40 frame 9, blocks of light in the paper stacks' shadow", "1002", 9, (880, 1820, 2160, 2280)),
                 ("no. 40 frame 7, streaks down the glass", "1002", 7, (120, 1260, 1000, 2000))]
-# the regions the blind graders named on the frames items 1 and 2 made WORSE, shown as honestly as the
-# gains, through the very renders they graded. The fifth field is the pair of sets: (0, 1) is main |
-# item 1, (1, 3) is item 1 | items 1 and 2 as graded, before the sun's bias cap
+# a SELECTION of the frames items 1 and 2 made WORSE, the regions the blind graders named, through the
+# very renders they graded. Every worse frame is listed with its grader's reason in the README. The
+# fifth field is the pair of sets: (0, 1) is main | item 1, (1, 3) is item 1 | items 1 and 2 as graded,
+# before the sun's bias cap
 ZOOM_WORSE = [("no. 40 frame 6, item 1, the adopted sill a few levels darker in the lower left", "1002", 6, (0, 1800, 1080, 2700), (0, 1)),
               ("no. 41 frame 1, grain in the wide penumbrae under the roof and the load bar", "1003", 1, (1300, 1440, 1880, 2140)),
               ("no. 41 frame 6, the load bar's shadow sharp on the cartons, teeth where the wall's shadow crosses their tops", "1003", 6, (1180, 1560, 1840, 2160)),
-              ("no. 41 frame 5, crescents in the hubs, the door post down the bay", "1003", 5, (1500, 1180, 2060, 1740)),
-              ("no. 40 frame 4, the vial's shadow starts off its base (the deck's own spot bias, see the README)", "1002", 4, (1380, 1880, 2160, 2460))]
+              ("no. 41 frame 5, crescents in the hubs, the door post down the bay", "1003", 5, (1500, 1180, 2060, 1740))]
 # the sun's bias cap, which came after items 1 and 2 were graded: the tiles it moved most, items 1
 # and 2 as graded | with the cap
 ZOOM_BIAS = [("no. 41 frame 4, the barrier's foot", "1003", 4, (0, 1800, 400, 2200)),
@@ -87,7 +87,7 @@ def deck_sheet(sets, key, date, note):
         x = gap + (i % cols) * (trip + gap)
         y = head + (i // cols) * (H + 34)
         d.text((x, y + 4), f[6:8], fill=(20, 20, 20), font=font(20))
-        for j, s in enumerate(sets):
+        for j, s in enumerate(sets[:3]):           # main, item 1, items 1 and 2: the fourth set is for the crops
             p = s / key / f
             if p.exists():
                 sheet.paste(Image.open(p).convert("RGB").resize((W, H), Image.LANCZOS), (x + j * (W + 4), y + 30))

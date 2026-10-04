@@ -1441,7 +1441,9 @@ export function install(K, THREE, TXT) {
     note: 'A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an overhead truss with blank green panels over the right carriageway; overpass adds a crossing bridge on round columns and bent caps with MSE walled approaches.',
     make(o, r) {
       o = Object.assign({ length: 80, lanes: 2, surface: 'asphalt', gantry: true, overpass: false, embank: 0.6, ground: 0x6d7a3c }, o);
-      const g = new THREE.Group(), L = o.length, E = o.embank, LW = 3.66, SI = 1.2, SO = 3.0, MED = 0.9;
+      // under 0.1 m of embankment the road is laid at grade, pavement and all, so a small embank never
+      // floats a road with no slope or edge under it (Codex, #398)
+      const g = new THREE.Group(), L = o.length, E = o.embank >= 0.1 ? o.embank : 0, LW = 3.66, SI = 1.2, SO = 3.0, MED = 0.9;
       const CW = SI + o.lanes * LW + SO;                         // one carriageway
       const half = MED / 2 + CW;                                 // edge of pavement
       const slope = 4 * E + 3;                                   // side slope and ditch
