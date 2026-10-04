@@ -9,19 +9,22 @@
  * is the pale sky above the roofline, and type is dark.
  *
  * DIRECTIONS. +x is east and -z is north, so +z is south. The light is declared at az 10, el 58:
- * the sun high in the south, a touch west of the meridian. az runs clockwise from +z toward +x,
+ * the sun high in the south, a touch east of it, where it stands at noon by the clock in Central Daylight Time. az runs clockwise from +z toward +x,
  * so the key sits at (sin 10, ., cos 10). A building whose face looks south (+z) is lit full on
  * and its shadow falls short behind it to the north. A camera looking north sees sunlit faces.
  *
- * THE HERO OBJECT. One school wall clock, `school_clock`, a kit addition below: 0.36 m across, a
+ * THE HERO OBJECT. One Type C school bus, the kit's `school_bus`, unlettered, its stop arm out for a
+ * no and folded for a yes, one bus per district wherever a frame counts districts (N.bus below).
+ *
+ * THE CLOCK. One school wall clock, `school_clock`, a kit addition below: 0.36 m across, a
  * black moulded case with a domed lens, a white face with minute ticks and twelve hour bars and no
  * numerals, black hands, and the deck's figure drawn on the face: a sector two hours wide in the
- * accent, the hours Alpha's full model gives the AI to teach basic subjects each day (c34). It is
- * the same clock on every frame. The frame sets the time on its hands and whether the sector shows.
- * On a campus facade the same clock is mounted large over the entry in a cast stone surround.
+ * accent, the hours Alpha's full model gives the AI to teach basic subjects each day (c34). The frame
+ * sets the time on its hands and whether the sector shows.
  *
- * THE ACCENT. #C2477A, "the two hour block": only ever the sector on the clock's face, and the
- * units a count frame marks as a pilot. Never a sky, a building, a person's clothing or a light.
+ * THE ACCENT. #C2477A, "the platform": only ever the card in a pilot district's bus windshield,
+ * the two hour sector on the clock's face, and the measured column for the one school with scores.
+ * Never a sky, a building, a person's clothing or a light.
  *
  * WHAT THIS FILE IS NOT. A frame. It declares the deck's one light and world, installs the kit
  * additions and the deck's materials, and hands a frame primitives. Each frame sets up its own
@@ -90,15 +93,6 @@
       x.fillStyle = d; x.fillRect(0, 0, w, h);
     }, [1, 1]);
   };
-  /* steel locker paint, baked enamel with scuffs at knee height and a dark seam every door */
-  N.lockerTex = function (THREE) {
-    return canvasTex(THREE, "locker", 256, 512, function (x, w, h) {
-      var r = lcg(77);
-      x.fillStyle = "#8d969c"; x.fillRect(0, 0, w, h);
-      for (var i = 0; i < 1600; i++) { x.fillStyle = r() < 0.5 ? "rgba(255,255,255,0.05)" : "rgba(30,34,38,0.06)"; x.fillRect(r() * w, r() * h, 1 + r() * 2, 1); }
-      for (var s = 0; s < 40; s++) { x.strokeStyle = "rgba(40,42,44," + (0.06 + r() * 0.12) + ")"; x.lineWidth = 1 + r() * 2; var y = h * (0.62 + r() * 0.3), xx = r() * w; x.beginPath(); x.moveTo(xx, y); x.lineTo(xx + 10 + r() * 40, y + (r() - 0.5) * 6); x.stroke(); }
-    }, [1, 1]);
-  };
 
   /* ---------------------------------------------------------------- materials */
   N.mats = function (K, THREE, TXT) {
@@ -112,9 +106,10 @@
       sector: K.mat("nb-sector", { color: 0xc2477a, roughness: 0.55, metalness: 0, emissive: 0x6a1838, emissiveIntensity: 0.35 }),
       lens: K.mat("nb-lens", { color: 0xffffff, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.12 }, true),
       castStone: K.mat("nb-cast", { color: 0xddd3bd, roughness: 0.88, metalness: 0 }),
-      locker: K.mat("nb-locker", { color: 0xffffff, roughness: 0.48, metalness: 0.45, map: N.lockerTex(THREE) }),
-      lockerDark: K.mat("nb-lockerin", { color: 0x2a2d30, roughness: 0.8, metalness: 0.2 }),
-      lockerAccent: K.mat("nb-lockeracc", { color: 0xc2477a, roughness: 0.5, metalness: 0.3, emissive: 0x5a1430, emissiveIntensity: 0.25 }),
+      card: K.mat("nb-card2", { color: 0x8e2a52, roughness: 0.85, metalness: 0, emissive: 0x2a0816, emissiveIntensity: 0.3, side: 2 }),
+      glassBand: K.mat("nb-glassband", { color: 0x9fb4bd, roughness: 0.08, metalness: 0, transparent: true, opacity: 0.55 }, true),
+      glassGhost: K.mat("nb-glassghost", { color: 0xe6eef0, roughness: 0.05, metalness: 0, transparent: true, opacity: 0.16 }, true),
+      paper: K.mat("nb-paper", { color: 0xf4f1e9, roughness: 0.82, metalness: 0 }),
       base: K.mat("nb-base", { color: 0x2c2e30, roughness: 0.7, metalness: 0.1 })
     };
     return N._m;
@@ -182,39 +177,70 @@
       }
     });
 
-    /* locker_bank — a bank of full height steel lockers, each 0.305 m wide (12 in), 1.83 m tall
-     * on a 0.1 m base, 0.38 m deep, facing +z, origin at the footprint centre on the floor.
-     * options: count, open (a list of door indices that stand open, swung toward +x),
-     *          accent (a list of door indices whose number plate carries the accent) */
-    K.define("locker_bank", {
-      size: [3.05, 1.93, 0.38],
-      options: { count: 10, open: [], accent: [], seed: 1 },
-      note: "A bank of full height steel school lockers, 0.305 m wide each, 1.83 m on a 0.1 m base, 0.38 m deep, facing +z. count, open (door indices standing open), accent (door indices whose plate is the accent).",
+    /* measure_column — a column at one scale for a share of a hundred. Origin at the centre of its
+     * base. options: h (metres, the drawn share), w (square section), kind 'solid' | 'glass' |
+     * 'footprint' (a plate for a share of zero), finish 'stone' | 'accent'. The glass kind is a
+     * band from y0 to h, for a claimed range. */
+    K.define("measure_column", {
+      size: [0.16, 1.0, 0.16],
+      options: { h: 0.5, y0: 0, w: 0.16, kind: "solid", finish: "stone", seed: 1 },
+      note: "A column at one scale: h metres tall on a square section w, solid (cast stone or the accent), glass (a band from y0 to h for a claimed range) or footprint (a plate for zero). Origin at the base centre.",
       make: function (o) {
-        var g = new THREE.Group(), w = 0.305, H = 1.83, D = 0.38, n = o.count, W = n * w;
-        K.box(W, 0.1, D - 0.04, M.base, 0, 0, -0.02, 0, g);
-        K.box(W, H, 0.02, M.lockerDark, 0, 0.1, -D / 2 + 0.01, 0, g);
-        K.box(W + 0.02, 0.03, D, M.locker, 0, 0.1 + H, 0, 0.005, g);
-        var openSet = {}, accSet = {};
-        (o.open || []).forEach(function (k) { openSet[k] = 1; });
-        (o.accent || []).forEach(function (k) { accSet[k] = 1; });
-        for (var i = 0; i < n; i++) {
-          var x = -W / 2 + w * (i + 0.5);
-          K.box(0.012, H, D, M.locker, x - w / 2 + 0.006, 0.1, 0, 0, g);
-          var door = new THREE.Group();
-          var leaf = K.box(w - 0.012, H - 0.02, 0.016, M.locker, (w - 0.012) / 2, 0, 0, 0.003, door);
-          for (var v = 0; v < 3; v++) K.box(0.16, 0.012, 0.006, M.lockerDark, (w - 0.012) / 2, 0.12 + v * 0.03, 0.01, 0, door);
-          for (var v2 = 0; v2 < 3; v2++) K.box(0.16, 0.012, 0.006, M.lockerDark, (w - 0.012) / 2, H - 0.22 + v2 * 0.03, 0.01, 0, door);
-          K.box(0.03, 0.12, 0.02, M.hub, w - 0.06, H * 0.5, 0.012, 0.004, door);
-          K.box(0.07, 0.03, 0.004, accSet[i] ? M.lockerAccent : M.castStone, (w - 0.012) / 2, H - 0.32, 0.011, 0, door);
-          door.position.set(x - w / 2 + 0.006, 0.11, D / 2 - 0.008);
-          if (openSet[i]) door.rotation.y = -1.25;
-          g.add(door);
+        var g = new THREE.Group();
+        if (o.kind === "footprint") {
+          K.box(o.w + 0.02, 0.006, o.w + 0.02, M.castStone, 0, 0, 0, 0.002, g);
+        } else if (o.kind === "glass") {
+          /* a faint glass column from the table to y0, so the band reads as a height and not a
+           * floating box, then the claimed range from y0 to h in a stronger tint */
+          if (o.y0 > 0) { var ghost = new THREE.Mesh(new THREE.BoxGeometry(o.w * 0.98, o.y0, o.w * 0.98), M.glassGhost); ghost.position.y = o.y0 / 2; g.add(ghost);
+            var ge = new THREE.LineSegments(new THREE.EdgesGeometry(ghost.geometry), new THREE.LineBasicMaterial({ color: 0x8a959c, transparent: true, opacity: 0.6 })); ge.position.copy(ghost.position); g.add(ge); }
+          var band = new THREE.Mesh(new THREE.BoxGeometry(o.w, o.h - o.y0, o.w), M.glassBand);
+          band.position.y = o.y0 + (o.h - o.y0) / 2; g.add(band);
+          var edges = new THREE.LineSegments(new THREE.EdgesGeometry(band.geometry), new THREE.LineBasicMaterial({ color: 0x5a6670 }));
+          edges.position.copy(band.position); g.add(edges);
+          K.box(o.w + 0.02, 0.006, o.w + 0.02, M.castStone, 0, 0, 0, 0.002, g);
+        } else {
+          var c = TXT.roundedBox(o.w, o.h, o.w, 0.012, o.finish === "accent" ? M.sector : M.castStone);
+          c.position.y = o.h / 2; g.add(c);
         }
         g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
         return g;
       }
     });
+
+    /* letter_sheet — one US letter sheet (0.216 x 0.279 m) lying on a surface with a soft curl at
+     * its far corners. Origin at its centre on the surface, long side along z. No type is drawn
+     * into it: a frame sets type over it in the DOM. */
+    K.define("letter_sheet", {
+      size: [0.216, 0.004, 0.279],
+      options: { curl: 0.006, seed: 1 },
+      note: "A US letter sheet lying flat with a slight curl, 0.216 x 0.279 m, origin at its centre on the surface. Blank: type is DOM.",
+      make: function (o) {
+        var geo = new THREE.PlaneGeometry(0.216, 0.279, 16, 20), pos = geo.attributes.position;
+        for (var i = 0; i < pos.count; i++) {
+          var x = pos.getX(i), y = pos.getY(i), e = Math.max(0, (Math.abs(x) - 0.06) / 0.048) * Math.max(0, (y - 0.06) / 0.08);
+          pos.setZ(i, o.curl * e * e + 0.0008);
+        }
+        geo.computeVertexNormals();
+        var m = new THREE.Mesh(geo, M.paper); m.rotation.x = -Math.PI / 2; m.receiveShadow = true; m.castShadow = true;
+        var g = new THREE.Group(); g.add(m); return g;
+      }
+    });
+  };
+
+
+  /* THE HERO. The kit's Type C school bus, unlettered, white roof, its stop arm out for a no and
+   * folded for a yes. A pilot district's bus carries the accent placard, a 0.95 x 0.46 m card standing
+   * in the lower windshield on the door side, the only accent on the bus. Front faces +z. */
+  N.bus = function (K, o) {
+    o = o || {};
+    var THREE = N.T, b = K.make("school_bus", { seed: o.seed || 11, whiteRoof: true, stopArm: !!o.arm, district: null });
+    if (o.card) {
+      var M = N._m, card = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 0.46), M.card);
+      card.position.set(-0.42, 2.17, 4.0); card.rotation.x = -0.22; b.add(card);
+    }
+    b.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return b;
   };
 
   /* A CLOCK ON A FACADE: the kit school's entry vestibule carries a blank cast stone name panel
@@ -225,7 +251,7 @@
     o = o || {};
     var L = o.length || 57, ex = -L / 2 + 13;
     var c = K.make("school_clock", { d: o.d || 1.0, hour: o.hour == null ? 12 : o.hour, minute: o.minute || 0, sector: o.sector || null, surround: true, seed: 3 });
-    c.position.set(ex, 5.15, 7 + 3.2 + 0.13);
+    c.position.set(ex, o.y || 4.75, 7 + 3.2 + 0.13);
     school.add(c);
     return c;
   };
@@ -284,9 +310,9 @@
     o = o || {};
     N.atmosphere(cx, { a: o.a == null ? 0.18 : o.a, to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
     N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
-    N.soften(cx, [".tx-site", ".src"], { blur: o.siteBlur || 9, pad: 14, feather: 40 });
+    N.soften(cx, [".tx-site", ".src"], { blur: o.siteBlur || 18, pad: 18, feather: 70 });
     var y0 = N.H - (o.veilH || 200), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
-    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.26 : o.veil) * e).toFixed(4) + ")"); }
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.36 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
     N.dither(cx);
   };

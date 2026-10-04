@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-10-04, frame 4 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's highNoon world. A campus at noon seen from its courtyard: seven people at true scale walking west along the concrete walk in front of a brick wing, each with a short shadow at the feet, the covered walkway's shade behind them. The return visit as a size a reader can see. The campus drawn is no particular school. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Back again, with six others.</h1>
+<p class="dek" data-follow="26">Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"tea_party": 7};
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The return visit", counter: "04 / 09", src: "c33", fit: { min: 90, max: 116, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 35, exposure: 0.95, fog: 0.0014 });
+  TXT.ground(R, { surface: 'concrete', size: 900, tile: 5, seed: 31, color: 0xcdc6b8, joints: true });
+  const sc = K.make('school', { length: 57, brick: '#cfae80', seed: 21 }); sc.remove(sc.children[sc.children.length - 1]); TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
+  /* the party, one figure for each of tea_party, walking west along the walk in single file and pairs */
+  for (let i = 0; i < FIG.tea_party; i++) {
+    const p = K.make('person', { seed: 70 + i, role: 'official', pose: 'walk', hat: 'none' });
+    p.rotation.y = -Math.PI / 2 + 0.35; p.position.set(-6.0 + i * 1.42 + (i % 2) * 0.25, 0, 16.2 + (i % 2) * 1.0);
+    TXT.add(R, p); TXT.contact(R, p, { opacity: 0.75 });
+  }
+  [[-34, 20, 'live_oak', 4], [26, 24, 'live_oak', 8], [44, -30, 'pecan', 2], [-50, -26, 'cedar_elm', 5]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });
+  TXT.frame(R, { from: [2.6, 1.6, 40], look: [-1.8, 5.6, 8] });
+  TXT.scatter(R, { kind: 'grass', count: 2500, area: [-120, -120, 120, 80], avoid: [[-40, -12, 40, 60]], seed: 4, scale: 0.9 });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 60), NB.rigOpts([0, 0, 10], { distance: 120 }));
+  TXT.weather(R, { grime: 0.3, height: 1.2 });
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { a: 0.16 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

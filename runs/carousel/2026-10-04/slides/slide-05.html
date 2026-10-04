@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-10-04, frame 5 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's highNoon world. A district bus lot at noon, ten Type C buses: one bus for each district the reporting counts. Seen from 12 m up, nose on: three pulled forward out of their stalls carrying the accent card for a pilot, five still in their stalls with their stop arms out for the districts that pursued no agreement, two set back in the second row for approached districts named neither way. A drawing of the count, not a photograph of a real lot. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .lab { font-size:24px; line-height:1.35; white-space:nowrap; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Approached, at least 10. Piloted, 3. Declined, 5.</h1>
+<p class="dek" data-follow="24">One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them.</p>
+<div class="lab" id="lab-pilot" style="width:300px">PILOT DISTRICTS<br>HOUSTON, ALDINE,<br>FORT DAVIS</div>
+<div class="lab" id="lab-no" style="width:400px">DECLINED<br>ECTOR COUNTY, FORT BEND,<br>IRVING, PECOS,<br>PFLUGERVILLE</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"districts_approached": 10, "pilot_districts": 3, "declined_districts": 5, "approached_unnamed": 2};
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The districts", counter: "05 / 09", src: "c16 c17 c19 c22", fit: { min: 84, max: 104, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 45, exposure: 0.95, fog: 0.0012 });
+  TXT.ground(R, { surface: 'asphalt', size: 900, tile: 7, seed: 13, color: 0x55524c });
+  /* one bus for each of districts_approached, nose on toward the camera in a row of stalls:
+   * the pilots pulled forward out of their stalls with the accent card, the districts that
+   * declined still in their stalls with the stop arm out, the rest set back in the second row */
+  const PITCH = 3.9, front = FIG.pilot_districts + FIG.declined_districts;
+  for (let i = 0; i < FIG.districts_approached; i++) {
+    const pilot = i < FIG.pilot_districts, declined = !pilot && i < front, back = i >= front;
+    const b = NB.bus(K, { arm: declined, card: pilot, seed: 40 + i });
+    if (back) b.position.set((2.5 + (i - front) * 2.2) * PITCH, 0, -17); else b.position.set(i * PITCH, 0, pilot ? 8.5 : 0);
+    TXT.add(R, b); TXT.contact(R, b, { opacity: 0.88 });
+  }
+  /* the bays the pilots pulled forward into, painted in the accent on the asphalt, one for each of
+   * pilot_districts: the frame's mark for a district running the platform */
+  const padMat = new THREE.MeshBasicMaterial({ color: 0xc2477a });
+  for (let i = 0; i < FIG.pilot_districts; i++) { const pad = new THREE.Mesh(new THREE.PlaneGeometry(3.3, 5.0), padMat); pad.rotation.x = -Math.PI / 2; pad.position.set(i * PITCH, 0.014, 8.5 + 5.6 + 2.6); pad.receiveShadow = true; R.scene.add(pad); }
+  /* painted stall lines for the front row, a pipe fence and trees beyond the lot */
+  const paint = new THREE.MeshStandardMaterial({ color: 0xe8e4d8, roughness: 0.8 });
+  for (let i = -1; i < front; i++) { const l = new THREE.Mesh(new THREE.PlaneGeometry(0.12, 12.5), paint); l.rotation.x = -Math.PI / 2; l.position.set(i * PITCH + PITCH / 2, 0.012, 0); l.receiveShadow = true; R.scene.add(l); }
+  const fence = K.make('pipe_rail_fence', { length: 90, seed: 3 }); fence.position.set(14, 0, -32); TXT.add(R, fence);
+  /* the campus the lot serves, a brick wing beyond the fence, drawn as no particular school */
+  const sc = K.make('school', { length: 57, brick: '#c49460', seed: 6 }); sc.position.set(14, 0, -66); TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
+  [[-22, -44, 'live_oak', 3], [56, -46, 'live_oak', 7], [-46, -70, 'cedar_elm', 2], [78, -80, 'pecan', 8]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
+  TXT.frame(R, { from: [13.2, 10, 55], look: [13.2, 7.4, -40] });
+  TXT.scatter(R, { kind: 'grass', count: 3000, area: [-140, -220, 180, -36], seed: 9, scale: 0.9 });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 130, 4096), NB.rigOpts([14, 0, -4], { distance: 160, shadowFar: 360 }));
+  TXT.weather(R, { grime: 0.34, height: 1.1 });
+  /* the two labels sit over their own groups, off the projection of the group's roofline */
+  const place = (id, p, dx, dy) => { const q = NB.project(THREE, R, p), el = document.getElementById(id); el.style.left = Math.max(80, Math.min(1000 - el.offsetWidth, q[0] + dx)) + 'px'; el.style.top = dy + 'px'; };
+  place('lab-pilot', [PITCH, 3.3, 8.5], -150, document.querySelector('.dek').getBoundingClientRect().bottom + 30);
+  place('lab-no', [5 * PITCH, 3.3, 0], -40, document.querySelector('.dek').getBoundingClientRect().bottom + 30);
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { a: 0.16, type: ['.kick', '.hook', '.dek', '.lab'] });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-10-04, frame 7 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's highNoon world. Seen from 28 m over a street near Houston: four brick middle school wings stepping back along it, a school bus at the near kerb carrying the accent card, Houston's towers in Gulf haze on the horizon. No particular campus is drawn. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Aldine's pilot spans four middle schools.</h1>
+<p class="dek" data-follow="26">Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const FIG = {"aldine_campuses": 4};
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "Aldine ISD and Houston ISD, Harris County", counter: "07 / 09", src: "c24 c25 c26 c27", fit: { min: 88, max: 112, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 32, exposure: 0.95, fog: 0.00045, far: 30000 });
+  TXT.ground(R, { surface: 'lawn', size: 6000, tile: 6, seed: 61, color: 0x7f8150 });
+  /* the street running north, a kit road laid along z */
+  for (let i = 0; i < 8; i++) { const rd = K.make('road', { seed: 9 + i, length: 80, lanes: 2, sidewalk: true, parkway: 2 }); rd.rotation.y = Math.PI / 2; rd.position.set(0, 0, 20 - i * 80); TXT.add(R, rd); }
+  /* the campuses, one wing for each of aldine_campuses, alternating sides and stepping back */
+  for (let i = 0; i < FIG.aldine_campuses; i++) {
+    const east = i % 2 === 0, sc = K.make('school', { length: 57, brick: ['#b56a45', '#c49460', '#a3533a', '#cfae80'][i], seed: 30 + i });
+    sc.rotation.y = east ? -Math.PI / 2 : Math.PI / 2; sc.position.set(east ? 25 : -25, 0, -50 - i * 72);
+    TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
+  }
+  /* the trees between them, pecans, cedar elms and live oaks */
+  [[15, -66, 'live_oak', 5], [-15, -140, 'live_oak', 7], [14, -212, 'cedar_elm', 2], [-60, -40, 'pecan', 9], [60, -110, 'pecan', 4], [-60, -230, 'cedar_elm', 6], [58, -300, 'live_oak', 1]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
+  /* the bus at the near kerb, nose north, the accent card in its windshield */
+  const bus = NB.bus(K, { arm: false, card: true, seed: 11 }); bus.rotation.y = Math.PI; bus.position.set(2.0, 0.06, -40); TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.85 });
+  const city = K.make('city_skyline', { city: 'houston', lowrise: true }); city.position.set(-500, 0, -8000); TXT.add(R, city);
+  TXT.frame(R, { from: [-4, 24, 66], look: [1, 19.6, -200] });
+  TXT.scatter(R, { kind: 'grass', count: 3000, area: [-120, -400, 120, 60], avoid: [[-12, -700, 12, 80]], seed: 5, scale: 1.2 });
+  TXT.sky(R);
+  TXT.deckRig(R, NB.rigSpec(W, 160, 4096), NB.rigOpts([0, 0, -120], { distance: 260, shadowFar: 600 }));
+  TXT.weather(R, { grime: 0.28, height: 1.2 });
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { a: 0.16, siteBlur: 30, veil: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

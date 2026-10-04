@@ -1,0 +1,181 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "districts_approached": {
+  "value": 10,
+  "from": [
+   "c16"
+  ],
+  "basis": "school districts state officials and Alpha affiliates approached, at least"
+ },
+ "pilot_districts": {
+  "value": 3,
+  "from": [
+   "c17"
+  ],
+  "basis": "districts that launched pilots, at least: Houston, Fort Davis, Aldine"
+ },
+ "declined_districts": {
+  "value": 5,
+  "from": [
+   "c19"
+  ],
+  "basis": "districts that confirmed they were approached and did not pursue an agreement, at least"
+ },
+ "approached_unnamed": {
+  "value": 2,
+  "from": [
+   "c16",
+   "c17",
+   "c19"
+  ],
+  "basis": "approached districts the reporting names neither as a pilot nor as one that declined, at least this many by the reporting's own floors",
+  "rule": "districts_approached - pilot_districts - declined_districts"
+ },
+ "board_for": {
+  "value": 10,
+  "from": [
+   "c7"
+  ],
+  "basis": "board members the Tribune counts voting the Alpha leaders' charter bid down"
+ },
+ "board_against": {
+  "value": 3,
+  "from": [
+   "c7"
+  ],
+  "basis": "board members the Tribune counts on the other side of that vote"
+ },
+ "board_seats_voting": {
+  "value": 13,
+  "from": [
+   "c7"
+  ],
+  "basis": "members counted in the Tribune's tally, for drawing one seat per member",
+  "rule": "board_for + board_against"
+ },
+ "fd_students": {
+  "value": 800,
+  "from": [
+   "c23"
+  ],
+  "basis": "Fort Davis ISD enrollment, around"
+ },
+ "aldine_students": {
+  "value": 300,
+  "from": [
+   "c24"
+  ],
+  "basis": "Aldine students the platform is deployed to, roughly"
+ },
+ "aldine_campuses": {
+  "value": 4,
+  "from": [
+   "c24"
+  ],
+  "basis": "Aldine middle school campuses in the pilot"
+ },
+ "tea_others": {
+  "value": 6,
+  "from": [
+   "c33"
+  ],
+  "basis": "TEA leaders besides the commissioner on the repeat campus visit"
+ },
+ "tea_party": {
+  "value": 7,
+  "from": [
+   "c33"
+  ],
+  "basis": "people in the commissioner's party on that visit, the commissioner and the others",
+  "rule": "1 + tea_others"
+ },
+ "model_hours": {
+  "value": 2,
+  "from": [
+   "c34"
+  ],
+  "basis": "hours a day Alpha's full model gives AI to teach basic subjects"
+ },
+ "day_hours_on_dial": {
+  "value": 12,
+  "from": [
+   "c34"
+  ],
+  "basis": "hours on a clock face, the dial the model's hours are drawn on; a property of a clock, never printed",
+  "rule": "constant of the drawn dial"
+ },
+ "model_dial_degrees": {
+  "value": 60.0,
+  "from": [
+   "c34"
+  ],
+  "basis": "degrees of a twelve hour dial the model's hours sweep, for drawing; never printed",
+  "rule": "360 * model_hours / 12"
+ },
+ "tprep_pass": {
+  "value": 21,
+  "from": [
+   "c28",
+   "c41"
+  ],
+  "basis": "percent of Texas Preparatory School students who passed, last year"
+ },
+ "tprep_pass_before": {
+  "value": 19,
+  "from": [
+   "c41"
+  ],
+  "basis": "percent at approaches grade level before the partnership"
+ },
+ "tprep_grade_before": {
+  "value": 10,
+  "from": [
+   "c42"
+  ],
+  "basis": "percent at grade level before the partnership"
+ },
+ "tprep_grade_after": {
+  "value": 0,
+  "from": [
+   "c42"
+  ],
+  "basis": "percent at grade level after the partnership"
+ },
+ "tprep_f_ratings": {
+  "value": 3,
+  "from": [
+   "c28",
+   "c43"
+  ],
+  "basis": "consecutive F ratings"
+ },
+ "alpha_claim_low": {
+  "value": 50,
+  "from": [
+   "c39"
+  ],
+  "basis": "low end of the passing share an Alpha leader claimed, percent"
+ },
+ "alpha_claim_high": {
+  "value": 60,
+  "from": [
+   "c39"
+  ],
+  "basis": "high end of that claimed share, percent"
+ },
+ "states_rejected": {
+  "value": 9,
+  "from": [
+   "c37"
+  ],
+  "basis": "states that rejected Alpha's charter pitch, at least"
+ },
+ "tprep_fail": {
+  "value": 79,
+  "from": [
+   "c28"
+  ],
+  "basis": "percent who did not pass, for drawing the remainder of a hundred; never printed",
+  "rule": "100 - tprep_pass"
+ }
+}

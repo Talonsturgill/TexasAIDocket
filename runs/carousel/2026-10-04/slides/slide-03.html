@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-04, frame 3 of 9. Archetype DOCUMENT. RENDERED through txthree.js in a TXT.interior office lit by the deck's rig and its window. A single letter sheet lying in window light on a walnut desk, a dark monitor and document stacks beyond it. The sheet carries the one line the reporting quotes from the commissioner's reply, and its attribution, and nothing else: no email header is drawn. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .page { position:absolute; z-index:11; color:#1D2026; text-shadow:none; }
+  .page .q { font-family:"Fraunces", serif; font-weight:600; font-size:38px; line-height:1.18; font-variation-settings:"opsz" 72; }
+  .page .a { margin-top:16px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.0em; line-height:1.4; color:#33373D; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The commissioner wrote back.</h1>
+<p class="dek" data-follow="26">Mike Morath answered Alpha School associates in September 2025. He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.</p>
+<div class="page" id="page"><div class="q">"I'd love to schedule a follow-up discussion"</div><div class="a">MIKE MORATH, SEPTEMBER 2025<br>AS QUOTED BY THE TRIBUNE<br>AND PROPUBLICA</div></div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-04-noonbell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NB.boot(THREE, TXT, initKit, { kicker: "The emails", counter: "03 / 09", src: "c9 c10 c11", fit: { min: 90, max: 116, maxLines: 2 } });
+  const R = NB.stage(TXT, gl, W, { fov: 40, exposure: 1.05, fog: 0.0003, near: 0.02, far: 200 });
+  TXT.interior(R, { w: 6.5, d: 5.5, h: 6.0, floor: 'concrete', wall: 0xd9d1c2, window: 'left', light: 0.85 });
+  const desk = K.make('desk', { w: 1.8, d: 0.9, pedestal: 'right', wood: 0x5a3820 }); desk.position.set(0, 0, -1.2); TXT.add(R, desk); TXT.contact(R, desk, { opacity: 0.6 });
+  const top = 0.76;
+  const sheet = K.make('letter_sheet', { curl: 0.007 }); sheet.position.set(-0.06, top + 0.001, -0.98); sheet.rotation.y = 0.08; TXT.add(R, sheet);
+  const stack = K.make('document_stack', { count: 2, seed: 5 }); stack.position.set(-0.6, top, -1.38); TXT.add(R, stack);
+  const mon = K.make('monitor', { inches: 24, screen: 'off', dark: true }); mon.position.set(0.62, top, -1.52); mon.rotation.y = -0.3; TXT.add(R, mon);
+  const chair = K.make('office_chair', { style: 'task', seed: 4 }); chair.position.set(0.25, 0, -0.35); chair.rotation.y = Math.PI + 0.3; TXT.add(R, chair); TXT.contact(R, chair, { opacity: 0.6 });
+  TXT.frame(R, { from: [0.02, 1.2, -0.15], look: [-0.06, 0.74, -1.62] });
+  TXT.deckRig(R, NB.rigSpec(W, 6), NB.rigOpts([0, 0.76, -1.1], { distance: 20 }));
+  TXT.weather(R, { grime: 0.08, height: 0.4 });
+  /* the type on the page: set inside the projection of the sheet's own corners */
+  const pts = [[-0.108, -0.1395], [0.108, -0.1395], [-0.108, 0.1395], [0.108, 0.1395]].map(([x, z]) => { const v = new THREE.Vector3(x, 0, z).applyMatrix4(sheet.matrixWorld); return NB.project(THREE, R, [v.x, top, v.z]); });
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const L = Math.min(...xs), Rr = Math.max(...xs), T = Math.min(...ys), B = Math.max(...ys);
+  const pg = document.getElementById('page'); pg.style.left = (L + (Rr - L) * 0.11) + 'px'; pg.style.top = (T + (B - T) * 0.12) + 'px'; pg.style.width = ((Rr - L) * 0.8) + 'px';
+  const cx = NB.develop(await TXT.snapshot(R), gl);
+  NB.post(cx, { a: 0.14 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
