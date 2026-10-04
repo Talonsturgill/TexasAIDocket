@@ -1841,6 +1841,34 @@ newschannel10.com. The affected items carry an unreachable block dated today.
 **elpasotexas.legistar.com published the minutes** the El Paso item (tx-2026-0147) was waiting
 on, readable from the MeetingDetail page.
 
+
+### 2026-10-03 — cited-source boundary repair, tx-2026-0036 and tx-2026-0044
+
+Live robots.txt bodies fetched October 4 UTC (October 3 Texas) prohibit project readers on Seguin Gazette, KSAT, KLTV and Lufkin Daily News. No blocked article body was requested. The exact article URLs and robots SHA256 values are retained in each record’s claim_sources declaration. Both last_verified dates remain September 27; no legacy quote or fetched date changed.
+
+The Guadalupe county agenda landing page was accessible but contained no cited contract vote or sheriff quotation. Its embedded guadalupe.granicus.com archive refused the exact ViewPublisher path under live robots rules; no archive body was fetched. The Angelina court page was accessible and linked its [July 14 minutes](https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf). That four-page PDF (SHA256 4bb21ce8d4661fa2a730899edf222984c5b9ef9c07ef37d5e01209d0127e864c) records item 14 approval of Resolution 010-26, four votes for and none against. It supports adoption only; it does not reproduce the judge’s cited quotations or detailed resolution requests. Raw permitted fetches and metadata are retained locally under out/2026-10-03/tmp/src; robots bodies under out/2026-10-03/tmp/stale-repair.
+
+The shared freshness predicate now distinguishes an accessible public meeting index from blocked exact claim sources. This scope requires every cited URL, matching hosts, fresh measurements, robots body hashes and an explicit accessible-page source gap. Missing, unrelated, stale or incomplete evidence retains the ordinary age failure. The records remain due for re-verification.
+
+
+### 2026-10-04 — source-boundary declaration retained within the existing shape
+
+The first repair attempt introduced additive metadata fields. The actual full guard verdict rejected their unrecorded schema growth and a long history sentence. The final declaration uses only the existing hosts, boundary, checked and note fields. Versioned plain-text annotations in note retain each exact cited URL, robots URL and body hash, measurement date, and the accessible county URL and body hash. The shared parser rejects any missing citation, malformed or expired evidence, unknown annotation version, unrelated host or county page, and any source row that does not explicitly record project-reader refusal. The published history sentence is split without changing its evidence or the old verification date. The public schema contract remains unchanged.
+
+Two other retained full-suite failures came from an unset local RUNNER_TEMP, which tried to write /fb and /ask_gold.json on the filesystem root. Their actual narrow checks pass when RUNNER_TEMP names the run’s owned scratch directory. No product gate was weakened for those environment failures.
+
+
+## 2026-10-04, UTC freshness correction after PR 399 CI
+
+The exact-head gates job 111371337801 in run 37180296724 failed on the open Fort Worth record tx-2026-0062. Its September 29th stamp was five UTC days old against a two-day limit. The full local run had passed on the client October 3rd calendar. That accepted verdict is retained alongside this actual CI failure.
+
+The exact cited Community Impact URL returned HTTP 200 with 288,007 bytes at 05:40:27 UTC. Its retained body has SHA256 a8c6be1c8f346311a756bbc3b83ce464f80dabbd07a2b295df0ad769e75f99a6. It supports both existing claim outcomes: council approval of first steps, then hearings and readings before proposed adoption on February 16th. The exact cited KERA URL returned 403 through the compliant fetcher; its quotation was not newly read. The record’s original claims and acquisition dates remain intact. The new verification note states the accessible account’s actual timeline and preserves KERA’s source limit. It does not repeat older history describing an already active pause.
+
+A single UTC staleness pass identified tx-2026-0062 as the only currently rotten record. Current checks explicitly set TZ=UTC and prepend the installed Node 24.18.0 path. The prior wrapper resolved Node 24.20.0; its accepted local verdict does not claim the pinned runtime.
+
+
+The pinned UTC full suite on 34dfaf190 passed 162 checks and rejected one reader-facing HTTP numeral in the new history note. The note now says the KERA account refused the fetch. Its exact HTTP 403 observation stays in this field log and the retained source evidence; source claims and verification scope are unchanged.
+
 ## 2026-10-04
 
 **angelinacounty.net now posts the court's minutes as PDFs** under `/files/pdf/minutes/ccmMMDDYY.pdf`,

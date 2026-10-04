@@ -4317,6 +4317,10 @@
      "note": "Guadalupe County's exit from its plate reader contract is still unconfirmed. Both published accounts bar automated readers, and the county's agenda page carries no record of the vote."
     },
     {
+     "date": "2026-10-03",
+     "note": "The cited Seguin Gazette and KSAT accounts remain unconfirmed. Live robots rules exclude project readers. The county's accessible agenda page contains no quoted contract decision. Its embedded meeting archive also refuses automated access. These are source-access measurements, not a new verification of the termination or the sheriff's quotations."
+    },
+    {
      "date": "2026-10-04",
      "note": "That Guadalupe County has left its plate reader contract is still unconfirmed. The county keeps its minutes and meeting video in an archive that bars automated readers, as do both published accounts of the vote."
     }
@@ -5680,10 +5684,23 @@
      "note": "The resolution is still unconfirmed in its adopted form. The county's agenda for the court's July session carries it as an item, and the accounts of the vote bar automated readers."
     },
     {
+     "date": "2026-10-03",
+     "note": "The county's July 14th minutes record approval of Resolution 010-26 on limited county authority over emerging technologies. It includes data centers and battery storage facilities. Four voted for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced."
+    },
+    {
      "date": "2026-10-04",
      "note": "The court's own minutes of its July 14th session now carry the vote. They record the motion to approve Resolution 010-26 and no member voting against it."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "lufkindailynews.com",
+     "www.kltv.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-03",
+    "note": "Claim-source boundary v1.\nCounty page https://www.angelinacounty.net/comcourt/ checked 2026-10-03 SHA256 87489fc7304f478c0b03e8ace5b6c0d9ebd2f641db805d22e1c8c82c8c26302c contains no cited quotations.\nSource https://lufkindailynews.com/news/local/angelina-county-seeks-greater-authority-over-data-center-development/article_fd27c36a-51de-595b-9bf4-58e8634b6641.html checked 2026-10-03 robots https://lufkindailynews.com/robots.txt SHA256 85223e76e416f07fcc7c573dc174b9342b0481cfb011006b223ae70c77b4754a refuses project readers.\nSource https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/ checked 2026-10-03 robots https://www.kltv.com/robots.txt SHA256 284b4126fdf829092fb3fe11e826cec30460c9f96cc07cb8c55c847542733758 refuses project readers."
+   }
   },
   {
    "title": "Lubbock County Commissioners Court passes a non binding disclosure resolution on large scale industrial development, four to one",
@@ -8438,7 +8455,7 @@
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-08-19",
@@ -8527,7 +8544,8 @@
     },
     {
      "date": "2026-10-04",
-     "note": "Fort Worth's moratorium still reads as Community Impact reported it. The public radio account would not load again, so its part of the entry is unconfirmed."
+     "note": "Community Impact's fetched account supports the council's first steps toward a 90 day pause and the February 16th adoption timeline after hearings and readings. The pause is not yet in force. KERA's cited account refused the fetch, so its wording remains unconfirmed. Both existing claim outcomes were checked against Community Impact's full account.",
+     "checked": true
     }
    ]
   },
