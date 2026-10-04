@@ -40,7 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Fort Worth's data center moratorium is in effect, and anyone filing in the meantime still owes the grid information the council adopted.
 - 2026-10-02 · Fort Worth's moratorium still reads as Community Impact reported it. KERA's account would not load, so its part of the entry is unconfirmed.
 - 2026-10-03 · Fort Worth's moratorium still reads as Community Impact reported it. KERA's account would not load again, so its part of the entry is unconfirmed.
-- 2026-10-04 · Community Impact's fetched account supports the council's first steps toward a 90 day pause and the February 16th adoption timeline after hearings and readings. The pause is not yet in force. KERA's cited account returned 403, so its wording remains unconfirmed. Both existing claim outcomes were checked against Community Impact's full account.
+- 2026-10-04 · Community Impact's fetched account supports the council's first steps toward a 90 day pause and the February 16th adoption timeline after hearings and readings. The pause is not yet in force. KERA's cited account refused the fetch, so its wording remains unconfirmed. Both existing claim outcomes were checked against Community Impact's full account.
 
 ## Evidence
 

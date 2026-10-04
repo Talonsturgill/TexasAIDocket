@@ -1865,3 +1865,6 @@ The exact-head gates job 111371337801 in run 37180296724 failed on the open Fort
 The exact cited Community Impact URL returned HTTP 200 with 288,007 bytes at 05:40:27 UTC. Its retained body has SHA256 a8c6be1c8f346311a756bbc3b83ce464f80dabbd07a2b295df0ad769e75f99a6. It supports both existing claim outcomes: council approval of first steps, then hearings and readings before proposed adoption on February 16th. The exact cited KERA URL returned 403 through the compliant fetcher; its quotation was not newly read. The record’s original claims and acquisition dates remain intact. The new verification note states the accessible account’s actual timeline and preserves KERA’s source limit. It does not repeat older history describing an already active pause.
 
 A single UTC staleness pass identified tx-2026-0062 as the only currently rotten record. Current checks explicitly set TZ=UTC and prepend the installed Node 24.18.0 path. The prior wrapper resolved Node 24.20.0; its accepted local verdict does not claim the pinned runtime.
+
+
+The pinned UTC full suite on 34dfaf190 passed 162 checks and rejected one reader-facing HTTP numeral in the new history note. The note now says the KERA account refused the fetch. Its exact HTTP 403 observation stays in this field log and the retained source evidence; source claims and verification scope are unchanged.
