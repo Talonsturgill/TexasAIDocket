@@ -171,7 +171,17 @@
         lens.rotation.x = Math.PI / 2; lens.position.z = fz + R * 0.06 - R * 1.02 * Math.cos(0.32); g.add(lens);
         if (o.surround) {
           var s = o.d * 1.5;
-          var plate = TXT.roundedBox(s, s, 0.12, 0.03, M.castStone); plate.position.z = -0.06; plate.castShadow = true; plate.receiveShadow = true; g.add(plate);
+          var plate = TXT.roundedBox(s, s, 0.12, 0.03, M.castStone); plate.position.z = -0.06; plate.castShadow = true; plate.receiveShadow = true; plate.userData.keepCast = true; g.add(plate);
+          /* ON ITS PLATE THE CLOCK CASTS NO MAPPED SHADOW. The shadow map at this scale drew the
+           * case's shadow as a stippled ring (no. 42 pixel rounds 2 and 3), so the case's weight
+           * is a soft painted falloff a hair off the plate, offset down and away from the sun. */
+          g.userData.noCast = true;
+          var sc2 = document.createElement("canvas"); sc2.width = sc2.height = 256; var sx = sc2.getContext("2d");
+          var rg = sx.createRadialGradient(128, 128, 70, 128, 128, 128); rg.addColorStop(0, "rgba(0,0,0,1)"); rg.addColorStop(1, "rgba(0,0,0,0)");
+          sx.fillStyle = rg; sx.fillRect(0, 0, 256, 256);
+          var st = new THREE.CanvasTexture(sc2);
+          var shade = new THREE.Mesh(new THREE.PlaneGeometry(R * 2.9, R * 2.9), new THREE.MeshBasicMaterial({ map: st, color: 0x2a2018, transparent: true, opacity: 0.42, depthWrite: false }));
+          shade.position.set(-R * 0.1, -R * 0.16, 0.002); g.add(shade);
         }
         return g;
       }
@@ -299,8 +309,16 @@
     if (room && o.ashlar !== false) R.scene.add(N.ashlar(null, { w: o.w || 12, h: o.h || 6, wall: o.wall, z: -(o.d || 9) / 2 }));
     var T = N.T, d = o.d || 9, ww = o.windowW || 2.6, wh = o.windowH || 2.2;
     /* the window, set where the frame wants it on the back wall: a lit pane in a dark frame with a sill */
-    var pane = new T.Mesh(new T.PlaneGeometry(ww, wh), new T.MeshBasicMaterial({ color: 0xfff1da, toneMapped: true }));
-    pane.material.color.multiplyScalar(o.windowI || 2.4); pane.position.set(o.windowX || 0, o.windowY || 2.2, -d / 2 + 0.115); R.scene.add(pane);
+    /* the pane shows the noon outside, a bleached sky over a live oak line and a sunlit verge, so
+     * the window reads as a view and a source and never as a blank panel */
+    var vc = document.createElement("canvas"); vc.width = 256; vc.height = 256; var vx = vc.getContext("2d");
+    var sg = vx.createLinearGradient(0, 0, 0, 256); sg.addColorStop(0, "#c9d6e2"); sg.addColorStop(0.55, "#f1efe6"); sg.addColorStop(0.62, "#f1efe6"); vx.fillStyle = sg; vx.fillRect(0, 0, 256, 256);
+    var vs = 20261004; function vr() { vs = (Math.imul(vs, 1103515245) + 12345) & 0x7fffffff; return vs / 0x7fffffff; }
+    vx.fillStyle = "#6e7a5a"; for (var k = 0; k < 26; k++) { vx.beginPath(); vx.arc(vr() * 256, 150 + vr() * 18, 14 + vr() * 22, 0, 6.283); vx.fill(); }
+    vx.fillStyle = "#a9a27c"; vx.fillRect(0, 168, 256, 88);
+    var vt = new T.CanvasTexture(vc); vt.colorSpace = T.SRGBColorSpace;
+    var pane = new T.Mesh(new T.PlaneGeometry(ww, wh), new T.MeshBasicMaterial({ map: vt, toneMapped: true }));
+    pane.material.color.setScalar(o.windowI ? o.windowI / 2.4 * 1.15 : 1.15); pane.position.set(o.windowX || 0, o.windowY || 2.2, -d / 2 + 0.115); R.scene.add(pane);
     var fm = new T.MeshStandardMaterial({ color: 0x3a3632, roughness: 0.6, metalness: 0.3 });
     [[ww + 0.16, 0.08, 0, wh / 2 + 0.04], [ww + 0.16, 0.12, 0, -wh / 2 - 0.06], [0.08, wh, -ww / 2 - 0.04, 0], [0.08, wh, ww / 2 + 0.04, 0], [0.05, wh, 0, 0]].forEach(function (b) {
       var m = new T.Mesh(new T.BoxGeometry(b[0], b[1], 0.06), fm); m.position.set((o.windowX || 0) + b[2], (o.windowY || 2.2) + b[3], -d / 2 + 0.13); m.castShadow = true; R.scene.add(m);
@@ -373,7 +391,7 @@
      * and the site line clear 4.5 without a plate behind either */
     if (o.footWash) {
       var f = document.querySelector(".tx-site"), sc = N.H / document.body.clientHeight, fr = f ? f.getBoundingClientRect() : null;
-      var mid = fr ? (fr.top + fr.height / 2) * sc : N.H - 110, half = 120;
+      var mid = fr ? (fr.top + fr.height / 2) * sc : N.H - 110, half = 70;
       var fw = cx.createLinearGradient(0, mid - half, 0, mid + half);
       [[0, 0], [0.3, 1], [0.7, 1], [1, 0]].forEach(function (p) { fw.addColorStop(p[0], "rgba(" + rgb + "," + (o.footWash * p[1]).toFixed(4) + ")"); });
       cx.fillStyle = fw; cx.fillRect(0, mid - half, N.W, half * 2);

@@ -35,7 +35,7 @@ window.renderReady = (async () => {
   const R = NB.stage(TXT, gl, W, { fov: 30, exposure: 1.05, fog: 0.0004, far: 400 });
   const roomO = { w: 18, d: 13, h: 13.0, wall: 0xb4a994, floor: 0x5c6470, windowW: 2.2, windowH: 1.6, windowX: 5.6, windowY: 4.35 };
   const room = TXT.interior(R, NB.roomSpec(roomO)); NB.room(TXT, R, roomO, room);
-  const dais = K.make('hearing_dais', { seats: 15, curve: 0, mics: true, plates: true, seed: 3 }); dais.position.set(0, 0, -5.0); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.6 });
+  const dais = K.make('hearing_dais', { seats: 15, curve: 0, chairs: false, mics: true, plates: true, seed: 3 }); dais.position.set(0, 0, -5.0); TXT.add(R, dais); TXT.contact(R, dais, { opacity: 0.6 });
   const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(-1.6, 3.15, -6.38); TXT.add(R, seal);
   /* one chair for each member in the Tribune's tally: board_for in two rows on the left, an aisle,
    * board_against on the right, all empty, facing the room */

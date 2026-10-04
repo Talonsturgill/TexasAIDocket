@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 2026-10-04, frame 7 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's highNoon world. Seen from 28 m over a street near Houston: four brick middle school wings stepping back along it, a school bus at the near kerb carrying the accent card, Houston's towers in Gulf haze on the horizon. No particular campus is drawn. -->
+<!-- 2026-10-04, frame 7 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's highNoon world. Seen from 28 m over a street near Houston: four brick middle school wings stepping back along it, a school bus at the near kerb with its stop arm folded, Houston's towers in Gulf haze on the horizon. No particular campus is drawn. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -42,16 +42,16 @@ window.renderReady = (async () => {
   }
   /* the trees between them, pecans, cedar elms and live oaks */
   [[15, -66, 'live_oak', 5], [-15, -140, 'live_oak', 7], [14, -212, 'cedar_elm', 2], [-60, -40, 'pecan', 9], [60, -110, 'pecan', 4], [-60, -230, 'cedar_elm', 6], [58, -300, 'live_oak', 1]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
-  /* the bus at the near kerb, nose north, the accent card in its windshield */
-  const bus = NB.bus(K, { arm: false, card: true, seed: 11 }); bus.rotation.y = Math.PI; bus.position.set(1.9, 0.06, -58); TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.85 });
+  /* the bus at the near kerb, nose north, its stop arm folded */
+  const bus = NB.bus(K, { arm: false, card: false, seed: 11 }); bus.rotation.y = Math.PI; bus.position.set(1.9, 0.06, -15); TXT.add(R, bus); TXT.contact(R, bus, { opacity: 0.85 });
   const city = K.make('city_skyline', { city: 'houston', lowrise: true }); city.position.set(-500, 0, -8000); TXT.add(R, city);
-  TXT.frame(R, { from: [-5, 20, 50], look: [1, 18.8, -200] });
+  TXT.frame(R, { from: [-5, 12, 50], look: [1, 17.3, -200] });
   TXT.scatter(R, { kind: 'grass', count: 3000, area: [-120, -400, 120, 60], avoid: [[-12, -700, 12, 80]], seed: 5, scale: 1.2 });
   TXT.sky(R);
   TXT.deckRig(R, NB.rigSpec(W, 160, 4096), NB.rigOpts([0, 0, -120], { distance: 260, shadowFar: 600 }));
   TXT.weather(R, { grime: 0.28, height: 1.2 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
-  NB.post(cx, { a: 0.16, siteBlur: 30, veil: 0.42 });
+  NB.post(cx, { footWash: 0.38, a: 0.16, siteBlur: 30, veil: 0.42 });
   TXDECK.finish(cx);
   return true;
 })();

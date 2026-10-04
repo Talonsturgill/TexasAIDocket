@@ -37,6 +37,8 @@ window.renderReady = (async () => {
   const sc = K.make('school', { length: 57, brick: '#c49460', seed: 12 }); sc.remove(sc.children[sc.children.length - 1]);
   NB.facadeClock(K, sc, { d: 0.8, y: 4.42, hour: 12, minute: 4, sector: [8, FIG.model_hours] });
   TXT.add(R, sc); TXT.contact(R, sc, { opacity: 0.6 });
+  /* the clock's own meshes cast no mapped shadow on its plate, its painted falloff stands in (the chassis says why) */
+  sc.traverse(o => { if (o.userData && o.userData.noCast) o.traverse(m => { if (m.isMesh && !m.userData.keepCast) m.castShadow = false; }); });
   /* mesquite on the caliche, and the Davis Mountains rimrock beyond the roof */
   [[8, 15, 'mesquite', 3], [-36, 18, 'mesquite', 6], [20, -40, 'ashe_juniper', 4]].forEach(([x, z, k, s2]) => { const t = K.make(k, { seed: s2 }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.5 }); });
   const mesa = K.make('mesa', { kind: 'mesa', seed: 5 }); mesa.position.set(-500, 0, -2400); TXT.add(R, mesa);
@@ -45,7 +47,7 @@ window.renderReady = (async () => {
   TXT.scatter(R, { kind: 'scrub', count: 900, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 5, scale: 1.0 });
   TXT.scatter(R, { kind: 'grass', count: 2200, area: [-200, -300, 200, 60], avoid: [[-40, -12, 40, 30]], seed: 8, scale: 0.9, colors: [0xb59f6e, 0xc4ae7a, 0xa8925f] });
   TXT.sky(R);
-  TXT.deckRig(R, NB.rigSpec(W, 8, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90 }));
+  TXT.deckRig(R, NB.rigSpec(W, 8, 4096), NB.rigOpts([-15.5, 4, 10.3], { distance: 40, shadowFar: 90, normalBias: 0.05 }));
   TXT.weather(R, { grime: 0.5, height: 2.2, mottle: 0.6 });
   const cx = NB.develop(await TXT.snapshot(R), gl);
   NB.post(cx, { a: 0.14 });

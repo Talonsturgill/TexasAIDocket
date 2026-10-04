@@ -37,7 +37,9 @@ window.renderReady = (async () => {
   for (let i = 0; i < FIG.tea_party; i++) {
     const COATS = [0x2f3642, 0x5a4a3c, 0x6f7480, 0x3d4a3a, 0x8a7a66, 0x262a30, 0x4b5566], LEGS = [0x23262b, 0x3a3d42, 0x2d2a26, 0x4a4e55, 0x1f2226, 0x5b5348, 0x30343a];
     const p = K.make('person', { seed: 70 + i, role: 'official', pose: 'walk', hat: 'none', height: 1.7 + ((i * 37) % 9) / 100, shirt: COATS[i], trousers: LEGS[i] });
-    p.rotation.y = -Math.PI / 2 + 0.35; p.position.set(-6.0 + i * 1.42 + (i % 2) * 0.25, 0, 16.2 + (i % 2) * 1.0);
+    p.rotation.y = -Math.PI / 2 + 0.35 + ((i * 53) % 7 - 3) * 0.05; p.position.set(-6.0 + i * 1.42 + (i % 2) * 0.25 + ((i * 29) % 5 - 2) * 0.12, 0, 16.2 + (i % 2) * 1.0 + ((i * 41) % 5 - 2) * 0.35);
+    /* a stride out of step with its neighbour: every other walker mirrored, so the legs alternate down the file */
+    if (i % 2) p.scale.z = -1;
     TXT.add(R, p); TXT.contact(R, p, { opacity: 0.75 });
   }
   [[-34, 20, 'live_oak', 4], [26, 24, 'live_oak', 8], [44, -30, 'pecan', 2], [-50, -26, 'cedar_elm', 5]].forEach(([x, z, k, s]) => { const t = K.make(k, { seed: s }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); });

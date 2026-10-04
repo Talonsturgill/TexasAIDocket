@@ -78,7 +78,7 @@ weighed.
 | token | hex | where |
 |---|---|---|
 | `ground` | `#E7E3DA` | the DOM body behind the render |
-| `accent` | `#C2477A` | "the platform". The card in a pilot bus's windshield (5, 7), the two hour sector on the clock (6), and the measured column at Texas Preparatory School (8). Never a sky, a building, a person or a light |
+| `accent` | `#C2477A` | "the platform". The card in a pilot bus's windshield and the bays the pilots pulled into (5), the two hour sector on the clock (6), and the measured column at Texas Preparatory School (8). Never a sky, a building, a person or a light |
 | `hook` | `#15171C` | dark type on the bleached sky |
 | `dek` | `#1D2026` | the dek |
 | `rule` | `#1D2026` | the site line, the source line and the counter |
@@ -119,7 +119,7 @@ rimrock for Fort Davis, Gulf haze for Aldine.
 | 04 | WIDE, standing eye 1.6 m on a campus walk | the covered walkway, a ribbed galvanized deck on dark posts throwing a black band of noon shade across broom finished concrete, the brick wing behind with its windows, seven walkers small in the light beyond the shade, each with a short shadow at the feet |
 | 05 | WIDE, long lens at 1.2 m from 70 m, horizon at a third | ten school buses nose on in a row, chrome yellow under dust, five stop arms out as red octagons, three folded with the accent card, two set back in haze, short black pools under each bumper on the asphalt lot |
 | 06 | CLOSE, 0.7 m off the clock, looking up under the walkway | the school clock, black moulded case and white face with its two hour sector, hung from the walkway's edge beam, the ribbed deck black above it, the bus flank and the Davis Mountains rimrock in bleached light behind |
-| 07 | AERIAL, 28 m up over the street, horizon on the upper third | four brick middle school wings receding along the road, their roofs and walk canopies throwing short shadows, a bus at the near kerb with the accent card, Houston's towers in Gulf haze |
+| 07 | AERIAL, 12 m up over the street, horizon on the upper third | four brick middle school wings receding along the road, their roofs and walk canopies throwing short shadows, a bus on the road toward the schools, Houston's towers in Gulf haze |
 | 08 | MEDIUM, standing eye across a long table in a pale room | the columns on the table at one scale, limestone and glass and one accent column, each with a contact on the oak top and a soft window shadow, the room's limestone wall behind |
 | 09 | MEDIUM, standing eye 1.6 m at a neighbourhood stop | the school bus with its stop arm out at the kerb, chrome yellow under dust, a parent beside it at true scale three quarters away, a live oak's black pool of shade and a brick ranch house behind |
 
@@ -171,7 +171,7 @@ art:
 
 type:
   hook: "The state board said no."
-  dek: "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts."
+  dek: "The Tribune reports the board voted down the Alpha leaders' AI charter bid. Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency staff helped connect the same AI platform with school districts."
   labels: []
 
 verbatim: []
@@ -495,7 +495,7 @@ risks:
 slide: 7
 layout: SPLIT_HORIZON
 primary_image:
-  subject: "four brick middle school wings receding along a street seen from above, a school bus with the accent card at the near kerb, Houston's towers hazed on the horizon"
+  subject: "four brick middle school wings receding along a street seen from above, a school bus at the near kerb with its stop arm folded, Houston's towers hazed on the horizon"
   rect: [0, 560, 1080, 790]
   bleeds: [left, right, bottom]
 accent: none
