@@ -8417,7 +8417,7 @@
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-09-29",
+   "last_verified": "2026-10-04",
    "history": [
     {
      "date": "2026-08-19",
@@ -8503,6 +8503,11 @@
     {
      "date": "2026-10-03",
      "note": "Fort Worth's moratorium still reads as Community Impact reported it. KERA's account would not load again, so its part of the entry is unconfirmed."
+    },
+    {
+     "date": "2026-10-04",
+     "note": "Community Impact's fetched account supports the council's first steps toward a 90 day pause and the February 16th adoption timeline after hearings and readings. The pause is not yet in force. KERA's cited account returned 403, so its wording remains unconfirmed. Both existing claim outcomes were checked against Community Impact's full account.",
+     "checked": true
     }
    ]
   },

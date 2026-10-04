@@ -1856,3 +1856,12 @@ The shared freshness predicate now distinguishes an accessible public meeting in
 The first repair attempt introduced additive metadata fields. The actual full guard verdict rejected their unrecorded schema growth and a long history sentence. The final declaration uses only the existing hosts, boundary, checked and note fields. Versioned plain-text annotations in note retain each exact cited URL, robots URL and body hash, measurement date, and the accessible county URL and body hash. The shared parser rejects any missing citation, malformed or expired evidence, unknown annotation version, unrelated host or county page, and any source row that does not explicitly record project-reader refusal. The published history sentence is split without changing its evidence or the old verification date. The public schema contract remains unchanged.
 
 Two other retained full-suite failures came from an unset local RUNNER_TEMP, which tried to write /fb and /ask_gold.json on the filesystem root. Their actual narrow checks pass when RUNNER_TEMP names the run’s owned scratch directory. No product gate was weakened for those environment failures.
+
+
+## 2026-10-04, UTC freshness correction after PR 399 CI
+
+The exact-head gates job 111371337801 in run 37180296724 failed on the open Fort Worth record tx-2026-0062. Its September 29th stamp was five UTC days old against a two-day limit. The full local run had passed on the client October 3rd calendar. That accepted verdict is retained alongside this actual CI failure.
+
+The exact cited Community Impact URL returned HTTP 200 with 288,007 bytes at 05:40:27 UTC. Its retained body has SHA256 a8c6be1c8f346311a756bbc3b83ce464f80dabbd07a2b295df0ad769e75f99a6. It supports both existing claim outcomes: council approval of first steps, then hearings and readings before proposed adoption on February 16th. The exact cited KERA URL returned 403 through the compliant fetcher; its quotation was not newly read. The record’s original claims and acquisition dates remain intact. The new verification note states the accessible account’s actual timeline and preserves KERA’s source limit. It does not repeat older history describing an already active pause.
+
+A single UTC staleness pass identified tx-2026-0062 as the only currently rotten record. Current checks explicitly set TZ=UTC and prepend the installed Node 24.18.0 path. The prior wrapper resolved Node 24.20.0; its accepted local verdict does not claim the pinned runtime.
