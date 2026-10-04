@@ -1728,6 +1728,25 @@ def self_test() -> int:
            gate_staleness([base(last_verified="2025-12-01", public_access=_door,
                                 unreachable=_blocked(hosts=["other.invalid"]))], today), "FAIL")
 
+    _source_boundary = _blocked(
+        hosts=["paper.invalid"], scope="claim_sources",
+        public_access_checked=today, public_access_result="accessible_without_cited_quotes",
+        public_access_sha256="b" * 64,
+        sources=[{"url": "https://paper.invalid/story", "checked": today,
+                  "boundary": "robots", "disallows_project_reader": True,
+                  "robots_url": "https://paper.invalid/robots.txt", "robots_sha256": "a" * 64}])
+    _source_record = base(last_verified="2025-12-01",
+                          public_access={"url": "https://county.invalid/meetings"},
+                          claims=[{"source_url": "https://paper.invalid/story", "verbatim_quote": "Exact quote"}],
+                          unreachable=_source_boundary)
+    expect("fresh exact claim-source boundary warns with accessible county page",
+           gate_staleness([_source_record], today), "WARN")
+    import copy
+    _uncovered = copy.deepcopy(_source_record)
+    _uncovered["claims"].append({"source_url": "https://other.invalid/new", "verbatim_quote": "New quote"})
+    expect("one uncovered cited source restores hard staleness failure",
+           gate_staleness([_uncovered], today), "FAIL")
+
     # THE DISTINCTION THE BUILDER DEPENDS ON. A stale record is loud everywhere and stops only
     # the ship, never the rebuild. Anything that would make the OUTPUT wrong still stops both.
     stale_only = [base(last_verified="2025-12-01")]

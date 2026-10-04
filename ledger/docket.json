@@ -4311,8 +4311,43 @@
     {
      "date": "2026-10-03",
      "note": "Guadalupe County's exit from its plate reader contract is still unconfirmed. Both published accounts bar automated readers, and the county's agenda page carries no record of the vote."
+    },
+    {
+     "date": "2026-10-03",
+     "note": "The cited Seguin Gazette and KSAT accounts remain unconfirmed. Live robots rules exclude project readers. The county's accessible agenda page contains no quoted contract decision. Its embedded meeting archive also refuses automated access. These are source-access measurements, not a new verification of the termination or the sheriff's quotations."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "seguingazette.com",
+     "www.ksat.com"
+    ],
+    "boundary": "robots",
+    "scope": "claim_sources",
+    "checked": "2026-10-03",
+    "public_access_checked": "2026-10-03",
+    "public_access_result": "accessible_without_cited_quotes",
+    "sources": [
+     {
+      "url": "https://seguingazette.com/news/sheriff-ends-county-s-flock-safety-contract/article_6747d32d-f659-4c2c-b14a-cac72fd18913.html",
+      "checked": "2026-10-03",
+      "boundary": "robots",
+      "disallows_project_reader": true,
+      "robots_url": "https://seguingazette.com/robots.txt",
+      "robots_sha256": "82e73ca73ea5ffe6579928c664f17b92811c4d1cd0a49902e280acefcda0a129"
+     },
+     {
+      "url": "https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/",
+      "checked": "2026-10-03",
+      "boundary": "robots",
+      "disallows_project_reader": true,
+      "robots_url": "https://www.ksat.com/robots.txt",
+      "robots_sha256": "ad3b8907adf571e551fa096c5327e003a844b385d4d96237a220ef92c05d34ff"
+     }
+    ],
+    "note": "The cited Seguin Gazette and KSAT accounts remain unconfirmed. Live robots rules exclude project readers. The county's accessible agenda page contains no quoted contract decision. Its embedded meeting archive also refuses automated access. These are source-access measurements, not a new verification of the termination or the sheriff's quotations.",
+    "public_access_sha256": "8639f264fe96330e98871377cc2e8ad013d1e0c6c95c5b77b15d1aad73f903e5"
+   }
   },
   {
    "title": "Laredo City Council declined a data center moratorium, and its direction to write permanent rules has reached three agendas with no recorded action",
@@ -5643,8 +5678,43 @@
     {
      "date": "2026-10-03",
      "note": "The resolution is still unconfirmed in its adopted form. The county's agenda for the court's July session carries it as an item, and the accounts of the vote bar automated readers."
+    },
+    {
+     "date": "2026-10-03",
+     "note": "The county's July 14th minutes record approval of Resolution 010-26 supporting limited county authority over emerging technologies including data centers and battery storage facilities, with four votes for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "lufkindailynews.com",
+     "www.kltv.com"
+    ],
+    "boundary": "robots",
+    "scope": "claim_sources",
+    "checked": "2026-10-03",
+    "public_access_checked": "2026-10-03",
+    "public_access_result": "accessible_without_cited_quotes",
+    "sources": [
+     {
+      "url": "https://lufkindailynews.com/news/local/angelina-county-seeks-greater-authority-over-data-center-development/article_fd27c36a-51de-595b-9bf4-58e8634b6641.html",
+      "checked": "2026-10-03",
+      "boundary": "robots",
+      "disallows_project_reader": true,
+      "robots_url": "https://lufkindailynews.com/robots.txt",
+      "robots_sha256": "85223e76e416f07fcc7c573dc174b9342b0481cfb011006b223ae70c77b4754a"
+     },
+     {
+      "url": "https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/",
+      "checked": "2026-10-03",
+      "boundary": "robots",
+      "disallows_project_reader": true,
+      "robots_url": "https://www.kltv.com/robots.txt",
+      "robots_sha256": "284b4126fdf829092fb3fe11e826cec30460c9f96cc07cb8c55c847542733758"
+     }
+    ],
+    "note": "The county's July 14th minutes record approval of Resolution 010-26 supporting limited county authority over emerging technologies including data centers and battery storage facilities, with four votes for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced.",
+    "public_access_sha256": "87489fc7304f478c0b03e8ace5b6c0d9ebd2f641db805d22e1c8c82c8c26302c"
+   }
   },
   {
    "title": "Lubbock County Commissioners Court passes a non binding disclosure resolution on large scale industrial development, four to one",

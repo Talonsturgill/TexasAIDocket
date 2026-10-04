@@ -1840,3 +1840,12 @@ newschannel10.com. The affected items carry an unreachable block dated today.
 
 **elpasotexas.legistar.com published the minutes** the El Paso item (tx-2026-0147) was waiting
 on, readable from the MeetingDetail page.
+
+
+### 2026-10-03 — cited-source boundary repair, tx-2026-0036 and tx-2026-0044
+
+Live robots.txt bodies fetched October 4 UTC (October 3 Texas) prohibit project readers on Seguin Gazette, KSAT, KLTV and Lufkin Daily News. No blocked article body was requested. The exact article URLs and robots SHA256 values are retained in each record’s claim_sources declaration. Both last_verified dates remain September 27; no legacy quote or fetched date changed.
+
+The Guadalupe county agenda landing page was accessible but contained no cited contract vote or sheriff quotation. Its embedded guadalupe.granicus.com archive refused the exact ViewPublisher path under live robots rules; no archive body was fetched. The Angelina court page was accessible and linked its [July 14 minutes](https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf). That four-page PDF (SHA256 4bb21ce8d4661fa2a730899edf222984c5b9ef9c07ef37d5e01209d0127e864c) records item 14 approval of Resolution 010-26, four votes for and none against. It supports adoption only; it does not reproduce the judge’s cited quotations or detailed resolution requests. Raw permitted fetches and metadata are retained locally under out/2026-10-03/tmp/src; robots bodies under out/2026-10-03/tmp/stale-repair.
+
+The shared freshness predicate now distinguishes an accessible public meeting index from blocked exact claim sources. This scope requires every cited URL, matching hosts, fresh measurements, robots body hashes and an explicit accessible-page source gap. Missing, unrelated, stale or incomplete evidence retains the ordinary age failure. The records remain due for re-verification.

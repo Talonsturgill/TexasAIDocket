@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-01 · That the county's request for authority over data centers still stands is unconfirmed. The published accounts sit on sites that bar automated readers, and the resolution itself has not been found posted.
 - 2026-10-02 · Angelina County's request for authority over data centers is still unconfirmed. The accounts of it bar automated readers and the resolution itself has not been found posted.
 - 2026-10-03 · The resolution is still unconfirmed in its adopted form. The county's agenda for the court's July session carries it as an item, and the accounts of the vote bar automated readers.
+- 2026-10-03 · The county's July 14th minutes record approval of Resolution 010-26 supporting limited county authority over emerging technologies including data centers and battery storage facilities, with four votes for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced.
 
 ## Evidence
 

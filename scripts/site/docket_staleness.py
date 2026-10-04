@@ -95,6 +95,7 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
+import re
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
@@ -138,10 +139,10 @@ def _host(url: str) -> str:
 def unreachable_state(item: dict, today: _dt.date) -> dict | None:
     """Return the item's live crawl-boundary declaration, or None.
 
-    None covers every way the claim can fail: no block, a block naming no hosts, a boundary
-    this tool does not recognise, an undated or unparseable measurement, a measurement past
-    the window, and a block whose hosts do not include the item's own front door. Each is a
-    reason to keep calling the item rotten, because each leaves the assertion unproven.
+    Legacy declarations cover the public-access host. Claim-source declarations cover every
+    exact cited URL, with fresh robots hashes and an independently checked accessible county
+    page that lacks those quotations. Neither scope verifies the underlying claims or moves
+    last_verified; expired or incomplete declarations retain the ordinary freshness gate.
     """
     block = item.get("unreachable")
     if not isinstance(block, dict):
@@ -159,7 +160,44 @@ def unreachable_state(item: dict, today: _dt.date) -> dict | None:
     if age < 0 or age > UNREACHABLE_WINDOW_DAYS:
         return None
     door = _host((item.get("public_access") or {}).get("url"))
-    if not door or door not in hosts:
+    scope = block.get("scope", "public_access")
+    if scope == "claim_sources":
+        # An accessible meeting index does not carry the quotations cited elsewhere.
+        # This separate scope needs fresh evidence for EVERY exact cited source URL.
+        claims = item.get("claims") or []
+        if (not isinstance(claims, list)
+                or any(not isinstance(c, dict) or not isinstance(c.get("source_url"), str)
+                       or not _host(c.get("source_url")) for c in claims)):
+            return None
+        urls = {c["source_url"] for c in claims}
+        rows = block.get("sources")
+        if (not door or not claims or None in urls or "" in urls
+                or any(not isinstance(c, dict) or not c.get("verbatim_quote") for c in claims)
+                or block.get("boundary") != "robots"
+                or block.get("public_access_checked") != checked.isoformat()
+                or block.get("public_access_result") != "accessible_without_cited_quotes"
+                or not re.fullmatch(r"[0-9a-f]{64}", str(block.get("public_access_sha256", "")))
+                or not str(block.get("note", "")).strip()
+                or not isinstance(rows, list) or len(rows) != len(urls)
+                or any(not isinstance(row, dict) or not isinstance(row.get("url"), str) for row in rows)):
+            return None
+        if {row.get("url") for row in rows} != urls:
+            return None
+        if set(hosts) != {_host(url) for url in urls}:
+            return None
+        for row in rows:
+            try:
+                robots = urlparse(str(row.get("robots_url", "")))
+            except ValueError:
+                return None
+            if (row.get("checked") != checked.isoformat()
+                    or row.get("boundary") != "robots"
+                    or row.get("disallows_project_reader") is not True
+                    or robots.scheme != "https" or robots.netloc.lower() != _host(row.get("url"))
+                    or robots.path != "/robots.txt" or robots.query or robots.fragment
+                    or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("robots_sha256", "")))):
+                return None
+    elif scope != "public_access" or not door or door not in hosts:
         return None
     return {"hosts": hosts, "boundary": block.get("boundary"),
             "checked": checked.isoformat(), "checked_age_days": age,
@@ -478,6 +516,44 @@ def self_test() -> int:
         today)["rotten"], True)
     expect("a block that is not an object proves nothing", assess(
         item(unreachable="robots", **rotten_base), today)["rotten"], True)
+
+    # A readable county index and blocked supporting articles are distinct boundaries.
+    source_url = "https://paper.invalid/story"
+    source_item = item(status="decided", last_verified="2026-07-20",
+                       public_access={"url": "https://county.invalid/meetings"},
+                       claims=[{"source_url": source_url, "verbatim_quote": "Exact quotation"}])
+    source_block = blocked(hosts=["paper.invalid"], scope="claim_sources",
+                           public_access_checked="2026-08-10",
+                           public_access_result="accessible_without_cited_quotes", public_access_sha256="b" * 64,
+                           sources=[{"url": source_url, "checked": "2026-08-10",
+                                     "boundary": "robots", "disallows_project_reader": True,
+                                     "robots_url": "https://paper.invalid/robots.txt",
+                                     "robots_sha256": "a" * 64}])
+    import copy
+    def source_state(change=None):
+        candidate = copy.deepcopy(source_item)
+        candidate["unreachable"] = copy.deepcopy(source_block)
+        if change:
+            change(candidate)
+        return unreachable_state(candidate, today)
+    expect("complete measured claim-source scope is recognized", bool(source_state()), True)
+    for label, change in [
+        ("missing URL", lambda c: c["unreachable"].update(sources=[])),
+        ("unrelated URL", lambda c: c["unreachable"]["sources"][0].update(url="https://paper.invalid/other")),
+        ("unrelated host", lambda c: c["unreachable"].update(hosts=["other.invalid"])),
+        ("missing robots hash", lambda c: c["unreachable"]["sources"][0].update(robots_sha256="")),
+        ("unmeasured county page", lambda c: c["unreachable"].update(public_access_checked="")),
+        ("missing county body hash", lambda c: c["unreachable"].update(public_access_sha256="")),
+        ("malformed claim URL", lambda c: c["claims"][0].update(source_url=[])),
+        ("old source measurement", lambda c: c["unreachable"]["sources"][0].update(checked="2026-08-01")),
+        ("unproven refusal", lambda c: c["unreachable"]["sources"][0].update(disallows_project_reader=False)),
+        ("malformed robots URL", lambda c: c["unreachable"]["sources"][0].update(robots_url="https://[")),
+        ("unrelated robots URL", lambda c: c["unreachable"]["sources"][0].update(robots_url="https://other.invalid/robots.txt")),
+        ("unknown scope", lambda c: c["unreachable"].update(scope="all_sources")),
+        ("additional uncovered claim", lambda c: c["claims"].append({"source_url": "https://other.invalid/new", "verbatim_quote": "New quote"})),
+        ("expired declaration", lambda c: c["unreachable"].update(checked="2026-08-01")),
+    ]:
+        expect("claim-source boundary rejects " + label, source_state(change), None)
 
     if failures:
         print(f"\ndocket_staleness self-test: {failures} FAILED", file=sys.stderr)
