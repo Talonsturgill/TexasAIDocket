@@ -1,0 +1,157 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Education",
+ "dek": {
+  "text": "The state board voted down Alpha School's AI charter bid. Emails show Texas Education Agency staff then helped its platform reach district pilots in Houston, Aldine and Fort Davis.",
+  "claims": [
+   "c7",
+   "c12",
+   "c17"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Emails obtained by The Texas Tribune and ProPublica show state education officials and Alpha affiliates approached at least {{number:c16}} school districts about Alpha School's AI program](c16). [At least three launched pilots. They are Houston, Fort Davis in West Texas and Aldine near Houston](c17). [The product is the AI technology now often called TimeBack](c13).",
+   "claims": [
+    "c16",
+    "c17",
+    "c13"
+   ]
+  },
+  {
+   "text": "[The State Board of Education has the final say on charter decisions, and it voted the Alpha leaders' charter bid down {{number:c7}} to {{number:c7:1}}](c7). [Members cited the company's use of AI to teach, students' screen time and the test gains Alpha leaders presented](c8). The pilots didn't need that board. Districts can run a supplemental tool on their own say.",
+   "claims": [
+    "c7",
+    "c8",
+    "c22"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the emails show",
+   "paragraphs": [
+    {
+     "text": "[Education Commissioner Mike Morath answered an email from Alpha School associates last September](c9), [replying that he would love to schedule a follow-up discussion](c10). [He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD](c11). [Emails show he visited Alpha's campuses again with six other agency leaders, timed for the same day as Houston superintendent Mike Miles](c33).",
+     "claims": [
+      "c9",
+      "c10",
+      "c11",
+      "c33"
+     ]
+    },
+    {
+     "text": "[An associate commissioner wrote to Alpha's backer about piloting a few supplemental instances in the state](c14). [A staff member who oversees the agency's blended learning programs sent Alpha associates a to-do list that included drafting a one-page explainer of the pilot for districts](c15). [By the middle of June he applauded their progress securing pilots with Fort Davis and Aldine](c36).",
+     "claims": [
+      "c14",
+      "c15",
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Three districts, three uses",
+   "paragraphs": [
+    {
+     "text": "[All three districts say they use the software for supplemental learning rather than Alpha's full model](c18). [In that model the AI teaches basic subjects in two hours a day while human guides focus on motivation and emotional support](c34).",
+     "claims": [
+      "c18",
+      "c34"
+     ]
+    },
+    {
+     "text": "[Fort Davis enrolls around {{number:c23}} students and is using it in its K-8 classrooms for students who need help in reading and math](c23). [Its deputy superintendent calls it an extra layer of intervention](c35). [Aldine is deploying it to roughly {{number:c24}} students across four middle schools that need support in math](c24).",
+     "claims": [
+      "c23",
+      "c35",
+      "c24"
+     ]
+    },
+    {
+     "text": "[Houston ISD says it uses the technology with students who have strong test scores, to test whether it speeds academic growth](c25). [Its press office said the district isn't paying Alpha for the pilot](c26). [The district asked the attorney general to withhold the contract from the newsrooms](c27). So the terms of the Houston arrangement aren't public.",
+     "claims": [
+      "c25",
+      "c26",
+      "c27"
+     ]
+    },
+    {
+     "text": "[At least five districts confirmed they were approached and didn't pursue an agreement. They are Ector County, Fort Bend, Irving, Pecos and Pflugerville](c19). [Only Ector County gave a reason. It said its school day isn't structured to support the pilot](c20).",
+     "claims": [
+      "c19",
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the agency says",
+   "paragraphs": [
+    {
+     "text": "[The agency says there is no formal partnership with Alpha](c21). [It says its officials connected interested district leaders and left the decision to the districts](c22). [The full extent of its involvement and the number of districts using the program remain unclear, and the agency is still fighting release of more of its emails](c32).",
+     "claims": [
+      "c21",
+      "c22",
+      "c32"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The one school with scores",
+   "paragraphs": [
+    {
+     "text": "[An Alpha leader told state officials in May of last year that after its platform arrived at an Austin charter, {{number:c39:1}} to {{number:c39:2}} percent of students were passing state exams](c39). [The agency's own published results don't back that up](c40). [At Texas Preparatory School just {{number:c28}} percent passed last year, and the agency gave the charter its third consecutive F](c28).",
+     "claims": [
+      "c39",
+      "c40",
+      "c28"
+     ]
+    },
+    {
+     "text": "[The share reaching approaches grade level, the lowest passing category, rose slightly from {{number:c41}} to {{number:c41:1}} percent](c41). [The share at grade level fell from {{number:c42}} percent to zero after the partnership](c42).",
+     "claims": [
+      "c41",
+      "c42"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What isn't settled",
+   "paragraphs": [
+    {
+     "text": "[Board vice chair Pam Little said she doesn't want any AI in schools, especially in the lower grades](c29). [Board member Gustavo Reveles said the agency's help raises a red flag that there may be ways around the board's concern](c30). [The Governor's press secretary said any tool a district deploys must keep teachers at the center, limit screen time and prove results](c31).",
+     "claims": [
+      "c29",
+      "c30",
+      "c31"
+     ]
+    },
+    {
+     "text": "The reporting names no district document for any of the three pilots, and none was found for this edition. The State Board of Education's own minutes record a veto of a two hour learning charter in Bastrop that June, but no source names Alpha as its applicant, so this edition doesn't join them.",
+     "claims": [
+      "c1",
+      "c4"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0200",
+   "label": "The Alpha pilots in the record"
+  },
+  {
+   "id": "tx-2026-0194",
+   "label": "How a machine scores written STAAR answers"
+  }
+ ]
+}
