@@ -1,0 +1,228 @@
+{
+ "date": "2026-10-04",
+ "carousel_no": 42,
+ "document_title": "The state board said no",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "TEA staff helped with a one-page explainer.\n\nEmails obtained by The Texas Tribune and ProPublica show it was about Alpha's program and meant to be shared with school districts. Staff connected Alpha-linked companies with district leaders.\n\nThe State Board of Education has the final say on charters. The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3.\n\nState officials and Alpha affiliates approached at least 10 districts. Ector County, Fort Bend, Irving, Pecos and Pflugerville pursued no agreement. Houston, Aldine and Fort Davis launched pilots. All three say they will use the software for supplemental learning. TEA says it left the choice to each district.\n\nGovernor Greg Abbott's press secretary says any tool a district deploys must prove results for students. Who in your district decides what counts as proof?\n\n#TexasSBOE #AldineISD #FortDavisISD",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Alpha's AI and Texas public schools",
+   "headline": "The state board said no.",
+   "claims": [
+    "c6",
+    "c7",
+    "c12"
+   ],
+   "cite": "c6 c7 c12",
+   "body": "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The state board said no.",
+    "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts.",
+    "Alpha's AI and Texas public schools",
+    "01 / 09",
+    "c6 c7 c12"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "State Board of Education",
+   "headline": "Down 10 to 3, the Tribune reports.",
+   "claims": [
+    "c7",
+    "c8"
+   ],
+   "cite": "c7 c8",
+   "body": "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
+   "labels": [
+    "10 IN THE MAJORITY",
+    "3 IN THE MINORITY"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Down 10 to 3, the Tribune reports.",
+    "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented.",
+    "10 IN THE MAJORITY",
+    "3 IN THE MINORITY",
+    "State Board of Education",
+    "02 / 09",
+    "c7 c8"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The emails",
+   "headline": "The commissioner wrote back.",
+   "claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "cite": "c9 c10 c11",
+   "body": "Mike Morath answered Alpha School associates in September 2025. He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The commissioner wrote back.",
+    "Mike Morath answered Alpha School associates in September 2025. He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD.",
+    "\"I'd love to schedule a follow-up discussion\"",
+    "MIKE MORATH, SEPTEMBER 2025 AS QUOTED BY THE TRIBUNE AND PROPUBLICA",
+    "The emails",
+    "03 / 09",
+    "c9 c10 c11"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The return visit",
+   "headline": "Back again, with six others.",
+   "claims": [
+    "c33"
+   ],
+   "cite": "c33",
+   "body": "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Back again, with six others.",
+    "Emails show Morath went back to Alpha's campuses with six other TEA leaders. His staff timed it for the same day as Houston superintendent Mike Miles. The campus drawn is no particular school.",
+    "The return visit",
+    "04 / 09",
+    "c33"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The districts",
+   "headline": "Approached, at least 10. Piloted, 3. Declined, 5.",
+   "claims": [
+    "c16",
+    "c17",
+    "c19",
+    "c22"
+   ],
+   "cite": "c16 c17 c19 c22",
+   "body": "One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them.",
+   "labels": [
+    "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
+    "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Approached, at least 10. Piloted, 3. Declined, 5.",
+    "One bus per district in the reporting. The 2 set back stand for approached districts the reporting does not name. TEA says it connected interested district leaders and left the choice to them.",
+    "PILOT DISTRICTS HOUSTON, ALDINE, FORT DAVIS",
+    "DECLINED ECTOR COUNTY, FORT BEND, IRVING, PECOS, PFLUGERVILLE",
+    "The districts",
+    "05 / 09",
+    "c16 c17 c19 c22"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Fort Davis ISD, Jeff Davis County",
+   "headline": "Extra help, not a two hour day.",
+   "claims": [
+    "c18",
+    "c23",
+    "c34",
+    "c35"
+   ],
+   "cite": "c18 c23 c34 c35",
+   "body": "Fort Davis ISD enrolls around 800 students. It will use the model in its K-8 classrooms for students who need extra help in reading and math. Alpha's full model has AI teach all students basic subjects in two hours a day.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Extra help, not a two hour day.",
+    "Fort Davis ISD enrolls around 800 students. It will use the model in its K-8 classrooms for students who need extra help in reading and math. Alpha's full model has AI teach all students basic subjects in two hours a day.",
+    "Fort Davis ISD, Jeff Davis County",
+    "06 / 09",
+    "c18 c23 c34 c35"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Aldine ISD and Houston ISD, Harris County",
+   "headline": "Aldine's pilot spans four middle schools.",
+   "claims": [
+    "c24",
+    "c25",
+    "c26",
+    "c27"
+   ],
+   "cite": "c24 c25 c26 c27",
+   "body": "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Aldine's pilot spans four middle schools.",
+    "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract.",
+    "Aldine ISD and Houston ISD, Harris County",
+    "07 / 09",
+    "c24 c25 c26 c27"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Texas Preparatory School, Austin",
+   "headline": "Claimed 50% to 60%. Passed, 21%.",
+   "claims": [
+    "c28",
+    "c39",
+    "c40",
+    "c42",
+    "c43"
+   ],
+   "cite": "c28 c39 c40 c42 c43",
+   "body": "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F.",
+   "labels": [
+    "CLAIMED 50% TO 60%",
+    "PASSED 21%",
+    "AT GRADE LEVEL, DOWN FROM 10% TO ZERO"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Claimed 50% to 60%. Passed, 21%.",
+    "An Alpha leader told state officials in May 2025 that its platform brought this Austin charter to that pass rate. ProPublica reports TEA's results don't back it up. It got a third straight F.",
+    "CLAIMED 50% TO 60%",
+    "PASSED 21%",
+    "AT GRADE LEVEL, DOWN FROM 10% TO ZERO",
+    "Texas Preparatory School, Austin",
+    "08 / 09",
+    "c28 c39 c40 c42 c43"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Your district",
+   "headline": "Ask the district that runs this bus.",
+   "claims": [
+    "c12",
+    "c22",
+    "c32"
+   ],
+   "cite": "c12 c22 c32",
+   "body": "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Ask the district that runs this bus.",
+    "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more.",
+    "Your district",
+    "09 / 09",
+    "c12 c22 c32"
+   ]
+  }
+ }
+}

@@ -139,7 +139,7 @@ job: >
   Stop the scroll on a school bus saying no at the Capitol's door, and say the whole story in the
   hook and dek: the board said no, and a different route was found district by district.
 
-claims: [c7, c12, c16]
+claims: [c6, c7, c12]
 numerals:
   - value_from: c7
 
@@ -170,7 +170,7 @@ art:
 
 type:
   hook: "The state board said no."
-  dek: "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show state education staff helped connect the same platform with school districts."
+  dek: "The Tribune reports it voted the Alpha leaders' AI charter bid down 10 to 3. Emails obtained by The Texas Tribune and ProPublica show TEA staff helped connect the same AI platform with school districts."
   labels: []
 
 verbatim: []
@@ -228,12 +228,12 @@ art:
   palette: "Austin limestone wall, black leather, walnut dais, a blue grey carpet"
   value_structure: >
     Lightest is the window lit wall. Darkest is the chair leather and the shade under the dais.
-    Frame median L* planned at 54.
+    Frame median L* planned at 76.
 
 type:
-  hook: "Voted down 10 to 3."
-  dek: "The board has the final say on charters, and the Tribune reports it voted the Alpha leaders' bid down 10 to 3. Members cited the use of AI to teach, screen time and the test gains Alpha leaders presented."
-  labels: ["10", "3"]
+  hook: "Down 10 to 3, the Tribune reports."
+  dek: "The board has the final say on charters. Members cited the use of AI to teach, student screen time and questions about the test gains Alpha leaders presented."
+  labels: ["10 IN THE MAJORITY", "3 IN THE MINORITY"]
 
 verbatim: []
 
@@ -241,8 +241,8 @@ acceptance:
   - "two blocks of chairs read at 432px, ten on the left and three on the right, with a clear aisle between"
   - "every chair stands on the floor with a contact shadow"
   - "no person is seated in any chair"
-  - "the hook reads 'Voted down 10 to 3.'"
-  - "the frame's median L* at 432px is between 42 and 66"
+  - "the hook reads 'Down 10 to 3, the Tribune reports.' and names the Tribune"
+  - "the frame's median L* at 432px is between 66 and 86"
 
 risks:
   - "thirteen chairs on a long lens can merge into one black mass, so they stand at a pitch with floor between them"
@@ -283,13 +283,13 @@ art:
   why_this_technique: "a page on a desk is the honest shape of an email the public saw only because records were requested"
   palette: "walnut, bright paper, limestone, a dark monitor"
   value_structure: >
-    Lightest is the sheet and the window. Darkest is the monitor and the desk's shadow.
-    Frame median L* planned at 52.
+    Lightest is the sheet and the wall. Darkest is the walnut and the desk's shadow.
+    Frame median L* planned at 72.
 
 type:
   hook: "The commissioner wrote back."
-  dek: "Mike Morath answered Alpha School associates in September 2025, and offered to introduce an Alpha leader to the superintendent he appointed to run Houston ISD's takeover."
-  labels: ["I'd love to schedule a follow-up discussion", "MIKE MORATH, SEPTEMBER 2025, AS QUOTED BY THE TEXAS TRIBUNE AND PROPUBLICA"]
+  dek: "Mike Morath answered Alpha School associates in September 2025. He offered to introduce an Alpha leader to the superintendent he appointed to run the state takeover of Houston ISD."
+  labels: []
 
 verbatim:
   - c10: "I'd love to schedule a follow-up discussion"
@@ -299,7 +299,7 @@ acceptance:
   - "the quoted line is legible on the sheet and matches c10 word for word"
   - "the attribution names Morath and the newsrooms, and no email header is drawn"
   - "the sheet casts a soft contact on the desk"
-  - "the frame's median L* at 432px is between 40 and 64"
+  - "the frame's median L* at 432px is between 60 and 82"
 
 risks:
   - "a page with type on it can read as a plate, so the type is set on the rendered sheet's own surface and nowhere else"
@@ -534,8 +534,8 @@ art:
     Frame median L* planned at 64.
 
 type:
-  hook: "Near Houston, four middle schools."
-  dek: "Aldine has roughly 300 students on it in math. Houston ISD uses it with high scoring students and says it isn't paying Alpha. It asked the attorney general to withhold the contract."
+  hook: "Aldine's pilot spans four middle schools."
+  dek: "Aldine will use it with roughly 300 students who need math support. Houston ISD plans to use it for students with strong test scores and says it isn't paying Alpha. The district asked the Texas attorney general to let it withhold the pilot contract."
   labels: []
 
 verbatim: []
@@ -562,7 +562,7 @@ accent: "#C2477A"
 job: >
   Put the one school with scores in front of the reader at one scale, the claim beside the result.
 
-claims: [c28, c39, c40, c41, c42, c43]
+claims: [c28, c39, c40, c42, c43]
 numerals:
   - value_from: c39
   - value_from: c28
@@ -594,7 +594,7 @@ art:
   palette: "limestone wall, oak, glass, one accent column, cast stone"
   value_structure: >
     Lightest is the wall and the glass band. Darkest is the table's shade and the columns' contacts.
-    Frame median L* planned at 58.
+    Frame median L* planned at 78.
 
 type:
   hook: "Claimed 50% to 60%. Passed, 21%."
@@ -608,7 +608,7 @@ acceptance:
   - "the glass band spans a range, not a point"
   - "every column stands on the table with a contact shadow"
   - "each label sits beside its own column"
-  - "the frame's median L* at 432px is between 46 and 70"
+  - "the frame's median L* at 432px is between 66 and 88"
 
 risks:
   - "glass on a pale wall can vanish, so the band carries a visible edge and a tint"
@@ -625,7 +625,7 @@ accent: none
 job: >
   Hand the decision to the reader's own district, and name the step a reader can take.
 
-claims: [c22, c12, c32]
+claims: [c12, c22, c32]
 numerals: []
 
 depth:
@@ -654,7 +654,7 @@ art:
 
 type:
   hook: "Ask the district that runs this bus."
-  dek: "TEA says each district made the choice. Ask at your school board's next meeting, or in a public information request, whether your district was approached about Alpha's platform and what a pilot must prove."
+  dek: "TEA says it left the choice to each district. Ask your school board whether yours was approached about Alpha's platform and what a pilot must prove. These emails came out through public information requests. TEA is still fighting the release of more."
   labels: []
 
 verbatim: []
