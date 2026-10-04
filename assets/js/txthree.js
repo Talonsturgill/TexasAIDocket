@@ -2470,8 +2470,10 @@ export function init(THREE) {
     if (!isFinite(x0)) return null;
     return { cx: (x0 + x1) / 2, cz: (z0 + z1) / 2, hw: Math.max(0.03, (x1 - x0) / 2), hd: Math.max(0.03, (z1 - z0) / 2) };
   }
-  // a vehicle drips oil and polishes the ground it drives: the kit's vehicles, a chassis's van
-  const VEHICLE_RE = /(^|_)(van|truck|semi|pickup|sedan|suv|bus|trailer|car|tractor)(_|$)/;
+  // a vehicle drips oil and polishes the ground it drives: the kit's vehicles, a chassis's van. The
+  // vehicle word ends the name, where a compound keeps its head noun: a school_bus is a bus and a
+  // bus_stop is a stop (Codex, #398), and a truck_stop or a car_park takes no oil or tyre tracks
+  const VEHICLE_RE = /(^|_)(van|truck|semi|pickup|sedan|suv|bus|trailer|car|tractor)$/;
   function isVehicle(obj) {
     let v = false;
     obj.traverse((m) => {
