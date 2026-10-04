@@ -35,9 +35,23 @@ def put(k, v, cids, basis=None, **kw):
 put("districts_approached", num("c16", r"approached at least (\d+) school districts"), ["c16"], "school districts state officials and Alpha affiliates approached, at least")
 put("pilot_districts", num("c17", r"at least (\w+) of those districts"), ["c17"], "districts that launched pilots, at least: Houston, Fort Davis, Aldine")
 put("declined_districts", num("c19", r"at least (\w+) school districts"), ["c19"], "districts that confirmed they were approached and did not pursue an agreement, at least")
-put("approached_unnamed", F["districts_approached"]["value"] - F["pilot_districts"]["value"] - F["declined_districts"]["value"], ["c16", "c17", "c19"],
-    "approached districts the reporting names neither as a pilot nor as one that declined, at least this many by the reporting's own floors",
-    rule="districts_approached - pilot_districts - declined_districts")
+def named(cid):
+    """The districts a claim's own quote names between its dashes, read off the quote."""
+    span = re.search(r"\u2014\s*(.+?)\s*\u2014", C[cid]["quote"]).group(1)
+    parts = re.split(r";|,(?![^;]*;)|\band\b", span) if ";" not in span else span.split(";")
+    out = []
+    for p in parts:
+        p = re.sub(r"^\s*and\s+", "", p.strip()).split(",")[0].strip()
+        if p:
+            out.append(p)
+    return out
+NAMED = named("c17") + named("c19")
+assert len(set(NAMED)) == len(NAMED)
+put("named_districts", len(NAMED), ["c17", "c19"], "approached districts the reporting names, the pilots and those that did not pursue an agreement: " + ", ".join(NAMED),
+    rule="count of the distinct names in c17's and c19's quotes")
+put("approached_unnamed", F["districts_approached"]["value"] - F["named_districts"]["value"], ["c16", "c17", "c19"],
+    "approached districts the reporting doesn't name, at least this many: the reporting's floor on districts approached less the districts it names. Whether they piloted or declined is not reported",
+    rule="districts_approached - named_districts")
 put("board_for", num("c7", r"voted it down (\d+) to \d+"), ["c7"], "board members the Tribune counts voting the Alpha leaders' charter bid down")
 put("board_against", num("c7", r"voted it down \d+ to (\d+)"), ["c7"], "board members the Tribune counts on the other side of that vote")
 put("board_seats_voting", F["board_for"]["value"] + F["board_against"]["value"], ["c7"], "members counted in the Tribune's tally, for drawing one seat per member", rule="board_for + board_against")

@@ -188,6 +188,40 @@ Things the machine got in the way of, all queued:
 - **Tomorrow.** tx-2026-0041, 0055, 0062 and 0112 reach six days on October 6th unless a source
   answers or a boundary is measured.
 
+## Review on PR #401, and one decision left to the owner
+
+Codex reviewed the head and posted seven findings. Six were fixed in this pull request:
+- **The 2 set back (P1).** `compute.py` had derived approached districts the reporting doesn't name
+  from three floors, which can't fix a remainder. It now counts the distinct districts named in
+  c17's and c19's own quotes (8) and subtracts that exact count from the floor of 10. The value
+  stays 2 and is a floor. The deck's sentence, "The 2 set back are approached districts the
+  reporting doesn't name", holds on that derivation.
+- **The web edition printed "50% to 60% percent", "21% percent" and "19% to 21% percent" (P2).**
+  The number tokens carry their own sign, so the duplicated words were removed.
+- **Tense (P2).** The web edition and tx-2026-0200's summary had turned the sources' "will use",
+  "will deploy" and "plans to use" into present tense. Both carry the sources' tense again.
+- **Relative dates (P2).** "last September", "May of last year" and "last year" on the permanent
+  web edition now read September 2025 and May 2025, or drop the year where the source gives none.
+- **The grid flag (P2).** tx-2026-0200 had `on_ercot: false` on districts in Harris County and Jeff
+  Davis County. It is now null, so the site asks no grid question it can't answer.
+- **Participation routes (P2).** Not changed. The item's door is Fort Davis ISD's board page, and
+  its text tells Houston and Aldine residents to reach their own boards. A record of each district's
+  board page needs fetching and verifying first.
+
+**THE OWNER'S DECISION (P1, not acted on).** Codex found that tx-2026-0200 cleared the admission
+bar, "at least one claim cites a primary source", only on the State Board of Education's June 2025
+minutes of the Valenta Academy veto. The item itself says no source joins Valenta to Alpha, and
+every claim about the pilots is The Texas Tribune and ProPublica's. That meets the bar's letter and
+not its purpose, and the routine says nothing is helped by lowering the bar.
+
+This run moved to hold the item: return it to the seed without the Valenta claims, where promote
+holds an all-journalism item until a primary source is found. Removing a published item from the
+record was refused by the session's permission classifier as a change to a shared resource, so it
+was not done and was not attempted any other way.
+
+The item stays in the record with its caveat, and the deck and web edition, which never join
+Valenta to Alpha, ship as they are. **Whether to hold tx-2026-0200 is the owner's call.**
+
 ## Sources that behaved differently from the registry
 
 Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in commit d014eb73:
@@ -282,7 +316,7 @@ These went to `knowledge/carousel/MACHINE_QUEUE.md`, in the upgrade commits:
 | assembly       | PASS   | 9 slide(s), 6.8 MB, vector |
 | score          | WARN   | 7.138 at the round cap after 4 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 87 published string(s) read from one list, every universal names its set |
+| quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 1 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 32,816 chars planned |
 | caption        | PASS   | 138 words |

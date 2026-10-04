@@ -21,6 +21,15 @@
   ],
   "basis": "districts that confirmed they were approached and did not pursue an agreement, at least"
  },
+ "named_districts": {
+  "value": 8,
+  "from": [
+   "c17",
+   "c19"
+  ],
+  "basis": "approached districts the reporting names, the pilots and those that did not pursue an agreement: Houston, Fort Davis, Aldine, Ector County, Fort Bend, Irving, Pecos, Pflugerville",
+  "rule": "count of the distinct names in c17's and c19's quotes"
+ },
  "approached_unnamed": {
   "value": 2,
   "from": [
@@ -28,8 +37,8 @@
    "c17",
    "c19"
   ],
-  "basis": "approached districts the reporting names neither as a pilot nor as one that declined, at least this many by the reporting's own floors",
-  "rule": "districts_approached - pilot_districts - declined_districts"
+  "basis": "approached districts the reporting doesn't name, at least this many: the reporting's floor on districts approached less the districts it names. Whether they piloted or declined is not reported",
+  "rule": "districts_approached - named_districts"
  },
  "board_for": {
   "value": 10,
