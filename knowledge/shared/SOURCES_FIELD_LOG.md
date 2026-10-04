@@ -1840,3 +1840,31 @@ newschannel10.com. The affected items carry an unreachable block dated today.
 
 **elpasotexas.legistar.com published the minutes** the El Paso item (tx-2026-0147) was waiting
 on, readable from the MeetingDetail page.
+
+## 2026-10-04
+
+**angelinacounty.net now posts the court's minutes as PDFs** under `/files/pdf/minutes/ccmMMDDYY.pdf`,
+linked from `/comcourt/`. The July 14th minutes carry Resolution 010-26 (tx-2026-0044), which had
+rested on two broadcasters that bar automated readers.
+
+**www.ebi.ac.uk, Europe PMC's REST search, returns full PubMed abstracts** as JSON
+(`/europepmc/webservices/rest/search?query=EXT_ID:<pmid>%20AND%20SRC:MED&resultType=core&format=json`)
+and answered this project's client, where `eutils.ncbi.nlm.nih.gov` is robots-disallowed and
+`pubmed.ncbi.nlm.nih.gov` serves a cookie wall. Every abstract quote in tx-2026-0150 and 0151 matched.
+
+**cityofconroe.org lists its council minutes** on `council_minutes_2026.php`, August 13th included,
+but each file link 302s to `cms3.revize.com`, which disallows this project's path in robots.txt.
+
+**guadalupetx.gov's agendas page links its minutes, agendas and videos to `guadalupe.granicus.com`**,
+which disallows this project's path in robots.txt. The county's own page carries no record of a vote.
+
+**www.oncor.com's robots.txt did not answer this project's client** twice in one run
+(RemoteDisconnected, then TimeoutError), while a browser agent got a 200. The crawl boundary reads
+that as refusing, so tx-2026-0112's project page went unread.
+
+**blogs.houstonisd.org did not resolve from the run's container** (URLError on robots.txt), and
+`www.houstonisd.org/news` answered 404, so no Houston ISD page on its Alpha pilot was read.
+
+**dir.texas.gov's bulk purchase agreement PDFs are inside its robots.txt disallow** for this
+project, as tx-2026-0113's boundary already records. A scout read BP2026-0015 through WebFetch
+and the crawl boundary refused the same url, so the agreement was not staged for the record.
