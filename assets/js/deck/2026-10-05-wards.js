@@ -75,7 +75,7 @@
     for (var i = 0; i < 6; i++) {
       m.base.push(new THREE.MeshStandardMaterial({
         color: 0x10161b, roughness: 0.05 + i * 0.03, metalness: 0.0,
-        emissive: 0xdce6e2, emissiveIntensity: 0.1 + i * 0.035
+        emissive: 0xdce6e2, emissiveIntensity: 0.3 + i * 0.03
       }));
     }
     /* a dark bay, the room with its lights off, for the few a frame wants quiet */
@@ -120,11 +120,11 @@
    * floor, bay 0 the west-most. Six bays sit west of the stair core and six east of it. */
   N.bayAt = function (g, floor, bay) {
     var off = g.userData.off, side = bay < 6 ? -1 : 1, j = bay < 6 ? bay : bay - 6;
-    var span = RIB_HALF - CORE_HALF, w = span / 6;
+    var span = RIB_HALF - CORE_HALF + 0.05, w = span / 6;
     var x = side < 0 ? -RIB_HALF + (j + 0.5) * w : CORE_HALF + (j + 0.5) * w;
     var y = T0 + RIB_Y + floor * FH + RIB_H / 2;
     var z = TZ + TD / 2 + 0.075;
-    return { x: x + off.x, y: y, z: z + off.z, w: w - 0.18, h: RIB_H - 0.22 };
+    return { x: x + off.x, y: y, z: z + off.z, w: w - 0.1, h: RIB_H - 0.16 };
   };
 
   /* N.skin(g, state) lays the 120 panes. state(floor, bay) returns 'gold', 'dark' or a number 0..5
@@ -152,6 +152,10 @@
     return grp;
   };
 
+  /* N.goldStrength scales the funded pilot's gold for a frame exposed away from the deck's, so the
+   * gold lands on the accent's hex after the tone curve rather than drifting with the exposure */
+  N.goldStrength = function (THREE, k) { var M = N.mats(null, THREE); M.gold.emissiveIntensity = 0.82 * k; M.screen.emissiveIntensity = 0.62 * k; };
+
   /* the deck's gold block: floors 6 and 7 (the seventh and eighth), the six bays west of the core */
   N.goldBlock = function (f, b) { return (f === 6 || f === 7) && b < 6; };
 
@@ -171,8 +175,10 @@
     TXT.add(R, s); TXT.contact(R, s);
     if (o.pool !== false) {
       var reach = o.reach || 2.4, hx = x + Math.sin(s.rotation.y) * reach, hz = z + Math.cos(s.rotation.y) * reach;
-      var pl = new N.T.PointLight(0xfff0d8, o.pool || 60, o.range || 24, 2);
-      pl.position.set(hx, (o.height || 9.1) - 0.4, hz); R.scene.add(pl);
+      /* a downward cone, not a bulb: a lot head throws its light on the ground, so the pool reads
+       * as a lit disc of asphalt under the head and not as a glow on the cars */
+      var h = (o.height || 9.1) - 0.4, pl = new N.T.SpotLight(0xffeeda, (o.pool || 60) * 9, (o.range || 24) * 1.4, 0.95, 0.75, 2);
+      pl.position.set(hx, h, hz); pl.target.position.set(hx, 0, hz); R.scene.add(pl); R.scene.add(pl.target);
     }
     return s;
   };
@@ -180,7 +186,7 @@
   /* N.goldScreen turns a kit monitor's lit display into the pilot's gold. With `blocks`, the screen
    * carries that many blocks of ruled lines and no letterforms, a clinical note drawn without text,
    * because no note is published and a letter on a canvas is type rendered into the art. */
-  N.goldScreen = function (THREE, mon, blocks) {
+  N.goldScreen = function (THREE, mon, blocks, k) {
     var mat;
     if (blocks) {
       var c = document.createElement("canvas"); c.width = 512; c.height = 320;
@@ -196,7 +202,7 @@
         }
       }
       var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
-      mat = new THREE.MeshStandardMaterial({ color: 0x1a0f08, roughness: 0.3, metalness: 0, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.62 });
+      mat = new THREE.MeshStandardMaterial({ color: 0x1a0f08, roughness: 0.3, metalness: 0, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.74 * (k || 1) });
       mat.emissive.set(N.ACCENT);
     } else {
       mat = N.mats(null, THREE).screen;
