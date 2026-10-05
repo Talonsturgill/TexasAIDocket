@@ -1345,13 +1345,34 @@ const STAGE3 = `async (T, TXT, cv) => {
   const onTerrain = Object.assign({}, Hf._txStaged);
   // and the hero staged by name, so the receiver is tested apart from the subject's choice
   const onHill = Object.assign({}, TXT.stage(Hf, hero2));
+  // a subject on a desk with TXT.contact's shadow planes under it still gets the desk's own pool,
+  // never one cut to the contact's rectangle
+  const Dc = make([2.5, 1.8, 2.5], [0, 0.9, 0]);
+  const desk2 = new T.Group(); desk2.rotation.y = Math.PI / 6;
+  const top2 = new T.Mesh(new T.BoxGeometry(2.0, 0.04, 1.0), mat(0x6a5a48)); top2.position.y = 0.75; desk2.add(top2);
+  TXT.add(Dc, desk2);
+  const cube2 = new T.Mesh(new T.BoxGeometry(0.4, 0.4, 0.4), mat(0xb8b0a0)); cube2.name = 'cube'; cube2.position.set(0, 0.97, 0); TXT.add(Dc, cube2);
+  Dc.scene.updateMatrixWorld(true);
+  const contacts = TXT.contact(Dc, cube2).length;
+  const onContact = Object.assign({}, TXT.stage(Dc, cube2));
+  const cp = poolOf(Dc);
+  // a camera that renders only layer 2 sees the pool on layer 2
+  const Lz = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
+  TXT.frame(Lz, { from: [6, 2.5, 8], look: [0, 1, 0] });
+  Lz.camera.layers.set(2);
+  const g2 = TXT.ground(Lz, { surface: 'concrete', size: 200, tile: 3 }); g2.layers.set(2);
+  const hero3 = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xd8d0c0)); hero3.name = 'hero'; hero3.position.set(0, 1, 0); hero3.layers.set(2); TXT.add(Lz, hero3);
+  const onLayer = Object.assign({}, TXT.stage(Lz, hero3));
+  const lp = Lz.scene.children.find((c) => c.userData && c.userData.txPool);
+  const layer = { pool: !!lp, drawn: !!lp && lp.layers.test(Lz.camera.layers) };
   // a standalone scene that names no world stands in the house register
   const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
   TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
   TXT.sky(Sd);
   const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
   return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
-           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil, onTerrain, onHill };
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil, onTerrain, onHill,
+           contacts, onContact, contactPool: cp ? { width: cp.width, depth: cp.depth } : null, layer };
 }`;
 
 async function run(name, scene) {
@@ -1847,6 +1868,11 @@ check('the third stage page renders with no page error and no scene error',
   const ot = r.onTerrain || {};
   check(`a heightfield filling the view never takes the stage from the hero on it: it took ${JSON.stringify(ot.subject)}`,
         ot.subject === 'hero on the hill', JSON.stringify(ot));
+  const oc = r.onContact || {}, ocp = r.contactPool || {};
+  check(`a cube on a desk over ${r.contacts} contact shadow planes keeps the desk's pool: ${(ocp.width ?? -1).toFixed(2)} by ${(ocp.depth ?? -1).toFixed(2)} m, on the ${oc.poolOn}`,
+        r.contacts > 0 && oc.poolOn === 'surface' && ocp.width > 2.1 && ocp.depth > 1.7, JSON.stringify({ oc, ocp }));
+  check(`a camera that renders only layer 2 is shown the pool: ${JSON.stringify(r.layer)}`,
+        r.layer && r.layer.pool === true && r.layer.drawn === true, JSON.stringify(r.layer));
   const oh = r.onHill || {};
   check(`...and the hero staged by name on its hills gets no flat pool laid over them: ${oh.pool ? 'a pool at y ' + oh.poolY : 'no pool'}`,
         oh.subject === 'hero on the hill' && oh.pool === false, JSON.stringify(oh));

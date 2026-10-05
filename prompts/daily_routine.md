@@ -1157,7 +1157,7 @@ python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
 python3 scripts/carousel/figure_bearing.py --date <date>
 python3 scripts/carousel/depth_floor.py --slides-dir out/<date>/slides
 python3 scripts/carousel/print_ban.py --assets --date <date>
-python3 scripts/carousel/value_register.py --render-dir out/<date>/render --probe --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --probe --only 1 --date <date>
 ```
 
 **THE LAST ONE IS THE REGISTER, ALSO ON THE PROBE (owner, 2026-10-04).** It fails a probe whose

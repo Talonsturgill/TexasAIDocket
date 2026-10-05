@@ -1321,23 +1321,6 @@ export function init(THREE) {
   TXT.ROOM_SHOWN = 'TXT: ROOM IN FRAME';
   TXT.NO_RENDER = 'TXT: NO RENDER IN FRAME';
 
-  /* ---- render ------------------------------------------------------------ */
-  // Renders one still, waits a paint tick, then ASSERTS the frame is not black
-  // (research-documented headless failure modes: first-paint race and silent
-  // 2D fallback). Returns {ok, variance, litCount}; on ok=false the slide MUST
-  // fall back to its Canvas/TX3D design rather than ship a black rectangle.
-  //
-  // TWO accept paths, OR'd (purely additive -- a frame the old logic accepted
-  // is still accepted, so no existing full-bleed scene regresses):
-  //  (1) global 24-sample mean/variance (the historic full-scene check), and
-  //  (2) COVERAGE: a dense strided read counts pixels carrying real light; a
-  //      lit cluster >= LIT_MIN passes. This fixes the silent false-fail on an
-  //      OBJECT HERO that fills only part of the frame over a transparent/dark
-  //      empty background (run 2026-07-21 S6: the akthree beluga's lit subject
-  //      is a minority of the frame, so the 24 sparse points read ~0 and the
-  //      frame was wrongly judged dead, forcing the flat Canvas fallback).
-  // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
-  // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   /* ---- THE STAGE: the subject lit, everything behind it gone to the dark (2026-10-04) ---------
    * The owner, on carousel no. 42 beside the sibling's no. 78, quoted in full in
    * ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art "wows me ... It's more like bold", and ours
@@ -1506,6 +1489,11 @@ export function init(THREE) {
       if (!m.isMesh || m.isInstancedMesh || own.has(m) || !inView(m, R.camera)) return;
       const u = m.userData || {};
       if (u.txPool || u.txSky) return;
+      // A DECAL RECEIVES NOTHING (Codex, PR 402): a thing a subject stands on is solid. TXT.contact's
+      // shadow planes lie 4 mm over the support, see-through and writing no depth, and as the
+      // highest flat thing under the subject they took the pool and cut it to their own rectangle.
+      const decal = (mt) => !mt || (mt.transparent && mt.depthWrite === false);
+      if (Array.isArray(m.material) ? m.material.every(decal) : decal(m.material)) return;
       if (u.txGround) {
         // under the subject, like any other receiver: a raised patch of ground beside it is not
         // what it stands on, and a pool at that patch's height floated over the frame (Codex, PR 402)
@@ -1626,6 +1614,8 @@ export function init(THREE) {
       if (rec && box.min.y - rec.y < 0.35) {
         R._txPool = poolDecal(box, S, rec);
         R._txPool.userData.txPoolOn = rec.ground ? 'ground' : 'surface';
+        // on the layers its receiver is drawn on, which the camera renders (Codex, PR 402)
+        R._txPool.layers.mask = rec.mesh.layers.mask;
         R.scene.add(R._txPool);
       }
     }
@@ -1636,6 +1626,23 @@ export function init(THREE) {
     return R._txStaged;
   };
 
+  /* ---- render ------------------------------------------------------------ */
+  // Renders one still, waits a paint tick, then ASSERTS the frame is not black
+  // (research-documented headless failure modes: first-paint race and silent
+  // 2D fallback). Returns {ok, variance, litCount}; on ok=false the slide MUST
+  // fall back to its Canvas/TX3D design rather than ship a black rectangle.
+  //
+  // TWO accept paths, OR'd (purely additive -- a frame the old logic accepted
+  // is still accepted, so no existing full-bleed scene regresses):
+  //  (1) global 24-sample mean/variance (the historic full-scene check), and
+  //  (2) COVERAGE: a dense strided read counts pixels carrying real light; a
+  //      lit cluster >= LIT_MIN passes. This fixes the silent false-fail on an
+  //      OBJECT HERO that fills only part of the frame over a transparent/dark
+  //      empty background (run 2026-07-21 S6: the akthree beluga's lit subject
+  //      is a minority of the frame, so the 24 sparse points read ~0 and the
+  //      frame was wrongly judged dead, forcing the flat Canvas fallback).
+  // The DEAD-CANVAS CONTRACT is preserved: a genuinely black/empty frame has
+  // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   TXT.snapshot = async function (R, o) {
     o = o || {};
     prepareSurfaces(R);                          // the contact marks, worn grass and grit (THE RECEIVING SURFACE)

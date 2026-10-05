@@ -969,13 +969,21 @@ def g_value_register(d: Path):
     drawn under the doctrine that ordered the look, and are measured and noted, never failed.
     """
     import value_register as m
-    paths = []
+    # A DECK THE REGISTER APPLIES TO IS MEASURED OR FAILED, never passed for being unreadable (Codex,
+    # PR 402). Only a run with a copy.json reaches this gate, so a frame it can't read, or a copy.json
+    # naming none, is a broken ship. An exception here used to become a note and None a "not
+    # applicable", and either way CI was green without the deck ever measured.
     try:
         import measure_shipped as ms
         paths = ms.frames(d)
-    except Exception:                                                # noqa: BLE001
+        rows = [m.frame_stats(x) for x in paths]
+    except Exception as exc:                                         # noqa: BLE001
+        if d.name > m.VALUE_SINCE:
+            return [f"the deck's frames can't be measured, so its register is unknown "
+                    f"({type(exc).__name__}: {exc})"]
         return None
-    rows = [m.frame_stats(x) for x in paths]
+    if not rows:
+        return ["the deck has no frames to measure"] if d.name > m.VALUE_SINCE else None
     probs = [x for x in m.judge(rows, False, d.name) if "mid tones" in x]
     if probs and d.name <= m.VALUE_SINCE:
         return (f"drawn before the value register existed (2026-10-04). Run into it anyway: "
@@ -1477,6 +1485,23 @@ def self_test() -> int:
             encoding="utf-8")
         ok("a deck recording no threshold falls back to the rubric", bool(g_completion(_d)),
            "an absent threshold must not read as no bar at all")
+
+    # A DECK THE REGISTER APPLIES TO IS MEASURED OR FAILED (Codex, PR 402): a copy.json naming two
+    # slides with neither frame on disk, after VALUE_SINCE, fails the value gate rather than passing
+    # as "not applicable", and the same deck before it is still only noted.
+    with _tempfile.TemporaryDirectory() as _t:
+        import value_register as _vr
+        _late = Path(_t) / "2026-10-06"
+        _late.mkdir()
+        (_late / "copy.json").write_text(_json.dumps({"slides": [{}, {}]}), encoding="utf-8")
+        got = g_value_register(_late)
+        ok("a current deck whose frames can't be read fails the value gate",
+           isinstance(got, list) and bool(got), f"returned {got!r}")
+        _early = Path(_t) / _vr.VALUE_SINCE
+        _early.mkdir()
+        (_early / "copy.json").write_text(_json.dumps({"slides": [{}, {}]}), encoding="utf-8")
+        ok("...and a deck from before the register is not failed for it",
+           not g_value_register(_early), f"returned {g_value_register(_early)!r}")
 
     # ---- AN ENTITY IS MARKUP, AND THE DECODE MAY NOT BECOME A WAY TO PASS. 2026-09-19 --------
     #

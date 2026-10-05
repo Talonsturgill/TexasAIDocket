@@ -31,7 +31,7 @@ is the doctrine and `scripts/carousel/value_register.py` the gate.
 | deck | mid tone share, L* 30 to 70 | near black, L* under 15 | deck median L* |
 |---|---|---|---|
 | no. 40, 2026-10-02 | 0.407 to 0.204 | 0.138 to 0.373 | 32.2 to 19.9 |
-| no. 41, 2026-10-03 | 0.477 to 0.134 | 0.191 to 0.628 | 29.7 to 6.8 |
+| no. 41, 2026-10-03 | 0.477 to 0.135 | 0.191 to 0.628 | 29.7 to 6.8 |
 | no. 42, 2026-10-04 | 0.698 to 0.173 | 0.090 to 0.539 | 58.4 to 4.2 |
 | the sibling's no. 78, as shipped | 0.139 | 0.509 | 11.2 |
 | the sibling's no. 77, as shipped | 0.129 | 0.593 | 10.6 |
@@ -61,7 +61,7 @@ Frames scored lower after, on the mean of the three graders:
 ## The sheets are the merged engine
 
 The graders above saw renders made before review. The sheets are rendered again by the engine as
-merged, with every review fix. Of the 27 frames, 15 are the same pixels and 6 moved by
+merged, with every review fix. Of the 27 frames, 19 are the same pixels and 2 moved by
 at most 0.20 percent of their pixels. 6 moved more, from
 0.9 to 25.4 percent, for three reasons.
 

@@ -223,6 +223,16 @@ def self_test() -> int:
               not any("reads light" in p for p in judge([white], True, "2026-09-05", empty)))
         check("a light probe frame beside two dark ones a retried run left in the folder still fails",
               any("reads light" in p for p in judge([bold, white, bold], True, "2026-09-05", held)))
+        # --only judges the frames this pass rendered and no other (Codex, PR 402): the faded
+        # slide 1 left in the folder by an earlier attempt never sits in judgement of slide 2
+        import contextlib, io
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            only_bold = main(["--render-dir", str(t), "--probe", "--only", "2", "--date", "2026-09-05"])
+            only_faded = main(["--render-dir", str(t), "--probe", "--only", "1", "--date", "2026-09-05"])
+            only_missing = main(["--render-dir", str(t), "--probe", "--only", "9", "--date", "2026-09-05"])
+        check("--only 2 judges the bold probe alone, beside a faded slide 1 left in the folder",
+              only_bold == 0 and only_faded == 1)
+        check("...and --only on a slide with no render fails rather than judging nothing", only_missing == 1)
         missing = t / "no-such-ledger.json"
         check("an unreadable light deck ledger fails a light probe closed",
               any("can't be read" in p for p in judge([white], True, "2026-09-05", missing)))
@@ -251,6 +261,8 @@ def main(argv=None) -> int:
     ap.add_argument("--render-dir", type=Path)
     ap.add_argument("--run", type=Path, help="a shipped run directory, read as the site serves it")
     ap.add_argument("--probe", action="store_true", help="judge each frame alone, as the probe frame")
+    ap.add_argument("--only", help="slide numbers to judge, as render.py --only takes them (1,4): the "
+                    "frames this pass rendered, never a stale one a retried run left in the folder")
     ap.add_argument("--date", help="the run's date, so the light window excludes the run itself")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
@@ -265,6 +277,13 @@ def main(argv=None) -> int:
         date = a.date
     else:
         ap.error("give --render-dir or --run")
+    if a.only:
+        want = {int(x) for x in a.only.split(",") if x.strip()}
+        paths = [p for p in paths if p.stem[6:].isdigit() and int(p.stem[6:]) in want]
+        missing = sorted(want - {int(p.stem[6:]) for p in paths})
+        if missing:
+            print(f"value_register: no render of slide {', '.join(map(str, missing))} to judge", file=sys.stderr)
+            return 1
     rows = [frame_stats(p) for p in paths]
     problems = judge(rows, a.probe, date)
     report(rows, problems, a.probe, a.json)
