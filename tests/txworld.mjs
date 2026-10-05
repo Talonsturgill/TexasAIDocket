@@ -1328,13 +1328,30 @@ const STAGE3 = `async (T, TXT, cv) => {
   const onPlinth = Object.assign({}, TXT.stage(Pt, bust));
   const veil = (o) => !!(o.material.defines && 'TX_VEIL' in o.material.defines);
   const kitVeil = { kitGround: veil(kitGround), patch: veil(patch), bust: veil(bust) };
+  // a kit-style heightfield (a group publishing heightAt, its mesh tagged ground) 60 m across and
+  // 8 m deep fills the view and holds the look point: it never takes the stage from the hero on
+  // it, and a flat pool is never laid over its hills
+  const Hf = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+  TXT.frame(Hf, { from: [6, 7, 9], look: [0, 1, 0] });   // 3 m over the terrain's top, so nothing excludes it but this rule
+  TXT.sky(Hf, W);
+  const terrain = new T.Group(); terrain.name = 'terrain';
+  terrain.userData.heightAt = (x, z) => 4 * Math.sin(x / 6) * Math.sin(z / 7);
+  const tgeo = new T.PlaneGeometry(60, 60, 60, 60).rotateX(-Math.PI / 2), tp = tgeo.attributes.position;
+  for (let i = 0; i < tp.count; i++) tp.setY(i, terrain.userData.heightAt(tp.getX(i), tp.getZ(i)));
+  tgeo.computeVertexNormals();
+  const land = new T.Mesh(tgeo, mat(0x6a5a40)); land.userData.txGround = true; terrain.add(land); TXT.add(Hf, terrain);
+  const hero2 = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xd8d0c0)); hero2.name = 'hero on the hill'; hero2.position.set(0, 1, 0); TXT.add(Hf, hero2);
+  await TXT.snapshot(Hf);
+  const onTerrain = Object.assign({}, Hf._txStaged);
+  // and the hero staged by name, so the receiver is tested apart from the subject's choice
+  const onHill = Object.assign({}, TXT.stage(Hf, hero2));
   // a standalone scene that names no world stands in the house register
   const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
   TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
   TXT.sky(Sd);
   const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
   return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
-           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil };
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil, onTerrain, onHill };
 }`;
 
 async function run(name, scene) {
@@ -1827,6 +1844,12 @@ check('the third stage page renders with no page error and no scene error',
         pl.subject === 'bust' && pl.pool === false, JSON.stringify(pl));
   check(`a kit ground, tagged without TXT.ground's define, is never veiled, and the bust is: ${JSON.stringify(kv)}`,
         kv.kitGround === false && kv.patch === false && kv.bust === true, JSON.stringify(kv));
+  const ot = r.onTerrain || {};
+  check(`a heightfield filling the view never takes the stage from the hero on it: it took ${JSON.stringify(ot.subject)}`,
+        ot.subject === 'hero on the hill', JSON.stringify(ot));
+  const oh = r.onHill || {};
+  check(`...and the hero staged by name on its hills gets no flat pool laid over them: ${oh.pool ? 'a pool at y ' + oh.poolY : 'no pool'}`,
+        oh.subject === 'hero on the hill' && oh.pool === false, JSON.stringify(oh));
 }
 
 await browser.close();

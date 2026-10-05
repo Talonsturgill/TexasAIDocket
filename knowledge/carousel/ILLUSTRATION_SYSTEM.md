@@ -844,7 +844,8 @@ again, 44 minutes.
 - **`TXT.stage(R, subject)`.** A linear fog from just past the subject's far side, whole at about
   twice its distance, in the sky's own hue, so the world behind the subject goes to the dark. A
   pool decal on the ground keeps the light where the subject stands. On a desk or a dock the pool
-  is cut to that surface's top face. In a staged world every snapshot stages itself on the largest
+  is cut to that surface's top face. The pool is flat, so shaped terrain (a kit heightfield) gets
+  none: stand the subject on a pad if the frame wants one there. In a staged world every snapshot stages itself on the largest
   thing near where the camera is aimed, never on a thing the camera stands in or rides; naming the
   subject is better. A skyline far off keeps a
   faint silhouette (`stage.veil`) while the stage is up. `TXT.snapshot(R, { stage: false })` takes

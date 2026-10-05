@@ -30,7 +30,7 @@ is the doctrine and `scripts/carousel/value_register.py` the gate.
 
 | deck | mid tone share, L* 30 to 70 | near black, L* under 15 | deck median L* |
 |---|---|---|---|
-| no. 40, 2026-10-02 | 0.407 to 0.205 | 0.138 to 0.373 | 32.2 to 20.1 |
+| no. 40, 2026-10-02 | 0.407 to 0.204 | 0.138 to 0.373 | 32.2 to 19.9 |
 | no. 41, 2026-10-03 | 0.477 to 0.134 | 0.191 to 0.628 | 29.7 to 6.8 |
 | no. 42, 2026-10-04 | 0.698 to 0.173 | 0.090 to 0.539 | 58.4 to 4.2 |
 | the sibling's no. 78, as shipped | 0.139 | 0.509 | 11.2 |
@@ -61,26 +61,29 @@ Frames scored lower after, on the mean of the three graders:
 ## The sheets are the merged engine
 
 The graders above saw renders made before review. The sheets are rendered again by the engine as
-merged, with every review fix. Of the 27 frames, 17 are the same pixels and 6 moved by
-at most 0.20 percent of their pixels. No. 41's frames 2, 3, 4 and 7
-moved 2.2 to 25.4 percent, for two reasons.
+merged, with every review fix. Of the 27 frames, 15 are the same pixels and 6 moved by
+at most 0.20 percent of their pixels. 6 moved more, from
+0.9 to 25.4 percent, for three reasons.
 
-- **Frames 2, 3 and 7, the road beyond the truck darker.** The first review fix lays the pool on
-  the surface the subject stands on. The original engine laid it at the truck's lowest point, under
-  the road's surface, where the road hid it. Each of these frames takes one snapshot, so the pool's
-  height is the whole of the change.
-- **Frame 4, the road lit to the horizon.** The camera rides 1.7 m over its own truck, and the stage
-  took that truck for the subject and centred its pool on it. A thing the camera stands in or rides
-  is never the subject now, so the frame is staged where the camera is aimed.
+- **No. 41 frames 2, 3 and 7, the road beyond the truck darker.** The first review fix lays the pool
+  on the surface the subject stands on. The original engine laid it at the truck's lowest point,
+  under the road's surface, where the road hid it. Each of these frames takes one snapshot, so the
+  pool's height is the whole of the change.
+- **No. 41 frame 4, the road lit to the horizon.** The camera rides 1.7 m over its own truck, and
+  the stage took that truck for the subject and centred its pool on it. A thing the camera stands
+  in or rides is never the subject now, so the frame is staged where the camera is aimed.
+- **No. 40 frames 1 and 6, the background darker.** The original engine staged both on a group as
+  wide as the world that holds the ground, so their fog began 6,134 to 6,597 m out and did
+  nothing. A group that holds the ground is never the subject now. Frame 1 is staged where the
+  camera is aimed, its fog from 1.04 m, and frame 6 on the next group, its fog from 566 m.
 
-Three fresh graders shown those 4 frames blind, the graded render against the merged one,
-with the sibling's decks as the reference, gave 12 verdicts. The merged frame was named
-bolder 3 times and the earlier one 3 (6 ties), better 5 times and the earlier one 1 (6 ties), and closer to the sibling 3 times and the earlier one 3 (6 ties). The
-mean score went from 6.01 to 6.12, and frame by frame
-frame 2 went 5.87 to 5.93, frame 3 went 6.70 to 6.77, frame 4 went 5.20 to 5.43, frame 7 went 6.27 to 6.37. On frame 4 the earlier render was named bolder by 3 of the
-3 graders and better by 1. Its lit lane ends in a jagged wedge
-and a hard seam, which the graders who preferred the merged frame named a render fault, and the
-merged road is clean but greyer.
+Three fresh graders shown those 6 frames blind, the graded render against the merged one, with
+the sibling's decks as the reference, gave 18 verdicts. The merged frame was named
+bolder 7 times and the earlier one 5 (6 ties), better 9 times and the earlier one 3 (6 ties), and closer to the sibling 7 times and the earlier one 5 (6 ties). The
+mean score went from 5.97 to 6.07, and frame by frame no. 41 frame 2 5.87 to 5.93; no. 41 frame 3 6.70 to 6.77; no. 41 frame 4 5.20 to 5.43; no. 41 frame 7 6.27 to 6.37; no. 40 frame 1 6.27 to 6.20; no. 40 frame 6 5.50 to 5.70. On no. 41 frame 4 the
+earlier render was named bolder by 3 of the 3 graders and better by
+1. Its lit lane ends in a jagged wedge and a hard seam, which the graders who preferred
+the merged frame named a render fault, and the merged road is clean but greyer.
 
 ## How the engine got here, three rounds of fresh graders
 

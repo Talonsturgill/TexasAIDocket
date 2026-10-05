@@ -1366,6 +1366,7 @@ export function init(THREE) {
    * set stages every snapshot whose frame did not call this, and an interior stages in the deck's
    * declared world. A frame may call it again, and the later call replaces the earlier. */
   const _stBox = () => new THREE.Box3();
+  const holdsGround = (o) => { let g = false; o.traverse((x) => { if (x.userData && x.userData.txGround) g = true; }); return g; };
   // THE BOX OF WHAT THE CAMERA DRAWS (Codex, PR 402): a thing's meshes that show and sit on a layer
   // this camera renders. A large object on a layer the camera skips could take the stage from the
   // hero, and the fog and the pool were fitted to geometry the image doesn't have.
@@ -1409,6 +1410,10 @@ export function init(THREE) {
       if (!c.visible || c.isLight || c.isCamera) continue;
       const u = c.userData || {};
       if (u.txSky || u.txGround || u.txScatter || u.txPool || c === R.room) continue;
+      // a landscape is where the subject stands, never the subject: a kit terrain is a group whose
+      // meshes are tagged ground, or that publishes heightAt, and its box can fill the view and
+      // hold the look point (Codex, PR 402). A frame may still name one with TXT.stage.
+      if (u.heightAt || holdsGround(c)) continue;
       const box = renderedBox(c, cam);
       if (box.isEmpty()) continue;
       box.getSize(sz);
@@ -1506,6 +1511,13 @@ export function init(THREE) {
         // what it stands on, and a pool at that patch's height floated over the frame (Codex, PR 402)
         tb.setFromObject(m);
         if (!tb.isEmpty() && (c.x < tb.min.x || c.x > tb.max.x || c.z < tb.min.z || c.z > tb.max.z)) return;
+        // SHAPED TERRAIN RECEIVES NO POOL: a kit heightfield (it publishes heightAt) or any tagged
+        // ground deeper than 35 cm. The pool is one flat plane, so on a hill it floats over the
+        // valleys and sinks into the slopes, and the terrain's origin is not its surface anyway. The
+        // stage there is the fog alone, and a frame that wants a pool stands its subject on a pad.
+        let shaped = tb.max.y - tb.min.y >= 0.35;
+        for (let q = m; q && !shaped; q = q.parent) if (q.userData && q.userData.heightAt) shaped = true;
+        if (shaped) return;
         const y = m.getWorldPosition(wp).y;
         if (y > base + 0.05) return;
         if (ground === null || y > ground) ground = y;
