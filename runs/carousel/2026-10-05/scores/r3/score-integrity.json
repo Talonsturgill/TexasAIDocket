@@ -1,0 +1,106 @@
+{
+ "lens": "integrity",
+ "deck": "2026-10-05, carousel no. 43, round 3 of 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Slides 1, 2 and 7 pass the showstopper test. Slide 1 is a blue-hour lot with a sky gradient into a mauve horizon, lamp pools on the asphalt, a live oak and cars with contact. Slide 2 has the porte-cochere soffit lighting the apron and a figure at true scale. Slide 7 is a Galveston palm boulevard in haze. The rest fall short of the 7 descriptor, which allows one weak frame, and four frames are weak here. Slide 5 puts chairs and seated figures on a featureless dark slab under a band of blurred vertical streaks, with no wall, ceiling or light source, so it reads as objects in a void. Slide 6 is a square-on facade of flat fills: uniform grey-gradient panes, no ground, no light direction and a flat sky. The storyboard promised a garage parapet lip in the foreground and it is not there. Slide 8's Dallas skyline is untextured boxes, the tower casts no shadow onto its podium or the lot, and the lower 45 percent is dark lot under the type. machine_qa also warns that slide 8 is top-loaded. Slide 9 repeats slide 1's camera and scene with a figure and a red pickup added. Slide 3's six monitors are flat orange rectangles with no screen content, against a black back wall. Slide 2's lower half fades to a flat navy field that works as a type plate."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This reads as one filmstrip. The hospital kit model, the blue-hour light and the dusk-gold accent hold across all nine frames. Three continuity devices are declared and visible. The gold motif goes 12 of 120 (slide 1), then six screens (3), one screen (4), one of 12 (6) and 12 again (9). The camera moves lot, canopy, station, screen, room, facade, Galveston, Dallas, and returns to slide 1's camera. The value arc bottoms out at 4. Two things hold it short of 10. Slide 5 is a cold blue room that sits outside the warm interiors of 3 and 4. The gold also changes meaning: storyboard rule 3 says gold 'only ever means a funded pilot', yet on slide 3 the six gold screens stand for six tools inside one pilot."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces to a source. 12, 120, $3.6 million, 400,000, seven, six, 7 million, 6,500, $900,000, 15,000 and three years are each extracted from a claim quote by compute.py. '500 APPOINTMENTS', 'Eleven' and 'Two more' are computed with stated rules. I checked c47, c51, c17, c22, c23, c19, c20, c49, c24 and c54 against pilots.txt and home.txt, and all are verbatim and primary. I counted the page's entries and there are 12, so slide 6's set is correctly named. I tried to refute 'only the no-show entry states what it already saved' and could not: no other entry uses saved or a saved count. Four phrasings are looser than the source. (1) Slide 6 says 'The other eleven describe the work, not what it saved'. The WombWatch entry states a measured '88% accuracy, compared with 18% for maternal perception alone'. That figure is c48, which is on file and appears on no slide. A reader leaves believing the other entries carry no outcome figures, and only slide 8 partly corrects that. (2) Slide 5 draws a cumulative count with no stated period (Houston, 13 seats) and a per-year projection (San Antonio, 30 seats) as one scale in one room. Neither label names the period. The web edition says they are 'not the same kind of number', and the frame does not. (3) The caption opens 'At UTHealth Houston, a no-show project's entry states what it saved'. That places the entry, and by implication the project, at UTHealth Houston, while claims.json rejects naming the project's institution and the page places only the savings there. Round 2 fixed the slide 5 kicker but not this line. (4) Slide 3 'They automate lab result messaging' turns the page's 'implements six ... tools to automate' (a purpose) into a present capability. Slide 8 'simulation exams' glosses 'simulation assessment'. None of these is a fabrication, so there is no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "The deck names the body (UT REAL Health AI, slide 1), the decision (12 funded of 120), the places (UT San Antonio, Dell Med, UTMB Galveston, UTHealth Houston, UT Southwestern) and a dated next step (Austin, October 7th and 8th, with a registration link from c54 on slide 9). The stake is general: no entry but one states a result. When the awards were made can't be stated because the page is undated, and the deck rightly says nothing about it. The action offered is a professional symposium. A patient at a UT hospital learns nothing they can do or ask. That matches the 7 descriptor, one stake stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The '12 of 120.' cover is a count that invites a swipe, and slide 2 pays off at once with Leah at seven sites. The turn is clear at 5 and 6 ('One entry states what it saved' then 'Eleven entries, no saved count'). After the turn, slides 7 (UTMB) and 8 (trial prescreening and grading) go back to the inventory. Both could sit before slide 5 without loss, which is two movable frames where the 7 descriptor allows one. The close is logistics ('Its page carries a link to register') rather than the argument, and only the caption's question links the symposium back to the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no house-rule breaks in the slides, caption or first comment: no colons, dashes, banned words or first person, and the dates carry no year. 'It will read the notes.' is the strongest line. The attribution needed for integrity turns procedural, though: 'the page' appears three times in the caption and three times in slide 5's copy (twice in the dek, once in a label). 'Two more expand earlier platforms.' and 'Its page carries a link to register.' are flat. The Texas texture is in the places (Galveston palms, the Dallas skyline, the hats on slide 5) more than in the voice."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "topics.json shows no UT REAL Health AI item in the window, and the instrument (utsystem.edu) is new. Two moves are familiar. The world is blue hour again, four days after no. 39's blue-hour plate reader on October 1st. It is also the third clinic deck in four (no. 40 genetics, no. 42 education, and this one), as SELECTION.md concedes. The structure is the house formula of one object carried through every frame."
+  }
+ ],
+ "weighted_score": 6.91,
+ "weighted_score_arithmetic": "6.5*0.22 + 8.0*0.12 + 7.0*0.20 + 7.0*0.16 + 6.5*0.10 + 7.0*0.10 + 6.5*0.10 = 1.43 + 0.96 + 1.40 + 1.12 + 0.65 + 0.70 + 0.65 = 6.91",
+ "hard_fails": [],
+ "hard_fail_search_notes": "Checked and clear. Every numeral on all nine slides, the caption and the document title is in figures.json or aggregates.json with a claim or a rule. render/machine_qa.json shows 0 fails and 14 warns. The warns include tiny-text at 23px on slide 3's two labels and a worst-point contrast of 4.5 on slide 6's dek, both of which should be fixed but neither of which is a fail. Both cited sources were fetched (tmp/src/pilots.txt, tmp/src/home.txt). There is no topic repeat in topics.json inside 30 days. The caption has no colons, semicolons, dashes, banned words or year on a same-year date. There is no placeholder or unfinished frame.",
+ "ship": true,
+ "one_sentence_fix": "Rebuild slide 5 as a real waiting room (back wall, ceiling fixtures casting pools, glazing onto the blue-hour lot) and label its two blocks with their time bases ('HOUSTON, TOTAL TO DATE AS THE PAGE STATES IT' and 'SAN ANTONIO, PROJECTED PER YEAR'). That lifts the weakest frame and closes the deck's largest integrity looseness, a cumulative count and an annual projection drawn at one scale, in a single repair.",
+ "secondary_integrity_repairs": [
+  "Caption line 1: drop 'At UTHealth Houston,' as the opener so the entry and project are not placed there. The page places only the savings at Houston, and claims.json rejects naming the project's institution.",
+  "Slide 6 dek: 'The other eleven describe the work, not what it saved' leaves out WombWatch's stated 88% accuracy (c48, already verified). Say what the others carry, for example accuracy, validation or run history but no saved count, as the web edition does.",
+  "Slide 3 dek: 'They automate' should follow the page's purpose verb, for example 'The pilot implements six AI tools built into Epic to automate lab result messaging and generate imaging summaries for patients.'"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Chairs and seated figures sit on a featureless dark floor slab under a band of blurred vertical streaks. There is no wall, ceiling or visible light source, so the room reads as objects floating in a void rather than a waiting room at an hour.",
+   "fix": "Build the room in TXT.interior with a back wall, ceiling troffers casting pools onto the floor under each block, and lobby glazing behind the empty San Antonio block that shows the blue-hour lot and its lamps. Drop the eye from 2.6 m to about 1.9 m so the floor stops filling the frame."
+  },
+  {
+   "slide": 6,
+   "problem": "The facade is square on and made of flat fills. The panes are identical grey-gradient rectangles, there is no ground and no light direction, and the sky is flat. The storyboard's garage parapet foreground is missing, so the turn frame reads as a diagram rather than a photograph.",
+   "fix": "Add the promised concrete garage parapet lip across the bottom edge as a foreground with contact. Vary pane roughness and environment reflection per bay. Let the lot lamps' uplight graze the lower spandrels so the face has a light side and a dark side."
+  },
+  {
+   "slide": 9,
+   "problem": "Near-identical to slide 1: same camera, same building, same cars and the same lamp pools. Only a small figure and a red pickup were added, so the close reads as a repeat rather than an arrival.",
+   "fix": "Keep the tower and the 12 gold bays but move the camera about 30 m forward to the porte-cochere approach, with the walking figure in the midground under a lamp pool and the tower filling the upper frame. Alternatively, push the hour deeper so the lamps and the gold bays become the only keys."
+  },
+  {
+   "slide": 8,
+   "problem": "The Dallas skyline is untextured box primitives. The tower casts no shadow on its podium or the lot, so it sits like a model on a table, and the lower 45 percent is dark lot carrying the type, which machine_qa flags as top-loaded.",
+   "fix": "Cast the tower's shadow across the podium roof and lot from the declared lamp azimuth of -60 degrees. Give the skyline lit window grids and haze it a step lighter. Lower the aerial camera so the horizon sits on the upper third and the type sits on hazed sky instead of asphalt."
+  },
+  {
+   "slide": 3,
+   "problem": "The six monitors are flat untextured orange rectangles with no screen content, bezel reflection or falloff. The back wall above the window band is a black void, and the room has no ceiling.",
+   "fix": "Give each screen the kit's unglyphed 'doc' content at varied brightness with a glossy bezel reflection. Add a dropped ceiling with two practical fixtures so the station's back wall and the window mullions read as a built room."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-05/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-05/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/SELECTION.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/brief.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/tmp/src/pilots.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/tmp/src/home.txt",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-05.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/slide-01.png through slide-09.png (all nine viewed at full size)"
+ ]
+}

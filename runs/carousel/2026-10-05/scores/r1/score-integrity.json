@@ -1,0 +1,99 @@
+{
+ "lens": "integrity",
+ "deck": "2026-10-05, carousel no. 43, \"12 of 120. The UT System's health AI pilots\", round 1 of 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered, and the outdoor frames stand in a blue hour world: a sky running from zenith blue to a pink horizon, lamp pools on the asphalt, haze. Slide 7, the Galveston palm boulevard, is the best frame and comes closest to the showstopper test. The rest falls short of the 7 descriptor ('one frame leans on a default') in more than one frame. (1) The hero tower on slides 1, 8 and 9 has flat light-grey rectangles for windows, with no glass, no reflection and no variation between bays. At full size it reads as a kit model. (2) Slide 3 has diagonal moire or aliasing triangles on four of the six gold screens, and the top 35 percent of the frame is a flat dark wall that the type sits on. (3) Slide 8 has smeared depth-of-field blobs of cars behind the dek, and machine_qa flags parking stripes crossing the dek's glyph band at y about 1065 to 1076. (4) Slide 6 is a flat, untextured navy facade. The rest of the tower is dark, which breaks frame 1's lit 120-bay grid, and there is no garage-parapet foreground as planned. (5) On slide 5 the hook and dek sit on a black band at the top, which works as a plate, and the room below is a void floor with no walls or ceiling lights. The cars throughout are boxy kit models. Slide 2 has a dead lower 45 percent (machine_qa: 'top-loaded composition')."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck. One kit tower with a brick end wall and a central glazed core carries slides 1, 2, 6, 7, 8 and 9. There is one blue hour light and one dusk-gold accent that always means a funded pilot. Slide 9 reuses slide 1's camera with the lot fuller and a person walking in. The motif evolution is real: 12 gold bays (1), six gold screens (3), one note screen (4), one bay left gold (6), two gold bays (8), twelve again (9). The value track steps down into the interiors on 3 to 5 and climbs back out, with no strobe. One frame sits outside. On slide 6 the 108 other bays are dark rather than slide 1's lit cool grey, and the 'eleven put out' bays render burnt orange rather than the cool white the storyboard's acceptance item demands. At 432 px the turn therefore reads as twelve lit windows with one brighter, not eleven put out."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. 12, 120, 400,000, six, 7 million, 6,500, $900,000, 15,000, 40,000, three, 500 and Eleven all resolve to a claim quote or a compute.py rule. Every source is the UT System's own page, and the brief's lines hold: no date, no Chronicle material, no lead's name. Four things are inferred past the source. (1) The deck's spine says four times that the 6,500 is 'the project's own count': caption ('That is the project's own count'), slide 5 dek and label ('HOUSTON, THE PROJECT'S OWN COUNT') and slide 6 ('that count is its own'). Caption line 1 also says the project 'counted what it saved'. c22's quote says only 'has already saved more than 6,500 appointments'. The page does not say who counted. Only the claim's own text adds 'the project's own reported results', with no quote behind it. (2) Slide 4 and the caption print 'signs of suicide risk', but c17's stored quote ends at 'across more than 7 million patient records' and never contains the word. The web edition written in the same run prints every other part of c17 and drops suicide risk. I could not refute it, so this is not a hard fail. Still, the most sensitive phrase in the deck is unevidenced in the record. (3) 'at least 15,000 a year' rests on c23's quote 'projected to recover 15,000', which has no 'a year' and no range. (4) Two smaller ones: slide 7 says 'routes each patient' where c49 says 'routes patients'. Slide 8's 'Two expand earlier platforms' sits beside a no-show entry whose own title is 'Expanding AI-Powered No-Show Reduction', and it places the grading platform (c20 names no institution) under a Dallas skyline. Separately, slide 5's kicker 'UTHealth Houston no-show project' gives the project an institution, while c16 names it 'Across UT System Health Institutions' and the fact check rejected naming the lead's institution."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened: UT REAL Health AI funded 12 of 120 submissions. They learn where: UT San Antonio, Dell Med, UTMB Galveston, UTHealth Houston, UT Southwestern. They learn the sharp angle, that one entry claims a saved count and eleven don't. They also get a dated next step, the Austin symposium on October 7th and 8th (slide 9). The page has no date, and the deck honestly declines to say when the awards were made. Three things stay general. The money is absent: the $3.6 million in c8 never appears, so the stake has no cost. The close's action is generic ('A patient can ask a UT hospital which of the twelve pilots it takes part in'). Nothing says whether the symposium is open to the public. The 7 million records read for suicide risk is the deck's most concrete stake for a patient, and it gets one frame with no follow-through on consent or oversight."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover's '12 of 120.' over a lit grid earns a swipe. Slide 2 pays at once with Leah at seven sites. Slide 5's count and slide 6's turn are where understanding changes. After the turn, slides 7 (UTMB triage) and 8 (two platforms) drop back into the catalogue of pilots. Both belong before slide 5 and could move or be cut without loss, so momentum sags right after the argument lands. The close lands on a date but not on the turn's question, which is carried only in the caption."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and restrained. It attributes throughout, with no boosterism and no doom, and it follows the house rules: no colons, no em dashes, ordinal dates, 'can't'. Some lines are flat or mechanical. Slide 1's 'The hospital is drawn.' is a production disclaimer printed as prose. Slide 6's 'The other eleven describe the work, not what it saved' is serviceable but generic. There is little Texas register beyond place names: the cowboy hats on slide 5 do work the copy doesn't."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Blue hour repeats no. 39 from four decks ago. The structure, a hero object carried through every frame with a computed count drawn as objects, repeats nos. 39 to 42 (3,200 cameras, 93 cartons, 10 buses). The numeral-ratio cover is a familiar opening move. SELECTION.md concedes this is the third clinic or health deck in four. The facade-as-count device and the waiting-room seat scale are fresh."
+  }
+ ],
+ "weighted_score": 6.59,
+ "weighted_arithmetic": "6.0*0.22 + 7.5*0.12 + 6.5*0.20 + 7.0*0.16 + 6.5*0.10 + 7.0*0.10 + 6.0*0.10 = 1.32 + 0.90 + 1.30 + 1.12 + 0.65 + 0.70 + 0.60 = 6.59",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "This no is about the number: 6.59 against the round 1 rung of 8.0. I found no fault I could establish as a hard fail. machine_qa has 0 fails. No topic in ledger/carousel/topics.json repeats inside 30 days. Every numeral traces to figures.json or a claim quote. 'Suicide risk' (c17) and 'a year' (c23) are printed claims that go beyond their stored quotes. I could not refute them without the page, so they are graded under claim_integrity rather than listed here. If a re-read of the page does not contain 'suicide', slide 4 and the caption carry an unverified fact and the deck must stop.",
+ "one_sentence_fix": "Re-fetch the pilot page and extend each claim quote to cover every word the deck prints from it (c17's suicide risk, c23's 'a year' and range), and replace 'the project's own count' and 'counted what it saved' everywhere with what the page actually supports, that the page states the saving and cites no measurement or audit behind it, because the deck's turn currently rests on a provenance the source never states.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The turn frame is a flat, untextured navy facade. The other 108 bays are dark, unlike slide 1's lit grid, and the eleven 'put out' bays glow burnt orange, so at 432 px it reads as twelve lit windows with one brighter rather than eleven out. The planned garage-parapet foreground is missing.",
+   "fix": "Render it from the same bay skin as slide 1, with all 120 bays at their seeded cool-white emission, the eleven block bays set to that same cool white, one dusk-gold bay, varied glass roughness and precast spandrel texture, and put the concrete garage lip across the bottom edge as foreground."
+  },
+  {
+   "slide": 8,
+   "problem": "The depth-of-field pass smears the foreground cars into blurry blobs behind the dek, and parking stripes run through the dek's glyph band (machine_qa, y about 1065 to 1076). The tower's windows are flat white rectangles and the skyline is untextured primitive blocks.",
+   "fix": "Turn off the depth-of-field pass and pitch the camera up so the horizon sits on the upper third and the hook and dek ride the sky. Clear the lot under the type, and give the skyline lit window emission and haze."
+  },
+  {
+   "slide": 3,
+   "problem": "Four of the six gold screens show diagonal moire or aliasing triangles. The top 35 percent is a flat dark wall used as a type plate, and the window band behind is a flat blue fill with no lot lamps.",
+   "fix": "Replace the screen texture with a clean emissive panel with a soft vertical falloff, and lower the camera so the ceiling grid and its fixtures fill the upper band. Put the lot lamps and the tower beyond in the window band as the storyboard planned."
+  },
+  {
+   "slide": 5,
+   "problem": "The hook and dek sit on a black horizontal band that acts as a plate, and the waiting room below is a void floor with no walls, ceiling or lights, so the chairs float on a dark plane.",
+   "fix": "Build the room in TXT.interior. Run the lobby glazing with blue hour sky full height across the top band behind the type, add ceiling downlights that pool on the floor under each block, and add a back wall so the seats stand in a place."
+  },
+  {
+   "slide": 1,
+   "problem": "On the hero frame, which slide 9 also uses, the 108 base bays are uniform flat light-grey rectangles with no glass, reflection or varied strength, so the tower reads as a kit block rather than a lit building at blue hour.",
+   "fix": "Give the base bays seeded emission strengths and an environment reflection on varied-roughness glass, as the craft refresh specified. Drop their value a step so the twelve gold bays separate and the facade sits closer to the sky's density."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-05/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-05/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/SELECTION.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/brief.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-05.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ]
+}

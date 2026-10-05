@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "All nine frames are rendered, with one blue-hour world and the same tower model. Three frames come close to the showstopper test. Frame 7 has the Galveston palm boulevard receding into pink haze, lamp pools on the ground, and the tower beyond. Frames 1 and 9 have a dusk lot with haze, lamp pools, the tree's contact, and a countable 2 by 6 gold block on a 12 by 10 bay grid. Even those three are held back: the bays are flat grey emissive tiles with no glass, the tower face is lit flat, and the ground past the lot dissolves into an empty pink plane. The other frames lean on defaults, and that is more than the 7 descriptor's one frame. Frame 5 is close to a 4. Hook and dek sit across a black, blue and black band stack, the dek's third line crosses a hard value edge, the waiting room is a dark void floor with no readable glazing or sky, the figures are small mannequins, and machine QA flags three labels at 22 px. Frame 3: the top third is a flat near-black plate holding the type, the 'ribbon window' is four flat blue rectangles with none of the planned lot lamps, and monitors 1 to 4 show visible diagonal moire or aliasing in the screen texture, which is a render artifact. Frame 6, the turn: a flat facade crop with no ground or contact, and the panes are flat fills. The eleven bays that were 'put out' render rust orange instead of the planned cool white, so at 432 px the frame reads as 12 warm windows and the turn is weakened. Frame 2: the lit canopy is good, but the bottom 45% is flat navy holding the type (machine QA: 'dead lower zone', bottom band 0.28), and the streetlight stands on the axis of the focal lobby glass. Frame 8: the aerial is a good idea, but the foreground cars are a depth-of-field smear of blobs directly behind the hook and dek (machine QA flags rules crossing the dek's glyph band), the bays are flat white stickers, and the sky is flat grey. Frame 4: the monitor's emissive glow on the veneer is the best light in the deck, but the top third is again a flat black plate and the window is flat blue."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck: one blue-hour world, one hospital tower model on frames 1, 6, 8 and 9 and a re-seeded one on frame 7, and one gold accent with a working motif. The 12 gold bays (frame 1) become six gold screens (3), then one screen (4), then one gold bay among eleven (6), then twelve again (9). The frame 9 return to frame 1's camera is a real bookend, and the motif and camera move named in the storyboard both work. The value track steps down evenly through frames 1 to 4 and steps up again at 5 to 6, as declared. Frame 5 sits outside the deck: no gold, no tower, an abstract banded interior. Frame 8's flat grey sky also drifts from the pink and blue gradient of 1, 7 and 9. I saw no deck_coherence.py output in the package, so this score is by eye."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every slide numeral traces. 12 and 120 come from c6 and c7. 400,000 and seven sites come from c47, and 7 million from c17. 6,500 and 15,000 come from c22 and c23, and both are attributed ('the project's own count', 'projects'). 500 comes from figures.json seat_unit, computed. Nearly 40,000 and three years come from c19 and c20. Six Epic tools come from c51, and the leader labels are verbatim fragments of c51. All sources are primary utsystem.edu pages that were fetched. Every count drawn into the art checks against figures: 13 seated and 30 empty chairs on frame 5, 7 note blocks on frame 4, 120 bays and 12 gold on frames 1 and 9. The rejected list is honoured: no date, no lead's name, no Chronicle material. One phrasing is looser than its source. Frame 8's 'Two expand earlier platforms' leaves out the no-show pilot, which is itself titled 'Expanding AI-Powered No-Show Reduction', so a reader may infer that only two pilots build on earlier work. The frame 6 universal ('the other eleven describe the work, not what it saved') is a judgement read off the page rather than a computed membership test. It holds against c19, c20 and c48."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "The deck says who decided (the UT System's UT REAL Health AI), what (12 funded of 120), where (San Antonio, Austin's Dell Med, Houston, Galveston, Dallas) and when next (the October 7th and 8th symposium in Austin). The stake for a patient is stated generally. Frame 9's 'A patient can ask a UT hospital which of the twelve pilots it takes part in' is the only action, and nothing says whether the symposium is open to the public. The spine is again an absence (frame 6, 'Eleven entries, no saved count'), which the topics ledger has asked runs to stop leaning on since deck 11."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover count earns the swipe, and frames 2 to 4 tour pilots with rising intimacy (door, then station, then one screen). Frame 5 lands the one counted result and frame 6 turns on it. After the turn, frames 7 and 8 go back to listing pilots (UTMB, then the two expansions), which dissipates the turn. Either could move before frame 5 without loss, and frame 8 is the most cuttable. The close lands on a date but repeats frame 1's picture."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Mostly clean and on register: 'It will read the notes.' is the best line, and the deck keeps the future tense the page uses. The cover dek's 'The hospital is drawn.' reads as an internal disclaimer printed onto the scroll-stopper. Frame 6's dek circles itself ('says what it already saved ... describe the work, not what it saved'). Frame 8's 'Two expand earlier platforms.' is a flat, press-release-shaped line. Places are specific (Galveston palms, a San Antonio ER), but no line sounds like a Texan who knows these hospitals."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The subject (a statewide university health AI program) and the night hospital world are fresh against 10-02 (fruit fly vial, golden hour), 10-03 (Kodiak truck under a norther) and 10-04 (school bus at noon). Blue hour repeats 10-01's plate reader 'on a road at blue hour'. The count-as-objects device (one seat per 500, gold bays as pilots) is the same move as 10-03's cartons per point and 10-04's 10 buses with 3 on accent bays. Frame 3's Epic lab result messaging overlaps the 09-17 Memorial Hermann Epic result-note deck in subject, though not as a repeated topic."
+  }
+ ],
+ "weighted_score": 7.08,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Stop setting type on flat dark plates inside the interiors and close crops. Rebuild frame 5 as a standing-eye waiting room facing a floor-to-ceiling window onto the blue-hour lot, with hook and dek on that sky, and give frames 2, 3 and 4 the same: a modelled sky, a lit window or a lamp-pooled apron under the type instead of the black or navy bands they sit on now.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Abstract banded composition: a black strip, then a blue band, then a black band crossing the dek's third line (about y 640 to 790 at 1600 px). Below that, a void floor with no readable glazing, sky or room, small mannequin figures, and 22 px labels under the mobile floor.",
+   "fix": "Drop the camera to a 1.6 m standing eye at the back of the room, so the 13 occupied and 30 empty chairs run toward a full-height glazed wall onto the blue-hour lot with its lamps. Set hook and dek on that sky, and raise the labels to 24 px or more."
+  },
+  {
+   "slide": 3,
+   "problem": "Top third is a flat near-black plate, and the ribbon window is four flat blue rectangles with none of the planned lot lamps outside. Monitors 1 to 4 show diagonal moire or aliasing from a fine-line screen canvas.",
+   "fix": "Replace the screen canvas with a solid emissive gold, or one with coarse unglyphed rules like frame 4. Put the TXT.sky lot and its streetlights outside the window, and raise the window head so the hook sits on the window's night sky rather than on black wall."
+  },
+  {
+   "slide": 6,
+   "problem": "The turn frame is a flat facade crop with no ground and no contact, and the panes are flat colour fills. The eleven 'put out' bays render rust orange instead of the planned cool white, so at 432 px it reads as twelve warm windows and the turn does not land.",
+   "fix": "Set the eleven non-gold bays in the 2 by 6 block to the deck's cool corridor white, give the ribbon glass roughness and reflection, and pull the lens back until the garage parapet lip enters the bottom fifth."
+  },
+  {
+   "slide": 2,
+   "problem": "Bottom 45% is flat navy with the type on it (machine QA flags the dead lower zone, bottom band 0.28). The streetlight pole stands dead centre on the focal lobby glass and splits it.",
+   "fix": "Pitch the camera down so the canopy's lit apron and a lamp pool run under the hook and dek, and slide the streetlight left out of the lobby-glass axis so the worker and the lit doors read as one focal."
+  },
+  {
+   "slide": 8,
+   "problem": "Depth of field smears the foreground cars into dark and light blobs directly behind the hook and dek, which reads as smudges, and machine QA flags drawn rules crossing the dek's glyph band. The bays are flat white stickers, and the sky is flat grey compared with the pink and blue of 1, 7 and 9.",
+   "fix": "Clear the cars and parking stripes out of the lower-left type zone, or turn off the DOF so the lot resolves as dark asphalt under the type. Drop the base bays to a dim lit-interior value and use the deck's blueHour sky gradient."
+  },
+  {
+   "slide": 4,
+   "problem": "Top third is a flat black plate behind the hook, and the window is flat blue with no lamps, so the frame stands in a dark box rather than a room at an hour.",
+   "fix": "Put the planned two lot lamps and a blue-hour sky gradient in the window behind the monitor, and add the planned chair back cropped hard at the near left so the room has depth."
+  }
+ ]
+}

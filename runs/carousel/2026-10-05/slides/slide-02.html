@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-05, frame 2 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's blueHour world. The hospital's porte-cochere at blue hour from the drive, its soffit lights running to the glowing lobby, a sedan at the kerb and a worker at the doors for scale. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .kick, .count { color:#FFFFFF !important; }
+  .tx-site { font-size:24px; }
+  .hook { top:822px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One AI assistant, seven UT hospital sites</h1>
+<p class="dek" data-follow="22">At UT San Antonio, a pilot deploys an assistant called Leah for emergency triage and transfer decisions. The page says it was trained on more than 400,000 trauma cases.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "UT San Antonio emergency care", counter: "02 / 09", src: "c10 c47", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = WD.stage(TXT, gl, W, { near: 1.0, fov: 36, fog: 0.0016, exposure: 2.3 });
+  TXT.ground(R, { surface: 'asphalt', size: 900, tile: 7, seed: 2 });
+  const H = WD.hospital(K, THREE, { seed: 5 });
+  H.rotation.y = Math.PI / 2; H.position.set(0, 0, 0);
+  /* the ward floors above the canopy are dark at this hour, so no lit pane sits under the kicker */
+  WD.skin(K, THREE, H, (f, b) => WD.goldBlock(f, b) ? 'gold' : 'dark', 1002);
+  TXT.add(R, H); TXT.contact(R, H, { opacity: 0.5 });
+  const L = (x, y, z) => WD.local(THREE, H, x, y, z);
+  /* the canopy's downlights as light, two pools on the drive under it */
+  for (const lx of [-4, 4]) { const p = L(lx, 4.4, 23.5); const pl = new THREE.PointLight(0xfff0dc, 160, 16, 2); pl.position.copy(p); R.scene.add(pl); }
+  const lob = L(0, 3.5, 16.2); const ll = new THREE.PointLight(0xffe6c4, 120, 14, 2); ll.position.copy(lob); R.scene.add(ll);
+  /* a sedan at the kerb under the canopy, nose along the drive, and a worker at the lobby doors */
+  const car = K.make('sedan', { seed: 21, color: 0x2c3036 }); const cp = L(4.6, 0, 22.5); car.position.set(cp.x, 0.02, cp.z); car.rotation.y = Math.PI; TXT.add(R, car); TXT.contact(R, car, { opacity: 0.85 });
+  const man = K.make('person', { role: 'worker', pose: 'stand', vest: false, shirt: 0xc9d8e0, trousers: 0x5d7486, seed: 4 }); const mp = L(-1.4, 0, 20.6); man.position.set(mp.x, 0, mp.z); man.rotation.y = Math.PI / 2 + 0.5; TXT.add(R, man); TXT.contact(R, man, { opacity: 0.7 });
+  WD.lamp(R, K, TXT, L(14, 0, 40).x, L(14, 0, 40).z, -Math.PI / 2, { pool: 490, range: 30 });
+  const eye = L(34, 1.6, 64), look = L(0.0, 0.4, 20);
+  TXT.frame(R, { from: [eye.x, 1.6, eye.z], look: [look.x, look.y, look.z] });
+  TXT.sky(R);
+  TXT.deckRig(R, WD.rigSpec(W, 70), WD.rigOpts([eye.x - 15, 0, eye.z], { distance: 120, shadowFar: 300 }));
+  TXT.weather(R, { grime: 0.18, height: 1.0 });
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.soften(cx, ['.kick', '.count'], { blur: 5, pad: 6, feather: 14 });
+  WD.post(cx, { a: 0.45, to: 300, fade: 220, type: ['.hook', '.dek'], typeBlur: 22, veil: 0.45, veilH: 620 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

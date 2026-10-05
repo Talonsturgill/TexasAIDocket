@@ -1,0 +1,129 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.292,
+        0.3613,
+        0.4412
+      ],
+      "band_ratio": 1.1978
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 61% of this slide's own average craft density (top 41% / mid 71% / bottom 28% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4097,
+        0.708,
+        0.2794
+      ],
+      "band_ratio": 0.6111
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room",
+        "tiny-text: 'AUTOMATE LAB RESULT MESSAGING' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PATIENT-FACING IMAGING SUMMARIES' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.3382,
+        0.3929,
+        0.7555
+      ],
+      "band_ratio": 1.4891
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3151,
+        0.2038,
+        0.7151
+      ],
+      "band_ratio": 1.682
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.4958,
+        0.4454,
+        0.3548
+      ],
+      "band_ratio": 0.828
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "worst-point contrast 4.5 on 'Only the no-show entry states what it al' (box mean 5.5) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "bands": [
+        0.3361,
+        0.3761,
+        0.4963
+      ],
+      "band_ratio": 1.2192
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3193,
+        0.5273,
+        0.807
+      ],
+      "band_ratio": 1.4338
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 62% of this slide's own average craft density (top 58% / mid 73% / bottom 33% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.5777,
+        0.7311,
+        0.3327
+      ],
+      "band_ratio": 0.6191
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3151,
+        0.3319,
+        0.5147
+      ],
+      "band_ratio": 1.3095
+    }
+  ],
+  "fails": 0,
+  "warns": 14,
+  "verdict": "WARN"
+}

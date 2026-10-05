@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- 2026-10-05, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's blueHour world. A Texas hospital tower from the far kerb of its visitor lot at blue hour, 120 lit bays on its south face, twelve of them dusk gold in one block of two floors by six bays. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">12 of 120.</h1>
+<p class="dek" data-follow="22">The UT System's health care AI laboratory funded 12 pilot projects out of 120 submissions. The awards total more than $3.6 million. Each gold window stands for one funded pilot.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "UT System health AI pilots", counter: "01 / 09", src: "c1 c6 c7 c8", fit: { min: 110, max: 150, maxLines: 1 } });
+  const R = WD.stage(TXT, gl, W, { near: 1.0, fov: 30, fog: 0.0016 });
+  TXT.ground(R, { surface: 'asphalt', size: 1600, tile: 7, seed: 5 });
+  /* the hero, its south face to the camera, and its 120 bays: ten floors of twelve, the gold block
+   * on the seventh and eighth floors west of the core */
+  const H = WD.hospital(K, THREE, { seed: 5 });
+  /* its south face turned to the east, so a camera in the lot looks west into the blue hour seam
+   * the declared lamp light sits in */
+  H.rotation.y = Math.PI / 2;
+  H.position.set(0, 0, 0);
+  WD.skin(K, THREE, H, (f, b) => WD.goldBlock(f, b) ? 'gold' : null, 1005);
+  TXT.add(R, H); TXT.contact(R, H, { opacity: 0.6 });
+  /* the visitor lot east of the porte-cochere: rows of parked cars running north and south, islands
+   * with live oaks, lot lamps on their pools */
+  const cars = ['sedan', 'suv', 'pickup', 'sedan', 'sedan', 'suv'];
+  let n = 0;
+  for (let row = 0; row < 6; row++) {
+    const x = 62 + row * 30;
+    for (let i = -10; i <= 12; i++) {
+      if ((i * 7 + row * 3 + 11) % 4 === 0) continue;
+      const k = cars[(i + 10 + row * 2) % cars.length];
+      const v = K.make(k, { seed: 30 + n });
+      v.rotation.y = row % 2 ? -Math.PI / 2 : Math.PI / 2;
+      v.position.set(x, 0.02, i * 3.0 + 18 + (row % 2) * 0.6);
+      TXT.add(R, v); TXT.contact(R, v, { opacity: 0.8 }); n++;
+    }
+  }
+  /* live oaks in the end islands only, so the tower's face stays clear */
+  for (const [x, z, sd] of [[214, 66, 41], [154, 70, 43], [222, -18, 47]]) { const t = K.make('live_oak', { seed: sd, height: 8, spread: 10 }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); }
+  for (const [x, z] of [[77, -4], [77, 40], [137, -4], [137, 40], [197, -4], [197, 40]]) WD.lamp(R, K, TXT, x, z, -Math.PI / 2, { pool: 300, range: 32 });
+  /* the foreground the depth reads from: a near row of cars to the right, a kerbed island with
+   * grass and a lot lamp on its pool to the left */
+  for (let i = 0; i < 9; i++) {
+    const v = K.make(['suv', 'sedan', 'pickup'][i % 3], { seed: 90 + i });
+    v.rotation.y = Math.PI / 2; v.position.set(236, 0.02, 92 - i * 3.0);
+    TXT.add(R, v); TXT.contact(R, v, { opacity: 0.85 });
+  }
+  const kerb = new THREE.Mesh(new THREE.BoxGeometry(34, 0.16, 7), new THREE.MeshStandardMaterial({ color: 0x8f8a80, roughness: 0.9 }));
+  kerb.position.set(236, 0.08, 112); TXT.add(R, kerb);
+  WD.lamp(R, K, TXT, 238, 110, -Math.PI / 2, { pool: 2600, range: 40 });
+  WD.lamp(R, K, TXT, 224.5, 95.5, -Math.PI / 2, { pool: 650, range: 36, angle: 0.8 });
+  WD.lamp(R, K, TXT, 214, 80, -Math.PI / 2, { pool: 3000, range: 34 });
+  WD.lamp(R, K, TXT, 238, 58, -Math.PI / 2, { pool: 700, range: 36 });
+  TXT.frame(R, { from: [262, 1.6, 104], look: [0, 33, 4] });
+  TXT.sky(R);
+  TXT.scatter(R, { kind: 'grass', count: 1200, area: [219, 253, 109, 115], seed: 6 });
+  TXT.scatter(R, { kind: 'grass', count: 2500, area: [40, 260, -40, 90], avoid: [[50, 240, -12, 56]], seed: 5 });
+  TXT.deckRig(R, WD.rigSpec(W, 160), WD.rigOpts([100, 0, 20], { distance: 260, shadowFar: 600 }));
+  TXT.weather(R, { grime: 0.16, height: 1.2 });
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.29 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+ "lens": "integrity",
+ "deck": "2026-10-05, carousel no. 43, round 2 of 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "The deck renders real places at blue hour. 7 and 8 are its strongest frames: frame 7 has a Galveston palm boulevard with haze in depth and lamp pools on the ground, and frame 8 has an aerial hospital with the Dallas skyline behind. Several frames still lean on the defaults the 7 descriptor names, and more than one of them. Frame 3: four of the six monitor screens carry diagonal moire or hatch aliasing (visible at full size on screens 1 to 4), and the top third is a flat black wall doing the job of a type plate. Frame 2: the lower 45 percent is a navy fall-off with the type sitting in a void, and machine_qa warns of a top-loaded composition (bottom 28 percent of craft cells). The upper-left sky is a flat grey slab. Frame 5: the dek sits on a dark horizontal band at about y 500 to 840 of 2000 (display) that reads as a plate. The 13 figures are low-poly and toy-like. Frame 6: the facade is a flat graphic in near-elevation, with no ground and no raking light. Frame 8: a cropped light pool at the right edge (about x 1560, y 1580 display) has no visible source, and the skyline is blocky primitives. Frame 9 is frame 1's render again, with the same camera, lamps, tree and SUVs, plus one figure and a red pickup. Each frame has one subject at believable scale. Contact shadows are present on 1, 7 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One dusk world, one light and one grade, with the same hospital model carried through 1, 7 (background), 8 and 9. The gold window is a working motif that changes state: 12 gold on 1 and 9, a single gold among eleven pale on 6, two gold on 8. The interior run on frames 3 to 5 leaves the hero and the exterior world for three frames in a row, and frame 3's warm interior sits outside the blue palette. The value track holds without a strobe (machine_qa bands stay mid to dark), but the 1-to-9 bookend is a repeated render rather than the camera moving."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.6,
+   "why": "Every numeral traces to a claim quote or a stated rule. I checked 12, 120, $3.6 million, 400,000, seven, six, 7 million, 6,500, $900,000, 15,000, 500, eleven, 40,000 and three against pilots.txt and figures.json. The drawn counts match: 12 gold bays, 6 monitors, 13 seated and 30 empty chairs, 1 plus 11 windows. Sources are primary throughout, and the round 1 attribution repair holds in the slide 5 dek and the caption's second paragraph. Four places read looser than the page. (1) Slide 3, the web edition and claim c51 say the six Epic tools 'draft lab result messages and imaging summaries'. The page says they 'automate lab result messaging' and 'generate patient-facing imaging summaries' (pilots.txt line 57). 'Draft' implies a clinician reviews before anything is sent, which the page never says, and 'They' gives all six tools functions the page lists among three. (2) The speech is still attributed to the project in the slide 5 headline ('One pilot says what it saved.'), the slide 6 dek ('Only the no-show project says what it already saved'), the caption hook and the caption's fourth paragraph. The statement is the funder's release, UT REAL Health AI, not the project's. (3) The slide 5 kicker 'UTHEALTH HOUSTON NO-SHOW PROJECT' and the caption hook make it Houston's project. The run's own rejected list says the page does not give the lead's institution, only that the savings were at UTHealth Houston. The project is a cross-institution Collaboration Award. (4) The spine 'Eleven entries, no saved count' / 'The other eleven describe the work' is literally true of the word 'saved'. The deck holds c48, though, the page's 88 percent fetal-movement accuracy against 18 percent, a stated result, and prints it nowhere. The caption closer 'Will a second pilot bring a count of its own?' leaves a reader believing the other eleven carry no results. Slide 8's track records partly answer that. None of these is a fabricated figure, which is why none is a hard fail. Together they are more than the 7 descriptor's single looser phrasing. Limit: c24's home-page snapshot was not in the package, so I could not re-read the symposium dates. pilots.txt shows only the symposium link."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What happened, who decided and where are named: UT REAL Health AI, 12 of 120, $3.6 million, institutions on every frame. The stake is abstract on the deck. The angle is that one entry reports a saving and the page cites no audit, but no frame says what that means for a patient. The 7 million record suicide-risk read on frame 4 gets one dek and no stake. The award date is unknown, which the web edition says and no slide says. The close is weak as action. Frame 9's 'A patient can ask a UT hospital which of the twelve pilots it takes part in' is generic, and the deck never says whether the October 7th and 8th symposium is open to the public. As printed it is a date, not a deadline a Texan can use."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "The cover '12 of 120.' with the gold windows earns a swipe, and frame 2 pays at once with Leah at seven sites. The turn is declared at frames 5 and 6. Frames 7 and 8 come after the turn and go back to cataloguing pilots, so frame 7 (UTMB) could move before the turn without loss, and the deck drifts before landing on a symposium date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no house-rule breaks found in the caption or on the slides (no colons, semicolons, dashes, banned words or first person). 'It will read the notes.' is the best line. The register is careful rather than Texan: place names stand in for regional specificity, and frame 9's 'A patient can ask' line is flat and generic."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The instrument is new (utsystem.edu), and the dedupe check reports 0.31 against no. 27. By SELECTION.md's own admission this is the third clinic deck in four, after no. 40, and the second health-and-education deck in a row, after no. 42. Slide 3's subject, Epic tools producing lab-result messages for patients, is no. 27's subject (September 17th, inside the window). The blue-hour exterior with lamp pools echoes no. 39's 'blue hour' plate-reader world."
+  }
+ ],
+ "weighted_score": 6.68,
+ "weighted_score_arithmetic": "6.3*0.22 + 7.2*0.12 + 6.6*0.20 + 6.8*0.16 + 6.9*0.10 + 7.0*0.10 + 6.3*0.10 = 1.386 + 0.864 + 1.320 + 1.088 + 0.690 + 0.700 + 0.630 = 6.678",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No fault found. This is a threshold dissent only: 6.68 is under round 2's 7.7 rung. machine_qa has 0 fails and 14 warns: tiny text at 23px on slide 3's two labels, worst-point contrast 4.5 on slide 6's dek, and top-loaded composition on 2 and 8. No topic repeat inside 30 days (topics.json checked through no. 42). Every numeral traces. Every cited URL is one the claims file records as fetched.",
+ "one_sentence_fix": "Keep every verb and every speaker on the page's own terms: say the release 'states' the saving rather than the pilot 'says' it (slide 5 headline, slide 6 dek, caption hook), replace 'draft' with the page's 'automate lab result messaging' and 'generate imaging summaries' on slide 3, c51 and the web edition, drop 'UTHealth Houston' as the project's owner from the slide 5 kicker, and scope the 'eleven, no saved count' spine by printing the 88 percent fetal-movement accuracy so the reader isn't left believing the other eleven report no results.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Diagonal moire or hatch aliasing on four of the six monitor screens is a visible render artifact. The top third is a flat black wall used as a type plate, and the window band is flat navy with no exterior.",
+   "fix": "Give each screen a mipmapped emissive UI texture at render resolution so the aliasing goes, and raise the camera to take in the room's ceiling lights and a dusk exterior through the glass, so the type sits on a lit wall the room actually has."
+  },
+  {
+   "slide": 2,
+   "problem": "The lower 45 percent is a navy fall-off and the headline and dek sit in a void (machine_qa: bottom third at 28 percent craft density). The upper-left sky is a flat grey slab.",
+   "fix": "Drop the camera toward the drive and extend the lit apron forward: curb, ambulance-bay striping and a wet-asphalt reflection of the canopy light. The type then sits on ground, and the dusk sky gradient replaces the grey slab top left."
+  },
+  {
+   "slide": 5,
+   "problem": "A dark horizontal band behind the dek (about y 500 to 840 display) reads as a plate. The figures are low-poly toys on a featureless floor with no room around them.",
+   "fix": "Remove the band and build the waiting room with ceiling fixtures, a back wall and a reception desk, then set the dek in that wall's quiet. Lower the camera to seated eye height so the 13 figures read as people at true scale."
+  },
+  {
+   "slide": 9,
+   "problem": "This is frame 1's render reused: same camera, lamps, tree and SUVs, plus one figure and a red pickup. The close does not move the deck.",
+   "fix": "Move the camera to the main entrance at full night, looking up the facade with the 12 gold windows lit and the figure at the door. The bookend then reads as arrival rather than a repeat."
+  },
+  {
+   "slide": 8,
+   "problem": "A cropped light pool at the right edge (about x 1560, y 1580 display) has no visible source. The skyline is untextured blocks, and the lower half is a dark lot holding the type.",
+   "fix": "Delete or re-aim the off-frame lamp, add atmospheric haze and window lights to the skyline, and bring the lot's lamp pools up under the type so it sits on lit asphalt."
+  },
+  {
+   "slide": 6,
+   "problem": "A flat near-elevation facade with no ground and no raking light reads as a diagram, not a photograph of a place.",
+   "fix": "Rotate the camera about 20 degrees off-axis, low, with the sun-side edge catching dusk light, and include the base of the building at ground with contact shadow."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-05/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/tmp/src/pilots.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-05/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/SELECTION.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-05.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ],
+ "not_checked": "ledger/docket.json entry tx-2026-0201 (too large to locate without search), the artwork and captions variety ledgers, and the c24 home-page snapshot."
+}

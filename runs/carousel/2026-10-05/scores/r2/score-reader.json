@@ -1,0 +1,82 @@
+{
+ "lens": "reader",
+ "deck": "2026-10-05, carousel no. 43, round 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Slide 7 (palm boulevard in Galveston, lamp pools, haze in depth) passes the showstopper test. Slides 1 and 9 nearly pass: a blue-hour tower with lamp pools on asphalt and contact under the cars. The rest of the deck falls short. Slide 8 is an aerial over a blotchy grey ground with a cardboard Dallas skyline, and machine_qa flags it top-loaded (bottom third at 33% craft density). Slide 5 is a dark blue void with streaky vertical lines, a black horizontal band behind the dek that works as a plate, and toy-like seated figures. On slides 3 and 4 the top 35% is flat black with the type set on it, and the window band is flat blue with nothing outside it. Slide 3's monitor screens also show hatched moire. Slide 4's screen is seven blocks of orange bars, which reads as placeholder UI. Slide 6 is a square-on facade with almost no grade and flat window fills. Slide 2 is lit well, but its bottom 40% is a flat navy field for type (machine_qa top-loaded warning). That is more than the one weak frame the 7 descriptor allows, and less than the 4 descriptor (templates throughout)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Blue hour holds on every frame. One kit hospital tower is the hero on 1, 6, 7, 8 and 9. The dusk-gold accent does real work as a motif: 12 gold bays on slide 1, six gold screens on 3, one screen on 4, one of 12 bays on 6, two bays on 8, and 12 again on 9. The camera makes a declared move from the lot to the canopy, inside, back out and back to frame 1's camera. The interior run (3, 4, 5) sits darker and bluer than the exterior frames. Slide 5's saturated navy is the frame most outside the deck. On slide 3 the gold means six tools rather than funded pilots, which blurs the rule slide 1 states ('Each gold window stands for one funded pilot')."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces. 12/120/3.6M to c6/c7/c8. 400,000 and seven sites to c47. Six tools to c51. 7 million to c17. 6,500 to c22. 15,000 is the low end of c23's 15,000 to 20,000, and the slide prints 'at least'. 500 per seat is computed in figures.json seat_unit. I counted 13 seated people and 30 empty chairs on slide 5, 12 gold bays on slides 1 and 9, 1 gold plus 11 cool on slide 6, and 7 note blocks on slide 4, and all match. The self-reported savings are attributed on every surface. Three places read slightly past the source. (1) Slide 6, 'Eleven entries, no saved count', frames as an omission what is mostly pilots that are only now funded. c19 and c20 show at least two have track records, and slide 8 then presents them. (2) Slide 9's 'A patient can ask a UT hospital which of the twelve pilots it takes part in' has no claim, and it assumes participation. (3) Slide 8 draws a Dallas campus for both platforms, but c19 places only the validation at UT Southwestern and c20 places nothing. None of these changes a fact a reader takes away."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened: the UT System lab funded 12 AI pilots out of 120 for more than $3.6M. They learn where: San Antonio ER triage across seven sites, Dell's Epic tools, 7M records read for suicide risk, UTMB referral triage, Houston no-shows. The decider is named only as 'UT REAL Health AI'. No date: the deck never says when this was funded or that the page is undated (only the first comment says so). The stake the deck chooses is 'only one pilot reports savings, unaudited'. That is an institutional-accounting stake. It is not the patient's stake, which is an AI triaging your transfer or reading your notes. The next step is weak. Slide 9 gives a symposium date with no word on whether a Texan can attend or how. The other action, 'a patient can ask a UT hospital', is generic and unsourced."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "'12 of 120.' is a clean cover, but it does not say hospitals or AI at feed size without the small kicker. Slide 2 pays at once (Leah, seven sites, 400,000 cases). The turn on 5 and 6 is declared and lands. Slides 7 and 8 then go back to cataloguing pilots, which makes them the cuttable or movable frames ('Two more expand earlier platforms.' is a list item, not a beat). The close repeats slide 1's camera with a date and a vague action, so it ends the deck rather than landing it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The copy is restrained and clean. It has no banned words, no colons and no dashes. 'It will read the notes.' and 'One pilot says what it saved.' are good lines. 'The page' is a mechanical tic: it opens or anchors claims on slides 2, 5 and 6 and three times in one caption paragraph ('The UT System's page credits... The page cites no audit... The page projects...'). There is more than one flat line: 'Two more expand earlier platforms.', 'UT REAL Health AI holds its symposium there.', 'UTMB is deploying referral triage.' Galveston palms are the only regional texture, so this reads as an accurate clerk rather than a Texan who knows hospitals."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "This is the first deck in the window built on a utsystem.edu primary page, and the hospital tower is a new hero. The opening move and structure are familiar from the last four decks: no. 39 counted plate readers at blue hour, no. 41 loaded a carton per point, and no. 42 used 10 chairs and 3 with buses on bays. This is again a numeral cover with counted objects standing in for figures (windows for pilots, seats for 500 appointments), on a blue-hour palette no. 39 also used. SELECTION.md concedes it is the third clinical deck in four (no. 40 BRSK1)."
+  }
+ ],
+ "weighted_score": 6.81,
+ "weighted_score_arithmetic": "0.22*6.0 + 0.12*7.5 + 0.20*8.0 + 0.16*6.5 + 0.10*6.5 + 0.10*6.5 + 0.10*6.5 = 1.32 + 0.90 + 1.60 + 1.04 + 0.65 + 0.65 + 0.65 = 6.81",
+ "hard_fails": [],
+ "hard_fail_checks_run": "Every slide and caption numeral was checked against claims.json and figures.json, and all trace. render/machine_qa.json has 0 fails and 14 warns: tiny text at 23px on slide 3's labels, worst-point contrast 4.5 on slide 6's dek, and slides 2 and 8 top-loaded. Topics ledger: no UT REAL Health AI deck in the 30 day window, and the nearest same-system deck is no. 8 on August 26th, outside the window. Caption: no colons, semicolons, dashes, banned words or year on dates. Both cited URLs appear in claims as fetched on October 5th. No placeholder frames.",
+ "ship": false,
+ "ship_note": "No fault. Under the round 2 rung of 7.7 on my numbers.",
+ "one_sentence_fix": "Give the close something a Texan can actually do and make it the end of the argument. Move slides 7 and 8 ahead of the turn (5 and 6) so the catalogue finishes before the turn. Replace slide 9's unsourced 'a patient can ask a UT hospital' with what the already-fetched UT REAL Health AI home page says about who can attend the October 7th and 8th symposium and how to register, or, if it says nothing, with the patient-facing pilot (Leah's seven sites or the Epic lab messages) and where a patient meets it.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Aerial over a flat, blotchy grey ground plane that reads as void. The Dallas skyline is cardboard extrusions. The bottom third is a dead dark field under the type (machine_qa: bottom 33% craft density).",
+   "fix": "Drop the camera from 40 m to about 12 m and pitch it up so the horizon sits on the upper third. Run the marked lot, with lamp pools, car contact shadows and St. Augustine islands, through the bottom third under the dek, and grade the ground into the skyline haze so the city sits in air rather than on a grey sheet."
+  },
+  {
+   "slide": 5,
+   "problem": "The waiting room reads as a dark blue void with streaky vertical lines, and a black horizontal band behind the dek works as a type plate. The seated figures are toy-like and the room has no ceiling, light fixtures or visible glazing to the blue-hour sky the dossier promised.",
+   "fix": "Build the room in TXT.interior: a ceiling with a run of downlights pooling on the floor, and the lobby glazing showing the blue-hour lot in the top band. Delete the black band so the dek sits on the dark mullion wall. Lower the eye from 2.6 m to about 1.8 m so the chairs show contact shadows and the people read at human scale."
+  },
+  {
+   "slide": 3,
+   "problem": "The top 35% of the frame is a flat black field carrying the type. The ribbon window is a flat blue band with nothing outside it, though the dossier promised lot lamps. The monitor screens show hatched moire.",
+   "fix": "Model the ceiling (acoustic tile grid and a line of dimmed downlights) so the type sits on a dark lit surface rather than a fill. Put the lot lamps and a sliver of the tower in the window. Replace the screens' hatched texture with a smooth emissive gradient to kill the aliasing."
+  },
+  {
+   "slide": 6,
+   "problem": "The square-on facade has almost no grade. The window fills are flat, the precast is one value, and the planned garage lip and helipad edge are missing, so the turn frame looks like a diagram of a building.",
+   "fix": "Rake the lamp light across the facade from the declared -60 azimuth so spandrels and mullions cast shadow down the face. Add the garage parapet's concrete lip as a dark foreground band at the bottom, and the roof parapet against the sky as planned."
+  },
+  {
+   "slide": 4,
+   "problem": "The note screen is seven blocks of uniform orange bars, which reads as placeholder UI. The window is a flat blue band and the planned cropped chair back is absent, so the close crop has no depth cue in front of the subject.",
+   "fix": "Add the mesh chair back cropped hard at near left with a cool rim from the window. Vary the line lengths and give the bars an emissive falloff and slight bloom so they read as text at a distance. Put two lot lamps in the window as the dossier specified."
+  }
+ ]
+}

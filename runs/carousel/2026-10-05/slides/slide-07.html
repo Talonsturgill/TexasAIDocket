@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-05, frame 7 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's blueHour world. A Galveston boulevard at blue hour, palms marching down its median, a hospital set back on the right with its bays lit. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">UTMB is deploying referral triage.</h1>
+<p class="dek" data-follow="22">In Galveston the tool reads the health record, assigns an urgency score and routes patients to a level of care.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "UTMB Galveston referral triage", counter: "07 / 09", src: "c13 c49", fit: { min: 84, max: 112, maxLines: 2 } });
+  const R = WD.stage(TXT, gl, W, { near: 1.0, fov: 34, fog: 0.0024 });
+  TXT.ground(R, { surface: 'grass', size: 1600, tile: 6, seed: 7, color: 0x6f7a55 });
+  const H = WD.hospital(K, THREE, { seed: 5 });
+  H.rotation.y = Math.PI / 2; H.position.set(0, 0, 0);
+  WD.skin(K, THREE, H, null, 1007);
+  TXT.add(R, H); TXT.contact(R, H, { opacity: 0.6 });
+  /* the boulevard runs north and south in front of the hospital, two carriageways and a palm median */
+  for (let i = -2; i < 6; i++) {
+    for (const x of [51, 69]) {
+      const rd = K.make('road', { seed: 3 + i, length: 60, lanes: 2, sidewalk: x > 60, parkway: 1.5 });
+      rd.rotation.y = Math.PI / 2; rd.position.set(x, 0, -150 + i * 60); TXT.add(R, rd);
+    }
+  }
+  for (let z = -230; z < 170; z += 15) {
+    const p = K.make('palm', { height: 9.5 + ((z / 15) & 3) * 1.1, skirt: false, lean: ((z / 15) % 3 - 1) * 0.05, seed: 60 + (z & 31) });
+    p.position.set(60, 0, z); TXT.add(R, p); TXT.contact(R, p, { opacity: 0.6 });
+  }
+  for (let z = -218; z < 150; z += 22) { const p = K.make('palm', { height: 9, skirt: false, seed: 90 + (z & 15) }); p.position.set(81, 0, z + 7); TXT.add(R, p); TXT.contact(R, p, { opacity: 0.6 }); }
+  for (const z of [-220, -180, -140, -100, -60, -20, 20, 60, 100]) WD.lamp(R, K, TXT, 42, z, Math.PI / 2, { pool: 1300, range: 30, angle: 0.75 });
+  /* two lamps on the near verge, so the ground the camera stands on is lit asphalt and kerb, not a void */
+  for (const z of [-236, -212]) WD.lamp(R, K, TXT, 79, z, -Math.PI / 2, { pool: 1050, range: 26, angle: 0.8 });
+  WD.lamp(R, K, TXT, 92.9, -228, Math.PI / 2, { height: 4.6, pool: 380, range: 16, angle: 0.85 });
+  const car = K.make('sedan', { seed: 12, color: 0x30353b }); car.position.set(53, 0.05, -92); TXT.add(R, car); TXT.contact(R, car, { opacity: 0.85 });
+  const car2 = K.make('suv', { seed: 13 }); car2.rotation.y = Math.PI; car2.position.set(67, 0.05, -40); TXT.add(R, car2); TXT.contact(R, car2, { opacity: 0.85 });
+  [[53, -190, 0, 'pickup'], [67, -160, Math.PI, 'sedan'], [53, -135, 0, 'suv'], [67, -210, Math.PI, 'sedan']].forEach(([x, z, r, k], i) => { const v = K.make(k, { seed: 30 + i }); v.rotation.y = r; v.position.set(x, 0.05, z); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.85 }); });
+  TXT.frame(R, { from: [96, 1.6, -250], look: [22, 35, 10] });
+  TXT.sky(R);
+  TXT.scatter(R, { kind: 'grass', count: 3500, area: [-80, 140, -200, 200], avoid: [[40, 80, -200, 200], [-35, 35, -45, 45]], seed: 7 });
+  TXT.deckRig(R, WD.rigSpec(W, 220), WD.rigOpts([40, 0, -40], { distance: 260, shadowFar: 700 }));
+  TXT.weather(R, { grime: 0.2, height: 1.4 });
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.26 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+ "lens": "reader",
+ "deck": "2026-10-05, carousel no. 43, \"12 of 120. The UT System's health AI pilots\", round 1 of 3",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frames 1, 2, 7 and 9 pass for a place at an hour. Each has a blue-hour sky, lamp pools on asphalt, a horizon in haze and contact under the cars. Frame 2 (porte-cochere, worker for scale, sedan at the kerb) is the best in the deck. The 7 to 4 band holds the rest down. Frame 3: four of the six monitor screens show visible diagonal moire hatching at full size (screens 1 to 4, y about 935 to 1045), and the top 35% is a flat near-black plate holding the type. Frame 4 has the same flat dark plate over the top 30%, and the desk glow lands in front of the monitor rather than under it. Frame 5 sets its type on a black and blue band that reads as a plate rather than glazing. The chairs and 13 figures sit top-down on a featureless dark floor with no world around them, and machine_qa flags three tiny-text labels at 22px. Frame 6 is a flat facade crop with no ground and little depth, and the eleven bays that are meant to be put out still glow rust-orange, so the turn's image reads as twelve lit. Frame 8's skyline is untextured boxes, and blurred foreground car blobs sit directly under the dek (machine_qa flags rules crossing the dek's glyph band). On frames 1 and 9 the base bays are flat grey tiles rather than lit rooms. Several frames lean on a default or a dead plate, which puts this under the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck. One kit hospital tower recurs on 1, 2, 6, 7, 8 and 9, under one blue-hour lamp-lit world. The gold-bay motif changes state: 12 gold on frame 1, six gold screens on 3, one screen on 4, one bright bay on 6, 2 on 8, and 12 again on 9. Frame 9 repeats frame 1's camera exactly and adds a person, which bookends the deck. Contact sheet values hold mid-dark without strobing. Two frames sit outside it. Frame 8 is greyer and flatter than the dusk around it, and frame 5's top-down waiting room has no sky or world tying it to the deck's place. Frame 6 also undercuts the motif, because its 'put out' bays are still warm."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces. 12 and 120 come from c6 and c7. 400,000 is c47, 6,500 and $900,000 are c22, 15,000 is c23 (the floor of '15,000 to 20,000', correctly written 'at least'), 7 million is c17 and 40,000 is c19. 500 per seat and 13 and 30 seats are computed in figures.json, and Eleven is pilots minus 1. Every source is the UT System's own primary page, and the self-reported savings are attributed on slide 5, slide 6 and in the caption ('the project's own count'). The absence on 6 names its set ('The page's 12 entries'). One phrasing is looser than its source. On slide 3, 'They draft lab result messages' paraphrases c51's 'automate lab result messaging', and c51's quote is cut mid-list, so 'six tools... They draft' describes six tools by two. Slide 9's 'A patient can ask a UT hospital...' traces to no claim. It is an assertion of a route, not a fact, but it is unsupported."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened: the UT System funded 12 AI pilots out of 120. They learn where: San Antonio, Dell Med, UTHealth Houston, Galveston and UT Southwestern. They also get a dated event, Austin on October 7th and 8th. Three things weaken it. First, the stake a Texan most owns is absent from every frame and the caption. c2 says the Legislature approved and funded this, and c8 gives more than $3.6 million, so it is state money, and neither surface says so. Second, the deck's spine, 'Eleven entries, no saved count', compares a project with an earlier track record to eleven newly funded pilots that could not have saved anything yet. A reader is set up to read a shortfall where the honest reading is 'not started'. Third, the most concrete reader stake, an LLM reading 7 million patient records for suicide risk (slide 4), gets one frame and no follow-through. Slide 9's next step is vague. It does not say whether the symposium is open to the public, and 'ask a UT hospital' gives no office, form or contact."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover's '12 of 120.' over a lit tower earns a swipe, and frame 2 pays at once with Leah at seven sites. The turn comes too early. Frames 5 and 6 turn on the one counted result, and then frames 7 (UTMB referral triage) and 8 ('Two expand earlier platforms') go back to the pilot tour. The argument deflates after its turn. 7 and 8 could move ahead of 5 with no loss, which is the 7 descriptor's 'one frame that could move' twice over. The close lands on a date but not on a payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house rules: no colons, ordinal dates, and the year correctly omitted. 'It will read the notes.' is a strong line. Several lines read as the machine talking to itself. Slide 1's dek says 'The hospital is drawn.', production meta that a reader in the feed will find baffling. Slide 5 says 'The page credits... The page projects...', which is a fact-checker's register rather than a Texan's. 'Two expand earlier platforms.' is flat. Slide 9 spells 'twelve' after eight frames of '12'. Specific places are named, there is no boosterism and no doom, but nobody would mistake it for a Texan who knows hospitals."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The instrument is new to the window (utsystem.edu, with no read of it in 30 days), and so is the hero (a hospital tower with a bay-grid count). Familiar moves: blue hour with lamp pools repeats no. 39's register four decks back. A count cover follows no. 41's 93-percent opener. SELECTION.md concedes this is the third clinic deck in four, after no. 40 Texas Children's. Its spine is an absence again, which earlier ledger entries have repeatedly asked runs to avoid. A fresh concept, with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.8,
+ "weighted_arithmetic": "6.0*0.22 + 7.5*0.12 + 7.8*0.20 + 6.5*0.16 + 6.5*0.10 + 6.5*0.10 + 6.8*0.10 = 1.32 + 0.90 + 1.56 + 1.04 + 0.65 + 0.65 + 0.68 = 6.80",
+ "hard_fails": [],
+ "hard_fail_checks": "machine_qa.json shows 0 fails and 18 warns. Every slide and caption numeral traces to claims.json or figures.json. No repeat of UT REAL Health AI or the UT System pilot page in topics.json inside 30 days. The nearest is no. 8, the UT System capital program on August 26th, which is outside the window. No placeholder: slide 4's unglyphed note lines are planned and stated in the dossier. Every cited URL appears in claims.json as retrieved 2026-10-05. I did not run caption_check. By eye the caption has no colon, semicolon, dash, banned word, emoji or year on a 2026 date.",
+ "ship": false,
+ "ship_note": "Below the round 1 rung of 8.0. This is a threshold dissent, not a fault.",
+ "one_sentence_fix": "Rebuild the spine around the stake a Texan owns: put the Legislature-funded more-than-$3.6 million (c2, c8) on the cover dek, move frames 7 and 8 ahead of the no-show pair, and make the turn 'one pilot has a count, eleven have not started' rather than 'eleven have no saved count'. Then the deck tours the pilots, turns once, and closes on a symposium frame that says whether the public can attend.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Type sits on a flat black and blue band that reads as a plate, not glazing. The 13 seated figures and 30 chairs are seen top-down on a featureless dark floor with no world around them, so the frame fails the place-at-an-hour test.",
+   "fix": "Drop the camera to a standing eye of 1.6 m at the end of the aisle, facing a real glazed lobby wall. The blue-hour lot and lamp pools should show through the glass above the empty San Antonio block, so the hook sits on sky through the glass and the floor gets lamp spill and contact shadows under each chair."
+  },
+  {
+   "slide": 6,
+   "problem": "The turn frame is a flat facade crop with no ground or depth. The eleven bays meant to be 'put out' still glow rust-orange, so at feed size it reads as twelve lit with one brighter, which defeats the turn.",
+   "fix": "Set the eleven bays to the chassis's cool corridor white emission (or unlit tinted glass) as the dossier specifies, keeping one dusk-gold bay. Pull the lens back enough to include the garage parapet's concrete lip in the foreground, so the frame has a near plane and a ground."
+  },
+  {
+   "slide": 3,
+   "problem": "Four of the six monitor screens show diagonal moire or aliasing hatching at full size, and the top 35% of the frame is a flat near-black plate holding the type.",
+   "fix": "Replace the screen canvas with a clean emissive gradient with no fine line texture, or supersample it. Raise the camera slightly to bring the station's ceiling and a row of recessed downlights into the top third, so the type sits on a lit ceiling plane rather than a void."
+  },
+  {
+   "slide": 8,
+   "problem": "Blurred foreground car blobs sit directly under the hook and dek, making a busy mottled field behind the type (machine_qa flags rules crossing the dek's glyph band). The Dallas skyline is untextured boxes, so the frame reads as a toy model.",
+   "fix": "Tilt the camera up so the dek sits on the hazed skyline and sky band, and clear the shallow-focus cars from the lower-left type zone. Give the skyline towers lit window emission and aerial haze, so they read as a city at dusk rather than grey blocks."
+  },
+  {
+   "slide": 1,
+   "problem": "The 108 base bays render as flat grey tiles rather than lit rooms, so the cover's grid of 120 reads as a pasted texture on a box, and the left lamp pool is blown to near-white.",
+   "fix": "Give each base bay a recessed interior with varied low cool-white emission behind glass reflections. Pull the left streetlight's pool intensity down about a stop so the gold block, not the asphalt, is the lightest area of the frame."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-05/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/SELECTION.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ]
+}

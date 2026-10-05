@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- 2026-10-05, frame 8 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's blueHour world. A hospital tower and podium from 40 m up over its lot, the Dallas skyline hazed on the horizon beyond, the type set at the foot over the dark lot. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .kick, .count { color:#FFFFFF !important; }
+  .tx-site { font-size:24px; }
+  .hook { top:812px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two more expand earlier platforms.</h1>
+<p class="dek" data-follow="22">A trial prescreening platform was validated on nearly 40,000 patients at UT Southwestern. An AI grading platform for medical school simulation exams has run for more than three years.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "Trial prescreening and exam grading", counter: "08 / 09", src: "c19 c20", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = WD.stage(TXT, gl, W, { near: 2.0, fov: 32, fog: 0.0005, far: 12000, exposure: 2.15 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 8, color: 0x3d4732 });
+  /* the lot is its own asphalt slab with painted stalls, so the land past it reads as land and the
+   * lot reads as a lot rather than as one plane of water to the horizon (pixel round 2) */
+  { const lot = new THREE.Mesh(new THREE.PlaneGeometry(190, 200), new THREE.MeshStandardMaterial({ color: 0x2b2d31, roughness: 0.93, metalness: 0 }));
+    lot.rotation.x = -Math.PI / 2; lot.position.set(118, 0.03, 30); lot.receiveShadow = true; R.scene.add(lot); }
+  const H = WD.hospital(K, THREE, { seed: 5 });
+  H.rotation.y = Math.PI / 2; H.position.set(0, 0, 0);
+  /* the two pilots this frame names burn gold in the hero's block, the rest of the face lit white */
+  WD.goldStrength(THREE, 0.9);
+  WD.skin(K, THREE, H, (f, b) => (f === 7 && b < 2) ? 'gold' : null, 1008);
+  TXT.add(R, H); TXT.contact(R, H, { opacity: 0.6 });
+  /* the lot east of the porte-cochere, seen from above: rows of cars and the lamps' pools. The
+   * camera is set first so no car or stall stands in the hook and dek's ground (panel round 1:
+   * the softened cars read as smudges behind the type) */
+  TXT.frame(R, { from: [205, 42, 128], look: [0, 9, 4] });
+  const clear = (x, z) => { const q = WD.project(THREE, R, [x, 0, z]); return !(q[1] > 770 && q[1] < 1200 && q[0] > 20 && q[0] < 1060); };
+  const cars = ['sedan', 'suv', 'pickup', 'sedan', 'suv'];
+  let n = 0;
+  const stall = new THREE.MeshStandardMaterial({ color: 0xc9c6bd, roughness: 0.8 });
+  for (let row = 0; row < 6; row++) {
+    const x = 56 + row * 22;
+    for (let i = -14; i <= 28; i++) { const ln = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.02, 0.12), stall); ln.position.set(x, 0.045, i * 3.0 + 8.5); if (clear(x, i * 3.0 + 8.5)) R.scene.add(ln); }
+    for (let i = -14; i <= 22; i++) {
+      if ((i * 5 + row * 7 + 3) % 4 === 0 || !clear(x, i * 3.0 + 10)) continue;
+      const v = K.make(cars[(i + 14 + row) % cars.length], { seed: 200 + n });
+      v.rotation.y = row % 2 ? -Math.PI / 2 : Math.PI / 2;
+      v.position.set(x, 0.02, i * 3.0 + 10);
+      TXT.add(R, v); TXT.contact(R, v, { opacity: 0.8 }); n++;
+    }
+  }
+  /* the visitor lot west and north of the tower, so the ground around the tower reads as marked
+   * asphalt to the podium rather than as a mottled plain (pixel round 3) */
+  { const lot2 = new THREE.Mesh(new THREE.PlaneGeometry(120, 220), new THREE.MeshStandardMaterial({ color: 0x2b2d31, roughness: 0.93, metalness: 0 }));
+    lot2.rotation.x = -Math.PI / 2; lot2.position.set(-80, 0.03, -30); lot2.receiveShadow = true; R.scene.add(lot2);
+    let m = 0;
+    for (let row = 0; row < 5; row++) {
+      const x = -32 - row * 22;
+      for (let i = -42; i <= 22; i++) {
+        const ln = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.02, 0.12), stall); ln.position.set(x, 0.045, i * 3.0 - 1.5); if (clear(x, i * 3.0 - 1.5)) R.scene.add(ln);
+        if ((i * 7 + row * 5 + 2) % 3 === 0 || !clear(x, i * 3.0)) continue;
+        const v = K.make(cars[(i + 42 + row) % cars.length], { seed: 600 + m }); v.rotation.y = row % 2 ? -Math.PI / 2 : Math.PI / 2;
+        v.position.set(x, 0.02, i * 3.0); TXT.add(R, v); m++;
+      }
+    } }
+  /* the lamps stand in the islands between rows; a lamp whose pool would land in the type's ground
+   * keeps its head lit and throws no pool, so no pool sits behind the hook or the dek */
+  TXT.frame(R, { from: [205, 42, 128], look: [0, 9, 4] });
+  for (const [x, z] of [[67, -30], [67, 30], [111, -30], [111, 30], [111, 88], [155, -30], [155, 30]]) {
+    const q = WD.project(THREE, R, [x, 0, z]), inType = (q[1] > 760 && q[0] > -60 && q[0] < 1140) || q[0] > 980;
+    WD.lamp(R, K, TXT, x, z, -Math.PI / 2, inType ? { pool: false } : { pool: 1400, range: 30, angle: 0.55 });
+  }
+  for (const [x, z, sd] of [[40, -48, 3], [40, 60, 6], [160, -50, 9]]) { const t = K.make('live_oak', { seed: sd, height: 9, spread: 11 }); t.position.set(x, 0, z); TXT.add(R, t); TXT.contact(R, t, { opacity: 0.55 }); }
+  /* Dallas, about four kilometres off past the tower, hazed */
+  /* a band of low commercial roofs and trees between the lot and the city, so the skyline stands
+   * on ground in the haze rather than on a line */
+  for (let k = 0; k < 14; k++) { const wh = K.make(k % 3 ? 'warehouse' : 'strip_mall', { seed: 300 + k }); wh.rotation.y = Math.PI / 2 - 0.4; wh.position.set(-700 - (k % 4) * 260, 0, -420 - k * 95 + (k % 2) * 60); TXT.add(R, wh, { cast: false }); }
+  for (let k = 0; k < 24; k++) { const t = K.make('live_oak', { seed: 400 + k, height: 9, spread: 12 }); t.position.set(-420 - (k % 6) * 140, 0, -260 - k * 52); TXT.add(R, t, { cast: false }); }
+  const sky = K.make('city_skyline', { city: 'dallas', dusk: true, lit: false });
+  sky.position.set(-2600, 0, -1150); sky.rotation.y = Math.PI / 2 - 0.4; TXT.add(R, sky, { cast: false });
+  TXT.frame(R, { from: [205, 42, 128], look: [0, 9, 4] });
+  TXT.sky(R);
+  TXT.scatter(R, { kind: 'grass', count: 3000, area: [-80, 260, -120, 160], avoid: [[-40, 190, -60, 80]], seed: 8 });
+  TXT.deckRig(R, WD.rigSpec(W, 200), WD.rigOpts([80, 0, 10], { distance: 260, shadowFar: 700 }));
+  TXT.weather(R, { grime: 0.16, height: 1.2 });
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.45, to: 150, fade: 200, typeBlur: 12, veil: 0.45, veilH: 720 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-05, frame 6 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's blueHour world. The tower face square on through a long lens from a garage deck: the gold block of frame 1 with eleven bays put back to cool white and one left gold, the roof parapet against the sky. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Eleven entries, no saved count.</h1>
+<p class="dek" data-follow="22">Only the no-show entry states what it already saved, and the page cites no audit behind it. The other eleven describe the work, not what it saved.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const FIG = { pilots_without_savings_figure: 11, pilots_with_savings_figure: 1 };
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "The page's 12 entries", counter: "06 / 09", src: "c6 c22", fit: { min: 84, max: 110, maxLines: 2 } });
+  const R = WD.stage(TXT, gl, W, { near: 1.0, fov: 24, fog: 0.0012, exposure: 2.45 });
+  TXT.ground(R, { surface: 'asphalt', size: 1600, tile: 7, seed: 6 });
+  WD.goldStrength(THREE, 0.47);
+  const H = WD.hospital(K, THREE, { seed: 5 });
+  H.rotation.y = Math.PI / 2; H.position.set(0, 0, 0);
+  /* frame 1's twelve, with pilots_without_savings_figure of them put back to the brightest cool
+   * white and pilots_with_savings_figure left gold: the block's first bay on the eighth floor */
+  let kept = 0;
+  WD.skin(K, THREE, H, (f, b) => { if (!WD.goldBlock(f, b)) return 'dark'; if (f === 7 && b === 0 && kept < FIG.pilots_with_savings_figure) { kept++; return 'gold'; } return 5; }, 1005);
+  /* the eleven put back to a dim corridor white, under the one gold bay with a saved count (the
+   * panel's round 1 reading: an ember read as twelve lit) */
+  H.traverse((m) => { if (m.isMesh && m.userData.bay && m.userData.bay[2] === 5) { m.material = m.material.clone(); m.material.emissiveIntensity = 0.2; } });
+  TXT.add(R, H); TXT.contact(R, H, { opacity: 0.6 });
+  const c = WD.bayAt(H, 7, 3); H.updateMatrixWorld(true); const tgt = H.localToWorld(new THREE.Vector3(c.x, c.y, c.z));
+  /* the garage deck's concrete parapet in the foreground */
+  const par = new THREE.Mesh(new THREE.BoxGeometry(0.35, 1.1, 60), new THREE.MeshStandardMaterial({ color: 0x8a867d, roughness: 0.92 }));
+  par.position.set(tgt.x + 86, 24.05, tgt.z); TXT.add(R, par);
+  TXT.frame(R, { from: [tgt.x + 92, 24, tgt.z + 4], look: [tgt.x, tgt.y + 10, tgt.z] });
+  TXT.sky(R);
+  TXT.deckRig(R, WD.rigSpec(W, 120), WD.rigOpts([tgt.x + 30, 0, tgt.z], { distance: 200, shadowFar: 500 }));
+  TXT.weather(R, { grime: 0.16, height: 1.2 });
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

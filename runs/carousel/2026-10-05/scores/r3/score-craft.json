@@ -1,0 +1,77 @@
+{
+ "lens": "craft",
+ "deck": "2026-10-05, carousel no. 43, round 3 of 3 (cap)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.7,
+   "why": "Four frames pass or come close to the showstopper test. On 7 (Galveston), palms recede to a hazed vanishing point with two lamp pools on worn asphalt and the tower set back in pink horizon haze. This is the deck's best frame. Frame 1 has a blue-to-amber sky gradient, the live oak occluding the podium, cars with contact on the lot and a readable 2 by 6 gold block. Frame 2's porte-cochere is lit by its own soffit, with a worker at true scale beside the lamp post and the sedan with contact on the apron. Frame 4 is a close crop where the gold screen is the only key, with its spill on the veneer. Against the 7 descriptor ('one frame leans on a default, a primitive model, a dead zone or a render artifact'), two frames clearly fail and two more partly fail. FRAME 6 is a facade slab against a gradient sky. The spandrels are flat untextured fills, there is no ground, no haze in depth and no contact. The 'garage parapet' added this round renders as a featureless near-black band across the bottom (about y 2430 to 2700 at full size). That band reads as a plate under the footer, not concrete. The non-block bays are dark here, though they are lit cool on frame 1. FRAME 5 has no visible light source. The glazing band behind the hook is a smear of vertical mullions ending in a hard horizontal seam at about y 1140, and chairs and people are lit flat in one mid-dark blue band. Contacts are faint, so the blocks half float. FRAME 3's top third is an untextured dark wall. The six screens are blank peach rectangles, and the window band is flat navy with none of the lot lamps the craft plan promised. FRAME 8 has a dark out-of-focus smudge left of the tower (about 310,1590), a mottled ground texture and no lamp pools in a lot the plan says is lit from below. Frame 9 is frame 1's camera by design and is as good as frame 1. Mean of my per-frame reads is about 7.0, held under it because more than one frame does what the 7 descriptor allows of only one."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.4,
+   "why": "One blue-hour world, one hero tower type carried through 1, 2, 6, 7, 8 and 9, and one accent with one meaning (the gold bays and gold screens). Three declared devices work. The motif changes state from 12 gold to 6 screens to 1 screen to 1 bay to 12 again, the camera moves lot, door, station, screen, waiting room, facade, coast, aerial, lot, and the close returns to frame 1's camera. Frame 5 sits outside: it is a cool blue interior with no warm light, between the warm gold interiors of 3 and 4 and the dusk exteriors, and it is the declared value cut. Frame 6's tower doesn't read as frame 1's tower. Its left wing is near-black brick, not the warm precast, and its non-block bays are dark rather than the cool white of frame 1, so the 'eleven put out' state change is muddied. That makes it clearly one deck, with one frame and a half outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.2,
+   "why": "Every slide numeral traces. The 12 and 120 come from c6 and c7, $3.6 million from c8, seven sites and 400,000 from c47, six Epic tools from c51, 7 million from c17, 6,500 and $900,000 from c22, and 15,000 from c23, where the page gives 15,000 to 20,000, so 'at least 15,000' is a fair floor. The 40,000 comes from c19, three years from c20, and the 500-per-seat unit is computed (13 and 30 seats verified by count on frame 5). All sources are the primary UT System pages. The fact check's hedges hold on the surface: 'as the page states it', 'projected', 'cites no audit'. The undated announcement is never given a date. Two minor stretches, neither of which changes what a reader believes. Frame 8 sets both platforms on a Dallas campus, but c20 does not place the grading platform. Slide 6's universal ('the other eleven describe the work, not what it saved') sits beside entries that do carry outcome counts, c20's 3,500 encounters and c48's 88 percent. Those are not savings, so the claim holds, though it is the loosest phrasing in the deck. No hard fail found."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "What happened, who decided and where are all named: UT REAL Health AI funded 12 of 120, with San Antonio, Dell Med, Houston and Galveston named. There is a dated next step, the October 7th and 8th symposium in Austin with a registration link (c54). The stake, that one result is self-reported and unaudited, is concrete. The patient's stake is stated generally, though. Frame 4 says an AI will read 7 million records for suicide risk, and no frame says what a patient at those hospitals can know or ask."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'12 of 120.' over a lit tower earns the swipe, and frame 2 pays at once with a concrete pilot. The turn is real at 5 and 6, where only one entry states what it saved. Frames 7 and 8 come after the turn and return to the catalogue ('Two more expand earlier platforms.'), so either could move or merge without loss. The close lands on a dated event and the bookend camera."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register and honest without doom. 'It will read the notes.' and 'Eleven entries, no saved count.' are strong lines. 'Two more expand earlier platforms.' and 'Its page carries a link to register.' are flat. There is little Texas texture beyond institution names, and the Galveston palms are carried by the art rather than the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The facade-as-count instrument is new. Several moves repeat the last four decks in artwork.json, though. No. 39 (October 1st) was also a blue-hour world with lot lamp heads, a lot and a mauve horizon. Nos. 40 and 42 also closed on the opening frame's camera with a person added. SELECTION.md itself concedes this is the third clinic deck in four. That is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 7.25,
+ "weighted_score_arithmetic": "6.7*0.22 + 7.4*0.12 + 8.2*0.20 + 7.3*0.16 + 7.0*0.10 + 7.0*0.10 + 6.8*0.10 = 1.474 + 0.888 + 1.640 + 1.168 + 0.700 + 0.700 + 0.680 = 7.250",
+ "hard_fails": [],
+ "hard_fail_checks_run": "machine_qa.json shows fails 0 and warns 14, all warns (dead-lower-zone on 2 and 8, 23px label text on 3, worst-point contrast 4.5 on frame 6's dek). Every slide numeral traced to claims.json. Caption read for colons, semicolons, dashes, banned words, 'cannot' and year-on-date, with none found. SELECTION.md reports dedupe_check exit 0. No placeholder frame, since frame 3's blank screens and frame 4's unglyphed lines are deliberate, per the storyboard's no-invented-text rule.",
+ "ship": true,
+ "ship_note": "Round 3 is the cap. 7.25 is under the 7.7 rung by 0.45, the shortfall is named, and no hard fail was found.",
+ "one_sentence_fix": "Rebuild frame 6, the deck's turn, as a place rather than a slab. Shoot frame 1's tower from a modelled concrete garage deck with lamp heads, wear and a lot visible below, keep every non-block bay lit cool as on frame 1 so 'eleven put out' reads as a state change on the same building, and let the frame carry the sky and haze that frames 1, 7 and 9 already prove the engine can make.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Facade slab on a gradient sky with flat untextured spandrels, no ground, no contact and no haze. The new 'garage parapet' is a featureless near-black band across the bottom 10 percent (about y 2430 to 2700) that reads as a plate under the footer. The non-block bays are dark, so this does not read as frame 1's tower.",
+   "fix": "Replace the black band with a modelled concrete parapet lip (TXT.roundedBox with TXT.weather grime, lit from the side by one lot lamp head standing in the lower right corner), and relight every non-block bay cool white as on frame 1."
+  },
+  {
+   "slide": 5,
+   "problem": "No visible light source. The room is one flat mid-dark blue, and the glazing behind the hook is a blurred smear of mullions ending in a hard horizontal seam at about y 1140. People and chairs are lit flat with faint contacts, so both blocks half float.",
+   "fix": "Hang visible ceiling downlights over each seating block in the top band and let them throw pools and hard contact shadows under the 13 seated people and the 30 empty chairs. Drop the glazing to sill height below the dek so the seam leaves the type band."
+  },
+  {
+   "slide": 3,
+   "problem": "The top third is an untextured dark wall. The six screens are blank peach rectangles, and the window band is flat navy with none of the lot lamps the craft plan promised, so the room is not in the deck's world.",
+   "fix": "Put the world in the window band: the lot's lamp heads and the hazed lit tower bays seen through the glass at the station's eye height."
+  },
+  {
+   "slide": 8,
+   "problem": "A dark out-of-focus smudge sits left of the tower at about (310,1590), the ground is a mottled smear, and no lamp pools appear in a lot the plan says is lit from below, so the tower's base has no light structure.",
+   "fix": "Remove the foreground blob and stand three lit lot lamps around the podium so their pools on the asphalt give the lower half a light-to-dark structure."
+  }
+ ]
+}

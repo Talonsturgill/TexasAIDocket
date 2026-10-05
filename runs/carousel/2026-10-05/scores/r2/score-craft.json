@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "All nine frames are rendered, and frames 1, 7 and 9 pass the place-at-an-hour test: a dusk sky with a pink horizon, haze behind the tower, lamps pooling on the lot, and the Galveston palm boulevard on 7 receding into haze. The count encodings work as pictures. Frame 1 shows 12 gold bays in a 2 by 6 block. Frame 5 seats 13 people and leaves 30 chairs empty, which matches figures.json noshow_seats and sa_seats. Four frames fall well short of the descriptor. (1) Frame 6 is a flat elevation, a navy facade with no texture or grime, no ground and no contact, against a plain gradient. Its gold bay is a flat orange square with no interior falloff, while the eleven cool bays next to it have one. (2) Frame 3 still shows the screen moire this round says it fixed. Monitors 1 to 4 carry diagonal stipple and dot patterns (around x 320-500, 580-700 and 840-1020 at 1600 px). The ribbon window is a flat navy band with no lot lamps, although the CRAFT PLAN promised them. The top third is flat near-black and the bottom third is empty tile. (3) Frame 5 has a dark band behind the dek with a hard bottom edge at about y 845, which reads as a type plate. The new glazing opens onto plain navy with no world beyond, the downlights don't read, and the figures are low-poly. (4) Frame 2 has a flat grey sky slab and a navy fade over its lower 42% that works as a type plate (machine_qa flags it top-loaded: bottom 28%). Its floor pool is a hard-edged white disc, and the kicker shows a blur halo at 'ANTONIO EMERGENCY'. Smaller faults: every lamp pool (1, 7, 9) is a hard-edged, near-clipped white ellipse on untextured asphalt. A palm trunk on 7 (about x 1100, y 1450-1530) carries a white hatched alpha artifact. On 8 the url sits over a crowd of car roofs, a half light pool is clipped at the right edge (about 1540,1580), a stray dark blob sits left of the hook, and the skyline is plain boxes. Frame 4 is the best interior: the screen glow on the wood grain is real light. Its window is the same flat navy band, though, and its screen lines read as UI bars. This is more than the 7 descriptor's 'one frame leans on a default'."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One blue-hour world and one hero tower in one material carry frames 1, 6, 7, 8 and 9. The gold motif changes state: 12 bays on 1, six gold screens on 3, one note screen on 4, one gold bay of twelve on 6, two on 8, twelve again on 9. Frame 9 returns to frame 1's camera. The storyboard declares MOTIF_EVOLUTION, CAMERA_MOVE and VALUE_ARC, and the contact sheet bears all three out. The value track steps down from 1 and 2 to the dark interiors on 3 to 5, then holds mid on 6 to 9, so it doesn't strobe. Two frames sit outside. Frame 2's porte-cochere is not the hero tower, and its grey sky slab is unlike any other frame's. Frame 5's cool navy room breaks the warm wood and gold of 3 and 4 and carries no gold at all. The motif goes missing at the turn."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to figures.json and a primary_official claim quote: 12 and 120 (c6, c7), $3.6 million (c8), seven sites and 400,000 (c47), 7 million (c17), 6,500 (c22), 15,000 as the low end of c23's 15,000 to 20,000, worded 'at least', 40,000 (c19), and 500 per seat with 13 and 30 computed by a stated rule. The unaudited status of the savings is stated carefully on 5, on 6 and in the caption, and it is carried in c22's text. The undated page is honoured, with no date invented. Two looser points. Frame 8 draws a Dallas campus, but c19 says only that the platform was validated at UT Southwestern, not where the pilot runs. Slide 9's 'A patient can ask a UT hospital which of the twelve pilots it takes part in' is a suggested action with no source behind it. 'Eleven entries' on 6 and c8's 'eleven UT institutions' are two different elevens, and a reader could conflate them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "The deck says who (UT REAL Health AI, UT System), what (12 of 120 funded, more than $3.6 million), where (UT San Antonio, Dell Med, UTHealth Houston, UTMB Galveston) and when to act (Austin symposium, October 7th and 8th). The turn is concrete: only one entry claims a saved count, and it cites no audit. The stake for a Texas patient stays general. The suicide-risk read of 7 million records on frame 4 is the deck's sharpest stake, and the deck says nothing about consent or oversight there. The ask on 9 is a soft one."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'12 of 120.' is a clean cover and frame 2 pays at once. The deck turns where it should, from 5 ('One pilot says what it saved.') to 6 ('Eleven entries, no saved count.'). After the turn, 7 (UTMB) and 8 ('Two more expand earlier platforms.') go back to the catalogue the deck already left. Frame 8 in particular could move or go without loss, and momentum sags before the close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean on the house rules: no colons, no dashes, ordinal dates without a year, 'can't'-safe, and no banned words found. It is sober rather than boosterish. 'The page' carries too many sentences ('The page credits... The page cites no audit... The page projects' in the caption, and again on 5 and 6), which reads as a fact-check log more than a Texan writing. 'Two more expand earlier platforms.' is a flat hook."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The hero (a hospital tower whose bay grid is the count) and the gold-window motif are new. Against the ledger, though: a blue-hour world with cobra-head lamps over a lot repeats no. 39 (October 1st, 'blue hour world... lit cobra head... shared lots'). A lit monitor on a desk repeats no. 40 (October 2nd, 'a monitor carrying two bars'). Chairs as a count echo no. 42's hearing room of chairs (October 4th). That is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give the world to the frames that have none: open the flat navy window bands on 3, 4 and 5 onto the rendered blue-hour lot with its lamps and the hero tower beyond, and drop frame 6's camera so the facade stands on a lit plaza with contact and grime, instead of a flat elevation against a gradient.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A flat CG elevation: an untextured navy facade with no ground, no contact and no grime against a plain gradient. The one gold bay is a flat orange square with no interior falloff, so the turn's focal point is the least-modelled thing in the frame.",
+   "fix": "Lower the long-lens camera from the garage deck so the bottom fifth of the frame is the tower's podium on a lamp-lit plaza with TXT.contact and TXT.weather streaks under the spandrels, and give the gold bay the same lit-room gradient and glass roughness as the cool bays at a warm emissive."
+  },
+  {
+   "slide": 3,
+   "problem": "The screen moire is still visible on monitors 1 to 4 as diagonal stipple patterns. The ribbon window is a flat navy band with no outside, the top third is flat near-black and the bottom third is empty tile.",
+   "fix": "Replace the screen texture with a flat emissive plane carrying no sampled pattern (mipmapped, no shadow receive), put the rendered blue-hour lot with two lit lamp heads behind the ribbon window, and raise the camera about 0.4 m so the desk run, not bare floor, fills the lower third under the labels."
+  },
+  {
+   "slide": 5,
+   "problem": "A dark band behind the dek with a hard bottom edge at about y 845 reads as a type plate. The new glazing opens onto plain navy, the downlights don't read, and the gold motif is missing at the turn.",
+   "fix": "Pull the camera back so the dek sits on the glazing, and render the lit tower with its twelve gold bays through that glazing, which removes the band. Make the downlights visible as pools on the floor between the two chair blocks."
+  },
+  {
+   "slide": 2,
+   "problem": "The sky is a flat grey slab and a navy fade over the lower 42% works as a type plate (machine_qa: top-loaded, bottom 28%). The floor pool is a hard white disc, and a blur halo sits behind 'ANTONIO EMERGENCY' in the kicker.",
+   "fix": "Tilt the camera down so the wet, lamp-lit apron and the kerb run to the bottom edge under the type (asphalt with a soft-falloff pool, not a vignette), give the sky the deck's blue-hour gradient, and move the kicker off the tower's edge or kill the backdrop blur there."
+  },
+  {
+   "slide": 8,
+   "problem": "Cars crowd the bottom right under the url, a half light pool is clipped at the right edge (about 1540,1580), a stray dark blob sits left of the hook (about 280,1190), and the Dallas skyline is plain extruded boxes.",
+   "fix": "Clear the bottom-right parking rows out of the footer band, remove the clipped pool and the blob, and push the skyline further into haze with lit window grids so it reads as Dallas rather than placeholders."
+  },
+  {
+   "slide": 7,
+   "problem": "The lamp pools are hard-edged, near-clipped white ellipses on untextured brown ground, and a palm trunk carries a white hatched alpha artifact at about x 1100, y 1450-1530.",
+   "fix": "Give the pools a soft inverse-square falloff at about 60% of their current peak on a worn asphalt and sand-verge ground, and fix the palm bark's alpha so the trunk base renders solid."
+  }
+ ]
+}

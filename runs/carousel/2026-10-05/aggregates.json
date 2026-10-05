@@ -1,0 +1,183 @@
+{
+ "date": "2026-10-05",
+ "_note": "Every count, ratio and duration the deck states, with the claim it was quoted from, or the computation in compute.py that made it. The drawn counts (120 bays, 12 gold, 6 screens, 7 note blocks, 13 seated, 30 empty) are set from figures.json in each frame's code.",
+ "aggregates": [
+  {
+   "phrase": "12 of 120",
+   "slide": "slide-01.html",
+   "kind": "ratio",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "also_from": [
+    "c7"
+   ],
+   "note": "the 12 funded pilots of c6 against the 120 submissions of c7, both quoted"
+  },
+  {
+   "phrase": "120 submissions",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 120,
+   "quoted_from": "c7",
+   "quote": "Selected through a rigorous two-phase review of 120 systemwide submissions",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "400,000 trauma cases",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 400000,
+   "quoted_from": "c47",
+   "quote": "deploys \"Leah,\" an AI clinical assistant trained on more than 400,000 trauma cases, across seven UT hospital sites to optimize emergency triage and transfer decisions",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "Six tools",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 6,
+   "quoted_from": "c51",
+   "quote": "which implements six Epic-integrated AI tools to automate lab result messaging, generate patient-facing imaging summaries",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "7 million patient records",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c17",
+   "quote": "led by Dr. Ming Huang at UT Dell Medical School will use large language models to analyze free-text clinical notes across more than 7 million patient records",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "6,500 appointments",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 6500,
+   "quoted_from": "c22",
+   "quote": "that has already saved more than 6,500 appointments and $900,000 in revenue at UTHealth Houston",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "500 APPOINTMENTS",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 500,
+   "note": "figures.json seat_unit: the largest of 100, 250, 500 and 1000 that divides both noshow_appointments and san_antonio_low exactly",
+   "computed_by": "out/2026-10-05/compute.py seat_unit, the largest of 100, 250, 500 and 1000 dividing both noshow_appointments (c22) and san_antonio_low (c23), written to figures.json"
+  },
+  {
+   "phrase": "Eleven entries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 11,
+   "note": "figures.json pilots_without_savings_figure: pilots - 1, the one being c22",
+   "computed_by": "out/2026-10-05/compute.py pilots_without_savings_figure, pilots (c6) minus the one entry that states a saved count (c22), written to figures.json"
+  },
+  {
+   "phrase": "12 entries",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "Two more expand earlier platforms",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 2,
+   "note": "the two entries whose quotes say expands an earlier platform, c19 and c20, counted",
+   "from_claims": [
+    "c19",
+    "c20"
+   ]
+  },
+  {
+   "phrase": "three years",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 3,
+   "quoted_from": "c20",
+   "quote": "expands an AI grading platform that has been in continuous operational use for more than three years and has supported more than 3,500 simulation encounters",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "40,000 patients",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 40000,
+   "quoted_from": "c19",
+   "quote": "expands a clinical trial prescreening platform previously validated on nearly 40,000 patients at UT Southwestern",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "6,500 appointments",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 6500,
+   "quoted_from": "c22",
+   "quote": "that has already saved more than 6,500 appointments and $900,000 in revenue at UTHealth Houston",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "one of 12",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "note": "one of the 12 pilots c6 quotes"
+  },
+  {
+   "phrase": "120 systemwide submissions",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 120,
+   "quoted_from": "c7",
+   "quote": "Selected through a rigorous two-phase review of 120 systemwide submissions",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "7 million patient records",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c17",
+   "quote": "led by Dr. Ming Huang at UT Dell Medical School will use large language models to analyze free-text clinical notes across more than 7 million patient records",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "12 entries",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "note": "the source's own count, quoted"
+  },
+  {
+   "phrase": "12 of 120",
+   "slide": "document_title",
+   "kind": "ratio",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "also_from": [
+    "c7"
+   ],
+   "note": "the 12 funded pilots of c6 against the 120 submissions of c7, both quoted"
+  },
+  {
+   "phrase": "12 pilot projects",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 12,
+   "quoted_from": "c6",
+   "quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+   "note": "the source's own count, quoted"
+  }
+ ]
+}

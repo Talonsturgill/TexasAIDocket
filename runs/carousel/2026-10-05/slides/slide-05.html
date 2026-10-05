@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-10-05, frame 5 of 9. Archetype GRID. RENDERED through txthree.js, a room built by TXT.interior. A waiting room from a raised eye: thirteen people seated in one block and thirty empty seats across an aisle, one seat for every 500 appointments, the glazing onto blue hour at the back. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .lab { font-size:25px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One entry states what it saved.</h1>
+<p class="dek" data-follow="22">The page credits the no-show project with more than 6,500 appointments saved at UTHealth Houston and cites no audit behind it. It projects at least 15,000 a year at UT Health San Antonio.</p>
+<div class="lab" id="lab-h">HOUSTON, AS THE PAGE STATES IT</div>
+<div class="lab" id="lab-s">SAN ANTONIO, PROJECTED</div>
+<div class="lab" id="lab-u">ONE SEAT = 500 APPOINTMENTS</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const FIG = { noshow_seats: 13, sa_seats: 30, seat_unit: 500 };
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "The no-show project", counter: "05 / 09", src: "c16 c22 c23", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = WD.stage(TXT, gl, W, { near: 0.5, fov: 52, fog: 0.0, far: 200, exposure: 1.0 });
+  /* the waiting room's far wall is night glass onto the lot: the horizon of the floor sits under
+   * the dek's last line, and the glass carries the lot's lamps rather than a flat band (round 2) */
+  const room = TXT.interior(R, { w: 18, d: 14, h: 12.0, floor: 'concrete', wall: 0x4a536a, window: 'back', windowColor: 0xffffff, windowI: 1.0, windowW: 16.6, windowH: 11.4, ceiling: false, light: 0.5, tile: 40 });
+  /* the floor is the room's dark, so the pale vinyl chairs and the people stand off it as countable
+   * blocks at thumb scale (pixel round 2: the chairs read as near black silhouettes) */
+  R.scene.traverse((m) => { if (m.isMesh && m.userData && m.userData.txSurface === 'concrete' && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiply(new THREE.Color(0.08, 0.24, 0.39)); } });
+  { const pane = room.children[room.children.length - 1];
+    const gc = document.createElement('canvas'); gc.width = 8; gc.height = 256; const gx = gc.getContext('2d');
+    const gg = gx.createLinearGradient(0, 0, 0, 256); gg.addColorStop(0, '#16223f'); gg.addColorStop(0.58, '#2d4470'); gg.addColorStop(0.69, '#4a5a7c'); gg.addColorStop(0.75, '#2a3346'); gg.addColorStop(1, '#1a2130');
+    gx.fillStyle = gg; gx.fillRect(0, 0, 8, 256);
+    const gt = new THREE.CanvasTexture(gc); gt.colorSpace = THREE.SRGBColorSpace; pane.material.map = gt; pane.material.color.setScalar(1.0); pane.material.needsUpdate = true;
+    pane.position.set(0, 5.9, pane.position.z);
+    /* floor to ceiling glass on a regular mullion pitch, no sill band across the dek (panel round 1) */
+    const mm = new THREE.MeshStandardMaterial({ color: 0x0e121a, roughness: 0.6 });
+    for (let k = 0; k <= 8; k++) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.1, 11.5, 0.06), mm); b.position.set(-8.3 + k * 16.6 / 8, 5.9, pane.position.z + 0.04); room.add(b); } }
+  /* ceiling downlights over each block, so the floor has light and dark rather than one band */
+  for (const [lx, lz] of [[-2.6, -2.2], [2.6, -2.2], [-2.6, 2.0], [2.6, 2.0]]) { const pl = new THREE.PointLight(0xfff0dc, 7, 6, 2); pl.position.set(lx, 4.2, lz); R.scene.add(pl); }
+  /* the near block: the project's own Houston count, one seat per seat_unit, every seat taken */
+  const occ = [[7, -2.25], [6, 2.7]].map(([k, x], j) => {
+    const g = K.make('public_seating', { rows: 1, perRow: k, type: 'chairs', color: 0xb9bfc7, frame: 'chrome', seed: 2 + j });
+    g.rotation.y = Math.PI; g.position.set(x, 0, 1.8); TXT.add(R, g); TXT.contact(R, g, { opacity: 0.6 }); return [g, k, x];
+  });
+  /* every seat of the near pair taken: noshow_seats people in all, one per seat */
+  const shirts = [0x6b6f78, 0x55606e, 0x7a6e62, 0x3f4752, 0x8a8a84, 0x5b5148];
+  let seated = 0;
+  for (const [g, k, x] of occ) {
+    const span = g.userData.size[0], pitch = span / k;
+    for (let i = 0; i < k; i++) {
+      const p = K.make('person', { role: 'resident', pose: 'sit_read', shirt: shirts[seated % 6], trousers: 0x2a2e35, seed: 60 + seated });
+      p.rotation.y = Math.PI; p.position.set(x - span / 2 + pitch * (i + 0.5), 0, 1.8 + 0.05); TXT.add(R, p); seated++;
+    }
+  }
+  if (seated !== FIG.noshow_seats) throw new Error('seated ' + seated + ' is not noshow_seats');
+  /* across the aisle: San Antonio's projected low end at the same seat_unit, every seat empty */
+  const emp = K.make('public_seating', { rows: 3, perRow: FIG.sa_seats / 3, type: 'chairs', color: 0xb9bfc7, frame: 'chrome', seed: 3 });
+  emp.rotation.y = Math.PI; emp.position.set(0, 0, -1.8); TXT.add(R, emp); TXT.contact(R, emp, { opacity: 0.6 });
+  TXT.frame(R, { from: [0, 9.6, 11.6], look: [0, 0.0, -4.0] });
+  TXT.deckRig(R, WD.rigSpec(W, 24), WD.rigOpts([0, 0, 0], { distance: 40, shadowFar: 90 }));
+  TXT.weather(R, { grime: 0.1, height: 0.4 });
+  const pa = WD.project(THREE, R, [0, 0, 2.7]), pb = WD.project(THREE, R, [0, 0, -3.9]);
+  const A = document.getElementById('lab-h'), B = document.getElementById('lab-s'), C = document.getElementById('lab-u');
+  A.style.left = (pa[0] - A.getBoundingClientRect().width / 2) + 'px'; A.style.top = (pa[1] + 6) + 'px';
+  B.style.left = (pb[0] - B.getBoundingClientRect().width / 2) + 'px'; B.style.top = (pb[1] - B.getBoundingClientRect().height - 4) + 'px';
+  C.style.left = '80px'; C.style.top = '1180px';
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.24, type: ['.kick', '.hook', '.dek', '.lab'] });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
