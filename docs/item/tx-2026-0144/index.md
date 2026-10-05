@@ -10,7 +10,7 @@ The Department of Energy published a request for information on September 9th, 2
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system
 
-- Last checked: 2026-10-04
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The energy department is still taking comment on securing the grid, until October 9th, and its notice still names AI among the drivers of demand.
 - 2026-10-03 · The energy department's comment window is still open, closing October 9th. The notice still names AI as a driver of demand growth.
 - 2026-10-04 · The department is still taking comment on securing the grid, and the window still closes October 9th.
+- 2026-10-05 · The Energy Department's comment window on securing the grid is still open.
 
 ## Evidence
 

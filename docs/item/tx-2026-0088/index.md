@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The assignment of the RELLIS abatement is still unconfirmed. The county's notice and the only published account both sit behind barriers to automated readers.
 - 2026-10-03 · The RELLIS assignment is still unconfirmed. The county's notice and the only published account remain behind barriers to automated readers.
 - 2026-10-04 · The RELLIS assignment is still unconfirmed. The county's notice and the only published account both stay behind barriers to automated readers.
+- 2026-10-05 · The RELLIS assignment is still unconfirmed. The county's notice and the only published account both sit behind barriers to automated readers.
 
 ## Evidence
 

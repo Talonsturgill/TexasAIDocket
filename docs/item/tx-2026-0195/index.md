@@ -11,7 +11,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 - Public access: Write to the decider
 - Take part: https://www.texome.org/
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -22,6 +22,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-02 · Admitted on the hospital's own account of the published study. An AI tool pointed at the gene. Families found through a research network and experiments in fruit flies are what made it a likely diagnosis.
+- 2026-10-05 · The researchers' account of the likely genetic cause the AI tool flagged still reads as published.
 
 ## Evidence
 

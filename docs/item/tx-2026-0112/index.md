@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
 - Public access: Closed
 - Take part: https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The commission's approval of the line is unconfirmed this run. Oncor's project page did not answer and the order was not re-read.
 - 2026-10-03 · The commission's approval of the line is still unconfirmed. Oncor's project page did not answer again and the order was not re-read.
 - 2026-10-04 · The commission's approval of the line is still unconfirmed. Oncor's project page did not answer again and the order was not re-read.
+- 2026-10-05 · The commission's own order on Docket No. 59315 still amends Oncor's certificate for the line. A groundwater district and two landowner groups have since asked the commission to rehear it.
 
 ## Evidence
 
@@ -71,4 +72,16 @@ Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/ab
 > the Public Utility Commission of Texas has authorized the buildout of more than 400 miles of transmission lines to deliver electricity to the power-starved oil and gas and industrial manufacturing industries.
 
 Source (journalism): https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/
+
+### The commission's order adopts the proposal for decision in part and amends Oncor's certificate to include the new line.
+
+> The Commission adopts the proposal for decision in part and rejects it in part, including findings of fact and conclusions of law, and amends Oncor's CCN number 30043 to include the construction and operation of the proposed transmission facilities
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
+
+### The Middle Trinity Groundwater Conservation District filed a motion asking the commission to rehear the order.
+
+> The Middle Trinity Groundwater Conservation District (the "District") files this Motion for Rehearing
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5840_1685751.PDF
 

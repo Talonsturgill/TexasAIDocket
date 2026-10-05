@@ -11,7 +11,7 @@ Memorial Hermann Health System says its clinicians are using an artificial intel
 - Public access: Write to the decider
 - Take part: https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · Memorial Hermann patients still receive an explanation of their results that software drafted first.
 - 2026-09-29 · Memorial Hermann patients still receive an explanation of their test results that software drafts before a clinician sends it.
 - 2026-10-02 · Memorial Hermann's clinicians still send patients the drafted explanations described in the system's own material. The trade publication's interview bars automated readers.
+- 2026-10-05 · Memorial Hermann still describes its clinicians using an AI assistant to draft the plain language note a patient gets with a result, which the clinician can edit before sending.
 
 ## Evidence
 

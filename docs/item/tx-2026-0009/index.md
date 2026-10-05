@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The sandbox is still a duty written into the statute. No program has opened that an agency could apply to.
 - 2026-09-29 · The regulatory sandbox for state agencies exists only as a statutory duty. The technology agency has not opened an application an agency could file.
 - 2026-10-02 · The sandbox is still a duty written into statute. The technology agency has not opened a way for a state agency to apply.
+- 2026-10-05 · The statute still requires the Department of Information Resources to run an AI regulatory sandbox for state agencies.
 
 ## Evidence
 

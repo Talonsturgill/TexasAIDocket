@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · Lubbock County's disclosure resolution is unconfirmed this run. The only account of it sits on a site that bars automated readers.
 - 2026-10-03 · Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers.
 - 2026-10-04 · Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers.
+- 2026-10-05 · Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers.
 
 ## Evidence
 

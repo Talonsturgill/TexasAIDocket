@@ -36,7 +36,7 @@
    "heading": "What the twelve pilots put into hospitals",
    "paragraphs": [
     {
-     "text": "[At UT San Antonio, a pilot deploys an AI clinical assistant called Leah, trained on more than {{number:c47}} trauma cases, across seven UT hospital sites for emergency triage and transfer decisions](c47). [At UT Austin, a smartphone app listens for fetal movement to help prevent stillbirth](c11), and [the page gives its accuracy as {{number:c48}} percent](c48).",
+     "text": "[At UT San Antonio, a pilot deploys an AI clinical assistant called Leah across seven UT hospital sites for emergency triage and transfer decisions](c47). [The page says Leah was trained on more than {{number:c47}} trauma cases](c47). [At UT Austin, a smartphone app listens for fetal movement to help prevent stillbirth](c11), and [the page gives its accuracy as {{number:c48}} percent](c48).",
      "claims": [
       "c47",
       "c11",
@@ -44,7 +44,7 @@
      ]
     },
     {
-     "text": "[At UTMB Galveston, a pilot deploys AI referral triage](c13). [The tool reads the health record, assigns an urgency score and routes patients to a level of care](c49). [At UT Dell Medical School, a pilot on patient engagement](c15) [implements six AI tools built into Epic, among them tools that automate lab result messaging and generate patient-facing imaging summaries](c51).",
+     "text": "[At UTMB Galveston, a pilot deploys AI referral triage](c13). [The tool reads the health record, assigns an urgency score and routes patients to a level of care](c49). [At UT Dell Medical School, a pilot on patient engagement](c15) [implements six AI tools built into Epic](c51). [Among their aims are automating lab result messaging and generating patient-facing imaging summaries](c51).",
      "claims": [
       "c13",
       "c49",

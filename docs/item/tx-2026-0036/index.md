@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · Guadalupe County's exit from its plate reader contract is still unconfirmed. Both published accounts bar automated readers, and the county's agenda page carries no record of the vote.
 - 2026-10-03 · The cited Seguin Gazette and KSAT accounts remain unconfirmed. Live robots rules exclude project readers. The county's accessible agenda page contains no quoted contract decision. Its embedded meeting archive also refuses automated access. These are source-access measurements, not a new verification of the termination or the sheriff's quotations.
 - 2026-10-04 · That Guadalupe County has left its plate reader contract is still unconfirmed. The county keeps its minutes and meeting video in an archive that bars automated readers, as do both published accounts of the vote.
+- 2026-10-05 · Guadalupe County's exit from its Flock contract is still unconfirmed. The county's minutes archive and both published accounts bar automated readers.
 
 ## Evidence
 

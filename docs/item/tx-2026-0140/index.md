@@ -11,7 +11,7 @@ The National Highway Traffic Safety Administration opened Audit Query AQ26002 on
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The federal audit of how the Cybercab was certified is still open.
 - 2026-09-29 · NHTSA's audit of how Tesla certified the Cybercab has published no conclusion.
 - 2026-10-02 · NHTSA's audit of how Tesla certified the Cybercab still has no published conclusion.
+- 2026-10-05 · The federal audit of how Tesla certified the Cybercab is still open, with no finding published.
 
 ## Evidence
 

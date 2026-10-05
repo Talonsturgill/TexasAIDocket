@@ -9,7 +9,7 @@ ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Reque
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-B091426-01
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The grid operator's deadline for the water board's questions still stands.
 - 2026-09-29 · ERCOT's deadline for data centers to answer the water board's questions still stands.
 - 2026-10-02 · Data centers still have until October 12th to answer the water board's questions through the grid operator.
+- 2026-10-05 · ERCOT's deadline for data centers to answer the water board's questions still stands at October 12th.
 
 ## Evidence
 
