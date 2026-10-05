@@ -81,7 +81,7 @@
     /* a dark bay, the room with its lights off, for the few a frame wants quiet */
     m.dark = new THREE.MeshStandardMaterial({ color: 0x0c1116, roughness: 0.08, metalness: 0.0, emissive: 0x1c2630, emissiveIntensity: 0.4 });
     /* the funded pilot's light */
-    m.gold = new THREE.MeshStandardMaterial({ color: N.ACCENT, roughness: 0.12, metalness: 0.0, emissive: N.ACCENT, emissiveIntensity: 0.68 });
+    m.gold = new THREE.MeshStandardMaterial({ color: 0xee8a4c, roughness: 0.12, metalness: 0.0, emissive: 0xea8a4e, emissiveIntensity: 0.82 });
     /* a screen that is a pilot's tool, for the interiors */
     m.screen = new THREE.MeshStandardMaterial({ color: 0x2a1a10, roughness: 0.35, metalness: 0.0, emissive: N.ACCENT, emissiveIntensity: 0.62 });
     m.precast = new THREE.MeshStandardMaterial({ color: 0xa9a397, roughness: 0.85, metalness: 0.0 });
@@ -177,6 +177,50 @@
     return s;
   };
 
+  /* N.goldScreen turns a kit monitor's lit display into the pilot's gold. With `blocks`, the screen
+   * carries that many blocks of ruled lines and no letterforms, a clinical note drawn without text,
+   * because no note is published and a letter on a canvas is type rendered into the art. */
+  N.goldScreen = function (THREE, mon, blocks) {
+    var mat;
+    if (blocks) {
+      var c = document.createElement("canvas"); c.width = 512; c.height = 320;
+      var x = c.getContext("2d"), r = lcg(N.SEED + blocks);
+      x.fillStyle = "#2a160a"; x.fillRect(0, 0, 512, 320);
+      var bh = 300 / blocks;
+      for (var b = 0; b < blocks; b++) {
+        var y0 = 12 + b * bh, lines = 3;
+        for (var l = 0; l < lines; l++) {
+          var w = (l === lines - 1 ? 0.35 + r() * 0.3 : 0.75 + r() * 0.2) * 470;
+          x.fillStyle = "rgba(255,214,170," + (0.75 + r() * 0.2).toFixed(2) + ")";
+          x.fillRect(22, y0 + l * (bh / 4.2), w, Math.max(3, bh / 9));
+        }
+      }
+      var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+      mat = new THREE.MeshStandardMaterial({ color: 0x1a0f08, roughness: 0.3, metalness: 0, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.62 });
+      mat.emissive.set(N.ACCENT);
+    } else {
+      mat = N.mats(null, THREE).screen;
+    }
+    mon.traverse(function (m) {
+      if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0 && (m.material.emissiveMap || m.material.map)) m.material = mat || m.material;
+    });
+    return mon;
+  };
+
+  /* N.local turns a point in the hospital's own frame (the kit's coordinates, before its footprint
+   * was re-centred) into the world, wherever a frame has stood and turned it */
+  N.local = function (THREE, g, x, y, z) {
+    g.updateMatrixWorld(true);
+    var off = g.userData.off;
+    return g.localToWorld(new THREE.Vector3(x + off.x, y, z + off.z));
+  };
+
+  /* N.project puts a world point on the frame in CSS px, for a DOM label or a leader's end */
+  N.project = function (THREE, R, p) {
+    var v = new THREE.Vector3(p[0], p[1], p[2]); R.camera.updateMatrixWorld(); v.project(R.camera);
+    return [(v.x + 1) / 2 * N.W, (1 - v.y) / 2 * N.H];
+  };
+
   /* ---------------------------------------------------------------- the rig and the stage */
   N.rigSpec = function (W, size, map) {
     return Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { shadowSize: size || 60, mapSize: map || 2048 }) });
@@ -245,7 +289,7 @@
   N.post = function (cx, o) {
     o = o || {};
     N.atmosphere(cx, { a: o.a, to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
-    N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 7, pad: 8, feather: o.typeFeather || 24 });
+    N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 16, pad: 12, feather: o.typeFeather || 30 });
     N.soften(cx, [".tx-site", ".src", ".count"], { blur: o.siteBlur || 14, pad: 16, feather: 60 });
     var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "8,12,20";
     for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.4 : o.veil) * e).toFixed(4) + ")"); }
