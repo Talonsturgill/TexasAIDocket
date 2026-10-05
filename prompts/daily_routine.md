@@ -259,9 +259,10 @@ At wake, write `out/<date>/run_state.json`:
 ```
 
 `chassis` is Phase 10.5 and is `done` only when the probe frame has passed `deck_chassis`,
-`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's eight gates on the
-frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run resumed after any of the
-three must know that from this file, because the art after them is built on their answer.
+`print_ban`, `figure_bearing`, `depth_floor` and `value_register --probe`. `gates12b` is Phase
+12b's eight gates on the frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run
+resumed after any of the three must know that from this file, because the art after them is built
+on their answer.
 
 Mark each phase `done` **with its artifact paths**. If the container is reclaimed mid-run, the
 next context resumes from this file rather than starting over. Commit early and often. An

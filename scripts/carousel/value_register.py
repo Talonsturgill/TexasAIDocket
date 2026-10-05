@@ -140,12 +140,21 @@ def judge(rows: list[dict], probe: bool, date: str | None, art_path: Path = ARTW
             f"{DECK_MID}. The sibling's twelve decks hold 0.131. Worst: "
             + ", ".join(f"{r['frame']} {r['mid']:.2f}" for r in worst)
             + ". Re-light those frames in the deck's staged world rather than grading them down")
-    median = float(np.median([r["median_L"] for r in rows]))
-    if median >= lc.LIGHT_L:
+    # A PROBE FRAME IS JUDGED ALONE, its lightness as well as its mid tones (Codex, PR 402): the
+    # median over a render folder that still holds a retried run's dark frames hid a light probe.
+    if probe:
+        light = [r for r in rows if r["median_L"] >= lc.LIGHT_L]
+        median = max((r["median_L"] for r in light), default=0.0)
+        subject = "probe frame " + ", ".join(r["frame"] for r in light)
+    else:
+        median = float(np.median([r["median_L"] for r in rows]))
+        light = median >= lc.LIGHT_L
+        subject = "deck"
+    if light:
         n, which = light_window(art_path, date)
         if n >= lc.LIGHT_CAP:
             problems.append(
-                f"the {'probe' if probe else 'deck'} reads light, median L* {median:.1f} against "
+                f"the {subject} reads light, median L* {median:.1f} against "
                 f"ledger_check's line of {lc.LIGHT_L}, and the seven decks before it already hold "
                 f"{n} light deck(s) ({', '.join(which)}) against brand.yaml's cap of {lc.LIGHT_CAP} in "
                 f"eight. Ledger_check fails this at ship, which cost no. 42 forty four minutes. "
@@ -205,6 +214,8 @@ def self_test() -> int:
               any("reads light" in p for p in judge([white], True, "2026-09-05", held)))
         check("...and passes in a window with none spent",
               not any("reads light" in p for p in judge([white], True, "2026-09-05", empty)))
+        check("a light probe frame beside two dark ones a retried run left in the folder still fails",
+              any("reads light" in p for p in judge([bold, white, bold], True, "2026-09-05", held)))
     # the calibration anchors, from the shipped decks this was measured on
     for date, should_fail in (("2026-10-04", True), ("2026-09-27", False)):
         d = ms.RUNS / date

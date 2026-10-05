@@ -1366,6 +1366,21 @@ export function init(THREE) {
    * set stages every snapshot whose frame did not call this, and an interior stages in the deck's
    * declared world. A frame may call it again, and the later call replaces the earlier. */
   const _stBox = () => new THREE.Box3();
+  // THE BOX OF WHAT THE CAMERA DRAWS (Codex, PR 402): a thing's meshes that show and sit on a layer
+  // this camera renders. A large object on a layer the camera skips could take the stage from the
+  // hero, and the fog and the pool were fitted to geometry the image doesn't have.
+  function renderedBox(obj, cam) {
+    const box = _stBox(), b = _stBox();
+    obj.traverseVisible((m) => {
+      if (!(m.isMesh || m.isPoints || m.isLine || m.isSprite) || !m.geometry || !inView(m, cam)) return;
+      if (m.isInstancedMesh) { if (!m.boundingBox) m.computeBoundingBox(); b.copy(m.boundingBox); }
+      else { if (!m.geometry.boundingBox) m.geometry.computeBoundingBox(); b.copy(m.geometry.boundingBox); }
+      if (b.isEmpty()) return;
+      m.updateWorldMatrix(true, false);
+      box.union(b.applyMatrix4(m.matrixWorld));
+    });
+    return box;
+  }
   const STAGE_MIN_AREA = 0.03;      // a subject covers at least this share of the frame's box
   const corner = (box, i, v) => v.set(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z);
   function onScreenArea(cam, box) {
@@ -1394,7 +1409,7 @@ export function init(THREE) {
       if (!c.visible || c.isLight || c.isCamera) continue;
       const u = c.userData || {};
       if (u.txSky || u.txGround || u.txScatter || u.txPool || c === R.room) continue;
-      const box = _stBox().setFromObject(c);
+      const box = renderedBox(c, cam);
       if (box.isEmpty()) continue;
       box.getSize(sz);
       if (sz.y < 0.35 || Math.max(sz.x, sz.z) > 12 * sz.y) continue;
@@ -1483,7 +1498,7 @@ export function init(THREE) {
     const wp = new THREE.Vector3();
     let best = null, ground = null;
     R.scene.traverseVisible((m) => {
-      if (!m.isMesh || m.isInstancedMesh || own.has(m)) return;
+      if (!m.isMesh || m.isInstancedMesh || own.has(m) || !inView(m, R.camera)) return;
       const u = m.userData || {};
       if (u.txPool || u.txSky) return;
       if (u.txGround) {
@@ -1564,8 +1579,10 @@ export function init(THREE) {
     const cam = R.camera; cam.updateMatrixWorld(true);
     if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
     const subj = subject || stageSubject(R);
+    // what the camera draws of the subject, or the whole of it when the camera draws none of it
+    const boxOf = (x) => { const b = renderedBox(x, cam); return b.isEmpty() ? _stBox().setFromObject(x) : b; };
     const box = !subj ? null : Array.isArray(subj)
-      ? subj.reduce((b, x) => b.union(_stBox().setFromObject(x)), _stBox()) : _stBox().setFromObject(subj);
+      ? subj.reduce((b, x) => b.union(boxOf(x)), _stBox()) : boxOf(subj);
     let near, dist;
     if (box && !box.isEmpty()) {
       let far = 0;
@@ -2270,10 +2287,11 @@ export function init(THREE) {
   }
 
   /* ONE DECK, ONE WORLD, bound the way TXT.deckRig binds the light (2026-09-24, Codex on #353).
-   * The chassis names the world ONCE in TXDECK.declare as `sky`: a preset name ('goldenHour') or
-   * an object ({ preset:'goldenHour', haze:0xd8b48e }). TXT.deckWorld() returns it resolved, and
+   * The chassis names the world ONCE in TXDECK.declare as `sky`: a preset name ('lastLight') or
+   * an object ({ preset:'lastLight', haze:0x1c2436 }). TXT.deckWorld() returns it resolved, and
    * TXT.sky THROWS when a frame hands it a different world, so nine frames can't stand under two
-   * skies. A deck that declares no sky may still pass a world to TXT.sky, as before. */
+   * skies. A deck that declares no sky may still pass a world to TXT.sky, as before. A declaration
+   * with no preset, and a standalone TXT.sky(R), stand in lastLight, the house register. */
   const WORLD_KEYS = ['zenith', 'horizon', 'haze', 'ground', 'sun', 'sunDisc', 'glow', 'horizonGlow',
     'span', 'clouds', 'stars', 'fogDensity', 'exposure', 'envIntensity', 'tone', 'skyEl', 'seed', 'horizonFade', 'stage'];
   const worldKey = (W) => JSON.stringify(WORLD_KEYS.map(k => (W[k] === undefined ? null : W[k])));
@@ -2286,36 +2304,39 @@ export function init(THREE) {
     let D = null;
     try { if (TXD && TXD.deck) D = TXD.deck().sky; } catch (e) { D = null; }
     if (D == null) return null;
-    const name = typeof D === 'string' ? D : (D.preset || 'goldenHour');
+    // a declaration that names no preset stands in the house register (Codex, PR 402)
+    const name = typeof D === 'string' ? D : (D.preset || 'lastLight');
     if (!TXT.worlds[name]) throw new Error("TXDECK.declare sky names no world '" + name + "'. The worlds are " +
       Object.keys(TXT.worlds).join(', '));
     return typeof D === 'string' ? Object.assign({}, TXT.worlds[name]) : Object.assign({}, TXT.worlds[name], D);
   }
   TXT.deckWorld = function () {
     const D = declaredWorld();
-    if (!D) throw new Error("TXT.deckWorld: the chassis declares no sky. Add sky:'goldenHour' (or another " +
+    if (!D) throw new Error("TXT.deckWorld: the chassis declares no sky. Add sky:'lastLight' (or another " +
       "TXT.worlds name) to its TXDECK.declare, once, for the whole deck");
     return D;
   };
 
   /* TXT.sky(R, world) — the dome, the IBL from it, and the fog in its horizon's hue.
    * world: omit it to use the chassis's declared sky, or pass TXT.deckWorld(). Without a
-   * declaration, a TXT.worlds preset or a copy of one. Call once per frame, in any order
-   * relative to TXT.frame (the dome follows the camera). Returns the dome. */
+   * declaration, a TXT.worlds preset or a copy of one, and lastLight when it is omitted. Call once
+   * per frame, in any order relative to TXT.frame (the dome follows the camera). Returns the dome. */
   TXT.sky = function (R, W, o) {
     const D = declaredWorld();
     if (D) {
-      if (W && worldKey(Object.assign({}, TXT.worlds.goldenHour, W)) !== worldKey(D))
+      if (W && worldKey(Object.assign({}, D, W)) !== worldKey(D))
         throw new Error("TXT.sky: this frame asked for a world the chassis did not declare. One deck, one " +
           "world: call TXT.sky(R) or TXT.sky(R, TXT.deckWorld())");
       W = D;
     } else if (deckDeclared()) {
       // A DECK WITH NO DECLARED SKY is how five frames end up under five worlds (Codex, #353). A
       // standalone scene, with no TXDECK declaration at all, may still pass its own world.
-      throw new Error("TXT.sky: this deck's chassis declares no sky. Add sky:'goldenHour' (or another " +
+      throw new Error("TXT.sky: this deck's chassis declares no sky. Add sky:'lastLight' (or another " +
         "TXT.worlds name) to its TXDECK.declare, once, so every frame stands in one world");
     } else {
-      W = Object.assign({}, TXT.worlds.goldenHour, W || {});
+      // a standalone scene's own world as it always was, and with none the house register. Merged
+      // over lastLight, a passed goldenHour took lastLight's stage (tests/txworld.mjs STAGE)
+      W = W ? Object.assign({}, TXT.worlds.goldenHour, W) : Object.assign({}, TXT.worlds.lastLight);
     }
     o = o || {};
     const sunDir = TXT.sunDir(W);

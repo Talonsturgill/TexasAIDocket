@@ -1309,8 +1309,20 @@ const STAGE3 = `async (T, TXT, cv) => {
   const car = new T.Mesh(new T.BoxGeometry(1.8, 1.4, 4.5), mat(0x8a2a22)); car.name = 'car'; car.position.set(0, 0.7, 0); TXT.add(Dn, car);
   await TXT.snapshot(Dn);
   const looking = Object.assign({}, Dn._txStaged);
+  // a large box on a layer this camera doesn't render, near where it is aimed, beside a smaller hero
+  const Ly = make([0, 2, 14], [0, 1.5, 0]);
+  const hidden = new T.Mesh(new T.BoxGeometry(12, 8, 4), mat(0xd8d0c0)); hidden.name = 'hidden'; hidden.position.set(0, 4, -3);
+  hidden.layers.set(1); TXT.add(Ly, hidden);
+  const hero = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xb8b0a0)); hero.name = 'hero'; hero.position.set(2.5, 1, 2); TXT.add(Ly, hero);
+  await TXT.snapshot(Ly);
+  const layered = Object.assign({}, Ly._txStaged);
+  // a standalone scene that names no world stands in the house register
+  const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
+  TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
+  TXT.sky(Sd);
+  const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
   return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
-           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking };
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone };
 }`;
 
 async function run(name, scene) {
@@ -1793,6 +1805,11 @@ check('the third stage page renders with no page error and no scene error',
         rid.auto === true && rid.subject !== 'own truck', JSON.stringify(rid));
   check(`a camera looking straight down at a car from 1.6 m keeps the car: it took ${JSON.stringify(lk.subject)}`,
         lk.subject === 'car', JSON.stringify(lk));
+  const ly = r.layered || {};
+  check(`a box on a layer the camera doesn't render never takes the stage from the hero: it took ${JSON.stringify(ly.subject)}`,
+        ly.subject === 'hero', JSON.stringify(ly));
+  check(`a standalone TXT.sky(R) that names no world stands in lastLight, the house register`,
+        r.standalone && r.standalone.staged === true && r.standalone.lastLight === true, JSON.stringify(r.standalone));
 }
 
 await browser.close();
