@@ -31,7 +31,7 @@ is the doctrine and `scripts/carousel/value_register.py` the gate.
 | deck | mid tone share, L* 30 to 70 | near black, L* under 15 | deck median L* |
 |---|---|---|---|
 | no. 40, 2026-10-02 | 0.407 to 0.205 | 0.138 to 0.373 | 32.2 to 20.1 |
-| no. 41, 2026-10-03 | 0.477 to 0.134 | 0.191 to 0.631 | 29.7 to 6.1 |
+| no. 41, 2026-10-03 | 0.477 to 0.134 | 0.191 to 0.628 | 29.7 to 6.8 |
 | no. 42, 2026-10-04 | 0.698 to 0.173 | 0.090 to 0.539 | 58.4 to 4.2 |
 | the sibling's no. 78, as shipped | 0.139 | 0.509 | 11.2 |
 | the sibling's no. 77, as shipped | 0.129 | 0.593 | 10.6 |
@@ -58,6 +58,30 @@ Frames scored lower after, on the mean of the three graders:
 - no. 40 frame 9, 6.67 to 6.50. "Nearly identical; A has a faint blue-violet wash across the left of the desk and binders that B does not, so B is marginally cleaner." "Nearly identical; A carries a cool blue light spill washing over the left stack of papers that B does not, and both remain warm mid tone rooms." "The two are nearly identical. A has a stray blue-violet light spill on the desk under the binders that B does not, so B reads slightly cleaner."
 - no. 41 frame 4, 6.23 to 5.50. "B is darker but carries a clear render artifact, a jagged triangular lit patch on the road surface, and the road beyond dissolves into black; A is a coherent if muddy, faded dusk highway." "B is darker but its road light lands as a jagged brown wedge that reads as a render artifact, the guardrail glows an odd blue and most of the day posts are lost, killing the one-post-per-day idea; A is muddy haze but keeps the road and posts legible." "B is darker, but a jagged lighter wedge in the road reads as a render artifact, and the trees and lane detail are lost in a muddy purple distance. A is hazy but coherent."
 
+## The sheets are the merged engine
+
+The graders above saw renders made before review. The sheets are rendered again by the engine as
+merged, with every review fix. Of the 27 frames, 17 are the same pixels and 6 moved by
+at most 0.20 percent of their pixels. No. 41's frames 2, 3, 4 and 7
+moved 2.2 to 25.4 percent, for two reasons.
+
+- **Frames 2, 3 and 7, the road beyond the truck darker.** The first review fix lays the pool on
+  the surface the subject stands on. The original engine laid it at the truck's lowest point, under
+  the road's surface, where the road hid it. Each of these frames takes one snapshot, so the pool's
+  height is the whole of the change.
+- **Frame 4, the road lit to the horizon.** The camera rides 1.7 m over its own truck, and the stage
+  took that truck for the subject and centred its pool on it. A thing the camera stands in or rides
+  is never the subject now, so the frame is staged where the camera is aimed.
+
+Three fresh graders shown those 4 frames blind, the graded render against the merged one,
+with the sibling's decks as the reference, gave 12 verdicts. The merged frame was named
+bolder 3 times and the earlier one 3 (6 ties), better 5 times and the earlier one 1 (6 ties), and closer to the sibling 3 times and the earlier one 3 (6 ties). The
+mean score went from 6.01 to 6.12, and frame by frame
+frame 2 went 5.87 to 5.93, frame 3 went 6.70 to 6.77, frame 4 went 5.20 to 5.43, frame 7 went 6.27 to 6.37. On frame 4 the earlier render was named bolder by 3 of the
+3 graders and better by 1. Its lit lane ends in a jagged wedge
+and a hard seam, which the graders who preferred the merged frame named a render fault, and the
+merged road is clean but greyer.
+
 ## How the engine got here, three rounds of fresh graders
 
 - **Round 1**, the first cut of the stage: after better 61 to 9, mean score 6.39 to 6.94. No. 41 frame 4, a road seen from a truck's
@@ -70,7 +94,8 @@ Frames scored lower after, on the mean of the three graders:
   own shadow cut across the road as a jagged wedge (6.30 to 5.07). Changed: the staged worlds' fill and
   ambient now hold every shadow at a deep navy, about 3 percent of the key, as the sibling's
   hemisphere fill does. That lifted the dead blacks. It did not remove the wedge, which is below.
-- **Round 3**, the frames in the sheets above and the table above.
+- **Round 3**, the frames the table above graded. The sheets are those frames through the merged
+  engine, as the section above says.
 
 ## What still fails, as the round 3 graders named it
 

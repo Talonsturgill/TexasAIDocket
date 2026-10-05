@@ -843,9 +843,12 @@ again, 44 minutes.
   key or a high cold flood, low rims that edge a silhouette without lighting the ground.
 - **`TXT.stage(R, subject)`.** A linear fog from just past the subject's far side, whole at about
   twice its distance, in the sky's own hue, so the world behind the subject goes to the dark. A
-  pool decal on the ground keeps the light where the subject stands. In a staged world every
-  snapshot stages itself on the largest thing near where the camera is aimed; naming the subject
-  is better. A skyline far off keeps a faint silhouette (`stage.veil`).
+  pool decal on the ground keeps the light where the subject stands. On a desk or a dock the pool
+  is cut to that surface's top face. In a staged world every snapshot stages itself on the largest
+  thing near where the camera is aimed, never on a thing the camera stands in or rides; naming the
+  subject is better. A skyline far off keeps a
+  faint silhouette (`stage.veil`) while the stage is up. `TXT.snapshot(R, { stage: false })` takes
+  an automatic stage off, fog, pool and veil together.
 - **A room in a staged world** turns its studio fill down to 0.2, so it is lit by its window and
   the key. A chassis that passes its own `light` keeps it, and the register gate still measures.
 

@@ -1351,12 +1351,15 @@ export function init(THREE) {
    * TXT.stage(R, subject, { behind, depth, pool, poolInner, poolOuter }) does that here, in two parts.
    *   1. A linear fog that starts `behind` (a fraction of the subject's distance) past the subject's
    *      far side and is whole `depth` subject distances later. Under TXT.sky the fog is the sky's own
-   *      horizon colour in each view direction (installSkyFog), and a staged world caps it at
-   *      `stage.veil` on anything standing, so a skyline far off stays as a faint silhouette.
+   *      horizon colour in each view direction (installSkyFog), and while the stage is up it caps
+   *      the fog at `stage.veil` on anything standing, so a skyline far off stays as a faint
+   *      silhouette. TXT.unstage takes the cap off with the fog.
    *   2. THE POOL. A dark decal on the ground with an elliptical hole under the subject, `poolInner`
    *      to `poolOuter` half sizes, at `pool` darkness (0.86 by default, false for none). It keeps the
    *      light where the subject stands and takes the lit grey band beside it out of the frame. It is
-   *      laid only when the subject stands within 35 cm of the ground.
+   *      laid only when the subject stands within 35 cm of what receives it: a ground, or a flat
+   *      thing under it that is not part of it. On a ground, or on a road or pad lying on one, it
+   *      spreads 400 m. On a desk or a dock it is cut to that surface's top face.
    * `subject` is an object or an array of them (a cab and its trailer). Without one the stage takes
    * the largest thing on screen that stands: grounds, scatter, a room, a pool, anything flatter than
    * 35 cm and land cover twelve times wider than it is tall are never subjects. A world with `stage`
@@ -1384,6 +1387,7 @@ export function init(THREE) {
   function stageSubject(R) {
     const cam = R.camera; cam.updateMatrixWorld(true);
     const look = R._txLook ? new THREE.Vector3(R._txLook[0], R._txLook[1], R._txLook[2]) : null;
+    const viewDir = cam.getWorldDirection(new THREE.Vector3());
     let best = null, bestS = 0, bestA = 0;
     const sz = new THREE.Vector3();
     for (const c of R.scene.children) {
@@ -1397,6 +1401,13 @@ export function init(THREE) {
       // a thing the camera stands in or on (the cab of a frame shot from the driver's seat) is the
       // foreground, never the subject: staged on it, no. 41 frame 4 fogged the whole road (graded 4.87)
       if (box.containsPoint(cam.position)) continue;
+      // ...and ON means riding it too: over its footprint, within 2 m of its top and looking out
+      // across it rather than down at it. No. 41 frame 4's camera rides 1.7 m over its own trailer,
+      // the truck took the stage, and its pool darkened the lane ahead (blind, 5.43 to 5.07). A
+      // camera looking down at a thing from above keeps it as the subject.
+      if (cam.position.x >= box.min.x && cam.position.x <= box.max.x && cam.position.z >= box.min.z &&
+          cam.position.z <= box.max.z && cam.position.y >= box.max.y && cam.position.y - box.max.y < 2 &&
+          viewDir.y > -0.7) continue;
       const a = onScreenArea(cam, box);
       const off = look ? box.distanceToPoint(look) / Math.max(0.5, sz.length() / 2) : 0;
       const score = a / ((1 + off) * (1 + off));
@@ -1410,7 +1421,8 @@ export function init(THREE) {
     if (R.world) return R.world;
     try { return declaredWorld(); } catch (e) { return null; }
   }
-  function poolDecal(box, S, y) {
+  function poolDecal(box, S, rec) {
+    const y = rec.y;
     const ctr = box.getCenter(new THREE.Vector3()), sz = box.getSize(new THREE.Vector3());
     const rx = Math.max(0.6, sz.x / 2), rz = Math.max(0.6, sz.z / 2);
     const inner = S.poolInner != null ? S.poolInner : 1.25, outer = S.poolOuter != null ? S.poolOuter : 3.2;
@@ -1425,43 +1437,111 @@ export function init(THREE) {
     x.putImageData(img, 0, 0);
     const tex = new THREE.CanvasTexture(c);
     tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;            // past `outer` it stays at full dark
-    const big = 400, geo = new THREE.PlaneGeometry(big, big), uv = geo.attributes.uv;
-    for (let i = 0; i < uv.count; i++) {                           // the canvas spans the ellipse to `outer`
-      uv.setXY(i, 0.5 + (uv.getX(i) - 0.5) * big / (2 * outer * rx), 0.5 + (uv.getY(i) - 0.5) * big / (2 * outer * rz));
+    const mat = new THREE.MeshBasicMaterial({ color: 0x000000, map: tex, transparent: true,
+      depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+    let m;
+    if (rec.ground) {                                              // across the ground, 400 m about the subject
+      const big = 400, geo = new THREE.PlaneGeometry(big, big), uv = geo.attributes.uv;
+      for (let i = 0; i < uv.count; i++) {                         // the canvas spans the ellipse to `outer`
+        uv.setXY(i, 0.5 + (uv.getX(i) - 0.5) * big / (2 * outer * rx), 0.5 + (uv.getY(i) - 0.5) * big / (2 * outer * rz));
+      }
+      m = new THREE.Mesh(geo, mat);
+      m.rotation.x = -Math.PI / 2;
+    } else {                                                       // on a finite receiver's top face alone
+      const pts = topFace(rec.mesh), pos = [], uvs = [];
+      for (const p of pts) {                                       // the same ellipse, mapped from world x and z
+        pos.push(p.x - ctr.x, p.y - y, p.z - ctr.z);
+        uvs.push(0.5 + (p.x - ctr.x) / (2 * outer * rx), 0.5 + (ctr.z - p.z) / (2 * outer * rz));
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+      const up = pts[1].clone().sub(pts[0]).cross(pts[2].clone().sub(pts[0])).y > 0;
+      geo.setIndex(up ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2]);    // wound to face up
+      geo.computeVertexNormals();
+      m = new THREE.Mesh(geo, mat);
     }
-    const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x000000, map: tex, transparent: true,
-      depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
-    m.rotation.x = -Math.PI / 2;
     m.position.set(ctr.x, y + 0.004, ctr.z);
     m.renderOrder = 0.5;                                           // under the contact marks (1)
     m.userData.txPool = true;
     return m;
   }
   /* THE SURFACE THE SUBJECT STANDS ON (Codex, PR 402): the highest tagged ground, or flat thing a
-   * subject can stand on (a pad, a road, a dock's deck), under the subject's centre and no higher
-   * than its foot. Null when nothing is there, and then no pool is laid: a pool at world y 0 floats
-   * over a ground laid lower and hides under one laid higher. */
-  function receivingY(R, box) {
+   * subject can stand on (a pad, a road, a dock's deck, a desk's top), under the subject's centre
+   * and no higher than its foot. Null when nothing is there, and then no pool is laid: a pool at
+   * world y 0 floats over a ground laid lower and hides under one laid higher.
+   *   - Never a part of the subject. A document 2 cm thick was its own receiver, and the pool lay
+   *     on top of it and darkened it.
+   *   - A flat thing within 35 cm of a ground (a road, a pad) lies on that ground, and the pool
+   *     spreads across both, as it always did.
+   *   - One higher (a desk, a dock) is finite, and the pool is cut to its top face. A 400 m sheet at
+   *     desk height darkened the floor under it from any camera above the desk. */
+  function receiverOf(R, box, subj) {
+    const own = new Set();
+    for (const s of [].concat(subj || [])) s.traverse((x) => own.add(x));
     const c = box.getCenter(new THREE.Vector3()), base = box.min.y, tb = new THREE.Box3(), sz = new THREE.Vector3();
     const wp = new THREE.Vector3();
-    let best = null;
-    R.scene.traverse((m) => {
-      if (!m.isMesh || !m.visible || m.isInstancedMesh) return;
+    let best = null, ground = null;
+    R.scene.traverseVisible((m) => {
+      if (!m.isMesh || m.isInstancedMesh || own.has(m)) return;
       const u = m.userData || {};
       if (u.txPool || u.txSky) return;
-      let top = null;
-      if (u.txGround) top = m.getWorldPosition(wp).y;
-      else {
-        tb.setFromObject(m);
-        if (tb.isEmpty()) return;
-        tb.getSize(sz);
-        if (sz.y >= 0.35 || c.x < tb.min.x || c.x > tb.max.x || c.z < tb.min.z || c.z > tb.max.z) return;
-        top = tb.max.y;
+      if (u.txGround) {
+        const y = m.getWorldPosition(wp).y;
+        if (y > base + 0.05) return;
+        if (ground === null || y > ground) ground = y;
+        if (!best || y > best.y) best = { y, mesh: m, ground: true };
+        return;
       }
-      if (top > base + 0.05) return;
-      if (best === null || top > best) best = top;
+      tb.setFromObject(m);
+      if (tb.isEmpty()) return;
+      tb.getSize(sz);
+      if (sz.y >= 0.35 || c.x < tb.min.x || c.x > tb.max.x || c.z < tb.min.z || c.z > tb.max.z) return;
+      if (tb.max.y > base + 0.05) return;
+      if (!best || tb.max.y > best.y) best = { y: tb.max.y, mesh: m, ground: false };
     });
+    if (best && !best.ground && ground !== null && best.y - ground <= 0.35) best.ground = true;
     return best;
+  }
+  // a flat receiver's top face, four points in world space: its geometry's box, thin along one of
+  // its own axes, carried by its world matrix, so a desk turned on its legs gets a pool its own shape
+  function topFace(m) {
+    const g = m.geometry;
+    if (!g.boundingBox) g.computeBoundingBox();
+    const lb = g.boundingBox, s = lb.getSize(new THREE.Vector3());
+    const ax = s.x <= s.y && s.x <= s.z ? 'x' : (s.y <= s.z ? 'y' : 'z');
+    const [p, q] = ['x', 'y', 'z'].filter((k) => k !== ax);
+    m.updateWorldMatrix(true, false);
+    let top = null;
+    for (const side of [lb.min[ax], lb.max[ax]]) {
+      const pts = [[0, 0], [1, 0], [1, 1], [0, 1]].map(([i, j]) => {
+        const v = new THREE.Vector3();
+        v[ax] = side; v[p] = i ? lb.max[p] : lb.min[p]; v[q] = j ? lb.max[q] : lb.min[q];
+        return v.applyMatrix4(m.matrixWorld);
+      });
+      const y = pts.reduce((t, v) => t + v.y, 0);
+      if (!top || y > top.y) top = { y, pts };
+    }
+    return top.pts;
+  }
+  /* THE VEIL GOES WITH THE STAGE (Codex, PR 402). The veil caps the fog on anything standing, so a
+   * skyline far off stays a faint silhouette. It was a literal in every fogged shader of a staged
+   * world, so a frame that took the stage off still had it. It is a define on each material now,
+   * TX_VEIL, laid by the stage and lifted by TXT.unstage, and three.js keys its programs on a
+   * material's defines, the way TX_GROUND already works. A material whose define changes compiles
+   * again, which an automatic stage never causes, since it is laid before the first render. */
+  function veilScene(R, on) {
+    R.scene.traverse((o) => {
+      const mats = !o.material ? [] : Array.isArray(o.material) ? o.material : [o.material];
+      for (const m of mats) {
+        if (!m || m.fog === false || (m.defines && 'TX_GROUND' in m.defines)) continue;
+        if (!!(m.defines && 'TX_VEIL' in m.defines) === on) continue;
+        const d = Object.assign({}, m.defines);
+        if (on) d.TX_VEIL = ''; else delete d.TX_VEIL;
+        m.defines = d;
+        m.needsUpdate = true;
+      }
+    });
   }
   // the fog a frame set up, kept so a stage can be taken off again
   function fogBefore(R) {
@@ -1472,6 +1552,7 @@ export function init(THREE) {
   TXT.unstage = function (R) {
     if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
     if ('_txFogBefore' in R) R.scene.fog = R._txFogBefore;
+    veilScene(R, false);
     R._txStaged = null;
   };
   /* TXT.stage(R, subject, o) — the subject lit where it stands, the ground beside it and the world
@@ -1504,14 +1585,17 @@ export function init(THREE) {
     const was = fogBefore(R);
     R.scene.fog = new THREE.Fog(was ? was.color : new THREE.Color(W.haze != null ? W.haze : 0x000000), near, far);
     if (box && !box.isEmpty() && S.pool !== false && S.pool !== 0) {
-      const y = receivingY(R, box);
-      if (y !== null && box.min.y - y < 0.35) {
-        R._txPool = poolDecal(box, S, y);
+      const rec = receiverOf(R, box, subj);
+      if (rec && box.min.y - rec.y < 0.35) {
+        R._txPool = poolDecal(box, S, rec);
+        R._txPool.userData.txPoolOn = rec.ground ? 'ground' : 'surface';
         R.scene.add(R._txPool);
       }
     }
+    veilScene(R, true);
     R._txStaged = { near, far, subject: subj ? (Array.isArray(subj) ? 'group' : (subj.name || subj.type)) : null,
-                    pool: !!R._txPool, poolY: R._txPool ? R._txPool.position.y : null, auto: !!o.auto };
+                    pool: !!R._txPool, poolY: R._txPool ? R._txPool.position.y : null,
+                    poolOn: R._txPool ? R._txPool.userData.txPoolOn : null, auto: !!o.auto };
     return R._txStaged;
   };
 
@@ -1526,6 +1610,7 @@ export function init(THREE) {
       if (o.stage !== false && SW && SW.stage) TXT.stage(R, null, { auto: true });
       else if (R._txStaged) TXT.unstage(R);
     }
+    if (R._txStaged) veilScene(R, true);         // a thing added after the frame's own TXT.stage is veiled too
     R.renderer.render(R.scene, R.camera);
     /* A WORLD THE CAMERA DOESN'T SHOW IS A VOID (2026-09-26). No. 33's frame 4 called TXT.sky and
      * looked straight down on a lawn, and a judge named it top-down in every one of five rounds.
@@ -2119,7 +2204,8 @@ export function init(THREE) {
     const n = (x) => Number(x || 0).toFixed(6);
     const sd = sunDir.clone().normalize();
     const fade = W.horizonFade != null ? W.horizonFade : 0.025;
-    // the most a fog may take from a thing standing in it: 1 everywhere but a staged world
+    // the most a fog may take from a thing standing in it, while a stage is up (TX_VEIL, veilScene):
+    // 1 everywhere but a staged world
     const veil = W.stage && W.stage.veil != null ? W.stage.veil : 1;
     C.fog_pars_vertex = base.pv + '\n#ifdef USE_FOG\n  varying vec3 vTxFogDir;\n#endif\n';
     // row vector times the view matrix is its inverse rotation: the ray from the eye, in world space
@@ -2144,8 +2230,10 @@ export function init(THREE) {
   float txGroundFade(float f) {
     #ifdef TX_GROUND
       return max(f, 1.0 - smoothstep(0.0, ${n(fade)}, -normalize(vTxFogDir).y));
-    #else
+    #elif defined( TX_VEIL )
       return min(f, ${n(veil)});
+    #else
+      return f;
     #endif
   }
   // A hook that replaces fog_fragment with its own mix toward fogColor (the kit's aerial() haze on

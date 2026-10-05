@@ -1226,6 +1226,93 @@ const STAGE2 = `async (T, TXT, cv) => {
            pools: R.scene.children.filter((c) => c.userData && c.userData.txPool).length };
 }`;
 
+// THE VEIL, A DESK AND A THIN SUBJECT (Codex, PR 402, second round).
+//   1. stage:false after a staged snapshot takes the veil off with the fog. Two boxes 720 m off, one
+//      emissive white and one black: with the stage up the veil keeps 12 percent of each, so they
+//      differ, and with it off the frame's own fog takes both whole, so they read the same.
+//   2. A subject on a desk turned 30 degrees gets its pool cut to the desk's top face, not a 400 m
+//      sheet at desk height. A truck on a road lying on the ground keeps the 400 m pool.
+//   3. A document 2 cm thick, staged by name, gets its pool on the desk under it, not on itself.
+const STAGE3 = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.lastLight);
+  const make = (from, look) => {
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+    TXT.frame(R, { from, look });
+    TXT.sky(R, W);
+    const s = TXT.sunDir(W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'concrete', size: 2000, tile: 3 });
+    return R;
+  };
+  const mat = (c, e) => new T.MeshStandardMaterial({ color: c, emissive: e || 0x000000, roughness: 0.6 });
+  const R = make([0, 3, 30], [0, 2, 0]);
+  const subj = new T.Mesh(new T.BoxGeometry(6, 3, 3), mat(0xd8d0c0)); subj.name = 'subject'; subj.position.set(0, 1.5, 0); TXT.add(R, subj);
+  const white = new T.Mesh(new T.BoxGeometry(120, 120, 20), mat(0xffffff, 0xffffff)); white.position.set(-80, 60, -700); TXT.add(R, white);
+  const black = new T.Mesh(new T.BoxGeometry(120, 120, 20), mat(0x000000)); black.position.set(80, 60, -700); TXT.add(R, black);
+  const read = () => {
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const px = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    const L = (i) => { const y = 0.2126 * lin(px[i]) + 0.7152 * lin(px[i + 1]) + 0.0722 * lin(px[i + 2]);
+      return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y; };
+    const at = (p) => { const v = new T.Vector3(p[0], p[1], p[2]).project(R.camera);
+      const x = Math.round((v.x + 1) / 2 * Wd), y = Math.round((v.y + 1) / 2 * H);
+      if (v.z >= 1 || x < 6 || y < 6 || x >= Wd - 6 || y >= H - 6) return null;
+      let t = 0, k = 0;
+      for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { t += L(((y + dy) * Wd + x + dx) * 4); k++; }
+      return t / k; };
+    let veiled = 0;
+    R.scene.traverse((o) => { if (o.material && o.material.defines && 'TX_VEIL' in o.material.defines) veiled++; });
+    return { white: at([-80, 60, -690]), black: at([80, 60, -690]), veiled, staged: !!R._txStaged };
+  };
+  await TXT.snapshot(R);
+  const up = read();
+  await TXT.snapshot(R, { stage: false });
+  const off = read();
+  // the desk: a top 2 by 1 m, 4 cm thick, on four legs, turned 30 degrees, with a 40 cm box on it
+  const D = make([2.5, 1.8, 2.5], [0, 0.9, 0]);
+  const desk = new T.Group(); desk.rotation.y = Math.PI / 6;
+  const top = new T.Mesh(new T.BoxGeometry(2.0, 0.04, 1.0), mat(0x6a5a48)); top.position.y = 0.75; desk.add(top);
+  for (const [x, z] of [[-0.9, -0.4], [0.9, -0.4], [-0.9, 0.4], [0.9, 0.4]]) {
+    const leg = new T.Mesh(new T.BoxGeometry(0.06, 0.73, 0.06), mat(0x3a3430)); leg.position.set(x, 0.365, z); desk.add(leg);
+  }
+  const doc = new T.Mesh(new T.BoxGeometry(0.3, 0.02, 0.4), mat(0xf0ece4)); doc.name = 'document'; doc.position.set(-0.6, 0.78, 0); desk.add(doc);
+  TXT.add(D, desk);
+  const cube = new T.Mesh(new T.BoxGeometry(0.4, 0.4, 0.4), mat(0xb8b0a0)); cube.name = 'cube'; cube.position.set(0, 0.97, 0); TXT.add(D, cube);
+  D.scene.updateMatrixWorld(true);
+  const poolOf = (X) => { const p = X.scene.children.find((c) => c.userData && c.userData.txPool);
+    if (!p) return null; p.updateMatrixWorld(true);
+    const g = p.geometry.attributes.position, pts = [];
+    for (let i = 0; i < g.count; i++) pts.push(new T.Vector3().fromBufferAttribute(g, i).applyMatrix4(p.matrixWorld));
+    const bb = new T.Box3().setFromPoints(pts), sz = bb.getSize(new T.Vector3());
+    return { pts, width: sz.x, depth: sz.z }; };
+  const onDesk = Object.assign({}, TXT.stage(D, cube));
+  const dp = poolOf(D);
+  const corners = [[-1, -0.5], [1, -0.5], [1, 0.5], [-1, 0.5]].map(([x, z]) => top.localToWorld(new T.Vector3(x, 0.02, z)));
+  const off_corner = dp ? Math.max(...dp.pts.map((p) => Math.min(...corners.map((c) => c.distanceTo(p))))) : null;
+  const onDoc = Object.assign({}, TXT.stage(D, doc));
+  // the road: 8 m wide, 5 cm thick, lying on the ground, with a truck on it
+  const Q = make([14, 3, 18], [0, 1, 0]);
+  const road = new T.Mesh(new T.BoxGeometry(8, 0.05, 200), mat(0x3c3c3e)); road.position.y = 0.025; TXT.add(Q, road);
+  const truck = new T.Mesh(new T.BoxGeometry(6, 3, 2.4), mat(0xd8d0c0)); truck.name = 'truck'; truck.position.set(0, 1.55, 0); TXT.add(Q, truck);
+  Q.scene.updateMatrixWorld(true);
+  const onRoad = Object.assign({}, TXT.stage(Q, truck));
+  const rp = poolOf(Q);
+  // riding: a camera 1.7 m over its own truck's roof, looking up the road, as no. 41 frame 4 does
+  const V = make([-7.3, 5.8, -2.6], [-7.7, 4.1, 50]);
+  const rig = new T.Mesh(new T.BoxGeometry(3.5, 4.1, 21.6), mat(0xd8d0c0)); rig.name = 'own truck'; rig.position.set(-7.1, 2.05, -6.7); TXT.add(V, rig);
+  await TXT.snapshot(V);
+  const riding = Object.assign({}, V._txStaged);
+  // and a camera 1.6 m over a car looking straight down at it keeps the car
+  const Dn = make([0, 3.0, 0.01], [0, 0, 0]);
+  const car = new T.Mesh(new T.BoxGeometry(1.8, 1.4, 4.5), mat(0x8a2a22)); car.name = 'car'; car.position.set(0, 0.7, 0); TXT.add(Dn, car);
+  await TXT.snapshot(Dn);
+  const looking = Object.assign({}, Dn._txStaged);
+  return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking };
+}`;
+
 async function run(name, scene) {
   const file = join(scratch, `${name}.html`);
   writeFileSync(file, page_html(scene));
@@ -1673,6 +1760,39 @@ check('the second stage page renders with no page error and no scene error',
         `then at ${(b.near || 0).toFixed(1)} m`, a.auto === true && b.auto === true && b.near > a.near * 1.5, JSON.stringify(r));
   check(`stage:false takes it off: no stage, ${r.pools} pools and the frame's own exponential fog back`,
         r.after === null && r.pools === 0 && r.fogExp2 === true, JSON.stringify(r));
+}
+
+const s3 = await run('stage3', STAGE3);
+check('the third stage page renders with no page error and no scene error',
+      !s3.result.error && s3.pageErrors.length === 0, JSON.stringify({ error: s3.result.error, page: s3.pageErrors }));
+{
+  const r = s3.result, up = r.up || {}, off = r.off || {};
+  const dUp = Math.abs((up.white ?? 0) - (up.black ?? 0)), dOff = Math.abs((off.white ?? 99) - (off.black ?? 0));
+  check(`with the stage up the veil holds 12 percent: a white and a black box 720 m off read L* ` +
+        `${(up.white ?? -1).toFixed(1)} and ${(up.black ?? -1).toFixed(1)}, on ${up.veiled} veiled materials`,
+        up.staged === true && up.white != null && up.black != null && dUp > 5 && up.veiled > 0, JSON.stringify(up));
+  check(`stage:false takes the veil off with the fog: the two read ${(off.white ?? -1).toFixed(1)} and ` +
+        `${(off.black ?? -1).toFixed(1)}, ${off.veiled} materials still veiled`,
+        off.staged === false && off.white != null && off.black != null && dOff < 1 && off.veiled === 0, JSON.stringify(off));
+  const d = r.onDesk || {}, dk = r.desk || {};
+  check(`a box on a desk turned 30 degrees gets its pool on the desk's top: y ${d.poolY}, on the ${d.poolOn}`,
+        d.pool === true && d.poolOn === 'surface' && Math.abs(d.poolY - 0.774) < 0.005, JSON.stringify(d));
+  check(`...cut to the desk's top face: ${(dk.width ?? -1).toFixed(2)} by ${(dk.depth ?? -1).toFixed(2)} m, every ` +
+        `corner within ${((dk.off_corner ?? 1) * 100).toFixed(1)} cm of the desk's`,
+        dk.width < 2.5 && dk.depth < 2.5 && dk.off_corner < 0.01, JSON.stringify(dk));
+  const t = r.onDoc || {};
+  check(`a document 2 cm thick, staged by name, gets its pool on the desk under it: y ${t.poolY}`,
+        t.pool === true && Math.abs(t.poolY - 0.774) < 0.005, JSON.stringify(t));
+  const q = r.onRoad || {}, rd = r.road || {};
+  check(`a truck on a road lying on the ground keeps the ground's pool: y ${q.poolY}, ` +
+        `${(rd.width ?? -1).toFixed(0)} m across`,
+        q.pool === true && q.poolOn === 'ground' && Math.abs(q.poolY - 0.054) < 0.005 && rd.width > 390,
+        JSON.stringify({ q, rd }));
+  const rid = r.riding || {}, lk = r.looking || {};
+  check(`a camera riding 1.7 m over its own truck never stages on the truck: it took ${JSON.stringify(rid.subject)}`,
+        rid.auto === true && rid.subject !== 'own truck', JSON.stringify(rid));
+  check(`a camera looking straight down at a car from 1.6 m keeps the car: it took ${JSON.stringify(lk.subject)}`,
+        lk.subject === 'car', JSON.stringify(lk));
 }
 
 await browser.close();
