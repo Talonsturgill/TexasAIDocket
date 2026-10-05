@@ -342,7 +342,16 @@ def ship(run_dir: Path, dry: bool, keep_png: bool = False,
 def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
     pngs = sorted(run_dir.rglob("slide-*.png"))
     if not pngs:
-        return [], [f"{run_dir.name}: no slide PNGs found"]
+        # A FINISHED RUN HAS NO PNGs LEFT, and a rerun is exactly how a missing or stale og.jpg
+        # gets repaired, so the unfurl is still rebuilt from slide 1's WebP (Codex, PR 404).
+        first = og_source(run_dir, [])
+        if first is None:
+            return [], [f"{run_dir.name}: no slide PNGs found"]
+        try:
+            og = write_og(first, first.parent / "og.jpg", dry)
+            return ([og] if og else []), []
+        except (OSError, ValueError) as exc:
+            return [], [f"og.jpg: {exc}"]
 
     results, problems = [], []
     for png in pngs:
@@ -541,6 +550,14 @@ def self_test() -> int:
         _, problems = ship(nolead, dry=True)
         ok("a run with no slide 1 at all says so rather than unfurling slide 2",
            any("no slide-01" in p for p in problems), str(problems))
+
+        shipped = Path(td) / "2026-10-02"
+        shipped.mkdir()
+        Image.fromarray(img).save(shipped / "slide-01.webp", "WEBP", lossless=True)
+        Image.fromarray(other).save(shipped / "slide-02.webp", "WEBP", lossless=True)
+        _, problems = ship(shipped, dry=False, lock_root=Path(td) / "locks")
+        ok("a finished run with no PNGs left rebuilds og.jpg from slide 1's WebP",
+           (shipped / "og.jpg").exists() and problems == [], str(problems))
 
         empty = Path(td) / "2026-08-13"
         empty.mkdir()

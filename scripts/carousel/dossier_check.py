@@ -570,20 +570,35 @@ def _items(d: dict) -> list[str]:
     return [str(x).strip() for x in items if str(x).strip()]
 
 
-def _names_object(items: list[str], words: set) -> bool:
-    """True when some item names one of `words` with no negator in the three words before it."""
-    for it in items:
-        toks = re.findall(r"[A-Za-z][A-Za-z\-']*", it)
-        for i, t in enumerate(toks):
-            if _stem(t.replace("'s", "").replace("'", "")) in words:
-                if not _ITEM_NEG.search(" ".join(toks[max(0, i - 3):i])):
-                    return True
+# A negation can follow the object as well as precede it: "the vial is absent from the frame"
+# (Codex, PR 404). Read the four words after it for a negator or an absence word.
+_ITEM_ABSENT = re.compile(r"\b(?:absent|missing|gone|omitted|removed|hidden|dropped|cut)\b|out of (?:the )?frame", re.I)
+
+
+def _item_names(it: str, words: set) -> bool:
+    """True when `it` names one of `words` with no negator in the three words before it and no
+    negator or absence word in the four after it."""
+    toks = re.findall(r"[A-Za-z][A-Za-z\-']*", it)
+    for i, t in enumerate(toks):
+        if _stem(t.replace("'s", "").replace("'", "")) in words:
+            before, after = " ".join(toks[max(0, i - 3):i]), " ".join(toks[i + 1:i + 5])
+            if not _ITEM_NEG.search(before) and not _ITEM_NEG.search(after) and not _ITEM_ABSENT.search(after):
+                return True
     return False
 
 
-def has_size_floor(items: list[str]) -> bool:
-    """True when some item, read clause by clause, bounds a visible size of the ART from below."""
+def _names_object(items: list[str], words: set) -> bool:
+    """True when some item names one of `words` affirmatively (see `_item_names`)."""
+    return any(_item_names(it, words) for it in items)
+
+
+def has_size_floor(items: list[str], words: set | None = None) -> bool:
+    """True when some item, read clause by clause, bounds a visible size of the ART from below.
+    With `words`, the item carrying the floor must also name the CRAFT PLAN's largest object, so
+    a floor on the bench can't vouch for a vial one pixel tall (Codex, PR 404)."""
     for it in items:
+        if words and not _item_names(it, words):
+            continue
         for c in _CLAUSE_SPLIT_RE.split(it):
             if _SIZE_FLOOR_RE.search(c) and _DIMENSION_RE.search(c) and not _TYPE_RE.search(c):
                 return True
@@ -619,9 +634,9 @@ def acceptance_floor_fails(text: str, dossiers: dict[int, dict]) -> list[str]:
                 f"slide {n}: the acceptance list never names the CRAFT PLAN's largest object "
                 f"(\"{obj[:60]}\"), so a frame that drops it passes. Add an item that the frame "
                 f"fails if that object is missing or unmodelled")
-        if not has_size_floor(items):
+        if not has_size_floor(items, words):
             fails.append(
-                f"slide {n}: no acceptance item sets a FLOOR on a visible size, so rendering the "
+                f"slide {n}: no acceptance item sets a FLOOR on a visible size of the largest object, so rendering the "
                 f"subject small, or not at all, passes. Add one in px or as a share of the frame, "
                 f"on the art and not the type, e.g. \"the bus stands at least 180 px tall at "
                 f"432px\" or \"the vial owns at least a third of the frame height\"")
@@ -922,6 +937,12 @@ def self_test() -> int:
        any("FLOOR" in x for x in floor(base + ["at least four palms stand on the boulevard"])))
     f = floor(["no vial is in the frame", "the bench is at least half the frame width"])
     ok("floor: an object named only to deny it is CAUGHT", any("largest object" in x for x in f), str(f))
+    f = floor(["the vial is absent from the frame", "the vial owns at least a third of the frame height"])
+    ok("floor: a negation AFTER the object is read too, 'the vial is absent'",
+       not _item_names("the vial is absent from the frame", {"vial"}) and _item_names("the vial owns at least a third of the frame height", {"vial"}), str(f))
+    f = floor(["the vial is visible", "the bench owns at least half the frame width"])
+    ok("floor: a floor on another object does not vouch for the largest one",
+       any("FLOOR" in x for x in f), str(f))
     # the date gate: the deck mid-panel on the pass's own day and every shipped run keep their verdict
     import contextlib, io, tempfile
     with tempfile.TemporaryDirectory() as td:
