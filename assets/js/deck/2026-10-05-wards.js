@@ -72,10 +72,17 @@
     /* the cool corridor white, six strengths and six glass roughnesses, so a face of 120 rooms
      * reads as rooms rather than as one sheet */
     m.base = [];
+    /* a lit room, not a tile: the ceiling's fluorescent band bright at the head of the pane, the
+     * room falling darker to the sill, and a dim blind line, so 108 panes read as rooms (panel 1) */
+    var rc = document.createElement("canvas"); rc.width = 16; rc.height = 64;
+    var rx = rc.getContext("2d"), rg = rx.createLinearGradient(0, 0, 0, 64);
+    rg.addColorStop(0, "#ffffff"); rg.addColorStop(0.16, "#f4f6f4"); rg.addColorStop(0.3, "#b9c0c0"); rg.addColorStop(1, "#6d7576");
+    rx.fillStyle = rg; rx.fillRect(0, 0, 16, 64); rx.fillStyle = "rgba(40,46,50,0.55)"; rx.fillRect(0, 7, 16, 2);
+    var rt = new THREE.CanvasTexture(rc); rt.colorSpace = THREE.SRGBColorSpace;
     for (var i = 0; i < 6; i++) {
       m.base.push(new THREE.MeshStandardMaterial({
         color: 0x10161b, roughness: 0.05 + i * 0.03, metalness: 0.0,
-        emissive: 0xdce6e2, emissiveIntensity: 0.26 + i * 0.012
+        emissive: 0xdce6e2, emissiveMap: rt, emissiveIntensity: 0.3 + i * 0.014
       }));
     }
     /* a dark bay, the room with its lights off, for the few a frame wants quiet */
@@ -217,6 +224,7 @@
       mat = N.mats(null, THREE).screen;
     }
     mon.traverse(function (m) {
+      if (m.isMesh) m.receiveShadow = false;
       if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0 && (m.material.emissiveMap || m.material.map)) { m.material = mat || m.material; m.receiveShadow = false; }
     });
     return mon;
