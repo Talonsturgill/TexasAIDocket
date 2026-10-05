@@ -219,7 +219,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `school_bus` | 2.9 x 3.2 x 11.2 | whiteRoof, stopArm, district | Type C school bus (conventional hood), 11.2 m, dual rear wheels, 11 windows a side, stop arm (stopArm:true deploys it). |
 | `sedan` | 2.05 x 1.44 x 4.88 | color, metallic | Mid-size four-door sedan, 4.88 m. |
 | `semi_cab_interior` | 3.1 x 2.35 x 3.95 | hood, mirrors, curtain, lit, trim, seat, paint, peep | Class 8 conventional sleeper cab interior as a set to stand a camera in: hood through the windshield, binnacle with gauges, centre stack with the air brake valves, three spoke wheel, air ride seats, door panels, mirrors, overhead console, sleeper curtain. |
-| `semi_truck` | 2.9 x 4.1 x 21.9 | color, trailer, trailerColor, lettering, sensors, podColor | Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits ... |
+| `semi_truck` | 2.9 x 4.1 x 21.9 | color, trailer, trailerColor, lettering, sensors, podColor, visor | Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits ... |
 | `suv` | 2.4 x 1.93 x 5.35 | color, metallic, rack | Full-size SUV, 5.35 m, roof rails. |
 | `utility_bucket_truck` | 3 x 3 x 9.8 | boom, swing, color, lettering | Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). |
 

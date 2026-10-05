@@ -5278,3 +5278,82 @@ whose acceptance list a blank frame satisfies.
 
 Frontier scan: not run. The weekly brief does not call for one and the session's budget went to
 the proofs.
+
+## 2026-10-05, the second weekly machine pass. Four changes, one deferral, three proposals
+
+Read from `out/2026-10-05/week_digest.md` (six shipped runs, September 29th to October 4th) and
+the queue, due early because `acceptance-lists-trivially-satisfiable` reached repeat 2 (nos. 41,
+42 and 43). `artwork_craft` was the lowest criterion on four of six decks, week mean 6.58, with
+`variety` lowest on three (mean 6.63). The account is in `ledger/carousel/upgrades.json` under
+`2026-10-05 weekly` and the pass is recorded in `config/carousel/machine_pass.json`. Proof images
+are in `out/2026-10-05/tmp/machine/` and die with the container (the proof-images proposal is
+still open above).
+
+**What could not be touched, and why.** The top model theme, "primitive or low-poly model where a
+kit model belongs" (6 runs, 26 rounds), is by sentence still mostly the kit person (no. 42 rounds
+1 to 4: helmet hair, identical strides, faces front on), after the 2026-10-03 fix. Today's deck
+(no. 43, mid-panel) calls `person`, `sedan`, `suv`, `hospital`, `streetlight`, `desk`, `monitor`,
+`office_chair`, `palm` and `public_seating`, so none of those models could change under it. The
+pass took the next model by count: the kit `semi_truck`, named by all three judges in all five
+rounds of no. 41.
+
+### 1. THE KIT TRACTOR AT THE JUDGES' NAMED FIX (done, `vehicles.js`)
+
+Two-piece windscreen in a coated glass with a centre post, wipers and an exterior visor; a chrome
+grille surround over a recessed core with vertical bars; twin round lamps in chrome bezels; a
+rolled flare round the steer arch, a cowl seam and side louvres. Before and after through
+`examples/kit/build.py`'s own `page()` and the carousel engine, read at full size, `sizes.py` 110
+of 110. ILLUSTRATION_SYSTEM.md "What still fails" names what is still the kit's.
+
+### 2. THE SCHOOL BUS LIP ACROSS THE FRONT WHEEL (done, `vehicles.js`)
+
+Queue `school-bus-hood-lip-across-front-wheel`. The lip was the BODY's profile, not the hood's: it
+cut the front arch past its own front and ran back along y 0.72, a lobe the extrude filled at the
+body's width. Proven gone on a front three quarter render, side view intact.
+
+### 3. THE ACCEPTANCE FLOOR (done, `dossier_check.py`, binds storyboards dated from 2026-10-06)
+
+Queue `acceptance-lists-trivially-satisfiable`, repeat 2. Each frame's list must name its CRAFT
+PLAN largest object and set one floor on a visible size of the art. Replayed on the week's
+storyboards: 44 of the 45 frames of nos. 38, 40, 41, 42 and 43 had no size floor (one frame of
+no. 41 had one), and no. 43's list missed its largest object on five frames (2, 3, 4, 6, 9). Eleven
+new self-test cases, and a mutant that always finds a floor goes red on six of them.
+
+### 4. og.jpg FROM SLIDE 1 BY NAME (done, `ship_images.py`)
+
+Queue `ship-images-og-from-first-png`. Self-test replays the rerun and goes red on the old rule.
+
+### 5. DEFERRED AGAIN, NOT REFUSED: `dry_van`, `delineator`, `raised_pavement_marker` (in lane)
+
+The 2026-10-03 item 7 lift. The chassis has shipped, so the reason it was deferred is gone. The
+artwork slot went to the tractor because it was the model named in every round. Lift these first
+next time, at the judges' named fixes (seams, grime, a lit floor, a reflector that reads at 432
+px), and delete nothing from the shipped chassis (its `installKit` returns early once the kit
+defines `dry_van`).
+
+### 6. PROPOSAL FOR `knowledge/shared/GATE_LESSONS.md` (`human`)
+
+A new entry: an instinct (`acceptance-items-need-a-floor`) confirmed on ten dates since August 16th
+and checked by nothing, while three decks running shipped lists whose every item had a ceiling or
+no bound. What to check instead: that rendering NOTHING fails the list, which `dossier_check` now
+asks of two items per frame from October 6th.
+
+### 7. PROPOSAL FOR THE DIRECTORS' BRIEF (`.claude/agents/` or Phase 9 of the routine, maintainer)
+
+The storyboard writer should be told the floor before it writes, not by the gate after. One line in
+the agent definition that writes dossiers, or in Phase 9's spawn text: "every acceptance list names
+the frame's CRAFT PLAN largest object and bounds one visible size of the art from below, in px or as
+a share of the frame (SLIDE_DOSSIER_SPEC.md, The list has a FLOOR)".
+
+### 8. ENGINE PROPOSALS WITH THE WEEK'S COUNTS (`assets/js/txthree.js` is `human`)
+
+- **Contact, dirt and grime where things meet the ground**, 6 runs and 19 rounds, and named on
+  no. 41 (all five rounds) and no. 42 (rounds 1 to 3) AFTER the 2026-10-03 maintainer fix. The fix
+  did not hold at the panel's eye; read no. 42's frames 4 and 6 before changing anything.
+- **Render artifact (banding, aliasing, facets, stripes)**, 6 runs and 20 rounds. No. 43's moire on
+  its card skins was the stage's near plane (queue `near-plane-zfight-on-card-skins`). An engine
+  default near plane taken from the framed subject's distance, or a warning when near/far passes
+  a depth precision a 24 bit buffer holds at the subject, would catch it in every chassis.
+- **`TXT.add` resets `receiveShadow`** (queue `txadd-resets-receive-shadow`) and **`TXT.roundedBox`
+  face UVs** (queue `roundedbox-canvas-map-scale`), one run each, stated with their evidence in the
+  queue.

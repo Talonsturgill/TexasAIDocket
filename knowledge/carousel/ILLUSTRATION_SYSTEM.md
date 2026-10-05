@@ -1050,6 +1050,22 @@ which is the finding the judges made in words and the number that says the gate 
   the jaw, and the face is one value under a warm key (2026-09-27 backlog item 2). Until they are
   fixed, a person at the face's own scale is a risk a frame takes on purpose: crop to the
   shoulder, turn them three quarters away, or keep them under a fifth of the frame. (2026-10-03)
+  **The fix did not hold on the next deck.** No. 42 (2026-10-04), after it, was named for
+  "helmet-haired mannequins", "identical strides" and "mirrored strides" and "lead faces front on"
+  in all four rounds, frames 4 and 9. Short hair still reads as a helmet and a row of walkers
+  shares one gait. The weekly pass of 2026-10-05 could not touch `people.js`, because the deck
+  in its panel that morning used the person on three frames. It is the next pass's first model.
+- **A tractor built for a medium shot, cropped to a close one.** No. 41's frame 3 put the kit
+  `semi_truck` full bleed and all three judges named it in all five rounds: "a rounded-box hood",
+  "a flat grille plate", "half-disc emissive headlamps", "a flat unlit black windscreen with no
+  reflection". **Fixed in `vehicles.js` (weekly pass, 2026-10-05):** a two-piece windscreen in a
+  coated glass that carries the sky, with a centre post, wipers and an exterior visor (`visor:
+  false` drops it); a chrome grille surround 9 cm proud of a recessed core with vertical bars and a
+  crossbar; twin round lamps in chrome bezels over amber turn lamps; a rolled flare round the steer
+  arch, a cowl seam and side louvres on the hood. **Still the kit's:** the hood is one smooth
+  extrusion with no road film (that is `TXT.weather`'s), the side windows are the dark side glass,
+  and the sensor pods are the same teardrops. A close crop of the cab is now a fair frame, and the
+  bumper and tanks are the next detail a judge will reach.
 - **An accent object lit by its own emissive.** No. 41's ember beams at emissive 1.05 measured
   (220, 131, 93) in sun against the accent #B4664F (180, 102, 79) and read pink to three critics.
   At 0.72 they held. No. 39's sign went the other way under blue hour and needed a tint to come

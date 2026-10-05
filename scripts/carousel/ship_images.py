@@ -148,6 +148,15 @@ def convert_one(png: Path, dry: bool) -> dict:
             "wrote": True, "path": webp, "quality": used}
 
 
+def og_source(run_dir: Path, pngs: list[Path]) -> Path | None:
+    """Slide 1 of the deck by its own name, never whichever slide sorts first."""
+    for p in pngs:
+        if p.name == "slide-01.png":
+            return p
+    webps = sorted(run_dir.rglob("slide-01.webp"))
+    return webps[0] if webps else None
+
+
 def write_og(png: Path, dest: Path, dry: bool) -> dict | None:
     """Slide 1 as JPEG, for the unfurl. Rendered by somebody else's code, so it stays boring.
 
@@ -342,13 +351,22 @@ def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict],
         except (OSError, ValueError) as exc:
             problems.append(f"{png.name}: {exc}")
 
-    first = pngs[0]
-    try:
-        og = write_og(first, first.parent / "og.jpg", dry)
-        if og:
-            results.append(og)
-    except (OSError, ValueError) as exc:
-        problems.append(f"og.jpg: {exc}")
+    # THE UNFURL IS SLIDE 1 BY NAME (weekly machine pass, 2026-10-05). It used to be `pngs[0]`,
+    # the first PNG in sort order, which is slide 1 only on the first pass. On no. 41 (2026-10-03)
+    # ship_images ran again after slide 1 was already WebP and slide 2 had stayed a PNG under the
+    # floor, so og.jpg was built from slide 2 and the link card showed the wrong frame until it
+    # was put back by hand. Slide 1's PNG, else its WebP, else the run says it has no unfurl.
+    first = og_source(run_dir, pngs)
+    if first is None:
+        problems.append("og.jpg: no slide-01.png or slide-01.webp in the run, so no unfurl image "
+                        "was written rather than one made from another slide")
+    else:
+        try:
+            og = write_og(first, first.parent / "og.jpg", dry)
+            if og:
+                results.append(og)
+        except (OSError, ValueError) as exc:
+            problems.append(f"og.jpg: {exc}")
 
     # A SLIDE THAT COULD NOT MEET THE FLOOR IS NOT A PROBLEM, IT IS A PNG.
     #
@@ -500,6 +518,29 @@ def self_test() -> int:
         ship(run, dry=False, lock_root=Path(td) / "locks")
         ok("...and are removed once every slide has a verified webp beside it",
            not any(run.glob("slide-*.png")))
+
+        # THE UNFURL IS SLIDE 1 ON A RERUN (2026-10-05), no. 41's defect replayed: slide 1 is
+        # already WebP and slide 2 stayed a PNG, so slide 2 is the first PNG in sort order. The
+        # two slides differ, so the og card can be told apart by its pixels.
+        rerun = Path(td) / "2026-10-03"
+        rerun.mkdir()
+        other = img.copy()
+        other[120:360, 80:1000] = (30, 140, 60)
+        Image.fromarray(img).save(rerun / "slide-01.webp", "WEBP", lossless=True)
+        Image.fromarray(other).save(rerun / "slide-02.png")
+        _, problems = ship(rerun, dry=False, keep_png=True, lock_root=Path(td) / "locks")
+        with Image.open(rerun / "og.jpg") as og_im, Image.open(rerun / "slide-01.webp") as s1, \
+                Image.open(rerun / "slide-02.png") as s2:
+            d1, d2 = psnr(s1.convert("RGB"), og_im.convert("RGB")), psnr(s2.convert("RGB"), og_im.convert("RGB"))
+        ok("on a rerun the og card is slide 1's WebP, not the first PNG left (slide 2)",
+           d1 >= QUALITY_FLOOR_DB and d2 < QUALITY_FLOOR_DB, f"{d1:.1f} dB to slide 1, {d2:.1f} to slide 2")
+        ok("...and the rerun reports no problem", problems == [], str(problems))
+        nolead = Path(td) / "2026-10-04"
+        nolead.mkdir()
+        Image.fromarray(other).save(nolead / "slide-02.png")
+        _, problems = ship(nolead, dry=True)
+        ok("a run with no slide 1 at all says so rather than unfurling slide 2",
+           any("no slide-01" in p for p in problems), str(problems))
 
         empty = Path(td) / "2026-08-13"
         empty.mkdir()

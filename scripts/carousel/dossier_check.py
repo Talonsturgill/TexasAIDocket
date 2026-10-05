@@ -503,6 +503,131 @@ def craft_plan_fails(text: str, slide_nos: list) -> list[str]:
     return fails
 
 
+# THE ACCEPTANCE FLOOR (weekly machine pass, 2026-10-05). The pixel critic grades a frame against
+# its dossier's acceptance list, and three decks running the critics said the lists would pass a
+# frame missing the thing it was planned around: no. 41 (2026-10-03, rounds 1 and 2, every frame),
+# no. 42 (2026-10-04, frames 2, 6, 7 and 9, "a 28 px bus passes") and no. 43 (2026-10-05, slides
+# 4, 5, 7, 8 and 9, "no chair, no window structure, no lamp pool"). The instinct
+# `acceptance-items-need-a-floor`, learned 2026-08-16, had been confirmed on ten dates by then and
+# had never been checked by anything. Every item had a CEILING ("under a fifth of the frame",
+# "within 24px", "under eight percent") or no bound at all, so rendering less always passed.
+#
+# Two things are now asked of each frame's list, and both are floors:
+#   1. it names the CRAFT PLAN's largest object for that frame, affirmatively. The plan already
+#      promises how that object is modelled, and a list that never mentions it lets the frame
+#      drop it (no. 43's slide 8 planned the tower and listed only the skyline and the horizon).
+#   2. one item sets a lower bound on a visible SIZE, in px or as a share of the frame, on the
+#      art rather than the type: "the bus stands at least 180 px tall at 432px", "the vial owns at
+#      least a third of the frame height". Rendering it small or not at all then fails it.
+# A word list matches the object, deliberately crude, the way MODELLING_RE is: it asks that the
+# object be named at all. Dated, so it binds the runs after the pass and never the deck that was
+# mid-panel when it shipped, nor a shipped run re-checked under its own date.
+ACCEPTANCE_FLOOR_FROM = "2026-10-06"
+
+_OBJ_STOP = frozenset(
+    "the a an and of with in on at to its it's their his her one two three four five six seven "
+    "eight nine ten eleven twelve each every all some its frame scene world image picture thing "
+    "object near far left right front back side behind beyond over under across along end "
+    "small large big tall long wide square full half same other again more most few".split())
+_FLOOR_WORD = (r"(?:at least|no less than|not less than|no smaller than|no shorter than|"
+               r"a minimum of|minimum of|more than|over|above)")
+_FRACTION = (r"(?:\d+(?:\.\d+)?\s*(?:percent|%)|(?:a |an |one )?(?:third|quarter|half|fifth|sixth|"
+             r"tenth|two thirds|three quarters|two fifths))")
+_SIZE_FLOOR_RE = re.compile(
+    r"\b" + _FLOOR_WORD + r"\s+(?:\d+(?:\.\d+)?\s*(?:px|pixels?)\b|" + _FRACTION + r")"
+    r"|\b\d+(?:\.\d+)?\s*(?:px|pixels?|percent|%)[^,;.]{0,40}?\bor (?:more|taller|wider|larger|"
+    r"higher|bigger)\b", re.I)
+# A size floor has to say WHAT dimension it bounds, or "at least 24px from the edge" (a margin)
+# would count as a size.
+_DIMENSION_RE = re.compile(r"\b(tall|wide|high|height|width|across|diameter|long|deep|size|"
+                           r"area|of the frame|frame'?s)\b", re.I)
+# A floor on the TYPE is not a floor on the art. Frames this defect hit had type that read fine.
+_TYPE_RE = re.compile(r"\b(hook|dek|label|labels|type|text|caption|footer|counter|headline|"
+                      r"letter\w*|glyph\w*|word\w*|numeral\w*|font)\b", re.I)
+_ITEM_NEG = re.compile(r"\b(?:no|not|nothing|never|without|none|neither|nor)\b|n't\b", re.I)
+
+
+def _stem(w: str) -> str:
+    w = w.lower()
+    if w.endswith("ies") and len(w) > 4:
+        return w[:-3] + "y"
+    if w.endswith("s") and not w.endswith("ss") and len(w) > 3:
+        return w[:-1]
+    return w
+
+
+def _object_words(obj: str) -> set:
+    """The content words of the CRAFT PLAN's largest object, the part before its treatment."""
+    m = _TREATMENT_SEP_RE.search(obj)
+    head = obj[:m.start()] if m and re.search(r"[A-Za-z]", obj[:m.start()]) else obj
+    return {_stem(w) for w in re.findall(r"[a-z][a-z\-]+", head.lower().replace("'s", ""))
+            if len(w) > 2 and w not in _OBJ_STOP}
+
+
+def _items(d: dict) -> list[str]:
+    acc = dig(d, "acceptance")
+    items = acc if isinstance(acc, list) else ([acc] if isinstance(acc, str) else [])
+    return [str(x).strip() for x in items if str(x).strip()]
+
+
+def _names_object(items: list[str], words: set) -> bool:
+    """True when some item names one of `words` with no negator in the three words before it."""
+    for it in items:
+        toks = re.findall(r"[A-Za-z][A-Za-z\-']*", it)
+        for i, t in enumerate(toks):
+            if _stem(t.replace("'s", "").replace("'", "")) in words:
+                if not _ITEM_NEG.search(" ".join(toks[max(0, i - 3):i])):
+                    return True
+    return False
+
+
+def has_size_floor(items: list[str]) -> bool:
+    """True when some item, read clause by clause, bounds a visible size of the ART from below."""
+    for it in items:
+        for c in _CLAUSE_SPLIT_RE.split(it):
+            if _SIZE_FLOOR_RE.search(c) and _DIMENSION_RE.search(c) and not _TYPE_RE.search(c):
+                return True
+    return False
+
+
+def craft_rows(text: str) -> dict:
+    """slide number -> the CRAFT PLAN's largest object cell, or {} when there is no plan."""
+    m = CRAFT_PLAN_HEAD_RE.search(text)
+    if not m:
+        return {}
+    nxt = re.search(r"^##\s", text[m.end():], re.M)
+    block = text[m.end(): m.end() + nxt.start()] if nxt else text[m.end():]
+    rows = {}
+    for line in block.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 3 and re.fullmatch(r"\d{1,2}", cells[0]):
+            rows[int(cells[0])] = cells[2]
+    return rows
+
+
+def acceptance_floor_fails(text: str, dossiers: dict[int, dict]) -> list[str]:
+    """Every frame whose acceptance list a frame missing its subject would pass."""
+    rows, fails = craft_rows(text), []
+    for n in sorted(dossiers):
+        items = _items(dossiers[n])
+        if not items:
+            continue                       # check_slide already reports a missing list
+        obj = rows.get(n, "")
+        words = _object_words(obj) if obj else set()
+        if words and not _names_object(items, words):
+            fails.append(
+                f"slide {n}: the acceptance list never names the CRAFT PLAN's largest object "
+                f"(\"{obj[:60]}\"), so a frame that drops it passes. Add an item that the frame "
+                f"fails if that object is missing or unmodelled")
+        if not has_size_floor(items):
+            fails.append(
+                f"slide {n}: no acceptance item sets a FLOOR on a visible size, so rendering the "
+                f"subject small, or not at all, passes. Add one in px or as a share of the frame, "
+                f"on the art and not the type, e.g. \"the bus stands at least 180 px tall at "
+                f"432px\" or \"the vial owns at least a third of the frame height\"")
+    return fails
+
+
 def run(date: str, out_root: Path) -> int:
     d = out_root / date
     board = d / "storyboard.md"
@@ -530,6 +655,8 @@ def run(date: str, out_root: Path) -> int:
     fails = check(dossiers, expected, breathers)
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", date) and date >= CRAFT_PLAN_FROM and dossiers:
         fails.extend(craft_plan_fails(board.read_text(encoding="utf-8"), sorted(dossiers)))
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", date) and date >= ACCEPTANCE_FLOOR_FROM and dossiers:
+        fails.extend(acceptance_floor_fails(board.read_text(encoding="utf-8"), dossiers))
     if not fails:
         extra = "" if breathers is not None else ", breather cross-check skipped (no render yet)"
         print(f"dossiers: {len(dossiers)} slide(s) planned, every band answered{extra}")
@@ -757,6 +884,58 @@ def self_test() -> int:
     ok("craft plan: a tonal arc that declares one tone fails", any("declares no arc" in x for x in f), str(f))
     f = craft_plan_fails(plan(extra="Showstopper frame: 06\nTonal arc: flat tone through 03, then lifts to a peak on 06\n"), nine)
     ok("craft plan: a flat stretch inside a real arc passes", f == [], str(f))
+
+    # THE ACCEPTANCE FLOOR (weekly pass 2026-10-05). The replayed defect first: no. 43's slide 3,
+    # its CRAFT PLAN row and acceptance list verbatim, which the pixel critics said would pass a
+    # frame with no chair and no window structure. It names neither the desks nor any size.
+    n43 = ("## CRAFT PLAN\n| slide | shot | largest object, and how it is modelled |\n|---|---|---|\n"
+           "| 03 | MEDIUM, seated eye 1.2 m across a nurses' station | three desks end to end under six "
+           "monitors, veneer tops worn at the edge, six screens glowing dusk gold, mesh chairs |\n")
+    n43_acc = ["exactly six monitors stand on the station and all six screens glow dusk gold",
+               "each leader ends within 24px of the screen it names",
+               "the room stands in TXT.interior and the snapshot reports ROOM IN FRAME",
+               "the frame's median L* at 432px is between 6 and 22"]
+    f = acceptance_floor_fails(n43, {3: good(3, acceptance=n43_acc)})
+    ok("floor: no. 43 slide 3's list is CAUGHT for never naming its largest object",
+       any("largest object" in x for x in f), str(f))
+    ok("floor: no. 43 slide 3's list is CAUGHT for setting no size floor",
+       any("FLOOR" in x for x in f), str(f))
+    fixed = n43_acc + ["the three desks run end to end and their tops span at least half the "
+                       "frame width at 432px"]
+    f = acceptance_floor_fails(n43, {3: good(3, acceptance=fixed)})
+    ok("floor: the same list with the desks named and a floor on their width passes", f == [], str(f))
+    row = "## CRAFT PLAN\n| slide | shot | largest object |\n|---|---|---|\n| 01 | CLOSE, x | the vial, glass lit from behind |\n"
+    def floor(items):
+        return acceptance_floor_fails(row, {1: good(1, acceptance=items)})
+    base = ["the vial stands on the bench with a contact shadow", "the frame's median L* at 432px is between 20 and 40"]
+    ok("floor: a share of the frame from below passes",
+       floor(base + ["the vial owns at least a third of the frame height"]) == [])
+    ok("floor: px from below with 'or taller' passes",
+       floor(base + ["the vial reads 180 px tall or taller at 432px"]) == [])
+    ok("floor: a ceiling alone is CAUGHT, 'under a fifth of the frame height'",
+       any("FLOOR" in x for x in floor(base + ["the worker stands under a fifth of the frame height"])))
+    ok("floor: a margin is not a size, 'at least 24px from the edge' is CAUGHT",
+       any("FLOOR" in x for x in floor(base + ["the vial sits at least 24px from the edge"])))
+    ok("floor: a floor on the TYPE is not a floor on the art",
+       any("FLOOR" in x for x in floor(base + ["the hook is at least 90 px tall"])))
+    ok("floor: a count with no size is CAUGHT, 'at least four palms'",
+       any("FLOOR" in x for x in floor(base + ["at least four palms stand on the boulevard"])))
+    f = floor(["no vial is in the frame", "the bench is at least half the frame width"])
+    ok("floor: an object named only to deny it is CAUGHT", any("largest object" in x for x in f), str(f))
+    # the date gate: the deck mid-panel on the pass's own day and every shipped run keep their verdict
+    import contextlib, io, tempfile
+    with tempfile.TemporaryDirectory() as td:
+        board = ("```yaml\n" + yaml.safe_dump(good(3, acceptance=n43_acc)) + "```\n\n" + n43)
+        verdicts = {}
+        for day in ("2026-10-05", ACCEPTANCE_FLOOR_FROM):
+            (Path(td) / day).mkdir()
+            (Path(td) / day / "storyboard.md").write_text(board, encoding="utf-8")
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                run(day, Path(td))
+            verdicts[day] = "FLOOR" in buf.getvalue()
+        ok("floor: binds from %s and not on the day the pass shipped" % ACCEPTANCE_FLOOR_FROM,
+           verdicts[ACCEPTANCE_FLOOR_FROM] and not verdicts["2026-10-05"], str(verdicts))
 
     if failures:
         print(f"\ndossier_check self-test: {failures} FAILED", file=sys.stderr)
