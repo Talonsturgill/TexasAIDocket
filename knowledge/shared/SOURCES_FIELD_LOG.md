@@ -1896,3 +1896,21 @@ that as refusing, so tx-2026-0112's project page went unread.
 **dir.texas.gov's bulk purchase agreement PDFs are inside its robots.txt disallow** for this
 project, as tx-2026-0113's boundary already records. A scout read BP2026-0015 through WebFetch
 and the crawl boundary refused the same url, so the agreement was not staged for the record.
+
+## 2026-10-05
+
+**interchange.puc.texas.gov serves a docket's filings as PDFs at
+`/Documents/<control>_<item>_<id>.PDF`.** Docket 59315's final order (item 5819) and a rehearing
+motion (item 5840) were read that way for tx-2026-0112, where the Oncor project page stays unread.
+
+**www.oncor.com's robots.txt again did not answer this project's client**, for the second run
+running, so the crawl boundary refused the project page and the record leaned on the PUCT filings.
+
+**tech.utexas.edu answered 403 to this project's client** on its story about the UT Austin pilot,
+so that item was held rather than admitted on a secondary.
+
+**www.faa.gov answered 403 to this project's client** on the page a scout cited, and the finding
+was dropped.
+
+**yahoo.com sits inside the crawl boundary's refusals.** A syndicated copy of a UT REAL Health AI
+story was found there by a scout and dropped. The laboratory's own page carried every figure.

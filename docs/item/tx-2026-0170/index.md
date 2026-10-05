@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · Whether the county has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda sits on a host that bars every automated reader and the county has posted no disposition.
 - 2026-10-03 · Whether the county has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda bars every automated reader and no disposition has been posted.
 - 2026-10-04 · Whether the county has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda bars every automated reader and no disposition has been published.
+- 2026-10-05 · Whether Hays County has acted on its policy for AI in surveillance is still unconfirmed. The posted agenda bars automated readers and no disposition has been published.
 
 ## Evidence
 

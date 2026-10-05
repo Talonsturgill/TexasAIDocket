@@ -1,0 +1,213 @@
+{
+ "date": "2026-10-05",
+ "carousel_no": 43,
+ "document_title": "12 of 120. The UT System's health AI pilots",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "At UTHealth Houston, a no-show project's entry states what it saved.\n\nThe UT System's page credits it with saving more than 6,500 appointments and $900,000 in revenue. The page cites no audit behind it. The page projects at least 15,000 a year at UT Health San Antonio, where it is set to expand.\n\nThe project is one of 12 pilots UT REAL Health AI funded out of 120 systemwide submissions. A UT San Antonio pilot puts an AI assistant called Leah into emergency triage at seven UT hospital sites. UTMB Galveston is deploying referral triage. A Dell Medical School pilot will read clinical notes across more than 7 million patient records for signs of suicide risk.\n\nOf the 12 entries, only the no-show entry states what it already saved.\n\nUT REAL Health AI holds its symposium in Austin on October 7th and 8th. Will a second pilot bring a count of its own?\n\n#UTHealthHouston #UTREALHealthAI #UTSystem",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "UT System health AI pilots",
+   "headline": "12 of 120.",
+   "claims": [
+    "c1",
+    "c6",
+    "c7",
+    "c8"
+   ],
+   "cite": "c1 c6 c7 c8",
+   "body": "The UT System's health care AI laboratory funded 12 pilot projects out of 120 submissions. The awards total more than $3.6 million. Each gold window stands for one funded pilot.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "12 of 120.",
+    "The UT System's health care AI laboratory funded 12 pilot projects out of 120 submissions. The awards total more than $3.6 million. Each gold window stands for one funded pilot.",
+    "UT System health AI pilots",
+    "01 / 09",
+    "c1 c6 c7 c8"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "UT San Antonio emergency care",
+   "headline": "One AI assistant, seven UT hospital sites",
+   "claims": [
+    "c10",
+    "c47"
+   ],
+   "cite": "c10 c47",
+   "body": "At UT San Antonio, a pilot deploys an assistant called Leah for emergency triage and transfer decisions. The page says it was trained on more than 400,000 trauma cases.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "One AI assistant, seven UT hospital sites",
+    "At UT San Antonio, a pilot deploys an assistant called Leah for emergency triage and transfer decisions. The page says it was trained on more than 400,000 trauma cases.",
+    "UT San Antonio emergency care",
+    "02 / 09",
+    "c10 c47"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Dell Medical School patient messages",
+   "headline": "Six tools inside Epic",
+   "claims": [
+    "c15",
+    "c51"
+   ],
+   "cite": "c15 c51",
+   "body": "At UT Dell Medical School a pilot implements six AI tools built into Epic. They automate lab result messaging and generate imaging summaries for patients.",
+   "labels": [
+    "AUTOMATE LAB RESULT MESSAGING",
+    "PATIENT-FACING IMAGING SUMMARIES"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Six tools inside Epic",
+    "At UT Dell Medical School a pilot implements six AI tools built into Epic. They automate lab result messaging and generate imaging summaries for patients.",
+    "AUTOMATE LAB RESULT MESSAGING",
+    "PATIENT-FACING IMAGING SUMMARIES",
+    "Dell Medical School patient messages",
+    "03 / 09",
+    "c15 c51"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Dell Medical School clinical notes",
+   "headline": "It will read the notes.",
+   "claims": [
+    "c17"
+   ],
+   "cite": "c17",
+   "body": "A Dell Medical School pilot will use large language models across more than 7 million patient records. It will look for signs of suicide risk.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It will read the notes.",
+    "A Dell Medical School pilot will use large language models across more than 7 million patient records. It will look for signs of suicide risk.",
+    "Dell Medical School clinical notes",
+    "04 / 09",
+    "c17"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The no-show project",
+   "headline": "One entry states what it saved.",
+   "claims": [
+    "c16",
+    "c22",
+    "c23"
+   ],
+   "cite": "c16 c22 c23",
+   "body": "The page credits the no-show project with more than 6,500 appointments saved at UTHealth Houston and cites no audit behind it. It projects at least 15,000 a year at UT Health San Antonio.",
+   "labels": [
+    "HOUSTON, AS THE PAGE STATES IT",
+    "SAN ANTONIO, PROJECTED",
+    "ONE SEAT = 500 APPOINTMENTS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "One entry states what it saved.",
+    "The page credits the no-show project with more than 6,500 appointments saved at UTHealth Houston and cites no audit behind it. It projects at least 15,000 a year at UT Health San Antonio.",
+    "HOUSTON, AS THE PAGE STATES IT",
+    "SAN ANTONIO, PROJECTED",
+    "ONE SEAT = 500 APPOINTMENTS",
+    "The no-show project",
+    "05 / 09",
+    "c16 c22 c23"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The page's 12 entries",
+   "headline": "Eleven entries, no saved count.",
+   "claims": [
+    "c6",
+    "c22"
+   ],
+   "cite": "c6 c22",
+   "body": "Only the no-show entry states what it already saved, and the page cites no audit behind it. The other eleven describe the work, not what it saved.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Eleven entries, no saved count.",
+    "Only the no-show entry states what it already saved, and the page cites no audit behind it. The other eleven describe the work, not what it saved.",
+    "The page's 12 entries",
+    "06 / 09",
+    "c6 c22"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "UTMB Galveston referral triage",
+   "headline": "UTMB is deploying referral triage.",
+   "claims": [
+    "c13",
+    "c49"
+   ],
+   "cite": "c13 c49",
+   "body": "In Galveston the tool reads the health record, assigns an urgency score and routes patients to a level of care.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "UTMB is deploying referral triage.",
+    "In Galveston the tool reads the health record, assigns an urgency score and routes patients to a level of care.",
+    "UTMB Galveston referral triage",
+    "07 / 09",
+    "c13 c49"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Trial prescreening and exam grading",
+   "headline": "Two more expand earlier platforms.",
+   "claims": [
+    "c19",
+    "c20"
+   ],
+   "cite": "c19 c20",
+   "body": "A trial prescreening platform was validated on nearly 40,000 patients at UT Southwestern. An AI grading platform for medical school simulation exams has run for more than three years.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Two more expand earlier platforms.",
+    "A trial prescreening platform was validated on nearly 40,000 patients at UT Southwestern. An AI grading platform for medical school simulation exams has run for more than three years.",
+    "Trial prescreening and exam grading",
+    "08 / 09",
+    "c19 c20"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "UT REAL Health AI symposium",
+   "headline": "Austin, October 7th and 8th",
+   "claims": [
+    "c6",
+    "c24",
+    "c54"
+   ],
+   "cite": "c6 c24 c54",
+   "body": "UT REAL Health AI holds its symposium there. Its page carries a link to register.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Austin, October 7th and 8th",
+    "UT REAL Health AI holds its symposium there. Its page carries a link to register.",
+    "UT REAL Health AI symposium",
+    "09 / 09",
+    "c6 c24 c54"
+   ]
+  }
+ }
+}

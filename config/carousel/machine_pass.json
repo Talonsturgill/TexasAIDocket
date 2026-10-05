@@ -1,21 +1,24 @@
 {
-  "last_pass": "2026-10-03",
+  "last_pass": "2026-10-05",
   "themes": [
-    {"theme": "primitive or low-poly model where a kit model belongs", "runs": 5, "rounds": 22,
+    {"theme": "primitive or low-poly model where a kit model belongs", "runs": 6, "rounds": 26,
      "action": "fixed",
-     "what": "Read by sentence it was mostly the kit person (mannequin, game asset, low poly on 4 runs, 18 rounds). Fixed three causes in assets/js/kit/people.js: the cap (a helmet hemisphere with its bill an upright plank on the right side), long hair that swung out behind a bowed head, and brows floating pale off the skin. Proven before and after through the carousel engine, sizes.py 110 of 110."},
-    {"theme": "value strobe or undeclared tonal cut", "runs": 2, "rounds": 4,
+     "what": "Read by sentence, the kit person (no. 42 rounds 1 to 4, after the 2026-10-03 fix) and the kit semi_truck (no. 41, all three judges, rounds 1 to 5). The person could not change under no. 43, which was mid-panel and calls it on three frames, so it is deferred to the next pass with a note in ILLUSTRATION_SYSTEM.md. The tractor was fixed in assets/js/kit/vehicles.js at the judges' named fix: two-piece windscreen in a coated glass with wipers and a visor, a grille surround over a recessed core with vertical bars, twin lamps in chrome bezels, an arch flare, a cowl seam and louvres. Proven before and after through examples/kit/build.py's page() and the carousel engine, sizes.py 110 of 110."},
+    {"theme": "render artifact (banding, aliasing, facets, stripes)", "runs": 6, "rounds": 20,
+     "action": "fixed in part",
+     "what": "The kit school_bus's yellow lip across the front wheel (queue school-bus-hood-lip-across-front-wheel, no. 42) was a self-overlapping lobe in the body's profile and is gone. The rest of the theme is the engine's or a chassis's near plane (queue near-plane-zfight-on-card-skins), written up in UPGRADE_BACKLOG 2026-10-05 item 8."},
+    {"theme": "acceptance lists a frame missing its subject would pass (queue acceptance-lists-trivially-satisfiable)", "runs": 3, "rounds": null,
      "action": "fixed",
-     "what": "The digest ranked it second at 5 runs and 22 rounds by counting 'no strobe' and 'the declared value cut' as defects. scripts/carousel/week_digest.py now counts a sentence with no negator before the match, with self-test cases each way. The counts in this file are the recount."},
-    {"theme": "no contact, dirt or grime where things meet the ground", "runs": 5, "rounds": 16,
+     "what": "Queue repeat 2 (nos. 41, 42, 43), which made this pass due. scripts/carousel/dossier_check.py fails a storyboard dated from 2026-10-06 whose frame's acceptance list never names its CRAFT PLAN largest object or sets no floor on a visible size of the art. Replayed: 44 of 45 frames across nos. 38, 40, 41, 42 and 43 had no floor. The digest's word themes do not count this one, so its rounds are not counted."},
+    {"theme": "og.jpg built from the first PNG left (queue ship-images-og-from-first-png)", "runs": 1, "rounds": null,
+     "action": "fixed",
+     "what": "scripts/carousel/ship_images.py builds the unfurl from slide 1 by name. A bug that bit once, fixed because its cost is a wrong link card on the post."},
+    {"theme": "no contact, dirt or grime where things meet the ground", "runs": 6, "rounds": 19,
      "action": "escalated",
-     "what": "The engine's TXT.ground and scatter (human). UPGRADE_BACKLOG 2026-10-03 item 4, with 2026-10-02 item 6."},
-    {"theme": "largest object unmodelled (slab, bare wall, clean clay)", "runs": 5, "rounds": 21,
-     "action": "deferred",
-     "what": "Read by sentence it is a different object on each deck (a pole, a door, a wall, a coping), so no one model fixes it. The pickup and the skyline are candidates for a later pass."},
-    {"theme": "accent surface off its hex (queue emissive-accent-reads-salmon, and 2026-10-01 backlog item 6)", "runs": 2, "rounds": null,
-     "action": "fixed",
-     "what": "ILLUSTRATION_SYSTEM.md 'What still fails' names it: albedo plus a small emissive, measured off the probe frame against layout_check's 12 Lab window before round 1. No theme in the digest matches it, so its rounds are not counted, and its runs are no. 39 (2026-10-01) and no. 41 (today)."}
+     "what": "The engine's (human). Named on no. 41 and no. 42 after the 2026-10-03 maintainer fix, so the fix did not hold at the panel's eye. UPGRADE_BACKLOG 2026-10-05 item 8."},
+    {"theme": "largest object unmodelled (slab, bare wall, clean clay)", "runs": 6, "rounds": 25,
+     "action": "fixed in part",
+     "what": "The acceptance floor now makes each frame's list name the CRAFT PLAN largest object, so a critic grading the list checks the object the plan promised to model. The objects themselves differ per deck."}
   ],
-  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Counts are from scripts/carousel/week_digest.py --date 2026-10-03 after this pass's recount, except the person's, counted by sentence in the pass's own scratch and recorded in ledger/carousel/upgrades.json."
+  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-05. The acceptance floor's frame counts are from the pass's own replay of dossier_check.acceptance_floor_fails over those storyboards, recorded in ledger/carousel/upgrades.json."
 }

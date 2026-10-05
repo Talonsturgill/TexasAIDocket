@@ -1,0 +1,96 @@
+{
+ "lens": "reader",
+ "deck": "2026-10-05, carousel no. 43, \"12 of 120. The UT System's health AI pilots\", round 3 of 3 (cap)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Three frames come close to a place at an hour. Slide 1 and slide 9 show the tower at blue hour with a pink horizon seam, lamp pools on the asphalt and a live oak, and the 2 by 6 gold block reads at feed size. Slide 7 is Galveston palms receding to the horizon with lamp pools. The rest lean on defaults. Slide 2's lower ~45% is a near-flat navy fill under the type, and machine QA flags it as top-loaded (bottom 28% craft density). Slide 3's top third is a flat near-black wall, its window band is flat blue with nothing outside, and the six screens are blank orange rectangles. Slide 5 reads as a diagram, not a room. A hard horizontal seam runs the full width at about y=840 (1600 scale) where a blurred wall meets a featureless floor, and the kit people and chairs sit on nothing. Slide 6 is a flat, untextured facade with no ground, cut off by a flat dark footer band. Slide 8's skyline is untextured boxes against a flat grey sky band. That is four or five frames with a dead zone or a primitive, not the one the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.7,
+   "why": "This works as one deck. One blue-hour world and one hero, the hospital tower, appear on 1, 6, 7, 8 and 9. The gold-bay motif changes state legibly: 12 gold on 1, six gold screens on 3, one screen on 4, one gold bay left of twelve on 6, two gold on 8, 12 again on 9. Slide 9 reuses slide 1's camera as a bookend, with a person and a fuller lot added. The value runs down into the interiors (3, 4) and back up. Slide 5 sits outside the deck. It is a blue-lit seating diagram with no sky, no tower and no gold, and in the filmstrip it is the one frame you could not place."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral traces. I checked 12, 120 and $3.6M (c6, c7, c8), seven and 400,000 (c47), six (c51), 7 million (c17), 6,500 and $900,000 (c22), 15,000 (c23 low end, figures.json san_antonio_low), 500 per seat (figures.json seat_unit, with 13 people and 30 empty chairs drawn exactly), 40,000 and three years (c19, c20), and October 7th and 8th (c24). All sources are the UT System's own pages. The 6,500 is attributed every time, and 'cites no audit' is stated. Two loosenings. First, slide 3's 'They automate lab result messaging and generate imaging summaries' reads as the whole job of all six tools, but c51's quote is a list that continues past those two. Second, the spine on slide 6 ('Eleven entries, no saved count') is the run's own reading across 12 entries. It is carried as a computed figure (pilots_without_savings_figure), not as a quoted claim, and c19's and c20's usage counts sit close enough that a reader could argue the word 'saved'. It names its set, so it stays inside the 10 descriptor's 'universal names its set', but only just."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (12 funded pilots of 120), who (UT REAL Health AI), where (San Antonio, Houston, Galveston, Dell Med, UT Southwestern) and a dated next step (the Austin symposium on October 7th and 8th, slide 9, c24 and c54). The reader's own stake is the gap. Slide 3 is AI writing the lab-result message a patient receives. Slide 4 is a model reading more than 7 million patient records for suicide risk. Both are stated flatly, and nothing tells a patient whose records, whether anyone can opt out, or whom to ask. The decision is undated, which the deck handles honestly by not dating it. No person who decided is named, though c3 and c4 carry the lab's director and chair. The action offered is a symposium registration link with no URL on the slide, which fits a professional and is distant for a patient."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "The cover '12 of 120.' is clean but abstract, and the kicker does the work. Frame 2 pays at once with Leah at seven sites. The turn lands on 5 and 6 (one entry states what it saved, eleven don't). Then 7 (UTMB referral triage) and 8 (two expanded platforms) go back to the pilot inventory after the turn, so the argument's momentum stalls right before the close. Either frame could move ahead of 5 with no loss, and 8 could be cut. Slide 9 lands on a date and place."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The copy is clean and on register, regionally specific (Galveston, San Antonio, Houston, Austin), with no boosterism and no doom. 'It will read the notes.' is the best line in the deck. It reads more like a fact-checker narrating than a Texan who knows hospitals. 'The page' is the grammatical subject again and again ('The page credits... The page cites... The page projects' in the caption, 'Its page carries a link' on 9). The caption opens on 'At UTHealth Houston, a no-show project's entry states what it saved.', which is clumsy as a first feed line. 'Two more expand earlier platforms.' (slide 8) is generic. The Texan specificity lives in the art (cowboy hats in the waiting room, Galveston palms) more than in the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The instrument is new to the window (no deck read utsystem.edu in 30 days), and a rendered hospital tower is a new hero. The rest is familiar. It is the third clinical deck in four (no. 40 Texas Children's on October 2nd), as SELECTION.md concedes. Blue hour was no. 39's world on October 1st. A count as the cover's opening move repeats nos. 39 (3,200), 41 (93) and 42 (10 to 3). The turn is again an absence ('Eleven entries, no saved count'), the spine that decks 11, 14, 15, 16, 23 and 28 each asked the next run to stop building on."
+  }
+ ],
+ "weighted_score": 7.038,
+ "weighted_score_working": "6.2*0.22=1.364 + 7.7*0.12=0.924 + 8.3*0.20=1.660 + 7.0*0.16=1.120 + 6.6*0.10=0.660 + 6.8*0.10=0.680 + 6.3*0.10=0.630 = 7.038",
+ "hard_fails": [],
+ "hard_fail_checks": "machine_qa.json: 0 fails, 14 warns (tiny-text 23px labels on slide 3, worst-point contrast 4.5 on slide 6's dek, top-loaded warns on 2 and 8). Every numeral on the slides and in the caption traced to a claim or a figures.json rule. Topics ledger: no UT REAL Health AI or utsystem.edu item in the 30-day window. The nearest is no. 27 on September 17th (Memorial Hermann Epic), a different institution and decision. Caption: no colon, semicolon, dash, emoji, banned word, first person or And/But opener, and the in-year date carries no year. Sources c24 and c54 are fetched primary pages, and the yahoo-hosted Chronicle reporting is correctly kept out.",
+ "ship": true,
+ "ship_note": "Round 3 is the round cap and I found no hard fail, so the deck ships with its score stated: 7.038 against a 7.7 rung, short by 0.662.",
+ "one_sentence_fix": "Put all five pilot frames (Leah, Epic, notes, UTMB, the expanded platforms) before the no-show turn so slides 5 and 6 are the last argument before the Austin close, and give slide 4's 7 million records the reader's own question (whose records, and who a patient asks), because right now the deck stalls into inventory after its turn and never tells the patient it is about what the pilots mean for them.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Reads as a diagram, not a room. A hard full-width seam at about y=840 where a blurred wall meets a featureless floor, kit people and chairs on a blank plane, no sky, no tower, no gold. It is the frame that falls out of the filmstrip.",
+   "fix": "Drop the camera to a seated 1.2 m eye across the aisle, behind the 13 occupied seats looking toward the 30 empty ones, with the lobby glazing behind the empty block showing the blue-hour lot and the tower's gold bays. Wall, window and floor then join in one perspective with no seam."
+  },
+  {
+   "slide": 6,
+   "problem": "A flat, untextured facade with no ground and no light on it, cut off at the bottom by a flat dark footer slab. This is the turn frame and it is the least finished building in the deck.",
+   "fix": "Lower the long-lens camera so the garage parapet's concrete lip crosses the foreground as the storyboard planned, and up-light the precast from the lot lamps so the facade has a lit bottom and a dark crown in place of the flat navy band."
+  },
+  {
+   "slide": 3,
+   "problem": "The top third is a flat near-black void, the window band is flat blue fills with nothing outside, and the six monitors are blank orange rectangles, which makes it read as a template room.",
+   "fix": "Render the ribbon window with TXT.sky through the glazing (the blue-hour lot, two lamp heads, the tower's gold bays across the lot) and put unglyphed ruled-line UI on the six screens at lower emissive, the way slide 4 does."
+  },
+  {
+   "slide": 2,
+   "problem": "The bottom ~45% is a near-flat navy fill under the hook and dek. Machine QA calls it the dead lower zone, and the type sits on a plate rather than in the scene.",
+   "fix": "Tilt the camera down and pull it back so the lit concrete apron, the kerb and a lamp pool run down to the footer. The type then sits on the drive's real asphalt dark, not on a fill."
+  },
+  {
+   "slide": 8,
+   "problem": "The Dallas skyline is untextured grey boxes against a flat grey sky band, and the ground is mottled with no lamp pools, so the aerial reads as an asset preview.",
+   "fix": "Give the skyline lit window grids and the same pink horizon seam as frame 1's blueHour sky, and light the lot with lamp pools so the tower stands in the deck's one light."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-05/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-05/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-05/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/SELECTION.md",
+  "/home/user/TexasAIDocket/out/2026-10-05/render/machine_qa.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ]
+}

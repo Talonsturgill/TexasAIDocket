@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-05, frame 3 of 9. Archetype DIAGRAM. RENDERED through txthree.js, a room built by TXT.interior. A night nurses' station seen from behind its chairs: three desks end to end, six monitors glowing dusk gold, a ribbon window on the left wall, two leaders in mono naming what two of the tools draft. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .lab { font-size:23px; }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Six tools inside Epic</h1>
+<p class="dek" data-follow="22">At UT Dell Medical School a pilot implements six AI tools built into Epic. They automate lab result messaging and generate imaging summaries for patients.</p>
+<svg id="lead" data-decorative></svg>
+<div class="lab" id="lab-a">AUTOMATE LAB RESULT MESSAGING</div>
+<div class="lab" id="lab-b">PATIENT-FACING IMAGING SUMMARIES</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-05-wards.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const FIG = { epic_tools: 6 };
+  const { K, gl, W } = await WD.boot(THREE, TXT, initKit, { kicker: "Dell Medical School patient messages", counter: "03 / 09", src: "c15 c51", fit: { min: 84, max: 112, maxLines: 1 } });
+  const R = WD.stage(TXT, gl, W, { near: 0.5, fov: 44, fog: 0.0, far: 200, exposure: 1.8 });
+  WD.goldStrength(THREE, 0.36);
+  /* a tall back wall with no ceiling seam in frame, so no edge crosses the dek, and a ribbon of
+   * night glass behind the screens carrying two of the lot's lamps */
+  const room = TXT.interior(R, { w: 12, d: 9, h: 4.6, floor: 'concrete', wall: 0x434a5a, window: 'back', windowColor: 0x26354a, windowI: 0.7, windowW: 9, windowH: 0.62, ceiling: false, light: 0.3 });
+  { const pane = room.children[room.children.length - 1]; pane.position.set(-0.6, 1.62, pane.position.z);
+  }
+  /* the ribbon is a window: mullions on a regular pitch and a sill (flow round 1) */
+  { const pane = room.children.find((c) => c.geometry && c.geometry.type === 'PlaneGeometry'); const mm = new THREE.MeshStandardMaterial({ color: 0x1a1d24, roughness: 0.6 });
+    const pw = pane.geometry.parameters.width, ph = pane.geometry.parameters.height;
+    for (let k = 0; k <= 8; k++) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.07, ph + 0.04, 0.05), mm); b.position.set(pane.position.x - pw / 2 + k * pw / 8, pane.position.y, pane.position.z + 0.03); pane.parent.add(b); }
+    const sl = new THREE.Mesh(new THREE.BoxGeometry(pw + 0.1, 0.06, 0.12), new THREE.MeshStandardMaterial({ color: 0x6b6f7a, roughness: 0.5 })); sl.position.set(pane.position.x, pane.position.y - ph / 2 - 0.03, pane.position.z + 0.06); pane.parent.add(sl); }
+  R.scene.traverse((m) => { if (m.isMesh && m.userData && m.userData.txSurface === 'concrete' && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.45); } });
+  /* three desks end to end, two monitors on each, every screen the pilot's gold */
+  const scr = [];
+  for (let d = 0; d < 3; d++) {
+    const desk = K.make('desk', { pedestal: 'right', seed: 3 + d }); desk.position.set(-1.5 + d * 1.5, 0, -2.6); TXT.add(R, desk); TXT.contact(R, desk, { opacity: 0.6 });
+  }
+  for (let i = 0; i < FIG.epic_tools; i++) {
+    const m = WD.goldScreen(THREE, K.make('monitor', { inches: 24, screen: 'doc', seed: 10 + i }));
+    const x = -1.85 + i * 0.74; m.position.set(x, 0.76, -2.75); m.rotation.y = (i - 2.5) * 0.04; TXT.add(R, m); scr.push([x, 1.05, -2.72]);
+  }
+  for (const [x, s] of [[-1.62, 31], [1.66, 32]]) { const c = K.make('office_chair', { style: 'mesh', seed: s }); c.position.set(x, 0, -1.45); c.rotation.y = Math.PI + (s % 2 ? 0.25 : -0.2); TXT.add(R, c); TXT.contact(R, c, { opacity: 0.7 }); }
+  for (const [x] of scr) { const g = new THREE.PointLight(0xe0956a, 1.6, 1.4, 2); g.position.set(x, 0.8, -2.25); R.scene.add(g); }
+  TXT.frame(R, { from: [0.3, 1.25, 4.3], look: [0.0, 1.0, -2.7] });
+  TXT.deckRig(R, WD.rigSpec(W, 14), WD.rigOpts([0, 0, -1], { distance: 30, shadowFar: 80 }));
+  TXT.weather(R, { grime: 0.1, height: 0.4 });
+  /* the two leaders, each landing on the screen it names */
+  const a = WD.project(THREE, R, scr[1]), b = WD.project(THREE, R, scr[4]);
+  const la = document.getElementById('lab-a'), lb = document.getElementById('lab-b');
+  la.style.left = '80px'; la.style.top = '1090px'; lb.style.right = '80px'; lb.style.top = '1150px';
+  const ra = la.getBoundingClientRect(), rb = lb.getBoundingClientRect();
+  const A0 = [ra.left + 40, ra.top - 6], B0 = [rb.right - 40, rb.top - 6];
+  document.getElementById('lead').innerHTML = `<path d="M${A0[0]},${A0[1]} L${a[0]},${a[1] + 34}" stroke="#E6E3DC" stroke-width="2" fill="none"/><circle cx="${a[0]}" cy="${a[1] + 34}" r="5" fill="#E6E3DC"/><path d="M${B0[0]},${B0[1]} L${b[0]},${b[1] + 34}" stroke="#E6E3DC" stroke-width="2" fill="none"/><circle cx="${b[0]}" cy="${b[1] + 34}" r="5" fill="#E6E3DC"/>`;
+  window.__txLeaders = [{ target: "the second gold screen", at: [a[0], a[1] + 34], to: [a[0], a[1] + 34] }, { target: "the fifth gold screen", at: [b[0], b[1] + 34], to: [b[0], b[1] + 34] }];
+  WD.unshadow(R.scene);
+  const cx = WD.develop(await TXT.snapshot(R), gl);
+  WD.post(cx, { a: 0.3, type: ['.kick', '.hook', '.dek', '.lab'] });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

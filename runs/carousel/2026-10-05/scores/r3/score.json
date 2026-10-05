@@ -1,0 +1,196 @@
+{
+ "weighted_score": 7.124,
+ "judges": [
+  6.91,
+  7.25,
+  7.038
+ ],
+ "spread": 0.34,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.7,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.7,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.4,
+    7.7
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.2,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.2,
+    8.3
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.3,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.6,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.6
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Chairs and seated figures sit on a featureless dark floor slab under a band of blurred vertical streaks. There is no wall, ceiling or visible light source, so the room reads as objects floating in a void rather than a waiting room at an hour.",
+     "fix": "Build the room in TXT.interior with a back wall, ceiling troffers casting pools onto the floor under each block, and lobby glazing behind the empty San Antonio block that shows the blue-hour lot and its lamps. Drop the eye from 2.6 m to about 1.9 m so the floor stops filling the frame."
+    },
+    {
+     "judge": 2,
+     "problem": "No visible light source. The room is one flat mid-dark blue, and the glazing behind the hook is a blurred smear of mullions ending in a hard horizontal seam at about y 1140. People and chairs are lit flat with faint contacts, so both blocks half float.",
+     "fix": "Hang visible ceiling downlights over each seating block in the top band and let them throw pools and hard contact shadows under the 13 seated people and the 30 empty chairs. Drop the glazing to sill height below the dek so the seam leaves the type band."
+    },
+    {
+     "judge": 3,
+     "problem": "Reads as a diagram, not a room. A hard full-width seam at about y=840 where a blurred wall meets a featureless floor, kit people and chairs on a blank plane, no sky, no tower, no gold. It is the frame that falls out of the filmstrip.",
+     "fix": "Drop the camera to a seated 1.2 m eye across the aisle, behind the 13 occupied seats looking toward the 30 empty ones, with the lobby glazing behind the empty block showing the blue-hour lot and the tower's gold bays. Wall, window and floor then join in one perspective with no seam."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The facade is square on and made of flat fills. The panes are identical grey-gradient rectangles, there is no ground and no light direction, and the sky is flat. The storyboard's garage parapet foreground is missing, so the turn frame reads as a diagram rather than a photograph.",
+     "fix": "Add the promised concrete garage parapet lip across the bottom edge as a foreground with contact. Vary pane roughness and environment reflection per bay. Let the lot lamps' uplight graze the lower spandrels so the face has a light side and a dark side."
+    },
+    {
+     "judge": 2,
+     "problem": "Facade slab on a gradient sky with flat untextured spandrels, no ground, no contact and no haze. The new 'garage parapet' is a featureless near-black band across the bottom 10 percent (about y 2430 to 2700) that reads as a plate under the footer. The non-block bays are dark, so this does not read as frame 1's tower.",
+     "fix": "Replace the black band with a modelled concrete parapet lip (TXT.roundedBox with TXT.weather grime, lit from the side by one lot lamp head standing in the lower right corner), and relight every non-block bay cool white as on frame 1."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat, untextured facade with no ground and no light on it, cut off at the bottom by a flat dark footer slab. This is the turn frame and it is the least finished building in the deck.",
+     "fix": "Lower the long-lens camera so the garage parapet's concrete lip crosses the foreground as the storyboard planned, and up-light the precast from the lot lamps so the facade has a lit bottom and a dark crown in place of the flat navy band."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The six monitors are flat untextured orange rectangles with no screen content, bezel reflection or falloff. The back wall above the window band is a black void, and the room has no ceiling.",
+     "fix": "Give each screen the kit's unglyphed 'doc' content at varied brightness with a glossy bezel reflection. Add a dropped ceiling with two practical fixtures so the station's back wall and the window mullions read as a built room."
+    },
+    {
+     "judge": 2,
+     "problem": "The top third is an untextured dark wall. The six screens are blank peach rectangles, and the window band is flat navy with none of the lot lamps the craft plan promised, so the room is not in the deck's world.",
+     "fix": "Put the world in the window band: the lot's lamp heads and the hazed lit tower bays seen through the glass at the station's eye height."
+    },
+    {
+     "judge": 3,
+     "problem": "The top third is a flat near-black void, the window band is flat blue fills with nothing outside, and the six monitors are blank orange rectangles, which makes it read as a template room.",
+     "fix": "Render the ribbon window with TXT.sky through the glazing (the blue-hour lot, two lamp heads, the tower's gold bays across the lot) and put unglyphed ruled-line UI on the six screens at lower emissive, the way slide 4 does."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The Dallas skyline is untextured box primitives. The tower casts no shadow on its podium or the lot, so it sits like a model on a table, and the lower 45 percent is dark lot carrying the type, which machine_qa flags as top-loaded.",
+     "fix": "Cast the tower's shadow across the podium roof and lot from the declared lamp azimuth of -60 degrees. Give the skyline lit window grids and haze it a step lighter. Lower the aerial camera so the horizon sits on the upper third and the type sits on hazed sky instead of asphalt."
+    },
+    {
+     "judge": 2,
+     "problem": "A dark out-of-focus smudge sits left of the tower at about (310,1590), the ground is a mottled smear, and no lamp pools appear in a lot the plan says is lit from below, so the tower's base has no light structure.",
+     "fix": "Remove the foreground blob and stand three lit lot lamps around the podium so their pools on the asphalt give the lower half a light-to-dark structure."
+    },
+    {
+     "judge": 3,
+     "problem": "The Dallas skyline is untextured grey boxes against a flat grey sky band, and the ground is mottled with no lamp pools, so the aerial reads as an asset preview.",
+     "fix": "Give the skyline lit window grids and the same pink horizon seam as frame 1's blueHour sky, and light the lot with lamp pools so the tower stands in the deck's one light."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Near-identical to slide 1: same camera, same building, same cars and the same lamp pools. Only a small figure and a red pickup were added, so the close reads as a repeat rather than an arrival.",
+     "fix": "Keep the tower and the 12 gold bays but move the camera about 30 m forward to the porte-cochere approach, with the walking figure in the midground under a lamp pool and the tower filling the upper frame. Alternatively, push the hour deeper so the lamps and the gold bays become the only keys."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The bottom ~45% is a near-flat navy fill under the hook and dek. Machine QA calls it the dead lower zone, and the type sits on a plate rather than in the scene.",
+     "fix": "Tilt the camera down and pull it back so the lit concrete apron, the kerb and a lamp pool run down to the footer. The type then sits on the drive's real asphalt dark, not on a fill."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.124, 0.876 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

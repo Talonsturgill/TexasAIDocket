@@ -140,7 +140,8 @@
         "2026-09-03",
         "2026-09-18",
         "2026-09-27",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-05"
       ],
       "contradicted": []
     },
@@ -302,7 +303,8 @@
         "2026-10-01",
         "2026-10-02",
         "2026-10-03",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-05"
       ],
       "contradicted": []
     },
@@ -603,7 +605,8 @@
         "2026-10-01",
         "2026-10-02",
         "2026-10-03",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-05"
       ],
       "contradicted": []
     },
@@ -693,7 +696,8 @@
         "2026-09-13",
         "2026-09-18",
         "2026-09-19",
-        "2026-09-20"
+        "2026-09-20",
+        "2026-10-05"
       ],
       "contradicted": []
     },
@@ -1274,6 +1278,22 @@
       "learned": "2026-10-04",
       "instinct": "Read the light deck cap off artwork.json before the directors pitch a world, and when the window's one light deck is spent, pitch a world dark by nature rather than dim a bright one after the panel.",
       "evidence": "No. 42 pitched highNoon with no. 38's light deck still in the window, measured L* 68.0 at the cap, failed shipped_check, and was exposed down deck-wide after three panel rounds; the verification judges read the dimmed noon as overcast.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stipple-means-check-the-near-plane",
+      "learned": "2026-10-05",
+      "instinct": "When a fine stipple or moire appears on a flat lit surface, check the camera's near and far planes for z-fighting before touching shadows, textures or materials.",
+      "evidence": "No. 43: two pixel rounds and two panel rounds chased screen moire and pane speckle as shadow acne; a 0.05 m near plane against a 12 km far plane was z-fighting the cards against the kit glass, and near 0.2 to 2.0 cleared every frame.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-motif-state-keeps-its-class",
+      "learned": "2026-10-05",
+      "instinct": "When a motif changes state, keep the changed units in the cover's own visual class, so the change reads as the same thing altered rather than as a new category.",
+      "evidence": "No. 43 frame 6: putting eleven gold bays back to the base white read as defunded to the flow critic, an ember read as twelve lit to the panel; a dim corridor white under one full gold bay was what read as eleven described and one counted.",
       "confirmed": [],
       "contradicted": []
     }

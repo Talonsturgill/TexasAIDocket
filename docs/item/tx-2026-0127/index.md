@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-01 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers, and the court's published submission schedules do not yet list an October sitting for 2026.
 - 2026-10-03 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-04 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
+- 2026-10-05 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 
 ## Evidence
 

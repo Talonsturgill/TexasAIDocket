@@ -1,0 +1,139 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health",
+ "dek": {
+  "text": "The UT System's health care AI laboratory funded twelve pilots for its hospitals and medical schools. Only the no-show entry at UTHealth Houston states what it already saved.",
+  "claims": [
+   "c6",
+   "c22"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The University of Texas System has a laboratory for health care AI, UT REAL Health AI](c1), [launched in 2025 on legislative approval and dedicated funding](c2). [It announced funding for {{number:c6}} pilot projects to advance the use of AI in health care across the UT System](c6). [They were chosen from {{number:c7}} systemwide submissions](c7), and [the awards total more than {{money:c8}}](c8).",
+   "claims": [
+    "c1",
+    "c2",
+    "c6",
+    "c7",
+    "c8"
+   ]
+  },
+  {
+   "text": "[The laboratory's page carries no announcement date](c6), so the pilots can be placed only by the day the page was read. One of its entries states a result.",
+   "claims": [
+    "c6"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the twelve pilots put into hospitals",
+   "paragraphs": [
+    {
+     "text": "[At UT San Antonio, a pilot deploys an AI clinical assistant called Leah across seven UT hospital sites for emergency triage and transfer decisions](c47). [The page says Leah was trained on more than {{number:c47}} trauma cases](c47). [At UT Austin, a smartphone app listens for fetal movement to help prevent stillbirth](c11), and [the page gives its accuracy as {{number:c48}} percent](c48).",
+     "claims": [
+      "c47",
+      "c11",
+      "c48"
+     ]
+    },
+    {
+     "text": "[At UTMB Galveston, a pilot deploys AI referral triage](c13). [The tool reads the health record, assigns an urgency score and routes patients to a level of care](c49). [At UT Dell Medical School, a pilot on patient engagement](c15) [implements six AI tools built into Epic](c51). [Among their aims are automating lab result messaging and generating patient-facing imaging summaries](c51).",
+     "claims": [
+      "c13",
+      "c49",
+      "c15",
+      "c51"
+     ]
+    },
+    {
+     "text": "[Another Dell Medical School pilot will use large language models on free-text clinical notes across more than {{number:c17}} million patient records to improve suicide risk detection](c17). [At UTHealth Houston, a pilot called Priorities AI asks older adults about their surgical goals before they meet their surgeon](c50). [A wrong-tooth pilot pairs computer vision on dental images with language processing of surgical notes](c52). [A pilot led from UT Tyler uses AI to widen access to retinal screening](c21).",
+     "claims": [
+      "c17",
+      "c50",
+      "c52",
+      "c21"
+     ]
+    },
+    {
+     "text": "Two expand platforms that already ran elsewhere. [A trial prescreening platform was validated on nearly {{number:c19}} patients at UT Southwestern](c19). [An AI grading platform for medical school simulation exams has run for more than three years and supported more than {{number:c20}} encounters](c20).",
+     "claims": [
+      "c19",
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The one count on the page",
+   "paragraphs": [
+    {
+     "text": "[One funded project expands AI-powered no-show reduction across UT System health institutions](c16). [The page credits it with saving more than {{number:c22}} appointments and {{money:c22}} in revenue at UTHealth Houston](c22). The page cites no measurement or audit behind that figure.",
+     "claims": [
+      "c16",
+      "c22"
+     ]
+    },
+    {
+     "text": "[The project is set to expand to UT Health San Antonio, where the page projects it will recover at least {{number:c23}} appointments a year](c23). The San Antonio figure is a projection and the Houston figure is a report, and the two are not the same kind of number.",
+     "claims": [
+      "c23",
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the page does not establish",
+   "paragraphs": [
+    {
+     "text": "[Of the {{number:c6}} funded projects](c6), [only the no-show entry states what it already saved](c22). The other entries describe the work a tool does or will do, or how widely an earlier platform has run, rather than a count of what it saved.",
+     "claims": [
+      "c6",
+      "c22"
+     ]
+    },
+    {
+     "text": "[The page does not say when the awards were made](c6), and it does not say how any pilot will be measured or when results will be published. A reader can't tell from it which hospitals already use a given tool and which are still preparing to.",
+     "claims": [
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What comes next",
+   "paragraphs": [
+    {
+     "text": "[The laboratory's 2026 symposium is set for October 7th and 8th in Austin](c24). [Its page names the laboratory's executive director, Dr. Nyma Shah of UT MD Anderson Cancer Center](c3), [and its chair, Dr. Peter McCaffrey of UTMB](c4). [The laboratory's page carries a link to register for the symposium](c54).",
+     "claims": [
+      "c24",
+      "c3",
+      "c4",
+      "c54"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0201",
+   "label": "The record entry for the UT REAL Health AI pilots"
+  },
+  {
+   "id": "tx-2026-0162",
+   "label": "Memorial Hermann's AI drafted test result notes"
+  },
+  {
+   "id": "tx-2026-0102",
+   "label": "AI grading of clinical exam notes at UT Southwestern"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The Texas A and M alloy facility still stands as a national user facility on the award's terms.
 - 2026-09-29 · The Texas A&M alloy facility where robots and AI design and test metals keeps its standing as a national user facility.
 - 2026-10-02 · The Texas A&M alloy facility is still a national user facility where robots and AI design and test metals.
+- 2026-10-05 · The NSF national user facility at Texas A&M where robots and AI run experiments still stands as awarded.
 
 ## Evidence
 

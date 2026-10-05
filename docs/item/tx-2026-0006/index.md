@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The act still stands as codified, and the attorney general is still the only party that can enforce it.
 - 2026-09-29 · The act reads as codified, and a person harmed under it still has no private right to sue. Enforcement rests with the attorney general alone.
 - 2026-10-02 · The act still reads as codified in Chapter 552, and the attorney general is still the only party who can enforce it.
+- 2026-10-05 · TRAIGA still stands as Chapter 552 of the Business and Commerce Code, and the Attorney General is still the only one who can enforce it.
 
 ## Evidence
 

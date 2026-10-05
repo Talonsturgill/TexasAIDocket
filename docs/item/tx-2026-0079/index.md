@@ -9,7 +9,7 @@ The Texas House Committee on Public Health met on August 20th, 2026 on a charge 
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The Public Health hearing on artificial intelligence in health care has been held, and no recommendation has followed.
 - 2026-09-29 · House Public Health has not followed its hearing on artificial intelligence in health care with a written recommendation.
 - 2026-10-02 · The House Public Health hearing on artificial intelligence stands as the committee's own pages list it, with no recommendation published.
+- 2026-10-05 · House Public Health still lists its hearing on artificial intelligence in health care, with no report from it published.
 
 ## Evidence
 

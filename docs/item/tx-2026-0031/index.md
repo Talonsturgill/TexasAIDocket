@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · The regents' approval of the School of Computing still stands, with the same four disciplines under one roof.
 - 2026-09-29 · The School of Computing stands as the regents approved it, joining computer science, information, statistics and data science.
 - 2026-10-02 · UT Austin's School of Computing still joins computer science, information, statistics and data science under one roof, as the regents approved.
+- 2026-10-05 · The Regents' approval of the School of Computing at UT Austin still stands.
 
 ## Evidence
 

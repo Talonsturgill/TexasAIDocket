@@ -1,0 +1,194 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "pilots": {
+  "value": 12,
+  "from": [
+   "c6"
+  ],
+  "basis": "pilot projects UT REAL Health AI announced funding for"
+ },
+ "submissions": {
+  "value": 120,
+  "from": [
+   "c7"
+  ],
+  "basis": "systemwide submissions the pilots were chosen from"
+ },
+ "award_total_millions": {
+  "value": 3.6,
+  "from": [
+   "c8"
+  ],
+  "basis": "award total in millions of dollars, more than"
+ },
+ "institutions": {
+  "value": 11,
+  "from": [
+   "c8"
+  ],
+  "basis": "UT institutions the awards span, as the page counts them"
+ },
+ "moonshots": {
+  "value": 3,
+  "from": [
+   "c9"
+  ],
+  "basis": "moonshot projects"
+ },
+ "moonshot_cap": {
+  "value": 500000,
+  "from": [
+   "c9"
+  ],
+  "basis": "dollars each moonshot project received, up to"
+ },
+ "hospital_sites": {
+  "value": 7,
+  "from": [
+   "c47"
+  ],
+  "basis": "UT hospital sites the emergency triage assistant runs across"
+ },
+ "trauma_cases": {
+  "value": 400000,
+  "from": [
+   "c47"
+  ],
+  "basis": "trauma cases the assistant was trained on, more than"
+ },
+ "fetal_accuracy_pct": {
+  "value": 88,
+  "from": [
+   "c48"
+  ],
+  "basis": "the accuracy the page gives the fetal movement app, percent"
+ },
+ "noshow_appointments": {
+  "value": 6500,
+  "from": [
+   "c22"
+  ],
+  "basis": "appointments the no-show project says it saved at UTHealth Houston, more than"
+ },
+ "noshow_revenue": {
+  "value": 900000,
+  "from": [
+   "c22"
+  ],
+  "basis": "revenue in dollars the no-show project says it saved at UTHealth Houston"
+ },
+ "san_antonio_low": {
+  "value": 15000,
+  "from": [
+   "c23"
+  ],
+  "basis": "appointments a year the page projects at UT Health San Antonio, the low end"
+ },
+ "notes_records_millions": {
+  "value": 7,
+  "from": [
+   "c17"
+  ],
+  "basis": "patient records in millions the suicide risk pilot will read, more than"
+ },
+ "prescreen_patients": {
+  "value": 40000,
+  "from": [
+   "c19"
+  ],
+  "basis": "patients the trial prescreening platform was validated on, nearly"
+ },
+ "sim_encounters": {
+  "value": 3500,
+  "from": [
+   "c20"
+  ],
+  "basis": "simulation encounters the grading platform has supported, more than"
+ },
+ "epic_tools": {
+  "value": 6,
+  "from": [
+   "c51"
+  ],
+  "basis": "Epic tools the Dell Medical School pilot implements"
+ },
+ "submissions_per_pilot": {
+  "value": 10,
+  "from": [
+   "c6",
+   "c7"
+  ],
+  "basis": "submissions for every pilot funded",
+  "rule": "submissions // pilots, exact because 120 divides by 12",
+  "exact": true
+ },
+ "unfunded_submissions": {
+  "value": 108,
+  "from": [
+   "c6",
+   "c7"
+  ],
+  "basis": "submissions that were not among the funded pilots",
+  "rule": "submissions - pilots"
+ },
+ "pilots_without_savings_figure": {
+  "value": 11,
+  "from": [
+   "c6",
+   "c22"
+  ],
+  "basis": "funded pilots for which the page states no saved count: every pilot but the no-show project, the one whose entry states what it saved",
+  "rule": "pilots - 1, the one being c22"
+ },
+ "noshow_san_antonio_ratio_floor": {
+  "value": 2.3,
+  "from": [
+   "c22",
+   "c23"
+  ],
+  "basis": "how many times the San Antonio projection's low end is the Houston count, to one decimal",
+  "rule": "san_antonio_low / noshow_appointments, rounded half up to one decimal"
+ },
+ "seat_unit": {
+  "value": 500,
+  "from": [
+   "c22",
+   "c23"
+  ],
+  "basis": "appointments one drawn seat stands for on the waiting room frame",
+  "rule": "the largest of 100, 250, 500 and 1000 that divides both noshow_appointments and san_antonio_low exactly"
+ },
+ "noshow_seats": {
+  "value": 13,
+  "from": [
+   "c22"
+  ],
+  "basis": "occupied seats drawn for the project's own Houston count",
+  "rule": "noshow_appointments // seat_unit"
+ },
+ "sa_seats": {
+  "value": 30,
+  "from": [
+   "c23"
+  ],
+  "basis": "empty seats drawn for San Antonio's projected low end",
+  "rule": "san_antonio_low // seat_unit"
+ },
+ "bays_per_floor": {
+  "value": 12,
+  "from": [
+   "c7"
+  ],
+  "basis": "lit bays drawn on each of the hospital's ten floors, one bay per submission",
+  "rule": "submissions // 10, the kit hospital's floor count, exact"
+ },
+ "pilots_with_savings_figure": {
+  "value": 1,
+  "from": [
+   "c6",
+   "c22"
+  ],
+  "basis": "funded pilots whose entry states what it saved",
+  "rule": "pilots - pilots_without_savings_figure"
+ }
+}

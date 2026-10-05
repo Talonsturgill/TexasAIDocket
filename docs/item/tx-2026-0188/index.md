@@ -9,7 +9,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 - Public access: Write to the decider
 - Take part: https://txmccs.txdmv.gov/truckstop
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-26 · Admitted to the record. The authorization requirement has been enforceable since May 28th, and Kodiak and Aurora have each announced plans for driverless freight on the lane between Dallas and Houston.
 - 2026-09-29 · TxDMV's authorization for commercial driverless operation still carries no fee and no expiry, and the adopted rule still says the statute does not let the department require crash history.
 - 2026-10-02 · TxDMV's driverless authorization still carries no fee and no expiry, and the department still says the statute won't let it ask for crash history.
+- 2026-10-05 · Texas still requires a state authorization to run driverless vehicles commercially.
 
 ## Evidence
 

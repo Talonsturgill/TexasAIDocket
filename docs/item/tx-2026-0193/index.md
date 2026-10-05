@@ -11,7 +11,7 @@ El Paso Electric asked the Public Utility Commission of Texas to amend its certi
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59076&ItemMatch=Equal&DocumentType=ALL&SortBy=ItemNumber&SortOrder=Descending
 
-- Last checked: 2026-10-02
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-29 · Admitted on the judges' proposal for decision and the commission's own docket.
 - 2026-10-02 · The judges' proposal for decision still conditions approval of the McCloud plant on holding other customers harmless, and the commission has not ruled.
+- 2026-10-05 · The judges' recommendation on El Paso Electric's gas plant for Meta still waits on the commission.
 
 ## Evidence
 

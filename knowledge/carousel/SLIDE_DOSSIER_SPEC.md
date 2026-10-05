@@ -228,6 +228,24 @@ something specific could go wrong, not because a template had five slots.
 **It is written before the render.** An item added after seeing the output is a description, and
 descriptions always pass.
 
+**The list has a FLOOR: a frame that renders less fails it.** Added 2026-10-05 by the weekly
+machine pass, and `dossier_check` holds every storyboard dated from October 6th to it. Two items
+per frame, at least:
+
+- **one names the CRAFT PLAN's largest object for that frame**, affirmatively, so a frame that
+  drops it or leaves it unmodelled fails: `the three desks run end to end under the six monitors`.
+- **one bounds a visible size of the art from below**, in px at a stated size or as a share of the
+  frame, with the dimension named: `the bus stands at least 180 px tall at 432px`, `the vial owns
+  at least a third of the frame height`. A ceiling (`under a fifth of the frame height`), a margin
+  (`at least 24px from the edge`), a count (`at least four palms`) and a floor on the type do not
+  count, because each still passes a frame where the subject is tiny or missing.
+
+The defect it exists for: three decks running (nos. 41, 42 and 43, October 3rd to 5th) the pixel
+critics said the lists would pass a frame missing what it was planned around, a 28 px bus, a
+frame with no chair, no window structure and no lamp pool. Every one of those lists bounded its
+items from above or not at all. The instinct `acceptance-items-need-a-floor` had said so since
+August 16th.
+
 **Where it asserts a STRING, a COLOUR or a COUNT, it writes that thing in a form a gate can
 find.** Added 2026-08-19, and it is the most expensive line on this page.
 

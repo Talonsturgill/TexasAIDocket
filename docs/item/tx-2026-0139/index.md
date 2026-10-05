@@ -9,7 +9,7 @@ ERCOT issued a market notice on September 2nd, 2026 setting a workshop for Octob
 - Public access: Public meeting
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A090226-01
 
-- Last checked: 2026-10-04
+- Last checked: 2026-10-05
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The grid operator's workshop on curtailing a large load under Senate Bill 6 is still set for October 6th.
 - 2026-10-03 · The grid operator's workshop on curtailing a large load is still set as noticed, with no change to the date.
 - 2026-10-04 · The grid operator's October 6th workshop on curtailment is still set, and nothing has moved on it since it was noticed.
+- 2026-10-05 · ERCOT's workshop on curtailing a large load under Senate Bill 6 is still set for October 6th.
 
 ## Evidence
 

@@ -1,0 +1,235 @@
+{
+ "weighted_score": 6.93,
+ "judges": [
+  6.59,
+  7.08,
+  6.8
+ ],
+ "spread": 0.49,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.3,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.8
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.59 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.08 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.8 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.59,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.59 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.08,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.08 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.8,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.8 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The hook and dek sit on a black horizontal band that acts as a plate, and the waiting room below is a void floor with no walls, ceiling or lights, so the chairs float on a dark plane.",
+     "fix": "Build the room in TXT.interior. Run the lobby glazing with blue hour sky full height across the top band behind the type, add ceiling downlights that pool on the floor under each block, and add a back wall so the seats stand in a place."
+    },
+    {
+     "judge": 2,
+     "problem": "Abstract banded composition: a black strip, then a blue band, then a black band crossing the dek's third line (about y 640 to 790 at 1600 px). Below that, a void floor with no readable glazing, sky or room, small mannequin figures, and 22 px labels under the mobile floor.",
+     "fix": "Drop the camera to a 1.6 m standing eye at the back of the room, so the 13 occupied and 30 empty chairs run toward a full-height glazed wall onto the blue-hour lot with its lamps. Set hook and dek on that sky, and raise the labels to 24 px or more."
+    },
+    {
+     "judge": 3,
+     "problem": "Type sits on a flat black and blue band that reads as a plate, not glazing. The 13 seated figures and 30 chairs are seen top-down on a featureless dark floor with no world around them, so the frame fails the place-at-an-hour test.",
+     "fix": "Drop the camera to a standing eye of 1.6 m at the end of the aisle, facing a real glazed lobby wall. The blue-hour lot and lamp pools should show through the glass above the empty San Antonio block, so the hook sits on sky through the glass and the floor gets lamp spill and contact shadows under each chair."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The turn frame is a flat, untextured navy facade. The other 108 bays are dark, unlike slide 1's lit grid, and the eleven 'put out' bays glow burnt orange, so at 432 px it reads as twelve lit windows with one brighter rather than eleven out. The planned garage-parapet foreground is missing.",
+     "fix": "Render it from the same bay skin as slide 1, with all 120 bays at their seeded cool-white emission, the eleven block bays set to that same cool white, one dusk-gold bay, varied glass roughness and precast spandrel texture, and put the concrete garage lip across the bottom edge as foreground."
+    },
+    {
+     "judge": 2,
+     "problem": "The turn frame is a flat facade crop with no ground and no contact, and the panes are flat colour fills. The eleven 'put out' bays render rust orange instead of the planned cool white, so at 432 px it reads as twelve warm windows and the turn does not land.",
+     "fix": "Set the eleven non-gold bays in the 2 by 6 block to the deck's cool corridor white, give the ribbon glass roughness and reflection, and pull the lens back until the garage parapet lip enters the bottom fifth."
+    },
+    {
+     "judge": 3,
+     "problem": "The turn frame is a flat facade crop with no ground or depth. The eleven bays meant to be 'put out' still glow rust-orange, so at feed size it reads as twelve lit with one brighter, which defeats the turn.",
+     "fix": "Set the eleven bays to the chassis's cool corridor white emission (or unlit tinted glass) as the dossier specifies, keeping one dusk-gold bay. Pull the lens back enough to include the garage parapet's concrete lip in the foreground, so the frame has a near plane and a ground."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Four of the six gold screens show diagonal moire or aliasing triangles. The top 35 percent is a flat dark wall used as a type plate, and the window band behind is a flat blue fill with no lot lamps.",
+     "fix": "Replace the screen texture with a clean emissive panel with a soft vertical falloff, and lower the camera so the ceiling grid and its fixtures fill the upper band. Put the lot lamps and the tower beyond in the window band as the storyboard planned."
+    },
+    {
+     "judge": 2,
+     "problem": "Top third is a flat near-black plate, and the ribbon window is four flat blue rectangles with none of the planned lot lamps outside. Monitors 1 to 4 show diagonal moire or aliasing from a fine-line screen canvas.",
+     "fix": "Replace the screen canvas with a solid emissive gold, or one with coarse unglyphed rules like frame 4. Put the TXT.sky lot and its streetlights outside the window, and raise the window head so the hook sits on the window's night sky rather than on black wall."
+    },
+    {
+     "judge": 3,
+     "problem": "Four of the six monitor screens show diagonal moire or aliasing hatching at full size, and the top 35% of the frame is a flat near-black plate holding the type.",
+     "fix": "Replace the screen canvas with a clean emissive gradient with no fine line texture, or supersample it. Raise the camera slightly to bring the station's ceiling and a row of recessed downlights into the top third, so the type sits on a lit ceiling plane rather than a void."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The depth-of-field pass smears the foreground cars into blurry blobs behind the dek, and parking stripes run through the dek's glyph band (machine_qa, y about 1065 to 1076). The tower's windows are flat white rectangles and the skyline is untextured primitive blocks.",
+     "fix": "Turn off the depth-of-field pass and pitch the camera up so the horizon sits on the upper third and the hook and dek ride the sky. Clear the lot under the type, and give the skyline lit window emission and haze."
+    },
+    {
+     "judge": 2,
+     "problem": "Depth of field smears the foreground cars into dark and light blobs directly behind the hook and dek, which reads as smudges, and machine QA flags drawn rules crossing the dek's glyph band. The bays are flat white stickers, and the sky is flat grey compared with the pink and blue of 1, 7 and 9.",
+     "fix": "Clear the cars and parking stripes out of the lower-left type zone, or turn off the DOF so the lot resolves as dark asphalt under the type. Drop the base bays to a dim lit-interior value and use the deck's blueHour sky gradient."
+    },
+    {
+     "judge": 3,
+     "problem": "Blurred foreground car blobs sit directly under the hook and dek, making a busy mottled field behind the type (machine_qa flags rules crossing the dek's glyph band). The Dallas skyline is untextured boxes, so the frame reads as a toy model.",
+     "fix": "Tilt the camera up so the dek sits on the hazed skyline and sky band, and clear the shallow-focus cars from the lower-left type zone. Give the skyline towers lit window emission and aerial haze, so they read as a city at dusk rather than grey blocks."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "On the hero frame, which slide 9 also uses, the 108 base bays are uniform flat light-grey rectangles with no glass, reflection or varied strength, so the tower reads as a kit block rather than a lit building at blue hour.",
+     "fix": "Give the base bays seeded emission strengths and an environment reflection on varied-roughness glass, as the craft refresh specified. Drop their value a step so the twelve gold bays separate and the facade sits closer to the sky's density."
+    },
+    {
+     "judge": 3,
+     "problem": "The 108 base bays render as flat grey tiles rather than lit rooms, so the cover's grid of 120 reads as a pasted texture on a box, and the left lamp pool is blown to near-white.",
+     "fix": "Give each base bay a recessed interior with varied low cool-white emission behind glass reflections. Pull the left streetlight's pool intensity down about a stop so the gold block, not the asphalt, is the lightest area of the frame."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Bottom 45% is flat navy with the type on it (machine QA flags the dead lower zone, bottom band 0.28). The streetlight pole stands dead centre on the focal lobby glass and splits it.",
+     "fix": "Pitch the camera down so the canopy's lit apron and a lamp pool run under the hook and dek, and slide the streetlight left out of the lobby-glass axis so the worker and the lit doors read as one focal."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Top third is a flat black plate behind the hook, and the window is flat blue with no lamps, so the frame stands in a dark box rather than a room at an hour.",
+     "fix": "Put the planned two lot lamps and a blue-hour sky gradient in the window behind the monitor, and add the planned chair back cropped hard at the near left so the room has depth."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.93 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 5, 6, 3, 8, 1, 2, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

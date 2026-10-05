@@ -2700,6 +2700,61 @@
     "hex": "#E7E3DA",
     "note": "The deck's declared ground, a light noon deck with dark type."
    }
+  },
+  {
+   "date": "2026-10-05",
+   "carousel_no": 43,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-05/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A blue hour deck on the humid coast. One wards world (blueHour sky, Gulf haze, lamp key at az -60 el 32) declared once in assets/js/deck/2026-10-05-wards.js. One hero, the kit hospital at ten floors with a chassis bay skin of 120 lit room cards, the funded pilots a 2 by 6 gold block. Lot lamps as downward spot cones, gold screens for the pilots' tools indoors.",
+   "structural_laws": [
+    "A PANE BEHIND A KIT CURTAIN WALL TAKES THE KIT'S MULLION PITCH. Lay a bay skin as cards proud of the mullions with a dark reveal, or the bays read as barcode and can't be counted.",
+    "AN EMISSIVE CARD OR SCREEN ON THE SHADOW MAP SPECKLES. Take panes and screens off receiveShadow.",
+    "A LAMP POOL SEEN FROM A STANDING EYE AT 60 M IS A LINE. Stand one lamp inside 30 m of the camera, in open ground, or the pool never reads.",
+    "A GRID'S PIECES ARE MEASURED AGAINST THE MEDIAN OUTSIDE ITS RECT. When the type stands on a dark band, the floor has to sit within 12 Lab of that band or the whole floor counts as one subject.",
+    "PUTTING ELEVEN BAYS BACK TO THE BASE WHITE SAYS THEY LOST THEIR FUNDING. Dim them to an ember of the accent instead."
+   ],
+   "techniques": [
+    "the hospital tower from the far kerb of its visitor lot at blue hour, 120 lit bays, the gold block on the seventh and eighth floors",
+    "the porte-cochere at night from the drive, a worker in the lobby light, a sedan at the kerb, type on the dark apron",
+    "a nurses' station of six gold screens on veneer desks before a ribbon of night glass, two leaders",
+    "one gold screen of seven ruled blocks on a desk, a chair back at near left, night glass behind",
+    "a waiting room from a raised eye, thirteen seated in groups of seven and six, thirty empty chairs beyond, night glazing",
+    "the tower face through a long lens, one bay full gold and eleven at an ember",
+    "a Galveston palm boulevard at blue hour, lamp pools on the verge, the tower hazed beyond",
+    "a Dallas campus from above, the tower on a marked lot, two gold bays, the skyline hazed",
+    "frame 1's lot again, fuller, a person walking into a lamp pool"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     27.6,
+     10.8,
+     17.3,
+     3.7,
+     13.7,
+     23.8,
+     30.2,
+     22.2,
+     29.3
+    ],
+    "deck_median_L": 22.2,
+    "max_adjacent_delta": 16.8,
+    "mean_adjacent_delta": 9.81,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark blue hour deck, the waiting room at frame 5 the declared value cut."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk_gold, a funded pilot",
+    "frames_above_floor": [
+     3,
+     4,
+     6
+    ],
+    "note": "The gold bay block on 1 and 9, the gold screens on 3 and 4, the one full bay and eleven embers on 6, two bays on 8."
+   },
+   "ground": {
+    "hex": "#16202A",
+    "note": "The deck's declared ground, a dark blue hour deck with light type."
+   }
   }
  ]
 }
