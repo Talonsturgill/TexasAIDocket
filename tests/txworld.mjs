@@ -1365,6 +1365,36 @@ const STAGE3 = `async (T, TXT, cv) => {
   const onLayer = Object.assign({}, TXT.stage(Lz, hero3));
   const lp = Lz.scene.children.find((c) => c.userData && c.userData.txPool);
   const layer = { pool: !!lp, drawn: !!lp && lp.layers.test(Lz.camera.layers) };
+  // a unit box scaled into a tabletop gets its pool on the top, not on a side
+  const Sc = make([2.5, 1.8, 2.5], [0, 0.9, 0]);
+  const slab = new T.Mesh(new T.BoxGeometry(1, 1, 1), mat(0x6a5a48)); slab.scale.set(2.0, 0.04, 1.0); slab.position.y = 0.75;
+  slab.rotation.y = Math.PI / 6; TXT.add(Sc, slab);
+  const cube3 = new T.Mesh(new T.BoxGeometry(0.4, 0.4, 0.4), mat(0xb8b0a0)); cube3.name = 'cube'; cube3.position.set(0, 0.97, 0); TXT.add(Sc, cube3);
+  Sc.scene.updateMatrixWorld(true);
+  TXT.stage(Sc, cube3);
+  const sp = poolOf(Sc);
+  const scaled = sp ? { ys: sp.pts.map((v) => +v.y.toFixed(3)), width: sp.width, depth: sp.depth } : null;
+  // a restage frees the pool it replaces, and an unstage the last one
+  let freed = 0;
+  const watch = () => { const p = Sc.scene.children.find((c) => c.userData && c.userData.txPool);
+    if (p) { p.geometry.addEventListener('dispose', () => freed++); p.material.addEventListener('dispose', () => freed++);
+             if (p.material.map) p.material.map.addEventListener('dispose', () => freed++); } };
+  watch(); TXT.stage(Sc, cube3); watch(); TXT.unstage(Sc);
+  // each stage cycle restores the fog it began with, not the first one the renderer ever had
+  const fogA = Sc.scene.fog;
+  TXT.stage(Sc, cube3); TXT.unstage(Sc);
+  const fogB = new T.FogExp2(0x112233, 0.01); Sc.scene.fog = fogB;
+  TXT.stage(Sc, cube3); TXT.unstage(Sc);
+  const fogCycle = { first: Sc.scene.fog === fogB, notStale: Sc.scene.fog !== fogA };
+  // an interior frame whose deck declares a sky no world has fails, as an exterior frame does
+  let badSky = null;
+  const keep = window.TXDECK;
+  try {
+    window.TXDECK = { deck: () => ({ sky: 'lastLite' }) };
+    const Ri = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
+    TXT.frame(Ri, { from: [0, 1.6, 3], look: [0, 1.2, 0] });
+    try { TXT.interior(Ri, {}); await TXT.snapshot(Ri); badSky = 'rendered'; } catch (e) { badSky = String(e.message || e).slice(0, 80); }
+  } finally { if (keep === undefined) delete window.TXDECK; else window.TXDECK = keep; }
   // a standalone scene that names no world stands in the house register
   const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
   TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
@@ -1372,7 +1402,8 @@ const STAGE3 = `async (T, TXT, cv) => {
   const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
   return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
            onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil, onTerrain, onHill,
-           contacts, onContact, contactPool: cp ? { width: cp.width, depth: cp.depth } : null, layer };
+           contacts, onContact, contactPool: cp ? { width: cp.width, depth: cp.depth } : null, layer,
+           scaled, freed, fogCycle, badSky };
 }`;
 
 async function run(name, scene) {
@@ -1873,6 +1904,15 @@ check('the third stage page renders with no page error and no scene error',
         r.contacts > 0 && oc.poolOn === 'surface' && ocp.width > 2.1 && ocp.depth > 1.7, JSON.stringify({ oc, ocp }));
   check(`a camera that renders only layer 2 is shown the pool: ${JSON.stringify(r.layer)}`,
         r.layer && r.layer.pool === true && r.layer.drawn === true, JSON.stringify(r.layer));
+  const sc = r.scaled || {};
+  check(`a unit box scaled into a tabletop gets its pool on the top: corners at y ${JSON.stringify(sc.ys)}`,
+        Array.isArray(sc.ys) && sc.ys.every((y) => Math.abs(y - 0.774) < 0.005) && sc.width > 2.1, JSON.stringify(sc));
+  check(`a restage and an unstage free the pools they take away: ${r.freed} disposals, three per pool`,
+        r.freed === 6, String(r.freed));
+  check(`each stage cycle restores the fog it began with: ${JSON.stringify(r.fogCycle)}`,
+        r.fogCycle && r.fogCycle.first === true && r.fogCycle.notStale === true, JSON.stringify(r.fogCycle));
+  check(`a room whose deck declares a sky no world has fails rather than rendering unstaged: ${JSON.stringify(r.badSky)}`,
+        typeof r.badSky === 'string' && r.badSky !== 'rendered' && /lastLite|no world/.test(r.badSky), JSON.stringify(r.badSky));
   const oh = r.onHill || {};
   check(`...and the hero staged by name on its hills gets no flat pool laid over them: ${oh.pool ? 'a pool at y ' + oh.poolY : 'no pool'}`,
         oh.subject === 'hero on the hill' && oh.pool === false, JSON.stringify(oh));

@@ -1422,7 +1422,9 @@ export function init(THREE) {
   // the world a frame stands in: its own sky's, or for an interior, which has none, the deck's
   function stageWorld(R) {
     if (R.world) return R.world;
-    try { return declaredWorld(); } catch (e) { return null; }
+    // no declaration is null; a declaration naming no world THROWS, as TXT.sky throws it for an
+    // exterior frame, so a misspelled sky can't leave a room silently unstaged (Codex, PR 402)
+    return declaredWorld();
   }
   function poolDecal(box, S, rec) {
     const y = rec.y;
@@ -1528,9 +1530,13 @@ export function init(THREE) {
     const g = m.geometry;
     if (!g.boundingBox) g.computeBoundingBox();
     const lb = g.boundingBox, s = lb.getSize(new THREE.Vector3());
-    const ax = s.x <= s.y && s.x <= s.z ? 'x' : (s.y <= s.z ? 'y' : 'z');
-    const [p, q] = ['x', 'y', 'z'].filter((k) => k !== ax);
     m.updateWorldMatrix(true, false);
+    // the thin axis IN THE WORLD: a unit box scaled into a tabletop is thin only once its scale
+    // applies, and read off the local box it picked a side face (Codex, PR 402)
+    const e = m.matrixWorld.elements;
+    const len = { x: s.x * Math.hypot(e[0], e[1], e[2]), y: s.y * Math.hypot(e[4], e[5], e[6]), z: s.z * Math.hypot(e[8], e[9], e[10]) };
+    const ax = len.x <= len.y && len.x <= len.z ? 'x' : (len.y <= len.z ? 'y' : 'z');
+    const [p, q] = ['x', 'y', 'z'].filter((k) => k !== ax);
     let top = null;
     for (const side of [lb.min[ax], lb.max[ax]]) {
       const pts = [[0, 0], [1, 0], [1, 1], [0, 1]].map(([i, j]) => {
@@ -1572,9 +1578,20 @@ export function init(THREE) {
     return R._txFogBefore;
   }
   /* TXT.unstage(R) — takes a stage off: the pool out of the scene and the frame's own fog back. */
+  // a pool taken away is freed: its canvas texture, material and geometry, so a frame that restages
+  // on every preview snapshot holds one pool's memory and not one per snapshot (Codex, PR 402)
+  function dropPool(R) {
+    const p = R._txPool;
+    if (!p) return;
+    R.scene.remove(p);
+    if (p.material.map) p.material.map.dispose();
+    p.material.dispose(); p.geometry.dispose();
+    R._txPool = null;
+  }
   TXT.unstage = function (R) {
-    if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
-    if ('_txFogBefore' in R) R.scene.fog = R._txFogBefore;
+    dropPool(R);
+    // the fog this stage cycle began with goes back, and the next cycle saves its own (Codex, PR 402)
+    if ('_txFogBefore' in R) { R.scene.fog = R._txFogBefore; delete R._txFogBefore; }
     veilScene(R, false);
     R._txStaged = null;
   };
@@ -1585,7 +1602,7 @@ export function init(THREE) {
     const W = stageWorld(R) || {};
     const S = Object.assign({ behind: 0.04, depth: 1.1 }, W.stage || {}, o);
     const cam = R.camera; cam.updateMatrixWorld(true);
-    if (R._txPool) { R.scene.remove(R._txPool); R._txPool = null; }
+    dropPool(R);
     const subj = subject || stageSubject(R);
     // what the camera draws of the subject, or the whole of it when the camera draws none of it
     const boxOf = (x) => { const b = renderedBox(x, cam); return b.isEmpty() ? _stBox().setFromObject(x) : b; };
