@@ -259,9 +259,10 @@ At wake, write `out/<date>/run_state.json`:
 ```
 
 `chassis` is Phase 10.5 and is `done` only when the probe frame has passed `deck_chassis`,
-`print_ban`, `figure_bearing` and `depth_floor`. `gates12b` is Phase 12b's eight gates on the
-frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run resumed after any of the
-three must know that from this file, because the art after them is built on their answer.
+`print_ban`, `figure_bearing`, `depth_floor` and `value_register --probe`. `gates12b` is Phase
+12b's eight gates on the frames the critics settled. `panel_ready` is Phase 14b's exit 0. A run
+resumed after any of the three must know that from this file, because the art after them is built
+on their answer.
 
 Mark each phase `done` **with its artifact paths**. If the container is reclaimed mid-run, the
 next context resumes from this file rather than starting over. Commit early and often. An
@@ -974,14 +975,25 @@ six seconds a frame. Concretely:
   frames that call `TXT.sky`, at least five of nine and the probe one of one.
   `ILLUSTRATION_SYSTEM.md`, THE WORLD, has the five calls, the table of worlds and THE
   SHOWSTOPPER TEST every critic applies.
+- **And every deck is BOLD, which is THE STAGE (owner, 2026-10-04).** *"the Alaska one, when I look
+  at it, it just kind of like wows me ... It's more like bold. The Texas one ... it's just more like
+  faded colors."* Measured: 42 percent of a Texas frame sat in the mid tones (L* 30 to 70) against
+  the sibling's 13, and 19 percent was near black against 61. The world above was the cause, so
+  **start in `lastLight`**, the house register and a STAGED world, or `floodlit`: a dark field, one
+  subject filling a third to two thirds of the frame in a pool of light, the world behind it gone
+  dark (`TXT.stage`), light type on the dark field, and never a pale wash over the art. Any other
+  world is argued for in the treatment and still has to pass `value_register.py`. **Look at
+  `examples/bold-proof/` before anything else in this phase**: three shipped decks beside the same
+  frames through the staged engine, and the sibling's deck beside them as the standard.
 
-**Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first, and look at
-`examples/world-proof/compare.webp` and `examples/figure-bearing/contact_sheet.webp` before a
-director is spawned.** The first is a measurement of the engine's light and atmosphere and
+**Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first, THE STAGE before THE WORLD, and look at
+`examples/bold-proof/README.md` with its sheets, `examples/world-proof/compare.webp` and
+`examples/figure-bearing/contact_sheet.webp` before a director is spawned.** The first is a measurement of the engine's light and atmosphere and
 never a subject to copy. The second is solid
 shaded forms drawing a computed figure, with no screen anywhere, and it is the owner's own worked
 example. Hand each director this section, the doctrine and both examples, and have each pitch its
-WORLD from the table in THE WORLD, with the reason this story wants that light. **Every frame still
+WORLD from the table in THE WORLD, with the reason this story wants that light, and `lastLight` is
+the one to argue away from rather than toward. **Every frame still
 carries one drawn SUBJECT at true scale owning at least thirty percent of the frame, in one of the
 LAYOUTS rotated across the deck, and now it is RENDERED rather than printed.**
 
@@ -1145,7 +1157,13 @@ python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
 python3 scripts/carousel/figure_bearing.py --date <date>
 python3 scripts/carousel/depth_floor.py --slides-dir out/<date>/slides
 python3 scripts/carousel/print_ban.py --assets --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --probe --date <date>
 ```
+
+**THE LAST ONE IS THE REGISTER, ALSO ON THE PROBE (owner, 2026-10-04).** It fails a probe whose
+frame sits more than half in the mid tones, the faded look, and a probe that reads light when the
+eight run window has already spent its light deck. No. 42 learned the second at ship and spent 44
+minutes exposing nine judged frames down. Here it costs a line in the chassis.
 
 **THE LAST ONE IS THE OWNER'S, AND IT RUNS ON THE PROBE FRAME, NOT AFTER NINE.** `print_ban.py`
 refuses a printed frame and counts rendered ones, and on the probe it tells you in the first
@@ -1195,7 +1213,9 @@ here:**
    nothing else.
 5. **No plate, ever.** Type sits in a reserve the art left. If the type needs a box to be
    readable, the art under it was drawn without knowing where the type goes, and the fix is the
-   art. A wash under 0.55 alpha is atmosphere and is allowed. `deck_chassis.py` measures it.
+   art. A wash under 0.55 alpha is atmosphere and is allowed **only to darken**: a pale wash over
+   the art to seat dark type is the faded look the owner rejected on 2026-10-04, and
+   `value_register.py` measures the result. `deck_chassis.py` measures the alpha.
 6. **A slab is never a subject, and a kit model is never rebuilt.** Every standing thing in a
    rendered frame comes from `K.make` with a model `ARSENAL.md` lists, placed with `TXT.add` and
    seated with `TXT.contact`. A thing the kit lacks is the chassis's kit model from Phase 10.5,
@@ -1216,11 +1236,12 @@ here:**
    room `TXT.interior` builds (a floor with tooth, walls that take the shadows, a lit window, the
    studio environment), lit by the deck's rig, and never a flat background colour. `print_ban.py`
    fails a rendered frame that calls neither `TXT.sky` nor `TXT.interior` before its kept
-   snapshot. Both get `TXT.contact` under every standing thing, `TXT.weather`
-   before the snapshot and a manufactured edge through `TXT.roundedBox`. Then cover the type and
-   read the frame at 432 px: a photograph of a place, one thing to look at, weight where things
-   touch the ground, and outdoors a horizon on a third. A frame that fails that is not finished,
-   and no headline makes it one.
+   snapshot. Both get `TXT.contact` under every standing thing, `TXT.stage(R, subject)`,
+   `TXT.weather` before the snapshot and a manufactured edge through `TXT.roundedBox`. A room in a
+   staged deck is dark around one source, its key through the window and its back wall in shadow.
+   Then cover the type and read the frame at 432 px: one subject filling the frame on a dark field,
+   true blacks and one bright edge, weight where things touch the ground. A frame that fails that
+   is not finished, and no headline makes it one.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render
@@ -1229,6 +1250,7 @@ python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
 python3 scripts/carousel/deck_coherence.py --render-dir out/<date>/render --storyboard out/<date>/storyboard.md
 python3 scripts/carousel/layout_check.py --date <date> --require
 python3 scripts/carousel/bespoke_check.py --slides-dir out/<date>/slides
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --date <date>
 ```
 
 **`deck_coherence` red is a rebuild, not a note.** It means the deck strobes, which is the thing
@@ -1251,10 +1273,13 @@ Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. The
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
 at 432 px, rendered rather than placed, with no screen on it, AND does it pass THE SHOWSTOPPER
-TEST in `ILLUSTRATION_SYSTEM.md`: a photograph of a place at a time of day, standing in a world
-rather than a void, with contact and weathering where things meet the ground.** Fix what they
-find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py`, and re-review ONLY
-those frames. **At most three pixel rounds.** After the third, keep the best version of any
+TEST in `ILLUSTRATION_SYSTEM.md`: one subject filling the frame on a dark field, bold in value with
+true blacks and one bright edge, standing somewhere rather than in a void, with contact and
+weathering where things meet the ground.** Fix what they
+find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py` and
+`value_register.py --render-dir out/<date>/render --date <date>`, and re-review ONLY those frames.
+A repair that changes an exposure, a wash or a camera can move a deck back into the mid tones, and
+the register measures the frames as they are now, not as they were before the round. **At most three pixel rounds.** After the third, keep the best version of any
 holdout and name it in the run record for the panel. Then 1 `carousel-flow-critic` on the contact
 sheet AND the full renders, which judges the deck as a sequence rather than as nine slides.
 
@@ -1424,6 +1449,7 @@ Confirm `assemble_report.json` says `pdf_mode: "vector"`.
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/print_ban.py --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
@@ -1555,12 +1581,13 @@ the `upgrade` commit, because that file is `upgrade` lane and the daily lane can
 `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails" names the ones already met. Read it
 before the first render, because a defect it names is a round spent twice.
 
-**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py` and
-`panel_ready.py` again, and spawn nothing while any of them is red.**
+**Before every round, the first and every one after a repair, run `qa.py`, `print_ban.py`,
+`value_register.py` and `panel_ready.py` again, and spawn nothing while any of them is red.**
 
 ```
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
 python3 scripts/carousel/print_ban.py --date <date>
+python3 scripts/carousel/value_register.py --render-dir out/<date>/render --date <date>
 python3 scripts/carousel/panel_ready.py --date <date>
 ```
 
@@ -1622,8 +1649,8 @@ finished.
 **A total over its rung no longer finishes the run while the panel's `artwork_craft` median is
 under 8.5 and rounds remain.** `panel.py` then writes `ship: false`, `craft_floor: open` and a work
 order naming the frames in `artwork_weakest_frames`. Run ONE craft cycle: repair those frames, one
-concrete change each, re-render them, run `qa.py`, `print_ban.py` and `panel_ready.py`, and
-re-score with three fresh judges. That re-score is a round. `panel.py` closes the cycle on it and
+concrete change each, re-render them, run `qa.py`, `print_ban.py`, `value_register.py` and
+`panel_ready.py`, and re-score with three fresh judges. That re-score is a round. `panel.py` closes the cycle on it and
 writes `craft_cycle` from its own two medians, so no number in it is typed, and the deck then
 ships on the ladder. `run_complete.py` refuses a run whose floor is open or whose record doesn't
 hold. One cycle, never more, and at the round cap it stands down and the deck ships as it is. If

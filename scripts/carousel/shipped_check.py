@@ -958,6 +958,31 @@ def g_print_ban(d: Path):
     return probs
 
 
+def g_value_register(d: Path):
+    """A shipped deck is not the faded look the owner rejected on 2026-10-04.
+
+    The owner's words are quoted in full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art
+    "wows me" and ours is "more like faded colors". `value_register` measures it: the mean share of a deck's
+    frames sitting in the mid tones, L* 30 to 70, which is 0.131 over the sibling's twelve decks and
+    was 0.418 over the ten Texas decks before it. The light deck half of that script is not asked
+    here, because `ledger_check` already counts the cap at ship. Decks on or before VALUE_SINCE were
+    drawn under the doctrine that ordered the look, and are measured and noted, never failed.
+    """
+    import value_register as m
+    paths = []
+    try:
+        import measure_shipped as ms
+        paths = ms.frames(d)
+    except Exception:                                                # noqa: BLE001
+        return None
+    rows = [m.frame_stats(x) for x in paths]
+    probs = [x for x in m.judge(rows, False, d.name) if "mid tones" in x]
+    if probs and d.name <= m.VALUE_SINCE:
+        return (f"drawn before the value register existed (2026-10-04). Run into it anyway: "
+                f"{probs[0][:180]}")
+    return probs
+
+
 FIGURE_SINCE = "2026-09-20"
 
 
@@ -1241,6 +1266,7 @@ GATES = [
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
     ("print ban", g_print_ban, CURRENT),
+    ("value register", g_value_register, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
     ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
