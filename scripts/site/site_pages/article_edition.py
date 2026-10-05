@@ -310,6 +310,22 @@ def description(run: dict) -> str:
     return LINK.sub(r"\1", _expand(edition["dek"]["text"], claims))
 
 
+def reachable(run: dict, edition: dict) -> set:
+    """The claim ids this article can reach: its own paragraphs' and its visual edition's. A run's
+    claims file also carries the day's other record work. The page's verification list stays the
+    run's whole claim record, which tests/test_article_edition.py holds it to, but the JSON-LD
+    `citation` names only what the article can reach, so a crawler is not told that another
+    item's sources support it (Codex, PR 404). A run whose slides name no claim ids keeps every
+    claim, so an older archive's citations are never stripped."""
+    blocks = [edition["dek"], *edition["introduction"],
+              *(block for section in edition["sections"] for block in section["paragraphs"])]
+    cited = {ref for block in blocks for ref in block["claims"]}
+    slides = set(run.get("slide_claims") or [])
+    if not slides:
+        return {claim["id"] for claim in run["claims"]}
+    return cited | slides
+
+
 def _sources(run: dict, edition: dict) -> tuple[str, str]:
     blocks = [edition["dek"], *edition["introduction"],
               *(block for section in edition["sections"] for block in section["paragraphs"])]
@@ -428,7 +444,8 @@ def render(run: dict, today: str, items: list, edition: dict | None = None) -> s
     article = schema.article_node(SCHEMA_CTX, run, desc, f"{SITE_URL}/{card}", None)
     article["articleSection"] = edition["section"]
     article["keywords"] = ["Texas", edition["section"], "artificial intelligence"]
-    article["citation"] = list(dict.fromkeys(_url(claim) for claim in run["claims"]))
+    reach = reachable(run, edition)
+    article["citation"] = list(dict.fromkeys(_url(claim) for claim in run["claims"] if claim["id"] in reach))
     article["about"] = [{"@id": f'{SITE_URL}/item/{record["id"]}/#report'} for record in edition["related"]]
     return page(title=f'{run["title"]} · {SITE_NAME}', desc=desc, body=body, depth=2,
                 active="articles/", today=today, canonical=f'articles/{run["date"]}/',

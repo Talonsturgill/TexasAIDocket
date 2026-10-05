@@ -4,11 +4,12 @@ The University of Texas Research, Engineering, and Application Laboratory for He
 
 - Topic: health-and-education
 - Decided by: The University of Texas System (state-agency)
-- Where: Bexar, Travis, Dallas, Galveston, Harris, Smith
+- Where: Bexar, Travis, Dallas, Galveston, Harris, Smith, Hidalgo
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
   - Dallas-Fort Worth-Arlington, TX
   - Houston-Pasadena-The Woodlands, TX
+  - McAllen-Edinburg-Mission, TX
   - San Antonio-New Braunfels, TX
   - Tyler, TX
 - Status: decided
@@ -113,4 +114,10 @@ Source (primary_official): https://www.utsystem.edu/sites/ut-real-health-ai/work
 > 2026 UT REAL Health AI Symposium - October 7-8, Austin, TX
 
 Source (primary_official): https://www.utsystem.edu/sites/ut-real-health-ai
+
+### The awards involve UT Rio Grande Valley among the institutions the page names.
+
+> involve institutions including UTHealth Houston, UT Southwestern, UT Austin, UT San Antonio, UTMB Galveston, MD Anderson Cancer Center, UT Rio Grande Valley, and UT Tyler
+
+Source (primary_official): https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i
 

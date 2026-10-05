@@ -1099,7 +1099,7 @@ def load_runs() -> list:
                     "hook": str(copy.get("hook") or copy.get("subtitle") or ""),
                     "story": str(copy.get("story") or ""),
                     "slides": len(files), "files": files, "missing": missing,
-                    "prose": prose, "claims": claims,
+                    "prose": prose, "claims": claims, "slide_claims": _slide_claim_ids(planned),
                     "cover": files[0]})
     return out
 
@@ -1676,3 +1676,19 @@ class BuildContext:
 
 
 __all__ = [name for name in globals() if not name.startswith("__")]
+
+
+def _slide_claim_ids(planned) -> list:
+    """The claim ids the visual edition itself cites, read off each slide's own `claims` list or
+    its source line. The article's evidence list and its JSON-LD citations are built from these
+    and from the edition's own paragraphs, so a run's unrelated record claims (another item's
+    reverification, say) are never published as support for an article that never uses them."""
+    out = []
+    slides = planned.values() if isinstance(planned, dict) else (planned if isinstance(planned, list) else [])
+    for slide in slides:
+        if not isinstance(slide, dict):
+            continue
+        for ref in list(slide.get("claims") or []) + re.findall(r"\bc\d+\b", str(slide.get("cite") or "")):
+            if isinstance(ref, str) and ref not in out:
+                out.append(ref)
+    return out

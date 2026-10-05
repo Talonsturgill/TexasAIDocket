@@ -17126,7 +17126,7 @@
     "closes": null
    },
    "confidence": "high",
-   "notes_for_editor": "Somervell and Howard are the two counties the source itself names as the endpoints. The route crosses more, and reporting puts the two approved applications across at least 30 counties, but no source read this run enumerates them, so only the two stated endpoints are claimed. No PUCT-hosted order was retrieved.",
+   "notes_for_editor": "Somervell and Howard are the two counties the source itself names as the endpoints. The route crosses more, and reporting puts the two approved applications across at least 30 counties, but no source read this run enumerates them, so only the two stated endpoints are claimed. The PUCT's final order in docket 59315 and a September 22nd rehearing motion were retrieved from the PUCT interchange on October 5th, 2026.",
    "claims": [
     {
      "text": "The company's project page records the commission's decision as approved on August 28th, 2026.",
@@ -28797,7 +28797,8 @@
      "Dallas",
      "Galveston",
      "Harris",
-     "Smith"
+     "Smith",
+     "Hidalgo"
     ],
     "on_ercot": null
    },
@@ -28936,9 +28937,18 @@
      "source_type": "primary_official",
      "fetched": "2026-10-05",
      "id": "tx-2026-0201-c14"
+    },
+    {
+     "text": "The awards involve UT Rio Grande Valley among the institutions the page names.",
+     "verbatim_quote": "involve institutions including UTHealth Houston, UT Southwestern, UT Austin, UT San Antonio, UTMB Galveston, MD Anderson Cancer Center, UT Rio Grande Valley, and UT Tyler",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c15"
     }
    ],
-   "notes_for_editor": "Admitted on the UT System's own pilot page. The page is undated. The Houston Chronicle's October 2nd reporting on the program sits on a host that bars this project and is not cited.",
+   "notes_for_editor": "Admitted on the UT System's own pilot page. The page is undated. The Houston Chronicle's October 2nd reporting on the program sits on a host that bars this project and is not cited. Counties are the participating institutions' home counties. UT Rio Grande Valley is placed in Hidalgo, its Edinburg home, because the page names the institution and no site.",
    "id": "tx-2026-0201",
    "last_verified": "2026-10-05",
    "history": [
