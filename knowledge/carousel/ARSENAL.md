@@ -31,7 +31,7 @@
 | costs | `render.py` |
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `docket_build.py`, `gridwatch_page.py`, `house_style_check.py`, `shipped_check.py`, `waterwatch_page.py`, `word_ban.py` |
 | context | `arsenal.py`, `crawl_boundary.py`, `dossier_check.py`, `fetch_doc.py` |
-| state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py` |
+| state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py`, `value_register.py` |
 | 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
 | 1 | `instincts.py` |
 | 2 | `docket_build.py`, `docket_staleness.py` |
@@ -448,7 +448,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI | nonnegotiables |
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
-| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | artwork, 10.5, 11, 12, 14b, 15 |
+| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | state, artwork, 10.5, 11, 12, 14b, 15 |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
 | `scripts/carousel/week_digest.py` | what the judges kept saying this week, counted, for the weekly machine pass. | --date --days --out --self-test | CI self-test | 17 |
 | `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
