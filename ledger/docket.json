@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "gates": [
    "banned words",
    "claims",
@@ -28778,6 +28778,287 @@
     {
      "date": "2026-10-04",
      "note": "Admitted on The Texas Tribune and ProPublica's account of the agency emails and the district pilots. The State Board of Education's own minutes of its June 2025 charter vetoes are cited beside it."
+    }
+   ]
+  },
+  {
+   "title": "UT REAL Health AI funds 12 pilot projects that put AI into UT System hospitals and medical schools",
+   "summary": "The University of Texas Research, Engineering, and Application Laboratory for Healthcare Artificial Intelligence announced funding for 12 pilot projects. The laboratory is known as UT REAL Health AI and was launched by the UT System in 2025. The pilots were chosen from 120 systemwide submissions. The page says the awards total more than $3.6 million and that three moonshot projects each received up to $500,000. Among them is an AI clinical assistant for emergency triage and transfer decisions at seven UT hospital sites. Others are a smartphone app that listens for fetal movements, referral triage at UTMB Galveston and a warning system against wrong tooth extraction at UTHealth Houston. One project is AI no-show reduction. The page credits it with saving more than 6,500 appointments and $900,000 in revenue at UTHealth Houston, and it is set to expand to UT Health San Antonio. Those results are the project's own report and not an independent audit. The page carries no announcement date.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "The University of Texas System",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar",
+     "Travis",
+     "Dallas",
+     "Galveston",
+     "Harris",
+     "Smith"
+    ],
+    "on_ercot": null
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-10-07",
+     "kind": "hearing",
+     "note": "The laboratory's 2026 symposium opens in Austin"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The UT System publishes the laboratory's page, its leadership and the list of funded pilots with each project's lead. There is no comment window on the awards. A reader with a question about a pilot contacts the institution that runs it.",
+    "url": "https://www.utsystem.edu/sites/ut-real-health-ai",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "UT REAL Health AI is the UT System's Research, Engineering, and Application Laboratory for Healthcare Artificial Intelligence.",
+     "verbatim_quote": "The University of Texas Research, Engineering, and Application Laboratory for Healthcare Artificial Intelligence (UT REAL Health AI)",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c1"
+    },
+    {
+     "text": "The UT System launched the laboratory in 2025 after legislative approval and dedicated funding.",
+     "verbatim_quote": "In 2025, the University of Texas System received legislative approval and dedicated funding to launch UT REAL Health AI, a systemwide initiative to responsibly accelerate artificial intelligence in health.",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai",
+     "source_title": "UT REAL Health AI",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c2"
+    },
+    {
+     "text": "The laboratory announced funding for 12 pilot projects.",
+     "verbatim_quote": "today announced funding for 12 pilot projects designed to advance the use of AI in healthcare across the UT System",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c3"
+    },
+    {
+     "text": "The pilots were chosen from 120 systemwide submissions.",
+     "verbatim_quote": "Selected through a rigorous two-phase review of 120 systemwide submissions",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c4"
+    },
+    {
+     "text": "The awards total more than $3.6 million.",
+     "verbatim_quote": "Competitive awards totaling more than $3.6 million support AI innovation in emergency care, patient safety, clinical efficiency, and medical education across eleven UT institutions.",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c5"
+    },
+    {
+     "text": "Three moonshot projects each received up to $500,000.",
+     "verbatim_quote": "Three moonshot projects each received up to $500,000 to pursue transformative clinical AI.",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c6"
+    },
+    {
+     "text": "A UT San Antonio pilot puts an AI clinical assistant across seven UT hospital sites for emergency triage and transfer decisions.",
+     "verbatim_quote": "deploys \"Leah,\" an AI clinical assistant trained on more than 400,000 trauma cases, across seven UT hospital sites to optimize emergency triage and transfer decisions",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c7"
+    },
+    {
+     "text": "A UT Austin pilot is a smartphone app that listens for fetal movements.",
+     "verbatim_quote": "is a smartphone app that uses AI-powered acoustic analysis to detect fetal movements with 88% accuracy",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c8"
+    },
+    {
+     "text": "UTMB Galveston is deploying AI referral triage.",
+     "verbatim_quote": "At UTMB Galveston, Dr. Salim Hayek is deploying AI Referral Triage to Reduce Low-Value Care and Improve Patient Access",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c9"
+    },
+    {
+     "text": "A UTHealth Houston pilot warns against wrong tooth extraction.",
+     "verbatim_quote": "Early Warning System to Predict Wrong-Tooth Extraction (WTE) in Oral & Maxillofacial Surgery (Predict-WTE) led by Dr. Sayali Tungare at UTHealth Houston",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c10"
+    },
+    {
+     "text": "A UT Tyler pilot uses AI to expand retinal screening.",
+     "verbatim_quote": "led by Dr. Andrea Cooley at UT Tyler, uses artificial intelligence to expand access to retinal screening and early disease detecting at scale",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c11"
+    },
+    {
+     "text": "The page credits the no-show project with saving more than 6,500 appointments and $900,000 in revenue at UTHealth Houston.",
+     "verbatim_quote": "that has already saved more than 6,500 appointments and $900,000 in revenue at UTHealth Houston",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c12"
+    },
+    {
+     "text": "The no-show project is set to expand to UT Health San Antonio.",
+     "verbatim_quote": "The project will now expand to UT Health San Antonio, where it is projected to recover 15,000",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai/workgroups/pilot-program-phase-i",
+     "source_title": "UT REAL Health AI, Pilot Program Phase I",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c13"
+    },
+    {
+     "text": "The laboratory's 2026 symposium is listed on its page.",
+     "verbatim_quote": "2026 UT REAL Health AI Symposium",
+     "source_url": "https://www.utsystem.edu/sites/ut-real-health-ai",
+     "source_title": "UT REAL Health AI",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0201-c14"
+    }
+   ],
+   "notes_for_editor": "Admitted on the UT System's own pilot page. The page is undated. The Houston Chronicle's October 2nd reporting on the program sits on a host that bars this project and is not cited.",
+   "id": "tx-2026-0201",
+   "last_verified": "2026-10-05",
+   "history": [
+    {
+     "date": "2026-10-05",
+     "note": "Admitted on the UT System's own list of funded pilots. The awards are made, and the one result the page reports is the no-show project's own count at UTHealth Houston."
+    }
+   ]
+  },
+  {
+   "title": "ERCOT pauses energizing new data centers and crypto mines of 75 MW or more until its audit is done",
+   "summary": "ERCOT told its board that it has paused the energization of new large load data centers and crypto mining facilities. The pause covers sites of 75 MW or more that are not yet connected to the ERCOT system. It lasts until ERCOT completes the verification and audit and the community impact review it began after the Governor's August 3rd, 2026 directive. ERCOT says it will file both reports with the Public Utility Commission of Texas by December 10th, 2026. The update went to the ERCOT board meeting of September 14th and 15th, 2026.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Electric Reliability Council of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-14",
+     "kind": "hearing",
+     "note": "Batch Zero update presented to the ERCOT board"
+    },
+    {
+     "date": "2026-12-10",
+     "kind": "administrative_deadline",
+     "note": "ERCOT's verification report and community impact review report due at the commission"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "ERCOT took the pause administratively and has opened no comment window on it. Its board materials are public, and the two reports will be filed with the Public Utility Commission of Texas, where filings are public.",
+    "url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "ERCOT has paused energizing new large load data centers and crypto mining facilities until the audit and community impact review are complete.",
+     "verbatim_quote": "ERCOT has paused the energization of new Large Load data centers and crypto mining facilities until the completion of the verification and audit and community impact review.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c1"
+    },
+    {
+     "text": "The pause applies to facilities of 75 MW or more.",
+     "verbatim_quote": "Paused approvals to energize data centers or virtual currency mining facilities (crypto facilities) that are 75 MW or greater.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c2"
+    },
+    {
+     "text": "The pause reaches only facilities not yet connected.",
+     "verbatim_quote": "Energization pause impacts Large Load data centers and crypto facilities not yet connected to the ERCOT system.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c3"
+    },
+    {
+     "text": "ERCOT acted on the Governor's August 3rd, 2026 directive.",
+     "verbatim_quote": "ERCOT took immediate actions to address Governor Abbott's August 3, 2026 directive related to the interconnection of data centers and crypto mining loads.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c4"
+    },
+    {
+     "text": "The verification report is due at the commission by December 10th, 2026.",
+     "verbatim_quote": "ERCOT will file the Batch Zero Eligibility Verification Report with the Commission by December 10, 2026.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c5"
+    },
+    {
+     "text": "The community impact review report is due the same day.",
+     "verbatim_quote": "ERCOT will file the Community Impact Review Report with the Commission by December 10, 2026.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c6"
+    },
+    {
+     "text": "The update went to the board meeting of September 14th and 15th, 2026.",
+     "verbatim_quote": "Board of Directors Meeting September 14-15, 2026",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+     "source_title": "ERCOT Board of Directors, Item 14, Batch Zero Update",
+     "source_type": "primary_official",
+     "fetched": "2026-10-05",
+     "id": "tx-2026-0202-c7"
+    }
+   ],
+   "notes_for_editor": "Admitted on ERCOT's own board materials. Related to tx-2026-0072, the Governor's directive this pause answers.",
+   "id": "tx-2026-0202",
+   "last_verified": "2026-10-05",
+   "history": [
+    {
+     "date": "2026-10-05",
+     "note": "Admitted on ERCOT's own board materials. The pause stands until the audit and the community impact review are done, and both reports are due at the commission by December 10th, 2026."
     }
    ]
   }
