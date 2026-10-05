@@ -146,6 +146,9 @@
         if (!geos[key]) geos[key] = new THREE.PlaneGeometry(p.w, p.h);
         var mesh = new THREE.Mesh(geos[key], mat);
         mesh.position.set(p.x, p.y, p.z);
+        /* a pane takes no shadow map: at a lit room card's grazing angle the key's shadow map
+         * aliased into a speckle that read as broken glass (pixel round 3) */
+        mesh.receiveShadow = false; mesh.castShadow = false;
         mesh.userData.bay = [f, b, s || "base"];
         grp.add(mesh);
       }
@@ -180,7 +183,10 @@
       var reach = o.reach || 2.4, hx = x + Math.sin(s.rotation.y) * reach, hz = z + Math.cos(s.rotation.y) * reach;
       /* a downward cone, not a bulb: a lot head throws its light on the ground, so the pool reads
        * as a lit disc of asphalt under the head and not as a glow on the cars */
-      var h = (o.height || 9.1) - 0.4, pl = new N.T.SpotLight(0xffeeda, (o.pool || 60) * 9, (o.range || 24) * 1.4, o.angle || 0.95, 0.75, 2);
+      /* half the round 2 strength and the widest penumbra: at 9x the pools clipped to white discs
+       * with a hard rim on frames 1, 7, 8 and 9 (pixel round 3) */
+      var h = (o.height || 9.1) - 0.4, pl = new N.T.SpotLight(0xf2ede4, (o.pool || 60) * 4.2, (o.range || 24) * 1.5, o.angle || 0.95, 1.0, 2);
+      if (o.shadow) { pl.castShadow = true; pl.shadow.mapSize.set(1024, 1024); pl.shadow.bias = -0.0004; }
       pl.position.set(hx, h, hz); pl.target.position.set(hx, 0, hz); R.scene.add(pl); R.scene.add(pl.target);
     }
     return s;
@@ -211,7 +217,7 @@
       mat = N.mats(null, THREE).screen;
     }
     mon.traverse(function (m) {
-      if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0 && (m.material.emissiveMap || m.material.map)) m.material = mat || m.material;
+      if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0 && (m.material.emissiveMap || m.material.map)) { m.material = mat || m.material; m.receiveShadow = false; }
     });
     return mon;
   };
