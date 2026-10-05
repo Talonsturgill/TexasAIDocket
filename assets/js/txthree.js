@@ -1502,6 +1502,10 @@ export function init(THREE) {
       const u = m.userData || {};
       if (u.txPool || u.txSky) return;
       if (u.txGround) {
+        // under the subject, like any other receiver: a raised patch of ground beside it is not
+        // what it stands on, and a pool at that patch's height floated over the frame (Codex, PR 402)
+        tb.setFromObject(m);
+        if (!tb.isEmpty() && (c.x < tb.min.x || c.x > tb.max.x || c.z < tb.min.z || c.z > tb.max.z)) return;
         const y = m.getWorldPosition(wp).y;
         if (y > base + 0.05) return;
         if (ground === null || y > ground) ground = y;
@@ -1545,8 +1549,12 @@ export function init(THREE) {
    * TX_VEIL, laid by the stage and lifted by TXT.unstage, and three.js keys its programs on a
    * material's defines, the way TX_GROUND already works. A material whose define changes compiles
    * again, which an automatic stage never causes, since it is laid before the first render. */
+  // a ground the kit tagged (terrain, a slope, a road) without TXT.ground's TX_GROUND define is still
+  // ground: the veil is for things standing, and a veiled terrain never closed into the sky (Codex)
+  const groundTagged = (o) => { for (let q = o; q; q = q.parent) if (q.userData && q.userData.txGround) return true; return false; };
   function veilScene(R, on) {
     R.scene.traverse((o) => {
+      if (on && groundTagged(o)) return;
       const mats = !o.material ? [] : Array.isArray(o.material) ? o.material : [o.material];
       for (const m of mats) {
         if (!m || m.fog === false || (m.defines && 'TX_GROUND' in m.defines)) continue;

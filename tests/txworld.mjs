@@ -1316,13 +1316,25 @@ const STAGE3 = `async (T, TXT, cv) => {
   const hero = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xb8b0a0)); hero.name = 'hero'; hero.position.set(2.5, 1, 2); TXT.add(Ly, hero);
   await TXT.snapshot(Ly);
   const layered = Object.assign({}, Ly._txStaged);
+  // a raised patch of tagged ground beside the subject is not what it stands on, and a kit ground
+  // (tagged, without TXT.ground's define) is never veiled
+  const Pt = make([8, 3, 12], [0, 1.8, 0]);
+  const plinth = new T.Mesh(new T.BoxGeometry(2, 1.4, 2), mat(0x3a3430)); plinth.name = 'plinth'; plinth.position.set(0, 0.7, 0); TXT.add(Pt, plinth);
+  const bust = new T.Mesh(new T.BoxGeometry(1.2, 1.2, 1.2), mat(0xd8d0c0)); bust.name = 'bust'; bust.position.set(0, 2.0, 0); TXT.add(Pt, bust);
+  const patch = new T.Mesh(new T.PlaneGeometry(10, 10).rotateX(-Math.PI / 2), mat(0x5a5a48)); patch.position.set(30, 1.2, 0);
+  patch.userData.txGround = true; TXT.add(Pt, patch);
+  const kitGround = new T.Mesh(new T.PlaneGeometry(400, 400, 4, 4).rotateX(-Math.PI / 2), mat(0x4a4434)); kitGround.position.set(0, 0.01, 0);
+  kitGround.userData.txGround = true; TXT.add(Pt, kitGround);
+  const onPlinth = Object.assign({}, TXT.stage(Pt, bust));
+  const veil = (o) => !!(o.material.defines && 'TX_VEIL' in o.material.defines);
+  const kitVeil = { kitGround: veil(kitGround), patch: veil(patch), bust: veil(bust) };
   // a standalone scene that names no world stands in the house register
   const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
   TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
   TXT.sky(Sd);
   const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
   return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
-           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone };
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil };
 }`;
 
 async function run(name, scene) {
@@ -1810,6 +1822,11 @@ check('the third stage page renders with no page error and no scene error',
         ly.subject === 'hero', JSON.stringify(ly));
   check(`a standalone TXT.sky(R) that names no world stands in lastLight, the house register`,
         r.standalone && r.standalone.staged === true && r.standalone.lastLight === true, JSON.stringify(r.standalone));
+  const pl = r.onPlinth || {}, kv = r.kitVeil || {};
+  check(`a raised patch of ground 30 m away is never the receiver: the bust on its plinth gets ${pl.pool ? 'a pool at y ' + pl.poolY : 'no pool'}`,
+        pl.subject === 'bust' && pl.pool === false, JSON.stringify(pl));
+  check(`a kit ground, tagged without TXT.ground's define, is never veiled, and the bust is: ${JSON.stringify(kv)}`,
+        kv.kitGround === false && kv.patch === false && kv.bust === true, JSON.stringify(kv));
 }
 
 await browser.close();

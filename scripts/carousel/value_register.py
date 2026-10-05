@@ -98,15 +98,16 @@ def render_frames(render_dir: Path) -> list[Path]:
     return sorted(p for p in render_dir.glob("slide-*.png") if p.stem[6:].isdigit())
 
 
-def light_window(art_path: Path = ARTWORK, before: str | None = None) -> tuple[int, list[str]]:
+def light_window(art_path: Path = ARTWORK, before: str | None = None) -> tuple[int | None, list[str]]:
     """How many of the seven decks before this one already read light, by ledger_check's own rule,
     less the named waivers. Before `before` (a run date) when given, so a re-run of a shipped deck
-    does not count itself."""
+    does not count itself. None, with the reason, when the ledger can't be read: an unknown window
+    is never an empty one (Codex, PR 402)."""
     import ledger_check as lc
     try:
         art = json.loads(art_path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return 0, []
+    except (OSError, ValueError) as e:
+        return None, [f"{art_path}: {e}"]
     entries = sorted(art.get("entries", []), key=lambda e: e.get("date", ""))
     if before:
         entries = [e for e in entries if e.get("date", "") < before]
@@ -152,7 +153,13 @@ def judge(rows: list[dict], probe: bool, date: str | None, art_path: Path = ARTW
         subject = "deck"
     if light:
         n, which = light_window(art_path, date)
-        if n >= lc.LIGHT_CAP:
+        if n is None:
+            problems.append(
+                f"the {subject} reads light, median L* {median:.1f} against ledger_check's line of "
+                f"{lc.LIGHT_L}, and the light deck window can't be read ({which[0]}), so this gate "
+                f"can't tell whether brand.yaml's cap of {lc.LIGHT_CAP} in eight is spent. Fix the "
+                f"ledger or choose a dark world")
+        elif n >= lc.LIGHT_CAP:
             problems.append(
                 f"the {subject} reads light, median L* {median:.1f} against "
                 f"ledger_check's line of {lc.LIGHT_L}, and the seven decks before it already hold "
@@ -216,6 +223,11 @@ def self_test() -> int:
               not any("reads light" in p for p in judge([white], True, "2026-09-05", empty)))
         check("a light probe frame beside two dark ones a retried run left in the folder still fails",
               any("reads light" in p for p in judge([bold, white, bold], True, "2026-09-05", held)))
+        missing = t / "no-such-ledger.json"
+        check("an unreadable light deck ledger fails a light probe closed",
+              any("can't be read" in p for p in judge([white], True, "2026-09-05", missing)))
+        check("...and never troubles a dark one, which doesn't ask it",
+              judge([bold], True, "2026-09-05", missing) == [])
     # the calibration anchors, from the shipped decks this was measured on
     for date, should_fail in (("2026-10-04", True), ("2026-09-27", False)):
         d = ms.RUNS / date
