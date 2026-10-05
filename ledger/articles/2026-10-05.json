@@ -44,7 +44,7 @@
      ]
     },
     {
-     "text": "[At UTMB Galveston, a pilot deploys AI referral triage](c13). [The tool reads the health record, assigns an urgency score and routes each patient to a level of care](c49). [At UT Dell Medical School, a pilot on patient engagement](c15) [implements six AI tools built into Epic that draft lab result messages and imaging summaries for patients](c51).",
+     "text": "[At UTMB Galveston, a pilot deploys AI referral triage](c13). [The tool reads the health record, assigns an urgency score and routes patients to a level of care](c49). [At UT Dell Medical School, a pilot on patient engagement](c15) [implements six AI tools built into Epic, among them tools that automate lab result messaging and generate patient-facing imaging summaries](c51).",
      "claims": [
       "c13",
       "c49",
@@ -111,11 +111,12 @@
    "heading": "What comes next",
    "paragraphs": [
     {
-     "text": "[The laboratory's 2026 symposium is set for October 7th and 8th in Austin](c24). [Its page names the laboratory's executive director, Dr. Nyma Shah of UT MD Anderson Cancer Center](c3), [and its chair, Dr. Peter McCaffrey of UTMB](c4). A patient at a UT hospital can ask that hospital which of the funded pilots it takes part in.",
+     "text": "[The laboratory's 2026 symposium is set for October 7th and 8th in Austin](c24). [Its page names the laboratory's executive director, Dr. Nyma Shah of UT MD Anderson Cancer Center](c3), [and its chair, Dr. Peter McCaffrey of UTMB](c4). [The laboratory's page carries a link to register for the symposium](c54).",
      "claims": [
       "c24",
       "c3",
-      "c4"
+      "c4",
+      "c54"
      ]
     }
    ]

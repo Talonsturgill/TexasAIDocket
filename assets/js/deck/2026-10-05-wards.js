@@ -155,7 +155,7 @@
         mesh.position.set(p.x, p.y, p.z);
         /* a pane takes no shadow map: at a lit room card's grazing angle the key's shadow map
          * aliased into a speckle that read as broken glass (pixel round 3) */
-        mesh.receiveShadow = false; mesh.castShadow = false;
+        mesh.receiveShadow = false; mesh.castShadow = false; mesh.userData.noShadow = true;
         mesh.userData.bay = [f, b, s || "base"];
         grp.add(mesh);
       }
@@ -224,11 +224,16 @@
       mat = N.mats(null, THREE).screen;
     }
     mon.traverse(function (m) {
-      if (m.isMesh) m.receiveShadow = false;
+      if (m.isMesh) { m.receiveShadow = false; m.userData.noShadow = true; }
       if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0 && (m.material.emissiveMap || m.material.map)) { m.material = mat || m.material; m.receiveShadow = false; }
     });
     return mon;
   };
+
+  /* N.unshadow runs last, before the snapshot: TXT.add sets every mesh to receive the key's shadow
+   * map, which put back the speckle on the panes and the stipple triangles on the screens that
+   * the flag above took off (panel round 2) */
+  N.unshadow = function (scene) { scene.traverse(function (m) { if (m.isMesh && m.userData.noShadow) { m.receiveShadow = false; m.castShadow = false; } }); };
 
   /* N.local turns a point in the hospital's own frame (the kit's coordinates, before its footprint
    * was re-centred) into the world, wherever a frame has stood and turned it */
