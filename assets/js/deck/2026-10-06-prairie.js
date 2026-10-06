@@ -47,7 +47,7 @@
       contrast: 1.05,
       filmic: true,
       lift: [0.008, 0.007, 0.010],
-      gain: [1.01, 1.0, 0.99],
+      gain: [1.05, 1.0, 0.93],
       vignette: 0.2,
       bloom: { threshold: 0.82, strength: 0.14, radius: 14 },
       grain: { amount: 0.012, size: 2, seed: 20261006 },
@@ -286,10 +286,10 @@
           /* every frequency a whole number of cycles across the tile, so the repeat carries no seam */
           img.data[k] = 128 + wv * 38; img.data[k + 1] = 128 + Math.cos(v * 11 + u * 2) * 30; img.data[k + 2] = 255; img.data[k + 3] = 255; }
         rx.putImageData(img, 0, 0); var nt = new THREE.CanvasTexture(rc); nt.wrapS = nt.wrapT = THREE.RepeatWrapping; nt.repeat.set(a / 7, a / 7);
-        var water = new THREE.Mesh(new THREE.PlaneGeometry(a, a, 1, 1), new THREE.MeshPhysicalMaterial({ color: o.water, roughness: 0.06, metalness: 0.0, clearcoat: 1.0, clearcoatRoughness: 0.04, ior: 1.33, envMapIntensity: 1.25, normalMap: nt, normalScale: new THREE.Vector2(0.22, 0.22) }));
+        var water = new THREE.Mesh(new THREE.PlaneGeometry(a, a, 1, 1), new THREE.MeshPhysicalMaterial({ color: o.water, roughness: 0.06, metalness: 0.0, clearcoat: 1.0, clearcoatRoughness: 0.04, ior: 1.33, envMapIntensity: 1.25, normalMap: nt, normalScale: new THREE.Vector2(0.17, 0.17) }));
         water.rotation.x = -Math.PI / 2; water.position.y = 0.02; water.receiveShadow = true; water.userData.txWear = false; water.userData.noShadow = false;
         g.add(water);
-        var damp = new THREE.MeshStandardMaterial({ color: 0x2a221c, roughness: 0.72, metalness: 0 });
+        var damp = new THREE.MeshStandardMaterial({ color: 0x5a4838, roughness: 0.8, metalness: 0 });
         var L = o.lip;
         [[0, -(a + L) / 2, a + 2 * L, L], [0, (a + L) / 2, a + 2 * L, L], [-(a + L) / 2, 0, L, a], [(a + L) / 2, 0, L, a]].forEach(function (s) {
           var m = new THREE.Mesh(new THREE.PlaneGeometry(s[2], s[3]), damp); m.rotation.x = -Math.PI / 2; m.position.set(s[0], 0.012, s[1]); m.receiveShadow = true; g.add(m);
@@ -517,7 +517,7 @@
     N.soften(cx, [".tx-site", ".src", ".count"], { blur: o.siteBlur || 14, pad: 16, feather: 60 });
     /* where a kicker lands on the brightest haze of the day, a feathered shade behind the furniture
      * alone, never a plate: no edge survives the feather */
-    if (o.shade) N.shade(cx, [".kick", ".count"], { alpha: o.shade, pad: 18, feather: 40 });
+    if (o.shade) N.shade(cx, [".kick", ".count"], { alpha: o.shade, pad: 8, feather: 26 });
     var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "14,10,8";
     for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.4 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
