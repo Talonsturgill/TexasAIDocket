@@ -1,14 +1,21 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-06T18:58:37Z",
+  "checked_at": "2026-10-06T23:09:17Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "ef1e4a48f2152c5afb7631a1fb7db7cb30a0ca43d276c5a05b44bdbf3aa3f2a8",
+  "response_sha256": "60e18aa8300d395f8f4ade8851379b3359d2762b2a98e6a819181bf77075a331",
   "articles": [
     {
       "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
       "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
       "first_seen_at": "2026-10-01T18:50:07Z",
       "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+      "feed": "https://dallasinnovates.com/feed/"
+    },
+    {
+      "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+      "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+      "first_seen_at": "2026-10-06T21:02:55Z",
+      "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
@@ -48,91 +55,20 @@
     }
   ],
   "selected": {
-    "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-    "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-    "first_seen_at": "2026-10-01T19:29:27Z",
-    "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+    "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+    "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+    "first_seen_at": "2026-10-01T18:50:07Z",
+    "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.031717,
-    "priority": 3
+    "score": 0.027585,
+    "priority": 4
   },
-  "expires_at": "2026-10-08T19:29:27Z",
+  "expires_at": "2026-10-08T18:50:07Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-06T13:23:00Z",
-      "selected": {
-        "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-        "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-        "first_seen_at": "2026-10-01T19:29:27Z",
-        "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.031717,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-          "first_seen_at": "2026-10-01T19:29:27Z",
-          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.031717,
-          "priority": 3
-        },
-        {
-          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-          "first_seen_at": "2026-10-01T20:34:13Z",
-          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.032722,
-          "priority": 3
-        },
-        {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.051314,
-          "priority": 4
-        },
-        {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.048436,
-          "priority": 4
-        },
-        {
-          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-          "first_seen_at": "2026-10-01T18:50:07Z",
-          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.031122,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-06T19:23:00Z",
       "selected": {
@@ -143,7 +79,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.030759,
+        "score": 0.027585,
         "priority": 4
       },
       "stories": [
@@ -155,8 +91,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.030759,
+          "score": 0.027585,
           "priority": 4
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.940986,
+          "priority": 0
         },
         {
           "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
@@ -166,7 +113,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.03234,
+          "score": 0.029002,
           "priority": 3
         },
         {
@@ -177,7 +124,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.031347,
+          "score": 0.028112,
           "priority": 3
         },
         {
@@ -188,7 +135,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.050716,
+          "score": 0.045482,
           "priority": 4
         },
         {
@@ -199,7 +146,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.04787,
+          "score": 0.04293,
           "priority": 4
         }
       ]
@@ -207,27 +154,27 @@
     {
       "starts_at": "2026-10-07T01:23:00Z",
       "selected": {
-        "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-        "first_seen_at": "2026-10-02T12:08:57Z",
-        "summary": "Set to be largest facility yet at the campus",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
+        "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+        "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+        "first_seen_at": "2026-10-06T21:02:55Z",
+        "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.042647,
-        "priority": 4
+        "score": 0.882328,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.042647,
-          "priority": 4
+          "score": 0.882328,
+          "priority": 0
         },
         {
           "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
@@ -250,6 +197,17 @@
           "coverage": 1,
           "score": 0.02636,
           "priority": 3
+        },
+        {
+          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+          "first_seen_at": "2026-10-02T12:08:57Z",
+          "summary": "Set to be largest facility yet at the campus",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.042647,
+          "priority": 4
         },
         {
           "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
@@ -278,27 +236,38 @@
     {
       "starts_at": "2026-10-07T07:23:00Z",
       "selected": {
-        "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-        "first_seen_at": "2026-10-02T10:09:00Z",
-        "summary": "Will feature two data centers, likely connected to project in Childress",
+        "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+        "first_seen_at": "2026-10-02T12:08:57Z",
+        "summary": "Set to be largest facility yet at the campus",
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.033849,
+        "score": 0.035861,
         "priority": 4
       },
       "stories": [
         {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
+          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+          "first_seen_at": "2026-10-02T12:08:57Z",
+          "summary": "Set to be largest facility yet at the campus",
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.033849,
+          "score": 0.035861,
           "priority": 4
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.741946,
+          "priority": 0
         },
         {
           "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
@@ -323,14 +292,14 @@
           "priority": 3
         },
         {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
+          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+          "first_seen_at": "2026-10-02T10:09:00Z",
+          "summary": "Will feature two data centers, likely connected to project in Childress",
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.035861,
+          "score": 0.033849,
           "priority": 4
         },
         {
@@ -345,14 +314,91 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-07T13:23:00Z",
+      "selected": {
+        "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+        "first_seen_at": "2026-10-02T10:09:00Z",
+        "summary": "Will feature two data centers, likely connected to project in Childress",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.028464,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+          "first_seen_at": "2026-10-02T10:09:00Z",
+          "summary": "Will feature two data centers, likely connected to project in Childress",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.028464,
+          "priority": 4
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.6239,
+          "priority": 0
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.019229,
+          "priority": 3
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.018639,
+          "priority": 3
+        },
+        {
+          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+          "first_seen_at": "2026-10-02T12:08:57Z",
+          "summary": "Set to be largest facility yet at the campus",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.030156,
+          "priority": 4
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.01829,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.tpr.org/news/2026-09-24/texas-tech-leaders-face-questions-over-their-role-in-ken-paxton-u-s-senate-race-fundraiser",
-      "title": "Texas Tech leaders face questions over their role in Ken Paxton U.S. Senate race fundraiser",
-      "shown_at": "2026-09-29T19:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/colovore-files-to-develop-data-center-in-fort-worth-texas/",
       "title": "Colovore files to develop data center in Fort Worth, Texas",
@@ -492,42 +538,47 @@
       "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
       "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
       "shown_at": "2026-10-06T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+      "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+      "shown_at": "2026-10-06T19:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "1214084d4873bded3746c95e144718349b47859b2bc48a09146d77f4e21b6b24"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "926d121f781586e13dfc0ef36b61391adcb3a9af98fa3520f50142af7a66aef7"
+      "sha256": "e82f6516b8a02a52100e766c83f2f3ae2dc7230f67e8c1594a0b1449e184c0be"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "6149db39a5052ae62efda64c851677c54fd7ce8f063a886281ca5f49d7fc4347"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "bbe3ca93e4ab125ba329c14609c17d6bf8a1121ca8c53c29239f23c12c9da41d"
+      "sha256": "d6511a80f98c196139f1eb7a9a1c4ee09f231cc6b400580b9efab8ff2c124790"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1249,
-      "sha256": "3daadcc40087f54d8c6dd34d7f714c58914184085f3cf5ec8351d03628b3ce77"
+      "items": 1250,
+      "sha256": "f73f5d1a13831c96978761bedd4f43a4385a490809397104fda6306f49d83547"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "b666d423925796be651aae7cce713fe562183d5bb83707faeaa7c310e04e0f19"
+      "sha256": "681e9a28c96aecae3df34fc215cd5b3565fe9897cba3d186e0299e94aafa479d"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -539,7 +590,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "c5396152c0f43fc338f35a1863e603f8f742bdc187ba9d02871ee2a4d6736645"
+      "sha256": "664d2886f0b9493a00713fd4d5d0fc60c6c595aba47f7c4a187442e59c401c2e"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -550,92 +601,88 @@
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "4d1b0d2493c2c9302fad119747f82430ff3bb4d6e0909826afa43ad196fba25b"
+      "sha256": "074f183e3182022efc5b0df4e019613349d3910a28d13ca009528df7182c2899"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "f94eeb3b52929b21ba66a60b3dfc19be3c36a96cf532a2469c3d545390dfa13c"
+      "sha256": "7419d664e8c4c6b2ead3b3b7243ec45953de33d626f0a90520d9fd7e0a9474e1"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "91deca280538dead8f4b62aec3469c6a1d7391baab2d49c0088d327ecd075bca"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "f043bf428200f5026258e35e698d1bdb53ef177bc555a9778a12afaba1e6764b"
+      "sha256": "4928204d3f0546022dc65534a605d8ce2b4124c44e47a172996015b45f8b8e00"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "3eaeb7846c68b9bcc1ea8971919b4e6ef2b70a20085c6f530eeb6f2007a353c3"
+      "status": "not_modified"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"5dc80955488e9ca628b2cff0d54a884b\"",
-      "last_modified": "Thu, 01 Oct 2026 23:28:16 GMT",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
-      "ok_at": "2026-10-06T18:58:35Z",
-      "sha256": "b4749adb6e7cccd5a9ae7100a68283dc48c21efe9623be6cc9bb48b1d7d8ee6a",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "1214084d4873bded3746c95e144718349b47859b2bc48a09146d77f4e21b6b24",
+      "etag": "\"117b7f922ea384d7ef533808b4bd733b\"",
+      "last_modified": "Tue, 06 Oct 2026 23:01:33 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "926d121f781586e13dfc0ef36b61391adcb3a9af98fa3520f50142af7a66aef7",
-      "etag": "\"6ac535df-97e2\"",
-      "last_modified": "Tue, 06 Oct 2026 17:54:39 GMT"
+      "sha256": "e82f6516b8a02a52100e766c83f2f3ae2dc7230f67e8c1594a0b1449e184c0be",
+      "etag": "\"6ac56552-9728\"",
+      "last_modified": "Tue, 06 Oct 2026 21:17:06 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "last_modified": "Tue, 06 Oct 2026 16:40:11 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-06T23:09:15Z",
       "sha256": "6149db39a5052ae62efda64c851677c54fd7ce8f063a886281ca5f49d7fc4347",
-      "last_modified": "Tue, 06 Oct 2026 16:40:11 GMT"
+      "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "bbe3ca93e4ab125ba329c14609c17d6bf8a1121ca8c53c29239f23c12c9da41d",
-      "etag": "\"1791312350\"",
-      "last_modified": "Tue, 06 Oct 2026 18:45:50 GMT"
+      "sha256": "d6511a80f98c196139f1eb7a9a1c4ee09f231cc6b400580b9efab8ff2c124790",
+      "etag": "\"1791328007\"",
+      "last_modified": "Tue, 06 Oct 2026 23:06:47 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "3daadcc40087f54d8c6dd34d7f714c58914184085f3cf5ec8351d03628b3ce77"
+      "sha256": "f73f5d1a13831c96978761bedd4f43a4385a490809397104fda6306f49d83547"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b666d423925796be651aae7cce713fe562183d5bb83707faeaa7c310e04e0f19",
-      "etag": "\"c50f43d75a8a52e4899cb25d4b470fdb-gzip\"",
-      "last_modified": "Tue, 06 Oct 2026 13:00:19 GMT"
+      "sha256": "681e9a28c96aecae3df34fc215cd5b3565fe9897cba3d186e0299e94aafa479d",
+      "etag": "\"6298fe675d89ec1cf09b314fe48f6fb7-gzip\"",
+      "last_modified": "Tue, 06 Oct 2026 21:37:28 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "99d33b9b7fdc8a5e93aa8d6f6cad28e08380b424f28cc0707532f5d6c9775d6f"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c5396152c0f43fc338f35a1863e603f8f742bdc187ba9d02871ee2a4d6736645",
-      "etag": "\"c170ecb7a20707002bdefdbdaa629292\"",
-      "last_modified": "Tue, 06 Oct 2026 18:53:26 GMT"
+      "sha256": "664d2886f0b9493a00713fd4d5d0fc60c6c595aba47f7c4a187442e59c401c2e",
+      "etag": "\"d51687a682c69a0c8d9f0c915efe27b8\"",
+      "last_modified": "Tue, 06 Oct 2026 22:56:40 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -647,40 +694,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4d1b0d2493c2c9302fad119747f82430ff3bb4d6e0909826afa43ad196fba25b",
-      "etag": "W/\"62ee1aa01055bc80743d7d9dccd69251\"",
-      "last_modified": "Tue, 06 Oct 2026 17:37:58 GMT"
+      "sha256": "074f183e3182022efc5b0df4e019613349d3910a28d13ca009528df7182c2899",
+      "etag": "W/\"c6e62652bb8e334feaa16ff5fb09b492\"",
+      "last_modified": "Tue, 06 Oct 2026 21:46:09 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "f94eeb3b52929b21ba66a60b3dfc19be3c36a96cf532a2469c3d545390dfa13c",
-      "etag": "W/\"0c99e420c71c8612e98d5f19af3f0763\""
+      "sha256": "7419d664e8c4c6b2ead3b3b7243ec45953de33d626f0a90520d9fd7e0a9474e1",
+      "etag": "W/\"9d7c3e81b644555a89e186341945f14f\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "last_modified": "Tue, 06 Oct 2026 13:39:25 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-06T23:09:15Z",
       "sha256": "91deca280538dead8f4b62aec3469c6a1d7391baab2d49c0088d327ecd075bca",
-      "last_modified": "Tue, 06 Oct 2026 13:39:25 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-06T18:58:35Z",
+      "ok_at": "2026-10-06T23:09:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "f043bf428200f5026258e35e698d1bdb53ef177bc555a9778a12afaba1e6764b"
+      "sha256": "4928204d3f0546022dc65534a605d8ce2b4124c44e47a172996015b45f8b8e00"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-06T18:58:35Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "3eaeb7846c68b9bcc1ea8971919b4e6ef2b70a20085c6f530eeb6f2007a353c3",
       "etag": "W/\"6e8c331654e0445cdfffeeddc1f592fb\"",
-      "last_modified": "Tue, 06 Oct 2026 18:16:07 GMT"
+      "last_modified": "Tue, 06 Oct 2026 18:16:07 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-06T23:09:15Z",
+      "sha256": "3eaeb7846c68b9bcc1ea8971919b4e6ef2b70a20085c6f530eeb6f2007a353c3",
+      "parser_version": 2
     }
   }
 }
