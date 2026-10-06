@@ -7,7 +7,7 @@
  },
  "section": "Power and data centers",
  "dek": {
-  "text": "Taylor published the terms of a proposed data center campus agreement before the council vote. They set its buildings, noise and water against what the county would allow.",
+  "text": "Taylor published the terms of a proposed data center campus agreement before the council vote. They set its buildings, noise and water against what would apply without the agreement.",
   "claims": [
    "c1",
    "c4",
@@ -103,9 +103,10 @@
    "heading": "What the record does not yet show",
    "paragraphs": [
     {
-     "text": "[The agreement is a proposal awaiting the council's vote](c4), and the terms here are the city's own summary of it. The city's pages cited here give no size for the buildings. [The noise cap rises to whatever an acoustic study at the property lines measures before construction](c14), and that study's result is not in the documents cited here.",
+     "text": "[The agreement is a proposal awaiting the council's vote](c4), and the terms here are the city's own summary of it. The city's pages cited here give no size for the buildings. [The noise cap rises above {{number:c12}} dBA only if an acoustic study at the property lines measures a higher level before construction](c12), and that study's result is not in the documents cited here.",
      "claims": [
       "c4",
+      "c12",
       "c14"
      ]
     },
