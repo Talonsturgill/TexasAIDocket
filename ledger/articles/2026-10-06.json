@@ -1,0 +1,135 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Power and data centers",
+ "dek": {
+  "text": "Taylor published the terms of a proposed data center campus agreement before the council vote. They set its buildings, noise and water against what the county would allow.",
+  "claims": [
+   "c1",
+   "c4",
+   "c8"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The City of Taylor says it is considering a proposed agreement with Big Watt Digital and PowerHouse Data Centers covering annexation and development of Taylor Technology Campus](c1). [The city describes it as a {{number:c2}}-acre project with data center facilities and on-site power generation](c2), [immediately east of the current city limits](c3). [The agreement still has to go before the City Council for a vote on {{date:c4}}](c4).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c4"
+   ]
+  },
+  {
+   "text": "[The developers withdrew their annexation and zoning application on {{date:c6}}](c6). [The city says that without the agreement the project would have stayed in unincorporated Williamson County, which has no zoning authority](c8). [It says it would then have had no authority over any aspect of the project](c9).",
+   "claims": [
+    "c6",
+    "c8",
+    "c9"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the terms set, in feet",
+   "paragraphs": [
+    {
+     "text": "[Buildings would sit at least {{number:c30}} feet from the north, east and west property lines](c30). [Along the south line, data centers, power generation and battery storage would sit at least {{number:c31}} feet back, and accessory structures at least {{number:c31:1}} feet](c31).",
+     "claims": [
+      "c30",
+      "c31"
+     ]
+    },
+    {
+     "text": "[A permanent landscaped buffer of at least {{number:c32}} feet would run along the south property line](c32). [It would carry earthen berms at least {{number:c33}} feet high for screening](c33). [The city says the landscaping and buffer areas would separate the development from nearby homes](c59).",
+     "claims": [
+      "c32",
+      "c33",
+      "c59"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Noise, water and money",
+   "paragraphs": [
+    {
+     "text": "[Noise from the development would be capped at the greater of {{number:c12}} dBA or the level before construction](c12). [An acoustic study at the property lines would set that level](c14). [Without the agreement the city's table lists the state limit of {{number:c13}} dBA](c13).",
+     "claims": [
+      "c12",
+      "c14",
+      "c13"
+     ]
+    },
+    {
+     "text": "[Cooling would run in a closed loop on reclaimed water, with an initial fill of {{number:c17}} million gallons for the whole site](c17). [Drinking water would not fill the cooling system unless one of the agreement's exceptions applies](c19). [The first is a temporary emergency approved in writing by the city manager](c20). [The second applies if the city misses its deadline to build the reclaimed water improvements](c21). [The third applies if reclaimed service starts and is later cut below what the developers need](c22).",
+     "claims": [
+      "c17",
+      "c19",
+      "c20",
+      "c21",
+      "c22"
+     ]
+    },
+    {
+     "text": "[The developers would commit {{money:c35}} for community investments and nonprofit support](c35). [They are not asking for any tax abatement](c43). [The city projects {{money:c44}} in gross tax revenue over {{number:c44:1}} years, which is its own projection and not a measured amount](c44).",
+     "claims": [
+      "c35",
+      "c43",
+      "c44"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What residents asked for",
+   "paragraphs": [
+    {
+     "text": "[In June a coalition of residents presented the council with a petition calling for a temporary ban on new data center development in Taylor](c50). [KEYE reported that the coalition gathered about {{number:c52}} signatures](c52). [KEYE also reported that the city found the petition can't go on the ballot, because Texas law doesn't allow zoning changes by popular vote](c51).",
+     "claims": [
+      "c50",
+      "c52",
+      "c51"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not yet show",
+   "paragraphs": [
+    {
+     "text": "[The agreement is a proposal awaiting the council's vote](c4), and the terms here are the city's own summary of it. The city's pages cited here give no size for the buildings. [The noise cap rises to whatever an acoustic study at the property lines measures before construction](c14), and that study's result is not in the documents cited here.",
+     "claims": [
+      "c4",
+      "c14"
+     ]
+    },
+    {
+     "text": "[Spectrum News reported on {{date:c55}} that the Texas attorney general's office is investigating a proposed data center in Taylor](c55). [Spectrum identifies that developer as Blueprint Data Centers, a separate project from Taylor Technology Campus](c56).",
+     "claims": [
+      "c55",
+      "c56"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0203",
+   "label": "The record entry for the Taylor Technology Campus vote"
+  },
+  {
+   "id": "tx-2026-0061",
+   "label": "San Marcos makes data centers ineligible under its land code"
+  },
+  {
+   "id": "tx-2026-0062",
+   "label": "Fort Worth's data center moratorium"
+  }
+ ]
+}
