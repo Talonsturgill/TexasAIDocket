@@ -62,6 +62,9 @@
   N.H = 1350;
   N.SEED = 20261006;
   N.ACCENT = 0xe05a8f;
+  /* the flagging's own colour, set so that after the grade's warm gain (1.05, 1.0, 0.93) it prints as
+   * the accent: each channel of #E05A8F divided by its gain */
+  N.FLAG = 0xd55a9a;
   N.INK = "#F3EFE6";
 
   function lcg(seed) { var s = seed >>> 0 || 1; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
@@ -98,7 +101,7 @@
         mud: new THREE.MeshStandardMaterial({ color: 0x2c2620, roughness: 0.95, metalness: 0 }),
         hub: new THREE.MeshStandardMaterial({ color: 0xb7996c, map: t, roughness: 0.86, metalness: 0 }),
         tack: new THREE.MeshStandardMaterial({ color: 0x8c8f92, roughness: 0.35, metalness: 0.9 }),
-        flag: new THREE.MeshStandardMaterial({ color: N.ACCENT, roughness: 0.55, metalness: 0, side: THREE.DoubleSide, emissive: N.ACCENT, emissiveIntensity: 0.7 }),
+        flag: new THREE.MeshStandardMaterial({ color: N.FLAG, roughness: 0.55, metalness: 0, side: THREE.DoubleSide, emissive: N.FLAG, emissiveIntensity: 0.7 }),
         strap: new THREE.MeshStandardMaterial({ color: 0x1d1f22, roughness: 0.6, metalness: 0.1 })
       };
       return M;
