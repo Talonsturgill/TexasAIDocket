@@ -11,7 +11,7 @@ The Killeen Planning and Zoning Commission voted against a conditional use permi
 - Public access: Public meeting
 - Take part: https://www.kwtx.com/2026/04/28/killeen-planning-commission-denies-permit-proposed-data-center/
 
-- Last checked: 2026-10-03
+- Last checked: 2026-10-06
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The commission's vote against the permit still stands in the city's own agenda record. No new application for the site has appeared.
 - 2026-09-30 · The city's posted agenda still carries the permit request the planning commission voted against, and no council decision appears after it.
 - 2026-10-03 · The city's agenda still carries the permit the planning commission voted against. No council decision on it has been posted.
+- 2026-10-06 · Killeen's posted agenda still carries the data center permit its planning commission turned down. The council has posted no decision of its own on it.
 
 ## Evidence
 

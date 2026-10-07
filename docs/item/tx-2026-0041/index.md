@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The Wichita Falls permit is still unconfirmed. The only account of the commission's vote bars automated readers, and the city's agenda center shows no record of it.
 - 2026-10-04 · The Wichita Falls permit is still unconfirmed. A search of the city's agenda center returns no record of it, and the only published account bars automated readers.
 - 2026-10-05 · The Wichita Falls permit is still unconfirmed. The city's agenda center shows no record of the vote, and the only published account bars automated readers.
+- 2026-10-06 · The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers.
 
 ## Evidence
 

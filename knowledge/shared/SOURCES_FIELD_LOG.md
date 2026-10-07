@@ -1914,3 +1914,29 @@ was dropped.
 
 **yahoo.com sits inside the crawl boundary's refusals.** A syndicated copy of a UT REAL Health AI
 story was found there by a scout and dropped. The laboratory's own page carried every figure.
+
+## 2026-10-06
+
+**www.leandertx.gov answered 403 to every client this run tried**, this project's agent and a
+browser agent alike, on tx-2026-0180's plate reader notice. The item now carries a dated
+`blocks_every_client` boundary block in place of a stamp.
+
+**www.faa.gov served the Zipline draft environmental assessment to a browser agent**, as its
+robots.txt permits for `/uas/` and as the September 30th entry records. tx-2026-0186's 17 claims
+held on that read.
+
+**www.hayscountytx.gov answered 403 to this project's client** during re-verification, so its
+items carry dated unconfirmed lines without a new stamp.
+
+**communityimpact.com was read cleanly through `fetch_doc.py`**, with no boundary refusal.
+
+**www.taylortx.gov served its news flash, its project page and its council meetings page to this
+project's client without trouble.** The project page sets the terms beside what applies without
+them in one table, which is what carried carousel no. 44.
+
+**interchange.puc.texas.gov needed a browser agent for one filing this run** that the project's
+client could not open.
+
+**Spectrum News' October 5th report on the attorney general's Taylor investigation names Blueprint
+Data Centers**, a separate project from Taylor Technology Campus. Any later run on Taylor reads the
+two as different developers.

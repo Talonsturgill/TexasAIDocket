@@ -9,7 +9,7 @@ The Texas Education Agency scores the constructed responses on English language 
 - Public access: Write to the decider
 - Take part: https://tea.texas.gov/data-reports/staar/scoring-process-staar-constructed-response-1.pdf
 
-- Last checked: 2026-10-03
+- Last checked: 2026-10-06
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-30 · Admitted on the agency's own scoring documents and the agency's account of its September rescore.
 - 2026-10-03 · The agency's scoring documents still say a machine scores the longer English answers first.
+- 2026-10-06 · The agency still describes machine scoring of the longer written answers on English STAAR as it did.
 
 ## Evidence
 

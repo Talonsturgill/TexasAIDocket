@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Carson County's abatement with Fermi America is unconfirmed on a fresh reading. The station that carried the vote bars this project's reader, so the terms rest on the last reading, and nothing on the record shows the court changing them.
 - 2026-09-30 · The company's own filing still describes the phased abatement agreement with the county as it did.
 - 2026-10-03 · Fermi America's own filing still describes the phased abatement agreement with Carson County as it did.
+- 2026-10-06 · Carson County's phased abatement with Fermi America is unconfirmed this time. The published account behind it bars automated readers.
 
 ## Evidence
 

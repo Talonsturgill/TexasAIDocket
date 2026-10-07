@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The sheriff's promise is still unconfirmed. The posted agenda bars every automated reader, and nothing on the record shows the promise withdrawn.
 - 2026-10-04 · The sheriff's promise is still unconfirmed. The posted agenda bars every automated reader, and nothing on the record shows the promise withdrawn.
 - 2026-10-05 · The sheriff's promise to come back to the court before switching on AI report writing is still unconfirmed. The posted agenda bars automated readers, and nothing published shows it withdrawn.
+- 2026-10-06 · Local reporting still carries the court's September 15th vote moving the Axon money to corrections officers. The sheriff's posted commitment is unconfirmed, because the agenda portal bars automated readers and the county's minutes did not answer.
 
 ## Evidence
 

@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-10-03
+- Last checked: 2026-10-06
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The pending permit list still carries the data center applications with their public notices, so the window to ask for a contested hearing is still the live one.
 - 2026-09-30 · The agency's pending permit list still carries the data center applications with their published notices.
 - 2026-10-03 · The agency's list of pending air permits still carries the data center applications with their published notices.
+- 2026-10-06 · The agency's pending air permit list still names the same data center applications, Crusoe's Longhorn and Goodnight campuses among them, each with its notice posted.
 
 ## Evidence
 
