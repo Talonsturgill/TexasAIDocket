@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-10-06-before-the-robot-moves",
+      "date": "2026-10-06",
+      "title": "Before the robot moves",
+      "caption": "UT Austin researchers propose a robot safety filter learned from expert demonstrations. The filter would change a proposed action before the robot moves. Spoken feedback could slow the robot near fragile glass. Physical experiments and user studies are planned. This film is an original illustration of the research plan rather than proven protection.",
+      "video": "/runs/2026-10-06/dispatch.mp4",
+      "poster": "/runs/2026-10-06/poster.png",
+      "video_mobile": "/runs/2026-10-06/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-10-06/poster-540.jpg",
+      "county": "Travis",
+      "beat": "science-machines"
+    },
+    {
       "id": "2026-10-05-before-the-next-watering",
       "date": "2026-10-05",
       "title": "Before the next watering",
