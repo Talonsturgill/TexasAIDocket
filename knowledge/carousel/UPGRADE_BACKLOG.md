@@ -5357,3 +5357,91 @@ a share of the frame (SLIDE_DOSSIER_SPEC.md, The list has a FLOOR)".
 - **`TXT.add` resets `receiveShadow`** (queue `txadd-resets-receive-shadow`) and **`TXT.roundedBox`
   face UVs** (queue `roundedbox-canvas-map-scale`), one run each, stated with their evidence in the
   queue.
+
+## 2026-10-06, the third weekly machine pass. Two changes, one patch handed to the run, two proposals, one deferral
+
+Read from `out/2026-10-06/week_digest.md` (seven shipped runs, September 30th to October 6th) and
+the queue, due early because `prompt-audit-reads-auto-mode-as-human` reached repeat 2 (nos. 42, 43
+and 44). `artwork_craft` was the lowest criterion on five of seven decks, week mean 6.47, with
+`variety` lowest on three (mean 6.61). The top two themes, "largest object unmodelled" and
+"primitive or low-poly model where a kit model belongs", were each named on all seven decks in 26
+rounds. The account is in `ledger/carousel/upgrades.json` under `2026-10-06 weekly` and the pass is
+recorded in `config/carousel/machine_pass.json`. Proof images are in `out/2026-10-06/tmp/machine/v2/`
+and die with the container (the proof-images proposal is still open above).
+
+A first attempt at this pass was killed by a container restart and left an unverified 208 line
+addition in `assets/js/kit/landscape.js`. It was finished and verified here as item 1, not reverted.
+
+### 1. KIT LIFT: `earthen_berm` AND `fill_basin` AT THE JUDGES' NAMED FIX, INTO `landscape.js` (done)
+
+No. 44's last round ranked frame 7 weakest: a fill basin drawn as a flat water plane at grade with a
+damp lip, "sine-stripe water meeting the field at a seam", and the craft judge's one sentence fix
+ended "rebuild slide 7 as a banked basin". Frame 6's berm rose on a smoothstep and read as "a grassy
+hill" where the judges asked for "a trapezoidal berm with its crest a clean diagonal against the
+sky". Both models now live in the kit. `earthen_berm` is a trapezoid in section, straight faces at
+`slope` run per rise, a flat crest with tight rounded shoulders, ends that ramp to grade, mown turf
+to a straw crest, a swale behind. `fill_basin` keeps the chassis's volume solve and is EMBANKED
+under the ground contract (nothing cut below grade): the water stands at `level` inside a raw clay
+bank with freeboard, a wet line, rills, a compacted crest and a turfed outer slope, and the water
+carries the sky with fine ripple. The shipped chassis's installers return early once the kit
+defines either name, so no. 44's own frames would pick up the kit models if it were ever
+re-rendered. Proof through `examples/kit/build.py`'s own `page()` and the carousel engine at no.
+44's frame 6 and frame 7 cameras, read at full size, `sizes.py` 112 of 112 after the berm's
+declared depth was set to its measured 21.26 m. `survey_lath`, `sound_level_meter` and the field
+helpers stay in the chassis until a second deck needs them.
+
+### 2. `prompt_audit.py` READS THE AUTO MODE CLASSIFIER AS A HUMAN (patch handed to the run, `daily` lane)
+
+Queue `prompt-audit-reads-auto-mode-as-human`, repeat 2. `scripts/shared/prompt_audit.py` is
+`daily` in `ownership.yaml`, so it is not the pass's to edit. The diagnosis, measured on no. 44's
+live debug log as this pass read it: every one of the 490 calls over one second of 1732 was
+classified (the longest 63.2 s), the log
+names the call id in `[auto-mode] new action being classified: ... id=<toolUseId>` and times each
+classifier request in `classifier_request_finished reqId=... durationMs=<n>`, and after those
+durations are subtracted from each call's `permissionDecisionMs` the largest remainder is 165 ms.
+The fix keeps the one second human line and subtracts only time the log attributes to the
+classifier for that same call id, so a classified call that then waited on a dialog still carries
+the person's seconds and is still caught. A drafted copy with five new self-test cases (the real
+2255 ms call is the classifier's, a classified call that waited 19 s more is still a human, one
+call's classifier time never excuses another, two classifier stages are summed, and 14.6 s the
+stages don't account for is a human) passes its self-test, and replayed on the live log the
+committed copy reports 490 waits on a human and the drafted copy none. It was handed to the run as
+`out/2026-10-06/tmp/machine/prompt_audit.patch` to apply under its own stamp. If the run did not
+apply it, this paragraph is the specification.
+
+### 3. `machine_due.py` RE-FIRED ON AN ITEM THE LAST PASS HAD ESCALATED (done)
+
+Item 2 left a repeat 2 item open and escalated, and `machine_due` counted every open repeat 2 item,
+so the pass would have been due again every day until somebody else acted. An item whose newest
+` | escalated <date>` is the last pass's own date, with no ` also <date>` after it, now waits on its
+owner. The next run it bites appends its date and re-arms it. Five new self-test cases, replayed on
+the real line, and two mutants (always parked, never parked) each go red.
+
+### 4. ENGINE PROPOSAL: THE SKY BANDS BECAUSE IT IS GRADED AFTER IT IS QUANTISED (`human`)
+
+"Render artifact (banding, aliasing, facets, stripes)", 7 runs and 23 rounds, and on no. 44 all
+three judges named concentric sky banding in all three panel rounds. The run measured that a
+chassis dither of 1.2 levels did nothing and a deband in the chassis with a 14 px window did
+nothing, and only a 44 px window cleared frame 9's sun halo. The likely mechanism, read in the code
+and NOT yet measured: `TXT.snapshot` renders to an 8 bit canvas, and `TXPOST.grade` then applies
+log contrast and its tone curve to those 8 bit values, which widens a smooth sky's one level steps
+into several, and its IGN dither is one level, so it can't hide a step wider than one. Standard
+practice is to keep the gradient in float and dither once at the final quantisation, since a step
+an 8 bit intermediate made can't be recovered later. Proposal: measure the step width on an
+undithered sky render before and after the grade first, then either render the sky pass to a
+`HalfFloatType` target and grade in float, or dither in the WebGL output before the canvas holds
+8 bits. Same family as queue `flat-sky-gradient` (repeat 1) and `sky-banding-needs-deband-in-engine`.
+
+### 5. ENGINE PROPOSALS WITH THE WEEK'S COUNTS, CARRIED (`assets/js/txthree.js` is `human`)
+
+- **No contact, dirt or grime where things meet the ground**, 7 runs and 22 rounds, up from 6 and
+  19 last pass, and still named after the 2026-10-03 maintainer fix.
+- **Horizon band or seam**, 7 runs and 13 rounds, three of them on no. 44 alone.
+- **Object in a void, no sky, camera at the ground**, 6 runs and 15 rounds.
+
+### 6. DEFERRED A THIRD TIME, NOT REFUSED: `dry_van`, `delineator`, `raised_pavement_marker` (in lane)
+
+The artwork slot went to item 1, the newest deck's top ranked defect, and the van with its load
+places, textures and beams is a separate lift of more than 200 lines. The next pass, or any run's
+Phase 17 with a free slot, takes it first, at the judges' named fixes (seams, grime, a lit floor, a
+reflector that reads at 432 px).
