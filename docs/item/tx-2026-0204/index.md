@@ -3,7 +3,7 @@
 Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipyard at the Port of Brownsville that the company says will build autonomous and crewed ships. Navy landing craft are among the first. The company calls the yard itself software defined. Its release states the size of the site and the investment. It also gives the first phase's quay and build positions and the longest vessel the yard can build. In June the Cameron County Commissioners Court approved a property tax abatement for the project. The Texas Tribune reported it at 95 percent over 20 years. The agreement carries a local hiring requirement and shrinks if the jobs fall short. Opponents told the court it would take money from public schools. The county's own agenda for that vote is a scanned file, so the abatement's terms here rest on the Tribune's account.
 
 - Topic: defense-and-federal
-- Decided by: Saronic Technologies, Inc., and the Cameron County Commissioners Court (company)
+- Decided by: Cameron County Commissioners Court (county)
 - Where: Cameron
 - Statistical areas:
   - Brownsville-Harlingen, TX
@@ -15,7 +15,6 @@ Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipy
 
 ## Dates
 
-- 2026-06-18 · decided: The Tribune's report of the commissioners court's approval of the abatement, published the same week as the vote
 - 2026-09-30 · effective: Groundbreaking at the Port of Brownsville, the date of Saronic's release
 
 ## How this decision moved

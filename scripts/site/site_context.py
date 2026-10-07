@@ -1227,8 +1227,12 @@ def _slide_strings(node) -> list:
 # The provenance stamp the design prints beside a sourced figure. It belongs on the slide and
 # reads as debris in running text, and the claim it names is published in full further down the
 # page with its source attached.
+# THE ID MUST CARRY A DIGIT (2026-10-07, Codex on PR 408). Any word after "claims" used to count
+# as an id, so slide 2 of no. 45, "Its home page claims the first known at-sea rescue", reached
+# the article's alt text as "Its home page  first known". Every id this project prints, c24 or
+# tx-2026-0101-c3, has a digit in it, and an English word after "claims" does not.
 _CLAIM_STAMP = re.compile(
-    r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
+    r"\bCLAIMS?\s+[A-Za-z_.-]*\d[A-Za-z0-9_.-]*\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
     re.IGNORECASE)
 
 # THE BARE TRAILING ID, found on carousel no. 26, 2026-09-16. A frame's attribution furniture ends
