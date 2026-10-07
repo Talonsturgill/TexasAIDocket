@@ -2622,4 +2622,75 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* RIPRAP_BANK. Lifted 2026-10-07 from carousel no. 45's chassis, where two judges in round 1 read
+   * its stones as SANDBAGS: they were squashed spheres, smooth and round, one colour. Riprap is
+   * quarried granite, so a stone here is an icosahedron of eighty faces with jittered corners, flat shaded so
+   * its fractured faces catch the sun, in five shapes and five greys and pinks, laid two deep on a
+   * textured face. A ship channel bank, the top edge on z = 0 at y `top`, falling toward +z to `toe`
+   * under the water over a run of `run` m. */
+  const RIP_TEX = new Map();
+  const ripTex = (seed) => {
+    if (RIP_TEX.has(seed)) return RIP_TEX.get(seed);
+    const c = document.createElement('canvas'); c.width = c.height = 512; const x = c.getContext('2d'), r = K.rng(seed);
+    // close in value to the stones laid on it, so the face reads as more stone between stones and
+    // never as pale discs on black (a polka the first proof of this lift printed at close range)
+    x.fillStyle = '#4a463f'; x.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 700; i++) {
+      const cx = r() * 512, cy = r() * 512, rad = 8 + r() * 18, v = 92 + Math.floor(r() * 52), pk = r() < 0.3 ? 8 : 0;
+      x.fillStyle = 'rgb(' + (v + pk) + ',' + (v - 4) + ',' + (v - 10) + ')'; x.beginPath();
+      for (let k = 0; k < 6; k++) { const a = k / 6 * 6.283 + r() * 0.5, rr = rad * (0.7 + r() * 0.4); x[k ? 'lineTo' : 'moveTo'](cx + Math.cos(a) * rr, cy + Math.sin(a) * rr * 0.8); }
+      x.closePath(); x.fill();
+    }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
+    RIP_TEX.set(seed, t); return t;
+  };
+  function ripStone(r) {
+    // a fractured block: an icosahedron of eighty faces, each corner pushed in or out, stretched and turned so
+    // no two read alike, then flat shaded. A sphere reads as a sandbag at any size.
+    const g = new THREE.IcosahedronGeometry(1, 1), P = g.attributes.position, seen = new Map();
+    for (let i = 0; i < P.count; i++) {
+      const key = [P.getX(i), P.getY(i), P.getZ(i)].map((v) => v.toFixed(3)).join(',');
+      if (!seen.has(key)) seen.set(key, 0.78 + r() * 0.36);
+      const k = seen.get(key); P.setXYZ(i, P.getX(i) * k, P.getY(i) * k, P.getZ(i) * k);
+    }
+    // three planar cuts, the way a block splits off a quarry face, and FLAT normals: smooth normals
+    // rounded the first proof's stones back into cobbles at 30 m, which is the sandbag again
+    const cut = [0.62 + r() * 0.2, 0.62 + r() * 0.2, 0.55 + r() * 0.2];
+    for (let i = 0; i < P.count; i++) P.setXYZ(i, Math.min(cut[0], P.getX(i)), Math.max(-cut[2], P.getY(i)), Math.max(-cut[1], P.getZ(i)));
+    g.scale(1.1 + r() * 0.5, 0.6 + r() * 0.25, 0.9 + r() * 0.4);
+    g.rotateX((r() - 0.5) * 0.6); g.rotateZ((r() - 0.5) * 0.6);
+    const n = g.toNonIndexed(); n.computeVertexNormals(); K.uvBox(n, 1.5); return n;
+  }
+  K.define('riprap_bank', {
+    size: [200, 4.03, 6.34],
+    anchor: 'base',
+    options: { length: 200, top: 2.2, toe: -1.2, run: 5, stones: 1 },
+    note: 'A ship channel or lake bank faced in granite riprap: a sloped face from the land\'s edge at y top down to y toe under the water over a run of `run` m, a stone texture and angular quarried stones (five shapes, granite greys and pinks, flat shaded) laid on its face, `stones` scaling their count (0 for the textured face alone, for a far bank). The top edge is on z = 0 and the water side is +z.',
+    make(o, r) {
+      const g = new THREE.Group(), t = ripTex(77).clone(); t.needsUpdate = true; t.repeat.set(o.length / 6, 1);
+      const face = new THREE.PlaneGeometry(o.length, Math.hypot(o.run, o.top - o.toe), Math.ceil(o.length / 2), 6);
+      const m = new THREE.Mesh(face, M('rip-face|' + o.length, { map: t, bumpMap: t, bumpScale: 0.35, roughness: 0.92, color: 0xffffff }));
+      m.rotation.x = -Math.PI / 2 + Math.atan2(o.top - o.toe, o.run); m.position.set(0, (o.top + o.toe) / 2, o.run / 2); m.receiveShadow = true; g.add(m);
+      if (o.stones) {
+        const GREYS = [0x9d978a, 0x8a857c, 0xa79a8c, 0x7d7a74, 0xb0a596];
+        const mat = M('rip-stone', { color: 0xffffff, roughness: 0.88, map: K.tex('concrete', { color: '#bdb6aa' }) });
+        const shapes = [0, 1, 2, 3, 4].map(() => ripStone(r)), lists = shapes.map(() => []);
+        for (let i = 0; i < o.length * 8 * o.stones; i++) {
+          const x = (r() - 0.5) * o.length, f = r(), y = o.top + (o.toe - o.top) * f, z = o.run * f;
+          if (y < -0.4) continue;
+          lists[Math.floor(r() * 5) % 5].push([x, y + 0.06, z - 0.1, r() * 6.28, 0.3 + r() * 0.36]);
+        }
+        const col = new THREE.Color();
+        shapes.forEach((geo, si) => {
+          if (!lists[si].length) return;
+          const inst = K.instances(geo, mat, lists[si]);
+          lists[si].forEach((_, j) => inst.setColorAt(j, col.setHex(GREYS[Math.floor(r() * 5) % 5])));
+          if (inst.instanceColor) inst.instanceColor.needsUpdate = true;
+          inst.castShadow = true; inst.receiveShadow = true; g.add(inst);
+        });
+      }
+      return g;
+    },
+  });
 }
