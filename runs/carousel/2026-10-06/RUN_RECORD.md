@@ -161,15 +161,39 @@ and 4.6 seconds for a permission decision. None was a dialog. The no-stall hook 
 the session unattended and refused nothing, and the longest wait is seconds where the one person
 this repo has measured answering took 21.6. What those waits are is not established. The item
 `prompt-audit-reads-auto-mode-as-human` is now at repeat 2, which made the weekly pass due.
-**This reading is interim.** The upgrade worker, the commits, the merge and the Gmail call all come
-after it. Phase 19 takes the reading that counts.
+**The final reading, Phase 19, exits 0.** 1,778 tool calls measured and none waited on a person.
+516 waited on the auto mode classifier, the longest 63.2 seconds, timed by the classifier's own
+lines in the debug log. Those are the waits the interim reading counted as human. The weekly pass
+drafted the fix and this run applied it under the daily lane in `265ac623`, because
+`scripts/shared/prompt_audit.py` is daily lane. The queue item is marked shipped. The hook was armed
+at 06:16:19 UTC, judged the session unattended with the host's `CLAUDE_CODE_SESSION_ATTENDED=0`, and
+refused nothing.
 
 The one real stall was the 429 above, which waited on the owner's "try again".
 
 ## The weekly machine pass
 
-Due today: `machine_due.py --date 2026-10-06` exited 0, one repeat offender queued. The pass's
-changes and verification are recorded below once it returns.
+Due today: `machine_due.py --date 2026-10-06` exited 0, one repeat offender queued. The first
+attempt died with the container restart and was started again. It read seven shipped runs,
+`artwork_craft` lowest on five and a week mean of 6.47, and committed `f36a71de` under the upgrade
+lane.
+
+- `earthen_berm` and `fill_basin` lifted from this deck's chassis into `assets/js/kit/landscape.js`
+  at the judges' named fix, a trapezoid berm with a flat crest and an embanked basin with raw clay
+  banks and a wet line. Verified on six proof pages through the engine, errors 0, and `sizes.py`.
+  Slides 3, 6 and 7 were not re-rendered against the kit, so this deck ships the chassis models.
+- `machine_due.py` stops re-arming the pass on an item the last pass escalated, until a later run
+  meets it again. Its self-test carries five new cases on the real queue line.
+- Out of lane and handed back. The `prompt_audit.py` patch, applied by this run as above. Two engine
+  proposals for a maintainer in `UPGRADE_BACKLOG.md`, sky banding before 8 bit quantisation and the
+  week's contact, horizon seam and void counts.
+
+## Codex's review of the record
+
+Four findings on tx-2026-0203 and the web edition, all fixed in `d709d82e`, each thread answered and
+resolved. After it `ledger_check.py --derive` refreshed the caption ledger's recent lists, and the
+topics angle was rewritten without spelled out counts, because `shipped_check` holds a count in that
+prose to a computed figure and these counts were drawing rules.
 
 ## Queued for the next pass
 
