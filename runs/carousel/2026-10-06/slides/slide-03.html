@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 2026-10-06, frame 3 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's goldenHour world. The field from 60 m over the south side of FM 112, three flagged stake rows at 400, 500 and 700 feet from the south line, a data hall beyond the last row, mono labels on pink leaders naming each distance. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 880px !important; }
+  .dek { width: 900px !important; }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">From the south line</h1>
+<p class="dek" data-follow="18">Near FM 112, a buffer of at least 400 feet with earthen berms at least 6 feet high. Accessory structures at least 500 feet back. Data centers, generation and batteries at least 700 feet back.</p>
+<svg id="lead" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "The terms, drawn at their distances", counter: "03 / 09", src: "c31 c32 c33 c59", fit: { min: 80, max: 104, maxLines: 1 } });
+  TT.installAll(); TT.flagStrength(1.8);
+  const R = TT.stage(TXT, gl, W, { near: 0.5, fov: 45, fog: 0.0005, exposure: 1.25 });
+  TXT.ground(R, { surface: 'dirt', size: 5000, tile: 5, seed: 9, color: TT.CLAY });
+  /* FM 112 runs east and west along z = +14, the houses south of it, the south line fence on z = 0 */
+  const road = K.make('road', { length: 900, lanes: 2, sidewalk: false, parkway: false, seed: 3 }); road.position.set(0, 0, 14); TXT.add(R, road);
+  const homes = [[-70, 48, 7], [28, 52, 12]];
+  for (const [x, z, sd] of homes) { const h = K.make('ranch_house', { seed: sd }); h.rotation.y = Math.PI; h.position.set(x, 0, z); TT.put(h, true); }
+  for (const [x, z, sd] of [[-46, 58, 3], [52, 64, 5], [-92, 66, 8]]) { const t = K.make('live_oak', { seed: sd, height: 9, spread: 13 }); t.position.set(x, 0, z); TT.put(t, true); }
+  TT.fenceLine({ xs: [-300, 0, 300], length: 300, seed: 9, z: 0 });
+  /* the buffer's berm, drawn inside the 400 foot buffer; where in the buffer it sits is illustrative */
+  const berm = K.make('earthen_berm', { length: 700, height: TT.ft(6), seed: 4 }); berm.position.set(0, 0, -TT.ft(400) * 0.62); TXT.add(R, berm);
+  /* beyond the 700 foot row, an illustrative hall, cropped by the right edge */
+  const hall = K.make('data_center', { length: 240, depth: 90, seed: 4 }); hall.rotation.y = Math.PI; TXT.add(R, hall); hall.updateMatrixWorld(true); { const hb = new THREE.Box3().setFromObject(hall); hall.position.z += -TT.ft(700) - 6 - hb.max.z; hall.position.x += 150; } TXT.contact(R, hall, { opacity: 0.5 });
+  /* the three distances the terms write down, staked */
+  const ROWS = [400, 500, 700];
+  for (const d of ROWS) {
+    const pts = []; for (let x = -240; x <= 240; x += 1.5) pts.push([x + (((x * 7) % 3) - 1) * 0.6, -TT.ft(d)]);
+    /* the crew rakes each line bare before it drives the lath, so each distance reads as a strip */
+    TXT.add(R, TT.raked([-245, -TT.ft(d) - 2.5, 245, -TT.ft(d) + 2.5], { seed: d }));
+    TXT.add(R, TT.lathField(K, THREE, pts, { above: TT.ft(6), seed: d, wind: 0.5 }));
+  }
+  /* the field's disk passes, coarse and a little irregular, running north from the fence */
+  /* stopping at each raked line, so the lines stay bare */
+  for (const [z0, z1, sd] of [[-2, -TT.ft(400) * 0.62 + 6, 33], [-TT.ft(400) * 0.62 - 6, -TT.ft(400) + 3, 37], [-TT.ft(400) - 3, -TT.ft(500) + 3, 34], [-TT.ft(500) - 3, -TT.ft(700) + 3, 35], [-TT.ft(700) - 3, -900, 36]])
+    TXT.add(R, TT.furrows({ x0: -420, x1: 420, z0: z0, z1: z1, pitch: 3.4, width: 2.2, height: 0.2, seed: sd }));
+  /* the far place: the creek's tree line */
+  TT.treeLine({ n: 30, seed: 60, x0: -500, step: 34, z: -1100, jitter: 60, height: 8 });
+  TXT.frame(R, { from: [0, 45, 0], look: [-6, -45.3, -295] });
+  TXT.sky(R);
+  TT.stubble([-300, -420, 300, 8], { count: 14000, seed: 12, scale: [0.18, 0.34] });
+  TT.stubble([-300, 20, 300, 120], { count: 6000, seed: 13, scale: [0.3, 0.5] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 700, target: [0, 0, -80], distance: 900, far: 2200 }));
+  TXT.weather(R, { grime: 0.16, height: 1.2 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  /* the leaders: each ends ON its row, where the row passes x = -60, and the label sits at the left */
+  const svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg', L = [];
+  const marks = [['400 FT BUFFER', -TT.ft(400)], ['500 FT ACCESSORY', -TT.ft(500)], ['700 FT DATA CENTERS', -TT.ft(700)]];
+  marks.forEach(([txt, z], i) => {
+    const at = TT.project(THREE, R, [-12, TT.ft(6), z]);
+    const ly = at[1] - 30;
+    const t = document.createElementNS(NS, 'text'); t.setAttribute('x', 80); t.setAttribute('y', ly); t.setAttribute('class', 'lbl'); t.textContent = txt;
+    t.setAttribute('style', 'font-family:"JetBrains Mono",monospace;font-size:24px;font-weight:500;letter-spacing:0.06em;fill:#F3EFE6;paint-order:stroke;stroke:rgba(14,10,8,0.55);stroke-width:5px;');
+    svg.appendChild(t);
+    const bb = t.getBBox(), sx = bb.x + bb.width + 12, sy = ly - 8;
+    const p = document.createElementNS(NS, 'polyline'); const pts = [[sx, sy], [at[0] - 10, sy], at];
+    p.setAttribute('points', pts.map(q => q.join(',')).join(' ')); p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#E05A8F'); p.setAttribute('stroke-width', '8'); svg.appendChild(p);
+    const dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', at[0]); dot.setAttribute('cy', at[1]); dot.setAttribute('r', 14); dot.setAttribute('fill', '#E05A8F'); svg.appendChild(dot);
+    L.push({ target: txt.toLowerCase() + ' row', at: at, to: pts[pts.length - 1] });
+  });
+  window.__txLeaders = L;
+  TT.post(cx, { a: 0.45, to: 150, veilH: 520, veil: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

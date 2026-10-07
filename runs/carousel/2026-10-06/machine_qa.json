@@ -1,0 +1,132 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 65% of this slide's own average craft density (top 67% / mid 91% / bottom 43% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.6744,
+        0.9118,
+        0.4338
+      ],
+      "band_ratio": 0.6549
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 69% / mid 92% / bottom 45% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.687,
+        0.9181,
+        0.4522
+      ],
+      "band_ratio": 0.6698
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "worst-point contrast 4.5 on 'The terms, drawn at their distances' (box mean 5.1) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "bands": [
+        0.7101,
+        0.9664,
+        0.6029
+      ],
+      "band_ratio": 0.8011
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 65% of this slide's own average craft density (top 66% / mid 67% / bottom 36% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.6576,
+        0.6681,
+        0.3621
+      ],
+      "band_ratio": 0.6543
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 66% of this slide's own average craft density (top 66% / mid 79% / bottom 40% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.6555,
+        0.7878,
+        0.3971
+      ],
+      "band_ratio": 0.6578
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 71% / mid 92% / bottom 48% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.708,
+        0.9223,
+        0.4779
+      ],
+      "band_ratio": 0.6902
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 55% / mid 87% / bottom 40% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.5483,
+        0.8739,
+        0.4044
+      ],
+      "band_ratio": 0.6745
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 72% of this slide's own average craft density (top 45% / mid 63% / bottom 34% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4496,
+        0.6324,
+        0.3364
+      ],
+      "band_ratio": 0.721
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.166,
+        0.7773,
+        0.7371
+      ],
+      "band_ratio": 1.2974
+    }
+  ],
+  "fails": 0,
+  "warns": 17,
+  "verdict": "WARN"
+}

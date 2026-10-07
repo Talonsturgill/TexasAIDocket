@@ -1,0 +1,247 @@
+{
+ "weighted_score": 7.168,
+ "judges": [
+  6.79,
+  7.32,
+  7.32
+ ],
+ "spread": 0.53,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.8,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.79 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.79,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.79 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.32,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.32,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.32 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Corrugated water, a flat black near bank, and the lath standing on the surface rather than drowned.",
+     "fix": "Put the lath's foot on the basin floor so only its knot breaks the surface, calm the ripple, and model the near bank as damp clay."
+    },
+    {
+     "judge": 2,
+     "problem": "Sine-ripple water plane with no visible banks, a flat black strip across the frame, the drowned lath a stick on a dark puck.",
+     "fix": "Model the 2 to 1 clay banks with a damp band at the waterline, a near-still reflective surface, delete the black strip and sink the lath to its knot."
+    },
+    {
+     "judge": 3,
+     "problem": "The lath stands on the water with a contact shadow, and the basin reads as stacked slabs.",
+     "fix": "Sink the lath to its knot with a ripple ring and no contact shadow, and model the near edge as a damp clay bank."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The lath a flat black slab, the flagging an unshaded polygon, the sun high, the sky ringed, halos behind the kicker and counter.",
+     "fix": "Drop the sun onto the horizon band behind the poles, give the lath a rim on its sunward edge and the flagging a lit cloth material, and remove the halos."
+    },
+    {
+     "judge": 2,
+     "problem": "The sun sits about 25 degrees up against the declared 7, the flagging is a flat unlit polygon, and the furniture sits on blurred patches.",
+     "fix": "Lower the sun onto the horizon band, shade the flagging with a lit material, and remove the plates behind the furniture."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat untextured flagging, the lath a thick black post, posterized bands around a flat sun disc, dark halos behind the kicker and counter, foreground posts ghosting through the type scrim.",
+     "fix": "A rim-lit pine lath, thin cloth tails, a smooth sky with a real sun bloom, and the kicker halo removed."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A muddy sky band with dark halos behind the type, the blocks on featureless ground with no horizon light.",
+     "fix": "Lower the camera so the horizon band backlights the flags and the shadows run east, and remove the halos."
+    },
+    {
+     "judge": 2,
+     "problem": "Featureless ground, flat tan tiles, and the kicker and counter on blurred dark patches.",
+     "fix": "Put worked-clay furrow ground under the blocks and remove the sky scrims by tilting the camera down."
+    },
+    {
+     "judge": 3,
+     "problem": "A smeared plate around the kicker and counter, and the blocks on flat squares that read as pasted tiles.",
+     "fix": "Drop the kicker scrim and blend each raked square into the clay with soft worn edges and furrow texture."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The pulled lath floats at the height of the fence wire with its shadow detached.",
+     "fix": "Drop it onto a furrow ridge in the near lower right with a contact under its whole length, at least 400 px long and apart from the wire."
+    },
+    {
+     "judge": 3,
+     "problem": "Reads as a repeat of slide 1, and the pulled lath floats along the third fence wire.",
+     "fix": "Lay the lath on the clay in the near lower right with its shadow touching it."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A generic tufted hillside with no scale cue, no elms and no crest lath.",
+     "fix": "Stand the lath at the toe so its top visibly meets the crest, add the elms, and rim-light the crest."
+    },
+    {
+     "judge": 2,
+     "problem": "The berm reads as a grassy hillside with no 6 foot scale, no elms, flat light.",
+     "fix": "Put the lath at the toe in the near third, add kit cedar elms, and swing the camera so the low sun rakes the crest."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A dense furrow grid with no FM 112, berm or houses, so the rows float with no anchor.",
+     "fix": "Render FM 112 and the berm in the lower third and halve the furrow frequency."
+    },
+    {
+     "judge": 3,
+     "problem": "No south line, road, berm or houses, so the leaders measure from nothing, and the hall is cut at the right edge.",
+     "fix": "Pull the aerial back and down so FM 112 and the south fence cross the bottom third and the rows step off from that line."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The hall is a frontal backdrop with broken louvre slats, the stakes cast no visible shadow, and the mid-ground is empty.",
+     "fix": "Turn the camera about 25 degrees so the hall's west end recedes and catches the low sun, and let each lath throw a long cast east."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat grey banded sky, and the near flagged lath at no setback the terms write.",
+     "fix": "Warm the sky, and move the near lath back onto the 400 foot row or remove its flagging."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.168 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 7, 9, 8, 2, 6, 3, 5, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

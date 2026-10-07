@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "One world rendered throughout; S9 and S1 pass the showstopper test at 432 px. S2 reads as a re-render of S1 with a floating lath and banding, S6's berm reads as a big hill with a pole above the crest and a clipped tree at the left edge, S7 is water to the horizon with even trees and a 10 px lath, S4's lath fuses with the tripod mast, S8's blocks sit on floating tiles, S5 has a dead band of clay. Several frames lean on defaults."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One ground, one low west light, one sky band, the lath changing state; both continuity devices work and the value holds without strobing. S7's water and S6's straw hillside sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral traces, the terms rest on primary city pages, the petition attributed to KEYE and Texas Standard, the drawing rules stated. The caption's c3 and c36 to c42 are not in the sources block, and the noise question invites a reading that the study could tighten the cap. None is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "What, who, where and when are clear, the counterfactual is concrete. The next step offers only the meeting room, no time or comment route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "S2 is the real turn, S8 a second, S9 closes on the date. The cover is cerebral, S5 and S6 restate S3, and S4's linear bars make a 20 dB difference look like 24 percent."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Real regional specifics and fair to both sides. Five kickers annotate the drawing, and the caption's opener is two clipped fragments."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "A new instrument, a live local vote, a new palette. The carried hero and instanced count repeat the last four decks, golden hour repeats no. 40."
+  }
+ ],
+ "weighted_score": 7.34,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make the close actionable with the City Hall address and comment route, and the standing schedule labelled as the regular schedule.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A big grassy hill, the lath above the crest, a clipped tree at the left edge, banding.",
+   "fix": "Pull back, stand a person at the toe beside the lath, delete the clipped tree, dither the sky."
+  },
+  {
+   "slide": 7,
+   "problem": "Water to the horizon with no far bank, even lollipop trees, a 10 px lath.",
+   "fix": "Model the far bank at the computed side, randomize the trees, bring the lath to 12 m."
+  },
+  {
+   "slide": 2,
+   "problem": "Reads as S1 re-rendered, the lath hovering with no contact.",
+   "fix": "Lay the lath in the lower right foreground with mud and slack tails and a contact shadow, empty stake holes in the near row."
+  },
+  {
+   "slide": 4,
+   "problem": "The lath fuses with the tripod mast, the meter reads as a generic rig.",
+   "fix": "Move the lath 1 m left, model the windscreen ball and body against the sky."
+  },
+  {
+   "slide": 8,
+   "problem": "Blocks on floating plates, flags blur at 432 px.",
+   "fix": "String lines and corner hubs on the same clay, drop the camera to 25 m."
+  },
+  {
+   "slide": 5,
+   "problem": "A dead band of clay, rows not reading as rows.",
+   "fix": "Lower the eye and tighten the lens, rake the light so each row throws a shadow line."
+  }
+ ]
+}

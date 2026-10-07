@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 1 and 5 come close to the showstopper test. Frame 7's ruled ripples end on an untextured slab with a 10 px drowned lath, frame 2's pulled lath hangs at fence-wire height with its shadow detached, frame 8 has no horizon and its squares read as decals, frame 6's berm is a generic hill with a cropped tree smudge at the left edge, banding shows in the sky on 1, 2, 6 and 9, and frame 9's lath is a flat black slab with a flat ribbon. Several frames rely on an artifact or dead zone, so this sits under the 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One world held across the filmstrip, two named continuity devices, the value cut declared at 9. Frame 7's cool water band and frame 8's fogged void sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every term figure traces to the city's own pages and figures.json, 'the city says' framing kept, the October 8th time honestly withheld. The petition outcome rests on KEYE, and slide 6's 6 foot universal looks shaky against frame 9's stake top, not carried as a fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What, who (developers named on 9), where and when are all clear, the stakes concrete. The next step is weak and the caption repeats the meeting line, and nothing tells a Taylor reader the AG investigation is a different project."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover is abstract at feed size, frame 2 reads as frame 1 again, the real turn is 8, and frames 3, 5 and 6 cover the same setbacks."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Specific and on register. Four kickers talk about the drawing, the meeting line repeats on slide 9 and in the caption, and the caption's 'it' after the 85 dBA sentence points at the wrong level."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "No Taylor deck in the window, new palette and world. The house template again with a count drawn as objects, and golden hour repeats no. 40."
+  }
+ ],
+ "weighted_score": 7.33,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 7 as a cut basin with modelled banks and a near drowned lath, and lay frame 2's lath on the clay with a contact shadow.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Ruled ripples, a hard straight edge onto an untextured slab, a 10 px drowned lath, a mannequin on the far bank.",
+   "fix": "Model the near bank as a sloped clay cut with a damp band, move the lath into the near third, drop the far figure."
+  },
+  {
+   "slide": 2,
+   "problem": "The pulled lath hovers at fence-wire height with its shadow detached.",
+   "fix": "Lower it onto the clay in the lower right foreground with a contact under its length."
+  },
+  {
+   "slide": 8,
+   "problem": "No horizon, a flat fog wall, squares that read as decals.",
+   "fix": "Cut the fog so the warm horizon band and tree line show, and give the squares raked texture with irregular edges."
+  },
+  {
+   "slide": 6,
+   "problem": "A generic grassy hill, the lath top above the crest, a cropped tree smudge at the left edge.",
+   "fix": "Pull back so the full profile sits against the sky, the lath at the toe meeting the crest, remove the left tree."
+  },
+  {
+   "slide": 9,
+   "problem": "A flat black lath, a low-poly ribbon, rings around the sun, the stake behind the type.",
+   "fix": "Rim light and pine albedo on the lath, a soft cloth strip, deband the sky, shift the stake right of the type."
+  }
+ ]
+}

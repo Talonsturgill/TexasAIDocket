@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement with the University
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2537075
 
-- Last checked: 2026-10-03
+- Last checked: 2026-10-06
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation made a cooperative agreement with the University
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-03 · Admitted on the foundation's own award record. The platform's work began on September 15th and nothing it has produced is on the record yet.
+- 2026-10-06 · The foundation's award for Sagebrush, the AI inference platform, still stands as announced.
 
 ## Evidence
 

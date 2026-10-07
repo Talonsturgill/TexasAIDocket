@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Every frame is a rendered place on one clay ground with a sky; the cover is strong and slide 5 gives true scale. Misses the 7 on more than one frame: banding in the zenith on 1, 2, 5, 6 and rings round the sun on 9; the declared low sun casts long east shadows on 8 but not on 1, 2 and 5; slide 7's sine-stripe water meets the field at a seam with a 12 px drowned lath; slide 6 has no recognisable berm and a cut-off branch at the left edge; slide 3 lacks its berm, FM 112 and houses; slide 8's blocks stand on pasted plates; slide 4's instrument reads as a microphone; slide 9's stake is a black square post with posts behind the type; slide 2's lath appears to hover. Frames 1, 5 and 9 pass the showstopper test at 432 px, 3, 6, 7 and 8 do not."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One clay world, one accent, one hero changing state, a declared camera move, two working continuity devices. Slide 7's water and slide 6's gold grass sit outside, the close's stake changes material, and the one light is not visibly one light."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every figure traces, the bars are exactly 65 to 85, the basin depth is labelled a drawing rule, sources are primary city pages except the petition material, attributed by name. Slide 6's 6 foot universal and slide 1's flagged-stake sentence are looser than slide 9 and slide 5 draw, without changing what a reader believes about the terms."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.2,
+   "why": "Body, decision, place and deadline named, the counterfactual gives the stake, the noise term names its deciding measurement. The next step is the council chambers with no time, honest but general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "The cover earns the swipe, frame 2 pays at once, the petition is a real counter-turn before the close. Slides 3 and 5 share the 700 foot setback and slide 6 adds little."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "Specific and local, credits the terms without boosterism. The meeting line and the drawn-for-scale kicker are flat. House rules clean."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New palette and instrument. The house formula again, one hero carried plus an instanced count, at golden hour like no. 40."
+  }
+ ],
+ "weighted_score": 7.432,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fix the sky and sun once in the chassis: no banding, a warmer zenith, and the low sun's long east shadows on every frame, then rebuild slide 7 as a banked basin.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Sine-stripe water meeting the field at a seam, a 12 px drowned lath, the type on water.",
+   "fix": "Model the near clay bank under the type and the far banks, wind ripple with the sky reflection, the lath's knot at 120 px."
+  },
+  {
+   "slide": 6,
+   "problem": "A grassy hill of sprite tufts, the lath above the crest, no elms, a cut-off branch at the left edge.",
+   "fix": "A trapezoidal berm with its crest a clean diagonal against the sky, the lath at the toe meeting the crest, delete the branch."
+  },
+  {
+   "slide": 8,
+   "problem": "Blocks on pasted plates, one mid-dark band with almost no sky.",
+   "fix": "Raked clay only a few L* lighter, tilt up so the horizon band and haze fill the top fifth."
+  },
+  {
+   "slide": 9,
+   "problem": "A thick black post with a cartoon ribbon, posts behind the type, banding round the sun.",
+   "fix": "The chassis survey lath backlit with a rim, slide the fence so no post crosses the type, dither the glow."
+  },
+  {
+   "slide": 3,
+   "problem": "No berm, FM 112 or houses, a busy furrow tile behind the dek, a flat-lit hall.",
+   "fix": "FM 112 and its verge across the bottom third, the berm between the 400 foot row and the fence, break the tile."
+  },
+  {
+   "slide": 5,
+   "problem": "Contact blobs only under a 7 degree sun, a banded zenith, an empty near field.",
+   "fix": "The sun's shadows at their declared elevation so the person and lath throw long shadows east."
+  }
+ ]
+}

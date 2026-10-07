@@ -2320,6 +2320,214 @@ export function install(K, THREE, TXT) {
     },
   });
 
+
+  /* ======================================================================================
+   * EARTHWORKS: a screening berm and a filled basin, lifted from carousel no. 44's chassis
+   * (assets/js/deck/2026-10-06-prairie.js) at the judges' named fix, 2026-10-06 weekly pass.
+   *
+   * WHY. The craft judge's weakest frame of no. 44's last round was frame 7, a fill basin drawn
+   * as a flat water plane to the horizon: "sine-stripe water meeting the field at a seam ... model
+   * the near clay bank under the type and the far banks, wind ripple with the sky reflection".
+   * Second was frame 6's berm: "a grassy hill ... a trapezoidal berm with its crest a clean
+   * diagonal against the sky". The chassis berm rose on a smoothstep from toe to crest, which is a
+   * hill, and the chassis basin sat at grade with no bank, because "a basin full to grade hides its
+   * own sides". Under the GROUND CONTRACT above nothing is cut below grade, so the kit basin is an
+   * EMBANKED basin: the water stands a little above y = 0 inside a raw clay bank with real
+   * freeboard, which is how a judge sees a basin's sides.
+   *
+   * Both build their section on a fine uniform profile that is piecewise straight and then
+   * blurred over a few centimetres, so the faces are planes and only the shoulders and toes round.
+   * ====================================================================================== */
+  // a section profile: straight segments through `pts` ([d, y] pairs, d ascending), sampled every
+  // `step` metres, blurred over `soft` metres, returned as a lookup fn(d)
+  function sectionProfile(pts, step, soft) {
+    const d0 = pts[0][0], d1 = pts[pts.length - 1][0], n = Math.ceil((d1 - d0) / step) + 1, Y = new Float32Array(n);
+    for (let i = 0, k = 0; i < n; i++) {
+      const d = d0 + i * step;
+      while (k < pts.length - 2 && d > pts[k + 1][0]) k++;
+      const a = pts[k], b = pts[k + 1], t = clamp((d - a[0]) / Math.max(1e-6, b[0] - a[0]), 0, 1);
+      Y[i] = lerp(a[1], b[1], t);
+    }
+    const rad = Math.max(1, Math.round(soft / step)), B = new Float32Array(n);
+    for (let i = 0; i < n; i++) {                 // a tent kernel, clamped at the ends
+      let s = 0, w = 0;
+      for (let j = -rad; j <= rad; j++) { const q = clamp(i + j, 0, n - 1), k = rad + 1 - Math.abs(j); s += Y[q] * k; w += k; }
+      B[i] = s / w;
+    }
+    return (d) => { const f = clamp((d - d0) / step, 0, n - 1), i = Math.floor(f), j = Math.min(n - 1, i + 1); return lerp(B[i], B[j], f - i); };
+  }
+  // a grid over arbitrary row and column stations: xs across, zs down, y from fn, uv in metres / tile
+  function stationGrid(xs, zs, fn, tile) {
+    const nx = xs.length, nz = zs.length, P = new Float32Array(nx * nz * 3), U = new Float32Array(nx * nz * 2), I = [];
+    for (let j = 0; j < nz; j++) for (let i = 0; i < nx; i++) {
+      const k = j * nx + i; P[k * 3] = xs[i]; P[k * 3 + 1] = fn(xs[i], zs[j]); P[k * 3 + 2] = zs[j];
+      U[k * 2] = xs[i] / tile; U[k * 2 + 1] = zs[j] / tile;
+    }
+    for (let j = 0; j < nz - 1; j++) for (let i = 0; i < nx - 1; i++) {
+      const a = j * nx + i, b = a + 1, c = a + nx, d = c + 1; I.push(a, c, b, b, c, d);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('uv', new THREE.BufferAttribute(U, 2));
+    g.setIndex(I); g.computeVertexNormals();
+    return g;
+  }
+  // stations from a to b, `fine` metres apart inside any [lo, hi] band of `dense`, else `coarse`
+  function stations(a, b, coarse, fine, dense) {
+    const out = [a]; let d = a;
+    while (d < b - 1e-6) { const inBand = dense.some(([lo, hi]) => d >= lo - fine && d <= hi + fine); d = Math.min(b, d + (inBand ? fine : coarse)); out.push(d); }
+    return out;
+  }
+  const TURF = {                                  // [face, crest]
+    october: [0x6a6a3a, 0xa3925c], green: [0x56662f, 0x7d8040], straw: [0x9a8a58, 0xb3a06a], bare: [0x6b5a44, 0x7c6a52],
+  };
+
+  /* ---- earthen_berm ---------------------------------------------------------------------- */
+  K.define('earthen_berm', {
+    size: [60, 1.83, 21.26],
+    options: { length: 60, height: 1.83, crest: 2.4, slope: 3, wobble: 0.6, swale: true, turf: 'october', mown: true, ground: 0x6b5a44 },
+    note: 'A landscaped earthen screening berm running along x, front face toward +z: a TRAPEZOID in section, a flat crest with tight rounded shoulders and straight side slopes at `slope` run per rise (3 is the usual landscaped berm), so the crest reads as a clean line against the sky from the toe. `height` is the crest above grade (1.83 m is 6 ft), `crest` the flat top, `wobble` a gentle plan curve in metres, `swale` a shallow ditch behind it. Mown turf on the faces with mower passes along the contour, straw on the crest (turf: october, green, straw or bare), a soft toe into the ground. userData.heightAt(x, z) is the surface height; never call TXT.contact on it.',
+    make(o, r) {
+      const L = o.length, H = o.height, cw = o.crest / 2, run = H * o.slope, half = cw + run, toe = 0.9;
+      const seed = 6100 + o.seed * 13, nB = noise2(seed), ph1 = r() * TAU, ph2 = r() * TAU;
+      const bend = (x) => o.wobble * Math.sin(x / L * TAU * 1.3 + ph1) + 0.35 * o.wobble * Math.sin(x / L * TAU * 3.1 + ph2);
+      const back = o.swale ? [[-(half + toe + 0.9), -0.16], [-(half + toe + 0.3), -0.16]] : [];
+      const pts = [[-(half + toe + 2.2), -0.03]].concat(back, [[-(half + toe * 0.4), 0], [-cw, H], [cw, H], [half + toe * 0.4, 0], [half + toe + 2.2, -0.03]]);
+      const prof = sectionProfile(pts, 0.02, 0.28);
+      // the crest varies by a centimetre or two over tens of metres, never enough to soften its line
+      // the ends fall to grade at the side slope, so an end seen from the side is a ramp and never a cut section
+      const endK = (x) => smooth(0, run + toe, L / 2 - Math.abs(x));
+      const heightAt = (x, z) => { const e = endK(x), y = prof(z - bend(x)), base = y < 0 ? y : y * e - 0.03 * (1 - e);
+        return base + (fbm(nB, x / 25, 0.5, 2) - 0.5) * 0.04 * smooth(0, H, base); };
+      const ext = half + toe + 2.2;
+      const xs = stations(-L / 2, L / 2, Math.max(0.6, L / 400), 0.3, [[-L / 2, -L / 2 + run + toe], [L / 2 - run - toe, L / 2]]);
+      const zs0 = stations(-ext - o.wobble * 1.4, ext + o.wobble * 1.4, 0.45, 0.12, [[-half - toe - o.wobble * 1.4, -half + o.wobble * 1.4 + 0.5], [-cw - o.wobble * 1.4 - 0.5, -cw + o.wobble * 1.4 + 0.5], [cw - o.wobble * 1.4 - 0.5, cw + o.wobble * 1.4 + 0.5], [half - o.wobble * 1.4 - 0.5, half + toe + o.wobble * 1.4]]);
+      const geo = stationGrid(xs, zs0, heightAt, 3);
+      const P = geo.attributes.position, Nn = geo.attributes.normal, C = new Float32Array(P.count * 3), tmp = new THREE.Color();
+      const tf = TURF[o.turf] || TURF.october, cFace = col(tf[0]), cCrest = col(tf[1]), cGround = col(o.ground), cWorn = col(0x7a6a50);
+      for (let i = 0; i < P.count; i++) {
+        const x = P.getX(i), z = P.getZ(i), y = P.getY(i), d = z - bend(x), k = clamp(y / H, 0, 1);
+        const n = fbm(nB, x / 7, z / 7, 3) - 0.5;
+        mix3(tmp, cFace, cCrest, smooth(0.72, 0.97, k + n * 0.12));
+        // mower passes run along the contour: bands a deck's width apart, measured along the slope
+        if (o.mown && k > 0.04 && k < 0.95) { const along = Math.abs(d) * Math.hypot(1, 1 / o.slope); tmp.multiplyScalar(1 + 0.05 * Math.sign(Math.sin(along / 0.9 * Math.PI))); }
+        tmp.multiplyScalar(0.94 + n * 0.16);
+        if (Math.abs(d) < cw * 0.5 && nB(x / 3, 40) > 0.62) mix3(tmp, tmp, cWorn, 0.35);   // a worn path along the crest
+        mix3(tmp, cGround, tmp, smooth(0.0, 0.12, y + 0.03));
+        C[i * 3] = tmp.r; C[i * 3 + 1] = tmp.g; C[i * 3 + 2] = tmp.b;
+      }
+      geo.setAttribute('color', new THREE.BufferAttribute(C, 3));
+      const m = new THREE.Mesh(geo, M('berm-turf', { color: 0xffffff, vertexColors: true, map: detailTex('grass'), roughness: 0.96 }));
+      m.castShadow = true; m.receiveShadow = true; m.userData.txGround = true;
+      const g = new THREE.Group(); g.add(m);
+      g.userData.heightAt = heightAt;
+      g.userData.berm = { length: L, height: H, base: (half + toe * 0.4) * 2, crest: o.crest, slope: o.slope };
+      return g;
+    },
+  });
+
+  /* ---- fill_basin ------------------------------------------------------------------------ */
+  // the waterline side of a square basin whose water holds `volume` m3 to `depth` below the
+  // waterline with banks at `slope` run per rise: the frustum V = h/3 (A1 + A2 + sqrt(A1 A2)),
+  // solved by bisection, so a frame passes the volume and never a side
+  function basinSide(volume, depth, slope) {
+    const vol = (a) => { const b = a - 2 * slope * depth; return b <= 0 ? 0 : depth / 3 * (a * a + b * b + a * b); };
+    let lo = 2 * slope * depth, hi = 1000;
+    for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (vol(m) < volume) lo = m; else hi = m; }
+    return (lo + hi) / 2;
+  }
+  K.define('fill_basin', {
+    size: [73.4, 0.65, 73.4],
+    options: { volume: 5962, depth: 1.8288, slope: 2, freeboard: 0.5, level: 0.12, crest: 2.4, outer: 3, corner: 4,
+      clay: 0x7a5f45, turf: 'october', water: 0x23302f, ground: 0x6b5a44 },
+    note: 'A square basin of water inside a raw clay bank, as a site plan draws a fill or detention basin. The WATERLINE side is solved from volume, depth and bank slope (userData.side), the water stands at `level` above grade (nothing is cut into the ground plane), and the inner bank rises `freeboard` metres above it at `slope` run per rise, so the near bank and the far banks show: a dark wet line at the water, raw clay with downslope rills, a compacted crest of width `crest`, and an outer slope at `outer` run per rise turfed down to a soft toe. The water carries the sky with fine wind ripple, never a stripe. userData: side, level, crestY, heightAt(x, z). Never call TXT.contact on it.',
+    make(o, r) {
+      const a = basinSide(o.volume, o.depth, o.slope), h = a / 2, rc = Math.min(o.corner, h * 0.4);
+      const lv = o.level, yc = lv + o.freeboard, inRun = o.freeboard * o.slope, outRun = yc * o.outer, toe = 1.0;
+      const dEnd = inRun + o.crest + outRun + toe + 1.2;
+      const seed = 8200 + o.seed * 17, nW = noise2(seed), nR = noise2(seed + 1), nC = noise2(seed + 2);
+      const prof = sectionProfile([[-1.2, lv - 0.6], [0, lv], [inRun, yc], [inRun + o.crest, yc], [inRun + o.crest + outRun + toe * 0.4, 0], [dEnd, -0.03]], 0.01, 0.12);
+      // signed distance from the rounded square waterline, positive outward
+      const sd = (x, z) => { const qx = Math.abs(x) - (h - rc), qz = Math.abs(z) - (h - rc);
+        return Math.hypot(Math.max(qx, 0), Math.max(qz, 0)) + Math.min(Math.max(qx, qz), 0) - rc; };
+      const wob = (x, z) => (fbm(nW, x / 11, z / 11, 2) - 0.5) * 0.36;
+      // rills run downslope on the inner face: a pattern in the angle round the basin, read on a
+      // circle in the noise so it has no seam where the angle wraps
+      const RK = h / 0.7;
+      const rill = (x, z) => { const t = Math.atan2(z, x), v = nR(Math.cos(t) * RK + 50, Math.sin(t) * RK + 50);
+        return smooth(0.55, 0.85, v) * (0.6 + 0.4 * nR(x / 3 + 9, z / 3 + 9)); };
+      const heightAt = (x, z) => {
+        const d = sd(x, z) + wob(x, z), y = prof(d);
+        const face = smooth(0.05, 0.3, d) * (1 - smooth(inRun - 0.25, inRun, d));
+        return y - face * rill(x, z) * 0.07;
+      };
+      // ring stations: around the waterline, then outward
+      const g = new THREE.Group(), base = [], step = 0.3, Ls = a - 2 * rc;
+      const side = Math.max(1, Math.ceil(Ls / step)), arc = 16;
+      const corners = [[h - rc, h - rc, 0], [-(h - rc), h - rc, Math.PI / 2], [-(h - rc), -(h - rc), Math.PI], [h - rc, -(h - rc), Math.PI * 1.5]];
+      // walk counter clockwise from the +x side: each side then the arc that follows it
+      const sides = [[[h, -(h - rc)], [h, h - rc], [1, 0]], [[h - rc, h], [-(h - rc), h], [0, 1]], [[-h, h - rc], [-h, -(h - rc)], [-1, 0]], [[-(h - rc), -h], [h - rc, -h], [0, -1]]];
+      for (let s = 0; s < 4; s++) {
+        const [p0, p1, n] = sides[s];
+        for (let i = 0; i < side; i++) { const t = i / side; base.push([lerp(p0[0], p1[0], t), lerp(p0[1], p1[1], t), n[0], n[1]]); }
+        const [cx, cz, a0] = corners[s];
+        for (let i = 0; i < arc; i++) { const t = a0 + (i / arc) * Math.PI / 2; base.push([cx + Math.cos(t) * rc, cz + Math.sin(t) * rc, Math.cos(t), Math.sin(t)]); }
+      }
+      const ds = stations(-1.2, dEnd, 0.4, 0.08, [[-0.4, inRun + 0.4], [inRun + o.crest - 0.4, inRun + o.crest + outRun + toe]]);
+      const nu = base.length, nv = ds.length, P = new Float32Array(nu * nv * 3), U = new Float32Array(nu * nv * 2), C = new Float32Array(nu * nv * 3), I = [];
+      const cClay = col(o.clay), cWet = col(o.clay).multiplyScalar(0.45), cDamp = col(o.clay).multiplyScalar(0.68), cCrest = col(o.clay).lerp(col(0xb3a084), 0.35);
+      const tf = TURF[o.turf] || TURF.october, cTurf = col(tf[0]), cTurf2 = col(tf[1]), cGround = col(o.ground), tmp = new THREE.Color();
+      let along = 0;
+      for (let i = 0; i < nu; i++) {
+        const b = base[i];
+        if (i > 0) along += Math.hypot(b[0] - base[i - 1][0], b[1] - base[i - 1][1]);
+        for (let j = 0; j < nv; j++) {
+          const k = j * nu + i, x = b[0] + b[2] * ds[j], z = b[1] + b[3] * ds[j], y = heightAt(x, z);
+          P[k * 3] = x; P[k * 3 + 1] = y; P[k * 3 + 2] = z; U[k * 2] = along / 3; U[k * 2 + 1] = ds[j] / 3;
+          const d = sd(x, z) + wob(x, z), above = y - lv, n = fbm(nC, x / 5, z / 5, 3) - 0.5;
+          if (d < inRun + 0.15) {                     // the inner face: wet line, damp band, raw clay with rills
+            mix3(tmp, cWet, cDamp, smooth(0.0, 0.07, above));
+            mix3(tmp, tmp, cClay, smooth(0.09, 0.22, above + n * 0.05));
+            tmp.multiplyScalar(1 - 0.22 * rill(x, z) * smooth(0.05, 0.3, d));
+          } else if (d < inRun + o.crest + 0.1) {      // the crest, compacted, with a darker wheel track
+            tmp.copy(cCrest); const tr = Math.abs(d - inRun - o.crest * 0.5);
+            if (Math.abs(tr - 0.85) < 0.18) tmp.multiplyScalar(0.86);
+          } else {                                     // the outer slope, turfed, to a soft toe
+            mix3(tmp, cClay, cTurf, smooth(inRun + o.crest, inRun + o.crest + 0.5, d));
+            mix3(tmp, tmp, cTurf2, smooth(0.3, 0.7, nC(x / 6 + 20, z / 6)) * 0.5);
+            mix3(tmp, cGround, tmp, smooth(0.0, 0.1, y + 0.03));
+          }
+          tmp.multiplyScalar(0.93 + n * 0.16);
+          C[k * 3] = tmp.r; C[k * 3 + 1] = tmp.g; C[k * 3 + 2] = tmp.b;
+        }
+      }
+      for (let j = 0; j < nv - 1; j++) for (let i = 0; i < nu; i++) {
+        const i2 = (i + 1) % nu, aa = j * nu + i, bb = j * nu + i2, cc = aa + nu, dd = bb + nu;
+        I.push(aa, bb, cc, bb, dd, cc);
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(P, 3)); geo.setAttribute('uv', new THREE.BufferAttribute(U, 2));
+      geo.setAttribute('color', new THREE.BufferAttribute(C, 3)); geo.setIndex(I); geo.computeVertexNormals();
+      // the walk must wind so the faces look up; flip once if the first normal points down
+      if (geo.attributes.normal.getY(Math.floor(nv / 2) * nu) < 0) { for (let q = 0; q < I.length; q += 3) { const t = I[q + 1]; I[q + 1] = I[q + 2]; I[q + 2] = t; } geo.setIndex(I); geo.computeVertexNormals(); }
+      const bank = new THREE.Mesh(geo, M('basin-bank', { color: 0xffffff, vertexColors: true, map: detailTex('soil'), roughness: 0.93 }));
+      bank.castShadow = true; bank.receiveShadow = true; bank.userData.txGround = true; g.add(bank);
+      // the water, a rounded square reaching under the bank so no edge of it ever shows
+      const sh = new THREE.Shape(), e = h + 0.35, er = rc + 0.35;
+      sh.moveTo(-e + er, -e); sh.lineTo(e - er, -e); sh.absarc(e - er, -e + er, er, -Math.PI / 2, 0, false);
+      sh.lineTo(e, e - er); sh.absarc(e - er, e - er, er, 0, Math.PI / 2, false);
+      sh.lineTo(-e + er, e); sh.absarc(-e + er, e - er, er, Math.PI / 2, Math.PI, false);
+      sh.lineTo(-e, -e + er); sh.absarc(-e + er, -e + er, er, Math.PI, Math.PI * 1.5, false);
+      const wg = new THREE.ShapeGeometry(sh, 24); wg.rotateX(-Math.PI / 2); wg.translate(0, lv, 0);
+      const wp = wg.attributes.position, wu = wg.attributes.uv;
+      for (let i = 0; i < wp.count; i++) wu.setXY(i, wp.getX(i) / 7, wp.getZ(i) / 7);
+      const water = new THREE.Mesh(wg, waterMat('basin', o.water, { wave: 0.16, rough: 0.05 }));
+      water.receiveShadow = true; water.castShadow = false; water.userData.txGround = true; water.userData.txWear = false;
+      g.add(water);
+      g.userData.side = a; g.userData.level = lv; g.userData.crestY = yc; g.userData.heightAt = heightAt;
+      return g;
+    },
+  });
+
   /* ======================================================================================
    * grain_elevator: a Panhandle concrete slip form elevator with its headhouse
    * ====================================================================================== */

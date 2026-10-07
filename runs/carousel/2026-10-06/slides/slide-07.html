@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-06, frame 7 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's goldenHour world. A basin 6 feet deep holding the cooling loop's initial fill of 1.575 million gallons, its waterline side solved from that volume, a lath drowned to its top in the middle, the far bank and field beyond. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 830px !important; }
+  .dek { width: 900px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">1.575 million gallons to start</h1>
+<p class="dek" data-follow="18">Cooling would run in a closed loop on reclaimed water with an initial fill of 1.575 million gallons, drawn here as one basin 6 feet deep. Drinking water would stay out of cooling except in three circumstances.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "The first fill, drawn as one basin", counter: "07 / 09", src: "c17 c19 c20 c21 c22", fit: { min: 84, max: 116, maxLines: 1 } });
+  TT.installAll();
+  const R = TT.stage(TXT, gl, W, { near: 0.1, fov: 30, fog: 0.0012, exposure: 1.25 });
+  TXT.ground(R, { surface: 'dirt', size: 3000, tile: 5, seed: 46, color: TT.CLAY });
+  /* the fill in cubic metres, from the gallons the city wrote, at the deck's own 6 foot depth */
+  const V = TT.gal(1.575 * 1e6), D = TT.ft(6);
+  const basin = K.make('fill_basin', { volume: V, depth: D, slope: 2, lip: 1.4 });
+  const A = basin.userData.side, LIP = 8;
+  basin.position.set(0, 0, -LIP - 1.4 - A / 2); TXT.add(R, basin);
+  /* the drowned lath at the basin's middle, driven so its top stands just clear of the water */
+  /* a 6 foot lath on the floor of a 6 foot basin, standing on its hub, so only its top breaks the water */
+  const lath = K.make('survey_lath', { above: D, seed: 51, flagging: false, hub: false }); lath.position.set(0.9, -D + 0.12, -LIP - 1.4 - 6.4); TXT.add(R, lath);
+  TT.treeLine({ n: 26, seed: 120, x0: -500, step: 40, z: -900, jitter: 60, height: 8 });
+  const barn = K.make('barn', { style: 'gable', material: 'metal', seed: 7 }); barn.position.set(210, 0, -620); barn.rotation.y = -0.3; TT.put(barn, true);
+  TXT.add(R, TT.furrows({ x0: -300, x1: 300, z0: -LIP - A - 6, z1: -700, seed: 37 }));
+  /* standing on the lip itself, the near bank under the camera, the lath close */
+  TXT.frame(R, { from: [0, 1.6, -4.5], look: [0, -11.9, -104.5] });
+  TXT.sky(R);
+  TT.stubble([-160, -400, 160, -LIP - A - 4], { count: 7000, seed: 48, scale: [0.14, 0.28] });
+  /* the near bank: low stubble on the clay the basin was cut from */
+  TT.stubble([-14, -LIP - 1.35, 14, 2], { count: 22000, seed: 49, scale: [0.1, 0.24] });
+  /* clods on the near bank, the spoil the basin's cut left on the clay */
+  TT.clods([-14, -LIP - 1.35, 14, -1.5], { count: 5000, seed: 50, scale: [0.03, 0.08] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 160, target: [0, 0, -40], distance: 300, far: 800 }));
+  TXT.weather(R, { grime: 0.15, height: 0.6 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  TT.post(cx, { a: 0.45, to: 150, veilH: 520, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

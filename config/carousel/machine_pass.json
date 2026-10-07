@@ -1,24 +1,24 @@
 {
-  "last_pass": "2026-10-05",
+  "last_pass": "2026-10-06",
   "themes": [
-    {"theme": "primitive or low-poly model where a kit model belongs", "runs": 6, "rounds": 26,
-     "action": "fixed",
-     "what": "Read by sentence, the kit person (no. 42 rounds 1 to 4, after the 2026-10-03 fix) and the kit semi_truck (no. 41, all three judges, rounds 1 to 5). The person could not change under no. 43, which was mid-panel and calls it on three frames, so it is deferred to the next pass with a note in ILLUSTRATION_SYSTEM.md. The tractor was fixed in assets/js/kit/vehicles.js at the judges' named fix: two-piece windscreen in a coated glass with wipers and a visor, a grille surround over a recessed core with vertical bars, twin lamps in chrome bezels, an arch flare, a cowl seam and louvres. Proven before and after through examples/kit/build.py's page() and the carousel engine, sizes.py 110 of 110."},
-    {"theme": "render artifact (banding, aliasing, facets, stripes)", "runs": 6, "rounds": 20,
+    {"theme": "largest object unmodelled (slab, bare wall, clean clay)", "runs": 7, "rounds": 26,
      "action": "fixed in part",
-     "what": "The kit school_bus's yellow lip across the front wheel (queue school-bus-hood-lip-across-front-wheel, no. 42) was a self-overlapping lobe in the body's profile and is gone. The rest of the theme is the engine's or a chassis's near plane (queue near-plane-zfight-on-card-skins), written up in UPGRADE_BACKLOG 2026-10-05 item 8."},
-    {"theme": "acceptance lists a frame missing its subject would pass (queue acceptance-lists-trivially-satisfiable)", "runs": 3, "rounds": null,
-     "action": "fixed",
-     "what": "Queue repeat 2 (nos. 41, 42, 43), which made this pass due. scripts/carousel/dossier_check.py fails a storyboard dated from 2026-10-06 whose frame's acceptance list never names its CRAFT PLAN largest object or sets no floor on a visible size of the art. Replayed: 44 of 45 frames across nos. 38, 40, 41, 42 and 43 had no floor. The digest's word themes do not count this one, so its rounds are not counted."},
-    {"theme": "og.jpg built from the first PNG left (queue ship-images-og-from-first-png)", "runs": 1, "rounds": null,
-     "action": "fixed",
-     "what": "scripts/carousel/ship_images.py builds the unfurl from slide 1 by name. A bug that bit once, fixed because its cost is a wrong link card on the post."},
-    {"theme": "no contact, dirt or grime where things meet the ground", "runs": 6, "rounds": 19,
+     "what": "No. 44's last round ranked frame 7 weakest, a fill basin drawn as a flat water plane at grade, and the craft judge's fix ended 'rebuild slide 7 as a banked basin'. earthen_berm and fill_basin are lifted into assets/js/kit/landscape.js at that named fix: a trapezoid berm with a clean crest line and an embanked basin with a wet line, raw clay banks with rills, a compacted crest and a turfed outer slope. Proven through examples/kit/build.py's page() and the carousel engine at no. 44's frame 6 and 7 cameras, sizes.py 112 of 112. The objects differ per deck, so the theme stays open."},
+    {"theme": "primitive or low-poly model where a kit model belongs", "runs": 7, "rounds": 26,
+     "action": "fixed in part",
+     "what": "The same lift: two models no. 44 had to build in its chassis are now the kit's. dry_van, delineator and raised_pavement_marker (no. 41) were deferred a third time, UPGRADE_BACKLOG 2026-10-06 item 6."},
+    {"theme": "the prompt audit reads the auto mode classifier as a human (queue prompt-audit-reads-auto-mode-as-human)", "runs": 3, "rounds": null,
      "action": "escalated",
-     "what": "The engine's (human). Named on no. 41 and no. 42 after the 2026-10-03 maintainer fix, so the fix did not hold at the panel's eye. UPGRADE_BACKLOG 2026-10-05 item 8."},
-    {"theme": "largest object unmodelled (slab, bare wall, clean clay)", "runs": 6, "rounds": 25,
-     "action": "fixed in part",
-     "what": "The acceptance floor now makes each frame's list name the CRAFT PLAN largest object, so a critic grading the list checks the object the plan promised to model. The objects themselves differ per deck."}
+     "what": "Queue repeat 2 (nos. 42, 43, 44), which made this pass due. scripts/shared/prompt_audit.py is daily lane. Measured on no. 44's log, every call over one second was classified and the classifier's own logged durations leave at most 165 ms. A drafted patch with five self-test cases was handed to the run (UPGRADE_BACKLOG 2026-10-06 item 2). scripts/carousel/machine_due.py no longer re-fires every day on an item the last pass escalated. The digest's word themes do not count this one, so its rounds are not counted."},
+    {"theme": "render artifact (banding, aliasing, facets, stripes)", "runs": 7, "rounds": 23,
+     "action": "escalated",
+     "what": "On no. 44, sky banding named by all three judges in all three rounds. Engine (human): the grade runs on an 8 bit canvas, a mechanism read in the code and not yet measured. UPGRADE_BACKLOG 2026-10-06 item 4."},
+    {"theme": "no contact, dirt or grime where things meet the ground", "runs": 7, "rounds": 22,
+     "action": "escalated",
+     "what": "The engine's (human), up from 6 runs and 19 rounds last pass, still named after the 2026-10-03 maintainer fix. UPGRADE_BACKLOG 2026-10-06 item 5."},
+    {"theme": "horizon band or seam", "runs": 7, "rounds": 13,
+     "action": "escalated",
+     "what": "The engine's sky and ground (human). UPGRADE_BACKLOG 2026-10-06 item 5."}
   ],
-  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-05. The acceptance floor's frame counts are from the pass's own replay of dossier_check.acceptance_floor_fails over those storyboards, recorded in ledger/carousel/upgrades.json."
+  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-06. The classifier figures are from the pass's own read of no. 44's debug log, recorded in ledger/carousel/upgrades.json."
 }

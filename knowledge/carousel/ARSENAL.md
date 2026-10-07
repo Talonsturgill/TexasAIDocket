@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 28 |
 | world presets | 6 |
-| kit models | 110 in 10 families |
+| kit models | 112 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 69 |
 | record and site tools the routine names | 20 |
@@ -329,7 +329,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `stock_tank` | 3.7 x 0.8 x 3.5 | d, h, water, inlet | Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill ... |
 | `windmill` | 4.2 x 11.8 x 4.3 | tower, wheel, yaw, platform, ladder, pipe | Aermotor style water pumping windmill: four post galvanized angle lattice tower with girts and rod cross bracing on concrete footings, wooden platform, side ladder, pump rod down the centre to a pump stand with a discharge pipe, a geared head with its domed ... |
 
-### landscape (10)
+### landscape (12)
 
 `assets/js/kit/landscape.js`, THE PLACE AROUND A SUBJECT.
 
@@ -339,6 +339,8 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `city_skyline` | 2215.8 x 294 x 1174.1 | city, dusk, lit, aerial, lowrise | A far skyline for dallas, houston, austin or san_antonio: massed towers with each city's broad character (Dallas: a mixed cluster and a ball topped observation tower; Houston: the tallest, densest dark glass; Austin: slender residential glass and a domed ... |
 | `creek` | 30.2 x 3.6 x 41 | length, width, bed, bank, water, ground | A Hill Country creek running along z: flat limestone bedrock with stepped ledges and potholes, gravel bars, slabs, grassy banks that rise 1 to 2.5 m and sink back into TXT.ground at the sides. water: dry, shallow (clear pools over the rock) or full. |
 | `crop_rows` | 26.1 x 1.3 x 40.2 | crop, growth, width, length, row, soil, ground, near, budget, verge | A field block of bedded rows running along z, 40 inch rows on raised beds of South Plains red soil. crop: cotton (growth 0.3 young, 0.7 green and leafy with flowers and a few open bolls, 1 defoliated at harvest: knee to waist high, bushy dark brown plants ... |
+| `earthen_berm` | 60 x 1.83 x 21.26 | length, height, crest, slope, wobble, swale, turf, mown, ground | A landscaped earthen screening berm running along x, front face toward +z: a TRAPEZOID in section, a flat crest with tight rounded shoulders and straight side slopes at `slope` run per rise (3 is the usual landscaped berm), so the crest reads as a clean line ... |
+| `fill_basin` | 73.4 x 0.65 x 73.4 | volume, depth, slope, freeboard, level, crest, outer, corner, clay, turf, water, ground | A square basin of water inside a raw clay bank, as a site plan draws a fill or detention basin. |
 | `grain_elevator` | 70.7 x 61.2 x 26.7 | bins, rows, height, diameter, headhouse, steelBins, shed | A concrete slip form country elevator as on the Panhandle horizon: a double row of cylindrical bins with their interstices, a tall headhouse over the leg with small framed windows, a corrugated gallery along the bin tops, a caged ladder, a truck driveway shed ... |
 | `highway` | 34.7 x 9.5 x 80 | length, lanes, surface, gantry, overpass, embank, ground | A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an ... |
 | `hill_country_terrain` | 800 x 60 x 800 | size, relief, ledges, trees, season, segments, ground, rim, near, budget, rocks | Central Texas Hill Country: rolling stair-stepped limestone hills, thin broken limestone ledges along the contours with talus below, Ashe juniper brakes and live oak mottes (the kit's own trees.js models, three levels of detail), grass by slope and hollow ... |
@@ -382,7 +384,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`.
 
 **Geodata** (`assets/geo/`):
 

@@ -26,6 +26,28 @@ MEASURED ON 2026-09-02, across both processes of one run, 432 dispatches:
 
 So the threshold is not a tuning problem. Anything past a second is a human.
 
+AUTO MODE MOVED THE FAST POPULATION, AND THE CLASSIFIER TIMES ITSELF (2026-10-06 weekly pass).
+From carousel no. 42 the host ran the routine in auto mode, where a model classifies each call
+before it is allowed, and a third of all calls began to wait one and a half to five seconds: 335
+of 1081 on October 4th, 370 of 1235 on the 5th, 411 of 1558 on the 6th, the longest 36.1 s. The
+no-stall hook refused nothing and logged no dialog on any of the three days, so this audit called
+three clean runs red and the email said a human had waited when nobody had. The log already
+says where each of those seconds went:
+
+    [auto-mode] new action being classified: tool=Bash ... id=toolu_01Sk...
+    [Stall] classifier_request_started reqId=bda4... tool=Bash ...
+    [Stall] classifier_request_finished reqId=bda4... outcome=ok durationMs=2209
+    Slow permission decision: 2255ms for Bash (mode=auto, behavior=allow)
+    [Stall] tool_dispatch_start tool=Bash toolUseId=toolu_01Sk... permissionDecisionMs=2255
+
+So the classifier's own durations for a call are SUBTRACTED from its wait, and what is left is
+judged against the same one second. Measured on the October 6th log, every one of the 490 slow
+calls of 1732 was classified (the longest 63.2 s), and the largest remainder after the subtraction
+was 165 ms. No new
+threshold: the human line is where it was, and only time the log itself attributes to the
+classifier, for that same call id, comes off. A call the classifier passed on to a dialog still
+carries the person's seconds in its remainder and is still caught.
+
 THREE THINGS THIS DELIBERATELY DOES NOT DO, each of which it got wrong first.
 
 **It does not print the command.** A granted permission rule carries the command text, and a
@@ -72,6 +94,11 @@ DISPATCH = re.compile(
     r"tool_dispatch_start\s+tool=(?P<tool>\S+)\s+toolUseId=(?P<id>\S+)\s+"
     r"permissionDecisionMs=(?P<ms>\d+)"
 )
+# the auto mode classifier, keyed to the call it is classifying (see the docstring, 2026-10-06)
+CLASSIFYING = re.compile(r"\[auto-mode\] new action being classified:.*?\bid=(?P<id>\S+)")
+CLASSIFIER_START = re.compile(r"classifier_request_started\s+reqId=(?P<req>\S+)")
+CLASSIFIER_DONE = re.compile(r"classifier_request_finished\s+reqId=(?P<req>\S+).*?"
+                             r"durationMs=(?P<ms>\d+)")
 APPLIED = re.compile(r"Applying permission update: Adding \d+ allow rule\(s\).*?(\[.*\])")
 
 # `Bash(cp .claude/WORKLOG.md out/x)` -> tool `Bash`, command `cp`, and the arguments dropped.
@@ -107,7 +134,15 @@ def redact(rule: str) -> str:
 
 
 def scan_text(text: str) -> tuple[list[dict], list[str], int]:
-    """Return the waited calls with the rules that released them, the orphan rules, and the total.
+    """The waited calls, the orphan rules and the total: `scan_text_full` without the waits the
+    auto mode classifier accounts for."""
+    waited, orphans, total, _ = scan_text_full(text)
+    return waited, orphans, total
+
+
+def scan_text_full(text: str) -> tuple[list[dict], list[str], int, list[int]]:
+    """Return the waited calls with the rules that released them, the orphan rules, the total,
+    and the wait in ms of every slow call that the classifier's own durations account for.
 
     A permission grant is written just before the dispatch it releases, so each pending rule set
     attaches to the next waited dispatch. Anything still pending at the end never released a
@@ -117,9 +152,29 @@ def scan_text(text: str) -> tuple[list[dict], list[str], int]:
     total = 0
     pending: list[str] = []
     orphans: list[str] = []
+    classified: list[int] = []
+    classifying = None                      # the call id the classifier is working on
+    req_call: dict[str, str] = {}           # classifier request -> call id
+    classifier_ms: dict[str, int] = {}      # call id -> classifier time the log attributes to it
 
     for line in text.splitlines():
         stamp = STAMP.match(line)
+
+        hit = CLASSIFYING.search(line)
+        if hit:
+            classifying = hit.group("id")
+            continue
+        hit = CLASSIFIER_START.search(line)
+        if hit:
+            if classifying:
+                req_call[hit.group("req")] = classifying
+            continue
+        hit = CLASSIFIER_DONE.search(line)
+        if hit:
+            call = req_call.pop(hit.group("req"), None)
+            if call:
+                classifier_ms[call] = classifier_ms.get(call, 0) + int(hit.group("ms"))
+            continue
 
         applied = APPLIED.search(line)
         if applied:
@@ -134,19 +189,24 @@ def scan_text(text: str) -> tuple[list[dict], list[str], int]:
             continue
         total += 1
         ms = int(hit.group("ms"))
+        machine = classifier_ms.pop(hit.group("id"), 0)
         if ms < HUMAN_MS:
+            continue
+        if ms - machine < HUMAN_MS:
+            classified.append(ms)            # the classifier's seconds, not a person's
             continue
         waited.append({
             "tool": hit.group("tool"),
             "id": hit.group("id"),
             "ms": ms,
+            "classifier_ms": machine,
             "at": stamp.group(1) if stamp else None,
             "rules": [redact(r) for r in pending],
         })
         pending = []
 
     orphans = [redact(r) for r in pending]
-    return waited, orphans, total
+    return waited, orphans, total, classified
 
 
 def logs() -> list[Path]:
@@ -162,6 +222,7 @@ def logs() -> list[Path]:
 def scan() -> dict:
     waited: list[dict] = []
     orphans: list[str] = []
+    classified: list[int] = []
     total = 0
     read: list[str] = []
     for path in logs():
@@ -170,13 +231,16 @@ def scan() -> dict:
         except OSError:
             continue
         read.append(str(path))
-        got_waited, got_orphans, got_total = scan_text(text)
+        got_waited, got_orphans, got_total, got_classified = scan_text_full(text)
+        classified.extend(got_classified)
         waited.extend(got_waited)
         orphans.extend(got_orphans)
         total += got_total
     waited.sort(key=lambda row: row["ms"], reverse=True)
     return {"logs": read, "dispatches": total, "waited": waited,
             "unassociated_rules": orphans, "measured": total > 0,
+            "classifier_waits": len(classified),
+            "classifier_longest_ms": max(classified, default=0),
             "no_stall": no_stall_report()}
 
 
@@ -259,6 +323,11 @@ def report(result: dict) -> int:
 
     total = result["dispatches"]
     waited = result["waited"]
+    machine = result.get("classifier_waits", 0)
+    if machine:
+        print(f"prompt audit: {machine} call(s) waited on the auto mode classifier, the longest "
+              f"{result.get('classifier_longest_ms', 0) / 1000:.1f}s, timed by the log itself and "
+              f"not a person")
     if not waited:
         print(f"prompt audit: {total} tool call(s) measured, none waited on a human")
         return 0
@@ -299,6 +368,42 @@ def self_test() -> int:
 
     waited, _, _ = scan_text(fast.replace("Ms=16", "Ms=43"))
     checks.append(("43 ms, the slowest measured auto-approval, is still clean", waited == []))
+
+    # AUTO MODE (2026-10-06). The real sequence from no. 44's log, ids shortened. Before this,
+    # a call like the 2255 ms one below was reported as a human wait, 411 times in one run.
+    def auto(call_id, wait, classifier, req="bda4", dispatch=True):
+        lines = [
+            f"2026-10-06T06:36:25.704Z [DEBUG] [auto-mode] new action being classified: tool=Bash "
+            f"actionChars=1354 id={call_id}",
+            f"2026-10-06T06:36:25.705Z [INFO] [Stall] classifier_request_started reqId={req} "
+            f"tool=Bash model=m stage=xml_s1 promptTokensEst=[REDACTED]",
+            f"2026-10-06T06:36:27.914Z [INFO] [Stall] classifier_request_finished reqId={req} "
+            f"tool=Bash stage=xml_s1 outcome=ok durationMs={classifier}"]
+        if dispatch:
+            lines += [f"2026-10-06T06:36:27.919Z [INFO] Slow permission decision: {wait}ms for Bash "
+                      f"(mode=auto, behavior=allow)",
+                      f"2026-10-06T06:36:27.920Z [INFO] [Stall] tool_dispatch_start tool=Bash "
+                      f"toolUseId={call_id} permissionDecisionMs={wait}"]
+        return "\n".join(lines)
+    waited, _, total, machine = scan_text_full(auto("toolu_01Sk", 2255, 2209))
+    checks.append(("a 2255 ms call the classifier spent 2209 ms on is the classifier's, not a "
+                   "human's, and is still counted", waited == [] and total == 1 and machine == [2255]))
+    waited, _, _, machine = scan_text_full(auto("toolu_01Sk", 21585, 2209))
+    checks.append(("a classified call that then waited 19 s more is STILL a human wait",
+                   len(waited) == 1 and waited[0]["classifier_ms"] == 2209 and machine == []))
+    other = auto("toolu_A", 0, 2209, dispatch=False) + "\n" + \
+        real.replace("toolu_012WpR", "toolu_B").replace("Ms=21585", "Ms=2255")
+    waited, _, _, _ = scan_text_full(other)
+    checks.append(("the classifier's time for one call never excuses a different call",
+                   len(waited) == 1 and waited[0]["id"] == "toolu_B"))
+    two = auto("toolu_01Sk", 0, 20000, req="r1", dispatch=False) + "\n" + \
+        "\n".join(auto("toolu_01Sk", 36100, 15500, req="r2").splitlines()[1:])
+    waited, _, _, machine = scan_text_full(two)
+    checks.append(("two classifier stages for one call are summed (the 36.1 s call of October 5th)",
+                   waited == [] and machine == [36100]))
+    waited, _, _, _ = scan_text_full(two.replace("durationMs=15500", "durationMs=1500"))
+    checks.append(("...and 14.6 s the two stages do not account for is a human wait",
+                   len(waited) == 1))
 
     # REDACTION. The real rule carried a path; a real one could carry a credential.
     checks.append(("a command's arguments are stripped from a rule",

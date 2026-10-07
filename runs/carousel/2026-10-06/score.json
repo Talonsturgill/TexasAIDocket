@@ -1,0 +1,255 @@
+{
+ "weighted_score": 7.42,
+ "judges": [
+  6.93,
+  7.432,
+  7.34
+ ],
+ "spread": 0.502,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.3,
+    6.2,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    7.3,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.3,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    8.3,
+    8.3
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.8,
+   "weight": 0.16,
+   "judges": [
+    7.8,
+    8.2,
+    7.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.6,
+    7.3
+   ]
+  },
+  "voice": {
+   "score": 7.6,
+   "weight": 0.1,
+   "judges": [
+    7.8,
+    7.6,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.0,
+    6.8
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "FRAME 5, a false universal: the headline 'The nearest wall the terms allow' and a dek naming no line, when c31 allows accessory structures at 500 feet from the same south line and c30 allows buildings at 300 feet from the north, east and west lines. Repair: 'The nearest data hall the terms allow' and '700 feet from the south line'."
+  }
+ ],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A generic hillside, no scale at the toe, an edge-cut tree, no raking light.",
+     "fix": "The lath at the toe at 300 px, delete the tree, lower the sun to light the crest."
+    },
+    {
+     "judge": 2,
+     "problem": "A grassy hill of sprite tufts, the lath above the crest, no elms, a cut-off branch at the left edge.",
+     "fix": "A trapezoidal berm with its crest a clean diagonal against the sky, the lath at the toe meeting the crest, delete the branch."
+    },
+    {
+     "judge": 3,
+     "problem": "A big grassy hill, the lath above the crest, a clipped tree at the left edge, banding.",
+     "fix": "Pull back, stand a person at the toe beside the lath, delete the clipped tree, dither the sky."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A 14 px lath stub on endless sine ripples, no far bank or damp ring.",
+     "fix": "The lath in the near third at 300 px, the far bank at its solved distance, a low-amplitude normal reflecting the warm band."
+    },
+    {
+     "judge": 2,
+     "problem": "Sine-stripe water meeting the field at a seam, a 12 px drowned lath, the type on water.",
+     "fix": "Model the near clay bank under the type and the far banks, wind ripple with the sky reflection, the lath's knot at 120 px."
+    },
+    {
+     "judge": 3,
+     "problem": "Water to the horizon with no far bank, even lollipop trees, a 10 px lath.",
+     "fix": "Model the far bank at the computed side, randomize the trees, bring the lath to 12 m."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Decal squares, people half the stake height, no long shadows at 432 px.",
+     "fix": "People at 1.75 m, camera at 20 m, a soil edge and contact for each block."
+    },
+    {
+     "judge": 2,
+     "problem": "Blocks on pasted plates, one mid-dark band with almost no sky.",
+     "fix": "Raked clay only a few L* lighter, tilt up so the horizon band and haze fill the top fifth."
+    },
+    {
+     "judge": 3,
+     "problem": "Blocks on floating plates, flags blur at 432 px.",
+     "fix": "String lines and corner hubs on the same clay, drop the camera to 25 m."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Banding round the sun, flat unshaded flagging.",
+     "fix": "Dither round the sun, a translucent backlit flagging material."
+    },
+    {
+     "judge": 2,
+     "problem": "A thick black post with a cartoon ribbon, posts behind the type, banding round the sun.",
+     "fix": "The chassis survey lath backlit with a rim, slide the fence so no post crosses the type, dither the glow."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Contact blobs only under a 7 degree sun, a banded zenith, an empty near field.",
+     "fix": "The sun's shadows at their declared elevation so the person and lath throw long shadows east."
+    },
+    {
+     "judge": 3,
+     "problem": "A dead band of clay, rows not reading as rows.",
+     "fix": "Lower the eye and tighten the lens, rake the light so each row throws a shadow line."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Reads as S1 re-rendered, the lath hovering with no contact.",
+     "fix": "Lay the lath in the lower right foreground with mud and slack tails and a contact shadow, empty stake holes in the near row."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Banding rings and no long shadow from the near stake.",
+     "fix": "Dither the sky and lower the sun so the lath's shadow runs east."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The lath fuses with the tripod mast, the meter reads as a generic rig.",
+     "fix": "Move the lath 1 m left, model the windscreen ball and body against the sky."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "No berm, FM 112 or houses, a busy furrow tile behind the dek, a flat-lit hall.",
+     "fix": "FM 112 and its verge across the bottom third, the berm between the 400 foot row and the fence, break the tile."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "craft_floor": "waiting, because a hard fail is repaired first",
+ "hard_fails_found": [
+  "FRAME 5, a false universal: the headline 'The nearest wall the terms allow' and a dek naming no line, when c31 allows accessory structures at 500 feet from the same south line and c30 allows buildings at 300 feet from the north, east and west lines. Repair: 'The nearest data hall the terms allow' and '700 feet from the south line'."
+ ],
+ "hard_fail_repairs": {
+  "note": "Past the round cap, repairs were limited to the hard fail, as the routine allows. Round 3's integrity judge failed frame 5's unscoped universal about how near a wall the terms allow. It was repaired on every surface that carried it and confirmed by three integrity-only verification passes. The first two each found an unscoped sentence of the same kind the repair had missed, and each was repaired before the next pass. No fourth scoring round was run, so the scores above describe the deck before the repair.",
+  "verification_passes": [
+   "pass 1: the first repair ('The nearest data hall the terms allow') still read as site wide against c30; also found slide 6's buffer unscoped, two web edition sentences past their claims and record claim c10's 'heaviest'",
+   "pass 2: confirmed frames 5 and 6; found slide 1's 'Each flagged stake' universal broken by slide 8, record claims c1, c14 and c16 past their own quotes, a 'local' in the record summary, the web edition's petition presented 'to the council'",
+   "pass 3: confirmed every repair, no findings"
+  ],
+  "repaired": [
+   "slide 5 headline 'The closest a data hall gets to the south line', dek 'at least 700 feet from the south line'",
+   "slide 6 dek 'A buffer of at least 400 feet along the south line', the 'Every stake drawn in this deck stands 6 feet tall' sentence removed",
+   "slide 1 dek 'The stakes in this field mark the south line and the distances its terms set'",
+   "slide 4 bar label 'WITH THE TERMS 65 DBA OR THE BASELINE'",
+   "web edition dek 'against what would apply without the agreement', the noise cap rising above 65 dBA only on a higher measured level (c12), the petition presented to the city at a council meeting (c50)",
+   "record tx-2026-0203 claims c1, c10, c14 and c16 held to their quotes, the summary without 'local'"
+  ]
+ }
+}

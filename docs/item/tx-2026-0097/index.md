@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · That the training requirement stands is still unconfirmed. The bill's history sits on a path this project does not read.
 - 2026-10-04 · That the training requirement stands is still unconfirmed. The bill's history sits on a path that bars automated readers.
 - 2026-10-05 · That the AI training requirement for state and local employees still stands is unconfirmed this time. The bill's history sits on a path that bars automated readers.
+- 2026-10-06 · The AI training requirement for state and local employees is still unconfirmed this time. The bill's record sits on a path closed to automated readers.
 
 ## Evidence
 

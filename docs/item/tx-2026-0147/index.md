@@ -11,7 +11,7 @@ The El Paso City Council took up two items filed by members of the council at it
 - Public access: Write to the decider
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-10-03
+- Last checked: 2026-10-06
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-27 · The council's approval of both plate reader items still stands, and the text of the amendment is still unpublished.
 - 2026-09-30 · Both plate reader approvals still stand as the council voted them, and the amended text has still not been published.
 - 2026-10-03 · The council's minutes are now published and carry both amendments. Cameras the city can't remove in time may be covered for a further period before they come down. A later contract needs a proposal from the City Manager, the police department or a council member. The mayor broke a tie on that second amendment.
+- 2026-10-06 · El Paso's published minutes still carry the order taking Flock cameras off city property, both amendments included.
 
 ## Evidence
 

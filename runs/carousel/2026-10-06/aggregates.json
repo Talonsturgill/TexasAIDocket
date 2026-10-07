@@ -1,0 +1,82 @@
+{
+ "date": "2026-10-06",
+ "_note": "Every count the deck states, with the claim it was quoted from. The drawn counts (1,400 lath in fourteen blocks of a hundred, seven rows at 100 foot steps) are set from figures.json and claims in each frame's code.",
+ "aggregates": [
+  {
+   "phrase": "664 acres",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 664,
+   "quoted_from": "c2",
+   "quote": "a 664-acre project that includes data center facilities and on-site power generation",
+   "note": "the source's own acreage, quoted, extracted by compute.py as acres"
+  },
+  {
+   "phrase": "664 acres",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 664,
+   "quoted_from": "c2",
+   "quote": "a 664-acre project that includes data center facilities and on-site power generation",
+   "note": "the source's own acreage, quoted"
+  },
+  {
+   "phrase": "400 feet with earthen berms",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 400,
+   "quoted_from": "c32",
+   "quote": "A permanent landscaped buffer of at least 400 feet must also be provided along the south property line near FM 112.",
+   "note": "the buffer's minimum width, quoted, with the berm height from c33",
+   "also_from": [
+    "c33"
+   ]
+  },
+  {
+   "phrase": "65 decibels",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 65,
+   "quoted_from": "c12",
+   "quote": "Noise generated from the development shall not exceed the greater of either 65 decibels (dBA) or the pre-development level.",
+   "note": "the noise cap, quoted, extracted by compute.py as noise_with_dba"
+  },
+  {
+   "phrase": "1.575 million gallons",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 1.575,
+   "quoted_from": "c17",
+   "quote": "The site must be designed and constructed with a closed loop cooling system utilizing reclaimed water with an initial fill volume of 1.575 million gallons for the entire site.",
+   "note": "the initial fill, quoted, extracted by compute.py as fill_million_gal"
+  },
+  {
+   "phrase": "three circumstances",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 3,
+   "note": "a tally of the circumstances the agreement lists for potable water in cooling (c19), one claim per circumstance: c20, c21, c22",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22"
+   ]
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "sources_block.py counting the distinct official document urls among the claim ids the deck prints: the City of Taylor news release, its Taylor Technology Campus page, its Data Centers in Taylor page and its council meetings page",
+   "note": "the sources block's own tally of official documents"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counting the distinct news article urls among the claim ids the deck prints: KEYE's report on the ballot petition and Texas Standard's report on the coalition's motion",
+   "note": "the sources block's own tally of news reports"
+  }
+ ]
+}

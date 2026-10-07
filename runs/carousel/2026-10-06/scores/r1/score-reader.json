@@ -1,0 +1,24 @@
+{
+  "lens": "reader",
+  "round": 1,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Ambitious and mostly rendered as a real place: Blackland clay, barbed wire, survey lath, contact under the tripod feet (4) and under the person (5). Frames 1, 4 and 5 come close to the place-at-an-hour test. Held down by: stepped sky banding on 1, 2, 5, 6 and 9 with most skies reading slate-grey overcast; blurred dark halos behind the kicker and counter on 8 and 9; slide 9's flat magenta flagging and black post; slide 7's lath standing on the water with a contact shadow and the basin reading as stacked slabs; slide 3 missing its road, houses and berm so the leaders measure from nothing. More than one frame leans on a primitive or an artifact, so it lands under 7."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "One world, one lath in one material, one survey-pink accent, light from the west on 1 to 6. Both declared continuity devices work. Slide 7's cool water band breaks the dark lower-third value, slide 9 brings a different-looking post and ribbon, and slide 2 at feed size is close to a repeat of 1."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces to figures.json and a claim, mostly from the city's own primary pages, and the deck never calls the agreement approved. Slide 4 draws 65 and 85 dBA as linear bars, so a reader sees the cap as about three quarters of the state limit while the run's own figures compute a 100 times sound-power difference, and the bar label drops the 'or the level before' clause. Slide 9's split of the $28.2 million relies on c36 to c42 while the slide cites only c35."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "A reader learns what, who, where, the alternative and the deadline, with concrete stakes. The developers are never named, the close gives a date but no where, and a reader who saw the AG headline is never told it is a different project."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Frame 2 pays at once and frame 8 brings the counter-voice. The cover hook needs the reader to know a vote is coming, frame 2 at feed size looks like frame 1, frames 5 and 6 re-spend slide 3's distances, and the close spends its dek on new money rather than on Thursday."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Specific and on register. Several lines read as a system describing itself ('The hall is drawn for scale', 'The berm as described, not built', 'Each flagged stake stands at a distance its terms set', 'The slides stake each distance.', 'The record is tx-2026-0203.'). The caption's first line is cryptic for a feed reader and 'data center' first appears in its third paragraph."},
+    {"name": "variety", "weight": 0.10, "score": 7.5, "why": "A fresh concept, instrument and palette. The structure, one hero carried through every frame in a lit world, repeats nos. 40 to 43."}
+  ],
+  "weighted_score": 7.32,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild the close without banding or kicker halos, and have frame 9's dek name Big Watt Digital and PowerHouse Data Centers and say where the October 8th vote is held instead of spending the last frame on the $28.2 million.",
+  "artwork_weakest_frames": [
+    {"slide": 9, "problem": "Flat untextured flagging, the lath a thick black post, posterized bands around a flat sun disc, dark halos behind the kicker and counter, foreground posts ghosting through the type scrim.", "fix": "A rim-lit pine lath, thin cloth tails, a smooth sky with a real sun bloom, and the kicker halo removed."},
+    {"slide": 7, "problem": "The lath stands on the water with a contact shadow, and the basin reads as stacked slabs.", "fix": "Sink the lath to its knot with a ripple ring and no contact shadow, and model the near edge as a damp clay bank."},
+    {"slide": 8, "problem": "A smeared plate around the kicker and counter, and the blocks on flat squares that read as pasted tiles.", "fix": "Drop the kicker scrim and blend each raked square into the clay with soft worn edges and furrow texture."},
+    {"slide": 2, "problem": "Reads as a repeat of slide 1, and the pulled lath floats along the third fence wire.", "fix": "Lay the lath on the clay in the near lower right with its shadow touching it."},
+    {"slide": 3, "problem": "No south line, road, berm or houses, so the leaders measure from nothing, and the hall is cut at the right edge.", "fix": "Pull the aerial back and down so FM 112 and the south fence cross the bottom third and the rows step off from that line."}
+  ]
+}

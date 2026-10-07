@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "One world, one ground, one hero, frame 9 closest to a photograph. Banding on 1, 2, 4, 5, 6 and round the sun on 9, frames 1 to 6 read overcast with no long casts, frame 7's lath a 14 px stub on endless ripples, frame 6 a generic hillside with an edge-cut tree, frame 8's blocks decals with people half the stake height, smooth procedural furrows on 1 and 2."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Reads as a filmstrip, one ground, one lath changing state, one accent, both devices do real work. Frame 7's water and frame 6's grass sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Sourcing strong and every numeral traces through compute.py. Against that: (a) frame 5 states a false universal, 'The nearest wall the terms allow', when c31 allows accessory structures at 500 feet from the same line and c30 allows buildings at 300 feet from the other three lines (hard fail); (b) frame 4's linear dBA bars; (c) frame 4's kicker implies the agreement's own text, which was not found; (d) frame 1's flagged-stake sentence against frames 5 and 8; (e) c3 missing from the sources block."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "County, body, decision, developers and deadline named, the stake concrete, the open question found. No time or comment route, and the close leans on the developers' money."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe, frame 2 pays, 3 to 7 walk the terms with no change in understanding, the turn is 8, 9 lands the date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "Plain and specific, honest about what is missing, house rules clean. The meeting line is boilerplate."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A new hero, opening and palette. The carried object structure repeats, golden hour repeats no. 40."
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [
+  "FRAME 5, a false universal: the headline 'The nearest wall the terms allow' and a dek naming no line, when c31 allows accessory structures at 500 feet from the same south line and c30 allows buildings at 300 feet from the north, east and west lines. Repair: 'The nearest data hall the terms allow' and '700 feet from the south line'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Make every distance universal name its line and its building class, and draw the 65 and 85 dBA comparison so it doesn't read as a linear difference.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A 14 px lath stub on endless sine ripples, no far bank or damp ring.",
+   "fix": "The lath in the near third at 300 px, the far bank at its solved distance, a low-amplitude normal reflecting the warm band."
+  },
+  {
+   "slide": 6,
+   "problem": "A generic hillside, no scale at the toe, an edge-cut tree, no raking light.",
+   "fix": "The lath at the toe at 300 px, delete the tree, lower the sun to light the crest."
+  },
+  {
+   "slide": 8,
+   "problem": "Decal squares, people half the stake height, no long shadows at 432 px.",
+   "fix": "People at 1.75 m, camera at 20 m, a soil edge and contact for each block."
+  },
+  {
+   "slide": 1,
+   "problem": "Banding rings and no long shadow from the near stake.",
+   "fix": "Dither the sky and lower the sun so the lath's shadow runs east."
+  },
+  {
+   "slide": 9,
+   "problem": "Banding round the sun, flat unshaded flagging.",
+   "fix": "Dither round the sun, a translucent backlit flagging material."
+  }
+ ]
+}

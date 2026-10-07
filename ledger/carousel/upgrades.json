@@ -2982,4 +2982,52 @@
  ],
  "not_done": "The kit person (the top model by sentence) could not change under no. 43 mid-panel; dry_van, delineator and raised_pavement_marker were deferred again (UPGRADE_BACKLOG 2026-10-05 item 5). Frontier scan not run."
 }
+, "2026-10-06 weekly": {
+ "date": "2026-10-06",
+ "kind": "weekly machine pass, the third (prompts/machine_weekly.md)",
+ "read": "out/2026-10-06/week_digest.md (seven shipped runs, 2026-09-30 to 2026-10-06, artwork_craft lowest on five, week mean 6.47), knowledge/carousel/MACHINE_QUEUE.md (due early, prompt-audit-reads-auto-mode-as-human at repeat 2), the newest UPGRADE_BACKLOG and upgrades entries, no. 44's shipped chassis and slides, no. 44's live debug log. A first attempt was killed by a container restart and left an unverified 208 line addition in assets/js/kit/landscape.js, finished and verified here as the first upgrade.",
+ "upgrades": [
+  {
+   "what": "earthen_berm and fill_basin lifted from no. 44's chassis into assets/js/kit/landscape.js at the judges' named fix: a trapezoid berm (straight faces at slope run per rise, a flat crest with tight shoulders, ends ramping to grade, mown turf to a straw crest, a swale) and an embanked basin (the chassis's volume solve kept, water standing at level inside a raw clay bank with a wet line, rills, a compacted crest, a turfed outer slope, the water carrying the sky with fine ripple)",
+   "theme": "largest object unmodelled, 7 runs and 26 rounds, and primitive or low-poly model where a kit model belongs, 7 runs and 26 rounds. No. 44 round 3: frame 7 ranked weakest, the craft fix 'rebuild slide 7 as a banked basin'; frame 6's berm 'a grassy hill' against 'a trapezoidal berm with its crest a clean diagonal against the sky'",
+   "why": "The chassis basin was a flat plane at grade with a damp lip, because a basin full to grade hides its own sides, and the chassis berm rose on a smoothstep from toe to crest, which is a hill. Both were built in a deck module because the kit had neither, so the next deck needing either would have built them from scratch again",
+   "files": [
+    "assets/js/kit/landscape.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Six proof pages through examples/kit/build.py's page() and the carousel engine's render.py (out/2026-10-06/tmp/machine/proof.py), all rendered with errors=0 and read at full size: the basin from its near bank at no. 44's frame 7 camera and from above its toe (banks, crest and outer slope read, ripple and no stripe), the berm at no. 44's frame 6 camera (a clean crest line against the sky) and end on (the trapezoid and ramped ends legible beside a 1.75 m person). examples/kit/sizes.py exited 1 on the first run (earthen_berm z declared 15.4, measured 21.26), the declared size was set to the measured value, and it then exited 0 with 112 of 112. arsenal.py --check exits 0",
+   "revert": "the landscape.js and ARSENAL.md hunks of this pass's kit commit",
+   "how_i_would_know_this_was_wrong": "A judge naming a kit basin or berm as a flat plane, a hill, a seam at the waterline or stripes on the water; a deck placing fill_basin expecting the chassis's water at grade and finding a bank 0.62 m proud in front of its camera; sizes.py going red on either model at a seed outside its sixteen"
+  },
+  {
+   "what": "machine_due.py no longer makes the pass due every day on a repeat offender the last pass escalated: an item whose newest '| escalated <date>' is the last pass's own date, with no 'also <date>' after it, waits on its owner until a run meets it again",
+   "theme": "queue prompt-audit-reads-auto-mode-as-human, repeat 2, escalated by this pass because its fix is daily lane",
+   "why": "Escalating an open repeat 2 item left it open, and machine_due counted every open repeat 2 item, so the pass would have been due on October 7th, 8th and every day after, each time to escalate the same line again",
+   "files": [
+    "scripts/carousel/machine_due.py"
+   ],
+   "verification": "python3 scripts/carousel/machine_due.py --self-test, five new cases replayed on the real queue line: due on 2026-10-06 before the escalation, not due on the 7th after it, due again once a run appends 'also 2026-10-07', due when an escalation is dated after the last pass, and due on the seven day schedule over a parked item. A mutant that parks every item fails five cases and a mutant that parks none fails two. machine_due.py --date 2026-10-07 exits 1 and --date 2026-10-13 exits 0 on the live queue and state",
+   "revert": "the machine_due.py hunk of this pass's commit",
+   "how_i_would_know_this_was_wrong": "A repeat offender that kept biting runs without any run appending 'also <date>' to its evidence, so it sat parked for a week; or a run's Phase 17 escalating an item on the same day as a pass and that item never making a later pass due early"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "prompt_audit.py subtracts the auto mode classifier's own logged durations per call id from permissionDecisionMs before the one second human line, and reports the classifier waits separately. Drafted with five self-test cases; the committed copy reports 490 human waits on no. 44's live log and the drafted copy none, with every slow call's remainder at or under 165 ms",
+   "owner": "daily",
+   "why": "scripts/shared/prompt_audit.py is daily lane in ownership.yaml. Handed to the run as out/2026-10-06/tmp/machine/prompt_audit.patch to apply under its own stamp (UPGRADE_BACKLOG 2026-10-06 item 2)"
+  },
+  {
+   "what": "Engine: grade the sky before it is quantised to 8 bits, or dither in the WebGL output, after measuring step width on an undithered sky before and after TXPOST.grade (render artifact, 7 runs and 23 rounds; no. 44 sky banding in all three rounds)",
+   "owner": "human",
+   "why": "assets/js/txthree.js and assets/js/txpost.js (UPGRADE_BACKLOG 2026-10-06 item 4)"
+  },
+  {
+   "what": "Engine, carried with this week's counts: contact and grime (7 runs, 22 rounds), horizon band or seam (7 runs, 13 rounds), object in a void (6 runs, 15 rounds)",
+   "owner": "human",
+   "why": "assets/js/txthree.js (UPGRADE_BACKLOG 2026-10-06 item 5)"
+  }
+ ],
+ "not_done": "dry_van, delineator and raised_pavement_marker deferred a third time (UPGRADE_BACKLOG 2026-10-06 item 6). Frontier scan cut to one search, on sky banding, which fed the engine proposal. No gate was added or loosened, so no GATE_LESSONS entry is proposed."
+}
 }

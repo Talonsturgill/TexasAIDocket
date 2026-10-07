@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-10-06, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's goldenHour world. A worked Blackland clay field north of FM 112 at the last of the day, three rows of flagged 6 foot survey lath standing at 400, 500 and 700 feet from the south line, the near stake large at the right with its shadow running east. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 870px !important; }
+  .dek { width: 880px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Taylor's terms, in feet</h1>
+<p class="dek" data-follow="18">The City Council votes October 8th on a proposed agreement for a 664-acre data center campus with its own power generation. The stakes in this field mark the south line and the distances its terms set.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "Taylor Technology Campus", counter: "01 / 09", src: "c1 c2 c4 c30 c31 c32 c33", fit: { min: 84, max: 116, maxLines: 1 } });
+  TT.installAll();
+  const R = TT.stage(TXT, gl, W, { near: 0.05, fov: 30, fog: 0.0013, exposure: 1.55 });
+  /* the south property line lies on z = 0 and the field runs north (negative z); the camera stands on
+   * the FM 112 shoulder south of it */
+  TXT.ground(R, { surface: 'dirt', size: 3000, tile: 5, seed: 6, color: TT.CLAY });
+  /* the terms' distances from the south line, in the feet the city wrote them */
+  const rows = [400, 500, 700];
+  let n = 0;
+  for (const d of rows) {
+    for (let x = -330; x <= 330; x += 15) {
+      const s = K.make('survey_lath', { above: TT.ft(6), seed: 11 + n, wind: 0.5, lean: ((n * 37) % 9 - 4) * 0.004 });
+      s.position.set(x + ((n * 13) % 5) - 2, 0, -TT.ft(d));
+      TXT.add(R, s); n++;
+    }
+  }
+  /* the near stake on the south line itself, the line every distance is measured from */
+  const near = K.make('survey_lath', { above: TT.ft(6), seed: 3, wind: 0.62, lean: 0.012 });
+  near.position.set(0.55, 0, -0.6);
+  TT.put(near, { opacity: 0.55 });
+  /* the south line fence, T-posts and four strands, across the whole frame */
+  TT.fenceLine({ xs: [-210, 0, 210], length: 210, seed: 4, z: 0 });
+  /* the place on the horizon: a creek's tree line far to the north and a farmstead to the north west */
+  TT.treeLine({ n: 26, seed: 40 });
+  const barn = K.make('barn', { style: 'gable', material: 'metal', seed: 5 }); barn.position.set(-260, 0, -820); barn.rotation.y = 0.4; TT.put(barn, true);
+  const bin = K.make('grain_bin', { seed: 2 }); bin.position.set(-232, 0, -812); TT.put(bin, true);
+  for (const [x, z] of [[-300, -790], [-212, -838]]) { const t = K.make('pecan', { seed: x & 15, height: 14 }); t.position.set(x, 0, z); TXT.add(R, t); }
+  /* the co-op's distribution line along FM 112, poles receding east at the right edge */
+  const poles = []; for (let k = 0; k < 9; k++) poles.push([30 + k * 95, 21, Math.PI / 2]);
+  const dist = K.make('power_line', { structure: 'utility_pole', structures: poles, insulators: 'porcelain', seed: 6 }); TXT.add(R, dist);
+  TXT.add(R, TT.furrows({ x0: -260, x1: 260, z0: 12, z1: -700, seed: 31 }));
+  TXT.frame(R, { from: [0, 1.6, 8.2], look: [-20, -47.8, -400] });
+  TXT.sky(R);
+  /* worked clay: small dark clods everywhere but the type's band, and October stubble beyond the fence */
+  TT.clods([-40, -60, 40, -2], { count: 1400, seed: 7, scale: [0.02, 0.05] });
+  TT.stubble([-140, -300, 140, 8], { count: 9000, seed: 8, scale: [0.12, 0.26] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 70, target: [0, 0, -12], distance: 160, far: 420 }));
+  TXT.weather(R, { grime: 0.18, height: 0.5 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  TT.post(cx, { typeFeather: 70, typeBlur: 20, a: 0.45, to: 150, veilH: 560, veil: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
