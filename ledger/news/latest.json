@@ -1,14 +1,21 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-07T14:40:10Z",
+  "checked_at": "2026-10-07T23:39:17Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "4259e20e2339137f3d3e0d5a4d10a5fb746cde5c186a6003276a488e66b47480",
+  "response_sha256": "e1a7d2ec4c15b6c4eb9175374dd1f58d95463565522fd502151c3280c3929ad6",
   "articles": [
     {
       "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
       "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
       "first_seen_at": "2026-10-01T18:50:07Z",
       "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+      "feed": "https://dallasinnovates.com/feed/"
+    },
+    {
+      "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+      "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+      "first_seen_at": "2026-10-07T20:14:38Z",
+      "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
@@ -40,6 +47,13 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
+      "title": "Cisco broadens agentic features in Webex collaboration platform",
+      "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+      "first_seen_at": "2026-10-07T20:34:28Z",
+      "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+      "feed": "https://siliconangle.com/feed/"
+    },
+    {
       "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
       "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
       "first_seen_at": "2026-10-02T10:09:00Z",
@@ -55,113 +69,20 @@
     }
   ],
   "selected": {
-    "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-    "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-    "first_seen_at": "2026-10-06T22:34:14Z",
-    "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-    "feed": "https://feeds.texastribune.org/feeds/main/",
-    "publisher": "The Texas Tribune",
+    "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+    "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+    "first_seen_at": "2026-10-02T10:09:00Z",
+    "summary": "Will feature two data centers, likely connected to project in Childress",
+    "feed": "https://www.datacenterdynamics.com/en/rss/",
+    "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.628164,
-    "priority": 1
+    "score": 0.021157,
+    "priority": 4
   },
-  "expires_at": "2026-10-13T22:34:14Z",
+  "expires_at": "2026-10-09T10:09:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-07T13:23:00Z",
-      "selected": {
-        "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-        "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-        "first_seen_at": "2026-10-06T22:34:14Z",
-        "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.628164,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-          "first_seen_at": "2026-10-06T22:34:14Z",
-          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.628164,
-          "priority": 1
-        },
-        {
-          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
-          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
-          "first_seen_at": "2026-10-06T21:02:55Z",
-          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.601151,
-          "priority": 0
-        },
-        {
-          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-          "first_seen_at": "2026-10-01T20:34:13Z",
-          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.018528,
-          "priority": 3
-        },
-        {
-          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-          "first_seen_at": "2026-10-01T19:29:27Z",
-          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.01796,
-          "priority": 3
-        },
-        {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.029056,
-          "priority": 4
-        },
-        {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.027426,
-          "priority": 4
-        },
-        {
-          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-          "first_seen_at": "2026-10-01T18:50:07Z",
-          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.017623,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-07T19:23:00Z",
       "selected": {
@@ -172,7 +93,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.023935,
+        "score": 0.021157,
         "priority": 4
       },
       "stories": [
@@ -184,8 +105,30 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.023935,
+          "score": 0.021157,
           "priority": 4
+        },
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.91488,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.906188,
+          "priority": 0
         },
         {
           "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
@@ -195,7 +138,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.524635,
+          "score": 0.463748,
           "priority": 0
         },
         {
@@ -206,7 +149,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.54821,
+          "score": 0.484587,
           "priority": 1
         },
         {
@@ -217,7 +160,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.01617,
+          "score": 0.014293,
           "priority": 3
         },
         {
@@ -228,7 +171,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.015674,
+          "score": 0.013855,
           "priority": 3
         },
         {
@@ -239,7 +182,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.025358,
+          "score": 0.022415,
           "priority": 4
         },
         {
@@ -250,7 +193,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.01538,
+          "score": 0.013595,
           "priority": 4
         }
       ]
@@ -258,27 +201,38 @@
     {
       "starts_at": "2026-10-08T01:23:00Z",
       "selected": {
-        "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-        "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-        "first_seen_at": "2026-10-01T20:34:13Z",
-        "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
+        "title": "Cisco broadens agentic features in Webex collaboration platform",
+        "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+        "first_seen_at": "2026-10-07T20:34:28Z",
+        "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+        "feed": "https://siliconangle.com/feed/",
+        "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.013597,
-        "priority": 3
+        "score": 0.870327,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
-          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
-          "first_seen_at": "2026-10-01T20:34:13Z",
-          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.870327,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.013597,
-          "priority": 3
+          "score": 0.862058,
+          "priority": 0
         },
         {
           "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
@@ -301,6 +255,17 @@
           "coverage": 1,
           "score": 0.460988,
           "priority": 1
+        },
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.013597,
+          "priority": 3
         },
         {
           "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
@@ -351,27 +316,38 @@
     {
       "starts_at": "2026-10-08T07:23:00Z",
       "selected": {
-        "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-        "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-        "first_seen_at": "2026-10-01T19:29:27Z",
-        "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+        "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+        "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+        "first_seen_at": "2026-10-07T20:14:38Z",
+        "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.011083,
-        "priority": 3
+        "score": 0.724901,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-          "first_seen_at": "2026-10-01T19:29:27Z",
-          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.011083,
-          "priority": 3
+          "score": 0.724901,
+          "priority": 0
+        },
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.731855,
+          "priority": 0
         },
         {
           "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
@@ -404,6 +380,17 @@
           "publisher": "Dallas Innovates",
           "coverage": 1,
           "score": 0.011434,
+          "priority": 3
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.011083,
           "priority": 3
         },
         {
@@ -440,14 +427,124 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-08T13:23:00Z",
+      "selected": {
+        "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+        "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+        "first_seen_at": "2026-10-01T20:34:13Z",
+        "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.009615,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Fleet Software Company Intangles Opens U.S. HQ in Irving",
+          "url": "https://dallasinnovates.com/fleet-software-company-intangles-opens-u-s-hq-in-irving/",
+          "first_seen_at": "2026-10-01T20:34:13Z",
+          "summary": "Intangles, a Pune, India-based company whose digital twin and AI software helps trucking fleet owners manage maintenance, just established its U.S. headquarters in Irving. The business employs 15 people in North Texas today and plans to grow the team to 100 people by the end of 2027. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.009615,
+          "priority": 3
+        },
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.615414,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.609567,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.31195,
+          "priority": 0
+        },
+        {
+          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
+          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
+          "first_seen_at": "2026-10-06T22:34:14Z",
+          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.325968,
+          "priority": 1
+        },
+        {
+          "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
+          "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
+          "first_seen_at": "2026-10-01T19:29:27Z",
+          "summary": "For years, high school students and their parents thought majoring in computer science in college was a solid plan for a well-paying career. Now, Texas college students are turning away from it and other AI-exposed majors, new research from the Federal Reserve Bank of Dallas finds.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.00932,
+          "priority": 3
+        },
+        {
+          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
+          "first_seen_at": "2026-10-02T12:08:57Z",
+          "summary": "Set to be largest facility yet at the campus",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.015078,
+          "priority": 4
+        },
+        {
+          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+          "first_seen_at": "2026-10-02T10:09:00Z",
+          "summary": "Will feature two data centers, likely connected to project in Childress",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.014232,
+          "priority": 4
+        },
+        {
+          "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
+          "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
+          "first_seen_at": "2026-10-01T18:50:07Z",
+          "summary": "Dallas-based Care.com just hired veteran chief product executive Sam Hall as its chief product and technology officer. He previously held product positions at Amazon, GrubHub and ClassPass. Hall “is going to help us create deeper, more lasting value for our customers whether you’re a family looking for care or a caregiver looking for work,” Care.com…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.009145,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
-      "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
-      "shown_at": "2026-09-30T19:23:00Z"
-    },
     {
       "url": "https://www.tpr.org/news/2026-09-27/new-funding-supports-ai-safety-research-and-training-at-ut-san-antonio",
       "title": "New funding supports AI safety research and training at UT San Antonio",
@@ -587,12 +684,19 @@
       "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
       "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
       "shown_at": "2026-10-07T13:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
+      "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
+      "shown_at": "2026-10-07T19:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "a5468ec318d1a57886e8c9963c492c2f3f7003b8075e6f6d3cc667786487c121"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
@@ -604,23 +708,25 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "08ce3b5a1e67e2ef659a7bb613d71de756d6f405282c5c7e7a794b83ec628ea2"
+      "sha256": "07dd3bf5580075f317b115716f0dd55432ddece2aeeef857ed376ef5508d7318"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "d6511a80f98c196139f1eb7a9a1c4ee09f231cc6b400580b9efab8ff2c124790"
+      "sha256": "56a6dd5683707399056ab592cf204c93f94119e8dd74d6bf6c4e1213979cbceb"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1251,
-      "sha256": "c986250240dc63f08d4e7df56201d4e47250592e0031480fc65788cf9d0df270"
+      "items": 1254,
+      "sha256": "a6a19814b4ff3f9fc12ca5259c5ac995c651223a2166cd45549d049aead6c00b"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "483f76d6089ba11acc8b8f5d1a97ce63432de6c135a3abb3b75c2af29da2fc00"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -632,104 +738,101 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "8353cf2ec6d2289a27b65c027552921b141faf71edd2b38fad7fc38471519970"
+      "sha256": "451b7bda1f4aef6272b57ec92f6082d964f013f4830858d3ed9cc407f54d5b57"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-10-08T14:40:06Z",
-      "reason": "syntax error: line 1, column 0"
+      "status": "backoff",
+      "retry_at": "2026-10-08T14:40:06Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "225df4e5b86f5aca04304bee107416fc643a82bfba6b4ccc258d2e6b5278dc90"
+      "sha256": "21c2fbd0a97fc04f2adac3ea0c9db4da7f23d42f5ad766e279f30635c196ae4c"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "4b1c7ecc08a7ddaaf9c0b60bc4f153b357834f2ee3de1f650b52c84b24d55298"
+      "sha256": "114b066601788b6723e86575dd638391edbb743d6cc9fdfbc07f4ad3d486a57a"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "f4ac088474fab2fad7261e04506d16717522c990588641ee49fd11224b28d96a"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "24b1b9aec2d4d630475712683a90833fe0038e1833476b51d3fc3b4eff3ab0b5"
+      "sha256": "31489c0cbd60cfbdeeb29e39c188be1acd7fc9eae4fff895b6728f801350b9ff"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "ab9c6debf684c4cb3d4cd4360b979614ccc56b3cae358b4278fbfb2a101a11d5"
+      "sha256": "12710894203c1c92f6b3783e7a99bd0612830e8cfae663102caa7568f5c7f35c"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"117b7f922ea384d7ef533808b4bd733b\"",
-      "last_modified": "Tue, 06 Oct 2026 23:01:33 GMT",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
-      "ok_at": "2026-10-07T14:40:06Z",
-      "sha256": "1214084d4873bded3746c95e144718349b47859b2bc48a09146d77f4e21b6b24",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "a5468ec318d1a57886e8c9963c492c2f3f7003b8075e6f6d3cc667786487c121",
+      "etag": "\"884bbeaefcc9e1d1c7deef09063ca30e\"",
+      "last_modified": "Wed, 07 Oct 2026 22:50:00 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "efc8595586c66fd06ebfdd24dca0d5b666ffc46867aa0440a5bece6ae793efe4",
-      "etag": "\"6ac6326e-9b25\"",
-      "last_modified": "Wed, 07 Oct 2026 11:52:14 GMT"
+      "etag": "\"6ac6ca83-9b25\"",
+      "last_modified": "Wed, 07 Oct 2026 22:41:07 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "08ce3b5a1e67e2ef659a7bb613d71de756d6f405282c5c7e7a794b83ec628ea2",
-      "last_modified": "Wed, 07 Oct 2026 14:19:55 GMT"
+      "sha256": "07dd3bf5580075f317b115716f0dd55432ddece2aeeef857ed376ef5508d7318",
+      "last_modified": "Wed, 07 Oct 2026 20:00:54 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d6511a80f98c196139f1eb7a9a1c4ee09f231cc6b400580b9efab8ff2c124790",
-      "etag": "\"1791383362\"",
-      "last_modified": "Wed, 07 Oct 2026 14:29:22 GMT"
+      "sha256": "56a6dd5683707399056ab592cf204c93f94119e8dd74d6bf6c4e1213979cbceb",
+      "etag": "\"1791415290\"",
+      "last_modified": "Wed, 07 Oct 2026 23:21:30 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c986250240dc63f08d4e7df56201d4e47250592e0031480fc65788cf9d0df270"
+      "sha256": "a6a19814b4ff3f9fc12ca5259c5ac995c651223a2166cd45549d049aead6c00b"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"68eb6c3c90f5459dbecd9da303a26c63-gzip\"",
-      "last_modified": "Wed, 07 Oct 2026 00:32:03 GMT",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
-      "ok_at": "2026-10-07T14:40:06Z",
-      "sha256": "9af1ac6d35d2195a85c8efd0b37cae8ddc0206a9926bf03ec1791e8ad6be233c",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "483f76d6089ba11acc8b8f5d1a97ce63432de6c135a3abb3b75c2af29da2fc00",
+      "etag": "\"0c625657930c88326294d438a05eed36-gzip\"",
+      "last_modified": "Wed, 07 Oct 2026 21:40:38 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "1244ba8efc82377d897cca9d3781de3db7926b7fcb42cd2bf944f24e7ec9db8c"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8353cf2ec6d2289a27b65c027552921b141faf71edd2b38fad7fc38471519970",
-      "etag": "\"02902626bf07530c2da14017b52fb162\"",
-      "last_modified": "Wed, 07 Oct 2026 14:00:34 GMT"
+      "sha256": "451b7bda1f4aef6272b57ec92f6082d964f013f4830858d3ed9cc407f54d5b57",
+      "etag": "\"b28488c6e81afa7d3b8c6dd53616df8d\"",
+      "last_modified": "Wed, 07 Oct 2026 22:53:06 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -741,40 +844,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "225df4e5b86f5aca04304bee107416fc643a82bfba6b4ccc258d2e6b5278dc90",
-      "etag": "W/\"1b34aabc15db9beb85164eb5adfb1519\"",
-      "last_modified": "Wed, 07 Oct 2026 14:14:49 GMT"
+      "sha256": "21c2fbd0a97fc04f2adac3ea0c9db4da7f23d42f5ad766e279f30635c196ae4c",
+      "etag": "W/\"d5941308746d7c024f3182d7660ae781\"",
+      "last_modified": "Wed, 07 Oct 2026 20:33:31 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4b1c7ecc08a7ddaaf9c0b60bc4f153b357834f2ee3de1f650b52c84b24d55298",
-      "etag": "W/\"c30383fe1ec64c1d0a1fdfe71ecb6a06\""
+      "sha256": "114b066601788b6723e86575dd638391edbb743d6cc9fdfbc07f4ad3d486a57a",
+      "etag": "W/\"094546d1b53c421d04d120dd0429966b\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "last_modified": "Wed, 07 Oct 2026 13:29:16 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-07T23:39:15Z",
       "sha256": "f4ac088474fab2fad7261e04506d16717522c990588641ee49fd11224b28d96a",
-      "last_modified": "Wed, 07 Oct 2026 13:29:16 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "24b1b9aec2d4d630475712683a90833fe0038e1833476b51d3fc3b4eff3ab0b5"
+      "sha256": "31489c0cbd60cfbdeeb29e39c188be1acd7fc9eae4fff895b6728f801350b9ff"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-07T14:40:06Z",
+      "ok_at": "2026-10-07T23:39:15Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ab9c6debf684c4cb3d4cd4360b979614ccc56b3cae358b4278fbfb2a101a11d5",
-      "etag": "W/\"1aa4e36c7f243802459f3f5945361429\"",
-      "last_modified": "Wed, 07 Oct 2026 14:27:41 GMT"
+      "sha256": "12710894203c1c92f6b3783e7a99bd0612830e8cfae663102caa7568f5c7f35c",
+      "etag": "W/\"7c5e97607ce48856e4b8634a8ef5282c\"",
+      "last_modified": "Wed, 07 Oct 2026 19:23:09 GMT"
     }
   }
 }
