@@ -111,8 +111,9 @@
      ]
     },
     {
-     "text": "[Spectrum News reported on {{date:c55}} that the Texas attorney general's office is investigating a proposed data center in Taylor](c55). [Spectrum identifies that developer as Blueprint Data Centers, a separate project from Taylor Technology Campus](c56).",
+     "text": "[Spectrum News reported on {{date:c55}} that the Texas attorney general's office is investigating a proposed data center in Taylor](c55). [Spectrum identifies that developer as Blueprint Data Centers](c56). [The city names Big Watt Digital and PowerHouse Data Centers as the developers of Taylor Technology Campus](c1), so the investigation concerns a separate project.",
      "claims": [
+      "c1",
       "c55",
       "c56"
      ]

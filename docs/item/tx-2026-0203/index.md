@@ -1,6 +1,6 @@
 # Taylor City Council votes October 8th on annexing a 664 acre data center campus under written water, setback and noise terms
 
-The City of Taylor has a proposed development agreement with Big Watt Digital and PowerHouse Data Centers for Taylor Technology Campus. The 664 acre site was known as Project Mustang and includes data centers and on site power generation. The City Council is set to vote on the agreement at its meeting on October 8th, 2026. The developers had withdrawn their annexation and zoning application with the city. The city's notice says the land would otherwise stay in unincorporated Williamson County, which has no zoning authority. Under the agreement the site is annexed and held to written terms. Cooling is a closed loop filled with reclaimed water, and potable water is barred from cooling except in circumstances the agreement names. Buildings sit at least 300 feet from the north, east and west lines. Data centers, generation and batteries sit at least 700 feet from the south line. Noise may not exceed the greater of 65 dBA or the level measured before construction. The developers commit $28.2 million to the city, Taylor ISD and nonprofits and ask for no tax abatement. Air quality stays with TCEQ.
+The City of Taylor has a proposed development agreement with Big Watt Digital and PowerHouse Data Centers for Taylor Technology Campus. The 664 acre site was known as Project Mustang and includes data centers and on site power generation. The City Council is set to vote on the agreement at its meeting on October 8th, 2026. The developers had withdrawn their annexation and zoning application with the city. The city's notice says the land would otherwise stay in unincorporated Williamson County, which has no zoning authority. Under the agreement the site is annexed and held to written terms. Cooling is a closed loop filled with reclaimed water, and potable water is barred from cooling except in circumstances the agreement names. Buildings sit at least 300 feet from the north, east and west lines. Data centers, generation and batteries sit at least 700 feet from the south line. Noise may not exceed the greater of 65 dBA or the level measured before construction. The developers commit $28.2 million for community investments and nonprofit support and ask for no tax abatement. Air quality stays with TCEQ.
 
 - Topic: data-centers
 - Decided by: Taylor City Council (city)
@@ -15,6 +15,7 @@ The City of Taylor has a proposed development agreement with Big Watt Digital an
 
 ## Dates
 
+- 2026-10-02 · filed: The city posts its notice of the proposed development agreement
 - 2026-10-08 · hearing: City Council meeting, vote on the development agreement
 
 ## How this decision moved
