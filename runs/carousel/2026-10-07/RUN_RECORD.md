@@ -120,6 +120,42 @@ and no read of the live Worker's settings. Nothing was reported healthy from a r
 The interim reading is above. No dialog, and nothing the hook refused. Phase 19's reading is the one
 that counts and the email carries it.
 
+## The weekly machine pass
+
+Due today. Raising `qa-glyph-run-as-rule` to repeat 2 made `machine_due.py --date 2026-10-07` exit
+0. The pass read seven shipped runs from `week_digest.py` and made one change, committed in `b7a0ea14`
+under the upgrade lane.
+
+- `autonomous_vessel`, `keel_block_line` and `riprap_bank` are lifted from this deck's chassis into
+  `assets/js/kit/vehicles.js` and `assets/js/kit/landscape.js` at the judges' named fix. The hull has
+  a sheer, a flared bow, a bulwark, a chamfered deckhouse, a lattice mast with radomes and one matte
+  plate, and the riprap is quarried stone. The pass proved it by re-rendering this deck's frames 2,
+  3 and 5 against the kit, and `sizes.py` passes 115 of 115. This run re-ran every verify command
+  the pass returned, both proof renders included, and all exited 0. **This deck ships its chassis
+  models.** The chassis's `installKit` returns early once the kit defines the vessel, so a re-render
+  of no. 45 would now draw the kit's.
+- `qa-glyph-run-as-rule` is escalated to `UPGRADE_BACKLOG.md` for a maintainer. Its fix is in `qa.py`
+  under `.claude/`, which no run edits.
+- The engine themes, render artifacts (7 runs, 21 rounds) and missing ground contact (7 runs, 20
+  rounds), are carried to the backlog. `assets/js/txthree.js` is human lane.
+- `dry_van` and its roadside siblings are deferred a fourth time. The next pass is due October 14th.
+
+## Codex's review of the record
+
+Six findings on the opened PR, all verified against the files and all fixed in `58579cc6`.
+- tx-2026-0204 named the company and the county court as one decider of type `company`. The decider
+  is now the Cameron County Commissioners Court.
+- Its `decided` date was the Tribune's publication date, not the vote's. It is removed until the vote
+  date is established.
+- Its participation note called the June terms enforceable. It now says they are the terms reported
+  before Saronic chose the site and their current form is not in the sources.
+- tx-2026-0127 still advertised an open meeting after its October 6th argument. Its route is now
+  contact only, and its title says the court set the argument.
+- tx-2026-0127's `last_verified` had moved to October 7th on a check of one new source while c1 to
+  c4 sit behind a robots refusal. It is back to September 30th.
+- The article's alt text for slide 2 dropped "claims the", because the stamp pattern took any word
+  after "claims" as a claim id. The id must now carry a digit.
+
 ## Queued for the next pass
 
 Five items added to `knowledge/carousel/MACHINE_QUEUE.md`: `marine-models-built-in-chassis`,
