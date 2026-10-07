@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-06",
+  "generated": "2026-10-07",
   "gates": [
    "banned words",
    "claims",
@@ -29744,6 +29744,188 @@
     }
    ],
    "id": "tx-2026-0203"
+  },
+  {
+   "id": "tx-2026-0204",
+   "title": "Saronic breaks ground at the Port of Brownsville on Port Alpha, a shipyard built to make autonomous and crewed ships, on a Cameron County abatement",
+   "summary": "Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipyard at the Port of Brownsville that the company says will build autonomous and crewed ships. Navy landing craft are among the first. The company calls the yard itself software defined. Its release states the size of the site and the investment. It also gives the first phase's quay and build positions and the longest vessel the yard can build. In June the Cameron County Commissioners Court approved a property tax abatement for the project. The Texas Tribune reported it at 95 percent over 20 years. The agreement carries a local hiring requirement and shrinks if the jobs fall short. Opponents told the court it would take money from public schools. The county's own agenda for that vote is a scanned file, so the abatement's terms here rest on the Tribune's account.",
+   "topic": "defense-and-federal",
+   "decider": {
+    "name": "Saronic Technologies, Inc., and the Cameron County Commissioners Court",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Cameron"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-06-18",
+     "kind": "decided",
+     "note": "The Tribune's report of the commissioners court's approval of the abatement, published the same week as the vote"
+    },
+    {
+     "date": "2026-09-30",
+     "kind": "effective",
+     "note": "Groundbreaking at the Port of Brownsville, the date of Saronic's release"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The abatement is already approved and the groundbreaking has happened. No vote is open. The Cameron County Commissioners Court meets in public at the courthouse in Brownsville and takes public comment at each regular meeting. The agreement's job and hiring terms are what a resident can hold the county to. The Port of Brownsville Commission is the port's own public body.",
+    "url": "https://www.cameroncountytx.gov/commissioners-court-agendas/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Saronic announced the groundbreaking of its shipyard, Port Alpha, on September 30th.",
+     "verbatim_quote": "Saronic today announced the groundbreaking of Port Alpha, a next-generation American shipyard built to restore the nation's maritime industrial capacity.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c1"
+    },
+    {
+     "text": "The release gives the site's size at the Port of Brownsville, its room to expand and the private investment.",
+     "verbatim_quote": "Situated on 835 acres at the Port of Brownsville with the option to expand to nearly 4,400 acres, Port Alpha represents a private capital investment of more than $3 billion.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c2"
+    },
+    {
+     "text": "The shipyard is meant to build autonomous and crewed ships. The company expects up to ten thousand direct jobs.",
+     "verbatim_quote": "The shipyard, which will be capable of building both autonomous and manned ships, is expected to generate up to 10,000 direct jobs",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c3"
+    },
+    {
+     "text": "Saronic describes the yard itself as software defined. It is built to deliver autonomous and crewed ships.",
+     "verbatim_quote": "Saronic is building a clean-sheet, software-defined facility designed from the ground up to deliver autonomous, autonomy-capable, and manned ships at speed and scale.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c4"
+    },
+    {
+     "text": "The release states the longest vessel the yard can build at first and after expansion.",
+     "verbatim_quote": "Port Alpha will initially be capable of producing vessels up to 850 feet, while future site expansion could support production of vessels over 1,200",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c5"
+    },
+    {
+     "text": "The release sets out the first phase's production space and its deepwater quay.",
+     "verbatim_quote": "At initial operations, Port Alpha will encompass 1.2 million square feet of enclosed production space within a 2.5-million-square-foot production activity area, spread across 8 to 10 dedicated production buildings and served by more than 2,500 feet of deepwater quay.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c6"
+    },
+    {
+     "text": "The first phase has two to four build positions for final ship erection.",
+     "verbatim_quote": "Two to four build positions will handle final ship erection",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c7"
+    },
+    {
+     "text": "The first phase builds autonomous and crewed ships. Navy landing craft are among them.",
+     "verbatim_quote": "This first phase will focus on building autonomous, autonomy-capable, and manned ships, including Landing Craft Utility (LCU) vessels for the U.S. Navy.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c8"
+    },
+    {
+     "text": "The release states the yard's annual capacity at opening.",
+     "verbatim_quote": "At opening, Port Alpha will introduce an initial 150,000 gross tons of annual shipbuilding capacity",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c9"
+    },
+    {
+     "text": "Saronic names the state and Cameron County among its partners on training.",
+     "verbatim_quote": "Saronic is working with the State of Texas, Cameron County, and regional educational institutions on engineering pipelines",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c10"
+    },
+    {
+     "text": "In June the Cameron County Commissioners Court approved a tax break for Saronic before the company had chosen the site. The Tribune reported it.",
+     "verbatim_quote": "The Cameron County commissioners court approved a $211 million tax break for Saronic Technologies in hopes that the company will select the Port of Brownsville for its $3.2 billion naval shipyard called Port Alpha.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c11"
+    },
+    {
+     "text": "The Tribune reports the abatement's rate and term.",
+     "verbatim_quote": "The tax break would come in the form of a 95% tax abatement agreement over 20 years.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c12"
+    },
+    {
+     "text": "The Tribune reports the agreement's local hiring requirement.",
+     "verbatim_quote": "As part of the tax abatement agreement, 35% of their full-time workforce is required to be local residents.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c13"
+    },
+    {
+     "text": "The Tribune reports that the abatement shrinks if the jobs fall short.",
+     "verbatim_quote": "If Saronic falls short of job projections, the tax abatement would decrease.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c14"
+    },
+    {
+     "text": "Opponents told the court the abatement would take money from public schools. The Tribune reported it.",
+     "verbatim_quote": "Opponents also said the abatement would take away money from public schools.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c15"
+    }
+   ],
+   "confidence": "high",
+   "notes_for_editor": "The release is Saronic's own, read on PR Newswire. The Governor's copy of the announcement sits on gov.texas.gov, which refuses this project in robots.txt, so it was not fetched. The Port of Brownsville's site answered 403. Cameron County's June 2nd and June 16th agendas are scanned PDFs with no text layer, so the abatement's rate, term and conditions rest on the Tribune's June 18th account. The county is Cameron, where the Port of Brownsville sits. on_ercot is true because Cameron County is served by ERCOT; nothing in the release turns on it.",
+   "last_verified": "2026-10-07",
+   "history": [
+    {
+     "date": "2026-10-07",
+     "note": "Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file."
+    }
+   ]
   }
  ]
 }
