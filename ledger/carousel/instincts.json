@@ -304,7 +304,8 @@
         "2026-10-02",
         "2026-10-03",
         "2026-10-04",
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-06"
       ],
       "contradicted": []
     },
@@ -788,7 +789,8 @@
         "2026-09-28",
         "2026-09-29",
         "2026-10-03",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-06"
       ],
       "contradicted": []
     },
@@ -1294,6 +1296,22 @@
       "learned": "2026-10-05",
       "instinct": "When a motif changes state, keep the changed units in the cover's own visual class, so the change reads as the same thing altered rather than as a new category.",
       "evidence": "No. 43 frame 6: putting eleven gold bays back to the base white read as defunded to the flow critic, an ember read as twelve lit to the panel; a dim corridor white under one full gold bay was what read as eleven described and one counted.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "scope-every-superlative-to-its-line",
+      "learned": "2026-10-06",
+      "instinct": "Before a headline says nearest, closest, every or each, name the line and the class it holds for, because terms that set different distances for different buildings and lines make the bare superlative false.",
+      "evidence": "Carousel no. 44, 2026-10-06. Frame 5's 'The nearest wall the terms allow' was round 3's hard fail against c30 and c31, its first repair was still site wide, and verification then found the same unscoped 'each' on slide 1 and 'every stake' on slide 6.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stake-a-distance-from-above-with-a-bare-line",
+      "learned": "2026-10-06",
+      "instinct": "When an aerial must show a distance, rake a bare strip lighter than the field under the row, because a row of stakes from 45 m up is sub-pixel at 432 px and the strip is what reads.",
+      "evidence": "Carousel no. 44, 2026-10-06. Frame 3's 400, 500 and 700 foot rows read as nothing in pixel round 1 and as three clear lines once each stood on a raked strip with the furrows stopped short of it. The same move made frame 8's fourteen blocks countable.",
       "confirmed": [],
       "contradicted": []
     }
