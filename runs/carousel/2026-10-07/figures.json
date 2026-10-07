@@ -1,0 +1,315 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "acres": {
+  "value": 835,
+  "from": [
+   "c2"
+  ],
+  "basis": "acres Port Alpha sits on at the Port of Brownsville"
+ },
+ "acres_option": {
+  "value": 4400,
+  "from": [
+   "c3"
+  ],
+  "basis": "acres the site has an option to expand to, nearly"
+ },
+ "invest_b": {
+  "value": 3,
+  "from": [
+   "c4"
+  ],
+  "basis": "billions of dollars of private capital, more than, per Saronic"
+ },
+ "jobs": {
+  "value": 10000,
+  "from": [
+   "c5"
+  ],
+  "basis": "direct jobs expected, up to, per Saronic"
+ },
+ "gross_tons_initial": {
+  "value": 150000,
+  "from": [
+   "c7"
+  ],
+  "basis": "gross tons of annual shipbuilding capacity at opening"
+ },
+ "gross_tons_potential_m": {
+  "value": 2,
+  "from": [
+   "c8"
+  ],
+  "basis": "million gross tons the capacity could scale to, over"
+ },
+ "vessel_ft": {
+  "value": 850,
+  "from": [
+   "c9"
+  ],
+  "basis": "feet, the longest vessel the yard can build at first"
+ },
+ "vessel_future_ft": {
+  "value": 1200,
+  "from": [
+   "c10"
+  ],
+  "basis": "feet, vessels the expanded site could build, over"
+ },
+ "enclosed_msf": {
+  "value": 1.2,
+  "from": [
+   "c11"
+  ],
+  "basis": "million square feet of enclosed production space"
+ },
+ "buildings_min": {
+  "value": 8,
+  "from": [
+   "c12"
+  ],
+  "basis": "production buildings, the low end"
+ },
+ "buildings_max": {
+  "value": 10,
+  "from": [
+   "c12"
+  ],
+  "basis": "production buildings, the high end"
+ },
+ "quay_ft": {
+  "value": 2500,
+  "from": [
+   "c13"
+  ],
+  "basis": "feet of deepwater quay, more than"
+ },
+ "positions_min": {
+  "value": 2,
+  "from": [
+   "c14"
+  ],
+  "basis": "build positions for final ship erection, the low end"
+ },
+ "positions_max": {
+  "value": 4,
+  "from": [
+   "c14"
+  ],
+  "basis": "build positions for final ship erection, the high end"
+ },
+ "marauder_knots": {
+  "value": 25,
+  "from": [
+   "c23"
+  ],
+  "basis": "knots, the Marauder's top speed, 25+ per Saronic"
+ },
+ "marauder_range_nmi": {
+  "value": 5400,
+  "from": [
+   "c23"
+  ],
+  "basis": "nautical miles, the Marauder's range, up to"
+ },
+ "marauder_payload_t": {
+  "value": 150,
+  "from": [
+   "c23"
+  ],
+  "basis": "metric tons, the Marauder's modular payload"
+ },
+ "tax_break_m": {
+  "value": 211,
+  "from": [
+   "c26"
+  ],
+  "basis": "millions of dollars, the tax break the Tribune reported"
+ },
+ "tribune_cost_b": {
+  "value": 3.2,
+  "from": [
+   "c27"
+  ],
+  "basis": "billions, the shipyard's cost as the Tribune wrote it in June"
+ },
+ "abatement_pct": {
+  "value": 95,
+  "from": [
+   "c28"
+  ],
+  "basis": "percent property tax abatement, as the Tribune reported"
+ },
+ "abatement_years": {
+  "value": 20,
+  "from": [
+   "c28"
+  ],
+  "basis": "years the abatement runs, as the Tribune reported"
+ },
+ "local_pct": {
+  "value": 35,
+  "from": [
+   "c29"
+  ],
+  "basis": "percent of the full time workforce required to be local residents"
+ },
+ "jobs_engineering": {
+  "value": 1200,
+  "from": [
+   "c35"
+  ],
+  "basis": "engineering and design jobs, the Tribune's breakdown"
+ },
+ "jobs_admin": {
+  "value": 700,
+  "from": [
+   "c35"
+  ],
+  "basis": "administration and support jobs"
+ },
+ "jobs_rd": {
+  "value": 699,
+  "from": [
+   "c35"
+  ],
+  "basis": "research and development jobs"
+ },
+ "edc_incentive_m": {
+  "value": 10,
+  "from": [
+   "c36"
+  ],
+  "basis": "millions, the Greater Brownsville EDC's additional incentive"
+ },
+ "navy_contract_m": {
+  "value": 392,
+  "from": [
+   "c38"
+  ],
+  "basis": "millions, the Navy contract the Tribune reported"
+ },
+ "quay_m": {
+  "value": 762.0,
+  "from": [
+   "c13"
+  ],
+  "basis": "metres of quay, feet times 0.3048",
+  "rule": "quay_ft * 0.3048, one decimal"
+ },
+ "vessel_m": {
+  "value": 259.1,
+  "from": [
+   "c9"
+  ],
+  "basis": "metres, the longest vessel at first",
+  "rule": "vessel_ft * 0.3048, one decimal"
+ },
+ "vessel_future_m": {
+  "value": 365.8,
+  "from": [
+   "c10"
+  ],
+  "basis": "metres, the expanded site's vessels",
+  "rule": "vessel_future_ft * 0.3048, one decimal"
+ },
+ "site_m2": {
+  "value": 3379125,
+  "from": [
+   "c2"
+  ],
+  "basis": "square metres of site",
+  "rule": "acres * 4046.8564224, whole"
+ },
+ "site_side_m": {
+  "value": 1838.2,
+  "from": [
+   "c2"
+  ],
+  "basis": "metres on a side, the site drawn as a square of its own area",
+  "rule": "sqrt(acres * 4046.8564224); a drawing rule, the parcel's real shape is not in the record"
+ },
+ "option_side_m": {
+  "value": 4219.7,
+  "from": [
+   "c3"
+  ],
+  "basis": "metres on a side, the option drawn as a square of its own area",
+  "rule": "sqrt(acres_option * 4046.8564224); a drawing rule"
+ },
+ "vessels_along_quay": {
+  "value": 2,
+  "from": [
+   "c9",
+   "c13"
+  ],
+  "basis": "whole 850 foot hulls end to end along the quay, at least",
+  "rule": "quay_ft // vessel_ft, floor, since the quay is more than its stated length"
+ },
+ "abated_share_pct": {
+  "value": 5,
+  "from": [
+   "c28"
+  ],
+  "basis": "percent of the abated tax still owed in the abatement's terms",
+  "rule": "100 - abatement_pct"
+ },
+ "local_jobs_at_full": {
+  "value": 3500,
+  "from": [
+   "c5",
+   "c29"
+  ],
+  "basis": "local residents among the full workforce if the up to figure were reached",
+  "rule": "jobs * local_pct / 100; a projection on a projection, never published as a count"
+ },
+ "marauder_range_km": {
+  "value": 10001,
+  "from": [
+   "c23"
+  ],
+  "basis": "kilometres, the Marauder's range",
+  "rule": "nmi * 1852 / 1000, whole"
+ },
+ "option_multiple": {
+  "value": 5.3,
+  "from": [
+   "c2",
+   "c3"
+  ],
+  "basis": "times the first site, the option to expand",
+  "rule": "acres_option / acres, one decimal"
+ },
+ "payload_block_m3": {
+  "value": 19.11,
+  "from": [
+   "c23"
+  ],
+  "basis": "cubic metres of solid steel weighing the Marauder's payload",
+  "rule": "payload_t / 7.85 t per m3, two decimals; a drawing rule for one block of steel"
+ },
+ "payload_block_edge_m": {
+  "value": 2.673,
+  "from": [
+   "c23"
+  ],
+  "basis": "metres on a side, that block drawn as a cube",
+  "rule": "cube root of payload_block_m3, three decimals"
+ },
+ "crew_drawn": {
+  "value": 20,
+  "from": [
+   "c29"
+  ],
+  "basis": "workers drawn at the hull on frame 8",
+  "rule": "a drawing rule, twenty people"
+ },
+ "crew_local_drawn": {
+  "value": 7,
+  "from": [
+   "c29"
+  ],
+  "basis": "of those twenty, the share the 35% local requirement names",
+  "rule": "crew_drawn * local_pct / 100"
+ }
+}

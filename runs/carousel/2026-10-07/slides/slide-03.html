@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-07, frame 3 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's highNoon world. The hull broadside across the channel on a long lens, one primer steel block of its payload on the after deck, leaders to the block, the stern and the mast. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">What Saronic says its Marauder does</h1>
+<p class="dek" data-follow="20">These are Saronic's figures for its Marauder. The release names Navy landing craft for the yard's first phase. The hull and the block are drawn to illustrate.</p>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<div class="lab" id="l1">PAYLOAD 150 METRIC TONS,<br>DRAWN AS ONE STEEL BLOCK</div>
+<div class="lab" id="l2">TOP SPEED 25+ KNOTS</div>
+<div class="lab" id="l3">RANGE UP TO<br>5,400 NAUTICAL MILES</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Saronic, in its own words", counter: "03 / 09", src: "c23 c16", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 30, fog: 0.0010 });
+  PA.water({ seed: 5, tile: 70, ripple: 0.45, color: 0x24302a });
+  const yard = TXT.ground(R, { surface: 'dirt', size: 8000, y: PA.BANK, tile: 6, seed: 41, color: 0x6f655a }); yard.position.z = -4000;
+  const nb = K.make('riprap_bank', { length: 3000, top: PA.BANK, toe: -1.2, run: 5, stones: 1, seed: 7 }); TXT.add(R, nb);
+  const south = TXT.ground(R, { surface: 'grass', size: 8000, y: PA.FAR, tile: 7, seed: 52, color: 0x8c8a62 }); south.position.z = PA.CHANNEL + 4000;
+  const sb = K.make('riprap_bank', { length: 3000, top: PA.FAR, toe: -1.2, run: 4, stones: 1, seed: 9 }); sb.rotation.y = Math.PI; sb.position.set(0, 0, PA.CHANNEL); TXT.add(R, sb);
+  { const rr = PA.lcg(17); for (let i = 0; i < 160; i++) { const t = K.make(rr() < 0.3 ? 'palm' : 'mesquite', { seed: 300 + i }); t.position.set(-900 + rr() * 1800, PA.BANK, -40 - rr() * 700); TXT.add(R, t); } }
+  for (let i = 0; i < 4; i++) { const wh = K.make('warehouse', { seed: 40 + i, length: 140, depth: 70, height: 16, docks: 0, trucks: 0, color: 0xc9c6bc }); wh.position.set(-700 + i * 260, PA.BANK, -520 - (i % 2) * 140); TXT.add(R, wh); }
+  /* payload_block_edge_m 2.673, the cube of 150 metric tons of steel at 7.85 t per m3 */
+  const v = PA.vessel({ state: 'afloat', payload: 2.673 }); v.rotation.y = Math.PI / 2; v.position.set(0, 0, 74); TXT.add(R, v);
+  TXT.frame(R, { from: [-1, PA.FAR + 2.6, PA.CHANNEL + 4], look: [-1, 8.4, 74] });
+  PA.keepClear(THREE, R, [[60, 440, 1020, 720]]);
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 70, 4096), PA.rigOpts([0, 0, 74], { distance: 300, shadowFar: 700 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.14, siteBlur: 24, footWash: 0.45 });
+  /* the leaders land on projected points of the model: the block's top, the stern's jets, the mast head */
+  const L = v.userData.length, blockAt = [-L * 0.2, 4.6 - 2.3 + 0.12 + 2.673, 74], jetAt = [-L / 2 + 0.3, 0.9, 74], mastAt = [L * 0.12 - 0.8, 4.6 - 2.3 + 0.15 + 4.6 + 2.6, 74];
+  const P = (p) => PA.project(THREE, R, p);
+  const svg = document.getElementById('lead'), NS = 'http://www.w3.org/2000/svg', leaders = [];
+  const place = (id, at, lab) => { const el = document.getElementById(id); el.style.left = lab[0] + 'px'; el.style.top = lab[1] + 'px'; const r = el.getBoundingClientRect(); const s = P(at), e = [r.left + 12, r.bottom + 10];
+    const pl = document.createElementNS(NS, 'polyline'); pl.setAttribute('points', e[0] + ',' + e[1] + ' ' + e[0] + ',' + (s[1] - 26) + ' ' + s[0] + ',' + s[1]); pl.setAttribute('fill', 'none'); pl.setAttribute('stroke', '#4E5FA8'); pl.setAttribute('stroke-width', '7'); svg.appendChild(pl);
+    const c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', s[0]); c.setAttribute('cy', s[1]); c.setAttribute('r', 9); c.setAttribute('fill', '#4E5FA8'); svg.appendChild(c);
+    leaders.push({ target: id, at: s, to: s }); };
+  const pb = P(blockAt), pj = P(jetAt), pm = P(mastAt);
+  place('l1', blockAt, [202, 612]); place('l2', jetAt, [81, 536]); place('l3', mastAt, [686, 498]);
+  window.__txLeaders = leaders;
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

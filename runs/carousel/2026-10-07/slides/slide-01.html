@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-10-07, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's highNoon world. The illustrative autonomous hull afloat in the Brownsville Ship Channel, seen across the water from the south bank's riprap, the yard bank's scrub and palms on the horizon. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The tax break came first</h1>
+<p class="dek" data-follow="24">Saronic broke ground on Port Alpha, a shipyard for autonomous and manned ships, at the Port of Brownsville on September 30th. The Tribune reported the county approved its tax break in June, before Saronic had picked the port. The vessel is drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Port of Brownsville", counter: "01 / 09", src: "c1 c6 c26 c27", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 30, fog: 0.0012 });
+  PA.water({ seed: 5, tile: 38, ripple: 0.2, color: 0x24302a });
+  PA.yardBank({ seed: 41 });
+  /* the yard bank's horizon: mesquite and palms in clumps, a power line far back */
+  const rr = PA.lcg(17);
+  for (let i = 0; i < 160; i++) { const t = K.make(rr() < 0.3 ? 'palm' : 'mesquite', { seed: 300 + i }); t.position.set(-900 + rr() * 1800, PA.BANK, -40 - rr() * 700); TXT.add(R, t); }
+  /* far back on the yard bank, the port's existing sheds hazed out, and a power line */
+  for (let i = 0; i < 4; i++) { const wh = K.make('warehouse', { seed: 40 + i, length: 140, depth: 70, height: 16, docks: 0, trucks: 0, color: 0xc9c6bc }); wh.position.set(-700 + i * 260, PA.BANK, -520 - (i % 2) * 140); TXT.add(R, wh); }
+  /* a channel marker piling in the near water, creosote with a square green daymark */
+  const pil = new THREE.Group(), cre = new THREE.MeshStandardMaterial({ color: 0x3a3128, roughness: 0.85 });
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.32, 8.5, 14), cre); pole.position.y = 2.6; pole.castShadow = true; pil.add(pole);
+  const dm = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 0.06), new THREE.MeshStandardMaterial({ color: 0x2f6b4a, roughness: 0.6 })); dm.position.set(0, 5.6, 0.32); dm.castShadow = true; pil.add(dm);
+  pil.position.set(-30, 0, 132); pil.rotation.y = 0.6; TXT.add(R, pil);
+  /* the south bank the camera stands on: riprap into the water, its land behind */
+  const south = TXT.ground(R, { surface: 'grass', size: 8000, y: PA.FAR, tile: 7, seed: 52, color: 0x8c8a62 }); south.position.z = PA.CHANNEL + 4000;
+  const sb = K.make('riprap_bank', { length: 900, top: PA.FAR, toe: -1.2, run: 4, stones: 1, seed: 9 }); sb.rotation.y = Math.PI; sb.position.set(0, 0, PA.CHANNEL); TXT.add(R, sb);
+  /* the hull afloat, three quarters, bow to the east */
+  const v = PA.vessel({ state: 'afloat' }); v.rotation.y = 0.96; v.position.set(0, 0, 90); TXT.add(R, v);
+  TXT.frame(R, { from: [16, 12, 222], look: [4, 10.2, 90] });
+  PA.keepClear(THREE, R, [[40, 160, 1040, 600]]);
+  PA.grass([-80, PA.CHANNEL + 2, 120, PA.CHANNEL + 60], { count: 14000, seed: 23, scale: [0.35, 0.7], y: PA.FAR });
+  PA.scrub([-1500, -900, 1500, -8], { count: 9000, seed: 12 });
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 80, 4096), PA.rigOpts([0, 0, 90], { distance: 300, shadowFar: 700 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.12, siteBlur: 24, footWash: 0.45 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-07, frame 7 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's highNoon world. The yard bank from 80 m up looking west along the channel, the quay line in the plan's ink running 2,500 feet along the riprap, two build positions drawn solid and two dashed, the hull small at the near end. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">More than 2,500 feet of quay, planned</h1>
+<p class="dek" data-follow="20">Saronic says two to four build positions will handle final ship erection, beside 8 to 10 production buildings. The quay is drawn to its length, the rest to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Drawn to the release, at scale", counter: "07 / 09", src: "c13 c14 c12", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 50, fog: 0.0006, exposure: 1.2 });
+  PA.water({ seed: 5, tile: 70, ripple: 0.45, color: 0x24302a });
+  const yard = TXT.ground(R, { surface: 'dirt', size: 8000, y: PA.BANK, tile: 6, seed: 41, color: 0x6f655a }); yard.position.z = -4000;
+  const nb = K.make('riprap_bank', { length: 3000, top: PA.BANK, toe: -1.2, run: 5, stones: 1, seed: 7 }); TXT.add(R, nb);
+  const south = TXT.ground(R, { surface: 'grass', size: 8000, y: PA.FAR, tile: 7, seed: 52, color: 0x8c8a62 }); south.position.z = PA.CHANNEL + 4000;
+  const sb = K.make('riprap_bank', { length: 3000, top: PA.FAR, toe: -1.2, run: 4, stones: 1, seed: 9 }); sb.rotation.y = Math.PI; sb.position.set(0, 0, PA.CHANNEL); TXT.add(R, sb);
+  { const rr = PA.lcg(17); for (let i = 0; i < 160; i++) { const t = K.make(rr() < 0.3 ? 'palm' : 'mesquite', { seed: 300 + i }); t.position.set(-900 + rr() * 1800, PA.BANK, -40 - rr() * 700); TXT.add(R, t); } }
+  for (let i = 0; i < 4; i++) { const wh = K.make('warehouse', { seed: 40 + i, length: 140, depth: 70, height: 16, docks: 0, trucks: 0, color: 0xc9c6bc }); wh.position.set(-700 + i * 260, PA.BANK, -520 - (i % 2) * 140); TXT.add(R, wh); }
+  /* quay_m 762.0 along the bank; four build positions of vessel_m 259.1, positions_min 2 solid and positions_max 4 */
+  const Q = 762, POS = 259.1, X0 = 240;
+  /* the graded yard seen from 260 m: soft seeded clay patches tens of metres across, so the ground carries tone at that range */
+  { const c = document.createElement('canvas'); c.width = c.height = 1024; const x = c.getContext('2d'), rb = PA.lcg(77); x.fillStyle = '#8a7f6c'; x.fillRect(0, 0, 1024, 1024);
+    for (let i = 0; i < 2600; i++) { const cx0 = rb() * 1024, cy0 = rb() * 1024, rad = 10 + rb() * 50, g = x.createRadialGradient(cx0, cy0, 0, cx0, cy0, rad), t = ['rgba(110,100,82,0.55)', 'rgba(160,150,128,0.5)', 'rgba(95,106,78,0.45)'][Math.floor(rb() * 3)]; g.addColorStop(0, t); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(cx0 - rad, cy0 - rad, rad * 2, rad * 2); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 3); t.anisotropy = 8;
+    const pl = new THREE.Mesh(new THREE.PlaneGeometry(1500, 1500), new THREE.MeshStandardMaterial({ map: t, roughness: 1 })); pl.rotation.x = -Math.PI / 2; pl.position.set(X0 - 200, PA.BANK + 0.03, -760); pl.receiveShadow = true; TXT.add(R, pl); }
+  PA.strip([X0, -3], [X0 - Q, -3], 8, PA.BANK);
+  for (let i = 0; i < 4; i++) { const x = X0 - 40 - i * 90, w = 50, o = i < 2 ? {} : { dash: 30, gap: 30 };
+    PA.strip([x, -10], [x, -10 - POS], 8, PA.BANK + 0.05, o); PA.strip([x - w, -10], [x - w, -10 - POS], 8, PA.BANK + 0.05, o); PA.strip([x + 4, -10 - POS], [x - w - 4, -10 - POS], 8, PA.BANK + 0.05, o); PA.strip([x + 4, -10], [x - w - 4, -10], 8, PA.BANK + 0.05, o); }
+  const v = PA.vessel({ state: 'afloat' }); v.rotation.y = -Math.PI / 2; v.position.set(X0 - 60, 0, 13); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.5 });
+  TXT.frame(R, { from: [X0 - 200, 260, 390], look: [X0 - 200, 0, -440] });
+  /* six production halls inland of the build positions, ten buildings with the yard's four sheds, the top of the release's 8 to 10 */
+  for (let i = 0; i < 6; i++) { const h = K.make('warehouse', { seed: 60 + i, length: 70, depth: 40, height: 14, docks: 0, trucks: 0, color: 0xc9c6bc }); h.position.set(X0 - 20 - (i % 4) * 95, PA.BANK, -340 - Math.floor(i / 4) * 70); TXT.add(R, h); }
+  PA.scrub([-1500, -900, 1500, -8], { count: 90000, seed: 12, scale: [0.8, 2.6], avoid: [[X0 - 330, -280, X0, -4]] });
+  PA.scrub([X0 - 330, -280, X0, -14], { count: 9000, seed: 19, scale: [0.5, 1.6] });
+  PA.grass([X0 - 400, -400, X0 + 120, -8], { count: 60000, seed: 27, scale: [1.2, 2.4] });
+  PA.tracks(3, [X0 - 360, -300, X0 + 40, -290], { seed: 65 });
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 700, 4096), PA.rigOpts([X0 - 260, 0, -100], { distance: 1200, shadowFar: 2600 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.27, siteBlur: 24, footWash: 0.6 });
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

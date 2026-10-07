@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-07, frame 4 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's highNoon world. The yard bank from 450 m up across the channel, a graded square drawn to the area of 835 acres and an outer square to nearly 4,400, edged in the plan's ink. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">835 acres, and an option on more</h1>
+<p class="dek" data-follow="20">Port Alpha sits on 835 acres, with an option to expand to nearly 4,400, Saronic says. Each is drawn as a square of that area, not the site's real shape.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Port of Brownsville", counter: "04 / 09", src: "c2 c3", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 50, fog: 0.00011 });
+  PA.water({ seed: 5, tile: 70, ripple: 0.45, color: 0x24302a });
+  /* the land seen from 1000 m: soft seeded patches of scrub and bare ground, never a tiled texture, which strobes into a checker at this range */
+  const blot = (base, tones, n, seed) => { const c = document.createElement('canvas'); c.width = c.height = 1024; const x = c.getContext('2d'), rb = PA.lcg(seed); x.fillStyle = base; x.fillRect(0, 0, 1024, 1024);
+    for (let i = 0; i < n; i++) { const cx0 = rb() * 1024, cy0 = rb() * 1024, rad = 12 + rb() * 70, g = x.createRadialGradient(cx0, cy0, 0, cx0, cy0, rad), t = tones[Math.floor(rb() * tones.length)]; g.addColorStop(0, t); g.addColorStop(1, 'rgba(0,0,0,0)');
+      for (const dx of [-1024, 0, 1024]) for (const dy of [-1024, 0, 1024]) { x.save(); x.translate(dx, dy); x.fillStyle = g; x.fillRect(cx0 - rad, cy0 - rad, rad * 2, rad * 2); x.restore(); } }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; return t; };
+  const landT = blot('#a69a80', ['rgba(110,124,88,0.6)', 'rgba(150,140,112,0.5)', 'rgba(200,188,160,0.5)', 'rgba(92,100,70,0.55)'], 6000, 41); landT.repeat.set(22, 22);
+  const yard = new THREE.Mesh(new THREE.PlaneGeometry(20000, 20000), new THREE.MeshStandardMaterial({ map: landT, roughness: 1 })); yard.rotation.x = -Math.PI / 2; yard.position.set(0, PA.BANK, -10000); yard.receiveShadow = true; TXT.add(R, yard);
+  const nb = K.make('riprap_bank', { length: 9000, top: PA.BANK, toe: -1.2, run: 5, stones: 0, seed: 7 }); TXT.add(R, nb);
+  /* the south bank under the camera, its grass tiled coarse so it doesn't alias into stripes at this range */
+  const south = TXT.ground(R, { surface: 'grass', size: 8000, y: PA.FAR, tile: 90, seed: 52, color: 0x8c8a62 }); south.position.z = PA.CHANNEL + 4000;
+  /* site_side_m 1838.2 and option_side_m 4219.7: squares of the two areas, their near edges on the bank */
+  const S = 1838.2, O = 4219.7;
+  const padT = blot('#bfb197', ['rgba(170,156,130,0.45)', 'rgba(206,196,172,0.4)', 'rgba(150,138,114,0.35)'], 1800, 44); padT.repeat.set(2, 2); const pad = new THREE.Mesh(new THREE.PlaneGeometry(S, S), new THREE.MeshStandardMaterial({ map: padT, roughness: 1 })); pad.rotation.x = -Math.PI / 2; pad.position.set(0, PA.BANK + 1.2, -S / 2 - 6); pad.receiveShadow = true; TXT.add(R, pad);
+  [[[-S / 2, -6], [S / 2, -6]], [[S / 2, -6], [S / 2, -6 - S]], [[S / 2, -6 - S], [-S / 2, -6 - S]], [[-S / 2, -6 - S], [-S / 2, -6]]].forEach(([a, b]) => PA.strip(a, b, 55, PA.BANK + 2.5));
+  [[[-O / 2, -6], [-O / 2, -6 - O]], [[O / 2, -6], [O / 2, -6 - O]], [[-O / 2, -6 - O], [O / 2, -6 - O]]].forEach(([a, b]) => PA.strip(a, b, 80, PA.BANK + 2.0, { dash: 260, gap: 90 }));
+  const v = PA.vessel({ state: 'afloat' }); v.rotation.y = Math.PI / 2; v.position.set(-560, 0, 40); TXT.add(R, v);
+  /* 1000 m up over the south bank, pitched 5.3 degrees down. The sky band holds the type and both squares lie below it. A 450 m oblique was tried in round 3 and lost both squares to one texture */
+  TXT.frame(R, { from: [0, 1000, 2300], look: [0, 0, -8400] });
+  PA.scrub([-3200, -6000, 3200, -20], { count: 260000, seed: 12, scale: [6.0, 14.0], avoid: [[-920, -1846, 920, -4]] });
+  PA.tracks(60, [-900, -1500, 300, -100], { seed: 64, y: PA.BANK + 0.1 });
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 2400, 4096), PA.rigOpts([0, 0, -900], { distance: 3000, shadowFar: 7000 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.16, siteBlur: 24, footWash: 0.45 });
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>
