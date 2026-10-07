@@ -3030,4 +3030,38 @@
  ],
  "not_done": "dry_van, delineator and raised_pavement_marker deferred a third time (UPGRADE_BACKLOG 2026-10-06 item 6). Frontier scan cut to one search, on sky banding, which fed the engine proposal. No gate was added or loosened, so no GATE_LESSONS entry is proposed."
 }
+,
+ "2026-10-07 weekly": {
+  "date": "2026-10-07",
+  "kind": "weekly machine pass, the fourth (prompts/machine_weekly.md)",
+  "read": "out/2026-10-07/week_digest.md (seven shipped runs, 2026-10-01 to 2026-10-07, artwork_craft lowest on five, week mean 6.37), knowledge/carousel/MACHINE_QUEUE.md (due early, qa-glyph-run-as-rule at repeat 2), the 2026-10-06 backlog and ledger entries, no. 45's chassis, shipped slides and every judge's art criterion, ranked defects and fix across its three panel rounds, and .claude/skills/carousel-engine/qa.py canvas_rules (read only)",
+  "upgrades": [
+   {
+    "what": "autonomous_vessel and keel_block_line lifted from no. 45's chassis into assets/js/kit/vehicles.js, and riprap_bank into assets/js/kit/landscape.js, at the judges' named fix: a sheer rising to a flared bow with a knuckle, a bulwark forward with a capping rail, stanchions and two rails aft, a long low chamfered windowless deckhouse with a raked front, a four leg lattice mast with a yardarm, two sensor domes, an open array radar, a SATCOM radome and an EO/IR ball, one matte finish on hull, house and bulwark, the chassis's foam wash and skirt on the real waterline; riprap in five quarried stone shapes, flat shaded, in five granite tones",
+    "theme": "largest object unmodelled, 7 runs and 25 rounds, and primitive or low-poly model where a kit model belongs, 7 runs and 24 rounds. No. 45: the hull ranked the top artwork defect in all three panel rounds ('a flat slab hull with a stepped deckhouse', 'reads as a lighthouse on 2', 'a flat barge slab'); named fixes 'a sheer line, bow flare, bulwarks and sensor housings' (integrity r2), 'rebuild the hero hull as a real ship model' (craft r2), 'chamfered plate with sensor arms and a lattice mast' (reader r3); riprap 'sandbag-like' (reader and integrity r1)",
+    "why": "The chassis hull was a straight sheer slab under two stacked frustums and a tapered column, and its riprap stones were squashed spheres. All three were built in a deck module because the kit had none, so the next deck with a ship, a dry dock or a bank would have built them from scratch again",
+    "files": [
+     "assets/js/kit/vehicles.js",
+     "assets/js/kit/landscape.js",
+     "knowledge/carousel/ARSENAL.md"
+    ],
+    "verification": "Five proof pages through the carousel engine (out/2026-10-07/tmp/machine/proof.py: no. 45's frame 2 bow three quarter from the bank, frame 3 broadside with a payload, a hero three quarter afloat, on keel blocks with a person, a riprap close-up), errors 0, read at full size. Three defects the first proof showed were fixed and re-proven: bulwark and rails printing the hull skin's boot top bands, riprap rounding to cobbles under smooth normals, a polka face texture. REPLAY: no. 45's own slides 2, 3 and 5 copied from runs/carousel/2026-10-07/slides/ and rendered into scratch against the new kit, errors 0, the lighthouse on 2 and the slab on 3 now a ship (out/2026-10-07/tmp/machine/compare-03.png, compare-05.png). examples/kit/sizes.py exited 1 on the first run (riprap_bank y declared 3.4 measured 4.03, z 5 measured 6.34), the declared sizes were set to the measured ones, and it then exited 0 with 115 of 115. arsenal.py --check exits 0",
+    "revert": "the vehicles.js, landscape.js and ARSENAL.md hunks of this pass's kit commit; no. 45's chassis then defines its own three models again",
+    "how_i_would_know_this_was_wrong": "A judge naming a kit vessel a lighthouse, a slab, a barge or a toy, its mast a pylon or a radio tower, or the house glassy against the hull; a judge reading the kit riprap as cobbles, sandbags or low-poly crystals at the range a deck uses it; a deck passing the chassis's options and finding the waterline, the wash or the keel blocks moved; sizes.py going red on any of the three at a seed outside its sixteen; a frame 3 style range leader landing on air because a deck re-rendered no. 45"
+   }
+  ],
+  "proposals_out_of_lane": [
+   {
+    "what": "qa.py canvas_rules keeps a candidate strip only if the same rows are off the paper in an art layer rendered with the DOM type hidden, so a dek's glyph halo or a hook's touching serifs on a flat ground stop reading as a rule; self-test: the existing _band(True) case still goes red and a run present only in the type layer stays green",
+    "owner": "human",
+    "why": ".claude/skills/carousel-engine/qa.py and render.py are under .claude, a maintainer's edit. Queue qa-glyph-run-as-rule at repeat 2 (nos. 40, 41, 45), UPGRADE_BACKLOG 2026-10-07 item 2"
+   },
+   {
+    "what": "Engine, carried with this week's counts: render artifact (7 runs, 21 rounds), contact and grime (7 runs, 20 rounds), horizon band or seam (6 runs, 12 rounds), object in a void (5 runs, 14 rounds); and the queue's new scatter-seeds-at-y0 and aerial-ground-reads-as-noise",
+    "owner": "human",
+    "why": "assets/js/txthree.js (UPGRADE_BACKLOG 2026-10-07 item 3)"
+   }
+  ],
+  "not_done": "dry_van, delineator and raised_pavement_marker deferred a fourth time (UPGRADE_BACKLOG 2026-10-07 item 4). No frontier scan: the pass's time went to proving the lift against no. 45's own frames. No gate was added or loosened, so no GATE_LESSONS entry is proposed"
+ }
 }

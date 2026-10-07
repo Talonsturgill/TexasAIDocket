@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-06",
+    "generated": "2026-10-07",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -406,6 +406,22 @@
         "tx-2026-0028-c1"
       ]
     },
+    "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-to-bring-new-way-of-learning-to-bastrop-children/": {
+      "etag": null,
+      "last_modified": "Wed, 07 Oct 2026 06:19:36 GMT",
+      "hash": "d69cf6e580c1ae22ccbc89dd506f7557b14ff81b66c92b98625dd86486d4b981",
+      "proven": [
+        "tx-2026-0200-c30"
+      ]
+    },
+    "https://communityimpact.com/bastrop-cedar-creek/education/valenta-academy-will-not-open-in-bastrop-after-tea-veto/": {
+      "etag": null,
+      "last_modified": "Wed, 07 Oct 2026 06:19:37 GMT",
+      "hash": "ab35db3a305c34c39cd7cf931262c0820bf896f5afb0c194d70009ea8d4ee1a3",
+      "proven": [
+        "tx-2026-0200-c29"
+      ]
+    },
     "https://communityimpact.com/central-austin/texas-legislature/texas-includes-minimal-data-center-info-in-state-water-plan-citing-limited-data/": {
       "etag": null,
       "last_modified": "Tue, 06 Oct 2026 06:30:51 GMT",
@@ -416,8 +432,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Sun, 04 Oct 2026 06:19:41 GMT",
-      "hash": "a8c6be1c8f346311a756bbc3b83ce464f80dabbd07a2b295df0ad769e75f99a6",
+      "last_modified": "Wed, 07 Oct 2026 06:19:37 GMT",
+      "hash": "14e734b838654e45b382521bafb88f049154a2675e11385012dadfb5e88b6b6b",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -432,8 +448,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Tue, 06 Oct 2026 06:30:51 GMT",
-      "hash": "be1a450d607e68dfb3cfa6ee1b047475a1c20c758172315f9575cf5a881711bc",
+      "last_modified": "Wed, 07 Oct 2026 06:19:37 GMT",
+      "hash": "cfa47f0c95b8d7a5a042527ab1ee3f5276a31b8275d4114f5d7536114db79df6",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -550,7 +566,7 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "bb07289189a9e0af7fb5f5bd31833b2657e4f561abdd77f66df62699fd342ae6",
+      "hash": "09c8a8649831fbe8da16c12ca8ee01fb7b8299bade11cbd9431e0a84584a13da",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -1318,6 +1334,18 @@
         "tx-2026-0142-c9"
       ]
     },
+    "https://sboe.texas.gov/state-board-of-education/sboe-meetings/06-27-2025-sboemins.pdf": {
+      "etag": null,
+      "last_modified": "Tue, 28 Oct 2025 21:58:23 GMT",
+      "hash": "112a7880624dc6bb23e963b4cc1475af7ba0d1200a3578c951c9817ec9f2bf0c",
+      "proven": []
+    },
+    "https://sboe.texas.gov/state-board-of-education/sboe-meetings/2025-06-25-cofbmins-final.pdf": {
+      "etag": null,
+      "last_modified": "Mon, 22 Sep 2025 19:37:46 GMT",
+      "hash": "8a6ec92e5dd77205af84641e9d20e648e9e9f95acd99514debf3d2c7cb70f38c",
+      "proven": []
+    },
     "https://sboe.texas.gov/state-board-of-education/sboe-news/texas-state-board-of-education-completes-k-12-social-studies-teks-revision-adopts-new-personal-financial-literacy-standards": {
       "etag": "W/\"1790875192-gzip\"",
       "last_modified": "Thu, 01 Oct 2026 17:19:52 GMT",
@@ -1414,7 +1442,7 @@
     "https://stories.xcelenergy.com/stories/Powering-through--Xcel-Energy-s-commitment-to-a-resilient-Texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "b5ec72df3fd978a1717f083dc46744e830c499b057e71fa8ac7fae5adbbaa434",
+      "hash": "fc7bcfc2258b3fba3719b78dcef3e4b781604d2cf5371eb8468fa4eac474a66f",
       "proven": [
         "tx-2026-0191-c14"
       ]
@@ -1788,7 +1816,7 @@
     "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
       "etag": null,
       "last_modified": null,
-      "hash": "67763cd307a85a41846555a24c72d812a51daee3ff560482e2b4452ea21f32aa",
+      "hash": "fc4bf419b777fa10a835191890b1ef9c5f5afdd6c2b148be1d64d99add518ce5",
       "proven": [
         "tx-2026-0146-c1",
         "tx-2026-0146-c2",
@@ -1797,9 +1825,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"b930482bf7b231086174391909739f17--gzip\"",
+      "etag": "W/\"cd8ce6b67bcce9927fa243ff8ed0f631\"",
       "last_modified": null,
-      "hash": "f4da1eefd63902666741eddfba176faa49045b9da5d1b349528013fb096b8827",
+      "hash": "3685f3ac7ad17040d004355e8746fa62d8712e6b20a55224ec99f4d8fbfaa530",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -1813,6 +1841,12 @@
         "tx-2026-0047-c3",
         "tx-2026-0047-c4"
       ]
+    },
+    "https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf": {
+      "etag": "\"12796e-657b14d8a4880\"",
+      "last_modified": "Tue, 28 Jul 2026 20:01:22 GMT",
+      "hash": "4bb21ce8d4661fa2a730899edf222984c5b9ef9c07ef37d5e01209d0127e864c",
+      "proven": []
     },
     "https://www.austintexas.gov/council/2026/20260205-reg": {
       "etag": "W/\"1791181775-gzip\"",
@@ -1992,7 +2026,7 @@
     "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01": {
       "etag": null,
       "last_modified": null,
-      "hash": "d584c24c79d0840da18b451b3c408e00b052eb617118db3756e51666e74ae5ae",
+      "hash": "3af97c6de305206e2503b2582c9c21c14c6148ee9803bc06edb443add20e0c3b",
       "proven": [
         "tx-2026-0172-c1",
         "tx-2026-0172-c10",
@@ -2091,7 +2125,7 @@
     },
     "https://www.govably.com/": {
       "etag": "\"b4b7ce4e20c32f6246e0f91a13ac658efaf211ef3a547ad7f0e9fa7bf962e1a7\"",
-      "last_modified": "Mon, 05 Oct 2026 23:54:42 GMT",
+      "last_modified": "Tue, 06 Oct 2026 23:11:02 GMT",
       "hash": "0870717fb7817dd41e389b09c14585f9049a96eb144da906477c246d68ffa0c9",
       "proven": [
         "tx-2026-0169-c5"
@@ -2430,7 +2464,7 @@
     "https://www.puc.texas.gov/industry/electric/system-resiliency-plans/": {
       "etag": null,
       "last_modified": null,
-      "hash": "b3f1739263b5f410591f3a39b5afbae7bc58c7f5a3741736fd0e844e402a5b84",
+      "hash": "71690be23fdff46198738e69267eb88ff40bf413e91b881f530e47cd1174f4bc",
       "proven": [
         "tx-2026-0191-c15",
         "tx-2026-0192-c9"
@@ -2498,6 +2532,31 @@
         "tx-2026-0027-c2",
         "tx-2026-0027-c3",
         "tx-2026-0027-c4"
+      ]
+    },
+    "https://www.taylortx.gov/m/newsflash/Home/Detail/2113": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "aaf0ef4686a974838341c951baf4f522bab37c1825f858317e18b27abddb962c",
+      "proven": [
+        "tx-2026-0203-c1",
+        "tx-2026-0203-c10",
+        "tx-2026-0203-c11",
+        "tx-2026-0203-c12",
+        "tx-2026-0203-c13",
+        "tx-2026-0203-c14",
+        "tx-2026-0203-c15",
+        "tx-2026-0203-c16",
+        "tx-2026-0203-c17",
+        "tx-2026-0203-c18",
+        "tx-2026-0203-c2",
+        "tx-2026-0203-c3",
+        "tx-2026-0203-c4",
+        "tx-2026-0203-c5",
+        "tx-2026-0203-c6",
+        "tx-2026-0203-c7",
+        "tx-2026-0203-c8",
+        "tx-2026-0203-c9"
       ]
     },
     "https://www.tceq.texas.gov/agency/decisions/hearings": {
@@ -2613,14 +2672,52 @@
     },
     "https://www.texastribune.org/2026/09/21/texas-wildfire-utilities-mitigation/": {
       "etag": null,
-      "last_modified": "Sun, 04 Oct 2026 00:45:47 GMT",
-      "hash": "279de4420f865e4673d6c14bdd6a16775f0c2bf257cff209e1784a759192010f",
+      "last_modified": "Tue, 06 Oct 2026 13:32:33 GMT",
+      "hash": "8756be53030025cadcb487792d1062fbfe34e4a1253d2164fb943e67e4e1b6e3",
       "proven": [
         "tx-2026-0191-c10",
         "tx-2026-0191-c11",
         "tx-2026-0191-c12",
         "tx-2026-0191-c13",
         "tx-2026-0191-c9"
+      ]
+    },
+    "https://www.texastribune.org/2026/10/01/alpha-school-ai-texas-public-schools-mike-morath/": {
+      "etag": null,
+      "last_modified": "Mon, 05 Oct 2026 22:59:49 GMT",
+      "hash": "120182ed5f4ae307585948c28f368cabe71cb4ef43c40860711de3258265be2c",
+      "proven": [
+        "tx-2026-0200-c1",
+        "tx-2026-0200-c10",
+        "tx-2026-0200-c11",
+        "tx-2026-0200-c12",
+        "tx-2026-0200-c13",
+        "tx-2026-0200-c14",
+        "tx-2026-0200-c15",
+        "tx-2026-0200-c16",
+        "tx-2026-0200-c17",
+        "tx-2026-0200-c18",
+        "tx-2026-0200-c19",
+        "tx-2026-0200-c2",
+        "tx-2026-0200-c20",
+        "tx-2026-0200-c21",
+        "tx-2026-0200-c22",
+        "tx-2026-0200-c23",
+        "tx-2026-0200-c24",
+        "tx-2026-0200-c25",
+        "tx-2026-0200-c3",
+        "tx-2026-0200-c31",
+        "tx-2026-0200-c32",
+        "tx-2026-0200-c33",
+        "tx-2026-0200-c34",
+        "tx-2026-0200-c35",
+        "tx-2026-0200-c36",
+        "tx-2026-0200-c4",
+        "tx-2026-0200-c5",
+        "tx-2026-0200-c6",
+        "tx-2026-0200-c7",
+        "tx-2026-0200-c8",
+        "tx-2026-0200-c9"
       ]
     },
     "https://www.texome.org/": {
@@ -2792,8 +2889,8 @@
     },
     "https://www.wiwynn.com/news/amazon-wiwynn-data-center-manufacturing-jobs-texas": {
       "etag": null,
-      "last_modified": "Thu, 01 Oct 2026 08:26:26 GMT",
-      "hash": "1bd03a0dc721ebd5b70f2395f947c8c5341c6c215f03615be414cc9cd2d3732c",
+      "last_modified": "Mon, 05 Oct 2026 06:06:54 GMT",
+      "hash": "0dd2490499c07982985da1e1f0fa7fc682d28ca0f21ad3b04945a36120515842",
       "proven": [
         "tx-2026-0146-c5",
         "tx-2026-0146-c6"

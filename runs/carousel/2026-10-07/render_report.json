@@ -1,0 +1,1841 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The tax break came first",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              835,
+              127
+            ],
+            [
+              80,
+              238,
+              178,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic broke ground on Port Alpha, a shipyard for autonomous and manned ships, at the Port of Brownsville on September 30th. The Tribune reported the county approved its tax break in June, before Saronic had picked the port. The vessel is drawn to illustrate.",
+          "x": 82,
+          "y": 377,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              377,
+              733,
+              42
+            ],
+            [
+              82,
+              420,
+              844,
+              42
+            ],
+            [
+              82,
+              462,
+              776,
+              42
+            ],
+            [
+              82,
+              505,
+              834,
+              42
+            ],
+            [
+              82,
+              548,
+              605,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Port of Brownsville",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c6 c26 c27",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20979,
+      "ok": true,
+      "load_ms": 131,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 131,
+          "variance": 2512.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An autonomous boat made a rescue, Saronic says",
+          "x": 80,
+          "y": 150,
+          "w": 600,
+          "h": 306,
+          "font_px": 78,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              512,
+              96
+            ],
+            [
+              80,
+              216,
+              386,
+              96
+            ],
+            [
+              80,
+              293,
+              498,
+              96
+            ],
+            [
+              80,
+              369,
+              138,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Its home page claims the first known at-sea rescue by an autonomous boat. The deckhouse and mast are drawn to illustrate, not Saronic's design.",
+          "x": 82,
+          "y": 480,
+          "w": 560,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              480,
+              537,
+              42
+            ],
+            [
+              82,
+              523,
+              482,
+              42
+            ],
+            [
+              82,
+              565,
+              506,
+              42
+            ],
+            [
+              82,
+              608,
+              474,
+              42
+            ],
+            [
+              82,
+              651,
+              109,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic, in its own words",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c24",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23043,
+      "ok": true,
+      "load_ms": 150,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 135.9,
+          "variance": 2464.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What Saronic says its Marauder does",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              791,
+              127
+            ],
+            [
+              80,
+              238,
+              768,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "These are Saronic's figures for its Marauder. The release names Navy landing craft for the yard's first phase. The hull and the block are drawn to illustrate.",
+          "x": 82,
+          "y": 373,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              373,
+              821,
+              42
+            ],
+            [
+              82,
+              416,
+              865,
+              42
+            ],
+            [
+              82,
+              458,
+              535,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PAYLOAD 150 METRIC TONS, DRAWN AS ONE STEEL BLOCK",
+          "x": 202,
+          "y": 612,
+          "w": 412,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              202,
+              612,
+              412,
+              35
+            ],
+            [
+              202,
+              647,
+              412,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TOP SPEED 25+ KNOTS",
+          "x": 81,
+          "y": 536,
+          "w": 326,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              81,
+              536,
+              326,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RANGE UP TO 5,400 NAUTICAL MILES",
+          "x": 686,
+          "y": 498,
+          "w": 343,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              686,
+              498,
+              189,
+              35
+            ],
+            [
+              686,
+              533,
+              343,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic, in its own words",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c23 c16",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17895,
+      "ok": true,
+      "load_ms": 124,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 132.2,
+          "variance": 2086.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "835 acres, and an option on more",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              743,
+              127
+            ],
+            [
+              80,
+              238,
+              652,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Port Alpha sits on 835 acres, with an option to expand to nearly 4,400, Saronic says. Each is drawn as a square of that area, not the site's real shape.",
+          "x": 82,
+          "y": 373,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              373,
+              824,
+              42
+            ],
+            [
+              82,
+              416,
+              879,
+              42
+            ],
+            [
+              82,
+              458,
+              439,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Port of Brownsville",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16749,
+      "ok": true,
+      "load_ms": 154,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 133.6,
+          "variance": 2300.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Room for ships up to 850 feet",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              881,
+              127
+            ],
+            [
+              80,
+              238,
+              359,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic says the yard will first build vessels up to 850 feet. An expansion could support vessels over 1,200 feet. The blocks run 850 feet and the hull is drawn to illustrate.",
+          "x": 82,
+          "y": 373,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              373,
+              854,
+              42
+            ],
+            [
+              82,
+              416,
+              823,
+              42
+            ],
+            [
+              82,
+              458,
+              775,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Drawn to the release, at scale",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 26513,
+      "ok": true,
+      "load_ms": 126,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 121.6,
+          "variance": 2248.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The county voted before a site was chosen",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 172,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              870,
+              108
+            ],
+            [
+              80,
+              224,
+              605,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Texas Tribune reported on June 18th that the court approved a $211 million tax break for Saronic, a 95% abatement over 20 years. Saronic said then it had not chosen a site.",
+          "x": 82,
+          "y": 342,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              342,
+              806,
+              42
+            ],
+            [
+              82,
+              384,
+              750,
+              42
+            ],
+            [
+              82,
+              427,
+              781,
+              42
+            ],
+            [
+              82,
+              470,
+              203,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cameron County court, drawn to illustrate",
+          "x": 80,
+          "y": 80,
+          "w": 679,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              679,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c26 c27 c28 c37",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32281,
+      "ok": true,
+      "load_ms": 184,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 98.5,
+          "variance": 2985.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than 2,500 feet of quay, planned",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 198,
+          "font_px": 101,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              891,
+              125
+            ],
+            [
+              80,
+              235,
+              683,
+              125
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic says two to four build positions will handle final ship erection, beside 8 to 10 production buildings. The quay is drawn to its length, the rest to illustrate.",
+          "x": 82,
+          "y": 368,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              368,
+              879,
+              42
+            ],
+            [
+              82,
+              411,
+              834,
+              42
+            ],
+            [
+              82,
+              453,
+              592,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Drawn to the release, at scale",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c14 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 30539,
+      "ok": true,
+      "load_ms": 137,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 131,
+          "variance": 3258.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Up to 10,000 jobs, Saronic says",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              794,
+              127
+            ],
+            [
+              80,
+              238,
+              535,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Tribune reported the break would require 35% of the full-time workforce to be local. Seven of the twenty drawn here wear the local share.",
+          "x": 82,
+          "y": 373,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              373,
+              827,
+              42
+            ],
+            [
+              82,
+              416,
+              845,
+              42
+            ],
+            [
+              82,
+              458,
+              377,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Saronic's figure, drawn to illustrate",
+          "x": 80,
+          "y": 80,
+          "w": 613,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              613,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c29",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 35701,
+      "ok": true,
+      "load_ms": 126,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 121.8,
+          "variance": 2709
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The break would shrink if jobs fall short",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 178,
+          "font_px": 91,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(21, 23, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              896,
+              112
+            ],
+            [
+              80,
+              227,
+              574,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Tribune reported the condition, and that opponents told the court the break would take money from public schools. The line runs 850 feet, the longest Saronic says the yard can build at first.",
+          "x": 82,
+          "y": 348,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              348,
+              822,
+              42
+            ],
+            [
+              82,
+              391,
+              793,
+              42
+            ],
+            [
+              82,
+              434,
+              828,
+              42
+            ],
+            [
+              82,
+              477,
+              374,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The ground, drawn to illustrate",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c30 c32 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 32, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23915,
+      "ok": true,
+      "load_ms": 129,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 129.2,
+          "variance": 1942.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

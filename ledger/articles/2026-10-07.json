@@ -1,0 +1,108 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Industry and incentives",
+ "dek": {
+  "text": "Saronic broke ground on its Port Alpha shipyard at the Port of Brownsville. Cameron County had approved its tax break months earlier, before the company said it had picked a site.",
+  "claims": [
+   "c1",
+   "c26",
+   "c37"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Saronic announced the groundbreaking of Port Alpha in a release dated {{date:c1}}](c1). [The company calls it a software-defined facility for autonomous and manned ships](c6). [It says the yard sits on {{number:c2}} acres at the Port of Brownsville](c2) [with an option to expand to nearly {{number:c3}} acres](c3).",
+   "claims": [
+    "c1",
+    "c6",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[The Texas Tribune reported on {{date:c26}} that the Cameron County Commissioners Court had approved a {{money:c26}} million tax break for Saronic](c26). [The court acted in hopes that the company would pick the Port of Brownsville](c27). [That month Saronic told the Tribune it had not yet selected a location for Port Alpha](c37).",
+   "claims": [
+    "c26",
+    "c27",
+    "c37"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the county agreed to",
+   "paragraphs": [
+    {
+     "text": "[The Tribune reported the break as a {{number:c28}} abatement over {{number:c28:1}} years](c28). [Under the agreement as reported, {{number:c29}} of the full-time workforce must be local residents](c29). [The abatement would decrease if Saronic falls short of its job projections](c30).",
+     "claims": [
+      "c28",
+      "c29",
+      "c30"
+     ]
+    },
+    {
+     "text": "[More than two dozen people spoke to the commissioners about the agreement](c31). [Opponents said the abatement would take money from public schools](c32). [The Tribune also reported that the Greater Brownsville Economic Development Corporation is offering Saronic an additional {{money:c36}} million incentive](c36).",
+     "claims": [
+      "c31",
+      "c32",
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the company says it will build",
+   "paragraphs": [
+    {
+     "text": "[Saronic puts the private capital at more than {{money:c4}} billion](c4). [It says the yard will first build vessels up to {{number:c9}} feet long](c9). [A later expansion could support vessels over {{number:c10}} feet](c10). [The release describes more than {{number:c13}} feet of deepwater quay](c13) [and two to four build positions for final ship erection](c14).",
+     "claims": [
+      "c4",
+      "c9",
+      "c10",
+      "c13",
+      "c14"
+     ]
+    },
+    {
+     "text": "[Saronic says the shipyard is expected to generate up to {{number:c5}} direct jobs](c5). That figure is the company's own. The release does not say how many of those jobs would be full time or local.",
+     "claims": [
+      "c5"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not yet show",
+   "paragraphs": [
+    {
+     "text": "[The abatement shrinks if Saronic misses its job projections](c30). The Tribune's report does not give the projections it would be measured against. [The figure in Saronic's own release is up to {{number:c5}} direct jobs](c5). Whether the county's agreement uses that number is not in the documents cited here.",
+     "claims": [
+      "c30",
+      "c5"
+     ]
+    },
+    {
+     "text": "[The court approved the break before Saronic had picked the Port of Brownsville](c27). The terms in this account are as the Tribune reported them in June. Any change to the agreement after the company chose the site is not in the sources cited here.",
+     "claims": [
+      "c27"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0204",
+   "label": "The record entry for Saronic's Port Alpha groundbreaking"
+  },
+  {
+   "id": "tx-2026-0128",
+   "label": "Brownsville takes up a temporary data center moratorium"
+  }
+ ]
+}

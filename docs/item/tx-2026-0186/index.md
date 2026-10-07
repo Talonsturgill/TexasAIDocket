@@ -22,7 +22,7 @@ The Federal Aviation Administration has published a draft environmental assessme
 - Comment closes: 2026-10-11
 - Take part: https://www.faa.gov/uas/advanced_operations/nepa_and_drones
 
-- Last checked: 2026-10-06
+- Last checked: 2026-10-07
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · The comment window is still open and closes October 11th. The agency's review page did not answer, so whether the draft assessment still reads as published is unconfirmed this time.
 - 2026-10-05 · The comment window is still open and closes October 11th. The agency's review page refused the request again, so whether the draft assessment still reads as published is unconfirmed.
 - 2026-10-06 · The comment window on Zipline's Texas metros assessment is still open and closes October 11th. The agency's review page and the draft assessment both read as published.
+- 2026-10-07 · The comment window on Zipline's Texas metros assessment is still open and closes October 11th. The agency's review page and the draft assessment both read as published.
 
 ## Evidence
 

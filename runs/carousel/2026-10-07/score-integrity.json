@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered in a world with contact shadows and no print screen. Frame 4 is a speckled plane under two outlines with the hull a 20 px speck. Frame 7 uses the same ground with white box warehouses and a quay with no built edge. Frame 6 has a torn hair mesh, a resident not on his chair and a blank seal. Frame 5's dek runs over the deckhouse and the hull's underside is a black mass. Frames 1, 2 and 8 are the strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one light, one hull in one material, both devices working, the 5 to 9 camera matched. The value track holds with the declared dip at 6. The aerials sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces and attribution is disciplined. Slide 1 and the caption state broke ground on September 30th where c1 says the groundbreaking was announced in a release dated that day. The caption says told the Tribune where c37's quote says issued a statement. The spine rests on the Tribune where a filing exists. The first comment omits c4. None changes what a reader believes about the sequence, so none is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where are clear. Nothing a Texan can do next, and the schools stake is general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe, frames 2 and 3 detour, the turn at 6 repeats the cover, the close lands quietly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, plain and honest about cost, within the house rules. The repeated hedges read as machine hedging and there is little Valley texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "No repeat in the window. The carried hero, a Tribune decision source and a noon world are familiar moves."
+  }
+ ],
+ "weighted_score": 6.71,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Read the Cameron County abatement order itself and print its compliance terms in place of frame 2's rescue claim.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A speckled plane with two outlines, the hull a speck, no place or scale",
+   "fix": "Drop to a 300 m oblique with the channel and bank in the lower fifth and the hull at true scale in the near third"
+  },
+  {
+   "slide": 6,
+   "problem": "Mannequin residents with a torn hair mesh, a man not on his chair, a blank seal, flat light",
+   "fix": "Seat every resident on a chair, swap the broken mesh, and let the window throw a raking key across the dais"
+  },
+  {
+   "slide": 7,
+   "problem": "The same noise ground, white box warehouses, a quay with no built edge",
+   "fix": "Model the quay as a bulkhead with bollards and a cast shadow and lower the camera to about 120 m"
+  },
+  {
+   "slide": 5,
+   "problem": "The dek crosses the deckhouse and the hull's underside is a black mass",
+   "fix": "Pull the camera right and back and add a ground-bounce fill under the hull"
+  },
+  {
+   "slide": 3,
+   "problem": "The hull sits against the far-bank riprap and the range leader lands on the radome",
+   "fix": "Push the far bank back and land the range leader midship"
+  }
+ ]
+}

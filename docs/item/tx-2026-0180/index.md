@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · The city's notice still says it stopped paying for the plate reader contract and the police no longer use the cameras. What happens to images already collected is still not stated.
 - 2026-10-03 · Leander's decision to stop paying for its plate reader contract still stands as the city announced it.
 - 2026-10-06 · Leander's decision to stop paying for its plate reader contract is unconfirmed this time. The city's notice turned away every reader that asked for it.
+- 2026-10-07 · Leander's notice that it stopped paying for plate readers is still unconfirmed. The city's site refuses every reader.
 
 ## Evidence
 

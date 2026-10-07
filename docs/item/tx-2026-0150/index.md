@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
 
-- Last checked: 2026-10-04
+- Last checked: 2026-10-07
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The panel's finding is unconfirmed this run. The abstract service bars automated readers and the article page shows no text to a reader without a script.
 - 2026-10-03 · The panel's finding is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script.
 - 2026-10-04 · The panel's recommendations still read as published in the abstract, including its call for an implementation framework and for reimbursement that allows the work to continue.
+- 2026-10-07 · The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.
 
 ## Evidence
 

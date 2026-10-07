@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Every frame is rendered and stands in one world, humid Gulf noon haze with contact shadows on 5, 8 and 9. Too many frames lean on a default. Frame 4 has no hero and no scale, a square on a smeared noise ground, the hull speck invisible at 432, a sawtooth band at the foot. Frame 7 repeats that texture with white boxes for buildings and a hard black water slab with a grey fade under the source line. Frame 6 has a cylinder flag, a ponytail clipping a hat brim and mullions under the type. Frame 8's deckhouse renders semi-transparent behind the dek. Frame 5's dek prints across the deckhouse. Frame 1 is a flat-lit plank on dead water with a blurred beige foreground. Frames 2 and 3 are the strongest. Six of nine frames would not hold as a magazine spread."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck: one haze, one sun, one bluebonnet accent meaning the plan, one hull. Motif evolution and camera move both work, the 5 to 9 bookend the best idea. The hull's material drifts from charcoal on 1 and 2 to pale grey on 5 and 8, and the two aerials carry a texture that matches nothing at eye level."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide numeral traces to figures.json and a claim, and the frame 8 render shows 20 figures and 7 vests. The county's action rests on the Tribune where the agenda was unreadable. Slide 9's dek turns c9's up to 850 feet into a length. The first comment's release line omits c4 and c6, which the caption uses."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns the body, the place, the break and the order of events. Nothing says what a reader can do next. Frames 2 and 3 spend two slides on Saronic's marketing claims."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The cover earns the swipe, frame 2 does not pay it, and the turn on 6 restates the cover. Frames 4, 5 and 7 are three release-figure frames. The 5 to 9 bookend lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on the house rules, but flat. Saronic says repeats through six frames, and there is little Valley specificity."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The palette and maritime subject are new. The carried hero is the house move of the four prior decks, and figures drawn as lines on the ground repeat no. 44's staked terms one day after a local incentive story."
+  }
+ ],
+ "weighted_score": 6.55,
+ "weighted_score_note": "The judge's own field read 6.60 and the judge corrected it to its summed 6.55.",
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 4 and 7 as low oblique shots from the bank with the hull at true scale in the foreground and the plan's ink in the same camera.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "No hero and no scale, a bordered square on a blurred noise ground that reads as lichen or water",
+   "fix": "Drop the camera to about 60 m oblique over the south bank with the hull moored at the near bank in the lower left third, the square's edges running away behind it, and frame 1's scrub-and-clay ground"
+  },
+  {
+   "slide": 7,
+   "problem": "The same smeared aerial texture, white box buildings, a black water slab and a grey fade band under the source line",
+   "fix": "Lower the camera to about 40 m looking west along the quay with the hull moored in the near third, the positions receding inland, and the bottom fade removed"
+  },
+  {
+   "slide": 6,
+   "problem": "A cylinder flag, a ponytail clipping a hat brim, mullions under the type",
+   "fix": "Turn the camera about 15 degrees right so the window sits right of the type column, and swap the hatted figure for an uncapped one"
+  },
+  {
+   "slide": 8,
+   "problem": "The deckhouse renders semi-transparent behind the dek and a hull edge crosses dek line 2",
+   "fix": "Lower and pull back the camera so the sheer sits below css y 520 and the deckhouse clears the dek"
+  },
+  {
+   "slide": 1,
+   "problem": "A flat-lit plank on dead water with a blurred beige foreground",
+   "fix": "Yaw the hull about 30 degrees so the sun lights one flank, add darkening beneath it, and lower the camera so wet riprap owns the bottom-left corner"
+  },
+  {
+   "slide": 5,
+   "problem": "Dek lines 1 to 3 print across the deckhouse",
+   "fix": "Pan the camera about 8 degrees right and lower so the superstructure tops out below css y 520"
+  }
+ ]
+}

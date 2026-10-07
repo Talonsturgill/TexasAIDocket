@@ -1,4 +1,4 @@
-# The Supreme Court of Texas will hear argument on October 6th in a mandamus proceeding the court reporters' association has entered
+# The Supreme Court of Texas set argument for October 6th in a mandamus proceeding the court reporters' association has entered
 
 In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.
 
@@ -8,7 +8,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 - Statistical areas:
   - Houston-Pasadena-The Woodlands, TX
 - Status: pending
-- Public access: Public meeting
+- Public access: Write to the decider
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
 - Last checked: 2026-09-30
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-05 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-06 · Whether the court heard argument today as set is unconfirmed. Its case page sits on a host that bars automated readers.
+- 2026-10-07 · The court's own submission schedule for October 6th lists In re Patrick Hughey for argument that morning, with a deposition reporters' association heard as amicus. The court's ruling is what comes next.
 
 ## Evidence
 
@@ -65,4 +66,10 @@ Source (primary_official): https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=
 > Real Party in Interest's Brief on the Merits filed on behalf of Reddico Construction Co., Inc.
 
 Source (primary_official): https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
+
+### The court's submission schedule for its October 6th sitting lists the case for oral argument and names the relator's counsel.
+
+> Relator will be represented by Bradley W. Snead (Wright Close Barger & Guzman), from Houston.
+
+Source (primary_official): https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf
 

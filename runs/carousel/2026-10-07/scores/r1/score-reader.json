@@ -1,0 +1,24 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 5.5, "why": "Every frame is rendered in one world, the Gulf noon haze, with a sky and a horizon. No frame passes the showstopper test. Slide 4 is a mottled noise texture under a blue square with no landmark or scale cue. Slide 7 uses the same noise ground with a flat near-black water band. Slide 6 has kit mannequins, a hat brim cutting into a head, a twisted cylinder flag, and window mullions under the kicker and dek. On slide 8 the deckhouse ghosts behind the dek and the twenty read as a mannequin crowd. Slide 2's mast is a tapered box with a T-bar and a sphere beside sandbag-like riprap. Slides 5 and 9 are the strongest."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Clearly one deck: one humid noon light, one grey hull, one bluebonnet plan accent on 3, 4, 5, 7, 8 and 9. The hull's states and frame 9 reusing frame 5's camera both work. Slide 6 sits outside by design. Frames 4 and 7 look like the same aerial noise plate twice."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces to a claim or a figures.json rule. Deductions: the decision spine rests on the Texas Tribune where a county record exists, and slide 9's headline states as fact what c30 reports as would decrease per the Tribune. The caption uses c4 and c6 and the first comment's release line leaves both out."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "A Texan learns the abatement came before the site and then the groundbreaking, who decided and where. They never learn what they can do: no next meeting, no place the agreement or its job projection is published, no named school district. The cover never says what Saronic is or that Port Alpha is a shipyard."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.0, "why": "The cover earns the swipe. Frames 2 and 3 turn to company marketing before the story resumes. The turn lands on 6. Frame 7 falls back into a spec tour after the turn. The close's dek splits between schools and the 850 foot line."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and on register, with a good caption opener and closing question. Drawn to illustrate runs through six frames as a disclaimer tic. Seven of the twenty drawn here wear the local share is awkward. No Valley specificity."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "The subject is new to the window and the palette is fresh. The story sits next to no. 44, a local government deal with abatement terms. One hero carried through every frame repeats nos. 41, 42 and 44, and the noon light repeats no. 42."}
+ ],
+ "weighted_score": 6.55,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frames 2 and 3 with frames that pay the cover at once, and close frame 9 on a fetched next step for a Cameron County reader.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "The ground is a blurred noise texture under a blue square, with no landmark, no hull at true scale and no horizon interest", "fix": "Drop the camera to about 150 m oblique from over the channel with the hull afloat in the near third, and swap the noise ground for clay and scrub scatter"},
+  {"slide": 6, "problem": "Kit mannequins with a hat brim cutting into a head, a twisted flag and window mullions under the type", "fix": "Pan the camera so the window sits right of the type column and seat the residents one row further back"},
+  {"slide": 8, "problem": "The deckhouse ghosts behind the dek and the twenty stand in a stiff cluster", "fix": "Lower and tilt the camera so the deckhouse is out of the type band and push the crowd back into working poses along the blocks"},
+  {"slide": 7, "problem": "The aerial ground repeats frame 4's noise texture and the channel is a flat near-black band", "fix": "Give the channel frame 1's sky-reflecting water and render the yard as graded clay with scrub, the hull large enough to read"},
+  {"slide": 2, "problem": "The mast is a tapered box with a T-bar and a sphere beside sandbag-like riprap", "fix": "Model sensor arms, radome housings and plate seams, and use frame 1's riprap stones wet at the waterline"}
+ ]
+}

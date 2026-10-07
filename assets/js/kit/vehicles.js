@@ -1517,6 +1517,308 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* ==== MARINE: an autonomous surface vessel and the keel blocks it stands on ====================
+   * Lifted 2026-10-07 from carousel no. 45's chassis (assets/js/deck/2026-10-07-portalpha.js), where
+   * all three panel rounds ranked the hull as the deck's top artwork defect: "a flat slab hull with a
+   * stepped deckhouse", "reads as a lighthouse on 2", "a flat barge slab on 3", "the deckhouse reads
+   * glassy on 5 and 8 against matte plate on 1 to 3". The judges' named fix, built here: a SHEER that
+   * rises to the bow, BOW FLARE (the deck edge closes slower than the chine, so the bow opens out
+   * above the water), a BULWARK forward and STANCHIONS aft, a long low CHAMFERED deckhouse with a
+   * raked front instead of stacked frustums, a LATTICE MAST with a yardarm, sensor arms and radomes,
+   * ONE MATTE PLATE on hull and house, and the foam skirt at the waterline the chassis proved.
+   * The options are the chassis's own, so a deck written against it builds unchanged. */
+  const lcgM = (seed) => { let s = seed >>> 0 || 1; return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; }; };
+  const canvasTex = (w, h, paint, wrap) => {
+    const c = document.createElement('canvas'); c.width = w; c.height = h; paint(c.getContext('2d'));
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    t.wrapS = THREE.RepeatWrapping; t.wrapT = wrap ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping; return t;
+  };
+  /* PLATE: the hull's skin. u runs along the hull at 12 m a repeat, v from the keel (0) to the
+   * moulded depth (1). Seams on the plate grid, weld beads, drain streaks, a black boot top at the
+   * waterline `wl` and red antifouling under it. */
+  const PLATES = new Map();
+  const hullPlate = (paint, wl) => {
+    const k = paint + '|' + wl.toFixed(3);
+    if (PLATES.has(k)) return PLATES.get(k);
+    const r = lcgM(9), t = canvasTex(1024, 256, (x) => {
+      x.fillStyle = paint; x.fillRect(0, 0, 1024, 256);
+      for (let i = 0; i < 1600; i++) { x.fillStyle = 'rgba(' + (r() < 0.5 ? '20,22,24' : '220,225,230') + ',' + (0.02 + r() * 0.035).toFixed(3) + ')'; x.fillRect(r() * 1024, r() * 256, 2 + r() * 40, 1 + r() * 6); }
+      x.strokeStyle = 'rgba(25,27,30,0.38)'; x.lineWidth = 1.2;
+      for (let s = 0; s < 1024; s += 128) { x.beginPath(); x.moveTo(s + (r() - 0.5) * 2, 0); x.lineTo(s, 256); x.stroke(); }
+      for (let j = 40; j < 256; j += 52) { x.beginPath(); x.moveTo(0, j); x.lineTo(1024, j); x.stroke(); }
+      for (let s = 0; s < 110; s++) { const sx = r() * 1024, sy = r() * 120, ln = 30 + r() * 60, g = x.createLinearGradient(sx, sy, sx, sy + ln);
+        g.addColorStop(0, 'rgba(80,58,40,0.20)'); g.addColorStop(1, 'rgba(80,58,40,0)'); x.fillStyle = g; x.fillRect(sx, sy, 1 + r() * 2, ln); }
+      const yw = 256 * (1 - wl);
+      // the boot top stands a hand above the waterline and the antifouling starts just under it, so
+      // a hull afloat shows a black line at the water, never a red band
+      x.fillStyle = '#6a2f26'; x.fillRect(0, yw + 6, 1024, 256 - yw);
+      for (let b = 0; b < 400; b++) { x.fillStyle = 'rgba(40,36,30,' + (0.05 + r() * 0.12).toFixed(2) + ')'; x.fillRect(r() * 1024, yw + 6 + r() * (256 - yw), 2 + r() * 30, 1 + r() * 4); }
+      x.fillStyle = '#15171a'; x.fillRect(0, yw - 18, 1024, 24);
+    }, false);
+    PLATES.set(k, t); return t;
+  };
+  /* PANEL: the deckhouse's welded plate, a tile of 4 m with 1 m panels, mapped through K.uvBox */
+  const PANELS = new Map();
+  const housePanel = (paint) => {
+    if (PANELS.has(paint)) return PANELS.get(paint);
+    const r = lcgM(53), t = canvasTex(512, 512, (x) => {
+      x.fillStyle = paint; x.fillRect(0, 0, 512, 512);
+      for (let i = 0; i < 26; i++) { x.fillStyle = 'rgba(' + (r() < 0.5 ? '0,0,0' : '255,255,255') + ',' + (0.03 + r() * 0.04).toFixed(3) + ')'; x.fillRect(Math.floor(r() * 4) * 128, Math.floor(r() * 4) * 128, 128, 128); }
+      x.strokeStyle = 'rgba(18,20,22,0.55)'; x.lineWidth = 2.5;
+      for (let k = 0; k <= 512; k += 128) { x.beginPath(); x.moveTo(k, 0); x.lineTo(k, 512); x.stroke(); x.beginPath(); x.moveTo(0, k); x.lineTo(512, k); x.stroke(); }
+      x.strokeStyle = 'rgba(200,205,210,0.28)'; x.lineWidth = 1.5;
+      for (let k = 4; k <= 512; k += 128) { x.beginPath(); x.moveTo(k, 0); x.lineTo(k, 512); x.stroke(); x.beginPath(); x.moveTo(0, k); x.lineTo(512, k); x.stroke(); }
+      for (let s = 0; s < 120; s++) { const sx = r() * 512, sy = Math.floor(r() * 4) * 128 + r() * 20, ln = 30 + r() * 110, g = x.createLinearGradient(sx, sy, sx, sy + ln), rust = r() < 0.35;
+        g.addColorStop(0, rust ? 'rgba(110,62,38,0.38)' : 'rgba(235,236,232,0.28)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(sx, sy, 1.5 + r() * 3, ln); }
+    }, true);
+    PANELS.set(paint, t); return t;
+  };
+  // ONE MATTE PLATE for hull and house: the same roughness and metalness, so the house never reads
+  // glassy against a matte hull (no. 45 round 3) under a different light
+  const PLATE_FINISH = { roughness: 0.66, metalness: 0.22 };
+  const MM = {
+    deck: () => K.mat('mv-deck', { color: 0x3b4044, roughness: 0.86, metalness: 0.18, side: THREE.DoubleSide }),
+    dark: () => K.mat('mv-dark', { color: 0x24282c, roughness: 0.55, metalness: 0.4 }),
+    lens: () => K.mat('mv-lens', { color: 0x0b0d10, roughness: 0.08, metalness: 0.6 }),
+    dome: () => K.mat('mv-dome', { color: 0xd9dbd8, roughness: 0.5, metalness: 0 }),
+    primer: () => K.mat('mv-primer', { color: 0xa8553c, roughness: 0.72, metalness: 0.15 }),
+    conc: () => K.mat('mv-conc', { color: 0xd4cfc4, map: K.tex('concrete'), roughness: 0.9 }),
+    timber: () => K.mat('mv-timber', { color: 0xffffff, map: K.tex('wood', { color: '#7f6345' }), roughness: 0.88 }),
+  };
+
+  /* THE LINES. A hard chine hull, stations stern (u 0) to bow (u 1). Each half section runs keel,
+   * bilge, chine, knuckle, deck edge. The sheer rises toward the bow, the chine closes faster than the
+   * deck edge (flare), the keel rises into a forefoot, and the stem rakes forward with height. */
+  function vStation(B, D, u, sheer, flare) {
+    const bow = Math.max(0, (u - 0.42) / 0.58);
+    const hb = B / 2 * Math.pow(Math.max(0, 1 - Math.pow(bow, 1.7)), 0.62);
+    const deckHb = B / 2 * Math.pow(Math.max(0, 1 - Math.pow(bow, 1 + 1.6 * flare)), 0.5) * (1 + 0.02 * bow);
+    const keel = D * 0.44 * Math.pow(bow, 2.4);
+    // the sheer is one curve, lowest a little aft of midships, rising a little to the stern and
+    // most to the bow, so a broadside never reads as a flat slab (no. 45 round 3, frame 3)
+    const top = D * (1 + sheer * (Math.pow(bow, 1.6) + 0.18 * Math.pow(Math.max(0, 0.4 - u) / 0.4, 2)));
+    const dead = 0.18 + 0.32 * bow, chineY = keel + (top - keel) * (0.32 + 0.06 * bow);
+    const kn = chineY + (top - chineY) * 0.5;
+    return [[0, keel], [hb * 0.62, keel + (chineY - keel) * dead * 1.2], [hb * 0.97, chineY],
+            [hb * 0.97 + (deckHb - hb * 0.97) * 0.45, kn], [deckHb, top]];
+  }
+  const stemRake = (u, y, D) => 3.4 * Math.pow(Math.max(0, (u - 0.7) / 0.3), 1.6) * (y / D);
+  // the half breadth where the section crosses height y, read off the polyline
+  function halfAt(s, y) {
+    for (let k = 0; k < s.length - 1; k++) {
+      const a = s[k], b = s[k + 1];
+      if ((y - a[1]) * (y - b[1]) <= 0 && a[1] !== b[1]) return a[0] + (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]);
+    }
+    return y < s[0][1] ? 0 : s[s.length - 1][0];
+  }
+  function hullGeo(L, B, D, o) {
+    const NS = 80, P = 5, sec = [];
+    for (let i = 0; i <= NS; i++) sec.push(vStation(B, D, i / NS, o.sheer, o.flare));
+    // each strip between two section points keeps its own vertices, so the hull is smooth along its
+    // length and HARD at the chine and the knuckle, the way plate is bent
+    const pos = [], uv = [], idx = [];
+    for (let side = -1; side <= 1; side += 2) for (let k = 0; k < P - 1; k++) {
+      const base = pos.length / 3;
+      for (let i = 0; i <= NS; i++) {
+        const u = i / NS, z = -L / 2 + u * L;
+        for (const kk of [k, k + 1]) { const p = sec[i][kk], zk = z + stemRake(u, p[1], D); pos.push(side * p[0], p[1], zk); uv.push((zk + L / 2) / 12, p[1] / D); }
+      }
+      for (let i = 0; i < NS; i++) { const a = base + i * 2, b = a + 1, c = a + 2, d = a + 3; if (side < 0) idx.push(a, c, b, b, c, d); else idx.push(a, b, c, b, d, c); }
+    }
+    const sides = new THREE.BufferGeometry(); sides.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    sides.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); sides.setIndex(idx); sides.computeVertexNormals();
+    const dp = [], di = [];
+    for (let i = 0; i <= NS; i++) { const u = i / NS, s = sec[i][P - 1], z = -L / 2 + u * L + stemRake(u, s[1], D); dp.push(-s[0], s[1], z, s[0], s[1], z); }
+    for (let i = 0; i < NS; i++) { const e = i * 2; di.push(e, e + 2, e + 1, e + 1, e + 2, e + 3); }
+    const deck = new THREE.BufferGeometry(); deck.setAttribute('position', new THREE.Float32BufferAttribute(dp, 3)); deck.setIndex(di); deck.computeVertexNormals();
+    const s0 = sec[0], tp = [], tu = [], ti = [];
+    s0.forEach((p) => { tp.push(-p[0], p[1], -L / 2); tu.push(0.02, p[1] / D); });
+    s0.forEach((p) => { tp.push(p[0], p[1], -L / 2); tu.push(0.05, p[1] / D); });
+    for (let t = 0; t < P - 1; t++) ti.push(t, t + 1, P + t, t + 1, P + t + 1, P + t);
+    const tr = new THREE.BufferGeometry(); tr.setAttribute('position', new THREE.Float32BufferAttribute(tp, 3));
+    tr.setAttribute('uv', new THREE.Float32BufferAttribute(tu, 2)); tr.setIndex(ti); tr.computeVertexNormals();
+    return { sides, deck, transom: tr, sec, NS };
+  }
+  // a prism along +z from a section in (x, y), its front face raked back by `rake` metres per metre
+  // of height: the deckhouse's chamfered plate
+  function rakedPrism(section, depth, rake, rakeBack) {
+    const g = new THREE.ExtrudeGeometry(new THREE.Shape(section.map((p) => new THREE.Vector2(p[0], p[1]))), { depth, bevelEnabled: false });
+    const P = g.attributes.position;
+    for (let i = 0; i < P.count; i++) {
+      const y = P.getY(i), z = P.getZ(i);
+      if (z > depth / 2) P.setZ(i, z - rake * y); else P.setZ(i, z + (rakeBack || 0) * y);
+    }
+    const n = g.toNonIndexed(); n.computeVertexNormals(); return n;
+  }
+  const houseSection = (w, h, lean, cham) => {
+    const t = w / 2 - h * lean;
+    return [[-w / 2, 0], [w / 2, 0], [t, h - cham], [t - cham, h], [-t + cham, h], [-t, h - cham]];
+  };
+  /* THE MAST: a four leg lattice tapering to a platform, braced in X on every face, a yardarm with
+   * a sensor dome at each end, an open array radar on a pedestal, a SATCOM radome aft and an EO/IR
+   * ball forward on its own arm. Built at the origin, base on y 0. */
+  function latticeMast(h, base, top, dark, dome, lens) {
+    const g = new THREE.Group(), bars = [], bays = 4, r = 0.055;
+    const at = (t, sx, sz) => { const w = (base + (top - base) * t) / 2; return [sx * w, t * h, sz * w]; };
+    const legs = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+    legs.forEach(([sx, sz]) => bars.push(K.bar(at(0, sx, sz), at(1, sx, sz), r * 1.6, dark, 8)));
+    for (let b = 0; b <= bays; b++) {
+      const t = b / bays;
+      for (let l = 0; l < 4; l++) { const [ax, az] = legs[l], [bx, bz] = legs[(l + 1) % 4]; bars.push(K.bar(at(t, ax, az), at(t, bx, bz), r, dark, 6));
+        if (b < bays) { const t2 = (b + 1) / bays; bars.push(K.bar(at(t, ax, az), at(t2, bx, bz), r * 0.8, dark, 6)); bars.push(K.bar(at(t, bx, bz), at(t2, ax, az), r * 0.8, dark, 6)); } }
+    }
+    g.add(K.merge(bars, dark));
+    // the platform, the yardarm and its domes
+    K.cyl(top * 0.95, top * 0.95, 0.12, dark, 0, h, 0, 16, g);
+    const ya = h * 0.72, span = Math.max(3.2, base * 2.1);
+    g.add(K.bar([-span / 2, ya, 0], [span / 2, ya, 0], 0.08, dark, 8));
+    [-1, 1].forEach((sd) => {
+      K.cyl(0.05, 0.05, 0.35, dark, sd * span / 2, ya, 0, 8, g);
+      const d = new THREE.Mesh(new THREE.SphereGeometry(0.26, 20, 12), dome); d.position.set(sd * span / 2, ya + 0.55, 0); g.add(d);
+    });
+    // open array radar on a pedestal at the top
+    K.cyl(0.16, 0.22, 0.42, dark, 0, h + 0.12, 0, 14, g);
+    g.add(K.box(Math.max(3.0, base * 1.9), 0.38, 0.2, dark, 0, h + 0.56, 0, 0.03));
+    // SATCOM radome aft, on a short post off the platform
+    K.cyl(0.07, 0.07, 0.5, dark, 0, h - 0.4, -top * 0.9, 8, g);
+    const sat = new THREE.Mesh(new THREE.SphereGeometry(0.5, 24, 16), dome); sat.position.set(0, h + 0.4, -top * 0.9 - 0.15); g.add(sat);
+    // EO/IR ball forward on its own arm, below the platform
+    g.add(K.bar([0, h * 0.86, top * 0.4], [0, h * 0.86, top * 0.4 + 0.9], 0.07, dark, 8));
+    const eo = new THREE.Mesh(new THREE.SphereGeometry(0.24, 20, 14), dark); eo.position.set(0, h * 0.86 - 0.22, top * 0.4 + 1.0); g.add(eo);
+    const ap = new THREE.Mesh(new THREE.CircleGeometry(0.09, 18), lens); ap.position.set(0, h * 0.86 - 0.22, top * 0.4 + 1.245); g.add(ap);
+    return g;
+  }
+  /* WASH: a broken band of white on still water round the hull at the waterline, wider at the bow,
+   * and THE SKIRT, the same foam standing on the hull's skin. Seen from a bank a few metres up a flat
+   * ring foreshortens to nothing, so the line a reader sees is the skirt (no. 45, pixel round 2). */
+  function washRing(L, D, wlY, H, r, stationAt) {
+    // a canvas stores a transparent pixel as black, so a filtered foam texture fringes every fleck in
+    // black unless the texture and the material both treat the colour as premultiplied
+    const tex = (h, n, f) => { const t = canvasTex(1024, h, (x) => { for (let i = 0; i < n; i++) f(x); }, false); t.premultiplyAlpha = true; return t; };
+    const t = tex(32, 3200, (x) => { x.fillStyle = 'rgba(238,240,238,' + (0.18 + r() * 0.55).toFixed(2) + ')'; x.fillRect(r() * 1024, 4 + Math.pow(r(), 1.6) * 26, 1 + r() * 10, 1 + r() * 2.5); });
+    t.repeat.set(5, 1);
+    const NS = 90, pos = [], uv = [], idx = [];
+    for (let side = -1; side <= 1; side += 2) {
+      const base = pos.length / 3;
+      for (let i = 0; i <= NS; i++) { const u = i / NS, hb = halfAt(stationAt(u), wlY), z = -L / 2 + u * L + stemRake(u, wlY, D);
+        pos.push(side * Math.max(0, hb - 0.1), 0.03, z, side * (hb + 0.8 + 1.4 * Math.pow(u, 5)), 0.03, z); uv.push(u * 7, 1, u * 7, 0); }
+      for (let j = 0; j < NS; j++) { const a = base + j * 2; if (side < 0) idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); else idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+    }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); geo.setIndex(idx); geo.computeVertexNormals();
+    const ring = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: t, transparent: true, premultipliedAlpha: true, depthWrite: false, roughness: 0.9 }));
+    ring.renderOrder = 2; ring.userData.txWear = false;
+    const t2 = tex(64, 5200, (x) => { x.fillStyle = 'rgba(240,242,240,' + (0.3 + r() * 0.6).toFixed(2) + ')'; x.fillRect(r() * 1024, 63 - Math.pow(r(), 2.2) * 60, 2 + r() * 14, 1 + r() * 3); });
+    const sp = [], su = [], si = [];
+    for (let sd = -1; sd <= 1; sd += 2) { const b = sp.length / 3;
+      for (let i = 0; i <= NS; i++) { const u = i / NS, s = stationAt(u), z = -L / 2 + u * L + stemRake(u, wlY, D), top = 0.3 + 0.9 * Math.pow(u, 6);
+        sp.push(sd * (halfAt(s, wlY - 0.05) + 0.06), -0.05, z, sd * (halfAt(s, wlY + top) + 0.06), top, z); su.push(u * 9, 0, u * 9, 1); }
+      for (let j = 0; j < NS; j++) { const a = b + j * 2; si.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); } }
+    const g2 = new THREE.BufferGeometry(); g2.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3)); g2.setAttribute('uv', new THREE.Float32BufferAttribute(su, 2)); g2.setIndex(si); g2.computeVertexNormals();
+    const skirt = new THREE.Mesh(g2, new THREE.MeshStandardMaterial({ map: t2, transparent: true, premultipliedAlpha: true, depthWrite: false, roughness: 0.9, side: THREE.DoubleSide, emissive: 0xffffff, emissiveMap: t2, emissiveIntensity: 0.12 }));
+    skirt.renderOrder = 3; skirt.userData.txWear = false;
+    const w = new THREE.Group(); w.add(ring); w.add(skirt); return w;
+  }
+  function keelBlock(parent, x, z, h) {
+    K.box(1.4, h - 0.3, 0.9, MM.conc(), x, 0, z, 0.04, parent);
+    K.box(1.5, 0.15, 1.0, MM.timber(), x, h - 0.3, z, 0.01, parent);
+    K.box(1.5, 0.15, 1.0, MM.timber(), x, h - 0.15, z, 0.01, parent);
+  }
+
+  K.define('autonomous_vessel', {
+    size: [11.02, 16.35, 51.42],
+    anchor: 'base',
+    options: { length: 46, beam: 9.6, depth: 4.6, draft: 2.3, state: 'afloat', payload: 0, paint: '#9aa2aa', blocks: 1.4,
+      mast: true, rails: true, sheer: 0.3, flare: 0.6 },
+    note: 'An illustrative autonomous surface vessel, drawn to no maker\'s design: a hard chine steel hull with a sheer rising to a flared bow, a bulwark forward, stanchions and two rails aft, a black boot top and red antifouling, a long low windowless deckhouse in chamfered plate with a raked front, a four leg lattice mast with a yardarm, two sensor domes, an open array radar, a SATCOM radome and an EO/IR ball, two waterjets at the transom. state afloat (origin at the waterline, keel at -draft, foam wash and skirt) | blocks (on keel blocks `blocks` m high, origin on the ground). payload: edge in m of one primer steel block on the after deck, 0 for none. mast false leaves the mast off, rails false the stanchions. sheer and flare 0 give a flat deck line and a wall sided bow. Front is +z.',
+    make: (o, r) => {
+      const L = o.length, B = o.beam, D = o.depth, root = new THREE.Group(), g = new THREE.Group(); root.add(g);
+      const H = hullGeo(L, B, D, o), sAt = (u) => vStation(B, D, u, o.sheer, o.flare);
+      const pm = K.mat('mv-plate', Object.assign({ color: 0xffffff, map: hullPlate(o.paint, Math.min(0.9, o.draft / D)), side: THREE.DoubleSide }, PLATE_FINISH));
+      const dark = MM.dark();
+      const hm = K.mat('mv-house|' + o.paint, Object.assign({ color: 0xffffff, map: housePanel(o.paint), side: THREE.DoubleSide }, PLATE_FINISH));
+      const rail = K.mat('mv-rail|' + o.paint, Object.assign({ color: new THREE.Color(o.paint) }, PLATE_FINISH));
+      [H.sides, H.transom].forEach((geo) => { const m = new THREE.Mesh(geo, pm); m.castShadow = m.receiveShadow = true; g.add(m); });
+      const dk = new THREE.Mesh(H.deck, MM.deck()); dk.receiveShadow = true; g.add(dk);
+      const edge = (u, inset, dy) => { const s = sAt(u)[4]; return [s[0] - inset, s[1] + dy, -L / 2 + u * L + stemRake(u, s[1], D)]; };
+      // the rubbing strake along the knuckle, a dark half round
+      [-1, 1].forEach((sd) => {
+        const pts = []; for (let i = 2; i <= 30; i++) { const u = i / 32, s = sAt(u)[3]; pts.push([sd * (s[0] + 0.05), s[1], -L / 2 + u * L + stemRake(u, s[1], D)]); }
+        const tube = TXT.tube(pts, 0.13, dark, { segments: 64, radial: 8 }); tube.castShadow = true; g.add(tube);
+      });
+      // THE BULWARK: a plate standing on the deck edge from 60 percent of the length to the stem,
+      // rising from nothing to a metre, with a capping rail. It is what makes a bow read as a ship's.
+      const BW0 = 0.6, bp = [], bi = [], NB = 40;
+      [-1, 1].forEach((sd) => {
+        const base = bp.length / 3;
+        for (let i = 0; i <= NB; i++) { const u = BW0 + (1 - BW0) * i / NB, hgt = 1.0 * Math.min(1, (u - BW0) / 0.08), a = edge(u, 0.04, 0), b = edge(u, 0.1, hgt);
+          bp.push(sd * a[0], a[1], a[2], sd * b[0], b[1], b[2]); }
+        for (let i = 0; i < NB; i++) { const a = base + i * 2; bi.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); }
+        const cap = []; for (let i = 0; i <= 20; i++) { const u = BW0 + 0.08 + (0.92 - BW0 - 0.08) * i / 20; const b = edge(Math.min(0.995, u), 0.1, 1.0); cap.push([sd * b[0], b[1], b[2]]); }
+        const cr = TXT.tube(cap, 0.06, rail, { segments: 48, radial: 6 }); cr.castShadow = true; g.add(cr);
+      });
+      const bg = new THREE.BufferGeometry(); bg.setAttribute('position', new THREE.Float32BufferAttribute(bp, 3)); bg.setIndex(bi); bg.computeVertexNormals();
+      // the bulwark takes the house's panel, never the hull's skin: the skin's v runs keel to deck,
+      // and a bulwark above the deck would print the boot top's black and red bands along the bow
+      K.uvBox(bg, 4); const bw = new THREE.Mesh(bg, hm); bw.castShadow = bw.receiveShadow = true; g.add(bw);
+      // STANCHIONS and two rails aft, from the transom to the deckhouse
+      if (o.rails) {
+        const posts = [], z0 = 0.03, z1 = 0.4, n = Math.max(2, Math.round((z1 - z0) * L / 1.8));
+        [-1, 1].forEach((sd) => {
+          for (let i = 0; i <= n; i++) { const u = z0 + (z1 - z0) * i / n, a = edge(u, 0.18, 0); posts.push(K.bar([sd * a[0], a[1], a[2]], [sd * a[0], a[1] + 1.0, a[2]], 0.03, rail, 6)); }
+          for (const hh of [0.55, 1.0]) { const pts = []; for (let i = 0; i <= 8; i++) { const a = edge(z0 + (z1 - z0) * i / 8, 0.18, hh); pts.push([sd * a[0], a[1], a[2]]); } g.add(TXT.tube(pts, 0.022, rail, { segments: 32, radial: 5 })); }
+        });
+        g.add(K.merge(posts, rail));
+      }
+      // THE DECKHOUSE: long, low, chamfered plate with a raked front, and a smaller upper level set
+      // back on it, both windowless. Its base sits at the deck under its own front.
+      const hz0 = -L / 2 + L * 0.44, hl = L * 0.27, hy = sAt(0.71)[4][1] - 0.05, hw = B * 0.72;
+      const h1 = new THREE.Mesh(K.uvBox(rakedPrism(houseSection(hw, 2.7, 0.16, 0.35), hl, 0.55, 0.12), 4), hm);
+      h1.position.set(0, hy - 0.4, hz0); g.add(h1);
+      const top1 = hy - 0.4 + 2.7, w2 = hw * 0.62, l2 = hl * 0.5;
+      const h2 = new THREE.Mesh(K.uvBox(rakedPrism(houseSection(w2, 1.9, 0.2, 0.28), l2, 0.7, 0.1), 4), hm);
+      h2.position.set(0, top1, hz0 + hl * 0.3); g.add(h2);
+      [h1, h2].forEach((m) => { m.castShadow = m.receiveShadow = true; });
+      const top2 = top1 + 1.9;
+      if (o.mast !== false) {
+        const mast = latticeMast(6.2, 1.7, 0.7, dark, MM.dome(), MM.lens());
+        mast.position.set(0, top2, hz0 + hl * 0.3 + l2 * 0.45); g.add(mast);
+      }
+      // waterjets at the transom
+      [-1, 1].forEach((sd) => { const j = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.48, 1.1, 18), dark); j.rotation.x = Math.PI / 2; j.position.set(sd * 1.6, D * 0.32, -L / 2 - 0.45); j.castShadow = true; g.add(j); });
+      if (o.payload > 0) { const e = o.payload, blk = TXT.roundedBox(e, e, e, 0.04, MM.primer()); blk.position.set(0, D + 0.12 + e / 2, -L * 0.2); blk.rotation.y = 0.44; blk.castShadow = blk.receiveShadow = true; g.add(blk); }
+      g.traverse((m) => { if (m.isMesh && m.material !== MM.deck()) m.castShadow = true; });
+      if (o.state === 'blocks') {
+        g.position.y = o.blocks;
+        for (let z = -L / 2 + 2; z < L / 2 - 6; z += 1.83) keelBlock(root, 0, z, o.blocks);
+        for (let zb = -L / 2 + 6; zb < L / 2 - 12; zb += 9) [-1, 1].forEach((sd) => { const u = (zb + L / 2) / L; keelBlock(root, sd * B * 0.28, zb, o.blocks + sAt(u)[1][1]); });
+      } else {
+        g.position.y = -o.draft;
+        // the wash is built in the root's frame, on the water at y 0, round the hull's waterline
+        root.add(washRing(L, D, o.draft, H, r, sAt));
+      }
+      root.userData.draft = o.draft; root.userData.length = L;
+      return root;
+    },
+  });
+
+  /* KEEL_BLOCK_LINE: a line of keel blocks `length` m along +z from the origin, chamfered concrete
+   * bases under two timber caps, at `pitch` m (six feet by default), `h` m tall. */
+  K.define('keel_block_line', {
+    size: [1.5, 1.4, 60],
+    anchor: 'base',
+    options: { length: 60, pitch: 1.83, h: 1.4 },
+    note: 'A line of keel blocks along +z from the origin, `length` m at `pitch` m, each a chamfered concrete base under two timber caps, `h` m tall. A ship on blocks is autonomous_vessel with state blocks.',
+    make: (o, r) => {
+      const g = new THREE.Group(), n = Math.floor(o.length / o.pitch) + 1;
+      const base = new THREE.BoxGeometry(1.4, o.h - 0.3, 0.9), cap = new THREE.BoxGeometry(1.5, 0.15, 1.0), bl = [], cl = [];
+      K.uvBox(base, 3); K.uvBox(cap, 1.2);
+      for (let i = 0; i < n; i++) { const z = i * o.pitch; bl.push([0, (o.h - 0.3) / 2, z, (r() - 0.5) * 0.04, 1]); cl.push([0, o.h - 0.225, z, (r() - 0.5) * 0.06, 1]); cl.push([0, o.h - 0.075, z, (r() - 0.5) * 0.06, 1]); }
+      g.add(K.instances(base, MM.conc(), bl)); g.add(K.instances(cap, MM.timber(), cl));
+      g.traverse((m) => { if (m.isMesh || m.isInstancedMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      return g;
+    },
+  });
+
   for (const n of ['pickup', 'sedan', 'suv', 'delivery_van', 'school_bus', 'semi_truck', 'utility_bucket_truck']) {
     const spec = K.registry[n], mk = spec.make;
     spec.make = (o, r) => mergeByMaterial(mk(o, r));

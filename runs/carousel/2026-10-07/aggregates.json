@@ -1,0 +1,98 @@
+{
+ "date": "2026-10-07",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "four build positions",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c14",
+   "quote": "Two to four build positions will handle final ship erection",
+   "note": "the release's own range, two to four, quoted; two drawn solid and two dashed"
+  },
+  {
+   "phrase": "10 production buildings",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c12",
+   "quote": "spread across 8 to 10 dedicated production buildings",
+   "note": "the release's own range, 8 to 10, quoted"
+  },
+  {
+   "phrase": "20 years",
+   "slide": "slide-06.html",
+   "kind": "duration",
+   "value": 20,
+   "quoted_from": "c28",
+   "quote": "The tax break would come in the form of a 95% tax abatement agreement over 20 years.",
+   "note": "the abatement's term as the Tribune reported it, quoted"
+  },
+  {
+   "phrase": "10,000 jobs",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 10000,
+   "quoted_from": "c5",
+   "quote": "is expected to generate up to 10,000 direct jobs",
+   "note": "Saronic's own up to figure, quoted"
+  },
+  {
+   "phrase": "20 years",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 20,
+   "quoted_from": "c28",
+   "quote": "The tax break would come in the form of a 95% tax abatement agreement over 20 years.",
+   "note": "the abatement's term as the Tribune reported it, quoted"
+  },
+  {
+   "phrase": "3 billion and direct jobs",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c4",
+   "quote": "represents a private capital investment of more than $3 billion",
+   "note": "Saronic's own investment figure, more than $3 billion, quoted, beside its jobs figure from c5"
+  },
+  {
+   "phrase": "Seven of the twenty",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 7,
+   "from_claims": [
+    "c29"
+   ],
+   "computed_by": "out/2026-10-07/compute.py, crew_local_drawn = crew_drawn 20 * local_pct 35 / 100",
+   "note": "a drawing rule, twenty workers drawn and the local share of them"
+  },
+  {
+   "phrase": "150 METRIC TONS",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 150,
+   "quoted_from": "c23",
+   "quote": "has a top speed of 25+ knots, a range of up to 5,400 nautical miles, and a modular payload capacity of 150 metric tons",
+   "note": "the Marauder's payload as Saronic states it, quoted; the block's edge is payload_block_edge_m"
+  },
+  {
+   "phrase": "5,400 NAUTICAL MILES",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 5400,
+   "quoted_from": "c23",
+   "quote": "has a top speed of 25+ knots, a range of up to 5,400 nautical miles, and a modular payload capacity of 150 metric tons",
+   "note": "the Marauder's range as Saronic states it, quoted"
+  },
+  {
+   "phrase": "835 acres",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 835,
+   "quoted_from": "c2",
+   "quote": "Situated on 835 acres at the Port of Brownsville",
+   "note": "the site's acreage, quoted; drawn as a square of side site_side_m"
+  }
+ ]
+}

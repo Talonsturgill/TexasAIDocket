@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-10-07, frame 6 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's highNoon world. The Cameron County commissioners courtroom from the back row's aisle, residents seated from behind, the walnut dais running past both edges under a lit window in the back wall. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The county voted before a site was chosen</h1>
+<p class="dek" data-follow="20">The Texas Tribune reported on June 18th that the court approved a $211 million tax break for Saronic, a 95% abatement over 20 years. Saronic said then it had not chosen a site.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Cameron County court, drawn to illustrate", counter: "06 / 09", src: "c26 c27 c28 c37", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 52, fog: 0.0, exposure: 0.85 });
+  TXT.interior(R, { w: 20, d: 12, h: 5.4, floor: 'concrete', joints: 0, tile: 2, wall: 0xb8ad9b, window: 'back', windowW: 2.0, windowH: 4.6, windowI: 0.74, windowColor: 0xe4ecf2, ceiling: false, light: 0.45 });
+  /* blue-grey carpet over the slab, a walnut wainscot on the back wall */
+  TXT.ground(R, { surface: 'concrete', size: 12, y: 0.006, tile: 1.8, joints: 3, seed: 71, color: 0x6d7785, wear: false });
+  const wn = new THREE.MeshStandardMaterial({ color: 0x5a3a22, roughness: 0.55 }); const wsc = TXT.roundedBox(20, 1.1, 0.06, 0.01, wn); wsc.position.set(0, 0.55, -5.86); wsc.receiveShadow = true; TXT.add(R, wsc);
+  const dais = K.make('hearing_dais', { seats: 7, curve: 11, mics: true, plates: true }); dais.position.set(0, 0, -4.4); TXT.add(R, dais); TXT.contact(R, dais);
+  const sp = K.make('seal_plaque', { finish: 'bronze' }); sp.position.set(3.3, 2.0, -5.86); TXT.add(R, sp);
+  /* three rows of public chairs facing the dais, residents seated on the chairs themselves */
+  const ps = K.make('public_seating', { rows: 3, perRow: 10, type: 'chairs', frame: 'black' }); ps.rotation.y = Math.PI; ps.position.set(0, 0, 0.6); TXT.add(R, ps); TXT.contact(R, ps, { opacity: 0.4 });
+  const XS = [-2.97, -2.41, -1.85, -1.29, -0.73, 0.73, 1.29, 1.85, 2.41, 2.97], ROWZ = [-0.35, 0.6, 1.55];
+  const SEATS = [[0, 1], [0, 3], [0, 6], [0, 8], [1, 2], [1, 4], [1, 5], [1, 7], [2, 3], [2, 6]];
+  SEATS.forEach(([row, k], i) => { const q = K.make('person', { seed: 80 + i, role: 'resident', pose: 'sit_read', hat: 'none' }); q.rotation.y = Math.PI; q.position.set(-XS[k], 0, ROWZ[row]); TXT.add(R, q); });
+  /* the camera sits in the back row's aisle seat, behind a resident's shoulder */
+  TXT.frame(R, { from: [0.15, 1.3, 3.3], look: [0.1, 0.7, -4.4] });
+  { const mu = new THREE.MeshStandardMaterial({ color: 0x4a443c, roughness: 0.6 }); for (const dx of [-1.0, -0.33, 0.33, 1.0]) { const b = TXT.roundedBox(0.08, 4.6, 0.06, 0.01, mu); b.position.set(-4.0 + dx, 2.97, -5.86); TXT.add(R, b); } }
+  TXT.deckRig(R, PA.rigSpec(W, 24, 4096), PA.rigOpts([0, 0, -2], { distance: 30, shadowFar: 80 }));
+  TXT.weather(R, { grime: 0.1, height: 0.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.28, siteBlur: 24, footWash: 0.5 });
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>
