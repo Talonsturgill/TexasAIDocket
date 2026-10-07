@@ -305,7 +305,8 @@
         "2026-10-03",
         "2026-10-04",
         "2026-10-05",
-        "2026-10-06"
+        "2026-10-06",
+        "2026-10-07"
       ],
       "contradicted": []
     },
@@ -607,7 +608,8 @@
         "2026-10-02",
         "2026-10-03",
         "2026-10-04",
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-07"
       ],
       "contradicted": []
     },
@@ -790,7 +792,8 @@
         "2026-09-29",
         "2026-10-03",
         "2026-10-04",
-        "2026-10-06"
+        "2026-10-06",
+        "2026-10-07"
       ],
       "contradicted": []
     },
@@ -1312,6 +1315,22 @@
       "learned": "2026-10-06",
       "instinct": "When an aerial must show a distance, rake a bare strip lighter than the field under the row, because a row of stakes from 45 m up is sub-pixel at 432 px and the strip is what reads.",
       "evidence": "Carousel no. 44, 2026-10-06. Frame 3's 400, 500 and 700 foot rows read as nothing in pixel round 1 and as three clear lines once each stood on a raked strip with the furrows stopped short of it. The same move made frame 8's fourteen blocks countable.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "lay-out-a-counted-crowd-by-projection",
+      "learned": "2026-10-07",
+      "instinct": "When a frame's claim is a count, place each counted thing through the frame's own camera so none hides behind another.",
+      "evidence": "No. 45 frame 8 promised twenty workers with seven in vests. Random positions showed fourteen and six to the pixel critics, and a projected four-row layout showed all twenty and seven at the next render.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stand-the-wash-on-the-hull",
+      "learned": "2026-10-07",
+      "instinct": "Stand a ship's waterline foam on the hull's skin, because a ring flat on the water vanishes from a low bank.",
+      "evidence": "No. 45's flat wash ring was invisible to the pixel critics on frames 1 and 3 in round 2, and a foam skirt standing on the hull passed round 3.",
       "confirmed": [],
       "contradicted": []
     }

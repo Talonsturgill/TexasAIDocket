@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Every frame stands in a world, humid noon haze with a horizon and a ground. The hero is a flat slab hull with a stepped deckhouse, a primitive on most frames. S4's ground is a blurred noise albedo that reads as murky water with a striped artifact at the foot. S7 repeats the noise scrub over a black water band with a grey slab at the foot. S8's deckhouse ghosts behind the dek. S5's deckhouse runs under the dek. S6 has a hat clipping a head and mullions crossing the dek."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one hero, one bluebonnet accent for release figures, two working devices, no strobe. The two aerials' noise ground matches neither the clay nor the water."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Numerals trace and attribution holds. S9's dek turns c9's up to 850 feet into the length of the first ships, a claim that stretches its source. S3 puts the Marauder's figures on the hull that S5 and S8 put on Port Alpha's blocks while c16 names LCUs for the first phase. S6 is an invented interior with no drawn line. S4 and S7 show the hull without saying it is drawn. S7 says the positions are to scale though the release gives no dimensions. aggregates.json carries stale slide references and the first comment omits c4 and c6."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Body, decision, place and sequence are named and the cover says it first. Nothing says what a Texan can do next. Frames 2 and 3 spend two slots on Saronic's marketing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The cover earns the swipe, frames 2 and 3 do not pay it, the turn at 6 repeats the cover, and the close's dek splits."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register, specific to Brownsville. Production notes stand in for voice, drawn to illustrate on six frames, and the kicker repeats on 2 and 3."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The first maritime deck in the window with a new palette. Plan figures as accent lines on a field with a person for scale repeats yesterday's deck."
+  }
+ ],
+ "weighted_score": 6.1,
+ "hard_fails": [
+  "an unverified fact presented as verified: slide 9 dek 'The line runs 850 feet, the length of the first ships Saronic says the yard will build.' c9 is a capability ceiling, up to 850 feet, and c16 names Navy landing craft for the first phase. Repair: 'The line runs 850 feet, the longest Saronic says the yard can build at first.'"
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite slide 9's dek so 850 feet is the most Saronic says the yard can build at first, and stop the hull reading as a Marauder Port Alpha has not been shown to build.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The aerial ground is a blurred noise albedo that reads as murky water, the hull an invisible speck, a striped artifact along the foot",
+   "fix": "Drop the camera and replace the noise albedo with the delta clay ground and scatter, and remove the striped band at the foot"
+  },
+  {
+   "slide": 8,
+   "problem": "The deckhouse is faded into a translucent ghost behind the dek",
+   "fix": "Move the camera back so the sheer sits below the dek's last baseline and the fade has nothing to cover"
+  },
+  {
+   "slide": 2,
+   "problem": "The close-up exposes the primitive mast and sandbag riprap",
+   "fix": "Model sensor arms, radomes and a railed platform, and use the angular stones from S1"
+  },
+  {
+   "slide": 7,
+   "problem": "Noise scrub, a flat black water band and a grey slab at the foot",
+   "fix": "Give the channel frame 1's water, remove the bottom slab, and place the production halls inland of the build positions"
+  },
+  {
+   "slide": 6,
+   "problem": "A hat clipping a head, a resident cut at the edge, mullions through the dek",
+   "fix": "Move the camera so the resident is whole, delete the clipped figure, and slide the window left so the dek sits on plain wall"
+  }
+ ]
+}

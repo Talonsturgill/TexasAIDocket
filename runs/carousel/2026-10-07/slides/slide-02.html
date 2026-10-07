@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- 2026-10-07, frame 2 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's highNoon world. The hull's faceted deckhouse and sensor mast from the yard bank at close range, the far bank low under the deckhouse line. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:560px; }
+  .hook { width:600px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">An autonomous boat made a rescue, Saronic says</h1>
+<p class="dek" data-follow="24">Its home page claims the first known at-sea rescue by an autonomous boat. The deckhouse and mast are drawn to illustrate, not Saronic's design.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Saronic, in its own words", counter: "02 / 09", src: "c24", fit: { min: 78, max: 100, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 30, fog: 0.0012 });
+  PA.water({ seed: 5, tile: 70, ripple: 0.45, color: 0x24302a });
+  const yard = TXT.ground(R, { surface: 'dirt', size: 8000, y: PA.BANK, tile: 6, seed: 41, color: 0x6f655a }); yard.position.z = -4000;
+  const nb = K.make('riprap_bank', { length: 3000, top: PA.BANK, toe: -1.2, run: 5, stones: 1, seed: 7 }); TXT.add(R, nb);
+  const south = TXT.ground(R, { surface: 'grass', size: 8000, y: PA.FAR, tile: 7, seed: 52, color: 0x8c8a62 }); south.position.z = PA.CHANNEL + 4000;
+  const sb = K.make('riprap_bank', { length: 3000, top: PA.FAR, toe: -1.2, run: 4, stones: 1, seed: 9 }); sb.rotation.y = Math.PI; sb.position.set(0, 0, PA.CHANNEL); TXT.add(R, sb);
+  { const rr = PA.lcg(29); for (let i = 0; i < 90; i++) { const t = K.make(rr() < 0.45 ? 'palm' : 'mesquite', { seed: 500 + i }); t.position.set(-900 + rr() * 1800, PA.FAR, PA.CHANNEL + 20 + rr() * 300); TXT.add(R, t); } }
+  const nb2 = K.make('riprap_bank', { length: 160, top: PA.BANK, toe: -1.2, run: 5, stones: 4, seed: 21 }); nb2.position.set(-20, 0.02, 0.05); TXT.add(R, nb2);
+  const v = PA.vessel({ state: 'afloat' }); v.rotation.y = Math.PI / 2; v.position.set(0, 0, 11.5); TXT.add(R, v);
+  TXT.frame(R, { from: [-30, PA.BANK + 1.7, -4], look: [8.1, 8.4, 8.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 40, 4096), PA.rigOpts([4, 0, 11], { distance: 200, shadowFar: 500 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.12, siteBlur: 24, footWash: 0.45 });
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

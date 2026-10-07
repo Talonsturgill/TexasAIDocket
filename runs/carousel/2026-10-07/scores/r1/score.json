@@ -1,0 +1,236 @@
+{
+ "weighted_score": 6.55,
+ "judges": [
+  6.1,
+  6.55,
+  6.55
+ ],
+ "spread": 0.45,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.5,
+   "weight": 0.22,
+   "judges": [
+    5.5,
+    5.5,
+    5.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    5.0,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.0,
+    6.0
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "an unverified fact presented as verified: slide 9 dek 'The line runs 850 feet, the length of the first ships Saronic says the yard will build.' c9 is a capability ceiling, up to 850 feet, and c16 names Navy landing craft for the first phase. Repair: 'The line runs 850 feet, the longest Saronic says the yard can build at first.'"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "an unverified fact presented as verified: slide 9 dek 'The line runs 850 feet, the length of the first ships Saronic says the yard will build.' c9 is a capability ceiling, up to 850 feet, and c16 names Navy landing craft for the first phase. Repair: 'The line runs 850 feet, the longest Saronic says the yard can build at first.'"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.55 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.55 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.55,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.55 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.55,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.55 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The aerial ground is a blurred noise albedo that reads as murky water, the hull an invisible speck, a striped artifact along the foot",
+     "fix": "Drop the camera and replace the noise albedo with the delta clay ground and scatter, and remove the striped band at the foot"
+    },
+    {
+     "judge": 2,
+     "problem": "No hero and no scale, a bordered square on a blurred noise ground that reads as lichen or water",
+     "fix": "Drop the camera to about 60 m oblique over the south bank with the hull moored at the near bank in the lower left third, the square's edges running away behind it, and frame 1's scrub-and-clay ground"
+    },
+    {
+     "judge": 3,
+     "problem": "The ground is a blurred noise texture under a blue square, with no landmark, no hull at true scale and no horizon interest",
+     "fix": "Drop the camera to about 150 m oblique from over the channel with the hull afloat in the near third, and swap the noise ground for clay and scrub scatter"
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A hat clipping a head, a resident cut at the edge, mullions through the dek",
+     "fix": "Move the camera so the resident is whole, delete the clipped figure, and slide the window left so the dek sits on plain wall"
+    },
+    {
+     "judge": 2,
+     "problem": "A cylinder flag, a ponytail clipping a hat brim, mullions under the type",
+     "fix": "Turn the camera about 15 degrees right so the window sits right of the type column, and swap the hatted figure for an uncapped one"
+    },
+    {
+     "judge": 3,
+     "problem": "Kit mannequins with a hat brim cutting into a head, a twisted flag and window mullions under the type",
+     "fix": "Pan the camera so the window sits right of the type column and seat the residents one row further back"
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Noise scrub, a flat black water band and a grey slab at the foot",
+     "fix": "Give the channel frame 1's water, remove the bottom slab, and place the production halls inland of the build positions"
+    },
+    {
+     "judge": 2,
+     "problem": "The same smeared aerial texture, white box buildings, a black water slab and a grey fade band under the source line",
+     "fix": "Lower the camera to about 40 m looking west along the quay with the hull moored in the near third, the positions receding inland, and the bottom fade removed"
+    },
+    {
+     "judge": 3,
+     "problem": "The aerial ground repeats frame 4's noise texture and the channel is a flat near-black band",
+     "fix": "Give the channel frame 1's sky-reflecting water and render the yard as graded clay with scrub, the hull large enough to read"
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The deckhouse is faded into a translucent ghost behind the dek",
+     "fix": "Move the camera back so the sheer sits below the dek's last baseline and the fade has nothing to cover"
+    },
+    {
+     "judge": 2,
+     "problem": "The deckhouse renders semi-transparent behind the dek and a hull edge crosses dek line 2",
+     "fix": "Lower and pull back the camera so the sheer sits below css y 520 and the deckhouse clears the dek"
+    },
+    {
+     "judge": 3,
+     "problem": "The deckhouse ghosts behind the dek and the twenty stand in a stiff cluster",
+     "fix": "Lower and tilt the camera so the deckhouse is out of the type band and push the crowd back into working poses along the blocks"
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The close-up exposes the primitive mast and sandbag riprap",
+     "fix": "Model sensor arms, radomes and a railed platform, and use the angular stones from S1"
+    },
+    {
+     "judge": 3,
+     "problem": "The mast is a tapered box with a T-bar and a sphere beside sandbag-like riprap",
+     "fix": "Model sensor arms, radome housings and plate seams, and use frame 1's riprap stones wet at the waterline"
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A flat-lit plank on dead water with a blurred beige foreground",
+     "fix": "Yaw the hull about 30 degrees so the sun lights one flank, add darkening beneath it, and lower the camera so wet riprap owns the bottom-left corner"
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Dek lines 1 to 3 print across the deckhouse",
+     "fix": "Pan the camera about 8 degrees right and lower so the superstructure tops out below css y 520"
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "One rendered noon world with contact shadows and a horizon. The hull's stacked-frustum deckhouse reads as a lighthouse on slide 2. Slide 4 is a noise plane with outline strips and a 4 px hull. Slide 7 reads as a game board. Slide 6 has collar mesh tears, an empty dais and a blank seal. Slide 3's radome sits under the 5,400 label and the hull looks beached against the far bank. Slide 5's deckhouse sits behind the dek. Slide 8 is the strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One deck, one sky, one accent, one hull motif, frame 9 reusing frame 5's camera, no strobe. The aerials read map-like and the deckhouse reads glassy on 5 and 8 against matte plate on 1 to 3."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and company figures are attributed. The county action rests on the Tribune alone. Slide 1's its tax break and slide 9's condition present the June abatement as the live deal though no source shows Saronic accepted it, literally the Tribune's sentences but read as a signed deal."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What, who, where and the terms are clear. No deadline, review, meeting or place to read the agreement. Fall short can't be weighed without the required job count."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The cover earns the swipe, frames 2 and 3 are cuttable, 6 restates the cover, the close on 9 lands over a strong same-camera image."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean with a good caption opener. The disclaimers on seven frames weigh it down and some lines are stilted. Little regional knowledge."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh subject and accent. The highNoon sky at the same elevation as no. 42, the empty hearing room and the same-camera close with a pickup and a person repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.36,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Spend frames 2 and 3 on what the county can hold Saronic to, from the court's own order, and close on where a resident can read the agreement.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The deckhouse fills the frame and reads as a lighthouse",
+   "fix": "Model chamfered plate with sensor arms and a lattice mast, and drop the camera to the waterline so the bow leads the frame"
+  },
+  {
+   "slide": 4,
+   "problem": "A noise plane with outline strips under fog, the hull a 4 px speck",
+   "fix": "Pull back and south so the channel and bank fill the lower third with the hull at least 40 px long"
+  },
+  {
+   "slide": 6,
+   "problem": "Collar mesh tears, an empty dais, a blank seal",
+   "fix": "Swap the nearest figures, seat five commissioners backlit by the window, map the county seal"
+  },
+  {
+   "slide": 3,
+   "problem": "The radome under the label, arbitrary leader anchors, the hull jammed against the far bank",
+   "fix": "Move the range label above the mast, land the leaders on the bow wash and midship, lower the camera"
+  },
+  {
+   "slide": 5,
+   "problem": "The deckhouse behind the dek, the block line a dark wall, a glassy deckhouse",
+   "fix": "Move the hull down and left, use frame 1's matte plate, and space the blocks"
+  },
+  {
+   "slide": 7,
+   "problem": "Flat strips and identical boxes reading as a game board, a black channel",
+   "fix": "Drop to about 80 m along the bank with the hull moored at the quay and varied building heights"
+  }
+ ]
+}

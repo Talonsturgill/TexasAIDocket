@@ -2810,6 +2810,62 @@
     "hex": "#1E1A16",
     "note": "The deck's declared ground, a dark clay deck with light type."
    }
+  },
+  {
+   "date": "2026-10-07",
+   "carousel_no": 45,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-07/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A humid Gulf noon deck on the Brownsville Ship Channel. One portalpha world (highNoon sky, haze #D3D8D4, sun at az 25 el 58) declared once in assets/js/deck/2026-10-07-portalpha.js. One hero, an illustrative hard chine autonomous hull built in the chassis, carried through seven frames and absent by design on the courtroom and the close. Chassis kit models for the hull, a keel block line and a riprap bank.",
+   "structural_laws": [
+    "A WASH RING FLAT ON THE WATER FORESHORTENS TO NOTHING FROM A BANK A FEW METRES UP. Stand the foam on the hull's skin at the waterline instead.",
+    "TXT.scatter SEEDS AT Y 0, SO LAND RAISED ABOVE THE WATER BURIES EVERY FIELD UNDER IT. Lift each field by the bank's height.",
+    "A TILED GROUND TEXTURE STROBES INTO A CHECKER FROM 1,000 M. Paint soft seeded patches tens of metres across on a canvas instead.",
+    "A CROWD LAID OUT BY RANDOM POSITIONS HIDES A THIRD OF ITSELF. When the count is the claim, lay the rows out by projection so every body stays visible.",
+    "A BRIGHT WINDOW BEHIND A HEADLINE READS AS A STRIKE WHERE GLYPHS BREAK IT. Keep it within 28 grey levels of the wall behind the type."
+   ],
+   "techniques": [
+    "the illustrative hull afloat three quarters on across the channel from the south bank, the yard bank's palms and sheds in haze",
+    "the faceted deckhouse and mast from the yard bank at close range, the far bank low under it",
+    "the hull broadside on a long lens with one primer steel block for its 150 tonne payload, three plan ink leaders to labels on the sky",
+    "the yard bank from 1,000 m, a graded square for 835 acres and a dashed square for nearly 4,400",
+    "the hull on keel blocks on graded clay, the block line and a plan ink line running 850 feet into haze, a person and a pickup",
+    "the commissioners courtroom from the back row's aisle, residents seated from behind, the walnut dais cropped past both edges",
+    "the bank from 260 m over the channel, the quay line and four build positions, two solid and two dashed",
+    "twenty workers in four staggered rows before the hull on its blocks, seven in plan ink vests",
+    "frame 5's camera to the centimetre, the hull and blocks gone, their footprint worn into the clay beside the line"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     59.5,
+     61.9,
+     58.6,
+     59.3,
+     54.2,
+     43.5,
+     55.2,
+     56.6,
+     56.2
+    ],
+    "deck_median_L": 56.6,
+    "max_adjacent_delta": 11.7,
+    "mean_adjacent_delta": 4.46,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A mid light noon deck, the courtroom at frame 6 the declared dip."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet, the plan's ink",
+    "frames_above_floor": [
+     3,
+     5,
+     7,
+     9
+    ],
+    "note": "The ink marks a release figure that is not built, and the seven local vests."
+   },
+   "ground": {
+    "hex": "#5E6266",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

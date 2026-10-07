@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-06",
+  "generated": "2026-10-07",
   "gates": [
    "banned words",
    "claims",
@@ -2931,6 +2931,10 @@
     {
      "date": "2026-10-04",
      "note": "The city's notice of the amended Compal agreement is still gone from its site, and no outcome of the council item has been published."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The city's notice of the amended Compal abatement is still off its site, and the meeting video bars automated readers, so where the abatement stands is unconfirmed."
     }
    ]
   },
@@ -4441,6 +4445,10 @@
     {
      "date": "2026-10-06",
      "note": "Guadalupe County's exit from its Flock contract is still unconfirmed. The county's minutes and both published accounts bar automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Guadalupe County's end of its plate reader contract is still unconfirmed. The county's minutes and both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -5317,6 +5325,10 @@
     {
      "date": "2026-10-06",
      "note": "The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers."
     }
    ],
    "unreachable": {
@@ -5669,6 +5681,10 @@
     {
      "date": "2026-10-06",
      "note": "Archer County's denial of the Dynamo Ventures abatement is still unconfirmed. The only account of the vote bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Archer County's denial of the abatement is still unconfirmed. The only published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -5767,7 +5783,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-08-19",
@@ -5857,6 +5873,11 @@
     {
      "date": "2026-10-04",
      "note": "The court's own minutes of its July 14th session now carry the vote. They record the motion to approve Resolution 010-26 and no member voting against it."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The county's own minutes still record the resolution asking the state for authority over data centers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6045,6 +6066,10 @@
     {
      "date": "2026-10-06",
      "note": "Lubbock County's disclosure resolution is still unconfirmed. The only account of it bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Lubbock County's disclosure resolution is still unconfirmed. The only published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -6161,7 +6186,7 @@
     }
    ],
    "id": "tx-2026-0046",
-   "last_verified": "2026-10-03",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-08-19",
@@ -6237,6 +6262,11 @@
     {
      "date": "2026-10-06",
      "note": "Carson County's phased abatement with Fermi America is unconfirmed this time. The published account behind it bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The abatement Carson County approved still stands, and the developer's own quarterly filing still describes the project as it did.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -7735,6 +7765,10 @@
     {
      "date": "2026-10-06",
      "note": "Conroe's failed vote to send its camera contract to the ballot is still unconfirmed. Both published accounts bar automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Conroe's tabled plate camera question is still unconfirmed. The city's minutes and both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -8812,6 +8846,10 @@
      "date": "2026-10-04",
      "note": "Community Impact's fetched account supports the council's first steps toward a 90 day pause and the February 16th adoption timeline after hearings and readings. The pause is not yet in force. KERA's cited account refused the fetch, so its wording remains unconfirmed. Both existing claim outcomes were checked against Community Impact's full account.",
      "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Community Impact's account of Fort Worth's first steps toward the pause still reads as cited, and the pause is not yet in force. KERA's account refused the request, so its part of the entry is unconfirmed."
     }
    ]
   },
@@ -11029,6 +11067,10 @@
     {
      "date": "2026-10-06",
      "note": "Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths closed to automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The two House committees' interim hearings are still unconfirmed on the Legislature's own pages, which bar automated readers."
     }
    ],
    "unreachable": {
@@ -13884,6 +13926,10 @@
     {
      "date": "2026-10-06",
      "note": "The AI training requirement for state and local employees is still unconfirmed this time. The bill's record sits on a path closed to automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The AI training requirement for state and local employees is still unconfirmed on the Legislature's bill page, which bars automated readers."
     }
    ],
    "unreachable": {
@@ -15396,6 +15442,10 @@
     },
     {
      "date": "2026-10-06",
+     "note": "The RELLIS abatement assignment is still unconfirmed. Brazos County's notice and the one published account of it both bar automated readers."
+    },
+    {
+     "date": "2026-10-07",
      "note": "The RELLIS abatement assignment is still unconfirmed. Brazos County's notice and the one published account of it both bar automated readers."
     }
    ],
@@ -17532,6 +17582,10 @@
     {
      "date": "2026-10-06",
      "note": "The technology agency's account of how it carries out the four AI laws is still unconfirmed. Its site bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The state technology agency's page on carrying out the AI laws is still unconfirmed. Its site bars automated readers."
     }
    ],
    "unreachable": {
@@ -18660,6 +18714,10 @@
     {
      "date": "2026-10-06",
      "note": "The facial capture demonstration at the Progreso bridge is still unconfirmed. The department's site turns away every automated reader."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The pedestrian face capture trial at the border is still unconfirmed. The department's own feature refuses every reader."
     }
    ],
    "unreachable": {
@@ -19231,7 +19289,7 @@
    ]
   },
   {
-   "title": "The Supreme Court of Texas will hear argument on October 6th in a mandamus proceeding the court reporters' association has entered",
+   "title": "The Supreme Court of Texas set argument for October 6th in a mandamus proceeding the court reporters' association has entered",
    "summary": "In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.",
    "topic": "state-policy",
    "decider": {
@@ -19266,8 +19324,8 @@
     }
    ],
    "public_access": {
-    "room": "open_meeting",
-    "how": "The court publishes the full docket, the briefs and the argument date on its own case page, and it posts video of its oral arguments. Anyone can read what each side filed before the argument is heard.",
+    "room": "contact_only",
+    "how": "The argument date has passed and the court's ruling is pending. The court publishes the full docket and the briefs on its own case page, and it posts video of its oral arguments. Anyone can read what each side filed.",
     "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup"
    },
    "claims": [
@@ -19306,6 +19364,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-07",
      "id": "tx-2026-0127-c4"
+    },
+    {
+     "text": "The court's submission schedule for its October 6th sitting lists the case for oral argument and names the relator's counsel.",
+     "verbatim_quote": "Relator will be represented by Bradley W. Snead (Wright Close Barger & Guzman), from Houston.",
+     "source_url": "https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf",
+     "source_title": "Supreme Court of Texas, Submission Schedule, Tuesday, October 6, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0127-c5"
     }
    ],
    "id": "tx-2026-0127",
@@ -19374,6 +19441,11 @@
     {
      "date": "2026-10-06",
      "note": "Whether the court heard argument today as set is unconfirmed. Its case page sits on a host that bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The court's own submission schedule for October 6th lists In re Patrick Hughey for argument that morning, with a deposition reporters' association heard as amicus. The court's ruling is what comes next.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -19585,6 +19657,10 @@
     {
      "date": "2026-10-06",
      "note": "Whether Frontera's queues closed for good on October 1st is still unconfirmed. The user guide that set the date sits on a site that bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Whether Frontera's queues closed for good as scheduled is still unconfirmed. The center's user guide sits on a site that bars automated readers."
     }
    ],
    "unreachable": {
@@ -21658,7 +21734,7 @@
    "confidence": "high",
    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
    "id": "tx-2026-0144",
-   "last_verified": "2026-10-06",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-11",
@@ -21735,6 +21811,11 @@
     },
     {
      "date": "2026-10-06",
+     "note": "The energy department's comment window on securing the grid is still open, closing October 9th.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
      "note": "The energy department's comment window on securing the grid is still open, closing October 9th.",
      "checked": true
     }
@@ -22564,7 +22645,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-13",
@@ -22606,6 +22687,11 @@
     {
      "date": "2026-10-04",
      "note": "The panel's recommendations still read as published in the abstract, including its call for an implementation framework and for reimbursement that allows the work to continue."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.",
+     "checked": true
     }
    ]
   },
@@ -22707,7 +22793,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0151",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-13",
@@ -22749,6 +22835,11 @@
     {
      "date": "2026-10-04",
      "note": "The study's result still reads as published. The abstract still reports limited standalone discrimination for survival and still advises cautious use of the score as an exploratory marker."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The MRI study's published abstract and its author affiliations read as they did, with nothing changed.",
+     "checked": true
     }
    ]
   },
@@ -24189,6 +24280,10 @@
     {
      "date": "2026-10-06",
      "note": "The three campus trial of a phone microphone counting fetal movement is still unconfirmed. Its registry record is served only on a path that bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The three campus trial's registry record is still unconfirmed. The registry bars automated readers."
     }
    ],
    "unreachable": {
@@ -24376,6 +24471,10 @@
     {
      "date": "2026-10-06",
      "note": "Local reporting still carries the court's September 15th vote moving the Axon money to corrections officers. The sheriff's posted commitment is unconfirmed, because the agenda portal bars automated readers and the county's minutes did not answer."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Community Impact's account of the reallocation away from the AI report writing tool still reads as cited. The county's own agenda and the sheriff's posted promise could not be read, so that part is unconfirmed."
     }
    ],
    "last_verified": "2026-09-26",
@@ -24529,6 +24628,10 @@
     {
      "date": "2026-10-06",
      "note": "Whether the clerk's request for AI written minutes is still before the court is unconfirmed. The posted agenda bars automated readers and the county's minutes did not answer."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Whether the clerk's request for AI written minutes is still before the court is unconfirmed. The posted agenda bars automated readers and the county's own site refused the request."
     }
    ],
    "last_verified": "2026-09-26",
@@ -24673,6 +24776,10 @@
     {
      "date": "2026-10-06",
      "note": "Whether Hays County has adopted its policy on AI in surveillance is unconfirmed. The posted agenda bars automated readers and the county's minutes did not answer."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Whether Hays County has adopted its policy on AI in surveillance is unconfirmed. The posted agenda bars automated readers and the county's own site refused the request."
     }
    ],
    "last_verified": "2026-09-26",
@@ -24827,6 +24934,10 @@
     {
      "date": "2026-10-06",
      "note": "The Governor's directive to the water board is still unconfirmed this time. His office's site bars automated readers."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The governor's directive to the water board is still unconfirmed on its own page, which bars automated readers."
     }
    ],
    "unreachable": {
@@ -25065,7 +25176,7 @@
     }
    ],
    "id": "tx-2026-0172",
-   "last_verified": "2026-10-06",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-19",
@@ -25100,6 +25211,11 @@
     {
      "date": "2026-10-06",
      "note": "The grid operator's questionnaire carrying the water board's questions still stands, with data centers still due to answer by October 12th.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The grid operator's questionnaire still carries the water board's questions, and the deadline for data centers to answer has not moved.",
      "checked": true
     }
    ]
@@ -25264,7 +25380,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-20",
@@ -25294,6 +25410,11 @@
     {
      "date": "2026-10-04",
      "note": "El Paso's two plate reader items still stand as the council passed them in revised form.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Both of El Paso's plate reader items stand as the council passed them in revised form.",
      "checked": true
     }
    ]
@@ -25469,7 +25590,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-20",
@@ -25519,6 +25640,11 @@
     {
      "date": "2026-10-04",
      "note": "The foundation's award still names Texas Southern University as the lead, and the award page reads as it did.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The foundation's award page still names Texas Southern University as the lead of its regional node.",
      "checked": true
     }
    ]
@@ -25915,6 +26041,10 @@
     {
      "date": "2026-10-06",
      "note": "Leander's decision to stop paying for its plate reader contract is unconfirmed this time. The city's notice turned away every reader that asked for it."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Leander's notice that it stopped paying for plate readers is still unconfirmed. The city's site refuses every reader."
     }
    ],
    "unreachable": {
@@ -26376,7 +26506,7 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-06",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-24",
@@ -26407,6 +26537,11 @@
     },
     {
      "date": "2026-10-06",
+     "note": "The comment window on Zipline's Texas metros assessment is still open and closes October 11th. The agency's review page and the draft assessment both read as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
      "note": "The comment window on Zipline's Texas metros assessment is still open and closes October 11th. The agency's review page and the draft assessment both read as published.",
      "checked": true
     }
@@ -26522,7 +26657,7 @@
    ],
    "notes_for_editor": "Admitted on the commission's own adoption order and the Texas Register receipt in Project 58481.",
    "id": "tx-2026-0187",
-   "last_verified": "2026-10-06",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-24",
@@ -26566,6 +26701,11 @@
     {
      "date": "2026-10-06",
      "note": "The commission's large load interconnection rule still stands as adopted, its security requirement unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The commission's large load interconnection rule stands as adopted, with its security requirement per megawatt unchanged.",
      "checked": true
     }
    ]
@@ -27122,6 +27262,11 @@
      "date": "2026-10-04",
      "note": "The wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
      "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion and not a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -27280,7 +27425,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-10-04"
+   "last_verified": "2026-10-07"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -27333,6 +27478,11 @@
     {
      "date": "2026-10-04",
      "note": "Xcel's filing still counts cameras where the commission asked for detections, and the order approving the plan stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The approved resiliency plan still stands, and Xcel's filing still counts cameras where the commission asked for detections.",
      "checked": true
     }
    ],
@@ -27429,7 +27579,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-10-04"
+   "last_verified": "2026-10-07"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -27931,7 +28081,7 @@
    "confidence": "high",
    "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
    "id": "tx-2026-0146",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-09-11",
@@ -27944,6 +28094,11 @@
     {
      "date": "2026-10-04",
      "note": "Amazon and Wiwynn's stated expansion of the El Paso County plant still reads as announced.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-07",
+     "note": "Amazon and Wiwynn's announced expansion of the El Paso County rack plant still reads as first published.",
      "checked": true
     }
    ]
@@ -29077,11 +29232,16 @@
     }
    ],
    "id": "tx-2026-0200",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-10-04",
      "note": "Admitted on The Texas Tribune and ProPublica's account of the agency emails and the district pilots. The State Board of Education's own minutes of its June 2025 charter vetoes are cited beside it."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The Tribune's account and the state board's own minutes still read as cited, and the board's vote against the charter stands.",
+     "checked": true
     }
    ]
   },
@@ -29571,14 +29731,196 @@
      "id": "tx-2026-0203-c18"
     }
    ],
-   "last_verified": "2026-10-06",
+   "last_verified": "2026-10-07",
    "history": [
     {
      "date": "2026-10-06",
      "note": "Admitted on the city's own notice. The council has not voted yet. The agreement's full text was not found posted beside the notice."
+    },
+    {
+     "date": "2026-10-07",
+     "note": "The council has not voted yet. The city's page still sets out the proposed terms beside what applies without them.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0203"
+  },
+  {
+   "id": "tx-2026-0204",
+   "title": "Saronic breaks ground at the Port of Brownsville on Port Alpha, a shipyard built to make autonomous and crewed ships, on a Cameron County abatement",
+   "summary": "Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipyard at the Port of Brownsville that the company says will build autonomous and crewed ships. Navy landing craft are among the first. The company calls the yard itself software defined. Its release states the size of the site and the investment. It also gives the first phase's quay and build positions and the longest vessel the yard can build. In June the Cameron County Commissioners Court approved a property tax abatement for the project. The Texas Tribune reported it at 95 percent over 20 years. The agreement carries a local hiring requirement and shrinks if the jobs fall short. Opponents told the court it would take money from public schools. The county's own agenda for that vote is a scanned file, so the abatement's terms here rest on the Tribune's account.",
+   "topic": "defense-and-federal",
+   "decider": {
+    "name": "Cameron County Commissioners Court",
+    "type": "county"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Cameron"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-30",
+     "kind": "effective",
+     "note": "Groundbreaking at the Port of Brownsville, the date of Saronic's release"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The abatement is already approved and the groundbreaking has happened. No vote is open. The Cameron County Commissioners Court meets in public at the courthouse in Brownsville and takes public comment at each regular meeting. The job and hiring terms here are the ones the Tribune reported in June, before Saronic chose the site, and their current form is not in the sources cited here. The Port of Brownsville Commission is the port's own public body.",
+    "url": "https://www.cameroncountytx.gov/commissioners-court-agendas/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Saronic announced the groundbreaking of its shipyard, Port Alpha, on September 30th.",
+     "verbatim_quote": "Saronic today announced the groundbreaking of Port Alpha, a next-generation American shipyard built to restore the nation's maritime industrial capacity.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c1"
+    },
+    {
+     "text": "The release gives the site's size at the Port of Brownsville, its room to expand and the private investment.",
+     "verbatim_quote": "Situated on 835 acres at the Port of Brownsville with the option to expand to nearly 4,400 acres, Port Alpha represents a private capital investment of more than $3 billion.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c2"
+    },
+    {
+     "text": "The shipyard is meant to build autonomous and crewed ships. The company expects up to ten thousand direct jobs.",
+     "verbatim_quote": "The shipyard, which will be capable of building both autonomous and manned ships, is expected to generate up to 10,000 direct jobs",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c3"
+    },
+    {
+     "text": "Saronic describes the yard itself as software defined. It is built to deliver autonomous and crewed ships.",
+     "verbatim_quote": "Saronic is building a clean-sheet, software-defined facility designed from the ground up to deliver autonomous, autonomy-capable, and manned ships at speed and scale.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c4"
+    },
+    {
+     "text": "The release states the longest vessel the yard can build at first and after expansion.",
+     "verbatim_quote": "Port Alpha will initially be capable of producing vessels up to 850 feet, while future site expansion could support production of vessels over 1,200",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c5"
+    },
+    {
+     "text": "The release sets out the first phase's production space and its deepwater quay.",
+     "verbatim_quote": "At initial operations, Port Alpha will encompass 1.2 million square feet of enclosed production space within a 2.5-million-square-foot production activity area, spread across 8 to 10 dedicated production buildings and served by more than 2,500 feet of deepwater quay.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c6"
+    },
+    {
+     "text": "The first phase has two to four build positions for final ship erection.",
+     "verbatim_quote": "Two to four build positions will handle final ship erection",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c7"
+    },
+    {
+     "text": "The first phase builds autonomous and crewed ships. Navy landing craft are among them.",
+     "verbatim_quote": "This first phase will focus on building autonomous, autonomy-capable, and manned ships, including Landing Craft Utility (LCU) vessels for the U.S. Navy.",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c8"
+    },
+    {
+     "text": "The release states the yard's annual capacity at opening.",
+     "verbatim_quote": "At opening, Port Alpha will introduce an initial 150,000 gross tons of annual shipbuilding capacity",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c9"
+    },
+    {
+     "text": "Saronic names the state and Cameron County among its partners on training.",
+     "verbatim_quote": "Saronic is working with the State of Texas, Cameron County, and regional educational institutions on engineering pipelines",
+     "source_url": "https://www.prnewswire.com/news-releases/saronic-breaks-ground-on-port-alpha-a-new-model-for-american-shipbuilding-302894975.html",
+     "source_title": "Saronic news release, Saronic Breaks Ground on Port Alpha, a New Model for American Shipbuilding",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c10"
+    },
+    {
+     "text": "In June the Cameron County Commissioners Court approved a tax break for Saronic before the company had chosen the site. The Tribune reported it.",
+     "verbatim_quote": "The Cameron County commissioners court approved a $211 million tax break for Saronic Technologies in hopes that the company will select the Port of Brownsville for its $3.2 billion naval shipyard called Port Alpha.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c11"
+    },
+    {
+     "text": "The Tribune reports the abatement's rate and term.",
+     "verbatim_quote": "The tax break would come in the form of a 95% tax abatement agreement over 20 years.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c12"
+    },
+    {
+     "text": "The Tribune reports the agreement's local hiring requirement.",
+     "verbatim_quote": "As part of the tax abatement agreement, 35% of their full-time workforce is required to be local residents.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c13"
+    },
+    {
+     "text": "The Tribune reports that the abatement shrinks if the jobs fall short.",
+     "verbatim_quote": "If Saronic falls short of job projections, the tax abatement would decrease.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c14"
+    },
+    {
+     "text": "Opponents told the court the abatement would take money from public schools. The Tribune reported it.",
+     "verbatim_quote": "Opponents also said the abatement would take away money from public schools.",
+     "source_url": "https://www.texastribune.org/2026/06/18/tax-abatement-saronic-brownsville-texas/",
+     "source_title": "The Texas Tribune, Landmark $211M tax-break deal could trump SpaceX's deal in South Texas",
+     "source_type": "journalism",
+     "fetched": "2026-10-07",
+     "id": "tx-2026-0204-c15"
+    }
+   ],
+   "confidence": "high",
+   "notes_for_editor": "The release is Saronic's own, read on PR Newswire. The Governor's copy of the announcement sits on gov.texas.gov, which refuses this project in robots.txt, so it was not fetched. The Port of Brownsville's site answered 403. Cameron County's June 2nd and June 16th agendas are scanned PDFs with no text layer, so the abatement's rate, term and conditions rest on the Tribune's June 18th account. The county is Cameron, where the Port of Brownsville sits. on_ercot is true because Cameron County is served by ERCOT; nothing in the release turns on it.",
+   "last_verified": "2026-10-07",
+   "history": [
+    {
+     "date": "2026-10-07",
+     "note": "Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file."
+    }
+   ]
   }
  ]
 }

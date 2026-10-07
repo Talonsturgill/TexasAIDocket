@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is a world. Frames 2, 5 and 8 come nearest the place-at-an-hour test. Frame 4 is a speckle plain under a hard horizon with the hull a sub-pixel speck. Frame 7's lower part is a flat near-black water slab with untextured white boxes. Frame 6 has a ponytail clipping a hat brim, a rolled-cylinder flag, a blank seal and mostly empty chairs. On frame 1 the mast's sensor ball touches the dek's last line. Noon light throws few readable cast shadows. Frames 5 and 9 leave the lower half as empty gravel."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "One hull, one noon grade, one plan-ink accent with a fixed meaning, medians 42.4 to 61.7 with no strobe. The hull's states and the 05 to 09 camera both work. Frames 4 and 7 read as a different stock."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4,
+   "why": "Every numeral traces. The county half rests on the Tribune where a county order exists. Frame 3 sets Marauder figures beside the first phase's landing craft so a reader can infer the yard builds Marauders. The first comment omits c4 though the caption prints $3 billion."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A Texan learns what happened, who decided and where, and the stakes, schools, the 35% local share and the shrinking clause. Nothing they can do: no next meeting, no place to read the agreement, no taxing units named. Five of nine frames carry Saronic's specs."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe, frames 2 and 3 do not pay it, frames 4, 5 and 7 are three yard-dimension frames. The turn at 6 lands and the close on 9 is good."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and honest, not yet a Texan writing. No Valley texture. Frames 2 and 3 read as relayed press release and the drawn disclaimer repeats on seven frames."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh subject and palette. One object carried through its states repeats the house template since no. 39, and a local incentive story follows no. 44's."
+  }
+ ],
+ "weighted_score": 6.83,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frames 2 and 3 with the county half of the story from Cameron County's own pages, so the middle pays the cover and the close has a next step.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A speckle plain under a hard horizon with the square floating on it and the hull an invisible speck",
+   "fix": "Drop the camera to a 150 m oblique from over the channel so the bank, water and hull own the lower third and the square recedes behind them"
+  },
+  {
+   "slide": 7,
+   "problem": "A flat near-black water slab over a beige band, untextured white boxes, more buildings than the release's 8 to 10",
+   "fix": "Lower and pitch the camera so the bank, quay line and a moored hull sit in the lower third, and draw at most 10 production buildings with roof and wall detail"
+  },
+  {
+   "slide": 6,
+   "problem": "A ponytail clipping a hat brim, a rolled-cylinder flag, a blank seal and mostly empty rows",
+   "fix": "Swap the foreground figure for a hatless resident and seat 6 to 8 more residents across the rows"
+  },
+  {
+   "slide": 1,
+   "problem": "The mast's sensor ball touches the dek's last line and the hull reads as a primitive",
+   "fix": "Lower the hull or raise the camera so the mast top clears the dek baseline by 40 px"
+  },
+  {
+   "slide": 5,
+   "problem": "The hull is cropped behind the dek and the lower half is empty gravel",
+   "fix": "Pull the camera back and lower the horizon so the whole hull sits below the dek and the block line and person fill the lower third"
+  }
+ ]
+}

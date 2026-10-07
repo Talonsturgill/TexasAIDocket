@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-10-07, frame 5 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's highNoon world. The hull out of the water on keel blocks on the graded yard, bow to the camera, the block line running 850 feet from its bow into haze beside a line in the plan's ink, a person and a pickup at the near right. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Room for ships up to 850 feet</h1>
+<p class="dek" data-follow="20">Saronic says the yard will first build vessels up to 850 feet. An expansion could support vessels over 1,200 feet. The blocks run 850 feet and the hull is drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-07-portalpha.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await PA.boot(THREE, TXT, initKit, { kicker: "Drawn to the release, at scale", counter: "05 / 09", src: "c9 c10", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = PA.stage(TXT, gl, W, { fov: 44, fog: 0.0016 });
+  PA.water({ seed: 5, tile: 70, ripple: 0.45, color: 0x24302a });
+  const yard = TXT.ground(R, { surface: 'dirt', size: 8000, y: PA.BANK, tile: 6, seed: 47, color: 0x6f655a }); yard.position.z = -4000;
+  { const rr = PA.lcg(17); for (let i = 0; i < 160; i++) { const t = K.make(rr() < 0.3 ? 'palm' : 'mesquite', { seed: 300 + i }); t.position.set(-900 + rr() * 1800, PA.BANK, -40 - rr() * 700); TXT.add(R, t); } }
+  for (let i = 0; i < 4; i++) { const wh = K.make('warehouse', { seed: 40 + i, length: 140, depth: 70, height: 16, docks: 0, trucks: 0, color: 0xc9c6bc }); wh.position.set(-700 + i * 260, PA.BANK, -520 - (i % 2) * 140); TXT.add(R, wh); }
+  /* vessel_m 259.1: the block line runs that far from the hull's bow; the hull's own blocks carry the first 46 m */
+  const VESSEL_M = 259.1, BOW = -70;
+  const v = PA.vessel({ state: 'blocks', mast: false }); v.position.set(-12, PA.BANK, BOW - 23); TXT.add(R, v); TXT.contact(R, v, { opacity: 0.6 });
+  const kl = K.make('keel_block_line', { length: VESSEL_M - 48, pitch: 1.83, h: 1.4 }); kl.position.set(-12, PA.BANK, BOW - 48 - (VESSEL_M - 48)); TXT.add(R, kl);
+  PA.strip([-5.5, BOW + 16], [-5.5, BOW - VESSEL_M], 2.2, PA.BANK + 0.05);
+  const p = K.make('person', { seed: 4, role: 'worker', pose: 'stand', hat: true, vest: false }); p.rotation.y = 3.9; p.position.set(0.5, PA.BANK, -55); TXT.add(R, p); TXT.contact(R, p);
+  const pk = K.make('pickup', { trim: 'work', color: 0xd8d6d0, seed: 4 }); pk.rotation.y = 2.6; pk.position.set(6.5, PA.BANK + 0.02, -66); TXT.add(R, pk); TXT.contact(R, pk);
+  TXT.frame(R, { from: [4, PA.BANK + 1.6, -44], look: [-9, PA.BANK + 8.6, -200] });
+  PA.scrub([-1500, -900, 1500, -320], { count: 7000, seed: 12 });
+  PA.grit([-40, -140, 60, -10], { count: 40000, seed: 14, scale: [0.008, 0.022], avoid: [[-8, -340, -3, -10]] });
+  PA.grass([-60, -160, 70, -12], { count: 12000, seed: 24, scale: [0.2, 0.45], avoid: [[-19, -330, 4, -40], [-7, -330, -4, -10]] });
+  PA.tracks(7, [-30, -130, 50, -20], { seed: 62 });
+  TXT.sky(R);
+  TXT.deckRig(R, PA.rigSpec(W, 120, 4096), PA.rigOpts([-12, 0, -120], { distance: 400, shadowFar: 900 }));
+  TXT.weather(R, { grime: 0.2, height: 1.5 });
+  const cx = PA.develop(await TXT.snapshot(R), gl);
+  PA.post(cx, { a: 0.14, siteBlur: 24, footWash: 0.45 });
+  TXDECK.finish(cx);
+
+  return true;
+})();
+</script>
+</body>
+</html>

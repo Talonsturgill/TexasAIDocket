@@ -5445,3 +5445,87 @@ The artwork slot went to item 1, the newest deck's top ranked defect, and the va
 places, textures and beams is a separate lift of more than 200 lines. The next pass, or any run's
 Phase 17 with a free slot, takes it first, at the judges' named fixes (seams, grime, a lit floor, a
 reflector that reads at 432 px).
+
+## 2026-10-07, the fourth weekly machine pass. One change, one escalation, three proposals carried, one deferral
+
+Read from `out/2026-10-07/week_digest.md` (seven shipped runs, October 1st to October 7th) and the
+queue, due early because `qa-glyph-run-as-rule` reached repeat 2 (nos. 40, 41 and 45).
+`artwork_craft` was the lowest criterion on five of seven decks, week mean 6.37, with `variety`
+lowest on three (mean 6.54). "Largest object unmodelled" was named on all seven decks in 25 rounds
+and "primitive or low-poly model where a kit model belongs" on all seven in 24. The account is in
+`ledger/carousel/upgrades.json` under `2026-10-07 weekly` and the pass is recorded in
+`config/carousel/machine_pass.json`. Proof images are in `out/2026-10-07/tmp/machine/` and die
+with the container.
+
+### 1. KIT LIFT: `autonomous_vessel`, `keel_block_line` AND `riprap_bank` AT THE JUDGES' NAMED FIX (done)
+
+No. 45 built all three in its chassis because the kit had no ship, no keel block and no riprap, and
+all three panel rounds ranked the hull as the deck's top artwork defect: "a flat slab hull with a
+stepped deckhouse", "reads as a lighthouse on 2", "a flat barge slab" on 3, "the deckhouse reads
+glassy on 5 and 8 against matte plate on 1 to 3". The named fixes were "a sheer line, bow flare,
+bulwarks and sensor housings" (integrity, round 2), "rebuild the hero hull as a real ship model"
+(craft, round 2) and "chamfered plate with sensor arms and a lattice mast" (reader, round 3). Two
+judges in round 1 read the riprap as sandbags.
+
+`autonomous_vessel` is now in `assets/js/kit/vehicles.js`: one sheer curve rising to the bow and a
+little to the stern, the deck edge closing slower than the chine so the bow flares, a knuckle, a
+bulwark from 60 percent of the length to the stem with a capping rail, stanchions and two rails
+aft, a long low windowless deckhouse in chamfered plate with a raked front and a smaller upper
+level, a four leg lattice mast braced in X with a yardarm, two sensor domes, an open array radar,
+a SATCOM radome and an EO/IR ball, ONE matte finish on hull, house and bulwark, and the chassis's
+foam wash and skirt following the real waterline half breadth. `keel_block_line` moved as built.
+`riprap_bank` is in `assets/js/kit/landscape.js` with five quarried stone shapes (an icosahedron
+cut by three planes, flat shaded) in five granite tones, three times the density, and a face
+texture close in value to the stones. The options are the chassis's own, so a deck written
+against the chassis builds unchanged.
+
+The shipped chassis's `installKit` returns early once the kit defines `autonomous_vessel`, so
+no. 45's frames pick up the kit models if they are ever re-rendered. That was used as the replay:
+slides 2, 3 and 5 from `runs/carousel/2026-10-07/slides/` rendered into scratch at their shipped
+cameras with errors 0. Frame 2 is a ship with a flared bow, a bulwark and a lattice mast where it
+was a lighthouse, and frame 3 a ship with a sheer and a deckhouse where it was a slab with a
+pyramid. The shipped frames were not touched. A re-render of no. 45 would move its frame 3 range
+leader off the old mast, so no. 45 is not re-rendered after this lands.
+
+Proof found three defects in the first cut, all fixed before this was logged: the bulwark and
+rails took the hull's skin, whose v runs keel to deck, so they printed the boot top's black and
+red bands along the bow; the riprap read as cobbles once its normals were smoothed; and the face
+texture printed pale discs on black at close range. `examples/kit/sizes.py` 115 of 115 after the
+riprap's declared size was set to its measured 4.03 by 6.34 m. `arsenal.py --check` exits 0.
+
+### 2. ESCALATED AGAIN: `qa.py` READS A DEK'S GLYPH HALO AS A RULE (`.claude/skills`, a maintainer's)
+
+Queue `qa-glyph-run-as-rule`, repeat 2: no. 40 (serif feet of a short heavy last line), no. 41
+slide 9 (a tight display hook's touching serifs) and no. 45 frames 6 and 7 (the light halo of
+dark dek glyphs on flat haze or a flat wall). Each run worked around it in its own layout, by
+letter spacing, by lifting the type band, by dimming a window to within 28 grey levels of a wall.
+
+The mechanism, read in `canvas_rules`: a row of the band counts as a rule when its longest run
+more than 28 grey levels off the band's MEDIAN reaches one em. On a flat ground the median is the
+ground, and the type's own halo or a run of touching glyphs is exactly such a run. The pixels
+qa reads carry the type, so nothing in them separates a rule from the type's own ink.
+
+Proposal, for a maintainer at a keyboard, with the self-test the file's rules require: render.py
+captures a second canvas with the DOM type hidden (the art layer alone), and `canvas_rules` keeps a
+candidate strip only if the same rows are off the paper in that art layer too. A rule a canvas
+drew survives, because it is in the art. A halo or a serif run is gone, because it is in the type.
+Self-test: the existing `_band(True)` case must still go red, and a new case with the run present
+only in the type layer must stay green. Until then, a run meeting it records the workaround and
+appends its date to the queue line, which re-arms the pass.
+
+### 3. CARRIED WITH THIS WEEK'S COUNTS (`assets/js/txthree.js` is `human`)
+
+- **Render artifact (banding, aliasing, facets, stripes)**, 7 runs and 21 rounds. The 2026-10-06
+  item 4 proposal stands: measure step width before and after the grade, then grade in float.
+- **No contact, dirt or grime where things meet the ground**, 7 runs and 20 rounds.
+- **Horizon band or seam**, 6 runs and 12 rounds, and **object in a void**, 5 runs and 14 rounds.
+
+New this week and in the queue, both engine: `scatter-seeds-at-y0` (TXT.scatter takes a y or
+samples the receiving ground) and `aerial-ground-reads-as-noise`, which three judges named on
+frames 4 and 7 of no. 45 in all three rounds. The second is the next artwork slot's candidate if
+it recurs, because no deck can make an aerial read as land without it.
+
+### 4. DEFERRED A FOURTH TIME, NOT REFUSED: `dry_van`, `delineator`, `raised_pavement_marker` (in lane)
+
+The artwork slot went to item 1, the newest deck's top ranked defect named in every round. The
+van lift is unchanged in size and specification (2026-10-06 item 6).

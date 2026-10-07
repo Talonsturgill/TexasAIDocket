@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · The Governor's directive to the water board is still unconfirmed. His office posts it on a site that bars automated readers.
 - 2026-10-05 · The Governor's directive to the water board is still unconfirmed this time. His office's site bars automated readers.
 - 2026-10-06 · The Governor's directive to the water board is still unconfirmed this time. His office's site bars automated readers.
+- 2026-10-07 · The governor's directive to the water board is still unconfirmed on its own page, which bars automated readers.
 
 ## Evidence
 

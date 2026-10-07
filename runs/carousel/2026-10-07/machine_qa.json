@@ -1,0 +1,126 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4265,
+        0.6176,
+        0.9908
+      ],
+      "band_ratio": 1.4307
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3109,
+        0.313,
+        0.704
+      ],
+      "band_ratio": 1.5489
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "outside safe zone: 'RANGE UP TO 5,400 NAUTICAL MILES' at 686,498 343x70 (margin 80px)"
+      ],
+      "bands": [
+        0.5,
+        0.4097,
+        0.9614
+      ],
+      "band_ratio": 1.5044
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4433,
+        0.5273,
+        0.9688
+      ],
+      "band_ratio": 1.4654
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "a drawn rule crosses the glyph band of 'Saronic says the yard will first build v' (canvas edge .pixels at 82,463.5 775x9) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.4811,
+        0.4832,
+        0.9632
+      ],
+      "band_ratio": 1.4659
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.5063,
+        0.6471,
+        0.8456
+      ],
+      "band_ratio": 1.2537
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4181,
+        0.8613,
+        0.8676
+      ],
+      "band_ratio": 1.2007
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4706,
+        0.4349,
+        0.9577
+      ],
+      "band_ratio": 1.505
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.458,
+        0.3424,
+        0.9651
+      ],
+      "band_ratio": 1.5935
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN"
+}
