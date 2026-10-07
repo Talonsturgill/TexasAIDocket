@@ -1940,3 +1940,27 @@ client could not open.
 **Spectrum News' October 5th report on the attorney general's Taylor investigation names Blueprint
 Data Centers**, a separate project from Taylor Technology Campus. Any later run on Taylor reads the
 two as different developers.
+
+## 2026-10-07
+
+**www.faa.gov answered 403 to `fetch_doc.py` and 200 to a browser user agent under `/uas/`**,
+the same split the September 30th and October 6th entries record. Read the draft assessments
+that way first.
+
+**Two re-verifications went through Europe PMC** for tx-2026-0150 and tx-2026-0151, where the
+publisher's own pages refused this project's client.
+
+**www.txcourts.gov served the Supreme Court's submission schedules as PDFs with a text layer.**
+The October 6th schedule carried tx-2026-0127's new claim.
+
+**gov.texas.gov is refused by its robots rule for this project's client.** Saronic's Port Alpha
+release was read on PR Newswire, which carries the full text with its dateline.
+
+**cameroncountytx.gov posts commissioners court agendas as scanned PDFs with no text layer.**
+The June abatement for Saronic rests on the Texas Tribune's report until a text copy turns up.
+
+**portofbrownsville.com answered 403**, and **shipyardofthefuture.com redirects (301) to
+saronic.com**, whose home page carries the Marauder and Corsair figures.
+
+**www.texasattorneygeneral.gov answered 402** to this project's client, so an AG release on
+the data center water survey was not used.

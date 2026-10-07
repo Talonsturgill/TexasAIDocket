@@ -91,7 +91,7 @@
     var wl = o.waterline == null ? 0.5 : o.waterline, yw = 256 * (1 - wl);
     x.fillStyle = o.bottom || "#6a2f26"; x.fillRect(0, yw + 7, 1024, 256 - yw);
     for (var b = 0; b < 400; b++) { x.fillStyle = "rgba(40,36,30," + (0.05 + r() * 0.12).toFixed(2) + ")"; x.fillRect(r() * 1024, yw + 7 + r() * (256 - yw), 2 + r() * 30, 1 + r() * 4); }
-    x.fillStyle = o.boot || "#15171a"; x.fillRect(0, yw - 9, 1024, 17);
+    x.fillStyle = o.boot || "#15171a"; x.fillRect(0, yw - 14, 1024, 22);
     var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; t.wrapT = THREE.ClampToEdgeWrapping; t.anisotropy = 8; return t;
   };
   /* PANEL: the deckhouse's flat plate, welded panels a metre or two across with dark seams, a lighter
@@ -144,7 +144,7 @@
     var dark = new THREE.MeshStandardMaterial({ color: 0x24282c, roughness: 0.5, metalness: 0.45 });
     var lens = new THREE.MeshStandardMaterial({ color: 0x0b0d10, roughness: 0.08, metalness: 0.6 });
     var dome = new THREE.MeshStandardMaterial({ color: 0xd9dbd8, roughness: 0.45, metalness: 0 });
-    var primer = new THREE.MeshStandardMaterial({ color: 0x7e3b2c, roughness: 0.78, metalness: 0.15 });
+    var primer = new THREE.MeshStandardMaterial({ color: 0xa8553c, roughness: 0.72, metalness: 0.15 });
 
     /* the hull's lines: a hard chine hull, stations stern (u 0) to bow (u 1), each half section keel,
      * bilge, chine, deck edge; the bow closes to the stem and the keel rises in a forefoot */
@@ -181,6 +181,39 @@
       var g = new THREE.CylinderGeometry(Math.SQRT1_2 * (1 - taper), Math.SQRT1_2, h, 4, 1); g.rotateY(Math.PI / 4); g.scale(w, 1, d); g = g.toNonIndexed(); g.computeVertexNormals();
       var m = new THREE.Mesh(g, mat); m.castShadow = m.receiveShadow = true; return m;
     }
+    /* WASH: a broken band of white where the hull meets still water, following the chine's half
+     * breadth at the waterline, wider at the bow where the water piles up. Seeded, never a frill. */
+    function washRing(L, B, D, draft, r) {
+      var c = document.createElement("canvas"); c.width = 1024; c.height = 32; var x = c.getContext("2d");
+      for (var i = 0; i < 3200; i++) { var px = r() * 1024, py = 4 + Math.pow(r(), 1.6) * 26; x.fillStyle = "rgba(238,240,238," + (0.18 + r() * 0.55).toFixed(2) + ")"; x.fillRect(px, py, 1 + r() * 10, 1 + r() * 2.5); }
+      var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; t.repeat.set(5, 1);
+      var mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, depthWrite: false, roughness: 0.9 });
+      var NS = 90, pos = [], uv = [], idx = [];
+      for (var side = -1; side <= 1; side += 2) {
+        var base = pos.length / 3;
+        for (var i2 = 0; i2 <= NS; i2++) { var u = i2 / NS, z = -L / 2 + u * L, st = station(L, B, D, u), hb = st[2][0];
+          var inner = side * Math.max(0, hb - 0.1), outer = side * (hb + 0.8 + 1.4 * Math.pow(u, 5));
+          pos.push(inner, 0.03, z, outer, 0.03, z); uv.push(u * 7, 1, u * 7, 0); }
+        for (var j = 0; j < NS; j++) { var a = base + j * 2; if (side < 0) idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); else idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+      }
+      var geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2)); geo.setIndex(idx); geo.computeVertexNormals();
+      var m = new THREE.Mesh(geo, mat); m.renderOrder = 2; m.userData.txWear = false;
+      /* THE SKIRT: the same foam standing on the hull's skin at the waterline. Seen from a bank a few
+       * metres up, a flat ring foreshortens to nothing, so the line a reader sees is this band, densest
+       * at the water and broken above it, climbing at the bow where the water piles up. */
+      var c2 = document.createElement("canvas"); c2.width = 1024; c2.height = 64; var x2 = c2.getContext("2d");
+      for (var k = 0; k < 5200; k++) { var qx = r() * 1024, qy = 63 - Math.pow(r(), 2.2) * 60; x2.fillStyle = "rgba(240,242,240," + (0.3 + r() * 0.6).toFixed(2) + ")"; x2.fillRect(qx, qy, 2 + r() * 14, 1 + r() * 3); }
+      var t2 = new THREE.CanvasTexture(c2); t2.colorSpace = THREE.SRGBColorSpace; t2.wrapS = THREE.RepeatWrapping;
+      var mat2 = new THREE.MeshStandardMaterial({ map: t2, transparent: true, depthWrite: false, roughness: 0.9, side: THREE.DoubleSide, emissive: 0xffffff, emissiveMap: t2, emissiveIntensity: 0.12 });
+      var sp = [], su = [], si = [];
+      for (var sd2 = -1; sd2 <= 1; sd2 += 2) { var b2 = sp.length / 3;
+        for (var i3 = 0; i3 <= NS; i3++) { var u3 = i3 / NS, z3 = -L / 2 + u3 * L, hb3 = station(L, B, D, u3)[2][0] + 0.06, top = 0.3 + 0.9 * Math.pow(u3, 6);
+          sp.push(sd2 * hb3, -0.05, z3, sd2 * hb3, top, z3); su.push(u3 * 9, 0, u3 * 9, 1); }
+        for (var j3 = 0; j3 < NS; j3++) { var a3 = b2 + j3 * 2; si.push(a3, a3 + 2, a3 + 1, a3 + 1, a3 + 2, a3 + 3); } }
+      var g2 = new THREE.BufferGeometry(); g2.setAttribute("position", new THREE.Float32BufferAttribute(sp, 3)); g2.setAttribute("uv", new THREE.Float32BufferAttribute(su, 2)); g2.setIndex(si); g2.computeVertexNormals();
+      var skirt = new THREE.Mesh(g2, mat2); skirt.renderOrder = 3; skirt.userData.txWear = false;
+      var w = new THREE.Group(); w.add(m); w.add(skirt); return w;
+    }
     function keelBlock(parent, x, z, h, conc, timber) {
       K.box(1.4, h - 0.3, 0.9, conc, x, 0, z, 0.04, parent);
       K.box(1.5, 0.15, 1.0, timber, x, h - 0.3, z, 0.01, parent);
@@ -192,7 +225,7 @@
     K.define("autonomous_vessel", {
       size: [9.8, 14.6, 46],
       anchor: "base",
-      options: { length: 46, beam: 9.6, depth: 4.6, draft: 2.3, state: "afloat", payload: 0, paint: "#6e757c", blocks: 1.4 },
+      options: { length: 46, beam: 9.6, depth: 4.6, draft: 2.3, state: "afloat", payload: 0, paint: "#9aa2aa", blocks: 1.4, mast: true },
       note: "An illustrative autonomous surface vessel, hard chine steel hull with a black boot top and red antifouling, a faceted windowless deckhouse, a faceted sensor mast (open array radar, radome, EO/IR ball, whips), a flush payload deck aft with a toe rail, two waterjets at the transom. Nothing on it is sized for a person. state afloat (origin at the waterline, keel at -draft) | blocks (on keel blocks `blocks` m high, origin on the ground). payload: edge in m of one primer steel block on the after deck, 0 for none. Front is +z.",
       make: function (o, r) {
         var L = o.length, B = o.beam, D = o.depth, root = new THREE.Group(), g = new THREE.Group(); root.add(g);
@@ -211,25 +244,28 @@
         var hz = L * 0.12, hp = new THREE.MeshStandardMaterial({ color: 0xffffff, map: N.panelTex(THREE, o.paint), roughness: 0.6, metalness: 0.3 });
         var house = facet(6.6, 3.0, 8.8, 0.24, hp); house.position.set(0, D + 0.15 + 1.5, hz); g.add(house);
         var house2 = facet(4.4, 1.6, 5.2, 0.3, hp); house2.position.set(0, D + 0.15 + 3.0 + 0.8, hz - 0.6); g.add(house2);
-        var mast = facet(1.9, 6.0, 1.9, 0.55, hp); mast.position.set(0, D + 0.15 + 4.6 + 3.0, hz - 0.8); g.add(mast);
+        /* mast false leaves the sensor mast off, for a frame whose headline stands where it would rise */
+        var mg = o.mast === false ? new THREE.Group() : g;
+        var mast = facet(1.9, 6.0, 1.9, 0.55, hp); mast.position.set(0, D + 0.15 + 4.6 + 3.0, hz - 0.8); mg.add(mast);
         var mt = D + 0.15 + 4.6 + 6.0;
-        var arr = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.42, 0.22), dark); arr.position.set(0, mt + 0.35, hz - 0.8); arr.castShadow = true; g.add(arr);
-        var ped = K.cyl(0.18, 0.22, 0.3, dark, 0, mt, hz - 0.8, 12, g);
-        var arm = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.18, 2.2), dark); arm.position.set(0, mt - 0.9, hz + 0.3); g.add(arm);
-        var rd = new THREE.Mesh(new THREE.SphereGeometry(0.55, 24, 16), dome); rd.position.set(0, mt - 0.45, hz + 1.3); rd.castShadow = true; g.add(rd);
-        var eo = new THREE.Mesh(new THREE.SphereGeometry(0.24, 20, 14), dark); eo.position.set(0, mt - 2.2, hz + 0.25); g.add(eo);
-        var ap = new THREE.Mesh(new THREE.CircleGeometry(0.09, 18), lens); ap.position.set(0, mt - 2.2, hz + 0.49); g.add(ap);
-        for (var w = 0; w < 4; w++) { var whip = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.035, 3.0, 6), dark); whip.position.set((w < 2 ? -1 : 1) * (1.0 + (w % 2) * 0.35), D + 0.15 + 3.0 + 1.6 + 1.5, hz - 2.6 - (w % 2) * 0.6); g.add(whip); }
+        var arr = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.42, 0.22), dark); arr.position.set(0, mt + 0.35, hz - 0.8); arr.castShadow = true; mg.add(arr);
+        var ped = K.cyl(0.18, 0.22, 0.3, dark, 0, mt, hz - 0.8, 12, mg);
+        var arm = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.34, 1.1), dark); arm.position.set(0, mt - 0.7, hz - 0.1); mg.add(arm);
+        var rd = new THREE.Mesh(new THREE.SphereGeometry(0.55, 24, 16), dome); rd.position.set(0, mt - 0.25, hz + 0.45); rd.castShadow = true; mg.add(rd);
+        var eo = new THREE.Mesh(new THREE.SphereGeometry(0.24, 20, 14), dark); eo.position.set(0, mt - 2.2, hz - 0.05); mg.add(eo);
+        var ap = new THREE.Mesh(new THREE.CircleGeometry(0.09, 18), lens); ap.position.set(0, mt - 2.2, hz + 0.19); mg.add(ap);
+        /* no whips: at a broadside crop they read as loose bars beside the mast */
         /* waterjets at the transom */
         [-1, 1].forEach(function (sd) { var j = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.48, 1.1, 18), dark); j.rotation.x = Math.PI / 2; j.position.set(sd * 1.6, D * 0.32, -L / 2 - 0.45); j.castShadow = true; g.add(j); });
         /* the payload: one steel block in primer on the after deck */
-        if (o.payload > 0) { var e = o.payload, blk = TXT.roundedBox(e, e, e, 0.04, primer); blk.position.set(0, D + 0.12 + e / 2, -L * 0.2); blk.castShadow = blk.receiveShadow = true; g.add(blk); }
+        if (o.payload > 0) { var e = o.payload, blk = TXT.roundedBox(e, e, e, 0.04, primer); blk.position.set(0, D + 0.12 + e / 2, -L * 0.2); blk.rotation.y = 0.44; blk.castShadow = blk.receiveShadow = true; g.add(blk); }
         if (o.state === "blocks") {
           g.position.y = o.blocks;
           for (var z = -L / 2 + 2; z < L / 2 - 6; z += 1.83) keelBlock(root, 0, z, o.blocks, conc, timber);
           for (var zb = -L / 2 + 6; zb < L / 2 - 12; zb += 9) [-1, 1].forEach(function (sd) { keelBlock(root, sd * B * 0.28, zb, o.blocks + station(L, B, D, (zb + L / 2) / L)[1][1], conc, timber); });
         } else {
           g.position.y = -o.draft;
+          root.add(washRing(L, B, D, o.draft, r));
         }
         root.userData.draft = o.draft; root.userData.length = L;
         return root;
@@ -266,7 +302,9 @@
         var m = new THREE.Mesh(face, new THREE.MeshStandardMaterial({ map: t, bumpMap: t, bumpScale: 0.35, roughness: 0.92, color: 0xffffff }));
         m.rotation.x = -Math.PI / 2 + Math.atan2(o.top - o.toe, o.run); m.position.set(0, (o.top + o.toe) / 2, o.run / 2); m.receiveShadow = true; g.add(m);
         if (o.stones) {
-          var geo = new THREE.IcosahedronGeometry(1, 1), list = [], mat = K.mat("pa-riprap", { color: 0x9d978a, roughness: 0.9, map: K.tex("concrete") });
+          var geo = new THREE.SphereGeometry(1, 14, 10), P = geo.attributes.position, rs = lcg(91);
+          for (var vi = 0; vi < P.count; vi++) { var vx = P.getX(vi), vy = P.getY(vi), vz = P.getZ(vi), k = 0.82 + 0.3 * (Math.sin(vx * 3.1 + vz * 1.7) * 0.5 + Math.sin(vy * 4.3 - vx * 2.2) * 0.5) * 0.5 + rs() * 0.04; P.setXYZ(vi, vx * k * 1.15, vy * k * 0.7, vz * k); }
+          geo.computeVertexNormals(); var list = [], mat = K.mat("pa-riprap", { color: 0x9d978a, roughness: 0.9, map: K.tex("concrete") });
           for (var i = 0; i < o.length * 3 * o.stones; i++) { var x = (r() - 0.5) * o.length, f = r(), y = o.top + (o.toe - o.top) * f, z = o.run * f; if (y < -0.4) continue;
             list.push([x, y + 0.1, z - 0.15, r() * 6.28, 0.25 + r() * 0.45]); }
           var inst = K.instances(geo, mat, list); inst.castShadow = true; inst.receiveShadow = true; g.add(inst);
@@ -295,7 +333,7 @@
   };
   /* THE PLAN'S INK: a flat strip on the ground from a to b ([x, z]), `w` wide at height y, the accent in
    * its albedo and a small emissive so it holds its hue under the grade; `dash` metres on, `gap` off. */
-  N.inkMat = function () { return N._ink || (N._ink = new N.T.MeshStandardMaterial({ color: N.ACCENT, roughness: 0.7, metalness: 0, emissive: N.ACCENT, emissiveIntensity: 0.25 })); };
+  N.inkMat = function () { return N._ink || (N._ink = new N.T.MeshStandardMaterial({ color: 0x5b69a6, roughness: 0.9, metalness: 0, emissive: 0x4e5fa8, emissiveIntensity: 0.08 })); };
   N.strip = function (a, b, w, y, o) {
     o = o || {}; var T = N.T, dx = b[0] - a[0], dz = b[1] - a[1], len = Math.hypot(dx, dz), ang = Math.atan2(dx, dz), g = new T.Group();
     var on = o.dash || len, off = o.gap || 0, step = on + off;
@@ -331,6 +369,17 @@
     for (var k = 0; k < n; k++) { var x = area[0] + r() * (area[2] - area[0]), z = area[1] + r() * (area[3] - area[1]), a = r() * 6.28, len = 30 + r() * 60, bend = (r() - 0.5) * 0.03;
       for (var side = -1; side <= 1; side += 2) { var px = x + Math.cos(a) * side * 0.95, pz = z - Math.sin(a) * side * 0.95, aa = a;
         for (var t = 0; t < len; t += 2) { var nx = px + Math.sin(aa) * 2, nz = pz + Math.cos(aa) * 2; N.strip([px, pz], [nx, nz], 0.45, o.y == null ? N.BANK - 0.015 : o.y, { mat: N.trackMat() }); px = nx; pz = nz; aa += bend; } } }
+  };
+  /* KEEP THE TYPE CLEAR: after TXT.frame, hide every kit model named in `kinds` whose projected base
+   * to top falls inside any of `rects` ([x0, y0, x1, y1] in CSS px of the 1080 x 1350 page). A far palm
+   * standing in a headline is a letterform crossing, and moving the type is the costlier fix. */
+  N.keepClear = function (THREE, R, rects, kinds) {
+    kinds = kinds || ["palm", "mesquite"]; var hid = 0, box = new THREE.Box3();
+    R.scene.traverse(function (o) { if (!o.userData || kinds.indexOf(o.userData.kit) < 0 || !o.visible) return;
+      box.setFromObject(o); var a = N.project(THREE, R, [(box.min.x + box.max.x) / 2, box.min.y, (box.min.z + box.max.z) / 2]), b = N.project(THREE, R, [(box.min.x + box.max.x) / 2, box.max.y, (box.min.z + box.max.z) / 2]);
+      var half = Math.max(6, Math.abs(N.project(THREE, R, [box.max.x, box.max.y, box.max.z])[0] - N.project(THREE, R, [box.min.x, box.max.y, box.min.z])[0]) / 2);
+      for (var i = 0; i < rects.length; i++) { var q = rects[i]; if (a[0] + half > q[0] && a[0] - half < q[2] && Math.min(a[1], b[1]) < q[3] && Math.max(a[1], b[1]) > q[1]) { o.visible = false; hid++; break; } } });
+    return hid;
   };
   N.vessel = function (o) { return N.K.make("autonomous_vessel", Object.assign({ seed: 3 }, o || {})); };
   N.installAll = function () { N.installKit(N.K, N.T, N.TXT); };
@@ -388,11 +437,11 @@
   N.post = function (cx, o) {
     o = o || {};
     /* the type band lifts by the same step the exposure took away, so dark type keeps 4.5 */
-    N.atmosphere(cx, { a: Math.min(0.45, (o.a == null ? 0.18 : o.a) + 0.17), to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
-    N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 8, pad: 8, feather: o.typeFeather || 26 });
+    N.atmosphere(cx, { a: Math.min(0.5, (o.a == null ? 0.18 : o.a) + 0.24), to: o.to, fade: o.fade, rgb: o.rgb, pad: o.pad });
+    N.soften(cx, o.type || [".kick", ".hook", ".dek"], { blur: o.typeBlur || 3, pad: 8, feather: o.typeFeather || 22 });
     N.soften(cx, [".tx-site", ".src"], { blur: o.siteBlur || 18, pad: 18, feather: 70 });
     var y0 = N.H - (o.veilH || 250), v = cx.createLinearGradient(0, y0, 0, N.H), rgb = o.veilRgb || "238,236,230";
-    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.45 : o.veil) * e).toFixed(4) + ")"); }
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(" + rgb + "," + (Math.min(0.45, o.veil == null ? 0.28 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
     /* THE FOOTER ROW'S WASH, for a frame whose ground under the footer is asphalt or shadow: a
      * feathered band across the whole width, peaking on the footer's own line, so the citation
@@ -449,7 +498,7 @@
    * runs and no. 38 on September 30th was one, measured at L* 60.6. At the round cap this deck
    * measured L* 68.0, so every frame is exposed down together to hold the deck median under the
    * ledger's 60 line, through the renderer's own tone curve rather than a multiply on the pixels. */
-  N.EXPOSURE = 0.5;   /* tuned on the probe frame, so the deck measures under the light deck cap */
+  N.EXPOSURE = 0.46;  /* tuned on the probe frame, then lowered after the flow critic asked for a true dark, so the deck sits well under the light deck cap */
   N.stage = function (TXT, gl, W, o) {
     o = o || {};
     N.R = TXT.setup(gl, { w: N.W, h: N.H, fog: [W.haze, o.fog == null ? W.fogDensity : o.fog], exposure: W.exposure * N.EXPOSURE * (o.exposure || 1),
