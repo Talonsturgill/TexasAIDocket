@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "Every frame stands in a world, sky and Gulf haze on the exteriors and a TXT.interior room on 6. Four or five frames lean on a default. Frame 4 is a noise-textured plane with a blue outline, the hull a few pixels and a pale foot band with moire. Frame 7's buildings are untextured boxes and its channel a near-black slab. Frame 9 is frame 5 with the hull taken out and a dead middle third. Frame 5's dek sits on the lit deckhouse. Frame 6's avatars show mesh tears and an empty dais with no visible window. Frame 3's hull is a flat barge slab and its range label ends past the safe line. Flat noon light everywhere and no reflection under the hulls on 1 and 3. Frame 2 is the best craft and frame 8 holds up, 20 figures and 7 vests counted."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one palette, one accent for plan figures, one hero through its states, two visible devices, the 05/09 pair a real filmstrip device. The value track holds with one declared dip at 6. The two aerials read as diagram-on-terrain."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide numeral traces, seven of twenty matches the render, derived figures are labelled, and the fact check's refusals are honoured. The spine rests on the Tribune where a court order exists. Frame 3 hangs the Marauder's figures off a hull in the Brownsville channel. The first comment omits c4."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "Who, what, where and when are named, and the close carries the condition and the schools objection. No deadline, meeting or next action. Frames 2 and 3 spend two frames on company marketing while c31, c33 and c36 go unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The cover earns the swipe, frame 2 does not pay it, the break is not paid until frame 6. The 5 then 9 rhyme lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and attributed, but wire copy, with Saronic says and drawn to illustrate on nearly every frame. Oseguera's line (c33) is not used."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A new subject, palette and hour. The one carried object through nine states is the house formula, and 10-04 was also noon."
+  }
+ ],
+ "weighted_score": 6.774,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Spend frames 2 and 3 on the June hearing itself with c31 and c33, and rebuild frames 4 and 7 with water that carries the sky and the hull at readable size.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A noise-textured plane with a blue outline, the hull a few pixels, an aliased foot band",
+   "fix": "Drop the camera to about 250 m oblique over the channel edge with riprap and reflective water in the near third and the hull at least 120 px long"
+  },
+  {
+   "slide": 7,
+   "problem": "Untextured box buildings, a near-black channel, the hull a speck",
+   "fix": "Give the channel frame 1's water and moor the hull at the near build position at about 15 percent of the width"
+  },
+  {
+   "slide": 9,
+   "problem": "Frame 5 with the hull deleted leaves a dead middle third",
+   "fix": "Leave the empty keel blocks standing along the line with their contact shadows"
+  },
+  {
+   "slide": 5,
+   "problem": "The dek sits on the lit deckhouse and the block line can't be read",
+   "fix": "Pan right and pull back so the sheer sits below the dek with daylight under the keel"
+  },
+  {
+   "slide": 6,
+   "problem": "Avatar mesh tears, an empty dais, no window",
+   "fix": "Put a lit window behind the dais with three commissioners seated, and push the near heads out of frame"
+  },
+  {
+   "slide": 3,
+   "problem": "A flat barge slab with no reflection, the range label past the safe margin",
+   "fix": "Model sheer and flare, add a dark planar reflection, and end the label at x 1000 css"
+  },
+  {
+   "slide": 1,
+   "problem": "No reflection or shadow under the hull, flat noon light, a blurred foreground strip",
+   "fix": "Add the hull's reflection and wash, lower the sun to about 35 degrees, bring riprap into the lower-left corner"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 - Public access: Public meeting
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-07
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-05 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-06 · Whether the court heard argument today as set is unconfirmed. Its case page sits on a host that bars automated readers.
+- 2026-10-07 · The court's own submission schedule for October 6th lists In re Patrick Hughey for argument that morning, with a deposition reporters' association heard as amicus. The court's ruling is what comes next.
 
 ## Evidence
 
@@ -65,4 +66,10 @@ Source (primary_official): https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=
 > Real Party in Interest's Brief on the Merits filed on behalf of Reddico Construction Co., Inc.
 
 Source (primary_official): https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
+
+### The court's submission schedule for its October 6th sitting lists the case for oral argument and names the relator's counsel.
+
+> Relator will be represented by Bradley W. Snead (Wright Close Barger & Guzman), from Houston.
+
+Source (primary_official): https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf
 

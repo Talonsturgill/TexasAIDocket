@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths that bar automated readers.
 - 2026-10-05 · Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths that bar automated readers.
 - 2026-10-06 · Whether the two House committees took up data centers and AI in health care as noticed is still unconfirmed. The notices sit on paths closed to automated readers.
+- 2026-10-07 · The two House committees' interim hearings are still unconfirmed on the Legislature's own pages, which bar automated readers.
 
 ## Evidence
 

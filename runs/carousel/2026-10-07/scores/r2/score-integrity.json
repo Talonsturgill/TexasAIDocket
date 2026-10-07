@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame stands in a world with contact shadows on 05 and 09 and grit on the clay. The hero is a flat slab hull with a stepped deckhouse that owns 01, 02, 03, 05 and 08 and reads as a lighthouse on 02. Frame 07's lower part is a flat black water band over a pale strip. Frame 04 is mottled terrain in fog with the hull an invisible speck. On 06 a hatted figure clips the head behind it, the flag mesh is warped and the window doesn't read. On 05 the deckhouse sits under the dek. Frame 03's range label runs outside the safe zone."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one hero, one plan-ink accent that marks only unbuilt figures, two working devices, the 05 to 09 camera the strongest cut. The value track holds except the declared dip at 06."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces and the refusals are careful. The abatement rests on the Tribune with no court order read. The caption's closing question implies an ambiguity the cited article largely closes, since its role breakdown with the rejected sum reaches 10,000. Corsair on slide 2 and feet after 1,200 on slide 5 sit outside their quote spans. Slide 7's art can be counted as 11 buildings against 8 to 10. The first comment omits c4."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and the terms are all there. Nothing on what a reader can do next, and the schools stake names no district."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe and 06 is a real turn. Frames 02 and 03 are brochure detours. The 05/09 close lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, attributive and specific to Brownsville and Cameron County. Drawn to illustrate on eight frames and a repeated kicker read defensive."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "A new subject, hero and ground. High noon, the empty hearing room and a person beside a vehicle at the close echo recent decks."
+  }
+ ],
+ "weighted_score": 6.78,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Remodel the hero hull with a sheer line, bow flare, bulwarks and sensor housings, with a person in frame for scale.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A flat black water band over a pale strip, the planned riprap slope absent",
+   "fix": "Move the camera inland and lower its pitch so the bank and quay line fill the lower third and water takes no more than a fifth"
+  },
+  {
+   "slide": 4,
+   "problem": "Mottled terrain in fog, the hull an invisible speck, a pale strip at the foot",
+   "fix": "Drop the camera to about 450 m so the channel, bank and hull read in the lower third"
+  },
+  {
+   "slide": 2,
+   "problem": "The deckhouse close-up reads as a stone lighthouse with no scale cue",
+   "fix": "Remodel the deckhouse with sensor housings, a radar array and stanchions, and put a person on the riprap for scale"
+  },
+  {
+   "slide": 6,
+   "problem": "A clipped hatted figure, a warped flag, no visible window",
+   "fix": "Delete the clipped figure, seat residents mid-room from behind, and light the room from the planned window"
+  },
+  {
+   "slide": 5,
+   "problem": "The deckhouse rises behind the dek",
+   "fix": "Lower and shift the camera so the sheer sits below the dek"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-10-04
+- Last checked: 2026-10-07
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The study's result is unconfirmed this run. The abstract service bars automated readers and the article page shows no text to a reader without a script.
 - 2026-10-03 · The study's result is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script.
 - 2026-10-04 · The study's result still reads as published. The abstract still reports limited standalone discrimination for survival and still advises cautious use of the score as an exploratory marker.
+- 2026-10-07 · The MRI study's published abstract and its author affiliations read as they did, with nothing changed.
 
 ## Evidence
 

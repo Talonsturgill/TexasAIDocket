@@ -1,0 +1,229 @@
+{
+ "weighted_score": 6.726,
+ "judges": [
+  6.71,
+  6.774,
+  6.36
+ ],
+ "spread": 0.414,
+ "criteria": {
+  "artwork_craft": {
+   "score": 5.8,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    5.8,
+    5.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.8,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.3,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.3,
+    6.0
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A speckled plane with two outlines, the hull a speck, no place or scale",
+     "fix": "Drop to a 300 m oblique with the channel and bank in the lower fifth and the hull at true scale in the near third"
+    },
+    {
+     "judge": 2,
+     "problem": "A noise-textured plane with a blue outline, the hull a few pixels, an aliased foot band",
+     "fix": "Drop the camera to about 250 m oblique over the channel edge with riprap and reflective water in the near third and the hull at least 120 px long"
+    },
+    {
+     "judge": 3,
+     "problem": "A noise plane with outline strips under fog, the hull a 4 px speck",
+     "fix": "Pull back and south so the channel and bank fill the lower third with the hull at least 40 px long"
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin residents with a torn hair mesh, a man not on his chair, a blank seal, flat light",
+     "fix": "Seat every resident on a chair, swap the broken mesh, and let the window throw a raking key across the dais"
+    },
+    {
+     "judge": 2,
+     "problem": "Avatar mesh tears, an empty dais, no window",
+     "fix": "Put a lit window behind the dais with three commissioners seated, and push the near heads out of frame"
+    },
+    {
+     "judge": 3,
+     "problem": "Collar mesh tears, an empty dais, a blank seal",
+     "fix": "Swap the nearest figures, seat five commissioners backlit by the window, map the county seal"
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The same noise ground, white box warehouses, a quay with no built edge",
+     "fix": "Model the quay as a bulkhead with bollards and a cast shadow and lower the camera to about 120 m"
+    },
+    {
+     "judge": 2,
+     "problem": "Untextured box buildings, a near-black channel, the hull a speck",
+     "fix": "Give the channel frame 1's water and moor the hull at the near build position at about 15 percent of the width"
+    },
+    {
+     "judge": 3,
+     "problem": "Flat strips and identical boxes reading as a game board, a black channel",
+     "fix": "Drop to about 80 m along the bank with the hull moored at the quay and varied building heights"
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The hull sits against the far-bank riprap and the range leader lands on the radome",
+     "fix": "Push the far bank back and land the range leader midship"
+    },
+    {
+     "judge": 2,
+     "problem": "A flat barge slab with no reflection, the range label past the safe margin",
+     "fix": "Model sheer and flare, add a dark planar reflection, and end the label at x 1000 css"
+    },
+    {
+     "judge": 3,
+     "problem": "The radome under the label, arbitrary leader anchors, the hull jammed against the far bank",
+     "fix": "Move the range label above the mast, land the leaders on the bow wash and midship, lower the camera"
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The dek crosses the deckhouse and the hull's underside is a black mass",
+     "fix": "Pull the camera right and back and add a ground-bounce fill under the hull"
+    },
+    {
+     "judge": 2,
+     "problem": "The dek sits on the lit deckhouse and the block line can't be read",
+     "fix": "Pan right and pull back so the sheer sits below the dek with daylight under the keel"
+    },
+    {
+     "judge": 3,
+     "problem": "The deckhouse behind the dek, the block line a dark wall, a glassy deckhouse",
+     "fix": "Move the hull down and left, use frame 1's matte plate, and space the blocks"
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The deckhouse fills the frame and reads as a lighthouse",
+     "fix": "Model chamfered plate with sensor arms and a lattice mast, and drop the camera to the waterline so the bow leads the frame"
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Frame 5 with the hull deleted leaves a dead middle third",
+     "fix": "Leave the empty keel blocks standing along the line with their contact shadows"
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "No reflection or shadow under the hull, flat noon light, a blurred foreground strip",
+     "fix": "Add the hull's reflection and wash, lower the sun to about 35 degrees, bring riprap into the lower-left corner"
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.726, 1.274 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 5.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

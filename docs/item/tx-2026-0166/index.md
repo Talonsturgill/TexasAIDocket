@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-04 · The three campus trial is still unconfirmed. Its registry record is served only through a path that bars automated readers.
 - 2026-10-05 · The three campus trial of a phone microphone counting fetal movement is still unconfirmed. Its registry record is served only through a path that bars automated readers.
 - 2026-10-06 · The three campus trial of a phone microphone counting fetal movement is still unconfirmed. Its registry record is served only on a path that bars automated readers.
+- 2026-10-07 · The three campus trial's registry record is still unconfirmed. The registry bars automated readers.
 
 ## Evidence
 
