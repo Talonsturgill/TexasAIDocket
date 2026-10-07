@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-06, frame 8 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's goldenHour world. About 1,400 flagged 6 foot lath in fourteen blocks of a hundred, two columns of seven running away from the camera across worked clay, seen from 40 m, two people at the near corner. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 860px !important; }
+  .dek { width: 900px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About 1,400 signed a ban petition</h1>
+<p class="dek" data-follow="18">In June residents petitioned for a temporary ban on new data centers. KEYE reports the city found it can't go on the ballot. Texas Standard reports coalition members filed a motion with the Third Court of Appeals.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "One stake per reported signature", counter: "08 / 09", src: "c50 c51 c52 c54", fit: { min: 84, max: 116, maxLines: 1 } });
+  TT.installAll(); TT.flagStrength(1.8);
+  const R = TT.stage(TXT, gl, W, { near: 0.5, fov: 50, fog: 0.0009, exposure: 1.2 });
+  TXT.ground(R, { surface: 'dirt', size: 4000, tile: 5, seed: 56, color: TT.CLAY });
+  /* about 1,400 stakes as fourteen blocks of a hundred: ten by ten at 1.5 m, two columns of seven */
+  const N_ = 1400, PER = 100, SIDE = 10, PITCH = 1.5, BLK = (SIDE - 1) * PITCH, GAP = 14;
+  const blocks = N_ / PER, cols = 2, rows = blocks / cols, pts = [], corners = [];
+  for (let b = 0; b < blocks; b++) {
+    const c = b % cols, rw = Math.floor(b / cols);
+    const x0 = (c - (cols - 1) / 2) * (BLK + GAP) - BLK / 2, z0 = -rw * (BLK + GAP);
+    corners.push([x0, z0]);
+    /* each block of a hundred stands on its own raked square */
+    TXT.add(R, TT.raked([x0 - 1.6, z0 + 1.6, x0 + BLK + 1.6, z0 - BLK - 1.6], { seed: 300 + b, color: 0x9c8a70 }));
+    for (let i = 0; i < SIDE; i++) for (let j = 0; j < SIDE; j++) pts.push([x0 + i * PITCH, z0 - j * PITCH]);
+  }
+  const field = TT.lathField(K, THREE, pts, { above: TT.ft(6), seed: 1400, wind: 0.5 }); TXT.add(R, field);
+  /* two people in the aisle between the columns, for the size */
+  for (const [x, z, sd, ry] of [[-1.4, -30, 22, 2.6], [0.9, -31.2, 23, 3.0]]) { const p = K.make('person', { role: 'resident', pose: 'stand', seed: sd }); p.position.set(x, 0, z); p.rotation.y = ry; TT.put(p, true); }
+  TT.treeLine({ n: 30, seed: 150, x0: -560, step: 38, z: -700, jitter: 70, height: 8 });
+  TT.fenceLine({ xs: [-200, 10, 220], length: 210, seed: 90, z: 30 });
+  /* the crew's pickup at the field edge, tailgate down, a bundle of bare lath on it */
+  const crew = K.make('pickup', { trim: 'work', color: 0xd6d2c8, seed: 9 }); crew.rotation.y = Math.PI * 0.92; crew.position.set(-BLK - GAP - 9, 0.02, 9); TT.put(crew, true);
+  const bundle = K.make('survey_lath', { state: 'bundle', n: 25, seed: 12 }); bundle.position.set(-BLK - GAP - 9.4, 0.02, 12.6); bundle.rotation.y = Math.PI * 0.92; TT.put(bundle, { opacity: 0.4 });
+  TXT.frame(R, { from: [0, 26, 50], look: [0, 0, -14] });
+  TXT.sky(R);
+  TXT.scatter(R, { kind: 'grass', count: 34000, area: [-200, -400, 200, 60], avoid: [[-BLK - GAP, -rows * (BLK + GAP), BLK + GAP, 2]], seed: 57, scale: [0.18, 0.32], colors: [0xb3a27e, 0x9a8a66, 0x7d7656] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 420, target: [0, 0, -60], distance: 600, far: 1500 }));
+  TXT.weather(R, { grime: 0.15, height: 0.5 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  TT.post(cx, { shade: 0.2, a: 0.45, to: 150, veilH: 520, veil: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

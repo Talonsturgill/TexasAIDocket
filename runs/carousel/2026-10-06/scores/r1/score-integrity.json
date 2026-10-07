@@ -1,0 +1,25 @@
+{
+  "lens": "integrity",
+  "round": 1,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame is a real render in one world: worked clay, a barbed wire fence, a pine lath with flagging, contact shadows. Slides 1 and 5 come closest to a place at an hour. Short of the 10 in five ways: a flat grey-blue sky with contour banding on 1, 2, 4, 5, 6 and 9, rings around the sun on 9 and dark halos behind the furniture on 8; slide 9's lath a flat black slab with unshaded pink flagging and a sun that reads high; slide 7's corrugated water and flat black near bank; slide 6's berm a generic tufted hillside without its planned elms or crest lath; slide 3's dense furrow grid with no berm, FM 112 or houses. machine_qa warns of a top-loaded composition on 8 of 9 frames."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Clearly one deck: one ground, one hero lath that changes state, one palette and type system, and both named continuity devices do real work. Slide 8 sits outside (muddy aerial, no horizon light), and slide 9's warm sky reads as a different sky from the grey one on 1 to 6."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 6.5, "why": "Every printed numeral traces, the sources are primary city pages except the petition, attributed to KEYE. Refutations: (a) slide 1's dek says each flagged stake stands at a distance the terms set, but the cover's prominent lath stands just inside the fence; (b) slide 7's lath stands clear of the water with a contact ring, contradicting the 6 foot lath in a 6 foot basin; (c) slide 9's split of the $28.2 million comes from c36 to c42, which it does not cite; (d) slide 2's headline states the city's claim without attribution, which the dek carries; (e) c54's appeal motion and c7's tabling are left out, so the petition reads as closed; (f) c3 is missing from first_comment's id lists. None is a numeral without a computation or an unfetched source, so none is a hard fail."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "Body, place, decision and date are named, and slide 2 states the alternative. What a reader can do next is missing, and the caption closes on a question instead of a route to the meeting."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe and slide 2 pays at once, slide 8 is a real counterweight. Slides 3, 5 and 6 restate the same south line distances, and the close lands as a list."},
+    {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Plain, specific and attributed, honest about what is drawn, no boosterism. Some lines are procedural ('The record is tx-2026-0203.', 'The slides stake each distance.'). House rules hold."},
+    {"name": "variety", "weight": 0.10, "score": 7.0, "why": "New topic, instrument and palette. The carried object in a golden hour world repeats no. 40, and slide 8's one object per unit count repeats nos. 38, 39 and 43."}
+  ],
+  "weighted_score": 6.79,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild the deck's sky as a dithered low-sun golden hour gradient with the sun on the horizon band, and match the lath and its flagging to that light.",
+  "artwork_weakest_frames": [
+    {"slide": 9, "problem": "The lath a flat black slab, the flagging an unshaded polygon, the sun high, the sky ringed, halos behind the kicker and counter.", "fix": "Drop the sun onto the horizon band behind the poles, give the lath a rim on its sunward edge and the flagging a lit cloth material, and remove the halos."},
+    {"slide": 7, "problem": "Corrugated water, a flat black near bank, and the lath standing on the surface rather than drowned.", "fix": "Put the lath's foot on the basin floor so only its knot breaks the surface, calm the ripple, and model the near bank as damp clay."},
+    {"slide": 8, "problem": "A muddy sky band with dark halos behind the type, the blocks on featureless ground with no horizon light.", "fix": "Lower the camera so the horizon band backlights the flags and the shadows run east, and remove the halos."},
+    {"slide": 6, "problem": "A generic tufted hillside with no scale cue, no elms and no crest lath.", "fix": "Stand the lath at the toe so its top visibly meets the crest, add the elms, and rim-light the crest."},
+    {"slide": 3, "problem": "A dense furrow grid with no FM 112, berm or houses, so the rows float with no anchor.", "fix": "Render FM 112 and the berm in the lower third and halve the furrow frequency."},
+    {"slide": 1, "problem": "A flat grey banded sky, and the near flagged lath at no setback the terms write.", "fix": "Warm the sky, and move the near lath back onto the 400 foot row or remove its flagging."}
+  ]
+}

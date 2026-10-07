@@ -1,0 +1,358 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or derived from extracted values by a rule stated beside it.",
+ "acres": {
+  "value": 664,
+  "from": [
+   "c2"
+  ],
+  "basis": "acres in the Taylor Technology Campus project"
+ },
+ "setback_nsw_ft": {
+  "value": 300,
+  "from": [
+   "c30"
+  ],
+  "basis": "feet buildings sit back from the north, east and west lines, at least"
+ },
+ "setback_south_ft": {
+  "value": 700,
+  "from": [
+   "c31"
+  ],
+  "basis": "feet data centers, generation and batteries sit back from the south line, at least"
+ },
+ "setback_accessory_ft": {
+  "value": 500,
+  "from": [
+   "c31"
+  ],
+  "basis": "feet accessory structures sit back from the south line, at least"
+ },
+ "buffer_ft": {
+  "value": 400,
+  "from": [
+   "c32"
+  ],
+  "basis": "feet of permanent landscaped buffer along the south line, at least"
+ },
+ "berm_ft": {
+  "value": 6,
+  "from": [
+   "c33"
+  ],
+  "basis": "feet high the earthen berms stand, at least"
+ },
+ "noise_with_dba": {
+  "value": 65,
+  "from": [
+   "c12"
+  ],
+  "basis": "dBA cap on the development's noise with the agreement, or the pre-development level if greater"
+ },
+ "noise_without_dba": {
+  "value": 85,
+  "from": [
+   "c13"
+  ],
+  "basis": "dBA state limit the city lists without the agreement"
+ },
+ "fill_million_gal": {
+  "value": 1.575,
+  "from": [
+   "c17"
+  ],
+  "basis": "million gallons in the cooling loop's initial fill, for the entire site"
+ },
+ "commit_total_m": {
+  "value": 28.2,
+  "from": [
+   "c35"
+  ],
+  "basis": "millions of dollars committed for community investments and nonprofit support"
+ },
+ "commit_city_m": {
+  "value": 13,
+  "from": [
+   "c36"
+  ],
+  "basis": "millions to the City of Taylor for quality-of-life improvements"
+ },
+ "commit_parks_min": {
+  "value": 750000,
+  "from": [
+   "c36"
+  ],
+  "basis": "dollars at least for adaptive-use park improvements, inside the city's share"
+ },
+ "commit_isd_m": {
+  "value": 10.2,
+  "from": [
+   "c37"
+  ],
+  "basis": "millions to Taylor ISD educational programs"
+ },
+ "commit_scholar_m": {
+  "value": 1.5,
+  "from": [
+   "c38"
+  ],
+  "basis": "millions for Taylor ISD scholarships"
+ },
+ "commit_cte_m": {
+  "value": 1,
+  "from": [
+   "c39"
+  ],
+  "basis": "millions for Taylor ISD career and technical education"
+ },
+ "internships_per_year": {
+  "value": 20,
+  "from": [
+   "c39"
+  ],
+  "basis": "student internships a year, at least"
+ },
+ "internship_years": {
+  "value": 3,
+  "from": [
+   "c39"
+  ],
+  "basis": "years the internships run"
+ },
+ "commit_animal_m": {
+  "value": 1,
+  "from": [
+   "c40"
+  ],
+  "basis": "millions for animal care program support"
+ },
+ "grant_each": {
+  "value": 150000,
+  "from": [
+   "c41"
+  ],
+  "basis": "dollars in each of two initial nonprofit grants"
+ },
+ "grants_count": {
+  "value": 2,
+  "from": [
+   "c41"
+  ],
+  "basis": "nonprofits named for the initial grants",
+  "rule": "the two organisations c41 names, counted"
+ },
+ "nonprofit_annual_total_m": {
+  "value": 1.2,
+  "from": [
+   "c42"
+  ],
+  "basis": "millions in annual nonprofit contributions over the period"
+ },
+ "nonprofit_years": {
+  "value": 10,
+  "from": [
+   "c42"
+  ],
+  "basis": "years of annual nonprofit contributions"
+ },
+ "revenue_projection_b": {
+  "value": 1.38,
+  "from": [
+   "c44"
+  ],
+  "basis": "billions in gross tax revenue the CITY PROJECTS, a projection"
+ },
+ "revenue_years": {
+  "value": 20,
+  "from": [
+   "c44"
+  ],
+  "basis": "years of the city's revenue projection"
+ },
+ "pz_table_days": {
+  "value": 90,
+  "from": [
+   "c7"
+  ],
+  "basis": "days the Planning and Zoning Commission tabled the project"
+ },
+ "petition_signatures": {
+  "value": 1400,
+  "from": [
+   "c52"
+  ],
+  "basis": "signatures the coalition gathered, about, as KEYE reports"
+ },
+ "test_start_hour": {
+  "value": 8,
+  "from": [
+   "c34"
+  ],
+  "basis": "hour generator tests may start, a.m."
+ },
+ "test_end_hour": {
+  "value": 5,
+  "from": [
+   "c34"
+  ],
+  "basis": "hour generator tests must end, p.m."
+ },
+ "commit_parts_sum_m": {
+  "value": 28.2,
+  "from": [
+   "c36",
+   "c37",
+   "c38",
+   "c39",
+   "c40",
+   "c41",
+   "c42"
+  ],
+  "basis": "the seven listed parts summed, millions",
+  "rule": "13 + 10.2 + 1.5 + 1 + 1 + 2 x 0.15 + 1.2, rounded to 0.1"
+ },
+ "commit_isd_total_m": {
+  "value": 12.7,
+  "from": [
+   "c37",
+   "c38",
+   "c39"
+  ],
+  "basis": "millions to Taylor ISD across its three lines",
+  "rule": "10.2 + 1.5 + 1, rounded to 0.1"
+ },
+ "commit_isd_share_pct": {
+  "value": 45,
+  "from": [
+   "c35",
+   "c37",
+   "c38",
+   "c39"
+  ],
+  "basis": "percent of the committed total that goes to Taylor ISD",
+  "rule": "isd_total / total x 100, rounded to a whole percent"
+ },
+ "internships_total": {
+  "value": 60,
+  "from": [
+   "c39"
+  ],
+  "basis": "student internships at least, over the three years",
+  "rule": "per year x years"
+ },
+ "noise_gap_dba": {
+  "value": 20,
+  "from": [
+   "c12",
+   "c13"
+  ],
+  "basis": "dBA between the state limit the city lists and the agreement's cap",
+  "rule": "85 - 65"
+ },
+ "noise_power_ratio": {
+  "value": 100,
+  "from": [
+   "c12",
+   "c13"
+  ],
+  "basis": "times the sound power a 20 dB difference stands for",
+  "rule": "10 ^ (dB difference / 10), the decibel's definition"
+ },
+ "test_window_hours": {
+  "value": 9,
+  "from": [
+   "c34"
+  ],
+  "basis": "hours in the weekday generator test window",
+  "rule": "5 p.m. is hour 17; 17 - 8"
+ },
+ "site_m2": {
+  "value": 2687113,
+  "from": [
+   "c2"
+  ],
+  "basis": "square metres in 664 acres",
+  "rule": "acres x 4046.8564224"
+ },
+ "site_side_m": {
+  "value": 1639,
+  "from": [
+   "c2"
+  ],
+  "basis": "side in metres of a square of the site's area",
+  "rule": "sqrt(m2), a square of equal area, NOT the parcel's shape"
+ },
+ "setback_nsw_m": {
+  "value": 91.44,
+  "from": [
+   "c30"
+  ],
+  "basis": "metres buildings sit back from the north, east and west lines, at least",
+  "rule": "feet x 0.3048"
+ },
+ "setback_south_m": {
+  "value": 213.36,
+  "from": [
+   "c31"
+  ],
+  "basis": "metres data centers, generation and batteries sit back from the south line, at least",
+  "rule": "feet x 0.3048"
+ },
+ "setback_accessory_m": {
+  "value": 152.4,
+  "from": [
+   "c31"
+  ],
+  "basis": "metres accessory structures sit back from the south line, at least",
+  "rule": "feet x 0.3048"
+ },
+ "buffer_m": {
+  "value": 121.92,
+  "from": [
+   "c32"
+  ],
+  "basis": "metres of permanent landscaped buffer along the south line, at least",
+  "rule": "feet x 0.3048"
+ },
+ "berm_m": {
+  "value": 1.83,
+  "from": [
+   "c33"
+  ],
+  "basis": "metres high the earthen berms stand, at least",
+  "rule": "feet x 0.3048"
+ },
+ "fill_m3": {
+  "value": 5962,
+  "from": [
+   "c17"
+  ],
+  "basis": "cubic metres in the initial fill",
+  "rule": "gallons x 0.003785411784"
+ },
+ "fill_cube_side_m": {
+  "value": 18.1,
+  "from": [
+   "c17"
+  ],
+  "basis": "side in metres of a cube holding the initial fill",
+  "rule": "cube root of m3"
+ },
+ "days_to_vote": {
+  "value": 2,
+  "from": [
+   "c4"
+  ],
+  "basis": "days from this deck's date, October 6th, to the October 8th vote",
+  "rule": "date(2026,10,8) - date(2026,10,6)"
+ },
+ "drawn_depth_ft": {
+  "value": 6,
+  "from": [
+   "c33"
+  ],
+  "basis": "feet deep the fill basin is DRAWN, a drawing rule and not a claim, set equal to the berm height every stake in the deck stands at",
+  "rule": "= berm_ft",
+  "label": "drawing"
+ }
+}

@@ -2755,6 +2755,61 @@
     "hex": "#16202A",
     "note": "The deck's declared ground, a dark blue hour deck with light type."
    }
+  },
+  {
+   "date": "2026-10-06",
+   "carousel_no": 44,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-06/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A golden hour deck on Blackland clay. One prairie world (goldenHour sky, warm haze #C9B393, low sun at az -78 el 7) declared once in assets/js/deck/2026-10-06-prairie.js. One hero, the 6 foot survey lath with survey pink flagging, carried through all nine frames as the deck's unit of measure. Chassis kit models for the lath, an earthen berm, a sound level meter on a tripod and a fill basin solved from its volume.",
+   "structural_laws": [
+    "A DISTANCE STAKED FROM ABOVE NEEDS A RAKED LINE UNDER IT. A row of lath at 120 m is sub-pixel at 432 px, and a bare raked strip lighter than the field is what reads as the line.",
+    "AN AERIAL OVER FINE FURROWS ALIASES INTO A LINE SCREEN. Keep furrow pitch over 3 m at 45 m up, or leave the aerial on plain worked clay.",
+    "A COUNT OF BLOCKS READS ONLY WHEN EACH BLOCK STANDS ON ITS OWN LIGHTER GROUND. Fourteen squares of lath with no apron read as one dark field.",
+    "A STAKE NEARER THE CAMERA THAN THE BERM IT MEASURES STANDS TALLER ON SCREEN UNLESS THE EYE SITS AT ITS HEIGHT OR THE LENS IS LONG. Look along the berm instead so the crest recedes.",
+    "A LOW SUN SKY STEPS IN 8 BITS. Deband the flat sky after the snapshot with a window wider than the steps, never under 40 px at 2x."
+   ],
+   "techniques": [
+    "a worked clay field from the FM 112 shoulder at golden hour, ridges raked by the low sun, one flagged lath at the right behind the south line fence",
+    "frame 1's camera to the centimetre, the rows gone, one lath pulled and lying on the ridge crests",
+    "the field from 60 m over the south line, three raked lines at 400, 500 and 700 feet with pink leaders, a hall beyond the last",
+    "a sound level meter on a tripod at the south line beside a flagged lath, two bars at 65 and 85 dBA from one zero",
+    "seven raked lines paced from the fence to a hall drawn for scale, a person at the fence beside a lath",
+    "a turfed berm seen along its length from its end, a bare lath at its toe",
+    "a basin cut in the clay holding the first fill, a lath drowned to its top in the near water",
+    "1,400 lath in fourteen raked blocks from 26 m up, two people in the aisle, the far blocks in haze",
+    "one flagged lath at the fence, FM 112 running west into the low sun with a pickup and utility poles"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     18.1,
+     17.9,
+     16.3,
+     24.8,
+     24.1,
+     26.4,
+     38.5,
+     15.7,
+     38.1
+    ],
+    "deck_median_L": 24.1,
+    "max_adjacent_delta": 22.8,
+    "mean_adjacent_delta": 8.83,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark clay deck, the sunlit close at frame 9 the declared value cut."
+   },
+   "accent": {
+    "hex": "#E05A8F",
+    "name": "survey pink, a staked distance",
+    "frames_above_floor": [
+     3,
+     4,
+     9
+    ],
+    "note": "Measured above the floor on 3 (the leaders), 4 (the WITH bar) and 9 (the flagging). The flagging on 1, 5 and 8 reads smaller than the floor."
+   },
+   "ground": {
+    "hex": "#1E1A16",
+    "note": "The deck's declared ground, a dark clay deck with light type."
+   }
   }
  ]
 }

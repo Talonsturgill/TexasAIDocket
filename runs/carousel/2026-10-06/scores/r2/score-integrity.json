@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "All nine frames are rendered places. The declared golden hour reads as a flat cool grey with banding on 1, 2, 4, 5, 6 and 7, frame 7 reads as a diagram, frame 6's berm is a sprite hill with a clipped branch, frame 8 is fogged with halos behind the furniture (9 too), frame 5's figure is a mannequin on untextured clay. More than one frame leans on a default, so below 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one hero changing state on every frame, both continuity devices work, no value strobe. Frames 7 and 8 sit outside, and 1 to 8 read overcast where 9 alone is sunlit."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every numeral traces. Looser than the sources: slide 4's linear dBA bars against a computed 100 times power ratio; the petition outcome and appeal motion rest on journalism; 'accessory buildings' for c31's 'accessory structures'; 'stays out' in the present tense for a proposed term; slide 3's hall without its drawn-for-scale disclosure; first_comment omits c3 and c10 used in the caption. None is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What, who, where and the deadline are named, the stakes concrete. The next step is only implied."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns a swipe, 2 pays, 8 is a real counterweight, 9 closes on the date. Distances restated on 3, 5 and 6, and 7 arrives without a bridge."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and on register. The meeting line is boilerplate and repeated, and the caption's 'it' points at the 85 dBA."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A new instrument and clean dedupe. The carried hero repeats nos. 39 to 43, golden hour repeats no. 40, the third data center deck in the window."
+  }
+ ],
+ "weighted_score": 7.16,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-light the world to the declared golden hour with no banding and long east casts, and rebuild frame 7's basin as a modelled place.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A flat sine-ripple plane, a flat near bank band, a thin field strip, a mannequin on the far bank.",
+   "fix": "Camera at the near lip with the modelled bank in the lower third, a noise normal reflecting the warm band, remove the figure."
+  },
+  {
+   "slide": 6,
+   "problem": "A sprite hill, a clipped cedar branch, a banded grey sky, no raking light.",
+   "fix": "Crouch at the toe so the crest runs diagonal against the low sun, light the crest, delete the clipped tree."
+  },
+  {
+   "slide": 8,
+   "problem": "Fog with no sky, flat squares, halos behind the furniture.",
+   "fix": "Cut the fog so a sky returns, long east shadows, seat the kicker on clean sky."
+  },
+  {
+   "slide": 5,
+   "problem": "Untextured clay, a mannequin, a banded grey sky.",
+   "fix": "Rake the low sun across the clay, turn the person and rim-light the shoulders, warm the sky."
+  },
+  {
+   "slide": 9,
+   "problem": "A thick black post, a flat ribbon, a dull grey sun, the stake behind the hook.",
+   "fix": "A rim highlight on the lath, cloth shading on the flagging, move the stake right of the hook."
+  }
+ ]
+}

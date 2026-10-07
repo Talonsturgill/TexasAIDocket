@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-06, frame 5 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's goldenHour world. A person at the south line fence beside a 6 foot lath, seven flagged rows paced every 100 feet ahead, ending at a data hall's long wall 700 feet out. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 845px !important; }
+  .dek { width: 880px !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The closest a data hall gets to the south line</h1>
+<p class="dek" data-follow="18">Data centers, power generation and battery storage would stand at least 700 feet from the south line. The hall here is drawn for scale, and the size of the real buildings is not in the record.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "The hall is drawn for scale", counter: "05 / 09", src: "c31", fit: { min: 84, max: 116, maxLines: 1 } });
+  TT.installAll(); TT.flagStrength(1.6);
+  const R = TT.stage(TXT, gl, W, { near: 0.1, fov: 30, fog: 0.0012, exposure: 1.3 });
+  TXT.ground(R, { surface: 'dirt', size: 3000, tile: 5, seed: 26, color: TT.CLAY });
+  /* seven rows paced every 100 feet from the south line to 700 */
+  for (let k = 1; k <= 7; k++) { const pts = []; for (let x = -240; x <= 240; x += 11) pts.push([x + ((k * 5) % 4), -TT.ft(100 * k)]); TXT.add(R, TT.raked([-245, -TT.ft(100 * k) - 2, 245, -TT.ft(100 * k) + 2], { seed: 500 + k, color: 0x9c8a70 })); TT.put(TT.lathField(K, THREE, pts, { above: TT.ft(6), seed: 500 + k })); }
+  /* a hall, the kit's illustrative massing, turned so a long wall faces south, its near face 700 feet out */
+  const hall = K.make('data_center', { length: 260, depth: 90, seed: 4 }); hall.rotation.y = Math.PI; TXT.add(R, hall);
+  hall.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(hall); hall.position.z += -TT.ft(700) - bb.max.z; hall.position.x += -20;
+  TXT.contact(R, hall, { opacity: 0.5 });
+  const hall2 = K.make('data_center', { length: 220, depth: 90, seed: 8 }); hall2.rotation.y = Math.PI; TXT.add(R, hall2);
+  hall2.updateMatrixWorld(true); const b2 = new THREE.Box3().setFromObject(hall2); hall2.position.z += -TT.ft(700) - 150 - b2.max.z; hall2.position.x += 230;
+  TT.fenceLine({ xs: [-200, 10, 220], length: 210, seed: 70, z: 0 });
+  /* the person at the fence, turned away, and the 6 foot lath beside them */
+  const p = K.make('person', { role: 'resident', pose: 'stand', seed: 14, shirt: 0x5b6470, trousers: 0x3a3d42, hat: true });
+  p.rotation.y = Math.PI + 0.25; p.position.set(-2.3, 0, 0.5); TT.put(p, true);
+  const lath = K.make('survey_lath', { above: TT.ft(6), seed: 31, wind: 0.55 }); lath.position.set(-1.55, 0, 0.35); TT.put(lath, { opacity: 0.5 });
+  TT.treeLine({ n: 24, seed: 100, x0: -520, step: 42, z: -1200, jitter: 60, height: 8 });
+  /* the terms put generation and battery storage at the same line as the halls: drawn as illustrative kit blocks */
+  const gen = K.make('genset_block', { units: 5, seed: 3 }); gen.position.set(-205, 0, -TT.ft(700) - 8); gen.rotation.y = Math.PI; TT.put(gen, true);
+  const gen2 = K.make('genset_block', { units: 4, seed: 4 }); gen2.position.set(-240, 0, -TT.ft(700) - 8); gen2.rotation.y = Math.PI; TT.put(gen2, true);
+  const bess = K.make('battery_storage', { rows: 2, cols: 6, seed: 2 }); bess.position.set(-330, 0, -TT.ft(700) - 30); TT.put(bess, true);
+  TXT.frame(R, { from: [4, 4.2, 22], look: [-170, -40.2, -360] });
+  TXT.sky(R);
+  TT.clods([-30, -60, 30, -3], { count: 1400, seed: 27, scale: [0.02, 0.05] });
+  TT.stubble([-140, -220, 140, -2], { count: 24000, seed: 28, scale: [0.12, 0.28] });
+  /* the shoulder's own stubble, this side of the fence, under the type */
+  TT.stubble([-30, -2, 30, 18], { count: 7000, seed: 29, scale: [0.1, 0.22] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 520, target: [0, 0, -120], distance: 700, far: 1800 }));
+  TXT.weather(R, { grime: 0.18, height: 1.0 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  TT.post(cx, { a: 0.45, to: 150, veilH: 520, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

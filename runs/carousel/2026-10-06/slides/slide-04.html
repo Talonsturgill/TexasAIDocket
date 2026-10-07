@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- 2026-10-06, frame 4 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's goldenHour world. A sound level meter on its tripod at the south property line beside a 6 foot lath, the windscreen cropped by the top edge, the field and its far rows behind, two bars at one scale for 65 and 85 dBA. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* the deck's furniture, one size on every frame: kicker, counter, source line and site line */
+  .kick, .count, .src, .tx-site { font-size:24px; }
+  .hook { top: 845px !important; }
+  .dek { width: 880px !important; }
+  .bars { position:absolute; left:80px; top:600px; z-index:12; }
+  .bar { height:22px; margin:10px 0 26px 0; }
+  .blab { font-family:"JetBrains Mono",monospace; font-size:24px; font-weight:500; letter-spacing:0.06em; color:#F3EFE6; text-shadow:0 0 2px rgba(14,10,8,0.7),0 1px 12px rgba(14,10,8,0.5); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">65 decibels, or the level before</h1>
+<p class="dek" data-follow="18">The terms cap the campus's noise at 65 dBA or the level before construction, whichever is greater. A study at the property lines would set that level. Without the agreement, the city lists the state's 85 dBA.</p>
+<div class="bars"><div class="blab">WITH THE TERMS 65 DBA OR THE BASELINE</div><div class="bar" id="bw"></div><div class="blab">WITHOUT 85 DBA</div><div class="bar" id="bo"></div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-06-prairie.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await TT.boot(THREE, TXT, initKit, { kicker: "Noise, as the terms write it", counter: "04 / 09", src: "c12 c13 c14", fit: { min: 84, max: 116, maxLines: 1 } });
+  TT.installAll();
+  /* the two levels as two bars from one zero at one scale, 5 px a dBA; a bar and never a dial */
+  const PX = 5;
+  const bw = document.getElementById('bw'), bo = document.getElementById('bo');
+  bw.style.width = (65 * PX) + 'px'; bw.style.background = '#E05A8F';
+  bo.style.width = (85 * PX) + 'px'; bo.style.background = 'rgba(232,226,214,0.82)';
+  const R = TT.stage(TXT, gl, W, { near: 0.03, fov: 30, fog: 0.0013, exposure: 1.3 });
+  TXT.ground(R, { surface: 'dirt', size: 3000, tile: 5, seed: 16, color: TT.CLAY });
+  /* the meter stands on the south property line, where the terms put the acoustic study */
+  const meter = K.make('sound_level_meter', { height: 1.5, seed: 2 }); meter.position.set(0, 0, 0); meter.rotation.y = 0.5;
+  TT.put(meter, { opacity: 0.5 });
+  const lath = K.make('survey_lath', { above: TT.ft(6), seed: 21, wind: 0.55 }); lath.position.set(0.42, 0, -0.75); TT.put(lath, { opacity: 0.5 });
+  /* behind, the rows at the distances the terms write down, and the far tree line */
+  for (const d of [400, 500, 700]) { const pts = []; for (let x = -260; x <= 260; x += 14) pts.push([x, -TT.ft(d)]); TT.put(TT.lathField(K, THREE, pts, { above: TT.ft(6), seed: d + 3 })); }
+  TT.treeLine({ n: 24, seed: 80, x0: -500, step: 40, z: -1150, jitter: 60, height: 8 });
+  /* the instrument's hard case open on the clay at the tripod's foot, and the cable between them */
+  const caseMat = new THREE.MeshStandardMaterial({ color: 0x1f2326, roughness: 0.42, metalness: 0.15 });
+  const box = TXT.roundedBox(0.52, 0.2, 0.38, 0.03, caseMat); box.position.set(0.55, 0.1, 0.35); box.rotation.y = 0.4; TT.put(box, { opacity: 0.6 });
+  const foamIn = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.02, 0.32), new THREE.MeshStandardMaterial({ color: 0x3b3f42, roughness: 1 })); foamIn.position.set(0.55, 0.205, 0.35); foamIn.rotation.y = 0.4; TXT.add(R, foamIn);
+  const lead = K.cable([0.0, 1.14, 0.0], [0.5, 0.2, 0.3], 0.35, 0.004, new THREE.MeshStandardMaterial({ color: 0x111214, roughness: 0.5 })); TXT.add(R, lead);
+  TXT.add(R, TT.furrows({ x0: -200, x1: 220, z0: -7.5, z1: -600, seed: 34 }));
+  TXT.frame(R, { from: [-3.03, 1.1, 5.97], look: [37.8, -11.0, -85.4] });
+  TXT.sky(R);
+  TT.clods([-20, -40, 30, -2], { count: 900, seed: 17, scale: [0.02, 0.045] });
+  TT.stubble([-120, -260, 120, -2], { count: 8000, seed: 18, scale: [0.12, 0.26] });
+  /* the near clay at the tripod's feet: sparse low October stubble, nothing tall enough to cross the type */
+  TT.stubble([-12, -2, 14, 7], { count: 9000, seed: 19, scale: [0.08, 0.2] });
+  TXT.deckRig(R, ...TT.rig(W, { size: 24, target: [0, 0, -2], distance: 80, far: 200 }));
+  TXT.weather(R, { grime: 0.2, height: 0.4 });
+  const cx = TT.develop(await TXT.snapshot(R), gl);
+  TT.post(cx, { a: 0.45, to: 150, veilH: 520, veil: 0.32, type: ['.kick', '.hook', '.dek', '.bars'] });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

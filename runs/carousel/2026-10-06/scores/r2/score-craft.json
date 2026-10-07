@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Real renders with a ground and contact, above the 4, short of the 7 because several frames lean on a default. goldenHour does not read on frames 1 to 8 (a grey dome with banding on 5, 6 and 9), the low sun throws no long casts from the lath on 1 or the person on 5, the furrowed field splits dark left and lit right on 1, 2 and 7, frame 7's drowned lath is a 10 px speck over sine-stripe water with a flat near bank, frame 6 has a clipped tree at the left edge and no elms, frame 3 has no south line, FM 112, berm or houses, frame 2's pulled lath floats above its shadow, frame 4's case is a primitive box. Strong points are frame 9's haze and poles, frame 5's hall, frame 1's perspective and frame 8's long east shadows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One deck: one clay ground, one lath hero, one type system, both continuity devices visible. Frame 7's pale water and grade break the filmstrip, frame 6's berm reads warmer, and only frames 8 and 9 show casts running east."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, sources are primary official except the petition material, attributed by name. Slide 4 draws 65 and 85 dBA as linear bars while figures.json computes a 100 times power ratio. Slide 2 writes 'stays' where c8 says 'would have remained'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "Body, decision, place and date named, concrete stakes, the alternative in the city's words, the opposing residents. The next step offers only the regular meeting room, with no time and no way to comment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, frame 2 pays at once, the counter-voice at 8, the close on the date. Frames 5 and 6 re-explain frame 3's distances and frame 7 is a side branch."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and Texan without boosterism, a good closing question. The council chambers line is bureaucratic and 'three circumstances' leaves the reader asking which."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "New world, accent and opening. Golden hour was no. 40's hour, a single carried object is the house structure, and it is a second data center siting story in eight days after no. 37."
+  }
+ ],
+ "weighted_score": 7.35,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-light the chassis so goldenHour reads as a low sun with a warm band, no banding and long east casts from every lath and person.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The drowned lath is a 10 px speck, sine-stripe water, a flat near bank slab.",
+   "fix": "Bring the lath to 6 to 8 m from the camera at a 0.8 m eye, noise ripple with a Fresnel reflection of the warm band, a sloped wet near bank."
+  },
+  {
+   "slide": 6,
+   "problem": "A clipped tree at the left edge, no elms, a thin stick on the face, uniform sprites.",
+   "fix": "Remove the off-screen tree, plant the elms, put the lath at the toe so its top lands on the crest, thin the sprites."
+  },
+  {
+   "slide": 3,
+   "problem": "No south line, FM 112, berm or houses, so the rows have no zero, one uniform corrugation.",
+   "fix": "Pitch down and back so FM 112, the fence and the berm sit in the bottom third."
+  },
+  {
+   "slide": 2,
+   "problem": "The pulled lath floats above its shadow and crosses the bottom wire.",
+   "fix": "Rest it on two ridges with a contact along its length, clear of the wire."
+  },
+  {
+   "slide": 5,
+   "problem": "No long shadows at a 7 degree sun, a mannequin person, sky arcs.",
+   "fix": "Cast long raking shadows east and rim-light the person."
+  },
+  {
+   "slide": 9,
+   "problem": "A dull grey sun high in the frame, contour banding, flat flagging.",
+   "fix": "Put the sun in the low band, emissive with bloom, and shade the flagging with the backlight."
+  },
+  {
+   "slide": 1,
+   "problem": "A grey banded sky, no long cast from the lath, a dark-left lit-right split.",
+   "fix": "Angle the sun so the near lath's shadow runs across the clay and both halves share one light."
+  }
+ ]
+}
