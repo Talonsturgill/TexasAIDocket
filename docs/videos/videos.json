@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-10-07-the-warmer-unit",
+      "date": "2026-10-07",
+      "title": "The warmer unit",
+      "caption": "FacilityOps AI says its Houston inspection pilot found a failed condenser. A handheld check confirmed the measurement. The vendor reports that the condenser was repaired and the unit returned to normal operation.\n\nA second cooling unit showed intermittent temperature spikes. That condition was flagged for inspection, not confirmed as a fault.\n\nThe vendor's September 23rd update describes an ongoing pilot. This film uses generic illustrations. A robot's flag starts a maintenance check. It doesn't finish one.",
+      "video": "/runs/2026-10-07/dispatch.mp4",
+      "poster": "/runs/2026-10-07/poster.png",
+      "video_mobile": "/runs/2026-10-07/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-10-07/poster-540.jpg",
+      "county": "Harris",
+      "beat": "what-texas-makes"
+    },
+    {
       "id": "2026-10-06-before-the-robot-moves",
       "date": "2026-10-06",
       "title": "Before the robot moves",
