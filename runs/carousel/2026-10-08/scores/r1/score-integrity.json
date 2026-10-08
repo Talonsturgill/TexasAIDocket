@@ -1,0 +1,98 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "deck": "carousel no. 46, 2026-10-08, tx-2026-0205",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Most frames pass the value register. The fields are dark and the type is light on near-black sky (art_preflight median L* 4.5 / 13.4 / 2.5 on frames 1, 5 and 9). One Caravan model is carried through the deck, and slides 5 (the lamp table) and 8 (the threshold stripes, one in cyan) are strong graphic frames that read at thumb size. The hero itself is a primitive model, though, and it fills most of the frames. The cabin windows are flat black rectangles and the gear pants are blocky wedges (slides 1, 3 and 4). On slide 4 the cockpit canopy is a teardrop blob floating above the fuselage line, and the nose is cut off by the left edge. The cover (slide 1) shows a spinner with no visible blades, only a faint ring, so the propeller reads as missing rather than turning. Slide 9's day lamps read as cyan balloons, and the Caravan is small and stands right of where the lit run ends (preflight says so too). Slide 2's tower is a white stick primitive. Slides 5 and 8 drift into a warm brown haze behind the type. Against the 7 descriptor, more than one frame leans on a primitive model."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "It is clearly one deck. One airfield at last light, one Caravan in one white-and-navy material, one cyan accent, and a continuity device that works: the radio thread leaves the right edge of slide 1 and enters slide 2 from the left. The camera moves as the storyboard declares. Slide 7, the flat county map, sits outside the world (the storyboard plans for this). Slides 5 and 8 carry a warm brown sky band where the other frames are navy black. Machine QA band ratios run from 1.07 to 1.75, which is uneven but not strobing."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Most of the deck traces cleanly. Every printed numeral is in figures.json from a quoted claim (8, 26, 30, 3, 28, 1,096), and the sources are primary TxDOT, FAA and corporate releases. The deck's central absence claim stretches its own source, though (HARD FAIL 1 below). Slide 5 prints 'None of the three says whether a pilot was aboard or how it went' and leaves Merlin's lamp dark on the HOW IT PERFORMED row. The caption repeats it. The run's own c27 quotes Merlin's release saying the demonstration 'showcased how the Merlin Pilot can safely and effectively perform responsibilities traditionally managed by human pilots'. The fact check's rejection was narrower ('prints any result, metric or intervention'), and the deck widened it to 'how it went'. The slide 4 dek and the web edition both drop 'safely and effectively' from c27. compute.py does not scan for the two silence rows. It types them in as constants (`{k: False for k in SNAP}`), so the lit/unlit table is an editorial judgement presented as a computed record. Lesser faults: (a) 'October 8th is day 28 of 1,096' mixes conventions. 28 is elapsed days, but if September 10th is day 1 (which a 1,096-day span requires), October 8th is day 29. (b) Slide 4's label 'IN-FLIGHT RE-PLANNING' is marked verbatim in the storyboard but cuts c26's 'dynamic autonomous in-flight re-planning and threat avoidance' in half. (c) The caption uses c17 (medical supplies or organs), but the first comment's TxDOT source line lists no c17. (d) Slide 1 asserts that the FAA's release does not name Merlin and does not cite c2. (e) The current slide 3 dek dropped the planned 'No source places the two side by side' while the art still parks both Caravans wing to wing on one apron. The stale contact_sheet.png still shows the old dek, so the package's contact sheet no longer matches its renders. (f) c33, Dallas Innovates captioning a TxDOT-credited photo of Merlin's Caravan 'in the Project Nexus test flights', is cited on slide 3 but printed nowhere. Meanwhile the caption tells readers that 'TxDOT's and the FAA's releases skip Merlin', which leans the reader toward doubt the record partly answers."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened, where and who acted are named: TxDOT and the FAA, Fort Worth Alliance Airport, September 10th, the first phase's traditional aircraft and no passengers (slides 2 and 6). The decision a Texan could act on is not there. No comment route, no meeting, no deadline. The 'stake' is a day count (slide 9) and a question about press releases. The spine is a company's PR claim against two agencies' silence, so the reader learns what three releases did not say more than what Texas decided. The caption closes on 'Is silence in all three the whole public record on both?', which is a topic rather than a next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook ('Software on the radio') earns a swipe. Slide 2 pays at once (what, where, who). The flow critic's reorder puts Merlin's claims (slide 4) before the record (slide 5), which is the right turn. After the turn, slides 6, 7 and 8 are program background that could be reordered or merged without loss (6 and 8 both restate phase and data facts), and the close's 'day 28' is a computed device rather than a landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "It is clean and on register, with no house-rule breaks I could find in the caption or slides (no colons, dashes, banned words or first person). 'Did software work the radio?' and 'Two Caravans, by two companies' word' have a voice. The rest is procedural attribution prose ('Its release calls its expectations of the software's performance forward-looking'). There is no North Texas texture in the copy beyond the airport's name, and slide 8's dek reads like a release summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The topic is new, and there is no Project Nexus or Merlin entry in the 30-day window. Two things hold this down. First, the spine is again what documents do not say: the cover dek's 'Neither TxDOT's release nor the FAA's names Merlin', slide 5's dark lamps, and the slide 9 and caption close. topics.json entries 11, 14, 15, 16, 23 and 28 each ask the next run in capitals to stop building on an absence. Second, the instrument repeats. This is an FAA aviation record about Texas airspace, like no. 33 on September 24th (Zipline), and the autonomy beat is recent (34 and 41). The visual formula (one hero object carried through a staged dark world with a cyan accent) is the house formula of nos. 39 to 45."
+  }
+ ],
+ "weighted_score": 6.39,
+ "weighted_score_arithmetic": "0.22*6.5 + 0.12*7.5 + 0.20*5.5 + 0.16*6.0 + 0.10*7.0 + 0.10*7.0 + 0.10*6.0 = 1.43 + 0.90 + 1.10 + 0.96 + 0.70 + 0.70 + 0.60 = 6.39",
+ "hard_fails": [
+  {
+   "rule": "an unverified fact presented as verified (a universal the run's own claims refute)",
+   "where": "slide-05 dek 'None of the three says whether a pilot was aboard or how it went', slide-05 row label 'HOW IT PERFORMED' with Merlin's lamp unlit, caption paragraph 4 'None of the three releases says whether a pilot was aboard or how the demonstration went', and storyboard 'No result. No source prints how the demonstration went.'",
+   "evidence": "claims.json c27 (Merlin's release, one of the three releases in the set) quotes 'The demonstration, narrated by CEO and founder, Matt George, showcased how the Merlin Pilot can safely and effectively perform responsibilities traditionally managed by human pilots'. That is the release's own account of how the demonstration went. It is self-serving and unmeasured, but it is a statement. The fact check's rejected finding supports only 'None of the eight sources prints any result, metric or intervention'. compute.py does not derive the 'says how the demonstration performed' row from the snapshots. It hard-codes it False for all three releases (`{k: False for k in SNAP}`), so the unlit Merlin lamp is a typed judgement drawn as a measured cell. The slide 4 dek and the web edition both paraphrase c27 without 'safely and effectively', which is the phrase that refutes the absence. A reader leaves believing Merlin's own release said nothing about how its demo went. It said the demo showed safe and effective performance."
+  }
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the deck's absence to what the record supports. Relabel slide 5's third row 'PRINTS A RESULT' (or 'A MEASURED RESULT'), change the slide 5 dek and caption to 'None of the three prints a result or a measurement, and only Merlin's calls its demonstration safe and effective, in its own words', put c27's 'safely and effectively' back on slide 4, and make compute.py derive every row of the record table from the snapshots rather than typing False.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The Caravan model is at its weakest here, shown broadside as an elevation. The canopy is a teardrop blob floating above the fuselage line, the nose is cut off by the left edge, the windows are flat black rectangles, the fuselage is a boxy extrusion, and the leaders land on parts that do not read as parts.",
+   "fix": "Pull the camera back so the whole airframe nose to tail sits inside the frame, remodel the windshield and canopy as a faired surface flush with the fuselage crown (delete the floating teardrop), and model a visible comm blade antenna on the spine where the ATC leader lands."
+  },
+  {
+   "slide": 1,
+   "problem": "The cover's propeller reads as missing. There is a bare spinner with only a faint tip ring and no blades, the gear pants are blocky wedges with a clean contact, and the boxy black windows read as a primitive model at the closest camera in the deck.",
+   "fix": "Render the slide 6 three-blade propeller at a stopped angle (or with a motion-blurred disc that shows blade roots) in front of the spinner, and add grime and an oil stain under the nose gear with a darker contact shadow."
+  },
+  {
+   "slide": 9,
+   "problem": "The close's day lamps read as cyan balloons on sticks, and the Caravan is about a tenth of the frame height and stands right of where the lit run ends, so the data in the art (the plane at day 28) does not land visually.",
+   "fix": "Shrink the lamp heads to real edge-light scale with a small glowing lens on a dark housing, and dolly the camera forward and left so the Caravan, about 30 percent of the frame width, stands exactly at the 28th lit lamp."
+  },
+  {
+   "slide": 2,
+   "problem": "The control tower that the radio thread lands on is a white stick with a box, a primitive at the frame's focal point, and the warm cab glow the storyboard calls for is not visible.",
+   "fix": "Model the tower with a tapered shaft and a faceted, glazed, amber-lit cab, and bring it nearer so it holds at least 15 percent of the frame height."
+  }
+ ],
+ "notes_not_charged_as_hard_fails": [
+  "Topic dedupe: no Project Nexus, Merlin or TxDOT-eIPP entry in ledger/carousel/topics.json within 30 days. The nearest is no. 33 (FAA, Zipline, September 24th), which is a different decision.",
+  "Machine QA verdict WARN with 0 fails. The slide 7 'busy art under text' warnings are on the city labels, which are legible in the render.",
+  "out/2026-10-08/render/contact_sheet.png is stale. Its slide 3 dek reads 'No source places the two side by side', while slide-03.png reads 'Each release speaks for its own aircraft'. Regenerate it before the email uses it.",
+  "ledger/docket.json entry tx-2026-0205 was not read in full (the file is too large without search). I checked the article ledger/articles/2026-10-08.json. Its 'What the record does not show' section carries the same 'how the software performed' overreach and should be fixed with the deck."
+ ],
+ "files": [
+  "/home/user/TexasAIDocket/out/2026-10-08/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-08/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/slide-05.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/slide-04.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-08.json"
+ ]
+}

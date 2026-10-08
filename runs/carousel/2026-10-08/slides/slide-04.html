@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- 2026-10-08, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's lastLight world. The Caravan side on across the frame on a long lens from the west, three accent leaders from Merlin's own words landing on the main gear, the spine antenna and the wing root, and a fourth naming the absence at the cockpit glass. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab.l { font-size:28px; }
+  .lab.abs { font-size:24px; color:#E4DFD5; }
+  svg#ld { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three things Merlin says it showed</h1>
+<p class="dek" data-follow="24">Merlin says the demonstration, narrated by its chief executive, showed the Merlin Pilot can safely and effectively perform responsibilities traditionally managed by human pilots. Its release calls its expectations forward-looking.</p>
+<svg id="ld" viewBox="0 0 1080 1350"></svg>
+<div class="lab l acc" id="l0">AUTONOMOUS TAKEOFF AND LANDING</div>
+<div class="lab l acc" id="l1">AI-POWERED AIR TRAFFIC CONTROL COMMUNICATIONS</div>
+<div class="lab l acc" id="l2">IN-FLIGHT RE-PLANNING AND THREAT AVOIDANCE</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "Merlin, in its own words", counter: "04 / 09", src: "c26 c27 c31", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 12.5, exposure: 0.8 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  NX.runway({ length: 3000, z0: 1500, stripes: 8, edges: false });
+  /* the hero on the runway centreline, nose north, its left side to the west camera */
+  const p = NX.plane({ prop: 'disc', lights: false, seed: 3 }); p.rotation.y = Math.PI; p.position.set(0, 0, 0); TXT.add(R, p); TXT.contact(R, p);
+  TXT.frame(R, { from: [-82.7, 4.6, 15.2], look: [0, 5.2, 0.6] });   /* eye raised and yawed ten degrees off broadside, so the wing reads with its chord */
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 24, 4096), NX.rigOpts([0, 0, 0], { distance: 90, shadowFar: 240 }));
+  TXT.stage(R, p);
+  NX.flood([0, 0, 0], { dx: -14, dz: 6, h: 22, angle: 0.55, intensity: 1200 });
+  TXT.weather(R, { grime: 0.22, height: 1.1 });
+  /* CAPABILITIES = 3, counted from c26's own list: three leaders, each landing on its part */
+  const CAPABILITIES = 3;
+  const parts = [[-1.86, 0.32, -0.1], [0, 3.34, -0.3], [-0.85, 3.02, -1.5]];   /* the main gear, the comm blade on the spine, the wing root */
+  const labs = [[440, 1120], [150, 600], [90, 1176]], ends = ['L', 'R', 'L'];
+  const svg = document.getElementById('ld'), leaders = [];
+  for (let i = 0; i < CAPABILITIES; i++) {
+    const at = NX.project(THREE, R, parts[i]), el = document.getElementById('l' + i);
+    el.style.left = labs[i][0] + 'px'; el.style.top = labs[i][1] + 'px';
+    const b = el.getBoundingClientRect(), fx = ends[i] === 'R' ? b.right + 10 : b.left + Math.min(40, b.width / 2), from = [fx, ends[i] === 'R' ? b.top + b.height / 2 : (labs[i][1] < at[1] ? b.bottom + 6 : b.top - 6)];
+    const pl = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+    pl.setAttribute('points', (ends[i] === 'R' ? [from, [from[0] + 24, from[1]], at] : [from, [from[0], at[1] + (labs[i][1] < at[1] ? -16 : 16)], at]).map(q => q.join(',')).join(' '));
+    pl.setAttribute('fill', 'none'); pl.setAttribute('stroke', i < CAPABILITIES ? '#8FE0F0' : '#E4DFD5'); pl.setAttribute('stroke-width', '2');
+    svg.appendChild(pl);
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); dot.setAttribute('cx', at[0]); dot.setAttribute('cy', at[1]); dot.setAttribute('r', 5); dot.setAttribute('fill', i < CAPABILITIES ? '#8FE0F0' : '#E4DFD5'); svg.appendChild(dot);
+    leaders.push({ target: el.textContent, at: at, to: at });
+  }
+  window.__txLeaders = leaders;
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.95, strength: 0.04, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

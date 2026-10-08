@@ -1,0 +1,112 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "deck": "carousel no. 46, 2026-10-08, Software on the radio",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "The dark register works. Frames 1, 4 and 9 sit on near black (preflight median L* 4.5 and 2.5), the type is light on a dark field with no plates, and four or more frames bleed an edge. The straw scatter and the receding day lamps on 9 are the best world-building in the deck. The 7 descriptor allows ONE frame that leans on a default, a primitive or an artifact, and this deck has several. Slide 6 is an object in a void, with no ground, no contact and no world, only a cowling against a navy-black gradient. Its blades are flat noise-textured planks (the storyboard's own acceptance says 'never a flat plank'). The yellow tip boxes sit off the right blade's end (around x 1390-1500, y 995-1095 at display scale), and the spinner floats in front of a dark ring rather than sitting on the cowl. Slide 2 is hard to read. The tail cone, fin, wing and a prop blade make a confused silhouette, the tower is a white cylinder on a flat L-shaped slab with a brown box cab, and the cyan thread passes through the fin. On slide 3 the lower roughly 40 percent (y 1400-2000) is empty mid-grey-brown apron. The near 'Joby' airframe shows its tail with its nose cropped out, so the planned focal of two lit cowlings side by side never happens. Across the hero, the windows and windshield are flat black rectangles. Slide 4's gear pants carry jagged black shadow-acne edges (around x 60-160 and x 650-780, y 1590-1640). Slides 5 and 8 put a warm brown haze band behind the hook and dek, which is the faded mid-tone look THE STAGE exists to remove. On 9 the hero is small and stands right of where the lit run ends. The cover, slide 1, comes close to the 10 descriptor. Overall the deck would not hold beside the sibling's spread at full-size zoom."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "It is clearly one deck: one night-airfield world, one cyan accent, one Caravan and one sign for the light (west key, shadows east on 1, 5 and 8). The edge tease is real, with the thread leaving frame 1 by the right edge and entering frame 2 from the left to land on the tower. The motif evolution of the Caravan and the camera move both work. Two frames sit outside the deck. Slides 5 and 8 carry a brown-maroon haze over their upper halves where the other frames are navy-black, so the filmstrip goes brown at 5 and 8. Slide 7 is a flat canvas map with no airfield in it, softened only by the lamp-head city marks. I did not see deck_coherence.py output in the package, so this score is not capped by it either way."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces to figures.json. 28 and 1,096 are computed (Sept 10 to Oct 8, and three calendar years including 2028's leap day), 26, 30 and sixth come from c7, c6 and c3, and J208 from c36. The absences ('Neither TxDOT's release nor the FAA's names Merlin', 'pilot aboard', 'how it went') are scoped to the three named releases and backed by the rejected list. Primary sources are used throughout, and the FAA pages are snapshot-checked at medium confidence. The caption has one loose line. 'Medical supplies or organs between rural facilities and Austin and San Antonio come next' turns c17's 'such as' example inside 'medical and cargo logistics' into the whole next phase."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "It names who (TxDOT, FAA, Merlin, Joby), where (Fort Worth Alliance), when (September 10th) and the program's shape. The stake is mostly meta: what three press releases do and don't print. A Texan learns no action, deadline or body they can reach, and the close, 'day 28 of 1,096', is a clock with nothing for the reader to do at its end. The 7 descriptor allows one stake stated generally, and here the stake is general throughout."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover hook 'Software on the radio' earns a swipe and frame 2 pays at once. The turn is frame 5's record table. After it, frames 6, 7 and 8 are program background (traditional aircraft, cities, one of eight) and the deck sags. Frame 3, two Caravans, and frame 8 are each cuttable without loss, which is more than the 7 descriptor's one movable frame."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.7,
+   "why": "It is clean, attributive and on register, with no boosterism and no doom. 'drawn to illustrate' recurs on slides 1, 2, 3 and 8 and reads machine-made. 'What three releases print' and the caption's closer 'Is silence in all three the whole public record on both?' are stiff. There is little regional texture beyond place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The world, palette and opening differ from nos. 42 to 45: night airfield and cyan, against a noon bus, a blue-hour hospital, golden-hour lath and a noon port hull. Two moves are familiar. Slide 4's long-lens broadside with three leaders to labels on the sky repeats no. 45's frame 3 almost exactly ('the hull broadside on a long lens ... three plan ink leaders to labels on the sky'), and slide 7 is another lit Texas outline map."
+  }
+ ],
+ "weighted_score": 7.018,
+ "weighted_score_arithmetic": "6.3x0.22=1.386 + 7.3x0.12=0.876 + 8.0x0.20=1.600 + 6.6x0.16=1.056 + 6.8x0.10=0.680 + 6.7x0.10=0.670 + 7.5x0.10=0.750 = 7.018",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "Threshold dissent only. 7.018 is under the round 1 rung of 8.0, and I found no hard fail. machine_qa.json is fails 0, verdict WARN, with 13 warns that are SKY IN FRAME verdicts and slide 7 label edge density.",
+ "leads_not_hard_fails": [
+  "The contact sheet is stale. out/2026-10-08/render/contact_sheet.png shows slide 3's dek as '... No source places the two side by side. Both are drawn to illustrate, unmarked.' and slide 7's source line as 'c8 c9'. The current render and copy.json read 'Each release speaks for its own aircraft.' and 'c8 c9 c15'. Regenerate it before anything (email, PDF check) reads it.",
+  "The first comment line 'Dallas Innovates, Air Taxi Pilot Program Takes Off at Fort Worth Alliance, September 15th, 2026.' and the Joby line carry the post's own year. If caption_check treats the first comment as LinkedIn copy, that breaks the no-year rule. It may count as a citation stamp, so this is for the integrity judge or caption_check to rule on, not a finding."
+ ],
+ "one_sentence_fix": "Make the hero Caravan zoom-proof (dark glass windows with a seam reflection in place of flat black boxes, lofted twisted blades with painted tips in place of noise planks and tip boxes, gear pants free of shadow acne), then re-stage frames 6, 2 and 3 so the plane stands in a lit pool on the apron with the navy world dark behind it, not in a void, not as a tangled tail silhouette, and not over 40 percent empty concrete.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Object in a void with no ground, contact or world. The blades are flat noise-textured planks, the yellow tip boxes overhang the blade ends, and the spinner floats in front of a dark ring off the cowl. It fails the zoom test at full size.",
+   "fix": "Pull the camera back to about 5 m off the nose's left quarter at 1.2 m eye so the nose gear, its contact and the lit apron pool fill the lower third. Rebuild the blades as twisted tapered lofts with the yellow as a material band at the tip, and seat the spinner flush on the cowl lip."
+  },
+  {
+   "slide": 2,
+   "problem": "The tail, wing, prop blade and strut tangle into an unreadable silhouette from below and behind. The tower is a primitive: a cylinder on a flat L slab with a brown box cab. The cyan thread passes through the fin.",
+   "fix": "Shoot the storyboard's true rear three-quarter at 1.6 m eye so fin, stabiliser and beacon read as one clean silhouette. Model the tower cab as a glazed octagon with mullions and a warm interior, delete the L slab, and route the thread over the fin to the cab."
+  },
+  {
+   "slide": 3,
+   "problem": "The lower roughly 40 percent of the frame is empty mid-grey-brown apron, a dead zone in the grey middle. The near airframe shows its tail with its nose cropped, so the focal of two cowlings side by side is missing.",
+   "fix": "Turn both Caravans so their noses face the camera in three-quarter view, side by side in one pool. Lower the camera and tilt up so the gear sits about 15 percent above the footer, and let the apron outside the pool fall to the deck's dark so the two labels sit on dark."
+  },
+  {
+   "slide": 5,
+   "problem": "A warm brown haze band behind the hook and dek puts the upper half in the mid tones, the faded look. The lamp units read as chess pawns rather than airfield edge lights.",
+   "fix": "Fog in the chassis navy #1E2536, not the brown seam hue, and pitch the camera down so the apron runs up behind the dek and goes dark. Model the heads as frangible-coupling edge lights with a glass lens under a metal cap."
+  },
+  {
+   "slide": 8,
+   "problem": "The same brown haze over the upper half, and the large flat grey stripe fills make a mid-tone frame. The cyan stripe reads as a flat UI bar, not paint.",
+   "fix": "Swap the haze to navy and let the runway beyond the threshold fall to black. Give all eight stripes, the accent one included, worn paint texture and rubber marks so the cyan reads as painted rather than emissive."
+  },
+  {
+   "slide": 4,
+   "problem": "The gear pants show jagged black shadow-acne edges. The windows are flat black rectangles, and the nose is cropped with no propeller, so the subject is a white slab with leaders.",
+   "fix": "Raise the shadow normalBias to clear the acne on the pants. Give the windows the dark glass material with a seam reflection, and widen the lens so the spinner and prop sit just inside the left edge."
+  },
+  {
+   "slide": 9,
+   "problem": "The hero is small (about a tenth of the frame height) and stands right of where the lit run ends, so the plane and DAY 28 don't meet. The near lamp heads read as balloons.",
+   "fix": "Move the Caravan onto the runway beside the 28th lamp under the DAY 28 label, or dolly in until it spans about 40 percent of the width. Shrink the near lamp heads to lens-sized domes on visible stems."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-08/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-08/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-08/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/figures.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json",
+  "/home/user/TexasAIDocket/knowledge/carousel/ILLUSTRATION_SYSTEM.md (lines 1-250)"
+ ],
+ "not_read": "The thumbs directory (slide-02 as .png or .webp was not found at out/2026-10-08/render/thumbs/), the PDF in out/2026-10-08/final/ (I could not list the directory), examples/bold-proof/, the chassis JS, the slide HTML sources and ledger/articles/2026-10-08.json. I judged feed-size reads off the contact sheet at about 300 px per frame."
+}

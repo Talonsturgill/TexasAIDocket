@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-10-08, frame 5 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. Nine airfield edge lamps in a three by three block on the apron, a long lens from just above the concrete: three releases by three questions, one head lit where a release says it, a Caravan's nose at the back of the pool. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab { font-size:24px; }
+  .lab.col { transform:translateX(-50%); text-align:center; }
+  .lab.row { left:80px; transform:translateY(-50%); font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">What three releases print</h1>
+<p class="dek" data-follow="24">A lamp is lit where a release says it. Only Merlin's names its Caravan, in a photo caption. None of the three says whether a pilot was aboard, and none prints a measured result.</p>
+<div class="lab col" id="c0">TXDOT</div>
+<div class="lab col" id="c1">FAA</div>
+<div class="lab col acc" id="c2">MERLIN</div>
+<div class="lab row" id="r0">NAMES THE CARAVAN</div>
+<div class="lab row" id="r1">PILOT ABOARD</div>
+<div class="lab row" id="r2">PRINTS A RESULT</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "The record", counter: "05 / 09", src: "c1 c2 c25 c26 c31 c32", fit: { min: 88, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 34 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  { const ap = TXT.ground(R, { surface: 'concrete', size: 140, tile: 7.5, seed: 23, joints: false, y: 0.03 }); ap.position.z = -10; }   /* the apron, worn concrete, no joint across the block */
+  /* THE RECORD TABLE: record_cells = 9 lamps, three releases (x) by three questions (z), and
+   * record_cells_yes = 1 lit head, at the first question (names the Caravan) under Merlin's release */
+  const RECORD_CELLS = 9, RECORD_CELLS_YES = 1, COLS = 3, ROWS = RECORD_CELLS / COLS, DX = 1.0, DZ = 1.9, OX = 0.45;
+  const LIT = [[0, 2]];   /* [row, col] for each yes, from figures.json's table */
+  const lamps = [], dark = K.mat('nx-lamp-dark', { color: 0x1a2026, roughness: 0.12, metalness: 0.4 }), stemM = K.mat('nx-stem', { color: 0x23262b, roughness: 0.5, metalness: 0.4 });
+  const yesM = new THREE.MeshBasicMaterial({ color: 0x8fe0f0, toneMapped: false });
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    const g = new THREE.Group(), lit = LIT.some(q => q[0] === r && q[1] === c);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.11, 0.06, 16), stemM); base.position.y = 0.03; g.add(base);
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.3, 12), stemM); stem.position.y = 0.21; g.add(stem);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.05, 16), stemM); collar.position.y = 0.38; g.add(collar);
+    const head = new THREE.Mesh(new THREE.SphereGeometry(lit ? 0.12 : 0.075, 20, 14, 0, Math.PI * 2, 0, Math.PI * (lit ? 0.75 : 0.6)), lit ? yesM : dark); head.position.y = 0.4; head.scale.set(1, 1.3, 1); g.add(head);
+    g.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    g.scale.setScalar(1.6); g.position.set(OX + (c - 1) * DX, 0, -r * DZ); TXT.add(R, g); TXT.contact(R, g, { opacity: 0.6 }); lamps.push(g);
+    if (lit) { const pl = new THREE.PointLight(0x8fe0f0, 2.2, 3.2, 2); pl.position.set(g.position.x, 0.7, g.position.z); R.scene.add(pl); }
+  }
+  /* the Caravan at the back of the pool, its nose and disc toward the table */
+  const p = NX.plane({ prop: 'disc', lights: true, seed: 3 }); p.rotation.y = -Math.PI / 2 + 0.35; p.position.set(11, 0, -40);   /* kept out of this frame: the table is the subject */
+  TXT.frame(R, { from: [2.0, 3.0, 9.8], look: [-0.5, 1.0, -1.8] });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 26, 4096), NX.rigOpts([0, 0, -3], { distance: 80, shadowFar: 200 }));
+  TXT.stage(R, lamps);
+  TXT.weather(R, { grime: 0.2, height: 0.4 });
+  /* labels: column heads over the far row, row labels left of each row */
+  for (let c = 0; c < COLS; c++) { const q = NX.project(THREE, R, [OX + (c - 1) * DX, 0, 0.9]), el = document.getElementById('c' + c); el.style.left = q[0] + 'px'; el.style.top = (q[1] + 6) + 'px'; }
+  for (let r = 0; r < ROWS; r++) { const q = NX.project(THREE, R, [OX - DX, 0.64, -r * DZ]), el = document.getElementById('r' + r); el.style.top = q[1] + 'px'; }
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

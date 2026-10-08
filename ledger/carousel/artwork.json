@@ -2866,6 +2866,60 @@
     "hex": "#5E6266",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-08",
+   "carousel_no": 46,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-08/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged lastLight airfield deck at Alliance (sun az -104 el 6, haze #1E2536) declared once in assets/js/deck/2026-10-08-nexus.js. One hero, an illustrative white 208B-proportioned Caravan built in the chassis, carried through seven frames and absent by design on the record table and the map. Chassis kit models for the Caravan, an airfield lamp row, a windsock and a control tower, and an apron flood that makes the stage's pool a real light.",
+   "structural_laws": [
+    "THE STAGE'S POOL DECAL DARKENS EVERY GROUND OUTSIDE ITS HOLE, SO A SPOT LIGHT ON THE APRON SHOWS ONLY INSIDE IT. Light the subject's own pool with the flood, and widen the pool when a second patch must read.",
+    "PERSPECTIVE OVERSTATES THE NEAR END OF A RECEDING ROW. A row of lamps whose first 28 of 1,096 are lit reads as mostly lit from beside the near end, so put the camera where the near run is short on screen and the dark ones read as a row.",
+    "A LOFT OF THREE STATIONS IS A FACETED CONE. A spinner needs nine stations on an ogive and 64 segments.",
+    "A DARK SLAB MAP NEAR THE FIELD'S OWN VALUE COMES APART AT THUMB SCALE. Keep the slab a measurable step lighter than the ground and cut the county lines into it."
+   ],
+   "techniques": [
+    "the Caravan's nose close and low from the left front quarter under the apron flood, a fine cyan thread rising off the comm blade",
+    "the Caravan from behind its tail on the ramp, the thread crossing the field to the tower's lit cab",
+    "two Caravans in echelon under one flood, one labelled Merlin's, one Joby's J208",
+    "the Caravan broadside on a long lens with three cyan leaders to the main gear, the comm blade and the wing root",
+    "nine airfield lamps in a three by three block on jointed apron concrete from above, one head lit cyan",
+    "the stopped propeller and spinner close, the cowling running off the right",
+    "Texas as a stone slab from TXGeo with its county lines cut in and four city lamps, Houston dim",
+    "the threshold from 17 m up, eight stripes joined by the bar, one in the accent, the Caravan on the centreline",
+    "from the west infield, one lamp per day along the runway edge, 28 lit, the Caravan at the depth of the 28th"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     6.2,
+     1.2,
+     12.3,
+     2.1,
+     13.4,
+     3.5,
+     1.9,
+     11.6,
+     2.7
+    ],
+    "deck_median_L": 3.5,
+    "max_adjacent_delta": 11.3,
+    "mean_adjacent_delta": 8.46,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark staged deck, lifting on the record table and the threshold."
+   },
+   "accent": {
+    "hex": "#8FE0F0",
+    "name": "radio cyan",
+    "frames_above_floor": [
+     5,
+     8,
+     9
+    ],
+    "note": "The radio path, the one lit record lamp, the Texas stripe and the elapsed days."
+   },
+   "ground": {
+    "hex": "#1E2536",
+    "note": "The deck's declared haze behind the render."
+   }
   }
  ]
 }

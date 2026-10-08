@@ -1,0 +1,128 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2353,
+        0.4286,
+        0.818
+      ],
+      "band_ratio": 1.6081
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.1975,
+        0.2017,
+        0.5441
+      ],
+      "band_ratio": 1.6749
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3319,
+        0.542,
+        0.8401
+      ],
+      "band_ratio": 1.4396
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3088,
+        0.1954,
+        0.5625
+      ],
+      "band_ratio": 1.5412
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.1702,
+        0.3739,
+        0.7463
+      ],
+      "band_ratio": 1.6789
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3046,
+        0.2962,
+        0.5938
+      ],
+      "band_ratio": 1.4585
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'DALLAS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'AUSTIN' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'SAN ANTONIO' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'HOUSTON, EVENTUALLY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'ALLIANCE, FORT WORTH' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2794,
+        0.2941,
+        0.3235
+      ],
+      "band_ratio": 1.078
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3487,
+        0.3172,
+        0.3695
+      ],
+      "band_ratio": 1.0671
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2227,
+        0.4034,
+        0.3162
+      ],
+      "band_ratio": 1.0064
+    }
+  ],
+  "fails": 0,
+  "warns": 13,
+  "verdict": "WARN"
+}

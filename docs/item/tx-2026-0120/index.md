@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · The department's account of the facial capture demonstration at the Progreso bridge is still unconfirmed. Its site turns away every automated reader.
 - 2026-10-06 · The facial capture demonstration at the Progreso bridge is still unconfirmed. The department's site turns away every automated reader.
 - 2026-10-07 · The pedestrian face capture trial at the border is still unconfirmed. The department's own feature refuses every reader.
+- 2026-10-08 · The face capture trial on pedestrians at the border remains unconfirmed. The department's own feature still refuses every reader.
 
 ## Evidence
 

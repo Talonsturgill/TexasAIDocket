@@ -11,7 +11,7 @@ The El Paso City Council approved and adopted a letter to Governor Greg Abbott s
 - Public access: Closed
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?LEGID=2572&GID=776&G=2431E662-8524-4328-8249-389E26A066A2
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · El Paso's letter asking the Governor to clarify his data center directives has drawn no published answer.
 - 2026-10-02 · The Governor's office has published no answer to El Paso's request that he clarify his data center directives.
 - 2026-10-05 · El Paso's legislative record still shows the council adopting the letter that asks the Governor to clarify his data center directive.
+- 2026-10-08 · El Paso's record still shows the council's letter asking the Governor to clarify his data center directive.
 
 ## Evidence
 

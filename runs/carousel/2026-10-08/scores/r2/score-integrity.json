@@ -1,0 +1,80 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The bold register is met. Every frame sits on a near-black field with one bright subject, and art_preflight measures median L* 4.5 on frame 1, 13.3 on frame 5 and 2.3 on frame 9. The hero model is primitive on most frames, though, so the deck fits the 7 descriptor's 'one frame leans on a primitive model' several times over. Slide 4 (the long-lens profile): the high wing seen edge-on is a teardrop blob sitting on the roof, the windows are flat black squares, and the ATC leader runs past the end of its own label and crosses the glyphs of 'AVOIDANCE'. The storyboard's own acceptance line says 'no leader crosses a glyph'. Slide 3: the lower 40 percent of the frame is empty concrete. Both planes are cut off at the top edge, and the labels float in the void under them. Slide 2: the tail-on Caravan does not read as a Caravan. The struts cross in an X, the fin sits detached at the far left, and the tower is a cylinder standing on an L-shaped block. Slide 6: the blades are flat planks with a speckle noise texture, where the plan asked for twist in eight stations. Slide 9: the Caravan is about a tenth of the frame height and the nearest lamp heads pull the eye to the lower right. That fails its own acceptance line ('spans at least 30 percent of the frame width'). Frames 1, 5, 7 and 8 are strong. Frame 8's eight stripes with one in the accent is the best data-in-art frame in the deck."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero (the white Caravan with its navy cheat line) appears on 1, 2, 3, 4, 6, 8 and 9. The deck keeps one west key, one dark world and one cyan accent. The edge tease works: frame 1's thread leaves by the right edge and frame 2's enters from the left and lands on the tower cab. The contact sheet reads as one deck. Frame 7 (the map) is the frame outside the world: no hero, no airfield ground. Frame 5's warm brown haze band behind the dek runs browner than its neighbours. Machine QA band ratios run 1.07 to 1.68 with no hard strobe. The storyboard names three continuity devices, and two (edge tease, motif evolution) visibly do work."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "I checked each round-1 repair against the files. Frame 5's third row label reads PRINTS A RESULT in copy.json and in the render. compute.py lines 80 to 84 now scan the three snapshots with _ABOARD and _RESULT regexes, and figures.json record_cells.table shows all six cells False. The frame 5 dek and the caption both say 'measured result'. Frame 4's dek carries c27's 'safely and effectively', attributed with 'Merlin says'. Frame 4's third label is 'IN-FLIGHT RE-PLANNING AND THREAT AVOIDANCE', a faithful substring of c26 that drops 'dynamic autonomous'. Frame 9 reads '28 days in, of 1,096'. 1,096 is correct because Feb 29th 2028 falls inside the window, and 28 is October 8th minus September 10th. Frame 1 cites c1 c2 c25 c26. The caption says 'Medical and cargo logistics come next', which matches c17. The web edition says 'none of them prints a measured result' and attributes 'safe and effective' to Merlin. Every numeral on a slide and in the caption traces to figures.json or a claim quote. I read faa_launch.txt in full. It does not contain the word Merlin, says nothing about who was aboard, and prints no measured result of a demonstration, so the FAA column of the table holds. I read faa_eight.txt, and c5, c6, c7, c8 and c9 match it verbatim. What holds this short of 10: (1) The 'names Merlin's Caravan' row scans every snapshot for the exact string 'Merlin Cessna Caravan', which is Merlin's own photo caption. Only Merlin's release can ever match it, so for TxDOT the scan is a tautology. It would miss TxDOT phrasing like Dallas Innovates' TxDOT-credited caption (c33, 'Grand Caravan operated by Merlin Labs'). The absence then rests on the fact-check's rejected-finding note, not on the scan. The _ABOARD regex likewise misses forms like 'piloted' or 'pilots on board' with no verb. (2) Frame 9's 'None of the three releases says whether a pilot was aboard at the kickoff' is not scoped to Merlin's Caravan. The FAA release names Joby's S4 and BETA's ALIA at the same event, and the run's own claims file holds AVweb's 'piloted S4' (c39). The sentence is literally true of the three releases but looser than frame 5's. (3) Merlin's release is cited through the Finviz syndication rather than GlobeNewswire's original. (4) The caption's c17 fact has no entry in the first comment's source lines. I could not open the TxDOT and Merlin snapshots myself, because the fetch_doc slugs carry a sha256 suffix and the Read tool can't list directories. So the TxDOT and Merlin columns of both absence rows are checked against compute.py's output and the fact-check's notes, not by my own reading."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "The deck says what happened (TxDOT launched phase one), who decided (TxDOT, with the FAA's program), where (Fort Worth Alliance Airport, frame 2 and the frame 1 kicker) and when (September 10th). The stake is abstract. Frame 9 ends on 'More test flights were planned through the rest of the year' and an absence, and the caption ends on a rhetorical question. No county is named, no body that takes comment or decides next, no date a Texan could act on. The story is partly a story about press releases (frames 3 to 5), which a reader learns more from than they can act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "'Software on the radio' earns the swipe, and frame 2 pays at once with the tower and who launched it. The turn sits at frame 5 (what three releases print), set up by frame 4's claims in Merlin's own words. Frames 6, 7 and 8 are program context after the turn, and frame 8 ('One of eight') could move ahead of frame 6 or be cut without loss. The close lands the day count well but re-states frame 5's pilot-aboard absence rather than adding anything."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. I found no colons, semicolons, dashes, 'cannot' or banned words on any slide or in the caption. 'Did software work the radio?' is a good opener. Some lines are flat and procedural. 'drawn to illustrate' appears on frames 1, 2, 3 and 8. 'Both are drawn to illustrate, unmarked' (frame 3) and 'Each release speaks for its own aircraft' read as compliance notes. Frame 4's 'Merlin says the demonstration, narrated by its chief executive, showed' fences an aside in a comma pair. The first comment prints 'September 15th, 2026' and 'September 10th, 2026' inside the authored document titles in the post's own year. That is the redundancy sources_block.ordinal_date exists to strip, and it leaked in through the claims' document field."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A new beat per SELECTION.md (aviation, not used in the last fourteen decks). It opens on a close on a vehicle and uses a lamp-table isotype and a runway day-count, which are fresh devices. The staged last-light dark world and the cyan single accent are the house register every recent deck shares, so that is one familiar move."
+  }
+ ],
+ "weighted_score": 6.97,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the chassis Caravan into a believable airframe: a high wing with real thickness and dihedral that reads from every camera, glazed windows instead of black squares, and twisted tapered blades. Then re-frame slides 3, 4 and 9 so that hero fills its third of the frame (camera down and in on 3, raised and yawed on 4, dollied up the runway on 9). The deck's weighted loss is almost entirely the primitive hero model repeated across seven frames, not its facts.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The broadside long lens turns the high wing into a teardrop blob on the roof, the windows are flat black squares, and the AI-POWERED ATC leader runs past its label's end and crosses the glyphs of 'AVOIDANCE' in the row below.",
+   "fix": "Raise the eye from 2.2 m to about 3.5 m and yaw the camera about 10 degrees off broadside so the wing reads as a plane with chord and thickness, and reroute the ATC leader to drop from its label's left end so it clears the second label row."
+  },
+  {
+   "slide": 3,
+   "problem": "The lower 40 percent of the frame is empty apron concrete, both Caravans are cut off at the top, and the two labels float in the void under them.",
+   "fix": "Lower the eye to about 1.2 m and push in about 8 m so both nose gears stand in the bottom third and the pair fills down to roughly y 2000 of 2700, with the labels set on the concrete just under each wheel."
+  },
+  {
+   "slide": 2,
+   "problem": "The tail-on Caravan is unreadable: struts crossing in an X, the fin detached at the far left, and the plane reads as a different airframe. The tower is a plain cylinder standing on an L-shaped block.",
+   "fix": "Move the camera to the tail's left rear quarter so fin, stabiliser and tail cone read as one silhouette against the sky, and model the tower with a tapered shaft and a faceted glazed cab with mullions."
+  },
+  {
+   "slide": 9,
+   "problem": "The Caravan is about a tenth of the frame height, under its own 30-percent-width acceptance line, and the nearest three or four cyan lamp heads are the biggest bright shapes on the frame, pulling the eye to the lower right corner.",
+   "fix": "Dolly the camera about 40 m up the runway toward day 28 so the Caravan spans about 30 percent of the width, and cut the bloom on the nearest lamp heads so the run leads to the plane."
+  },
+  {
+   "slide": 6,
+   "problem": "The propeller blades are flat untwisted planks with a speckle noise texture, which reads as a primitive in a macro frame whose whole job is detail.",
+   "fix": "Build the blades in the planned eight twisted, tapered stations with a satin specular finish and remove the noise texture, so the west key draws a lit leading edge along each blade."
+  }
+ ],
+ "notes_for_panel": "Every round-1 repair is present and checked against copy.json, compute.py, figures.json, caption.txt, the renders and ledger/articles/2026-10-08.json. No hard fail found: machine_qa.json shows 0 fails, and every numeral traces. A lone lead worth reading: the TxDOT column of the 'names Merlin's Caravan' row is backed only by an exact-string scan for Merlin's own caption text plus the fact-check note. If anyone can open out/2026-10-08/tmp/src/air-taxi-testing-taking-flight-in-texas_*.txt and confirm the word 'Merlin' (and 'Merlin Labs') is absent, including image captions, the frame 1 and caption claim 'Neither TxDOT's release nor the FAA's names Merlin' is closed. I verified the FAA half myself in /home/user/TexasAIDocket/out/2026-10-08/tmp/src/faa_launch.txt. Also worth fixing: /home/user/TexasAIDocket/out/2026-10-08/first_comment.txt prints in-year dates with ', 2026' from the claims' document field. Files read: /home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml, /home/user/TexasAIDocket/out/2026-10-08/{copy.json,caption.txt,first_comment.txt,claims.json,figures.json,compute.py,aggregates.json,quantifiers.json,storyboard.md,art_preflight.json,render/machine_qa.json,render/contact_sheet.png,render/slide-01..09.png,tmp/src/faa_launch.txt,tmp/src/faa_eight.txt}, /home/user/TexasAIDocket/ledger/articles/2026-10-08.json."
+}

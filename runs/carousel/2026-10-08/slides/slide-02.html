@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-08, frame 2 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's lastLight world. From the ramp behind the Caravan's tail, looking east across the runway's lamps to the control tower, its cab lit amber, the radio thread entering from the left edge and landing on the cab. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Phase one<br>began here</h1>
+<p class="dek" data-follow="24">The Texas Department of Transportation launched the first phase of Project Nexus at Fort Worth Alliance Airport, as part of a federal pilot program for new aircraft. The FAA called it the first Texas demonstration under the program. The tower and the radio path are drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "Project Nexus", counter: "02 / 09", src: "c1 c4 c15 c21", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 30 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  NX.apron(-110, 0, 70, 160, { seed: 21 });
+  NX.runway({ length: 3000, z0: 1500, stripes: 8, lampFog: false, lampI: 9 });
+  /* the hero parked on the west ramp, nose east, its tail to the camera with the beacon lit */
+  const p = NX.plane({ prop: 'stopped', lights: true, seed: 3 }); p.rotation.y = Math.PI / 2; p.position.set(-98, 0, 4); TXT.add(R, p); TXT.contact(R, p);
+  const tw = K.make('control_tower', { height: 38, lit: true }); tw.position.set(250, 0, -5); TXT.add(R, tw); TXT.contact(R, tw);
+  { const b = new THREE.Box3(); tw.updateMatrixWorld(true); tw.traverse(m => { if (m.isMesh) { b.setFromObject(m); if (b.max.y < 4.5) m.visible = false; } }); }   /* the base block reads as a letter at this distance, so the shaft stands on its own contact */
+  tw.traverse(m => { if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0) { m.material = m.material.clone(); m.material.fog = false; } });   /* the cab's glow carries through the stage's fog */
+  const ws = K.make('windsock', { toward: 2.6 }); ws.position.set(-40, 0, -70); TXT.add(R, ws); TXT.contact(R, ws);
+  TXT.frame(R, { from: [-121, 1.6, 9.5], look: [40, 27, -20] });
+  /* the radio path, entering from the left edge where frame 1's left, landing on the cab glass */
+  NX.callPath([-140, 8, -170], [246, 42.5, -3], { lift: 10, r: 0.5 });
+  NX.grass([-200, -300, -140, 300], { count: 7000, seed: 7 });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 40, 4096), NX.rigOpts([-98, 0, 4], { distance: 140, shadowFar: 360 }));
+  TXT.stage(R, p);
+  NX.flood([-98, 0, 4], { dx: -10, dz: 10, h: 24, angle: 0.5 });
+  TXT.weather(R, { grime: 0.22, height: 1.1 });
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.95, strength: 0.03, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

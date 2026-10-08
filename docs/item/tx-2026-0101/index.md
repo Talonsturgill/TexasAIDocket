@@ -11,7 +11,7 @@ Houston Methodist rolled out a suite of AI imaging tools across the system, star
 - Public access: Closed
 - Take part: https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Houston Methodist's imaging AI is still in use by its radiologists, and the hospital's own description still calls it imperfect.
 - 2026-10-02 · Houston Methodist's radiologists still work with the imaging AI, and the hospital still describes it as imperfect.
 - 2026-10-05 · Houston Methodist still puts the imaging AI in front of its radiologists and still calls it imperfect in its own words.
+- 2026-10-08 · Houston Methodist still runs the imaging AI in front of its radiologists and still describes it as imperfect.
 
 ## Evidence
 

@@ -1,0 +1,237 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or counted from names a quote lists.",
+ "years": {
+  "value": 3,
+  "from": [
+   "c16"
+  ],
+  "basis": "years the Texas pilot advances in phases over"
+ },
+ "projects": {
+  "value": 8,
+  "from": [
+   "c5"
+  ],
+  "basis": "proposals selected for the federal pilot program"
+ },
+ "proposals": {
+  "value": 30,
+  "from": [
+   "c6"
+  ],
+  "basis": "proposals received, more than",
+  "floor": true
+ },
+ "states": {
+  "value": 26,
+  "from": [
+   "c7"
+  ],
+  "basis": "states the eight selected projects span"
+ },
+ "launch_order": {
+  "value": 6,
+  "from": [
+   "c3"
+  ],
+  "basis": "Texas's place in the order of launches under the program"
+ },
+ "partners": {
+  "value": 4,
+  "from": [
+   "c9"
+  ],
+  "basis": "industry partners the FAA's selection names for Texas",
+  "names": [
+   "Archer",
+   "BETA",
+   "Joby",
+   "Wisk"
+  ]
+ },
+ "cities": {
+  "value": 4,
+  "from": [
+   "c8"
+  ],
+  "basis": "cities the Texas project's regional flights connect",
+  "names": [
+   "Dallas",
+   "Austin",
+   "San Antonio",
+   "Houston"
+  ]
+ },
+ "capabilities": {
+  "value": 3,
+  "from": [
+   "c26"
+  ],
+  "basis": "capabilities Merlin says it demonstrated, counted from c26's own list",
+  "names": [
+   "autonomous takeoff and landing",
+   "AI-powered Air Traffic Control communications",
+   "dynamic autonomous in-flight re-planning and threat avoidance"
+  ]
+ },
+ "caravans": {
+  "value": 2,
+  "from": [
+   "c32",
+   "c36"
+  ],
+  "basis": "Cessna Caravans fitted with autonomous flight technology at AFW by their makers' accounts, one each in c32 (Merlin) and c36 (Joby's J208)",
+  "counted": [
+   "Merlin Cessna Caravan (c32)",
+   "J208, a Cessna 208B Caravan (c36)"
+  ]
+ },
+ "phase_one_passengers": {
+  "value": 0,
+  "from": [
+   "c14"
+  ],
+  "basis": "passengers the initial flights carry, from 'will not carry passengers'"
+ },
+ "joby_start_day": {
+  "value": 10,
+  "from": [
+   "c34"
+  ],
+  "basis": "first day of Joby's North Texas flight campaign, September"
+ },
+ "joby_end_day": {
+  "value": 14,
+  "from": [
+   "c34"
+  ],
+  "basis": "last day of Joby's North Texas flight campaign, September"
+ },
+ "joby_campaign_days": {
+  "value": 5,
+  "from": [
+   "c34"
+  ],
+  "basis": "days in the campaign, end minus start plus one, inclusive"
+ },
+ "joby_facility_sqft": {
+  "value": 45000,
+  "from": [
+   "c37"
+  ],
+  "basis": "square feet of the facility Joby leased at Perot Field"
+ },
+ "cert_stage": {
+  "value": 5,
+  "from": [
+   "c38"
+  ],
+  "basis": "the stage of FAA type certification Joby says it is in"
+ },
+ "service_year_reported": {
+  "value": 2029,
+  "from": [
+   "c40"
+  ],
+  "basis": "the air taxi service year Dallas Innovates reports, reported only"
+ },
+ "kickoff_day": {
+  "value": 10,
+  "from": [
+   "c2"
+  ],
+  "basis": "September day of the kickoff"
+ },
+ "selection_day": {
+  "value": 9,
+  "from": [
+   "c5"
+  ],
+  "basis": "March day the FAA announced the selections"
+ },
+ "record_cells": {
+  "value": 9,
+  "from": [
+   "c26",
+   "c31",
+   "c32"
+  ],
+  "basis": "release by question cells on the record table, three releases by three questions",
+  "table": {
+   "names Merlin's Caravan": {
+    "TxDOT": false,
+    "FAA": false,
+    "Merlin": true
+   },
+   "says whether a pilot was aboard": {
+    "TxDOT": false,
+    "FAA": false,
+    "Merlin": false
+   },
+   "prints a measured result": {
+    "TxDOT": false,
+    "FAA": false,
+    "Merlin": false
+   }
+  }
+ },
+ "record_cells_yes": {
+  "value": 1,
+  "from": [
+   "c32"
+  ],
+  "basis": "cells where a release says it: only Merlin's, and only in a photo caption"
+ },
+ "releases": {
+  "value": 3,
+  "from": [
+   "c1",
+   "c2",
+   "c25"
+  ],
+  "basis": "releases the record table reads: TxDOT's (c1), the FAA's launch release (c2), Merlin's (c25)"
+ },
+ "schedule_days": {
+  "value": 1096,
+  "from": [
+   "c2",
+   "c16"
+  ],
+  "basis": "days in three years counted from September 10th, 2026, by the calendar"
+ },
+ "elapsed_days": {
+  "value": 28,
+  "from": [
+   "c2"
+  ],
+  "basis": "days from the September 10th kickoff to this deck's date, October 8th, 2026"
+ },
+ "runway_m": {
+  "value": 3000,
+  "from": [],
+  "basis": "the drawn runway's length, a drawing rule and not a claim"
+ },
+ "runway_m_per_year": {
+  "value": 1000.0,
+  "from": [
+   "c16"
+  ],
+  "basis": "metres of drawn runway per year of the schedule, runway_m over years"
+ },
+ "plane_m": {
+  "value": 76.6,
+  "from": [
+   "c2",
+   "c16"
+  ],
+  "basis": "how far down the drawn runway the plane stands tonight, runway_m times elapsed_days over schedule_days, to 0.1 m"
+ },
+ "elapsed_pct": {
+  "value": 2.6,
+  "from": [
+   "c2",
+   "c16"
+  ],
+  "basis": "share of the schedule elapsed tonight, percent to 0.1"
+ }
+}

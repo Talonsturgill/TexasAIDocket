@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- 2026-10-08, frame 7 of 9. Archetype MAP. CANVAS, the deck's one companion frame: Texas in TXGeo's Albers projection as a dark slab with its west edge lit and its cast falling east, the four cities the FAA's selection names drawn as the airfield's own lamp heads, Houston dim and marked eventually. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab.city { font-size:24px; transform:translate(16px, -50%); text-shadow:0 0 6px #0b0d12, 0 0 3px #0b0d12, 0 1px 2px #000; }
+  .lab.city.l { transform:translate(calc(-100% - 16px), -50%); }
+  .lab.city.h { transform:translate(-50%, 22px); text-align:center; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Dallas, Austin,<br>San&nbsp;Antonio, then Houston</h1>
+<p class="dek" data-follow="24">The FAA's selection names Archer, BETA, Joby and Wisk as the Texas project's partners, and Merlin is not among them. It says they will support regional flights connecting Dallas, Austin and San&nbsp;Antonio, and eventually Houston.</p>
+<div class="lab city" id="p0">DALLAS</div>
+<div class="lab city l" id="p1">AUSTIN</div>
+<div class="lab city l" id="p2">SAN ANTONIO</div>
+<div class="lab city h" id="p3">HOUSTON,<br>EVENTUALLY</div>
+<div class="lab city l" id="p4">ALLIANCE, FORT WORTH</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  NX.start({ kicker: "Where it means to fly", counter: "07 / 09", src: "c8 c9 c15", fit: { min: 76, max: 104, maxLines: 2 } });
+  const topo = await new Promise((ok, bad) => { const x = new XMLHttpRequest(); x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json"); x.onload = () => ok(JSON.parse(x.responseText)); x.onerror = bad; x.send(); });
+  const state = TXGeo.outline(topo);
+  const proj = TXGeo.texasProjection(state, [[10, 540], [990, 1245]]);
+  const path = d3.geoPath(proj);
+  const cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+  /* the dark field, a navy black with the seam's warmth low in the west */
+  const bg = cx.createLinearGradient(0, 0, 0, 1350); bg.addColorStop(0, "#05070b"); bg.addColorStop(0.7, "#0b0e15"); bg.addColorStop(1, "#090b10");
+  cx.fillStyle = bg; cx.fillRect(0, 0, 1080, 1350);
+  const seam = cx.createRadialGradient(-80, 1050, 20, -80, 1050, 700); seam.addColorStop(0, "rgba(255,190,134,0.16)"); seam.addColorStop(1, "rgba(255,190,134,0)");
+  cx.fillStyle = seam; cx.fillRect(0, 0, 1080, 1350);
+  const p2 = new Path2D(path(state));
+  /* the slab's cast, east and down, soft, from the deck's west key */
+  cx.save(); cx.filter = "blur(16px)"; cx.translate(22, 12); cx.fillStyle = "rgba(0,0,0,0.75)"; cx.fill(p2); cx.restore();
+  /* the slab, dark granite, lit across from the west */
+  const sl = cx.createLinearGradient(150, 0, 1000, 0); sl.addColorStop(0, "#524e49"); sl.addColorStop(0.45, "#333236"); sl.addColorStop(1, "#2a2b31");
+  cx.fillStyle = sl; cx.fill(p2);
+  /* stone tooth in the slab, seeded */
+  const rr = TX.rng(20261008); cx.save(); cx.clip(p2);
+  for (let i = 0; i < 2500; i++) { const v = 20 + Math.floor(rr() * 40); cx.fillStyle = "rgba(" + v + "," + v + "," + (v + 4) + "," + (0.18 + rr() * 0.25).toFixed(2) + ")"; cx.fillRect(140 + rr() * 870, 460 + rr() * 730, 1 + rr() * 2.2, 1 + rr() * 2.2); }
+  /* the 254 county lines, cut into the stone and catching the west light: a reader's way into where the cities sit */
+  cx.lineWidth = 1.6; cx.strokeStyle = "rgba(12,12,16,0.85)"; cx.stroke(new Path2D(path(topojson.mesh(topo, topo.objects.counties, (a, b) => a !== b))));
+  cx.save(); cx.translate(-0.8, -0.8); cx.lineWidth = 1.0; cx.strokeStyle = "rgba(255,214,168,0.36)"; cx.stroke(new Path2D(path(topojson.mesh(topo, topo.objects.counties, (a, b) => a !== b)))); cx.restore();
+  cx.restore();
+  /* the lit west rim: the outline stroked warm, faded toward the east */
+  const rim = cx.createLinearGradient(150, 0, 1000, 0); rim.addColorStop(0, "rgba(255,214,168,0.95)"); rim.addColorStop(0.55, "rgba(255,214,168,0.6)"); rim.addColorStop(1, "rgba(200,190,170,0.45)");
+  cx.lineWidth = 2.2; cx.strokeStyle = rim; cx.stroke(p2);
+  /* CITIES = 4, from c8's own list, drawn as lamp heads; the last, eventually, dim */
+  const CITIES = ["Dallas", "Austin", "San Antonio", "Houston"];
+  function lamp(x, y, a, r) {
+    const g = cx.createRadialGradient(x, y, 0, x, y, r * 4.5); g.addColorStop(0, "rgba(255,226,168," + (0.55 * a) + ")"); g.addColorStop(1, "rgba(255,226,168,0)");
+    cx.fillStyle = g; cx.beginPath(); cx.arc(x, y, r * 4.5, 0, Math.PI * 2); cx.fill();
+    cx.fillStyle = "rgba(255,240,214," + a + ")"; cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.fill();
+  }
+  CITIES.forEach((c, i) => {
+    const q = proj(TXGeo.place(c)), dim = i === CITIES.length - 1;
+    if (dim) { cx.strokeStyle = "rgba(255,226,168,0.75)"; cx.lineWidth = 2.5; cx.beginPath(); cx.arc(q[0], q[1], 9, 0, Math.PI * 2); cx.stroke(); lamp(q[0], q[1], 0.25, 4); }
+    else lamp(q[0], q[1], 1, 7);
+    const el = document.getElementById("p" + i); el.style.left = q[0] + "px"; el.style.top = q[1] + "px";
+  });
+  /* Alliance, at Fort Worth, a small ring of lamp white where the kickoff stood */
+  const fw = proj(TXGeo.place("Fort Worth"));
+  cx.strokeStyle = "rgba(255,226,168,0.95)"; cx.lineWidth = 3; cx.beginPath(); cx.arc(fw[0], fw[1], 10, 0, Math.PI * 2); cx.stroke();
+  const ea = document.getElementById("p4"); ea.style.left = fw[0] + "px"; ea.style.top = fw[1] + "px";
+  NX.post(cx, { a: 0.28 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

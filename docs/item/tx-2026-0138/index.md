@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Lubbock's moratorium procedure is under way, and the council has not yet held the hearings it requires before a pause takes effect.
 - 2026-10-02 · Lubbock's council papers still carry the first step toward a data center moratorium. A local news account of the vote bars automated readers.
 - 2026-10-05 · Lubbock's September 8th agenda record still carries the failed petition and the council's resolution. The 90 day moratorium still needs its public hearings before it takes effect.
+- 2026-10-08 · The public radio account of Lubbock's first step toward a pause still reads as cited. The city's own agenda record is unconfirmed, because the city's site refused the request.
 
 ## Evidence
 

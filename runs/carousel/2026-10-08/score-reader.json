@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The deck is staged and dark, and it passes the showstopper test on part of the deck only. Frame 6 is the strongest: the twisted black blades and the spinner are raked by the west key. Frame 8 reads as a bold graphic at feed size, and frame 9's cyan day lamps running into the dark are a real closing image. Against that, every plane frame uses a primitive model. On slides 1, 3 and 4 the cabin windows are flat black rectangles with no glass, frame or glint, and the slide 1 Caravan reads toy-like at full size. On slide 2 the tower reads at thumb size as a white post with an L-shaped foot, and the tail fin is a flat untextured slab with the radio thread cutting across it. On slide 3 the lower 45 percent of the frame is empty mid-tone concrete, and both Caravans are cropped so that neither reads whole: the left one has lost its nose and the right one is only a nose. On slides 5 and 8 a warm brown haze fills the sky band behind the type, which is the grey-middle look the bold rule bans. On slide 5 the lamps read as chess pawns. That adds up to more than the one weak frame the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck: one night airfield, one west key, one cyan accent, and a hero aircraft on 7 of 9 frames. Two continuity devices do real work. The thread leaves slide 1 by the right edge and enters slide 2 from the left, and the Caravan changes state from frame to frame. The camera move is declared and visible. Two things pull it down. Slide 7's map has no hero and sits outside the deck. The aircraft on slides 2, 8 and 9 reads as a shorter Cessna with four or five windows, not the long-fuselage Caravan of slides 1, 3 and 4, so the hero does not hold its model."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces to a claim or a computation. Eight, 26 and more than 30 come from c5 to c7, sixth from c3, and 28 and 1,096 from compute.py. I checked both by hand: September 10th to October 8th is 28 days, and three years from September 10th, 2026 includes February 29th, 2028, so 1,096 is right. Merlin's capabilities are attributed on every surface (c26, c27, c31). The absences are scoped to named releases and backed by the rejected list. One framing still leans. The deck says three times that TxDOT and the FAA do not name Merlin (slide 1, slide 7 'Merlin is not among them', and the caption). It cites but never prints c33, the Dallas Innovates caption on a photo credited to TxDOT, which shows Merlin's Caravan 'participates in the Project Nexus test flights'. A reader comes away believing the state never acknowledged Merlin, which is looser than the record. The cover hook, 'Software on the radio', also states Merlin's claim without attribution before the dek attributes it. The FAA claims rest on a browser snapshot after a 403 response and are labelled medium confidence, which is honest."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan learns what happened (Project Nexus phase one), who did it (TxDOT under an FAA program), where (Alliance, Fort Worth) and where it means to go (Dallas, Austin, San Antonio, then Houston). The story is still a topic with a company claim attached. The kickoff is 28 days old. No frame says why AI working an air traffic control radio over North Texas should matter to a reader, and no frame gives them anything to do: no next test date, no TxDOT page, no comment route. The most concrete Texas stake in the claims file is c17: medical supplies and organs flown between rural facilities and Austin and San Antonio. It appears only in the caption ('Medical and cargo logistics come next') and on no slide. The close spends its dek on the pilot-aboard absence for the second time."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover question earns a swipe, and slide 2 pays at once with what, who and where. Slide 3 then brings in Joby's J208 with no setup, a detour a feed reader has to puzzle out. The turn lands at slide 5, the lamp table, and the deck then steps back into program background: slide 6's 'Phase one flies traditional aircraft' repeats slide 2's 'Phase one began here', followed by the map and 'One of eight'. The close repeats slide 5's absence. Slides 3 and 6 could both be cut without loss, which is more than the 7 descriptor allows."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "It is clean and careful, with no house-rule breaks I could find: no colons, dashes or banned words, and dates carry no year. 'Software on the radio' and 'Did software work the radio?' are good lines. Much of the copy reads like a fact-checker's memo rather than a Texan who knows airfields. Examples: 'Each release speaks for its own aircraft.', 'A lamp is lit where a release says it.', and 'Both are drawn to illustrate, unmarked.' The caption closes on 'Is silence in all three the whole public record on both?', which is clumsy. There is almost no regional texture beyond the airport name. No North Texas airspace or DFW traffic gives the reader a sense of place."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The night airfield and the cyan accent are new against nos. 42 to 45 (noon bus, blue-hour hospital, golden-hour clay field, noon Gulf hull). The opening move and structure are familiar. An illustrative vehicle 'drawn to illustrate' is carried through nine frames, as in no. 41's truck, no. 42's bus and no. 45's hull. A Texas map frame appears again. It is the fourth autonomous-transport deck in about two weeks (no. 34 trucks, no. 41 trucks, no. 45 ships), after no. 33's drones. The spine is again what releases do not say, which the topics ledger has asked runs to stop doing since no. 11."
+  }
+ ],
+ "weighted_score": 6.84,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut slide 6, which restates slide 2, and give its frame and the close's dek to c17's verified next phase, medical supplies and organs flown between rural facilities and Austin and San Antonio, so a Texan ends on a concrete stake about what this program will fly over them rather than a second statement that no release says whether a pilot was aboard.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The lower 45 percent is empty mid-tone concrete, a dead zone with labels floating in it. Both Caravans are cropped so neither reads as a whole airplane: the left one has no nose and the right one is only a nose and prop.",
+   "fix": "Pull the camera back and drop the horizon so both airframes sit whole and nose-to-nose in one pool across the lower middle, with the concrete filling only the bottom quarter and falling to black at the frame edges."
+  },
+  {
+   "slide": 2,
+   "problem": "At feed size the tower reads as a white post with an L-shaped foot. The tail fin is a flat untextured slab, and the cyan thread cuts straight across it.",
+   "fix": "Model the tower cab as a lit, mullioned glass octagon on a tapered shaft, bring it close enough to stand about 40 percent of frame height, and route the thread above the fin tip so it lands on the cab glass."
+  },
+  {
+   "slide": 1,
+   "problem": "On the showstopper frame the cabin windows and windshield are flat black cutouts with no glass, frame or reflection, so the Caravan reads as a toy model at full size.",
+   "fix": "Give the windows and windshield a dark glass material with an inset frame and a specular strip from the west key, so the lamp pool reflects in the windshield."
+  },
+  {
+   "slide": 5,
+   "problem": "A warm brown haze fills the sky band behind the hook and dek, putting the top half in the grey middle, and the nine lamp units read as chess pawns.",
+   "fix": "Fog the world into the dark sky hue so the band behind the type goes near black, and model each lamp as a real edge light: a frangible coupling, a thin stem and a glass lens head."
+  },
+  {
+   "slide": 9,
+   "problem": "The hero reads as a smaller four-window Cessna, not the long-fuselage Caravan of slides 1, 3 and 4 (slides 2 and 8 have the same problem), so the deck's one hero changes model.",
+   "fix": "Put the same long-fuselage Caravan model from slide 1 on slides 2, 8 and 9 at true scale, so it stands larger at the depth of the 28th lamp."
+  }
+ ]
+}

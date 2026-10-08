@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Six frames pass most of THE STAGE. Frame 1 has the Caravan's cowling, lit from the west, filling the lower half against a near-black sky, with the nose gear and its contact on the apron. Frame 4 is a broadside across about 90% of the width on black. Frame 6's spinner and cowl fill about 60% of the frame. Frame 9 has lamps running into the dark over lit straw. Frame 7 is a dark slab map. Three frames sit in the grey middle the owner called faded. Frame 8's band ratio is 1.07 (bands 0.35/0.32/0.37 in machine_qa.json): a brown haze lifts the whole top half behind the hook, and the threshold stripes are flat fills with the texture tile grid visible on them. Frame 5's band ratio is 1.68, but the hook and dek sit on a lifted brown-mauve wash, and the nine lamps are capsule-on-cylinder primitives that read as chess pawns or bollards. The Caravan nose the storyboard put at the back of that pool is absent. On frame 3 the camera is lower, but about 40% of the frame (y 1250 to 2000 of 2000) is empty mid-tone concrete. That frame has the deck's brightest bands (0.33/0.54/0.84), and the near J208's wing reads as a plank hovering above the cabin roof. The modelling is primitive across the deck. Windows and windscreens are flat black rectangles with no glass. Frames 2 and 4 have slab fins. Frame 2's tower base is an L-shaped block that reads as a letter L. Frame 6's blades are flat speckled planks (the noise reads as sandpaper), not the eight twisted stations the CRAFT PLAN promises. On frame 4 the ATC leader runs from (700,1222) to (1505,912) and cuts through the glyphs of 'AVOIDANCE', which breaks the storyboard's own 'no leader crosses a glyph'. On frame 6 the nose-wheel fairing butts against 'texasaidocket.com', and the wheel's contact runs off the bottom edge, so the 'stands on the lit apron' repair is only half visible. The 7 descriptor allows one weak frame. This deck has three, plus a deck-wide primitive airframe, so the score sits under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "It is clearly one deck. There is one airfield at last light, one west key (every cast falls east on 1, 3, 5 and 8), one Caravan in one white-and-navy material on 1, 2, 3, 4, 6, 8 and 9, and one cyan accent. Two continuity devices do real work. The radio thread leaves frame 1 at the right edge and enters frame 2 from the left to land on the tower cab. The lamp motif runs from the record lamps on 5 to the city lamps on 7 to the day lamps on 9. The value track strobes: 1 and 2 dark, 3 lifted, 4 dark, 5 lifted, 6 and 7 dark, 8 lifted, 9 dark. That is three hard lifts in eight steps, and none of them is a declared cut at the argument's turn. The storyboard's tonal arc claims the lifts on 5 and 8 and not the one on 3."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "I checked every slide numeral against claims.json and the schedule computation. The slides' 26, 30 and eight trace to c5 to c7. 28 and 1,096 hold from September 10th (2029 includes the leap day). The caption's 28, 10 and 8 trace too. Merlin's capabilities are attributed throughout ('Merlin says', 'in its own words'). Frame 4's third label matches c26's quote ('in-flight re-planning and threat avoidance'). The absences on 1, 5 and 9 match claims.json's rejected entries. The FAA claims rest on a local snapshot after a 403 (confidence medium), and Merlin's presence rests on its own release plus one secondary caption (c33). The deck says that plainly. The caption's 'Is silence in all three the whole public record on both?' sits slightly loose against c33's TxDOT-credited photo caption. I found no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (the Project Nexus phase one launch), who launched it (TxDOT with the FAA), where (Alliance, Fort Worth) and when (September 10th). The routes are named on frame 7 and the three-year horizon on frame 9. The stake is stated generally. 'Software on the radio' never says what it would change for someone in Dallas or Austin. No county is named, which was correctly rejected, and no action or deadline is offered, since none exists in the sources."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover hook earns a swipe, and frame 2 pays it off with place and authority. The turn sits on frame 5, where the record table shows one lit lamp out of nine. The close on frame 9 lands on a counted 28 of 1,096. Frame 6 (traditional aircraft) and frame 8 (one of eight) are context beats that could move or merge without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The copy is clean and on register, with no house rule breaks that I saw. It reads lawyerly and repetitive, though. Frames 1, 2, 3 and 8 all say 'drawn to illustrate'. Frame 3's 'Each release speaks for its own aircraft' and frame 5's 'A lamp is lit where a release says it' read like a machine explaining its own diagram. Apart from the place names there is little Texas texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Against nos. 42 to 45 (a noon bus, a blue-hour hospital, golden-hour lath, a Gulf noon hull), a night airfield with a cyan accent and an aircraft hero is a fresh palette and world. Some moves are familiar, though. Frame 4's broadside on a long lens with three leaders repeats no. 45's 'hull broadside on a long lens ... three plan ink leaders' and no. 39's pole in side view with leaders. Frame 3's 'two identical' pair echoes no. 39's two identical readers, and a counted row of instanced units recurs from nos. 44 and 39."
+  }
+ ],
+ "weighted_score": 7.174,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Light frames 3, 5 and 8 the way 1, 4 and 6 are lit, one pool on the subject with the world behind gone to near black: take the stage haze out of the sky band behind the type on 5 and 8 so the field is dark rather than brown, and crane frame 3 tighter so the two Caravans and their contacts fill the lower half instead of 40 percent of empty mid-grey concrete.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "This is the faded frame. The band ratio is 1.07, with a brown haze lifting everything above the threshold behind the hook. The stripes are flat paint showing the texture tile grid, and the Caravan is small and dark against it.",
+   "fix": "Stage it. Fog the runway beyond the threshold into the near-black sky, put a single pool on the Caravan and the cyan stripe, add rubber and wear to the stripes, and drop the camera to about 12 m so the plane spans 45% of the width."
+  },
+  {
+   "slide": 3,
+   "problem": "The bottom 40% of the frame is empty mid-tone concrete (the deck's brightest bands, 0.33/0.54/0.84). The labels float in it, and the near J208's wing reads as a plank hovering above the cabin.",
+   "fix": "Raise the camera to about 3 m and tighten it so the two nose gears and their contacts sit at the bottom third, with the labels on the dark just under them. Let the apron fall to black beyond the shared pool, and seat the near wing on the cabin roof."
+  },
+  {
+   "slide": 5,
+   "problem": "The nine lamps are capsule-and-cylinder primitives that read as chess pawns. A lifted brown wash sits behind the hook and dek, and the Caravan nose the storyboard placed at the back of the pool is missing.",
+   "fix": "Model the lamps as real elevated edge lights (frangible stem, coupling and a glass dome with a visible filament on the lit one). Take the wash to near black, and put the Caravan's lit nose back at the rear of the pool to carry the hero."
+  },
+  {
+   "slide": 4,
+   "problem": "The ATC communications leader runs from the spine antenna to the right of its label and cuts through 'AVOIDANCE'. The prop is an invisible ghost disc, and the airframe's flat black windows give the profile a game-asset read.",
+   "fix": "Route the ATC leader up from the antenna to its label's left end, or stack that label below the re-planning label so no leader crosses a glyph. Give the windows a glass material that catches the west key."
+  },
+  {
+   "slide": 6,
+   "problem": "The blades are flat speckled planks rather than twisted stations. The nose-wheel fairing butts against 'texasaidocket.com', and the wheel's contact is cut off by the bottom edge.",
+   "fix": "Rebuild the blades with taper and twist and a satin finish without the noise. Raise the camera about 0.3 m so the nose wheel's contact sits above the footer row with the apron and faint horizon visible under the cowl."
+  }
+ ]
+}

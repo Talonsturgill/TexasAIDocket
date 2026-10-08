@@ -11,7 +11,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 - Public access: Write to the decider
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
-- Last checked: 2026-09-30
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Whether the October 6th argument setting still stands is unconfirmed. The court's case page sits on a host that bars automated readers.
 - 2026-10-06 · Whether the court heard argument today as set is unconfirmed. Its case page sits on a host that bars automated readers.
 - 2026-10-07 · The court's own submission schedule for October 6th lists In re Patrick Hughey for argument that morning, with a deposition reporters' association heard as amicus. The court's ruling is what comes next.
+- 2026-10-08 · The court's own submission schedule still lists the case for argument on October 6th. Whether it was argued as set is unconfirmed, because the case page bars automated readers, and the ruling is still to come.
 
 ## Evidence
 

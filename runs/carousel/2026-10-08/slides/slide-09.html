@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-08, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. From behind the green threshold lamps, looking north up the drawn runway: one lamp along the west edge for every day of the three years counted from September 10th, the first 28 lit in the accent up to where the Caravan rolls, the rest running on into the dark. No radio thread. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab.yr { transform:translate(-50%, -100%); font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">28 days into the three years</h1>
+<p class="dek" data-follow="24">TxDOT says the pilot runs in phases over three years, with passengers last. Counted from September 10th, 28 of 1,096 days had passed by October&nbsp;8th. More test flights were planned through the rest of the year. None of the three releases says whether a pilot was aboard at the kickoff.</p>
+<div class="lab acc yr" id="y1">28 DAYS</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "Project Nexus", counter: "09 / 09", src: "c1 c2 c16 c18 c23 c25", fit: { min: 84, max: 112, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 30 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  /* THE SCHEDULE ON THE RUNWAY. schedule_days = 1096 lamps along the west edge of the drawn runway, one per day
+   * counted from September 10th; elapsed_days = 28 of them lit in the accent; plane_m = 76.6 is where the 28th
+   * lamp stands and where the Caravan rolls, runway_m = 3000 drawn */
+  const N_EDGE = NX.EDGE, RUNWAY_M = 3000, SCHEDULE_DAYS = 1096, ELAPSED_DAYS = 28, PLANE_M = 76.6, STEP = RUNWAY_M / SCHEDULE_DAYS;
+  NX.runway({ length: RUNWAY_M + 200, z0: 0, threshold: false, lamps: false });   /* the day lamps are this edge's lamps */
+  { const stemM = K.mat('nx-daystem', { color: 0x23262b, roughness: 0.5, metalness: 0.4 }), lit = [], dark = [], stems = [];
+    for (let d = 1; d <= SCHEDULE_DAYS; d++) { const z = -d * STEP; stems.push([-N_EDGE, 0, z, 0, 1]); (d <= ELAPSED_DAYS ? lit : dark).push([-N_EDGE, 0.36, z, 0, 1]); }
+    TXT.add(R, K.instances(new THREE.CylinderGeometry(0.035, 0.05, 0.34, 8).translate(0, 0.17, 0), stemM, stems));
+    TXT.add(R, K.instances(new THREE.SphereGeometry(0.15, 16, 12), new THREE.MeshBasicMaterial({ color: 0x8fe0f0, toneMapped: false, fog: false }), lit));
+    TXT.add(R, K.instances(new THREE.SphereGeometry(0.15, 12, 8), K.mat('nx-dayglass', { color: 0x5a6470, roughness: 0.15, metalness: 0.3 }), dark)); }   /* the days still to come: dark glass, unlit, running on into the dark */
+  const p = NX.plane({ prop: 'disc', lights: true, seed: 3 }); p.rotation.y = Math.PI; p.position.set(-8, 0, -PLANE_M);   /* beside the 28th lamp */ TXT.add(R, p); TXT.contact(R, p);
+  TXT.frame(R, { from: [-20, 1.7, -12], look: [-7, 4.0, -95] });   /* from behind the threshold: the 28 lit days run from the corner up to the Caravan, the dark ones on past it */
+  NX.grass([-90, -160, -18, 20], { count: 9000, seed: 14 });
+  NX.grass([18, -160, 90, 20], { count: 9000, seed: 15 });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 60, 4096), NX.rigOpts([0, 0, -PLANE_M / 2], { distance: 200, shadowFar: 500 }));
+  TXT.stage(R, p);
+  NX.flood([-6, 0, -PLANE_M + 12], { dx: -12, dz: 22, h: 30, angle: 0.85 });
+  NX.flood([-9, 0, -22], { dx: -10, dz: 10, h: 18, angle: 0.75, intensity: 900 });   /* the threshold flood over the first days */
+  TXT.weather(R, { grime: 0.2, height: 1.0 });
+  { const q = NX.project(THREE, R, [-N_EDGE, 0.5, -ELAPSED_DAYS * STEP]), el = document.getElementById('y1'); el.style.left = Math.max(80 + el.offsetWidth / 2, q[0]) + 'px'; el.style.top = (q[1] - 34) + 'px'; }
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

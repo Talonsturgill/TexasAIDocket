@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Five frames pass at 432 px. 01: the Caravan nose fills the lower half in a pool of light on a near-black sky, with the cyan thread leaving it. 05: nine dark lamps, one cyan bulb lit, and its light falls on the tiles. 06: the stopped propeller in macro. 08: the eight threshold stripes with the sixth in cyan, a strong graphic. 09: lit edge lamps marching to the plane over bluestem straw. Three frames fall to the 4-to-7 descriptors. 04 is a flat side view of a primitive model: a box fuselage, black square window cutouts, a slab belly pod, a strut drawn across the windows, evenly front-lit with no cast shadow. 02 shows a different, shorter airframe from the cover's Caravan (five windows, stubby fuselage), and a stray white L-shaped block sticks out of the tower base at right (about x 1300-1430, y 1540-1600 in the 1600 px view). 03's lower ~45% is empty mid-grey apron, a dead zone, and both fuselages are cut by the frame edges and flat-lit. One weak frame would be a 7. Three is more."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "Reads as one deck on the contact sheet: a night airfield, one cyan accent used only for the machine's trace or the record's yes (thread on 01-02, the lit lamp on 05, the stripe on 08, the edge lamps on 09), and light type on dark throughout. The value holds with no strobe. Machine QA bands stay in a narrow range, band_ratio 1.07 to 1.68. Two frames sit outside. 07 is a Texas relief map floating on black, no ground and no airfield. The hero airframe is not one model: 01/03/04/06 are the long Caravan, 02 is a shorter plane, and 08/09 read as a small trainer. 05's warm brown sky wash is also off the deck's blue-black. The motif evolution and camera move named in the storyboard do mostly work."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. 28 and 1,096 are elapsed_days and schedule_days in figures.json, and Sept 10 to Oct 8 is 28 days, Sept 10 2026 to 2029 is 1,096. 8, 26, 30 and sixth trace to c3 and c5-c7. Sources are primary where a primary exists: TxDOT, the two FAA releases, the Merlin and Joby releases. Every universal names its set ('none of the three releases'). Merlin's capability claims are attributed on 01, 04 and in the caption, and 04 now carries Merlin's own 'safely and effectively' (c27) and the forward-looking label (c31). Two loosenesses. First, 01 and the caption say TxDOT's and the FAA's releases 'skip Merlin', but c33, a TxDOT-credited photo caption in Dallas Innovates, says a Merlin Caravan 'participates in the Project Nexus test flights'. Frame 03 cites c33 and no surface prints it, so a reader leaves thinking Merlin's presence rests on Merlin alone. Second, 03 draws both Caravans side by side on one apron, while c36 is only Joby's plan ('would stop there'). The copy hedges this ('Each release speaks for its own aircraft'), but the storyboard's promise that the frame 'says no source places them side by side' is not in the shipped copy."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "A Texan learns what happened (the Project Nexus first phase at Fort Worth Alliance Airport), who decided (TxDOT, with the FAA selecting), the shape (traditional aircraft, no passengers, data and routes; Dallas, Austin, San Antonio, eventually Houston; three years, passengers last), and that Merlin's AI radio claim has no official corroboration and no printed result. Three gaps. (1) The deck never says who Merlin is. 01 opens 'Merlin says...' and no frame says it is a company building autonomy software (c25 has 'an aerospace and defense technology company', datelined Boston). A feed reader does not know whether Merlin is a vendor, a lab or a person. (2) The stake is general. Nothing says why AI talking to air traffic control touches a Texan, for example that the routes on 07 run over the triangle cities they live in. (3) There is nothing a reader can do: no comment window, no meeting, no contact. The close offers 'More test flights were planned through the rest of the year', which is the nearest thing to a next step and gives no way in."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover hook 'Software on the radio' is intriguing, but its body is four lines at feed size. 02 'Phase one began here' is setting, not the payoff of the radio hook. 03's Joby J208 is a detour whose point (disambiguation) a reader has to work out. The real turn is 05, the lamp record. Then 06 (phase one aircraft), 07 (routes) and 08 (one of eight) drop back into program background after the turn. All three could move before 04 or be cut without loss, which is more than the 7 descriptor's single movable frame. The close, '28 days into the three years', lands as a timeline. Its last sentence repeats 05's pilot-aboard absence rather than adding something new."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.7,
+   "why": "Clean and on register. No banned words, colons, semicolons or dashes. Dates carry ordinals with no year. 'Did software work the radio?' is a good human opener. It reads more like an auditor than a Texan who knows aviation. Four frames carry a 'drawn to illustrate' disclaimer (01, 02, 03, 08), which reads machine-cautious at feed size. 'Two Caravans, by two companies' word' is stiff. 'Phase one flies traditional aircraft' is flat. The caption's closer, 'Is silence in all three the whole public record on both?', makes the reader work out what 'both' refers to. 04's 'Merlin says the demonstration, narrated by its chief executive, showed...' fences a clause between paired commas, close to the house construction rule. Regional specificity is there (Alliance, Fort Worth, the triangle cities), but nothing local beyond place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "There is no Project Nexus or TxDOT aviation deck in the 30-day window, and the subject (aircraft on a night airfield) diverges from the last five decks: no. 41 truck lane, 42 school bus, 43 hospital tower, 44 survey stakes, 45 ship hull. Familiar moves: the spine is again what three documents do not print, an angle the ledger has asked runs to stop leaning on since no. 11. The lamp grid ('a lamp is lit where a release says it') echoes no. 17's 'a document is lit exactly as far as it is written'. The dark staged palette with one cyan accent is now every deck's register. No. 33 on September 24th (FAA, Zipline drones) is the nearest neighbour in subject: FAA and new aircraft over Texas cities."
+  }
+ ],
+ "weighted_score": 6.882,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give the reader the story before the absence: name Merlin on the cover as an autonomy software company (c25), move the program frames 06 to 08 ahead of Merlin's claim so the deck builds to the 05 record and does not fall back into background after it, and close on what this means for a Texan on the Dallas, Austin, San Antonio routes, with the test flights planned through the rest of the year as the thing to watch, instead of repeating 05's pilot-aboard absence.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Flat side view of a primitive model: box fuselage, black square window cutouts, a slab belly pod, the strut drawn across the windows, front-lit evenly with no cast shadow. The leader lines hang off a cardboard cutout.",
+   "fix": "Move the camera to a low three-quarter view from the front left at about 1.5 m, with the western sun raking across the cowling so the wing and gear throw long shadows on the apron, and swap the square window cutouts for the chassis's dark-glass rounded windows."
+  },
+  {
+   "slide": 2,
+   "problem": "The airframe is not the cover's Caravan (shorter fuselage, five windows), and the tower base has a stray white L-shaped block sticking out at right with no ground contact.",
+   "fix": "Swap in the hero Caravan model from 01, delete the L block, and seat the tower base on the apron with TXT.contact so it stands in the same pool of light as the plane."
+  },
+  {
+   "slide": 3,
+   "problem": "The lower ~45% of the frame is empty mid-grey apron (a dead zone in the grey middle), and both Caravans are cut by the frame edges and flat-lit, so neither owns the frame.",
+   "fix": "Drop the camera to wheel height and push in so the two airframes fill the lower two thirds, with one lamp pool on the apron between them and the foreground falling to black."
+  }
+ ]
+}

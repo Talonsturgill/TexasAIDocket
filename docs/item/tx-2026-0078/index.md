@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · House State Affairs has published no report from its hearing on data centers and the proposed 765 kV lines.
 - 2026-10-02 · The House State Affairs hearing on data centers stands as the committee's own pages list it, with no recommendation published.
 - 2026-10-05 · House State Affairs still lists its hearing on data centers and the 765 kV lines, with no report from it published.
+- 2026-10-08 · The committee's own archive still lists the August 19th sitting and the two September sittings after it, and no report from the hearing has been published.
 
 ## Evidence
 

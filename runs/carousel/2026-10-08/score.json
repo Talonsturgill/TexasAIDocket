@@ -1,0 +1,215 @@
+{
+ "weighted_score": 6.988,
+ "judges": [
+  6.864,
+  7.076,
+  6.84
+ ],
+ "spread": 0.236,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.8,
+    7.4,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.6,
+   "weight": 0.2,
+   "judges": [
+    6.8,
+    7.6,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    6.8,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.3,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The tower base is a flat L-shaped slab that reads as a placeholder. The tail-on Caravan reads as a tangle, with a strut across the fuselage and the propeller poking out beside it.",
+     "fix": "Model the tower base as a lit two-storey block on the ground with a contact shadow, and yaw the Caravan about 30 degrees so the fin and stabiliser silhouette reads clear of the struts."
+    },
+    {
+     "judge": 2,
+     "problem": "The aircraft is unreadable from this camera. The fin rises from what reads as the nose, no horizontal stabiliser shows, and the wing appears to grow out of the tail cone. The tower is a plain white cylinder with a brown cab and an L-shaped foot block (x 1300 to 1430, y 1540 to 1595 display) still standing after round 2's removal note.",
+     "fix": "Put the camera where the storyboard put it, at 1.6 m eye directly behind and left of the tail. Crop so the fin and both stabilisers sit in clean silhouette against the sky at lower left, cut by the left and bottom edges, with the fuselage running away from camera. Delete the tower's foot block and give the cab amber emissive glazing so it reads as a lit cab."
+    },
+    {
+     "judge": 3,
+     "problem": "At feed size the tower reads as a white post with an L-shaped foot. The tail fin is a flat untextured slab, and the cyan thread cuts straight across it.",
+     "fix": "Model the tower cab as a lit, mullioned glass octagon on a tapered shaft, bring it close enough to stand about 40 percent of frame height, and route the thread above the fin tip so it lands on the cab glass."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "About 45 percent of the frame is bare concrete (y 1300 to 1960 of 2000). Both Caravans are cut off in the top band, Joby's nose off the left and Merlin's showing only its nose, and the left plane's strut crosses its windows.",
+     "fix": "Lower the camera aim about 12 degrees so both airframes sit whole in the middle band, crop the empty apron, and re-route the strut to its fuselage fitting."
+    },
+    {
+     "judge": 2,
+     "problem": "This is a dead zone. The bottom 40 percent of the frame (y 1250 to 2000 display) is empty mid-grey concrete, both airframes are squeezed into a strip under the dek, and the labels float 60 to 100 px below the wheels.",
+     "fix": "Lower the eye to about 1.2 m and dolly in about 12 m so the near Caravan's nose, propeller and gear fill the lower half and bleed the bottom edge. Let the apron fall to black under the pool, and set each label on the concrete directly under its own nose wheel."
+    },
+    {
+     "judge": 3,
+     "problem": "The lower 45 percent is empty mid-tone concrete, a dead zone with labels floating in it. Both Caravans are cropped so neither reads as a whole airplane: the left one has no nose and the right one is only a nose and prop.",
+     "fix": "Pull the camera back and drop the horizon so both airframes sit whole and nose-to-nose in one pool across the lower middle, with the concrete filling only the bottom quarter and falling to black at the frame edges."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "This broadside elevation is the diagram frame, and the airframe reads as a primitive. The wing is a flat slab floating above the cabin roof, the strut passes through the cabin windows, the spinner has no blades or disc, and the belly pod hovers.",
+     "fix": "Seat the wing on a modelled roof fairing, end the strut at a lower-fuselage fitting below the windows, and fit frame 6's twisted three-blade propeller to the spinner."
+    },
+    {
+     "judge": 2,
+     "problem": "The wing reads as a short twisted plank lying on the cabin roof, not a high wing with span. The IN-FLIGHT leader drops vertically at x 190 across the fuselage nose and the nose gear.",
+     "fix": "Raise the eye to about 5 m on the same long lens so the near wing's top surface and span read across the fuselage. Route the IN-FLIGHT leader from the wing tip out to the left, clear of the nose and nose gear."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "On the cover, the wing strut runs straight through the cabin windows (x 1150 to 1600, y 1000 to 1340), and the gear and concrete read clean.",
+     "fix": "End the strut at a lower-fuselage fitting below the windows, and add grime and oil to the gear pants and the concrete around the nose wheel."
+    },
+    {
+     "judge": 3,
+     "problem": "On the showstopper frame the cabin windows and windshield are flat black cutouts with no glass, frame or reflection, so the Caravan reads as a toy model at full size.",
+     "fix": "Give the windows and windshield a dark glass material with an inset frame and a specular strip from the west key, so the lamp pool reflects in the windshield."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The band behind the hook and dek is a warm brown wash, which the preflight also noted. The one lit head is a flat cyan egg with no glass, no internal emitter and no specular, so the frame's focal reads as a sticker.",
+     "fix": "Fog the background to the chassis navy so the type sits on near-black. Build the lit head as a glass shell over an emitter, with a specular highlight from the west key and a falloff glow on the concrete."
+    },
+    {
+     "judge": 3,
+     "problem": "A warm brown haze fills the sky band behind the hook and dek, putting the top half in the grey middle, and the nine lamp units read as chess pawns.",
+     "fix": "Fog the world into the dark sky hue so the band behind the type goes near black, and model each lamp as a real edge light: a frangible coupling, a thin stem and a glass lens head."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The top 55 percent is a warm mid-brown haze behind the hook and dek, and machine_qa band_ratio is 1.07, the flattest frame. The hero is a tiny tail-on Caravan, about 4 percent of the frame, with no visible long shadow across the stripes.",
+     "fix": "Fog the far runway into the chassis navy-black instead of brown. Bring the camera down from 30 m to about 12 m and push in so the Caravan spans about 45 percent of the frame width, with its east cast falling across two stripes."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The cheat line on the cowl breaks into stepped, jagged strips (x 1180 to 1540, y 1290 to 1440 display), a render artifact in the frame's focal area. The wing is a flat slab edge across the top of the image band.",
+     "fix": "Replace the offset cheat-line strips with a decal or texture on the lofted skin so it follows the cowl's curvature without stepping. Give the wing a rounded leading edge, a roundedBox or loft, so the edge catches the west key as a gradient."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The hero reads as a smaller four-window Cessna, not the long-fuselage Caravan of slides 1, 3 and 4 (slides 2 and 8 have the same problem), so the deck's one hero changes model.",
+     "fix": "Put the same long-fuselage Caravan model from slide 1 on slides 2, 8 and 9 at true scale, so it stands larger at the depth of the 28th lamp."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rounds_note": "3 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again",
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.988, 1.012 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}
