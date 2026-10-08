@@ -194,9 +194,9 @@ repair reached the slides, the caption and the edition) and `acceptance-items-ne
 | aggregates     | PASS   | 15 declaration(s), 21 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.22 MB, vector |
 | score          | WARN   | 6.988 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| labels         | PASS   | 72 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 87 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
 | dossiers       | PASS   | 35,795 chars planned |
 | caption        | PASS   | 136 words |
 | craft floor    | PASS   | 9 frame(s), median 1772, floor 319 |
