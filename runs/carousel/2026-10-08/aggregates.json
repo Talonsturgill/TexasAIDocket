@@ -173,18 +173,6 @@
     "c2"
    ],
    "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
-   "phrase": "28 days",
-   "slide": "slide-09.html"
-  },
-  {
-   "kind": "duration",
-   "value": 28,
-   "from_date": "2026-09-10",
-   "to_date": "2026-10-08",
-   "from_claims": [
-    "c2"
-   ],
-   "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
    "phrase": "28 DAYS",
    "slide": "slide-09.html"
   },
@@ -199,6 +187,18 @@
    "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
    "phrase": "28 days",
    "slide": "caption.txt"
+  },
+  {
+   "phrase": "28 of 1,096",
+   "slide": "slide-09.html",
+   "kind": "ratio",
+   "value": 28,
+   "of": 1096,
+   "from_claims": [
+    "c2",
+    "c16"
+   ],
+   "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th minus September 10th, 2026, of schedule_days = September 10th, 2029 minus September 10th, 2026"
   }
  ]
 }

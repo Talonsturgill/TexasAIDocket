@@ -184,9 +184,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 24203,
+      "render_ms": 24034,
       "ok": true,
-      "load_ms": 172,
+      "load_ms": 183,
       "canvases": [
         {
           "x": 0,
@@ -385,9 +385,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18669,
+      "render_ms": 19344,
       "ok": true,
-      "load_ms": 161,
+      "load_ms": 163,
       "canvases": [
         {
           "x": 0,
@@ -630,9 +630,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 19751,
+      "render_ms": 19258,
       "ok": true,
-      "load_ms": 150,
+      "load_ms": 141,
       "canvases": [
         {
           "x": 0,
@@ -897,9 +897,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14928,
+      "render_ms": 15378,
       "ok": true,
-      "load_ms": 134,
+      "load_ms": 133,
       "canvases": [
         {
           "x": 0,
@@ -1224,9 +1224,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20313,
+      "render_ms": 20478,
       "ok": true,
-      "load_ms": 131,
+      "load_ms": 137,
       "canvases": [
         {
           "x": 0,
@@ -1419,9 +1419,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 17173,
+      "render_ms": 16782,
       "ok": true,
-      "load_ms": 128,
+      "load_ms": 153,
       "canvases": [
         {
           "x": 0,
@@ -1728,9 +1728,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5124,
+      "render_ms": 4836,
       "ok": true,
-      "load_ms": 97,
+      "load_ms": 107,
       "canvases": [
         {
           "x": 0,
@@ -1917,9 +1917,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 20970,
+      "render_ms": 20318,
       "ok": true,
-      "load_ms": 141,
+      "load_ms": 118,
       "canvases": [
         {
           "x": 0,
@@ -1999,11 +1999,11 @@
           "anc": []
         },
         {
-          "text": "TxDOT says the pilot runs in phases over three years, with passengers last. Counted from September 10th, October 8th is 28 days in, of 1,096. More test flights were planned through the rest of the year. None of the three releases says whether a pilot was aboard at the kickoff.",
+          "text": "TxDOT says the pilot runs in phases over three years, with passengers last. Counted from September 10th, 28 of 1,096 days had passed by October 8th. More test flights were planned through the rest of the year. None of the three releases says whether a pilot was aboard at the kickoff.",
           "x": 82,
           "y": 393,
           "w": 860,
-          "h": 214,
+          "h": 257,
           "font_px": 31,
           "weight": "600",
           "family": "Manrope",
@@ -2020,25 +2020,31 @@
             [
               82,
               435,
-              704,
+              784,
               42
             ],
             [
               82,
               478,
-              831,
+              815,
               42
             ],
             [
               82,
               521,
-              804,
+              796,
               42
             ],
             [
               82,
               564,
-              807,
+              782,
+              42
+            ],
+            [
+              82,
+              606,
+              106,
               42
             ]
           ],
@@ -2140,9 +2146,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18568,
+      "render_ms": 17333,
       "ok": true,
-      "load_ms": 170,
+      "load_ms": 191,
       "canvases": [
         {
           "x": 0,
@@ -2154,8 +2160,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 18.2,
-          "variance": 711.7
+          "mean": 17.9,
+          "variance": 671.7
         }
       ],
       "breather": false,

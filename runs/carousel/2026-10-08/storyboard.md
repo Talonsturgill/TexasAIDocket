@@ -599,7 +599,7 @@ slide: 9
 layout: FULL_BLEED
 primary_image:
   subject: "from the west infield behind the threshold, one lamp along the runway's west edge for every day of the three years counted from September 10th, the 28 lit in the accent running from the near corner up to the Caravan at day 28, the rest dark glass running on into the dark"
-  rect: [0, 640, 1080, 500]
+  rect: [0, 620, 1080, 520]
   bleeds: [left, right]
 accent: "#8FE0F0"
 job: >
@@ -641,7 +641,7 @@ art:
 
 type:
   hook: "28 days into the three years"
-  dek: "TxDOT says the pilot runs in phases over three years, with passengers last. Counted from September 10th, October 8th is 28 days in, of 1,096. More test flights were planned through the rest of the year. None of the three releases says whether a pilot was aboard at the kickoff."
+  dek: "TxDOT says the pilot runs in phases over three years, with passengers last. Counted from September 10th, 28 of 1,096 days had passed by October 8th. More test flights were planned through the rest of the year. None of the three releases says whether a pilot was aboard at the kickoff."
   labels: ["28 DAYS"]
 
 verbatim: []

@@ -53,6 +53,13 @@ improving operational efficiency, and enhancing safety". c28's text and the arti
 the judge read both files and reissued its round 3 card with no hard fail, and `panel.py`
 recombined the cards without counting a fourth round.
 
+**After the cap, one numeral repair.** The Phase 17 gate sync found "1,096" on frame 9 tracing to
+nothing once the day count was reworded to "28 days in, of 1,096", because no declared aggregate
+carried it. An untraced numeral is a hard fail, so frame 9's dek now reads "28 of 1,096 days had
+passed by October 8th", declared as a ratio from `compute.py`. Only that sentence changed, the
+art preflight was re-accepted on it, and `panel.py` recombined the same three cards, which is not
+a round. The judges scored the frame with the earlier wording.
+
 **What the panel named and the run repaired between rounds.**
 - The day count reads "28 days in, of 1,096", because "day 28" mixed conventions.
 - Frame 1 cites c2 for the FAA's release, and frame 4's third label carries c26's full
@@ -184,18 +191,18 @@ repair reached the slides, the caption and the edition) and `acceptance-items-ne
 | claims         | PASS   | 48 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 14 declaration(s), 21 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 8.21 MB, vector |
+| aggregates     | PASS   | 15 declaration(s), 21 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.22 MB, vector |
 | score          | WARN   | 6.988 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 35,788 chars planned |
+| dossiers       | PASS   | 35,795 chars planned |
 | caption        | PASS   | 136 words |
 | craft floor    | PASS   | 9 frame(s), median 1772, floor 319 |
 | plan vs render | WARN   | 2 of 42 acceptance item(s) checkable |
 | texan          | WARN   | places Austin, Dallas, Fort Worth, Houston, San Antonio / body yes / deadline yes / next step NO |
 | absences       | WARN   | 4 of 10 scoped to a named document, 6 unscoped |
-| numerals       | FAIL   | 6 numeral(s) over 9 frame(s), 1 the cited claims do not reach: s9 prints '1,096' in "TxDOT says the pilot runs in phases over three years,..." and NO cla |
+| numerals       | PASS   | 6 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
