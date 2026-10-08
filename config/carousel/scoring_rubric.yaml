@@ -185,15 +185,19 @@ criteria:
       A DIFFERENT LAYOUT ON EVERY FRAME IS NOT AN ANSWER TO THIS QUESTION and this criterion no
       longer asks for one. It used to, and it is the reason the decks stopped hanging together.
       THE SHOWSTOPPER TEST (2026-09-24, owner: "every single slide should literally look world
-      reknowned"). Cover the type and read each rendered frame at 432 px. Is it a photograph of a
-      PLACE at a TIME OF DAY: a sky or a deliberate interior, a horizon on a third, haze in depth,
-      light from the side its shadows say, contact and dirt where things meet the ground? A frame
-      that passes it is what the 10 below describes. One that fails it scores by how far it falls
-      on the descriptors, and is not capped. ILLUSTRATION_SYSTEM.md, THE WORLD.
+      reknowned", rewritten 2026-10-04 on the owner's word beside the sibling's deck, quoted in
+      full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art is "more like bold" and ours
+      "more like faded colors"). Cover the type and read each rendered frame at 432 px. Is there ONE subject
+      filling a third to two thirds of the frame, lit from the side its shadows say, on a dark
+      field with true blacks and one bright edge and little in the grey middle, standing in a sky
+      or a deliberate interior gone dark behind it, with contact and dirt where things meet the
+      ground? A frame that passes it is what the 10 below describes. One that fails it scores by
+      how far it falls on the descriptors, and is not capped. ILLUSTRATION_SYSTEM.md, THE STAGE
+      and THE WORLD.
     scoring:
-      10: "Every frame is a PLACE at an HOUR, or a deliberate interior: a sky, a ground with contact and dirt, haze in depth, light from the side its shadows say. One hero at true scale owns each frame, graded with a real light and a real dark, type seated in quiet the composition made for it, and it survives the zoom test at full size. It would hold as the opening spread of a serious magazine's feature."
+      10: "Every frame is BOLD: one subject at true scale fills it, lit from the side its shadows say in a pool of light on a dark field, true blacks and one bright edge and little in the grey middle, standing in a sky or a deliberate interior gone dark behind it, with contact and dirt where it meets the ground. Type sits light on the dark field the composition made for it, and every frame survives the zoom test at full size. It would hold beside the sibling's deck of the same morning, as the opening spread of a serious magazine's feature."
       7: "Strong overall. One frame leans on a default, a primitive model, a dead zone or a render artifact."
-      4: "Decorated templates, objects floating in a flat gradient, ungraded banding, or type on plates."
+      4: "Decorated templates, objects floating in a flat gradient, a faded frame living in the grey middle, ungraded banding, or type on plates."
 
   - name: deck_coherence
     weight: 0.12

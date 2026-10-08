@@ -999,6 +999,14 @@ def check_thirty_days(base: Path, date: str) -> list[str]:
     return dd.frames_on_told_items(copy, claims, ledger, ref)
 
 
+def check_art_preflight(base: Path, assets: Path | None = None) -> list[str]:
+    """New decks reach scoring only while their three-frame review is current."""
+    import art_preflight
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) or base.name <= art_preflight.SINCE:
+        return []
+    return art_preflight.check(base, assets or REPO_ROOT / "assets")
+
+
 def run(date: str, out_root: Path | None = None, articles: Path | None = None,
         assets: Path | None = None) -> int:
     base = Path(out_root or (REPO_ROOT / "out")) / date
@@ -1024,6 +1032,7 @@ def run(date: str, out_root: Path | None = None, articles: Path | None = None,
         ("the render report holds a record of every frame on disk",
          check_report_complete(base, report)),
         ("every frame was rendered after its last edit", current),
+        ("the three-frame art review matches the current compositions", check_art_preflight(base, assets)),
         ("machine QA measured the frames that are here now", qa_problems),
         (f"every line clears the rubric's {floor} contrast floor", contrast),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
@@ -1718,6 +1727,12 @@ def self_test() -> int:
         (_b41 / "claims.json").unlink()
         ok("...and a copy with no claims file beside it is a check that CANNOT RUN",
            any("CANNOT RUN" in p for p in check_thirty_days(_b41, "2026-10-03")))
+
+    with _tf.TemporaryDirectory() as _t:
+        ok("new daily decks require a current three-frame art review before scoring",
+           bool(check_art_preflight(Path(_t) / "2026-10-08")))
+        ok("the new art review leaves previously shipped decks under their original rules",
+           not check_art_preflight(Path(_t) / "2026-10-07"))
 
     if failures:
         print(f"\npanel_ready self-test: {failures} FAILED", file=sys.stderr)

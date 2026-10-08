@@ -1149,6 +1149,211 @@ const browser = await chromium.launch(Object.assign(
 const scratch = join(ROOT, 'out', 'txworld');
 mkdirSync(scratch, { recursive: true });
 
+// A STAGED WORLD (2026-10-04): the subject lit, the ground beside it and the world behind it gone to
+// the dark (TXT.stage). A 6 x 3 x 2.4 m box on a concrete ground in lastLight, from 23 m at 1.6 m,
+// with a building 60 m straight behind it, a flat pad under it and a field off to the left, which is
+// land cover and never the subject. Rendered staged, then with stage:false on the same camera, then
+// the same scene in goldenHour, which has no stage and must not get one. Every sampled point is found
+// on screen first and reported off screen as null, so no check can pass on a point it never read.
+const STAGE = `async (T, TXT, cv) => {
+  const shoot = async (name, staged, cab) => {
+    const W = Object.assign({}, TXT.worlds[name]);
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+    const eye = [14, 1.6, 18];
+    TXT.frame(R, { from: eye, look: [0, 1.3, 0] });
+    TXT.sky(R, W);
+    const s = TXT.sunDir(W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 rim: W.rig.rim, fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'concrete', size: 900, tile: 3 });
+    const mat = (c) => new T.MeshStandardMaterial({ color: c, roughness: 0.7 });
+    const pad = new T.Mesh(new T.BoxGeometry(40, 0.1, 40), mat(0x8f8b84)); pad.position.set(0, -0.045, 0); TXT.add(R, pad);
+    const field = new T.Mesh(new T.BoxGeometry(60, 1.0, 60), mat(0x6d6a3c)); field.position.set(-60, 0.5, -10); TXT.add(R, field);
+    const box = new T.Mesh(new T.BoxGeometry(6, 3, 2.4), mat(0xd8d0c0)); box.name = 'subject'; box.position.set(0, 1.5, 0); TXT.add(R, box);
+    const dh = new T.Vector3(-eye[0], 0, -eye[2]).normalize();
+    const far = new T.Mesh(new T.BoxGeometry(30, 24, 10), mat(0xd0c8b8)); far.position.set(dh.x * 60, 12, dh.z * 60);
+    far.lookAt(eye[0], 12, eye[2]); TXT.add(R, far);
+    if (cab) {   // the camera in a cab: a hood below the lens and a roof above it, one object around the eye
+      const c = new T.Group(), hood = new T.Mesh(new T.BoxGeometry(2.4, 1.0, 2.4), mat(0x2a2c30)), roof = hood.clone();
+      hood.position.set(eye[0] + dh.x * 1.6, 0.8, eye[2] + dh.z * 1.6); roof.position.set(eye[0], 3.2, eye[2]);
+      c.add(hood, roof); TXT.add(R, c);
+    }
+    const shot = await TXT.snapshot(R, staged ? {} : { stage: false });
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const px = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    const L = (i) => { const y = 0.2126 * lin(px[i]) + 0.7152 * lin(px[i + 1]) + 0.0722 * lin(px[i + 2]);
+      return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y; };
+    let mid = 0, dark = 0, n = 0;
+    for (let i = 0; i < px.length; i += 16) { const l = L(i); n++; if (l < 15) dark++; else if (l <= 70) mid++; }
+    const patch = (nx, ny) => { const x = Math.round((nx + 1) / 2 * Wd), y = Math.round((ny + 1) / 2 * H);
+      if (x < 6 || y < 6 || x >= Wd - 6 || y >= H - 6) return null; let t = 0, k = 0;
+      for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { t += L(((y + dy) * Wd + x + dx) * 4); k++; }
+      return t / k; };
+    const at = (p) => { const v = new T.Vector3(p[0], p[1], p[2]).project(R.camera); return v.z < 1 ? patch(v.x, v.y) : null; };
+    // the ground 15 m behind the subject and 8 m to its side, clear of the box on screen
+    const side = new T.Vector3(dh.z, 0, -dh.x);
+    const beside = at([dh.x * 15 + side.x * 8, 0, dh.z * 15 + side.z * 8]);
+    return { ok: shot.ok, mid: mid / n, dark: dark / n, box: at([0, 1.5, 1.2]), beside,
+             behind: at([dh.x * 55, 16, dh.z * 55]), staged: R._txStaged || null };
+  };
+  return { staged: await shoot('lastLight', true), plain: await shoot('lastLight', false),
+           golden: await shoot('goldenHour', true), cab: await shoot('lastLight', true, true) };
+}`;
+
+// THE STAGE ON A RAISED GROUND AND ACROSS SNAPSHOTS (Codex, PR 402). A box on a ground laid at y 1
+// gets its pool at that ground, not at world y 0. Two snapshots on one renderer with the camera
+// moved between them stage twice, on what each one shows, and a third with stage:false takes the
+// automatic stage off and gives the frame its own fog back.
+const STAGE2 = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.lastLight);
+  const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+  TXT.frame(R, { from: [10, 2.6, 12], look: [0, 1.8, 0] });
+  TXT.sky(R, W);
+  const s = TXT.sunDir(W);
+  TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+               fill: W.rig.fill, ambient: W.rig.ambient });
+  TXT.ground(R, { surface: 'concrete', size: 600, tile: 3, y: 1 });
+  const box = new T.Mesh(new T.BoxGeometry(4, 2, 2), new T.MeshStandardMaterial({ color: 0xd8d0c0 }));
+  box.name = 'subject'; box.position.set(0, 2, 0); TXT.add(R, box);
+  await TXT.snapshot(R);
+  const first = Object.assign({}, R._txStaged);
+  TXT.frame(R, { from: [24, 2.6, 30], look: [0, 1.8, 0] });
+  await TXT.snapshot(R);
+  const second = Object.assign({}, R._txStaged);
+  await TXT.snapshot(R, { stage: false });
+  return { first, second, after: R._txStaged, fogExp2: !!(R.scene.fog && R.scene.fog.isFogExp2),
+           pools: R.scene.children.filter((c) => c.userData && c.userData.txPool).length };
+}`;
+
+// THE VEIL, A DESK AND A THIN SUBJECT (Codex, PR 402, second round).
+//   1. stage:false after a staged snapshot takes the veil off with the fog. Two boxes 720 m off, one
+//      emissive white and one black: with the stage up the veil keeps 12 percent of each, so they
+//      differ, and with it off the frame's own fog takes both whole, so they read the same.
+//   2. A subject on a desk turned 30 degrees gets its pool cut to the desk's top face, not a 400 m
+//      sheet at desk height. A truck on a road lying on the ground keeps the 400 m pool.
+//   3. A document 2 cm thick, staged by name, gets its pool on the desk under it, not on itself.
+const STAGE3 = `async (T, TXT, cv) => {
+  const W = Object.assign({}, TXT.worlds.lastLight);
+  const make = (from, look) => {
+    const R = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+    TXT.frame(R, { from, look });
+    TXT.sky(R, W);
+    const s = TXT.sunDir(W);
+    TXT.rig(R, { key: Object.assign({}, W.rig.key, { pos: [s.x * 60, Math.max(s.y * 60, 6), s.z * 60] }),
+                 fill: W.rig.fill, ambient: W.rig.ambient });
+    TXT.ground(R, { surface: 'concrete', size: 2000, tile: 3 });
+    return R;
+  };
+  const mat = (c, e) => new T.MeshStandardMaterial({ color: c, emissive: e || 0x000000, roughness: 0.6 });
+  const R = make([0, 3, 30], [0, 2, 0]);
+  const subj = new T.Mesh(new T.BoxGeometry(6, 3, 3), mat(0xd8d0c0)); subj.name = 'subject'; subj.position.set(0, 1.5, 0); TXT.add(R, subj);
+  const white = new T.Mesh(new T.BoxGeometry(120, 120, 20), mat(0xffffff, 0xffffff)); white.position.set(-80, 60, -700); TXT.add(R, white);
+  const black = new T.Mesh(new T.BoxGeometry(120, 120, 20), mat(0x000000)); black.position.set(80, 60, -700); TXT.add(R, black);
+  const read = () => {
+    const gl = R.renderer.getContext(), Wd = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+    const px = new Uint8Array(Wd * H * 4); gl.readPixels(0, 0, Wd, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    const L = (i) => { const y = 0.2126 * lin(px[i]) + 0.7152 * lin(px[i + 1]) + 0.0722 * lin(px[i + 2]);
+      return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y; };
+    const at = (p) => { const v = new T.Vector3(p[0], p[1], p[2]).project(R.camera);
+      const x = Math.round((v.x + 1) / 2 * Wd), y = Math.round((v.y + 1) / 2 * H);
+      if (v.z >= 1 || x < 6 || y < 6 || x >= Wd - 6 || y >= H - 6) return null;
+      let t = 0, k = 0;
+      for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { t += L(((y + dy) * Wd + x + dx) * 4); k++; }
+      return t / k; };
+    let veiled = 0;
+    R.scene.traverse((o) => { if (o.material && o.material.defines && 'TX_VEIL' in o.material.defines) veiled++; });
+    return { white: at([-80, 60, -690]), black: at([80, 60, -690]), veiled, staged: !!R._txStaged };
+  };
+  await TXT.snapshot(R);
+  const up = read();
+  await TXT.snapshot(R, { stage: false });
+  const off = read();
+  // the desk: a top 2 by 1 m, 4 cm thick, on four legs, turned 30 degrees, with a 40 cm box on it
+  const D = make([2.5, 1.8, 2.5], [0, 0.9, 0]);
+  const desk = new T.Group(); desk.rotation.y = Math.PI / 6;
+  const top = new T.Mesh(new T.BoxGeometry(2.0, 0.04, 1.0), mat(0x6a5a48)); top.position.y = 0.75; desk.add(top);
+  for (const [x, z] of [[-0.9, -0.4], [0.9, -0.4], [-0.9, 0.4], [0.9, 0.4]]) {
+    const leg = new T.Mesh(new T.BoxGeometry(0.06, 0.73, 0.06), mat(0x3a3430)); leg.position.set(x, 0.365, z); desk.add(leg);
+  }
+  const doc = new T.Mesh(new T.BoxGeometry(0.3, 0.02, 0.4), mat(0xf0ece4)); doc.name = 'document'; doc.position.set(-0.6, 0.78, 0); desk.add(doc);
+  TXT.add(D, desk);
+  const cube = new T.Mesh(new T.BoxGeometry(0.4, 0.4, 0.4), mat(0xb8b0a0)); cube.name = 'cube'; cube.position.set(0, 0.97, 0); TXT.add(D, cube);
+  D.scene.updateMatrixWorld(true);
+  const poolOf = (X) => { const p = X.scene.children.find((c) => c.userData && c.userData.txPool);
+    if (!p) return null; p.updateMatrixWorld(true);
+    const g = p.geometry.attributes.position, pts = [];
+    for (let i = 0; i < g.count; i++) pts.push(new T.Vector3().fromBufferAttribute(g, i).applyMatrix4(p.matrixWorld));
+    const bb = new T.Box3().setFromPoints(pts), sz = bb.getSize(new T.Vector3());
+    return { pts, width: sz.x, depth: sz.z }; };
+  const onDesk = Object.assign({}, TXT.stage(D, cube));
+  const dp = poolOf(D);
+  const corners = [[-1, -0.5], [1, -0.5], [1, 0.5], [-1, 0.5]].map(([x, z]) => top.localToWorld(new T.Vector3(x, 0.02, z)));
+  const off_corner = dp ? Math.max(...dp.pts.map((p) => Math.min(...corners.map((c) => c.distanceTo(p))))) : null;
+  const onDoc = Object.assign({}, TXT.stage(D, doc));
+  // the road: 8 m wide, 5 cm thick, lying on the ground, with a truck on it
+  const Q = make([14, 3, 18], [0, 1, 0]);
+  const road = new T.Mesh(new T.BoxGeometry(8, 0.05, 200), mat(0x3c3c3e)); road.position.y = 0.025; TXT.add(Q, road);
+  const truck = new T.Mesh(new T.BoxGeometry(6, 3, 2.4), mat(0xd8d0c0)); truck.name = 'truck'; truck.position.set(0, 1.55, 0); TXT.add(Q, truck);
+  Q.scene.updateMatrixWorld(true);
+  const onRoad = Object.assign({}, TXT.stage(Q, truck));
+  const rp = poolOf(Q);
+  // riding: a camera 1.7 m over its own truck's roof, looking up the road, as no. 41 frame 4 does
+  const V = make([-7.3, 5.8, -2.6], [-7.7, 4.1, 50]);
+  const rig = new T.Mesh(new T.BoxGeometry(3.5, 4.1, 21.6), mat(0xd8d0c0)); rig.name = 'own truck'; rig.position.set(-7.1, 2.05, -6.7); TXT.add(V, rig);
+  await TXT.snapshot(V);
+  const riding = Object.assign({}, V._txStaged);
+  // and a camera 1.6 m over a car looking straight down at it keeps the car
+  const Dn = make([0, 3.0, 0.01], [0, 0, 0]);
+  const car = new T.Mesh(new T.BoxGeometry(1.8, 1.4, 4.5), mat(0x8a2a22)); car.name = 'car'; car.position.set(0, 0.7, 0); TXT.add(Dn, car);
+  await TXT.snapshot(Dn);
+  const looking = Object.assign({}, Dn._txStaged);
+  // a large box on a layer this camera doesn't render, near where it is aimed, beside a smaller hero
+  const Ly = make([0, 2, 14], [0, 1.5, 0]);
+  const hidden = new T.Mesh(new T.BoxGeometry(12, 8, 4), mat(0xd8d0c0)); hidden.name = 'hidden'; hidden.position.set(0, 4, -3);
+  hidden.layers.set(1); TXT.add(Ly, hidden);
+  const hero = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xb8b0a0)); hero.name = 'hero'; hero.position.set(2.5, 1, 2); TXT.add(Ly, hero);
+  await TXT.snapshot(Ly);
+  const layered = Object.assign({}, Ly._txStaged);
+  // a raised patch of tagged ground beside the subject is not what it stands on, and a kit ground
+  // (tagged, without TXT.ground's define) is never veiled
+  const Pt = make([8, 3, 12], [0, 1.8, 0]);
+  const plinth = new T.Mesh(new T.BoxGeometry(2, 1.4, 2), mat(0x3a3430)); plinth.name = 'plinth'; plinth.position.set(0, 0.7, 0); TXT.add(Pt, plinth);
+  const bust = new T.Mesh(new T.BoxGeometry(1.2, 1.2, 1.2), mat(0xd8d0c0)); bust.name = 'bust'; bust.position.set(0, 2.0, 0); TXT.add(Pt, bust);
+  const patch = new T.Mesh(new T.PlaneGeometry(10, 10).rotateX(-Math.PI / 2), mat(0x5a5a48)); patch.position.set(30, 1.2, 0);
+  patch.userData.txGround = true; TXT.add(Pt, patch);
+  const kitGround = new T.Mesh(new T.PlaneGeometry(400, 400, 4, 4).rotateX(-Math.PI / 2), mat(0x4a4434)); kitGround.position.set(0, 0.01, 0);
+  kitGround.userData.txGround = true; TXT.add(Pt, kitGround);
+  const onPlinth = Object.assign({}, TXT.stage(Pt, bust));
+  const veil = (o) => !!(o.material.defines && 'TX_VEIL' in o.material.defines);
+  const kitVeil = { kitGround: veil(kitGround), patch: veil(patch), bust: veil(bust) };
+  // a kit-style heightfield (a group publishing heightAt, its mesh tagged ground) 60 m across and
+  // 8 m deep fills the view and holds the look point: it never takes the stage from the hero on
+  // it, and a flat pool is never laid over its hills
+  const Hf = TXT.setup(cv, { w: 540, h: 675, fog: [W.haze, W.fogDensity], exposure: W.exposure, tone: W.tone, fov: 36 });
+  TXT.frame(Hf, { from: [6, 7, 9], look: [0, 1, 0] });   // 3 m over the terrain's top, so nothing excludes it but this rule
+  TXT.sky(Hf, W);
+  const terrain = new T.Group(); terrain.name = 'terrain';
+  terrain.userData.heightAt = (x, z) => 4 * Math.sin(x / 6) * Math.sin(z / 7);
+  const tgeo = new T.PlaneGeometry(60, 60, 60, 60).rotateX(-Math.PI / 2), tp = tgeo.attributes.position;
+  for (let i = 0; i < tp.count; i++) tp.setY(i, terrain.userData.heightAt(tp.getX(i), tp.getZ(i)));
+  tgeo.computeVertexNormals();
+  const land = new T.Mesh(tgeo, mat(0x6a5a40)); land.userData.txGround = true; terrain.add(land); TXT.add(Hf, terrain);
+  const hero2 = new T.Mesh(new T.BoxGeometry(2, 2, 2), mat(0xd8d0c0)); hero2.name = 'hero on the hill'; hero2.position.set(0, 1, 0); TXT.add(Hf, hero2);
+  await TXT.snapshot(Hf);
+  const onTerrain = Object.assign({}, Hf._txStaged);
+  // and the hero staged by name, so the receiver is tested apart from the subject's choice
+  const onHill = Object.assign({}, TXT.stage(Hf, hero2));
+  // a standalone scene that names no world stands in the house register
+  const Sd = TXT.setup(cv, { w: 540, h: 675, fov: 36 });
+  TXT.frame(Sd, { from: [0, 2, 10], look: [0, 1, 0] });
+  TXT.sky(Sd);
+  const standalone = { staged: !!(Sd.world && Sd.world.stage), lastLight: !!Sd.world && Sd.world.zenith === TXT.worlds.lastLight.zenith };
+  return { up, off, onDesk, desk: dp ? { width: dp.width, depth: dp.depth, off_corner } : null, onDoc,
+           onRoad, road: rp ? { width: rp.width, depth: rp.depth } : null, riding, looking, layered, standalone, onPlinth, kitVeil, onTerrain, onHill };
+}`;
+
 async function run(name, scene) {
   const file = join(scratch, `${name}.html`);
   writeFileSync(file, page_html(scene));
@@ -1556,6 +1761,95 @@ check('the sky hue page renders with no page error and no scene error',
           `horizon: ${bands.map((x) => `${Math.round(x.hs[0])} at ${x.hs[1].toFixed(2)}`).join(', ')}`,
           bands.length === 3 && bad.length === 0, JSON.stringify(sh.result[name]));
   }
+}
+
+const sg = await run('stage', STAGE);
+check('the stage page renders with no page error and no scene error',
+      !sg.result.error && sg.pageErrors.length === 0, JSON.stringify({ error: sg.result.error, page: sg.pageErrors }));
+{
+  const a = sg.result.staged || {}, b = sg.result.plain || {}, g = sg.result.golden || {};
+  const st = a.staged || {};
+  check(`a staged world stages its snapshot on the subject, never the pad or the field: it took ` +
+        `${JSON.stringify(st.subject)} and laid ${st.pool ? 'a' : 'no'} pool, the fog from ${(st.near || 0).toFixed(1)} m to ${(st.far || 0).toFixed(1)} m`,
+        st.subject === 'subject' && st.pool === true && st.near > 22 && st.near < 30, JSON.stringify(st));
+  check(`staged, ${(a.mid * 100).toFixed(1)} percent of the frame sits in the mid tones and ${(a.dark * 100).toFixed(1)} ` +
+        `is near black, against ${(b.mid * 100).toFixed(1)} and ${(b.dark * 100).toFixed(1)} unstaged`,
+        a.mid < 0.3 && a.dark > 0.4 && b.mid - a.mid > 0.15, JSON.stringify({ a, b }));
+  const num = (x) => typeof x === 'number' && x >= 0;
+  const f = (x) => (num(x) ? x.toFixed(1) : String(x));
+  check(`the subject keeps its light: L* ${f(a.box)} staged against ${f(b.box)}`,
+        num(a.box) && num(b.box) && a.box > 50 && a.box >= b.box * 0.85, JSON.stringify({ a: a.box, b: b.box }));
+  check(`the ground behind it, off to the side, goes to the dark: L* ${f(a.beside)} staged against ${f(b.beside)}`,
+        num(a.beside) && num(b.beside) && b.beside > 20 && a.beside < b.beside * 0.5, JSON.stringify({ a: a.beside, b: b.beside }));
+  check(`the building 60 m behind it goes to the sky: L* ${f(a.behind)} staged against ${f(b.behind)}`,
+        num(a.behind) && num(b.behind) && b.behind > 20 && a.behind < b.behind * 0.6, JSON.stringify({ a: a.behind, b: b.behind }));
+  const cb = (sg.result.cab || {}).staged || {};
+  check(`a camera standing in a cab never stages on the cab: it took ${JSON.stringify(cb.subject)}`,
+        cb.subject === 'subject', JSON.stringify(cb));
+  check(`a world without a stage is never staged: goldenHour reads ${JSON.stringify(g.staged)}`,
+        g.staged === null && g.ok, JSON.stringify(g));
+}
+
+const s2 = await run('stage2', STAGE2);
+check('the second stage page renders with no page error and no scene error',
+      !s2.result.error && s2.pageErrors.length === 0, JSON.stringify({ error: s2.result.error, page: s2.pageErrors }));
+{
+  const r = s2.result, a = r.first || {}, b = r.second || {};
+  check(`a subject on a ground laid at y 1 gets its pool at that ground: y ${a.poolY}`,
+        a.pool === true && Math.abs(a.poolY - 1.004) < 0.02, JSON.stringify(a));
+  check(`an automatic stage is redone when the camera moves: the fog starts at ${(a.near || 0).toFixed(1)} m, ` +
+        `then at ${(b.near || 0).toFixed(1)} m`, a.auto === true && b.auto === true && b.near > a.near * 1.5, JSON.stringify(r));
+  check(`stage:false takes it off: no stage, ${r.pools} pools and the frame's own exponential fog back`,
+        r.after === null && r.pools === 0 && r.fogExp2 === true, JSON.stringify(r));
+}
+
+const s3 = await run('stage3', STAGE3);
+check('the third stage page renders with no page error and no scene error',
+      !s3.result.error && s3.pageErrors.length === 0, JSON.stringify({ error: s3.result.error, page: s3.pageErrors }));
+{
+  const r = s3.result, up = r.up || {}, off = r.off || {};
+  const dUp = Math.abs((up.white ?? 0) - (up.black ?? 0)), dOff = Math.abs((off.white ?? 99) - (off.black ?? 0));
+  check(`with the stage up the veil holds 12 percent: a white and a black box 720 m off read L* ` +
+        `${(up.white ?? -1).toFixed(1)} and ${(up.black ?? -1).toFixed(1)}, on ${up.veiled} veiled materials`,
+        up.staged === true && up.white != null && up.black != null && dUp > 5 && up.veiled > 0, JSON.stringify(up));
+  check(`stage:false takes the veil off with the fog: the two read ${(off.white ?? -1).toFixed(1)} and ` +
+        `${(off.black ?? -1).toFixed(1)}, ${off.veiled} materials still veiled`,
+        off.staged === false && off.white != null && off.black != null && dOff < 1 && off.veiled === 0, JSON.stringify(off));
+  const d = r.onDesk || {}, dk = r.desk || {};
+  check(`a box on a desk turned 30 degrees gets its pool on the desk's top: y ${d.poolY}, on the ${d.poolOn}`,
+        d.pool === true && d.poolOn === 'surface' && Math.abs(d.poolY - 0.774) < 0.005, JSON.stringify(d));
+  check(`...cut to the desk's top face: ${(dk.width ?? -1).toFixed(2)} by ${(dk.depth ?? -1).toFixed(2)} m, every ` +
+        `corner within ${((dk.off_corner ?? 1) * 100).toFixed(1)} cm of the desk's`,
+        dk.width < 2.5 && dk.depth < 2.5 && dk.off_corner < 0.01, JSON.stringify(dk));
+  const t = r.onDoc || {};
+  check(`a document 2 cm thick, staged by name, gets its pool on the desk under it: y ${t.poolY}`,
+        t.pool === true && Math.abs(t.poolY - 0.774) < 0.005, JSON.stringify(t));
+  const q = r.onRoad || {}, rd = r.road || {};
+  check(`a truck on a road lying on the ground keeps the ground's pool: y ${q.poolY}, ` +
+        `${(rd.width ?? -1).toFixed(0)} m across`,
+        q.pool === true && q.poolOn === 'ground' && Math.abs(q.poolY - 0.054) < 0.005 && rd.width > 390,
+        JSON.stringify({ q, rd }));
+  const rid = r.riding || {}, lk = r.looking || {};
+  check(`a camera riding 1.7 m over its own truck never stages on the truck: it took ${JSON.stringify(rid.subject)}`,
+        rid.auto === true && rid.subject !== 'own truck', JSON.stringify(rid));
+  check(`a camera looking straight down at a car from 1.6 m keeps the car: it took ${JSON.stringify(lk.subject)}`,
+        lk.subject === 'car', JSON.stringify(lk));
+  const ly = r.layered || {};
+  check(`a box on a layer the camera doesn't render never takes the stage from the hero: it took ${JSON.stringify(ly.subject)}`,
+        ly.subject === 'hero', JSON.stringify(ly));
+  check(`a standalone TXT.sky(R) that names no world stands in lastLight, the house register`,
+        r.standalone && r.standalone.staged === true && r.standalone.lastLight === true, JSON.stringify(r.standalone));
+  const pl = r.onPlinth || {}, kv = r.kitVeil || {};
+  check(`a raised patch of ground 30 m away is never the receiver: the bust on its plinth gets ${pl.pool ? 'a pool at y ' + pl.poolY : 'no pool'}`,
+        pl.subject === 'bust' && pl.pool === false, JSON.stringify(pl));
+  check(`a kit ground, tagged without TXT.ground's define, is never veiled, and the bust is: ${JSON.stringify(kv)}`,
+        kv.kitGround === false && kv.patch === false && kv.bust === true, JSON.stringify(kv));
+  const ot = r.onTerrain || {};
+  check(`a heightfield filling the view never takes the stage from the hero on it: it took ${JSON.stringify(ot.subject)}`,
+        ot.subject === 'hero on the hill', JSON.stringify(ot));
+  const oh = r.onHill || {};
+  check(`...and the hero staged by name on its hills gets no flat pool laid over them: ${oh.pool ? 'a pool at y ' + oh.poolY : 'no pool'}`,
+        oh.subject === 'hero on the hill' && oh.pool === false, JSON.stringify(oh));
 }
 
 await browser.close();

@@ -374,7 +374,9 @@ art complaint, and naming its treatment is what makes somebody build it.
 **The showstopper frame** is the one planned to pass THE SHOWSTOPPER TEST outright, and the line
 or its row says what makes its depth. **The tonal arc** says where the deck is darkest, where it
 lifts and where it peaks. "One tone throughout" fails, because a deck that strobes or never moves
-was named by a judge on October 2nd. `deck_coherence.py` measures the rendered value track
+was named by a judge on October 2nd. In a staged deck the arc moves inside the dark register: the
+peak is the frame with the most light in it, never a grey one, and `value_register.py` holds the
+deck's mean (ILLUSTRATION_SYSTEM.md, THE STAGE). `deck_coherence.py` measures the rendered value track
 afterwards. This line is where it is decided.
 
 The flow critic grades the deck against this plan's causes before the panel sees it, and the
